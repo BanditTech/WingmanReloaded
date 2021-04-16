@@ -3979,7 +3979,7 @@ Return
     }
     Initiate(){
       If (This.Method = "bulk") {
-
+        
       } Else {
         This.Looping(This.Target.X,This.Target.Y)
       }
@@ -4017,9 +4017,11 @@ Return
       return
     }
     Looping(x,y){
+      Global RunningToggle
+      Static namearr := {Chance:"Chance",Color:"Chrome",Link:"Fusing",Socket:"Jeweler"}
       ClipItem(x,y)
-      While !This.Logic() && This.Validate() {
-        ClipItem(x,y)
+      While !This.Logic() && This.Validate() && RunningToggle {
+        This.ApplyCurrency(namearr[This.Type],x,y)
       }
     }
   }
