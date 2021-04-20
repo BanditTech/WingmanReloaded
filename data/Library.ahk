@@ -309,10 +309,15 @@
           If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
               This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
           ;Start Parse
-          If (This.Prop.ItemBase ~= " Map$")
+          
+          
+          If (This.Prop.ItemClass = "Misc Map Items")
+          {
+            This.Prop.SpecialType := "Map Item"
+          }
+          If (This.Prop.ItemClass = "Maps")
           {
             This.Prop.IsMap := True
-            This.Prop.ItemClass := "Maps"
             ; Deal with Blighted Map
             If (InStr(This.Prop.ItemBase, "Blighted"))
             {
@@ -326,8 +331,6 @@
           }
           If (This.Prop.ItemBase ~= "Invitation:" && This.Data.Blocks.FlavorText ~= "Map Device")
           {
-            ; This.Prop.IsMap := True
-            This.Prop.ItemClass := "Maps"
             This.Prop.SpecialType := "Invitation Map"
           }
           Else If (This.Prop.ItemBase ~= " Incubator$")
@@ -426,8 +429,7 @@
             This.Prop.Fossil := True
             This.Prop.SpecialType := "Fossil"
           }
-          Else If (This.Prop.RarityCurrency 
-          && (This.Prop.ItemBase ~= " Resonator$"))
+          Else If (This.Prop.ItemClass ="Delve Stackable Socketable Currency")
           {
             This.Prop.Resonator := True
             This.Prop.SpecialType := "Resonator"
@@ -446,23 +448,24 @@
             This.Prop.Vessel := True
             This.Prop.SpecialType := "Divine Vessel"
           }
-          Else If (InStr(This.Prop.ItemBase, "Eye Jewel"))
+          Else If (This.Prop.ItemClass = "Abyss Jewel")
           {
             This.Prop.AbyssJewel := True
             This.Prop.Jewel := True
           }
-          Else If (InStr(This.Prop.ItemBase, "Cobalt Jewel")
-          || InStr(This.Prop.ItemBase, "Crimson Jewel")
-          || InStr(This.Prop.ItemBase, "Viridian Jewel"))
+          Else If (This.Prop.ItemClass = "Jewel")
           {
-            This.Prop.Jewel := True
+            If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
+            {
+              This.Prop.ClusterJewel := True
+              This.Prop.SpecialType := "Cluster Jewel"
+            }
+            else
+            {
+              This.Prop.Jewel := True
+            }
           }
-          Else If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
-          {
-            This.Prop.ClusterJewel := True
-            This.Prop.SpecialType := "Cluster Jewel"
-          }
-          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
+          Else If (This.Prop.ItemClass = "Heist Tool")
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Goods"
@@ -500,44 +503,47 @@
             This.Prop.SpecialType := "Catalyst"
             }
           }
-          Else If (InStr(This.Prop.ItemBase, "'s Lung"))
+          Else If (This.Prop.ItemClass = "Metamorph Sample")
           {
-            If (This.Prop.RarityUnique)
+            If (InStr(This.Prop.ItemBase, "'s Lung"))
             {
-              This.Prop.IsOrgan := "Lung"
-              This.Prop.SpecialType := "Organ"
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Lung"
+                This.Prop.SpecialType := "Organ"
+              }
             }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Heart"))
-          {
-            If (This.Prop.RarityUnique)
+            Else If (InStr(This.Prop.ItemBase, "'s Heart"))
             {
-              This.Prop.IsOrgan := "Heart"
-              This.Prop.SpecialType := "Organ"
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Heart"
+                This.Prop.SpecialType := "Organ"
+              }
             }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Brain"))
-          {
-            If (This.Prop.RarityUnique)
+            Else If (InStr(This.Prop.ItemBase, "'s Brain"))
             {
-              This.Prop.IsOrgan := "Brain"
-              This.Prop.SpecialType := "Organ"
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Brain"
+                This.Prop.SpecialType := "Organ"
+              }
             }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Liver"))
-          {
-            If (This.Prop.RarityUnique)
+            Else If (InStr(This.Prop.ItemBase, "'s Liver"))
             {
-              This.Prop.IsOrgan := "Liver"
-              This.Prop.SpecialType := "Organ"
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Liver"
+                This.Prop.SpecialType := "Organ"
+              }
             }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Eye"))
-          {
-            If (This.Prop.RarityUnique)
+            Else If (InStr(This.Prop.ItemBase, "'s Eye"))
             {
-              This.Prop.IsOrgan := "Eye"
-              This.Prop.SpecialType := "Organ"
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Eye"
+                This.Prop.SpecialType := "Organ"
+              }
             }
           }
           Else If (InStr(This.Prop.ItemBase, " Beast"))
@@ -550,7 +556,7 @@
               This.Prop.ItemClass := "Beasts"
             }
           }
-          Else If (InStr(This.Prop.ItemBase, "Contract:")||RegExMatch(This.Prop.ItemBase, "`am)(.+) Contract",RxMatch))
+          Else If (This.Prop.ItemClass = "Contract")
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Contract"
@@ -620,6 +626,10 @@
           {
             This.Prop.ItemLevel := RxMatch1
           }
+          If (This.Data.Blocks.HasKey("Enchant"))
+          {
+            This.Prop.SpecialType := "Enchanted Item"
+          }
           If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: "rxNum,RxMatch))
           {
             This.Prop.Required_Level := RxMatch1
@@ -667,6 +677,10 @@
             }
           }
           ;Generic Props
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
+          {
+            This.Prop.Quality := RxMatch1
+          }
           If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
           {
             This.Prop.Quality := RxMatch1
