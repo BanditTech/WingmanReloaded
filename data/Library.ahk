@@ -8466,12 +8466,15 @@
       For k, v in craftingBasesT4
         textList4 .= (!textList4 ? "" : ", ") v
       baseList := ""
+      textList5 := ""
       For k, v in craftingBasesT5
         textList5 .= (!textList5 ? "" : ", ") v
       baseList := ""
+      textList6 := ""
       For k, v in craftingBasesT6
         textList6 .= (!textList6 ? "" : ", ") v
       baseList := ""
+      textList7 := ""
       For k, v in craftingBasesT7
         textList7 .= (!textList7 ? "" : ", ") v
       baseList := ""
