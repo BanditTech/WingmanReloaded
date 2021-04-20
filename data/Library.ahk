@@ -681,10 +681,6 @@
           {
             This.Prop.Quality := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
-          {
-            This.Prop.Quality := RxMatch1
-          }
           If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum,RxMatch))
           {
             This.Prop.Rating_Armour := RxMatch1
