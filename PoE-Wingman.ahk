@@ -217,49 +217,80 @@
       , "UniqueAccessory"
       , "Beast"
       , "Vial"]
-    ; List crafting T1
-    Global DefaultcraftingBasesT1 := ["Opal Ring"
-      , "Steel Ring"
-      , "Vermillion Ring"]
-    ; List crafting T2
-    Global DefaultcraftingBasesT2 := ["Blue Pearl Amulet"
-      , "Bone Helmet"
-      , "Cerulean Ring"
-      , "Convoking Wand"
-      , "Crystal Belt"
-      , "Fingerless Silk Gloves"
-      , "Gripped Gloves"
-      , "Marble Amulet"
-      , "Sacrificial Garb"
-      , "Spiked Gloves"
-      , "Stygian Vise"
-      , "Two-Toned Boots"
-      , "Vanguard Belt"]
-    ; List crafting T3
-    Global DefaultcraftingBasesT3 := ["Colossal Tower Shield"
-      , "Eternal Burgonet"
-      , "Hubris Circlet"
-      , "Lion Pelt"
-      , "Sorcerer Boots"
-      , "Sorcerer Gloves"
-      , "Titanium Spirit Shield"
-      , "Vaal Regalia"
-      , "Diamond Ring"
-      , "Onyx Amulet"
-      , "Two-Stone Ring"
-      , "Glorious Plate"
-      , "Zodiac Leather"]
-    ; List crafting T4/Jewel
-    Global DefaultcraftingBasesT4 := ["Cobalt Jewel"
+    
+    ; List Crafting Atlas Bases + Special Drops
+    Global DefaultcraftingBasesT1  := ["Apothecary's Gloves"
+      ,"Blessed Boots"
+      ,"Fingerless Silk Gloves"
+      ,"Gripped Gloves"
+      ,"Spiked Gloves"
+      ,"Two-Toned Boots"
+      ,"Convoking Wand"
+      ,"Bone Helmet"
+      ,"Artillery Quiver"
+      ,"Marble Amulet"
+      ,"Seaglass Amulet"
+      ,"Blue Pearl Amulet"
+      ,"Iolite Ring"
+      ,"Vanguard Belt"
+      ,"Crystal Belt"
+      ,"Opal Ring"
+      ,"Steel Ring"
+      ,"Stygian Vise"
+      ,"Vermillion Ring"
+      ,"Grasping Mail"
+      ,"Sacrificial Garb"
+      ,"Brimstone Treads"
+      ,"Stormrider Boots"
+      ,"Dreamquest Slippers"
+      ,"Debilitation Gauntlets"
+      ,"Sinistral Gloves"
+      ,"Nexus Gloves"
+      ,"Penitent Mask"
+      ,"Blizzard Crown"
+      ,"Archdemon Crown"
+      ,"Heat-attuned Tower Shield"
+      ,"Cold-attuned Buckle"
+      ,"Transfer-attuned Spirit Shield"
+      ,"Penitent Mask"]
+    Global DefaultcraftingBasesT2 := ["Glorious Plate"
+      ,"Astral Plate"
+      ,"Titan Greaves"
+      ,"Titan Gauntlets"
+      ,"Royal Burgonet"
+      ,"Eternal Burgonet"
+      ,"Pinnacle Tower Shield"]
+    Global DefaultcraftingBasesT3 := ["Assassin's Garb"
+      ,"Zodiac Leather"
+      ,"Slink Boots"
+      ,"Slink Gloves"
+      ,"Lion Pelt"
+      ,"Imperial Buckler"]
+    Global DefaultcraftingBasesT4 := ["Vaal Regalia"
+      ,"Sorcerer Boots"
+      ,"Sorcerer Gloves"
+      ,"Hubris Circlet"
+      ,"Titanium Spirit Shield"
+      ,"Harmonic Spirit Shield"]
+    Global DefaultcraftingBasesT5 := ["Triumphant Lamellar"
+      ,"Dragonscale Gauntlets"
+      ,"Archon Kite Shield"
+      ,"Murder Mitts"
+      ,"Crusader Gloves"]
+    Global DefaultcraftingBasesT6 := ["Cobalt Jewel"
       , "Viridian Jewel"
-      , "Crimson Jewel"
-      , "Searching Eye Jewel"
+      , "Crimson Jewel"]
+    Global DefaultcraftingBasesT7 := ["Searching Eye Jewel"
       , "Murderous Eye Jewel"
       , "Ghastly Eye Jewel"]
+
     Global craftingBasesT1 := []
     Global craftingBasesT2 := []
     Global craftingBasesT3 := []
     Global craftingBasesT4 := []
+    Global craftingBasesT5 := []
+    Global craftingBasesT6 := []
+    Global craftingBasesT7 := []
     ; Create Executable group for gameHotkey, IfWinActive
     global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
     for n, exe in POEGameArr
@@ -857,6 +888,35 @@
     Global YesStashCraftingRare := 1
     Global YesStashCraftingIlvl := 0
     Global YesStashCraftingIlvlMin := 76
+
+    Global YesStashATLAS := 1
+    Global YesStashATLASCraftingIlvl := 0
+    Global YesStashATLASCraftingIlvlMin := 76
+
+    Global YesStashSTR := 1
+    Global YesStashSTRCraftingIlvl := 0
+    Global YesStashSTRCraftingIlvlMin := 76
+
+    Global YesStashDEX := 1
+    Global YesStashDEXCraftingIlvl := 0
+    Global YesStashDEXCraftingIlvlMin := 76
+
+    Global YesStashINT := 1
+    Global YesStashINTCraftingIlvl := 0
+    Global YesStashINTCraftingIlvlMin := 76
+
+    Global YesStashHYBRID := 1
+    Global YesStashHYBRIDCraftingIlvl := 0
+    Global YesStashHYBRIDCraftingIlvlMin := 76
+
+    Global YesStashJ := 1
+    Global YesStashJCraftingIlvl := 0
+    Global YesStashJCraftingIlvlMin := 76
+
+    Global YesStashAJ := 1
+    Global YesStashAJCraftingIlvl := 0
+    Global YesStashAJCraftingIlvlMin := 76
+
   ; Skip Maps after column #
     Global YesSkipMaps := 0
     Global YesSkipMaps_eval := ">="
@@ -5334,15 +5394,24 @@ Return
       sDefaultcraftingBasesT2 := ArrayToString(DefaultcraftingBasesT2)
       sDefaultcraftingBasesT3 := ArrayToString(DefaultcraftingBasesT3)
       sDefaultcraftingBasesT4 := ArrayToString(DefaultcraftingBasesT4)
+      sDefaultcraftingBasesT5 := ArrayToString(DefaultcraftingBasesT5)
+      sDefaultcraftingBasesT6 := ArrayToString(DefaultcraftingBasesT6)
+      sDefaultcraftingBasesT7 := ArrayToString(DefaultcraftingBasesT7)
       IniRead, craftingBasesT1, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT1, %sDefaultcraftingBasesT1%
       IniRead, craftingBasesT2, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT2, %sDefaultcraftingBasesT2%
       IniRead, craftingBasesT3, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT3, %sDefaultcraftingBasesT3%
       IniRead, craftingBasesT4, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT4, %sDefaultcraftingBasesT4%
+      IniRead, craftingBasesT5, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT5, %sDefaultcraftingBasesT5%
+      IniRead, craftingBasesT6, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT6, %sDefaultcraftingBasesT6%
+      IniRead, craftingBasesT7, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT7, %sDefaultcraftingBasesT7%
       ;converting string to array
       craftingBasesT1 := StringToArray(craftingBasesT1)
       craftingBasesT2 := StringToArray(craftingBasesT2)
       craftingBasesT3 := StringToArray(craftingBasesT3)
       craftingBasesT4 := StringToArray(craftingBasesT4)
+      craftingBasesT5 := StringToArray(craftingBasesT5)
+      craftingBasesT6 := StringToArray(craftingBasesT6)
+      craftingBasesT7 := StringToArray(craftingBasesT7)
       
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
@@ -6054,10 +6123,16 @@ Return
       scraftingBasesT2 := ArrayToString(craftingBasesT2)
       scraftingBasesT3 := ArrayToString(craftingBasesT3)
       scraftingBasesT4 := ArrayToString(craftingBasesT4)
+      scraftingBasesT5 := ArrayToString(craftingBasesT5)
+      scraftingBasesT6 := ArrayToString(craftingBasesT6)
+      scraftingBasesT7 := ArrayToString(craftingBasesT7)
       IniWrite, %scraftingBasesT1%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT1
       IniWrite, %scraftingBasesT2%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT2
       IniWrite, %scraftingBasesT3%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT3
       IniWrite, %scraftingBasesT4%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT4
+      IniWrite, %scraftingBasesT5%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT5
+      IniWrite, %scraftingBasesT6%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT6
+      IniWrite, %scraftingBasesT7%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT7
 
       readFromFile()
       GuiUpdate()

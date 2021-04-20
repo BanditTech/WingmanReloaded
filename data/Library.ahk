@@ -26,7 +26,6 @@
       BlockInput, MouseMoveOff
       Return
     }
-
     ; RightClick - Right Click at Coord
     RightClick(x, y){
       BlockInput, MouseMove
@@ -2198,13 +2197,13 @@
         Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
           sendstash := StashTabClusterJewel
         Else If (StashTabYesCrafting 
-          && ((YesStashT1 && This.Prop.CraftingBase = "T1") 
-            || (YesStashT2 && This.Prop.CraftingBase = "T2") 
-            || (YesStashT3 && This.Prop.CraftingBase = "T3")
-            || (YesStashT4 && This.Prop.CraftingBase = "T4"))
-          && ((YesStashCraftingNormal && This.Prop.RarityNormal)
-            || (YesStashCraftingMagic && This.Prop.RarityMagic)
-            || (YesStashCraftingRare && This.Prop.RarityRare))
+          && ((YesStashATLAS && This.Prop.CraftingBase = "Atlas Base") 
+            || (YesStashSTR && This.Prop.CraftingBase = "STR Base") 
+            || (YesStashDEX && This.Prop.CraftingBase = "DEX Base")
+            || (YesStashINT && This.Prop.CraftingBase = "INT Base")
+            || (YesStashHYBRID && This.Prop.CraftingBase = "Hybrid Base")
+            || (YesStashJ && This.Prop.CraftingBase = "Jewel Base")
+            || (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base"))
           && (!YesStashCraftingIlvl 
             || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) 
           && (!This.Prop.Corrupted)  )
@@ -2549,19 +2548,31 @@
       MatchCraftingBases(){
         If(HasVal(craftingBasesT1,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T1"
+          This.Prop.CraftingBase := "Atlas Base"
         }
         Else If(HasVal(craftingBasesT2,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T2"
+          This.Prop.CraftingBase := "STR Base"
         }
         Else If(HasVal(craftingBasesT3,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T3"
+          This.Prop.CraftingBase := "DEX Base"
         }
         Else If(HasVal(craftingBasesT4,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T4"
+          This.Prop.CraftingBase := "INT Base"
+        }
+        Else If(HasVal(craftingBasesT5,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Hybrid Base"
+        }
+        Else If(HasVal(craftingBasesT6,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Jewel Base"
+        }
+        Else If(HasVal(craftingBasesT7,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Abyss Jewel Base"
         }
       }
       ApproximatePerfection(){
@@ -2824,7 +2835,7 @@
         Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
         Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|
+        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|Crafting Bases
 
       Gui, Inventory: Tab, Options
         Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -3025,29 +3036,10 @@
         Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabFlaskQuality , %StashTabFlaskQuality%
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
 
-        ; Crafting Bases
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h110    section    x+15   ys,         Crafting Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT3 Checked%YesStashT3%   x+3        , T3?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT4 Checked%YesStashT4%   x+3        , T4?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingNormal Checked%YesStashCraftingNormal%     xs+5  y+8    , Normal?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingMagic Checked%YesStashCraftingMagic%   x+0        , Magic?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingRare Checked%YesStashCraftingRare%   x+0        , Rare?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
-        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
-        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
-        Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
-
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
+        Gui, Inventory: Add, GroupBox,             w180 h60    section    x+15 ys,         Dump Tab
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
-        ; Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos Recipe
-        ; Gui, Inventory: Add, Edit, x+-2 yp-3 w35
-        ; Gui, Inventory: Add, UpDown, Range1-15 x+0 yp hp gUpdateExtra vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweler/Chroma Items
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -3192,7 +3184,6 @@
         Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Use slider to choose logic type
         Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Enable overflow Unique tabs
 
-
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, Section w200 h210 xs yp+30 , Unique Affinity Logic
         Gui, Inventory: Font,
@@ -3285,6 +3276,73 @@
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabRingUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
+              ; Crafting Bases
+
+      Gui, Inventory: Tab, Crafting Bases
+      
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xm+5 ym+25,  Atlas Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashATLAS Checked%YesStashATLAS%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashATLASCraftingIlvl Checked%YesStashATLASCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashATLASCraftingIlvlMin , %YesStashATLASCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         STR Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashSTR Checked%YesStashSTR%   xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashSTRCraftingIlvl Checked%YesStashSTRCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashSTRCraftingIlvlMin , %YesStashSTRCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         DEX Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashDEX Checked%YesStashDEX%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashDEXCraftingIlvl Checked%YesStashDEXCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashDEXCraftingIlvlMin , %YesStashDEXCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         INT Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashINT Checked%YesStashINT%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashINTCraftingIlvl Checked%YesStashINTCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashINTCraftingIlvlMin , %YesStashINTCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs+160 ym+25,         Hybrid Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashHYBRID Checked%YesStashHYBRID%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashHYBRIDCraftingIlvl Checked%YesStashHYBRIDCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashHYBRIDCraftingIlvlMin , %YesStashHYBRIDCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         Jewels Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJ Checked%YesStashJ%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJCraftingIlvl Checked%YesStashJCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashJCraftingIlvlMin , %YesStashJCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         Abyss Jewels Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashAJ Checked%YesStashAJ%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashAJCraftingIlvl Checked%YesStashAJCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashAJCraftingIlvlMin , %YesStashAJCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
 
       }
       Gui, Inventory: show , w600 h500, Inventory Settings
@@ -8398,6 +8456,15 @@
       For k, v in craftingBasesT4
         textList4 .= (!textList4 ? "" : ", ") v
       baseList := ""
+      For k, v in craftingBasesT5
+        textList5 .= (!textList5 ? "" : ", ") v
+      baseList := ""
+      For k, v in craftingBasesT6
+        textList6 .= (!textList6 ? "" : ", ") v
+      baseList := ""
+      For k, v in craftingBasesT7
+        textList7 .= (!textList7 ? "" : ", ") v
+      baseList := ""
       For k, v in Bases
       {
         If ( !IndexOf("talisman",v["tags"]) 
@@ -8412,33 +8479,46 @@
           baseList .= v["name"]"|"
         }
       }
-      ; Gui, 1: Submit
-      ; CheckGamestates:= False
       Gui, CustomCrafting: New
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
       Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %baseList%
-      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
-      Gui, CustomCrafting: Tab, Tier 1
+      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w600 h300 -wrap , Atlas Tier 1|STR Tier 2|DEX Tier 3|INT Tier 4|HYBRID Tier 5|Jewel Tier 6|Abyss Jewel Tier 7
+      Gui, CustomCrafting: Tab, Atlas Tier 1
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList1%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT1 Base
-      Gui, CustomCrafting: Tab, Tier 2
+      Gui, CustomCrafting: Tab, STR Tier 2
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w350 r6 , %textList2%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT2 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT2 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT2 Base
-      Gui, CustomCrafting: Tab, Tier 3
+      Gui, CustomCrafting: Tab, DEX Tier 3
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w350 r6 , %textList3%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT3 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT3 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT3 Base
-      Gui, CustomCrafting: Tab, Tier 4
+      Gui, CustomCrafting: Tab, INT Tier 4
         Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w350 r6 , %textList4%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT4 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT4 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT4 Base
+      Gui, CustomCrafting: Tab, HYBRID Tier 5
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier5 ReadOnly y+38 w350 r6 , %textList5%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT5 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT5 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT5 Base
+      Gui, CustomCrafting: Tab, Jewel Tier 6
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier6 ReadOnly y+38 w350 r6 , %textList6%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT6 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT6 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT6 Base
+      Gui, CustomCrafting: Tab, Abyss Jewel Tier 7
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier7 ReadOnly y+38 w350 r6 , %textList7%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT7 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT7 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT7 Base
       Gui, CustomCrafting: Show, , Edit Crafting Tiers
     Return
     AddCustomCraftingBase:
