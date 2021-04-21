@@ -1,4 +1,4 @@
-﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
 {
   ft_Gui("Show")
   Return
@@ -2183,16 +2183,14 @@
         Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
           sendstash := StashTabClusterJewel
         Else If (StashTabYesCrafting 
-          && ((YesStashATLAS && This.Prop.CraftingBase = "Atlas Base") 
-            || (YesStashSTR && This.Prop.CraftingBase = "STR Base") 
-            || (YesStashDEX && This.Prop.CraftingBase = "DEX Base")
-            || (YesStashINT && This.Prop.CraftingBase = "INT Base")
-            || (YesStashHYBRID && This.Prop.CraftingBase = "Hybrid Base")
-            || (YesStashJ && This.Prop.CraftingBase = "Jewel Base")
-            || (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base"))
-          && (!YesStashCraftingIlvl 
-            || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) 
-          && (!This.Prop.Corrupted)  )
+          && ((YesStashATLAS && This.Prop.CraftingBase = "Atlas Base" && ((This.Prop.ItemLevel >= YesStashATLASCraftingIlvlMin && YesStashATLASCraftingIlvl) || !YesStashATLASCraftingIlvl)) 
+            || (YesStashSTR && This.Prop.CraftingBase = "STR Base" && ((This.Prop.ItemLevel >= YesStashSTRCraftingIlvlMin && YesStashSTRCraftingIlvl) || !YesStashSTRCraftingIlvl)) 
+            || (YesStashDEX && This.Prop.CraftingBase = "DEX Base" && ((This.Prop.ItemLevel >= YesStashDEXCraftingIlvlMin && YesStashDEXCraftingIlvl) || !YesStashDEXCraftingIlvl)) 
+            || (YesStashINT && This.Prop.CraftingBase = "INT Base" && ((This.Prop.ItemLevel >= YesStashINTCraftingIlvlMin && YesStashINTCraftingIlvl) || !YesStashINTCraftingIlvl)) 
+            || (YesStashHYBRID && This.Prop.CraftingBase = "Hybrid Base" && ((This.Prop.ItemLevel >= YesStashHYBRIDCraftingIlvlMin && YesStashHYBRIDCraftingIlvl) || !YesStashHYBRIDCraftingIlvl)) 
+            || (YesStashJ && This.Prop.CraftingBase = "Jewel Base" && ((This.Prop.ItemLevel >= YesStashJCraftingIlvlMin && YesStashJCraftingIlvl) || !YesStashJCraftingIlvl)) 
+            || (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base" && ((This.Prop.ItemLevel >= YesStashAJCraftingIlvlMin && YesStashAJCraftingIlvl) || !YesStashAJCraftingIlvl)))
+          && (!This.Prop.Corrupted))
           sendstash := StashTabCrafting
         Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictPrice >= StashTabYesPredictive_Price) || (This.Prop.PredictPrice && OnRitual)) ){
           sendstash := StashTabPredictive
