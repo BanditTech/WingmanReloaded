@@ -121,6 +121,8 @@
           {
             If (SectionKey = 1 && SVal ~= "Rarity:")
               This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
+            Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix")
+              This.Data.Blocks.Affix := SVal
             Else
               This.Data.Blocks.Properties .= SVal "`r`n"
           }
@@ -819,6 +821,7 @@
         If (This.Affix["Veiled Prefix"] || This.Affix["Veiled Suffix"])
         {
           This.Prop.Veiled := True
+          This.Prop.SpecialType := "Veiled Item"
         }
         Else
         {
@@ -971,10 +974,14 @@
         Return False
       }
       MatchAffixes(content:=""){
+        If (content ~= "\n\(")
+          content := RegExReplace(content, "\n\(", "(")
+        
+        content := RegExReplace(content,"\(\w+ \w+ \w+ ?\w* ?\w* ?\w* ?\w* ?\w* ?\w*\)", "")
         ; Do Stuff with info
         Loop, Parse,% content, `r`n  ; , `r
         {
-          If (A_LoopField = "")
+          If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$") ; || A_LoopField ~= "^\(.*\)$"
             Continue
           key := This.Standardize(A_LoopField)
           If (vals := This.MatchLine(A_LoopField))
@@ -990,7 +997,10 @@
             }
             Else If (vals.Count() == 1)
             {
-              This.Affix[key] := vals[1]
+              If This.Affix[key]
+                This.Affix[key] += vals[1]
+              Else
+                This.Affix[key] := vals[1]
             }
           }
           Else
@@ -998,6 +1008,7 @@
         }
       }
       MatchLine(lineString){
+        linestring := RegExReplace(lineString, rxNum "\(" rxNum "-" rxNum "\)", "$1")
         If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
         {
           ret := {}
@@ -1013,6 +1024,7 @@
       }
       Standardize(str:=""){
         str := RegExReplace(str, "\+?"rxNum , "#")
+        str := RegExReplace(str, "#\(#-#\)" , "#")
         str := RegExReplace(str, " (augmented)" , "")
         Return str
       }
@@ -2784,12 +2796,12 @@
       Sleep, 45+(ClipLatency*15)
       MouseMove %x%, %y%
       Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
-      Send ^c
+      Send ^!c
       ClipWait, 0.1
       If ErrorLevel
       {
         Sleep, 15
-        Send ^c
+        Send ^!c
         ClipWait, 0.1
       }
       Clip_Contents := Clipboard
