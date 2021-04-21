@@ -242,6 +242,30 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           Return PriceObj.Price
       }
       MatchProperties(){
+        ;Get total count of affixes
+        This.Prop.AffixCount := 0
+        This.Prop.PrefixCount := 0
+        This.Prop.SuffixCount := 0
+        This.Data.AffixNames := {Prefix:[],Suffix:[]}
+        For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
+        {
+          If (v = "")
+          Continue
+          ; Flag curse on hit items
+          If (v ~= "^Curse Enemies with .+ on Hit$")
+            This.Prop.IsCurseOnHit := True
+          If (v ~= "\{ Prefix Modifier"){
+            RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
+            This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+            This.Prop.PrefixCount++, This.Prop.AffixCount++
+          } Else If (v ~= "\{ Suffix Modifier") {
+            RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
+            This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+            This.Prop.SuffixCount++, This.Prop.AffixCount++
+          }
+        }
+        This.Prop.OpenAffix := 6 - This.Prop.PrefixCount - This.Prop.SuffixCount
+
         ;Start NamePlate Parser
         If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
         {
@@ -304,8 +328,14 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
             This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
           If (This.Prop.ItemBase ~= "^Superior ")
             This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Superior ", "")
-          If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
-              This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
+          If (This.Prop.RarityMagic){
+            If (This.Prop.ItemBase ~= " of .+")
+                This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
+            For k, v in This.Data.AffixNames.Prefix {
+              If (This.Prop.ItemBase ~= "^" v.Name)
+                This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^" v.Name " ", "")
+            }
+          }
           ;Start Parse
           
           
@@ -576,17 +606,6 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Gear"
-            ;Disable for now, need review Heist Gear List to split what is 1x1 or 2x2
-            If InStr(This.Prop.ItemBase, "Brooch")
-              This.Prop.Item_Width := This.Prop.Item_Height := 1
-            Else
-              This.Prop.Item_Width := This.Prop.Item_Height := 2
-          }
-          Else If (This.Prop.RarityMagic && indexOf( StrSplit(This.Prop.ItemBase," ","",2)[2], HeistGear ) )
-          {
-            This.Prop.ItemBase := StrSplit(This.Prop.ItemBase," ","",2)[2]
-            This.Prop.Heist := True
-            This.Prop.SpecialType := "Heist Gear"
             If InStr(This.Prop.ItemBase, "Brooch")
               This.Prop.Item_Width := This.Prop.Item_Height := 1
             Else
@@ -836,24 +855,6 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           This.Prop.SpecialType := "Harvest Item"
         If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
           This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
-
-        ;Get total count of affixes
-        This.Prop.AffixCount := 0
-        This.Prop.PrefixCount := 0
-        This.Prop.SuffixCount := 0
-        For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
-        {
-          If (v = "")
-          Continue
-          ; Flag curse on hit items
-          If (v ~= "^Curse Enemies with .+ on Hit$")
-            This.Prop.IsCurseOnHit := True
-          If (v ~= "\{ Prefix Modifier")
-            This.Prop.PrefixCount++, This.Prop.AffixCount++
-          If (v ~= "\{ Suffix Modifier")
-            This.Prop.SuffixCount++, This.Prop.AffixCount++
-        }
-        This.Prop.OpenAffix := (This.Prop.Rarity_Digit < 3 ? 2 : 6) - This.Prop.PrefixCount - This.Prop.SuffixCount
       }
       MatchBase2Slot(){
         If (This.Prop.ItemClass ~= "Body Armour")
@@ -1330,18 +1331,6 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
               If (This.Prop.ItemClass = "Support Skill Gem")
                 This.Prop.Support := True
               Break
-            }
-          }
-        }
-        Else If (This.Prop.RarityMagic)
-        {
-          For k, v in Ninja.Map
-          {
-            If (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])
-            {
-              This.Prop.ItemBase := v["name"]
-              This.Prop.Item_Width := 1
-              This.Prop.Item_Height := 1
             }
           }
         }
