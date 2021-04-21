@@ -1,4 +1,4 @@
-﻿; Contains all the pre-setup for the script
+; Contains all the pre-setup for the script
   Global VersionNumber := .13.0014
   #IfWinActive Path of Exile 
   #NoEnv
@@ -408,15 +408,6 @@
       YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
       YesCLFIgnoreImplicit = This option disable implicits being merged with Pseudos.`rEx: This will ignore implicits in base like two-stone boots (elemental resists)`ror two-stone rings (elemental resists) or wand (spell damage)
       YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-      YesStashT1 = Enable to stash Tier 1 crafting bases
-      YesStashT2 = Enable to stash Tier 2 crafting bases
-      YesStashT3 = Enable to stash Tier 3 crafting bases
-      YesStashT4 = Enable to stash Abyss Jewel and Jewel as crafting bases
-      YesStashCraftingNormal = Enable to stash Normal crafting bases
-      YesStashCraftingMagic = Enable to stash Magic crafting bases
-      YesStashCraftingRare = Enable to stash Rare crafting bases
-      YesStashCraftingIlvl = Enable to only stash above selected ilvl
-      YesStashCraftingIlvlMin = Set minimum ilvl
       YesSkipMaps = Select the inventory column which you will begin skipping rolled maps`rDisable by setting to 0
       YesSkipMaps_eval = Choose either Greater than or Less than the selected column`rYou can start skipping maps store on the right or left from the inventory column selected
       YesSkipMaps_normal = Skip normal quality maps within the column range
@@ -878,17 +869,8 @@
     Global StashTabYesPredictive_Price := 5
     Global StashTabYesNinjaPrice := 0
     Global StashTabYesNinjaPrice_Price := 5
-  ; Crafting bases to stash
-    Global YesStashT1 := 1
-    Global YesStashT2 := 1
-    Global YesStashT3 := 1
-    Global YesStashT4 := 1
-    Global YesStashCraftingNormal := 1
-    Global YesStashCraftingMagic := 1
-    Global YesStashCraftingRare := 1
-    Global YesStashCraftingIlvl := 0
-    Global YesStashCraftingIlvlMin := 76
 
+  ; Crafting Bases
     Global YesStashATLAS := 1
     Global YesStashATLASCraftingIlvl := 0
     Global YesStashATLASCraftingIlvlMin := 76
@@ -5236,16 +5218,28 @@ Return
       IniRead, CharName, %A_ScriptDir%\save\Settings.ini, General, CharName, ReplaceWithCharName
       IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
       IniRead, YesStashKeys, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys, 1
+      IniRead, YesStashATLAS, %A_ScriptDir%\save\Settings.ini, General, YesStashATLAS, 1
+      IniRead, YesStashATLASCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashATLASCraftingIlvl, 0
+      IniRead, YesStashATLASCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashATLASCraftingIlvlMin, 76
+      IniRead, YesStashSTR, %A_ScriptDir%\save\Settings.ini, General, YesStashSTR, 1
+      IniRead, YesStashSTRCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashSTRCraftingIlvl, 0
+      IniRead, YesStashSTRCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashSTRCraftingIlvlMin, 76
+      IniRead, YesStashDEX, %A_ScriptDir%\save\Settings.ini, General, YesStashDEX, 1
+      IniRead, YesStashDEXCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashDEXCraftingIlvl, 0
+      IniRead, YesStashDEXCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashDEXCraftingIlvlMin, 76
+      IniRead, YesStashINT, %A_ScriptDir%\save\Settings.ini, General, YesStashINT, 1
+      IniRead, YesStashINTCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashINTCraftingIlvl, 0
+      IniRead, YesStashINTCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashINTCraftingIlvlMin, 76
+      IniRead, YesStashHYBRID, %A_ScriptDir%\save\Settings.ini, General, YesStashHYBRID, 1
+      IniRead, YesStashHYBRIDCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashHYBRIDCraftingIlvl, 0
+      IniRead, YesStashHYBRIDCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashHYBRIDCraftingIlvlMin, 76
+      IniRead, YesStashJ, %A_ScriptDir%\save\Settings.ini, General, YesStashJ, 1
+      IniRead, YesStashJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashJCraftingIlvl, 0
+      IniRead, YesStashJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashJCraftingIlvlMin, 76
+      IniRead, YesStashAJ, %A_ScriptDir%\save\Settings.ini, General, YesStashAJ, 1
+      IniRead, YesStashAJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashAJCraftingIlvl, 0
+      IniRead, YesStashAJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashAJCraftingIlvlMin, 76
       IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
-      IniRead, YesStashT1, %A_ScriptDir%\save\Settings.ini, General, YesStashT1, 1
-      IniRead, YesStashT2, %A_ScriptDir%\save\Settings.ini, General, YesStashT2, 1
-      IniRead, YesStashT3, %A_ScriptDir%\save\Settings.ini, General, YesStashT3, 1
-      IniRead, YesStashT4, %A_ScriptDir%\save\Settings.ini, General, YesStashT4, 1
-      IniRead, YesStashCraftingNormal, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal, 1
-      IniRead, YesStashCraftingMagic, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic, 1
-      IniRead, YesStashCraftingRare, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare, 1
-      IniRead, YesStashCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl, 0
-      IniRead, YesStashCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin, 76
       IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
       IniRead, YesSkipMaps_eval, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval, >=
       IniRead, YesSkipMaps_normal, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal, 0
@@ -5265,6 +5259,35 @@ Return
       IniRead, YesRitualPrice, %A_ScriptDir%\save\Settings.ini, General, YesRitualPrice, Off
       IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
       IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
+
+      ;Crafting Bases
+      IniRead, YesStashATLAS, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS, 1
+      IniRead, YesStashATLASCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLASCraftingIlvl, 0
+      IniRead, YesStashATLASCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLASCraftingIlvlMin, 76
+
+      IniRead, YesStashSTR, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTR, 1
+      IniRead, YesStashSTRCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRCraftingIlvl, 0
+      IniRead, YesStashSTRCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRCraftingIlvlMin, 76
+
+      IniRead, YesStashDEX, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEX, 1
+      IniRead, YesStashDEXCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXCraftingIlvl, 0
+      IniRead, YesStashDEXCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXCraftingIlvlMin, 76
+
+      IniRead, YesStashINT, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINT, 1
+      IniRead, YesStashINTCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTCraftingIlvl, 0
+      IniRead, YesStashINTCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTCraftingIlvlMin, 76
+
+      IniRead, YesStashHYBRID, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashHYBRID, 1
+      IniRead, YesStashHYBRIDCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashHYBRIDCraftingIlvl, 0
+      IniRead, YesStashHYBRIDCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashHYBRIDCraftingIlvlMin, 76
+
+      IniRead, YesStashJ, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJ, 1
+      IniRead, YesStashJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJCraftingIlvl, 0
+      IniRead, YesStashJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJCraftingIlvlMin, 76
+
+      IniRead, YesStashAJ, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJ, 1
+      IniRead, YesStashAJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvl, 0
+      IniRead, YesStashAJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvlMin, 76
 
       ;Crafting Map Settings
       IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
@@ -5388,8 +5411,8 @@ Return
       IniRead, ChaosRecipeStashTabRing, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabRing, 1
 
 
-      ;Custom Crafting Bases
-      ;loading default list
+      ;Crafting Bases Settings
+      ;Loading Default List
       sDefaultcraftingBasesT1 := ArrayToString(DefaultcraftingBasesT1)
       sDefaultcraftingBasesT2 := ArrayToString(DefaultcraftingBasesT2)
       sDefaultcraftingBasesT3 := ArrayToString(DefaultcraftingBasesT3)
@@ -5397,14 +5420,14 @@ Return
       sDefaultcraftingBasesT5 := ArrayToString(DefaultcraftingBasesT5)
       sDefaultcraftingBasesT6 := ArrayToString(DefaultcraftingBasesT6)
       sDefaultcraftingBasesT7 := ArrayToString(DefaultcraftingBasesT7)
-      IniRead, craftingBasesT1, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT1, %sDefaultcraftingBasesT1%
-      IniRead, craftingBasesT2, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT2, %sDefaultcraftingBasesT2%
-      IniRead, craftingBasesT3, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT3, %sDefaultcraftingBasesT3%
-      IniRead, craftingBasesT4, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT4, %sDefaultcraftingBasesT4%
-      IniRead, craftingBasesT5, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT5, %sDefaultcraftingBasesT5%
-      IniRead, craftingBasesT6, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT6, %sDefaultcraftingBasesT6%
-      IniRead, craftingBasesT7, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT7, %sDefaultcraftingBasesT7%
-      ;converting string to array
+      IniRead, craftingBasesT1, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT1, %sDefaultcraftingBasesT1%
+      IniRead, craftingBasesT2, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT2, %sDefaultcraftingBasesT2%
+      IniRead, craftingBasesT3, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT3, %sDefaultcraftingBasesT3%
+      IniRead, craftingBasesT4, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT4, %sDefaultcraftingBasesT4%
+      IniRead, craftingBasesT5, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT5, %sDefaultcraftingBasesT5%
+      IniRead, craftingBasesT6, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT6, %sDefaultcraftingBasesT6%
+      IniRead, craftingBasesT7, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT7, %sDefaultcraftingBasesT7%
+      ;Converting string to array
       craftingBasesT1 := StringToArray(craftingBasesT1)
       craftingBasesT2 := StringToArray(craftingBasesT2)
       craftingBasesT3 := StringToArray(craftingBasesT3)
@@ -5860,15 +5883,6 @@ Return
       IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
       IniWrite, %EnableChatHotkeys%, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys
       IniWrite, %YesStashKeys%, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys
-      IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
-      IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
-      IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
-      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
-      IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
-      IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
-      IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
-      IniWrite, %YesStashCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl
-      IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
       IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
       IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
       IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
@@ -5928,6 +5942,35 @@ Return
       ;Grab Currency
       IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
       IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
+
+      ;Crafting Bases
+      IniWrite, %YesStashATLAS%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS
+      IniWrite, %YesStashATLASCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLASCraftingIlvl
+      IniWrite, %YesStashATLASCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLASCraftingIlvlMin
+
+      IniWrite, %YesStashSTR%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTR
+      IniWrite, %YesStashSTRCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRCraftingIlvl
+      IniWrite, %YesStashSTRCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRCraftingIlvlMin
+
+      IniWrite, %YesStashDEX%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEX
+      IniWrite, %YesStashDEXCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXCraftingIlvl
+      IniWrite, %YesStashDEXCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXCraftingIlvlMin
+
+      IniWrite, %YesStashINT%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINT
+      IniWrite, %YesStashINTCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTCraftingIlvl
+      IniWrite, %YesStashINTCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTCraftingIlvlMin
+
+      IniWrite, %YesStashHYBRID%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashHYBRID
+      IniWrite, %YesStashHYBRIDCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashHYBRIDCraftingIlvl
+      IniWrite, %YesStashHYBRIDCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashHYBRIDCraftingIlvlMin
+
+      IniWrite, %YesStashJ%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJ
+      IniWrite, %YesStashJCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJCraftingIlvl
+      IniWrite, %YesStashJCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJCraftingIlvlMin
+      
+      IniWrite, %YesStashAJ%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJ
+      IniWrite, %YesStashAJCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvl
+      IniWrite, %YesStashAJCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvlMin
 
       ;Crafting Map Settings
       IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
@@ -6118,7 +6161,7 @@ Return
       IniWrite, %ForceMatch6Link%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link
       IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
 
-      ;Custom Crafting Bases
+      ;Crafting Bases Settings
       scraftingBasesT1 := ArrayToString(craftingBasesT1)
       scraftingBasesT2 := ArrayToString(craftingBasesT2)
       scraftingBasesT3 := ArrayToString(craftingBasesT3)
@@ -6126,13 +6169,13 @@ Return
       scraftingBasesT5 := ArrayToString(craftingBasesT5)
       scraftingBasesT6 := ArrayToString(craftingBasesT6)
       scraftingBasesT7 := ArrayToString(craftingBasesT7)
-      IniWrite, %scraftingBasesT1%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT1
-      IniWrite, %scraftingBasesT2%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT2
-      IniWrite, %scraftingBasesT3%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT3
-      IniWrite, %scraftingBasesT4%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT4
-      IniWrite, %scraftingBasesT5%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT5
-      IniWrite, %scraftingBasesT6%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT6
-      IniWrite, %scraftingBasesT7%, %A_ScriptDir%\save\Settings.ini, Custom Crafting Bases, craftingBasesT7
+      IniWrite, %scraftingBasesT1%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT1
+      IniWrite, %scraftingBasesT2%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT2
+      IniWrite, %scraftingBasesT3%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT3
+      IniWrite, %scraftingBasesT4%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT4
+      IniWrite, %scraftingBasesT5%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT5
+      IniWrite, %scraftingBasesT6%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT6
+      IniWrite, %scraftingBasesT7%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT7
 
       readFromFile()
       GuiUpdate()
@@ -8155,15 +8198,6 @@ Return
       IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
       IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
       IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
-      IniWrite, %YesStashT1%, %A_ScriptDir%\save\Settings.ini, General, YesStashT1
-      IniWrite, %YesStashT2%, %A_ScriptDir%\save\Settings.ini, General, YesStashT2
-      IniWrite, %YesStashT3%, %A_ScriptDir%\save\Settings.ini, General, YesStashT3
-      IniWrite, %YesStashT4%, %A_ScriptDir%\save\Settings.ini, General, YesStashT4
-      IniWrite, %YesStashCraftingNormal%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingNormal
-      IniWrite, %YesStashCraftingMagic%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingMagic
-      IniWrite, %YesStashCraftingRare%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingRare
-      IniWrite, %YesStashCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvl
-      IniWrite, %YesStashCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, General, YesStashCraftingIlvlMin
       IniWrite, %YesPredictivePrice%, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice
       IniWrite, %YesRitualPrice%, %A_ScriptDir%\save\Settings.ini, General, YesRitualPrice
       IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
