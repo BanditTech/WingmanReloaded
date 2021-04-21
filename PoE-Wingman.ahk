@@ -2826,7 +2826,7 @@ Return
         }
         If (OnStash && YesStash) 
         {
-          If (Item.Prop.SpecialType = "Quest Item")
+          If (Item.Prop.SpecialType = "Quest Item" || Item.Prop.ItemClass = "Quest Items")
             Continue
           Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1

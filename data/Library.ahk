@@ -561,7 +561,7 @@
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Contract"
           }
-          Else If (InStr(This.Prop.ItemBase, "Blueprint:"))
+          Else If (This.Prop.ItemClass = "Blueprint"))
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Blueprint"
