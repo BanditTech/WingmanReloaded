@@ -1449,7 +1449,7 @@
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnDetonate hwndMainMenuIDOnDetonate, % "Detonate Shown"
     CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
 		Gui, Add, Text, xp yp wp hp gupdateDetonate BackgroundTrans
-    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "League Stash Open"
+    Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "Heist Locker Open"
     CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
 		Gui, Add, Text, xp yp wp hp gupdateOnLocker BackgroundTrans
     Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnRitual hwndMainMenuIDOnRitual, % "Ritual Open"
