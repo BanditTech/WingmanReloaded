@@ -1,4 +1,4 @@
-; Contains all the pre-setup for the script
+﻿; Contains all the pre-setup for the script
   Global VersionNumber := .13.0014
   #IfWinActive Path of Exile 
   #NoEnv
@@ -2304,7 +2304,7 @@ Return
         {
           If Item.MatchLootFilter()
             Continue
-          If (Item.Prop.RarityCurrency && Item.Prop.SpecialType != "Heist Goods")
+          If (Item.Prop.RarityCurrency && Item.Prop.ItemClass != "Heist Target")
             Continue
           If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
           {
@@ -2330,7 +2330,7 @@ Return
           If (Item.Prop.StashReturnVal && Item.Prop.StashReturnVal != StashTabDump)
           || (Item.Prop.StashReturnVal && (!YesVendorDumpItems && Item.Prop.StashReturnVal = StashTabDump))
             Continue
-          If ( Item.Prop.SpecialType="" || Item.Prop.SpecialType = "Heist Goods" )
+          If ( Item.Prop.SpecialType="" || Item.Prop.ItemClass = "Heist Target" )
           {
             CtrlClick(Grid.X,Grid.Y)
             If !(Item.Prop.Chromatic || Item.Prop.Jeweler)

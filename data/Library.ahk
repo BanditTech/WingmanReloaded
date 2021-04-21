@@ -463,7 +463,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
               This.Prop.Jewel := True
             }
           }
-          Else If (This.Prop.ItemClass = "Heist Tool")
+          Else If (This.Prop.ItemClass = "Heist Target")
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Goods"
@@ -471,17 +471,15 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
             If indexOf(This.Prop.ItemBase, HeistLootLarge)
               This.Prop.Item_Height := 4
           }
-          Else If (InStr(This.Prop.ItemBase, "Flask"))
+          Else If (InStr(This.Prop.ItemClass, "Flask"))
           {
             This.Prop.Flask := True
-            This.Prop.ItemClass := "Flasks"
             This.Prop.Item_Width := 1
             This.Prop.Item_Height := 2
           }
-          Else If (InStr(This.Prop.ItemBase, "Quiver"))
+          Else If (This.Prop.ItemClass = "Quivers")
           {
             This.Prop.Quiver := True
-            This.Prop.ItemClass := "Quivers"
             This.Prop.Item_Width := 2
             This.Prop.Item_Height := 3
           }
