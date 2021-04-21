@@ -162,10 +162,6 @@
           This.ApproximatePerfection()
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
-        This.FilterDoubleMapMods()
-        This.RemoveCraftFromAffixCount()
-        This.countSuffixPrefix()
-        This.FilterDoubleAffix()
         This.MatchCraftingBases()
         This.MatchChaosRegal()
         This.MatchBase2Slot()
@@ -844,20 +840,22 @@
           This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
 
         ;Get total count of affixes
-        temp := 0
+        This.Prop.AffixCount := 0
+        This.Prop.PrefixCount := 0
+        This.Prop.SuffixCount := 0
         For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
         {
           If (v = "")
           Continue
           ; Flag curse on hit items
           If (v ~= "^Curse Enemies with .+ on Hit$")
-          {
             This.Prop.IsCurseOnHit := True
-          }
-          temp++
+          If (v ~= "\{ Prefix Modifier")
+            This.Prop.PrefixCount++, This.Prop.AffixCount++
+          If (v ~= "\{ Suffix Modifier")
+            This.Prop.SuffixCount++, This.Prop.AffixCount++
         }
-        This.Prop.AffixCount := temp
-        temp:=""
+        This.Prop.OpenAffix := (This.Prop.Rarity_Digit < 3 ? 2 : 6) - This.Prop.PrefixCount - This.Prop.SuffixCount
       }
       MatchBase2Slot(){
         If (This.Prop.ItemClass ~= "Body Armour")
@@ -977,7 +975,7 @@
         If (content ~= "\n\(")
           content := RegExReplace(content, "\n\(", "(")
         
-        content := RegExReplace(content,"\(\w+ \w+ \w+ ?\w* ?\w* ?\w* ?\w* ?\w* ?\w*\)", "")
+        content := RegExReplace(content,"\(\w+ \w+ [\w ]+\)", "")
         ; Do Stuff with info
         Loop, Parse,% content, `r`n  ; , `r
         {
@@ -1537,42 +1535,8 @@
         For key, value in This.Affix
         {
           If (value != 0 && value != "" && value != False) {
-            foundit := False
             If indexOf(key,this.MatchedCLF)
               affixText .= "CLF⭐"
-            For k, v in This.StoredMatches
-            {
-              texts := StrSplit(v,"`n")
-              For k, vv in texts
-              {
-                if k == 1
-                  continue
-                if (vv == key)
-                {
-                  foundit := True
-                  affixText .= texts.1 "✔"
-                  break 2
-                }
-              }
-            }
-            For k, v in This.DoubleAffixes
-            {
-              texts := StrSplit(v,"`n")
-              For k, vv in texts
-              {
-                if k == 1
-                  continue
-                if (vv == key)
-                {
-                  foundit := True
-                  affixText .= "✔"
-                  break 2
-                }
-              }
-            }
-            If !foundit && !InStr(key, "_") && !RegExMatch(key, "\(.+\)") && !RegExMatch(key, " Item$")
-              affixText .= "⁉"
-            ; If indexOf(key,this.MatchedPreSuff)
             affixText .= key . ":  " . value . "`n"
           }
         }
@@ -2432,114 +2396,6 @@
         This.MatchedCLF := False
         Return False
       }
-      FilterDoubleMapMods(){
-        If (This.Affix["Rare Monsters each have a Nemesis Mod"] && This.Affix["#% more Rare Monsters"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters' Action Speed cannot be modified to below base value"] && This.Affix["Monsters cannot be Taunted"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters cannot be Stunned"] && This.Affix["#% more Monster Life"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["#% increased Monster Movement Speed"] && This.Affix["#% increased Monster Attack Speed"] && This.Affix["#% increased Monster Cast Speed"])
-          This.Prop.AffixCount -= 2
-        If (This.Affix["Unique Boss deals #% increased Damage"] && This.Affix["Unique Boss has #% increased Attack and Cast Speed"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Unique Boss has #% increased Life"] && This.Affix["Unique Boss has #% increased Area of Effect"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["#% Monster Chaos Resistance"] && This.Affix["#% Monster Elemental Resistance"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Magic Monster Packs each have a Bloodline Mod"] && This.Affix["#% more Magic Monsters"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters have #% increased Critical Strike Chance"] && This.Affix["#% to Monster Critical Strike Multiplier"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Players have #% reduced Chance to Block"] && This.Affix["Players have #% less Armour"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Player chance to Dodge is Unlucky"] && This.Affix["Monsters have #% increased Accuracy Rating"])
-          This.Prop.AffixCount -= 1
-        Return
-      }
-      FilterDoubleAffix(){
-        matchkeys := []
-        This.DoubleAffixes := {}
-        For compare, v in This.Affix {
-          If InStr(compare,"_")
-            Continue
-          For k, affixlist in WR.data.Affix[compare]
-          {
-            if (affixlist.Count() = 1)
-              continue 1
-            listkey := affixlist.1.a
-            for k, affix in affixlist
-            {
-              if !(This.Affix.HasKey(affix.key))
-                continue 2
-              else
-                listkey .= "`n"affix.key
-            }
-            possible := []
-            for k, affix in affixlist
-            {
-              If (indexOf(affix["text"],matchkeys) || indexOf(affix["text"],possible))
-                Continue 2
-              If This.inRange(affix["key"],affix,This.Affix)
-                possible.Push(affix["text"])
-            }
-            if possible.Count() == affixlist.Count()
-            {
-              for k, key in possible
-                matchkeys.Push(key)
-              This.DoubleAffixes.push(listkey)
-              This.Prop.AffixCount -= affixlist.Count() - 1
-              This.Prop.Hybrid := True
-            }
-            possible := ""
-          }
-        }
-      }
-      countSuffixPrefix(){
-        MatchedPreSuff := []
-        This.StoredMatches := {}
-        For compare, v in This.Affix {
-          If InStr(compare,"_")
-            Continue
-          For k, affixlist in WR.data.Affix[compare]
-          {
-            listkey := affixlist.1.a
-            for k, affix in affixlist
-            {
-              if !(This.Affix.HasKey(affix.key))
-                continue 2
-              else
-                listkey .= "`n"affix.key
-            }
-            possible := [], possiblekey := []
-            for k, affix in affixlist
-            {
-              If (indexOf(affix.key,MatchedPreSuff) || indexOf(affix.key,possiblekey))
-                Continue 2
-              If This.inRange(affix["key"],affix,This.Affix)
-                possible.Push(affix), possiblekey.Push(affix.key)
-            }
-            if (possiblekey.Count() == affixlist.Count())
-            {
-              If (possible.1.a == "S")
-              {
-                If !This.Prop.CountSuffix
-                  This.Prop.CountSuffix := 0
-                This.Prop.CountSuffix++
-              }
-              Else If (possible.1.a == "P")
-              {
-                If !This.Prop.CountPrefix
-                  This.Prop.CountPrefix := 0
-                This.Prop.CountPrefix++
-              }
-              for k, mod in possible
-                MatchedPreSuff.Push(mod.key)
-              This.StoredMatches.Push(listkey)
-            }
-          }
-        }
-      }
       inRange(key,obj,base){
         If (obj.ranges.Count() = 1) {
           If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
@@ -2561,11 +2417,6 @@
               Return False
         }
         Return True
-      }
-      RemoveCraftFromAffixCount(){
-        for k, v in This.Affix
-          if InStr(k,"(crafted)")
-            This.Prop.AffixCount--
       }
       MatchCraftingBases(){
         If(HasVal(craftingBasesT1,This.Prop.ItemBase))
