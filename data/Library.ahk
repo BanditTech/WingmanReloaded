@@ -312,6 +312,8 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           {
             This.Prop.SpecialType := This.Prop.Rarity
           }
+          If (This.Prop.Rarity_Digit < 3)
+            This.Prop.OpenAffix -= 4
           ; 4 Lines in NamePlate => Rarity / Item Name/ Item Base
           If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)",RxMatch))
           {
