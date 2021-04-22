@@ -959,7 +959,7 @@
           This.Prop.SlotType := "Ring"
         Else If (This.Prop.ItemClass ~= "(One|Wands|Daggers|Sceptres|Claws)")
           This.Prop.SlotType := "One Hand"
-        Else If (This.Prop.ItemClass ~= "(Two|Bows|Staves)")
+        Else If (This.Prop.ItemClass ~= "(Two|Bows|staves)")
           This.Prop.SlotType := "Two Hand"
         Else If (This.Prop.ItemClass ~= "Shields")
           This.Prop.SlotType := "Shield"
