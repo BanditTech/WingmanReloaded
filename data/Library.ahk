@@ -343,7 +343,8 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           
           If (This.Prop.ItemClass = "Misc Map Items")
           {
-            This.Prop.SpecialType := "Map Item"
+            This.Prop.MiscMapItem := True
+            This.Prop.SpecialType := "Misc Map Item"
           }
           If (This.Prop.ItemClass = "Maps")
           {
@@ -2149,6 +2150,10 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           Else If (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)
           sendstash := StashTabUniqueDump
         }
+        Else If (This.Prop.MiscMapItem&&StashTabYesMiscMapItems)
+        {
+          sendstash := StashTabMiscMapItems
+        }
         Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality&&!This.Prop.RarityUnique)
           sendstash := StashTabFlaskQuality
         Else If (This.Prop.RarityGem)
@@ -2831,6 +2836,15 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabHeistGear x+0 yp hp ,  %StashTabHeistGear%
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesHeistGear  Checked%StashTabYesHeistGear% x+5 yp+4, Enable
+
+        ; Misc Map Items
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Misc Map Items
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabMiscMapItems x+0 yp hp ,  %StashTabMiscMapItems%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesMiscMapItems  Checked%StashTabYesMiscMapItems% x+5 yp+4, Enable
         
         ; Second column Gui - GEMS
 

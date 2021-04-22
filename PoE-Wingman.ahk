@@ -840,6 +840,7 @@
     Global StashTabGemSupport := 1
     Global StashTabClusterJewel := 1
     Global StashTabHeistGear := 1
+    Global StashTabMiscMapItems := 1
     Global StashTabDump := 1
     Global StashTabPredictive := 1
     Global StashTabNinjaPrice := 1
@@ -872,6 +873,7 @@
     Global StashTabYesGemSupport := 1
     Global StashTabYesClusterJewel := 1
     Global StashTabYesHeistGear := 1
+    Global StashTabYesMiscMapItems := 1
     Global StashTabYesDump := 1
     Global StashDumpInTrial := 1
     Global StashDumpSkipJC := 1
@@ -5369,9 +5371,11 @@ Return
       IniRead, StashTabYesMetamorph, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMetamorph, 0
       IniRead, StashTabGemSupport, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemSupport, 1
       IniRead, StashTabClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel, 1
-      IniRead, StashTabHeistGear, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabHeistGear, 1
       IniRead, StashTabYesClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel, 1
+      IniRead, StashTabHeistGear, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabHeistGear, 1
       IniRead, StashTabYesHeistGear, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesHeistGear, 1
+      IniRead, StashTabMiscMapItems, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMiscMapItems, 1
+      IniRead, StashTabYesMiscMapItems, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMiscMapItems, 1
       IniRead, StashTabDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump, 1
       IniRead, StashTabYesCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency, 0
       IniRead, StashTabYesMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap, 0
@@ -6062,6 +6066,8 @@ Return
       IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
       IniWrite, %StashTabHeistGear%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabHeistGear
       IniWrite, %StashTabYesHeistGear%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesHeistGear
+      IniWrite, %StashTabMiscMapItems%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMiscMapItems
+      IniWrite, %StashTabYesMiscMapItems%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMiscMapItems
       IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
       IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
       IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
