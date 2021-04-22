@@ -504,7 +504,7 @@
             If indexOf(This.Prop.ItemBase, HeistLootLarge)
               This.Prop.Item_Height := 4
           }
-          Else If (InStr(This.Prop.ItemClass, "Flask"))
+          Else If (InStr(This.Prop.ItemClass, "Flasks"))
           {
             This.Prop.Flask := True
             This.Prop.Item_Width := 1
@@ -575,16 +575,6 @@
               }
             }
           }
-          Else If (InStr(This.Prop.ItemBase, " Beast"))
-          {
-            ;Only Rare and Unique Beasts
-            If (This.Prop.Rarity_Digit >= 3)
-            {
-              This.Prop.IsBeast := True
-              This.Prop.SpecialType := "Beast"
-              ;This.Prop.ItemClass := "Beasts"
-            }
-          }
           Else If (This.Prop.ItemClass = "Contract")
           {
             This.Prop.Heist := True
@@ -629,11 +619,16 @@
             This.Prop.IsInfluenceItem := True
           }
         }
-        ; Get Prophecy using Flavor Txt
+        ; Get Prophecy/Beasts using Flavour Txt
         If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
         {
           This.Prop.Prophecy := True
           This.Prop.SpecialType := "Prophecy"
+        }
+         Else If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary",RxMatch))
+        {
+            This.Prop.IsBeast := True
+            This.Prop.SpecialType := "Beast"
         }
         ;End Extra Blocks Parser
 
@@ -950,7 +945,7 @@
       MatchBase2Slot(){
         If (This.Prop.ItemClass ~= "Body Armour")
           This.Prop.SlotType := "Body"
-        Else If (This.Prop.ItemClass ~= "Helmet")
+        Else If (This.Prop.ItemClass ~= "Helmets")
           This.Prop.SlotType := "Helmet"
         Else If (This.Prop.ItemClass ~= "Gloves")
           This.Prop.SlotType := "Gloves"
@@ -960,13 +955,13 @@
           This.Prop.SlotType := "Belt"
         Else If (This.Prop.ItemClass ~= "Amulet")
           This.Prop.SlotType := "Amulet"
-        Else If (This.Prop.ItemClass ~= "Ring")
+        Else If (This.Prop.ItemClass ~= "Rings")
           This.Prop.SlotType := "Ring"
         Else If (This.Prop.ItemClass ~= "(One|Wand|Dagger|Sceptre|Claw)")
           This.Prop.SlotType := "One Hand"
-        Else If (This.Prop.ItemClass ~= "(Two|Bow|Staff)")
+        Else If (This.Prop.ItemClass ~= "(Two|Bows|Staff)")
           This.Prop.SlotType := "Two Hand"
-        Else If (This.Prop.ItemClass ~= "Shield")
+        Else If (This.Prop.ItemClass ~= "Shields")
           This.Prop.SlotType := "Shield"
       }
       MatchChaosRegal(){
@@ -1409,17 +1404,16 @@
             {
               This.Prop.Item_Width := v["inventory_width"]
               This.Prop.Item_Height := v["inventory_height"]
-              ;This.Prop.ItemClass := v["item_class"]
               This.Prop.ItemBase := v["name"]
               This.Prop.DropLevel := v["drop_level"]
 
-              If InStr(This.Prop.ItemClass, "Ring")
+              If InStr(This.Prop.ItemClass, "Rings")
                 This.Prop.Ring := True
-              If InStr(This.Prop.ItemClass, "Amulet")
+              If InStr(This.Prop.ItemClass, "Amulets")
                 This.Prop.Amulet := True
-              If InStr(This.Prop.ItemClass, "Belt")
+              If InStr(This.Prop.ItemClass, "Belts")
                 This.Prop.Belt := True
-              If (This.Prop.ItemClass = "Support Skill Gem")
+              If (This.Prop.ItemClass = "Support Skill Gems")
                 This.Prop.Support := True
               Break
             }
@@ -1488,7 +1482,7 @@
           If This.MatchNinjaDB("Beast")
             Return
         }
-        If (This.Prop.ItemClass ~= "Helmet" && This.Data.Blocks.HasKey("Enchant"))
+        If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.HasKey("Enchant"))
         {
           For k, v in Ninja.HelmetEnchant
           {
@@ -1505,17 +1499,17 @@
         }
         If (This.Prop.RarityUnique)
         {
-          If (This.Prop.ItemClass ~= "(Belt|Amulet|Ring)")
+          If (This.Prop.ItemClass ~= "(Belts|Amulets|Rings)")
           {
             If This.MatchNinjaDB("UniqueAccessory")
               Return
           }
-          Else If (This.Prop.ItemClass ~= "(Body Armour|Gloves|Boots|Helmet|Shield|Quiver)")
+          Else If (This.Prop.ItemClass ~= "(Body Armours|Gloves|Boots|Helmets|Shields|Quivers)")
           {
             If This.MatchNinjaDB("UniqueArmour")
               Return
           }
-          Else If (This.Prop.ItemClass ~= "Flask")
+          Else If (This.Prop.ItemClass ~= "Flasks")
           {
             If This.MatchNinjaDB("UniqueFlask")
               Return
@@ -2709,7 +2703,6 @@
         {
           If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
           {
-            ;This.Prop.ItemClass := v["item_class"]
             This.Prop.ItemBase := v["name"]
             This.Prop.DropLevel := v["drop_level"]
 
