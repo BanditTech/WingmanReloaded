@@ -582,7 +582,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
             {
               This.Prop.IsBeast := True
               This.Prop.SpecialType := "Beast"
-              This.Prop.ItemClass := "Beasts"
+              ;This.Prop.ItemClass := "Beasts"
             }
           }
           Else If (This.Prop.ItemClass = "Contract")
@@ -1322,7 +1322,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
             {
               This.Prop.Item_Width := v["inventory_width"]
               This.Prop.Item_Height := v["inventory_height"]
-              This.Prop.ItemClass := v["item_class"]
+              ;This.Prop.ItemClass := v["item_class"]
               This.Prop.ItemBase := v["name"]
               This.Prop.DropLevel := v["drop_level"]
 
@@ -2622,7 +2622,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         {
           If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
           {
-            This.Prop.ItemClass := v["item_class"]
+            ;This.Prop.ItemClass := v["item_class"]
             This.Prop.ItemBase := v["name"]
             This.Prop.DropLevel := v["drop_level"]
 
