@@ -2181,7 +2181,8 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
             || (YesStashINT && This.Prop.CraftingBase = "INT Base" && ((This.Prop.ItemLevel >= YesStashINTCraftingIlvlMin && YesStashINTCraftingIlvl) || !YesStashINTCraftingIlvl)) 
             || (YesStashHYBRID && This.Prop.CraftingBase = "Hybrid Base" && ((This.Prop.ItemLevel >= YesStashHYBRIDCraftingIlvlMin && YesStashHYBRIDCraftingIlvl) || !YesStashHYBRIDCraftingIlvl)) 
             || (YesStashJ && This.Prop.CraftingBase = "Jewel Base" && ((This.Prop.ItemLevel >= YesStashJCraftingIlvlMin && YesStashJCraftingIlvl) || !YesStashJCraftingIlvl)) 
-            || (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base" && ((This.Prop.ItemLevel >= YesStashAJCraftingIlvlMin && YesStashAJCraftingIlvl) || !YesStashAJCraftingIlvl)))
+            || (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base" && ((This.Prop.ItemLevel >= YesStashAJCraftingIlvlMin && YesStashAJCraftingIlvl) || !YesStashAJCraftingIlvl))
+            || (YesStashJewellery && This.Prop.CraftingBase = "Jewellery Base" && ((This.Prop.ItemLevel >= YesStashJewelleryCraftingIlvlMin && YesStashJewelleryCraftingIlvl) || !YesStashJewelleryCraftingIlvl)) )
           && (!This.Prop.Corrupted))
           sendstash := StashTabCrafting
         Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictPrice >= StashTabYesPredictive_Price) || (This.Prop.PredictPrice && OnRitual)) ){
@@ -2436,6 +2437,10 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         Else If(HasVal(craftingBasesT7,This.Prop.ItemBase))
         {
           This.Prop.CraftingBase := "Abyss Jewel Base"
+        }
+        Else If(HasVal(craftingBasesT8,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Jewellery Base"
         }
       }
       ApproximatePerfection(){
@@ -2929,10 +2934,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        ;Heist Modification Remove at End of League!
-        ;Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map Options
         Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map/Contract Options
-        ;Heist Modification Remove at End of League!
         Gui, Inventory: Font,
         Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
         GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
@@ -3148,10 +3150,9 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabRingUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
-              ; Crafting Bases
 
+      ; Crafting Bases
       Gui, Inventory: Tab, Crafting Bases
-      
       Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w150 h90    section    xm+5 ym+25,  Atlas Bases
@@ -3214,6 +3215,15 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashAJCraftingIlvl Checked%YesStashAJCraftingIlvl%     xs+5  y+8    , Above Ilvl:
         Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
         Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashAJCraftingIlvlMin , %YesStashAJCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         Jewellery
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJewellery Checked%YesStashJewellery%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJewelleryCraftingIlvl Checked%YesStashJewelleryCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashJewelleryCraftingIlvlMin , %YesStashJewelleryCraftingIlvlMin%
         Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
 
       }
@@ -8340,6 +8350,10 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
       For k, v in craftingBasesT7
         textList7 .= (!textList7 ? "" : ", ") v
       baseList := ""
+      textList8 := ""
+      For k, v in craftingBasesT8
+        textList8 .= (!textList8 ? "" : ", ") v
+      baseList := ""
       For k, v in Bases
       {
         If ( !IndexOf("talisman",v["tags"]) 
@@ -8357,43 +8371,48 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
       Gui, CustomCrafting: New
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
-      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %baseList%
-      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w600 h300 -wrap , Atlas Tier 1|STR Tier 2|DEX Tier 3|INT Tier 4|HYBRID Tier 5|Jewel Tier 6|Abyss Jewel Tier 7
+      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w500, %baseList%
+      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w600 h300 -wrap , Atlas Tier 1|STR Tier 2|DEX Tier 3|INT Tier 4|Hybrid Tier 5|Jewel Tier 6|Abyss Jewel Tier 7|Jewellery Tier 8
       Gui, CustomCrafting: Tab, Atlas Tier 1
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList1%
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w500 r8 , %textList1%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT1 Base
       Gui, CustomCrafting: Tab, STR Tier 2
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w350 r6 , %textList2%
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w500 r8 , %textList2%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT2 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT2 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT2 Base
       Gui, CustomCrafting: Tab, DEX Tier 3
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w350 r6 , %textList3%
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w500 r8 , %textList3%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT3 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT3 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT3 Base
       Gui, CustomCrafting: Tab, INT Tier 4
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w350 r6 , %textList4%
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w500 r8 , %textList4%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT4 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT4 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT4 Base
-      Gui, CustomCrafting: Tab, HYBRID Tier 5
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier5 ReadOnly y+38 w350 r6 , %textList5%
+      Gui, CustomCrafting: Tab, Hybrid Tier 5
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier5 ReadOnly y+38 w500 r8 , %textList5%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT5 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT5 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT5 Base
       Gui, CustomCrafting: Tab, Jewel Tier 6
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier6 ReadOnly y+38 w350 r6 , %textList6%
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier6 ReadOnly y+38 w500 r8 , %textList6%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT6 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT6 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT6 Base
       Gui, CustomCrafting: Tab, Abyss Jewel Tier 7
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier7 ReadOnly y+38 w350 r6 , %textList7%
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier7 ReadOnly y+38 w500 r8 , %textList7%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT7 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT7 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT7 Base
+      Gui, CustomCrafting: Tab, Jewellery Tier 8
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier8 ReadOnly y+38 w500 r8 , %textList8%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT8 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT8 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT8 Base
       Gui, CustomCrafting: Show, , Edit Crafting Tiers
     Return
     AddCustomCraftingBase:

@@ -283,6 +283,13 @@
     Global DefaultcraftingBasesT7 := ["Searching Eye Jewel"
       , "Murderous Eye Jewel"
       , "Ghastly Eye Jewel"]
+    Global DefaultcraftingBasesT8 := ["Onyx Amulet"
+      , "Turquoise Amulet"
+      , "Citrine Amulet"
+      , "Agate Amulet"
+      , "Prismatic Ring"
+      , "Two-Stone Ring"
+      , "Diamond Ring"]
 
     Global craftingBasesT1 := []
     Global craftingBasesT2 := []
@@ -291,6 +298,7 @@
     Global craftingBasesT5 := []
     Global craftingBasesT6 := []
     Global craftingBasesT7 := []
+    Global craftingBasesT8 := []
     ; Create Executable group for gameHotkey, IfWinActive
     global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
     for n, exe in POEGameArr
@@ -900,6 +908,10 @@
     Global YesStashAJ := 1
     Global YesStashAJCraftingIlvl := 0
     Global YesStashAJCraftingIlvlMin := 76
+
+    Global YesStashJewellery := 1
+    Global YesStashJewelleryCraftingIlvl := 0
+    Global YesStashJewelleryCraftingIlvlMin := 76
 
   ; Skip Maps after column #
     Global YesSkipMaps := 0
@@ -5239,6 +5251,9 @@ Return
       IniRead, YesStashAJ, %A_ScriptDir%\save\Settings.ini, General, YesStashAJ, 1
       IniRead, YesStashAJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashAJCraftingIlvl, 0
       IniRead, YesStashAJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashAJCraftingIlvlMin, 76
+      IniRead, YesStashJewellery, %A_ScriptDir%\save\Settings.ini, General, YesStashJewellery, 1
+      IniRead, YesStashJewelleryCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashJewelleryCraftingIlvl, 0
+      IniRead, YesStashJewelleryCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashJewelleryCraftingIlvlMin, 76
       IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
       IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
       IniRead, YesSkipMaps_eval, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval, >=
@@ -5288,6 +5303,10 @@ Return
       IniRead, YesStashAJ, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJ, 1
       IniRead, YesStashAJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvl, 0
       IniRead, YesStashAJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvlMin, 76
+
+      IniRead, YesStashJewellery, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewellery, 1
+      IniRead, YesStashJewelleryCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvl, 0
+      IniRead, YesStashJewelleryCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin, 76
 
       ;Crafting Map Settings
       IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
@@ -5422,6 +5441,7 @@ Return
       sDefaultcraftingBasesT5 := ArrayToString(DefaultcraftingBasesT5)
       sDefaultcraftingBasesT6 := ArrayToString(DefaultcraftingBasesT6)
       sDefaultcraftingBasesT7 := ArrayToString(DefaultcraftingBasesT7)
+      sDefaultcraftingBasesT8 := ArrayToString(DefaultcraftingBasesT8)
       IniRead, craftingBasesT1, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT1, %sDefaultcraftingBasesT1%
       IniRead, craftingBasesT2, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT2, %sDefaultcraftingBasesT2%
       IniRead, craftingBasesT3, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT3, %sDefaultcraftingBasesT3%
@@ -5429,6 +5449,7 @@ Return
       IniRead, craftingBasesT5, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT5, %sDefaultcraftingBasesT5%
       IniRead, craftingBasesT6, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT6, %sDefaultcraftingBasesT6%
       IniRead, craftingBasesT7, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT7, %sDefaultcraftingBasesT7%
+      IniRead, craftingBasesT8, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT8, %sDefaultcraftingBasesT8%
       ;Converting string to array
       craftingBasesT1 := StringToArray(craftingBasesT1)
       craftingBasesT2 := StringToArray(craftingBasesT2)
@@ -5437,6 +5458,7 @@ Return
       craftingBasesT5 := StringToArray(craftingBasesT5)
       craftingBasesT6 := StringToArray(craftingBasesT6)
       craftingBasesT7 := StringToArray(craftingBasesT7)
+      craftingBasesT8 := StringToArray(craftingBasesT8)
       
       ;Settings for the Client Log file location
       IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
@@ -5974,6 +5996,10 @@ Return
       IniWrite, %YesStashAJCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvl
       IniWrite, %YesStashAJCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAJCraftingIlvlMin
 
+      IniWrite, %YesStashJewellery%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewellery
+      IniWrite, %YesStashJewelleryCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvl
+      IniWrite, %YesStashJewelleryCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin
+
       ;Crafting Map Settings
       IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
       IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2
@@ -6172,6 +6198,7 @@ Return
       scraftingBasesT5 := ArrayToString(craftingBasesT5)
       scraftingBasesT6 := ArrayToString(craftingBasesT6)
       scraftingBasesT7 := ArrayToString(craftingBasesT7)
+      scraftingBasesT8 := ArrayToString(craftingBasesT8)
       IniWrite, %scraftingBasesT1%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT1
       IniWrite, %scraftingBasesT2%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT2
       IniWrite, %scraftingBasesT3%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT3
@@ -6179,6 +6206,7 @@ Return
       IniWrite, %scraftingBasesT5%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT5
       IniWrite, %scraftingBasesT6%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT6
       IniWrite, %scraftingBasesT7%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT7
+      IniWrite, %scraftingBasesT8%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT8
 
       readFromFile()
       GuiUpdate()
