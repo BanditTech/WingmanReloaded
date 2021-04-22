@@ -1,4 +1,4 @@
-if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
 {
   ft_Gui("Show")
   Return
@@ -861,6 +861,23 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
         This.Prop.TopTierLife := This.TopTierLife()
         This.Prop.TopTierES := This.TopTierES()
+        This.Prop.TopTierMS := This.TopTierMS()
+      }
+      TopTierMS(){
+        If (This.Prop.ItemLevel < 15 && This.HasAffix("Runner's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Sprinter's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 40 && This.HasAffix("Stallion's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 55 && This.HasAffix("Gazelle's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Cheetah's"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Hellion's"))
+          Return True
+        Else
+          Return False
       }
       TopTierES(){
         If (This.Prop.ItemLevel < 11 && This.HasAffix("Shining"))
