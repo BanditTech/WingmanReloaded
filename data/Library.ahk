@@ -163,8 +163,8 @@
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
         This.MatchCraftingBases()
-        This.MatchChaosRegal()
         This.MatchBase2Slot()
+        This.MatchChaosRegal()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
         If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified){
           This.Prop.PredictPrice := This.PredictPrice()
@@ -943,7 +943,7 @@
         Return False
       }
       MatchBase2Slot(){
-        If (This.Prop.ItemClass ~= "Body Armour")
+        If (This.Prop.ItemClass ~= "Body Armours")
           This.Prop.SlotType := "Body"
         Else If (This.Prop.ItemClass ~= "Helmets")
           This.Prop.SlotType := "Helmet"
@@ -951,22 +951,21 @@
           This.Prop.SlotType := "Gloves"
         Else If (This.Prop.ItemClass ~= "Boots")
           This.Prop.SlotType := "Boots"
-        Else If (This.Prop.ItemClass ~= "Belt")
+        Else If (This.Prop.ItemClass ~= "Belts")
           This.Prop.SlotType := "Belt"
-        Else If (This.Prop.ItemClass ~= "Amulet")
+        Else If (This.Prop.ItemClass ~= "Amulets")
           This.Prop.SlotType := "Amulet"
         Else If (This.Prop.ItemClass ~= "Rings")
           This.Prop.SlotType := "Ring"
-        Else If (This.Prop.ItemClass ~= "(One|Wand|Dagger|Sceptre|Claw)")
+        Else If (This.Prop.ItemClass ~= "(One|Wands|Daggers|Sceptres|Claws)")
           This.Prop.SlotType := "One Hand"
-        Else If (This.Prop.ItemClass ~= "(Two|Bows|Staff)")
+        Else If (This.Prop.ItemClass ~= "(Two|Bows|Staves)")
           This.Prop.SlotType := "Two Hand"
         Else If (This.Prop.ItemClass ~= "Shields")
           This.Prop.SlotType := "Shield"
       }
       MatchChaosRegal(){
-        If (This.Prop.Rarity_Digit = 3 
-        && This.Prop.ItemClass ~= "(One|Two|Bow|Shield|Wand|Staff|Dagger|Sceptre|Claw|Body Armour|Helmet|Gloves|Boots|Belt|Amulet|Ring)")
+        If (This.Prop.Rarity_Digit = 3 && This.Prop.SlotType != "" )
         {
           If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74 && (ChaosRecipeTypePure || ChaosRecipeTypeHybrid))
             This.Prop.ChaosRecipe := 1
