@@ -1062,21 +1062,22 @@
         Return False
       }
       MatchAffixes(content:=""){
+        ; These lines remove the extra line created by "additional information bubbles"
         If (content ~= "\n\(")
           content := RegExReplace(content, "\n\(", "(")
-        
         content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,]+\)", "")
         ; Do Stuff with info
         Loop, Parse,% content, `r`n  ; , `r
         {
-          If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$") ; || A_LoopField ~= "^\(.*\)$"
+          If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
             Continue
-          key := This.Standardize(A_LoopField)
-          If (vals := This.MatchLine(A_LoopField))
+          line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+          key := This.Standardize(line)
+          If (vals := This.MatchLine(line))
           {
             If (vals.Count() >= 2)
             {
-              If (A_LoopField ~= rxNum " to " rxNum || A_LoopField ~= rxNum "-" rxNum)
+              If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
                 This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
               Else
                 This.Affix[key] := vals[1]
@@ -1096,7 +1097,6 @@
         }
       }
       MatchLine(lineString){
-        linestring := RegExReplace(lineString, rxNum "\(" rxNum "-" rxNum "\)", "$1")
         If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
         {
           ret := {}
@@ -1112,7 +1112,7 @@
       }
       Standardize(str:=""){
         str := RegExReplace(str, "\+?"rxNum , "#")
-        str := RegExReplace(str, "#\(#-#\)" , "#")
+        ; str := RegExReplace(str, "#\(#-#\)" , "#")
         str := RegExReplace(str, " (augmented)" , "")
         Return str
       }
