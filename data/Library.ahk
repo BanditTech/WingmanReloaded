@@ -977,7 +977,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         If (content ~= "\n\(")
           content := RegExReplace(content, "\n\(", "(")
         
-        content := RegExReplace(content,"\(\w+ \w+ [\w ]+\)", "")
+        content := RegExReplace(content,"\(\w+ \w+ [\w \.,]+\)", "")
         ; Do Stuff with info
         Loop, Parse,% content, `r`n  ; , `r
         {
