@@ -2838,7 +2838,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesHeistGear  Checked%StashTabYesHeistGear% x+5 yp+4, Enable
 
         ; Misc Map Items
-
+  
         Gui, Inventory: Font, Bold s8 cBlack, Arial
         Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Misc Map Items
         Gui, Inventory: Font,

@@ -1,3 +1,21 @@
+## Version .13.0015 - Alpha version - April/22/2020
+New Stash Tabs
+* Heist Gear: Itens to equip followers/companions/bandits on Heist Encounters
+* Misc Map Items: Items that work like a map, but are not a "map"/don't have a special slot in map tab
+* Reworked Crafting Bases
+  * Removed Normal/Magic/Rare Check
+  * Renamed from Tier1...4 to Atlas Base, STR Base, DEX Base, INT Base, Jewel Base, Abyss Jewel Base, Jewellery (Amulet/Ring/Belt) Base
+  * Rebalanced Default List (including new atlas bases/ritual)
+  * Every split now has it's own Min ILvL, this mean you can build multiple crafting bases groups for each stage (Ex: Early Maps Min ILvL~70+, Yellow Maps Min ILvL~80+, EndGame Maps ILvL~84+
+
+Parser Changes
+* Parse will now collect Advanced Information (changing from ctrl+c to ctrl+alt+c)
+  * This will greatly enhance our power to identify affix/suffix/prefix and maybe a crafting feature soon
+* Using more ItemClass and moving away from flavour text parser
+* New Props: HeistGear, MiscMapItem
+* Minor Backend changes
+
+---
 ## Version .13.0014 - Alpha version - April/16/2020
 Ultimatum is here, and it forced a bit of changes to how we deal with the parser. 
 * Basic changes required to add Item Class from clip contents
