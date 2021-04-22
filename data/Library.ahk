@@ -607,6 +607,7 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           Else If (indexOf(This.Prop.ItemBase, HeistGear))
           {
             This.Prop.Heist := True
+            This.Prop.HeistGear := True
             This.Prop.SpecialType := "Heist Gear"
             If InStr(This.Prop.ItemBase, "Brooch")
               This.Prop.Item_Width := This.Prop.Item_Height := 1
@@ -2171,6 +2172,8 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           sendstash := StashTabVeiled
         Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
           sendstash := StashTabClusterJewel
+        Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
+          sendstash := StashTabHeistGear
         Else If (StashTabYesCrafting 
           && ((YesStashATLAS && This.Prop.CraftingBase = "Atlas Base" && ((This.Prop.ItemLevel >= YesStashATLASCraftingIlvlMin && YesStashATLASCraftingIlvl) || !YesStashATLASCraftingIlvl)) 
             || (YesStashSTR && This.Prop.CraftingBase = "STR Base" && ((This.Prop.ItemLevel >= YesStashSTRCraftingIlvlMin && YesStashSTRCraftingIlvl) || !YesStashSTRCraftingIlvl)) 
@@ -2814,6 +2817,15 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
+
+        ; Heist Gear
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Heist Gear
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabHeistGear x+0 yp hp ,  %StashTabHeistGear%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesHeistGear  Checked%StashTabYesHeistGear% x+5 yp+4, Enable
         
         ; Second column Gui - GEMS
 

@@ -831,6 +831,7 @@
     Global StashTabVeiled := 1
     Global StashTabGemSupport := 1
     Global StashTabClusterJewel := 1
+    Global StashTabHeistGear := 1
     Global StashTabDump := 1
     Global StashTabPredictive := 1
     Global StashTabNinjaPrice := 1
@@ -862,6 +863,7 @@
     Global StashTabYesVeiled := 1
     Global StashTabYesGemSupport := 1
     Global StashTabYesClusterJewel := 1
+    Global StashTabYesHeistGear := 1
     Global StashTabYesDump := 1
     Global StashDumpInTrial := 1
     Global StashDumpSkipJC := 1
@@ -2812,10 +2814,8 @@ Return
             Continue
           Else If (sendstash:=Item.MatchLootFilter())
             Sleep, -1
-          ;Heist Modification Remove at End of League!  
           Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) && ((Item.Prop.RarityNormal && YesSkipMaps_normal) || (Item.Prop.RarityMagic && YesSkipMaps_magic) || (Item.Prop.RarityRare && YesSkipMaps_rare) || (Item.Prop.RarityUnique && YesSkipMaps_unique)))
             Continue
-          ;Heist Modification Remove at End of League!  
           Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
           {
             HeistC.Push(C)
@@ -5350,7 +5350,9 @@ Return
       IniRead, StashTabYesMetamorph, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMetamorph, 0
       IniRead, StashTabGemSupport, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGemSupport, 1
       IniRead, StashTabClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel, 1
+      IniRead, StashTabHeistGear, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabHeistGear, 1
       IniRead, StashTabYesClusterJewel, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel, 1
+      IniRead, StashTabYesHeistGear, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesHeistGear, 1
       IniRead, StashTabDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump, 1
       IniRead, StashTabYesCurrency, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency, 0
       IniRead, StashTabYesMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap, 0
@@ -6032,6 +6034,7 @@ Return
       IniWrite, %StashTabProphecy%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabProphecy
       IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
       IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
+      IniWrite, %StashTabHeistGear%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabHeistGear
       IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
       IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
       IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
