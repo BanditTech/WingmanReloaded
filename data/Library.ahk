@@ -859,6 +859,47 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
           This.Prop.SpecialType := "Harvest Item"
         If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
           This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
+        This.Prop.TopTierLife := This.TopTierLife()
+      }
+      TopTierLife(){
+        If (This.Prop.ItemLevel < 5 && This.HasAffix("Hale"))
+          Return True
+        Else If (This.Prop.ItemLevel < 11 && This.HasAffix("Healthy"))
+          Return True
+        Else If (This.Prop.ItemLevel < 18 && This.HasAffix("Sanguine"))
+          Return True
+        Else If (This.Prop.ItemLevel < 24 && This.HasAffix("Stalwart"))
+          Return True
+        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Stout"))
+          Return True
+        Else If (This.Prop.ItemLevel < 36 && This.HasAffix("Robust"))
+          Return True
+        Else If (This.Prop.ItemLevel < 44 && This.HasAffix("Rotund"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 54 || indexOf(This.Prop.ItemClass,["Rings"])) && This.HasAffix("Virile"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 64 || indexOf(This.Prop.ItemClass,["Amulets","Gloves","Boots"])) && This.HasAffix("Athlete's"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 73 || indexOf(This.Prop.ItemClass,["Helmets","Belts","Quivers"])) && This.HasAffix("Fecund"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 81 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Vigorous"))
+          Return True
+        Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Rapturous"))
+          Return True
+        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && This.HasAffix("Prime"))
+          Return True
+        Else
+          Return False
+      }
+      HasAffix(Name){
+        local Type, Obj, k, v
+        For Type, Obj in This.Data.AffixNames {
+          For k, v in Obj {
+            If (v.Name = Name)
+              Return True
+          }
+        }
+        Return False
       }
       MatchBase2Slot(){
         If (This.Prop.ItemClass ~= "Body Armour")
