@@ -860,6 +860,35 @@ if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
         If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
           This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
         This.Prop.TopTierLife := This.TopTierLife()
+        This.Prop.TopTierES := This.TopTierES()
+      }
+      TopTierES(){
+        If (This.Prop.ItemLevel < 11 && This.HasAffix("Shining"))
+          Return True
+        Else If (This.Prop.ItemLevel < 17 && This.HasAffix("Glimmering"))
+          Return True
+        Else If (This.Prop.ItemLevel < 23 && This.HasAffix("Glittering"))
+          Return True
+        Else If (This.Prop.ItemLevel < 29 && This.HasAffix("Glowing"))
+          Return True
+        Else If (This.Prop.ItemLevel < 35 && This.HasAffix("Radiating"))
+          Return True
+        Else If (This.Prop.ItemLevel < 43 && This.HasAffix("Pulsing"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 51 || indexOf(This.Prop.ItemClass,["Gloves","Boots"])) && This.HasAffix("Seething"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 60 || indexOf(This.Prop.ItemClass,["Helmets"])) && This.HasAffix("Blazing"))
+          Return True
+        Else If (This.Prop.ItemLevel < 69 && This.HasAffix("Scintillating"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 75 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Incandescent"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 80 || indexOf(This.Prop.ItemClass,["Rings","Body Armours"])) && This.HasAffix("Resplendent"))
+          Return True
+        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Belts","Amulets"])) && This.HasAffix("Dazzling"))
+          Return True
+        Else
+          Return False
       }
       TopTierLife(){
         If (This.Prop.ItemLevel < 5 && This.HasAffix("Hale"))
