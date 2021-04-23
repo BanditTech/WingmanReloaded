@@ -1,3 +1,29 @@
+## Version .13.0016 - Alpha version - April/23/2020
+New PROP keys added for use within the CLF
+* This works for leveling gear or endgame!
+* TopTierLife
+* TopTierES
+* TopTierMS
+* TopTierColdResist
+* TopTierFireResist
+* TopTierLightningResist
+* TopTierChaosResist
+* TopTierResists
+  * Will be true if any top tier resist
+  * +1 for each resist type with top tier
+
+New map mod filters for dodge characters
+* Thanks to Barragek0 for his submission!
+
+Bugfixes
+* fix for chaos recipe related to function changes
+* ItemClass gathered properly from Bases in reverse lookup
+
+More modifications related to ItemClass
+* Official in-game Item Class will be the new standard going forward
+
+---
+
 ## Version .13.0015 - Alpha version - April/22/2020
 New Stash Tabs
 * Heist Gear: Itens to equip followers/companions/bandits on Heist Encounters
