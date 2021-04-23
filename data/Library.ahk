@@ -1032,25 +1032,25 @@
         Return False
       }
       MatchBase2Slot(){
-        If (This.Prop.ItemClass ~= "Body Armours")
+        If (This.Prop.ItemClass ~= "Body Armour")
           This.Prop.SlotType := "Body"
-        Else If (This.Prop.ItemClass ~= "Helmets")
+        Else If (This.Prop.ItemClass ~= "Helmet")
           This.Prop.SlotType := "Helmet"
-        Else If (This.Prop.ItemClass ~= "Gloves")
+        Else If (This.Prop.ItemClass ~= "Glove")
           This.Prop.SlotType := "Gloves"
-        Else If (This.Prop.ItemClass ~= "Boots")
+        Else If (This.Prop.ItemClass ~= "Boot")
           This.Prop.SlotType := "Boots"
-        Else If (This.Prop.ItemClass ~= "Belts")
+        Else If (This.Prop.ItemClass ~= "Belt")
           This.Prop.SlotType := "Belt"
-        Else If (This.Prop.ItemClass ~= "Amulets")
+        Else If (This.Prop.ItemClass ~= "Amulet")
           This.Prop.SlotType := "Amulet"
-        Else If (This.Prop.ItemClass ~= "Rings")
+        Else If (This.Prop.ItemClass ~= "Ring")
           This.Prop.SlotType := "Ring"
-        Else If (This.Prop.ItemClass ~= "(One|Wands|Daggers|Sceptres|Claws)")
+        Else If (This.Prop.ItemClass ~= "(One|Wand|Dagger|Sceptre|Claw)")
           This.Prop.SlotType := "One Hand"
-        Else If (This.Prop.ItemClass ~= "(Two|Bows|staves)")
+        Else If (This.Prop.ItemClass ~= "(Two|Bow|stave|Staff)")
           This.Prop.SlotType := "Two Hand"
-        Else If (This.Prop.ItemClass ~= "Shields")
+        Else If (This.Prop.ItemClass ~= "Shield")
           This.Prop.SlotType := "Shield"
       }
       MatchChaosRegal(){
@@ -2764,7 +2764,7 @@
         }
 
         This.Prop.ItemName := (Object.name!=""?Object.name:Object.typeLine)
-        This.Prop.ItemBase := StrReplace(Object.typeLine, "Superior ", "")
+        This.Prop.ItemBase := Object.baseType
         This.MatchBaseType()
         This.Prop.ItemLevel := Object.ilvl
         This.Prop.Item_Width := Object.w
@@ -2784,16 +2784,16 @@
         This.Prop.Stack_Max := Object.maxStackSize
 
         This.MatchAffixes(This.Data.Blocks.Affix)
-        This.MatchChaosRegal()
         This.MatchBase2Slot()
+        This.MatchChaosRegal()
       }
       MatchBaseType(){
         For k, v in Bases
         {
-          If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
+          If (v["name"] = This.Prop.ItemBase)
           {
-            This.Prop.ItemBase := v["name"]
             This.Prop.DropLevel := v["drop_level"]
+            This.Prop.ItemClass := v["item_class"]
 
             If InStr(This.Prop.ItemClass, "Ring")
               This.Prop.Ring := True
