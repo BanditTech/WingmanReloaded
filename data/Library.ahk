@@ -3485,8 +3485,10 @@
           Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
           Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
           Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
-  
+          Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+100 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
+          Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+120 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
           
+
           Gui, Crafting: Font, Bold
           Gui, Crafting: Font, Bold s9 cBlack, Arial
         Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
