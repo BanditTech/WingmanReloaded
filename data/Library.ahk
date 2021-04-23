@@ -854,9 +854,98 @@
           This.Prop.SpecialType := "Harvest Item"
         If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
           This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
-        This.Prop.TopTierLife := This.TopTierLife()
-        This.Prop.TopTierES := This.TopTierES()
-        This.Prop.TopTierMS := This.TopTierMS()
+        If This.TopTierLife()
+          This.Prop.TopTierLife := 1
+        If This.TopTierES()
+          This.Prop.TopTierES := 1
+        If This.TopTierMS()
+          This.Prop.TopTierMS := 1
+        If This.TopTierChaosResist()
+          This.Prop.TopTierChaosResist := 1
+        If This.TopTierLightningResist()
+          This.Prop.TopTierLightningResist := 1
+        If This.TopTierFireResist()
+          This.Prop.TopTierFireResist := 1
+        If This.TopTierColdResist()
+          This.Prop.TopTierColdResist := 1
+        If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist)
+          This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0)
+      }
+      TopTierChaosResist(){
+        If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
+          Return True
+        Else If (This.Prop.ItemLevel < 44 && This.HasAffix("of Banishment"))
+          Return True
+        Else If (This.Prop.ItemLevel < 56 && This.HasAffix("of Eviction"))
+          Return True
+        Else If (This.Prop.ItemLevel < 65 && This.HasAffix("of Expulsion"))
+          Return True
+        Else If (This.Prop.ItemLevel < 81 && This.HasAffix("of Exile"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Bameth"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierLightningResist(){
+        If (This.Prop.ItemLevel < 13 && This.HasAffix("of the Cloud"))
+          Return True
+        Else If (This.Prop.ItemLevel < 25 && This.HasAffix("of the Squall"))
+          Return True
+        Else If (This.Prop.ItemLevel < 37 && This.HasAffix("of the Storm"))
+          Return True
+        Else If (This.Prop.ItemLevel < 49 && This.HasAffix("of the Thunderhead"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Tempest"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Maelstrom"))
+          Return True
+        Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Lightning"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Ephij"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierFireResist(){
+        If (This.Prop.ItemLevel < 12 && This.HasAffix("of the Whelpling"))
+          Return True
+        Else If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Salamander"))
+          Return True
+        Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Drake"))
+          Return True
+        Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kiln"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Furnace"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Volcano"))
+          Return True
+        Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Magma"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tzteosh"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierColdResist(){
+        If (This.Prop.ItemLevel < 14 && This.HasAffix("of the Inuit"))
+          Return True
+        Else If (This.Prop.ItemLevel < 26 && This.HasAffix("of the Seal"))
+          Return True
+        Else If (This.Prop.ItemLevel < 38 && This.HasAffix("of the Penguin"))
+          Return True
+        Else If (This.Prop.ItemLevel < 50 && This.HasAffix("of the Yeti"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Walrus"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Polar Bear"))
+          Return True
+        Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Ice"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Haast"))
+          Return True
+        Else
+          Return False
       }
       TopTierMS(){
         If (This.Prop.ItemLevel < 15 && This.HasAffix("Runner's"))
