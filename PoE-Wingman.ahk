@@ -1018,7 +1018,7 @@
     Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3
     , CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3
     , ElementalReflect,PhysicalReflect,NoLeech,NoRegen,AvoidAilments,AvoidPBB,MinusMPR,LRRLES,MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-    , MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap
+    , MMapItemQuantity,MMapItemRarity,MMapMonsterPackSize,EnableMQQForMagicMap,PCDodgeUnlucky,MHAccuracyRating
     
   ; ItemInfo GUI
     Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
@@ -4339,6 +4339,8 @@ Return
     || (Item.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
     || (Item.Affix["Monsters' skills Chain # additional times"] && MSCAT)
     || (Item.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
+    || (Item.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
+    || (Item.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
     || Item.Prop.Map_PackSize < MMapMonsterPackSize 
@@ -5333,6 +5335,8 @@ Return
       IniRead, MDExtraPhysicalDamage, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage, 0
       IniRead, MICSC, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC, 0
       IniRead, MSCAT, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MSCAT, 0
+      IniRead, PCDodgeUnlucky, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PCDodgeUnlucky, 0   
+      IniRead, MHAccuracyRating, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MHAccuracyRating, 0
       
       IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
       IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
@@ -6028,6 +6032,8 @@ Return
       IniWrite, %MDExtraPhysicalDamage%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage
       IniWrite, %MICSC%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC
       IniWrite, %MSCAT%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MSCAT
+      IniWrite, %PCDodgeUnlucky%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PCDodgeUnlucky
+      IniWrite, %MHAccuracyRating%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MHAccuracyRating
 
       IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
       IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
