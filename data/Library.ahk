@@ -17547,7 +17547,7 @@ IsLinear(arr, i=0) {
     reqHeaders.push("connection: keep-alive")
     reqHeaders.push("cache-Control: max-age=0")
     reqHeaders.push("accept: */*")
-    reqHeaders.push("cookie: "PoECookie)
+    reqHeaders.push("Cookie: POESESSID=" . PoECookie)
     
     ; ShowToolTip("Getting price prediction... ")
     retCurl := true
@@ -17600,7 +17600,7 @@ IsLinear(arr, i=0) {
     reqHeaders.push("cache-control: max-age=0")
     reqHeaders.push("accept: */*")
     reqHeaders.push("accept-encoding: gzip, deflate, br")
-    reqHeaders.push("cookie: "PoECookie)
+    reqHeaders.push("Cookie: POESESSID=" . PoECookie)
     
     ; ShowToolTip("Getting price prediction... ")
     retCurl := true
