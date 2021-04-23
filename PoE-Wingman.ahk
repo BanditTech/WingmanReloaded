@@ -3536,11 +3536,11 @@ Return
           {
             If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
               If (WR.Flask[A_Index].ResetCooldownAtFullHealth && Player.Percent.Life == 100) {
-                WR.cdExpires.Flask[A_Index] := 0
+                WR.cdExpires.Flask[A_Index] := A_TickCount
               } Else If (WR.Flask[A_Index].ResetCooldownAtFullEnergyShield && Player.Percent.ES == 100) {
-                WR.cdExpires.Flask[A_Index] := 0
+                WR.cdExpires.Flask[A_Index] := A_TickCount
               } Else If (WR.Flask[A_Index].ResetCooldownAtFullMana && Player.Percent.Mana == 100) {
-                WR.cdExpires.Flask[A_Index] := 0
+                WR.cdExpires.Flask[A_Index] := A_TickCount
               }
             } 
             If (WR.cdExpires.Flask[A_Index] < A_TickCount) {
