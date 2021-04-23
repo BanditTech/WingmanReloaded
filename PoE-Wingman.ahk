@@ -122,7 +122,7 @@
     WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
     , "Group":"f"A_Index, "Slot":A_Index, "Type":"Flask"
     , "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
-    , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
+    , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0", "ResetCooldownAtFullHealth":"0", "ResetCooldownAtFullEnergyShield":"0", "ResetCooldownAtFullMana":"0"}
     WR.cdExpires.Flask[v] := A_TickCount
   }
   for k, v in ["1","2","3","4","5","6","7","8","9","10"]
@@ -3534,8 +3534,16 @@ Return
         {
           Loop 5
           {
-            If (WR.cdExpires.Flask[A_Index] < A_TickCount)
-            {
+            If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
+              If (WR.Flask[A_Index].ResetCooldownAtFullHealth && Player.Percent.Life == 100) {
+                WR.cdExpires.Flask[A_Index] := 0
+              } Else If (WR.Flask[A_Index].ResetCooldownAtFullEnergyShield && Player.Percent.ES == 100) {
+                WR.cdExpires.Flask[A_Index] := 0
+              } Else If (WR.Flask[A_Index].ResetCooldownAtFullMana && Player.Percent.Mana == 100) {
+                WR.cdExpires.Flask[A_Index] := 0
+              }
+            } 
+            If (WR.cdExpires.Flask[A_Index] < A_TickCount) {
               If ((WR.Flask[A_Index].Life && WR.Flask[A_Index].Life > Player.Percent.Life)
               || (WR.Flask[A_Index].ES && WR.Flask[A_Index].ES > Player.Percent.ES)
               || (WR.Flask[A_Index].Mana && WR.Flask[A_Index].Mana > Player.Percent.Mana))
@@ -7855,7 +7863,7 @@ Return
         Gui, Flask%slot%: new, AlwaysOnTop
         Gui, Flask%slot%: Font, cBlack
 
-        Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h275, Flask Slot %slot%
+        Gui, Flask%slot%: Add, GroupBox, section xm ym w500 h300, Flask Slot %slot%
 
         Gui, Flask%slot%: Add, GroupBox, section center xs+10 yp+20 w100 h45, Cooldown
         Gui, Flask%slot%: Add, Edit,  center     vFlask%slot%CD  xs+10   yp+20  w80  h17, %  WR.Flask[slot].CD
@@ -7892,7 +7900,7 @@ Return
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttackRelease xs+10   y+5 Checked" WR.Flask[slot].SecondaryAttackRelease, Sec. Release
         
         backColor := "E0E0E0"
-        Gui, Flask%slot%: Add, GroupBox, Section center xs+125 ys w240 h150, Resource Triggers
+        Gui, Flask%slot%: Add, GroupBox, Section center xs+125 ys w240 h215, Resource Triggers
         setColor := "Red"
         Gui, Flask%slot%: Font, s16, Consolas
         Gui, Flask%slot%: Add, Text, xs+10 ys+18 c%setColor%, L`%
@@ -7901,19 +7909,28 @@ Return
         x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Flask%slot%Life_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
         setColor := "51DEFF"
+        Gui, Flask%slot%: Font,
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtFullHealth xs+40 y+6 Checked" WR.Flask[slot].ResetCooldownAtFullHealth, Reset cooldown at full health
+        
+        Gui, Flask%slot%: Font, s16, Consolas
         Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
         Gui, Flask%slot%: Add, Text,% "vFlask" slot "ES hwndFlask" slot "ESHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].ES
         ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ESHWND
         x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Flask%slot%ES_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
         setColor := "Blue"
+        Gui, Flask%slot%: Font,
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtFullEnergyShield xs+30 y+6 Checked" WR.Flask[slot].ResetCooldownAtFullEnergyShield, Reset cooldown at full energy shield
+        
+        Gui, Flask%slot%: Font, s16, Consolas
         Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
         Gui, Flask%slot%: Add, Text,% "vFlask" slot "Mana hwndFlask" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Mana
         Gui, Flask%slot%: Font,
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtFullMana xs+43 y+6 Checked" WR.Flask[slot].ResetCooldownAtFullMana, Reset cooldown at full mana
         ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ManaHWND
         x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Flask%slot%Mana_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
-        Gui, Flask%slot%: Add, Text, xs+10 y+13 , Resource Trigger Condition:
+        Gui, Flask%slot%: Add, Text, xs+10 y+43 , Slider Trigger Condition:
         Gui, Flask%slot%: Add, Radio, % "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask[slot].Condition==1?1:0), Any
         Gui, Flask%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Flask[slot].Condition==2?1:0), All
 
@@ -7922,7 +7939,7 @@ Return
       Return
 
       FlaskSaveValues:
-        for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
+        for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison", "ResetCooldownAtFullHealth", "ResetCooldownAtFullEnergyShield", "ResetCooldownAtFullMana"]
           WR.Flask[which][kind] := Flask%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
