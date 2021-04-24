@@ -122,7 +122,7 @@
     WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
     , "Group":"f"A_Index, "Slot":A_Index, "Type":"Flask"
     , "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
-    , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0", "ResetCooldownAtFullHealth":"0", "ResetCooldownAtFullEnergyShield":"0", "ResetCooldownAtFullMana":"0"}
+    , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0", "ResetCooldownAtHealthPercentage":"0", "ResetCooldownAtHealthPercentageInput":"0", "ResetCooldownAtEnergyShieldPercentage":"0", "ResetCooldownAtEnergyShieldPercentageInput":"0", "ResetCooldownAtManaPercentage":"0", "ResetCooldownAtManaPercentageInput":"0"}
     WR.cdExpires.Flask[v] := A_TickCount
   }
   for k, v in ["1","2","3","4","5","6","7","8","9","10"]
@@ -3535,11 +3535,11 @@ Return
           Loop 5
           {
             If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
-              If (WR.Flask[A_Index].ResetCooldownAtFullHealth && Player.Percent.Life == 100) {
+              If (WR.Flask[A_Index].ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask[A_Index].ResetCooldownAtHealthPercentageInput) {
                 WR.cdExpires.Flask[A_Index] := 0
-              } Else If (WR.Flask[A_Index].ResetCooldownAtFullEnergyShield && Player.Percent.ES == 100) {
+              } Else If (WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentageInput) {
                 WR.cdExpires.Flask[A_Index] := 0
-              } Else If (WR.Flask[A_Index].ResetCooldownAtFullMana && Player.Percent.Mana == 100) {
+              } Else If (WR.Flask[A_Index].ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask[A_Index].ResetCooldownAtManaPercentageInput) {
                 WR.cdExpires.Flask[A_Index] := 0
               }
             } 
@@ -7910,7 +7910,9 @@ Return
         Flask%slot%Life_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
         setColor := "51DEFF"
         Gui, Flask%slot%: Font,
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtFullHealth xs+40 y+6 Checked" WR.Flask[slot].ResetCooldownAtFullHealth, Reset cooldown at full health
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtHealthPercentage xs+22 y+6 Checked" WR.Flask[slot].ResetCooldownAtHealthPercentage, Reset cooldown at health:
+        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtHealthPercentageInput x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtHealthPercentageInput
+        Gui, Flask%slot%: Add, Text, x+2 yp+3, `%
         
         Gui, Flask%slot%: Font, s16, Consolas
         Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, E`%
@@ -7920,13 +7922,18 @@ Return
         Flask%slot%ES_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
         setColor := "Blue"
         Gui, Flask%slot%: Font,
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtFullEnergyShield xs+30 y+6 Checked" WR.Flask[slot].ResetCooldownAtFullEnergyShield, Reset cooldown at full energy shield
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtEnergyShieldPercentage xs+12 y+6 Checked" WR.Flask[slot].ResetCooldownAtEnergyShieldPercentage, Reset cooldown at energy shield:
+        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtEnergyShieldPercentageInput x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtEnergyShieldPercentageInput
+        Gui, Flask%slot%: Add, Text, x+2 yp+3, `%
         
         Gui, Flask%slot%: Font, s16, Consolas
         Gui, Flask%slot%: Add, Text, xs+10 y+13 c%setColor%, M`%
         Gui, Flask%slot%: Add, Text,% "vFlask" slot "Mana hwndFlask" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Mana
         Gui, Flask%slot%: Font,
-        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtFullMana xs+43 y+6 Checked" WR.Flask[slot].ResetCooldownAtFullMana, Reset cooldown at full mana
+        Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtManaPercentage xs+25 y+6 Checked" WR.Flask[slot].ResetCooldownAtManaPercentage, Reset cooldown at mana:
+        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtManaPercentageInput x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtManaPercentageInput
+        Gui, Flask%slot%: Add, Text, x+2 yp+3, `%
+
         ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ManaHWND
         x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
         Flask%slot%Mana_Slider := new Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
@@ -7939,7 +7946,7 @@ Return
       Return
 
       FlaskSaveValues:
-        for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison", "ResetCooldownAtFullHealth", "ResetCooldownAtFullEnergyShield", "ResetCooldownAtFullMana"]
+        for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison", "ResetCooldownAtHealthPercentage",  "ResetCooldownAtHealthPercentageInput", "ResetCooldownAtEnergyShieldPercentage", "ResetCooldownAtEnergyShieldPercentageInput", "ResetCooldownAtManaPercentage", "ResetCooldownAtManaPercentageInput"]
           WR.Flask[which][kind] := Flask%which%%kind%
         for k, kind in ["Life", "ES", "Mana"]
           WR.Flask[which][kind] := Flask%which%%kind%_Slider.Slider_Value 
