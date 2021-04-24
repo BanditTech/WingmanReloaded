@@ -7899,7 +7899,7 @@ Return
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttack xs+10   y+5 Checked" WR.Flask[slot].SecondaryAttack, Secondary
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "SecondaryAttackRelease xs+10   y+5 Checked" WR.Flask[slot].SecondaryAttackRelease, Sec. Release
         
-        backColor := "E0E0E0"
+        backColor := "3b3a3a"
         Gui, Flask%slot%: Add, GroupBox, Section center xs+125 ys w240 h215, Resource Triggers
         setColor := "Red"
         Gui, Flask%slot%: Font, s16, Consolas
@@ -8052,7 +8052,7 @@ Return
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+5 Checked" WR.Utility[slot].SecondaryAttack, Secondary
         Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttackRelease xs+10   y+5 Checked" WR.Utility[slot].SecondaryAttackRelease, Sec. Release
 
-        backColor := "E0E0E0"
+        backColor := "3b3a3a"
         Gui, Utility%slot%: Add, GroupBox, Section center xs+125 ys w240 h150, Resource Triggers
         setColor := "Red"
         Gui, Utility%slot%: Font, s16, Consolas
