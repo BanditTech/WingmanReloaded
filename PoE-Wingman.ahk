@@ -7911,7 +7911,7 @@ Return
         setColor := "51DEFF"
         Gui, Flask%slot%: Font,
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtHealthPercentage xs+22 y+6 Checked" WR.Flask[slot].ResetCooldownAtHealthPercentage, Reset cooldown at health:
-        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtHealthPercentageInput x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtHealthPercentageInput
+        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtHealthPercentageInput Number x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtHealthPercentageInput
         Gui, Flask%slot%: Add, Text, x+2 yp+3, `%
         
         Gui, Flask%slot%: Font, s16, Consolas
@@ -7923,7 +7923,7 @@ Return
         setColor := "Blue"
         Gui, Flask%slot%: Font,
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtEnergyShieldPercentage xs+12 y+6 Checked" WR.Flask[slot].ResetCooldownAtEnergyShieldPercentage, Reset cooldown at energy shield:
-        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtEnergyShieldPercentageInput x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtEnergyShieldPercentageInput
+        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtEnergyShieldPercentageInput Number x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtEnergyShieldPercentageInput
         Gui, Flask%slot%: Add, Text, x+2 yp+3, `%
         
         Gui, Flask%slot%: Font, s16, Consolas
@@ -7931,7 +7931,7 @@ Return
         Gui, Flask%slot%: Add, Text,% "vFlask" slot "Mana hwndFlask" slot "ManaHWND x+0 yp w40 c" setColor " center", % WR.Flask[slot].Mana
         Gui, Flask%slot%: Font,
         Gui, Flask%slot%: Add, Checkbox, % "vFlask" slot "ResetCooldownAtManaPercentage xs+25 y+6 Checked" WR.Flask[slot].ResetCooldownAtManaPercentage, Reset cooldown at mana:
-        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtManaPercentageInput x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtManaPercentageInput
+        Gui, Flask%slot%: Add, Edit, % "r1 vFlask" slot "ResetCooldownAtManaPercentageInput Number x+0 yp-3 w30 h17", % WR.Flask[slot].ResetCooldownAtManaPercentageInput
         Gui, Flask%slot%: Add, Text, x+2 yp+3, `%
 
         ControlGetPos, x, y, w, h, ,% "ahk_id " Flask%slot%ManaHWND
