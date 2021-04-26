@@ -807,12 +807,14 @@
           {
             This.Prop.Map_PackSize := RxMatch1
           }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Delirium Reward Type:",RxMatch))
+          {
+            This.Prop.Map_Delirium := True
+          }
           If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
           {
             This.Prop.Map_Quality := RxMatch1
-          }
-          Else
-          {
+          }Else{
             ;Set Quality to 0 if not in map prop (instead flagging as false)
             This.Prop.Map_Quality := 0
           }
