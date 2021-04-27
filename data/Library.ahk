@@ -842,7 +842,7 @@
           This.Prop.Veiled := False
         }
 
-        If (BrickedMap())
+        If (This.BrickedMap())
           This.Prop.IsBrickedMap := True
         Else
           This.Prop.IsBrickedMap := False

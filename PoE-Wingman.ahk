@@ -4337,7 +4337,7 @@ Return
     antp := Item.Prop.Map_PackSize
     antq := Item.Prop.Map_Quantity
     ;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-    While ( BrickedMap()
+    While ( Item.BrickedMap()
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
     || Item.Prop.Map_PackSize < MMapMonsterPackSize 
