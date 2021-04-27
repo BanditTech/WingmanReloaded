@@ -691,7 +691,7 @@
             }
           }
           ;Generic Props
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch) && !IsMap)
           {
             This.Prop.Quality := RxMatch1
           }
