@@ -842,7 +842,7 @@
           This.Prop.Veiled := False
         }
         ;Stack size for anything with it
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d+\.?\,?\d*)\/" rxNum ,RxMatch))
         {
           This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
           This.Prop.Stack_Max := RxMatch2
