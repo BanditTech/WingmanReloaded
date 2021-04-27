@@ -4337,22 +4337,7 @@ Return
     antp := Item.Prop.Map_PackSize
     antq := Item.Prop.Map_Quantity
     ;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-    While ( (Item.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
-    || (Item.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
-    || (Item.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
-    || (Item.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
-    || (Item.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
-    || (Item.Affix["Cannot Leech Life from Monsters"] && NoLeech)
-    || (Item.Affix["-#% maximum Player Resistances"] && MinusMPR)
-    || (Item.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
-    || (Item.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
-    || (Item.Affix["Monsters deal #% extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
-    || (Item.Affix["Monsters deal #% extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
-    || (Item.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
-    || (Item.Affix["Monsters' skills Chain # additional times"] && MSCAT)
-    || (Item.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
-    || (Item.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
-    || (Item.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
+    While ( BrickedMap()
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
     || Item.Prop.Map_PackSize < MMapMonsterPackSize 

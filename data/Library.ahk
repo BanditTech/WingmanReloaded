@@ -840,29 +840,10 @@
           This.Prop.Veiled := False
         }
 
-        If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
-        || (This.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
-        || (This.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
-        || (This.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
-        || (This.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
-        || (This.Affix["Cannot Leech Life from Monsters"] && NoLeech)
-        || (This.Affix["-#% maximum Player Resistances"] && MinusMPR)
-        || (This.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
-        || (This.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
-        || (This.Affix["Monsters deal #% extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
-        || (This.Affix["Monsters deal #% extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
-        || (This.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
-        || (This.Affix["Monsters' skills Chain # additional times"] && MSCAT)
-        || (This.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
-        || (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
-        || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)) 
-        {
+        If (BrickedMap())
           This.Prop.IsBrickedMap := True
-        } 
-        Else 
-        {
+        Else
           This.Prop.IsBrickedMap := False
-        }
 
         ;Stack size for anything with it
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
@@ -895,6 +876,31 @@
           This.Prop.TopTierColdResist := 1
         If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist)
           This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0)
+      }
+      BrickedMap() {
+        If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
+        || (This.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
+        || (This.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
+        || (This.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
+        || (This.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
+        || (This.Affix["Cannot Leech Life from Monsters"] && NoLeech)
+        || (This.Affix["-#% maximum Player Resistances"] && MinusMPR)
+        || (This.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
+        || (This.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
+        || (This.Affix["Monsters deal #% extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
+        || (This.Affix["Monsters deal #% extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
+        || (This.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
+        || (This.Affix["Monsters' skills Chain # additional times"] && MSCAT)
+        || (This.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
+        || (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
+        || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)) 
+        {
+          Return True
+        } 
+        Else 
+        {
+          return False
+        }
       }
       TopTierChaosResist(){
         If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
