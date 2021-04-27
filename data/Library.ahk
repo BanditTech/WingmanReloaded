@@ -261,6 +261,7 @@
           } Else If (v ~= "\{ Suffix Modifier") {
             RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
             This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+	    This.Affix[rxm1] := 1
             This.Prop.SuffixCount++, This.Prop.AffixCount++
           }
         }
