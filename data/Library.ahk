@@ -2297,11 +2297,11 @@
           Else
             sendstash := StashTabBlight
         }
+        Else If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
+            sendstash := StashTabBrickedMaps
         Else If (This.Prop.IsMap && StashTabYesMap)
         {
-          If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
-            sendstash := StashTabBrickedMaps
-          Else If StashTabYesMap > 1
+          If StashTabYesMap > 1
             sendstash := -2
           Else
             sendstash := StashTabMap
