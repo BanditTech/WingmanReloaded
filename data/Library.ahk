@@ -402,17 +402,17 @@
             This.Prop.DeliriumOrb := True
             This.Prop.SpecialType := "Delirium"
           }
-          Else If (InStr(This.Prop.ItemBase, "Splinter of"))
+          Else If (InStr(This.Prop.ItemBase, "Splinter of") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.BreachSplinter := True
             This.Prop.SpecialType := "Breach Splinter"
           }
-          Else If (InStr(This.Prop.ItemBase, "Breachstone"))
+          Else If (InStr(This.Prop.ItemBase, "Breachstone") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.BreachSplinter := True
             This.Prop.SpecialType := "Breachstone"
           }
-          Else If (InStr(This.Prop.ItemBase, "Sacrifice at"))
+          Else If (InStr(This.Prop.ItemBase, "Sacrifice at") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.SacrificeFragment := True
             This.Prop.SpecialType := "Sacrifice Fragment"
@@ -425,7 +425,7 @@
             This.Prop.MortalFragment := True
             This.Prop.SpecialType := "Mortal Fragment"
           }
-          Else If (InStr(This.Prop.ItemBase, "Fragment of"))
+          Else If (InStr(This.Prop.ItemBase, "Fragment of") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.GuardianFragment := True
             This.Prop.SpecialType := "Guardian Fragment"
@@ -438,17 +438,17 @@
             This.Prop.ProphecyFragment := True
             This.Prop.SpecialType := "Prophecy Fragment"
           }
-          Else If (InStr(This.Prop.ItemBase, "Scarab"))
+          Else If (InStr(This.Prop.ItemBase, "Scarab") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.Scarab := True
             This.Prop.SpecialType := "Scarab"
           }
-          Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess"))
+          Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.Offering := True
             This.Prop.SpecialType := "Offering"
           }
-          Else If (InStr(This.Prop.ItemBase, "to the Goddess"))
+          Else If (InStr(This.Prop.ItemBase, "to the Goddess") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.UberDuberOffering := True
             This.Prop.SpecialType := "Uber Duber Offering"
