@@ -1731,23 +1731,25 @@
 
         For key, value in This.Affix
         {
-          If (value != 0 && value != "" && value != False && !This.Modifier[key]) {
-            If indexOf(key,this.MatchedCLF)
-              affixText .= "CLF⭐"
-            affixText .= key . ":  " . value . "`n"
+          If(!This.Modifier[key]){
+             If (value != 0 && value != "" && value != False){
+              If indexOf(key,this.MatchedCLF){
+                affixText .= "CLF⭐"
+              }
+              affixText .= key . ":  " . value . "`n"
+             }
+          }Else{
+            If indexOf(key,this.MatchedCLF){
+              modifierText .= "CLF⭐"
+            }
+            modifierText .= key . ":  " . value . "`n"
+
           }
         }
         GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
 
-        For key, value in This.Modifier
-        {
-          If (value != 0 && value != "" && value != False) {
-            If indexOf(key,this.MatchedCLF)
-              modifierText .= "CLF⭐"
-            modifierText .= key . ":  " . value . "`n"
-          }
-        }
         GuiControl, ItemInfo:, ItemInfoModifierText, %modifierText%
+
       }
       GraphNinjaPrices(){
         If This.Data.HasKey("Ninja") || This.Data.HasKey("HelmNinja") || This.Data.HasKey("BaseNinja")
