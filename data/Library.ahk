@@ -113,6 +113,7 @@
         This.Pseudo := OrderedArray()
         This.Affix := OrderedArray()
         This.Prop := OrderedArray()
+        This.Modifier := OrderedArray()
         ; Split our sections from the clipboard
         ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
         For SectionKey, SVal in This.Data.Sections
@@ -257,12 +258,12 @@
           If (v ~= "\{ Prefix Modifier"){
             RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
             This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-            This.Affix[rxm1] := 1
+            This.Affix[rxm1] := This.Modifier[rxm1] := 1
             This.Prop.PrefixCount++, This.Prop.AffixCount++
           } Else If (v ~= "\{ Suffix Modifier") {
             RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
             This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-            This.Affix[rxm1] := 1
+            This.Affix[rxm1] := This.Modifier[rxm1] := 1
             This.Prop.SuffixCount++, This.Prop.AffixCount++
           }
         }
@@ -1701,7 +1702,7 @@
         Return False
       }
       DisplayPSA(){
-        propText:=statText:=affixText:=""
+        propText:=statText:=affixText:=modifierText:=""
         For key, value in This.Prop
         {
           If( RegExMatch(key, "^Required")
@@ -1730,13 +1731,23 @@
 
         For key, value in This.Affix
         {
-          If (value != 0 && value != "" && value != False) {
+          If (value != 0 && value != "" && value != False && !This.Modifier[key]) {
             If indexOf(key,this.MatchedCLF)
               affixText .= "CLF⭐"
             affixText .= key . ":  " . value . "`n"
           }
         }
         GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
+
+        For key, value in This.Modifier
+        {
+          If (value != 0 && value != "" && value != False) {
+            If indexOf(key,this.MatchedCLF)
+              modifierText .= "CLF⭐"
+            modifierText .= key . ":  " . value . "`n"
+          }
+        }
+        GuiControl, ItemInfo:, ItemInfoModifierText, %modifierText%
       }
       GraphNinjaPrices(){
         If This.Data.HasKey("Ninja") || This.Data.HasKey("HelmNinja") || This.Data.HasKey("BaseNinja")

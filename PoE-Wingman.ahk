@@ -1071,6 +1071,7 @@
     Global GroupBox2 := "LongDataTextNameSpaceLongDataTextNameSpaceLongDataTextNameSpace"
     Global ItemInfoPropText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
     Global ItemInfoAffixText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
+    Global ItemInfoModifierText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
     Global ItemInfoStatText := "`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n`n"
     global graphWidth := 219
     global graphHeight := 221
@@ -1812,6 +1813,8 @@
     Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoStatText xp+2 ys+17 w358, %ItemInfoStatText%
     Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Affixes
     Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoAffixText xp+2 ys+17 w358, %ItemInfoAffixText%
+    Gui, ItemInfo: Add, GroupBox, x+9 ys  h251 w364 , Item Modifiers
+    Gui, ItemInfo: Add, Edit, VScroll HScroll vItemInfoModifierText xp+2 ys+17 w358, %ItemInfoModifierText%
 
     Gui,SampleInd: Font, Bold s9 cBlack, Arial
   Gui,SampleInd: Add, Text,         section            xm   ym+5,         Gamestate Calibration:
