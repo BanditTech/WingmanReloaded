@@ -153,7 +153,9 @@
         }
           This.Data.Sections := ""
           This.Data.Delete("Sections")
-        This.MatchAffixes(This.Data.Blocks.Affix)
+
+        This.MatchAffixesWithoutDoubleMods(This.Data.Blocks.Affix)
+        ;This.MatchAffixes(This.Data.Blocks.Affix)
         This.MatchAffixes(This.Data.Blocks.Enchant)
         This.MatchAffixes(This.Data.Blocks.Implicit)
         This.MatchAffixes(This.Data.Blocks.Influence)
@@ -1180,6 +1182,85 @@
         }
         Return False
       }
+      MatchAffixesWithoutDoubleMods(content:=""){
+        ; These lines remove the extra line created by "additional information bubbles"
+        If (content ~= "\n\(")
+          content := RegExReplace(content, "\n\(", "(")
+        content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,]+\)", "")
+        ; Do Stuff with info
+        LastLine := ""
+        DoubleModCounter := 0
+        Loop, Parse,% content, `r`n  ; , `r
+        {
+          If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
+          {
+            DoubleModCounter := 0
+            Continue
+          }
+          DoubleModCounter++
+          if(DoubleModCounter == 2){
+            If (vals := This.MatchLine(LastLine))
+            {
+              If (vals.Count() == 1)
+              {
+                If This.Affix[key]
+                {
+                  This.Affix[key] -= vals[1]
+                  This.AddDoubleModAffix(key,vals[1])
+                }
+                Else{
+                  This.AddDoubleModAffix(key,vals[1])
+                }
+              }
+            }
+          }
+          line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+          line :=  RegExReplace(line,  " . Unscalable Value" , "")
+          key := This.Standardize(line)
+          If (vals := This.MatchLine(line))
+          {
+            If (vals.Count() >= 2)
+            {
+              If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
+                This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+              Else
+                This.Affix[key] := vals[1]
+              For k, v in vals
+                This.Affix[ key "_value"k ] := v
+            }
+            Else If (vals.Count() == 1)
+            {
+              If (This.Affix[key] && DoubleModCounter != 2)
+              {
+                This.Affix[key] += vals[1]
+              }Else If(DoubleModCounter != 2){
+                This.Affix[key] := vals[1]
+              }Else{
+                This.AddDoubleModAffix(key,vals[1])
+              }
+            }
+          }
+          Else
+            This.Affix[key] := True
+          LastLine := line
+        }
+      }
+
+      AddDoubleModAffix(Key,Value){
+        DoubleKey := "(Double) " . Key
+        If(!This.Affix[DoubleKey])
+        {
+          aux := Value
+          If  (aux != 0)
+            This.Affix[DoubleKey] := aux
+        }Else
+        {
+          aux := This.GetValue("Affix", DoubleKey) + Value
+          If  (aux != 0)
+            This.Affix[DoubleKey] := aux
+        }
+        return
+      }
       MatchAffixes(content:=""){
         ; These lines remove the extra line created by "additional information bubbles"
         If (content ~= "\n\(")
@@ -1492,7 +1573,8 @@
         }
       }
       AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
-        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue(StandardType, StandardKey)
+        DoubleKey := "(Double) " . StandardKey
+        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue("Affix", DoubleKey) + This.GetValue(StandardType, StandardKey)
         If  (aux != 0)
           This.Pseudo[PseudoKey] := aux
         return
@@ -1743,7 +1825,6 @@
               modifierText .= "CLF⭐"
             }
             modifierText .= key . ":  " . value . "`n"
-
           }
         }
         GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
