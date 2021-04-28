@@ -2841,7 +2841,7 @@ Return
             ++HeistCount
             Continue
           }
-          Else If ( Item.Prop.IsMap && YesSkipMaps
+          Else If ( Item.Prop.IsMap && !Item.BrickedMap() && YesSkipMaps
           && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
           && ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
             || (Item.Prop.RarityMagic && YesSkipMaps_magic) 
@@ -4337,7 +4337,7 @@ Return
     antp := Item.Prop.Map_PackSize
     antq := Item.Prop.Map_Quantity
     ;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-    While ( BrickedMap()
+    While ( Item.Prop.IsBrickedMap
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
     || Item.Prop.Map_PackSize < MMapMonsterPackSize 
