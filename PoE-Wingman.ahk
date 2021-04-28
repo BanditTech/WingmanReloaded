@@ -92,7 +92,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{},"String":{}}
   WR.loc.pixel := {}, WR.loc.area := {}
-  for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy"
+  for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Chance", "Fusing", "Jeweller", "Chromatic"
   , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
   , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "OnRitual", "DivTrade", "DivItem", "Gui"]
     WR.loc.pixel[v] := {"X":0,"Y":0}
@@ -4004,8 +4004,8 @@ Return
   ; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
   CraftingSocket(){
     local f
-    Notify("Socket Logic Coming Soon","",2)
-    ; f := New Craft("Socket","cursor",{Sockets:4})
+    ; Notify("Socket Logic Coming Soon","",2)
+    f := New Craft("Socket","cursor",{Sockets:4})
   }
 
   Class Craft {
@@ -4089,7 +4089,6 @@ Return
     ApplyCurrency(cname, x, y){
       Global WR
       MoveStash(StashTabCurrency)
-      Notify("IsObj:" IsObject(WR.loc.pixel),cname,1)
       RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
       Sleep, 45*Latency
       LeftClick(x,y)
@@ -4102,6 +4101,8 @@ Return
       Global RunningToggle
       Static namearr := {Chance:"Chance",Color:"Chromatic",Link:"Fusing",Socket:"Jeweller"}
       ClipItem(x,y)
+      If Item.Affix.Unidentified
+        WisdomScroll(x,y), ClipItem(x,y)
       If This.Validate()
         While !This.Logic() && RunningToggle {
           This.ApplyCurrency(namearr[This.Type],x,y)

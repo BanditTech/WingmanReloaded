@@ -5889,6 +5889,18 @@
           ;Vaal 230,475
         WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1440/230))
         WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
         ;Scrolls in currency tab
         WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1440/125))
         WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1440/175))
@@ -5995,6 +6007,19 @@
         WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(2560/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(2560/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2560/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
         WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/175))
         WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
@@ -6127,7 +6152,19 @@
         WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3440/3090))
         WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1440/1202))
         ;Currency
-          ;Scouring 235,631
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
         WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/235))
         WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/590))
           ;Chisel 810,290
@@ -6259,7 +6296,19 @@
         WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3840/3578))
         WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
-          ;Scouring 175,476
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(3840/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(3840/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3840/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
         WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/175))
         WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
@@ -6398,6 +6447,19 @@
         WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1050/880))
        
         ;Currency
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
         ;Scouring 175,460
         WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1680/175))
         WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1050/430))      
