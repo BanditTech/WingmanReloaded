@@ -89,5 +89,16 @@
 	"ExaltValue",
 	"ValuableEnch",
 	"ValuableBase",
-	"AffixCount"
+	"AffixCount",
+	"OpenAffix",
+	"PrefixCount",
+	"SuffixCount",
+	"TopTierLife",
+	"TopTierES",
+	"TopTierMS",
+	"TopTierResists",
+	"TopTierColdResist",
+	"TopTierFireResist",
+	"TopTierLightningResist",
+	"TopTierChaosResist"
 ]
