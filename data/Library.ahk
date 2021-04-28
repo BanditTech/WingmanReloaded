@@ -5715,7 +5715,7 @@
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
-        ;Auto Vendor Settings 380,820
+        ;Auto Vendor Settings
         WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1920/380))
         WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
@@ -5723,28 +5723,40 @@
         WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1920/1658))
         WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
-        ;Scouring 175,476
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+        ;Scouring
         WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/175))
         WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
-        ;Chisel 605,220
+        ;Chisel
         WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1920/605))
         WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
-        ;Alchemy 490,290
+        ;Alchemy
         WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1920/490))
         WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
-        ;Transmutation 60,290
+        ;Transmutation
         WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1920/60))
         WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
-        ;Alteration 120,290
+        ;Alteration
         WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1920/120))
         WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
-        ;Augmentation 230,340
+        ;Augmentation
         WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1920/230))
         WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
-        ;Vaal 230,475
+        ;Vaal
         WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1920/230))
         WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
-        ;Scrolls in currency tab
+        ;Wisdom/Portal Scrolls
         WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/115))
         WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1920/175))
         WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
@@ -5760,10 +5772,10 @@
         ;Status Check OnInventory
         WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
         WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
-        ;Status Check OnStash - Edited
+        ;Status Check OnStash
         WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1920 / 248))
         WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
-        ;Status Check OnVendor - Edited
+        ;Status Check OnVendor
         WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
         WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
         ;Status Check OnDiv

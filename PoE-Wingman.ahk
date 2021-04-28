@@ -4003,8 +4003,9 @@ Return
   }
   ; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
   CraftingSocket(){
-    Global RunningToggle
+    local f
     Notify("Socket Logic Coming Soon","",2)
+    ; f := New Craft("Socket","cursor",{Sockets:4})
   }
 
   Class Craft {
@@ -4027,33 +4028,39 @@ Return
           This.Target := WR.Loc.Pixel["Currency Craft Slot"]
         Else If (This.Method = "cursor"){
           MouseGetPos, xx, yy
-          This.Target := {X:xx, Y:yy}
+          This.Target := {X:xx,Y:yy}
         }
       }
 
       ; Begin the specified crafting routine
+      
       This.Initiate()
 
       Return This
     }
     Validate(){
-      If (This.Desired.Links > Item.Prop.Sockets_Num)
-      || (!Item.Prop.SlotType && indexOf(This.Type,["Color","Link","Socket"]))
+      If (Item.Prop.ItemName = "")
+      || (This.Desired.Links > Item.Prop.Sockets_Num)
+      || ((!Item.Prop.SlotType || indexOf(Item.Prop.SlotType,["Belt","Ring","Amulet"])) && indexOf(This.Type,["Color","Link","Socket"]))
       || (Item.Prop.ItemLevel < 2 && This.Desired.Sockets >= 3)
       || (Item.Prop.ItemLevel < 25 && This.Desired.Sockets >= 4)
       || (Item.Prop.ItemLevel < 35 && This.Desired.Sockets >= 5)
       || (Item.Prop.ItemLevel < 50 && This.Desired.Sockets >= 6)
       || (This.Desired.Sockets > 4 && !IndexOf(Item.Prop.SlotType,["Two Hand","Body"]))
       || (This.Desired.Sockets > 3 && IndexOf(Item.Prop.SlotType,["One Hand"]))
+      {
+        Notify("Validation Failed","",2)
         Return False
+      }
       Else
         Return True
     }
     Initiate(){
+      WinActivate, % GameStr
       If (This.Method = "bulk") {
         
       } Else {
-        This.Looping(This.Target.X,This.Target.Y)
+          This.Looping(This.Target.X,This.Target.Y)
       }
     }
     Logic(){
@@ -4080,6 +4087,9 @@ Return
       }
     }
     ApplyCurrency(cname, x, y){
+      Global WR
+      MoveStash(StashTabCurrency)
+      Notify("IsObj:" IsObject(WR.loc.pixel),cname,1)
       RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
       Sleep, 45*Latency
       LeftClick(x,y)
@@ -4090,11 +4100,13 @@ Return
     }
     Looping(x,y){
       Global RunningToggle
-      Static namearr := {Chance:"Chance",Color:"Chrome",Link:"Fusing",Socket:"Jeweler"}
+      Static namearr := {Chance:"Chance",Color:"Chromatic",Link:"Fusing",Socket:"Jeweller"}
       ClipItem(x,y)
-      While !This.Logic() && This.Validate() && RunningToggle {
-        This.ApplyCurrency(namearr[This.Type],x,y)
-      }
+      If This.Validate()
+        While !This.Logic() && RunningToggle {
+          This.ApplyCurrency(namearr[This.Type],x,y)
+        }
+      Notify("Loop Complete","",1)
     }
   }
 
