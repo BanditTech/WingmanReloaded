@@ -885,6 +885,17 @@
           This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0)
       }
       BrickedMap() {
+        If (This.HasBrickedAffix()) {
+          If (BrickedWhenCorrupted && This.Prop.Corrupted)
+            Return True
+          Else If (!BrickedWhenCorrupted)
+            Return True
+          Else
+            Return False
+        } Else
+          Return False
+      }
+      HasBrickedAffix() {
         If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
         || (This.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
         || (This.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
@@ -2380,11 +2391,11 @@
           Else
             sendstash := StashTabBlight
         }
+        Else If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
+            sendstash := StashTabBrickedMaps
         Else If (This.Prop.IsMap && StashTabYesMap)
         {
-          If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
-            sendstash := StashTabBrickedMaps
-          Else If StashTabYesMap > 1
+          If StashTabYesMap > 1
             sendstash := -2
           Else
             sendstash := StashTabMap
@@ -3184,7 +3195,7 @@
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
 
         Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Bricked maps
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , 'Bricked' Maps
         Gui, Inventory: Font,
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabBrickedMaps , %StashTabBrickedMaps%
@@ -3255,7 +3266,7 @@
         Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map/Contract Options
+        Gui, Inventory: Add, GroupBox,             w180 h140    section    xs   y+10,         Map/Contract Options
         Gui, Inventory: Font,
         Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
         GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
@@ -3269,6 +3280,8 @@
         Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
         Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
         Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
+
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vBrickedWhenCorrupted Checked%BrickedWhenCorrupted% xs+5 y+8, Only consider a map to be`rbricked if it's corrupted
 
 
         ; Affinity

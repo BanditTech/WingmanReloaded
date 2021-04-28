@@ -557,6 +557,7 @@
       stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
       hotkeyMainAttack = Bind the Main Attack for this Character
       hotkeySecondaryAttack = Bind the Secondary Attack for this Character
+      BrickedWhenCorrupted = Enable this if you only want to consider a map 'bricked'`rwhen it's corrupted and has an undesired mod, otherwise,`rmaps of any tier with undesired mods will be flagged as 'bricked'
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
@@ -2844,7 +2845,7 @@ Return
             ++HeistCount
             Continue
           }
-          Else If ( Item.Prop.IsMap && YesSkipMaps
+          Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps
           && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
           && ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
             || (Item.Prop.RarityMagic && YesSkipMaps_magic) 
@@ -4340,7 +4341,7 @@ Return
     antp := Item.Prop.Map_PackSize
     antq := Item.Prop.Map_Quantity
     ;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-    While ( Item.BrickedMap()
+    While ( Item.Prop.IsBrickedMap
     || (Item.Prop.RarityNormal) 
     || (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
     || Item.Prop.Map_PackSize < MMapMonsterPackSize 
