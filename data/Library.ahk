@@ -3578,145 +3578,145 @@
 
         Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Basic Crafting
 
-      Gui, Crafting: Tab, Map Crafting
-        MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
-        MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
-        MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
-        Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
-        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s7
-          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
-          GuiControl,Crafting: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
+        Gui, Crafting: Tab, Map Crafting
+          MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
+          MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
+          MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s7
-          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
-          GuiControl,Crafting: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s7
-          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
-          GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
-          Gui, Crafting: Font,
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w580 h160 xs, Undesireble Mods:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
-          Gui, Crafting: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
-          Gui, Crafting: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
-          Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
-          Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
-          Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-          Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
-          Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
-          Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
-          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
-          Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
-          Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
-          Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
-          Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
-          
+          Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
+          Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s7
+            Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
+            GuiControl,Crafting: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s7
+            Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
+            GuiControl,Crafting: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s7
+            Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
+            GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
+            Gui, Crafting: Font,
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w580 h160 xs, Undesireble Mods:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
+            Gui, Crafting: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
+            Gui, Crafting: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
+            Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
+            Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
+            Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
+            Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
+            Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
+            Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
+            Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
+            Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
+            Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
+            Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
+            Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
+            
 
-          Gui, Crafting: Font, Bold
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
-          Gui, Crafting: Font, 
-          Gui, Crafting: Font,s8
+            Gui, Crafting: Font, Bold
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+            Gui, Crafting: Font, 
+            Gui, Crafting: Font,s8
 
-          Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
-          Gui, Crafting: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
-          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Quantity
+            Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
+            Gui, Crafting: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+            Gui, Crafting: Add, Text,         x+10 yp+3        , Item Quantity
 
-          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
-          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Rarity
+            Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+            Gui, Crafting: Add, Text,         x+10 yp+3        , Item Rarity
 
-          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
-          Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
+            Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+            Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
 
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
-      Gui, Crafting: Tab, Basic Crafting
-        Gui, Crafting: Font, Bold s12 cBlack, Arial
-        Gui, Crafting: Add, GroupBox,section Center xm+20 ym+25 w275 h100, Chance
-        Gui, Crafting: Font
-        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vChanceMethod Checked" (ChanceMethod=1?1:0), Cursor
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=2?1:0), Currency Stash
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=3?1:0), Bulk Inventory
-        Gui, Crafting: Font, Bold s12 cBlack, Arial
-        Gui, Crafting: Add, Checkbox, % "xs+30 y+20", Scour and retry
-        Gui, Crafting: Font
-        Gui, Crafting: Font, Bold s12 cBlack, Arial
-        Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
-        Gui, Crafting: Font
-        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vSocketMethod Checked" (SocketMethod=1?1:0), Cursor
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=2?1:0), Currency Stash
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=3?1:0), Bulk Inventory
-        Gui, Crafting: Font, Bold s12 cBlack, Arial
-        Gui, Crafting: Add, Text,% "xs+25 y+20"
-        Gui, Crafting: Add, UpDown, Range1-6 vDesiredSockets, % DesiredSockets
-        Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
-        Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
-        Gui, Crafting: Font
-        Gui, Crafting: Font, Bold s12 cBlack, Arial
-        Gui, Crafting: Add, GroupBox,section Center xm+295 ym+25 w275 h100, Link
-        Gui, Crafting: Font
-        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vLinkMethod Checked" (LinkMethod=1?1:0), Cursor
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=2?1:0), Currency Stash
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=3?1:0), Bulk Inventory
-        Gui, Crafting: Font, Bold s12 cBlack, Arial
-        Gui, Crafting: Add, Text,% "xs+25 y+20"
-        Gui, Crafting: Add, UpDown, Range1-6 vDesiredLinks, % DesiredLinks
-        Gui, Crafting: Add, Text, x+5 yp, Desired Links
-        Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
-        Gui, Crafting: Font
-        Gui, Crafting: Font, Bold s12 cBlack, Arial
-        Gui, Crafting: Add, GroupBox,section Center xm+295 ys+115 w275 h100, Color
-        Gui, Crafting: Font
-        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vColorMethod Checked" (ColorMethod=1?1:0), Cursor
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=2?1:0), Currency Stash
-        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=3?1:0), Bulk Inventory
-        Gui, Crafting: Font, Bold s12 cRed, Arial
-        Gui, Crafting: Add, Text,% "xs+25 y+20"
-        Gui, Crafting: Add, UpDown, Range0-6 vDesiredR, % DesiredR
-        Gui, Crafting: Add, Text, x+5 yp, R 
-        Gui, Crafting: Font, Bold s12 cGreen, Arial
-        Gui, Crafting: Add, Text,% "x+25 yp"
-        Gui, Crafting: Add, UpDown, Range0-6 vDesiredG, % DesiredG
-        Gui, Crafting: Add, Text, x+5 yp, G
-        Gui, Crafting: Font, Bold s12 cBlue, Arial
-        Gui, Crafting: Add, Text,% "x+25 yp"
-        Gui, Crafting: Add, UpDown, Range0-6 vDesiredB, % DesiredB
-        Gui, Crafting: Add, Text, x+5 yp, B
-        Gui, Crafting: Font
-        Gui, Crafting: Show
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+        Gui, Crafting: Tab, Basic Crafting
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vChanceMethod Checked" (ChanceMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Checkbox, % "xs+30 y+20", Scour and retry
+          Gui, Crafting: Font
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vSocketMethod Checked" (SocketMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Text,% "xs+25 y+20"
+          Gui, Crafting: Add, UpDown, Range1-6 vDesiredSockets, % DesiredSockets
+          Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
+          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Font
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xm+295 ym+25 w275 h100, Link
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vLinkMethod Checked" (LinkMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Text,% "xs+25 y+20"
+          Gui, Crafting: Add, UpDown, Range1-6 vDesiredLinks, % DesiredLinks
+          Gui, Crafting: Add, Text, x+5 yp, Desired Links
+          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Font
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xm+295 ys+115 w275 h100, Color
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vColorMethod Checked" (ColorMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cRed, Arial
+          Gui, Crafting: Add, Text,% "xs+25 y+20"
+          Gui, Crafting: Add, UpDown, Range0-6 vDesiredR, % DesiredR
+          Gui, Crafting: Add, Text, x+5 yp, R 
+          Gui, Crafting: Font, Bold s12 cGreen, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown, Range0-6 vDesiredG, % DesiredG
+          Gui, Crafting: Add, Text, x+5 yp, G
+          Gui, Crafting: Font, Bold s12 cBlue, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown, Range0-6 vDesiredB, % DesiredB
+          Gui, Crafting: Add, Text, x+5 yp, B
+          Gui, Crafting: Font
+          Gui, Crafting: Show
       }
       Gui, Crafting: show , w600 h500, Crafting Settings
     }
