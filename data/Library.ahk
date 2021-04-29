@@ -3754,14 +3754,14 @@
         Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
         Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1440_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Heist Locker
-        Gui, Strings: Add, ComboBox, y+8 w280 vHeistLockerStr gUpdateStringEdit , %HeistLockerStr%??"%1080_HeistLockerStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vHeistLockerStr gUpdateStringEdit , %HeistLockerStr%??"%1080_HeistLockerStr%"?"%1440_HeistLockerStr%"
         Gui, Strings: +Delimiter|
 
       Gui, Strings: Tab, Vendor
         Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
         Gui, Strings: +Delimiter?
         Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1440_NavaliStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
         Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"?"%1050_MasterStr%"
         Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate

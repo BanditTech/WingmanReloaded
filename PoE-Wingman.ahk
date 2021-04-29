@@ -92,9 +92,11 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{},"String":{}}
   WR.loc.pixel := {}, WR.loc.area := {}
-  for k, v in ["DetonateDelve", "Detonate", "VendorAccept", "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Chance", "Fusing", "Jeweller", "Chromatic"
-  , "Transmutation", "Augmentation", "Alteration", "Vaal", "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash"
-  , "OnVendor", "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "OnRitual", "DivTrade", "DivItem", "Gui"]
+  for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
+  , "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Chance", "Fusing"
+  , "Transmutation", "Augmentation", "Alteration", "Vaal", "Jeweller", "Chromatic"
+  , "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor"
+  , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker", "OnRitual"]
     WR.loc.pixel[v] := {"X":0,"Y":0}
   for k, v in []
     WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
@@ -113,10 +115,6 @@
     , "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
     , "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"
     , "profilesYesFlask":"0", "profilesFlask":"", "profilesYesUtility":"0", "profilesUtility":""}
-  for k, v in ["Gui","VendorAccept","OnMenu","OnChar","OnChat","OnInventory","OnStash","OnVendor"
-  ,"OnDiv","OnLeft","OnDelveChart","OnMetamorph","OnLocker","Detonate","DetonateDelve","DivTrade","DivItem"
-  ,"Wisdom","Portal","Scouring","Chisel","Alchemy","Transmutation","Alteration","Augmentation","Vaal"]
-    WR.loc[v] := {}
   for k, v in ["1","2","3","4","5"]
   {
     WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
@@ -583,9 +581,10 @@
       , 768_SellItemsStr := "|<768 Sell Items>0xE0E0DB@0.52$56.00NU000007U6M600001A1a1a0000kCNUPtnvXr7qM6QyzxhvBa1aNgnQ7zNUNbvAnUw6M6NUnASDZa1aQgn3STNUNvvArn1000A800G"
 
       , 1080_HeistLockerStr := "|<1080 Locker>*90$59.7zzzzzzzzzDzzzzzzzzyTyTyTDTzzwzkDk4QE60tz6D6AlnANnwSASt7bslbtwNzkTDlXDnsnzVy3XCTblbz1w70QzDX7yFty1tyDCDwXnwFnaASCNXbslUA1y1nX0llzyTzDzzzzy"
+      , 1440_HeistLockerStr := "|<1440 Locker>**50$64.00000000000000000z0000000003A0000000008k001wDzzw0n03w7lzzzs3A0zwFA301UAk70tYrZty0n0llqGTzbs3A3DXN8z6M0AkNX5YlkNU0n1aAKH3la03A4EFN636M0AkF1ZYC6N00n166KEQNY03A6MFNCNaE0AnsnBYzaNU0nzXsqGQNa037D7aNA36M0A0y1lwzsTU0zzDy00y000000TU00000000002"
 
       , 2160_StashStr := "|<2160 Stash>116$64.w0zzzzzzzzz00zzzzzzzzsS3zzzzzzzzXyDzzzzzzzwDszzzzzzzzlzrU00zsTzU3zw003z1zs0DzksADw7zXkTzDVyzUDwTUTzy7zyEzly0TzsTzl3z7w0zzVzz47wDs1zy7zssTkTk1zsTzXUzUTk3zVzyT3y0zUDy7zlwDw3zUTsTz7kTwDz1zVzs01zszy7y7zU07zvzsTsTyDsDzzzVzVzlzkzzzy7y7z7z3zwzkzsTszw7Tk03zVzXzsQTU0Ty7yDzUk307zsTlzz3UDVzzzzzzzzVU"
-      , 1440_StashStr := "|<1440 Stash>*92$71.Dz0TzzzwzzXxzy5zzzzzzy7vzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUzzzzzzzzzzw0zzzzzzzzzzttzzzzzzzzzzXvU1zDwDXyTz7y01wDk77szy7wknsT7CDtzy7zVzUySQTnzw3z3z0wTszbzw3y7wlsTlzDzy3wDtXsDU0Tzy3szXXs700zzy7lz07sCDtzzyDXy0DwATnzzwT7tyDwMzbznsyDnwPslzDzU3wT7sE3XyTzUDsSTsUD7wzzlzzzzzlzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
+      , 1440_StashStr := "|<1440 Stash>**50$62.U000000000800zk00000200QC000000U060U00000803DDzw7UTW00qPzzXgDyU0Ark0NX61c03C5tyMFj+00ktyTY6HSU0C71a3NYTc01kMNUq9XW00C36MNnMSU01sla6wn1c0074N104QC000l6EmFXXU0D6FYByTAs03zANaEXzC00n36NgAnXU0C1VaH361c01zkTbUTzm007k00007kU0000000008"
       , 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
       , 1050_StashStr := "|<1050 Stash>*102$56.zzzzzzzzzzzUzzzzzzzzn7zzzzzzzwv0DbsQwTzDk1lw3D7zkzXwDBnlzy7syHnwwTzkyDYwD07zz7bv7Vk1zzttw1yAwTzySTCDnD7zn7bbnQnlzw3stwkQwTznzzzzTzzzzzzzzzzzU"
       , 768_StashStr := "|<768 Stash>#208@0.49$32.T00007k00033wsxXwACNMrX7b6AQlgxz3AT7MsnAsqBsn7xXU"
@@ -603,6 +602,7 @@
       , 1050_MasterStr := "|<1050 Master>*91$45.zzzzzzzznw81UMDwT00430TVtj7XsntDDswT6T9sT7UMnv7Vsw30S0z7DXs7nXwtwT4QyPbDXsnbn1sw37Dzyzzzzzzzzzzzzw"
 
       , 2160_NavaliStr := "|<2160 Navali>121$71.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzwDzy7zzzzzzzwDzwDzzzzzzzsDzsTzzzzzzzkTzkzzzzzzzzUTzlzzzzzzzz0TzXzwDsDzky0Tz7zkTsDzVw0TyDzUzkTz3sUTwzy0zkzyDlUTtzwVzUzwTX0Tnzl3zVzkz70zbzW3z3zXyD0zDyC7y3z7wT0yTwQ7y7wTsz0wztwDw7szlz0tzXsTwDXzXz0nz7kTsT7z7z07w00zkQTyDy0Ds01zkszwTy0Tlz1zVnzszy0z7z3zV7ylzy1yDy7z2DxXzy3szw7y0zn7zy7lzwDy1zaDzyDXzsDw7zATzyCDzsTwDwTzzzzzzzzwzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
+      , 1440_NavaliStr := "|<1440 Navali>**50$59.0000000000000000000000000000000000000000D7ljVsDUT0vDlz7MT0y36NVaMkW1464lXAkVY388An6F1X86EqNW9an6EAVgF6nBWAUN6QnBgnaN0mBtaCNjAm1YE1aRW0BY39YXAnAYP86HTa8gPwqHggl6MNa8wztP3AkXMNtvma68n4klk7Zs7lyD0zzvs001s0000000000000008"
       , 1080_NavaliStr := "|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38"
       , 1050_NavaliStr := "|<1050 Navali>*102$57.zzzzzzzzzwTbzzzzzzznwzzzzzzzyDbtsySTblkwyD7nXwzC3bkwywDbtmAwbXb9wzCMbYyRtDbtnUxXnDMwzCQ70S9k7btnktlsSQQzCT6TD3bnbtnwntwwyQ7DzzzzzzzzzU"
       , 768_NavaliStr := "|<768 Navali>#254@0.73$39.kk00007600000sln6QMTaC8nX3yllYQMSyPAan3nnswyMSCn7An3koAt3TQ"
@@ -636,7 +636,6 @@
       , 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
       , 1080_ChestStr .= "|<1080 Rack>*100$41.zzzzzzz1zzzzzy0zzzzzwtzTwyytlwzUMsnXkyANnb7VsxnDCSFnzYy1wnbz3w3s7Dy3tXU6DwbnbDATtbb4yQQn7D1wQ3b7zzzyTzzzzzzzzs"
       , 1080_ChestStr .= "|<1080 Cocoon>*100$71.zzzzzzzzzzzzwDzzzzzzzzzzU7zzzzzzzzzyDDnznzDzDvysyy1y1s7s7Xslztlslb7b7XnbzXnXqDCDD3bDzDXDwyAyC3CDyT6TtwNwQWQTwyAznsnstYsztwMzblbln1kyltlz7b7bb3kllXln6D6DD7k7kTkD1z1yTDxzvztzjzjzzzzzzzzzzzzzzs"
-      , 1080_ChestStr .= "|<1080 Bundle>*100$64.zzzzzzzzzzy3zzzzzzzzzs7zzzzzzzzzbDTjTrzzjzyQswMyA1wT0tnXtlttVtyPUSDb3bb7bty0syQ6SSCTbtlntm9tsty3b7DbAbbXbsSSQyQkSSSTbttnvnVtttyTbD7DD7bDbNy1y1wyS1y1UTzyTzzzzzzzzzzzzzzzzzy"
       , 1080_ChestStr .= "|<1080 Lever>*100$46.DzzzzzzwzzzzzzznzzjvzzzDkATA3UAzatwtiAnyTXnbslDtzCSTX4zUwtsCAny7ljVs7DtzYyTUQzby7ty8naTsTbsl0M7ly1XXzzzjzzzs"
       , 1080_ChestStr .= "|<1080 Crank>*100$54.wDzzzzzzzk3zzzzzzzXnzzrvyxx7r0TblwMs7z6T3swwtDz6D3sQwnDz6CFsAwb7z6SNt4wD7z0y1tYw77z0w0tUwb3v4QwtkwnVX69wtswlk771wNwwsyzzzzzzzzU"
       , 1080_ChestStr .= "|<1080 Hoard>*100$56.DlzzzzzzznwTzzzzzzwz7wzxzzzzDlw3yT0Q1nwSQT3lba4z77bkwMtl01nst76CS00QyCNlbbUz7DXUQ3tsDlnsk30ySHwQSQwl7bYz7X6TAMtnDlw7bl761zzzrzzzzzy"
