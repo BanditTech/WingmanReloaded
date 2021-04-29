@@ -3576,7 +3576,7 @@
         Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
         Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Chance|Socket|Color|Link
+        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Basic Crafting
 
       Gui, Crafting: Tab, Map Crafting
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
@@ -3663,38 +3663,60 @@
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
-      Gui, Crafting: Tab, Chance
-        Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Chance Crafting
-        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
-          Gui, Crafting: Font,
-          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
-          Gui, Crafting: Add,Radio, , Use Item Under Cursor
-          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
-      Gui, Crafting: Tab, Socket
-        Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Crafting
-        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
-          Gui, Crafting: Font,
-          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
-          Gui, Crafting: Add,Radio, , Use Item Under Cursor
-          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
-      Gui, Crafting: Tab, Color
-        Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Coloring
-        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
-          Gui, Crafting: Font,
-          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
-          Gui, Crafting: Add,Radio, , Use Item Under Cursor
-          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
-      Gui, Crafting: Tab, Link
-        Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Socket Linking
-        Gui, Crafting: Add,GroupBox,Section w140 h85 xs, Items To Craft:
-          Gui, Crafting: Font,
-          Gui, Crafting: Add,Radio, xs+5 ys+22 , Use Currency Tab Slot
-          Gui, Crafting: Add,Radio, , Use Item Under Cursor
-          Gui, Crafting: Add,Radio, , Bulk Craft Inventory
+      Gui, Crafting: Tab, Basic Crafting
+        Gui, Crafting: Font, Bold s12 cBlack, Arial
+        Gui, Crafting: Add, GroupBox,section Center xm+20 ym+25 w275 h100, Chance
+        Gui, Crafting: Font
+        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vChanceMethod Checked" (ChanceMethod=1?1:0), Cursor
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=2?1:0), Currency Stash
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=3?1:0), Bulk Inventory
+        Gui, Crafting: Font, Bold s12 cBlack, Arial
+        Gui, Crafting: Add, Checkbox, % "xs+30 y+20", Scour and retry
+        Gui, Crafting: Font
+        Gui, Crafting: Font, Bold s12 cBlack, Arial
+        Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
+        Gui, Crafting: Font
+        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vSocketMethod Checked" (SocketMethod=1?1:0), Cursor
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=2?1:0), Currency Stash
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=3?1:0), Bulk Inventory
+        Gui, Crafting: Font, Bold s12 cBlack, Arial
+        Gui, Crafting: Add, Text,% "xs+25 y+20"
+        Gui, Crafting: Add, UpDown, Range1-6 vDesiredSockets, % DesiredSockets
+        Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
+        Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+        Gui, Crafting: Font
+        Gui, Crafting: Font, Bold s12 cBlack, Arial
+        Gui, Crafting: Add, GroupBox,section Center xm+295 ym+25 w275 h100, Link
+        Gui, Crafting: Font
+        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vLinkMethod Checked" (LinkMethod=1?1:0), Cursor
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=2?1:0), Currency Stash
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=3?1:0), Bulk Inventory
+        Gui, Crafting: Font, Bold s12 cBlack, Arial
+        Gui, Crafting: Add, Text,% "xs+25 y+20"
+        Gui, Crafting: Add, UpDown, Range1-6 vDesiredLinks, % DesiredLinks
+        Gui, Crafting: Add, Text, x+5 yp, Desired Links
+        Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+        Gui, Crafting: Font
+        Gui, Crafting: Font, Bold s12 cBlack, Arial
+        Gui, Crafting: Add, GroupBox,section Center xm+295 ys+115 w275 h100, Color
+        Gui, Crafting: Font
+        Gui, Crafting: Add, Radio,% "xs+10 ys+25 vColorMethod Checked" (ColorMethod=1?1:0), Cursor
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=2?1:0), Currency Stash
+        Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=3?1:0), Bulk Inventory
+        Gui, Crafting: Font, Bold s12 cRed, Arial
+        Gui, Crafting: Add, Text,% "xs+25 y+20"
+        Gui, Crafting: Add, UpDown, Range0-6 vDesiredR, % DesiredR
+        Gui, Crafting: Add, Text, x+5 yp, R 
+        Gui, Crafting: Font, Bold s12 cGreen, Arial
+        Gui, Crafting: Add, Text,% "x+25 yp"
+        Gui, Crafting: Add, UpDown, Range0-6 vDesiredG, % DesiredG
+        Gui, Crafting: Add, Text, x+5 yp, G
+        Gui, Crafting: Font, Bold s12 cBlue, Arial
+        Gui, Crafting: Add, Text,% "x+25 yp"
+        Gui, Crafting: Add, UpDown, Range0-6 vDesiredB, % DesiredB
+        Gui, Crafting: Add, Text, x+5 yp, B
+        Gui, Crafting: Font
+        Gui, Crafting: Show
       }
       Gui, Crafting: show , w600 h500, Crafting Settings
     }
