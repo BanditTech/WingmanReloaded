@@ -3430,7 +3430,7 @@
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range74-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
+          Gui, Inventory: Add, UpDown,gSaveChaos Range70-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
           Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
           Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
