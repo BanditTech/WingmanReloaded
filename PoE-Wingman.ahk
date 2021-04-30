@@ -2506,8 +2506,28 @@ Return
           ShooMouse(),GuiStatus(),Continue
         If (OnVendor&&YesVendor)
         {
-          If ( Item.Prop.SpecialType="" && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) )
-            CtrlClick(Grid.X,Grid.Y)
+          If ( Item.Prop.SpecialType="" && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) ) {
+            If indexOf(Item.Prop.SlotType,["One Hand","Two Hand","Shield","Ring"]) {
+              If (Item.Prop.SlotType = "Ring"){
+                If (CRECIPE["Ring"] < 2){
+                  CtrlClick(Grid.X,Grid.Y)
+                  CRECIPE["Ring"] += 1
+                }
+              } Else  {
+                If (CRECIPE["Weapon"] < 2){
+                  CtrlClick(Grid.X,Grid.Y)
+                  CRECIPE["Weapon"] += 1
+                  If (Item.Prop.SlotType = "Two Hand")
+                    CRECIPE["Weapon"] += 1
+                }
+              }
+            } Else If CRECIPE.HasKey(Item.Prop.SlotType) {
+             If (CRECIPE[Item.Prop.SlotType] < 1){
+              CtrlClick(Grid.X,Grid.Y)
+              CRECIPE[Item.Prop.SlotType] += 1
+             }
+            }
+          }
         }
       }
     }
