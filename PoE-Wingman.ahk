@@ -1,5 +1,5 @@
 ﻿; Contains all the pre-setup for the script
-  Global VersionNumber := .13.0016
+  Global VersionNumber := .13.0017
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000

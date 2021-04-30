@@ -82,6 +82,7 @@
 	"Map_Rarity",
 	"Map_PackSize",
 	"Map_Quality",
+	"Map_Delirium",
 	"Corrupted",
 	"VaalGem",
 	"Veiled",

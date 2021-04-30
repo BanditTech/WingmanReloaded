@@ -1,3 +1,36 @@
+## Version .13.0017 - Alpha version - April/29/2020
+Huge New additions to the CLF
+* Full support for suffix/prefix names in the CLF
+* Double affix mods are given a special prefix (Double)
+  * You can always use (Pseudo) to match the total
+  * This means you can now specifically match basic affixes
+
+Bricked Maps tab for stashing corrupted/rolled maps that cannot run  
+Reset CD's for life/mana/ES resources in flask options
+* New options available for flasks only
+* In resource section
+* Check type box, adjust threshold
+* Thanks to Barragek0 for these submissions
+
+Added some submitted strings for 1440
+* Heist Locker, Navali, and update stash
+* Thanks to Hillgrove for the submission
+
+Improvements to Chaos Recipe routine
+* Moves the mouse to hover at accept 
+* Validates a set before selling/hovering
+* If the whole set is not present it will cancel
+* Will only sell one set of items, no extras
+
+New Prop
+* Map_Dilerium
+
+Bugfixes
+* Item Stacksize above 1000
+* Organ no longer being possibly detected as Fragments type
+
+---
+
 ## Version .13.0016 - Alpha version - April/23/2020
 New PROP keys added for use within the CLF
 * This works for leveling gear or endgame!
