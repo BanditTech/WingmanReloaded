@@ -1,301 +1,305 @@
-## Version .12.04 - Master version - November/24/2020
-Merging preparation of major changes incoming to the Alpha branch
-* Alpha branch will be receiving an update soon which will require a re-download
+## Version .13.0017 - Alpha version - April/29/2020
+Huge New additions to the CLF
+* Full support for suffix/prefix names in the CLF
+* Double affix mods are given a special prefix (Double)
+  * You can always use (Pseudo) to match the total
+  * This means you can now specifically match basic affixes
 
-Undocumented changes from Alpha
-* Fix gui position
-* Scale stash positions for affinity changes
-* Update help button text
-* Old code cleanup
-* cast on detonate now uses movement key to fire
-* add more undesirable map mods
-* add binding for MOVE trigger
+Bricked Maps tab for stashing corrupted/rolled maps that cannot run  
+Reset CD's for life/mana/ES resources in flask options
+* New options available for flasks only
+* In resource section
+* Check type box, adjust threshold
+* Thanks to Barragek0 for these submissions
+
+Added some submitted strings for 1440
+* Heist Locker, Navali, and update stash
+* Thanks to Hillgrove for the submission
+
+Improvements to Chaos Recipe routine
+* Moves the mouse to hover at accept 
+* Validates a set before selling/hovering
+* If the whole set is not present it will cancel
+* Will only sell one set of items, no extras
+
+Basic Crafting Coming together
+* hardcoded sockets and links for now
+* Automatically determines the Socket number
+* For links, it sets the value to the socket number
+* Menu variables just needs to be coded in
+
+New Prop
+* Map_Dilerium
+
+Bugfixes
+* Item Stacksize above 1000
+* Organ no longer being possibly detected as Fragments type
 
 ---
 
-## Version .12.0304 - Alpha version - November/08/2020
-Delayed keypresses can now be achieved in any keybinding!
-* To add a delay to a binding, use the format: "[MS-DELAY](KEY-TO-PRESS)"
-* So for example "1 [300](q) [200](RButton)" would be 300ms to press q, 200ms to press RButton
-* The delay is from the initial trigger event, order is not important
+## Version .13.0016 - Alpha version - April/23/2020
+New PROP keys added for use within the CLF
+* This works for leveling gear or endgame!
+* TopTierLife
+* TopTierES
+* TopTierMS
+* TopTierColdResist
+* TopTierFireResist
+* TopTierLightningResist
+* TopTierChaosResist
+* TopTierResists
+  * Will be true if any top tier resist
+  * +1 for each resist type with top tier
 
-Quicksilver group can be assigned a trigger keybind
+New map mod filters for dodge characters
+* Thanks to Barragek0 for his submission!
 
-Fix issue with controller functions occurring when no controllers present
-* This was causing Primary/Secondary attack flask triggers to not function properly
-* It's logic will no longer run if there is no controller active
+Bugfixes
+* fix for chaos recipe related to function changes
+* ItemClass gathered properly from Bases in reverse lookup
 
-Organizing the GUI, and pruning clutter menu options
-* Hotkeys have been moved to the Hotkey tab: Primary/Secondary Attack, QuickSilver Trigger hokey
+More modifications related to ItemClass
+* Official in-game Item Class will be the new standard going forward
 
 ---
 
-## Version .12.0303 - Alpha version - November/06/2020
-Map Crafting
-* New Mods for HC
-  * You can request another mods in feedback section on Discord
+## Version .13.0015 - Alpha version - April/22/2020
+New Stash Tabs
+* Heist Gear: Itens to equip followers/companions/bandits on Heist Encounters
+* Misc Map Items: Items that work like a map, but are not a "map"/don't have a special slot in map tab
+* Reworked Crafting Bases
+  * Removed Normal/Magic/Rare Check
+  * Renamed from Tier1...4 to Atlas Base, STR Base, DEX Base, INT Base, Jewel Base, Abyss Jewel Base, Jewellery (Amulet/Ring/Belt) Base
+  * Rebalanced Default List (including new atlas bases/ritual)
+  * Every split now has it's own Min ILvL, this mean you can build multiple crafting bases groups for each stage (Ex: Early Maps Min ILvL~70+, Yellow Maps Min ILvL~80+, EndGame Maps ILvL~84+
 
-Remember Gui Position
-* A new option in Configuration to Remember GUI Position when reopening, this is a feature for multi monitor users/streamers
-  
+Parser Changes
+* Parse will now collect Advanced Information (changing from ctrl+c to ctrl+alt+c)
+  * This will greatly enhance our power to identify affix/suffix/prefix and maybe a crafting feature soon
+* Using more ItemClass and moving away from flavour text parser
+* New Props: HeistGear, MiscMapItem
+* Minor Backend changes
+
 ---
-## Version .12.0302 - Alpha version - November/05/2020
-Affinity Update
-* Increased Tab Range to 99
-* Rework Stash Tabs
-  * Merged tabs to match Affinity
-  * New Tabs: Blight, Delirium, Metamorph, Delve
-* Added Affinity Settings
-  * Move the slider to Disable Type (WR will skip this type), Assign a Tab (WR will move to stash then Ctrl+Click) or Enable Affinity (Ctrl+Click without moving stash)
+## Version .13.0014 - Alpha version - April/16/2020
+Ultimatum is here, and it forced a bit of changes to how we deal with the parser. 
+* Basic changes required to add Item Class from clip contents
+* More changes will come to this once the servers stabilize
 
-Warnings for Affinity (More Information on Discord)
-* Do not enable Affinity Auto-Navigation. This will reposition the stash to an unknown position to the script, and it MUST be unchecked.
-* Putting stash tabs into a Stash folder will break the order of your stash tabs, and they are not able to be navigated to properly. If you plan to use Multiple tab chaos recipe, the tabs must be positioned BEFORE any stash folders. (will need more testing on this interaction)
-* Unique Stash Affinity is not recommended to use. Do not enable this affinity, as not only is it bugged to not allow duplicates to be stashed in another tab, but it will prevent you from seperating valuable uniques
-  
-Improvements
-* Select league will use Softcore Version from SSF Leagues (this will enable ninja priced sorting)
+Backend Work being done on the crafting functions
+* Designed a new class for encapsulating the crafting functions
+* Logic and validation portions are mostly finished
+
+---
+
+## Version .13.0013 - Alpha version - March/18/2020
+Improvements to Main Menu
+* Game Logic States now allows to click directly on the sample status to recalibrate
+* Individual samples menu has been removed
+* Clicking Inventory status will also prompt for empty slot calibration
+* Adjust Locations button disabled until I am ready to finish it
+
+Bugfixes
+* Fix for controller support
+
+---
+
+## Version .13.0012 - Alpha version - February/03/2020
+Merging the Ritual Scan Branch into alpha
+* This still needs some tuning to get the coloring working
+* Option to scan ritual added to inventory Sorting
+* Calibration added for ritual window
+* Status added to Gamestates
+* Currently displays Chaos value overlayed with just a digit
+* If it matches CLF it will show group number as well
+* Press inventory sort while ritual window is open to scan
+
+Predictive Price can now be used in CLF
+
+Bugfixes
+* Fix for Stash first scan, when trying to move to vendor in Rogue Harbour
+* Fix for Pause while awaiting vendor confirmation
+  * This will now wait up to two minutes for both windows to close
+* Map crafting quality evaluation is now using <,> rather than <=,>=
+
+---
+
+## Version .13.0011 - Alpha version - January/24/2020
+Full implimentation
+* Perfect prices from PoE.Watch are updated alongside Poe.ninja DB update
+* Unique Affinity settings contains the option to filter based on stats
+
+---
+
+## Version .13.0010 - Alpha version - January/21/2020
+Bugfixes
+* fix portal click on open for -2 click latency
+* add rogue harbour to towns and all translations
+* Add vendor to rogue harbour, and default 1080 sample
+* Add rule for Invitations to not vendor
+* fix to respect stash rules at vendor
+* Do not attempt to price normal/magic items
+* fix movement trigger with attack
+
+---
+
+## Version .13.0009 - Alpha version - January/20/2020
+Bugfixes
+* Fix socket parse
+* Identified items will not stash for chaos recipe if UNID enabled
+
+---
+
+## Version .13.0008 - Alpha version - January/19/2020
+Bugfixes
+* Fix for ritual type items
+* Currency ritual items will be allowed to stash
+* All ritual items will be blocked from vendor
+
+---
+
+## Version .13.0007 - Alpha version - January/19/2020
+Bugfixes
+* Fix issue with gem swap not pressing weapon swap key
+* Fix issue with chaos recipe stash request
+
+Chaos Recipe now requires a full Cookie
+* It seems they are not satisfied with simply giving them the POESESSID
+* Copy and paste the entire contents of your cookie into the editbox
+* Save your configuration to apply the change
+
+---
+
+## Version .13.0006 - Alpha version - January/17/2020
+Bugfixes
+* Location selection for Wisdom, Portal and Grab Currency are fixed
+* Fix issue when restocking scrolls and there are none to grab
+* Fix League name issue for fresh install at start of new league
+* Check gui state when firing triggers to prevent misfire
+
+---
+
+## Version .13.0005 - Alpha version - December/09/2020
+New Setting for Inventory Sorting
+* Allow dump to be enabled and still vendor unfiltered Items
+  * Enable to consider Dump Tab items as sellable to vendor
+
+Bugfixes
+* fix map affix filtering
+* settings.ini location for main menu profile text
+* Area color sample fixed
+* Loot vacuum checkboxes for chest and delve containers now work
+* global object added for string menu refactor
+
+---
+
+## Version .13.0004 - Alpha version - December/07/2020
+Updates to how the profiles are displayed on the main menu
+* Saving or loading a profile will set the active profile for that type
+* On script load, the last used profile text will be shown
+
+Per Character settings now contains sub-profiles
+* Link character settings with Flask/Utility Profiles
+
+Default Profiles are now created
+* If there is no default profile for each type it makes one at script start
+* Feel free to modify the default options to whatever you like
+* If you want to recreate a default profile, remove it and restart script
+
+---
+
+## Version .13.0003 - Alpha version - December/05/2020
+Massive new feature for CLF usage
+* Can now get basic count of Suffix/Prefix
+* Will work on how to figure out combined ones soon!
+
+Unique affinity is now enabled in the script!
+* Expands on previous function with new minimum Percentage
+* Only stash uniques that have affixes rolled above the minimum
+
+New functionality with Attack bindings
+* Can now cast abilities after releasing the key
+* This makes for easy skill combinations
+* Use delayed cast for maximum effect
+  *  To cast Middle mouse after 200ms delay use \[200]\(MButton)
+
+---
+
+## Version .13.0002 - Alpha version - November/27/2020
+Epic new function to determine Affix perfection of Unique Items
+* If the item has a matching entry in the DB, it will create a perfection percentage
+* Thanks to the wonderful team behind PoE.Watch we can now price this data point!
+
+Item's are verified against their stat range, and any issues are printed out to the log file  
+
+If you see a message that there was a mismatch, look in the log for the information about the item
 
 Bugfix
-* Unique Flask now will be properly priced by ninja api
-  
----
-## Version .12.0301 - Alpha version - October/26/2020
-Bugfixes and Tweaks
-* Brooch items should be given 1 width, 1 height
-* Allow 36 of each part of Chaos Recipe
-* Multi-Key triggers must now separate each key with a space
-  * So to press t, w, and 1 you would type "t w 1" into the key
-  
----
-
-## Version .12.03 - Master version - October/23/2020
-Bugfixes
-* One handed items now properly handle hybrid mode
-* Items respect identification settings when in chaos vendor automation
-* Fence items are now parsed before flasks
-* Removed empty tab in crafting GUI
+* Fix the map affix parse
 
 ---
 
-## Version .12.02 - Master version - October/19/2020
-Chaos Recipe functionality has been vastly improved
-* Choose from Chaos recipe 60-74, 60-100 or Regal
-  * When using hybrid it will always create Chaos
-    * Prioritizes using Regal items
-    * Set must contain at least 1 60-74 item
-  * Can set for only ilvl 60-74 chaos or 75+ regal
-* Automatically leave recipe items UnIdentified
-  * Can set which item level it will stop leaving UnId
-* Three modes of stash sorting for chaos recipe
-  * Using the dump tab
-  * Using an assigned tab for chaos recipe
-  * Using a tab for each part of the recipe
-  * Depending on your settings it will sort to, and withdraw from the assigned tabs
-* skip Jewelers or Chromatic items from being used in recipe, allowing them to vendor
-* Automatically create sets from either Identified or UnIdentified items
-  * Recipe count displays both Identified and UnIdentified Count
-* Allow jewelry to stash twice as many reserve items for building sets
+## Version .13.0001 - Alpha version - November/25/2020
+Adjustments to the Parsing backend
+* The old method of selective replacement of keys was confusing. It is better to have one standard method, ALL numbers are replaced.
+* Now we can match with every possible combination with the most generic solution.  
+* If the line contains a range, we average the first two values.  
+* Instead of creating a new key named _avg, the avg is saved as the key.    
+* All lines with multiple values will simply be stored in _Value(N). This lets any specific key be accessed for evaluation.  
+* For non-range lines the first value is stored as the key.
 
-Several Undocumented changes from the Alpha branch
-* Bugfix for league names containing space
-* Remove corrupted items from crafting bases
-* Fix for Unique Contracts
-* Fix for Heist gear skipping
-* Contracts can be skipped using the Map skip options
-* Rogue markers are auto deposited in Locker
-* Bugfix for Quality UnIdentified Chaos Recipe
-* Utility trigger logic refactored
-* Bases.json file updated to latest version
-* Heist Goods Auto Vendor
-* Fix width and height of Heist Gear items
-* Allow logical keypress during Calibration wizard
-* Added Epic Game Store exe to list of game executables
+**THIS CHANGE WILL REQUIRE ADJUSTMENT OF CLF FILTERS TO ADD % SYMBOLS**
+
+so in summary, affix keys for use with CLF will be almost exactly as they appear  
+all you need to do is replace numbers with #  
++100 to some stat would be # to some stat  
+Such as 23.045 to 234.645 would be # to #  
+or 234.45-234.234,34-56.56 would be #-#,#-#  
+
+Other changes:
+* fix for double tap mines
+* fix for error when launching clf and findtext gui
+* fix for util gui text not hiding
+* groups for flasks renamed to f[1-5]
 
 ---
 
-## Version .12.01 - Master version - September/18/2020
-Update for Heist League
-* All heist Items should now properly be tagged as a Heist Specialtype
-* Automation is now available for auto-depositing Blueprint and Contracts
-  * Or simply have the panel open and run inventory sort
-* Currently only configured for standard aspect
-  * Submit your aspect ratio's position of the "i" button to have it added
-  * Also submit your sample of the Heist Locker nameplate (just the word "Locker")
+## Version .13.0000 - Alpha version - November/24/2020
+**THIS BRANCH IS FOR TESTING NEW FEATURES**  
+**DO NOT UPDATE UNLESS YOU ARE PREPARED TO CONFIGURE**
 
-Improvements from previous Alpha versions
-* GUI has been re-arranged to try and organize the settings
-* Hotkeys are more standardized and should no longer require wrap
-* Controller functionality has been tweaked to add L/R trigger functions
-* Controller can now use the DPAD to move between the inventory of all open panels
-* Inventory Grid has been redisigned to use two corners instead of 12x5 grid of positions
-  * If your aspect ratio is not working, submit your inventory coordinates for top left and bottom right
-* Debug tool for viewing script variables
-* OnStash and OnVendor have been moved to a better position to stop Tooltip from blocking sample
+**[DOWNLOAD ALPHA BRANCH ZIP](https://discordapp.com/channels/681347390367858704/702223799172464853/780783652518101003)**  
+**EXTRACT WingmanReloaded-Alpha CONTENTS INTO SCRIPT FOLDER**
 
----
+Massive changes to the Main menu
+* Alpha changes will require a complete reconfigure of Flask and Utility
+* To fully update from v.12 you will need to download the zip and extract on top
 
-## Version .12.0007 - Alpha version - September/18/2020
-Seed Stockpile has been removed as it is not returning to core 
-* Luckily the Heist Locker replaces the functionality of the Stockpile 1 to 1
-* All settings that affected Stockpile are now settings for Heist Locker
-  * Keys for the settings have changed, so please update your inventory sort settings
-
----
-
-## Version .12.0006 - Alpha version - September/18/2020
-More Heist additions
-* Added Heist minion gear list
-* Added Heist Goods you sell to the fence
-* Added Heist Blueprint
-
----
-
-## Version .12.0005 - Alpha version - September/18/2020
-Updates for Heist
-* Adding new item types for Contract and Markers
-
----
-
-## Version .12.0004 - Alpha version - August/07/2020
-Bugfixes
-* Stash tabs beyond 32 are now fixed while sorting inventory
-* Black square panel no longer remaining on screen permanently
-  * This was related to timers being blocked from firing during some routines
-
-Community Submissions of Strings
-* 2160 and 1440 have been give a handful more defaults to pick from
-  * 2160 Sell items, Stockpile, Stash, Navali
-  * 1440 X Button, Zana
-
-Improvements to the GUI layout
-* Hotkey tab of the Menu has had Controller, Chat and Stash hokeys moved into it
-* Configuration tab has been re-organized to better group the menu
-* Crafting is a new menu of its own with Map Crafting to start
-
-Findtext Library Update
-* Added GetTextFromScreen function to quickly capture an area as B&W ASCII
-* Soon to be implimented into a "Quick Capture" system
-
----
-
-## Version .12.0003 - Alpha version - July/26/2020
-Controller improvements
-* DPad now snaps to the inventory grids for w/e panels are open
-  * When pressed outside inventory or stash it finds the closest grid position
-  * When pressed inside a grid area, it will move one slot in the direction pressed
-  * Jump from Inventory to/from Stash by pressing towards the edge
-  * Supports Inventory, Stash (QuadGrid), and Vendor panels
-
-Expansion of the old StashGrid is now InvGrid
-* Expanded to contain the Inventory and Vendor grid
-* Given the corners it calculates each grid area
-* This made working with the controller much easier
-
-New Debug tool for reading object values
-* Right Click option for Print Object in the system tray
-* Input the name of the object to see it as a list of values
-
-Bugfix
-* Stabilize detection of OHB to allow for Syndicate menu in hideout
-* OnStash and OnVendor sample position has been moved to prevent tooltips from obscuring it
-  * **Re-sample required for Both OnStash and OnVendor**
-
-Several New functions for Inventory Grid with controller
-* SnapToInventoryGrid
-* MoveToGridPosition
-* GridPosition
-* InArea
-* DistanceTo
-* UpdateMousePosition
-
-Incomplete
-* Grid positions for the inventory and vendor are only finished with Standard aspect ratio
-
----
-
-## Version .12.0002 - Alpha version - July/25/2020
-Controller improvements
-* Opening any panels will convert Right Joystick to Relational Movement
-* Holding a Trigger with Right Joystick toggles Relational Movement
-* Joystick percentages now round to the 4th digit for smoother Movement
-
-New failsafe detection with X Button sample
-* When at Vendors or Inventory it allows for tooltip to obscure sample position
-* It will automatically search for this if a panel was recently detected
-* Uses Global value YesXButtonFound
-* Augments GuiStatus to return false if found
-* Needs to be further implemented into the loops checking for vendor/stash
-
-Bugfixes
-* Library dependencies in the wrong location are fixed
-
----
-
-## Version .12.0001 - Alpha version - July/23/2020
-Sending hotkeys have been refactored
-* Consistency across all hotkey calls
-* No longer will some keys work or not work with modifiers
-* All keys are interpreted for their modifiers and key
-
-GUI improvements
-* League Selection has been moved to the main configuration tab
-* Size of the GUI has been increased to fit the growing number of controls
-* Allow to disable the In-Game Overlay
-* Loot Vacuum Settings has been moved into the Additional Settings section
-
-Bugfixes
-* When automation has miss-clicked on vendor or stash nameplate, it will attempt up to 3 tries while it waits
-
----
-
-## Version .12.00 - Release version - July/20/2020
-Big shoutout to DanMarzola for helping rework the parsing system
-* As a reminder, we welcome anyone to join the Development team!
-* Contributions can be as simple as providing your custom sample Strings
-* Come onto the Discord and speak with us to discuss how to contribute
-
-New Features:
-* Support for new Harvest items to send to Seed Stockpile
-* Seed Stockpile has been given an Automation option
-* Item Parsing system can now handle nearly every affix
-* CLF now supports many items it was not able to parse properly before
-* Automatic Chaos-Recipe dump to stash
-* Automatic Chaos-Recipe Vendoring from stash
-* Vulkan Fullscreen is now fixed automatically by script
-* Safe Auto-Confirm Vendor in Automation
-
-Changes:
-* Basic Controller Support has returned!
-* New default String options contributed by the community
-* Three new League stash tab types have been added to Stash Management
-* Items can now be filtered by generic slot type
-
-Bugfixes:
-* Delay added before stashing to Collection and Map tabs
-* Fix for flickering Overhead Health Bar readout in gamestates
-* Fix for OnChar showing as red text when first opening gamestates
-* Crafting bases were not being flagged as such, it is now fixed
-* New offerings now have a SpecialType 
-* Resonators now properly have width and height
-* ComboBox should no longer show blank when the contents did not match a list item
-* Batch Vendor of Quality Gems or Flasks now shows notification box instead of tooltips
-* Remove Log message for "Cannot find subscript"
-* Parse client logs before starting main logic timer
-
-Changes since .11 version:
-* Gradual GUI improvements
-* Map crafting function to craft all maps in inventory
-* Crafting tab in Stash Management can now be customized for your specific items
-* Catalyst, Vaal Gem, and Ninja Priced tabs added to stash management
-* Ability to Vendor before stashing automatically
-* Improved stash tab selection using purely keyboard
-* Options for keeping maps in inventory based on rarity and tier
-* Support for Smoke Mine - Flame Dash
+All Changes include: 
+* Flask and Utility tabs are now just Main
+  * Save and Load from any number of Flask, Utility and Per Character profiles
+  * Flasks and Utility CD group is now up to you!
+    * They are also given a group CD for ultimate control!
+    * Overlap groups to make triggers que sharing the group cd
+  * Resource triggers have been given sliders to allow any percentage
+  * Resource triggers are fully customizable now, with ANY or ALL triggers matching
+  * New Debuff trigger type for Curse, Shock, Bleed, Freeze, Ignite, Poison
+    * Requires samples to function, which have been given a new tab in Sample Strings
+  * Reconfigured Quicksilver to generic movement trigger for anything
+  * Utility icon can search in buff, debuff or a custom area 
+  * Utility icon variance can now be adjusted for fuzzy matching
+* Refactored main menu with Gamestates and Function toggles
+* Refactored hotkeys tab with better grouping
+* New hotkey to enable/disable utility
+* New Crafting menu hotkey for choosing basic crafts (not complete)
+* chaos recipe changed to count id/unid together
+* chaos recipe changed to id overflow unid
+* Add data for Uniques for upcoming function Approximate Perfection!
+* removed all unnecessary quotes from FindText strings to make combining easier
 
 ---
 
 To see the entire patch note history, please locate the archive file
-* changelog_Archive.txt located in the data folder
+* [changelog_Archive.txt](https://raw.githubusercontent.com/BanditTech/WingmanReloaded/Alpha/data/changelog_Archive.txt) located in the data folder
 
 WingmanReloaded - ChangeLog - END OF FILE

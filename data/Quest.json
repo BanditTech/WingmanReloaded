@@ -1,292 +1,156 @@
 [
-  {
-    "Name": "Book of Skill",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Book of Reform",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Book of Regrets",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Book of Regression",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Ammonite Glyph",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Haliotis Glyph",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Roseus Glyph",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Medicine Chest",
-    "Width": 2,
-    "Height": 3
-  },
-  {
-    "Name": "Alira's Amulet",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Kraityn's Amulet",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Oak's Amulet",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "The Apex",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Treasure Key",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Sewer Keys",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Bust of Gaius Sentari",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Bust of Hector Titucius",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Bust of Marceus Lioneye",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Decanter Spiritus",
-    "Width": 1,
-    "Height": 3
-  },
-  {
-    "Name": "Chitus' Plum",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Ribbon Spool",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Thaumetic Sulphite",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Infernal Talc",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Golden Page",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Allflame",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Tower Key",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Thaumetic Emblem",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Deshret's Banner",
-    "Width": 2,
-    "Height": 3
-  },
-  {
-    "Name": "The Eye of Desire",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "The Eye of Fury",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Malachai's Lungs",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Malachai's Entrails",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Malachai's Heart",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Tukohama's Tooth",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Valako's Jaw",
-    "Width": 2,
-    "Height": 1
-  },
-  {
-    "Name": "Hinekora's Hair",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Miasmeter",
-    "Width": 1,
-    "Height": 3
-  },
-  {
-    "Name": "Sign of Purity",
-    "Width": 2,
-    "Height": 3
-  },
-  {
-    "Name": "Bestel's Manuscript",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "The Black Flag",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Maligaro's Map",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Maligaro's Spike",
-    "Width": 1,
-    "Height": 4
-  },
-  {
-    "Name": "Greust's Necklace",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Firefly",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Kishara's Star",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Ankh of Eternity",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Wings of Vastiri",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Sun Orb",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Moon Orb",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Bottled Storm",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Basilisk Acid",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Sekhema Feather",
-    "Width": 1,
-    "Height": 2
-  },
-  {
-    "Name": "Silver Locket",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Trarthan Powder",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Elixir of Allure",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "The Staff of Purity",
-    "Width": 2,
-    "Height": 4
-  },
-  {
-    "Name": "The Teardrop",
-    "Width": 2,
-    "Height": 2
-  },
-  {
-    "Name": "Vault Key",
-    "Width": 1,
-    "Height": 1
-  },
-  {
-    "Name": "Crimson Watchstone",
-    "Width": 1,
-    "Height": 1
-  }
+	{"name": "Admiral Darnaw", "Width": 1, "Height": 1},
+	{"name": "Admiral Darnaw's Papers", "Width": 1, "Height": 1},
+	{"name": "Alchemical Supplies", "Width": 1, "Height": 1},
+	{"name": "Alira's Amulet", "Width": 1, "Height": 1},
+	{"name": "Allflame", "Width": 1, "Height": 2},
+	{"name": "Ammonite Glyph", "Width": 1, "Height": 1},
+	{"name": "Ankh of Eternity", "Width": 1, "Height": 1},
+	{"name": "Baffling Blueprints", "Width": 1, "Height": 1},
+	{"name": "Baleful Gem", "Width": 1, "Height": 1},
+	{"name": "Basilisk Acid", "Width": 2, "Height": 2},
+	{"name": "Bestel's Manuscript", "Width": 2, "Height": 2},
+	{"name": "Black Venom", "Width": 1, "Height": 1},
+	{"name": "Blackguard Personnel Files", "Width": 1, "Height": 1},
+	{"name": "Book of Reform", "Width": 2, "Height": 2},
+	{"name": "Book of Regression", "Width": 2, "Height": 2},
+	{"name": "Book of Regrets", "Width": 2, "Height": 2},
+	{"name": "Book of Skill", "Width": 2, "Height": 2},
+	{"name": "Bottled Storm", "Width": 2, "Height": 2},
+	{"name": "Bust of Gaius Sentari", "Width": 1, "Height": 2},
+	{"name": "Bust of Hector Titucius", "Width": 1, "Height": 2},
+	{"name": "Bust of Marceus Lioneye", "Width": 1, "Height": 2},
+	{"name": "Calendar of Fortune", "Width": 1, "Height": 1},
+	{"name": "Census Records", "Width": 1, "Height": 1},
+	{"name": "Chitus' Plum", "Width": 1, "Height": 1},
+	{"name": "Confront Nashta", "Width": 1, "Height": 1},
+	{"name": "Contract: A Matter of Honour", "Width": 1, "Height": 1},
+	{"name": "Contract: A Mundane Sample", "Width": 1, "Height": 1},
+	{"name": "Contract: Credit Where Credit's Due", "Width": 1, "Height": 1},
+	{"name": "Contract: Disengagement", "Width": 1, "Height": 1},
+	{"name": "Contract: Enoch's Remains", "Width": 1, "Height": 1},
+	{"name": "Contract: Enoch's Whereabouts", "Width": 1, "Height": 1},
+	{"name": "Contract: Finding Opal", "Width": 1, "Height": 1},
+	{"name": "Contract: Findings for Fidium", "Width": 1, "Height": 1},
+	{"name": "Contract: Flying False Colours", "Width": 1, "Height": 1},
+	{"name": "Contract: Follow the Paper Trail", "Width": 1, "Height": 1},
+	{"name": "Contract: Grocery List", "Width": 1, "Height": 1},
+	{"name": "Contract: Hyrri's Gift", "Width": 1, "Height": 1},
+	{"name": "Contract: Isla's Designs", "Width": 1, "Height": 1},
+	{"name": "Contract: Isla's Prototypes", "Width": 1, "Height": 1},
+	{"name": "Contract: Karst's Revenge", "Width": 1, "Height": 1},
+	{"name": "Contract: Opal's Jewels", "Width": 1, "Height": 1},
+	{"name": "Contract: Rational Tools", "Width": 1, "Height": 1},
+	{"name": "Contract: Slaver's Revenge", "Width": 1, "Height": 1},
+	{"name": "Contract: Stolen Lockpicks", "Width": 1, "Height": 1},
+	{"name": "Contract: The Admiral's Records", "Width": 1, "Height": 1},
+	{"name": "Contract: The Book of Jamanra", "Width": 1, "Height": 1},
+	{"name": "Contract: The Finest Costumes", "Width": 1, "Height": 1},
+	{"name": "Contract: The Nameless Play", "Width": 1, "Height": 1},
+	{"name": "Contract: The Negotiation", "Width": 1, "Height": 1},
+	{"name": "Contract: The Rescue", "Width": 1, "Height": 1},
+	{"name": "Contract: The Vinderi Bomb", "Width": 1, "Height": 1},
+	{"name": "Contract: The Wedding Dress", "Width": 1, "Height": 1},
+	{"name": "Contract: Trial Run", "Width": 1, "Height": 1},
+	{"name": "Decanter Spiritus", "Width": 1, "Height": 3},
+	{"name": "Deshret's Banner", "Width": 2, "Height": 3},
+	{"name": "Elder's Orb", "Width": 1, "Height": 1},
+	{"name": "Elixir of Allure", "Width": 2, "Height": 2},
+	{"name": "Enoch's Tags", "Width": 1, "Height": 1},
+	{"name": "Eye of Conquest", "Width": 1, "Height": 1},
+	{"name": "Eyes of Zeal", "Width": 1, "Height": 1},
+	{"name": "Firefly", "Width": 1, "Height": 1},
+	{"name": "Fleet Orders", "Width": 1, "Height": 1},
+	{"name": "Fumarole Tar", "Width": 1, "Height": 1},
+	{"name": "Golden Hand", "Width": 1, "Height": 2},
+	{"name": "Golden Page", "Width": 1, "Height": 2},
+	{"name": "Greust's Necklace", "Width": 1, "Height": 1},
+	{"name": "Haliotis Glyph", "Width": 1, "Height": 1},
+	{"name": "Hapihapi's Charm", "Width": 1, "Height": 1},
+	{"name": "Hinekora's Hair", "Width": 2, "Height": 2},
+	{"name": "Infernal Talc", "Width": 2, "Height": 2},
+	{"name": "Jamanra, the Legendary Warrior", "Width": 1, "Height": 1},
+	{"name": "Karst's Lockpicks", "Width": 2, "Height": 2},
+	{"name": "Kishara's Star", "Width": 1, "Height": 1},
+	{"name": "Kraityn's Amulet", "Width": 1, "Height": 1},
+	{"name": "Malachai's Entrails", "Width": 2, "Height": 2},
+	{"name": "Malachai's Heart", "Width": 2, "Height": 2},
+	{"name": "Malachai's Lungs", "Width": 2, "Height": 2},
+	{"name": "Maligaro's Map", "Width": 1, "Height": 1},
+	{"name": "Maligaro's Spike", "Width": 1, "Height": 4},
+	{"name": "Master Key", "Width": 1, "Height": 1},
+	{"name": "Medicine Chest", "Width": 2, "Height": 3},
+	{"name": "Memory Fragment I", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment II", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment III", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment IV", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment IX", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment V", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment VI", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment VII", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment VIII", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment X", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment XI", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment XII", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment XIII", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment XIV", "Width": 2, "Height": 1},
+	{"name": "Memory Fragment XV", "Width": 2, "Height": 1},
+	{"name": "Merveil's Wedding Dress", "Width": 1, "Height": 1},
+	{"name": "Miasmeter", "Width": 1, "Height": 3},
+	{"name": "Moon Orb", "Width": 2, "Height": 2},
+	{"name": "Nashta's War Journal", "Width": 1, "Height": 1},
+	{"name": "Negotiate with the Client", "Width": 1, "Height": 1},
+	{"name": "O' Eternal", "Width": 1, "Height": 1},
+	{"name": "Oak's Amulet", "Width": 1, "Height": 1},
+	{"name": "Obsidian Key", "Width": 1, "Height": 1},
+	{"name": "Pile of Inexplicable Junk", "Width": 1, "Height": 1},
+	{"name": "Poisoned Lockpick", "Width": 1, "Height": 1},
+	{"name": "Rescue Hana", "Width": 1, "Height": 1},
+	{"name": "Ribbon Spool", "Width": 2, "Height": 2},
+	{"name": "Roseus Glyph", "Width": 1, "Height": 2},
+	{"name": "Sekhema Feather", "Width": 1, "Height": 2},
+	{"name": "Sewer Keys", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 1)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 10)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 2)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 3)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 4)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 5)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 6)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 7)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 8)", "Width": 1, "Height": 1},
+	{"name": "Shaper's Orb (Tier 9)", "Width": 1, "Height": 1},
+	{"name": "Sign of Purity", "Width": 2, "Height": 3},
+	{"name": "Silver Locket", "Width": 1, "Height": 1},
+	{"name": "Slaver's Records", "Width": 1, "Height": 1},
+	{"name": "Solerai's Spear", "Width": 1, "Height": 1},
+	{"name": "Storm Blade", "Width": 1, "Height": 3},
+	{"name": "Sun Orb", "Width": 2, "Height": 2},
+	{"name": "Templar Uniforms", "Width": 1, "Height": 1},
+	{"name": "Thaumetic Emblem", "Width": 1, "Height": 1},
+	{"name": "Thaumetic Sulphite", "Width": 2, "Height": 2},
+	{"name": "The Apex", "Width": 1, "Height": 1},
+	{"name": "The Black Flag", "Width": 2, "Height": 2},
+	{"name": "The Blood Idol", "Width": 1, "Height": 1},
+	{"name": "The Book of Jamanra", "Width": 1, "Height": 1},
+	{"name": "The Eye of Desire", "Width": 2, "Height": 2},
+	{"name": "The Eye of Fury", "Width": 2, "Height": 2},
+	{"name": "The Kiss Goodnight", "Width": 1, "Height": 1},
+	{"name": "The Nameless Play", "Width": 1, "Height": 1},
+	{"name": "The Shaper's Key", "Width": 1, "Height": 1},
+	{"name": "The Staff of Purity", "Width": 2, "Height": 4},
+	{"name": "The Teardrop", "Width": 2, "Height": 2},
+	{"name": "The Thought Extractor", "Width": 1, "Height": 1},
+	{"name": "The Unbreakable", "Width": 1, "Height": 1},
+	{"name": "The Vox Twins", "Width": 1, "Height": 1},
+	{"name": "Tibbs' Wealth", "Width": 1, "Height": 1},
+	{"name": "Tolman's Bracelet", "Width": 1, "Height": 1},
+	{"name": "Tower Key", "Width": 1, "Height": 2},
+	{"name": "Trarthan Powder", "Width": 2, "Height": 2},
+	{"name": "Tukohama's Tooth", "Width": 1, "Height": 1},
+	{"name": "Tullina's Engagement Ring", "Width": 1, "Height": 1},
+	{"name": "Valako's Jaw", "Width": 2, "Height": 1},
+	{"name": "Vault Key", "Width": 1, "Height": 1},
+	{"name": "Viridi's Finger", "Width": 1, "Height": 1},
+	{"name": "Wings of Vastiri", "Width": 2, "Height": 2}
 ]

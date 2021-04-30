@@ -8,9 +8,7 @@
 *  Contains all the assorted functions written for Wingman
 */
   ; PoE Click v1.0.1 : Developed by Bandit
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ; SwiftClick - Left Click at Coord with no wait between up and down
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     SwiftClick(x, y){
       MouseMove, x, y  
       Sleep, 30+(ClickLatency*15)
@@ -19,59 +17,26 @@
       return
     }
     ; LeftClick - Left Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    LeftClick(x, y, Old:=0){
-      If Old
-      Goto OldStyleLeft
-      Else
-      {
-        BlockInput, MouseMove
-        MouseMove, x, y
-        Sleep, 60+(ClickLatency*15)
-        Send {Click}
-        Sleep, 60+(ClickLatency*15)
-        BlockInput, MouseMoveOff
-      }
+    LeftClick(x, y){
+      BlockInput, MouseMove
+      MouseMove, x, y
+      Sleep, 60+(ClickLatency*15)
+      Send {Click}
+      Sleep, 60+(ClickLatency*15)
+      BlockInput, MouseMoveOff
       Return
-      
-      OldStyleLeft:
-        MouseMove, x, y  
-        Sleep, 30*Latency
-        Send {Click, Down x, y }
-        Sleep, 60*Latency
-        Send {Click, Up x, y }
-        Sleep, 30*Latency
-      return
     }
     ; RightClick - Right Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    RightClick(x, y, Old:=0){
-      If Old
-      Goto OldStyleRight
-      Else
-      {
-        BlockInput, MouseMove
-        MouseMove, x, y
-        Sleep, 60+(ClickLatency*15)
-        Send {Click, Right}
-        Sleep, 60+(ClickLatency*15)
-        BlockInput, MouseMoveOff
-      }
+    RightClick(x, y){
+      BlockInput, MouseMove
+      MouseMove, x, y
+      Sleep, 60+(ClickLatency*15)
+      Send {Click, Right}
+      Sleep, 60+(ClickLatency*15)
+      BlockInput, MouseMoveOff
       Return
-
-      OldStyleRight:
-        BlockInput, MouseMove
-        MouseMove, x, y
-        Sleep, 30*Latency
-        Send {Click, Down x, y, Right}
-        Sleep, 60*Latency
-        Send {Click, Up x, y, Right}
-        Sleep, 30*Latency
-        BlockInput, MouseMoveOff
-      return
     }
     ; ShiftClick - Shift Click +Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ShiftClick(x, y){
       BlockInput, MouseMove
       MouseMove, x, y
@@ -88,7 +53,6 @@
       return
     }
     ; CtrlClick - Ctrl Click ^Click at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CtrlClick(x, y){
       BlockInput, MouseMove
       MouseMove, x, y
@@ -104,55 +68,41 @@
       BlockInput, MouseMoveOff
       return
     }
+    ; CtrlShiftClick - Ctrl + Shift Click +^Click at Coord
+    CtrlShiftClick(x, y){
+      BlockInput, MouseMove
+      MouseMove, x, y
+      Sleep, 30+(ClickLatency*15)
+      Send {Ctrl Down}{Shift Down}
+      Sleep, 45
+      Send {Click, Down, x, y}
+      Sleep, 60+(ClickLatency*15)
+      Send {Click, Up, x, y}
+      Sleep, 30
+      Send {Ctrl Up}{Shift Up}
+      Sleep, 30+(ClickLatency*15)
+      BlockInput, MouseMoveOff
+      return
+    }
     ; RandClick - Randomize Click area around middle of cell using Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     RandClick(x, y){
       Random, Rx, x+10, x+30
       Random, Ry, y-30, y-10
       return {"X": Rx, "Y": Ry}
     }
     ; WisdomScroll - Identify Item at Coord
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     WisdomScroll(x, y){
       BlockInput, MouseMove
       RightClick(WisdomScrollX,WisdomScrollY)
       Sleep, 30+Abs(ClickLatency*15)
       LeftClick(x,y)
-      Sleep, 15+Abs(ClickLatency*15)
+      Sleep, 45+Abs(ClickLatency*15)
       BlockInput, MouseMoveOff
       return
     }
      ; WisdomScroll - Identify Item at Coord
 
-     GreyOut:
-      Lista := ["StashTabYesBlight","StashTabYesDelirium","StashTabYesDivination","StashTabYesFragment","StashTabYesMetamorph","StashTabYesDelve","StashTabYesEssence","StashTabYesMap","StashTabYesCurrency"]
-      Listb := ["BlightEdit","DeliriumEdit","DivinationEdit","FragmentEdit","MetamorphEdit","DelveEdit","EssenceEdit","MapEdit","CurrencyEdit"]
-      for key, val in Lista
-      {
-        GuiControlGet, CheckBoxState,, %val%
-        value := Listb[key]
-        If (CheckBoxState == 0)
-        { 
-          GuiControl, Disable, %value%
-          GuiControl, , %value%text, Disable Type
-        } 
-        Else If (CheckBoxState == 1)
-        {
-          GuiControl, Enable, %value%
-          GuiControl, , %value%text, Assign a Tab
-        }
-        Else 
-        {
-          if(value !="CurrencyEdit" )
-          {
-            GuiControl, Disable, %value%
-          }
-          GuiControl, , %value%text, Enable Affinity
-        }
-      }
-      Return
   ; ItemScan - Parse data from Cliboard Text into Prop and Affix values
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemScan
     {
       __New(){
@@ -163,16 +113,19 @@
         This.Pseudo := OrderedArray()
         This.Affix := OrderedArray()
         This.Prop := OrderedArray()
+        This.Modifier := OrderedArray()
         ; Split our sections from the clipboard
         ; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
         For SectionKey, SVal in This.Data.Sections
         {
-          If (SVal ~= ":" && !(SVal ~= "grant:"))
+          If ((SVal ~= ":" || SVal ~= "Currently has \d+ Charges") && !(SVal ~= "grant:") && !(SVal ~= "slot:"))
           {
             If (SectionKey = 1 && SVal ~= "Rarity:")
               This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
+            Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix")
+              This.Data.Blocks.Affix := SVal
             Else
-              This.Data.Blocks.Properties .= SVal "`n"
+              This.Data.Blocks.Properties .= SVal "`r`n"
           }
           Else 
           {
@@ -200,25 +153,130 @@
         }
           This.Data.Sections := ""
           This.Data.Delete("Sections")
-        This.MatchAffixes(This.Data.Blocks.Affix)
+
+        This.MatchAffixesWithoutDoubleMods(This.Data.Blocks.Affix)
+        ;This.MatchAffixes(This.Data.Blocks.Affix)
         This.MatchAffixes(This.Data.Blocks.Enchant)
         This.MatchAffixes(This.Data.Blocks.Implicit)
         This.MatchAffixes(This.Data.Blocks.Influence)
         This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
         This.MatchProperties()
+        If (This.Prop.Rarity_Digit == 4 && !This.Affix["Unidentified"])
+          This.ApproximatePerfection()
         This.MatchPseudoAffix()
         This.MatchExtenalDB()
-        This.FilterDoubleMods()
         This.MatchCraftingBases()
-        This.MatchChaosRegal()
         This.MatchBase2Slot()
+        This.MatchChaosRegal()
+        This.Prop.StashChaosItem := This.StashChaosRecipe(False)
+        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified){
+          This.Prop.PredictPrice := This.PredictPrice()
+        }
+        This.Prop.StashReturnVal := This.MatchStashManagement()
         ; This.FuckingSugoiFreeMate()
       }
+      ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
+      PredictPrice(Switch:="")
+      {
+        Static ItemList := []
+        Static WarnedError := 0
+        FoundMatch := False
+        If (This.Prop.Rarity_Digit != 3 || This.Affix.Unidentified)
+          Return 0
+        If (This.Prop.Rarity_Digit = 3 && (!This.Prop.SpecialType || This.Prop.SpecialType = "6Link" || This.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
+        {
+          For k, obj in ItemList
+          {
+            If (obj.Clip_Contents = Clip_Contents)
+            {
+              FoundMatch := True
+              PriceObj := obj
+              Break
+            }
+          }
+          If !FoundMatch
+          {
+            PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
+            if (PriceObj.error)
+            {
+              If (A_TickCount - WarnedError > 30000 )
+              {
+                Notify(PriceObj.error_msg, "", 10)
+                WarnedError := A_TickCount
+              }
+              return
+            }
+            PriceObj.Clip_Contents := Clip_Contents
+            If (OnRitual && YesRitualPrice = "Low")
+              Price := SelectedPrice := PriceObj.min
+            Else If (OnRitual && YesRitualPrice = "Avg")
+              Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+            Else If (OnRitual && YesRitualPrice = "High")
+              Price := SelectedPrice := PriceObj.max
+            Else If (YesPredictivePrice = "Low")
+              Price := SelectedPrice := PriceObj.min
+            Else If (YesPredictivePrice = "Avg")
+              Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
+            Else If (YesPredictivePrice = "High")
+              Price := SelectedPrice := PriceObj.max
+
+            Price := Price * (YesPredictivePrice_Percent_Val / 100)
+            PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
+            PriceObj.Price := Price
+
+            tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " <<  " Format("{1:0.3g}", PriceObj.Avg ) "  >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
+              . "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
+            For k, reason in PriceObj.pred_explanation
+              tt .= "`n" Round(reason.2 * 100) "`% " reason.1
+            tt.= "`nEnd Of Predicive Price Information"
+            PriceObj.tt := tt
+            ItemList.Push(PriceObj)
+          }
+        }
+        Else
+          Return "000"
+
+        If !(PriceObj.max > 0)
+          Return "0000"
+
+        If (Switch = "Obj")
+          Return PriceObj
+        Else
+          Return PriceObj.Price
+      }
       MatchProperties(){
+        ;Get total count of affixes
+        This.Prop.AffixCount := 0
+        This.Prop.PrefixCount := 0
+        This.Prop.SuffixCount := 0
+        This.Data.AffixNames := {Prefix:[],Suffix:[]}
+        For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
+        {
+          If (v = "")
+          Continue
+          ; Flag curse on hit items
+          If (v ~= "^Curse Enemies with .+ on Hit$")
+            This.Prop.IsCurseOnHit := True
+          If (v ~= "\{ Prefix Modifier"){
+            RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
+            This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+            This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            This.Prop.PrefixCount++, This.Prop.AffixCount++
+          } Else If (v ~= "\{ Suffix Modifier") {
+            RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
+            This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+            This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            This.Prop.SuffixCount++, This.Prop.AffixCount++
+          }
+        }
+        This.Prop.OpenAffix := 6 - This.Prop.PrefixCount - This.Prop.SuffixCount
+
         ;Start NamePlate Parser
         If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
         {
           This.Prop.Rarity := RxMatch1
+          If RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", RxMatch)
+            This.Prop.ItemClass := RxMatch1
           ;Prop Rarity Comparator
           If (InStr(This.Prop.Rarity, "Currency"))
           {
@@ -259,14 +317,16 @@
           {
             This.Prop.SpecialType := This.Prop.Rarity
           }
-          ; 3 Lines in NamePlate => Rarity / Item Name/ Item Base
-          If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)`r`n(.+)",RxMatch))
+          If (This.Prop.Rarity_Digit < 3)
+            This.Prop.OpenAffix -= 4
+          ; 4 Lines in NamePlate => Rarity / Item Name/ Item Base
+          If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)",RxMatch))
           {
             This.Prop.ItemName := RxMatch1
             This.Prop.ItemBase := RxMatch2
           }
-          ; 2 Lines in NamePlate => Rarity / Item Base
-          Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n(.+)",RxMatch))
+          ; 3 Lines in NamePlate => Rarity / Item Base
+          Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)",RxMatch))
           {
             This.Prop.ItemName := RxMatch1
             This.Prop.ItemBase := RxMatch1
@@ -275,13 +335,25 @@
             This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
           If (This.Prop.ItemBase ~= "^Superior ")
             This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Superior ", "")
-          If (This.Prop.RarityMagic && This.Prop.ItemBase ~= " of .+")
-              This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
+          If (This.Prop.RarityMagic){
+            If (This.Prop.ItemBase ~= " of .+")
+                This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
+            For k, v in This.Data.AffixNames.Prefix {
+              If (This.Prop.ItemBase ~= "^" v.Name)
+                This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^" v.Name " ", "")
+            }
+          }
           ;Start Parse
-          If (This.Prop.ItemBase ~= " Map$")
+          
+          
+          If (This.Prop.ItemClass = "Misc Map Items")
+          {
+            This.Prop.MiscMapItem := True
+            This.Prop.SpecialType := "Misc Map Item"
+          }
+          If (This.Prop.ItemClass = "Maps")
           {
             This.Prop.IsMap := True
-            This.Prop.ItemClass := "Maps"
             ; Deal with Blighted Map
             If (InStr(This.Prop.ItemBase, "Blighted"))
             {
@@ -292,6 +364,10 @@
             {
               This.Prop.SpecialType := "Map"
             }
+          }
+          If (This.Prop.ItemBase ~= "Invitation:" && This.Data.Blocks.FlavorText ~= "Map Device")
+          {
+            This.Prop.SpecialType := "Invitation Map"
           }
           Else If (This.Prop.ItemBase ~= " Incubator$")
           {
@@ -307,6 +383,15 @@
             This.Prop.TimelessSplinter := True
             This.Prop.SpecialType := "Timeless Splinter"
           }
+          Else If (InStr(This.Prop.ItemBase, "Timeless Karui Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Eternal Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Vaal Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Templar Emblem") 
+          || InStr(This.Prop.ItemBase, "Timeless Maraketh Emblem"))
+          {
+            This.Prop.TimelessEmblem := True
+            This.Prop.SpecialType := "Timeless Emblem"
+          }
           Else If (InStr(This.Prop.ItemBase, "Simulacrum"))
           {
             This.Prop.DeliriumSimulacrum := True
@@ -317,17 +402,17 @@
             This.Prop.DeliriumOrb := True
             This.Prop.SpecialType := "Delirium"
           }
-          Else If (InStr(This.Prop.ItemBase, "Splinter of"))
+          Else If (InStr(This.Prop.ItemBase, "Splinter of") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.BreachSplinter := True
             This.Prop.SpecialType := "Breach Splinter"
           }
-          Else If (InStr(This.Prop.ItemBase, "Breachstone"))
+          Else If (InStr(This.Prop.ItemBase, "Breachstone") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.BreachSplinter := True
             This.Prop.SpecialType := "Breachstone"
           }
-          Else If (InStr(This.Prop.ItemBase, "Sacrifice at"))
+          Else If (InStr(This.Prop.ItemBase, "Sacrifice at") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.SacrificeFragment := True
             This.Prop.SpecialType := "Sacrifice Fragment"
@@ -340,7 +425,7 @@
             This.Prop.MortalFragment := True
             This.Prop.SpecialType := "Mortal Fragment"
           }
-          Else If (InStr(This.Prop.ItemBase, "Fragment of"))
+          Else If (InStr(This.Prop.ItemBase, "Fragment of") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.GuardianFragment := True
             This.Prop.SpecialType := "Guardian Fragment"
@@ -353,17 +438,17 @@
             This.Prop.ProphecyFragment := True
             This.Prop.SpecialType := "Prophecy Fragment"
           }
-          Else If (InStr(This.Prop.ItemBase, "Scarab"))
+          Else If (InStr(This.Prop.ItemBase, "Scarab") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.Scarab := True
             This.Prop.SpecialType := "Scarab"
           }
-          Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess"))
+          Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.Offering := True
             This.Prop.SpecialType := "Offering"
           }
-          Else If (InStr(This.Prop.ItemBase, "to the Goddess"))
+          Else If (InStr(This.Prop.ItemBase, "to the Goddess") && This.Prop.ItemClass ~= "Fragments")
           {
             This.Prop.UberDuberOffering := True
             This.Prop.SpecialType := "Uber Duber Offering"
@@ -380,8 +465,7 @@
             This.Prop.Fossil := True
             This.Prop.SpecialType := "Fossil"
           }
-          Else If (This.Prop.RarityCurrency 
-          && (This.Prop.ItemBase ~= " Resonator$"))
+          Else If (This.Prop.ItemClass ="Delve Stackable Socketable Currency")
           {
             This.Prop.Resonator := True
             This.Prop.SpecialType := "Resonator"
@@ -400,23 +484,24 @@
             This.Prop.Vessel := True
             This.Prop.SpecialType := "Divine Vessel"
           }
-          Else If (InStr(This.Prop.ItemBase, "Eye Jewel"))
+          Else If (This.Prop.ItemClass = "Abyss Jewel")
           {
             This.Prop.AbyssJewel := True
             This.Prop.Jewel := True
           }
-          Else If (InStr(This.Prop.ItemBase, "Cobalt Jewel")
-          || InStr(This.Prop.ItemBase, "Crimson Jewel")
-          || InStr(This.Prop.ItemBase, "Viridian Jewel"))
+          Else If (This.Prop.ItemClass = "Jewel")
           {
-            This.Prop.Jewel := True
+            If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
+            {
+              This.Prop.ClusterJewel := True
+              This.Prop.SpecialType := "Cluster Jewel"
+            }
+            else
+            {
+              This.Prop.Jewel := True
+            }
           }
-          Else If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
-          {
-            This.Prop.ClusterJewel := True
-            This.Prop.SpecialType := "Cluster Jewel"
-          }
-          Else If (This.Affix["Can be exchanged with Faustus, the Fence in The Rogue Harbour"])
+          Else If (This.Prop.ItemClass = "Heist Target")
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Goods"
@@ -424,17 +509,15 @@
             If indexOf(This.Prop.ItemBase, HeistLootLarge)
               This.Prop.Item_Height := 4
           }
-          Else If (InStr(This.Prop.ItemBase, "Flask"))
+          Else If (InStr(This.Prop.ItemClass, "Flasks"))
           {
             This.Prop.Flask := True
-            This.Prop.ItemClass := "Flasks"
             This.Prop.Item_Width := 1
             This.Prop.Item_Height := 2
           }
-          Else If (InStr(This.Prop.ItemBase, "Quiver"))
+          Else If (This.Prop.ItemClass = "Quivers")
           {
             This.Prop.Quiver := True
-            This.Prop.ItemClass := "Quivers"
             This.Prop.Item_Width := 2
             This.Prop.Item_Height := 3
           }
@@ -454,62 +537,55 @@
             This.Prop.SpecialType := "Catalyst"
             }
           }
-          Else If (InStr(This.Prop.ItemBase, "'s Lung"))
+          Else If (This.Prop.ItemClass = "Metamorph Sample")
           {
-            If (This.Prop.RarityUnique)
+            If (InStr(This.Prop.ItemBase, "'s Lung"))
             {
-              This.Prop.IsOrgan := "Lung"
-              This.Prop.SpecialType := "Organ"
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Lung"
+                This.Prop.SpecialType := "Organ"
+              }
+            }
+            Else If (InStr(This.Prop.ItemBase, "'s Heart"))
+            {
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Heart"
+                This.Prop.SpecialType := "Organ"
+              }
+            }
+            Else If (InStr(This.Prop.ItemBase, "'s Brain"))
+            {
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Brain"
+                This.Prop.SpecialType := "Organ"
+              }
+            }
+            Else If (InStr(This.Prop.ItemBase, "'s Liver"))
+            {
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Liver"
+                This.Prop.SpecialType := "Organ"
+              }
+            }
+            Else If (InStr(This.Prop.ItemBase, "'s Eye"))
+            {
+              If (This.Prop.RarityUnique)
+              {
+                This.Prop.IsOrgan := "Eye"
+                This.Prop.SpecialType := "Organ"
+              }
             }
           }
-          Else If (InStr(This.Prop.ItemBase, "'s Heart"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Heart"
-              This.Prop.SpecialType := "Organ"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Brain"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Brain"
-              This.Prop.SpecialType := "Organ"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Liver"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Liver"
-              This.Prop.SpecialType := "Organ"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "'s Eye"))
-          {
-            If (This.Prop.RarityUnique)
-            {
-              This.Prop.IsOrgan := "Eye"
-              This.Prop.SpecialType := "Organ"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, " Beast"))
-          {
-            ;Only Rare and Unique Beasts
-            If (This.Prop.Rarity_Digit >= 3)
-            {
-              This.Prop.IsBeast := True
-              This.Prop.SpecialType := "Beast"
-              This.Prop.ItemClass := "Beasts"
-            }
-          }
-          Else If (InStr(This.Prop.ItemBase, "Contract:")||RegExMatch(This.Prop.ItemBase, "`am)(.+) Contract",RxMatch))
+          Else If (This.Prop.ItemClass = "Contract")
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Contract"
           }
-          Else If (InStr(This.Prop.ItemBase, "Blueprint:"))
+          Else If (This.Prop.ItemClass = "Blueprint")
           {
             This.Prop.Heist := True
             This.Prop.SpecialType := "Heist Blueprint"
@@ -527,17 +603,7 @@
           Else If (indexOf(This.Prop.ItemBase, HeistGear))
           {
             This.Prop.Heist := True
-            This.Prop.SpecialType := "Heist Gear"
-            ;Disable for now, need review Heist Gear List to split what is 1x1 or 2x2
-            If InStr(This.Prop.ItemBase, "Brooch")
-              This.Prop.Item_Width := This.Prop.Item_Height := 1
-            Else
-              This.Prop.Item_Width := This.Prop.Item_Height := 2
-          }
-          Else If (This.Prop.RarityMagic && indexOf( StrSplit(This.Prop.ItemBase," ","",2)[2], HeistGear ) )
-          {
-            This.Prop.ItemBase := StrSplit(This.Prop.ItemBase," ","",2)[2]
-            This.Prop.Heist := True
+            This.Prop.HeistGear := True
             This.Prop.SpecialType := "Heist Gear"
             If InStr(This.Prop.ItemBase, "Brooch")
               This.Prop.Item_Width := This.Prop.Item_Height := 1
@@ -558,11 +624,16 @@
             This.Prop.IsInfluenceItem := True
           }
         }
-        ; Get Prophecy using Flavor Txt
+        ; Get Prophecy/Beasts using Flavour Txt
         If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
         {
           This.Prop.Prophecy := True
           This.Prop.SpecialType := "Prophecy"
+        }
+         Else If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary",RxMatch))
+        {
+            This.Prop.IsBeast := True
+            This.Prop.SpecialType := "Beast"
         }
         ;End Extra Blocks Parser
 
@@ -570,27 +641,31 @@
           ;Every Item has a Item Level
         If (This.Prop.Rarity)
         {
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: "rxNum,RxMatch))
           {
             This.Prop.ItemLevel := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: (.+)",RxMatch))
+          If (This.Data.Blocks.HasKey("Enchant"))
+          {
+            This.Prop.SpecialType := "Enchanted Item"
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: "rxNum,RxMatch))
           {
             This.Prop.Required_Level := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum,RxMatch))
           {
             This.Prop.Required_Str := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: "rxNum,RxMatch))
           {
             This.Prop.Required_Dex := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: "rxNum,RxMatch))
           {
             This.Prop.Required_Int := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: (.+)",RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: ([\w- ]+)",RxMatch))
           {
             This.Prop.Sockets_Raw := RxMatch1
             This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
@@ -621,7 +696,7 @@
             }
           }
           ;Generic Props
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch) && !IsMap)
           {
             This.Prop.Quality := RxMatch1
           }
@@ -664,26 +739,26 @@
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
             {
               This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-              This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
               This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
+              This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
             }
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chaos Damage: " rxNum "-" rxNum ,RxMatch))
             {
               This.Prop.Weapon_Avg_Chaos_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-              This.Prop.Weapon_Max_Chaos_Dmg := RxMatch2
               This.Prop.Weapon_Min_Chaos_Dmg := RxMatch1
+              This.Prop.Weapon_Max_Chaos_Dmg := RxMatch2
             }
             If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
             {
               This.Prop.Weapon_Avg_Elemental_Dmg := 0
-              This.Prop.Weapon_Max_Elemental_Dmg := 0
               This.Prop.Weapon_Min_Elemental_Dmg := 0
+              This.Prop.Weapon_Max_Elemental_Dmg := 0
               For k, v in StrSplit(RxMatch,",")
               {
                 values := This.MatchLine(v)
-                This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + values.avg)
-                This.Prop.Weapon_Max_Elemental_Dmg += values.max
-                This.Prop.Weapon_Min_Elemental_Dmg += values.min
+                This.Prop.Weapon_Avg_Elemental_Dmg := Format("{1:0.3g}",This.Prop.Weapon_Avg_Elemental_Dmg + (values.1 + values.2) / 2 ) 
+                This.Prop.Weapon_Min_Elemental_Dmg += values.1
+                This.Prop.Weapon_Max_Elemental_Dmg += values.2
               }
               values := ""
             }
@@ -721,28 +796,30 @@
         If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
         {
           This.Prop.Map_Tier := RxMatch1
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: ([a-zA-Z0-9 ']+)",RxMatch))
           {
             This.Prop.Map_AtlasRegion := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+"rxNum,RxMatch))
           {
             This.Prop.Map_Quantity := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+"rxNum,RxMatch))
           {
             This.Prop.Map_Rarity := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: \+"rxNum,RxMatch))
           {
             This.Prop.Map_PackSize := RxMatch1
           }
-          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: "rxNum,RxMatch))
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Delirium Reward Type:",RxMatch))
+          {
+            This.Prop.Map_Delirium := True
+          }
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
           {
             This.Prop.Map_Quality := RxMatch1
-          }
-          Else
-          {
+          }Else{
             ;Set Quality to 0 if not in map prop (instead flagging as false)
             This.Prop.Map_Quality := 0
           }
@@ -763,13 +840,20 @@
         If (This.Affix["Veiled Prefix"] || This.Affix["Veiled Suffix"])
         {
           This.Prop.Veiled := True
+          This.Prop.SpecialType := "Veiled Item"
         }
         Else
         {
           This.Prop.Veiled := False
         }
+
+        If (This.BrickedMap())
+          This.Prop.IsBrickedMap := True
+        Else
+          This.Prop.IsBrickedMap := False
+
         ;Stack size for anything with it
-        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: "rxNum "\/"rxNum ,RxMatch))
+        If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d+\.?\,?\d*)\/" rxNum ,RxMatch))
         {
           This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
           This.Prop.Stack_Max := RxMatch2
@@ -781,31 +865,229 @@
         }
         If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
           This.Prop.SpecialType := "Harvest Item"
-
-        ;Get total count of affixes
-        temp := 0
-        For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
+        If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
+          This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
+        If This.TopTierLife()
+          This.Prop.TopTierLife := 1
+        If This.TopTierES()
+          This.Prop.TopTierES := 1
+        If This.TopTierMS()
+          This.Prop.TopTierMS := 1
+        If This.TopTierChaosResist()
+          This.Prop.TopTierChaosResist := 1
+        If This.TopTierLightningResist()
+          This.Prop.TopTierLightningResist := 1
+        If This.TopTierFireResist()
+          This.Prop.TopTierFireResist := 1
+        If This.TopTierColdResist()
+          This.Prop.TopTierColdResist := 1
+        If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist)
+          This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0)
+      }
+      BrickedMap() {
+        If (This.HasBrickedAffix()) {
+          If (BrickedWhenCorrupted && This.Prop.Corrupted)
+            Return True
+          Else If (!BrickedWhenCorrupted)
+            Return True
+          Else
+            Return False
+        } Else
+          Return False
+      }
+      HasBrickedAffix() {
+        If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
+        || (This.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
+        || (This.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
+        || (This.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
+        || (This.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
+        || (This.Affix["Cannot Leech Life from Monsters"] && NoLeech)
+        || (This.Affix["-#% maximum Player Resistances"] && MinusMPR)
+        || (This.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
+        || (This.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
+        || (This.Affix["Monsters deal #% extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
+        || (This.Affix["Monsters deal #% extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
+        || (This.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
+        || (This.Affix["Monsters' skills Chain # additional times"] && MSCAT)
+        || (This.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
+        || (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
+        || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)) 
         {
-          If (v = "")
-          Continue
-          ; Flag curse on hit items
-          If (v ~= "^Curse Enemies with .+ on Hit$")
-          {
-            This.Prop.IsCurseOnHit := True
-          }
-          temp++
+          Return True
+        } 
+        Else 
+        {
+          return False
         }
-        This.Prop.AffixCount := temp
-        temp:=""
+      }
+      TopTierChaosResist(){
+        If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
+          Return True
+        Else If (This.Prop.ItemLevel < 44 && This.HasAffix("of Banishment"))
+          Return True
+        Else If (This.Prop.ItemLevel < 56 && This.HasAffix("of Eviction"))
+          Return True
+        Else If (This.Prop.ItemLevel < 65 && This.HasAffix("of Expulsion"))
+          Return True
+        Else If (This.Prop.ItemLevel < 81 && This.HasAffix("of Exile"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Bameth"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierLightningResist(){
+        If (This.Prop.ItemLevel < 13 && This.HasAffix("of the Cloud"))
+          Return True
+        Else If (This.Prop.ItemLevel < 25 && This.HasAffix("of the Squall"))
+          Return True
+        Else If (This.Prop.ItemLevel < 37 && This.HasAffix("of the Storm"))
+          Return True
+        Else If (This.Prop.ItemLevel < 49 && This.HasAffix("of the Thunderhead"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Tempest"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Maelstrom"))
+          Return True
+        Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Lightning"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Ephij"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierFireResist(){
+        If (This.Prop.ItemLevel < 12 && This.HasAffix("of the Whelpling"))
+          Return True
+        Else If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Salamander"))
+          Return True
+        Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Drake"))
+          Return True
+        Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kiln"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Furnace"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Volcano"))
+          Return True
+        Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Magma"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tzteosh"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierColdResist(){
+        If (This.Prop.ItemLevel < 14 && This.HasAffix("of the Inuit"))
+          Return True
+        Else If (This.Prop.ItemLevel < 26 && This.HasAffix("of the Seal"))
+          Return True
+        Else If (This.Prop.ItemLevel < 38 && This.HasAffix("of the Penguin"))
+          Return True
+        Else If (This.Prop.ItemLevel < 50 && This.HasAffix("of the Yeti"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Walrus"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Polar Bear"))
+          Return True
+        Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Ice"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Haast"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierMS(){
+        If (This.Prop.ItemLevel < 15 && This.HasAffix("Runner's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Sprinter's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 40 && This.HasAffix("Stallion's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 55 && This.HasAffix("Gazelle's"))
+          Return True
+        Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Cheetah's"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Hellion's"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierES(){
+        If (This.Prop.ItemLevel < 11 && This.HasAffix("Shining"))
+          Return True
+        Else If (This.Prop.ItemLevel < 17 && This.HasAffix("Glimmering"))
+          Return True
+        Else If (This.Prop.ItemLevel < 23 && This.HasAffix("Glittering"))
+          Return True
+        Else If (This.Prop.ItemLevel < 29 && This.HasAffix("Glowing"))
+          Return True
+        Else If (This.Prop.ItemLevel < 35 && This.HasAffix("Radiating"))
+          Return True
+        Else If (This.Prop.ItemLevel < 43 && This.HasAffix("Pulsing"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 51 || indexOf(This.Prop.ItemClass,["Gloves","Boots"])) && This.HasAffix("Seething"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 60 || indexOf(This.Prop.ItemClass,["Helmets"])) && This.HasAffix("Blazing"))
+          Return True
+        Else If (This.Prop.ItemLevel < 69 && This.HasAffix("Scintillating"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 75 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Incandescent"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 80 || indexOf(This.Prop.ItemClass,["Rings","Body Armours"])) && This.HasAffix("Resplendent"))
+          Return True
+        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Belts","Amulets"])) && This.HasAffix("Dazzling"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierLife(){
+        If (This.Prop.ItemLevel < 5 && This.HasAffix("Hale"))
+          Return True
+        Else If (This.Prop.ItemLevel < 11 && This.HasAffix("Healthy"))
+          Return True
+        Else If (This.Prop.ItemLevel < 18 && This.HasAffix("Sanguine"))
+          Return True
+        Else If (This.Prop.ItemLevel < 24 && This.HasAffix("Stalwart"))
+          Return True
+        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Stout"))
+          Return True
+        Else If (This.Prop.ItemLevel < 36 && This.HasAffix("Robust"))
+          Return True
+        Else If (This.Prop.ItemLevel < 44 && This.HasAffix("Rotund"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 54 || indexOf(This.Prop.ItemClass,["Rings"])) && This.HasAffix("Virile"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 64 || indexOf(This.Prop.ItemClass,["Amulets","Gloves","Boots"])) && This.HasAffix("Athlete's"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 73 || indexOf(This.Prop.ItemClass,["Helmets","Belts","Quivers"])) && This.HasAffix("Fecund"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 81 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Vigorous"))
+          Return True
+        Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Rapturous"))
+          Return True
+        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && This.HasAffix("Prime"))
+          Return True
+        Else
+          Return False
+      }
+      HasAffix(Name){
+        local Type, Obj, k, v
+        For Type, Obj in This.Data.AffixNames {
+          For k, v in Obj {
+            If (v.Name = Name)
+              Return True
+          }
+        }
+        Return False
       }
       MatchBase2Slot(){
         If (This.Prop.ItemClass ~= "Body Armour")
           This.Prop.SlotType := "Body"
         Else If (This.Prop.ItemClass ~= "Helmet")
           This.Prop.SlotType := "Helmet"
-        Else If (This.Prop.ItemClass ~= "Gloves")
+        Else If (This.Prop.ItemClass ~= "Glove")
           This.Prop.SlotType := "Gloves"
-        Else If (This.Prop.ItemClass ~= "Boots")
+        Else If (This.Prop.ItemClass ~= "Boot")
           This.Prop.SlotType := "Boots"
         Else If (This.Prop.ItemClass ~= "Belt")
           This.Prop.SlotType := "Belt"
@@ -815,14 +1097,13 @@
           This.Prop.SlotType := "Ring"
         Else If (This.Prop.ItemClass ~= "(One|Wand|Dagger|Sceptre|Claw)")
           This.Prop.SlotType := "One Hand"
-        Else If (This.Prop.ItemClass ~= "(Two|Bow|Staff)")
+        Else If (This.Prop.ItemClass ~= "(Two|Bow|stave|Staff)")
           This.Prop.SlotType := "Two Hand"
         Else If (This.Prop.ItemClass ~= "Shield")
           This.Prop.SlotType := "Shield"
       }
       MatchChaosRegal(){
-        If (This.Prop.Rarity_Digit = 3 
-        && This.Prop.ItemClass ~= "(One|Two|Bow|Shield|Wand|Staff|Dagger|Sceptre|Claw|Body Armour|Helmet|Gloves|Boots|Belt|Amulet|Ring)")
+        If (This.Prop.Rarity_Digit = 3 && This.Prop.SlotType != "" )
         {
           If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74 && (ChaosRecipeTypePure || ChaosRecipeTypeHybrid))
             This.Prop.ChaosRecipe := 1
@@ -830,12 +1111,11 @@
             This.Prop.RegalRecipe := 1
         }
       }
-      StashChaosRecipe(){
+      StashChaosRecipe(deposit:=true){
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
-        Static HoldDoubleTrinkets := True
-        If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60)
+        If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60 || (!This.Affix.Unidentified && ChaosRecipeEnableUnId))
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
           Return False
@@ -851,18 +1131,15 @@
         {
           If (This.Prop.SlotType = v)
           {
-            If This.Affix.Unidentified
-              CountValue := (RecipeArray.uChaos[v].Count()>=0?RecipeArray.uChaos[v].Count():0) + (RecipeArray.uRegal[v].Count()>=0?RecipeArray.uRegal[v].Count():0)
-            Else
-              CountValue := (RecipeArray.Chaos[v].Count()>=0?RecipeArray.Chaos[v].Count():0) + (RecipeArray.Regal[v].Count()>=0?RecipeArray.Regal[v].Count():0)
+            CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
             If (v = "Ring")
               CountValue := CountValue // 2
-            If HoldDoubleTrinkets && IndexOf(v,["Ring","Amulet","Belt"])
+            If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet","Belt"])
               CountValue := CountValue // 2
 
             If (CountValue < ChaosRecipeMaxHolding)
             {
-              If OnStash 
+              If (OnStash && deposit)
               {
                 If This.Affix.Unidentified
                 {
@@ -880,24 +1157,20 @@
               Return True
             }
             Else
-              Return False
+              Return "000"
           }
         }
         For k, v in WeaponList
         {
           If (This.Prop.SlotType = v)
           {
-            If This.Affix.Unidentified
-            {
-              WeaponCount := ((RecipeArray.uRegal["One Hand"].Count()>=0?RecipeArray.uRegal["One Hand"].Count():0)/2) + (RecipeArray.uRegal["Two Hand"].Count()>=0?RecipeArray.uRegal["Two Hand"].Count():0) + ((RecipeArray.uRegal["Shield"].Count()>=0?RecipeArray.uRegal["Shield"].Count():0)/2)
-              WeaponCount += ((RecipeArray.uChaos["One Hand"].Count()>=0?RecipeArray.uChaos["One Hand"].Count():0)/2) + (RecipeArray.uChaos["Two Hand"].Count()>=0?RecipeArray.uChaos["Two Hand"].Count():0) + ((RecipeArray.uChaos["Shield"].Count()>=0?RecipeArray.uChaos["Shield"].Count():0)/2)
-            } Else {
-              WeaponCount := ((RecipeArray.Regal["One Hand"].Count()>=0?RecipeArray.Regal["One Hand"].Count():0)/2) + (RecipeArray.Regal["Two Hand"].Count()>=0?RecipeArray.Regal["Two Hand"].Count():0) + ((RecipeArray.Regal["Shield"].Count()>=0?RecipeArray.Regal["Shield"].Count():0)/2)
-              WeaponCount += ((RecipeArray.Chaos["One Hand"].Count()>=0?RecipeArray.Chaos["One Hand"].Count():0)/2) + (RecipeArray.Chaos["Two Hand"].Count()>=0?RecipeArray.Chaos["Two Hand"].Count():0) + ((RecipeArray.Chaos["Shield"].Count()>=0?RecipeArray.Chaos["Shield"].Count():0)/2)
-            }
+            WeaponCount := (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
+                         + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+                         + retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
+
             If (WeaponCount < ChaosRecipeMaxHolding)
             {
-              If OnStash
+              If (OnStash && deposit)
               {
                 If This.Affix.Unidentified
                 {
@@ -915,30 +1188,120 @@
               Return True
             }
             Else
-              Return False
+              Return "000"
           }
         }
         Return False
       }
-      MatchAffixes(content:=""){
+      MatchAffixesWithoutDoubleMods(content:=""){
+        ; These lines remove the extra line created by "additional information bubbles"
+        If (content ~= "\n\(")
+          content := RegExReplace(content, "\n\(", "(")
+        content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,]+\)", "")
         ; Do Stuff with info
-        Loop, Parse,% content, `n, `r
+        LastLine := ""
+        DoubleModCounter := 0
+        Loop, Parse,% content, `r`n  ; , `r
         {
-          If (A_LoopField = "")
-            Continue
-          key := This.Standardize(A_LoopField)
-          If (vals := This.MatchLine(A_LoopField))
+          If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
           {
-            If (vals.HasKey("avg"))
+            DoubleModCounter := 0
+            Continue
+          }
+          DoubleModCounter++
+          if(DoubleModCounter == 2){
+            If (vals := This.MatchLine(LastLine))
             {
-              This.Affix[key "_Avg"] := vals.avg
-              This.Affix[key "_Max"] := vals.max
-              This.Affix[key "_Min"] := vals.min
+              If (vals.Count() == 1)
+              {
+                If This.Affix[key]
+                {
+                  This.Affix[key] -= vals[1]
+                  This.AddDoubleModAffix(key,vals[1])
+                }
+                Else{
+                  This.AddDoubleModAffix(key,vals[1])
+                }
+              }
             }
-            Else
+          }
+          line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+          line :=  RegExReplace(line,  " . Unscalable Value" , "")
+          key := This.Standardize(line)
+          If (vals := This.MatchLine(line))
+          {
+            If (vals.Count() >= 2)
             {
+              If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
+                This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+              Else
+                This.Affix[key] := vals[1]
               For k, v in vals
-                This.Affix[ key (k = 1 ? "" : "_value" k) ] := v
+                This.Affix[ key "_value"k ] := v
+            }
+            Else If (vals.Count() == 1)
+            {
+              If (This.Affix[key] && DoubleModCounter != 2)
+              {
+                This.Affix[key] += vals[1]
+              }Else If(DoubleModCounter != 2){
+                This.Affix[key] := vals[1]
+              }Else{
+                This.AddDoubleModAffix(key,vals[1])
+              }
+            }
+          }
+          Else
+            This.Affix[key] := True
+          LastLine := line
+        }
+      }
+
+      AddDoubleModAffix(Key,Value){
+        DoubleKey := "(Double) " . Key
+        If(!This.Affix[DoubleKey])
+        {
+          aux := Value
+          If  (aux != 0)
+            This.Affix[DoubleKey] := aux
+        }Else
+        {
+          aux := This.GetValue("Affix", DoubleKey) + Value
+          If  (aux != 0)
+            This.Affix[DoubleKey] := aux
+        }
+        return
+      }
+      MatchAffixes(content:=""){
+        ; These lines remove the extra line created by "additional information bubbles"
+        If (content ~= "\n\(")
+          content := RegExReplace(content, "\n\(", "(")
+        content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,]+\)", "")
+        ; Do Stuff with info
+        Loop, Parse,% content, `r`n  ; , `r
+        {
+          If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
+            Continue
+          line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+          line :=  RegExReplace(line,  " . Unscalable Value" , "")
+          key := This.Standardize(line)
+          If (vals := This.MatchLine(line))
+          {
+            If (vals.Count() >= 2)
+            {
+              If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
+                This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+              Else
+                This.Affix[key] := vals[1]
+              For k, v in vals
+                This.Affix[ key "_value"k ] := v
+            }
+            Else If (vals.Count() == 1)
+            {
+              If This.Affix[key]
+                This.Affix[key] += vals[1]
+              Else
+                This.Affix[key] := vals[1]
             }
           }
           Else
@@ -946,24 +1309,31 @@
         }
       }
       MatchLine(lineString){
-        If (RegExMatch(lineString, "O)" rxNum " to " rxNum , RxMatch) || RegExMatch(lineString, "O)" rxNum "-" rxNum , RxMatch))
-          Return {"min":RxMatch[1],"max":RxMatch[2],"avg":(Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))}
-        Else If (RegExMatch(lineString, "O)" rxNum " .* " rxNum , RxMatch))
-          Return [ RxMatch[1], RxMatch[2] ]
-        Else If (RegExMatch(lineString, "O)" rxNum , RxMatch))
-          Return [ RxMatch[1] ]
+        If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
+        {
+          ret := {}
+          Loop % RxMatch.Count()
+          {
+            If RxMatch[A_Index] != ""
+              ret.push(RxMatch[A_Index])
+          }
+          Return ret
+        }
         Else
           Return False
       }
       Standardize(str:=""){
-        Return RegExReplace(str, rxNum , "#")
+        str := RegExReplace(str, "\+?"rxNum , "#")
+        ; str := RegExReplace(str, "#\(#-#\)" , "#")
+        str := RegExReplace(str, " (augmented)" , "")
+        Return str
       }
       MatchPseudoAffix(){
         for k, v in This.Affix
         {
           ; Standardize implicit and crafted for Pseudo sums
           ; Implicits can be disable being merge into Pseudos checking YesCLFIgnoreImplicit
-          If ((RegExMatch(k, "`am) \((.*)\)$", RxMatch) || RegExMatch(k, "`am) \((.*)\)_Avg$", RxMatch)) && YesCLFIgnoreImplicit)	
+          If (RegExMatch(k, "`am) \((.*)\)$", RxMatch) && YesCLFIgnoreImplicit)	
           {
             If (RxMatch1 != "crafted")
             {
@@ -971,46 +1341,45 @@
             }
           }
           trimKey := RegExReplace(k," \(.*\)$","")
-          trimKey := RegExReplace(trimKey," \(.*\)_Avg$","_Avg")
           ; Singular Resistances
           If (trimKey = "# to maximum Life")
           {
             This.AddPseudoAffix("(Pseudo) Total to Maximum Life",k)
           }
-          If (trimKey = "# to Cold Resistance")
+          If (trimKey = "#% to Cold Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
           }
-          Else If (trimKey = "# to Fire Resistance")
+          Else If (trimKey = "#% to Fire Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
           }
-          Else If (trimKey = "# to Lightning Resistance")
+          Else If (trimKey = "#% to Lightning Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
           }
-          Else If (trimKey = "# to Chaos Resistance")
+          Else If (trimKey = "#% to Chaos Resistance")
           {
             This.AddPseudoAffix("(Pseudo) Total to Chaos Resistance",k)
           }
           ; Double Resistances
-          Else If (trimKey = "# to Cold and Lightning Resistances")
+          Else If (trimKey = "#% to Cold and Lightning Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
           }
-          Else If (trimKey = "# to Fire and Cold Resistances")
+          Else If (trimKey = "#% to Fire and Cold Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
           }
-          Else If (trimKey = "# to Fire and Lightning Resistances")
+          Else If (trimKey = "#% to Fire and Lightning Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
           }
           ; All Resistances
-          Else If (trimKey = "# to all Elemental Resistances")
+          Else If (trimKey = "#% to all Elemental Resistances")
           {
             This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
             This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
@@ -1053,97 +1422,97 @@
             This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
           }
           ; Singular Armour Affix
-          Else If (trimKey = "# increased Armour")
+          Else If (trimKey = "#% increased Armour")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
           }
-          Else If (trimKey = "# increased Evasion Rating")
+          Else If (trimKey = "#% increased Evasion Rating")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
           }
-          Else If (trimKey = "# increased Energy Shield")
+          Else If (trimKey = "#% increased Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
           }
-          Else If (trimKey = "# to maximum Energy Shield")
+          Else If (trimKey = "#% to maximum Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total to Maximum Energy Shield",k)
           }
           ; Double Armour Affix
-          Else If (trimKey = "# increased Evasion and Energy Shield")
+          Else If (trimKey = "#% increased Evasion and Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
             This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
           }
-          Else If (trimKey = "# increased Armour and Energy Shield")
+          Else If (trimKey = "#% increased Armour and Energy Shield")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
             This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k) 
           }
-          Else If (trimKey = "# increased Armour and Evasion")
+          Else If (trimKey = "#% increased Armour and Evasion")
           {
             This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
             This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
           }
           ; Damage Mods
-          Else If (trimKey = "Adds # to # Physical Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Physical Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Physical Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Physical Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Cold Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Cold Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Cold Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Cold Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Fire Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Fire Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Fire Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Fire Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Lightning Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Lightning Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Lightning Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Lightning Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells",k)
           }
-          Else If (trimKey = "Adds # to # Chaos Damage to Attacks_Avg")
+          Else If (trimKey = "Adds # to # Chaos Damage to Attacks")
           {
-            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks",k)
           }
-          Else If (trimKey = "Adds # to # Chaos Damage to Spells_Avg")
+          Else If (trimKey = "Adds # to # Chaos Damage to Spells")
           {
-            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells_Avg",k)
+            This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells",k)
           }
           ; Spell Pseudo
-          Else If (trimKey = "# increased Lightning Damage")
+          Else If (trimKey = "#% increased Lightning Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
           }
-          Else If (trimKey = "# increased Cold Damage")
+          Else If (trimKey = "#% increased Cold Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
           }
-          Else If (trimKey = "# increased Fire Damage")
+          Else If (trimKey = "#% increased Fire Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
           }
-          Else If (trimKey = "# increased Chaos Damage")
+          Else If (trimKey = "#% increased Chaos Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
           }
-          Else If (trimKey = "# increased Spell Damage")
+          Else If (trimKey = "#% increased Spell Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
             This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
@@ -1151,7 +1520,7 @@
             This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
             This.AddPseudoAffix("(Pseudo) Increased Spell Damage",k)
           }
-          Else If (trimKey = "# increased Elemental Damage")
+          Else If (trimKey = "#% increased Elemental Damage")
           {
             This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
             This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
@@ -1194,13 +1563,13 @@
         }
         aux:=""
         ; Total Flat Elemental Spell Damage
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Cold Damage to Spells_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Fire Damage to Spells_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells_Avg","(Pseudo) Add Lightning Damage to Spells_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells","(Pseudo) Add Cold Damage to Spells","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells","(Pseudo) Add Fire Damage to Spells","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Spells","(Pseudo) Add Lightning Damage to Spells","Pseudo")
         ; Total Flat Elemental Atack Dmg
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Cold Damage to Attacks_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Fire Damage to Attacks_Avg","Pseudo")
-        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks_Avg","(Pseudo) Add Lightning Damage to Attacks_Avg","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks","(Pseudo) Add Cold Damage to Attacks","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks","(Pseudo) Add Fire Damage to Attacks","Pseudo")
+        This.AddPseudoAffix("(Pseudo) Total Elemental Damage to Attacks","(Pseudo) Add Lightning Damage to Attacks","Pseudo")
         ; Merge
         This.MergePseudoInAffixs()
       }
@@ -1215,7 +1584,8 @@
         }
       }
       AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
-        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue(StandardType, StandardKey)
+        DoubleKey := "(Double) " . StandardKey
+        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue("Affix", DoubleKey) + This.GetValue(StandardType, StandardKey)
         If  (aux != 0)
           This.Pseudo[PseudoKey] := aux
         return
@@ -1252,31 +1622,18 @@
             {
               This.Prop.Item_Width := v["inventory_width"]
               This.Prop.Item_Height := v["inventory_height"]
-              This.Prop.ItemClass := v["item_class"]
               This.Prop.ItemBase := v["name"]
               This.Prop.DropLevel := v["drop_level"]
 
-              If InStr(This.Prop.ItemClass, "Ring")
+              If InStr(This.Prop.ItemClass, "Rings")
                 This.Prop.Ring := True
-              If InStr(This.Prop.ItemClass, "Amulet")
+              If InStr(This.Prop.ItemClass, "Amulets")
                 This.Prop.Amulet := True
-              If InStr(This.Prop.ItemClass, "Belt")
+              If InStr(This.Prop.ItemClass, "Belts")
                 This.Prop.Belt := True
-              If (This.Prop.ItemClass = "Support Skill Gem")
+              If (This.Prop.ItemClass = "Support Skill Gems")
                 This.Prop.Support := True
               Break
-            }
-          }
-        }
-        Else If (This.Prop.RarityMagic)
-        {
-          For k, v in Ninja.Map
-          {
-            If (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])
-            {
-              This.Prop.ItemBase := v["name"]
-              This.Prop.Item_Width := 1
-              This.Prop.Item_Height := 1
             }
           }
         }
@@ -1331,7 +1688,7 @@
           If This.MatchNinjaDB("Prophecy")
             Return
         }
-        If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment|| This.Prop.ItemName ~= "Simulacrum")
+        If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment|| This.Prop.ItemName ~= "Simulacrum")
         {
           If This.MatchNinjaDB("Fragment")
             Return
@@ -1343,7 +1700,7 @@
           If This.MatchNinjaDB("Beast")
             Return
         }
-        If (This.Prop.ItemClass ~= "Helmet" && This.Data.Blocks.HasKey("Enchant"))
+        If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.HasKey("Enchant"))
         {
           For k, v in Ninja.HelmetEnchant
           {
@@ -1360,17 +1717,17 @@
         }
         If (This.Prop.RarityUnique)
         {
-          If (This.Prop.ItemClass ~= "(Belt|Amulet|Ring)")
+          If (This.Prop.ItemClass ~= "(Belts|Amulets|Rings)")
           {
             If This.MatchNinjaDB("UniqueAccessory")
               Return
           }
-          Else If (This.Prop.ItemClass ~= "(Body Armour|Gloves|Boots|Helmet|Shield|Quiver)")
+          Else If (This.Prop.ItemClass ~= "(Body Armours|Gloves|Boots|Helmets|Shields|Quivers)")
           {
             If This.MatchNinjaDB("UniqueArmour")
               Return
           }
-          Else If (This.Prop.ItemClass ~= "Flask")
+          Else If (This.Prop.ItemClass ~= "Flasks")
           {
             If This.MatchNinjaDB("UniqueFlask")
               Return
@@ -1438,7 +1795,7 @@
         Return False
       }
       DisplayPSA(){
-        propText:=statText:=affixText:=""
+        propText:=statText:=affixText:=modifierText:=""
         For key, value in This.Prop
         {
           If( RegExMatch(key, "^Required")
@@ -1450,13 +1807,13 @@
           || RegExMatch(key, "^Weapon"))
           {
             If indexOf(key,this.MatchedCLF)
-              statText .= "CLF ⭐ "
+              statText .= "CLF⭐"
             statText .= key . ":  " . value . "`n"
           }
           Else
           {
             If indexOf(key,this.MatchedCLF)
-              propText .= "CLF ⭐ "
+              propText .= "CLF⭐"
             propText .= key . ":  " . value . "`n"
           }
         }
@@ -1467,13 +1824,24 @@
 
         For key, value in This.Affix
         {
-          If (value != 0 && value != "" && value != False) {
-            If indexOf(key,this.MatchedCLF)
-              affixText .= "CLF ⭐ "
-            affixText .= key . ":  " . value . "`n"
+          If(!This.Modifier[key]){
+             If (value != 0 && value != "" && value != False){
+              If indexOf(key,this.MatchedCLF){
+                affixText .= "CLF⭐"
+              }
+              affixText .= key . ":  " . value . "`n"
+             }
+          }Else{
+            If indexOf(key,this.MatchedCLF){
+              modifierText .= "CLF⭐"
+            }
+            modifierText .= key . ":  " . value . "`n"
           }
         }
         GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
+
+        GuiControl, ItemInfo:, ItemInfoModifierText, %modifierText%
+
       }
       GraphNinjaPrices(){
         If This.Data.HasKey("Ninja") || This.Data.HasKey("HelmNinja") || This.Data.HasKey("BaseNinja")
@@ -2004,9 +2372,9 @@
         This.GraphNinjaPrices()
       }
       MatchStashManagement(){
-        If (This.Prop.RarityCurrency&&This.Prop.SpecialType="")
+        If (StashTabYesCurrency && This.Prop.RarityCurrency&&(This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
         {
-          If StashTabYesCurrency
+          If StashTabYesCurrency > 1
             sendstash := -2
           Else
             sendstash := StashTabCurrency
@@ -2023,6 +2391,8 @@
           Else
             sendstash := StashTabBlight
         }
+        Else If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
+            sendstash := StashTabBrickedMaps
         Else If (This.Prop.IsMap && StashTabYesMap)
         {
           If StashTabYesMap > 1
@@ -2044,7 +2414,7 @@
           Else
             sendstash := StashTabDelirium
         }
-        Else If (This.Prop.TimelessSplinter || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
+        Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
         {
           If StashTabYesFragment > 1 
             sendstash := -2
@@ -2072,14 +2442,29 @@
           Else
             sendstash := StashTabDelve
         }
-        Else If (This.Prop.RarityUnique&&This.Prop.IsOrgan="")
+        Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
+        &&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.UniquePercentage >= StashTabUniquePercentage) ) )
         {
-          If (StashTabYesCollection)
-          sendstash := StashTabCollection
+          If (StashTabYesUnique = 2)
+            Return -2
+          Else if (StashTabYesUnique)
+          sendstash := StashTabUnique
           Else If (StashTabYesUniqueRing&&This.Prop.Ring)
           sendstash := StashTabUniqueRing
           Else If (StashTabYesUniqueDump)
           sendstash := StashTabUniqueDump
+        }
+        Else If ( ((StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
+        && (StashTabYesUniquePercentage && This.Prop.UniquePercentage < StashTabUniquePercentage)  )
+        {
+          If (StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring)
+          sendstash := StashTabUniqueRing
+          Else If (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)
+          sendstash := StashTabUniqueDump
+        }
+        Else If (This.Prop.MiscMapItem&&StashTabYesMiscMapItems)
+        {
+          sendstash := StashTabMiscMapItems
         }
         Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality&&!This.Prop.RarityUnique)
           sendstash := StashTabFlaskQuality
@@ -2104,27 +2489,29 @@
           sendstash := StashTabVeiled
         Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
           sendstash := StashTabClusterJewel
+        Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
+          sendstash := StashTabHeistGear
         Else If (StashTabYesCrafting 
-          && ((YesStashT1 && This.Prop.CraftingBase = "T1") 
-            || (YesStashT2 && This.Prop.CraftingBase = "T2") 
-            || (YesStashT3 && This.Prop.CraftingBase = "T3")
-            || (YesStashT4 && This.Prop.CraftingBase = "T4"))
-          && ((YesStashCraftingNormal && This.Prop.RarityNormal)
-            || (YesStashCraftingMagic && This.Prop.RarityMagic)
-            || (YesStashCraftingRare && This.Prop.RarityRare))
-          && (!YesStashCraftingIlvl 
-            || (YesStashCraftingIlvl && This.Prop.ItemLevel >= YesStashCraftingIlvlMin) ) 
-          && (!This.Prop.Corrupted)  )
+          && ((YesStashATLAS && This.Prop.CraftingBase = "Atlas Base" && ((This.Prop.ItemLevel >= YesStashATLASCraftingIlvlMin && YesStashATLASCraftingIlvl) || !YesStashATLASCraftingIlvl)) 
+            || (YesStashSTR && This.Prop.CraftingBase = "STR Base" && ((This.Prop.ItemLevel >= YesStashSTRCraftingIlvlMin && YesStashSTRCraftingIlvl) || !YesStashSTRCraftingIlvl)) 
+            || (YesStashDEX && This.Prop.CraftingBase = "DEX Base" && ((This.Prop.ItemLevel >= YesStashDEXCraftingIlvlMin && YesStashDEXCraftingIlvl) || !YesStashDEXCraftingIlvl)) 
+            || (YesStashINT && This.Prop.CraftingBase = "INT Base" && ((This.Prop.ItemLevel >= YesStashINTCraftingIlvlMin && YesStashINTCraftingIlvl) || !YesStashINTCraftingIlvl)) 
+            || (YesStashHYBRID && This.Prop.CraftingBase = "Hybrid Base" && ((This.Prop.ItemLevel >= YesStashHYBRIDCraftingIlvlMin && YesStashHYBRIDCraftingIlvl) || !YesStashHYBRIDCraftingIlvl)) 
+            || (YesStashJ && This.Prop.CraftingBase = "Jewel Base" && ((This.Prop.ItemLevel >= YesStashJCraftingIlvlMin && YesStashJCraftingIlvl) || !YesStashJCraftingIlvl)) 
+            || (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base" && ((This.Prop.ItemLevel >= YesStashAJCraftingIlvlMin && YesStashAJCraftingIlvl) || !YesStashAJCraftingIlvl))
+            || (YesStashJewellery && This.Prop.CraftingBase = "Jewellery Base" && ((This.Prop.ItemLevel >= YesStashJewelleryCraftingIlvlMin && YesStashJewelleryCraftingIlvl) || !YesStashJewelleryCraftingIlvl)) )
+          && (!This.Prop.Corrupted))
           sendstash := StashTabCrafting
-        Else If (StashTabYesPredictive && PPServerStatus && (PredictPrice() >= StashTabYesPredictive_Price) )
+        Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictPrice >= StashTabYesPredictive_Price) || (This.Prop.PredictPrice && OnRitual)) ){
           sendstash := StashTabPredictive
+        }
         Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
         {
-          If ChaosRecipeStashMethodDump
+          If (ChaosRecipeStashMethodDump)
             sendstash := StashTabDump
-          Else If ChaosRecipeStashMethodTab
+          Else If (ChaosRecipeStashMethodTab)
             sendstash := ChaosRecipeStashTab
-          Else If ChaosRecipeStashMethodSort
+          Else If (ChaosRecipeStashMethodSort)
           {
             If This.Prop.SlotType = "Body"
               sendstash := ChaosRecipeStashTabArmour
@@ -2139,9 +2526,8 @@
         }
         Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
           || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
-          ; && !This.Prop.SpecialType
           sendstash := StashTabDump
-        Else If (This.Prop.SpecialType)
+        Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
           Return -1
         Else
           Return False
@@ -2318,52 +2704,166 @@
         This.MatchedCLF := False
         Return False
       }
-      FilterDoubleMods(){
-        If (This.Affix["Rare Monsters each have a Nemesis Mod"] && This.Affix["# more Rare Monsters"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters' Action Speed cannot be modified to below base value"] && This.Affix["Monsters cannot be Taunted"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters cannot be Stunned"] && This.Affix["# more Monster Life"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["# increased Monster Movement Speed"] && This.Affix["# increased Monster Attack Speed"] && This.Affix["# increased Monster Cast Speed"])
-          This.Prop.AffixCount -= 2
-        If (This.Affix["Unique Boss deals # increased Damage"] && This.Affix["Unique Boss has # increased Attack and Cast Speed"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Unique Boss has # increased Life"] && This.Affix["Unique Boss has # increased Area of Effect"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["# Monster Chaos Resistance"] && This.Affix["# Monster Elemental Resistance"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Magic Monster Packs each have a Bloodline Mod"] && This.Affix["# more Magic Monsters"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Monsters have # increased Critical Strike Chance"] && This.Affix["# to Monster Critical Strike Multiplier"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Players have # reduced Chance to Block"] && This.Affix["Players have # less Armour"])
-          This.Prop.AffixCount -= 1
-        If (This.Affix["Player chance to Dodge is Unlucky"] && This.Affix["Monsters have # increased Accuracy Rating"])
-          This.Prop.AffixCount -= 1
-        Return
+      inRange(key,obj,base){
+        If (obj.ranges.Count() = 1) {
+          If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
+          || (base[key] <= obj.ranges.1.1 && base[key] >= obj.ranges.1.2))
+            Return False
+        } Else If (obj.ranges.Count() >= 2) {
+          for k, v in obj.ranges
+          {
+            If !((base[key "_Value" k] >= v.1 && base[key "_Value" k] <= v.2)
+            || (base[key "_Value" k] <= v.1 && base[key "_Value" k] >= v.2))
+              Return False
+          }
+        } Else If (obj.values.Count() = 1) {
+          If !(base[key] == obj.values.1 )
+            Return False
+        } Else If (obj.values.Count() >= 2) {
+          for k, v in obj.values
+            If !(base[key "_Value" k] == v )
+              Return False
+        }
+        Return True
       }
       MatchCraftingBases(){
         If(HasVal(craftingBasesT1,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T1"
+          This.Prop.CraftingBase := "Atlas Base"
         }
         Else If(HasVal(craftingBasesT2,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T2"
+          This.Prop.CraftingBase := "STR Base"
         }
         Else If(HasVal(craftingBasesT3,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T3"
+          This.Prop.CraftingBase := "DEX Base"
         }
         Else If(HasVal(craftingBasesT4,This.Prop.ItemBase))
         {
-          This.Prop.CraftingBase := "T4"
+          This.Prop.CraftingBase := "INT Base"
         }
+        Else If(HasVal(craftingBasesT5,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Hybrid Base"
+        }
+        Else If(HasVal(craftingBasesT6,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Jewel Base"
+        }
+        Else If(HasVal(craftingBasesT7,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Abyss Jewel Base"
+        }
+        Else If(HasVal(craftingBasesT8,This.Prop.ItemBase))
+        {
+          This.Prop.CraftingBase := "Jewellery Base"
+        }
+      }
+      ApproximatePerfection(){
+        For ku, unique in WR.data.Perfect
+        {
+          If (match := This.ValidateUniqueModKeys(unique,ku))
+          {
+            tally := 0
+            For k, value in This.Data.Percentage
+            {
+              tally += value
+            }
+            This.Prop.UniquePercentage := This.Data.Percentage.Count()?(Round((tally / This.Data.Percentage.Count()),2)) : 100
+            If (match = "mismatch") ; Item is a mismatch
+              This.Prop.UniquePercentageError := "Stat/Range mismatch"
+            else If (match = "nodata") ; Item has no explicit data
+              This.Prop.UniquePercentageError := "Item DB has no explicits"
+            If unique.pricePerfect
+            {
+              perccalc := This.percval(This.Prop.UniquePercentage,[unique.mean,unique.pricePerfect]) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100)
+              This.Prop.UniquePerfectValue := perccalc >= unique.mean ? perccalc : unique.mean
+              This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
+              This.Prop.UniquePerfectMaxVal := unique.pricePerfect
+            } Else {
+              This.Prop.UniquePerfectValue := 0
+              This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
+              This.Prop.UniquePerfectMaxVal := 0
+            }
+            Return
+          }
+        }
+        If !match
+        Log("Unique Mod Database Missing","`t"This.Prop.ItemName,"`t"This.Prop.ItemBase,"`nItem.Affix : "JSON_Beautify(This.Affix,,1))
+        , This.Prop.UniquePercentageError := "Item not in DB"
+
+      }
+      ValidateUniqueModKeys(unique,key){
+        If (This.Prop.ItemName = unique.name)
+        {
+          UniqueMatchingKey := True
+          UniqueMisMatchMods := ""
+          This.Data.Percentage := {}
+          If IsObject(unique.explicits) 
+          {
+            for k, mod in unique.explicits
+            {
+              If !This.Affix[mod.key]
+                UniqueMisMatchMods .= "`n  [ " mod.key " ]"
+              Else If !mod.isvar
+                continue
+                ; This.Data.Percentage[mod.key] := ""
+              Else If (mod.ranges.Count() == 1 && mod.text ~= "\d[ a-zA-Z%]*\(\d+-\d+\)")
+              {
+                If (This.Affix[mod.key "_Value2"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.1.2)
+                || (This.Affix[mod.key "_Value2"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.1.2)
+                {
+                  This.Data.Percentage[mod.key] := This.perc(This.Affix[mod.key "_Value2"],mod.ranges.1)
+                }
+                Else
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range1"
+              }
+              Else If (mod.ranges.Count() == 1)
+              {
+                If (This.Affix[mod.key] >= mod.ranges.1.1 && This.Affix[mod.key] <= mod.ranges.1.2)
+                || (This.Affix[mod.key] <= mod.ranges.1.1 && This.Affix[mod.key] >= mod.ranges.1.2)
+                {
+                  This.Data.Percentage[mod.key] := This.perc(This.Affix[mod.key], mod.ranges.1)
+                }
+                Else
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range2"
+              }
+              Else If (mod.ranges.Count() == 2)
+              {
+                If ((This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2))
+                || ((This.Affix[mod.key "_Value1"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] >= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] <= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.2.2))
+                || ((This.Affix[mod.key "_Value1"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] >= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2))
+                || ((This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
+                  && (This.Affix[mod.key "_Value2"] <= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.2.2))
+                {
+                  This.Data.Percentage[mod.key] := ( This.perc(This.Affix[mod.key "_Value1"], mod.ranges.1) + This.perc(This.Affix[mod.key "_Value2"], mod.ranges.2) ) / 2
+                }
+                Else
+                  UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range3"
+              }
+            }
+          } Else
+            Return "nodata"
+          If !UniqueMisMatchMods
+            Return key
+          Else
+            Log("Unique Mod Database Mismatch","`t"This.Prop.ItemName,"`t"This.Prop.ItemBase,"`nKeys which are mismatched:"UniqueMisMatchMods,"`nItem.Affix : "JSON_Beautify(This.Affix,,1),"`nWR.data.Uniques["key "] : "JSON_Beautify(unique,,2))
+          Return "mismatch"
+        } Else 
+          Return False
+      }
+      perc(value,range){
+        Return abs(((value - range.1) * 100) / (range.2 - range.1))
+      }
+      percval(perc,range){
+        Return ((perc * (range.2 - range.1) / 100) + range.1)
       }
     }
   ; ItemBuild - Create Prop and Affix Values in WR format from GGG Stash API
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     class ItemBuild extends ItemScan
     {
       __New(Object,quad){
@@ -2406,7 +2906,7 @@
         }
 
         This.Prop.ItemName := (Object.name!=""?Object.name:Object.typeLine)
-        This.Prop.ItemBase := StrReplace(Object.typeLine, "Superior ", "")
+        This.Prop.ItemBase := Object.baseType
         This.MatchBaseType()
         This.Prop.ItemLevel := Object.ilvl
         This.Prop.Item_Width := Object.w
@@ -2426,17 +2926,16 @@
         This.Prop.Stack_Max := Object.maxStackSize
 
         This.MatchAffixes(This.Data.Blocks.Affix)
-        This.MatchChaosRegal()
         This.MatchBase2Slot()
+        This.MatchChaosRegal()
       }
       MatchBaseType(){
         For k, v in Bases
         {
-          If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
+          If (v["name"] = This.Prop.ItemBase)
           {
-            This.Prop.ItemClass := v["item_class"]
-            This.Prop.ItemBase := v["name"]
             This.Prop.DropLevel := v["drop_level"]
+            This.Prop.ItemClass := v["item_class"]
 
             If InStr(This.Prop.ItemClass, "Ring")
               This.Prop.Ring := True
@@ -2451,6 +2950,1521 @@
         }
       }
     }
+  ; ClipItem - Capture Clip at Coord
+  ClipItem(x, y){
+      BlockInput, MouseMove
+      Clipboard := ""
+      Item := ""
+      Sleep, 45+(ClipLatency*15)
+      MouseMove %x%, %y%
+      Sleep, 45+(ClipLatency>0?ClipLatency*15:0)
+      Send ^!c
+      ClipWait, 0.1
+      If ErrorLevel
+      {
+        Sleep, 15
+        Send ^!c
+        ClipWait, 0.1
+      }
+      Clip_Contents := Clipboard
+      Item := new ItemScan
+      BlockInput, MouseMoveOff
+    Return
+    }
+  addToBlacklist(C, R){
+    Loop % Item.Prop.Item_Height
+    {
+      addNum := A_Index - 1
+      addR := R + addNum
+      addC := C + 1
+      If !IsObject(BlackList[C])
+        BlackList[C] := []
+      BlackList[C][addR] := True
+      If Item.Prop.Item_Width = 2
+      {
+        If !IsObject(BlackList[addC])
+          BlackList[addC] := []
+        BlackList[addC][addR] := True
+      }
+    }
+  }
+  ; WR_Menu - New menu handling method
+  WR_Menu(Function:="",Var*)
+  {
+    Global
+    Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+    , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
+
+    ; Global InventoryGuiTabs, CraftingGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
+    ;   , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
+    ;   , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
+    ;   , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
+    ;   , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
+    ;   , WR_Btn_FillMetamorph_Area, MapEdit, MapEditText, EssenceEdit ,EssenceEditText, DelveEdit, DelveEditText, CurrencyEdit, CurrencyEditText, MetamorphEdit, MetamorphEditText, FragmentEdit, FragmentEditText, DivinationEdit, DivinationEditText, DeliriumEdit, DeliriumEditText, BlightEdit, BlightEditText, UniqueEdit, UniqueEditText
+    ;   , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
+    ;   , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
+    ;   , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
+    ;   , debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr, debuffCurseTempChainStr, debuffCurseCondStr, debuffCurseFlamStr, debuffCurseFrostStr, debuffCurseWarMarkStr
+    ;   , debuffShockStr, debuffBleedStr, debuffFreezeStr, debuffIgniteStr, debuffPoisonStr
+    If (Function = "Inventory")
+    {
+      Gui, 1: Submit
+      CheckGamestates:= False
+      If !Built_Inventory
+      {
+        Built_Inventory := 1
+        Gui, Inventory: New
+        Gui, Inventory: +AlwaysOnTop -MinimizeBox
+        ;Save Setting
+        Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|Crafting Bases
+
+      Gui, Inventory: Tab, Options
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,       Section    w170 h235    xm   ym+25,         Inventory Sort/CLF Options
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesRitual             Checked%YesRitual%             y+8    , Scan Ritual?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
+        Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
+        Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
+        Gui, Inventory: Font
+
+        Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
+        Gui, Inventory: Add, Text,                     x+12,             Y-Pos
+
+        Gui, Inventory: Add, Text,                     xs+21  y+5,         Portal Scroll:
+        Gui, Inventory: Add, Edit,       vPortalScrollX         x+8        y+-15   w34  h17,   %PortalScrollX%
+        Gui, Inventory: Add, Edit,       vPortalScrollY         x+8                w34  h17,   %PortalScrollY%  
+        Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
+        Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
+        Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
+        Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
+        Gui, Inventory: Add, Edit,       vGrabCurrencyX        x+8        y+-15   w34  h17,   %GrabCurrencyX%
+        Gui, Inventory: Add, Edit,       vGrabCurrencyY        x+8                w34  h17,   %GrabCurrencyY%
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
+        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
+        Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
+        Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
+        Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
+        Gui, Inventory: Add, Text,                   x+33             h152 0x11
+        Gui, Inventory: Add, Text,                   x+33             h152 0x11
+
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
+        Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
+        Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
+        Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
+        Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
+        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
+        GuiControl,Inventory: ChooseString, YesPredictivePrice, %YesPredictivePrice%
+        
+        Gui, Inventory: Font, s18
+        Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
+        Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
+        Gui, Inventory: Font,
+        ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
+        PPx:=Scale_PositionFromDPI(PPx), PPy:=Scale_PositionFromDPI(PPy)
+        Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
+
+        Gui, Inventory: Add, Text, xs+5 y+11 , Price Ritual Rares?
+        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesRitualPrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
+        GuiControl,Inventory: ChooseString, YesRitualPrice, %YesRitualPrice%
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
+        AutomationList := "Search Stash|Search Vendor"
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
+        Gui, Inventory: Add, Text, y+8, First Automation Action
+        Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 ,%AutomationList%
+        GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
+        Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableLockerAutomation Checked%YesEnableLockerAutomation%   xs+5    y+8  , Enable Heist Automation ?
+        Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra vYesEnableAutoSellConfirmationSafe Checked%YesEnableAutoSellConfirmationSafe%       y+8  , Enable Safe Auto Confirm?
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h70    section   xm+370   y+15,         Metamorph Options
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesFillMetamorph Checked%YesFillMetamorph%       xs+5 ys+18      , Auto fill metamorph?
+        Gui, Inventory: Add, Button, gWR_Update  vWR_Btn_FillMetamorph_Menu y+8  w170 center    , Adjust Metamorph Panel
+
+      Gui, Inventory: Tab, Stash Tabs
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        ;You can test with Stash Tab management as a groupbox, but i dont like it
+        ;Gui, Inventory: Add, GroupBox,       Section    w352 h437    xm   ym+25,Stash Tab Management
+        Gui, Inventory: Add, Text,       Section    xm+5   ym+25,Stash Tab Management
+        Gui, Inventory: Font,
+
+        ; Prophecy
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Prophecy
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp+4, Enable
+
+        ; Veiled
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Veiled
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesVeiled Checked%StashTabYesVeiled% x+5 yp+4, Enable
+
+        ; Cluster
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Cluster Jewel
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
+
+        ; Heist Gear
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Heist Gear
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabHeistGear x+0 yp hp ,  %StashTabHeistGear%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesHeistGear  Checked%StashTabYesHeistGear% x+5 yp+4, Enable
+
+        ; Misc Map Items
+  
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Misc Map Items
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabMiscMapItems x+0 yp hp ,  %StashTabMiscMapItems%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesMiscMapItems  Checked%StashTabYesMiscMapItems% x+5 yp+4, Enable
+        
+        ; Second column Gui - GEMS
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Quality Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99  x+0 yp hp gSaveStashTabs vStashTabGemQuality , %StashTabGemQuality%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabGemVaal , %StashTabGemVaal%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabGemSupport , %StashTabGemSupport%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Gem
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabGem , %StashTabGem%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , 5/6 linked
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabLinked , %StashTabLinked%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , 'Bricked' Maps
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabBrickedMaps , %StashTabBrickedMaps%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesBrickedMaps Checked%StashTabYesBrickedMaps% x+5 yp+4, Enable
+
+        ; Third column Gui - Rare itens
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Crafting
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99  x+0 yp hp gSaveStashTabs vStashTabCrafting , %StashTabCrafting%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
+        
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Dump
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabDump x+0 yp hp ,  %StashTabDump%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabPredictive , %StashTabPredictive%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Ninja Priced
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabNinjaPrice , %StashTabNinjaPrice%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabInfluencedItem , %StashTabInfluencedItem%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabFlaskQuality , %StashTabFlaskQuality%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h60    section    x+15 ys,         Dump Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweler/Chroma Items
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+        Gui, Inventory: Add, Edit, x+5 yp-3 w40
+        Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Ninja Priced Tab
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
+        Gui, Inventory: Add, Edit, x+5 yp-3 w40
+        Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w180 h140    section    xs   y+10,         Map/Contract Options
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
+        GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
+        Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps x+3 yp , 0|1|2|3|4|5|6|7|8|9|10|11|12
+        GuiControl,Inventory: ChooseString, YesSkipMaps, %YesSkipMaps%
+        Gui, Inventory: Add, Text, yp+3 x+5 , Column to Skip
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_normal Checked%YesSkipMaps_normal%     xs+5  y+8    , Skip Normal?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_magic Checked%YesSkipMaps_magic%     x+0 yp   , Skip Magic?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_unique Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
+        Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
+        Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
+        Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
+
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vBrickedWhenCorrupted Checked%BrickedWhenCorrupted% xs+5 y+8, Only consider a map to be`rbricked if it's corrupted
+
+
+        ; Affinity
+      Gui, Inventory: Tab, Affinity
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, Text,       Section    xm+5   ym+25, Affinities Management
+        Gui, Inventory: Font,
+
+        ; Blight
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs ys+18 , Blight
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vBlightEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs  vStashTabBlight, %StashTabBlight%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesBlight x+5 yp-5 w90 h20, %StashTabYesBlight%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vBlightEditText, Disable Type
+
+        ; Delirium
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Delirium
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vDeliriumEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs  vStashTabDelirium, %StashTabDelirium%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesDelirium x+5 yp-5 w90 h20, %StashTabYesDelirium%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDeliriumEditText, Disable Type
+
+        ; Divination Card
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Divination Card
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vDivinationEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabDivination x+0 yp hp ,  %StashTabDivination%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesDivination x+5 yp-5 w90 h20, %StashTabYesDivination%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDivinationEditText, Disable Type
+
+        ; Fragments
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Fragment
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vFragmentEdit w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabFragment x+0 yp hp ,  %StashTabFragment%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesFragment x+5 yp-5 w90 h20, %StashTabYesFragment%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vFragmentEditText, Disable Type
+
+        ; Metamorph
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Metamorph
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vMetamorphEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabMetamorph x+0 yp hp , %StashTabMetamorph%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesMetamorph x+5 yp-5 w90 h20, %StashTabYesMetamorph%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMetamorphEditText, Disable Type
+
+        ; Currency
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w145 h50 x+15 ys+18 , Currency
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 vCurrencyEdit  xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabCurrency yp hp , %StashTabCurrency%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesCurrency x+5 yp-5 w90 h20, %StashTabYesCurrency%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vCurrencyEditText, Disable Type
+
+        ; Delve
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Delve
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vDelveEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs  vStashTabDelve , %StashTabDelve%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesDelve x+5 yp-5 w90 h20, %StashTabYesDelve%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDelveEditText, Disable Type
+
+        ; Essence
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Essence
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vEssenceEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabEssence x+0 yp hp ,  %StashTabEssence%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesEssence x+5 yp-5 w90 h20, %StashTabYesEssence%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vEssenceEditText, Disable Type
+
+        ; Map
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Map
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vMapEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabMap x+0 yp hp ,  %StashTabMap%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesMap x+5 yp-5 w90 h20, %StashTabYesMap%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMapEditText, Disable Type
+        
+        ; Unique
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Unique
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number vUniqueEdit  w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabUnique x+0 yp hp ,  %StashTabUnique%
+        Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesUnique x+5 yp-5 w90 h20, %StashTabYesUnique%
+        Gui, Inventory: Add, Text,  xp yp+22 w90 center vUniqueEditText, Disable Type
+
+        ;Run GreyOut
+        GreyOutAffinity()
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w200 h100 x+50 ys , Intructions:
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - You can enable Currency Affinity 
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, and set the stash for other functions
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - CLF will take priority over Affinity 
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Use slider to choose logic type
+        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Enable overflow Unique tabs
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, Section w200 h210 xs yp+30 , Unique Affinity Logic
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesUniquePercentage Checked%StashTabYesUniquePercentage% xs+15 yp+25, Only stash above `% Affixes
+        Gui, Inventory: Add, Edit, Number w40 xp yp+17
+        Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabUniquePercentage , %StashTabUniquePercentage%
+        Gui, Inventory: Add, Text, x+3 yp+3 , Minimum Affix Percentage
+        ; Unique Ring
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w180 h65 xs+10 yp+25 , Unique Ring
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+25
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabUniqueRing , %StashTabUniqueRing%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp-2, Stash Overflow
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesUniqueRingAll Checked%StashTabYesUniqueRingAll% xp y+4, Including Junk
+
+        ; Unique Dump
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w180 h65 xs+10 yp+25 , Unique Dump
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+25
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabUniqueDump , %StashTabUniqueDump%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp-2, Stash Overflow
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesUniqueDumpAll Checked%StashTabYesUniqueDumpAll% xp y+4, Including Junk
+
+
+      Gui, Inventory: Tab, Chaos Recipe
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,Section w170 h155 xm+5 ym+25, Chaos Recipe Options
+        Gui, Inventory: Font,
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+15 yp+20, Enable Chaos Recipe Logic
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
+          Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range70-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
+          Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
+        Gui, Inventory: Font,
+          Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
+          Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl
+          Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeRegal Checked%ChaosRecipeTypeRegal%  , Pure Regal 75+ ilvl
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,Section w285 h90 xs+190 ym+25, Chaos Recipe Stashing
+        Gui, Inventory: Font,
+          Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodDump Checked%ChaosRecipeStashMethodDump%, Use Dump Tab
+          Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodTab Checked%ChaosRecipeStashMethodTab%, Use Chaos Recipe Tab
+          Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodSort Checked%ChaosRecipeStashMethodSort%, Use Seperate Tab for Each Part
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,Section w285 h50 xs y+25, Chaos Recipe Tab
+          Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTab , %ChaosRecipeStashTab%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for ALL PARTS
+          Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,Section w285 h225 xs y+25, Chaos Recipe Part Tabs
+        Gui, Inventory: Font,
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabWeaponUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Weapons
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabArmourUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Armours
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabGlovesUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Gloves
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBootsUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabBoots , %ChaosRecipeStashTabBoots%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Boots
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBeltUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabBelt , %ChaosRecipeStashTabBelt%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Belts
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabAmuletUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabAmulet , %ChaosRecipeStashTabAmulet%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Amulets
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabRingUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
+
+      ; Crafting Bases
+      Gui, Inventory: Tab, Crafting Bases
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xm+5 ym+25,  Atlas Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashATLAS Checked%YesStashATLAS%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashATLASCraftingIlvl Checked%YesStashATLASCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashATLASCraftingIlvlMin , %YesStashATLASCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         STR Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashSTR Checked%YesStashSTR%   xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashSTRCraftingIlvl Checked%YesStashSTRCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashSTRCraftingIlvlMin , %YesStashSTRCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         DEX Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashDEX Checked%YesStashDEX%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashDEXCraftingIlvl Checked%YesStashDEXCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashDEXCraftingIlvlMin , %YesStashDEXCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         INT Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashINT Checked%YesStashINT%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashINTCraftingIlvl Checked%YesStashINTCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashINTCraftingIlvlMin , %YesStashINTCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs+160 ym+25,         Hybrid Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashHYBRID Checked%YesStashHYBRID%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashHYBRIDCraftingIlvl Checked%YesStashHYBRIDCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashHYBRIDCraftingIlvlMin , %YesStashHYBRIDCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         Jewels Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJ Checked%YesStashJ%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJCraftingIlvl Checked%YesStashJCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashJCraftingIlvlMin , %YesStashJCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         Abyss Jewels Bases
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashAJ Checked%YesStashAJ%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashAJCraftingIlvl Checked%YesStashAJCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashAJCraftingIlvlMin , %YesStashAJCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
+        Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         Jewellery
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJewellery Checked%YesStashJewellery%    xs+5  ys+18 , Enable ?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashJewelleryCraftingIlvl Checked%YesStashJewelleryCraftingIlvl%     xs+5  y+8    , Above Ilvl:
+        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
+        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashJewelleryCraftingIlvlMin , %YesStashJewelleryCraftingIlvlMin%
+        Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
+
+      }
+      Gui, Inventory: show , w600 h500, Inventory Settings
+    }
+    Else If (Function = "Crafting")
+    {
+      Gui, 1: Submit
+      CheckGamestates:= False
+      If !Built_Crafting
+      {
+        Built_Crafting := 1
+        Gui, Crafting: New
+        Gui, Crafting: +AlwaysOnTop -MinimizeBox
+        ;Save Setting
+        Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Basic Crafting
+
+        Gui, Crafting: Tab, Map Crafting
+          MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
+          MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
+          MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
+          Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s7
+            Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
+            GuiControl,Crafting: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s7
+            Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
+            GuiControl,Crafting: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s7
+            Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
+            Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
+            Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
+            Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
+            GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
+            Gui, Crafting: Font,
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w580 h160 xs, Undesireble Mods:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
+            Gui, Crafting: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
+            Gui, Crafting: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
+            Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
+            Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
+            Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
+            Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
+            Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
+            Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
+            Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
+            Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
+            Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
+            Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
+            Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
+            
+
+            Gui, Crafting: Font, Bold
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+            Gui, Crafting: Font, 
+            Gui, Crafting: Font,s8
+
+            Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
+            Gui, Crafting: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+            Gui, Crafting: Add, Text,         x+10 yp+3        , Item Quantity
+
+            Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
+            Gui, Crafting: Add, Text,         x+10 yp+3        , Item Rarity
+
+            Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+            Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
+            Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
+
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+        Gui, Crafting: Tab, Basic Crafting
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vChanceMethod Checked" (ChanceMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Checkbox, % "xs+30 y+20", Scour and retry
+          Gui, Crafting: Font
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vSocketMethod Checked" (SocketMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Text,% "xs+25 y+20"
+          Gui, Crafting: Add, UpDown, Range1-6 vDesiredSockets, % DesiredSockets
+          Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
+          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Font
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xm+295 ym+25 w275 h100, Link
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vLinkMethod Checked" (LinkMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Text,% "xs+25 y+20"
+          Gui, Crafting: Add, UpDown, Range1-6 vDesiredLinks, % DesiredLinks
+          Gui, Crafting: Add, Text, x+5 yp, Desired Links
+          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Font
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, GroupBox,section Center xm+295 ys+115 w275 h100, Color
+          Gui, Crafting: Font
+          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vColorMethod Checked" (ColorMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cRed, Arial
+          Gui, Crafting: Add, Text,% "xs+25 y+20"
+          Gui, Crafting: Add, UpDown, Range0-6 vDesiredR, % DesiredR
+          Gui, Crafting: Add, Text, x+5 yp, R 
+          Gui, Crafting: Font, Bold s12 cGreen, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown, Range0-6 vDesiredG, % DesiredG
+          Gui, Crafting: Add, Text, x+5 yp, G
+          Gui, Crafting: Font, Bold s12 cBlue, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown, Range0-6 vDesiredB, % DesiredB
+          Gui, Crafting: Add, Text, x+5 yp, B
+          Gui, Crafting: Font
+          Gui, Crafting: Show
+      }
+      Gui, Crafting: show , w600 h500, Crafting Settings
+    }
+    Else If (Function = "Strings")
+    {
+      Gui, 1: Submit
+      CheckGamestates:= False
+      If !Built_Strings
+      {
+        Built_Strings := 1
+        Gui, Strings: New
+        Gui, Strings: +AlwaysOnTop -MinimizeBox
+        ;Save Setting
+        ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        
+        Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
+        Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
+        Gui, Strings: Font, Bold cBlack
+        Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Match your resolution's height with the number in the string Label
+        Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor|Debuff
+        Gui, Strings: Font,
+
+      Gui, Strings: Tab, General
+        Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
+        Gui, Strings: +Delimiter?
+        Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 1 pixel bar - Only Adjust if not 1080 Height
+        Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
+        Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
+        Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
+        Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"?"%1050_SkillUpStr%"?"%768_SkillUpStr%"
+        Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
+        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%2160_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
+        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%2160_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
+        Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
+        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1440_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Heist Locker
+        Gui, Strings: Add, ComboBox, y+8 w280 vHeistLockerStr gUpdateStringEdit , %HeistLockerStr%??"%1080_HeistLockerStr%"?"%1440_HeistLockerStr%"
+        Gui, Strings: +Delimiter|
+
+      Gui, Strings: Tab, Vendor
+        Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+        Gui, Strings: +Delimiter?
+        Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1440_NavaliStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"?"%1050_MasterStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"?"%1050_BestelStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Forest vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"?"%1050_GreustStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Sarn vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"?"%1050_ClarissaStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Highgate vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"?"%1050_PetarusStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Overseer vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Bridge vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"?"%1050_HelenaStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Docks vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
+        Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Capture of the Harbour vendor nameplate
+        Gui, Strings: Add, ComboBox, y+8 w280 vVendorHarbourStr gUpdateStringEdit , %VendorHarbourStr%??"%1080_FenceStr%"
+        Gui, Strings: +Delimiter|
+      Gui, Strings: Tab, Debuff
+        Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+        Gui, Strings: +Delimiter?
+
+        Gui, Strings: Add, Text, xs+10 ys+25 section, Curse - Elemental Weakness
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEleWeakStr gUpdateStringEdit , %debuffCurseEleWeakStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Vulnerability
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseVulnStr gUpdateStringEdit , %debuffCurseVulnStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Enfeeble
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEnfeebleStr gUpdateStringEdit , %debuffCurseEnfeebleStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Temporal Chains
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseTempChainStr gUpdateStringEdit , %debuffCurseTempChainStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Condutivity
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseCondStr gUpdateStringEdit , %debuffCurseCondStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Flammability
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFlamStr gUpdateStringEdit , %debuffCurseFlamStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Curse - Frostbite
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFrostStr gUpdateStringEdit , %debuffCurseFrostStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Curse - Warlord's Mark
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseWarMarkStr gUpdateStringEdit , %debuffCurseWarMarkStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Shock
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffShockStr gUpdateStringEdit , %debuffShockStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Bleed
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffBleedStr gUpdateStringEdit , %debuffBleedStr%??"%1080_CurseStr%"
+        Gui, Strings: Add, Text, xs y+15 section, Freeze
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffFreezeStr gUpdateStringEdit , %debuffFreezeStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, x+10 ys , Ignite
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffIgniteStr gUpdateStringEdit , %debuffIgniteStr%??"%1080_CurseStr%"
+
+        Gui, Strings: Add, Text, xs y+15 section, Poison
+        Gui, Strings: Add, ComboBox, y+8 w280 vdebuffPoisonStr gUpdateStringEdit , %debuffPoisonStr%??"%1080_CurseStr%"
+
+        Gui, Strings: +Delimiter|
+      }
+      Gui, Strings: show , w640 h525, FindText Strings
+    }
+    Else If (Function = "Chat")
+    {
+      Gui, 1: Submit
+      CheckGamestates:= False
+      If !Built_Chat
+      {
+        Built_Chat := 1
+        Gui, Chat: New
+        Gui, Chat: +AlwaysOnTop -MinimizeBox
+
+        ;Save Setting
+        Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
+        Gui, Chat: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
+      Gui, Chat: Tab, Commands
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section w60 h85                      ,Modifier
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
+        Gui, Chat: Add, Edit, y+8    w50 h23 v1Prefix2, %1Prefix2%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v1Suffix1, %1Suffix1%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix2, %1Suffix2%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix3, %1Suffix3%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix4, %1Suffix4%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix5, %1Suffix5%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix6, %1Suffix6%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix7, %1Suffix7%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix8, %1Suffix8%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix9, %1Suffix9%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Commands
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        DefaultCommands := [ "/Hideout","/Menagerie","/Delve","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
+        textList=
+        For k, v in DefaultCommands
+          textList .= (!textList ? "" : "|") v
+        Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %textList%
+        GuiControl,Chat: Text, 1Suffix1Text, %1Suffix1Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix2Text, %textList%
+        GuiControl,Chat: Text, 1Suffix2Text, %1Suffix2Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix3Text, %textList%
+        GuiControl,Chat: Text, 1Suffix3Text, %1Suffix3Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix4Text, %textList%
+        GuiControl,Chat: Text, 1Suffix4Text, %1Suffix4Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix5Text, %textList%
+        GuiControl,Chat: Text, 1Suffix5Text, %1Suffix5Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix6Text, %textList%
+        GuiControl,Chat: Text, 1Suffix6Text, %1Suffix6Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix7Text, %textList%
+        GuiControl,Chat: Text, 1Suffix7Text, %1Suffix7Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix8Text, %textList%
+        GuiControl,Chat: Text, 1Suffix8Text, %1Suffix8Text%
+        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %textList%
+        GuiControl,Chat: Text, 1Suffix9Text, %1Suffix9Text%
+      Gui, Chat: Tab, Reply Whisper
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section  w60 h85                      ,Modifier
+        Gui, Chat: Font,
+
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
+        Gui, Chat: Add, Edit, y+8    w50 h23 v2Prefix2, %2Prefix2%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v2Suffix1, %2Suffix1%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix2, %2Suffix2%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix3, %2Suffix3%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix4, %2Suffix4%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix5, %2Suffix5%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix6, %2Suffix6%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix7, %2Suffix7%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix8, %2Suffix8%
+        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix9, %2Suffix9%
+        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
+        Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Whisper Reply
+        Gui, Chat: Font,
+        Gui, Chat: Font,s9,Arial
+        DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
+        textList=
+        For k, v in DefaultWhisper
+          textList .= (!textList ? "" : "|") v
+        Gui, Chat: Add, ComboBox,   xs+4 ys+20   w290 v2Suffix1Text, %textList%
+        GuiControl,Chat: Text, 2Suffix1Text, %2Suffix1Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix2Text, %textList%
+        GuiControl,Chat: Text, 2Suffix2Text, %2Suffix2Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix3Text, %textList%
+        GuiControl,Chat: Text, 2Suffix3Text, %2Suffix3Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix4Text, %textList%
+        GuiControl,Chat: Text, 2Suffix4Text, %2Suffix4Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix5Text, %textList%
+        GuiControl,Chat: Text, 2Suffix5Text, %2Suffix5Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix6Text, %textList%
+        GuiControl,Chat: Text, 2Suffix6Text, %2Suffix6Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix7Text, %textList%
+        GuiControl,Chat: Text, 2Suffix7Text, %2Suffix7Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix8Text, %textList%
+        GuiControl,Chat: Text, 2Suffix8Text, %2Suffix8Text%
+        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix9Text, %textList%
+        GuiControl,Chat: Text, 2Suffix9Text, %2Suffix9Text%
+      }
+      Gui, Chat: show , w620 h370, Chat Hotkeys
+    }
+    Else If (Function = "Controller")
+    {
+      Gui, 1: Submit
+      CheckGamestates:= False
+      If !Built_Controller
+      {
+        Built_Controller := 1
+        Gui, Controller: New
+        Gui, Controller: +AlwaysOnTop -MinimizeBox
+        DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
+        textList= 
+        For k, v in DefaultButtons
+          textList .= (!textList ? "" : "|") v
+        
+        Gui, Controller: Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
+
+        Gui, Controller: Add, Checkbox,  section  xp y+-10          vYesMovementKeys Checked%YesMovementKeys%                     , Use Move Keys?
+        Gui, Controller: Add, Checkbox,             vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                     , Use utility on Move?
+        Gui, Controller: Add, DropDownList,   x+5 yp-5   w40   vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
+
+        Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,L Bumper
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonLB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonLB, %hotkeyControllerButtonLB%
+        Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40                        ,R Bumper
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonRB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonRB, %hotkeyControllerButtonRB%
+
+        Gui, Controller: Add,GroupBox, section  xm+65 ym+100 w90 h80                        ,D-Pad
+        Gui, Controller: add,text, xs+15 ys+30, Mouse`nMovement
+
+        Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80                        ,Left Joystick
+        Gui, Controller: Add,Checkbox, xs+5 ys+30     Checked%YesTriggerUtilityJoystickKey%      vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
+        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,L3
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonL3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonL3, %hotkeyControllerButtonL3%
+
+        Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Right Joystick
+        Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystickRightKey%      vYesTriggerJoystickRightKey, Use key?
+        Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystickRight, LButton|RButton|q|w|e|r|t
+        GuiControl,Controller: Text, hotkeyControllerJoystickRight, %hotkeyControllerJoystickRight%
+        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,R3
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonR3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonR3, %hotkeyControllerButtonR3%
+
+        Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40                        ,Select
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonBACK, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonBACK, %hotkeyControllerButtonBACK%
+        Gui, Controller: Add,GroupBox, xs+245 ys w80 h40                        ,Start
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonSTART, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonSTART, %hotkeyControllerButtonSTART%
+
+        Gui, Controller: Add,GroupBox, section xm+65 ym+280 w40 h40                  ,Up
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyUp, %hotkeyUp%
+        Gui, Controller: Add,GroupBox, xs ys+80 w40 h40                        ,Down
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyDown, %hotkeyDown%
+        Gui, Controller: Add,GroupBox, xs-40 ys+40 w40 h40                      ,Left
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyLeft, %hotkeyLeft%
+        Gui, Controller: Add,GroupBox, xs+40 ys+40 w40 h40                      ,Right
+        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyRight, %hotkeyRight%
+
+        Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40                      ,Y
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonY, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonY, %hotkeyControllerButtonY%
+        Gui, Controller: Add,GroupBox, xs ys+80 w70 h40                      ,A
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonA, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonA, %hotkeyControllerButtonA%
+        Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40                      ,X
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonX, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonX, %hotkeyControllerButtonX%
+        Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40                      ,B
+        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
+        GuiControl,Controller: Text, hotkeyControllerButtonB, %hotkeyControllerButtonB%
+
+        ;Save Setting
+        Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+        Gui, Controller: Add, Button,      gLaunchSite     x+5           h23,   Website
+      }
+      Gui, Controller: show , w620 h500, Controller Settings
+    }
+    Else if (Function = "Globe")
+    {
+      Gui, 1: Submit
+      CheckGamestates:= False
+      Element := Var[1]
+      If (!Built_Globe || Element = "Reset")
+      {
+        If (Element = "Reset")
+        {
+          Gui, Globe: Destroy
+          Globe := Array_DeepClone(Base.Globe)
+        }
+        Built_Globe := 1
+        Gui, Globe: New
+        Gui, Globe: +AlwaysOnTop -MinimizeBox
+        Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
+        Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
+        Gui, Globe: Add, Button, xm ym+8 w1 h1
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xm ym w205 h100 Section, Life Scan Area
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, vGlobe_Life_X1 xs+10 yp+20 , % "X1:" Globe.Life.X1
+        Gui, Globe: Add, Text, vGlobe_Life_Y1 x+5 yp , % "Y1:" Globe.Life.Y1
+        Gui, Globe: Add, Text, vGlobe_Life_X2 xs+10 y+8 , % "X2:" Globe.Life.X2
+        Gui, Globe: Add, Text, vGlobe_Life_Y2 x+5 yp , % "Y2:" Globe.Life.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Life x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Life.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.Life.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Life x+1 yp hp, % Globe.Life.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_Life xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Life h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Life wp hp xp y+5, Show Area
+
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Mana Scan Area
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, vGlobe_Mana_X1 xs+10 yp+20 , % "X1:" Globe.Mana.X1
+        Gui, Globe: Add, Text, vGlobe_Mana_Y1 x+5 yp , % "Y1:" Globe.Mana.Y1
+        Gui, Globe: Add, Text, vGlobe_Mana_X2 xs+10 y+8 , % "X2:" Globe.Mana.X2
+        Gui, Globe: Add, Text, vGlobe_Mana_Y2 x+5 yp , % "Y2:" Globe.Mana.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Mana.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.Mana.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Mana x+1 yp hp, % Globe.Mana.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_Mana xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Mana h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Mana wp hp xp y+5, Show Area
+
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Energy Shield Scan Area
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, vGlobe_ES_X1 xs+10 yp+20 , % "X1:" Globe.ES.X1
+        Gui, Globe: Add, Text, vGlobe_ES_Y1 x+5 yp , % "Y1:" Globe.ES.Y1
+        Gui, Globe: Add, Text, vGlobe_ES_X2 xs+10 y+8 , % "X2:" Globe.ES.X2
+        Gui, Globe: Add, Text, vGlobe_ES_Y2 x+5 yp , % "Y2:" Globe.ES.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_ES x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.ES.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.ES.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_ES x+1 yp hp, % Globe.ES.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_ES xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_ES h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_ES wp hp xp y+5, Show Area
+
+        Gui, Globe: Font, Bold s9 c777777
+        Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Eldritch Battery Scan Area
+        Gui, Globe: Font, Bold
+        Gui, Globe: Add, Text, vGlobe_EB_X1 xs+10 yp+20 , % "X1:" Globe.EB.X1
+        Gui, Globe: Add, Text, vGlobe_EB_Y1 x+5 yp , % "Y1:" Globe.EB.Y1
+        Gui, Globe: Add, Text, vGlobe_EB_X2 xs+10 y+8 , % "X2:" Globe.EB.X2
+        Gui, Globe: Add, Text, vGlobe_EB_Y2 x+5 yp , % "Y2:" Globe.EB.Y2
+        Gui, Globe: Add, Text, xs+10 y+8, Color:
+        Gui, Globe: Font
+        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_EB x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.EB.Color.Hex)
+        Gui, Globe: Font, Bold c777777
+        Gui, Globe: Add, Text, x+5 yp+2, Variance:
+        Gui, Globe: Add, Text, x+2 yp w35, % Globe.EB.Color.Variance
+        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_EB x+1 yp hp, % Globe.EB.Color.Variance
+        TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
+        Gui, Globe: Add, Text, gColorLabel_EB xs+10 y+6 hp w185,
+        Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
+        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
+
+
+        Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
+        Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Initial Values
+        Gui, Globe: Font, s25 Bold c777777
+        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
+        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
+        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
+      }
+      GlobeActive := True
+      Gui, Globe: show , Center AutoSize, Globe Settings
+    }
+    Else If (Function = "Locate")
+    {
+      LocateType := Var[2]
+      Gui, Hide
+      Loop
+      {
+        MouseGetPos, x, y
+        If (x != oldx || y != oldy)
+          ToolTip, % "-- Locate "LocateType " --`n@ " x "," y "`nPress Ctrl to set"
+        oldx := x, oldy := y
+      } Until GetKeyState("Ctrl")
+      Tooltip
+      %LocateType%X := x, %LocateType%Y := y
+      GuiControl, Inventory: ,% LocateType "X", %x%
+      GuiControl, Inventory: ,% LocateType "Y", %y%
+      MsgBox % x "," y " was captured as the new location for "LocateType
+      Gui, Show
+    }
+    Else If (Function = "Locate2")
+    {
+      MsgBoxVals(Var,2)
+      ; LocateType := Var[2]
+      ending := StrSplit(SubStr(Var[2],-1))
+      slot := ending[1], position := ending[2]
+      Gui, Hide
+      Loop
+      {
+        MouseGetPos, x, y
+        If (x != oldx || y != oldy)
+          ToolTip, % "-- Locate Swap "slot " "position " --`n@ " x "," y "`nPress Ctrl to set"
+        oldx := x, oldy := y
+      } Until GetKeyState("Ctrl")
+      Tooltip
+      swap%slot%X%position% := x, swap%slot%Y%position% := y
+      GuiControl, perChar: ,% "swap" slot "X" position, %x%
+      GuiControl, perChar: ,% "swap" slot "Y" position, %y%
+      MsgBox % x "," y " was captured as the new location for Swap "slot " "position
+      Gui, Show
+    }
+    Else if (Function = "Area")
+    {
+      Gui, Submit
+      Grab := LetUserSelectRect()
+      AreaType := Var[2]
+      Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
+      , Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
+      GuiControl, Globe:, Globe_%AreaType%_X1,% "X1:" Grab.X1
+      GuiControl, Globe:, Globe_%AreaType%_Y1,% "Y1:" Grab.Y1
+      GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
+      GuiControl, Globe:, Globe_%AreaType%_Y2,% "Y2:" Grab.Y2
+      Gui, Show
+    }
+    Else if (Function = "Show")
+    {
+      Gui, Submit
+      AreaType := Var[2]
+      MouseTip(Globe[AreaType])
+      Gui, Show
+    }
+    Else if (Function = "Color")
+    {
+      AreaType := Var[2]
+      Element := Var[1]
+      Split := {}
+      Split.hex := Globe[AreaType].Color.Hex
+      Gui, Submit, NoHide
+      If (Element = "UpDown")
+      {
+        Globe[AreaType].Color.Variance := WR_UpDown_Color_%AreaType%
+        Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+      }
+      Else If (Element = "Edit")
+      {
+        CurPos := 1
+        newhex := ""
+        Loop, 3
+        {
+          RegExMatch(WR_Edit_Color_%AreaType%, "O)(x[0-9A-Fa-f]{6})", m,CurPos)
+          CurPos := m.Pos(0) + m.Len(0) - 1
+          If (m.1 != Split.hex && m.1 != "")
+          {
+            Split.new := m.1
+            ; Break
+          }
+        }
+        If (Split.new != "")
+          m := "0" Split.new
+        Else
+          m := "0" Split.hex
+        Globe[AreaType].Color.Hex := WR_Edit_Color_%AreaType% := Format("0x{1:06X}",m)
+        GuiControl,Globe: , WR_Edit_Color_%AreaType%, % WR_Edit_Color_%AreaType%
+        Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+        GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
+      }
+    }
+    Else If (Function = "FillMetamorph")
+    {
+      Gui, Submit
+      ValueType := Var[2]
+      Element := Var[1]
+      If (Element = "Btn")
+      {
+        If (ValueType = "Menu")
+        {
+          If (!FillMetamorphInitialized)
+          {
+            FillMetamorphInitialized := True
+            Gui, FillMetamorph: New, -MinimizeBox -Resize
+            Gui, FillMetamorph: Font, s12 c777777 bold
+            Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
+            Gui, FillMetamorph: Font,
+            Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Btn_FillMetamorph_Select w85, Select area
+            Gui, FillMetamorph: Add, Button, x+5 yp gWR_Update vWR_Btn_FillMetamorph_Show wp, Show area
+            Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
+          }
+        }
+        Else If (ValueType = "Select")
+        {
+          If (Obj := LetUserSelectRect())
+          {
+            FillMetamorph := {"X1":Obj.X1
+              ,"Y1":Obj.Y1
+              ,"X2":Obj.X2
+              ,"Y2":Obj.Y2}
+            GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
+          }
+        }
+        Else If (ValueType = "Show")
+        {
+          MouseTip(FillMetamorph.X1,FillMetamorph.Y1,FillMetamorph.X2 - FillMetamorph.X1,FillMetamorph.Y2 - FillMetamorph.Y1)
+        }
+        Gui, FillMetamorph: Show
+      }
+    }
+    Else If (Function = "hkStash")
+    {
+      Static hkStashBuilt := False
+      If !(hkStashBuilt)
+      {
+        hkStashBuilt := True
+        Gui, hkStash: New, +AlwaysOnTop -MinimizeBox -Resize
+        ;Save Setting
+        Gui, hkStash: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
+        Gui, hkStash: Add, Button,      gLaunchSite     x+5           h23,   Website
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section xm+5 ym+50 w150 h80   center                   ,Binding Modifiers
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, xs+5 ys+20 w140 h23 vstashPrefix1, %stashPrefix1%
+        Gui, hkStash: Add, Edit, y+5    w140 h23 vstashPrefix2, %stashPrefix2%
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section x+25 ym w100 h275                      ,Keys
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, ys+20 xs+4 w90 h23 vstashSuffix1, %stashSuffix1%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix2, %stashSuffix2%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix3, %stashSuffix3%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix4, %stashSuffix4%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix5, %stashSuffix5%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix6, %stashSuffix6%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix7, %stashSuffix7%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix8, %stashSuffix8%
+        Gui, hkStash: Add, Edit, y+5    w90 h23 vstashSuffix9, %stashSuffix9%
+
+        Gui, hkStash: Font,s9 cBlack Bold Underline, Arial
+        Gui, hkStash: Add,GroupBox,Section x+4 ys w50 h275                      ,Tab
+        Gui, hkStash: Font,
+        Gui, hkStash: Font,s9,Arial
+        Gui, hkStash: Add, Edit, Number xs+4 ys+20 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab1 , %stashSuffixTab1%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab2 , %stashSuffixTab2%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab3 , %stashSuffixTab3%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab4 , %stashSuffixTab4%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab5 , %stashSuffixTab5%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab6 , %stashSuffixTab6%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab7 , %stashSuffixTab7%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab8 , %stashSuffixTab8%
+        Gui, hkStash: Add, Edit, Number y+5 w40
+        Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
+      }
+      
+      Gui, hkStash: Show
+
+    }
+    Else If (Function = "JSON")
+    {
+      ValueType := Var[2]
+      Element := Var[1]
+      If (Element = "Save")
+      {
+        Gui, Submit
+        JSONtext := JSON.Dump(%ValueType%,,2)
+        If FileExist(A_ScriptDir "\save\" ValueType ".json")
+          FileDelete, %A_ScriptDir%\save\%ValueType%.json
+        FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
+        Gui, Show
+      }
+      Else if (Element = "Load")
+      {
+        If FileExist(A_ScriptDir "\save\" ValueType ".json")
+        {
+          FileRead, JSONtext, %A_ScriptDir%\save\%ValueType%.json
+          %ValueType% := JSON.Load(JSONtext)
+        }
+        Else
+        {
+          Notify("Error loading " ValueType " file","",3)
+          Log("Error loading " ValueType " file")
+        }
+      }
+    }
+    Return
+
+    WR_Update:
+    If (A_GuiControl ~= "WR_\w{1,}_")
+    {
+      BtnStr := StrSplit(StrSplit(A_GuiControl, "WR_", " ")[2], "_", " ",3)
+      ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
+      ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
+      WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
+    }  
+    Return
+
+
+    ColorLabel_Life:
+    Picker.SetColor(Globe.Life.Color.hex)
+    Return
+    ColorLabel_Mana:
+    Picker.SetColor(Globe.Mana.Color.hex)
+    Return
+    ColorLabel_ES:
+    Picker.SetColor(Globe.ES.Color.hex)
+    Return
+    ColorLabel_EB:
+    Picker.SetColor(Globe.EB.Color.hex)
+    Return
+
+    FillMetamorphGuiClose:
+    FillMetamorphGuiEscape:
+      Gui, Submit
+      Gui, Inventory: Show
+    Return
+
+    hkStashGuiClose:
+    hkStashGuiEscape:
+    InventoryGuiClose:
+    InventoryGuiEscape:
+    CraftingGuiClose:
+    CraftingGuiEscape:
+    StringsGuiClose:
+    StringsGuiEscape:
+    ChatGuiClose:
+    ChatGuiEscape:
+    ControllerGuiClose:
+    ControllerGuiEscape:
+    HotkeysGuiClose:
+    HotkeysGuiEscape:
+      Gui, Submit
+      Gui, 1: show
+      CheckGamestates:= True
+    return
+    
+    GlobeGuiClose:
+    GlobeGuiEscape:
+      GlobeActive := False
+      Gui, Submit
+      Gui, 1: show
+      CheckGamestates:= True
+    return
+  }
+  ; Make a MsgBox Printout of an array
+  MsgBoxVals(obj,indent:=0){
+    txt := ""
+    Loop % indent
+      spacing .= " "
+    If IsObject(obj)
+    {
+      For k, v in obj
+      {
+        txt .= (k==1&&!indent?"":"`n") spacing
+        txt .= "Key:`t"k "`t"
+            . "Val:`t" (IsObject(v)?"OBJECT":v)
+        If IsObject(v)
+        txt .= MsgBoxVals(v,indent+1)
+      }
+    } Else {
+      txt := obj
+    }
+    If indent
+      Return txt
+    Else
+      MsgBox % txt
+  }
+  Get_DpiFactor() {
+    return A_ScreenDPI=96?1:A_ScreenDPI/96
+  }
+  Scale_PositionFromDPI(val){
+    dpif := Get_DpiFactor()
+    If (dpif != 1)
+      val := val / dpif
+    Return val
+  }
+  GreyOutAffinity(){
+    Static Lista := ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique"]
+    for key, val in Lista
+    {
+      GuiControlGet, CheckBoxState,, StashTabYes%val%
+      If (CheckBoxState == 0)
+      { 
+        GuiControl, Disable, %val%Edit
+        GuiControl, , %val%EditText, Disable Type
+      } 
+      Else If (CheckBoxState == 1)
+      {
+        GuiControl, Enable, %val%Edit
+        GuiControl, , %val%EditText, Assign a Tab
+      }
+      Else 
+      {
+        if(val !="Currency" )
+        {
+          GuiControl, Disable, %val%Edit
+        }
+        GuiControl, , %val%EditText, Enable Affinity
+      }
+    }
+    Return
+  }
   ; Find and retreive Chaos recipe items from a Stash Tab
   ChaosRecipe(endAtRefresh := 0){
     If (AccountNameSTR = "")
@@ -3013,8 +5027,10 @@
     }
     Return c
   }
+  retCount(obj){
+    Return (obj.Count()>=0?obj.Count():0) 
+  }
   ; ArrayToString - Make a string from array using | as delimiters
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ArrayToString(Array)
   {
     for index, element in Array
@@ -3031,1182 +5047,12 @@
     return text
   }
   ; StringToArray - Make a array from a string using | as delimiters
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StringToArray(text)
   {
     Array := StrSplit(text,"|")
     return array
   }
-  ; WR_Menu - New menu handling method
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  WR_Menu(Function:="",Var*)
-  {
-    Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
-    , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
-
-    Global InventoryGuiTabs, CraftingGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
-      , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
-      , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
-      , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
-      , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
-      , WR_Btn_FillMetamorph_Area, MapEdit, MapEditText, EssenceEdit ,EssenceEditText, DelveEdit, DelveEditText, CurrencyEdit, CurrencyEditText, MetamorphEdit, MetamorphEditText, FragmentEdit, FragmentEditText, DivinationEdit, DivinationEditText, DeliriumEdit, DeliriumEditText, BlightEdit, BlightEditText, UniqueEdit, UniqueEditText
-      , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
-      , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
-      , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
-    If (Function = "Inventory")
-    {
-      Gui, 1: Submit
-      If !Built_Inventory
-      {
-        Built_Inventory := 1
-        Gui, Inventory: New
-        Gui, Inventory: +AlwaysOnTop -MinimizeBox
-        ;Save Setting
-        Gui, Inventory: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Inventory: Add, Button,      gloadSaved     x+5           h23,   Load
-        Gui, Inventory: Add, Button,      gLaunchSite     x+5           h23,   Website
-
-        Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|
-
-      Gui, Inventory: Tab, Options
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,       Section    w170 h215    xm   ym+25,         Inventory Sort/CLF Options
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
-        Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
-
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
-        Gui, Inventory: Font
-
-        Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
-        Gui, Inventory: Add, Text,                     x+12,             Y-Pos
-
-        Gui, Inventory: Add, Text,                     xs+21  y+5,         Portal Scroll:
-        Gui, Inventory: Add, Edit,       vPortalScrollX         x+8        y+-15   w34  h17,   %PortalScrollX%
-        Gui, Inventory: Add, Edit,       vPortalScrollY         x+8                w34  h17,   %PortalScrollY%  
-        Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
-        Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
-        Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
-        Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem1:
-        Gui, Inventory: Add, Edit,       vCurrentGemX           x+8        y+-15   w34  h17,   %CurrentGemX%
-        Gui, Inventory: Add, Edit,       vCurrentGemY           x+8                w34  h17,   %CurrentGemY%
-        Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem1:
-        Gui, Inventory: Add, Edit,       vAlternateGemX         x+8        y+-15   w34  h17,   %AlternateGemX%
-        Gui, Inventory: Add, Edit,       vAlternateGemY         x+8                w34  h17,   %AlternateGemY%
-        Gui, Inventory: Add, Text,                     xs+12  y+6,         Current Gem2:
-        Gui, Inventory: Add, Edit,       vCurrentGem2X          x+8        y+-15   w34  h17,   %CurrentGem2X%
-        Gui, Inventory: Add, Edit,       vCurrentGem2Y          x+8                w34  h17,   %CurrentGem2Y%
-        Gui, Inventory: Add, Text,                     xs+4  y+6,         Alternate Gem2:
-        Gui, Inventory: Add, Edit,       vAlternateGem2X        x+8        y+-15   w34  h17,   %AlternateGem2X%
-        Gui, Inventory: Add, Edit,       vAlternateGem2Y        x+8                w34  h17,   %AlternateGem2Y%
-        Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
-        Gui, Inventory: Add, Edit,       vGrabCurrencyPosX        x+8        y+-15   w34  h17,   %GrabCurrencyPosX%
-        Gui, Inventory: Add, Edit,       vGrabCurrencyPosY        x+8                w34  h17,   %GrabCurrencyPosY%
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem                                    y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem                                  y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_CurrentGem2                                   y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_AlternateGem2                                 y+4    h17            , Locate
-        Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
-        Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
-        Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
-        Gui, Inventory: Add, Checkbox,    vAlternateGemOnSecondarySlot    Checked%AlternateGemOnSecondarySlot%    y+8                   , Weapon Swap Gem1?
-        Gui, Inventory: Add, Checkbox,    vGemItemToogle                  Checked%GemItemToogle%                  y+8                   , Enable Swap Item1?
-        Gui, Inventory: Add, Checkbox,    vAlternateGem2OnSecondarySlot   Checked%AlternateGem2OnSecondarySlot%   y+8                   , Weapon Swap Gem2?
-        Gui, Inventory: Add, Checkbox,    vGemItemToogle2                 Checked%GemItemToogle2%                 y+8                   , Enable Swap Item2?
-        Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
-        Gui, Inventory: Add, Text,                   x+33             h152 0x11
-        Gui, Inventory: Add, Text,                   x+33             h152 0x11
-
-
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Checkbox, vYesNinjaDatabase xs+5 ys+20 Checked%YesNinjaDatabase%, Update PoE.Ninja DB?
-        Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
-        Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
-        Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
-        Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
-        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
-        GuiControl,Inventory: ChooseString, YesPredictivePrice, %YesPredictivePrice%
-        
-        Gui, Inventory: Font, s18
-        Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
-        Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
-        Gui, Inventory: Font,
-        ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
-        Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
-        AutomationList := "Search Stash|Search Vendor"
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
-        Gui, Inventory: Add, Text, y+8, First Automation Action
-        Gui, Inventory: Add, DropDownList, gUpdateExtra vFirstAutomationSetting y+3 w100 ,%AutomationList%
-        GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
-        Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableLockerAutomation Checked%YesEnableLockerAutomation%   xs+5    y+8  , Enable Heist Automation ?
-        Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra vYesEnableAutoSellConfirmationSafe Checked%YesEnableAutoSellConfirmationSafe%       y+8  , Enable Safe Auto Confirm?
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h70    section   xm+370   y+15,         Metamorph Options
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesFillMetamorph Checked%YesFillMetamorph%       xs+5 ys+18      , Auto fill metamorph?
-        Gui, Inventory: Add, Button, gWR_Update  vWR_Btn_FillMetamorph_Menu y+8  w170 center    , Adjust Metamorph Panel
-
-      Gui, Inventory: Tab, Stash Tabs
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        ;You can test with Stash Tab management as a groupbox, but i dont like it
-        ;Gui, Inventory: Add, GroupBox,       Section    w352 h437    xm   ym+25,Stash Tab Management
-        Gui, Inventory: Add, Text,       Section    xm+5   ym+25,Stash Tab Management
-        Gui, Inventory: Font,
-
-        
-        ; Collection
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs ys+18 , Unique Collection
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabCollection yp hp ,  %StashTabCollection%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCollection Checked%StashTabYesCollection% x+5 yp+4, Enable
-
-        ; Unique Dump
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Dump
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabUniqueDump , %StashTabUniqueDump%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueDump Checked%StashTabYesUniqueDump% x+5 yp+4, Enable
-
-        ; Unique Ring
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unique Ring
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabUniqueRing , %StashTabUniqueRing%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesUniqueRing Checked%StashTabYesUniqueRing% x+5 yp+4, Enable
-  
-        ; Prophecy
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Prophecy
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabProphecy x+0 yp hp ,  %StashTabProphecy%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp+4, Enable
-
-        ; Veiled
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Veiled
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabVeiled x+0 yp hp ,  %StashTabVeiled%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesVeiled Checked%StashTabYesVeiled% x+5 yp+4, Enable
-
-        ; Cluster
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Cluster Jewel
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabClusterJewel x+0 yp hp ,  %StashTabClusterJewel%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesClusterJewel Checked%StashTabYesClusterJewel% x+5 yp+4, Enable
-        
-        ; Second column Gui - GEMS
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabGem , %StashTabGem%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabGemSupport , %StashTabGemSupport%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabGemVaal , %StashTabGemVaal%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Gem
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99  x+0 yp hp gUpdateStash vStashTabGemQuality , %StashTabGemQuality%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Linked
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabLinked , %StashTabLinked%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
-
-        ; Third column Gui - Rare itens
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys , Crafting
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99  x+0 yp hp gUpdateStash vStashTabCrafting , %StashTabCrafting%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
-        
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Dump
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash vStashTabDump x+0 yp hp ,  %StashTabDump%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabPredictive , %StashTabPredictive%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Ninja Priced
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabNinjaPrice , %StashTabNinjaPrice%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabInfluencedItem , %StashTabInfluencedItem%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash vStashTabFlaskQuality , %StashTabFlaskQuality%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
-
-        ; Crafting Bases
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h110    section    x+15   ys,         Crafting Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT1 Checked%YesStashT1%   xs+5  ys+18 , T1?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT2 Checked%YesStashT2%   x+3        , T2?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT3 Checked%YesStashT3%   x+3        , T3?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashT4 Checked%YesStashT4%   x+3        , T4?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingNormal Checked%YesStashCraftingNormal%     xs+5  y+8    , Normal?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingMagic Checked%YesStashCraftingMagic%   x+0        , Magic?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingRare Checked%YesStashCraftingRare%   x+0        , Rare?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCraftingIlvl Checked%YesStashCraftingIlvl%     xs+5  y+8    , Above Ilvl:
-        Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
-        Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashCraftingIlvlMin , %YesStashCraftingIlvlMin%
-        Gui, Inventory: Add, Button, gCustomCrafting xs+15 y+5  w150,   Custom Crafting List
-
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h60    section    xs   y+10,         Dump Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
-        ; Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashChaosRecipe Checked%YesStashChaosRecipe% xs+5 y+8, Enable for Chaos Recipe
-        ; Gui, Inventory: Add, Edit, x+-2 yp-3 w35
-        ; Gui, Inventory: Add, UpDown, Range1-15 x+0 yp hp gUpdateExtra vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
-        Gui, Inventory: Add, Checkbox, gUpdateStash  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweler/Chroma Items
-
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
-        Gui, Inventory: Add, Edit, x+5 yp-3 w40
-        Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
-
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Ninja Priced Tab
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
-        Gui, Inventory: Add, Edit, x+5 yp-3 w40
-        Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gUpdateStash vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
-
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        ;Heist Modification Remove at End of League!
-        ;Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map Options
-        Gui, Inventory: Add, GroupBox,             w180 h110    section    xs   y+10,         Map/Contract Options
-        ;Heist Modification Remove at End of League!
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
-        GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
-        Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps x+3 yp , 0|1|2|3|4|5|6|7|8|9|10|11|12
-        GuiControl,Inventory: ChooseString, YesSkipMaps, %YesSkipMaps%
-        Gui, Inventory: Add, Text, yp+3 x+5 , Column to Skip
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_normal Checked%YesSkipMaps_normal%     xs+5  y+8    , Skip Normal?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_magic Checked%YesSkipMaps_magic%     x+0 yp   , Skip Magic?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_unique Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
-        Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
-        Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
-        Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
-
-
-        ; Affinity
-        Gui, Inventory: Tab, Affinity
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, Text,       Section    xm+5   ym+25, Affinities Management
-        Gui, Inventory: Font,
-
-        ; Blight
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs ys+18 , Blight
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vBlightEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabBlight, %StashTabBlight%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesBlight x+5 yp-5 w90 h20, %StashTabYesBlight%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vBlightEditText, Disable Type
-
-        ; Delirium
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Delirium
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vDeliriumEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabDelirium, %StashTabDelirium%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDelirium x+5 yp-5 w90 h20, %StashTabYesDelirium%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDeliriumEditText, Disable Type
-
-        ; Divination Card
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Divination Card
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vDivinationEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabDivination x+0 yp hp ,  %StashTabDivination%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDivination x+5 yp-5 w90 h20, %StashTabYesDivination%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDivinationEditText, Disable Type
-
-        ; Fragments
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Fragment
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vFragmentEdit w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabFragment x+0 yp hp ,  %StashTabFragment%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesFragment x+5 yp-5 w90 h20, %StashTabYesFragment%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vFragmentEditText, Disable Type
-
-        ; Metamorph
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Metamorph
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vMetamorphEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabMetamorph x+0 yp hp , %StashTabMetamorph%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesMetamorph x+5 yp-5 w90 h20, %StashTabYesMetamorph%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMetamorphEditText, Disable Type
-
-        ; Currency
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, Section w145 h50 x+15 ys+18 , Currency
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number w40 vCurrencyEdit  xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabCurrency yp hp , %StashTabCurrency%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesCurrency x+5 yp-5 w90 h20, %StashTabYesCurrency%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vCurrencyEditText, Disable Type
-
-        ; Delve
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Delve
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vDelveEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gUpdateStash  vStashTabDelve , %StashTabDelve%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesDelve x+5 yp-5 w90 h20, %StashTabYesDelve%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vDelveEditText, Disable Type
-
-        ; Essence
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Essence
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vEssenceEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabEssence x+0 yp hp ,  %StashTabEssence%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesEssence x+5 yp-5 w90 h20, %StashTabYesEssence%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vEssenceEditText, Disable Type
-
-        ; Map
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Map
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vMapEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabMap x+0 yp hp ,  %StashTabMap%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesMap x+5 yp-5 w90 h20, %StashTabYesMap%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vMapEditText, Disable Type
-        
-        ; Unique
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Unique
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Edit, Number vUniqueEdit  w40 xp+6 yp+17
-        Gui, Inventory: Add, UpDown,Range1-99 gUpdateStash  vStashTabUnique x+0 yp hp ,  %StashTabUnique%
-        Gui, Inventory: Add, Slider, range0-2 center noticks Buddy2TestingText gUpdateStash gGreyOut vStashTabYesUnique x+5 yp-5 w90 h20, %StashTabYesUnique%
-        Gui, Inventory: Add, Text,  xp yp+22 w90 center vUniqueEditText, Not Supported
-
-        ;Disable Unique
-        GuiControl, Disable, StashTabYesUnique
-        GuiControl, Disable, StashTabUnique
-        GuiControl, Disable, UniqueEdit
-        ;Run GreyOut
-        Gosub, GreyOut
-
-        Gui, Inventory: Font, Bold s8 cBlack, Arial
-        Gui, Inventory: Add, GroupBox, Section w200 h200 x+50 ys , Intructions:
-        Gui, Inventory: Font,
-        Gui, Inventory: Add, Text, xs+10 yp+20 +Wrap w180, - Enabling Affinity will disable any sort
-        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, like CLF and Ninja Price
-        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - If you don't play SSF, we recomend 
-        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, disable Divination Card Affinity
-        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Unique Affinity is not supported
-        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - You can enable Currency Affinity 
-        Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, and set the stash for other functions
-
-
-      Gui, Inventory: Tab, Chaos Recipe
-      Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h155 xm+5 ym+25, Chaos Recipe Options
-        Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+15 yp+20, Enable Chaos Recipe Logic
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
-          Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range74-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
-          Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
-        Gui, Inventory: Font,
-          Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
-          Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl
-          Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeRegal Checked%ChaosRecipeTypeRegal%  , Pure Regal 75+ ilvl
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w285 h90 xs+190 ym+25, Chaos Recipe Stashing
-        Gui, Inventory: Font,
-          Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodDump Checked%ChaosRecipeStashMethodDump%, Use Dump Tab
-          Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodTab Checked%ChaosRecipeStashMethodTab%, Use Chaos Recipe Tab
-          Gui, Inventory: Add, Radio,gSaveChaosRadio xs+15 yp+20 w250 center vChaosRecipeStashMethodSort Checked%ChaosRecipeStashMethodSort%, Use Seperate Tab for Each Part
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w285 h50 xs y+25, Chaos Recipe Tab
-          Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabUpDown xs+15 yp+20 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTab , %ChaosRecipeStashTab%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for ALL PARTS
-          Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w285 h225 xs y+25, Chaos Recipe Part Tabs
-        Gui, Inventory: Font,
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabWeaponUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Weapons
-
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
-
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabArmourUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Armours
-
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabGlovesUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Gloves
-
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBootsUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabBoots , %ChaosRecipeStashTabBoots%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Boots
-
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabBeltUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabBelt , %ChaosRecipeStashTabBelt%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Belts
-
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabAmuletUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabAmulet , %ChaosRecipeStashTabAmulet%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Amulets
-
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabRingUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
-
-      }
-      Gui, Inventory: show , w600 h500, Inventory Settings
-    }
-    Else If (Function = "Crafting")
-    {
-      Gui, 1: Submit
-      If !Built_Crafting
-      {
-        Built_Crafting := 1
-        Gui, Crafting: New
-        Gui, Crafting: +AlwaysOnTop -MinimizeBox
-        ;Save Setting
-        Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Crafting: Add, Button,      gloadSaved     x+5           h23,   Load
-        Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
-
-        Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting
-
-      Gui, Crafting: Tab, Map Crafting
-        MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
-        MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
-        MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
-        Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
-        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s7
-          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier1  Choose%StartMapTier1%,  %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier1    Choose%EndMapTier1%,    %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
-          GuiControl,Crafting: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s7
-          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier2  Choose%StartMapTier2%,  %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
-          GuiControl,Crafting: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s7
-          Gui, Crafting: Add, Text,         xs+5     ys+20       , Initial
-          Gui, Crafting: Add, Text,         xs+55    ys+20       , Ending
-          Gui, Crafting: Add, Text,         xs+105   ys+20       , Method
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, DropDownList, xs+5   ys+35    w40    vStartMapTier3  Choose%StartMapTier3%,  %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier3    Choose%EndMapTier3%,    %MapTierList%
-          Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod3    Choose%CraftingMapMethod3%,    %MapMethodList%
-          GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
-          Gui, Crafting: Font,
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w580 h160 xs, Undesireble Mods:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
-          Gui, Crafting: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
-          Gui, Crafting: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
-          Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
-          Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
-          Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-          Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
-          Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
-          Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
-          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
-          Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
-          Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
-  
-          
-          Gui, Crafting: Font, Bold
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
-          Gui, Crafting: Font, 
-          Gui, Crafting: Font,s8
-
-          Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
-          Gui, Crafting: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
-          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Quantity
-
-          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
-          Gui, Crafting: Add, Text,         x+10 yp+3        , Item Rarity
-
-          Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
-          Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
-          Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
-
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
-      }
-      Gui, Crafting: show , w600 h500, Crafting Settings
-    }
-    Else If (Function = "Strings")
-    {
-      Gui, 1: Submit
-      If !Built_Strings
-      {
-        Built_Strings := 1
-        Gui, Strings: New
-        Gui, Strings: +AlwaysOnTop -MinimizeBox
-        ;Save Setting
-        ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-        
-        Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
-        Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
-        Gui, Strings: Font, Bold cBlack
-        Gui, Strings: Add, GroupBox,     Section    w625 h10            x3   y3,         String Samples from the FindText library - Match your resolution's height with the number in the string Label
-        Gui, Strings: Add, Tab2, Section vStringsGuiTabs x20 y30 w600 h480 -wrap , General|Vendor
-        Gui, Strings: Font,
-
-      Gui, Strings: Tab, General
-        Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
-        Gui, Strings: +Delimiter?
-        Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 2 pixel bar - Only Adjust if not 1080 Height
-        Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
-        Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
-        Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
-        Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"?"%1050_SkillUpStr%"?"%768_SkillUpStr%"
-        Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
-        Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%2160_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
-        Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%2160_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
-        Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
-        Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1440_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Heist Locker
-        Gui, Strings: Add, ComboBox, y+8 w280 vHeistLockerStr gUpdateStringEdit , %HeistLockerStr%??"%1080_HeistLockerStr%"
-        Gui, Strings: +Delimiter|
-
-      Gui, Strings: Tab, Vendor
-        Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
-        Gui, Strings: +Delimiter?
-        Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"?"%1050_MasterStr%"
-        Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorLioneyeStr gUpdateStringEdit , %VendorLioneyeStr%??"%1080_BestelStr%"?"%1050_BestelStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Forest vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorForestStr gUpdateStringEdit , %VendorForestStr%??"%1080_GreustStr%"?"%1050_GreustStr%"
-        Gui, Strings: Add, Text, xs y+15 section, Capture of the Sarn vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorSarnStr gUpdateStringEdit , %VendorSarnStr%??"%1080_ClarissaStr%"?"%1050_ClarissaStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Highgate vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorHighgateStr gUpdateStringEdit , %VendorHighgateStr%??"%1080_PetarusStr%"?"%1050_PetarusStr%"
-        Gui, Strings: Add, Text, xs y+15 section, Capture of the Overseer vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOverseerStr gUpdateStringEdit , %VendorOverseerStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Bridge vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorBridgeStr gUpdateStringEdit , %VendorBridgeStr%??"%1080_HelenaStr%"?"%1050_HelenaStr%"
-        Gui, Strings: Add, Text, xs y+15 section, Capture of the Docks vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorDocksStr gUpdateStringEdit , %VendorDocksStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
-        Gui, Strings: Add, Text, x+10 ys , Capture of the Oriath vendor nameplate
-        Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
-        Gui, Strings: +Delimiter|
-      }
-      Gui, Strings: show , w640 h525, FindText Strings
-    }
-    Else If (Function = "Chat")
-    {
-      Gui, 1: Submit
-      If !Built_Chat
-      {
-        Built_Chat := 1
-        Gui, Chat: New
-        Gui, Chat: +AlwaysOnTop -MinimizeBox
-
-        ;Save Setting
-        Gui, Chat: Add, Button, default gupdateEverything    x295 y320  w150 h23,   Save Configuration
-        ; Gui, Add, Button,      gloadSaved     x+5           h23,   Load
-        Gui, Chat: Add, Button,      gLaunchSite     x+5           h23,   Website
-
-        Gui, Chat: Add, Tab, w590 h350 xm+5 ym Section , Commands|Reply Whisper
-      Gui, Chat: Tab, Commands
-        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-        Gui, Chat: Add,GroupBox,Section w60 h85                      ,Modifier
-        Gui, Chat: Font,
-        Gui, Chat: Font,s9,Arial
-        Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v1Prefix1, %1Prefix1%
-        Gui, Chat: Add, Edit, y+8    w50 h23 v1Prefix2, %1Prefix2%
-        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-        Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
-        Gui, Chat: Font,
-        Gui, Chat: Font,s9,Arial
-        Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v1Suffix1, %1Suffix1%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix2, %1Suffix2%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix3, %1Suffix3%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix4, %1Suffix4%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix5, %1Suffix5%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix6, %1Suffix6%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix7, %1Suffix7%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix8, %1Suffix8%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v1Suffix9, %1Suffix9%
-        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-        Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Commands
-        Gui, Chat: Font,
-        Gui, Chat: Font,s9,Arial
-        DefaultCommands := [ "/Hideout","/Menagerie","/Delve","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
-        textList=
-        For k, v in DefaultCommands
-          textList .= (!textList ? "" : "|") v
-        Gui, Chat: Add, ComboBox, xs+4 ys+20 w290 v1Suffix1Text, %textList%
-        GuiControl,Chat: Text, 1Suffix1Text, %1Suffix1Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix2Text, %textList%
-        GuiControl,Chat: Text, 1Suffix2Text, %1Suffix2Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix3Text, %textList%
-        GuiControl,Chat: Text, 1Suffix3Text, %1Suffix3Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix4Text, %textList%
-        GuiControl,Chat: Text, 1Suffix4Text, %1Suffix4Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix5Text, %textList%
-        GuiControl,Chat: Text, 1Suffix5Text, %1Suffix5Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix6Text, %textList%
-        GuiControl,Chat: Text, 1Suffix6Text, %1Suffix6Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix7Text, %textList%
-        GuiControl,Chat: Text, 1Suffix7Text, %1Suffix7Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix8Text, %textList%
-        GuiControl,Chat: Text, 1Suffix8Text, %1Suffix8Text%
-        Gui, Chat: Add, ComboBox,  y+5     w290 v1Suffix9Text, %textList%
-        GuiControl,Chat: Text, 1Suffix9Text, %1Suffix9Text%
-      Gui, Chat: Tab, Reply Whisper
-        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-        Gui, Chat: Add,GroupBox,Section  w60 h85                      ,Modifier
-        Gui, Chat: Font,
-
-        Gui, Chat: Font,s9,Arial
-        Gui, Chat: Add, Edit, xs+4 ys+20 w50 h23 v2Prefix1, %2Prefix1%
-        Gui, Chat: Add, Edit, y+8    w50 h23 v2Prefix2, %2Prefix2%
-        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-        Gui, Chat: Add,GroupBox,Section x+10 ys w60 h275                      ,Keys
-        Gui, Chat: Font,
-        Gui, Chat: Font,s9,Arial
-        Gui, Chat: Add, Edit, ys+20 xs+4 w50 h23 v2Suffix1, %2Suffix1%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix2, %2Suffix2%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix3, %2Suffix3%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix4, %2Suffix4%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix5, %2Suffix5%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix6, %2Suffix6%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix7, %2Suffix7%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix8, %2Suffix8%
-        Gui, Chat: Add, Edit, y+5    w50 h23 v2Suffix9, %2Suffix9%
-        Gui, Chat: Font,s9 cBlack Bold Underline, Arial
-        Gui, Chat: Add,GroupBox,Section x+10 ys w300 h275                      ,Whisper Reply
-        Gui, Chat: Font,
-        Gui, Chat: Font,s9,Arial
-        DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
-        textList=
-        For k, v in DefaultWhisper
-          textList .= (!textList ? "" : "|") v
-        Gui, Chat: Add, ComboBox,   xs+4 ys+20   w290 v2Suffix1Text, %textList%
-        GuiControl,Chat: Text, 2Suffix1Text, %2Suffix1Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix2Text, %textList%
-        GuiControl,Chat: Text, 2Suffix2Text, %2Suffix2Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix3Text, %textList%
-        GuiControl,Chat: Text, 2Suffix3Text, %2Suffix3Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix4Text, %textList%
-        GuiControl,Chat: Text, 2Suffix4Text, %2Suffix4Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix5Text, %textList%
-        GuiControl,Chat: Text, 2Suffix5Text, %2Suffix5Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix6Text, %textList%
-        GuiControl,Chat: Text, 2Suffix6Text, %2Suffix6Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix7Text, %textList%
-        GuiControl,Chat: Text, 2Suffix7Text, %2Suffix7Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix8Text, %textList%
-        GuiControl,Chat: Text, 2Suffix8Text, %2Suffix8Text%
-        Gui, Chat: Add, ComboBox,  y+5      w290 v2Suffix9Text, %textList%
-        GuiControl,Chat: Text, 2Suffix9Text, %2Suffix9Text%
-      }
-      Gui, Chat: show , w620 h370, Chat Hotkeys
-    }
-    Else If (Function = "Controller")
-    {
-      Gui, 1: Submit
-      If !Built_Controller
-      {
-        Built_Controller := 1
-        Gui, Controller: New
-        Gui, Controller: +AlwaysOnTop -MinimizeBox
-        DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
-        textList= 
-        For k, v in DefaultButtons
-          textList .= (!textList ? "" : "|") v
-        
-        Gui, Controller: Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
-
-        Gui, Controller: Add, Checkbox,  section  xp y+-10          vYesMovementKeys Checked%YesMovementKeys%                     , Use Move Keys?
-        Gui, Controller: Add, Checkbox,             vYesTriggerUtilityKey Checked%YesTriggerUtilityKey%                     , Use utility on Move?
-        Gui, Controller: Add, DropDownList,   x+5 yp-5   w40   vTriggerUtilityKey Choose%TriggerUtilityKey%, 1|2|3|4|5
-
-        Gui, Controller: Add, Checkbox, section xm+255 ym+360 vYesController Checked%YesController%,Enable Controller
-        
-        Gui, Controller: Add,GroupBox, section xm+80 ym+15 w80 h40                        ,L Bumper
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonLB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonLB, %hotkeyControllerButtonLB%
-        Gui, Controller: Add,GroupBox,  xs+360 ys w80 h40                        ,R Bumper
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonRB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonRB, %hotkeyControllerButtonRB%
-
-        Gui, Controller: Add,GroupBox, section  xm+65 ym+100 w90 h80                        ,D-Pad
-        Gui, Controller: add,text, xs+15 ys+30, Mouse`nMovement
-
-        Gui, Controller: Add,GroupBox, section xm+165 ym+180 w80 h80                        ,Left Joystick
-        Gui, Controller: Add,Checkbox, xs+5 ys+30     Checked%YesTriggerUtilityJoystickKey%      vYesTriggerUtilityJoystickKey, Use util from`nMove Keys?
-        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,L3
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonL3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonL3, %hotkeyControllerButtonL3%
-
-        Gui, Controller: Add,GroupBox,section  xs+190 ys w80 h80                        ,Right Joystick
-        Gui, Controller: Add,Checkbox, xp+5 y+-53     Checked%YesTriggerJoystickRightKey%      vYesTriggerJoystickRightKey, Use key?
-        Gui, Controller: Add, ComboBox,        xp y+8    w70   vhotkeyControllerJoystickRight, LButton|RButton|q|w|e|r|t
-        GuiControl,Controller: Text, hotkeyControllerJoystickRight, %hotkeyControllerJoystickRight%
-        Gui, Controller: Add,GroupBox,  xs ys+90 w80 h40                        ,R3
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonR3, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonR3, %hotkeyControllerButtonR3%
-
-        Gui, Controller: Add,GroupBox, section xm+140 ym+60 w80 h40                        ,Select
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonBACK, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonBACK, %hotkeyControllerButtonBACK%
-        Gui, Controller: Add,GroupBox, xs+245 ys w80 h40                        ,Start
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w70                       vhotkeyControllerButtonSTART, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonSTART, %hotkeyControllerButtonSTART%
-
-        Gui, Controller: Add,GroupBox, section xm+65 ym+280 w40 h40                  ,Up
-        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyUp, %hotkeyUp%
-        Gui, Controller: Add,GroupBox, xs ys+80 w40 h40                        ,Down
-        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyDown, %hotkeyDown%
-        Gui, Controller: Add,GroupBox, xs-40 ys+40 w40 h40                      ,Left
-        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyLeft, %hotkeyLeft%
-        Gui, Controller: Add,GroupBox, xs+40 ys+40 w40 h40                      ,Right
-        Gui, Controller: Add,Edit, xp+5 y+-23 w30 h19                      vhotkeyRight, %hotkeyRight%
-
-        Gui, Controller: Add,GroupBox,section xm+465 ym+80 w70 h40                      ,Y
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonY, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonY, %hotkeyControllerButtonY%
-        Gui, Controller: Add,GroupBox, xs ys+80 w70 h40                      ,A
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonA, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonA, %hotkeyControllerButtonA%
-        Gui, Controller: Add,GroupBox, xs-40 ys+40 w70 h40                      ,X
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonX, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonX, %hotkeyControllerButtonX%
-        Gui, Controller: Add,GroupBox, xs+40 ys+40 w70 h40                      ,B
-        Gui, Controller: Add,ComboBox, xp+5 y+-23 w60                       vhotkeyControllerButtonB, %textList%|%hotkeyLootScan%|%hotkeyCloseAllUI%
-        GuiControl,Controller: Text, hotkeyControllerButtonB, %hotkeyControllerButtonB%
-
-        ;Save Setting
-        Gui, Controller: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-        ; Gui, Controller: Add, Button,      gloadSaved     x+5           h23,   Load
-        Gui, Controller: Add, Button,      gLaunchSite     x+5           h23,   Website
-      }
-      Gui, Controller: show , w620 h500, Controller Settings
-    }
-    Else if (Function = "Globe")
-    {
-      Gui, 1: Submit
-      Element := Var[1]
-      If (!Built_Globe || Element = "Reset")
-      {
-        If (Element = "Reset")
-        {
-          Gui, Globe: Destroy
-          Globe := Array_DeepClone(Base.Globe)
-        }
-        Built_Globe := 1
-        Gui, Globe: New
-        Gui, Globe: +AlwaysOnTop -MinimizeBox
-        Global Picker := New ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
-        Gui, Globe: +AlwaysOnTop -MinimizeBox -MaximizeBox
-        Gui, Globe: Add, Button, xm ym+8 w1 h1
-        Gui, Globe: Font, Bold s9 c777777
-        Gui, Globe: Add, GroupBox, xm ym w205 h100 Section, Life Scan Area
-        Gui, Globe: Font, Bold c777777
-        Gui, Globe: Add, Text, vGlobe_Life_X1 xs+10 yp+20 , % "X1:" Globe.Life.X1
-        Gui, Globe: Add, Text, vGlobe_Life_Y1 x+5 yp , % "Y1:" Globe.Life.Y1
-        Gui, Globe: Add, Text, vGlobe_Life_X2 xs+10 y+8 , % "X2:" Globe.Life.X2
-        Gui, Globe: Add, Text, vGlobe_Life_Y2 x+5 yp , % "Y2:" Globe.Life.Y2
-        Gui, Globe: Add, Text, xs+10 y+8, Color:
-        Gui, Globe: Font
-        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Life x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Life.Color.Hex)
-        Gui, Globe: Font, Bold c777777
-        Gui, Globe: Add, Text, x+5 yp+2, Variance:
-        Gui, Globe: Add, Text, x+2 yp w35, % Globe.Life.Color.Variance
-        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Life x+1 yp hp, % Globe.Life.Color.Variance
-        TempC := Format("0x{1:06X}",Globe.Life.Color.Hex)
-        Gui, Globe: Add, Text, gColorLabel_Life xs+10 y+6 hp w185,
-        Gui, Globe: Add, Progress, vWR_Progress_Color_Life xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Life h18 xs+115 ys+15, Choose Area
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Life wp hp xp y+5, Show Area
-
-        Gui, Globe: Font, Bold s9 c777777
-        Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Mana Scan Area
-        Gui, Globe: Font, Bold c777777
-        Gui, Globe: Add, Text, vGlobe_Mana_X1 xs+10 yp+20 , % "X1:" Globe.Mana.X1
-        Gui, Globe: Add, Text, vGlobe_Mana_Y1 x+5 yp , % "Y1:" Globe.Mana.Y1
-        Gui, Globe: Add, Text, vGlobe_Mana_X2 xs+10 y+8 , % "X2:" Globe.Mana.X2
-        Gui, Globe: Add, Text, vGlobe_Mana_Y2 x+5 yp , % "Y2:" Globe.Mana.Y2
-        Gui, Globe: Add, Text, xs+10 y+8, Color:
-        Gui, Globe: Font
-        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_Mana x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.Mana.Color.Hex)
-        Gui, Globe: Font, Bold c777777
-        Gui, Globe: Add, Text, x+5 yp+2, Variance:
-        Gui, Globe: Add, Text, x+2 yp w35, % Globe.Mana.Color.Variance
-        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_Mana x+1 yp hp, % Globe.Mana.Color.Variance
-        TempC := Format("0x{1:06X}",Globe.Mana.Color.Hex)
-        Gui, Globe: Add, Text, gColorLabel_Mana xs+10 y+6 hp w185,
-        Gui, Globe: Add, Progress, vWR_Progress_Color_Mana xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_Mana h18 xs+115 ys+15, Choose Area
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_Mana wp hp xp y+5, Show Area
-
-        Gui, Globe: Font, Bold s9 c777777
-        Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Energy Shield Scan Area
-        Gui, Globe: Font, Bold c777777
-        Gui, Globe: Add, Text, vGlobe_ES_X1 xs+10 yp+20 , % "X1:" Globe.ES.X1
-        Gui, Globe: Add, Text, vGlobe_ES_Y1 x+5 yp , % "Y1:" Globe.ES.Y1
-        Gui, Globe: Add, Text, vGlobe_ES_X2 xs+10 y+8 , % "X2:" Globe.ES.X2
-        Gui, Globe: Add, Text, vGlobe_ES_Y2 x+5 yp , % "Y2:" Globe.ES.Y2
-        Gui, Globe: Add, Text, xs+10 y+8, Color:
-        Gui, Globe: Font
-        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_ES x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.ES.Color.Hex)
-        Gui, Globe: Font, Bold c777777
-        Gui, Globe: Add, Text, x+5 yp+2, Variance:
-        Gui, Globe: Add, Text, x+2 yp w35, % Globe.ES.Color.Variance
-        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_ES x+1 yp hp, % Globe.ES.Color.Variance
-        TempC := Format("0x{1:06X}",Globe.ES.Color.Hex)
-        Gui, Globe: Add, Text, gColorLabel_ES xs+10 y+6 hp w185,
-        Gui, Globe: Add, Progress, vWR_Progress_Color_ES xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_ES h18 xs+115 ys+15, Choose Area
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_ES wp hp xp y+5, Show Area
-
-        Gui, Globe: Font, Bold s9 c777777
-        Gui, Globe: Add, GroupBox, xs+220 ys w205 h100 Section, Eldritch Battery Scan Area
-        Gui, Globe: Font, Bold
-        Gui, Globe: Add, Text, vGlobe_EB_X1 xs+10 yp+20 , % "X1:" Globe.EB.X1
-        Gui, Globe: Add, Text, vGlobe_EB_Y1 x+5 yp , % "Y1:" Globe.EB.Y1
-        Gui, Globe: Add, Text, vGlobe_EB_X2 xs+10 y+8 , % "X2:" Globe.EB.X2
-        Gui, Globe: Add, Text, vGlobe_EB_Y2 x+5 yp , % "Y2:" Globe.EB.Y2
-        Gui, Globe: Add, Text, xs+10 y+8, Color:
-        Gui, Globe: Font
-        Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_EB x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.EB.Color.Hex)
-        Gui, Globe: Font, Bold c777777
-        Gui, Globe: Add, Text, x+5 yp+2, Variance:
-        Gui, Globe: Add, Text, x+2 yp w35, % Globe.EB.Color.Variance
-        Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_EB x+1 yp hp, % Globe.EB.Color.Variance
-        TempC := Format("0x{1:06X}",Globe.EB.Color.Hex)
-        Gui, Globe: Add, Text, gColorLabel_EB xs+10 y+6 hp w185,
-        Gui, Globe: Add, Progress, vWR_Progress_Color_EB xs+10 yp hp wp c%TempC% BackgroundBlack, 100
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
-        Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
-
-
-        Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
-        Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Initial Values
-        Gui, Globe: Font, s25 Bold c777777
-        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
-        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
-        Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
-      }
-      GlobeActive := True
-      Gui, Globe: show , Center AutoSize, Globe Settings
-    }
-    Else If (Function = "Locate")
-    {
-      LocateType := Var[2]
-      Gui, Hide
-      Loop
-      {
-        MouseGetPos, x, y
-        If (x != oldx || y != oldy)
-          ToolTip, % "-- Locate " LocateType " --`n@ " x "," y "`nPress Ctrl to set"
-        oldx := x, oldy := y
-      } Until GetKeyState("Ctrl")
-      Tooltip
-      %LocateType%X := x, %LocateType%Y := y
-      GuiControl,Inventory: ,% LocateType "X", %x%
-      GuiControl,Inventory: ,% LocateType "Y", %y%
-      MsgBox % x "," y " was captured as the new location for " LocateType
-      Gui, Show
-    }
-    Else if (Function = "Area")
-    {
-      Gui, Submit
-      Grab := LetUserSelectRect()
-      AreaType := Var[2]
-      Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
-      , Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
-      GuiControl, Globe:, Globe_%AreaType%_X1,% "X1:" Grab.X1
-      GuiControl, Globe:, Globe_%AreaType%_Y1,% "Y1:" Grab.Y1
-      GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
-      GuiControl, Globe:, Globe_%AreaType%_Y2,% "Y2:" Grab.Y2
-      Gui, Show
-    }
-    Else if (Function = "Show")
-    {
-      Gui, Submit
-      AreaType := Var[2]
-      MouseTip(Globe[AreaType].X1,Globe[AreaType].Y1,Globe[AreaType].Width,Globe[AreaType].Height)
-      Gui, Show
-    }
-    Else if (Function = "Color")
-    {
-      AreaType := Var[2]
-      Element := Var[1]
-      Split := {}
-      Split.hex := Globe[AreaType].Color.Hex
-      Gui, Submit, NoHide
-      If (Element = "UpDown")
-      {
-        Globe[AreaType].Color.Variance := WR_UpDown_Color_%AreaType%
-        Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
-      }
-      Else If (Element = "Edit")
-      {
-        CurPos := 1
-        newhex := ""
-        Loop, 3
-        {
-          RegExMatch(WR_Edit_Color_%AreaType%, "O)(x[0-9A-Fa-f]{6})", m,CurPos)
-          CurPos := m.Pos(0) + m.Len(0) - 1
-          If (m.1 != Split.hex && m.1 != "")
-          {
-            Split.new := m.1
-            ; Break
-          }
-        }
-        If (Split.new != "")
-          m := "0" Split.new
-        Else
-          m := "0" Split.hex
-        Globe[AreaType].Color.Hex := WR_Edit_Color_%AreaType% := Format("0x{1:06X}",m)
-        GuiControl,Globe: , WR_Edit_Color_%AreaType%, % WR_Edit_Color_%AreaType%
-        Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
-        GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
-      }
-    }
-    Else If (Function = "FillMetamorph")
-    {
-      Gui, Submit
-      ValueType := Var[2]
-      Element := Var[1]
-      If (Element = "Btn")
-      {
-        If (ValueType = "Menu")
-        {
-          If (!FillMetamorphInitialized)
-          {
-            FillMetamorphInitialized := True
-            Gui, FillMetamorph: New, -MinimizeBox -Resize
-            Gui, FillMetamorph: Font, s12 c777777 bold
-            Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
-            Gui, FillMetamorph: Font,
-            Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Btn_FillMetamorph_Select w85, Select area
-            Gui, FillMetamorph: Add, Button, x+5 yp gWR_Update vWR_Btn_FillMetamorph_Show wp, Show area
-            Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
-          }
-        }
-        Else If (ValueType = "Select" && Obj := LetUserSelectRect())
-        {
-          FillMetamorph := {"X1":Obj.X1
-            ,"Y1":Obj.Y1
-            ,"X2":Obj.X2
-            ,"Y2":Obj.Y2}
-          GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 "  Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 "  Y2: " FillMetamorph.Y2
-        }
-        Else If (ValueType = "Show")
-        {
-          MouseTip(FillMetamorph.X1,FillMetamorph.Y1,FillMetamorph.X2 - FillMetamorph.X1,FillMetamorph.Y2 - FillMetamorph.Y1)
-        }
-        Gui, FillMetamorph: Show
-      }
-    }
-    Else If (Function = "JSON")
-    {
-      ValueType := Var[2]
-      Element := Var[1]
-      If (Element = "Save")
-      {
-        Gui, Submit
-        JSONtext := JSON.Dump(%ValueType%,,2)
-        If FileExist(A_ScriptDir "\save\" ValueType ".json")
-          FileDelete, %A_ScriptDir%\save\%ValueType%.json
-        FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
-        Gui, Show
-      }
-      Else if (Element = "Load")
-      {
-        If FileExist(A_ScriptDir "\save\" ValueType ".json")
-        {
-          FileRead, JSONtext, %A_ScriptDir%\save\%ValueType%.json
-          %ValueType% := JSON.Load(JSONtext)
-        }
-        Else
-        {
-          Notify("Error loading " ValueType " file","",3)
-          Log("Error loading " ValueType " file")
-        }
-      }
-    }
-    Return
-
-    WR_Update:
-    If (A_GuiControl ~= "WR_\w{1,}_")
-    {
-      BtnStr := StrSplit(StrSplit(A_GuiControl, "WR_", " ")[2], "_", " ",3)
-      ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
-      ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
-      WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
-    }  
-    Return
-
-
-    ColorLabel_Life:
-    Picker.SetColor(Globe.Life.Color.hex)
-    Return
-    ColorLabel_Mana:
-    Picker.SetColor(Globe.Mana.Color.hex)
-    Return
-    ColorLabel_ES:
-    Picker.SetColor(Globe.ES.Color.hex)
-    Return
-    ColorLabel_EB:
-    Picker.SetColor(Globe.EB.Color.hex)
-    Return
-
-    FillMetamorphGuiClose:
-    FillMetamorphGuiEscape:
-      Gui, Submit
-      Gui, Inventory: Show
-    Return
-
-    InventoryGuiClose:
-    InventoryGuiEscape:
-    CraftingGuiClose:
-    CraftingGuiEscape:
-    StringsGuiClose:
-    StringsGuiEscape:
-    ChatGuiClose:
-    ChatGuiEscape:
-    ControllerGuiClose:
-    ControllerGuiEscape:
-    HotkeysGuiClose:
-    HotkeysGuiEscape:
-      Gui, Submit
-      Gui, 1: show
-    return
-    
-    GlobeGuiClose:
-    GlobeGuiEscape:
-      GlobeActive := False
-      Gui, Submit
-      Gui, 1: show
-    return
-  }
   ; Debug messages within script
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Ding(Timeout:=500, MultiTooltip:=0 , Message*)
   {
     If (!DebugMessages && MultiTooltip >= 0)
@@ -4258,7 +5104,6 @@
     Return
   }
   ; tooltip management
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   RemoveToolTip()
   {
     SetTimer, , Off
@@ -4407,46 +5252,48 @@
     return
   }
   ; GuiStatus - Determine the gamestates by checking for specific pixel colors
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GuiStatus(Fetch:="",SS:=1){
     Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnMetamorph, OnLocker, OnDetonate
     If (SS)
       ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
     If (Fetch="OnDetonate")
     {
-      POnDetonateDelve := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y), POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
+      POnDetonateDelve := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y), POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
       , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
       Return OnDetonate
     }
     Else If !(Fetch="")
     {
-      P%Fetch% := ScreenShot_GetColor(WR.loc[Fetch].X,WR.loc[Fetch].Y)
+      P%Fetch% := ScreenShot_GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
       temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
       Return temp
     }
     If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker)
       CheckXButton(), xChecked := True
-    POnChar := ScreenShot_GetColor(WR.loc.OnChar.X,WR.loc.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
-    POnChat := ScreenShot_GetColor(WR.loc.OnChat.X,WR.loc.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
-    POnMenu := ScreenShot_GetColor(WR.loc.OnMenu.X,WR.loc.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
-    POnInventory := ScreenShot_GetColor(WR.loc.OnInventory.X,WR.loc.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
-    POnStash := ScreenShot_GetColor(WR.loc.OnStash.X,WR.loc.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
-    POnVendor := ScreenShot_GetColor(WR.loc.OnVendor.X,WR.loc.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
-    POnDiv := ScreenShot_GetColor(WR.loc.OnDiv.X,WR.loc.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
-    POnLeft := ScreenShot_GetColor(WR.loc.OnLeft.X,WR.loc.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
-    POnDelveChart := ScreenShot_GetColor(WR.loc.OnDelveChart.X,WR.loc.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
-    POnMetamorph := ScreenShot_GetColor(WR.loc.OnMetamorph.X,WR.loc.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
-    POnLocker := ScreenShot_GetColor(WR.loc.OnLocker.X,WR.loc.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
+    POnChar := ScreenShot_GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
+    POnChat := ScreenShot_GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
+    POnMenu := ScreenShot_GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
+    POnInventory := ScreenShot_GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
+    POnStash := ScreenShot_GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
+    POnVendor := ScreenShot_GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
+    POnDiv := ScreenShot_GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
+    POnLeft := ScreenShot_GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
+    POnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+    POnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
+    POnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
+    POnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y), OnRitual := (POnRitual=varOnRitual?True:False)
     If OnMines
-    POnDetonate := ScreenShot_GetColor(WR.loc.DetonateDelve.X,WR.loc.Detonate.Y)
-    Else POnDetonate := ScreenShot_GetColor(WR.loc.Detonate.X,WR.loc.Detonate.Y)
+    POnDetonate := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+    Else POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
     If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
       CheckXButton()
     Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker||YesXButtonFound))
   }
+  GuiCheck(){
+    Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
+  }
   ; PanelManager - This class manages every gamestate within one place
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Class PanelManager
   {
     __New(){
@@ -4476,7 +5323,6 @@
     }
   }
   ; PixelStatus - This class manages pixel sample and comparison
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Class PixelStatus
   {
     __New(Name,X,Y,Hex){
@@ -4492,7 +5338,6 @@
     }
   }
   ; ColorPicker - Create a color Picker into any GUI window or stand alone
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   class ColorPicker {
     __New(pGroup_GUI_NAME:="ColorPicker", pGroup_ID:="ColorPicker" , pGroup_X:=10 , pGroup_Y:=30 , pGroup_W:=90 , pGroup_H:=280, pGroup_SideBar:=110, pGroup_Start_Color:="000000"){
       This.GUI_NAME := pGroup_GUI_NAME
@@ -4572,7 +5417,6 @@
     }
   }
   ; Progress_Slider - Class written by Hellbent on AHK forum, adjusted by Bandit
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   class Progress_Slider  {
     __New(pSlider_GUI_NAME , pSlider_Control_ID , pSlider_X , pSlider_Y , pSlider_W , pSlider_H , pSlider_Range_Start , pSlider_Range_End , pSlider_Value:=0 , pSlider_Background_Color := "Black" , pSlider_Top_Color := "Red" , pSlider_Pair_With_Edit := 0 , pSlider_Paired_Edit_ID := "" , pSlider_Use_Tooltip := 0 ,  pSlider_Vertical := 0 , pSlider_Smooth := 1, SaveINISection := ""){
       This.GUI_NAME:=pSlider_GUI_NAME
@@ -4601,6 +5445,7 @@
       This.Add_pSlider()
     }
     Add_pSlider(){
+      global
       Gui, % This.GUI_NAME ":Add" , Text , % "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd"
       pSlider_Trigger := This.Adjust_pSlider.BIND( THIS ) 
       GUICONTROL +G , %pSliderTriggerhwnd% , % pSlider_Trigger
@@ -4619,6 +5464,7 @@
       while(GetKeyState("LButton")){
         Static LastTT := 0
         MouseGetPos,pSlider_Temp_X,pSlider_Temp_Y
+        pSlider_Temp_X := Scale_PositionFromDPI(pSlider_Temp_X), pSlider_Temp_Y := Scale_PositionFromDPI(pSlider_Temp_Y)
         if(This.Vertical=0)
           This.Slider_Value := Round((pSlider_Temp_X - This.X ) / ( This.W / (This.End_Range - This.Start_Range) )) + This.Start_Range
         else
@@ -4634,7 +5480,8 @@
           if(This.Pair_With_Edit<=2)
           {
             GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value
-            IniWrite, % This.Slider_Value, %A_ScriptDir%\save\Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
+            If (This.SaveINISection)
+              IniWrite, % This.Slider_Value, %A_ScriptDir%\save\Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
           }
           if(This.Pair_With_Edit>=2)
           GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
@@ -4665,76 +5512,14 @@
       }
     }
   }
-  ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  PredictPrice(Switch:="")
-  {
-    Static ItemList := []
-    Static WarnedError := 0
-    FoundMatch := False
-    If (Item.Prop.Rarity_Digit = 3 && (Item.Prop.SpecialType = "" || Item.Prop.SpecialType = "6Link" || Item.Prop.SpecialType = "5Link") && YesPredictivePrice != "Off")
-    {
-      For k, obj in ItemList
-      {
-        If (obj.Clip_Contents = Clip_Contents)
-        {
-          FoundMatch := True
-          PriceObj := obj
-          Break
-        }
-      }
-      If !FoundMatch
-      {
-        PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
-        if (PriceObj.error)
-        {
-          If (A_TickCount - WarnedError > 30000 )
-          {
-            MsgBox % PriceObj.error_msg
-            WarnedError := A_TickCount
-          }
-          return
-        }
-        PriceObj.Clip_Contents := Clip_Contents
-        If (YesPredictivePrice = "Low")
-          Price := SelectedPrice := PriceObj.min
-        Else If (YesPredictivePrice = "Avg")
-          Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
-        Else If (YesPredictivePrice = "High")
-          Price := SelectedPrice := PriceObj.max
-
-        Price := Price * (YesPredictivePrice_Percent_Val / 100)
-        PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
-        PriceObj.Price := Price
-
-        tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " <<  " Format("{1:0.3g}", PriceObj.Avg ) "  >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
-          . "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
-        For k, reason in PriceObj.pred_explanation
-          tt .= "`n" Round(reason.2 * 100) "`% " reason.1
-        tt.= "`nEnd Of Predicive Price Information"
-        PriceObj.tt := tt
-        ItemList.Push(PriceObj)
-      }
-    }
-    Else
-      Return 0
-
-    If !(PriceObj.max > 0)
-      Return 0
-
-    If (Switch = "Obj")
-      Return PriceObj
-    Else
-      Return PriceObj.Price
-  }
+  
   ; CheckOHB - Determine the position of the OHB
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CheckOHB()
   {
     Global YesOHBFound
     If GamePID
     {
-      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 390)) , 0, 0, HealthBarStr,0))
+      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 50)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 430)) , 0, 0, HealthBarStr,0))
       {
         YesOHBFound := True
         Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
@@ -4745,6 +5530,18 @@
         YesOHBFound := False
         Return False
       }
+    }
+    Else 
+      Return False
+  }
+  CheckDialogue()
+  {
+    If GamePID
+    {
+      if (ok:=FindText(GameX + Round((GameW / 2)-100), GameY + Round(GameH / (1080 / 1)), GameX + Round((GameW / 2)+100), GameY + Round(GameH / (1080 / 10)) , 0, 0, "|<NPC Dialogue>0x3B454E@0.97$61.0M4UGdaEQ0zzw1zRIC6zs1RvoECDkk7yDywE7zbzy",0))
+        Return True
+      Else
+        Return False
     }
     Else 
       Return False
@@ -4772,48 +5569,7 @@
     Else
       Return False
   }
-  CheckOHBold()
-  {
-    Global GameStr, HealthBarStr, OHB, OHBLHealthHex, OHBLESHex, OHBLEBHex, OHBCheckHex
-    If WinActive(GameStr)
-    {
-      if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 370)) , 0, 0, HealthBarStr,0))
-      {
-        ok.1.3 -= 1
-        ok.1.4 += 8
-
-        OHB := { "X" : ok.1.1
-          , "Y" : ok.1.2
-          , "rX" : ok.1.1 + ok.1.3
-          , "W" : ok.1.3
-          , "H" : ok.1.4
-          , "hpY" : ok.1.2 - (ok.1.4 // 2)
-          , "mY" : ok.1.2 + (ok.1.4 // 2)
-          , "esY" : ok.1.2 - 2
-          , "ebY" : ok.1.2 + 2 }
-        OHB["pX"] := { 1 : Round(ok.1.1 + (ok.1.3* 0.10))
-          , 2 : Round(ok.1.1 + (ok.1.3* 0.20))
-          , 3 : Round(ok.1.1 + (ok.1.3* 0.30))
-          , 4 : Round(ok.1.1 + (ok.1.3* 0.40))
-          , 5 : Round(ok.1.1 + (ok.1.3* 0.50))
-          , 6 : Round(ok.1.1 + (ok.1.3* 0.60))
-          , 7 : Round(ok.1.1 + (ok.1.3* 0.70))
-          , 8 : Round(ok.1.1 + (ok.1.3* 0.80))
-          , 9 : Round(ok.1.1 + (ok.1.3* 0.90))
-          , 10 : Round(ok.1.1 + ok.1.3) }
-        Return OHB.X + OHB.Y
-      }
-      Else
-      {
-        Ding(500,6,"OHB Not Found")
-        Return False
-      }
-    }
-    Else 
-      Return False
-  }
   ; ScanGlobe - Determine the percentage of Life, ES and Mana
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ScanGlobe(SS:=0)
   {
     Global Globe, Player, GlobeActive
@@ -4822,7 +5578,7 @@
       Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
     Else
       Player.Percent.Life := -1
-    If (YesEldritchBattery)
+    If (WR.perChar.Setting.typeEldritch)
     {
       If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,1))
         Player.Percent.ES := Round(((Globe.EB.Y2 - EB.1.2) / Globe.EB.Height) * 100)
@@ -4864,38 +5620,16 @@
     }
     Return
   }
-  ; GetPercent - Determine the percentage of health
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  GetPercent(CID, PosY, Variance)
-  {
-    Thread, NoTimers, true    ;Critical
-    Global OHB, OHBLHealthHex
-    If !CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(OHB.X+1, PosY)),Variance)
-    {
-      Ding(500,7,"OHB Obscured, Moved, or Dead" )
-      Return HPerc
-    }
-    Else
-    Found := OHB.X + 1
-    Loop 10
-    {
-      pX:= OHB.pX[A_Index]
-      If CompareRGB(ToRGB(CID),ToRGB(ScreenShot_GetColor(pX, PosY)),Variance)
-        Found := pX
-    }
-    Thread, NoTimers, False    ;End Critical
-    Return Round(100* (1 - ( (OHB.rX - Found) / OHB.W ) ) )
-  }
   ; Rescale - Rescales values of the script to the user's resolution
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Rescale(){
     Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR
     If checkActiveType()
     {
       ; Build array framework
-      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{}}
+      InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{},"Ritual":{}}
               ,"SlotSpacing": 2
               ,"SlotRadius": 25
+              ,"Ritual":{"X":{},"Y":{}}
               ,"Stash":{"X":{},"Y":{}}
               ,"StashQuad":{"X":{},"Y":{}}
               ,"Inventory":{"X":{},"Y":{}}
@@ -4970,9 +5704,7 @@
           Base.Globe := Array_DeepClone(Globe)
         }
         ; Stash grid area
-        ; --------------------------------------------
         ; ---Needs to be done with all aspect ratio---
-        ; --------------------------------------------
         If (!StashImported)
         {
 
@@ -4996,83 +5728,102 @@
           InvGrid.Corners.VendorOff.Y1:=GameY + Round(GameH/(1080/518))
           InvGrid.Corners.VendorOff.X2:=GameX + Round(GameW/(1920/943))
           InvGrid.Corners.VendorOff.Y2:=GameY + Round(GameH/(1080/783))
+          ; Area for Ritual Items
+          InvGrid.Corners.Ritual.X1:=GameX + Round(GameW/(1920/308))
+          InvGrid.Corners.Ritual.Y1:=GameY + Round(GameH/(1080/268))
+          InvGrid.Corners.Ritual.X2:=GameX + Round(GameW/(1920/938))
+          InvGrid.Corners.Ritual.Y2:=GameY + Round(GameH/(1080/792))
 
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1080/2))
         }
-        ;Auto Vendor Settings 380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1920/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        ;Auto Vendor Settings
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1920/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1920/1542))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(1920/1658))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1920/1542))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1920/1658))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
-        ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(1920/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
-        ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(1920/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
-        ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(1920/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
-        ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(1920/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
-        ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(1920/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
-        ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(1920/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
-        ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(1920/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
-        ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(1920/115))
-        WR.loc.Portal.X:=GameX + Round(GameW/(1920/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+        ;Scouring
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        ;Chisel
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1920/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        ;Alchemy
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1920/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        ;Transmutation
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1920/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        ;Alteration
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        ;Augmentation
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        ;Vaal
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        ;Wisdom/Portal Scrolls
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/115))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1920/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (1920 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1920 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (1920 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1920 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
-        ;Status Check OnStash - Edited
-        WR.loc.OnStash.X:=GameX + Round(GameW / (1920 / 248))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
-        ;Status Check OnVendor - Edited
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1920 / 1583))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        ;Status Check OnStash
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1920 / 248))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
+        ;Status Check OnVendor
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (1920 / 618))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1920 / 618))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (1920 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (1920 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1920 / 466))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1920 / 466))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamporph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1920 / 785))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1920 / 785))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        ;Status Check OnRitual
+        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (1920 / 617))
+        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1080 / 108))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
-
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (1920 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1920 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
       }
       Else If (ResolutionScale="Classic") {
         ; Item Inventory Grid
@@ -5132,74 +5883,86 @@
         }
         ;Auto Vendor Settings
           ;380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1440/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1440/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(1440/1178))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1440/1178))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
                 ;Currency
           ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(1440/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(1440/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1440/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(1440/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1440/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(1440/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1440/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(1440/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1440/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(1440/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(1440/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1440/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(1440/125))
-        WR.loc.Portal.X:=GameX + Round(GameW/(1440/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1440/125))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1440/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (1440 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1440 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (1440 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1440 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1440 / 1103))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (1440 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1440 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (1440 / 378))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (1440 / 378))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1440 / 378))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (1440 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (1440 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1440 / 226))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1440 / 226))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1440 / 545))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1440 / 545))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (1440 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1440 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic") {
         ; Item Inventory Grid
@@ -5258,78 +6021,91 @@
         }
         ;Auto Vendor Settings
         ;380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(2560/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(2560/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(2560/2298))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(2560/2298))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
           ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(2560/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(2560/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(2560/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2560/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(2560/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(2560/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(2560/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(2560/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(2560/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(2560/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(2560/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(2560/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(2560/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(2560/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(2560/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(2560/125))
-        WR.loc.Portal.X:=GameX + Round(GameW/(2560/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(2560/125))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(2560/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (2560 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (2560 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (2560 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (2560 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (2560 / 2223))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (2560 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (2560 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (2560 / 618))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (2560 / 618))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (2560 / 618))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (2560 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (2560 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (2560 / 786))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (2560 / 786))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (2560 / 1105))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (2560 / 1105))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (2560 / 490))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (2560 / 490))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
 
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (2560 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (2560 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="Cinematic(43:18)") {
         ;Item Inventory Grid
@@ -5384,80 +6160,100 @@
           , InvGrid.Corners.Stash.Y2:=GameY + Round(GameH/(1440/1013))
           ; Give pixels for lines between slots
           InvGrid.SlotSpacing:=Round(GameH/(1440/2))
+          ; Area for Ritual Items
+          InvGrid.Corners.Ritual.X1:=GameX + Round(GameW/(3440/848))
+          InvGrid.Corners.Ritual.Y1:=GameY + Round(GameH/(1440/355))
+          InvGrid.Corners.Ritual.X2:=GameX + Round(GameW/(3440/1692))
+          InvGrid.Corners.Ritual.Y2:=GameY + Round(GameH/(1440/1058))
         }
         ;Auto Vendor Settings
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3440/945))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3440/945))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(3440/3090))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1440/1202))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3440/3090))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1440/1202))
         ;Currency
-          ;Scouring 235,631
-        WR.loc.Scouring.X:=GameX + Round(GameW/(3440/235))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1440/590))
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/235))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/590))
           ;Chisel 810,290
-        WR.loc.Chisel.X:=GameX + Round(GameW/(3440/810))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1440/250))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3440/810))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1440/250))
           ;Alchemy 655,390
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(3440/655))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1440/350))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(3440/655))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1440/350))
           ;Transmutation 80,390
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(3440/80))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1440/350))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(3440/80))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1440/350))
           ;Alteration 155, 390
-        WR.loc.Alteration.X:=GameX + Round(GameW/(3440/155))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1440/350))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(3440/155))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1440/350))
           ;Augmentation 310,465
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(3440/310))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1440/425))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1440/425))
           ;Vaal 310, 631
-        WR.loc.Vaal.X:=GameX + Round(GameW/(3440/310))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1440/590))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(3440/310))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1440/590))
 
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(3440/164))
-        WR.loc.Portal.X:=GameX + Round(GameW/(3440/228))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1440/299))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3440/164))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3440/228))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1440/299))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (3440 / 54))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1440 / 1217))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (3440 / 54))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1440 / 1217))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (3440 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3440 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1440 / 47))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3440 / 2991))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1440 / 47))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (3440 / 448))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (3440 / 448))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3440 / 1056))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1440 / 118))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (3440 / 1056))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1440 / 118))
         ;Status Check OnMetamporph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / ( 3440 / 1480))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1440 / 270))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / ( 3440 / 1480))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1440 / 270))
         ;Status Check OnLocker ((3440/3)-2)
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
+        ;Status Check OnRitual
+        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (3440 / 1269))
+        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1440 / 205))
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (3440 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
       }
       Else If (ResolutionScale="UltraWide") {
         ; Item Inventory Grid
@@ -5515,77 +6311,89 @@
         }
         ;Auto Vendor Settings
         ;380,820
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(3840/380))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3840/380))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(3840/3578))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1080/901))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3840/3578))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
         ;Currency
-          ;Scouring 175,476
-        WR.loc.Scouring.X:=GameX + Round(GameW/(3840/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1080/445))
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(3840/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(3840/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3840/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
           ;Chisel 605,220
-        WR.loc.Chisel.X:=GameX + Round(GameW/(3840/605))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3840/605))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
           ;Alchemy 490,290
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(3840/490))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(3840/490))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
           ;Transmutation 60,290
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(3840/60))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(3840/60))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
           ;Alteration 120,290
-        WR.loc.Alteration.X:=GameX + Round(GameW/(3840/120))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1080/260))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(3840/120))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
           ;Augmentation 230,340
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(3840/230))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1080/310))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
           ;Vaal 230,475
-        WR.loc.Vaal.X:=GameX + Round(GameW/(3840/230))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1080/445))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(3840/230))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(3840/125))
-        WR.loc.Portal.X:=GameX + Round(GameW/(3840/175))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1080/190))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3840/125))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3840/175))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (3840 / 41))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (3840 / 41))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (3840 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3840 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (3840 / 3503))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (3840 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (3840 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 32))
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (3840 / 1578))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (3840 / 1578))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3840 / 1578))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (3840 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (3840 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1080 / 57))
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (3840 / 1426))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (3840 / 1426))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
         ;Status Check OnMetamorph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker ((3840/3)-2)
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (3840 / 900))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3840 / 900))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (3840 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3840 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
       }
       Else If (ResolutionScale="WXGA(16:10)") {
         ; Item Inventory Grid
@@ -5652,99 +6460,112 @@
 
         ;Auto Vendor Settings
         ;270,800
-        WR.loc.VendorAccept.X:=GameX + Round(GameW/(1680/270))
-        WR.loc.VendorAccept.Y:=GameY + Round(GameH/(1050/800))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1680/270))
+        WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1050/800))
        
         ;Detonate Mines
-        WR.loc.DetonateDelve.X:=GameX + Round(GameW/(1680/1310))
-        WR.loc.Detonate.X:=GameX + Round(GameW/(1680/1425))
-        WR.loc.Detonate.Y:=GameY + Round(GameH/(1050/880))
+        WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1680/1310))
+        WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1680/1425))
+        WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1050/880))
        
         ;Currency
+        ;Chance
+        WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+        WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
+        ;Fusing
+        WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+        WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
+        ;Jeweller
+        WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+        WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
+        ;Chromatic
+        WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+        WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+
         ;Scouring 175,460
-        WR.loc.Scouring.X:=GameX + Round(GameW/(1680/175))
-        WR.loc.Scouring.Y:=GameY + Round(GameH/(1050/430))      
+        WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1680/175))
+        WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1050/430))      
        
         ;Chisel 590,210
-        WR.loc.Chisel.X:=GameX + Round(GameW/(1680/590))
-        WR.loc.Chisel.Y:=GameY + Round(GameH/(1050/180))
+        WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1680/590))
+        WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1050/180))
        
         ;Alchemy 475,280
-        WR.loc.Alchemy.X:=GameX + Round(GameW/(1680/475))
-        WR.loc.Alchemy.Y:=GameY + Round(GameH/(1050/250))
+        WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1680/475))
+        WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1050/250))
        
         ;Transmutation 55,280
-        WR.loc.Transmutation.X:=GameX + Round(GameW/(1680/55))
-        WR.loc.Transmutation.Y:=GameY + Round(GameH/(1050/250))
+        WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1680/55))
+        WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1050/250))
        
         ;Alteration 115,285
-        WR.loc.Alteration.X:=GameX + Round(GameW/(1680/115))
-        WR.loc.Alteration.Y:=GameY + Round(GameH/(1050/255))
+        WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1050/255))
        
         ;Augmentation 225,335
-        WR.loc.Augmentation.X:=GameX + Round(GameW/(1680/225))
-        WR.loc.Augmentation.Y:=GameY + Round(GameH/(1050/305))
+        WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1050/305))
        
         ;Vaal 225,460
-        WR.loc.Vaal.X:=GameX + Round(GameW/(1680/225))
-        WR.loc.Vaal.Y:=GameY + Round(GameH/(1050/430))
+        WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1680/225))
+        WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1050/430))
        
         ;Scrolls in currency tab
-        WR.loc.Wisdom.X:=GameX + Round(GameW/(1680/115))
-        WR.loc.Portal.X:=GameX + Round(GameW/(1680/170))
-        WR.loc.Wisdom.Y:=WR.loc.Portal.Y:=GameY + Round(GameH/(1050/185))
+        WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1680/115))
+        WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1680/170))
+        WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1050/185))
        
         ;Status Check OnMenu
-        WR.loc.OnMenu.X:=GameX + Round(GameW / 2)
-        WR.loc.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
+        WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
+        WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
        
         ;Status Check OnChar
-        WR.loc.OnChar.X:=GameX + Round(GameW / (1680 / 36))
-        WR.loc.OnChar.Y:=GameY + Round(GameH / ( 1050 / 920))
+        WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1680 / 36))
+        WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1050 / 920))
        
         ;Status Check OnChat
-        WR.loc.OnChat.X:=GameX + Round(GameW / (1680 / 0))
-        WR.loc.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
+        WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1680 / 0))
+        WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
        
         ;Status Check OnInventory
-        WR.loc.OnInventory.X:=GameX + Round(GameW / (1680 / 1583))
-        WR.loc.OnInventory.Y:=GameY + Round(GameH / ( 1050 / 36))
+        WR.loc.pixel.OnInventory.X:=GameX + Round(GameW / (1680 / 1583))
+        WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1050 / 36))
        
         ;Status Check OnStash
-        WR.loc.OnStash.X:=GameX + Round(GameW / (1680 / 336))
-        WR.loc.OnStash.Y:=GameY + Round(GameH / ( 1050 / 32))
+        WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1680 / 336))
+        WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1050 / 32))
        
         ;Status Check OnVendor
-        WR.loc.OnVendor.X:=GameX + Round(GameW / (1680 / 525))
-        WR.loc.OnVendor.Y:=GameY + Round(GameH / ( 1050 / 120))
+        WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1680 / 525))
+        WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1050 / 120))
        
         ;Status Check OnDiv
-        WR.loc.OnDiv.X:=GameX + Round(GameW / (1680 / 519))
-        WR.loc.OnDiv.Y:=GameY + Round(GameH / ( 1050 / 716))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1680 / 519))
+        WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1050 / 716))
        
         ;Status Check OnLeft
-        WR.loc.OnLeft.X:=GameX + Round(GameW / (1680 / 252))
-        WR.loc.OnLeft.Y:=GameY + Round(GameH / ( 1050 / 57))
+        WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (1680 / 252))
+        WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1050 / 57))
        
         ;Status Check OnDelveChart
-        WR.loc.OnDelveChart.X:=GameX + Round(GameW / (1680 / 362))
-        WR.loc.OnDelveChart.Y:=GameY + Round(GameH / ( 1050 / 84))
+        WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1680 / 362))
+        WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1050 / 84))
        
         ;Status Check OnMetamporph
-        WR.loc.OnMetamorph.X:=GameX + Round(GameW / (1680 / 850))
-        WR.loc.OnMetamorph.Y:=GameY + Round(GameH / ( 1050 / 195))
+        WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1680 / 850))
+        WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1050 / 195))
        
         ;Status Check OnLocker ((1680/3)-2)
-        WR.loc.OnLocker.X:=GameX + Round(GameW / (1680 / 450))
-        WR.loc.OnLocker.Y:=GameY + Round(GameH / ( 1050 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1680 / 450))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1050 / 918))
 
         ;GUI overlay
-        WR.loc.Gui.X:=GameX + Round(GameW / (1680 / -10))
-        WR.loc.Gui.Y:=GameY + Round(GameH / (1050 / 1000))
+        WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1680 / -10))
+        WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1050 / 1000))
        
         ;Divination Y locations
-        WR.loc.DivTrade.Y:=GameY + Round(GameH / (1050 / 716))
-        WR.loc.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
+        WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1050 / 716))
+        WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
       }
       x_center := GameX + GameW / 2
       compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
@@ -5765,6 +6586,7 @@
     Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
     , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
     InvGrid.SlotRadius := (Cwidth//2 + Rwidth//2) // 2
+    InvGrid.SlotSize := (Cwidth + Rwidth) // 2
     Loop, %Cnum%
     {
       If (A_Index = 1) 
@@ -5859,6 +6681,154 @@
         PointY+=Rwidth+InvGrid.SlotSpacing
       InvGrid.VendorOff.Y.Push(Round(PointY))
     }
+    ; Calculate space for the Vendor Offer grid
+    totalX:=InvGrid.Corners.Ritual.X2 - InvGrid.Corners.Ritual.X1
+    , totalY:=InvGrid.Corners.Ritual.Y2 - InvGrid.Corners.Ritual.Y1
+    ; Fill in array with grid locations for 12x10 Offer Area
+    Cnum:=12
+    Rnum:=10
+    Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+    , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+    Loop, %Cnum%
+    {
+      If (A_Index = 1) 
+        PointX:=InvGrid.Corners.Ritual.X1+Cwidth//2
+      Else
+        PointX+=Cwidth+InvGrid.SlotSpacing
+      InvGrid.Ritual.X.Push(Round(PointX))
+    }
+    Loop, %Rnum%
+    {
+      If (A_Index = 1) 
+        PointY:=InvGrid.Corners.Ritual.Y1+Rwidth//2
+      Else
+        PointY+=Rwidth+InvGrid.SlotSpacing
+      InvGrid.Ritual.Y.Push(Round(PointY))
+    }
+  }
+  ScanRitual(mode:=""){
+    Global InvGrid, RunningToggle, BlackList, PPServerStatus
+    Static gridpanels := ""
+    Static pricepoint := 5
+    If (YesRitualPrice != "off" && YesRitual)
+    {
+      If !PPServerStatus()
+      Notify("PoEPrice.info Offline","",2)
+    }
+
+    If (mode = "make") {
+      If IsObject(gridpanels) {
+        ScanRitual("break")
+      }
+      ; MsgBox, Inside
+      ; Add blacklist
+      gridpanels := {}, BlackList := {}
+      ScanRitual("Begin to scan for panel closing")
+      For R, x in InvGrid.Ritual.X
+      {
+        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+          Break
+        For C, y in InvGrid.Ritual.Y
+        {
+          If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+            Break
+          If BlackList[R][C]
+            Continue
+          ; MsgBox, Inside Loop
+          ClipItem(x,y)
+          addToBlacklist(R, C)
+          If !(Item.Prop.ItemName ~= "\w")
+          {
+            Empty += 1
+            If Empty > 5
+              Return
+            Continue
+          }
+          
+          If Item.Prop.Stack_Size >= 2
+            Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
+          cvalue := Item.Prop.UniquePerfectValue?Item.Prop.UniquePerfectValue
+            : Item.Prop.ChaosValue?Item.Prop.ChaosValue
+            : Item.Prop.PredictPrice?Item.Prop.PredictPrice
+            : Item.Prop.ItemName = "Chaos Orb" ? Item.Prop.Stack_Size * 1
+            : 0
+          cvalue := Ltrim(Format("{:.2g}", cvalue),"0")
+          displayText := Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0") (cvalue?"`n" SubStr(cvalue,1):"") 
+            : cvalue? SubStr(cvalue,1) : ""
+
+          percentageScore := cvalue?((cvalue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
+
+          posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
+          ; MsgBox % ColorPercent(percentageScore)
+          ; WinActivate, % GameStr
+          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj,"22000000", "ff" LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
+        }
+      }
+    } Else If (mode = "break") {
+      for k, v in gridpanels
+      {
+        v.close()
+      }
+      gridpanels := ""
+    } Else {
+      If (!OnRitual && !OnInventory)
+        ScanRitual("break")
+      Else
+        SetTimer,% A_ThisFunc, 100
+    }
+    Return
+  }
+  Class Overlay {
+    __New(winName,InsertText,positionObj,backgroundColor:="aa000000",textColor:="bbffffff",setFont:="Arial"){
+      This.pToken := Gdip_Startup()
+      If !This.pToken{
+        MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+        return
+      }
+      OnExit(ObjBindMethod(This, "close"))
+      This.text := InsertText
+      This.label := winName
+      This.positions := positionObj
+      Gui,% This.label ": -Caption +E0x80020 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs"
+      Gui,% This.label ": Show", NA
+      This.hWND := WinExist()
+      This.color := backgroundColor
+      This.tcolor := textColor
+      This.font := setFont
+      This.make()
+      This.setText()
+      This.finalize()
+    }
+    make(){
+      This.hbm := CreateDIBSection(This.positions.W, This.positions.H)
+      This.hdc := CreateCompatibleDC()
+      This.obm := SelectObject(This.hdc, This.hbm)
+      This.G := Gdip_GraphicsFromHDC(This.hdc)
+      Gdip_SetSmoothingMode(This.G, 4)
+      This.pBrush := Gdip_BrushCreateSolid("0x"This.color)
+      Gdip_FillRoundedRectangle(This.G, This.pBrush, 0, 0, This.positions.W, This.positions.H, 20)
+      Gdip_DeleteBrush(This.pBrush)
+    }
+    setText(){
+      If !Gdip_FontFamilyCreate(This.font)
+      {
+        MsgBox, 48, Font error!, The font you have specified does not exist on the system
+        Return "Error Loading Font"
+      }
+      Options := "x10p y30p w80p Centre c" This.tcolor " r2 s20"
+      Gdip_TextToGraphics(This.G, This.text, Options, This.font, This.positions.W, This.positions.H)
+    }
+    finalize(){
+      UpdateLayeredWindow(This.hWND, This.hdc, This.positions.X, This.positions.Y, This.positions.W, This.positions.H)
+      SelectObject(This.hdc, This.obm)
+      DeleteObject(This.hbm)
+      DeleteDC(This.hdc)
+      Gdip_DeleteGraphics(This.G)
+    }
+    close(){
+      Gdip_Shutdown(This.pToken)
+      Gui,% This.label ": Destroy" 
+    }
   }
   PromptForObject(){
     Global
@@ -5871,11 +6841,13 @@
     PrintObj:
       Gui, Submit, NoHide
       Gui, ArrayPrint: Destroy
-      Array_Gui(%SubmitObjectName%)
+      If IsObject(SubmitObjectName) 
+        Array_Gui(%SubmitObjectName%)
+      Else
+      MsgBox % %SubmitObjectName%
     Return
   }
   ; Compare two hex colors as their R G B elements, puts all the below together
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CompareHex(color1, color2, vary:=1, BGR:=0)
   {
     If BGR
@@ -5891,7 +6863,6 @@
     Return CompareRGB(c1,c2,vary)
   }
   ; Convert a color to a pixel findtext string
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2,LR_Border:=0)
   {
     If (Width < 1)
@@ -5929,17 +6900,14 @@
     }
   }
   ; Converts a hex BGR color into its R G B elements
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ToRGBfromBGR(color) {
     return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
   }
   ; Converts a hex RGB color into its R G B elements
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ToRGB(color) {
     return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
   }
   ; Converts R G B elements back to hex
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ToHex(Color) {
     If IsObject(Color)
     {
@@ -5950,7 +6918,6 @@
       Return Format("0x{1:02X}",Color)
   }
   ; Converts a hex BGR color into RGB format or vice versa
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   hexBGRToRGB(color) {
       b := Format("{1:02X}",(color >> 16) & 0xFF)
       g := Format("{1:02X}",(color >> 8) & 0xFF)
@@ -5958,7 +6925,6 @@
     return "0x" . r . g . b
   }
   ; Compares two converted HEX codes as R G B within the variance range (use ToRGB to convert first)
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CompareRGB(c1, c2, vary:=1) {
     rdiff := Abs( c1.r - c2.r )
     gdiff := Abs( c1.g - c2.g )
@@ -5966,7 +6932,6 @@
     return rdiff <= vary && gdiff <= vary && bdiff <= vary
   }
   ; Check if a specific hex value is part of an array within a variance and return the index
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   indexOfHex(var, Arr, fromIndex:=1, vary:=2) {
     for index, value in Arr {
       h1 := ToRGB(value) 
@@ -5979,7 +6944,6 @@
     }
   }
   ; Check if a specific value is part of an array and return the index
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   indexOf(var, Arr, fromIndex:=1) {
     for index, value in Arr {
       if (index < fromIndex){
@@ -5990,7 +6954,6 @@
     }
   }
   ; Check if a specific value is part of an array's array and return the parent index
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   indexOfArr(var, Arr, fromIndex:=1) 
   {
     for index, a in Arr 
@@ -6013,7 +6976,6 @@
     return false
   }
   ; Transform an array to a comma separated string
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   arrToStr(array){
     Str := ""
     For Index, Value In array
@@ -6022,7 +6984,6 @@
     return Str
   }
   ; Transform an array to a comma separated string
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   hexArrToStr(array){
     Str := ""
     For Index, Value In array
@@ -6034,7 +6995,6 @@
     return Str
   }
   ; Function to Replace Nth instance of Needle in Haystack
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   StringReplaceN( Haystack, Needle, Replacement="", Instance=1 ) 
   { 
     If !( Instance := 0 | Instance )
@@ -6052,7 +7012,6 @@
     Return HayStack Replacement Needle
   } 
   ; Clamp Value function
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Clamp( Val, Min, Max) {
     If Val < Min
       Val := Min
@@ -6061,7 +7020,6 @@
     Return
   }
   ; ClampGameScreen - Ensure points do not go outside Game Window
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ClampGameScreen(ByRef ValX, ByRef ValY) 
   {
     Global GameWindow
@@ -6076,7 +7034,6 @@
     Return
   }
   ; GroupByFourty - Mathematic function to sort quality into groups of 40
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GroupByFourty(ArrList) {
     GroupList := {}
     tQ := 0
@@ -6671,19 +7628,19 @@
     Return
   }
   ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CompareLocation(cStr:="")
   {
     Static Lang := ""
-    ;                             English / Thai         French         German           Russian             Spanish        Portuguese        Chinese      Korean
-    Static ClientTowns :=  { "Lioneye's Watch" :    [ "Lioneye's Watch"     , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"    , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"    , "獅眼守望"  , "라이온아이 초소에" ]
-                , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"     , "Лесной лагерь"     , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"  , "숲 야영지에" ]
-                , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"  , "Лагерь Сарна"      , "El Campamento de Sarn"   , "Acampamento de Sarn"   , "薩恩營地"  , "사안 야영지에" ]
-                , "Highgate" :        [ "Highgate"        , "Hautevoie"        , "Hohenpforte"       , "Македы"        , "Atalaya"                       , "統治者之殿"  , "하이게이트에" ]
-                , "Overseer's Tower" :    [ "Overseer's Tower"    , "La Tour du Superviseur" , "Der Turm des Aufsehers", "Башня надзирателя"   , "La Torre del Capataz"  , "Torre do Capataz"    , "堅守高塔"  , "감시탑에" ]
-                , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"     , "El Campamento del Puente", "Acampamento da Ponte"  , "橋墩營地"  , "다리 야영지에" ]
-                , "Oriath Docks" :      [ "Oriath Docks"      , "Les Docks d'Oriath"   , "Die Docks von Oriath"  , "Доки Ориата"       , "Las Dársenas de Oriath"  , "Docas de Oriath"     , "奧瑞亞港口"  , "오리아스 부두에" ]
-                , "Oriath" :        [ "Oriath"                                   , "Ориат"                                     , "奧瑞亞"    , "오리아스에" ] }
+    ;                                                     English / Thai                French                 German                  Russian                     Spanish                   Portuguese               Chinese             Korean
+    Static ClientTowns :=  { "Lioneye's Watch" :    [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"    , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"       , "라이온아이 초소에" ]
+                        , "The Forest Encampment" : [ "The Forest Encampment" ,"Le Campement de la forêt", "Das Waldlager"       , "Лесной лагерь"         , "El Campamento Forestal"  , "Acampamento da Floresta" , "森林營地"       , "숲 야영지에" ]
+                        , "The Sarn Encampment" :   [ "The Sarn Encampment"   , "Le Campement de Sarn"   , "Das Lager von Sarn"  , "Лагерь Сарна"          , "El Campamento de Sarn"   , "Acampamento de Sarn"     , "薩恩營地"       , "사안 야영지에" ]
+                        , "Highgate" :              [ "Highgate"              , "Hautevoie"              , "Hohenpforte"         , "Македы"                , "Atalaya"                                             , "統治者之殿"     , "하이게이트에" ]
+                        , "Overseer's Tower" :      [ "Overseer's Tower"      , "La Tour du Superviseur","Der Turm des Aufsehers", "Башня надзирателя"     , "La Torre del Capataz"    , "Torre do Capataz"        , "堅守高塔"       , "감시탑에" ]
+                        , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"       , "다리 야영지에" ]
+                        , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath", "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"     , "오리아스 부두에" ]
+                        , "Oriath" :                [ "Oriath"                                                                   , "Ориат"                                                                         , "奧瑞亞"         , "오리아스에" ]
+                        , "The Rogue Harbour" :     [ "The Rogue Harbour","ท่าเรือโจร","Le Port des Malfaiteurs", "Der Hafen der Abtrünnigen", "Разбойничья гавань", "El Puerto de los renegados","O Porto dos Renegados","도둑 항구에"] }
     Static LangString :=  { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"   , "German" : " : Ihr habt '"
                 , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
     If (cStr="Town")
@@ -6890,7 +7847,6 @@
     Return False
   }
   ; Monitor for changes in log since initialized
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Monitor_GameLogs(Initialize:=0) 
   {
     global ClientLog, CLogFO, CurrentLocation
@@ -6977,7 +7933,6 @@
     }
   }
   ; Tail Function for files
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   LastLine(SomeFileObject) {
     static SEEK_CUR := 1
     static SEEK_END := 2
@@ -6998,7 +7953,6 @@
     Return ; this should never happen
   }
   ; CoolTime - Return a more accurate MS value
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   CoolTime() {
     VarSetCapacity(PerformanceCount, 8, 0)
     VarSetCapacity(PerformanceFreq, 8, 0)
@@ -7007,7 +7961,6 @@
     return NumGet(PerformanceCount, 0, "Int64") / NumGet(PerformanceFreq, 0, "Int64")
   }
   ; DaysSince - Check how many days has it been since the last update
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   DaysSince()
   {
     Global Date_now, LastDatabaseParseDate, UpdateDatabaseInterval
@@ -7033,7 +7986,6 @@
     }
   }
   ; Provides a call for simpler random sleep timers
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   RandomSleep(min,max){
       Random, r, min, max
       r:=floor(r/Speed)
@@ -7041,13 +7993,11 @@
     return
   }
   ; Reset Chat
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ResetChat(){
     Send {Enter}{Up}{Escape}
     return
   }
   ; Grab Reply whisper recipient
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GrabRecipientName(){
     Clipboard := ""
     Send ^{Enter}^{A}^{C}{Escape}
@@ -7070,8 +8020,7 @@
     Sleep, 60
     Return
   }
-  ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaose Equivalent
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaos Equivalent
   ScrapeNinjaData(apiString)
   {
     If(RegExMatch(selectedLeague, "SSF",RxMatch))
@@ -7257,7 +8206,6 @@
     Return
   }
   ; GetProcessTimes - Show CPU usage as precentage
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   GetProcessTimes(PID)  
   {
     static aPIDs := []
@@ -7295,7 +8243,6 @@
     return aPIDs[PID, "usagePrior"] := result 
   }
   ; Hotkeys - Open main menu
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   hotkeys(){
     global
     if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
@@ -7304,14 +8251,14 @@
     {
       If (WinGuiX = "" || WinGuiY = "")
         WinGuiX := WinGuiY := 0
-      Gui, Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
+      Gui, 1: Show, Autosize x%WinGuiX% y%WinGuiY%,   WingmanReloaded
     }
     Else
     {
-      Gui, Show, Autosize Center,   WingmanReloaded
+      Gui, 1: Show, Autosize Center,   WingmanReloaded
     }
+    CheckGamestates := True
     processWarningFound:=0
-    Gui,6:Hide
     return
   }
   IsModifier(Character) {
@@ -7338,7 +8285,7 @@
         Continue
       }
       Obj := SplitModsFromKey(keys)
-      If GameActive
+      If (GameActive := WinActive(GameStr))
         Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
       Else
         controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
@@ -7356,7 +8303,6 @@
   }
 
   ; UpdateLeagues - Grab the League info from GGG API
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   UpdateLeagues:
     UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
     FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
@@ -7487,8 +8433,8 @@
         Gui Zoom:Show, % "w" 2*R+zoom+0 " h" 2*R+zoom+0 " x" A_ScreenWidth//2 - halfside " y0 NA", Magnifier
         WinGet MagnifierID, id,  Magnifier
         WinSet Transparent, 255, Magnifier ; makes the window invisible to magnification
-        WinGet PrintSourceID, ID
-        hdd_frame := DllCall("GetDC", UInt, PrintSourceID)
+        ; WinGet PrintSourceID, ID
+        hdd_frame := DllCall("GetDC", UInt, GamePID)
         hdc_frame := DllCall("GetDC", UInt, MagnifierID)
         Hotkey, IfWinActive
         Hotkey, Up, PushMouse, On
@@ -7536,8 +8482,8 @@
     Y1:=AreaObj.Y1
     X2:=AreaObj.X2
     Y2:=AreaObj.Y2
-    W := X2 - X1
-    H := Y2 - Y1
+    W := X2 - X1 +1
+    H := Y2 - Y1 +1
     M_Index := W * H
     Size := Round((W * H) / 300)
     ColorList := []
@@ -7628,15 +8574,15 @@
   ; StackRelease
   StackRelease()
   {
-    if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, StackRelease_BuffIcon,0))
+    if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, WR.perChar.Setting.channelrepressIcon,0))
     {
-      If FindText(buff.1.1 + StackRelease_X1Offset,buff.1.2 + buff.1.4 + StackRelease_Y1Offset,buff.1.1 + buff.1.3 + StackRelease_X2Offset,buff.1.2 + buff.1.4 + StackRelease_Y2Offset, 0, 0, StackRelease_BuffCount,0)
+      If FindText(buff.1.1 + WR.perChar.Setting.channelrepressOffsetX1,buff.1.2 + buff.1.4 + WR.perChar.Setting.channelrepressOffsetY1,buff.1.1 + buff.1.3 + WR.perChar.Setting.channelrepressOffsetX2,buff.1.2 + buff.1.4 + WR.perChar.Setting.channelrepressOffsetY2, 0, 0, WR.perChar.Setting.channelrepressStack,0)
       {
-        If GetKeyState(StackRelease_Keybind,"P")
+        If GetKeyState(WR.perChar.Setting.channelrepressKey,"P")
         {
-          SendHotkey(StackRelease_Keybind,"up")
+          SendHotkey(WR.perChar.Setting.channelrepressKey,"up")
           Sleep, 10
-          SendHotkey(StackRelease_Keybind,"down")
+          SendHotkey(WR.perChar.Setting.channelrepressKey,"down")
         }
       }
     }
@@ -7671,9 +8617,7 @@
   }
 
   ; Cooldown Timers
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     ; TimerFlask - Flask CD Timers
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     TimerFlask1:
       OnCooldown[1]:=0
       settimer,TimerFlask1,delete
@@ -7695,7 +8639,6 @@
       settimer,TimerFlask5,delete
     return
     ; TimerUtility - Utility CD Timers
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     TimerUtility1:
       OnCooldownUtility1 := 0
       settimer,TimerUtility1,delete
@@ -7737,13 +8680,11 @@
       settimer,TimerUtility10,delete
     Return
     ; TDetonated - Detonate CD Timer
-    ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     TDetonated:
       Detonated:=0
       ;settimer,TDetonated,delete
     return
   ; Tray Labels
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     WINSPY:
       SplitPath, A_AhkPath, , AHKDIR
       Run, %AHKDIR%\WindowSpy.ahk
@@ -7755,7 +8696,6 @@
       ExitApp
     Return
   ; Wingman GUI Labels
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     helpAutomation:
       Gui, submit
       MsgBox,% "Automation can start from two ways:`n`n"
@@ -7812,7 +8752,6 @@
         IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
     Return
   ; Wingman Crafting Labels - By DanMarzola
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     CustomCrafting:
       Global CustomCraftingBase
       textList1 := ""
@@ -7831,6 +8770,22 @@
       For k, v in craftingBasesT4
         textList4 .= (!textList4 ? "" : ", ") v
       baseList := ""
+      textList5 := ""
+      For k, v in craftingBasesT5
+        textList5 .= (!textList5 ? "" : ", ") v
+      baseList := ""
+      textList6 := ""
+      For k, v in craftingBasesT6
+        textList6 .= (!textList6 ? "" : ", ") v
+      baseList := ""
+      textList7 := ""
+      For k, v in craftingBasesT7
+        textList7 .= (!textList7 ? "" : ", ") v
+      baseList := ""
+      textList8 := ""
+      For k, v in craftingBasesT8
+        textList8 .= (!textList8 ? "" : ", ") v
+      baseList := ""
       For k, v in Bases
       {
         If ( !IndexOf("talisman",v["tags"]) 
@@ -7845,37 +8800,56 @@
           baseList .= v["name"]"|"
         }
       }
-      Gui, 1: Submit
       Gui, CustomCrafting: New
       Gui, CustomCrafting: +AlwaysOnTop -MinimizeBox
       Gui, CustomCrafting: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
-      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w350, %baseList%
-      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w400 h205 -wrap , Tier 1|Tier 2|Tier 3|Tier 4
-      Gui, CustomCrafting: Tab, Tier 1
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w350 r6 , %textList1%
+      Gui, CustomCrafting: Add, ComboBox, Sort vCustomCraftingBase xm+5 ym+28 w500, %baseList%
+      Gui, CustomCrafting: Add, Tab2, vInventoryGuiTabs x3 y3 w600 h300 -wrap , Atlas Tier 1|STR Tier 2|DEX Tier 3|INT Tier 4|Hybrid Tier 5|Jewel Tier 6|Abyss Jewel Tier 7|Jewellery Tier 8
+      Gui, CustomCrafting: Tab, Atlas Tier 1
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier1 ReadOnly y+38 w500 r8 , %textList1%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT1 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT1 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT1 Base
-      Gui, CustomCrafting: Tab, Tier 2
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w350 r6 , %textList2%
+      Gui, CustomCrafting: Tab, STR Tier 2
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier2 ReadOnly y+38 w500 r8 , %textList2%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT2 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT2 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT2 Base
-      Gui, CustomCrafting: Tab, Tier 3
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w350 r6 , %textList3%
+      Gui, CustomCrafting: Tab, DEX Tier 3
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier3 ReadOnly y+38 w500 r8 , %textList3%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT3 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT3 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT3 Base
-      Gui, CustomCrafting: Tab, Tier 4
-        Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w350 r6 , %textList4%
+      Gui, CustomCrafting: Tab, INT Tier 4
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier4 ReadOnly y+38 w500 r8 , %textList4%
         Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT4 Base
         Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT4 Base
         Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT4 Base
+      Gui, CustomCrafting: Tab, Hybrid Tier 5
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier5 ReadOnly y+38 w500 r8 , %textList5%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT5 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT5 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT5 Base
+      Gui, CustomCrafting: Tab, Jewel Tier 6
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier6 ReadOnly y+38 w500 r8 , %textList6%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT6 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT6 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT6 Base
+      Gui, CustomCrafting: Tab, Abyss Jewel Tier 7
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier7 ReadOnly y+38 w500 r8 , %textList7%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT7 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT7 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT7 Base
+      Gui, CustomCrafting: Tab, Jewellery Tier 8
+        Gui, CustomCrafting: Add, Edit, vActiveCraftTier8 ReadOnly y+38 w500 r8 , %textList8%
+        Gui, CustomCrafting: Add, Button, gAddCustomCraftingBase y+8 w60 r2 center, Add`nT8 Base
+        Gui, CustomCrafting: Add, Button, gRemoveCustomCraftingBase x+5 w60 r2 center, Remove`nT8 Base
+        Gui, CustomCrafting: Add, Button, gResetCustomCraftingBase x+5 w60 r2 center, Reset`nT8 Base
       Gui, CustomCrafting: Show, , Edit Crafting Tiers
     Return
     AddCustomCraftingBase:
       Gui, Submit, nohide
-      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
       If (CustomCraftingBase = "" || IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
         Return
       craftingBasesT%RxMatch1%.Push(CustomCraftingBase)
@@ -7886,7 +8860,7 @@
     Return
     RemoveCustomCraftingBase:
       Gui, Submit, nohide
-      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
       If (CustomCraftingBase = "" || !IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
         Return
       For k, v in craftingBasesT%RxMatch1%
@@ -7899,7 +8873,7 @@
       Gui, Show
     Return
     ResetCustomCraftingBase:
-      RegExMatch(A_GuiControl, "T" num " Base", RxMatch )
+      RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
       craftingBasesT%RxMatch1% := DefaultcraftingBasesT%RxMatch1%.Clone()
       textList := ""
       For k, v in craftingBasesT%RxMatch1%
@@ -7954,10 +8928,11 @@ IsLinear(arr, i=0) {
     *   text  [in, ByRef] - JSON formatted string
     *   reviver   [in, opt] - function object, similar to JavaScript's
     *               JSON.parse() 'reviver' parameter
+    *   Ordered           - add to ordered array
     */
     class Load extends JSON.Functor
     {
-      Call(self, ByRef text, reviver:="")
+      Call(self, ByRef text, reviver:="", ordered:=False)
       {
         this.rev := IsObject(reviver) ? reviver : false
       ; Object keys(and array indices) are temporarily stored in arrays so that
@@ -7996,7 +8971,7 @@ IsLinear(arr, i=0) {
             ; sacrifice readability for minor(actually negligible) performance gain
               (ch == "{")
                 ? ( is_key := true
-                , value := {}
+                , value := (ordered? new OrderedAssociativeArray : {} )
                 , next := object_key_or_object_closing )
               ; ch == "["
                 : ( value := json_array ? new json_array : []
@@ -8245,6 +9220,164 @@ IsLinear(arr, i=0) {
           return (new this).Call(arg, args*)
       }
     }
+  }
+
+  /*
+  *    "JSON_Beautify.ahk" by Joe DF (joedf@users.sourceforge.net)
+  *    ______________________________________________________________________
+  *    "Transform Objects & JSON strings into nice or ugly JSON strings."
+  *    Uses VxE's JSON_FromObj()
+  *    
+  *    Released under The MIT License (MIT)
+  *    ______________________________________________________________________
+  *    
+  */
+
+  JSON_Uglify(JSON) {
+    if IsObject(JSON) {
+      return JSON_FromObj(JSON)
+    } else {
+      if JSON is space
+        return ""
+      StringReplace,JSON,JSON, `n,,A
+      StringReplace,JSON,JSON, `r,,A
+      StringReplace,JSON,JSON, % A_Tab,,A
+      StringReplace,JSON,JSON, % Chr(08),,A
+      StringReplace,JSON,JSON, % Chr(12),,A
+      StringReplace,JSON,JSON, \\, % Chr(1),A  ;watchout for escape sequence '\\', convert to '\1'
+      _JSON:="", in_str:=0, l_char:=""
+      Loop, Parse, JSON
+      {
+        if ( (!in_str) && (asc(A_LoopField)==0x20) )
+          continue
+        if( (asc(A_LoopField)==0x22) && (asc(l_char)!=0x5C) )
+          in_str := !in_str
+        _JSON .= (l_char:=A_LoopField)
+      }
+      StringReplace,_JSON,_JSON, % Chr(1),\\,A  ;convert '\1' back to '\\'
+      return _JSON
+    }
+  }
+
+  JSON_Beautify(JSON, gap:="`t", maxIndent:= 4, boleanVal:=False) {
+    ;fork of http://pastebin.com/xB0fG9py
+    JSON:=JSON_Uglify(JSON)
+    StringReplace,JSON,JSON, \\, % Chr(1),A  ;watchout for escape sequence '\\', convert to '\1'
+    
+    indent:=""
+    
+    if gap is number
+    {
+      i :=0
+      while (i < gap) {
+        indent .= " "
+        i+=1
+      }
+    } else {
+      indent := gap
+    }
+    
+    _JSON:="", in_str:=0, k:=0, l_char:=""
+    
+    Loop, Parse, JSON
+    {
+      if (!in_str) {
+        if ( (A_LoopField=="{") || (A_LoopField=="[") ) {
+          _s:=""
+          Loop % ++k
+            _s.=indent
+          _JSON .= A_LoopField (k<=maxIndent?"`n" _s:(A_LoopField=="{"?" ":""))
+          l_beforeDigit := l_char
+          l_char := A_LoopField
+          continue
+        }
+        else if ( (A_LoopField=="}") || (A_LoopField=="]") ) {
+          _s:=""
+          Loop % --k
+            _s.=indent
+          _JSON .= (k<maxIndent?"`n" _s A_LoopField:(A_LoopField=="}"?" ":"") A_LoopField)
+          l_beforeDigit := l_char
+          l_char := A_LoopField
+          continue
+        }
+        else if ( (A_LoopField==",") ) {
+          _s:=""
+          Loop % k
+            _s.=indent
+          If l_char is digit
+          {
+            If (l_beforeDigit != ":")
+              _JSON .= A_LoopField (k<=maxIndent?"`n" _s:"")
+            Else
+              _JSON .= A_LoopField (k<=maxIndent?"`n" _s:" ")
+          }
+          Else
+            _JSON .= A_LoopField (k<=maxIndent?"`n" _s:" ")
+          l_beforeDigit := l_char
+          l_char := A_LoopField
+          continue
+        }
+      }
+      if( (asc(A_LoopField)==0x22) && (asc(l_char)!=0x5C) )
+        in_str := !in_str
+      If l_char is not digit
+        l_beforeDigit := l_char
+      _JSON .= (l_char:=A_LoopField)
+    }
+    StringReplace,_JSON,_JSON, % Chr(1),\\,A  ;convert '\1' back to '\\'
+    _JSON := RegExReplace(_JSON, "\[[ \n]+\]", "[]")
+    _JSON := RegExReplace(_JSON, "\{[ \n]+\}", "{}")
+    if boleanVal
+      _JSON := RegExReplace(_JSON, """:0([, ])", """:false$1"), _JSON := RegExReplace(_JSON, """:1([, ])", """:true$1")
+    return _JSON
+  }
+
+  ; Copyright © 2013 VxE. All rights reserved.
+
+  ; Serialize an object as JSON-like text OR format a string for inclusion therein.
+  ; NOTE: scientific notation is treated as a string and hexadecimal as a number.
+  ; NOTE: UTF-8 sequences are encoded as-is, NOT as their intended codepoint.
+  json_fromObj( obj ) {
+
+    If IsObject( obj )
+    {
+      isarray := 0 ; an empty object could be an array... but it ain't, says I
+      for key in obj
+        if ( key != ++isarray )
+        {
+          isarray := 0
+          Break
+        }
+
+      for key, val in obj
+        str .= ( A_Index = 1 ? "" : "," ) ( isarray ? "" : json_fromObj( key ) ":" ) json_fromObj( val )
+
+      return isarray ? "[" str "]" : "{" str "}"
+    }
+    else if obj IS NUMBER
+      return obj
+    ;	else if obj IN null,true,false ; AutoHotkey does not natively distinguish these
+    ;		return obj
+
+    ; Encode control characters, starting with backslash.
+    StringReplace, obj, obj, \, \\, A
+    StringReplace, obj, obj, % Chr(08), \b, A
+    StringReplace, obj, obj, % A_Tab, \t, A
+    StringReplace, obj, obj, `n, \n, A
+    StringReplace, obj, obj, % Chr(12), \f, A
+    StringReplace, obj, obj, `r, \r, A
+    StringReplace, obj, obj, ", \", A
+    StringReplace, obj, obj, /, \/, A
+    While RegexMatch( obj, "[^\x20-\x7e]", key )
+    {
+      str := Asc( key )
+      val := "\u" . Chr( ( ( str >> 12 ) & 15 ) + ( ( ( str >> 12 ) & 15 ) < 10 ? 48 : 55 ) )
+          . Chr( ( ( str >> 8 ) & 15 ) + ( ( ( str >> 8 ) & 15 ) < 10 ? 48 : 55 ) )
+          . Chr( ( ( str >> 4 ) & 15 ) + ( ( ( str >> 4 ) & 15 ) < 10 ? 48 : 55 ) )
+          . Chr( ( str & 15 ) + ( ( str & 15 ) < 10 ? 48 : 55 ) )
+      StringReplace, obj, obj, % key, % val, A
+    }
+    return """" obj """"
   }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
@@ -10962,6 +12095,44 @@ IsLinear(arr, i=0) {
     
     return String
   }
+
+  Gdip_GetPointsSection(X_Center,Y_Center,R_1,R_2,Sections,Offset,Section = "1"){
+    Section := Section -1
+    SectionAngle := 2*3.141592653589793/Sections
+    R_2_Min := 4*Offset/Sin(SectionAngle)
+    R_2 := R_2 > R_2_Min ? R_2 : R_2_Min
+    SweepAngle := ACos((R_1*cos(SectionAngle/2)+Offset*sin(SectionAngle/2))/R_1)*2
+    SweepAngle_2 := ACos((R_2*cos(SectionAngle/2)+Offset*sin(SectionAngle/2))/R_2)*2	
+    
+    Loop_Sections := round(R_1*SweepAngle)
+    StartAngle := -SweepAngle/2 + SectionAngle*(Section)
+    loop, %Loop_Sections% {
+      Angle := StartAngle + (A_Index-1)*SweepAngle/(Loop_Sections-1)
+      X_Arc := round(X_Center + R_1*cos(Angle))
+      Y_Arc := round(Y_Center + R_1*sin(Angle))
+      if (A_Index = 1){
+        Points := X_Arc "," Y_Arc
+        X_Arc_Start := X_Arc
+        Y_Arc_Start := Y_Arc
+        continue
+      }
+      Points .= "|" X_Arc "," Y_Arc
+    }
+    
+    Loop_Sections := round(R_2*SweepAngle_2)
+    StartAngle_2 := SweepAngle_2/2 + SectionAngle*(Section)
+    loop, %Loop_Sections% {
+      Angle := StartAngle_2 - (A_Index-1)*SweepAngle_2/(Loop_Sections-1)
+      X_Arc := round(X_Center + R_2*cos(Angle))
+      Y_Arc := round(Y_Center + R_2*sin(Angle))
+      Points .= "|" X_Arc "," Y_Arc
+    }
+    
+    Points .= "|" X_Arc_Start "," Y_Arc_Start
+    
+    return Points
+  }
+
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
@@ -12490,6 +13661,8 @@ IsLinear(arr, i=0) {
   ControlGet, Style, Style,,, ahk_id %hCtrl%
   ControlGet, ExStyle, ExStyle,,, ahk_id %hCtrl%
   ControlGetPos,,, CtrlW, CtrlH,, ahk_id %hCtrl% 
+  CtrlW:=Scale_PositionFromDPI(CtrlW), CtrlH:=Scale_PositionFromDPI(CtrlH)
+
   If not ( Class == "Static" and Style = 0x5000010E and ExStyle = 0 and CtrlW > 0 and CtrlH > 0 ) 
     Return 0, ErrorLevel := -1
 
@@ -12806,6 +13979,372 @@ IsLinear(arr, i=0) {
   Return DllCall( "CopyImage", "Ptr",hBM, "Int",0, "Int",ResizeW, "Int",ResizeH, "Int",LR_Flag2, "UPtr" )
   }  
 
+; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+
+
+/* Radial_Menu - Displays Menu encircling Mouse, which can contain icons.
+ ; Created by ahk_user @ 2019
+ ; Creates radial Mouse menu
+ ; V1.00046
+ ; Changes
+ ; Add function accepts HBitmap or files
+ ; Requires Gdip_GetPointsSection()
+ */
+
+  Class Radial_Menu{
+    static Sections, Sect_Name, Sect_Img
+    __New(){
+      This.Sections := "4"
+      This.RM_Key := "F9"
+      This.IconSize := 70
+    }
+    
+    SetSections(Sections){
+      This.Sections := Sections
+    }
+    SetKey(RM_Key){
+      This.RM_Key := RM_Key
+    }
+    SetKeySpecial(RM_Key2){
+      This.RM_Key2 := RM_Key2
+    }
+    
+    Add(SectionName,SectionImg,ArcNr){
+      if (This.Sections < ArcNr){
+        This.Sections := ArcNr
+      }
+      This.Sect_Name[ArcNr] := SectionName
+      This.Sect_Img[ArcNr] := SectionImg
+    }
+    Add2(SectionName2,SectionImg2,ArcNr){
+      if (This.Sections < ArcNr){
+        This.Sections := ArcNr
+      }
+      This.Sect_Name2[ArcNr] := SectionName2
+      This.Sect_Img2[ArcNr] := SectionImg2
+    }
+    
+    Show(){
+      static
+      This.Active := True
+      SectName := ""
+      CoordMode, Mouse, Window
+      MouseGetPos, X_Center, Y_Center
+      WinGetPos, X_Win, Y_Win,,, A
+      R_1 := 100
+      R_2 := R_1*0.2
+      Offset := 2
+      R_3 := R_1+Offset*2+10
+      
+      X_Gui := X_Center - R_3 + X_Win
+      Y_Gui := Y_Center - R_3 + Y_Win
+      Height_Gui := R_3*2
+      Width_Gui := R_3*2
+      
+      Width := R_3*2
+      height := R_3*2
+      
+      if WinExist("RM_Menu"){
+        Gui, 69: Destroy
+      }
+      
+      ; Start gdi+
+      If !pToken := Gdip_Startup(){
+        MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
+        ExitApp
+      }
+      OnExit("ExitFunc")
+      
+      ; Create a layered window (+E0x80000 : must be used for UpdateLayeredWindow to work!) that is always on top (+AlwaysOnTop), has no taskbar entry or caption
+      Gui, 69: -Caption +E0x80000 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs
+      
+      ; Show the window
+      Gui, 69: Show, NA x%X_Gui% y%Y_Gui% w%Width_Gui% h%Height_Gui%, RM_Menu
+      
+      ; Get a handle to this window we have created in order to update it later
+      hwnd1 := WinExist()
+      
+      MouseGetPos, X_Center, Y_Center
+      ColorBackGround := "111111"
+      ColorLineBackGround := "111111"
+      ColorSelected := "222222"
+      ColorLineSelected := "222222"
+      
+      Loop, % This.Sections { ;Setting Bitmap images of sections
+        if FileExist(This.Sect_Img[A_Index]){
+          pBitmap_%A_Index% := Gdip_CreateBitmapFromFile(This.Sect_Img[A_Index])
+        }
+        else if (This.Sect_Img[A_Index] !=""){
+          pBitmap_%A_Index% := Gdip_CreateBitmapFromHBITMAP(This.Sect_Img[A_Index])
+        }
+        
+        bWidth_%A_Index% := Gdip_GetImageWidth(pBitmap_%A_Index%)
+        bHeight_%A_Index% := Gdip_GetImageHeight(pBitmap_%A_Index%)
+        
+        if FileExist(This.Sect_Img2[A_Index]){
+          pBitmap2_%A_Index% := Gdip_CreateBitmapFromFile(This.Sect_Img2[A_Index])
+        }
+        else if (This.Sect_Img2[A_Index] !=""){
+          pBitmap2_%A_Index% := Gdip_CreateBitmapFromHBITMAP(This.Sect_Img2[A_Index])
+        }
+        bWidth2_%A_Index% := Gdip_GetImageWidth(pBitmap2_%A_Index%)
+        bHeight2_%A_Index% := Gdip_GetImageHeight(pBitmap2_%A_Index%)
+      }
+      
+      Counter := 0
+      loop, % This.Sections { ;Calculating Section Points
+        SectionAngle := 2*3.141592653589793/This.Sections*(A_Index-1)
+        
+        X_Bitmap_%A_Index% := R_3+(R_1-30)*cos(SectionAngle)-8
+        Y_Bitmap_%A_Index% := R_3+(R_1-30)*sin(SectionAngle)-8
+        
+        PointsA_%A_Index% := Gdip_GetPointsSection(R_3,R_3,R_1+Offset*2+10,R_1+Offset*2,This.Sections,Offset,A_Index)
+        Points_%A_Index% := Gdip_GetPointsSection(R_3,R_3,R_1,R_2,This.Sections,Offset,A_Index)
+      }
+      
+      ; Setting brushes and Pens
+      pBrush := Gdip_BrushCreateSolid("0xFF" ColorBackGround)
+      pBrushA := Gdip_BrushCreateSolid("0xFF" ColorSelected)
+      pBrushC := Gdip_BrushCreateSolid("0X01" ColorBackGround)
+      pPen := Gdip_CreatePen("0xFF" ColorLineBackGround, 1)
+      pPenA := Gdip_CreatePen("0xD2" ColorLineSelected, 1)
+      
+      Gdip_SetSmoothingMode(G, 4)
+      
+      RM_KeyState_D := 0
+      Gdip_FillEllipse(G, pBrushC, R_3-R_1, R_3-R_1, 2*R_1, 2*R_1)
+      
+      loop, {
+        RM_KeyState := GetKeyState(This.RM_Key,"P")
+        RM_KeyState2 := GetKeyState(This.RM_Key2,"P")
+        if !WinExist("RM_Menu"){
+          Exit
+        }
+        if (RM_KeyState = 1){
+          RM_KeyState_D := 1
+        }
+        if (RM_KeyState = 0 and RM_KeyState_D = 1){
+          Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+          if (Section_Mouse != 0){
+            break
+          }
+          RM_KeyState_D := 0
+        }
+        if (GetKeyState("LButton")){
+          Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+          if (Section_Mouse != 0){
+            break
+          }
+          if (Section_Mouse = 0){
+            SectName := ""
+            break
+          }
+        }
+        if GetKeyState("Escape"){
+          Section_Mouse := 0 
+          SectName := ""
+          break
+        }
+        
+        MouseGetPos, X_Mouse, Y_Mouse
+        X_Rel := X_Mouse - X_Center
+        Y_Rel := Y_Mouse - Y_Center
+        Center_Distance := Sqrt(X_Rel*X_Rel+Y_Rel*Y_Rel)
+        
+        Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+        
+        if (Center_Distance > R_1){
+          break
+        }
+        if (Section_Mouse = 0){
+          ToolTip
+          SectName := ""
+        }
+        if (Section_Mouse > 0){
+          Counter++
+          SectName_N := This.Sect_Name[Section_Mouse]
+          SectName2 := This.Sect_Name2[Section_Mouse]
+          if (GetKeyState(This.RM_Key2,"P") and SectName2 !=""){
+            SectName_N := This.Sect_Name2[Section_Mouse]
+          }
+          
+          if ((X_Mouse_P != X_Mouse) or (Y_Mouse_P != Y_Mouse) or SectName_N != SectName or Counter > 500) {
+            SectName := SectName_N
+            CoordMode, Mouse, Window
+            MouseGetPos, X_Mouse_P, Y_Mouse_P
+            if (Counter > 500 or SectName_N != SectName){
+              Tooltip %SectName%
+              Counter := 0
+            }
+          }
+        }
+        if (Section_Mouse != Section_Mouse_Prev or A_Index = 1 or RM_KeyState2_Prev != RM_KeyState2){ ; Update GDIP   
+          
+          Gdip_GraphicsClear(G)
+          hbm := CreateDIBSection(Width, Height) ; Create a gdi bitmap with width and height of what we are going to draw into it. This is the entire drawing area for everything
+          hdc := CreateCompatibleDC() ; Get a device context compatible with the screen
+          obm := SelectObject(hdc, hbm) ; Select the bitmap into the device context
+          G := Gdip_GraphicsFromHDC(hdc)	; Get a pointer to the graphics of the bitmap, for use with drawing functions
+          
+          ; Set the smoothing mode to antialias = 4 to make shapes appear smother (only used for vector drawing and filling)
+          Gdip_SetSmoothingMode(G, 4)
+          Gdip_FillEllipse(G, pBrushC, R_3-R_1, R_3-R_1, 2*R_1, 2*R_1)
+          
+          loop, % This.Sections {
+            SectionAngle := 2*3.141592653589793/This.Sections*(A_Index-1)
+            if (This.Sect_Name[A_Index] = ""){
+              continue
+            }
+            If (A_Index = Section_Mouse){
+              Gdip_FillPolygon(G, pBrushA, Points_%A_Index%)
+              Gdip_DrawLines(G, pPenA, Points_%A_Index%)
+              Gdip_FillPolygon(G, pBrushA, PointsA_%A_Index%)
+              Gdip_DrawLines(G, pPenA, PointsA_%A_Index%)
+            } 
+            else {
+              Gdip_FillPolygon(G, pBrush, Points_%A_Index%)
+              Gdip_DrawLines(G, pPen, Points_%A_Index%)
+            }
+            if (GetKeyState(This.RM_Key2,"P") and This.Sect_Name2[A_Index] !=""){
+              Gdip_DrawImage(G, pBitmap2_%A_Index%, X_Bitmap_%A_Index%-This.IconSize//2.5, Y_Bitmap_%A_Index%-This.IconSize//2.5, This.IconSize, This.IconSize*bHeight2_%A_Index%/bWidth2_%A_Index%, 0, 0, bWidth2_%A_Index%, bHeight2_%A_Index%)
+            }
+            else {
+              Gdip_DrawImage(G, pBitmap_%A_Index%, X_Bitmap_%A_Index%-This.IconSize//2.5, Y_Bitmap_%A_Index%-This.IconSize//2.5, This.IconSize, This.IconSize*bHeight_%A_Index%/bWidth_%A_Index%, 0, 0, bWidth_%A_Index%, bHeight_%A_Index%)
+            }
+            if(This.Sect_Img[A_Index]=""){
+              Gdip_TextToGraphics(G, This.Sect_Name[A_Index], "vCenter x" X_Bitmap_%A_Index% -20+8 " y" Y_Bitmap_%A_Index% -20+8 , "", "40", "40")
+            }
+          }
+          
+          ; Update the specified window we have created (hwnd1) with a handle to our bitmap (hdc), specifying the x,y,w,h we want it positioned on our screen
+          ; So this will position our gui at (0,0) with the Width and Height specified earlier
+          UpdateLayeredWindow(hwnd1, hdc, X_Gui, Y_Gui, Width, Height)
+          SelectObject(hdc, obm) ; Select the object back into the hdc
+          DeleteObject(hbm) ; Now the bitmap may be deleted
+          DeleteDC(hdc) ; Also the device context related to the bitmap may be deleted
+          Gdip_DeleteGraphics(G) ; The graphics may now be deleted
+        }
+        RM_KeyState2_Prev := RM_KeyState2
+        Section_Mouse_Prev := Section_Mouse
+      }
+      
+      Tooltip
+      
+      SelectObject(hdc, obm) ; Select the object back into the hdc
+      DeleteObject(hbm) ; Now the bitmap may be deleted
+      DeleteDC(hdc) ; Also the device context related to the bitmap may be deleted
+      Gdip_DeleteGraphics(G) ; The graphics may now be deleted
+      
+      loop, % This.Sections {
+        Gdip_DisposeImage(pBitmap_%A_Index%)
+        Gdip_DisposeImage(pBitmap2_%A_Index%)
+      }
+      
+      Gdip_DeleteBrush(pBrushC)
+      Gdip_DeleteBrush(pBrush)
+      Gdip_DeleteBrush(pBrushA)
+      Gdip_DeletePen(pPen)
+      Gdip_DeletePen(pPenA)
+      Gdip_Shutdown(pToken)
+      Gui, 69: Destroy
+      Section_Mouse := RM_GetSection(This.Sections, R_2,X_Center,Y_Center)
+      if (Section_Mouse = 0){
+        SectName := ""
+      }
+      This.Active := False
+      Return % SectName
+    }
+  }
+
+  RM_GetSection(Sections, R_2,X_Center,Y_Center){
+    CoordMode, Mouse, Window
+    MouseGetPos, X_Mouse, Y_Mouse
+    X_Rel := X_Mouse - X_Center
+    Y_Rel := Y_Mouse - Y_Center 
+    Distance_Center := Sqrt(X_Rel*X_Rel+Y_Rel*Y_Rel)
+    if (X_Rel = 0){ ; (correction to prevent X to be 0)
+      X_Rel = 0.01
+    }
+    if (Y_Rel = 0){ ; (correction to prevent Y to be 0)
+      Y_Rel = 0.01
+    }
+    if (Distance_Center < R_2){
+      Section_Mouse := "0"
+      return Section_Mouse
+    }
+    else if (Distance_Center > R_2){
+      a := X_Rel = 0 ? (Y_Rel = 0 ? 0 : Y_Rel > 0 ? 90 : 270) : atan(Y_Rel/X_Rel)*57.2957795130823209 ; 180/pi
+      Angle := X_Rel < 0 ? 180 + a : a < 0 ? 360 + a : a
+      Section_Mouse := 1+round(Angle/360*Sections)
+      if (Section_Mouse > Sections){
+        Section_Mouse := 1
+      }
+    }
+    return Section_Mouse
+  }
+
+  RM_BuildRM(RM_Name){
+    global RM_File_Settings := A_ScriptDir "\RM_Settings.ini"
+    IniRead, Sections,  %RM_File_Settings%,  %RM_Name%, Sections,  8
+    loop, %Sections% {
+      IniRead, RM_B%A_Index%_Name,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Name, Name
+      if (RM_B%A_Index%_Name = "Default"){
+        continue
+      }
+      IniRead, RM_B%A_Index%_img,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_img, %A_Space%
+      IniRead, RM_B%A_Index%_Script,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Script, %A_Space%
+      StringReplace, RM_B%A_Index%_Script,RM_B%A_Index%_Script,`<br`>,`n,all
+      
+      G.Add(RM_B%A_Index%_Name,RM_B%A_Index%_img,A_Index)
+    }
+    G.SetSections(Sections)
+    Result := G.Show()
+    loop, %Sections% {
+      if (Result=RM_B%A_Index%_Name and RM_B%A_Index%_Script = != ""){
+        Script := RM_B%A_Index%_Script
+        Function := RegExMatch(Script,"([^\(]*)\((.*)\)","$1")
+        Var := RegExMatch(Script,"([^\(]*)\((.*)\)","$1")
+        %Function%(Var)
+      }
+    }
+    return Result
+  }
+
+  RM_MenuSettings(RM_Name){
+    RM_File_Settings :=  A_ScriptDir "\RM_Settings.ini"
+    IniRead, Sections,  %RM_File_Settings%,  %RM_Name%, Sections,  8
+    G := new Radial_Menu
+    loop, %Sections% {
+      IniRead, RM_B%A_Index%_Name,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Name, Name
+      if (RM_B%A_Index%_Name = "Default"){
+        continue
+      }
+      IniRead, RM_B%A_Index%_img,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_img, %A_Space%
+      IniRead, RM_B%A_Index%_Script,  %RM_File_Settings%,  %RM_Name%,  RM_B%A_Index%_Script, %A_Space%
+      StringReplace, RM_B%A_Index%_Script,RM_B%A_Index%_Script,`<br`>,`n,all
+      G.Add(RM_B%A_Index%_Name, RM_B%A_Index%_img , A_Index)
+    }
+    G.SetSections(Sections)
+    Result := G.Show()
+    loop, %Sections% {
+      if (RM_B%A_Index%_Name and RM_B%A_Index%_Script){
+        if (Result=RM_B%A_Index%_Name){
+          return RM_B%A_Index%_Script 
+          Exit
+        }
+      }
+    }
+    return Result
+  }
+
+  ExitFunc(){
+    global
+    ; gdi+ may now be shutdown on exiting the program
+    Gdip_Shutdown(pToken)
+    CraftMenu.Active := False
+    return
+  }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
@@ -13263,7 +14802,6 @@ IsLinear(arr, i=0) {
       Return False
     }
   }
-  ; ----------------------------------------------------------------------------------------------------------------
   __Delete() {
     If This["!Access_Denied!"]
       Return
@@ -14625,7 +16163,6 @@ IsLinear(arr, i=0) {
  */
 
   ; Main function of the LutBot logout method
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   logout(executable){
       global  GetTable, SetEntry, EnumProcesses, OpenProcessToken, LookupPrivilegeValue, AdjustTokenPrivileges, loadedPsapi
       Thread, NoTimers, true    ;Critical
@@ -14687,16 +16224,16 @@ IsLinear(arr, i=0) {
         
         result := DllCall(GetTable, UInt, &TcpTable, UInt, &dwSize, UInt, 0, UInt, 2, UInt, 5, UInt, 0) 
         
-        num := NumGet(&TcpTable,0,"UInt")
+        tcpNum := NumGet(&TcpTable,0,"UInt")
         
-        IfEqual, num, 0
+        IfEqual, tcpNum, 0
         {
-          Log("ED11",num,l,executable)
+          Log("ED11",tcpNum,l,executable)
           return False
         }
         
         out := 0
-        Loop %num%
+        Loop %tcpNum%
         {
           cutby := a_index - 1
           cutby*= 24
@@ -14737,7 +16274,6 @@ IsLinear(arr, i=0) {
     }
 
   ; Log file function
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Log(var*) 
   {
     print := A_Now
@@ -14749,7 +16285,6 @@ IsLinear(arr, i=0) {
   }
 
   ; checkActiveType - Check for active executable
-  ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   checkActiveType() 
   {
     global Active_executable, GameStr
@@ -14876,6 +16411,105 @@ IsLinear(arr, i=0) {
     }
     return r
   }
+
+  Class OrderedAssociativeArray {
+    __New() {
+      ObjRawSet(this, "__Data", {})
+      ObjRawSet(this, "__Order", [])
+    }
+    
+    __Get(args*) {
+      return this.__Data[args*]
+    }
+    
+    __Set(args*) {
+      key := args[1]
+      val := args.Pop()
+      if(args.Length() < 2 && this.__Data.HasKey(key)) {
+        this.Delete(key)
+      }
+      if(!this.__Data.HasKey(key)) {
+        this.__Order.Push(key)
+      }
+      this.__Data[args*] := val
+      return val
+    }
+    
+    InsertAt(pos, key, val) {
+      this.__Order.InsertAt(pos, key)
+      this.__Data[key] := val
+    }
+    
+    RemoveAt(pos) {
+      val := this.__Data[this.__Order[pos]]
+      this.__Data.Delete(this.__Order[pos])
+      this.__Order.RemoveAt(pos)
+      return val
+    }
+    
+    Delete(key) {
+      for i, v in this.__Order {
+        if(key == v) {
+          return this.RemoveAt(i)
+        }
+      }
+    }
+    
+    Length() {
+      return this.__Order.Length()
+    }
+    
+    HasKey(key) {
+      return this.__Data.HasKey(key)
+    }
+    
+    _NewEnum() {
+      return new OrderedAssociativeArray.Enum(this.__Data, this.__Order)
+    }
+    
+    Class Enum {
+      __New(Data, Order) {
+        this.Data := Data
+        this.oEnum := Order._NewEnum()
+      }
+      
+      Next(ByRef key, ByRef val := "") {
+        res := this.oEnum.next(, key)
+        val := this.Data[key]
+        return res
+      }
+    }
+  }
+
+  class testOrder
+  {
+    order := []
+    
+    __Set(k){
+      this.order.push(k)
+    }
+    
+    _NewEnum(){
+      return new this.customEnum(this)
+    }
+    
+    class customEnum
+    {
+      __New(obj){
+        this.obj := obj
+        this.order := obj.order
+      }
+      
+      Next(ByRef k, ByRef v := ""){
+        if (this.order[1]){
+          k := this.order.RemoveAt(1)
+          v := this.obj[k]
+          return true
+        }
+        return false		
+      }
+    }
+  }
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 
@@ -14892,8 +16526,11 @@ IsLinear(arr, i=0) {
       Gui, Rect%A_Index%: Color, Red
     }
     PauseTooltips := 1
-    If GamePID
+    If (GamePID)
+    {
+      Gui, Submit
       WinActivate, %GameStr%
+    }
     If PixelToo
       Ding(0,-11,"Click and hold left mouse to draw box`nUse arrow keys to move mouse,and mousewheel to zoom`nPress Ctrl to Clipboard the color and X,Y")
     Else
@@ -14943,6 +16580,7 @@ IsLinear(arr, i=0) {
     PauseTooltips := 0
     Ding(1,-11,"")
     DrawZoom("Toggle")
+    Gui, Show
     return { "X1":X1,"Y1":Y1,"X2":X2,"Y2":Y2 }
   
     lusr_update:
@@ -15641,6 +17279,7 @@ IsLinear(arr, i=0) {
     ApplyGradient( Hwnd, LT := "101010", MB := "0000AA", RB := "00FF00", Vertical := 1 ) {
       Static STM_SETIMAGE := 0x172 
       ControlGetPos,,, W, H,, ahk_id %Hwnd%
+      W:=Scale_PositionFromDPI(W), H:=Scale_PositionFromDPI(H)
       PixelData := Vertical ? LT "|" LT "|" LT "|" MB "|" MB "|" MB "|" RB "|" RB "|" RB : LT "|" MB "|" RB "|" LT "|" MB "|" RB "|" LT "|" MB "|" RB
       hBitmap := this.CreateDIB( PixelData, 3, 3, W, H, True )
       oBitmap := DllCall( "SendMessage", "Ptr",Hwnd, "UInt",STM_SETIMAGE, "Ptr",0, "Ptr",hBitmap )
@@ -15726,8 +17365,8 @@ IsLinear(arr, i=0) {
     response := Curl_Download(url, postData, reqHeaders, options, false, false, false, "", "", true, retCurl)
     
     ; debugout := RegExReplace("""" A_ScriptDir "\lib\" retCurl, "curl", "curl.exe""")
-    ; FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
-    ; FileAppend, %debugout%, %A_ScriptDir%\temp\poeprices_request.txt
+    FileDelete, %A_ScriptDir%\temp\poeprices_request.txt
+    FileAppend, %retCurl%, %A_ScriptDir%\temp\poeprices_request.txt
     
     
     ; If (TradeOpts.Debug) {
@@ -15751,13 +17390,17 @@ IsLinear(arr, i=0) {
       responseObj := {}
     }
 
-    ; If (TradeOpts.Debug) {
-    ;   arr := {}
-    ;   arr.RawItemData := RawItemData
-    ;   arr.EncodedItemata := EncodedItemData
-    ;   arr.League := TradeGlobals.Get("LeagueName")
-    ;   TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
-    ; }
+    If (1) {
+      arr := {}
+      arr.aReturn := responseObj
+      arr.RawItemData := RawItemData
+      arr.EncodedItemata := EncodedItemData
+      arr.League := selectedLeague
+      FileDelete, %A_ScriptDir%\temp\poeprices_return.json
+      FileAppend,% json_fromObj(arr), %A_ScriptDir%\temp\poeprices_return.json
+
+      ; TradeFunc_LogPoePricesRequest(arr, request, "poe_prices_debug_log.txt")
+    }
 
     ; responseObj.added := {}
     ; responseObj.added.encodedData := EncodedItemData
@@ -16150,10 +17793,10 @@ IsLinear(arr, i=0) {
     options  .= "`n" "TimeOut: " reqTimeout
     reqHeaders := []
 
-    reqHeaders.push("Connection: keep-alive")
-    reqHeaders.push("Cache-Control: max-age=0")
-    reqHeaders.push("Accept: */*")
-    reqHeaders.push("Cookie: POESESSID=" . PoESessionID)
+    reqHeaders.push("connection: keep-alive")
+    reqHeaders.push("cache-Control: max-age=0")
+    reqHeaders.push("accept: */*")
+    reqHeaders.push("cookie: "PoECookie)
     
     ; ShowToolTip("Getting price prediction... ")
     retCurl := true
@@ -16202,10 +17845,11 @@ IsLinear(arr, i=0) {
     options  .= "`n" "TimeOut: " reqTimeout
     reqHeaders := []
 
-    reqHeaders.push("Connection: keep-alive")
-    reqHeaders.push("Cache-Control: max-age=0")
-    reqHeaders.push("Accept: */*")
-    reqHeaders.push("Cookie: POESESSID=" . PoESessionID)
+    ; reqHeaders.push("Connection: keep-alive")
+    reqHeaders.push("cache-control: max-age=0")
+    reqHeaders.push("accept: */*")
+    reqHeaders.push("accept-encoding: gzip, deflate, br")
+    reqHeaders.push("cookie: "PoECookie)
     
     ; ShowToolTip("Getting price prediction... ")
     retCurl := true
@@ -16270,7 +17914,6 @@ IsLinear(arr, i=0) {
     Static WSADATAsize := (2 * 2) + 257 + 129 + (2 * 2) + (A_PtrSize - 2) + A_PtrSize
     OrgAddr := Addr
     Result := ""
-    ; -------------------------------------------------------------------------------------------------------------------
     ; Initiate the use of the Winsock 2 DLL
     VarSetCapacity(WSADATA, WSADATAsize, 0)
     If (Err := DllCall("Ws2_32.dll\WSAStartup", "UShort", 0x0202, "Ptr", &WSADATA, "Int")) {
@@ -16294,7 +17937,6 @@ IsLinear(arr, i=0) {
     }
     ; Terminate the use of the Winsock 2 DLL
     DllCall("Ws2_32.dll\WSACleanup")
-    ; -------------------------------------------------------------------------------------------------------------------
     HMOD := DllCall("LoadLibrary", "Str", "Iphlpapi.dll", "UPtr")
     Err := ""
     If (HPORT := DllCall("Iphlpapi.dll\IcmpCreateFile", "UPtr")) { ; open a port
@@ -16314,7 +17956,6 @@ IsLinear(arr, i=0) {
     Else
       Err := "IcmpCreateFile failed to open a port!"
     DllCall("FreeLibrary", "Ptr", HMOD)
-    ; -------------------------------------------------------------------------------------------------------------------
     If (Err) {
       ErrorLevel := Err
       Return ""
@@ -16412,26 +18053,30 @@ IsLinear(arr, i=0) {
   ;--------------------------------------------------------------------------------
     GuiControlGet, userInput,, % CBMatchingGUI.hEdit
     userInputArr := StrSplit(RTrim(userInput), " ")
-    choicesList := CBMatchingGUI.parentCBList
+    ; choicesList := CBMatchingGUI.parentCBList
     MatchCount := MatchList := MisMatchList := 0
     matchArr := {}
     ;--Find in list
     for k, v in userInputArr
     {
-      If (InStr(choicesList, v))
+      If (v = "")
+        Continue
+      If (InStr(CBMatchingGUI.parentCBList, v))
         MatchList := True
       else
         MisMatchList := True
     }
     if (MatchList && !MisMatchList) {
-
-      Loop, Parse, choicesList, "`n"
+      ; Loop, Parse, choicesList, "`n"
+      For index, choice in StrSplit(CBMatchingGUI.parentCBList,"`n"," `r")
       {
+        if choice = ""
+          continue
         MatchString := MisMatchString := 0
         posArr := {}
         for k, v in userInputArr
         {
-          If (FoundPos := InStr(A_LoopField, v))
+          If (FoundPos := InStr(choice, v))
           {
             MatchString := True
             posArr.Push(FoundPos)
@@ -16446,23 +18091,16 @@ IsLinear(arr, i=0) {
             If (v = 1 && A_Index = 1)
               atStart := True
           }
-          If !IndexOf(A_LoopField,matchArr)
+          If !IndexOf(choice,matchArr)
           {
             If (atStart)
-              MatchesAtStart .= "`n"A_LoopField
+              MatchesAtStart .= "`n"choice
             else
-              MatchesAnywhere .= "`n"A_LoopField
+              MatchesAnywhere .= "`n"choice
             MatchCount++
-            matchArr.Push(A_LoopField)
+            matchArr.Push(choice)
           }
         }
-        Else if (FoundPos := InStr(A_LoopField, userInput)) {
-          if (FoundPos = 1)
-            MatchesAtStart .= "`n"A_LoopField
-          else
-            MatchesAnywhere .= "`n"A_LoopField             
-          MatchCount++
-        } 
       }
       Matches := MatchesAtStart . MatchesAnywhere ; Ordered Match list
       GuiControl,, % CBMatchingGUI.hLB, %Matches%
@@ -16510,8 +18148,72 @@ IsLinear(arr, i=0) {
   }
 ;--------------------------------------------------------------------------------
 
+ColorPercent(percent){
+	Local key
+  Static ColorRange := ""
+  Static ColorCount := ""
+  If !IsObject(ColorRange)
+		ColorRange := ColorRange("0xff0000","0x00ff00")
+	If !ColorCount
+		ColorCount := ColorRange.Length()
+  percent := percent>100?100
+    :percent<1?1
+    :percent
+	key := percent!=1 ? Round(ColorCount * ((Percent) / 100)) : 1
+	; MsgBox % key
+  Return ColorRange[key]
+}
+
+;-------------------------------------------------------------------------------
+ColorRange(c1,c2){ ; Create a list of colors between two https://www.autohotkey.com/boards/viewtopic.php?t=29205
+  Color2 := {RGB:c2
+  ,R:((c2 >> 16) & 0xFF)
+  ,G:((c2 >> 8) & 0xFF)
+  ,B:((c2 >> 0) & 0xFF)}
+
+  Color1 := {RGB:c1
+  ,R:((c1 >> 16) & 0xFF)
+  ,G:((c1 >> 8) & 0xFF)
+  ,B:((c1 >> 0) & 0xFF)}
+  ColorList := []
+  If !IsObject(Color1) || !IsObject(Color2)
+    MsgBox % "Color objects are not initialized: One-" IsObject(Color1) " - " c1 " Two-" IsObject(Color2) " - " c2
+  ;-----------------------------------
+  ; color distance for each color individually
+  ; this distance may be positive or negative
+  ;-----------------------------------
+  Distance_R := Color2.R - Color1.R
+  Distance_G := Color2.G - Color1.G
+  Distance_B := Color2.B - Color1.B
 
 
+  ;-----------------------------------
+  ; MCD is maximum color distance
+  ; MCD deals only with absolute values
+  ;-----------------------------------
+  MCD := max(Abs(Distance_R), Abs(Distance_G), Abs(Distance_B))
+
+  ;-----------------------------------
+  ; list all gradient colors between Color1 and Color2
+  ;-----------------------------------
+  ColorList.Push(Color1.RGB) ; start at Color1
+  Loop, % MCD - 1
+      ColorList.Push("0x" . Format("{:02X}", Color1.R + A_Index / MCD * Distance_R) . Format("{:02X}", Color1.G + A_Index / MCD * Distance_G) . Format("{:02X}", Color1.B + A_Index / MCD * Distance_B))
+  ColorList.Push(Color2.RGB) ; stop at Color2
+  Return ColorList
+;-------------------------------------------------------------------------------
+}
+
+
+;-------------------------------------------------------------------------------
+max(Max, n*) { ; return the greatest of all values
+;-------------------------------------------------------------------------------
+    For each, Value in n
+        If (Value > Max)
+            Max := Value
+
+    Return, Max
+}
 
 
 /* FindText - Capture screen image into text and then find it
@@ -17029,15 +18731,7 @@ ft_Gui(cmd)
   If (cmd="Copy")
     Clipboard:=RegExReplace(s,"\R","`r`n")
   Else if (cmd="CopyString")
-    Clipboard:= """" copyString """"
-
-  ;----------------------
-  ; if !(!A_IsCompiled and A_LineFile=A_ScriptFullPath)
-  ; {
-  ;   Gui, Hide
-  ;   Gui, 1: Default
-  ;   Hotkeys()
-  ; }
+    Clipboard:= copyString
   return
   }
   if (cmd="MySlider1") or (cmd="MySlider2")
@@ -18640,6 +20334,12 @@ for i,v in ok
     {
       VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
       x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
+    }
+    If IsObject(x){
+      w := Abs(x.X2-x.X1)
+      h := Abs(x.Y2-x.Y1)
+      y := (x.Y1<x.Y2?x.Y1:x.Y2)
+      x := (x.X1<x.X2?x.X1:x.X2)
     }
     ; x:=Round(x-10), y:=Round(y-10)
     ;-------------------------

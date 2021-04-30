@@ -19,6 +19,7 @@
 	"Item_Height",
 	"IsMap",
 	"IsBlightedMap",
+	"IsBrickedMap",
 	"Incubator",
 	"TimelessSplinter",
 	"BreachSplinter",
@@ -81,6 +82,7 @@
 	"Map_Rarity",
 	"Map_PackSize",
 	"Map_Quality",
+	"Map_Delirium",
 	"Corrupted",
 	"VaalGem",
 	"Veiled",
@@ -88,5 +90,16 @@
 	"ExaltValue",
 	"ValuableEnch",
 	"ValuableBase",
-	"AffixCount"
+	"AffixCount",
+	"OpenAffix",
+	"PrefixCount",
+	"SuffixCount",
+	"TopTierLife",
+	"TopTierES",
+	"TopTierMS",
+	"TopTierResists",
+	"TopTierColdResist",
+	"TopTierFireResist",
+	"TopTierLightningResist",
+	"TopTierChaosResist"
 ]
