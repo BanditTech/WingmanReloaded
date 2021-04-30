@@ -191,6 +191,16 @@
     Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar
     Global Active_executable := "TempName"
     Global selectedLeague := "Standard"
+    ; Hybrid Mods First Line
+    Global HybridModsFirstLine := ["# to maximum Energy Shield"
+      , "# to Armour"
+      , "# to Evasion Rating"
+      , "#% increased Energy Shield"
+      , "#% increased Armour"
+      , "#% increased Evasion Rating"
+      , "#% increased Armour and Evasion"
+      , "#% increased Evasion and Energy Shield"
+      , "#% increased Armour and Energy Shield" ]
     ; List available database endpoints
     Global apiList := ["Currency"
       , "Fragment"
@@ -298,16 +308,16 @@
     Global craftingBasesT7 := []
     Global craftingBasesT8 := []
     ; Create Executable group for gameHotkey, IfWinActive
-    global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
+    Global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
     for n, exe in POEGameArr
       GroupAdd, POEGameGroup, ahk_exe %exe%
     Global GameStr := "ahk_exe PathOfExile_x64.exe"
     ; Global GameStr := "ahk_group POEGameGroup"
     Hotkey, IfWinActive, ahk_group POEGameGroup
 
-    global PauseTooltips:=0
-    global Clip_Contents:=""
-    global CheckGamestates:=False
+    Global PauseTooltips:=0
+    Global Clip_Contents:=""
+    Global CheckGamestates:=False
     Process, Exist
     Global ScriptPID := ErrorLevel
     Global MainMenuIDAutoFlask, MainMenuIDAutoQuit, MainMenuIDAutoMove, MainMenuIDAutoUtility
@@ -316,7 +326,7 @@
     Global BlackList := {}
     Global YesClickPortal := True
     Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
-    global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
+    Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
       , ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
       , ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
       , ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex

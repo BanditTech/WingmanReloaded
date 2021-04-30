@@ -1212,16 +1212,20 @@
           if(DoubleModCounter == 2){
             If (vals := This.MatchLine(LastLine))
             {
-              If (vals.Count() == 1)
+
+              If (vals.Count() == 1 && This.CheckIfActualHybridMod(key))
               {
                 If This.Affix[key]
                 {
                   This.Affix[key] -= vals[1]
-                  This.AddDoubleModAffix(key,vals[1])
+                  This.AddHybridModAffix(key,vals[1])
                 }
                 Else{
-                  This.AddDoubleModAffix(key,vals[1])
+                  This.AddHybridModAffix(key,vals[1])
                 }
+              }Else
+              {
+                DoubleModCounter := 0
               }
             }
           }
@@ -1247,7 +1251,7 @@
               }Else If(DoubleModCounter != 2){
                 This.Affix[key] := vals[1]
               }Else{
-                This.AddDoubleModAffix(key,vals[1])
+                This.AddHybridModAffix(key,vals[1])
               }
             }
           }
@@ -1257,18 +1261,28 @@
         }
       }
 
-      AddDoubleModAffix(Key,Value){
-        DoubleKey := "(Double) " . Key
-        If(!This.Affix[DoubleKey])
+      CheckIfActualHybridMod(value){
+        for k, v in HybridModsFirstLine
+        {
+            if (v == value)
+            {
+              return true
+            }
+        }
+        return false
+      }
+      AddHybridModAffix(Key,Value){
+        HybridKey := "(Hybrid) " . Key
+        If(!This.Affix[HybridKey])
         {
           aux := Value
           If  (aux != 0)
-            This.Affix[DoubleKey] := aux
+            This.Affix[HybridKey] := aux
         }Else
         {
-          aux := This.GetValue("Affix", DoubleKey) + Value
+          aux := This.GetValue("Affix", HybridKey) + Value
           If  (aux != 0)
-            This.Affix[DoubleKey] := aux
+            This.Affix[HybridKey] := aux
         }
         return
       }
@@ -1584,8 +1598,8 @@
         }
       }
       AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
-        DoubleKey := "(Double) " . StandardKey
-        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue("Affix", DoubleKey) + This.GetValue(StandardType, StandardKey)
+        HybridKey := "(Hybrid) " . StandardKey
+        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue("Affix", HybridKey) + This.GetValue(StandardType, StandardKey)
         If  (aux != 0)
           This.Pseudo[PseudoKey] := aux
         return
