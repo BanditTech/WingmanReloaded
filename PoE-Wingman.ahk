@@ -2467,7 +2467,7 @@ Return
   ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
   VendorRoutineChaos()
   {
-    local CRECIPE := {Weapon:0,Ring:0,Amulet:0,Belt:0,Boots:0,Gloves:0,Body:0,Helmet:0}
+    CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
     BlackList := Array_DeepClone(IgnoredSlot)
     ; Move mouse out of the way to grab screenshot
     ShooMouse(), GuiStatus(), ClearNotifications()
@@ -2506,26 +2506,8 @@ Return
           ShooMouse(),GuiStatus(),Continue
         If (OnVendor&&YesVendor)
         {
-          If Item.MatchLootFilter()
-            Continue
-          If (Item.Prop.RarityCurrency)
-            Continue
-          If (Item.Prop.RarityUnique && (Item.Prop.Ring||Item.Prop.Amulet||Item.Prop.Jewel||Item.Prop.Flask))
-            Continue
-          If ( Item.Prop.Flask )
-            Continue
-          If ( Item.Prop.RarityGem )
-            Continue
           If ( Item.Prop.SpecialType="" && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) )
-          {
-            c := Item.Prop.SlotType
-            c := (indexOf(c,["One Hand","Shield","Two Hand"]) ? "Weapon" : c )
-            if (CRECIPE[c] < ((c="Weapon"||c="Ring")?2:1)) {
-              CRECIPE[c] += Item.Prop.SlotType = "Two Hand" ? 2 : 1
-              CtrlClick(Grid.X,Grid.Y)
-            }
-            Continue
-          }
+            CtrlClick(Grid.X,Grid.Y)
         }
       }
     }
