@@ -24,7 +24,9 @@ Improvements to Chaos Recipe routine
 
 Basic Crafting Coming together
 * hardcoded sockets and links for now
-* Menu just needs to be coded in
+* Automatically determines the Socket number
+* For links, it sets the value to the socket number
+* Menu variables just needs to be coded in
 
 New Prop
 * Map_Dilerium
