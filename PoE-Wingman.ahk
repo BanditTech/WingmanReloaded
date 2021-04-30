@@ -506,6 +506,7 @@
       StashTabYesDelve = Enable to send Delve items to the assigned tab on the left
       StashTabCrafting = Assign the Stash tab for Crafting items
       StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
+      StashTabYesVaalReliquaryKey = Enable to send Vaal Reliquary Keys to the assigned tab on the left
       )
 
     ft_ToolTip_Text_Part3=
@@ -848,6 +849,7 @@
     Global StashTabDump := 1
     Global StashTabPredictive := 1
     Global StashTabNinjaPrice := 1
+    Global StashTabVaalReliquaryKey := 1
   ; Checkbox to activate each tab
     
         ;Affinities
@@ -886,6 +888,7 @@
     Global StashTabYesPredictive_Price := 5
     Global StashTabYesNinjaPrice := 0
     Global StashTabYesNinjaPrice_Price := 5
+    Global StashTabYesVaalReliquaryKey := 0
 
   ; Crafting Bases
     Global YesStashATLAS := 1
@@ -5418,6 +5421,8 @@ Return
       IniRead, StashTabNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice, 1
       IniRead, StashTabYesNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice, 0
       IniRead, StashTabYesNinjaPrice_Price, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price, 5
+      IniRead, StashTabVaalReliquaryKey, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVaalReliquaryKey, 1
+      IniRead, StashTabYesVaalReliquaryKey, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVaalReliquaryKey, 0
       
       ; Chaos Recipe Settings
       IniRead, ChaosRecipeEnableFunction, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableFunction, 0
@@ -6110,6 +6115,8 @@ Return
       IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
       IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
       IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
+      IniWrite, %StashTabVaalReliquaryKey%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVaalReliquaryKey
+      IniWrite, %StashTabYesVaalReliquaryKey%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVaalReliquaryKey
 
       ;Chat Hotkeys
       IniWrite, %1Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix1
