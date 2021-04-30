@@ -3986,22 +3986,25 @@ Return
   CraftingChance(){
     Global RunningToggle
     Notify("Chance Logic Coming Soon","",2)
+    ; f := New Craft("Chance","cursor",{Scour:1})
   }
   ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
   CraftingColor(){
     Global RunningToggle
     Notify("Color Logic Coming Soon","",2)
+    ; f := New Craft("Color","cursor",{R:0,G:1,B:1})
   }
   ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
   CraftingLink(){
     Global RunningToggle
-    Notify("Link Logic Coming Soon","",2)
+    ; Notify("Link Logic Coming Soon","",2)
+    f := New Craft("Link","cursor",{Links:6,Auto:1})
   }
   ; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
   CraftingSocket(){
     local f
     ; Notify("Socket Logic Coming Soon","",2)
-    f := New Craft("Socket","cursor",{Sockets:4})
+    f := New Craft("Socket","cursor",{Sockets:6,Auto:1})
   }
 
   Class Craft {
@@ -4034,16 +4037,35 @@ Return
 
       Return This
     }
+    GetAuto(){
+      local lvl := Item.Prop.ItemLevel
+      If This.Type = "Link"
+        Return Item.Prop.Sockets_Num
+      If (lvl < 2)
+        Return 2
+      Else If (lvl < 25)
+        Return 3
+      Else If (IndexOf(Item.Prop.SlotType,["One Hand","Shield"]))
+        Return 3
+      Else If (lvl < 35)
+        Return 4
+      Else If (!IndexOf(Item.Prop.SlotType,["Two Hand","Body"]))
+        Return 4
+      Else If (lvl < 50)
+        Return 5
+      Else If (lvl <= 100)
+        Return 6
+    }
     Validate(){
       If (Item.Prop.ItemName = "")
-      || (This.Desired.Links > Item.Prop.Sockets_Num)
+      || (This.Desired.Links > Item.Prop.Sockets_Num && !This.Desired.Auto)
       || ((!Item.Prop.SlotType || indexOf(Item.Prop.SlotType,["Belt","Ring","Amulet"])) && indexOf(This.Type,["Color","Link","Socket"]))
-      || (Item.Prop.ItemLevel < 2 && This.Desired.Sockets >= 3)
-      || (Item.Prop.ItemLevel < 25 && This.Desired.Sockets >= 4)
-      || (Item.Prop.ItemLevel < 35 && This.Desired.Sockets >= 5)
-      || (Item.Prop.ItemLevel < 50 && This.Desired.Sockets >= 6)
-      || (This.Desired.Sockets > 4 && !IndexOf(Item.Prop.SlotType,["Two Hand","Body"]))
-      || (This.Desired.Sockets > 3 && IndexOf(Item.Prop.SlotType,["One Hand"]))
+      || (Item.Prop.ItemLevel < 2 && This.Desired.Sockets >= 3 && !This.Desired.Auto)
+      || (Item.Prop.ItemLevel < 25 && This.Desired.Sockets >= 4 && !This.Desired.Auto)
+      || (Item.Prop.ItemLevel < 35 && This.Desired.Sockets >= 5 && !This.Desired.Auto)
+      || (Item.Prop.ItemLevel < 50 && This.Desired.Sockets >= 6 && !This.Desired.Auto)
+      || (This.Desired.Sockets > 4 && !IndexOf(Item.Prop.SlotType,["Two Hand","Body"]) && !This.Desired.Auto)
+      || (This.Desired.Sockets > 3 && IndexOf(Item.Prop.SlotType,["One Hand","Shield"]) && !This.Desired.Auto)
       {
         Notify("Validation Failed","",2)
         Return False
@@ -4071,12 +4093,14 @@ Return
         Else
           Return False
       } Else If (This.Type = "Link"){
-        If Item.Prop.Sockets_Link >= This.Desired.Links
+        If (This.Desired.Auto && Item.Prop.Sockets_Link >= This.Desired.Auto)
+        || (!This.Desired.Auto && Item.Prop.Sockets_Link >= This.Desired.Links)
           Return True
         Else
           Return False
       } Else If (This.Type = "Socket"){
-        If Item.Prop.Sockets_Num >= This.Desired.Sockets
+        If (This.Desired.Auto && Item.Prop.Sockets_Num >= This.Desired.Auto)
+        || (!This.Desired.Auto && Item.Prop.Sockets_Num >= This.Desired.Sockets)
           Return True
         Else
           Return False
@@ -4099,6 +4123,8 @@ Return
       ClipItem(x,y)
       If Item.Affix.Unidentified
         WisdomScroll(x,y), ClipItem(x,y)
+      If This.Desired.Auto
+        This.Desired.Auto := This.GetAuto()
       If This.Validate()
         While !This.Logic() && RunningToggle {
           This.ApplyCurrency(namearr[This.Type],x,y)

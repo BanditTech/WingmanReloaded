@@ -22,6 +22,10 @@ Improvements to Chaos Recipe routine
 * If the whole set is not present it will cancel
 * Will only sell one set of items, no extras
 
+Basic Crafting Coming together
+* hardcoded sockets and links for now
+* Menu just needs to be coded in
+
 New Prop
 * Map_Dilerium
 
