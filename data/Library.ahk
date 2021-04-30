@@ -2345,7 +2345,7 @@
         }
         Else If (This.Prop.VaalReliquaryKey) && StashTabYesVaalReliquaryKey
         {
-            sendstash := StashTabYesVaalReliquaryKey
+            sendstash := StashTabVaalReliquaryKey
         }
         Else If (This.Prop.RarityDivination) && StashTabYesDivination
         {
