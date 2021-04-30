@@ -258,12 +258,12 @@
           If (v ~= "^Curse Enemies with .+ on Hit$")
             This.Prop.IsCurseOnHit := True
           If (v ~= "\{ Prefix Modifier"){
-            RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
+            RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm )
             This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
             This.Affix[rxm1] := This.Modifier[rxm1] := 1
             This.Prop.PrefixCount++, This.Prop.AffixCount++
           } Else If (v ~= "\{ Suffix Modifier") {
-            RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
+            RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm )
             This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
             This.Affix[rxm1] := This.Modifier[rxm1] := 1
             This.Prop.SuffixCount++, This.Prop.AffixCount++
