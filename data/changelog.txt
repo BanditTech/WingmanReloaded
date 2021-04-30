@@ -1,7 +1,7 @@
 ## Version .13.0017 - Alpha version - April/29/2020
 Huge New additions to the CLF
 * Full support for suffix/prefix names in the CLF
-* Double affix mods are given a special prefix (Double)
+* Hybrid affix mods are given a special prefix (Hybrid)
   * You can always use (Pseudo) to match the total
   * This means you can now specifically match basic affixes
 
