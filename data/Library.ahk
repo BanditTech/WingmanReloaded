@@ -428,6 +428,11 @@
             This.Prop.GuardianFragment := True
             This.Prop.SpecialType := "Guardian Fragment"
           }
+          Else If (InStr(This.Prop.ItemBase, "Vaal Reliquary Key"))
+          {
+            This.Prop.VaalReliquaryKey := True
+            This.Prop.SpecialType := "Vaal Reliquary Key"
+          }
           Else If (InStr(This.Prop.ItemBase, "Volkuur's Key") 
           || InStr(This.Prop.ItemBase, "Eber's Key")
           || InStr(This.Prop.ItemBase, "Yriel's Key")
@@ -2338,6 +2343,10 @@
           Else
             sendstash := StashTabFragment 
         }
+        Else If (This.Prop.VaalReliquaryKey) && StashTabYesVaalReliquaryKey
+        {
+            sendstash := StashTabYesVaalReliquaryKey
+        }
         Else If (This.Prop.RarityDivination) && StashTabYesDivination
         {
           If StashTabYesDivination > 1
@@ -3073,6 +3082,15 @@
         Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
         Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabMiscMapItems x+0 yp hp ,  %StashTabMiscMapItems%
         Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesMiscMapItems  Checked%StashTabYesMiscMapItems% x+5 yp+4, Enable
+
+        ; Vaal Reliquary Keys
+
+        Gui, Inventory: Font, Bold s8 cBlack, Arial
+        Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Reliquary Key
+        Gui, Inventory: Font,
+        Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+        Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabVaalReliquaryKey , %StashTabVaalReliquaryKey%
+        Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesVaalReliquaryKey Checked%StashTabYesVaalReliquaryKey% x+5 yp+4, Enable
         
         ; Second column Gui - GEMS
 
