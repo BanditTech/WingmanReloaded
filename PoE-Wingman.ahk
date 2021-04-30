@@ -2535,16 +2535,26 @@ Return
     If (OnVendor && RunningToggle && YesEnableAutomation)
     {
       ContinueFlag := False
+      If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
+        RecipeComplete := True
       If (YesEnableAutoSellConfirmation)
       {
         RandomSleep(60,90)
-        LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
+        If RecipeComplete
+          LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
+        Else
+          SendHotkey(hotkeyCloseAllUI)
         RandomSleep(60,90)
         ContinueFlag := True
       }
       Else If (FirstAutomationSetting=="Search Vendor")
       {
         CheckTime("Seconds",120,"VendorUI",A_Now)
+        If RecipeComplete
+          MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y
+        Else
+          SendHotkey(hotkeyCloseAllUI)
+
         While (!CheckTime("Seconds",120,"VendorUI"))
         {
           If (YesController)
