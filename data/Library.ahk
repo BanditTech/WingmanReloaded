@@ -2561,7 +2561,7 @@
           nomatched := False
           ormatched := 0
           ormismatch := False
-          orcount := LootFilter[GKey]["Data"]["OrCount"]
+          orcount := Groups["Data"]["OrCount"]
           For SKey, Selected in Groups
           {
             If ( SKey = "Data" )
@@ -2589,7 +2589,7 @@
             nomatched := True
           If (matched && !nomatched)
           {
-            this.Prop.CLF_Tab := LootFilter[GKey]["Data"]["StashTab"]
+            this.Prop.CLF_Tab := Groups["Data"]["StashTab"]
             this.Prop.CLF_Group := GKey
             Return this.Prop.CLF_Tab
           }
@@ -2597,8 +2597,48 @@
         This.MatchedCLF := False
         Return False
       }
-      MatchCLFGroup(grp){
-
+      MatchGroup(grp){
+        local
+        gtype := grp.GroupType
+        gval := grp.TypeValue
+        glist := grp.ElementList
+        If (gtype = "Count" || gtype = "Weight")
+          CountSum := 0
+        For k, elem in glist {
+          If elem.GroupType {
+            matched := This.MatchGroup(elem)
+            If (gtype = "Weight")
+              weight := Elem["Weight"]
+          } Else {
+            arrval := Item[Elem["Type"]][Elem["#Key"]]
+            eval := Elem["Eval"]
+            min := Elem["Min"]
+            If (gtype = "Weight")
+              weight := Elem["Weight"]
+            matched := This.Evaluate(eval,arrval,min)
+          }
+          If matched {
+            If (gtype = "Not")
+              Return False
+            Else If (gtype = "Count")
+              CountSum++
+            Else If (gtype = "Weight")
+              CountSum += weight * arrval
+          } Else {
+            If (gtype = "And")
+              Return False
+          }
+        }
+        If (gtype = "And"){
+          Return True
+        } Else If (gtype = "Not"){
+          Return True
+        } Else If (gtype = "Count" || gtype = "Weight"){
+          If (CountSum >= gval)
+            Return True
+          Else
+            Return False
+        }
       }
       Evaluate(eval,val,min){
         if (eval = ">") {
