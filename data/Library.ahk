@@ -171,7 +171,7 @@
         This.MatchBase2Slot()
         This.MatchChaosRegal()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
-        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified){
+        If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off")  ){
           This.Prop.PredictPrice := This.PredictPrice()
         }
         This.Prop.StashReturnVal := This.MatchStashManagement()
@@ -185,7 +185,7 @@
         FoundMatch := False
         If (This.Prop.Rarity_Digit != 3 || This.Affix.Unidentified)
           Return 0
-        If (This.Prop.Rarity_Digit = 3 && (!This.Prop.SpecialType || This.Prop.SpecialType = "6Link" || This.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
+        If (This.Prop.Rarity_Digit = 3 && (!This.Prop.SpecialType || This.Prop.SpecialType = "6Link" || This.Prop.SpecialType = "5Link") && YesPredictivePrice != "Off" )
         {
           For k, obj in ItemList
           {
@@ -209,13 +209,7 @@
               return
             }
             PriceObj.Clip_Contents := Clip_Contents
-            If (OnRitual && YesRitualPrice = "Low")
-              Price := SelectedPrice := PriceObj.min
-            Else If (OnRitual && YesRitualPrice = "Avg")
-              Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
-            Else If (OnRitual && YesRitualPrice = "High")
-              Price := SelectedPrice := PriceObj.max
-            Else If (YesPredictivePrice = "Low")
+            If (YesPredictivePrice = "Low")
               Price := SelectedPrice := PriceObj.min
             Else If (YesPredictivePrice = "Avg")
               Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
@@ -2621,7 +2615,7 @@
             || (YesStashJewellery && This.Prop.CraftingBase = "Jewellery Base" && ((This.Prop.ItemLevel >= YesStashJewelleryCraftingIlvlMin && YesStashJewelleryCraftingIlvl) || !YesStashJewelleryCraftingIlvl)) )
           && (!This.Prop.Corrupted))
           sendstash := StashTabCrafting
-        Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictPrice >= StashTabYesPredictive_Price) || (This.Prop.PredictPrice && OnRitual)) ){
+        Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
           sendstash := StashTabPredictive
         }
         Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
@@ -3119,7 +3113,6 @@
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesRitual             Checked%YesRitual%             y+8    , Scan Ritual?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
@@ -3170,10 +3163,6 @@
         ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
         PPx:=Scale_PositionFromDPI(PPx), PPy:=Scale_PositionFromDPI(PPy)
         Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
-
-        Gui, Inventory: Add, Text, xs+5 y+11 , Price Ritual Rares?
-        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesRitualPrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
-        GuiControl,Inventory: ChooseString, YesRitualPrice, %YesRitualPrice%
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
@@ -5372,7 +5361,6 @@
     POnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
     POnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
     POnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
-    POnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y), OnRitual := (POnRitual=varOnRitual?True:False)
     If OnMines
     POnDetonate := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
     Else POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
@@ -5906,9 +5894,6 @@
         ;Status Check OnLocker
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
-        ;Status Check OnRitual
-        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (1920 / 617))
-        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1080 / 108))
         ;Divination Y locations
         WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
         WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
@@ -6336,9 +6321,6 @@
         ;Status Check OnLocker ((3440/3)-2)
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
-        ;Status Check OnRitual
-        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (3440 / 1269))
-        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1440 / 205))
         ;GUI overlay
         WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
         WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
@@ -6795,130 +6777,6 @@
       Else
         PointY+=Rwidth+InvGrid.SlotSpacing
       InvGrid.Ritual.Y.Push(Round(PointY))
-    }
-  }
-  ScanRitual(mode:=""){
-    Global InvGrid, RunningToggle, BlackList, PPServerStatus
-    Static gridpanels := ""
-    Static pricepoint := 5
-    If (YesRitualPrice != "off" && YesRitual)
-    {
-      If !PPServerStatus()
-      Notify("PoEPrice.info Offline","",2)
-    }
-
-    If (mode = "make") {
-      If IsObject(gridpanels) {
-        ScanRitual("break")
-      }
-      ; MsgBox, Inside
-      ; Add blacklist
-      gridpanels := {}, BlackList := {}
-      ScanRitual("Begin to scan for panel closing")
-      For R, x in InvGrid.Ritual.X
-      {
-        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-          Break
-        For C, y in InvGrid.Ritual.Y
-        {
-          If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-            Break
-          If BlackList[R][C]
-            Continue
-          ; MsgBox, Inside Loop
-          ClipItem(x,y)
-          addToBlacklist(R, C)
-          If !(Item.Prop.ItemName ~= "\w")
-          {
-            Empty += 1
-            If Empty > 5
-              Return
-            Continue
-          }
-          
-          If Item.Prop.Stack_Size >= 2
-            Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
-          cvalue := Item.Prop.UniquePerfectValue?Item.Prop.UniquePerfectValue
-            : Item.Prop.ChaosValue?Item.Prop.ChaosValue
-            : Item.Prop.PredictPrice?Item.Prop.PredictPrice
-            : Item.Prop.ItemName = "Chaos Orb" ? Item.Prop.Stack_Size * 1
-            : 0
-          cvalue := Ltrim(Format("{:.2g}", cvalue),"0")
-          displayText := Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0") (cvalue?"`n" SubStr(cvalue,1):"") 
-            : cvalue? SubStr(cvalue,1) : ""
-
-          percentageScore := cvalue?((cvalue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
-
-          posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
-          ; MsgBox % ColorPercent(percentageScore)
-          ; WinActivate, % GameStr
-          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj,"22000000", "ff" LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
-        }
-      }
-    } Else If (mode = "break") {
-      for k, v in gridpanels
-      {
-        v.close()
-      }
-      gridpanels := ""
-    } Else {
-      If (!OnRitual && !OnInventory)
-        ScanRitual("break")
-      Else
-        SetTimer,% A_ThisFunc, 100
-    }
-    Return
-  }
-  Class Overlay {
-    __New(winName,InsertText,positionObj,backgroundColor:="aa000000",textColor:="bbffffff",setFont:="Arial"){
-      This.pToken := Gdip_Startup()
-      If !This.pToken{
-        MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
-        return
-      }
-      OnExit(ObjBindMethod(This, "close"))
-      This.text := InsertText
-      This.label := winName
-      This.positions := positionObj
-      Gui,% This.label ": -Caption +E0x80020 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs"
-      Gui,% This.label ": Show", NA
-      This.hWND := WinExist()
-      This.color := backgroundColor
-      This.tcolor := textColor
-      This.font := setFont
-      This.make()
-      This.setText()
-      This.finalize()
-    }
-    make(){
-      This.hbm := CreateDIBSection(This.positions.W, This.positions.H)
-      This.hdc := CreateCompatibleDC()
-      This.obm := SelectObject(This.hdc, This.hbm)
-      This.G := Gdip_GraphicsFromHDC(This.hdc)
-      Gdip_SetSmoothingMode(This.G, 4)
-      This.pBrush := Gdip_BrushCreateSolid("0x"This.color)
-      Gdip_FillRoundedRectangle(This.G, This.pBrush, 0, 0, This.positions.W, This.positions.H, 20)
-      Gdip_DeleteBrush(This.pBrush)
-    }
-    setText(){
-      If !Gdip_FontFamilyCreate(This.font)
-      {
-        MsgBox, 48, Font error!, The font you have specified does not exist on the system
-        Return "Error Loading Font"
-      }
-      Options := "x10p y30p w80p Centre c" This.tcolor " r2 s20"
-      Gdip_TextToGraphics(This.G, This.text, Options, This.font, This.positions.W, This.positions.H)
-    }
-    finalize(){
-      UpdateLayeredWindow(This.hWND, This.hdc, This.positions.X, This.positions.Y, This.positions.W, This.positions.H)
-      SelectObject(This.hdc, This.obm)
-      DeleteObject(This.hbm)
-      DeleteDC(This.hdc)
-      Gdip_DeleteGraphics(This.G)
-    }
-    close(){
-      Gdip_Shutdown(This.pToken)
-      Gui,% This.label ": Destroy" 
     }
   }
   PromptForObject(){
