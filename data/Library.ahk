@@ -893,6 +893,8 @@
           This.Prop.TopTierRaritySuf := 1
         If This.TopTierAttackSpeed()
           This.Prop.TopTierAttackSpeed := 1
+        If This.TopTierCastSpeed()
+          This.Prop.TopTierCastSpeed := 1
         If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist || This.Prop.TopTierAllResist)
           This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0) + (This.Prop.TopTierAllResist?1:0)
         If (This.Prop.TopTierRarityPre || This.Prop.TopTierRaritySuf)
