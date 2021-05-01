@@ -101,5 +101,8 @@
 	"TopTierColdResist",
 	"TopTierFireResist",
 	"TopTierLightningResist",
-	"TopTierChaosResist"
+	"TopTierChaosResist",
+	"TopTierRarityPre",
+	"TopTierRaritySuf",
+	"TopTierRarity"
 ]
