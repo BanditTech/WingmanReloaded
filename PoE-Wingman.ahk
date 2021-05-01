@@ -4584,7 +4584,7 @@ Return
           Log("Logout Failed","Could not find game EXE",tt)
         If WR.perChar.Setting.quitLogBackIn
         {
-          RandomSleep(350,350)
+          RandomSleep(750,750)
           ControlSend,, {Enter}, %GameStr%
           RandomSleep(750,750)
           ControlSend,, {Enter}, %GameStr%
@@ -4605,7 +4605,7 @@ Return
         Send, {Enter}/exit{Enter}
         If WR.perChar.Setting.quitLogBackIn
         {
-          RandomSleep(300,400)
+          RandomSleep(750,750)
           ControlSend,, {Enter}, %GameStr%
         }
       }
