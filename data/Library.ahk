@@ -2566,22 +2566,34 @@
           {
             If ( SKey = "Data" )
               Continue
-            For AKey, AVal in Selected
-            {
-              arrval := Item[SKey][AVal["#Key"]]
-              eval := AVal["Eval"]
-              min := AVal["Min"]
+            For AKey, AVal in Selected {
               orflag := AVal["OrFlag"]
-
-              If This.Evaluate(eval,arrval,min){
-                matched := True
-                If orflag
-                  ormatched++
-                This.MatchedCLF.Push(AVal["#Key"])
+              If (AVal.GroupType){
+                If This.MatchGroup(AVal) {
+                  matched := True
+                  If orflag
+                    ormatched++
+                } Else {
+                  if !orflag
+                    nomatched := True
+                  ormismatch := True
+                }
               } Else {
-                if !orflag
-                  nomatched := True
-                ormismatch := True
+                arrval := Item[SKey][AVal["#Key"]]
+                eval := AVal["Eval"]
+                min := AVal["Min"]
+                orflag := AVal["OrFlag"]
+
+                If This.Evaluate(eval,arrval,min){
+                  matched := True
+                  If orflag
+                    ormatched++
+                  This.MatchedCLF.Push(AVal["#Key"])
+                } Else {
+                  if !orflag
+                    nomatched := True
+                  ormismatch := True
+                }
               }
             }
           }
@@ -2607,21 +2619,18 @@
         For k, elem in glist {
           If elem.GroupType {
             matched := This.MatchGroup(elem)
-            If (gtype = "Weight")
-              weight := Elem["Weight"]
           } Else {
             arrval := Item[Elem["Type"]][Elem["#Key"]]
             eval := Elem["Eval"]
             min := Elem["Min"]
-            If (gtype = "Weight")
-              weight := Elem["Weight"]
             matched := This.Evaluate(eval,arrval,min)
           }
+          weight := Elem["Weight"]
           If matched {
             If (gtype = "Not")
               Return False
             Else If (gtype = "Count")
-              CountSum++
+              CountSum += weight
             Else If (gtype = "Weight")
               CountSum += weight * arrval
           } Else {
@@ -2629,11 +2638,11 @@
               Return False
           }
         }
-        If (gtype = "And"){
+        If (gtype = "And")
           Return True
-        } Else If (gtype = "Not"){
+        Else If (gtype = "Not")
           Return True
-        } Else If (gtype = "Count" || gtype = "Weight"){
+        Else If (gtype = "Count" || gtype = "Weight") {
           If (CountSum >= gval)
             Return True
           Else
