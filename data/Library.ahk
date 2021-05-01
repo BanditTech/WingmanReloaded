@@ -927,7 +927,9 @@
         || (This.Affix["Monsters' skills Chain # additional times"] && MSCAT)
         || (This.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
         || (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
-        || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)) 
+        || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
+        || (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
+        || (This.Affix["Players have #% less Armour"] && PHLessArmour))
         {
           Return True
         } 
@@ -3708,7 +3710,7 @@
             GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
             Gui, Crafting: Font,
             Gui, Crafting: Font, Bold s9 cBlack, Arial
-          Gui, Crafting: Add,GroupBox,Section w580 h160 xs, Undesireble Mods:
+          Gui, Crafting: Add,GroupBox,Section w580 h180 xs, Undesirable Mods:
             Gui, Crafting: Font,
             Gui, Crafting: Font,s8
             Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
@@ -3717,14 +3719,16 @@
             Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
             Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
             Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-            Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
+            Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players Have # Less Recovery Rate of Life and ES
+            Gui, Crafting: Add, Checkbox, vPHReducedChanceToBlock xs+5 ys+160 Checked%PHReducedChanceToBlock%, Players Have # Reduced Chance to Block
             Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
             Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
-            Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
+            Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' Skills Chain # Additional Times
             Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
             Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
             Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
             Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
+            Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
             
 
             Gui, Crafting: Font, Bold
