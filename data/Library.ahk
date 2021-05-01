@@ -889,6 +889,8 @@
           This.Prop.TopTierRarityPre := 1, This.Prop.TopTierRarity += 1
         If This.TopTierRaritySuf()
           This.Prop.TopTierRaritySuf := 1, This.Prop.TopTierRarity += 1
+        If This.TopTierAttackSpeed()
+          This.Prop.TopTierAttackSpeed := 1
         If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist)
           This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0)
       }
@@ -1000,6 +1002,28 @@
         Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Ice"))
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Haast"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierAttackSpeed(){
+        If ((This.Prop.ItemLevel < 11 || indexOf(This.Prop.ItemClass,["Rings"]))
+        && This.HasAffix("of Skill"))
+          Return True
+        Else If (This.Prop.ItemLevel < 22 && This.HasAffix("of Ease"))
+          Return True
+        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("of Mastery"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 37 || indexOf(This.Prop.ItemClass,["Gloves"])) 
+        && This.HasAffix("of Renown"))
+          Return True
+        Else If (This.Prop.ItemLevel < 45 && This.HasAffix("of Acclaim"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Fame"))
+          Return True
+        Else If (This.Prop.ItemLevel < 77 && This.HasAffix("of Infamy"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Celebration"))
           Return True
         Else
           Return False
