@@ -337,6 +337,8 @@
             This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
           If (This.Prop.ItemBase ~= "^Superior ")
             This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Superior ", "")
+          If (This.Prop.ItemBase ~= "^Synthesised ")
+            This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Synthesised ", "")
           If (This.Prop.RarityMagic){
             If (This.Prop.ItemBase ~= " of .+")
                 This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
