@@ -2568,147 +2568,20 @@
               Continue
             For AKey, AVal in Selected
             {
-              arrval := Item[SKey][LootFilter[GKey][SKey][AKey]["#Key"]]
-              eval := LootFilter[GKey][SKey][AKey]["Eval"]
-              min := LootFilter[GKey][SKey][AKey]["Min"]
-              orflag := LootFilter[GKey][SKey][AKey]["OrFlag"]
+              arrval := Item[SKey][AVal["#Key"]]
+              eval := AVal["Eval"]
+              min := AVal["Min"]
+              orflag := AVal["OrFlag"]
 
-              if eval = >
-              {
-                If (arrval > min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              Else if eval = >=
-              {
-                If (arrval >= min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = =
-              {
-                If (arrval = min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = <
-              {
-                If (arrval < min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = <=
-              {
-                If (arrval <= min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = !=
-              {
-                If (arrval != min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = ~
-              {
-                minarr := StrSplit(min, "|"," ")
-                matchedOR := False
-                for k, v in minarr ; for each element of the minimum
-                                  ; We split the line into sections
-                {
-                  if InStr(v, "&") ; Check for any & sections
-                  {
-                    mismatched := false
-                    for kk, vv in StrSplit(v, "&"," ")
-                    {              ; Split the array again
-                      If !InStr(arrval, vv) ; Check all sections for mismatch
-                        mismatched := true
-                    }
-                    if !mismatched
-                    {              ; if no mismatch that means all sections found in the string
-                      matchedOR := true ; This means we have fully matched an OR+AND section
-                      Break
-                    }
-                  }
-                  Else if InStr(arrval, v)
-                  {                ; If there was no & symbol this is an OR section
-                    matchedOR := True
-                    break
-                  }
-                }
-                if matchedOR       ; If any of the sections produced a match it will flag true
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
+              If This.Evaluate(eval,arrval,min){
+                matched := True
+                If orflag
+                  ormatched++
+                This.MatchedCLF.Push(AVal["#Key"])
+              } Else {
+                if !orflag
+                  nomatched := True
+                ormismatch := True
               }
             }
           }
@@ -2722,6 +2595,54 @@
           }
         }
         This.MatchedCLF := False
+        Return False
+      }
+      MatchCLFGroup(grp){
+
+      }
+      Evaluate(eval,val,min){
+        if (eval = ">") {
+          If (val > min)
+            Return True
+        } Else if (eval = ">=") {
+          If (val >= min)
+            Return True
+        } Else if (eval = "=") {
+          If (val = min)
+            Return True
+        } Else if (eval = "<") {
+          If (val < min)
+            Return True
+        } else if (eval = "<=") {
+          If (val <= min)
+            Return True
+        } else if (eval = "!=") {
+          If (val != min)
+            Return True
+        } else if (eval = "~") {
+          minarr := StrSplit(min, "|"," ")
+          matchedOR := False
+          for k, v in minarr { ; Split OR first
+            if InStr(v, "&") { ; Check for any & sections
+              mismatched := false
+              for kk, vv in StrSplit(v, "&"," ") { ; Split the array again
+                If !InStr(val, vv) ; Check all sections for mismatch
+                  mismatched := true
+              }
+              if !mismatched {    ; if no mismatch that means all sections found in the string
+                matchedOR := true ; This means we have fully matched an OR+AND section
+                Break
+              }
+            }
+            Else if InStr(val, v)
+            {                ; If there was no & symbol this is an OR section
+              matchedOR := True
+              break
+            }
+          }
+          if matchedOR       ; If any of the sections produced a match it will flag true
+            Return True
+        }
         Return False
       }
       inRange(key,obj,base){
