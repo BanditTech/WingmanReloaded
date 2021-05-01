@@ -124,6 +124,8 @@
               This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
             Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix")
               This.Data.Blocks.Affix := SVal
+            Else If (SVal ~= " \(enchant\)$")
+              This.Data.Blocks.Enchant := SVal
             Else
               This.Data.Blocks.Properties .= SVal "`r`n"
           }
