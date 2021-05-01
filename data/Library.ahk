@@ -885,14 +885,18 @@
           This.Prop.TopTierFireResist := 1
         If This.TopTierColdResist()
           This.Prop.TopTierColdResist := 1
+        If This.TopTierAllResist()
+          This.Prop.TopTierAllResist := 1
         If This.TopTierRarityPre()
-          This.Prop.TopTierRarityPre := 1, This.Prop.TopTierRarity += 1
+          This.Prop.TopTierRarityPre := 1
         If This.TopTierRaritySuf()
-          This.Prop.TopTierRaritySuf := 1, This.Prop.TopTierRarity += 1
+          This.Prop.TopTierRaritySuf := 1
         If This.TopTierAttackSpeed()
           This.Prop.TopTierAttackSpeed := 1
-        If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist)
-          This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0)
+        If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist || This.Prop.TopTierAllResist)
+          This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0) + (This.Prop.TopTierAllResist?1:0)
+        If (This.Prop.TopTierRarityPre || This.Prop.TopTierRaritySuf)
+          This.Prop.TopTierRarity := (This.Prop.TopTierRarityPre?1:0) + (This.Prop.TopTierRaritySuf?1:0)
       }
       BrickedMap() {
         If (This.HasBrickedAffix()) {
@@ -1006,13 +1010,52 @@
         Else
           Return False
       }
+      TopTierAllResist(){
+        If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Crystal"))
+          Return True
+        Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Prism"))
+          Return True
+        Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kaleidoscope"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Variegation"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 85 || indexOf(This.Prop.ItemClass,["Rings"])) 
+        && This.HasAffix("of the Rainbow"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of the Span"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierCastSpeed(){
+        If ((This.Prop.ItemLevel < 15 || indexOf(This.Prop.ItemClass,["Rings"]))
+        && This.HasAffix("of Talent"))
+          Return True
+        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("of Nimbleness"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 40 || indexOf(This.Prop.ItemClass,["Amulets"])) 
+        && This.HasAffix("of Expertise"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 55 || indexOf(This.Prop.ItemClass,["Gloves"])) 
+        && This.HasAffix("of Legerdemain"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of Prestidigitation"))
+          Return True
+        Else If (This.Prop.ItemLevel < 83 && This.HasAffix("of Sortilege"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Finesse"))
+          Return True
+        Else
+          Return False
+      }
       TopTierAttackSpeed(){
         If ((This.Prop.ItemLevel < 11 || indexOf(This.Prop.ItemClass,["Rings"]))
         && This.HasAffix("of Skill"))
           Return True
         Else If (This.Prop.ItemLevel < 22 && This.HasAffix("of Ease"))
           Return True
-        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("of Mastery"))
+        Else If ((This.Prop.ItemLevel < 30 || indexOf(This.Prop.ItemClass,["Shields"])) 
+        && This.HasAffix("of Mastery"))
           Return True
         Else If ((This.Prop.ItemLevel < 37 || indexOf(This.Prop.ItemClass,["Gloves"])) 
         && This.HasAffix("of Renown"))
