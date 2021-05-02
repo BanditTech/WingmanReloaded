@@ -1733,7 +1733,7 @@
         {
           For k, v in Bases
           {
-            If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
+            If (v["name"] = This.Prop.ItemBase)
             {
               This.Prop.Item_Width := v["inventory_width"]
               This.Prop.Item_Height := v["inventory_height"]
