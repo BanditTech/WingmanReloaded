@@ -1212,7 +1212,9 @@
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
-        If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60 || (!This.Affix.Unidentified && ChaosRecipeEnableUnId))
+        If (This.Prop.Rarity_Digit != 3 
+        || This.Prop.ItemLevel < 60 
+        || (!This.Affix.Unidentified && ChaosRecipeEnableUnId && This.Prop.ItemLevel < ChaosRecipeLimitUnId))
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
           Return False

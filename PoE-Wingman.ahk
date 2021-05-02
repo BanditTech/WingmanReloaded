@@ -2257,7 +2257,10 @@ Return
   CheckToIdentify(){
     If (Item.Affix["Unidentified"] && YesIdentify)
     {
-      If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) && Item.StashChaosRecipe(false))
+      If (ChaosRecipeEnableFunction 
+      && ChaosRecipeEnableUnId && Item.Prop.ItemLevel < ChaosRecipeLimitUnId
+      && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) 
+      && Item.StashChaosRecipe(false))
         Return False
       Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
         Return True
