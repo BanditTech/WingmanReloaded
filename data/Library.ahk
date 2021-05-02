@@ -3779,7 +3779,12 @@
           Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
             Gui, Crafting: Font,
             Gui, Crafting: Font,s8
-            Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+            Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+10 ys+20 Checked%EnableMQQForMagicMap%, Enable on Magic Maps?
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w170 h40 xs ys+50, Alc'n'go Heist:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract/Blueprint?
         Gui, Crafting: Tab, Basic Crafting
           Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance

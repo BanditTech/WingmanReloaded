@@ -735,6 +735,7 @@
     Global WinGuiX := 0
     Global WinGuiY := 0
     Global YesVendorDumpItems := 0
+    Global HeistAlcNGo := 1
 
 
     ; Chaos Recipe
@@ -4251,6 +4252,8 @@ Return
               }
             }
           }
+        } Else If (indexOf(Item.Prop.ItemClass,["Blueprint","Contract"]) && Item.Prop.RarityNormal && HeistAlcNGo) {
+          ApplyCurrency("Alchemy",Grid.X,Grid.Y)
         }
       }
     }
@@ -5314,6 +5317,7 @@ Return
       IniRead, YesPredictivePrice_Percent_Val, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice_Percent_Val, 100
       IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
       IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
+      IniRead, HeistAlcNGo, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo, 1
 
       ;Crafting Bases
       IniRead, YesStashATLAS, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS, 1
@@ -5964,6 +5968,7 @@ Return
       IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
+      IniWrite, %HeistAlcNGo%, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo
 
       ; Overhead Health Bar
       IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
