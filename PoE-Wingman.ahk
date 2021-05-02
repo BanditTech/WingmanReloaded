@@ -2116,7 +2116,7 @@ Return
       GuiStatus()
       If (!OnChar) 
       { ;Need to be on Character 
-        MsgBox %  "You do not appear to be in game.`nLikely need to calibrate OnChar"
+        Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
         CheckRunning("Off")
         Return
       } 
@@ -3933,7 +3933,7 @@ Return
       GuiStatus()
       If (!OnChar) 
       {
-        MsgBox %  "You do not appear to be in game.`nLikely need to calibrate Character Active"
+        Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
         CheckRunning("Off")
         Return
       }
@@ -4605,7 +4605,7 @@ Return
         Send, {Enter}/exit{Enter}
         If WR.perChar.Setting.quitLogBackIn
         {
-          RandomSleep(750,750)
+          RandomSleep(900,900)
           ControlSend,, {Enter}, %GameStr%
         }
       }
