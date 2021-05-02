@@ -3038,6 +3038,7 @@
   ; ClipItem - Capture Clip at Coord
   ClipItem(x, y){
       BlockInput, MouseMove
+      Backup := Clipboard
       Clipboard := ""
       Item := ""
       Sleep, 45+(ClipLatency*15)
@@ -3050,6 +3051,8 @@
         Sleep, 15
         Send ^!c
         ClipWait, 0.1
+        If ErrorLevel && !RunningToggle
+          Clipboard := Backup
       }
       Clip_Contents := Clipboard
       Item := new ItemScan
