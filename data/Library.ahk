@@ -823,7 +823,38 @@
           }
         }
         ;End Prop Block Parser for Maps
-
+        
+        ; Start Prop Block Parser for Heist
+        If indexOf(This.Prop.ItemClass, ["Contract","Blueprint"]) {
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Heist Target: (.*)",RxMatch))
+            This.Prop.Heist_Target := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Client: (.*)",RxMatch))
+            This.Prop.Heist_Client := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Area Level: " rxNum,RxMatch))
+            This.Prop.Heist_AreaLevel := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+" rxNum,RxMatch))
+            This.Prop.Heist_ItemQuantity := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+" rxNum,RxMatch))
+            This.Prop.Heist_ItemRarity := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Alert Level Reduction: \+" rxNum,RxMatch))
+            This.Prop.Heist_AlertLevelReduction := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Time Before Lockdown: \+" rxNum,RxMatch))
+            This.Prop.Heist_TimeBeforeLockdown := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Maximum Alive Reinforcements: \+" rxNum,RxMatch))
+            This.Prop.Heist_MaximumAliveReinforcements := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Wings Revealed: " rxNum "/" rxNum,RxMatch))
+            This.Prop.Heist_WingsRevealed := RxMatch1, This.Prop.Heist_WingsRevealedMax := RxMatch2
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Escape Routes Revealed: " rxNum "/" rxNum,RxMatch))
+            This.Prop.Heist_EscapeRoutesRevealed := RxMatch1, This.Prop.Heist_EscapeRoutesRevealedMax := RxMatch2
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Reward Rooms Revealed: " rxNum "/" rxNum,RxMatch))
+            This.Prop.Heist_RewardRoomsRevealed := RxMatch1, This.Prop.Heist_RewardRoomsRevealedMax := RxMatch2
+          For k, job in ["Brute Force","Agility","Perception","Demolition","Counter-Thaumaturgy","Trap Disarmament","Deception","Engineering","Lockpicking"] {
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "\)",RxMatch)) {
+              This.Prop["Heist_Requires" job ] := RxMatch1
+            }
+          }
+        }
+        ; End Prop Block Parser for Heist
         ;Start Prop Block Parser for Vaal Gems
         If (This.Prop.RarityGem && This.Prop.Corrupted)
         {
@@ -1918,6 +1949,7 @@
           || RegExMatch(key, "^Sockets")
           || RegExMatch(key, "^Quality")
           || RegExMatch(key, "^Map")
+          || RegExMatch(key, "^Heist_")
           || RegExMatch(key, "^Stack")
           || RegExMatch(key, "^Weapon"))
           {
