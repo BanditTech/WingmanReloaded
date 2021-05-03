@@ -10,6 +10,7 @@
   ; PoE Click v1.0.1 : Developed by Bandit
     ; SwiftClick - Left Click at Coord with no wait between up and down
     SwiftClick(x, y){
+      Log("SwiftClick: " x ", " y)
       MouseMove, x, y  
       Sleep, 30+(ClickLatency*15)
       Send {Click}
@@ -18,6 +19,7 @@
     }
     ; LeftClick - Left Click at Coord
     LeftClick(x, y){
+      Log("LeftClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 60+(ClickLatency*15)
@@ -28,6 +30,7 @@
     }
     ; RightClick - Right Click at Coord
     RightClick(x, y){
+      Log("RightClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 60+(ClickLatency*15)
@@ -38,6 +41,7 @@
     }
     ; ShiftClick - Shift Click +Click at Coord
     ShiftClick(x, y){
+      Log("ShiftClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 60+(ClickLatency*15)
@@ -54,6 +58,7 @@
     }
     ; CtrlClick - Ctrl Click ^Click at Coord
     CtrlClick(x, y){
+      Log("CtrlClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 30+(ClickLatency*15)
@@ -70,6 +75,7 @@
     }
     ; CtrlShiftClick - Ctrl + Shift Click +^Click at Coord
     CtrlShiftClick(x, y){
+      Log("CtrlShiftClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 30+(ClickLatency*15)
@@ -86,12 +92,14 @@
     }
     ; RandClick - Randomize Click area around middle of cell using Coord
     RandClick(x, y){
+      Log("RandClick: " x ", " y)
       Random, Rx, x+10, x+30
       Random, Ry, y-30, y-10
       return {"X": Rx, "Y": Ry}
     }
     ; WisdomScroll - Identify Item at Coord
     WisdomScroll(x, y){
+      Log("WisdomScroll: " x ", " y)
       BlockInput, MouseMove
       RightClick(WisdomScrollX,WisdomScrollY)
       Sleep, 30+Abs(ClickLatency*15)
@@ -3134,6 +3142,9 @@
     ;   , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
     ;   , debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr, debuffCurseTempChainStr, debuffCurseCondStr, debuffCurseFlamStr, debuffCurseFrostStr, debuffCurseWarMarkStr
     ;   , debuffShockStr, debuffBleedStr, debuffFreezeStr, debuffIgniteStr, debuffPoisonStr
+    
+    Log("Load menu: " Function)
+
     If (Function = "Inventory")
     {
       Gui, 1: Submit
@@ -7900,7 +7911,7 @@
       }
       Catch, loaderror
       {
-        Ding(500,-10,"Critical Load Error`nSize: " . errchk . "MB")
+        Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
         CurrentLocation := "Client File Load Error"
         Log("Error loading File, Submit information about your client.txt",loaderror)
       }
@@ -16275,11 +16286,17 @@ IsLinear(arr, i=0) {
   ; Log file function
   Log(var*) 
   {
-    print := A_Now
-    For k, v in var
-      print .= "," . v
-    print .= ", Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
-    FileAppend, %print%, %A_ScriptDir%\temp\Log.txt, UTF-16
+    if (FileExist(A_ScriptDir "\logs\" logFile ".txt")) {
+        FormatTime, appendTime, , hh:mm:ss
+        print := appendTime
+        For k, v in var
+          print .= "," . v
+        print .= "`n"
+    } else {
+        StringReplace, FormattedVersion, VersionNumber, ., 
+        print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
+    }
+    FileAppend, %print%, %A_ScriptDir%\logs\%logFile%.txt, UTF-16
     return
   }
 
@@ -19537,94 +19554,99 @@ for i,v in ok
   , FindAll:=1, JoinText:=0, offsetX:=20, offsetY:=10 )
   {
     local  ; Unaffected by Super-global variables
-    bch:=A_BatchLines
-    SetBatchLines, -1
-    x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
-    , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
-    , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
-    if (w<1 or h<1)
-    {
-      SetBatchLines, %bch%
-      return, 0
-    }
-    bits:=GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
-    sx:=x-zx, sy:=y-zy, sw:=w, sh:=h, arr:=[], info:=[]
-    Loop, Parse, text, |
-      if IsObject(j:=PicInfo(A_LoopField))
-      info.Push(j)
-    if (!(num:=info.MaxIndex()) or !bits.1)
-    {
-      SetBatchLines, %bch%
-      return, 0
-    }
-    VarSetCapacity(input, num*7*4), k:=0
-    Loop, % num
-      k+=Round(info[A_Index].2 * info[A_Index].3)
-    VarSetCapacity(s1, k*4), VarSetCapacity(s0, k*4)
-    , VarSetCapacity(gs, sw*sh), VarSetCapacity(ss, sw*sh)
-    , allpos_max:=(FindAll ? 1024 : 1)
-    , VarSetCapacity(allpos, allpos_max*4)
-    Loop, 2
-    {
-      if (err1=0 and err0=0) and (num>1 or A_Index>1)
-      err1:=0.1, err0:=0.05
-      if (JoinText)
+    try {
+      bch:=A_BatchLines
+      SetBatchLines, -1
+      x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
+      , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
+      , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
+      if (w<1 or h<1)
       {
-      j:=info[1], mode:=j.8, color:=j.9, n:=j.10
-      , w1:=-1, h1:=j.3, comment:="", v:="", i:=0
+        SetBatchLines, %bch%
+        return, 0
+      }
+      bits:=GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
+      sx:=x-zx, sy:=y-zy, sw:=w, sh:=h, arr:=[], info:=[]
+      Loop, Parse, text, |
+        if IsObject(j:=PicInfo(A_LoopField))
+        info.Push(j)
+      if (!(num:=info.MaxIndex()) or !bits.1)
+      {
+        SetBatchLines, %bch%
+        return, 0
+      }
+      VarSetCapacity(input, num*7*4), k:=0
       Loop, % num
+        k+=Round(info[A_Index].2 * info[A_Index].3)
+      VarSetCapacity(s1, k*4), VarSetCapacity(s0, k*4)
+      , VarSetCapacity(gs, sw*sh), VarSetCapacity(ss, sw*sh)
+      , allpos_max:=(FindAll ? 1024 : 1)
+      , VarSetCapacity(allpos, allpos_max*4)
+      Loop, 2
       {
-        j:=info[A_Index], w1+=j.2+1, comment.=j.11
-        Loop, 7
-        NumPut((A_Index=1 ? StrLen(v)
-        : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
-        : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-        : j[A_Index]), input, 4*(i++), "int")
-        v.=j.1
-      }
-      ok:=PicFind( mode,color,n,offsetX,offsetY
-      , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
-      , input,num*7,allpos,allpos_max )
-      Loop, % ok
-        pos:=NumGet(allpos, 4*(A_Index-1), "uint")
-        , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
-        , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
-        , x:rx+w1//2, y:ry+h1//2, id:comment} )
-      }
-      else
-      {
-      For i,j in info
-      {
-        mode:=j.8, color:=j.9, n:=j.10, comment:=j.11
-        , w1:=j.2, h1:=j.3, v:=j.1
-        Loop, 7
-        NumPut((A_Index=1 ? 0
-        : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
-        : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-        : j[A_Index]), input, 4*(A_Index-1), "int")
+        if (err1=0 and err0=0) and (num>1 or A_Index>1)
+        err1:=0.1, err0:=0.05
+        if (JoinText)
+        {
+        j:=info[1], mode:=j.8, color:=j.9, n:=j.10
+        , w1:=-1, h1:=j.3, comment:="", v:="", i:=0
+        Loop, % num
+        {
+          j:=info[A_Index], w1+=j.2+1, comment.=j.11
+          Loop, 7
+          NumPut((A_Index=1 ? StrLen(v)
+          : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
+          : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
+          : j[A_Index]), input, 4*(i++), "int")
+          v.=j.1
+        }
         ok:=PicFind( mode,color,n,offsetX,offsetY
         , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
-        , input,7,allpos,allpos_max )
+        , input,num*7,allpos,allpos_max )
         Loop, % ok
-        pos:=NumGet(allpos, 4*(A_Index-1), "uint")
-        , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
-        , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
-        , x:rx+w1//2, y:ry+h1//2, id:comment} )
-        if (ok and !FindAll)
-        Break
+          pos:=NumGet(allpos, 4*(A_Index-1), "uint")
+          , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
+          , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
+          , x:rx+w1//2, y:ry+h1//2, id:comment} )
+        }
+        else
+        {
+        For i,j in info
+        {
+          mode:=j.8, color:=j.9, n:=j.10, comment:=j.11
+          , w1:=j.2, h1:=j.3, v:=j.1
+          Loop, 7
+          NumPut((A_Index=1 ? 0
+          : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
+          : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
+          : j[A_Index]), input, 4*(A_Index-1), "int")
+          ok:=PicFind( mode,color,n,offsetX,offsetY
+          , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
+          , input,7,allpos,allpos_max )
+          Loop, % ok
+          pos:=NumGet(allpos, 4*(A_Index-1), "uint")
+          , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
+          , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
+          , x:rx+w1//2, y:ry+h1//2, id:comment} )
+          if (ok and !FindAll)
+          Break
+        }
+        }
+        if (err1=0 and err0=0 and num=1 and !arr.MaxIndex())
+        {
+        k:=0
+        For i,j in info
+          k+=(!j.12)
+        IfEqual, k, 0, Break
+        }
+        else Break
       }
-      }
-      if (err1=0 and err0=0 and num=1 and !arr.MaxIndex())
-      {
-      k:=0
-      For i,j in info
-        k+=(!j.12)
-      IfEqual, k, 0, Break
-      }
-      else Break
+      SetBatchLines, %bch%
+      return, arr.MaxIndex() ? arr:0
+    } catch e {
+      Log("FindText Error: " ParseTextFromError(e))
+      return 0
     }
-    SetBatchLines, %bch%
-    return, arr.MaxIndex() ? arr:0
   }
 
   ; Bind the window so that it can find images when obscured
@@ -20446,3 +20468,12 @@ for i,v in ok
     return arr
   }
 ;===============  FindText Library End  ===================
+
+ParseTextFromError(e) {
+      msg := ""
+      For k, type in ["what","file","line","message","extra"] {
+        value := e[type]
+        msg .= (msg ? "`n" : "") type " : " e[type]
+      }
+      return msg
+}
