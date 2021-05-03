@@ -16275,11 +16275,17 @@ IsLinear(arr, i=0) {
   ; Log file function
   Log(var*) 
   {
-    print := A_Now
-    For k, v in var
-      print .= "," . v
-    print .= ", Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
-    FileAppend, %print%, %A_ScriptDir%\temp\Log.txt, UTF-16
+    FileGetSize, fileSize, %A_ScriptDir%\logs\%logFile%.txt
+    if (ErrorLevel || fileSize == 0) {
+      StringReplace, FormattedVersion, VersionNumber, ., 
+      print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
+    } else {
+      FormatTime, appendTime, , hh:mm:ss
+      print := appendTime
+      For k, v in var
+        print .= "," . v
+    }
+    FileAppend, %print%, %A_ScriptDir%\logs\%logFile%.txt, UTF-16
     return
   }
 

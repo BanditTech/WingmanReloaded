@@ -86,6 +86,8 @@
     FileCreateDir, %A_ScriptDir%\save\profiles\Utility
   IfNotExist, %A_ScriptDir%\temp
     FileCreateDir, %A_ScriptDir%\temp
+  IfNotExist, %A_ScriptDir%\logs
+    FileCreateDir, %A_ScriptDir%\logs
   
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global Script Object
@@ -569,7 +571,10 @@
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
-    
+  ; Current log file
+    FormatTime, currentTime, , hh-mm-ss tt
+    Global logFile := currentTime
+
   ; Login POESESSID
     Global PoECookie := ""
     Global AccountNameSTR := ""
