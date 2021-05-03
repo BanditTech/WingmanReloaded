@@ -19645,6 +19645,7 @@ for i,v in ok
       return, arr.MaxIndex() ? arr:0
     } catch e {
       Log("FindText Error: " e)
+      return 0
     }
   }
 
