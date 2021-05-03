@@ -16275,15 +16275,14 @@ IsLinear(arr, i=0) {
   ; Log file function
   Log(var*) 
   {
-    FileGetSize, fileSize, %A_ScriptDir%\logs\%logFile%.txt
-    if (ErrorLevel || fileSize == 0) {
-      StringReplace, FormattedVersion, VersionNumber, ., 
-      print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
+    if (FileExist(A_ScriptDir "\logs\" logFile ".txt")) {
+        FormatTime, appendTime, , hh:mm:ss
+        print := appendTime
+        For k, v in var
+          print .= "," . v
     } else {
-      FormatTime, appendTime, , hh:mm:ss
-      print := appendTime
-      For k, v in var
-        print .= "," . v
+        StringReplace, FormattedVersion, VersionNumber, ., 
+        print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
     }
     FileAppend, %print%, %A_ScriptDir%\logs\%logFile%.txt, UTF-16
     return
