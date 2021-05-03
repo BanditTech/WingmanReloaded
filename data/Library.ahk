@@ -19644,7 +19644,7 @@ for i,v in ok
       SetBatchLines, %bch%
       return, arr.MaxIndex() ? arr:0
     } catch e {
-      Log("FindText Error: " e)
+      Log("FindText Error: " ParseTextFromError(e))
       return 0
     }
   }
@@ -20468,3 +20468,12 @@ for i,v in ok
     return arr
   }
 ;===============  FindText Library End  ===================
+
+ParseTextFromError(e) {
+      msg := ""
+      For k, type in ["what","file","line","message","extra"] {
+        value := e[type]
+        msg .= (msg ? "`n" : "") type " : " e[type]
+      }
+      return msg
+}

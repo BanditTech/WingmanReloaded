@@ -3674,7 +3674,7 @@ Return
       If GetKeyState(StrSplit(WR.Flask[A_Index].Key," ")[1], "P")
         WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask[A_Index].CD
       } catch e {
-        Log("TimerPassthrough Error: " e)
+        Log("TimerPassthrough Error: " ParseTextFromError(e))
       }
   Return
 ; Toggle Main Script Timers - AutoQuit, AutoFlask, GuiUpdate
@@ -4738,7 +4738,7 @@ Return
         }
       }
     } catch e {
-      Log("PoEWindowCheck Error: " e)
+      Log("PoEWindowCheck Error: " ParseTextFromError(e))
     }
     Return
   }
@@ -4771,7 +4771,7 @@ Return
         LastDatabaseParseDate := Date_now
       }
     } catch e {
-      Log("DBUpdateCheck Error: " e)
+      Log("DBUpdateCheck Error: " ParseTextFromError(e))
     }
     Return
   }
