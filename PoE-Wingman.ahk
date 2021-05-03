@@ -3670,8 +3670,12 @@ Return
   ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
   TimerPassthrough:
     Loop 5
+      try {
       If GetKeyState(StrSplit(WR.Flask[A_Index].Key," ")[1], "P")
         WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask[A_Index].CD
+      } catch e {
+        Log("TimerPassthrough Error: " e)
+      }
   Return
 ; Toggle Main Script Timers - AutoQuit, AutoFlask, GuiUpdate
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -4680,57 +4684,61 @@ Return
   PoEWindowCheck()
   {
     Global GamePID, NoGame, GameActive, YesInGameOverlay, WR
-    If (GamePID := WinExist(GameStr))
-    {
-      GameActive := WinActive(GameStr)
-      WinGetPos, , , nGameW, nGameH
-      newDim := (nGameW != GameW || nGameH != GameH)
-      global RescaleRan, ToggleExist
-      If (!GameBound || newDim )
+    try {
+      If (GamePID := WinExist(GameStr))
       {
-        GameBound := True
-        BindWindow(GamePID)
-        WinGet, s, Style, ahk_class POEWindowClass
-        If (s & +0x80000000)
-          WinSet, Style, -0x80000000, ahk_class POEWindowClass
-      }
-      If (!RescaleRan || newDim)
-        Rescale()
-      If ((!ToggleExist || newDim) && GameActive) 
+        GameActive := WinActive(GameStr)
+        WinGetPos, , , nGameW, nGameH
+        newDim := (nGameW != GameW || nGameH != GameH)
+        global RescaleRan, ToggleExist
+        If (!GameBound || newDim )
+        {
+          GameBound := True
+          BindWindow(GamePID)
+          WinGet, s, Style, ahk_class POEWindowClass
+          If (s & +0x80000000)
+            WinSet, Style, -0x80000000, ahk_class POEWindowClass
+        }
+        If (!RescaleRan || newDim)
+          Rescale()
+        If ((!ToggleExist || newDim) && GameActive) 
+        {
+          Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA", StatusOverlay
+          GuiUpdate()
+          ToggleExist := True
+          NoGame := False
+        }
+        Else If (ToggleExist && !GameActive)
+        {
+          ToggleExist := False
+          Gui 2: Show, Hide, StatusOverlay
+        }
+      } 
+      Else 
       {
-        Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA", StatusOverlay
-        GuiUpdate()
-        ToggleExist := True
-        NoGame := False
+        If CheckTime("seconds",5,"CheckActiveType")
+          CheckActiveType()
+        If GameActive
+          GameActive := False
+        If GameBound
+        {
+          GameBound := False
+          BindWindow()
+        }
+        If (ToggleExist)
+        {
+          Gui 2: Show, Hide, StatusOverlay
+          ToggleExist := False
+          RescaleRan := False
+          NoGame := True
+        }
+        If (!AutoUpdateOff && ScriptUpdateTimeType != "Off" && ScriptUpdateTimeInterval != 0 && CheckTime(ScriptUpdateTimeType,ScriptUpdateTimeInterval,"updateScript"))
+        {
+          checkUpdate()
+        }
       }
-      Else If (ToggleExist && !GameActive)
-      {
-        ToggleExist := False
-        Gui 2: Show, Hide, StatusOverlay
-      }
-    } 
-    Else 
-    {
-      If CheckTime("seconds",5,"CheckActiveType")
-        CheckActiveType()
-      If GameActive
-        GameActive := False
-      If GameBound
-      {
-        GameBound := False
-        BindWindow()
-      }
-      If (ToggleExist)
-      {
-        Gui 2: Show, Hide, StatusOverlay
-        ToggleExist := False
-        RescaleRan := False
-        NoGame := True
-      }
-      If (!AutoUpdateOff && ScriptUpdateTimeType != "Off" && ScriptUpdateTimeInterval != 0 && CheckTime(ScriptUpdateTimeType,ScriptUpdateTimeInterval,"updateScript"))
-      {
-        checkUpdate()
-      }
+    } catch e {
+      Log("PoEWindowCheck Error: " e)
     }
     Return
   }
@@ -4747,19 +4755,23 @@ Return
   DBUpdateCheck()
   {
     Global Date_now, LastDatabaseParseDate
-    IfWinExist, ahk_group POEGameGroup 
-    {
-      Return
-    } 
-    Else If (YesNinjaDatabase && DaysSince())
-    {
-      For k, apiKey in apiList
-        ScrapeNinjaData(apiKey)
-      JSONtext := JSON.Dump(Ninja,,2)
-      FileDelete, %A_ScriptDir%\data\Ninja.json
-      FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-      IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
-      LastDatabaseParseDate := Date_now
+    try {
+      IfWinExist, ahk_group POEGameGroup 
+      {
+        Return
+      } 
+      Else If (YesNinjaDatabase && DaysSince())
+      {
+        For k, apiKey in apiList
+          ScrapeNinjaData(apiKey)
+        JSONtext := JSON.Dump(Ninja,,2)
+        FileDelete, %A_ScriptDir%\data\Ninja.json
+        FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+        IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
+        LastDatabaseParseDate := Date_now
+      }
+    } catch e {
+      Log("DBUpdateCheck Error: " e)
     }
     Return
   }

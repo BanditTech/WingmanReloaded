@@ -7911,7 +7911,7 @@
       }
       Catch, loaderror
       {
-        Ding(500,-10,"Critical Load Error`nSize: " . errchk . "MB")
+        Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
         CurrentLocation := "Client File Load Error"
         Log("Error loading File, Submit information about your client.txt",loaderror)
       }
