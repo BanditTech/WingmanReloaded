@@ -2683,54 +2683,62 @@
       MatchLootFilter(GroupOut:=0){
         For GKey, Groups in LootFilter
         {
-          this.MatchedCLF := []
-          matched := False
-          nomatched := False
-          ormatched := 0
-          ormismatch := False
-          orcount := Groups["Data"]["OrCount"]
-          For SKey, Selected in Groups
-          {
-            If ( SKey = "Data" )
-              Continue
-            For AKey, AVal in Selected {
-              orflag := AVal["OrFlag"]
-              If (AVal.GroupType){
-                If This.MatchGroup(AVal) {
-                  matched := True
-                  If orflag
-                    ormatched++
-                } Else {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              } Else {
-                arrval := Item[SKey][AVal["#Key"]]
-                eval := AVal["Eval"]
-                min := AVal["Min"]
+          If (Groups.GroupType) {
+            If This.MatchGroup(Groups){
+              this.Prop.CLF_Tab := Groups["StashTab"]
+              this.Prop.CLF_Group := GKey
+              Return this.Prop.CLF_Tab
+            }
+          } Else {
+            this.MatchedCLF := []
+            matched := False
+            nomatched := False
+            ormatched := 0
+            ormismatch := False
+            orcount := Groups["Data"]["OrCount"]
+            For SKey, Selected in Groups
+            {
+              If ( SKey = "Data" )
+                Continue
+              For AKey, AVal in Selected {
                 orflag := AVal["OrFlag"]
-
-                If This.Evaluate(eval,arrval,min){
-                  matched := True
-                  If orflag
-                    ormatched++
-                  This.MatchedCLF.Push(AVal["#Key"])
+                If (AVal.GroupType){
+                  If This.MatchGroup(AVal) {
+                    matched := True
+                    If orflag
+                      ormatched++
+                  } Else {
+                    if !orflag
+                      nomatched := True
+                    ormismatch := True
+                  }
                 } Else {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
+                  arrval := Item[SKey][AVal["#Key"]]
+                  eval := AVal["Eval"]
+                  min := AVal["Min"]
+                  orflag := AVal["OrFlag"]
+
+                  If This.Evaluate(eval,arrval,min){
+                    matched := True
+                    If orflag
+                      ormatched++
+                    This.MatchedCLF.Push(AVal["#Key"])
+                  } Else {
+                    if !orflag
+                      nomatched := True
+                    ormismatch := True
+                  }
                 }
               }
             }
-          }
-          If (ormismatch && ormatched < orcount)
-            nomatched := True
-          If (matched && !nomatched)
-          {
-            this.Prop.CLF_Tab := Groups["Data"]["StashTab"]
-            this.Prop.CLF_Group := GKey
-            Return this.Prop.CLF_Tab
+            If (ormismatch && ormatched < orcount)
+              nomatched := True
+            If (matched && !nomatched)
+            {
+              this.Prop.CLF_Tab := Groups["Data"]["StashTab"]
+              this.Prop.CLF_Group := GKey
+              Return this.Prop.CLF_Tab
+            }
           }
         }
         This.MatchedCLF := False
