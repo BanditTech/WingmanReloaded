@@ -31,6 +31,21 @@
   },
   {
     "domain": "item",
+    "drop_level": 74,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Amulet",
+    "name": "Seaglass Amulet",
+    "tags": [
+      "not_for_sale",
+      "atlas_base_type",
+      "amuletatlas3",
+      "amulet",
+      "default"
+    ]
+  },
+  {
+    "domain": "item",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -38,6 +53,7 @@
     "name": "Jet Amulet",
     "tags": [
       "not_for_sale",
+      "demigods",
       "amulet",
       "default"
     ]
@@ -665,6 +681,7 @@
     "tags": [
       "str_dex_int_armour",
       "not_for_sale",
+      "demigods",
       "body_armour",
       "armour",
       "default"
@@ -1877,6 +1894,21 @@
   },
   {
     "domain": "item",
+    "drop_level": 70,
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "item_class": "Body Armour",
+    "name": "Grasping Mail",
+    "tags": [
+      "str_dex_int_armour",
+      "not_for_sale",
+      "body_armour",
+      "armour",
+      "default"
+    ]
+  },
+  {
+    "domain": "item",
     "drop_level": 4,
     "inventory_height": 3,
     "inventory_width": 2,
@@ -2181,6 +2213,23 @@
   },
   {
     "domain": "item",
+    "drop_level": 70,
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "item_class": "Boots",
+    "name": "Blessed Boots",
+    "tags": [
+      "not_for_sale",
+      "atlas_base_type",
+      "bootsatlasdexint",
+      "dex_int_armour",
+      "boots",
+      "armour",
+      "default"
+    ]
+  },
+  {
+    "domain": "item",
     "drop_level": 12,
     "inventory_height": 2,
     "inventory_width": 2,
@@ -2188,6 +2237,7 @@
     "name": "Golden Caligae",
     "tags": [
       "not_for_sale",
+      "demigods",
       "boots",
       "armour",
       "default"
@@ -3138,6 +3188,23 @@
   },
   {
     "domain": "item",
+    "drop_level": 70,
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "item_class": "Gloves",
+    "name": "Apothecary's Gloves",
+    "tags": [
+      "not_for_sale",
+      "atlas_base_type",
+      "glovesatlasstrint",
+      "str_int_armour",
+      "gloves",
+      "armour",
+      "default"
+    ]
+  },
+  {
+    "domain": "item",
     "drop_level": 12,
     "inventory_height": 2,
     "inventory_width": 2,
@@ -3145,6 +3212,7 @@
     "name": "Golden Bracers",
     "tags": [
       "not_for_sale",
+      "demigods",
       "gloves",
       "armour",
       "default"
@@ -4025,6 +4093,7 @@
     "name": "Golden Visage",
     "tags": [
       "not_for_sale",
+      "demigods",
       "helmet",
       "armour",
       "default"
@@ -5056,6 +5125,7 @@
     "name": "Golden Wreath",
     "tags": [
       "not_for_sale",
+      "demigods",
       "helmet",
       "armour",
       "default"
@@ -5070,6 +5140,7 @@
     "name": "Golden Flame",
     "tags": [
       "not_for_sale",
+      "demigods",
       "shield",
       "armour",
       "default"
@@ -6963,7 +7034,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -6976,7 +7047,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -6989,7 +7060,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7002,7 +7073,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7015,7 +7086,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7028,7 +7099,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7041,7 +7112,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7054,7 +7125,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7067,7 +7138,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7080,7 +7151,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7093,7 +7164,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7106,7 +7177,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7119,7 +7190,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7132,7 +7203,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7145,7 +7216,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7158,7 +7229,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7171,7 +7242,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7184,7 +7255,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7197,7 +7268,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7210,7 +7281,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7223,7 +7294,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7236,7 +7307,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7249,7 +7320,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7262,7 +7333,7 @@
     ]
   },
   {
-    "domain": "unknown4",
+    "domain": "watchstone",
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -7398,6 +7469,7 @@
     "name": "Golden Obi",
     "tags": [
       "not_for_sale",
+      "demigods",
       "belt",
       "default"
     ]
@@ -10262,6 +10334,19 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "StackableCurrency",
+    "name": "Unstable Catalyst",
+    "tags": [
+      "catalyst",
+      "currency",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
     "name": "Tempering Catalyst",
     "tags": [
       "catalyst",
@@ -10288,6 +10373,19 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "StackableCurrency",
+    "name": "Noxious Catalyst",
+    "tags": [
+      "catalyst",
+      "currency",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
     "name": "Prismatic Catalyst",
     "tags": [
       "catalyst",
@@ -10302,6 +10400,19 @@
     "inventory_width": 1,
     "item_class": "StackableCurrency",
     "name": "Fertile Catalyst",
+    "tags": [
+      "catalyst",
+      "currency",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Accelerating Catalyst",
     "tags": [
       "catalyst",
       "currency",
@@ -10554,6 +10665,18 @@
     "name": "Chaos Shard",
     "tags": [
       "currency_shard",
+      "currency",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 61,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Veiled Chaos Orb",
+    "tags": [
       "currency",
       "default"
     ]
@@ -10890,7 +11013,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 25,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "StackableCurrency",
@@ -10902,7 +11025,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 25,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "StackableCurrency",
@@ -11113,6 +11236,19 @@
     "drop_level": 1,
     "inventory_height": 1,
     "inventory_width": 1,
+    "item_class": "StackableCurrency",
+    "name": "Tainted Oil",
+    "tags": [
+      "mushrune",
+      "currency",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
     "item_class": "DivinationCard",
     "name": "Abandoned Wealth",
     "tags": [
@@ -11122,7 +11258,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11134,7 +11270,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11147,7 +11283,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11161,7 +11297,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11173,7 +11309,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11185,7 +11321,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 33,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11197,7 +11333,20 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "A Modest Request",
+    "tags": [
+      "jewellery_divination",
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11210,7 +11359,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 48,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11223,7 +11372,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 44,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11235,7 +11384,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11247,7 +11396,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11260,7 +11409,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11273,7 +11422,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 52,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11286,7 +11435,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11299,7 +11448,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11311,7 +11460,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 56,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11323,7 +11472,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11336,7 +11485,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11349,7 +11498,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11362,7 +11511,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11374,7 +11523,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11386,7 +11535,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 58,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11398,7 +11547,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11411,7 +11560,20 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Broken Promises",
+    "tags": [
+      "jewellery_divination",
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 32,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11424,7 +11586,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11436,7 +11598,19 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 38,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Brush, Paint and Palette",
+    "tags": [
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11448,7 +11622,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 70,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11461,7 +11635,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11473,7 +11647,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11485,7 +11659,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11497,7 +11671,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11509,7 +11683,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11521,7 +11695,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11533,7 +11707,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 55,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11546,7 +11720,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11560,7 +11734,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 42,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11573,7 +11747,20 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Deadly Joy",
+    "tags": [
+      "jewellery_divination",
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11586,7 +11773,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11610,7 +11797,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11622,7 +11809,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11634,7 +11821,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11647,7 +11834,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11659,7 +11846,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 56,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11672,7 +11859,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11684,7 +11871,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11697,7 +11884,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11709,7 +11896,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11724,7 +11911,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11736,7 +11923,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 41,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11749,7 +11936,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 50,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11762,7 +11949,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11774,7 +11961,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 58,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11786,7 +11973,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11798,7 +11985,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 45,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11811,7 +11998,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 34,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11823,7 +12010,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11835,7 +12022,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11848,7 +12035,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11860,7 +12047,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 38,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11873,7 +12060,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11885,7 +12072,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11897,7 +12084,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11909,7 +12096,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11921,7 +12108,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11934,7 +12121,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11947,7 +12134,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11959,7 +12146,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11972,7 +12159,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11985,7 +12172,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -11998,7 +12185,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12011,7 +12198,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 45,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12023,7 +12210,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12036,7 +12223,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12048,7 +12235,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12062,7 +12249,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12075,7 +12262,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 53,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12087,7 +12274,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12099,7 +12286,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 31,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12112,7 +12299,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12124,7 +12311,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12136,7 +12323,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12149,7 +12336,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12161,7 +12348,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 47,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12173,7 +12360,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12185,7 +12372,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 38,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12197,7 +12384,20 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Luminous Trove",
+    "tags": [
+      "jewellery_divination",
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12210,7 +12410,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12223,7 +12423,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12236,7 +12436,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 30,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12249,7 +12449,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12262,7 +12462,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12274,7 +12474,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12286,7 +12486,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12300,7 +12500,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12312,7 +12512,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12325,7 +12525,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12339,7 +12539,19 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Prejudice",
+    "tags": [
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12352,7 +12564,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12365,7 +12577,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12378,7 +12590,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 61,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12391,7 +12603,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12403,7 +12615,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12415,7 +12627,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 41,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12428,7 +12640,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12441,7 +12653,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12454,7 +12666,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12467,7 +12679,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 70,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12479,7 +12691,19 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 58,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Sambodhi's Wisdom",
+    "tags": [
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12491,7 +12715,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12503,7 +12727,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12516,7 +12740,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12528,7 +12752,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12540,7 +12764,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 70,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12553,7 +12777,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 79,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12565,7 +12789,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 38,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12578,7 +12802,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 70,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12590,7 +12814,20 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 39,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Adventuring Spirit",
+    "tags": [
+      "armour_divination",
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12602,7 +12839,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12615,7 +12852,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12627,7 +12864,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 26,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12640,7 +12877,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12652,7 +12889,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12666,7 +12903,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 45,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12679,7 +12916,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12692,7 +12929,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12704,7 +12941,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12717,7 +12954,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12730,7 +12967,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12743,7 +12980,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12756,7 +12993,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12768,7 +13005,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 47,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12781,7 +13018,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12794,7 +13031,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12806,7 +13043,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12818,7 +13055,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12831,7 +13068,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12844,7 +13081,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12856,7 +13093,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12868,7 +13105,19 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Card Sharp",
+    "tags": [
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12881,7 +13130,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 39,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12893,7 +13142,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12905,7 +13154,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12917,7 +13166,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 47,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12930,7 +13179,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12944,7 +13193,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 38,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12957,7 +13206,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12969,7 +13218,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12982,7 +13231,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 45,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -12995,7 +13244,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 52,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13008,7 +13257,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13020,7 +13269,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13033,7 +13282,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13045,7 +13294,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13058,7 +13307,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13071,7 +13320,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 50,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13084,7 +13333,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13096,7 +13345,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13109,7 +13358,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 49,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13122,7 +13371,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13135,7 +13384,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13148,7 +13397,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13161,7 +13410,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 30,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13174,7 +13423,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13186,7 +13435,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13198,7 +13447,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13210,7 +13459,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13222,7 +13471,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13234,7 +13483,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13246,7 +13495,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13258,7 +13507,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13272,7 +13521,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13284,7 +13533,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13298,7 +13547,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13311,7 +13560,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 60,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13323,7 +13572,20 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Enthusiasts",
+    "tags": [
+      "armour_divination",
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 56,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13336,7 +13598,20 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Eternal War",
+    "tags": [
+      "jewellery_divination",
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13349,7 +13624,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13361,7 +13636,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13373,7 +13648,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13386,7 +13661,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 70,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13399,7 +13674,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 45,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13412,7 +13687,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 30,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13425,7 +13700,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13437,7 +13712,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 27,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13449,7 +13724,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 60,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13462,7 +13737,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13474,7 +13749,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13487,7 +13762,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13500,7 +13775,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13512,7 +13787,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13524,7 +13799,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13537,7 +13812,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13549,7 +13824,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13562,7 +13837,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 55,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13575,7 +13850,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13588,7 +13863,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13601,7 +13876,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13614,7 +13889,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13627,7 +13902,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 28,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13640,7 +13915,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13653,7 +13928,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13665,7 +13940,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13678,7 +13953,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13690,7 +13965,19 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Hook",
+    "tags": [
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 38,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13702,7 +13989,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13714,7 +14001,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 25,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13727,7 +14014,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13739,7 +14026,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 59,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13752,7 +14039,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 28,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13765,7 +14052,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13777,7 +14064,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 45,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13789,7 +14076,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13802,7 +14089,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 30,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13814,7 +14101,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 58,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13827,7 +14114,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13839,7 +14126,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 60,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13852,7 +14139,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13865,7 +14152,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13877,7 +14164,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13890,7 +14177,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 30,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13903,7 +14190,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13915,7 +14202,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13927,7 +14214,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13939,7 +14226,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13952,7 +14239,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 75,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13965,7 +14252,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13979,7 +14266,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -13992,7 +14279,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 37,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14005,7 +14292,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 27,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14017,7 +14304,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14030,7 +14317,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14042,7 +14329,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14054,7 +14341,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14067,7 +14354,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14079,7 +14366,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14092,7 +14379,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14105,7 +14392,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 30,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14117,7 +14404,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 47,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14130,7 +14417,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14142,7 +14429,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 47,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14155,7 +14442,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14168,7 +14455,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14181,7 +14468,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14194,7 +14481,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 48,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14207,7 +14494,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14220,7 +14507,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 30,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14232,7 +14519,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 34,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14245,7 +14532,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14258,7 +14545,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14271,7 +14558,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 38,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14284,7 +14571,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 79,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14297,7 +14584,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14310,7 +14597,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14322,7 +14609,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14334,7 +14621,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14347,7 +14634,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14359,7 +14646,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14372,7 +14659,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 75,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14385,7 +14672,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14397,7 +14684,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 49,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14410,7 +14697,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14422,7 +14709,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14435,7 +14722,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14448,7 +14735,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14461,7 +14748,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14473,7 +14760,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14487,7 +14774,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14500,7 +14787,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 47,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14513,7 +14800,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14525,7 +14812,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14537,7 +14824,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14549,7 +14836,19 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "The Shortcut",
+    "tags": [
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14561,7 +14860,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 58,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14574,7 +14873,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 25,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14587,7 +14886,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14599,7 +14898,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 49,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14612,7 +14911,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14625,7 +14924,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14638,7 +14937,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14651,7 +14950,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 50,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14664,7 +14963,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 38,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14677,7 +14976,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14689,7 +14988,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 49,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14702,7 +15001,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14714,7 +15013,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14726,7 +15025,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14738,7 +15037,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14751,7 +15050,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14764,7 +15063,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14777,7 +15076,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14790,7 +15089,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 33,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14802,7 +15101,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14815,7 +15114,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14828,7 +15127,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14840,7 +15139,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14852,7 +15151,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14864,7 +15163,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 75,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14877,7 +15176,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14890,7 +15189,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14902,7 +15201,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14916,7 +15215,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14929,7 +15228,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14941,7 +15240,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14953,7 +15252,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14965,7 +15264,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14978,7 +15277,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 53,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -14991,7 +15290,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15003,7 +15302,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15016,7 +15315,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 75,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15029,7 +15328,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 52,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15042,7 +15341,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15055,7 +15354,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15068,7 +15367,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 51,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15081,7 +15380,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 72,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15093,7 +15392,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 53,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15106,7 +15405,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15118,7 +15417,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 45,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15130,7 +15429,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15142,7 +15441,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 47,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15155,7 +15454,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 58,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15167,7 +15466,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15180,7 +15479,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 81,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15194,7 +15493,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15206,7 +15505,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15219,7 +15518,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 36,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15232,7 +15531,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15244,7 +15543,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15256,7 +15555,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15269,7 +15568,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15281,7 +15580,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 48,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15294,7 +15593,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15306,7 +15605,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 73,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15318,7 +15617,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15331,7 +15630,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 54,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15344,7 +15643,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15356,7 +15655,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 35,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15368,7 +15667,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15381,7 +15680,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15393,7 +15692,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15405,7 +15704,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 80,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15419,7 +15718,7 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 23,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
@@ -15431,12 +15730,25 @@
   },
   {
     "domain": "undefined",
-    "drop_level": 1,
+    "drop_level": 68,
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "DivinationCard",
     "name": "Wealth and Power",
     "tags": [
+      "divination_card",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 68,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "DivinationCard",
+    "name": "Winter's Embrace",
+    "tags": [
+      "jewellery_divination",
       "divination_card",
       "default"
     ]
@@ -16432,6 +16744,18 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
+    "name": "Reap",
+    "tags": [
+      "gem",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 28,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
     "name": "[UNUSED] Blood Whirl",
     "tags": [
       "gem",
@@ -16704,6 +17028,18 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Bodyswap",
+    "tags": [
+      "gem",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 16,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Corrupting Fever",
     "tags": [
       "gem",
       "default"
@@ -17136,6 +17472,18 @@
     "inventory_width": 1,
     "item_class": "Active Skill Gem",
     "name": "Explosive Arrow",
+    "tags": [
+      "gem",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 12,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Exsanguinate",
     "tags": [
       "gem",
       "default"
@@ -18255,6 +18603,18 @@
   },
   {
     "domain": "undefined",
+    "drop_level": 24,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Active Skill Gem",
+    "name": "Petrified Blood",
+    "tags": [
+      "gem",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
     "drop_level": 34,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -18518,6 +18878,7 @@
     "item_class": "Active Skill Gem",
     "name": "Brand Recall",
     "tags": [
+      "level_capped_gem",
       "gem",
       "default"
     ]
@@ -19325,6 +19686,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Ancestral Warchief",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19337,6 +19699,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Arc",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19349,6 +19712,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Blade Vortex",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19361,6 +19725,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Blight",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19374,6 +19739,7 @@
     "name": "Vaal Burning Arrow",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19386,6 +19752,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Clarity",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19398,6 +19765,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Impurity of Ice",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19410,6 +19778,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Cold Snap",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19422,6 +19791,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Cyclone",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19435,6 +19805,7 @@
     "name": "Vaal Detonate Dead",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19447,6 +19818,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Discipline",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19460,6 +19832,7 @@
     "name": "Vaal Double Strike",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19472,6 +19845,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Earthquake",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19485,6 +19859,7 @@
     "name": "Vaal Fireball",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19497,6 +19872,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Impurity of Fire",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19509,6 +19885,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal FireTrap",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19521,6 +19898,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Flameblast",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19533,6 +19911,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Flesh Offering",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19546,6 +19925,7 @@
     "name": "Vaal Glacial Hammer",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19558,6 +19938,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Grace",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19571,6 +19952,7 @@
     "name": "Vaal Ground Slam",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19583,6 +19965,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Haste",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19596,6 +19979,7 @@
     "name": "Vaal Heavy Strike",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19608,6 +19992,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Ice Nova",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19620,6 +20005,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Immortal Call",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19632,6 +20018,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Impurity of Lightning",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19644,6 +20031,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Lightning Strike",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19656,6 +20044,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Lightning Trap",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19668,6 +20057,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Lightning Warp",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19681,6 +20071,7 @@
     "name": "Vaal Molten Shell",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19694,6 +20085,7 @@
     "name": "Vaal Breach",
     "tags": [
       "level_capped_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19706,6 +20098,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Power Siphon",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19718,6 +20111,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Rain of Arrows",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19730,6 +20124,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Reave",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19742,6 +20137,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Righteous Fire",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19755,6 +20151,7 @@
     "name": "Vaal Spark",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19767,6 +20164,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Storm Call",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19779,6 +20177,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Summon Skeletons",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19791,6 +20190,7 @@
     "item_class": "Active Skill Gem",
     "name": "Vaal Sweep",
     "tags": [
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -19804,6 +20204,7 @@
     "name": "Vaal Spectral Throw",
     "tags": [
       "up_to_level_8_gem",
+      "vaal_gem",
       "gem",
       "default"
     ]
@@ -20355,7 +20756,20 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
-    "name": "Blood Magic Support",
+    "name": "Arrogance Support",
+    "tags": [
+      "support_gem",
+      "gem",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 31,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
+    "name": "Bloodthirst Support",
     "tags": [
       "support_gem",
       "gem",
@@ -20723,6 +21137,19 @@
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
     "name": "Awakened Controlled Destruction Support",
+    "tags": [
+      "support_gem",
+      "gem",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 18,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
+    "name": "Cruelty Support",
     "tags": [
       "support_gem",
       "gem",
@@ -21461,6 +21888,19 @@
     "inventory_width": 1,
     "item_class": "Support Skill Gem",
     "name": "Life Leech Support",
+    "tags": [
+      "support_gem",
+      "gem",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 8,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Support Skill Gem",
+    "name": "Lifetap Support",
     "tags": [
       "support_gem",
       "gem",
@@ -22356,6 +22796,7 @@
     "item_class": "Support Skill Gem",
     "name": "Vaal Soul Harvesting",
     "tags": [
+      "vaal_gem",
       "support_gem",
       "gem",
       "default"
@@ -22947,6 +23388,17 @@
     "name": "Divine Vessel",
     "tags": [
       "high_level_map",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Sacred Blossom",
+    "tags": [
       "default"
     ]
   },
@@ -28791,6 +29243,7 @@
     "name": "Alleyways Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -28805,6 +29258,7 @@
     "name": "Ancient City Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "temple",
       "map",
@@ -28850,6 +29304,7 @@
     "name": "Arcade Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -28878,6 +29333,7 @@
     "name": "Arid Lake Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "map",
       "default"
@@ -28892,6 +29348,7 @@
     "name": "Armoury Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "indoors_area",
       "map",
@@ -28907,6 +29364,7 @@
     "name": "Arsenal Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "dungeon",
       "map",
@@ -28922,6 +29380,7 @@
     "name": "Ashen Wood Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -28936,6 +29395,7 @@
     "name": "Atoll Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -28950,6 +29410,7 @@
     "name": "Barrows Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -28964,6 +29425,7 @@
     "name": "Basilica Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "temple",
       "dungeon",
@@ -28982,6 +29444,7 @@
     "name": "Bazaar Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -28996,6 +29459,7 @@
     "name": "Beach Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "map",
       "default"
@@ -29010,6 +29474,7 @@
     "name": "Belfry Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "cannot_be_twinned",
       "map",
@@ -29025,6 +29490,7 @@
     "name": "Bog Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "map",
       "default"
@@ -29055,6 +29521,7 @@
     "name": "Bramble Valley Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "cannot_be_twinned",
       "map",
@@ -29070,6 +29537,7 @@
     "name": "Burial Chambers Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "dungeon",
       "swamp",
       "forest",
@@ -29087,6 +29555,7 @@
     "name": "Cage Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "dungeon",
       "indoors_area",
@@ -29118,6 +29587,7 @@
     "name": "Canyon Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -29149,6 +29619,7 @@
     "name": "Castle Ruins Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -29178,6 +29649,7 @@
     "name": "Cemetery Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "temple",
       "cannot_be_twinned",
       "map",
@@ -29207,6 +29679,7 @@
     "name": "Chateau Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "dungeon",
       "temple",
@@ -29238,6 +29711,7 @@
     "name": "City Square Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -29252,6 +29726,7 @@
     "name": "Cold River Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -29266,6 +29741,7 @@
     "name": "Colonnade Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -29294,6 +29770,7 @@
     "name": "Conservatory Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "temple",
       "indoors_area",
@@ -29310,6 +29787,7 @@
     "name": "Coral Ruins Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "cannot_be_twinned",
       "beach",
       "swamp",
@@ -29342,6 +29820,7 @@
     "name": "Courthouse Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "dungeon",
       "indoors_area",
@@ -29358,6 +29837,7 @@
     "name": "Courtyard Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "swamp",
       "urban",
@@ -29374,6 +29854,7 @@
     "name": "Coves Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "swamp",
       "map",
@@ -29389,6 +29870,7 @@
     "name": "Crimson Temple Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "temple",
       "indoors_area",
       "map",
@@ -29404,6 +29886,7 @@
     "name": "Crimson Township Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -29448,6 +29931,7 @@
     "name": "Dark Forest Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -29462,6 +29946,7 @@
     "name": "Defiled Cathedral Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "dungeon",
       "temple",
       "urban",
@@ -29480,6 +29965,7 @@
     "name": "Desert Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "cave",
       "mountain",
       "map",
@@ -29495,6 +29981,7 @@
     "name": "Desert Spring Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "forest",
       "cannot_be_twinned",
@@ -29511,6 +29998,7 @@
     "name": "Dig Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "cannot_be_twinned",
       "map",
@@ -29526,6 +30014,7 @@
     "name": "Dry Sea Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "map",
       "default"
@@ -29540,6 +30029,7 @@
     "name": "Dunes Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "map",
       "default"
@@ -29569,6 +30059,7 @@
     "name": "Estuary Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "mountain",
       "map",
@@ -29614,6 +30105,7 @@
     "name": "Fields Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "forest",
       "cannot_be_twinned",
@@ -29645,7 +30137,9 @@
     "name": "Forbidden Woods Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
+      "cannot_be_twinned",
       "map",
       "default"
     ]
@@ -29659,6 +30153,7 @@
     "name": "Forking River Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -29673,6 +30168,7 @@
     "name": "Foundry Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "temple",
       "indoors_area",
       "map",
@@ -29718,6 +30214,7 @@
     "name": "Geode Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "cave",
       "mountain",
       "map",
@@ -29733,6 +30230,7 @@
     "name": "Ghetto Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "swamp",
       "map",
@@ -29763,6 +30261,7 @@
     "name": "Grave Trough Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -29777,6 +30276,7 @@
     "name": "Graveyard Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "temple",
       "cannot_be_twinned",
@@ -29864,6 +30364,7 @@
     "name": "Haunted Mansion Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "indoors_area",
       "map",
@@ -29896,6 +30397,7 @@
     "name": "Iceberg Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -29910,6 +30412,7 @@
     "name": "Infested Valley Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "cannot_be_twinned",
       "map",
@@ -29925,6 +30428,7 @@
     "name": "Ivory Temple Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "temple",
       "map",
       "default"
@@ -29939,6 +30443,7 @@
     "name": "Jungle Valley Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -29983,6 +30488,7 @@
     "name": "Lava Chamber Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "indoors_area",
       "dungeon",
       "map",
@@ -29998,6 +30504,7 @@
     "name": "Lava Lake Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "forest",
       "cannot_be_twinned",
@@ -30014,6 +30521,7 @@
     "name": "Leyline Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "beach",
       "map",
@@ -30029,6 +30537,7 @@
     "name": "Lighthouse Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -30073,6 +30582,7 @@
     "name": "Marshes Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "map",
       "default"
@@ -30120,6 +30630,7 @@
     "name": "Mesa Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "cave",
       "map",
@@ -30135,6 +30646,7 @@
     "name": "Mineral Pools Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "cave",
       "mountain",
       "swamp",
@@ -30166,6 +30678,7 @@
     "name": "Moon Temple Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "temple",
       "indoors_area",
@@ -30182,6 +30695,7 @@
     "name": "Mud Geyser Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "map",
       "default"
@@ -30227,6 +30741,7 @@
     "name": "Orchard Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -30272,6 +30787,7 @@
     "name": "Palace Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "indoors_area",
       "dungeon",
       "temple",
@@ -30289,6 +30805,7 @@
     "name": "Park Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "forest",
       "map",
@@ -30304,6 +30821,7 @@
     "name": "Pen Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "dungeon",
       "indoors_area",
@@ -30321,6 +30839,7 @@
     "name": "Peninsula Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -30381,6 +30900,7 @@
     "name": "Pit Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -30395,6 +30915,7 @@
     "name": "Plateau Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -30409,6 +30930,7 @@
     "name": "Plaza Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "temple",
       "swamp",
@@ -30425,6 +30947,7 @@
     "name": "Port Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -30439,6 +30962,7 @@
     "name": "Precinct Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "swamp",
       "map",
@@ -30454,6 +30978,7 @@
     "name": "Primordial Pool Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "swamp",
       "map",
       "default"
@@ -30468,6 +30993,7 @@
     "name": "Promenade Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -30482,6 +31008,7 @@
     "name": "Racecourse Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -30496,6 +31023,7 @@
     "name": "Ramparts Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "forest",
       "map",
@@ -30511,6 +31039,7 @@
     "name": "Reef Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "swamp",
       "cannot_be_twinned",
@@ -30527,6 +31056,7 @@
     "name": "Relic Chambers Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "dungeon",
       "temple",
       "urban",
@@ -30577,6 +31107,7 @@
     "name": "Sepulchre Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "dungeon",
       "indoors_area",
       "map",
@@ -30607,6 +31138,7 @@
     "name": "Shipyard Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "indoors_area",
       "map",
@@ -30622,6 +31154,7 @@
     "name": "Shore Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "can_be_infected_map",
       "map",
@@ -30637,6 +31170,7 @@
     "name": "Shrine Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "temple",
       "dungeon",
       "indoors_area",
@@ -30653,6 +31187,7 @@
     "name": "Siege Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "cannot_be_twinned",
       "map",
@@ -30668,8 +31203,10 @@
     "name": "Silo Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "dungeon",
       "indoors_area",
+      "cannot_be_twinned",
       "map",
       "default"
     ]
@@ -30683,6 +31220,7 @@
     "name": "Spider Forest Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -30697,6 +31235,7 @@
     "name": "Spider Lair Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "indoors_area",
       "cave",
       "forest",
@@ -30729,6 +31268,7 @@
     "name": "Stagnation Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -30743,6 +31283,7 @@
     "name": "Strand Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "beach",
       "map",
       "default"
@@ -30757,6 +31298,7 @@
     "name": "Sulphur Vents Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "map",
       "default"
@@ -30771,6 +31313,7 @@
     "name": "Summit Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "mountain",
       "cannot_be_twinned",
       "map",
@@ -30803,6 +31346,7 @@
     "name": "Temple Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "temple",
       "urban",
       "indoors_area",
@@ -30819,6 +31363,7 @@
     "name": "Terrace Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "cannot_be_twinned",
       "map",
@@ -30834,6 +31379,7 @@
     "name": "Thicket Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "indoors_area",
       "forest",
       "map",
@@ -30849,6 +31395,7 @@
     "name": "Primordial Blocks Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "dungeon",
       "cannot_be_twinned",
       "urban",
@@ -30913,6 +31460,7 @@
     "name": "Tropical Island Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "forest",
       "map",
       "default"
@@ -30942,6 +31490,7 @@
     "name": "Underground Sea Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "cave",
       "indoors_area",
       "map",
@@ -30989,6 +31538,7 @@
     "name": "Vault Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "indoors_area",
       "map",
@@ -31004,6 +31554,7 @@
     "name": "Villa Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "indoors_area",
       "dungeon",
       "temple",
@@ -31021,6 +31572,7 @@
     "name": "Volcano Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "cave",
       "mountain",
       "map",
@@ -31036,6 +31588,7 @@
     "name": "Wasteland Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "cave",
       "mountain",
       "map",
@@ -31082,6 +31635,7 @@
     "name": "Wharf Map",
     "tags": [
       "not_for_sale",
+      "can_be_infected_map",
       "urban",
       "map",
       "default"
@@ -31252,6 +31806,21 @@
     "item_class": "Quiver",
     "name": "Blunt Arrow Quiver",
     "tags": [
+      "quiver",
+      "default"
+    ]
+  },
+  {
+    "domain": "item",
+    "drop_level": 74,
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "item_class": "Quiver",
+    "name": "Artillery Quiver",
+    "tags": [
+      "not_for_sale",
+      "atlas_base_type",
+      "quiveratlas1",
       "quiver",
       "default"
     ]
@@ -31528,6 +32097,21 @@
   },
   {
     "domain": "item",
+    "drop_level": 78,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "Ring",
+    "name": "Iolite Ring",
+    "tags": [
+      "not_for_sale",
+      "atlas_base_type",
+      "ringatlas5",
+      "ring",
+      "default"
+    ]
+  },
+  {
+    "domain": "item",
     "drop_level": 12,
     "inventory_height": 1,
     "inventory_width": 1,
@@ -31535,6 +32119,7 @@
     "name": "Golden Hoop",
     "tags": [
       "not_for_sale",
+      "demigods",
       "ring",
       "default"
     ]
@@ -31574,7 +32159,56 @@
     "name": "Jet Ring",
     "tags": [
       "not_for_sale",
+      "demigods",
       "ring",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Abyss Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Abyss Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Abyss Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Abyss Scarab",
+    "tags": [
+      "jewelled_scarab",
       "default"
     ]
   },
@@ -31669,6 +32303,54 @@
     "inventory_width": 1,
     "item_class": "MapFragment",
     "name": "Craicic Lure",
+    "tags": [
+      "jewelled_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Rusted Blight Scarab",
+    "tags": [
+      "rusted_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Polished Blight Scarab",
+    "tags": [
+      "polished_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Gilded Blight Scarab",
+    "tags": [
+      "gilded_scarab",
+      "default"
+    ]
+  },
+  {
+    "domain": "undefined",
+    "drop_level": 1,
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "item_class": "MapFragment",
+    "name": "Winged Blight Scarab",
     "tags": [
       "jewelled_scarab",
       "default"
@@ -34901,6 +35583,7 @@
     "name": "Golden Blade",
     "tags": [
       "not_for_sale",
+      "demigods",
       "sword",
       "one_hand_weapon",
       "onehand",
@@ -37426,7 +38109,7 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "item_class": "Two Hand Mace",
-    "name": "Impact Force Propagator ",
+    "name": "Impact Force Propagator",
     "tags": [
       "not_for_sale",
       "mace",
