@@ -2724,7 +2724,7 @@ Return
     Return
   }
   ResetMainTimer(toggle:="On"){
-    If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
+    If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.func.Toggle.Utility || WR.func.Toggle.Move || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
       SetTimer, TGameTick, %toggle%
   }
   PrintChaosRecipe(Message:="Current slot totals",Duration:="False")
@@ -3418,11 +3418,11 @@ Return
         Controller()
       If (DebugMessages && YesTimeMS)
         t1 := A_TickCount
-      If ( OnTown || OnHideout || !( WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum ) )
+      If ( OnTown || OnHideout || !( WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.func.Toggle.Utility || WR.func.Toggle.Move || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum ) )
       {
         Msg := (OnTown?"Script paused in town"
         :(OnHideout?"Script paused in hideout"
-        :(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.perChar.Setting.autominesEnable||WR.perChar.Setting.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing"
+        :(!(WR.func.Toggle.Quit||WR.func.Toggle.Flask||WR.func.Toggle.Utility||WR.func.Toggle.Move||WR.perChar.Setting.autominesEnable||WR.perChar.Setting.autolevelgemsEnable||LootVacuum)?"All options disabled, pausing"
         :"Error")))
         If CheckTime("seconds",1,"StatusBar1")
           SB_SetText(Msg, 1)
@@ -5584,7 +5584,7 @@ Return
       varEmptyInvSlotColor := StrSplit(varEmptyInvSlotColor, ",")
 
       ;Loot Vacuum Colors
-      IniRead, LootColors, %A_ScriptDir%\save\Settings.ini, Loot Colors, LootColors, 0xF6FEC4,0xCCFE99,0xFEFE9E,0xFADF72,0xA36565,0x773838
+      IniRead, LootColors, %A_ScriptDir%\save\Settings.ini, Loot Colors, LootColors, 0xF2F2F2,0xC8C8C8,0xFE844B,0xEF581C,0xDA8B4D,0xAF5F1C,0xFEC140,0xF8960D,0xFECA22,0xD59F00,0xFCDDB2,0xD2B286,0x49226D,0x160040,0x8D35A0,0x600075,0x404040,0x0D0D0D,0x80DA51,0x53AF22,0x227A45,0x004D16,0x22512E,0x002200,0x224022,0x000D00,0x602222,0x320000,0xA3A3A3,0x777777
       ;Create an array out of the read string
       LootColors := StrSplit(LootColors, ",")
 
