@@ -2422,6 +2422,8 @@ Return
       Else If (FirstAutomationSetting=="Search Vendor")
       {
         CheckTime("Seconds",120,"VendorUI",A_Now)
+        If YesEnableAutoSellConfirmationSafe
+          MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y
         While (!CheckTime("Seconds",120,"VendorUI"))
         {
           If (YesController)
