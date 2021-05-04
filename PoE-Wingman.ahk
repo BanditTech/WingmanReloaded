@@ -3266,13 +3266,13 @@ Return
           ClipItem(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
           If (Item.Prop.Stack_Size >= dif){
             ShiftClick(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
-            Sleep, 45*Latency
+            Sleep, 60*Latency
             Send %dif%
-            Sleep, 45*Latency
+            Sleep, 60*Latency
             Send {Enter}
-            Sleep, 60*Latency
+            Sleep, 90*Latency
             LeftClick(WisdomScrollX, WisdomScrollY)
-            Sleep, 60*Latency
+            Sleep, 90*Latency
           }
         }
       }
@@ -3289,13 +3289,13 @@ Return
           ClipItem(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
           If (Item.Prop.Stack_Size >= dif){
             ShiftClick(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
-            Sleep, 45*Latency
+            Sleep, 60*Latency
             Send %dif%
-            Sleep, 45*Latency
+            Sleep, 60*Latency
             Send {Enter}
-            Sleep, 60*Latency
+            Sleep, 90*Latency
             LeftClick(PortalScrollX, PortalScrollY)
-            Sleep, 60*Latency
+            Sleep, 90*Latency
           }
         }
       }
