@@ -1851,7 +1851,7 @@
         }
         If (This.Prop.IsBeast)
         {
-          If This.MatchNinjaDB("Beast")
+          If This.MatchNinjaDB("Beast", "ItemBase")
             Return
         }
         If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.HasKey("Enchant"))
@@ -1940,8 +1940,6 @@
             This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
             If v["exaltedValue"]
               This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
-            If This.Prop.IsBeast
-              Prop.ItemBase := This.Prop.ItemName
             This.Data.Ninja := v
             Return True
           }
