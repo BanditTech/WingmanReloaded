@@ -963,7 +963,8 @@
         || (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
         || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
         || (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
-        || (This.Affix["Players have #% less Armour"] && PHLessArmour))
+        || (This.Affix["Players have #% less Armour"] && PHLessArmour)
+        || (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect))
         {
           Return True
         } 
@@ -1852,7 +1853,7 @@
         }
         If (This.Prop.IsBeast)
         {
-          If This.MatchNinjaDB("Beast")
+          If This.MatchNinjaDB("Beast", "ItemBase")
             Return
         }
         If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.HasKey("Enchant"))
@@ -1941,8 +1942,6 @@
             This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
             If v["exaltedValue"]
               This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
-            If This.Prop.IsBeast
-              Prop.ItemBase := This.Prop.ItemName
             This.Data.Ninja := v
             Return True
           }
@@ -3744,7 +3743,7 @@
             GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
             Gui, Crafting: Font,
             Gui, Crafting: Font, Bold s9 cBlack, Arial
-          Gui, Crafting: Add,GroupBox,Section w580 h180 xs, Undesirable Mods:
+          Gui, Crafting: Add,GroupBox,Section w580 h200 xs, Undesirable Mods:
             Gui, Crafting: Font,
             Gui, Crafting: Font,s8
             Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
@@ -3755,6 +3754,7 @@
             Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
             Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players Have # Less Recovery Rate of Life and ES
             Gui, Crafting: Add, Checkbox, vPHReducedChanceToBlock xs+5 ys+160 Checked%PHReducedChanceToBlock%, Players Have # Reduced Chance to Block
+            Gui, Crafting: Add, Checkbox, vPHLessAreaOfEffect xs+5 ys+180 Checked%PHLessAreaOfEffect%, Players Have # Less Area of Effect
             Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
             Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
             Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' Skills Chain # Additional Times
