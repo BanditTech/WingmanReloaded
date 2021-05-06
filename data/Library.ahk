@@ -2754,6 +2754,7 @@
       }
       MatchGroup(grp){
         local
+        Global Item
         CountSum := 0
         For k, elem in grp.ElementList {
           If elem.GroupType {
@@ -2796,18 +2797,18 @@
           Return (val != min)
         } else if (eval = "~") {
           matchedOR := False
-          for k, v in StrSplit(min, "|"," ") { 					; Split OR first
-            if InStr(v, "&") { 					; Check for any & sections
+          for k, v in StrSplit(min, "|"," ") { ; Split OR first
+            if InStr(v, "&") { 					       ; Check for any & sections
               mismatched := false
               for kk, vv in StrSplit(v, "&"," ") { ; Split the array again
-                If !InStr(val, vv) ; Check all sections for mismatch
+                If !InStr(val, vv)              ; Check AND sections for mismatch
                   mismatched := true
               }
-              if !mismatched {    ; if no mismatch that means all sections found in the string
-                matchedOR := true ; This means we have fully matched an OR+AND section
+              if !mismatched {    ; no mismatch means all sections found in the string
+                matchedOR := true 
                 Break
               }
-            }	Else if InStr(val, v)	{   ; If there was no & symbol this is an OR section
+            }	Else if InStr(val, v)	{          ; If there was no & symbol this is an OR section
               matchedOR := True
               break
             }
