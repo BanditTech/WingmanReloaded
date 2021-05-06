@@ -2754,68 +2754,50 @@
       }
       MatchGroup(grp){
         local
-        gtype := grp.GroupType
-        gval := grp.TypeValue
-        glist := grp.ElementList
-        If (gtype = "Count" || gtype = "Weight")
-          CountSum := 0
-        For k, elem in glist {
+        CountSum := 0
+        For k, elem in grp.ElementList {
           If elem.GroupType {
             matched := This.MatchGroup(elem)
           } Else {
-            arrval := Item[Elem["Type"]][Elem["#Key"]]
-            eval := Elem["Eval"]
-            min := Elem["Min"]
-            matched := This.Evaluate(eval,arrval,min)
+            arrval := Item[elem["Type"]][elem["#Key"]]
+            matched := This.Evaluate(elem["Eval"],arrval,elem["Min"])
           }
-          weight := Elem["Weight"]
           If matched {
-            If (gtype = "Not")
+            If (grp.GroupType ~= "[nN][oO][tT]")
               Return False
-            Else If (gtype = "Count")
-              CountSum += weight
-            Else If (gtype = "Weight")
-              CountSum += weight * arrval
+            Else If (grp.GroupType ~= "[cC]ount")
+              CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1)
+            Else If (grp.GroupType ~= "[wW]eight")
+              CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1) * (arrval != "" ? arrval : 1)
           } Else {
-            If (gtype = "And")
+            If (grp.GroupType ~= "[aA][nN][dD]")
               Return False
           }
         }
-        If (gtype = "And")
+        If (grp.GroupType ~= "[aA][nN][dD]" || grp.GroupType ~= "[nN][oO][tT]")
           Return True
-        Else If (gtype = "Not")
-          Return True
-        Else If (gtype = "Count" || gtype = "Weight") {
-          If (CountSum >= gval)
-            Return True
-          Else
-            Return False
+        Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
+          Return (CountSum >= grp.TypeValue)
         }
       }
       Evaluate(eval,val,min){
+        local
         if (eval = ">") {
-          If (val > min)
-            Return True
+          Return (val > min)
         } Else if (eval = ">=") {
-          If (val >= min)
-            Return True
+          Return (val >= min)
         } Else if (eval = "=") {
-          If (val = min)
-            Return True
+          Return (val = min)
         } Else if (eval = "<") {
-          If (val < min)
-            Return True
+          Return (val < min)
         } else if (eval = "<=") {
-          If (val <= min)
-            Return True
+          Return (val <= min)
         } else if (eval = "!=") {
-          If (val != min)
-            Return True
+          Return (val != min)
         } else if (eval = "~") {
-          minarr := StrSplit(min, "|"," ")
           matchedOR := False
-          for k, v in minarr { ; Split OR first
-            if InStr(v, "&") { ; Check for any & sections
+          for k, v in StrSplit(min, "|"," ") { 					; Split OR first
+            if InStr(v, "&") { 					; Check for any & sections
               mismatched := false
               for kk, vv in StrSplit(v, "&"," ") { ; Split the array again
                 If !InStr(val, vv) ; Check all sections for mismatch
@@ -2825,18 +2807,15 @@
                 matchedOR := true ; This means we have fully matched an OR+AND section
                 Break
               }
-            }
-            Else if InStr(val, v)
-            {                ; If there was no & symbol this is an OR section
+            }	Else if InStr(val, v)	{   ; If there was no & symbol this is an OR section
               matchedOR := True
               break
             }
           }
-          if matchedOR       ; If any of the sections produced a match it will flag true
-            Return True
+          Return matchedOR ; If any of the sections produced a match it will flag true
         }
-        Return False
       }
+
       inRange(key,obj,base){
         If (obj.ranges.Count() = 1) {
           If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
