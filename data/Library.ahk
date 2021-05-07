@@ -2692,9 +2692,10 @@
         For GKey, Groups in LootFilter
         {
           If (Groups.GroupType) {
-            If This.MatchGroup(Groups){
+            If (val := This.MatchGroup(Groups)){
               this.Prop.CLF_Tab := Groups["StashTab"]
               this.Prop.CLF_Group := GKey
+              This.MatchedCLF := val
               Return this.Prop.CLF_Tab
             }
           } Else {
@@ -2711,10 +2712,12 @@
               For AKey, AVal in Selected {
                 orflag := AVal["OrFlag"]
                 If (AVal.GroupType){
-                  If This.MatchGroup(AVal) {
+                  If keylist := This.MatchGroup(AVal) {
                     matched := True
                     If orflag
                       ormatched++
+                    For _, __ in keylist
+                      this.MatchedCLF.Push(__)
                   } Else {
                     if !orflag
                       nomatched := True
@@ -2754,31 +2757,44 @@
       }
       MatchGroup(grp){
         local
-        Global Item
         CountSum := 0
+        PotentialMatches := []
         For k, elem in grp.ElementList {
           If elem.GroupType {
             matched := This.MatchGroup(elem)
           } Else {
-            arrval := Item[elem["Type"]][elem["#Key"]]
+            arrval := This[elem["Type"]][elem["#Key"]]
             matched := This.Evaluate(elem["Eval"],arrval,elem["Min"])
           }
           If matched {
             If (grp.GroupType ~= "[nN][oO][tT]")
               Return False
-            Else If (grp.GroupType ~= "[cC]ount")
+            If elem["#Key"]
+              PotentialMatches.Push(elem["#Key"])
+            Else If IsObject(matched) {
+              for kk, vv in matched {
+                PotentialMatches.Push(vv)
+              }
+            }
+            If (grp.GroupType ~= "[cC]ount"){
               CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1)
-            Else If (grp.GroupType ~= "[wW]eight")
+            } Else If (grp.GroupType ~= "[wW]eight"){
               CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1) * (arrval != "" ? arrval : 1)
+            }
           } Else {
             If (grp.GroupType ~= "[aA][nN][dD]")
               Return False
           }
         }
-        If (grp.GroupType ~= "[aA][nN][dD]" || grp.GroupType ~= "[nN][oO][tT]")
-          Return True
+        If (grp.GroupType ~= "[aA][nN][dD]" || grp.GroupType ~= "[nN][oO][tT]"){
+          Return PotentialMatches
+        }
         Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
-          Return (CountSum >= grp.TypeValue)
+          If (CountSum >= grp.TypeValue) {
+            Return PotentialMatches
+          } Else {
+            Return False
+          }
         }
       }
       Evaluate(eval,val,min){
