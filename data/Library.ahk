@@ -135,6 +135,12 @@
               This.Data.Blocks.Affix := SVal
             Else If (SVal ~= " \(enchant\)$")
               This.Data.Blocks.Enchant := SVal
+            Else If (SVal ~= "Open Rooms:"){
+              temp := StrSplit(SVal,"Obstructed Rooms:")
+              StrSplit(String, [Delimiters, OmitChars])
+              This.Data.Blocks.TempleRooms := StrSplit(temp.1,"Open Rooms:").2
+              This.Data.Blocks.ObstructedRooms := RegExReplace(temp.2, "$", " (Obstructed)")
+            }
             Else
               This.Data.Blocks.Properties .= SVal "`r`n"
           }
@@ -170,6 +176,8 @@
         This.MatchAffixes(This.Data.Blocks.Enchant)
         This.MatchAffixes(This.Data.Blocks.Implicit)
         This.MatchAffixes(This.Data.Blocks.Influence)
+        This.MatchAffixes(This.Data.Blocks.TempleRooms)
+        This.MatchAffixes(This.Data.Blocks.ObstructedRooms)
         This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
         This.MatchProperties()
         If (This.Prop.Rarity_Digit == 4 && !This.Affix["Unidentified"])
