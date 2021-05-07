@@ -183,7 +183,7 @@
         If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off")  ){
           This.Prop.PredictPrice := This.PredictPrice()
         }
-        This.Prop.StashReturnVal := This.MatchStashManagement()
+        This.Prop.StashReturnVal := This.MatchStashManagement(false)
         ; This.FuckingSugoiFreeMate()
       }
       ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
@@ -1249,7 +1249,7 @@
             This.Prop.RegalRecipe := 1
         }
       }
-      StashChaosRecipe(deposit:=true){
+      StashChaosRecipe(deposit:=false){
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
@@ -2526,7 +2526,7 @@
         This.DisplayPSA()
         This.GraphNinjaPrices()
       }
-      MatchStashManagement(){
+      MatchStashManagement(passthrough:=False){
         If (StashTabYesCurrency && This.Prop.RarityCurrency&&(This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
         {
           If StashTabYesCurrency > 1
@@ -2660,7 +2660,7 @@
         Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
           sendstash := StashTabPredictive
         }
-        Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
+        Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough))
         {
           If (ChaosRecipeStashMethodDump)
             sendstash := StashTabDump
@@ -2668,7 +2668,7 @@
             sendstash := ChaosRecipeStashTab
           Else If (ChaosRecipeStashMethodSort)
           {
-            If This.Prop.SlotType = "Body"
+            If (This.Prop.SlotType = "Body")
               sendstash := ChaosRecipeStashTabArmour
             Else If (This.Prop.SlotType = "One Hand" || This.Prop.SlotType = "Two Hand" || This.Prop.SlotType = "Shield")
               sendstash := ChaosRecipeStashTabWeapon
