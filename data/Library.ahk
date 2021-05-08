@@ -2689,7 +2689,7 @@
         }
         Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
           || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
-          sendstash := StashTabDump
+          sendstash := StashTabDump, This.Prop.DumpTabItem := True
         Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
           Return -1
         Else
