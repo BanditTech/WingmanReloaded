@@ -2540,8 +2540,12 @@
       MatchStashManagement(passthrough:=False){
         If (StashTabYesCurrency && This.Prop.RarityCurrency&&(This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
         {
-          If StashTabYesCurrency > 1
-            sendstash := -2
+          If (StashTabYesCurrency > 1 && 
+              !(This.Prop.ItemName = "Stacked Deck") && 
+              !(This.Prop.ItemName = "Prime Regrading Lens") && 
+              !(This.Prop.ItemName = "Secondary Regrading Lens") && 
+              !(This.Prop.ItemName = "Bestiary Orb") &&
+              !(This.Prop.ItemName = "Vial of the Ritual"))
           Else
             sendstash := StashTabCurrency
         }
