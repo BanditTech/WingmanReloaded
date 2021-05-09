@@ -2547,13 +2547,13 @@ Return
       ContinueFlag := False
       If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
         RecipeComplete := True
-      If (YesEnableAutoSellConfirmation)
+      If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
       {
         RandomSleep(60,90)
         If RecipeComplete
           LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
         Else
-          SendHotkey(hotkeyCloseAllUI)
+          SendHotkey(hotkeyCloseAllUI), Notify("Recipe Set INCOMPLETE","",2)
         RandomSleep(60,90)
         ContinueFlag := True
       }
