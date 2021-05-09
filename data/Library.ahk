@@ -2546,6 +2546,7 @@
               !(This.Prop.ItemName = "Secondary Regrading Lens") && 
               !(This.Prop.ItemName = "Bestiary Orb") &&
               !(This.Prop.ItemName = "Vial of the Ritual"))
+            sendstash := -2
           Else
             sendstash := StashTabCurrency
         }
