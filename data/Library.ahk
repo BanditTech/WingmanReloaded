@@ -2822,6 +2822,8 @@
           Return (val <= min)
         } else if (eval = "!=") {
           Return (val != min)
+        } else if (eval = "~=") {
+          Return (val ~= min)
         } else if (eval = "~") {
           matchedOR := False
           for k, v in StrSplit(min, "|"," ") { ; Split OR first
