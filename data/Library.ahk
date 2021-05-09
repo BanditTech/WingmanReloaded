@@ -634,10 +634,13 @@
         {
           ; Match for influence type
           If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
-          {
             This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
+        }
+        If This.Prop.Influence {
+          If (This.Prop.Influence ~= "Fractured" || This.Prop.Influence ~= "Synthesised")
+            This.Prop.IsSynthesisItem := True
+          Else 
             This.Prop.IsInfluenceItem := True
-          }
         }
         ; Get Prophecy/Beasts using Flavour Txt
         If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
