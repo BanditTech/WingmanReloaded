@@ -1,3 +1,61 @@
+﻿## Version .13.0018 - Alpha version - May/08/2020
+New Group based CLF matching now available
+* ```{ "ElementList": [], "GroupType": "Count", "TypeValue": 3, "Weight": 1 }```
+* Find more examples on Discord Custom-Loot-Filter channel
+* Requires manually editing the JSON file
+* Allows groups inside other groups
+  * And, Not, Count, Weight
+
+New RegEx Evaluator for CLF entries
+* The ~ evaluator was using InStr
+  * In-house notation with basic OR | AND &
+* The ~= evaluator now allows RegEx matching
+  * Uses the expansive RegEx notation instead
+
+New TopTier Props available
+* TopTierRarity
+* TopTierAttackSpeed
+* TopTierCastSpeed
+* TopTierAllResist
+
+Verification added to chaos recipe automation
+* It now will only trade exactly the recipe set and nothing extra
+* If the recipe does not have its full contents it aborts
+* Safe auto confirm also affects the chaos recipe now
+  * If the recipe contains the full set, it auto-accepts
+
+Heist Alc'N'Go added to map crafting function
+* Just check the box and it will alch any normal blueprint/contract
+
+Influence item options
+* Now able to leave Influenced items Unidentified
+* Synthesis or Fractured items no longer considered IsInfluencedItem
+
+New options for bulk vendor recipes
+* Bulk Quality Flask/Gem functions now have checkbox to enable/disable
+
+Bugfixes
+* Parser fixes for affix tiers above 10
+* Parser fixes for negative ranges
+* Parser support for Delirium maps
+* Parser support for Chronicle of Atzoatl
+* Parser support for Heist Contract / Blueprint props
+* Remove Synthesised from itembase
+* Respect Chaos Recipe unid ilvl limit
+* Utility fires properly when Pop all flask checkbox is ticked
+* Support parsing clipboard contents in Item Info Hotkey
+  * just move mouse away from any item then press it
+* Fix for chaos recipe count going up twice
+* Fix for Vendoring non dump tab items with same tab # assigned being vendored
+* Fix for supporting up to 99 tabs in CLF editor
+
+Pull requests added:
+* Barragek0 with Add less area of effect undesired mod
+* Barragek0 with Fix beast ninjabd matching
+* Barragek0 with Logging improvements
+
+---
+
 ## Version .13.0017 - Alpha version - April/29/2020
 Huge New additions to the CLF
 * Full support for suffix/prefix names in the CLF
