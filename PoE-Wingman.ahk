@@ -743,6 +743,8 @@
     Global WinGuiY := 0
     Global YesVendorDumpItems := 0
     Global HeistAlcNGo := 1
+    Global YesBatchVendorBauble := 1
+    Global YesBatchVendorGCP := 1
 
 
     ; Chaos Recipe
@@ -2265,12 +2267,10 @@ Return
   CheckToIdentify(){
     If (Item.Affix["Unidentified"] && YesIdentify)
     {
-      If (ChaosRecipeEnableFunction 
-      && ChaosRecipeEnableUnId && Item.Prop.ItemLevel < ChaosRecipeLimitUnId
-      && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) 
-      && Item.StashChaosRecipe(false))
+      If (Item.Prop.IsInfluencedItem && YesInfluencedUnid && Item.Prop.RarityRare)
         Return False
-      Else If (Item.Prop.IsInfluencedItem && YesInfluencedUnid && Item.Prop.RarityRare)
+      Else If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId  && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) 
+      && Item.Prop.ItemLevel < ChaosRecipeLimitUnId && Item.StashChaosRecipe(false))
         Return False
       Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
         Return True
