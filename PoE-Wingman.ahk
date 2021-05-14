@@ -447,7 +447,8 @@
       ChaosRecipeTypePure = Recipe will affect items which are between 60-74 which have not met other stash/CLF filters`ronly draw items within that range from stash for chaos recipe.
       ChaosRecipeTypeHybrid = Recipe will affect all rares 60+ which have not met other stash/CLF filters`rRequires at least one lvl 60-74 item to make a recipe set`rPriority is given to regal items.
       ChaosRecipeTypeRegal = Recipe will affect items which are 75+ which have not met other stash/CLF filters`ronly draw items for regal recipe from stash.
-      ChaosRecipeAllowDoubleJewellery = Belts, Amulets and Rings will be given double allowance of Parts limit
+      ChaosRecipeAllowDoubleJewellery = Amulets and Rings will be given double allowance of Parts limit
+      ChaosRecipeAllowDoubleBelt = Belts will be given double allowance of Parts limit
       ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
       ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
       ChaosRecipeStashTabHelmet = Assign the Stash Tab that Helmets will be sorted into.
@@ -753,6 +754,7 @@
     Global ChaosRecipeSkipJC := True
     Global ChaosRecipeLimitUnId := 82
     Global ChaosRecipeAllowDoubleJewellery := True
+    Global ChaosRecipeAllowDoubleBelt := True
     Global ChaosRecipeMaxHolding := 10
     Global ChaosRecipeTypePure := 0
     Global ChaosRecipeTypeHybrid := 1
@@ -2267,7 +2269,7 @@ Return
   CheckToIdentify(){
     If (Item.Affix["Unidentified"] && YesIdentify)
     {
-      If (Item.Prop.IsInfluencedItem && YesInfluencedUnid && Item.Prop.RarityRare)
+      If (Item.Prop.IsInfluenceItem && YesInfluencedUnid && Item.Prop.RarityRare)
         Return False
       Else If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId  && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) 
       && Item.Prop.ItemLevel < ChaosRecipeLimitUnId && Item.StashChaosRecipe(false))
@@ -5508,6 +5510,7 @@ Return
       IniRead, ChaosRecipeEnableUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableUnId, 1
       IniRead, ChaosRecipeLimitUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeLimitUnId, 1
       IniRead, ChaosRecipeAllowDoubleJewellery, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleJewellery, 1
+      IniRead, ChaosRecipeAllowDoubleBelt, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleBelt, 1
       IniRead, ChaosRecipeMaxHolding, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeMaxHolding, 10
       IniRead, ChaosRecipeTypePure, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypePure, 0
       IniRead, ChaosRecipeTypeHybrid, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeHybrid, 1

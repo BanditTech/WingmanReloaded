@@ -1285,7 +1285,9 @@
             CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
             If (v = "Ring")
               CountValue := CountValue // 2
-            If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet","Belt"])
+            If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet"])
+              CountValue := CountValue // 2
+            If ChaosRecipeAllowDoubleBelt && IndexOf(v,["Belt"])
               CountValue := CountValue // 2
 
             If (CountValue < ChaosRecipeMaxHolding)
@@ -3556,11 +3558,12 @@
 
       Gui, Inventory: Tab, Chaos Recipe
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h155 xm+5 ym+25, Chaos Recipe Options
+        Gui, Inventory: Add, GroupBox,Section w170 h185 xm+5 ym+25, Chaos Recipe Options
         Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+15 yp+20, Enable Chaos Recipe Logic
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs+15 yp+20, Allow 2x Belt limit
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
