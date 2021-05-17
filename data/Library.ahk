@@ -1264,9 +1264,11 @@
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
-        If (This.Prop.Rarity_Digit != 3 
-        || This.Prop.ItemLevel < 60 
-        || (!This.Affix.Unidentified && ChaosRecipeEnableUnId && This.Prop.ItemLevel < ChaosRecipeLimitUnId))
+        If ( This.Prop.Rarity_Digit != 3 )
+        || ( This.Prop.ItemLevel < 60 )
+        || ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
+        || ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
+        || ( !This.Affix.Unidentified && ChaosRecipeEnableUnId && ChaosRecipeOnlyUnId && This.Prop.ItemLevel < ChaosRecipeLimitUnId)
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
           Return False
@@ -1282,7 +1284,13 @@
         {
           If (This.Prop.SlotType = v)
           {
-            CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+            If ChaosRecipeSeperateCount {
+              If This.Affix.Unidentified
+                CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v])
+              Else
+                CountValue := retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+            } Else
+              CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
             If (v = "Ring")
               CountValue := CountValue // 2
             If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet"])
@@ -3558,21 +3566,23 @@
 
       Gui, Inventory: Tab, Chaos Recipe
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h185 xm+5 ym+25, Chaos Recipe Options
+        Gui, Inventory: Add, GroupBox,Section w170 h215 xm+5 ym+25, Chaos Recipe Options
         Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+15 yp+20, Enable Chaos Recipe Logic
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs+15 yp+20, Allow 2x Belt limit
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweler/Chroma Items
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs yp+20, Allow 2x Jewellery limit
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs yp+20, Allow 2x Belt limit
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs yp+22, Leave Recipe Rare Un-Id
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSeperateCount Checked%ChaosRecipeSeperateCount% xs yp+22, Seperate count for Un-Id
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeOnlyUnId Checked%ChaosRecipeOnlyUnId% xs yp+22, Only Stash UnId in Range
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range70-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
           Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
+        Gui, Inventory: Add, GroupBox,Section w170 h80 xs-5 y+25, Chaos Recipe Type
         Gui, Inventory: Font,
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl
@@ -3596,13 +3606,13 @@
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Weapons
 
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
-
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabArmourUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Armours
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabGlovesUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
@@ -4901,6 +4911,41 @@
           Else 
             Break
 
+          If (!ChaosPresent && !IsObject(Object.Chaos.Body.1)) && IsObject(Object.Regal.Body.1)
+            Set.Push(Object.Regal.Body.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Body.1) )
+            Set.Push(Object.Regal.Body.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Body.1))
+            Set.Push(Object.Chaos.Body.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Helmet.1)) && IsObject(Object.Regal.Helmet.1)
+            Set.Push(Object.Regal.Helmet.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Helmet.1) )
+            Set.Push(Object.Regal.Helmet.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Helmet.1))
+            Set.Push(Object.Chaos.Helmet.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Gloves.1)) && IsObject(Object.Regal.Gloves.1)
+            Set.Push(Object.Regal.Gloves.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Gloves.1) )
+            Set.Push(Object.Regal.Gloves.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Gloves.1))
+            Set.Push(Object.Chaos.Gloves.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Boots.1)) && IsObject(Object.Regal.Boots.1)
+            Set.Push(Object.Regal.Boots.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Boots.1) )
+            Set.Push(Object.Regal.Boots.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Boots.1))
+            Set.Push(Object.Chaos.Boots.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Belt.1)) && IsObject(Object.Regal.Belt.1)
+            Set.Push(Object.Regal.Belt.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Belt.1) )
+            Set.Push(Object.Regal.Belt.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Belt.1))
+            Set.Push(Object.Chaos.Belt.RemoveAt(1)), ChaosPresent := True
+
           If (!ChaosPresent && !IsObject(Object.Chaos.Amulet.1)) && IsObject(Object.Regal.Amulet.1)
             Set.Push(Object.Regal.Amulet.RemoveAt(1))
           Else If (ChaosPresent && IsObject(Object.Regal.Amulet.1) )
@@ -4921,41 +4966,6 @@
             Set.Push(Object.Regal.Ring.RemoveAt(1))
           Else If (IsObject(Object.Chaos.Ring.1))
             Set.Push(Object.Chaos.Ring.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Belt.1)) && IsObject(Object.Regal.Belt.1)
-            Set.Push(Object.Regal.Belt.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Belt.1) )
-            Set.Push(Object.Regal.Belt.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Belt.1))
-            Set.Push(Object.Chaos.Belt.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Body.1)) && IsObject(Object.Regal.Body.1)
-            Set.Push(Object.Regal.Body.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Body.1) )
-            Set.Push(Object.Regal.Body.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Body.1))
-            Set.Push(Object.Chaos.Body.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Boots.1)) && IsObject(Object.Regal.Boots.1)
-            Set.Push(Object.Regal.Boots.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Boots.1) )
-            Set.Push(Object.Regal.Boots.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Boots.1))
-            Set.Push(Object.Chaos.Boots.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Gloves.1)) && IsObject(Object.Regal.Gloves.1)
-            Set.Push(Object.Regal.Gloves.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Gloves.1) )
-            Set.Push(Object.Regal.Gloves.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Gloves.1))
-            Set.Push(Object.Chaos.Gloves.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Helmet.1)) && IsObject(Object.Regal.Helmet.1)
-            Set.Push(Object.Regal.Helmet.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Helmet.1) )
-            Set.Push(Object.Regal.Helmet.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Helmet.1))
-            Set.Push(Object.Chaos.Helmet.RemoveAt(1)), ChaosPresent := True
 
           RecipeSets.Push(Set)
         }

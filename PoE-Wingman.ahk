@@ -450,6 +450,8 @@
       ChaosRecipeAllowDoubleJewellery = Amulets and Rings will be given double allowance of Parts limit
       ChaosRecipeAllowDoubleBelt = Belts will be given double allowance of Parts limit
       ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
+      ChaosRecipeSeperateCount = Seperate the count of Identified and Unidentified items.
+      ChaosRecipeOnlyUnId = When using Unidentified mode, should only UnId items be stashed?
       ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
       ChaosRecipeStashTabHelmet = Assign the Stash Tab that Helmets will be sorted into.
       ChaosRecipeStashTabArmour = Assign the Stash Tab that Armours will be sorted into.
@@ -751,16 +753,18 @@
     ; Chaos Recipe
     Global ChaosRecipeEnableFunction := False
     Global ChaosRecipeEnableUnId := True
+    Global ChaosRecipeSeperateCount := True
+    Global ChaosRecipeOnlyUnId := True
     Global ChaosRecipeSkipJC := True
-    Global ChaosRecipeLimitUnId := 82
+    Global ChaosRecipeLimitUnId := 74
     Global ChaosRecipeAllowDoubleJewellery := True
     Global ChaosRecipeAllowDoubleBelt := True
-    Global ChaosRecipeMaxHolding := 10
+    Global ChaosRecipeMaxHolding := 12
     Global ChaosRecipeTypePure := 0
     Global ChaosRecipeTypeHybrid := 1
     Global ChaosRecipeTypeRegal := 0
-    Global ChaosRecipeStashMethodDump := 1
-    Global ChaosRecipeStashMethodTab := 0
+    Global ChaosRecipeStashMethodDump := 0
+    Global ChaosRecipeStashMethodTab := 1
     Global ChaosRecipeStashMethodSort := 0
     Global ChaosRecipeStashTab := 1
     Global ChaosRecipeStashTabWeapon := 1
@@ -2424,9 +2428,9 @@ Return
       ContinueFlag := False
       If (YesEnableAutoSellConfirmation || (!VendoredItems && YesEnableAutoSellConfirmationSafe))
       {
-        RandomSleep(60,90)
+        RandomSleep(90,120)
         LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
-        RandomSleep(60,90)
+        RandomSleep(90,120)
         ContinueFlag := True
       }
       Else If (FirstAutomationSetting=="Search Vendor")
@@ -2450,8 +2454,9 @@ Return
       ; Search Stash and StashRoutine
       If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
       {
+        RandomSleep(90,120)
         SendHotkey(hotkeyCloseAllUI)
-        RandomSleep(45,90)
+        RandomSleep(90,120)
         If OnHideout
           Town := "Hideout"
         Else If OnMines
@@ -2526,7 +2531,7 @@ Return
           ShooMouse(),GuiStatus(),Continue
         If (OnVendor&&YesVendor)
         {
-          If ( Item.Prop.SpecialType="" && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) ) {
+          If ( ( Item.Prop.SpecialType="" || (Item.Prop.SpecialType="Enchanted Item" && Item.Prop.ChaosValue < 1) ) && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) ) {
             If indexOf(Item.Prop.SlotType,["One Hand","Two Hand","Shield","Ring"]) {
               If (Item.Prop.SlotType = "Ring"){
                 If (CRECIPE["Ring"] < 2){
@@ -5508,10 +5513,12 @@ Return
       IniRead, ChaosRecipeEnableFunction, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableFunction, 0
       IniRead, ChaosRecipeSkipJC, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSkipJC, 1
       IniRead, ChaosRecipeEnableUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableUnId, 1
+      IniRead, ChaosRecipeSeperateCount, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSeperateCount, 1
+      IniRead, ChaosRecipeOnlyUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeOnlyUnId, 1
       IniRead, ChaosRecipeLimitUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeLimitUnId, 1
       IniRead, ChaosRecipeAllowDoubleJewellery, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleJewellery, 1
-      IniRead, ChaosRecipeAllowDoubleBelt, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleBelt, 1
-      IniRead, ChaosRecipeMaxHolding, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeMaxHolding, 10
+      IniRead, ChaosRecipeAllowDoubleBelt, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleBelt, 0
+      IniRead, ChaosRecipeMaxHolding, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeMaxHolding, 12
       IniRead, ChaosRecipeTypePure, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypePure, 0
       IniRead, ChaosRecipeTypeHybrid, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeHybrid, 1
       IniRead, ChaosRecipeTypeRegal, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeTypeRegal, 0
