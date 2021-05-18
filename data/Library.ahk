@@ -1289,8 +1289,9 @@
                 CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v])
               Else
                 CountValue := retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
-            } Else
+            } Else {
               CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+            }
             If (v = "Ring")
               CountValue := CountValue // 2
             If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet"])
@@ -1325,9 +1326,22 @@
         {
           If (This.Prop.SlotType = v)
           {
-            WeaponCount := (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
-                         + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
-                         + retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
+            If ChaosRecipeSeperateCount {
+              If This.Affix.Unidentified{
+                WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) 
+                            + (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) 
+                              + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"])) // 2
+              }Else{
+                WeaponCount := retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"]) 
+                            + (retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
+                              + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) // 2
+              }
+
+            } Else {
+              WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
+                          + (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
+                            + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+            }
 
             If (WeaponCount < ChaosRecipeMaxHolding)
             {
