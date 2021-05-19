@@ -1268,6 +1268,8 @@
         || ( This.Prop.ItemLevel < 60 )
         || ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
         || ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
+        || ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass = "Shields") 
+          && (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) )
         || ( !This.Affix.Unidentified && ChaosRecipeEnableUnId && ChaosRecipeOnlyUnId && This.Prop.ItemLevel < ChaosRecipeLimitUnId)
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
@@ -3580,7 +3582,7 @@
 
       Gui, Inventory: Tab, Chaos Recipe
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h215 xm+5 ym+25, Chaos Recipe Options
+        Gui, Inventory: Add, GroupBox,Section w170 h235 xm+5 ym+25, Chaos Recipe Options
         Gui, Inventory: Font,
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweler/Chroma Items
@@ -3589,6 +3591,7 @@
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+22, Only stash Small Weap/Shield
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs yp+22, Leave Recipe Rare Un-Id
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSeperateCount Checked%ChaosRecipeSeperateCount% xs yp+22, Seperate count for Un-Id
           Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeOnlyUnId Checked%ChaosRecipeOnlyUnId% xs yp+22, Only Stash UnId in Range

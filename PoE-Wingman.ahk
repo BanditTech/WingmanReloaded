@@ -450,6 +450,7 @@
       ChaosRecipeAllowDoubleJewellery = Amulets and Rings will be given double allowance of Parts limit
       ChaosRecipeAllowDoubleBelt = Belts will be given double allowance of Parts limit
       ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
+      ChaosRecipeSmallWeapons = Stash 1x3 or 2x2 Weapons and Shields only, filtering bulky items from wasting space.
       ChaosRecipeSeperateCount = Seperate the count of Identified and Unidentified items.
       ChaosRecipeOnlyUnId = When using Unidentified mode, should only UnId items be stashed?
       ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
@@ -753,6 +754,7 @@
     ; Chaos Recipe
     Global ChaosRecipeEnableFunction := False
     Global ChaosRecipeEnableUnId := True
+    Global ChaosRecipeSmallWeapons := True
     Global ChaosRecipeSeperateCount := True
     Global ChaosRecipeOnlyUnId := True
     Global ChaosRecipeSkipJC := True
@@ -5513,6 +5515,7 @@ Return
       IniRead, ChaosRecipeEnableFunction, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableFunction, 0
       IniRead, ChaosRecipeSkipJC, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSkipJC, 1
       IniRead, ChaosRecipeEnableUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableUnId, 1
+      IniRead, ChaosRecipeSmallWeapons, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSmallWeapons, 1
       IniRead, ChaosRecipeSeperateCount, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSeperateCount, 1
       IniRead, ChaosRecipeOnlyUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeOnlyUnId, 1
       IniRead, ChaosRecipeLimitUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeLimitUnId, 1
