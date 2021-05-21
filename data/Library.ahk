@@ -1514,7 +1514,6 @@
           LastLine := line
         }
       }
-
       CheckIfActualHybridMod(value){
         for k, v in HybridModsFirstLine
         {
@@ -2641,7 +2640,25 @@
       }
       MatchStashManagement(passthrough:=False){
         ; Create associative array so HasKey function can be used
-        UnsupportedAffinityCurrencies := { "Stacked Deck":0, "Prime Regrading Lens":0, "Secondary Regrading Lens":0, "Veiled Chaos Orb":0, "Vial of Transcendence":0, "Vial of Sacrifice":0, "Vial of the Ghost":0, "Vial of Consequence":0, "Vial of Summoning":0, "Vial of Dominance":0, "Vial of Awakening":0, "Vial of the Ritual":0, "Vial of Fate":0, "Bestiary Orb":0, "Blessing of Chayula":0, "Blessing of Xoph":0, "Blessing of Uul-Netol":0, "Blessing of Tul":0, "Blessing of Esh":0 }
+        UnsupportedAffinityCurrencies := { "Stacked Deck":0
+                                         , "Prime Regrading Lens":0
+                                         , "Secondary Regrading Lens":0
+                                         , "Veiled Chaos Orb":0
+                                         , "Vial of Transcendence":0
+                                         , "Vial of Sacrifice":0
+                                         , "Vial of the Ghost":0
+                                         , "Vial of Consequence":0
+                                         , "Vial of Summoning":0
+                                         , "Vial of Dominance":0
+                                         , "Vial of Awakening":0
+                                         , "Vial of the Ritual":0
+                                         , "Vial of Fate":0
+                                         , "Bestiary Orb":0
+                                         , "Blessing of Chayula":0
+                                         , "Blessing of Xoph":0
+                                         , "Blessing of Uul-Netol":0
+                                         , "Blessing of Tul":0
+                                         , "Blessing of Esh":0 }
         If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
         {
           If (StashTabYesCurrency > 1 && !UnsupportedAffinityCurrencies.HasKey(This.Prop.ItemName))
@@ -2684,7 +2701,7 @@
           Else
             sendstash := StashTabDelirium
         }
-        Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
+        Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.UberDuberOffering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
         {
           If StashTabYesFragment > 1 
             sendstash := -2
@@ -3198,6 +3215,7 @@
     }
   ; ClipItem - Capture Clip at Coord
   ClipItem(x, y){
+    Global RunningToggle
       BlockInput, MouseMove
       Backup := Clipboard
       Clipboard := ""
