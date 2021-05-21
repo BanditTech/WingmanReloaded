@@ -1150,7 +1150,7 @@
           Return False
       }
       TopTierCritMulti(){
-        If ((This.Prop.ItemLevel < 21 || This.Prop.ItemClass = "Rings")
+        If (This.Prop.ItemLevel < 21
         && (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 
          || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 8 ))
           Return True
@@ -1171,7 +1171,7 @@
          || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
           Return True
         Else If (This.Prop.ItemLevel < 75 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
-        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 10 ))
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 ))
           Return True
         Else If (This.Prop.ItemLevel < 75
         && (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
