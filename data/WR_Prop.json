@@ -106,6 +106,8 @@
 	"TopTierRarityPre",
 	"TopTierRaritySuf",
 	"TopTierRarity",
+	"TopTierCritChance",
+	"TopTierCritMulti",
 	"TopTierAttackSpeed",
 	"TopTierCastSpeed"
 ]

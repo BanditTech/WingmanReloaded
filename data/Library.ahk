@@ -940,6 +940,10 @@
           This.Prop.TopTierAttackSpeed := 1
         If This.TopTierCastSpeed()
           This.Prop.TopTierCastSpeed := 1
+        If This.TopTierCritChance()
+          This.Prop.TopTierCritChance := 1
+        If This.TopTierCritMulti()
+          This.Prop.TopTierCritMulti := 1
         If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist || This.Prop.TopTierAllResist)
           This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0) + (This.Prop.TopTierAllResist?1:0)
         If (This.Prop.TopTierRarityPre || This.Prop.TopTierRaritySuf)
@@ -1141,6 +1145,78 @@
         Else If ((This.Prop.ItemLevel < 84 || indexOf(This.Prop.ItemClass,["Helmet"]) ) && This.HasAffix("Dragon's"))
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Perandus's"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierCritMulti(){
+        If ((This.Prop.ItemLevel < 21 || This.Prop.ItemClass = "Rings")
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 8 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 31
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 13 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 45
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 20 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 20 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 59
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 25 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 25 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 75
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 75 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 10 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 75
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 80 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 ))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 35 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 35 ))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 17 ))
+          Return True
+        Else
+          Return False
+      }
+      TopTierCritChance(){
+        If ((This.Prop.ItemLevel < 20 || This.Prop.ItemClass = "Rings")
+        && (This.Affix["#% increased Critical Strike Chance"] >= 10 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 10 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 10 ))
+          Return True
+        Else If ((This.Prop.ItemLevel < 30 || !(This.Prop.IsWeapon || This.Prop.ItemClass = "Amulets" || This.Prop.ItemClass = "Quivers"))
+        && (This.Affix["#% increased Critical Strike Chance"] >= 15 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 15 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 15 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 44 
+        && (This.Affix["#% increased Critical Strike Chance"] >= 20 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 20 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 20 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 58 
+        && (This.Affix["#% increased Global Critical Strike Chance"] >= 25 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 25 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 59 
+        && (This.Affix["#% increased Critical Strike Chance"] >= 25 ))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 
+        && (This.Affix["#% increased Critical Strike Chance"] >= 30 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 30 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 30 ))
           Return True
         Else
           Return False
