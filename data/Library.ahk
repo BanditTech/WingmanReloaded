@@ -162,7 +162,7 @@
               This.Prop.IsAbyss := True
             Else If (SVal ~= "^Unidentified$")
               This.Data.Blocks.Affix := SVal
-            Else If (This.Data.Blocks.HasKey("Affix") || SVal ~= """.*""")
+            Else If (This.Data.Blocks.HasKey("Affix") || SVal ~= """.*""$")
               This.Data.Blocks.FlavorText := SVal
             Else
               This.Data.Blocks.Affix := SVal
@@ -271,14 +271,22 @@
           If (v ~= "^Curse Enemies with .+ on Hit$")
             This.Prop.IsCurseOnHit := True
           If (v ~= "\{ Prefix Modifier"){
-            RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm )
-            This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-            This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm ) {
+              This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            } Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" . (.*) \}", rxm ) {
+              This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            }
             This.Prop.PrefixCount++, This.Prop.AffixCount++
           } Else If (v ~= "\{ Suffix Modifier") {
-            RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm )
-            This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-            This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm ) {
+              This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            } Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" . (.*) \}", rxm ) {
+              This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            }
             This.Prop.SuffixCount++, This.Prop.AffixCount++
           }
         }
@@ -1553,6 +1561,8 @@
           line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
           line :=  RegExReplace(line,  " . Unscalable Value" , "")
           key := This.Standardize(line)
+          If (key ~= "^ \(.*\)$")
+            Continue
           If (vals := This.MatchLine(line))
           {
             If (vals.Count() >= 2)
