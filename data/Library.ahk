@@ -3946,54 +3946,54 @@
           Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vChanceMethod Checked" (ChanceMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftChanceMethod Checked" (BasicCraftChanceMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftChanceMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftChanceMethod=3?1:0), Bulk Inventory
           Gui, Crafting: Font, Bold s12 cBlack, Arial
-          Gui, Crafting: Add, Checkbox, % "xs+30 y+20", Scour and retry
+          Gui, Crafting: Add, Checkbox, % "gSaveBasicCraft vBasicCraftChanceScour xs+30 y+20 Checked" BasicCraftChanceScour, Scour and retry
           Gui, Crafting: Font
           Gui, Crafting: Font, Bold s12 cBlack, Arial
-          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
+          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Color
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vSocketMethod Checked" (SocketMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=3?1:0), Bulk Inventory
-          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftColorMethod Checked" (BasicCraftColorMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftColorMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftColorMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cRed, Arial
           Gui, Crafting: Add, Text,% "xs+25 y+20"
-          Gui, Crafting: Add, UpDown, Range1-6 vDesiredSockets, % DesiredSockets
-          Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
-          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftR, % BasicCraftR
+          Gui, Crafting: Add, Text, x+5 yp, R 
+          Gui, Crafting: Font, Bold s12 cGreen, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftG, % BasicCraftG
+          Gui, Crafting: Add, Text, x+5 yp, G
+          Gui, Crafting: Font, Bold s12 cBlue, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftB, % BasicCraftB
+          Gui, Crafting: Add, Text, x+5 yp, B
           Gui, Crafting: Font
           Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, GroupBox,section Center xm+295 ym+25 w275 h100, Link
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vLinkMethod Checked" (LinkMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftLinkMethod Checked" (BasicCraftLinkMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftLinkMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftLinkMethod=3?1:0), Bulk Inventory
           Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, Text,% "xs+25 y+20"
-          Gui, Crafting: Add, UpDown, Range1-6 vDesiredLinks, % DesiredLinks
+          Gui, Crafting: Add, UpDown, Range0-6 vBasicCraftDesiredLinks gSaveBasicCraft, % BasicCraftDesiredLinks
           Gui, Crafting: Add, Text, x+5 yp, Desired Links
-          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Add, CheckBox, x+10 yp gSaveBasicCraft vBasicCraftLinkAuto Checked%BasicCraftLinkAuto%, Auto
           Gui, Crafting: Font
           Gui, Crafting: Font, Bold s12 cBlack, Arial
-          Gui, Crafting: Add, GroupBox,section Center xm+295 ys+115 w275 h100, Color
+          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vColorMethod Checked" (ColorMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=3?1:0), Bulk Inventory
-          Gui, Crafting: Font, Bold s12 cRed, Arial
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftSocketMethod Checked" (BasicCraftSocketMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftSocketMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftSocketMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, Text,% "xs+25 y+20"
-          Gui, Crafting: Add, UpDown, Range0-6 vDesiredR, % DesiredR
-          Gui, Crafting: Add, Text, x+5 yp, R 
-          Gui, Crafting: Font, Bold s12 cGreen, Arial
-          Gui, Crafting: Add, Text,% "x+25 yp"
-          Gui, Crafting: Add, UpDown, Range0-6 vDesiredG, % DesiredG
-          Gui, Crafting: Add, Text, x+5 yp, G
-          Gui, Crafting: Font, Bold s12 cBlue, Arial
-          Gui, Crafting: Add, Text,% "x+25 yp"
-          Gui, Crafting: Add, UpDown, Range0-6 vDesiredB, % DesiredB
-          Gui, Crafting: Add, Text, x+5 yp, B
+          Gui, Crafting: Add, UpDown, Range0-6 vBasicCraftDesiredSockets gSaveBasicCraft, % BasicCraftDesiredSockets
+          Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
+          Gui, Crafting: Add, CheckBox, x+10 yp gSaveBasicCraft vBasicCraftSocketAuto Checked%BasicCraftSocketAuto%, Auto
           Gui, Crafting: Font
           Gui, Crafting: Show
       }

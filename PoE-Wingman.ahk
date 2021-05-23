@@ -2518,10 +2518,10 @@ Return
         If !RunningToggle
           Break
         RightClick(x,y)
-        Sleep, 150
+        Sleep, 75
         EmptySlot := EmptySlots.Pop()
         LeftClick(EmptySlot.X,EmptySlot.Y)
-        Sleep, 150
+        Sleep, 75
       } Else {
         Break
       }
@@ -4064,19 +4064,19 @@ Return
   CraftingColor(){
     Global RunningToggle
     Notify("Color Logic Coming Soon","",2)
-    ; f := New Craft("Color","cursor",{R:0,G:1,B:1})
+    ; f := New Craft("Color","cursor",{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
   }
   ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
   CraftingLink(){
     Global RunningToggle
     ; Notify("Link Logic Coming Soon","",2)
-    f := New Craft("Link","cursor",{Links:6,Auto:1})
+    f := New Craft("Link","cursor",{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
   }
   ; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
   CraftingSocket(){
     local f
     ; Notify("Socket Logic Coming Soon","",2)
-    f := New Craft("Socket","cursor",{Sockets:6,Auto:1})
+    f := New Craft("Socket","cursor",{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
   }
 
   Class Craft {
@@ -5410,6 +5410,20 @@ Return
       IniRead, YesOpenStackedDeck, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck, 0
       IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
       IniRead, HeistAlcNGo, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo, 1
+
+      ; Basic Crafting Settings
+      IniRead, BasicCraftChanceMethod, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceMethod, 1
+      IniRead, BasicCraftChanceScour, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceScour, 1
+      IniRead, BasicCraftColorMethod, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftColorMethod, 1
+      IniRead, BasicCraftR, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftR, 0
+      IniRead, BasicCraftG, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftG, 0
+      IniRead, BasicCraftB, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftB, 0
+      IniRead, BasicCraftLinkMethod, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftLinkMethod, 1
+      IniRead, BasicCraftDesiredLinks, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftDesiredLinks, 0
+      IniRead, BasicCraftLinkAuto, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftLinkAuto, 1
+      IniRead, BasicCraftSocketMethod, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftSocketMethod, 1
+      IniRead, BasicCraftDesiredSockets, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftDesiredSockets, 0
+      IniRead, BasicCraftSocketAuto, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftSocketAuto, 1
 
       ;Crafting Bases
       IniRead, YesStashATLAS, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS, 1
@@ -8334,7 +8348,7 @@ Return
     }
   }
 
-  { ; Gui Update functions - UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility
+  { ; Gui Update functions - SaveINI - UpdateStash, UpdateExtra, UpdateResolutionScale, UpdateDebug, UpdateUtility
     SaveINI(type:="General") {
       Gui, Submit, NoHide
       If A_GuiControl ~= "UpDown"
@@ -8353,6 +8367,18 @@ Return
 
     SaveChaos:
       SaveINI("Chaos Recipe")
+    Return
+
+    SaveBasicCraft:
+      SaveINI("Basic Craft")
+    Return
+
+    BasicCraftRadio:
+      Gui, Submit, NoHide
+      IniWrite, %BasicCraftChanceMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceMethod
+      IniWrite, %BasicCraftColorMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftColorMethod
+      IniWrite, %BasicCraftLinkMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftLinkMethod
+      IniWrite, %BasicCraftSocketMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftSocketMethod
     Return
 
     SaveStashTabs:
