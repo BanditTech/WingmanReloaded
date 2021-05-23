@@ -573,6 +573,7 @@
       hotkeyMainAttack = Bind the Main Attack for this Character
       hotkeySecondaryAttack = Bind the Secondary Attack for this Character
       BrickedWhenCorrupted = Enable this if you only want to consider a map 'bricked'`rwhen it's corrupted and has an undesired mod, otherwise,`rmaps of any tier with undesired mods will be flagged as 'bricked'
+      YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
@@ -749,6 +750,7 @@
     Global HeistAlcNGo := 1
     Global YesBatchVendorBauble := 1
     Global YesBatchVendorGCP := 1
+    Global YesOpenStackedDeck := True
 
 
     ; Chaos Recipe
@@ -2343,6 +2345,7 @@ Return
           WisdomScroll(Grid.X,Grid.Y)
           ClipItem(Grid.X,Grid.Y)
         }
+
         If (OnVendor&&YesVendor)
         {
           If Item.MatchLootFilter()
@@ -2490,6 +2493,39 @@ Return
       }
     }
     Return
+  }
+  ; Build Empty Grid List
+  EmptyGrid(){
+    ShooMouse(),GuiStatus()
+    EmptySlots := {}
+    For C, GridX in InventoryGridX {
+      For R, GridY in InventoryGridY {
+        If IgnoredSlot[C][R]
+          Continue
+        PointColor := ScreenShot_GetColor(GridX,GridY)
+        If indexOf(PointColor, varEmptyInvSlotColor) {
+          EmptySlots[C R] := RandClick(GridX, GridY)
+        }
+      }
+    }
+    Return EmptySlots
+  }
+  ; Open Stacked Decks Automatically
+  StackedDeckOpen(number,x,y){
+    EmptySlots := EmptyGrid()
+    Loop %number% {
+      If (EmptySlots.Count() >= 1){
+        If !RunningToggle
+          Break
+        RightClick(x,y)
+        Sleep, 150
+        EmptySlot := EmptySlots.Pop()
+        LeftClick(EmptySlot.X,EmptySlot.Y)
+        Sleep, 150
+      } Else {
+        Break
+      }
+    }
   }
   ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
   VendorRoutineChaos()
@@ -2853,6 +2889,11 @@ Return
           WisdomScroll(Grid.X,Grid.Y)
           ClipItem(Grid.X,Grid.Y)
         }
+        If (YesOpenStackedDeck && Item.Prop.ItemName = "Stacked Deck") {
+          StackedDeckOpen(Item.Prop.Stack_Size,Grid.X,Grid.Y)
+          ShooMouse(),GuiStatus(),Continue
+        }
+
         If (OnStash && YesStash) 
         {
           If (Item.Prop.SpecialType = "Quest Item" || Item.Prop.ItemClass = "Quest Items")
@@ -5366,6 +5407,7 @@ Return
       IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
       IniRead, YesBatchVendorBauble, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble, 1
       IniRead, YesBatchVendorGCP, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP, 1
+      IniRead, YesOpenStackedDeck, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck, 0
       IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
       IniRead, HeistAlcNGo, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo, 1
 
@@ -6025,6 +6067,7 @@ Return
       IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
       IniWrite, %YesBatchVendorBauble%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble
       IniWrite, %YesBatchVendorGCP%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP
+      IniWrite, %YesOpenStackedDeck%, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck
       IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
       IniWrite, %HeistAlcNGo%, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo
 

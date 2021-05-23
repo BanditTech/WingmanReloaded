@@ -3304,6 +3304,7 @@
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesBatchVendorBauble  Checked%YesBatchVendorBauble%  y+8    , Batch Vendor Quality Flasks?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesBatchVendorGCP     Checked%YesBatchVendorGCP%     y+8    , Batch Vendor Quality Gems?
+        Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesOpenStackedDeck    Checked%YesOpenStackedDeck%    y+8    , Open Stacked Decks?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
         Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
 
