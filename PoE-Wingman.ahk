@@ -4056,27 +4056,29 @@ Return
   }
   ; CraftingChance - Use the settings to apply chance to item(s) until unique
   CraftingChance(){
-    Global RunningToggle
+    Global
+    local f
     Notify("Chance Logic Coming Soon","",2)
-    ; f := New Craft("Chance","cursor",{Scour:1})
+    ; f := New Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
   }
   ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
   CraftingColor(){
-    Global RunningToggle
-    Notify("Color Logic Coming Soon","",2)
-    ; f := New Craft("Color","cursor",{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
+    Global
+    local f
+    ; Notify("Color Logic Coming Soon","",2)
+    f := New Craft("Color",BasicCraftColorMethod,{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
   }
   ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
   CraftingLink(){
-    Global RunningToggle
-    ; Notify("Link Logic Coming Soon","",2)
-    f := New Craft("Link","cursor",{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
+    Global
+    local f
+    f := New Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
   }
   ; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
   CraftingSocket(){
+    Global
     local f
-    ; Notify("Socket Logic Coming Soon","",2)
-    f := New Craft("Socket","cursor",{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
+    f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
   }
 
   Class Craft {
@@ -4084,6 +4086,12 @@ Return
       ; Type := "Chance","Color","Link","Socket"
       This.Type := Type
 
+      If (Method = 1)
+        Method := "cursor"
+      Else If (Method = 2)
+        Method := "stash"
+      Else If (Method = 3)
+        Method := "bulk"
       ; Method := "cursor","stash","bulk"
       This.Method := Method
 
@@ -4176,6 +4184,23 @@ Return
           Return True
         Else
           Return False
+      }
+    }
+    ColorMatch(){
+      If This.Desired.R
+        RDif := This.Desired.R - Item.Prop.Sockets_R
+      If This.Desired.G
+        GDif := This.Desired.G - Item.Prop.Sockets_G
+      If This.Desired.B
+        BDif := This.Desired.B - Item.Prop.Sockets_B
+      TDif := (RDif<=0?0:RDif) + (GDif<=0?0:GDif) + (BDif<=0?0:BDif)
+      If TDif {
+        If (Item.Prop.Sockets_W >= TDif)
+          Return True
+        Else
+          Return False
+      } Else {
+        Return True
       }
     }
     ApplyCurrency(cname, x, y){

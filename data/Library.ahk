@@ -696,6 +696,14 @@
             This.Prop.Sockets_Raw := RxMatch1
             This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
             This.Prop.Sockets_Link := 0
+            RegExReplace(RxMatch1, "R",, n)
+            This.Prop.Sockets_R := n
+            RegExReplace(RxMatch1, "G",, n)
+            This.Prop.Sockets_G := n
+            RegExReplace(RxMatch1, "B",, n)
+            This.Prop.Sockets_B := n
+            RegExReplace(RxMatch1, "W",, n)
+            This.Prop.Sockets_W := n
             For k, v in StrSplit(RxMatch1, " ")
             {
               nlink := StrLen(RegExReplace(v, "\w" , "")) + 1
