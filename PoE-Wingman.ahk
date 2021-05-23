@@ -4058,14 +4058,13 @@ Return
   CraftingChance(){
     Global
     local f
-    Notify("Chance Logic Coming Soon","",2)
-    ; f := New Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
+    ; Notify("Chance Logic Coming Soon","",2)
+    f := New Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
   }
   ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
   CraftingColor(){
     Global
     local f
-    ; Notify("Color Logic Coming Soon","",2)
     f := New Craft("Color",BasicCraftColorMethod,{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
   }
   ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
@@ -4163,7 +4162,9 @@ Return
     }
     Logic(){
       If (This.Type = "Chance"){
-        If Item.Prop.Rarity = "Unique"
+        If Item.Prop.Rarity_Digit = 4
+          Return True
+        Else If (Item.Prop.Rarity_Digit > 1 && !This.Desired.Scour)
           Return True
         Else
           Return False
@@ -4224,6 +4225,10 @@ Return
         This.Desired.Auto := This.GetAuto()
       If This.Validate()
         While !This.Logic() && RunningToggle {
+          If (This.Type = "Chance") {
+            If (Item.Prop.Rarity_Digit != 1 && This.Desired.Scour)
+              This.ApplyCurrency("Scouring",x,y)
+          }
           This.ApplyCurrency(namearr[This.Type],x,y)
         }
       Notify("Loop Complete","",1)
