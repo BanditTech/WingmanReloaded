@@ -716,7 +716,7 @@
                 This.Prop.Chromatic := True
               }
             }
-            If (This.Prop.Sockets_Link == 5)
+            If (This.Prop.Sockets_Link == 5 && YesSpecial5Link)
             {
               This.Prop.SpecialType := "5Link"
             }
@@ -3299,7 +3299,7 @@
 
       Gui, Inventory: Tab, Options
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,       Section    w170 h295    xm   ym+25,         Inventory Sort/CLF Options
+        Gui, Inventory: Add, GroupBox,       Section    w170 h345    xm   ym+25,         Inventory Sort/CLF Options
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
@@ -3312,11 +3312,13 @@
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesBatchVendorBauble  Checked%YesBatchVendorBauble%  y+8    , Batch Vendor Quality Flasks?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesBatchVendorGCP     Checked%YesBatchVendorGCP%     y+8    , Batch Vendor Quality Gems?
+        Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesSpecial5Link       Checked%YesSpecial5Link%       y+8    , Give 5 link Special Type?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesOpenStackedDeck    Checked%YesOpenStackedDeck%    y+8    , Open Stacked Decks?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
+        
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
 
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
         Gui, Inventory: Font
 

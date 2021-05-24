@@ -574,6 +574,7 @@
       hotkeySecondaryAttack = Bind the Secondary Attack for this Character
       BrickedWhenCorrupted = Enable this if you only want to consider a map 'bricked'`rwhen it's corrupted and has an undesired mod, otherwise,`rmaps of any tier with undesired mods will be flagged as 'bricked'
       YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
+      YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweler's recipe items with 5 links.
       )
 
       ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
@@ -751,6 +752,7 @@
     Global YesBatchVendorBauble := 1
     Global YesBatchVendorGCP := 1
     Global YesOpenStackedDeck := True
+    Global YesSpecial5Link := True
 
 
     ; Chaos Recipe
@@ -4145,6 +4147,7 @@ Return
       || (Item.Prop.ItemLevel < 50 && This.Desired.Sockets >= 6 && !This.Desired.Auto)
       || (This.Desired.Sockets > 4 && !IndexOf(Item.Prop.SlotType,["Two Hand","Body"]) && !This.Desired.Auto)
       || (This.Desired.Sockets > 3 && IndexOf(Item.Prop.SlotType,["One Hand","Shield"]) && !This.Desired.Auto)
+      || ((This.Desired.R + This.Desired.G + This.Desired.B) > Item.Prop.Sockets_Num)
       {
         Notify("Validation Failed","",2)
         Return False
@@ -5438,6 +5441,7 @@ Return
       IniRead, YesBatchVendorBauble, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble, 1
       IniRead, YesBatchVendorGCP, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP, 1
       IniRead, YesOpenStackedDeck, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck, 0
+      IniRead, YesSpecial5Link, %A_ScriptDir%\save\Settings.ini, General, YesSpecial5Link, 1
       IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
       IniRead, HeistAlcNGo, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo, 1
 
@@ -6112,6 +6116,7 @@ Return
       IniWrite, %YesBatchVendorBauble%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble
       IniWrite, %YesBatchVendorGCP%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP
       IniWrite, %YesOpenStackedDeck%, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck
+      IniWrite, %YesSpecial5Link%, %A_ScriptDir%\save\Settings.ini, General, YesSpecial5Link
       IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
       IniWrite, %HeistAlcNGo%, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo
 
