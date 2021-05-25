@@ -1,5 +1,5 @@
 ﻿; Contains all the pre-setup for the script
-  Global VersionNumber := .13.0018
+  Global VersionNumber := .13.0019
   #IfWinActive Path of Exile 
   #NoEnv
   #MaxHotkeysPerInterval 99000000
@@ -8521,11 +8521,11 @@ Return
       IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
     Return
 
-    mainmenuGameLogicState(){
+    mainmenuGameLogicState(refresh:=False){
       Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1
       , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
       Local NewOHB
-      If (OnChar != OldOnChar)
+      If (OnChar != OldOnChar) || refresh
       {
         OldOnChar := OnChar
         If OnChar
@@ -8533,7 +8533,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnChar, "Red", "")
       }
-      If ((NewOHB := (CheckOHB()?1:0)) != OldOHB)
+      If ((NewOHB := (CheckOHB()?1:0)) != OldOHB) || refresh
       {
         OldOHB := NewOHB
         If NewOHB
@@ -8541,7 +8541,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnOHB, "Red", "")
       }
-      If (OnInventory != OldOnInventory)
+      If (OnInventory != OldOnInventory) || refresh
       {
         OldOnInventory := OnInventory
         If (OnInventory)
@@ -8549,7 +8549,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnInventory, "", "Green")
       }
-      If (OnChat != OldOnChat)
+      If (OnChat != OldOnChat) || refresh
       {
         OldOnChat := OnChat
         If OnChat
@@ -8557,7 +8557,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnChat, "", "Green")
       }
-      If (OnStash != OldOnStash)
+      If (OnStash != OldOnStash) || refresh
       {
         OldOnStash := OnStash
         If (OnStash)
@@ -8565,7 +8565,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnStash, "", "Green")
       }
-      If (OnDiv != OldOnDiv)
+      If (OnDiv != OldOnDiv) || refresh
       {
         OldOnDiv := OnDiv
         If (OnDiv)
@@ -8573,7 +8573,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnDiv, "", "Green")
       }
-      If (OnLeft != OldOnLeft)
+      If (OnLeft != OldOnLeft) || refresh
       {
         OldOnLeft := OnLeft
         If (OnLeft)
@@ -8581,7 +8581,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnLeft, "", "Green")
       }
-      If (OnDelveChart != OldOnDelveChart)
+      If (OnDelveChart != OldOnDelveChart) || refresh
       {
         OldOnDelveChart := OnDelveChart
         If (OnDelveChart)
@@ -8589,7 +8589,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
       }
-      If (OnVendor != OldOnVendor)
+      If (OnVendor != OldOnVendor) || refresh
       {
         OldOnVendor := OnVendor
         If (OnVendor)
@@ -8597,7 +8597,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnVendor, "", "Green")
       }
-      If (OnDetonate != OldOnDetonate)
+      If (OnDetonate != OldOnDetonate) || refresh
       {
         OldOnDetonate := OnDetonate
         If (OnDetonate)
@@ -8605,7 +8605,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
       }
-      If (OnMenu != OldOnMenu)
+      If (OnMenu != OldOnMenu) || refresh
       {
         OldOnMenu := OnMenu
         If (OnMenu)
@@ -8613,7 +8613,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnMenu, "", "Green")
       }
-      If (OnMetamorph != OldOnMetamorph)
+      If (OnMetamorph != OldOnMetamorph) || refresh
       {
         OldOnMetamorph := OnMetamorph
         If (OnMetamorph)
@@ -8621,7 +8621,7 @@ Return
         Else
           CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
       }
-      If (OnLocker != OldOnLocker)
+      If (OnLocker != OldOnLocker) || refresh
       {
         OldOnLocker := OnLocker
         If (OnLocker)

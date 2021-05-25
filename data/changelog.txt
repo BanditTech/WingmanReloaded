@@ -1,4 +1,35 @@
-﻿## Version .13.0018 - Alpha version - May/08/2020
+﻿## Version .13.0019 - Alpha version - May/25/2020
+New Features
+* Auto Open Stacked Deck
+* Basic Crafting menu is now functional
+  * Chance, Color, Socket, and Link your items!
+  * For best results 
+    * Place mouse over item
+    * Hold the Hotkey
+    * drag the mouse over the desired crafting method
+    * release the Hotkey
+
+Bugfixes
+* PR - Bypass affinity for currency that does not support it.
+* Fix options for GCP & Bauble recipe
+* Fix for Influence UNID option
+* Uber offering goes to frag tab now
+* Parser works with tierless affixes now
+* 5link optionally vendorable now
+
+New options for Chaos Recipe
+* 2x Belts are seperate from other jewelry
+* Option to Only stash UNID items in ilvl range
+* Seperate count for UNID and ID
+* Only stash Small Weapons
+
+Added TopTier
+* TopTierCritChance
+* TopTierCritMulti
+
+---
+
+## Version .13.0018 - Alpha version - May/08/2020
 New Group based CLF matching now available
 * ```{ "ElementList": [], "GroupType": "Count", "TypeValue": 3, "Weight": 1 }```
 * Find more examples on Discord Custom-Loot-Filter channel
