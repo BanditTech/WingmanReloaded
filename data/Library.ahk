@@ -1304,9 +1304,9 @@
           Return True
         Else If ((This.Prop.ItemLevel < 81 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Vigorous"))
           Return True
-        Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Rapturous"))
+        Else If (This.Prop.ItemLevel <= 100 && (This.HasAffix("Rapturous") || This.HasAffix("Prime") || This.HasAffix("Guatelitzi's")))
           Return True
-        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && This.HasAffix("Prime"))
+        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && )
           Return True
         Else
           Return False
