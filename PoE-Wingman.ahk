@@ -757,6 +757,7 @@
 
     ; Chaos Recipe
     Global ChaosRecipeEnableFunction := False
+    Global ChaosRecipeUnloadAll := True
     Global ChaosRecipeEnableUnId := True
     Global ChaosRecipeSmallWeapons := True
     Global ChaosRecipeSeperateCount := True
@@ -2602,23 +2603,19 @@ Return
       ContinueFlag := False
       If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
         RecipeComplete := True
+      If !RecipeComplete
+        Return False
       If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
       {
         RandomSleep(60,90)
-        If RecipeComplete
-          LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
-        Else
-          SendHotkey(hotkeyCloseAllUI), Notify("Recipe Set INCOMPLETE","",2)
+        LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
         RandomSleep(60,90)
         ContinueFlag := True
       }
       Else If (FirstAutomationSetting=="Search Vendor")
       {
         CheckTime("Seconds",120,"VendorUI",A_Now)
-        If RecipeComplete
-          MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y
-        Else
-          SendHotkey(hotkeyCloseAllUI)
+        MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y
 
         While (!CheckTime("Seconds",120,"VendorUI"))
         {
@@ -2668,7 +2665,7 @@ Return
         ; StashRoutine()
       }
     }
-    Return
+    Return True
   }
   ; LockerRoutine - Deposit Contracts and Blueprints at the Heist Locker
   LockerRoutine(){
@@ -2750,7 +2747,7 @@ Return
     {
       ; Move to Tab
       MoveStash(v.Prop.StashTab)
-      Sleep, 15
+      Sleep, 30
       ; Ctrl+Click to inventory
       CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
       , InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
@@ -2758,7 +2755,7 @@ Return
     }
 
     ; Remove set from Object array
-    Object.RemoveAt(1)
+    Backup := Object.RemoveAt(1)
 
     ; Close Stash panel
     SendHotkey(hotkeyCloseAllUI)
@@ -2768,17 +2765,58 @@ Return
     {
       Sleep, 45
       ; Vendor set
-      VendorRoutineChaos()
+      If !VendorRoutineChaos() {
+          SendHotkey(hotkeyCloseAllUI)
+          SendHotkey(hotkeyCloseAllUI)
+          Notify("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
+          sleep, 200
+          SearchStash()
+          sleep, 200
+          If OnStash {
+            For k, v in Backup
+            {
+              ; Move to Tab
+              MoveStash(v.Prop.StashTab)
+              Sleep, 45
+              ; Ctrl+Click to inventory
+              CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
+              , InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
+              Sleep, 45
+            }
+            ; Close Stash panel
+            SendHotkey(hotkeyCloseAllUI)
+            GuiStatus()
+            ; Search for Vendor
+            If SearchVendor()
+            {
+              Sleep, 45
+              ; Vendor set
+              If !VendorRoutineChaos() {
+                Notify("Recipe Set INCOMPLETE","Second Time failing",2)
+                MouseMove, xx, yy, 0
+                CheckRunning("Off")
+                Return False
+              }
+            }
+          } Else {
+            Notify("Could Not reopen stash automatically","",2)
+            MouseMove, xx, yy, 0
+            CheckRunning("Off")
+            Return False
+          }
+      }
     }
     If !Object.Count()
       PrintChaosRecipe("Finished Selling Rare Sets")
-    Else
+    Else {
       PrintChaosRecipe("There are " Object.Count() " sets of rare items left to vendor.`n", 3)
+      If ChaosRecipeUnloadAll
+        SetTimer VendorChaosRecipe, -500
+    }
     ; Reset in preparation for the next press of this hotkey.
     Sleep, 90*Latency
-    MouseMove, xx, yy, 0
     CheckRunning("Off")
-    Return
+    Return True
   }
   ResetMainTimer(toggle:="On"){
     If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.func.Toggle.Utility || WR.func.Toggle.Move || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
@@ -5603,6 +5641,7 @@ Return
       
       ; Chaos Recipe Settings
       IniRead, ChaosRecipeEnableFunction, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableFunction, 0
+      IniRead, ChaosRecipeUnloadAll, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeUnloadAll, 0
       IniRead, ChaosRecipeSkipJC, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSkipJC, 1
       IniRead, ChaosRecipeEnableUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableUnId, 1
       IniRead, ChaosRecipeSmallWeapons, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSmallWeapons, 1
