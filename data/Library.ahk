@@ -1017,6 +1017,8 @@
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Bameth"))
           Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tacati") && This.Affix["#% to Chaos Resistance"] >= 31)
+          Return True
         Else
           Return False
       }
@@ -1036,6 +1038,8 @@
         Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Lightning"))
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Ephij"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Lightning Resistance"])
           Return True
         Else
           Return False
@@ -1057,6 +1061,8 @@
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tzteosh"))
           Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Fire Resistance"])
+          Return True
         Else
           Return False
       }
@@ -1076,6 +1082,8 @@
         Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Ice"))
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Haast"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Cold Resistance"])
           Return True
         Else
           Return False
@@ -1304,7 +1312,7 @@
           Return True
         Else If ((This.Prop.ItemLevel < 81 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Vigorous"))
           Return True
-        Else If (This.Prop.ItemLevel <= 100 && (This.HasAffix("Rapturous") || This.HasAffix("Prime") || This.HasAffix("Guatelitzi's")))
+        Else If (This.Prop.ItemLevel <= 100 && (This.HasAffix("Rapturous") || This.HasAffix("Prime") || (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])))
           Return True
         Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && )
           Return True
@@ -1387,11 +1395,11 @@
               CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
             }
             If (v = "Ring")
-              CountValue := CountValue // 2
-            If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet"])
-              CountValue := CountValue // 2
-            If ChaosRecipeAllowDoubleBelt && IndexOf(v,["Belt"])
-              CountValue := CountValue // 2
+              CountValue := CountValue / 2
+            If (ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet"]))
+              CountValue := CountValue / 2
+            If (ChaosRecipeAllowDoubleBelt && IndexOf(v,["Belt"]))
+              CountValue := CountValue / 2
 
             If (CountValue < ChaosRecipeMaxHolding)
             {
@@ -1423,12 +1431,12 @@
             If ChaosRecipeSeperateCount {
               If This.Affix.Unidentified{
                 WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) 
-                            + (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) 
-                              + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"])) // 2
+                WeaponCount += (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"])) / 2
+                WeaponCount += (retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"])) / 2
               }Else{
                 WeaponCount := retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"]) 
-                            + (retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
-                              + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) // 2
+                WeaponCount += (retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"])) / 2 
+                WeaponCount += (retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
               }
 
             } Else {
@@ -3008,6 +3016,8 @@
         Return True
       }
       MatchCraftingBases(){
+        If (This.Prop.Rarity_Digit == 4)
+          Return False
         If(HasVal(craftingBasesT1,This.Prop.ItemBase))
         {
           This.Prop.CraftingBase := "Atlas Base"

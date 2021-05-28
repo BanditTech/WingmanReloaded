@@ -119,7 +119,7 @@
     , "profilesYesFlask":"0", "profilesFlask":"", "profilesYesUtility":"0", "profilesUtility":""}
   for k, v in ["1","2","3","4","5"]
   {
-    WR.Flask[v] := {"Key":v, "GroupCD":"5000", "Condition":"1", "CD":"5000"
+    WR.Flask[v] := {"Key":v, "GroupCD":"150", "Condition":"1", "CD":"4000"
     , "Group":"f"A_Index, "Slot":A_Index, "Type":"Flask"
     , "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
     , "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0", "ResetCooldownAtHealthPercentage":"0", "ResetCooldownAtHealthPercentageInput":"0", "ResetCooldownAtEnergyShieldPercentage":"0", "ResetCooldownAtEnergyShieldPercentageInput":"0", "ResetCooldownAtManaPercentage":"0", "ResetCooldownAtManaPercentageInput":"0"}
@@ -2766,9 +2766,11 @@ Return
       Sleep, 45
       ; Vendor set
       If !VendorRoutineChaos() {
-          SendHotkey(hotkeyCloseAllUI)
-          SendHotkey(hotkeyCloseAllUI)
           Notify("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
+          sleep, 150
+          SendHotkey(hotkeyCloseAllUI)
+          sleep, 150
+          SendHotkey(hotkeyCloseAllUI)
           sleep, 200
           SearchStash()
           sleep, 200
