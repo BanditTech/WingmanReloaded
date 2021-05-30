@@ -8430,6 +8430,7 @@
       Gui, 1: Show, Autosize Center,   WingmanReloaded
     }
     mainmenuGameLogicState(True)
+    GuiUpdate()
     CheckGamestates := True
     processWarningFound:=0
     return
