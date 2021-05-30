@@ -4696,6 +4696,7 @@
       Gui, Submit
       Gui, 1: show
       CheckGamestates:= True
+      mainmenuGameLogicState(True)
     return
     
     GlobeGuiClose:
@@ -4704,6 +4705,7 @@
       Gui, Submit
       Gui, 1: show
       CheckGamestates:= True
+      mainmenuGameLogicState(True)
     return
   }
   ; Make a MsgBox Printout of an array
@@ -8427,6 +8429,7 @@
     {
       Gui, 1: Show, Autosize Center,   WingmanReloaded
     }
+    mainmenuGameLogicState(True)
     CheckGamestates := True
     processWarningFound:=0
     return
