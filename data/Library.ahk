@@ -8475,6 +8475,162 @@
       }
     }
   }
+  mainmenuGameLogicState(refresh:=False){
+    Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1
+    , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
+    Local NewOHB
+    If (OnChar != OldOnChar) || refresh
+    {
+      OldOnChar := OnChar
+      If OnChar
+        CtlColors.Change(MainMenuIDOnChar, "52D165", "")
+      Else
+        CtlColors.Change(MainMenuIDOnChar, "Red", "")
+    }
+    If ((NewOHB := (CheckOHB()?1:0)) != OldOHB) || refresh
+    {
+      OldOHB := NewOHB
+      If NewOHB
+        CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
+      Else
+        CtlColors.Change(MainMenuIDOnOHB, "Red", "")
+    }
+    If (OnInventory != OldOnInventory) || refresh
+    {
+      OldOnInventory := OnInventory
+      If (OnInventory)
+        CtlColors.Change(MainMenuIDOnInventory, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnInventory, "", "Green")
+    }
+    If (OnChat != OldOnChat) || refresh
+    {
+      OldOnChat := OnChat
+      If OnChat
+        CtlColors.Change(MainMenuIDOnChat, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnChat, "", "Green")
+    }
+    If (OnStash != OldOnStash) || refresh
+    {
+      OldOnStash := OnStash
+      If (OnStash)
+        CtlColors.Change(MainMenuIDOnStash, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnStash, "", "Green")
+    }
+    If (OnDiv != OldOnDiv) || refresh
+    {
+      OldOnDiv := OnDiv
+      If (OnDiv)
+        CtlColors.Change(MainMenuIDOnDiv, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDiv, "", "Green")
+    }
+    If (OnLeft != OldOnLeft) || refresh
+    {
+      OldOnLeft := OnLeft
+      If (OnLeft)
+        CtlColors.Change(MainMenuIDOnLeft, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnLeft, "", "Green")
+    }
+    If (OnDelveChart != OldOnDelveChart) || refresh
+    {
+      OldOnDelveChart := OnDelveChart
+      If (OnDelveChart)
+        CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
+    }
+    If (OnVendor != OldOnVendor) || refresh
+    {
+      OldOnVendor := OnVendor
+      If (OnVendor)
+        CtlColors.Change(MainMenuIDOnVendor, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnVendor, "", "Green")
+    }
+    If (OnDetonate != OldOnDetonate) || refresh
+    {
+      OldOnDetonate := OnDetonate
+      If (OnDetonate)
+        CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
+    }
+    If (OnMenu != OldOnMenu) || refresh
+    {
+      OldOnMenu := OnMenu
+      If (OnMenu)
+        CtlColors.Change(MainMenuIDOnMenu, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnMenu, "", "Green")
+    }
+    If (OnMetamorph != OldOnMetamorph) || refresh
+    {
+      OldOnMetamorph := OnMetamorph
+      If (OnMetamorph)
+        CtlColors.Change(MainMenuIDOnMetamorph, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
+    }
+    If (OnLocker != OldOnLocker) || refresh
+    {
+      OldOnLocker := OnLocker
+      If (OnLocker)
+        CtlColors.Change(MainMenuIDOnLocker, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnLocker, "", "Green")
+    }
+    Return
+
+    CheckPixelGrid:
+      ;Check if inventory is open
+      Gui, States: Hide
+      if(!OnInventory){
+        TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+      }else{
+        TT := "Grid information:" . "`n"
+        ScreenShot()
+        For C, GridX in InventoryGridX  
+        {
+          For R, GridY in InventoryGridY
+          {
+            PointColor := ScreenShot_GetColor(GridX,GridY)
+            if (indexOf(PointColor, varEmptyInvSlotColor)) {        
+              TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+            }else{
+              TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+            }
+          }
+        }
+      }
+      MsgBox %TT%  
+      Gui, States: Show
+    Return
+  }
+  ; GuiUpdate - Update Overlay ON OFF states
+  GuiUpdate(){
+    GuiControl, 2:, overlayT1,% "Quit: " (WR.func.Toggle.Quit?"ON":"OFF")
+    GuiControl, 2:, overlayT2,% "Flask: " (WR.func.Toggle.Flask?"ON":"OFF")
+    GuiControl, 2:, overlayT3,% "Move: " (WR.func.Toggle.Move?"ON":"OFF")
+    GuiControl, 2:, overlayT4,% "Util: " (WR.func.Toggle.Utility?"ON":"OFF")
+    ShowHideOverlay()
+    CtlColors.Change(MainMenuIDAutoFlask, (WR.func.Toggle.Flask?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoQuit, (WR.func.Toggle.Quit?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoMove, (WR.func.Toggle.Move?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoUtility, (WR.func.Toggle.Utility?"52D165":"E0E0E0"), "")
+    Return
+  }
+  ShowHideOverlay(){
+    Global overlayT1, overlayT2, overlayT3, overlayT4
+    GuiControl,2: Show%YesInGameOverlay%, overlayT1
+    GuiControl,2: Show%YesInGameOverlay%, overlayT2
+    GuiControl,2: Show%YesInGameOverlay%, overlayT3
+    GuiControl,2: Show%YesInGameOverlay%, overlayT4
+    Return
+  }
 
   ; UpdateLeagues - Grab the League info from GGG API
   UpdateLeagues:
