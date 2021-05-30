@@ -4640,9 +4640,9 @@ Return
       If (OnTown || OnHideout || OnMines)
         Return
       Critical
-      Keywait, Alt
       BlockInput On
       BlockInput MouseMove
+      Send {Alt Up} {Shift Up} {Ctrl Up}
       If (GetKeyState("LButton","P"))
         Click, up
       If (GetKeyState("RButton","P"))
