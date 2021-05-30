@@ -4342,7 +4342,7 @@ Return
               {
                 If ((Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
                 || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) 
-                || (Item.Prop.RarityRare && Item.Prop.Quality >= 20 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
+                || (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
                 {
                   MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
                   Continue

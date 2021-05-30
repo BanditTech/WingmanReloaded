@@ -137,7 +137,6 @@
               This.Data.Blocks.Enchant := SVal
             Else If (SVal ~= "Open Rooms:"){
               temp := StrSplit(SVal,"Obstructed Rooms:")
-              StrSplit(String, [Delimiters, OmitChars])
               This.Data.Blocks.TempleRooms := StrSplit(temp.1,"Open Rooms:").2
               This.Data.Blocks.ObstructedRooms := RegExReplace(temp.2, "$", " (Obstructed)")
             }
@@ -7809,9 +7808,11 @@
                         , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"       , "다리 야영지에" ]
                         , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath", "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"     , "오리아스 부두에" ]
                         , "Oriath" :                [ "Oriath"                                                                   , "Ориат"                                                                         , "奧瑞亞"         , "오리아스에" ]
+                        , "Karui Shores" :          [ "Karui Shores" ]
                         , "The Rogue Harbour" :     [ "The Rogue Harbour","ท่าเรือโจร","Le Port des Malfaiteurs", "Der Hafen der Abtrünnigen", "Разбойничья гавань", "El Puerto de los renegados","O Porto dos Renegados","도둑 항구에"] }
     Static LangString :=  { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"   , "German" : " : Ihr habt '"
                 , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
+    Static MineStrings := ["Azurite Mine"]
     If (cStr="Town")
       Return indexOfArr(CurrentLocation,ClientTowns)
     If (Lang = "")
@@ -7846,7 +7847,7 @@
         Else
           OnHideout := False
         ; Now we check if we match mines
-        If (CurrentLocation = "Azurite Mine")
+        If indexOf(CurrentLocation,MineStrings)
           OnMines := True
         Else
           OnMines := False
