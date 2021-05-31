@@ -4627,16 +4627,15 @@ Return
       If (OnTown || OnHideout || OnMines)
         Return
       Critical
-      BlockInput On
+      ; BlockInput On
       BlockInput MouseMove
-      Send {Alt Up} {Shift Up} {Ctrl Up}
       If (GetKeyState("LButton","P"))
         Click, up
       If (GetKeyState("RButton","P"))
         Click, Right, up
       MouseGetPos xx, yy
       RandomSleep(53,87)
-      
+
       If !(OnInventory)
       {
         SendHotkey(hotkeyInventory)
@@ -4652,7 +4651,7 @@ Return
       }
       Else
         MouseMove, xx, yy, 0
-      BlockInput Off
+      ; BlockInput Off
       BlockInput MouseMoveOff
       RandomSleep(300,600)
       Thread, NoTimers, False    ;End Critical
