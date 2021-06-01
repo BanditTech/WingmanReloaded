@@ -10,6 +10,7 @@
   ; PoE Click v1.0.1 : Developed by Bandit
     ; SwiftClick - Left Click at Coord with no wait between up and down
     SwiftClick(x, y){
+      Log("SwiftClick: " x ", " y)
       MouseMove, x, y  
       Sleep, 30+(ClickLatency*15)
       Send {Click}
@@ -18,6 +19,7 @@
     }
     ; LeftClick - Left Click at Coord
     LeftClick(x, y){
+      Log("LeftClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 60+(ClickLatency*15)
@@ -28,6 +30,7 @@
     }
     ; RightClick - Right Click at Coord
     RightClick(x, y){
+      Log("RightClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 60+(ClickLatency*15)
@@ -38,6 +41,7 @@
     }
     ; ShiftClick - Shift Click +Click at Coord
     ShiftClick(x, y){
+      Log("ShiftClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 60+(ClickLatency*15)
@@ -54,6 +58,7 @@
     }
     ; CtrlClick - Ctrl Click ^Click at Coord
     CtrlClick(x, y){
+      Log("CtrlClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 30+(ClickLatency*15)
@@ -70,6 +75,7 @@
     }
     ; CtrlShiftClick - Ctrl + Shift Click +^Click at Coord
     CtrlShiftClick(x, y){
+      Log("CtrlShiftClick: " x ", " y)
       BlockInput, MouseMove
       MouseMove, x, y
       Sleep, 30+(ClickLatency*15)
@@ -88,10 +94,13 @@
     RandClick(x, y){
       Random, Rx, x+10, x+30
       Random, Ry, y-30, y-10
+      If DebugMessages
+        Log("Randomize: " x ", " y " position to " Rx ", " Ry )
       return {"X": Rx, "Y": Ry}
     }
     ; WisdomScroll - Identify Item at Coord
     WisdomScroll(x, y){
+      Log("WisdomScroll: " x ", " y)
       BlockInput, MouseMove
       RightClick(WisdomScrollX,WisdomScrollY)
       Sleep, 30+Abs(ClickLatency*15)
@@ -124,6 +133,13 @@
               This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
             Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix")
               This.Data.Blocks.Affix := SVal
+            Else If (SVal ~= " \(enchant\)$")
+              This.Data.Blocks.Enchant := SVal
+            Else If (SVal ~= "Open Rooms:"){
+              temp := StrSplit(SVal,"Obstructed Rooms:")
+              This.Data.Blocks.TempleRooms := StrSplit(temp.1,"Open Rooms:").2
+              This.Data.Blocks.ObstructedRooms := RegExReplace(temp.2, "$", " (Obstructed)")
+            }
             Else
               This.Data.Blocks.Properties .= SVal "`r`n"
           }
@@ -145,7 +161,7 @@
               This.Prop.IsAbyss := True
             Else If (SVal ~= "^Unidentified$")
               This.Data.Blocks.Affix := SVal
-            Else If (This.Data.Blocks.HasKey("Affix") || SVal ~= """.*""")
+            Else If (This.Data.Blocks.HasKey("Affix") || SVal ~= """.*""$")
               This.Data.Blocks.FlavorText := SVal
             Else
               This.Data.Blocks.Affix := SVal
@@ -159,6 +175,8 @@
         This.MatchAffixes(This.Data.Blocks.Enchant)
         This.MatchAffixes(This.Data.Blocks.Implicit)
         This.MatchAffixes(This.Data.Blocks.Influence)
+        This.MatchAffixes(This.Data.Blocks.TempleRooms)
+        This.MatchAffixes(This.Data.Blocks.ObstructedRooms)
         This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
         This.MatchProperties()
         If (This.Prop.Rarity_Digit == 4 && !This.Affix["Unidentified"])
@@ -169,10 +187,10 @@
         This.MatchBase2Slot()
         This.MatchChaosRegal()
         This.Prop.StashChaosItem := This.StashChaosRecipe(False)
-        If (((StashTabYesPredictive && YesPredictivePrice != "Off") || (OnRitual && YesRitualPrice != "Off")) && This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified){
+        If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off")  ){
           This.Prop.PredictPrice := This.PredictPrice()
         }
-        This.Prop.StashReturnVal := This.MatchStashManagement()
+        This.Prop.StashReturnVal := This.MatchStashManagement(false)
         ; This.FuckingSugoiFreeMate()
       }
       ; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
@@ -183,7 +201,7 @@
         FoundMatch := False
         If (This.Prop.Rarity_Digit != 3 || This.Affix.Unidentified)
           Return 0
-        If (This.Prop.Rarity_Digit = 3 && (!This.Prop.SpecialType || This.Prop.SpecialType = "6Link" || This.Prop.SpecialType = "5Link") && (YesPredictivePrice != "Off" || (OnRitual && YesRitualPrice != "Off")))
+        If (This.Prop.Rarity_Digit = 3 && (!This.Prop.SpecialType || This.Prop.SpecialType = "6Link" || This.Prop.SpecialType = "5Link") && YesPredictivePrice != "Off" )
         {
           For k, obj in ItemList
           {
@@ -207,13 +225,7 @@
               return
             }
             PriceObj.Clip_Contents := Clip_Contents
-            If (OnRitual && YesRitualPrice = "Low")
-              Price := SelectedPrice := PriceObj.min
-            Else If (OnRitual && YesRitualPrice = "Avg")
-              Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
-            Else If (OnRitual && YesRitualPrice = "High")
-              Price := SelectedPrice := PriceObj.max
-            Else If (YesPredictivePrice = "Low")
+            If (YesPredictivePrice = "Low")
               Price := SelectedPrice := PriceObj.min
             Else If (YesPredictivePrice = "Avg")
               Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
@@ -258,14 +270,22 @@
           If (v ~= "^Curse Enemies with .+ on Hit$")
             This.Prop.IsCurseOnHit := True
           If (v ~= "\{ Prefix Modifier"){
-            RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
-            This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-            This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm ) {
+              This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            } Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" . (.*) \}", rxm ) {
+              This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            }
             This.Prop.PrefixCount++, This.Prop.AffixCount++
           } Else If (v ~= "\{ Suffix Modifier") {
-            RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d)\) ?.? ?(.*) \}", rxm )
-            This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-            This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm ) {
+              This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            } Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" . (.*) \}", rxm ) {
+              This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
+              This.Affix[rxm1] := This.Modifier[rxm1] := 1
+            }
             This.Prop.SuffixCount++, This.Prop.AffixCount++
           }
         }
@@ -335,6 +355,8 @@
             This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
           If (This.Prop.ItemBase ~= "^Superior ")
             This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Superior ", "")
+          If (This.Prop.ItemBase ~= "^Synthesised ")
+            This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Synthesised ", "")
           If (This.Prop.RarityMagic){
             If (This.Prop.ItemBase ~= " of .+")
                 This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
@@ -619,10 +641,13 @@
         {
           ; Match for influence type
           If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
-          {
             This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
+        }
+        If This.Prop.Influence {
+          If (This.Prop.Influence ~= "Fractured" || This.Prop.Influence ~= "Synthesised")
+            This.Prop.IsSynthesisItem := True
+          Else 
             This.Prop.IsInfluenceItem := True
-          }
         }
         ; Get Prophecy/Beasts using Flavour Txt
         If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this prophecy to your character",RxMatch))
@@ -670,6 +695,14 @@
             This.Prop.Sockets_Raw := RxMatch1
             This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
             This.Prop.Sockets_Link := 0
+            RegExReplace(RxMatch1, "R",, n)
+            This.Prop.Sockets_R := n
+            RegExReplace(RxMatch1, "G",, n)
+            This.Prop.Sockets_G := n
+            RegExReplace(RxMatch1, "B",, n)
+            This.Prop.Sockets_B := n
+            RegExReplace(RxMatch1, "W",, n)
+            This.Prop.Sockets_W := n
             For k, v in StrSplit(RxMatch1, " ")
             {
               nlink := StrLen(RegExReplace(v, "\w" , "")) + 1
@@ -682,7 +715,7 @@
                 This.Prop.Chromatic := True
               }
             }
-            If (This.Prop.Sockets_Link == 5)
+            If (This.Prop.Sockets_Link == 5 && YesSpecial5Link)
             {
               This.Prop.SpecialType := "5Link"
             }
@@ -825,7 +858,38 @@
           }
         }
         ;End Prop Block Parser for Maps
-
+        
+        ; Start Prop Block Parser for Heist
+        If indexOf(This.Prop.ItemClass, ["Contract","Blueprint"]) {
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Heist Target: (.*)",RxMatch))
+            This.Prop.Heist_Target := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Client: (.*)",RxMatch))
+            This.Prop.Heist_Client := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Area Level: " rxNum,RxMatch))
+            This.Prop.Heist_AreaLevel := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+" rxNum,RxMatch))
+            This.Prop.Heist_ItemQuantity := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+" rxNum,RxMatch))
+            This.Prop.Heist_ItemRarity := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Alert Level Reduction: \+" rxNum,RxMatch))
+            This.Prop.Heist_AlertLevelReduction := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Time Before Lockdown: \+" rxNum,RxMatch))
+            This.Prop.Heist_TimeBeforeLockdown := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Maximum Alive Reinforcements: \+" rxNum,RxMatch))
+            This.Prop.Heist_MaximumAliveReinforcements := RxMatch1
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Wings Revealed: " rxNum "/" rxNum,RxMatch))
+            This.Prop.Heist_WingsRevealed := RxMatch1, This.Prop.Heist_WingsRevealedMax := RxMatch2
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Escape Routes Revealed: " rxNum "/" rxNum,RxMatch))
+            This.Prop.Heist_EscapeRoutesRevealed := RxMatch1, This.Prop.Heist_EscapeRoutesRevealedMax := RxMatch2
+          If (RegExMatch(This.Data.Blocks.Properties, "`am)^Reward Rooms Revealed: " rxNum "/" rxNum,RxMatch))
+            This.Prop.Heist_RewardRoomsRevealed := RxMatch1, This.Prop.Heist_RewardRoomsRevealedMax := RxMatch2
+          For k, job in ["Brute Force","Agility","Perception","Demolition","Counter-Thaumaturgy","Trap Disarmament","Deception","Engineering","Lockpicking"] {
+            If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "\)",RxMatch)) {
+              This.Prop["Heist_Requires" job ] := RxMatch1
+            }
+          }
+        }
+        ; End Prop Block Parser for Heist
         ;Start Prop Block Parser for Vaal Gems
         If (This.Prop.RarityGem && This.Prop.Corrupted)
         {
@@ -881,8 +945,24 @@
           This.Prop.TopTierFireResist := 1
         If This.TopTierColdResist()
           This.Prop.TopTierColdResist := 1
-        If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist)
-          This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0)
+        If This.TopTierAllResist()
+          This.Prop.TopTierAllResist := 1
+        If This.TopTierRarityPre()
+          This.Prop.TopTierRarityPre := 1
+        If This.TopTierRaritySuf()
+          This.Prop.TopTierRaritySuf := 1
+        If This.TopTierAttackSpeed()
+          This.Prop.TopTierAttackSpeed := 1
+        If This.TopTierCastSpeed()
+          This.Prop.TopTierCastSpeed := 1
+        If This.TopTierCritChance()
+          This.Prop.TopTierCritChance := 1
+        If This.TopTierCritMulti()
+          This.Prop.TopTierCritMulti := 1
+        If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist || This.Prop.TopTierAllResist)
+          This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0) + (This.Prop.TopTierAllResist?1:0)
+        If (This.Prop.TopTierRarityPre || This.Prop.TopTierRaritySuf)
+          This.Prop.TopTierRarity := (This.Prop.TopTierRarityPre?1:0) + (This.Prop.TopTierRaritySuf?1:0)
       }
       BrickedMap() {
         If (This.HasBrickedAffix()) {
@@ -911,7 +991,10 @@
         || (This.Affix["Monsters' skills Chain # additional times"] && MSCAT)
         || (This.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
         || (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
-        || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)) 
+        || (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
+        || (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
+        || (This.Affix["Players have #% less Armour"] && PHLessArmour)
+        || (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect))
         {
           Return True
         } 
@@ -933,6 +1016,8 @@
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Bameth"))
           Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tacati") && This.Affix["#% to Chaos Resistance"] >= 31)
+          Return True
         Else
           Return False
       }
@@ -952,6 +1037,8 @@
         Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Lightning"))
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Ephij"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Lightning Resistance"])
           Return True
         Else
           Return False
@@ -973,6 +1060,8 @@
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tzteosh"))
           Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Fire Resistance"])
+          Return True
         Else
           Return False
       }
@@ -992,6 +1081,165 @@
         Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Ice"))
           Return True
         Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Haast"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Cold Resistance"])
+          Return True
+        Else
+          Return False
+      }
+      TopTierAllResist(){
+        If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Crystal"))
+          Return True
+        Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Prism"))
+          Return True
+        Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kaleidoscope"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Variegation"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 85 || indexOf(This.Prop.ItemClass,["Rings"])) 
+        && This.HasAffix("of the Rainbow"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of the Span"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierCastSpeed(){
+        If ((This.Prop.ItemLevel < 15 || indexOf(This.Prop.ItemClass,["Rings"]))
+        && This.HasAffix("of Talent"))
+          Return True
+        Else If (This.Prop.ItemLevel < 30 && This.HasAffix("of Nimbleness"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 40 || indexOf(This.Prop.ItemClass,["Amulets"])) 
+        && This.HasAffix("of Expertise"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 55 || indexOf(This.Prop.ItemClass,["Gloves"])) 
+        && This.HasAffix("of Legerdemain"))
+          Return True
+        Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of Prestidigitation"))
+          Return True
+        Else If (This.Prop.ItemLevel < 83 && This.HasAffix("of Sortilege"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Finesse"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierAttackSpeed(){
+        If ((This.Prop.ItemLevel < 11 || indexOf(This.Prop.ItemClass,["Rings"]))
+        && This.HasAffix("of Skill"))
+          Return True
+        Else If (This.Prop.ItemLevel < 22 && This.HasAffix("of Ease"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 30 || indexOf(This.Prop.ItemClass,["Shields"])) 
+        && This.HasAffix("of Mastery"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 37 || indexOf(This.Prop.ItemClass,["Gloves"])) 
+        && This.HasAffix("of Renown"))
+          Return True
+        Else If (This.Prop.ItemLevel < 45 && This.HasAffix("of Acclaim"))
+          Return True
+        Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Fame"))
+          Return True
+        Else If (This.Prop.ItemLevel < 77 && This.HasAffix("of Infamy"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Celebration"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierRaritySuf(){
+        If (This.Prop.ItemLevel < 30 && This.HasAffix("of Plunder"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 53 || indexOf(This.Prop.ItemClass,["Gloves","Boots"]) ) && This.HasAffix("of Raiding"))
+          Return True
+        Else If (This.Prop.ItemLevel < 75 && This.HasAffix("of Archaeology"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Excavation"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierRarityPre(){
+        If (This.Prop.ItemLevel < 39 && This.HasAffix("Magpie's"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 62 || indexOf(This.Prop.ItemClass,["Gloves","Boots"]) ) && This.HasAffix("Pirate's"))
+          Return True
+        Else If ((This.Prop.ItemLevel < 84 || indexOf(This.Prop.ItemClass,["Helmet"]) ) && This.HasAffix("Dragon's"))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Perandus's"))
+          Return True
+        Else
+          Return False
+      }
+      TopTierCritMulti(){
+        If (This.Prop.ItemLevel < 21
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 8 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 31
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 13 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 45
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 20 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 20 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 59
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 25 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 25 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 75
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 75 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 75
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 80 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 ))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 35 
+         || This.Affix["#% to Critical Strike Multiplier with Bows"] >= 35 ))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
+        && (This.Affix["#% to Global Critical Strike Multiplier"] >= 17 ))
+          Return True
+        Else
+          Return False
+      }
+      TopTierCritChance(){
+        If ((This.Prop.ItemLevel < 20 || This.Prop.ItemClass = "Rings")
+        && (This.Affix["#% increased Critical Strike Chance"] >= 10 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 10 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 10 ))
+          Return True
+        Else If ((This.Prop.ItemLevel < 30 || !(This.Prop.IsWeapon || This.Prop.ItemClass = "Amulets" || This.Prop.ItemClass = "Quivers"))
+        && (This.Affix["#% increased Critical Strike Chance"] >= 15 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 15 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 15 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 44 
+        && (This.Affix["#% increased Critical Strike Chance"] >= 20 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 20 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 20 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 58 
+        && (This.Affix["#% increased Global Critical Strike Chance"] >= 25 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 25 ))
+          Return True
+        Else If (This.Prop.ItemLevel < 59 
+        && (This.Affix["#% increased Critical Strike Chance"] >= 25 ))
+          Return True
+        Else If (This.Prop.ItemLevel <= 100 
+        && (This.Affix["#% increased Critical Strike Chance"] >= 30 
+         || This.Affix["#% increased Global Critical Strike Chance"] >= 30 
+         || This.Affix["#% increased Critical Strike Chance with Bows"] >= 30 ))
           Return True
         Else
           Return False
@@ -1063,9 +1311,9 @@
           Return True
         Else If ((This.Prop.ItemLevel < 81 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Vigorous"))
           Return True
-        Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Rapturous"))
+        Else If (This.Prop.ItemLevel <= 100 && (This.HasAffix("Rapturous") || This.HasAffix("Prime") || (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])))
           Return True
-        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && This.HasAffix("Prime"))
+        Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && )
           Return True
         Else
           Return False
@@ -1111,11 +1359,17 @@
             This.Prop.RegalRecipe := 1
         }
       }
-      StashChaosRecipe(deposit:=true){
+      StashChaosRecipe(deposit:=false){
         Global RecipeArray
         Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
         Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
-        If (This.Prop.Rarity_Digit != 3 || This.Prop.ItemLevel < 60 || (!This.Affix.Unidentified && ChaosRecipeEnableUnId))
+        If ( This.Prop.Rarity_Digit != 3 )
+        || ( This.Prop.ItemLevel < 60 )
+        || ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
+        || ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
+        || ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass = "Shields") 
+          && (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) )
+        || ( !This.Affix.Unidentified && ChaosRecipeEnableUnId && ChaosRecipeOnlyUnId && This.Prop.ItemLevel < ChaosRecipeLimitUnId)
           Return False
         If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
           Return False
@@ -1131,11 +1385,20 @@
         {
           If (This.Prop.SlotType = v)
           {
-            CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+            If ChaosRecipeSeperateCount {
+              If This.Affix.Unidentified
+                CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v])
+              Else
+                CountValue := retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+            } Else {
+              CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+            }
             If (v = "Ring")
-              CountValue := CountValue // 2
-            If ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet","Belt"])
-              CountValue := CountValue // 2
+              CountValue := CountValue / 2
+            If (ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet"]))
+              CountValue := CountValue / 2
+            If (ChaosRecipeAllowDoubleBelt && IndexOf(v,["Belt"]))
+              CountValue := CountValue / 2
 
             If (CountValue < ChaosRecipeMaxHolding)
             {
@@ -1164,9 +1427,22 @@
         {
           If (This.Prop.SlotType = v)
           {
-            WeaponCount := (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
-                         + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
-                         + retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
+            If ChaosRecipeSeperateCount {
+              If This.Affix.Unidentified{
+                WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) 
+                WeaponCount += (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"])) / 2
+                WeaponCount += (retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"])) / 2
+              }Else{
+                WeaponCount := retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"]) 
+                WeaponCount += (retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"])) / 2 
+                WeaponCount += (retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+              }
+
+            } Else {
+              WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
+                          + (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
+                            + retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+            }
 
             If (WeaponCount < ChaosRecipeMaxHolding)
             {
@@ -1212,20 +1488,25 @@
           if(DoubleModCounter == 2){
             If (vals := This.MatchLine(LastLine))
             {
-              If (vals.Count() == 1)
+
+              If (vals.Count() == 1 && This.CheckIfActualHybridMod(key))
               {
                 If This.Affix[key]
                 {
                   This.Affix[key] -= vals[1]
-                  This.AddDoubleModAffix(key,vals[1])
+                  This.AddHybridModAffix(key,vals[1])
                 }
                 Else{
-                  This.AddDoubleModAffix(key,vals[1])
+                  This.AddHybridModAffix(key,vals[1])
                 }
+              }Else
+              {
+                DoubleModCounter := 0
               }
             }
           }
           line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+          line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
           line :=  RegExReplace(line,  " . Unscalable Value" , "")
           key := This.Standardize(line)
           If (vals := This.MatchLine(line))
@@ -1247,7 +1528,7 @@
               }Else If(DoubleModCounter != 2){
                 This.Affix[key] := vals[1]
               }Else{
-                This.AddDoubleModAffix(key,vals[1])
+                This.AddHybridModAffix(key,vals[1])
               }
             }
           }
@@ -1256,19 +1537,28 @@
           LastLine := line
         }
       }
-
-      AddDoubleModAffix(Key,Value){
-        DoubleKey := "(Double) " . Key
-        If(!This.Affix[DoubleKey])
+      CheckIfActualHybridMod(value){
+        for k, v in HybridModsFirstLine
+        {
+            if (v == value)
+            {
+              return true
+            }
+        }
+        return false
+      }
+      AddHybridModAffix(Key,Value){
+        HybridKey := "(Hybrid) " . Key
+        If(!This.Affix[HybridKey])
         {
           aux := Value
           If  (aux != 0)
-            This.Affix[DoubleKey] := aux
+            This.Affix[HybridKey] := aux
         }Else
         {
-          aux := This.GetValue("Affix", DoubleKey) + Value
+          aux := This.GetValue("Affix", HybridKey) + Value
           If  (aux != 0)
-            This.Affix[DoubleKey] := aux
+            This.Affix[HybridKey] := aux
         }
         return
       }
@@ -1283,8 +1573,11 @@
           If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
             Continue
           line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+          line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
           line :=  RegExReplace(line,  " . Unscalable Value" , "")
           key := This.Standardize(line)
+          If (key ~= "^ \(.*\)$")
+            Continue
           If (vals := This.MatchLine(line))
           {
             If (vals.Count() >= 2)
@@ -1584,8 +1877,8 @@
         }
       }
       AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
-        DoubleKey := "(Double) " . StandardKey
-        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue("Affix", DoubleKey) + This.GetValue(StandardType, StandardKey)
+        HybridKey := "(Hybrid) " . StandardKey
+        aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue("Affix", HybridKey) + This.GetValue(StandardType, StandardKey)
         If  (aux != 0)
           This.Pseudo[PseudoKey] := aux
         return
@@ -1618,7 +1911,7 @@
         {
           For k, v in Bases
           {
-            If ((v["name"] = This.Prop.ItemBase) || ( This.Prop.Rarity_Digit = 2 && (This.Prop.ItemBase = v["name"] || RegExReplace(This.Prop.ItemBase,"^[\w']+ ","") = v["name"])) )
+            If (v["name"] = This.Prop.ItemBase)
             {
               This.Prop.Item_Width := v["inventory_width"]
               This.Prop.Item_Height := v["inventory_height"]
@@ -1697,7 +1990,7 @@
         }
         If (This.Prop.IsBeast)
         {
-          If This.MatchNinjaDB("Beast")
+          If This.MatchNinjaDB("Beast", "ItemBase")
             Return
         }
         If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.HasKey("Enchant"))
@@ -1786,8 +2079,6 @@
             This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
             If v["exaltedValue"]
               This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
-            If This.Prop.IsBeast
-              Prop.ItemBase := This.Prop.ItemName
             This.Data.Ninja := v
             Return True
           }
@@ -1803,6 +2094,7 @@
           || RegExMatch(key, "^Sockets")
           || RegExMatch(key, "^Quality")
           || RegExMatch(key, "^Map")
+          || RegExMatch(key, "^Heist_")
           || RegExMatch(key, "^Stack")
           || RegExMatch(key, "^Weapon"))
           {
@@ -2371,10 +2663,30 @@
         This.DisplayPSA()
         This.GraphNinjaPrices()
       }
-      MatchStashManagement(){
-        If (StashTabYesCurrency && This.Prop.RarityCurrency&&(This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
+      MatchStashManagement(passthrough:=False){
+        ; Create associative array so HasKey function can be used
+        UnsupportedAffinityCurrencies := { "Stacked Deck":0
+                                         , "Prime Regrading Lens":0
+                                         , "Secondary Regrading Lens":0
+                                         , "Veiled Chaos Orb":0
+                                         , "Vial of Transcendence":0
+                                         , "Vial of Sacrifice":0
+                                         , "Vial of the Ghost":0
+                                         , "Vial of Consequence":0
+                                         , "Vial of Summoning":0
+                                         , "Vial of Dominance":0
+                                         , "Vial of Awakening":0
+                                         , "Vial of the Ritual":0
+                                         , "Vial of Fate":0
+                                         , "Bestiary Orb":0
+                                         , "Blessing of Chayula":0
+                                         , "Blessing of Xoph":0
+                                         , "Blessing of Uul-Netol":0
+                                         , "Blessing of Tul":0
+                                         , "Blessing of Esh":0 }
+        If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
         {
-          If StashTabYesCurrency > 1
+          If (StashTabYesCurrency > 1 && !UnsupportedAffinityCurrencies.HasKey(This.Prop.ItemName))
             sendstash := -2
           Else
             sendstash := StashTabCurrency
@@ -2414,7 +2726,7 @@
           Else
             sendstash := StashTabDelirium
         }
-        Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
+        Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.UberDuberOffering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
         {
           If StashTabYesFragment > 1 
             sendstash := -2
@@ -2502,10 +2814,10 @@
             || (YesStashJewellery && This.Prop.CraftingBase = "Jewellery Base" && ((This.Prop.ItemLevel >= YesStashJewelleryCraftingIlvlMin && YesStashJewelleryCraftingIlvl) || !YesStashJewelleryCraftingIlvl)) )
           && (!This.Prop.Corrupted))
           sendstash := StashTabCrafting
-        Else If ((StashTabYesPredictive || OnRitual && YesRitual) && PPServerStatus && ((This.Prop.PredictPrice >= StashTabYesPredictive_Price) || (This.Prop.PredictPrice && OnRitual)) ){
+        Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
           sendstash := StashTabPredictive
         }
-        Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe())
+        Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough))
         {
           If (ChaosRecipeStashMethodDump)
             sendstash := StashTabDump
@@ -2513,7 +2825,7 @@
             sendstash := ChaosRecipeStashTab
           Else If (ChaosRecipeStashMethodSort)
           {
-            If This.Prop.SlotType = "Body"
+            If (This.Prop.SlotType = "Body")
               sendstash := ChaosRecipeStashTabArmour
             Else If (This.Prop.SlotType = "One Hand" || This.Prop.SlotType = "Two Hand" || This.Prop.SlotType = "Shield")
               sendstash := ChaosRecipeStashTabWeapon
@@ -2526,7 +2838,7 @@
         }
         Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
           || (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
-          sendstash := StashTabDump
+          sendstash := StashTabDump, This.Prop.DumpTabItem := True
         Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
           Return -1
         Else
@@ -2536,174 +2848,150 @@
       MatchLootFilter(GroupOut:=0){
         For GKey, Groups in LootFilter
         {
-          this.MatchedCLF := []
-          matched := False
-          nomatched := False
-          ormatched := 0
-          ormismatch := False
-          orcount := LootFilter[GKey]["Data"]["OrCount"]
-          For SKey, Selected in Groups
-          {
-            If ( SKey = "Data" )
-              Continue
-            For AKey, AVal in Selected
+          If (Groups.GroupType) {
+            If (val := This.MatchGroup(Groups)){
+              this.Prop.CLF_Tab := Groups["StashTab"]
+              this.Prop.CLF_Group := GKey
+              This.MatchedCLF := val
+              Return this.Prop.CLF_Tab
+            }
+          } Else {
+            this.MatchedCLF := []
+            matched := False
+            nomatched := False
+            ormatched := 0
+            ormismatch := False
+            orcount := Groups["Data"]["OrCount"]
+            For SKey, Selected in Groups
             {
-              arrval := Item[SKey][LootFilter[GKey][SKey][AKey]["#Key"]]
-              eval := LootFilter[GKey][SKey][AKey]["Eval"]
-              min := LootFilter[GKey][SKey][AKey]["Min"]
-              orflag := LootFilter[GKey][SKey][AKey]["OrFlag"]
+              If ( SKey = "Data" )
+                Continue
+              For AKey, AVal in Selected {
+                orflag := AVal["OrFlag"]
+                If (AVal.GroupType){
+                  If keylist := This.MatchGroup(AVal) {
+                    matched := True
+                    If orflag
+                      ormatched++
+                    For _, __ in keylist
+                      this.MatchedCLF.Push(__)
+                  } Else {
+                    if !orflag
+                      nomatched := True
+                    ormismatch := True
+                  }
+                } Else {
+                  arrval := Item[SKey][AVal["#Key"]]
+                  eval := AVal["Eval"]
+                  min := AVal["Min"]
+                  orflag := AVal["OrFlag"]
 
-              if eval = >
-              {
-                If (arrval > min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              Else if eval = >=
-              {
-                If (arrval >= min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = =
-              {
-                If (arrval = min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = <
-              {
-                If (arrval < min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = <=
-              {
-                If (arrval <= min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = !=
-              {
-                If (arrval != min)
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else 
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
-                }
-              }
-              else if eval = ~
-              {
-                minarr := StrSplit(min, "|"," ")
-                matchedOR := False
-                for k, v in minarr ; for each element of the minimum
-                                  ; We split the line into sections
-                {
-                  if InStr(v, "&") ; Check for any & sections
-                  {
-                    mismatched := false
-                    for kk, vv in StrSplit(v, "&"," ")
-                    {              ; Split the array again
-                      If !InStr(arrval, vv) ; Check all sections for mismatch
-                        mismatched := true
-                    }
-                    if !mismatched
-                    {              ; if no mismatch that means all sections found in the string
-                      matchedOR := true ; This means we have fully matched an OR+AND section
-                      Break
-                    }
+                  If This.Evaluate(eval,arrval,min){
+                    matched := True
+                    If orflag
+                      ormatched++
+                    This.MatchedCLF.Push(AVal["#Key"])
+                  } Else {
+                    if !orflag
+                      nomatched := True
+                    ormismatch := True
                   }
-                  Else if InStr(arrval, v)
-                  {                ; If there was no & symbol this is an OR section
-                    matchedOR := True
-                    break
-                  }
-                }
-                if matchedOR       ; If any of the sections produced a match it will flag true
-                {
-                  matched := True
-                  If orflag
-                    ormatched++
-                  this.MatchedCLF.Push(LootFilter[GKey][SKey][AKey]["#Key"])
-                }
-                Else
-                {
-                  if !orflag
-                    nomatched := True
-                  ormismatch := True
                 }
               }
             }
-          }
-          If (ormismatch && ormatched < orcount)
-            nomatched := True
-          If (matched && !nomatched)
-          {
-            this.Prop.CLF_Tab := LootFilter[GKey]["Data"]["StashTab"]
-            this.Prop.CLF_Group := GKey
-            Return this.Prop.CLF_Tab
+            If (ormismatch && ormatched < orcount)
+              nomatched := True
+            If (matched && !nomatched)
+            {
+              this.Prop.CLF_Tab := Groups["Data"]["StashTab"]
+              this.Prop.CLF_Group := GKey
+              Return this.Prop.CLF_Tab
+            }
           }
         }
         This.MatchedCLF := False
         Return False
       }
+      MatchGroup(grp){
+        local
+        CountSum := 0
+        PotentialMatches := []
+        For k, elem in grp.ElementList {
+          If elem.GroupType {
+            matched := This.MatchGroup(elem)
+          } Else {
+            arrval := This[elem["Type"]][elem["#Key"]]
+            matched := This.Evaluate(elem["Eval"],arrval,elem["Min"])
+          }
+          If matched {
+            If (grp.GroupType ~= "[nN][oO][tT]")
+              Return False
+            If elem["#Key"]
+              PotentialMatches.Push(elem["#Key"])
+            Else If IsObject(matched) {
+              for kk, vv in matched {
+                PotentialMatches.Push(vv)
+              }
+            }
+            If (grp.GroupType ~= "[cC]ount"){
+              CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1)
+            } Else If (grp.GroupType ~= "[wW]eight"){
+              CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1) * (arrval != "" ? arrval : 1)
+            }
+          } Else {
+            If (grp.GroupType ~= "[aA][nN][dD]")
+              Return False
+          }
+        }
+        If (grp.GroupType ~= "[aA][nN][dD]" || grp.GroupType ~= "[nN][oO][tT]"){
+          Return PotentialMatches
+        }
+        Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
+          If (CountSum >= grp.TypeValue) {
+            Return PotentialMatches
+          } Else {
+            Return False
+          }
+        }
+      }
+      Evaluate(eval,val,min){
+        local
+        if (eval = ">") {
+          Return (val > min)
+        } Else if (eval = ">=") {
+          Return (val >= min)
+        } Else if (eval = "=") {
+          Return (val = min)
+        } Else if (eval = "<") {
+          Return (val < min)
+        } else if (eval = "<=") {
+          Return (val <= min)
+        } else if (eval = "!=") {
+          Return (val != min)
+        } else if (eval = "~=") {
+          Return (val ~= min)
+        } else if (eval = "~") {
+          matchedOR := False
+          for k, v in StrSplit(min, "|"," ") { ; Split OR first
+            if InStr(v, "&") { 					       ; Check for any & sections
+              mismatched := false
+              for kk, vv in StrSplit(v, "&"," ") { ; Split the array again
+                If !InStr(val, vv)              ; Check AND sections for mismatch
+                  mismatched := true
+              }
+              if !mismatched {    ; no mismatch means all sections found in the string
+                matchedOR := true 
+                Break
+              }
+            }	Else if InStr(val, v)	{          ; If there was no & symbol this is an OR section
+              matchedOR := True
+              break
+            }
+          }
+          Return matchedOR ; If any of the sections produced a match it will flag true
+        }
+      }
+
       inRange(key,obj,base){
         If (obj.ranges.Count() = 1) {
           If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
@@ -2727,6 +3015,8 @@
         Return True
       }
       MatchCraftingBases(){
+        If (This.Prop.Rarity_Digit == 4)
+          Return False
         If(HasVal(craftingBasesT1,This.Prop.ItemBase))
         {
           This.Prop.CraftingBase := "Atlas Base"
@@ -2952,7 +3242,9 @@
     }
   ; ClipItem - Capture Clip at Coord
   ClipItem(x, y){
+    Global RunningToggle
       BlockInput, MouseMove
+      Backup := Clipboard
       Clipboard := ""
       Item := ""
       Sleep, 45+(ClipLatency*15)
@@ -2965,6 +3257,8 @@
         Sleep, 15
         Send ^!c
         ClipWait, 0.1
+        If ErrorLevel && !RunningToggle
+          Clipboard := Backup
       }
       Clip_Contents := Clipboard
       Item := new ItemScan
@@ -2995,17 +3289,8 @@
     Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
     , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
 
-    ; Global InventoryGuiTabs, CraftingGuiTabs, StringsGuiTabs, Globe, Player, WR_Progress_Color_Life, WR_Progress_Color_ES, WR_Progress_Color_Mana, WR_Progress_Color_EB
-    ;   , Globe_Life_X1, Globe_Life_Y1, Globe_Life_X2, Globe_Life_Y2, Globe_Life_Color_Hex, Globe_Life_Color_Variance, WR_Btn_Area_Life, WR_Btn_Show_Life
-    ;   , Globe_ES_X1, Globe_ES_Y1, Globe_ES_X2, Globe_ES_Y2, Globe_ES_Color_Hex, Globe_ES_Color_Variance, WR_Btn_Area_ES, WR_Btn_Show_ES
-    ;   , Globe_EB_X1, Globe_EB_Y1, Globe_EB_X2, Globe_EB_Y2, Globe_EB_Color_Hex, Globe_EB_Color_Variance, WR_Btn_Area_EB, WR_Btn_Show_EB
-    ;   , Globe_Mana_X1, Globe_Mana_Y1, Globe_Mana_X2, Globe_Mana_Y2, Globe_Mana_Color_Hex, Globe_Mana_Color_Variance, WR_Btn_Area_Mana, WR_Btn_Show_Mana
-    ;   , WR_Btn_FillMetamorph_Area, MapEdit, MapEditText, EssenceEdit ,EssenceEditText, DelveEdit, DelveEditText, CurrencyEdit, CurrencyEditText, MetamorphEdit, MetamorphEditText, FragmentEdit, FragmentEditText, DivinationEdit, DivinationEditText, DeliriumEdit, DeliriumEditText, BlightEdit, BlightEditText, UniqueEdit, UniqueEditText
-    ;   , Globe_Percent_Life, Globe_Percent_ES, Globe_Percent_Mana, GlobeActive, YesPredictivePrice, YesPredictivePrice_Percent, YesPredictivePrice_Percent_Val, StashTabYesPredictive_Price
-    ;   , ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort, ChaosRecipeStashTab, ChaosRecipeEnableFunction, ChaosRecipeEnableUnId, ChaosRecipeAllowDoubleJewellery
-    ;   , ChaosRecipeSkipJC, ChaosRecipeLimitUnId, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
-    ;   , debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr, debuffCurseTempChainStr, debuffCurseCondStr, debuffCurseFlamStr, debuffCurseFrostStr, debuffCurseWarMarkStr
-    ;   , debuffShockStr, debuffBleedStr, debuffFreezeStr, debuffIgniteStr, debuffPoisonStr
+    Log("Load menu: " Function,Var*)
+
     If (Function = "Inventory")
     {
       Gui, 1: Submit
@@ -3023,21 +3308,26 @@
 
       Gui, Inventory: Tab, Options
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,       Section    w170 h235    xm   ym+25,         Inventory Sort/CLF Options
+        Gui, Inventory: Add, GroupBox,       Section    w170 h345    xm   ym+25,         Inventory Sort/CLF Options
         Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesHeistLocker        Checked%YesHeistLocker%        y+8    , Deposit C/B at Heist Locker?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesVendor             Checked%YesVendor%             y+8    , Sell at Vendor?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesDiv                Checked%YesDiv%                y+8    , Trade Divination?
-        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesRitual             Checked%YesRitual%             y+8    , Scan Ritual?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesSortFirst          Checked%YesSortFirst%          y+8    , Group Items before stashing?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesMapUnid            Checked%YesMapUnid%            y+8    , Leave Map Un-ID?
+        Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesInfluencedUnid     Checked%YesInfluencedUnid%     y+8    , Leave Influenced Un-ID?
         Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesCLFIgnoreImplicit  Checked%YesCLFIgnoreImplicit%  y+8    , Ignore Implicit in CLF?
+        Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesBatchVendorBauble  Checked%YesBatchVendorBauble%  y+8    , Batch Vendor Quality Flasks?
+        Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesBatchVendorGCP     Checked%YesBatchVendorGCP%     y+8    , Batch Vendor Quality Gems?
+        Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesSpecial5Link       Checked%YesSpecial5Link%       y+8    , Give 5 link Special Type?
+        Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesOpenStackedDeck    Checked%YesOpenStackedDeck%    y+8    , Open Stacked Decks?
         Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
+        
+        Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
 
-        Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
         Gui, Inventory: Font
 
@@ -3081,10 +3371,6 @@
         ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
         PPx:=Scale_PositionFromDPI(PPx), PPy:=Scale_PositionFromDPI(PPy)
         Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
-
-        Gui, Inventory: Add, Text, xs+5 y+11 , Price Ritual Rares?
-        Gui, Inventory: Add, DropDownList, gUpdateExtra vYesRitualPrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
-        GuiControl,Inventory: ChooseString, YesRitualPrice, %YesRitualPrice%
 
         Gui, Inventory: Font, Bold s9 cBlack, Arial
         Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
@@ -3420,20 +3706,25 @@
 
       Gui, Inventory: Tab, Chaos Recipe
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h155 xm+5 ym+25, Chaos Recipe Options
+        Gui, Inventory: Add, GroupBox,Section w170 h255 xm+5 ym+25, Chaos Recipe Options
         Gui, Inventory: Font,
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+15 yp+20, Enable Chaos Recipe Logic
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs+15 yp+20, Skip Jeweler/Chroma Items
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs+15 yp+20, Allow 2x Jewellery limit
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeUnloadAll Checked%ChaosRecipeUnloadAll% xs yp+20, Sell all sets back to back
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweler/Chroma Items
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs yp+20, Allow 2x Jewellery limit
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs yp+20, Allow 2x Belt limit
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
           Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
-          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs+15 yp+22, Leave Recipe Rare Un-Id
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs+15 yp+20 w50 center
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+22, Only stash Small Weap/Shield
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs yp+22, Leave Recipe Rare Un-Id
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSeperateCount Checked%ChaosRecipeSeperateCount% xs yp+22, Seperate count for Un-Id
+          Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeOnlyUnId Checked%ChaosRecipeOnlyUnId% xs yp+22, Only Stash UnId in Range
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs yp+20 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range70-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
           Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
           Gui, Inventory: Font, Bold s9 cBlack, Arial
-        Gui, Inventory: Add, GroupBox,Section w170 h80 xs y+25, Chaos Recipe Type
+        Gui, Inventory: Add, GroupBox,Section w170 h80 xs-5 y+25, Chaos Recipe Type
         Gui, Inventory: Font,
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
           Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl
@@ -3457,13 +3748,13 @@
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabWeapon , %ChaosRecipeStashTabWeapon%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Weapons
 
-          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
-          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
-          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
-
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabArmourUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabArmour , %ChaosRecipeStashTabArmour%
           Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Armours
+
+          Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabHelmetUpDown xs+15 yp+22 w50 center
+          Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabHelmet , %ChaosRecipeStashTabHelmet%
+          Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Helmets
 
           Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeStashTabGlovesUpDown xs+15 yp+22 w50 center
           Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabGloves , %ChaosRecipeStashTabGloves%
@@ -3621,7 +3912,7 @@
             GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
             Gui, Crafting: Font,
             Gui, Crafting: Font, Bold s9 cBlack, Arial
-          Gui, Crafting: Add,GroupBox,Section w580 h160 xs, Undesireble Mods:
+          Gui, Crafting: Add,GroupBox,Section w580 h200 xs, Undesirable Mods:
             Gui, Crafting: Font,
             Gui, Crafting: Font,s8
             Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
@@ -3630,14 +3921,17 @@
             Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
             Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
             Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-            Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players have # Less Recovery Rate of Life and ES
+            Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players Have # Less Recovery Rate of Life and ES
+            Gui, Crafting: Add, Checkbox, vPHReducedChanceToBlock xs+5 ys+160 Checked%PHReducedChanceToBlock%, Players Have # Reduced Chance to Block
+            Gui, Crafting: Add, Checkbox, vPHLessAreaOfEffect xs+5 ys+180 Checked%PHLessAreaOfEffect%, Players Have # Less Area of Effect
             Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
             Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
-            Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' skills Chain # additional times
+            Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' Skills Chain # Additional Times
             Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
             Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
             Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
             Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
+            Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
             
 
             Gui, Crafting: Font, Bold
@@ -3662,59 +3956,64 @@
           Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
             Gui, Crafting: Font,
             Gui, Crafting: Font,s8
-            Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap x335 y190 Checked%EnableMQQForMagicMap%, Enable to Magic Maps?
+            Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+10 ys+20 Checked%EnableMQQForMagicMap%, Enable on Magic Maps?
+            Gui, Crafting: Font, Bold s9 cBlack, Arial
+          Gui, Crafting: Add,GroupBox,Section w170 h40 xs ys+50, Alc'n'go Heist:
+            Gui, Crafting: Font,
+            Gui, Crafting: Font,s8
+            Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract/Blueprint?
         Gui, Crafting: Tab, Basic Crafting
           Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vChanceMethod Checked" (ChanceMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ChanceMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftChanceMethod Checked" (BasicCraftChanceMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftChanceMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftChanceMethod=3?1:0), Bulk Inventory
           Gui, Crafting: Font, Bold s12 cBlack, Arial
-          Gui, Crafting: Add, Checkbox, % "xs+30 y+20", Scour and retry
+          Gui, Crafting: Add, Checkbox, % "gSaveBasicCraft vBasicCraftChanceScour xs+30 y+20 Checked" BasicCraftChanceScour, Scour and retry
           Gui, Crafting: Font
           Gui, Crafting: Font, Bold s12 cBlack, Arial
-          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
+          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Color
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vSocketMethod Checked" (SocketMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (SocketMethod=3?1:0), Bulk Inventory
-          Gui, Crafting: Font, Bold s12 cBlack, Arial
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftColorMethod Checked" (BasicCraftColorMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftColorMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftColorMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cRed, Arial
           Gui, Crafting: Add, Text,% "xs+25 y+20"
-          Gui, Crafting: Add, UpDown, Range1-6 vDesiredSockets, % DesiredSockets
-          Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
-          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftR, % BasicCraftR
+          Gui, Crafting: Add, Text, x+5 yp, R 
+          Gui, Crafting: Font, Bold s12 cGreen, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftG, % BasicCraftG
+          Gui, Crafting: Add, Text, x+5 yp, G
+          Gui, Crafting: Font, Bold s12 cBlue, Arial
+          Gui, Crafting: Add, Text,% "x+25 yp"
+          Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftB, % BasicCraftB
+          Gui, Crafting: Add, Text, x+5 yp, B
           Gui, Crafting: Font
           Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, GroupBox,section Center xm+295 ym+25 w275 h100, Link
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vLinkMethod Checked" (LinkMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (LinkMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftLinkMethod Checked" (BasicCraftLinkMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftLinkMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftLinkMethod=3?1:0), Bulk Inventory
           Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, Text,% "xs+25 y+20"
-          Gui, Crafting: Add, UpDown, Range1-6 vDesiredLinks, % DesiredLinks
+          Gui, Crafting: Add, UpDown, Range0-6 vBasicCraftDesiredLinks gSaveBasicCraft, % BasicCraftDesiredLinks
           Gui, Crafting: Add, Text, x+5 yp, Desired Links
-          Gui, Crafting: Add, CheckBox, x+10 yp Checked, Auto
+          Gui, Crafting: Add, CheckBox, x+10 yp gSaveBasicCraft vBasicCraftLinkAuto Checked%BasicCraftLinkAuto%, Auto
           Gui, Crafting: Font
           Gui, Crafting: Font, Bold s12 cBlack, Arial
-          Gui, Crafting: Add, GroupBox,section Center xm+295 ys+115 w275 h100, Color
+          Gui, Crafting: Add, GroupBox,section Center xs ys+115 w275 h100, Socket
           Gui, Crafting: Font
-          Gui, Crafting: Add, Radio,% "xs+10 ys+25 vColorMethod Checked" (ColorMethod=1?1:0), Cursor
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=2?1:0), Currency Stash
-          Gui, Crafting: Add, Radio,% "x+10 yp Checked" (ColorMethod=3?1:0), Bulk Inventory
-          Gui, Crafting: Font, Bold s12 cRed, Arial
+          Gui, Crafting: Add, Radio,% "gBasicCraftRadio xs+10 ys+25 vBasicCraftSocketMethod Checked" (BasicCraftSocketMethod=1?1:0), Cursor
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftSocketMethod=2?1:0), Currency Stash
+          Gui, Crafting: Add, Radio,% "disabled gBasicCraftRadio x+10 yp Checked" (BasicCraftSocketMethod=3?1:0), Bulk Inventory
+          Gui, Crafting: Font, Bold s12 cBlack, Arial
           Gui, Crafting: Add, Text,% "xs+25 y+20"
-          Gui, Crafting: Add, UpDown, Range0-6 vDesiredR, % DesiredR
-          Gui, Crafting: Add, Text, x+5 yp, R 
-          Gui, Crafting: Font, Bold s12 cGreen, Arial
-          Gui, Crafting: Add, Text,% "x+25 yp"
-          Gui, Crafting: Add, UpDown, Range0-6 vDesiredG, % DesiredG
-          Gui, Crafting: Add, Text, x+5 yp, G
-          Gui, Crafting: Font, Bold s12 cBlue, Arial
-          Gui, Crafting: Add, Text,% "x+25 yp"
-          Gui, Crafting: Add, UpDown, Range0-6 vDesiredB, % DesiredB
-          Gui, Crafting: Add, Text, x+5 yp, B
+          Gui, Crafting: Add, UpDown, Range0-6 vBasicCraftDesiredSockets gSaveBasicCraft, % BasicCraftDesiredSockets
+          Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
+          Gui, Crafting: Add, CheckBox, x+10 yp gSaveBasicCraft vBasicCraftSocketAuto Checked%BasicCraftSocketAuto%, Auto
           Gui, Crafting: Font
           Gui, Crafting: Show
       }
@@ -4397,6 +4696,7 @@
       Gui, Submit
       Gui, 1: show
       CheckGamestates:= True
+      mainmenuGameLogicState(True)
     return
     
     GlobeGuiClose:
@@ -4405,6 +4705,7 @@
       Gui, Submit
       Gui, 1: show
       CheckGamestates:= True
+      mainmenuGameLogicState(True)
     return
   }
   ; Make a MsgBox Printout of an array
@@ -4754,6 +5055,41 @@
           Else 
             Break
 
+          If (!ChaosPresent && !IsObject(Object.Chaos.Body.1)) && IsObject(Object.Regal.Body.1)
+            Set.Push(Object.Regal.Body.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Body.1) )
+            Set.Push(Object.Regal.Body.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Body.1))
+            Set.Push(Object.Chaos.Body.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Helmet.1)) && IsObject(Object.Regal.Helmet.1)
+            Set.Push(Object.Regal.Helmet.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Helmet.1) )
+            Set.Push(Object.Regal.Helmet.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Helmet.1))
+            Set.Push(Object.Chaos.Helmet.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Gloves.1)) && IsObject(Object.Regal.Gloves.1)
+            Set.Push(Object.Regal.Gloves.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Gloves.1) )
+            Set.Push(Object.Regal.Gloves.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Gloves.1))
+            Set.Push(Object.Chaos.Gloves.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Boots.1)) && IsObject(Object.Regal.Boots.1)
+            Set.Push(Object.Regal.Boots.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Boots.1) )
+            Set.Push(Object.Regal.Boots.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Boots.1))
+            Set.Push(Object.Chaos.Boots.RemoveAt(1)), ChaosPresent := True
+
+          If (!ChaosPresent && !IsObject(Object.Chaos.Belt.1)) && IsObject(Object.Regal.Belt.1)
+            Set.Push(Object.Regal.Belt.RemoveAt(1))
+          Else If (ChaosPresent && IsObject(Object.Regal.Belt.1) )
+            Set.Push(Object.Regal.Belt.RemoveAt(1))
+          Else If (IsObject(Object.Chaos.Belt.1))
+            Set.Push(Object.Chaos.Belt.RemoveAt(1)), ChaosPresent := True
+
           If (!ChaosPresent && !IsObject(Object.Chaos.Amulet.1)) && IsObject(Object.Regal.Amulet.1)
             Set.Push(Object.Regal.Amulet.RemoveAt(1))
           Else If (ChaosPresent && IsObject(Object.Regal.Amulet.1) )
@@ -4774,41 +5110,6 @@
             Set.Push(Object.Regal.Ring.RemoveAt(1))
           Else If (IsObject(Object.Chaos.Ring.1))
             Set.Push(Object.Chaos.Ring.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Belt.1)) && IsObject(Object.Regal.Belt.1)
-            Set.Push(Object.Regal.Belt.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Belt.1) )
-            Set.Push(Object.Regal.Belt.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Belt.1))
-            Set.Push(Object.Chaos.Belt.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Body.1)) && IsObject(Object.Regal.Body.1)
-            Set.Push(Object.Regal.Body.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Body.1) )
-            Set.Push(Object.Regal.Body.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Body.1))
-            Set.Push(Object.Chaos.Body.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Boots.1)) && IsObject(Object.Regal.Boots.1)
-            Set.Push(Object.Regal.Boots.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Boots.1) )
-            Set.Push(Object.Regal.Boots.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Boots.1))
-            Set.Push(Object.Chaos.Boots.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Gloves.1)) && IsObject(Object.Regal.Gloves.1)
-            Set.Push(Object.Regal.Gloves.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Gloves.1) )
-            Set.Push(Object.Regal.Gloves.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Gloves.1))
-            Set.Push(Object.Chaos.Gloves.RemoveAt(1)), ChaosPresent := True
-
-          If (!ChaosPresent && !IsObject(Object.Chaos.Helmet.1)) && IsObject(Object.Regal.Helmet.1)
-            Set.Push(Object.Regal.Helmet.RemoveAt(1))
-          Else If (ChaosPresent && IsObject(Object.Regal.Helmet.1) )
-            Set.Push(Object.Regal.Helmet.RemoveAt(1))
-          Else If (IsObject(Object.Chaos.Helmet.1))
-            Set.Push(Object.Chaos.Helmet.RemoveAt(1)), ChaosPresent := True
 
           RecipeSets.Push(Set)
         }
@@ -5281,7 +5582,6 @@
     POnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
     POnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
     POnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
-    POnRitual := ScreenShot_GetColor(WR.loc.pixel.OnRitual.X,WR.loc.pixel.OnRitual.Y), OnRitual := (POnRitual=varOnRitual?True:False)
     If OnMines
     POnDetonate := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
     Else POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
@@ -5815,9 +6115,6 @@
         ;Status Check OnLocker
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
-        ;Status Check OnRitual
-        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (1920 / 617))
-        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1080 / 108))
         ;Divination Y locations
         WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
         WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
@@ -6245,9 +6542,6 @@
         ;Status Check OnLocker ((3440/3)-2)
         WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
         WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
-        ;Status Check OnRitual
-        WR.loc.pixel.OnRitual.X:=GameX + Round(GameW / (3440 / 1269))
-        WR.loc.pixel.OnRitual.Y:=GameY + Round(GameH / ( 1440 / 205))
         ;GUI overlay
         WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
         WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
@@ -6704,130 +6998,6 @@
       Else
         PointY+=Rwidth+InvGrid.SlotSpacing
       InvGrid.Ritual.Y.Push(Round(PointY))
-    }
-  }
-  ScanRitual(mode:=""){
-    Global InvGrid, RunningToggle, BlackList, PPServerStatus
-    Static gridpanels := ""
-    Static pricepoint := 5
-    If (YesRitualPrice != "off" && YesRitual)
-    {
-      If !PPServerStatus()
-      Notify("PoEPrice.info Offline","",2)
-    }
-
-    If (mode = "make") {
-      If IsObject(gridpanels) {
-        ScanRitual("break")
-      }
-      ; MsgBox, Inside
-      ; Add blacklist
-      gridpanels := {}, BlackList := {}
-      ScanRitual("Begin to scan for panel closing")
-      For R, x in InvGrid.Ritual.X
-      {
-        If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-          Break
-        For C, y in InvGrid.Ritual.Y
-        {
-          If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-            Break
-          If BlackList[R][C]
-            Continue
-          ; MsgBox, Inside Loop
-          ClipItem(x,y)
-          addToBlacklist(R, C)
-          If !(Item.Prop.ItemName ~= "\w")
-          {
-            Empty += 1
-            If Empty > 5
-              Return
-            Continue
-          }
-          
-          If Item.Prop.Stack_Size >= 2
-            Item.Prop.ChaosValue := Item.Prop.Stack_Size * Item.Prop.ChaosValue
-          cvalue := Item.Prop.UniquePerfectValue?Item.Prop.UniquePerfectValue
-            : Item.Prop.ChaosValue?Item.Prop.ChaosValue
-            : Item.Prop.PredictPrice?Item.Prop.PredictPrice
-            : Item.Prop.ItemName = "Chaos Orb" ? Item.Prop.Stack_Size * 1
-            : 0
-          cvalue := Ltrim(Format("{:.2g}", cvalue),"0")
-          displayText := Item.Prop.CLF_Tab?"CLF " Ltrim(Ltrim(Item.Prop.CLF_Group,"Group"),"0") (cvalue?"`n" SubStr(cvalue,1):"") 
-            : cvalue? SubStr(cvalue,1) : ""
-
-          percentageScore := cvalue?((cvalue / pricepoint) * 100):Item.Prop.CLF_Tab?100:1
-
-          posObj := {"X":x-InvGrid.SlotRadius,"Y":y-InvGrid.SlotRadius,"W":Item.Prop.Item_Width * InvGrid.SlotSize,"H":Item.Prop.Item_Height * InvGrid.SlotSize}
-          ; MsgBox % ColorPercent(percentageScore)
-          ; WinActivate, % GameStr
-          gridpanels[R C] := new Overlay("panel"R C, displayText, posObj,"22000000", "ff" LTrim(LTrim(ColorPercent(percentageScore),"0"),"x"))
-        }
-      }
-    } Else If (mode = "break") {
-      for k, v in gridpanels
-      {
-        v.close()
-      }
-      gridpanels := ""
-    } Else {
-      If (!OnRitual && !OnInventory)
-        ScanRitual("break")
-      Else
-        SetTimer,% A_ThisFunc, 100
-    }
-    Return
-  }
-  Class Overlay {
-    __New(winName,InsertText,positionObj,backgroundColor:="aa000000",textColor:="bbffffff",setFont:="Arial"){
-      This.pToken := Gdip_Startup()
-      If !This.pToken{
-        MsgBox, 48, gdiplus error!, Gdiplus failed to start. Please ensure you have gdiplus on your system
-        return
-      }
-      OnExit(ObjBindMethod(This, "close"))
-      This.text := InsertText
-      This.label := winName
-      This.positions := positionObj
-      Gui,% This.label ": -Caption +E0x80020 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs"
-      Gui,% This.label ": Show", NA
-      This.hWND := WinExist()
-      This.color := backgroundColor
-      This.tcolor := textColor
-      This.font := setFont
-      This.make()
-      This.setText()
-      This.finalize()
-    }
-    make(){
-      This.hbm := CreateDIBSection(This.positions.W, This.positions.H)
-      This.hdc := CreateCompatibleDC()
-      This.obm := SelectObject(This.hdc, This.hbm)
-      This.G := Gdip_GraphicsFromHDC(This.hdc)
-      Gdip_SetSmoothingMode(This.G, 4)
-      This.pBrush := Gdip_BrushCreateSolid("0x"This.color)
-      Gdip_FillRoundedRectangle(This.G, This.pBrush, 0, 0, This.positions.W, This.positions.H, 20)
-      Gdip_DeleteBrush(This.pBrush)
-    }
-    setText(){
-      If !Gdip_FontFamilyCreate(This.font)
-      {
-        MsgBox, 48, Font error!, The font you have specified does not exist on the system
-        Return "Error Loading Font"
-      }
-      Options := "x10p y30p w80p Centre c" This.tcolor " r2 s20"
-      Gdip_TextToGraphics(This.G, This.text, Options, This.font, This.positions.W, This.positions.H)
-    }
-    finalize(){
-      UpdateLayeredWindow(This.hWND, This.hdc, This.positions.X, This.positions.Y, This.positions.W, This.positions.H)
-      SelectObject(This.hdc, This.obm)
-      DeleteObject(This.hbm)
-      DeleteDC(This.hdc)
-      Gdip_DeleteGraphics(This.G)
-    }
-    close(){
-      Gdip_Shutdown(This.pToken)
-      Gui,% This.label ": Destroy" 
     }
   }
   PromptForObject(){
@@ -7640,9 +7810,11 @@
                         , "The Bridge Encampment" : [ "The Bridge Encampment" , "Le Campement du pont"   , "Das Brückenlager"    , "Лагерь на мосту"       , "El Campamento del Puente", "Acampamento da Ponte"    , "橋墩營地"       , "다리 야영지에" ]
                         , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath", "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"     , "오리아스 부두에" ]
                         , "Oriath" :                [ "Oriath"                                                                   , "Ориат"                                                                         , "奧瑞亞"         , "오리아스에" ]
+                        , "Karui Shores" :          [ "Karui Shores" ]
                         , "The Rogue Harbour" :     [ "The Rogue Harbour","ท่าเรือโจร","Le Port des Malfaiteurs", "Der Hafen der Abtrünnigen", "Разбойничья гавань", "El Puerto de los renegados","O Porto dos Renegados","도둑 항구에"] }
     Static LangString :=  { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"   , "German" : " : Ihr habt '"
                 , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
+    Static MineStrings := ["Azurite Mine"]
     If (cStr="Town")
       Return indexOfArr(CurrentLocation,ClientTowns)
     If (Lang = "")
@@ -7677,7 +7849,7 @@
         Else
           OnHideout := False
         ; Now we check if we match mines
-        If (CurrentLocation = "Azurite Mine")
+        If indexOf(CurrentLocation,MineStrings)
           OnMines := True
         Else
           OnMines := False
@@ -7901,7 +8073,7 @@
       }
       Catch, loaderror
       {
-        Ding(500,-10,"Critical Load Error`nSize: " . errchk . "MB")
+        Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
         CurrentLocation := "Client File Load Error"
         Log("Error loading File, Submit information about your client.txt",loaderror)
       }
@@ -8257,6 +8429,8 @@
     {
       Gui, 1: Show, Autosize Center,   WingmanReloaded
     }
+    mainmenuGameLogicState(True)
+    GuiUpdate()
     CheckGamestates := True
     processWarningFound:=0
     return
@@ -8300,6 +8474,162 @@
         DelayAction.Delete(k)
       }
     }
+  }
+  mainmenuGameLogicState(refresh:=False){
+    Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1
+    , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
+    Local NewOHB
+    If (OnChar != OldOnChar) || refresh
+    {
+      OldOnChar := OnChar
+      If OnChar
+        CtlColors.Change(MainMenuIDOnChar, "52D165", "")
+      Else
+        CtlColors.Change(MainMenuIDOnChar, "Red", "")
+    }
+    If ((NewOHB := (CheckOHB()?1:0)) != OldOHB) || refresh
+    {
+      OldOHB := NewOHB
+      If NewOHB
+        CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
+      Else
+        CtlColors.Change(MainMenuIDOnOHB, "Red", "")
+    }
+    If (OnInventory != OldOnInventory) || refresh
+    {
+      OldOnInventory := OnInventory
+      If (OnInventory)
+        CtlColors.Change(MainMenuIDOnInventory, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnInventory, "", "Green")
+    }
+    If (OnChat != OldOnChat) || refresh
+    {
+      OldOnChat := OnChat
+      If OnChat
+        CtlColors.Change(MainMenuIDOnChat, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnChat, "", "Green")
+    }
+    If (OnStash != OldOnStash) || refresh
+    {
+      OldOnStash := OnStash
+      If (OnStash)
+        CtlColors.Change(MainMenuIDOnStash, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnStash, "", "Green")
+    }
+    If (OnDiv != OldOnDiv) || refresh
+    {
+      OldOnDiv := OnDiv
+      If (OnDiv)
+        CtlColors.Change(MainMenuIDOnDiv, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDiv, "", "Green")
+    }
+    If (OnLeft != OldOnLeft) || refresh
+    {
+      OldOnLeft := OnLeft
+      If (OnLeft)
+        CtlColors.Change(MainMenuIDOnLeft, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnLeft, "", "Green")
+    }
+    If (OnDelveChart != OldOnDelveChart) || refresh
+    {
+      OldOnDelveChart := OnDelveChart
+      If (OnDelveChart)
+        CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
+    }
+    If (OnVendor != OldOnVendor) || refresh
+    {
+      OldOnVendor := OnVendor
+      If (OnVendor)
+        CtlColors.Change(MainMenuIDOnVendor, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnVendor, "", "Green")
+    }
+    If (OnDetonate != OldOnDetonate) || refresh
+    {
+      OldOnDetonate := OnDetonate
+      If (OnDetonate)
+        CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
+    }
+    If (OnMenu != OldOnMenu) || refresh
+    {
+      OldOnMenu := OnMenu
+      If (OnMenu)
+        CtlColors.Change(MainMenuIDOnMenu, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnMenu, "", "Green")
+    }
+    If (OnMetamorph != OldOnMetamorph) || refresh
+    {
+      OldOnMetamorph := OnMetamorph
+      If (OnMetamorph)
+        CtlColors.Change(MainMenuIDOnMetamorph, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
+    }
+    If (OnLocker != OldOnLocker) || refresh
+    {
+      OldOnLocker := OnLocker
+      If (OnLocker)
+        CtlColors.Change(MainMenuIDOnLocker, "Red", "")
+      Else
+        CtlColors.Change(MainMenuIDOnLocker, "", "Green")
+    }
+    Return
+
+    CheckPixelGrid:
+      ;Check if inventory is open
+      Gui, States: Hide
+      if(!OnInventory){
+        TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
+      }else{
+        TT := "Grid information:" . "`n"
+        ScreenShot()
+        For C, GridX in InventoryGridX  
+        {
+          For R, GridY in InventoryGridY
+          {
+            PointColor := ScreenShot_GetColor(GridX,GridY)
+            if (indexOf(PointColor, varEmptyInvSlotColor)) {        
+              TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
+            }else{
+              TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
+            }
+          }
+        }
+      }
+      MsgBox %TT%  
+      Gui, States: Show
+    Return
+  }
+  ; GuiUpdate - Update Overlay ON OFF states
+  GuiUpdate(){
+    GuiControl, 2:, overlayT1,% "Quit: " (WR.func.Toggle.Quit?"ON":"OFF")
+    GuiControl, 2:, overlayT2,% "Flask: " (WR.func.Toggle.Flask?"ON":"OFF")
+    GuiControl, 2:, overlayT3,% "Move: " (WR.func.Toggle.Move?"ON":"OFF")
+    GuiControl, 2:, overlayT4,% "Util: " (WR.func.Toggle.Utility?"ON":"OFF")
+    ShowHideOverlay()
+    CtlColors.Change(MainMenuIDAutoFlask, (WR.func.Toggle.Flask?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoQuit, (WR.func.Toggle.Quit?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoMove, (WR.func.Toggle.Move?"52D165":"E0E0E0"), "")
+    CtlColors.Change(MainMenuIDAutoUtility, (WR.func.Toggle.Utility?"52D165":"E0E0E0"), "")
+    Return
+  }
+  ShowHideOverlay(){
+    Global overlayT1, overlayT2, overlayT3, overlayT4
+    GuiControl,2: Show%YesInGameOverlay%, overlayT1
+    GuiControl,2: Show%YesInGameOverlay%, overlayT2
+    GuiControl,2: Show%YesInGameOverlay%, overlayT3
+    GuiControl,2: Show%YesInGameOverlay%, overlayT4
+    Return
   }
 
   ; UpdateLeagues - Grab the League info from GGG API
@@ -16276,11 +16606,17 @@ IsLinear(arr, i=0) {
   ; Log file function
   Log(var*) 
   {
-    print := A_Now
-    For k, v in var
-      print .= "," . v
-    print .= ", Script: " . A_ScriptFullPath . " , Script Version: " . VersionNumber . " , AHK version: " . A_AhkVersion . "`n"
-    FileAppend, %print%, %A_ScriptDir%\temp\Log.txt, UTF-16
+    if (FileExist(A_ScriptDir "\logs\" logFile ".txt")) {
+        FormatTime, appendTime, , hh:mm:ss
+        print := appendTime
+        For k, v in var
+          print .= "," . v
+        print .= "`n"
+    } else {
+        StringReplace, FormattedVersion, VersionNumber, ., 
+        print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
+    }
+    FileAppend, %print%, %A_ScriptDir%\logs\%logFile%.txt, UTF-16
     return
   }
 
@@ -19538,94 +19874,99 @@ for i,v in ok
   , FindAll:=1, JoinText:=0, offsetX:=20, offsetY:=10 )
   {
     local  ; Unaffected by Super-global variables
-    bch:=A_BatchLines
-    SetBatchLines, -1
-    x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
-    , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
-    , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
-    if (w<1 or h<1)
-    {
-      SetBatchLines, %bch%
-      return, 0
-    }
-    bits:=GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
-    sx:=x-zx, sy:=y-zy, sw:=w, sh:=h, arr:=[], info:=[]
-    Loop, Parse, text, |
-      if IsObject(j:=PicInfo(A_LoopField))
-      info.Push(j)
-    if (!(num:=info.MaxIndex()) or !bits.1)
-    {
-      SetBatchLines, %bch%
-      return, 0
-    }
-    VarSetCapacity(input, num*7*4), k:=0
-    Loop, % num
-      k+=Round(info[A_Index].2 * info[A_Index].3)
-    VarSetCapacity(s1, k*4), VarSetCapacity(s0, k*4)
-    , VarSetCapacity(gs, sw*sh), VarSetCapacity(ss, sw*sh)
-    , allpos_max:=(FindAll ? 1024 : 1)
-    , VarSetCapacity(allpos, allpos_max*4)
-    Loop, 2
-    {
-      if (err1=0 and err0=0) and (num>1 or A_Index>1)
-      err1:=0.1, err0:=0.05
-      if (JoinText)
+    try {
+      bch:=A_BatchLines
+      SetBatchLines, -1
+      x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
+      , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
+      , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
+      if (w<1 or h<1)
       {
-      j:=info[1], mode:=j.8, color:=j.9, n:=j.10
-      , w1:=-1, h1:=j.3, comment:="", v:="", i:=0
+        SetBatchLines, %bch%
+        return, 0
+      }
+      bits:=GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
+      sx:=x-zx, sy:=y-zy, sw:=w, sh:=h, arr:=[], info:=[]
+      Loop, Parse, text, |
+        if IsObject(j:=PicInfo(A_LoopField))
+        info.Push(j)
+      if (!(num:=info.MaxIndex()) or !bits.1)
+      {
+        SetBatchLines, %bch%
+        return, 0
+      }
+      VarSetCapacity(input, num*7*4), k:=0
       Loop, % num
+        k+=Round(info[A_Index].2 * info[A_Index].3)
+      VarSetCapacity(s1, k*4), VarSetCapacity(s0, k*4)
+      , VarSetCapacity(gs, sw*sh), VarSetCapacity(ss, sw*sh)
+      , allpos_max:=(FindAll ? 1024 : 1)
+      , VarSetCapacity(allpos, allpos_max*4)
+      Loop, 2
       {
-        j:=info[A_Index], w1+=j.2+1, comment.=j.11
-        Loop, 7
-        NumPut((A_Index=1 ? StrLen(v)
-        : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
-        : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-        : j[A_Index]), input, 4*(i++), "int")
-        v.=j.1
-      }
-      ok:=PicFind( mode,color,n,offsetX,offsetY
-      , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
-      , input,num*7,allpos,allpos_max )
-      Loop, % ok
-        pos:=NumGet(allpos, 4*(A_Index-1), "uint")
-        , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
-        , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
-        , x:rx+w1//2, y:ry+h1//2, id:comment} )
-      }
-      else
-      {
-      For i,j in info
-      {
-        mode:=j.8, color:=j.9, n:=j.10, comment:=j.11
-        , w1:=j.2, h1:=j.3, v:=j.1
-        Loop, 7
-        NumPut((A_Index=1 ? 0
-        : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
-        : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-        : j[A_Index]), input, 4*(A_Index-1), "int")
+        if (err1=0 and err0=0) and (num>1 or A_Index>1)
+        err1:=0.1, err0:=0.05
+        if (JoinText)
+        {
+        j:=info[1], mode:=j.8, color:=j.9, n:=j.10
+        , w1:=-1, h1:=j.3, comment:="", v:="", i:=0
+        Loop, % num
+        {
+          j:=info[A_Index], w1+=j.2+1, comment.=j.11
+          Loop, 7
+          NumPut((A_Index=1 ? StrLen(v)
+          : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
+          : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
+          : j[A_Index]), input, 4*(i++), "int")
+          v.=j.1
+        }
         ok:=PicFind( mode,color,n,offsetX,offsetY
         , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
-        , input,7,allpos,allpos_max )
+        , input,num*7,allpos,allpos_max )
         Loop, % ok
-        pos:=NumGet(allpos, 4*(A_Index-1), "uint")
-        , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
-        , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
-        , x:rx+w1//2, y:ry+h1//2, id:comment} )
-        if (ok and !FindAll)
-        Break
+          pos:=NumGet(allpos, 4*(A_Index-1), "uint")
+          , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
+          , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
+          , x:rx+w1//2, y:ry+h1//2, id:comment} )
+        }
+        else
+        {
+        For i,j in info
+        {
+          mode:=j.8, color:=j.9, n:=j.10, comment:=j.11
+          , w1:=j.2, h1:=j.3, v:=j.1
+          Loop, 7
+          NumPut((A_Index=1 ? 0
+          : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
+          : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
+          : j[A_Index]), input, 4*(A_Index-1), "int")
+          ok:=PicFind( mode,color,n,offsetX,offsetY
+          , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
+          , input,7,allpos,allpos_max )
+          Loop, % ok
+          pos:=NumGet(allpos, 4*(A_Index-1), "uint")
+          , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
+          , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
+          , x:rx+w1//2, y:ry+h1//2, id:comment} )
+          if (ok and !FindAll)
+          Break
+        }
+        }
+        if (err1=0 and err0=0 and num=1 and !arr.MaxIndex())
+        {
+        k:=0
+        For i,j in info
+          k+=(!j.12)
+        IfEqual, k, 0, Break
+        }
+        else Break
       }
-      }
-      if (err1=0 and err0=0 and num=1 and !arr.MaxIndex())
-      {
-      k:=0
-      For i,j in info
-        k+=(!j.12)
-      IfEqual, k, 0, Break
-      }
-      else Break
+      SetBatchLines, %bch%
+      return, arr.MaxIndex() ? arr:0
+    } catch e {
+      Log("FindText Error: " ParseTextFromError(e))
+      return 0
     }
-    SetBatchLines, %bch%
-    return, arr.MaxIndex() ? arr:0
   }
 
   ; Bind the window so that it can find images when obscured
@@ -20447,3 +20788,12 @@ for i,v in ok
     return arr
   }
 ;===============  FindText Library End  ===================
+
+ParseTextFromError(e) {
+      msg := ""
+      For k, type in ["what","file","line","message","extra"] {
+        value := e[type]
+        msg .= (msg ? "`n" : "") type " : " e[type]
+      }
+      return msg
+}

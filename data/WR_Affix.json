@@ -4055,5 +4055,14 @@
  "All Damage from Hits with This Weapon can Poison",
  "#% increased Global Critical Strike Chance if Corrupted",
  "Secrets of Suffering",
- "Warcries Exert # additional Attack"
+ "Warcries Exert # additional Attack",
+ "(Hybrid) # to maximum Energy Shield",
+ "(Hybrid) # to Armour",
+ "(Hybrid) # to Evasion Rating",
+ "(Hybrid) #% increased Energy Shield",
+ "(Hybrid) #% increased Armour",
+ "(Hybrid) #% increased Evasion Rating",
+ "(Hybrid) #% increased Armour and Evasion",
+ "(Hybrid) #% increased Evasion and Energy Shield",
+ "(Hybrid) #% increased Armour and Energy Shield"
 ]

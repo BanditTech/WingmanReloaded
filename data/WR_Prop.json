@@ -101,5 +101,13 @@
 	"TopTierColdResist",
 	"TopTierFireResist",
 	"TopTierLightningResist",
-	"TopTierChaosResist"
+	"TopTierChaosResist",
+	"TopTierAllResist",
+	"TopTierRarityPre",
+	"TopTierRaritySuf",
+	"TopTierRarity",
+	"TopTierCritChance",
+	"TopTierCritMulti",
+	"TopTierAttackSpeed",
+	"TopTierCastSpeed"
 ]
