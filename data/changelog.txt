@@ -1,4 +1,59 @@
-﻿## Version .13.0020 - Alpha version - May/31/2020
+﻿## Version .13.01 - Master version - June/1/2020
+Alpha changes are being merged back into the main Branch
+* Keep in mind that many files are changed which are not auto-updated
+* It is recommended to re-install the script to get all the newest files
+
+Changes in the way the Item Parser works
+* Affixes are much easier to input
+  * replace numbers with #
+  * remove + symbols before digits
+  * % symbols are now left inline
+
+Main menu has been changed
+* Gamestates are now displayed in the main menu
+* To calibrate each gamestate you can click it
+* There are now three main menu sections
+  * Per Character, Flask, and Utility settings
+  * These sections can now be saved as profiles
+  * Per Character settings allows also loading Flask and Utility profiles
+
+Crafting Improvements
+* Several unwanted mod options have been added
+* Alc'n'go contract/blueprint while map crafting
+* Basic Crafting on cursor is available
+  * Chance, Link, Color or Socket an item
+
+Chaos Recipe Improvements
+* Options added to improve how to handle unid recipe
+* Separate belts from jewelry for double limit
+* Option for only stashing small weapons (1x3,2x2)
+* Resume ID lvl now actually functions, and items resume identifying
+
+Crafting Bases has been improved again
+* Each category has been given more descriptive names
+* Then each category has been giving an ilvl threshold
+* Add or remove bases from each category then enable/disable
+* Customize to include your must have item bases!
+
+POESESSID has been changed to the entire Cookie
+* This change is to prevent issues with cloudflare ddos protection
+* The entire cookie contents is now pasted into the editfield
+* This includes the poesessid within those cookie contents
+
+Quicksilver and Mana flasks are no longer automatically grouped together
+* Any flask or utility can now be given Group cd
+* This provides much more flexibility in configuration
+* For two flasks to alternate
+  * you put the Group CD to the duration of the flask
+  * Put the CD to the duration of the flasks in total
+  * This will put the individual flask on a long cd, and the group on CD for the length of the one flask
+
+Many other changes have been made which are not listed here in summary.
+All the changes in their detail can be found in the Changelog.
+
+---
+
+## Version .13.0020 - Alpha version - May/31/2020
 Preperations for merge to master
 * lots of small fixes in a push to merging back to the main Branch
 
