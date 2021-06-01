@@ -1,4 +1,21 @@
-﻿## Version .13.0019 - Alpha version - May/25/2020
+﻿## Version .13.0020 - Alpha version - May/31/2020
+Preperations for merge to master
+* lots of small fixes in a push to merging back to the main Branch
+
+Improvement to Chaos Recipe
+* Sell all sets back to back
+* Enable in Chaos Recipe settings
+* One Press attempts to vendor all sets
+
+Adjustments / Fixes
+* Karui Shores added to town list
+* Gamestate colors are refreshed when GUI shown
+* Remove input block from QuickPortal function
+* Changed default CD and group CD
+
+---
+
+## Version .13.0019 - Alpha version - May/25/2020
 New Features
 * Auto Open Stacked Deck
 * Basic Crafting menu is now functional
