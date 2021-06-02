@@ -9,12 +9,14 @@ Press Enter to fill the Selected Key with the search result.
 
 Assign the number of required OR matches, then check the OR box on all the affixes which you would like to become conditional on that count.
 
+> I would suggest using the script's Item Info hotkey to learn which Properties and Affixes to look for on the item. 
+
+> It is also possible to parse items from the clipboard as well, which you can get from trade websites. Simply copy the item clipboard contents, then press the item info hotkey while NOT hovering over any item. You should now see a readout of the parse from the item you copied.
 
 ### Getting Started
 These examples will show both basic functionality as well as advanced usage of the CLF. Follow along with the descriptive text to learn more about how to use the CLF basic functionality.
 
 > Import these examples to the CLF to use, and then edit them for your own personal taste.  
-> I would suggest using the Item Info hotkey to learn which Properties and Affixes to look for.  
 > The CLF will always match with the first filter that is considered true, so order can be important. (Currently requires manually re-ordering in the file, not recommended)
 
 > Here we have a simple filter which is two conditions: ChaosValue is AT LEAST 4, and RarityCurrency is NOT true  
@@ -120,7 +122,7 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Total to Dexterity", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Maximum Energy Shield", "Eval": ">=", "Min": "24", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total Increased Energy Shield", "Eval": ">=", "Min": "68", "OrFlag": "1" },
-  { "#Key": "# increased Movement Speed", "Eval": ">=", "Min": "25", "OrFlag": "1" },
+  { "#Key": "#% increased Movement Speed", "Eval": ">=", "Min": "25", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Cold Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Fire Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Lightning Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
@@ -170,7 +172,7 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Total to Dexterity", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Intelligence", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "# to Accuracy Rating", "Eval": ">=", "Min": "251", "OrFlag": "1" },
-  { "#Key": "# increased Attack Speed", "Eval": ">=", "Min": "14", "OrFlag": "1" },
+  { "#Key": "#% increased Attack Speed", "Eval": ">=", "Min": "14", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Maximum Energy Shield", "Eval": ">=", "Min": "24", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total Increased Energy Shield", "Eval": ">=", "Min": "68", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Cold Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
@@ -202,13 +204,13 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Increased Cold Damage", "Eval": ">=", "Min": "65", "OrFlag": "1" },
   { "#Key": "(Pseudo) Increased Fire Damage", "Eval": ">=", "Min": "65", "OrFlag": "1" },
   { "#Key": "(Pseudo) Increased Lightning Damage", "Eval": ">=", "Min": "65", "OrFlag": "1" },
-  { "#Key": "# increased Spell Damage", "Eval": ">=", "Min": "65", "OrFlag": "1" },
+  { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "65", "OrFlag": "1" },
   { "#Key": "# to Level of all Fire Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# to Level of all Cold Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# to Level of all Lightning Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
-  { "#Key": "# increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "60", "OrFlag": "1" },
-  { "#Key": "# Chance to Block Spell Damage", "Eval": ">=", "Min": "10", "OrFlag": "1" },
+  { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "60", "OrFlag": "1" },
+  { "#Key": "#% Chance to Block Spell Damage", "Eval": ">=", "Min": "10", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Cold Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Fire Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Lightning Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
@@ -234,7 +236,7 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Total to Dexterity", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Intelligence", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Maximum Energy Shield", "Eval": ">=", "Min": "38", "OrFlag": "1" },
-  { "#Key": "# increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "31", "OrFlag": "1" },
+  { "#Key": "#% increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "31", "OrFlag": "1" },
   { "#Key": "# to Armour", "Eval": ">=", "Min": "231", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Cold Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Fire Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
@@ -261,10 +263,10 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Total to Dexterity", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Intelligence", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Maximum Energy Shield", "Eval": ">=", "Min": "38", "OrFlag": "1" },
-  { "#Key": "# increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "31", "OrFlag": "1" },
+  { "#Key": "#% increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "31", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total Increased Energy Shield", "Eval": ">=", "Min": "14", "OrFlag": "1" },
   { "#Key": "(Pseudo) Add Physical Damage to Attacks_Avg", "Eval": ">=", "Min": "11", "OrFlag": "1" },
-  { "#Key": "# to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
+  { "#Key": "#% to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
   { "#Key": "# to Accuracy Rating", "Eval": ">=", "Min": "166", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Cold Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Fire Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
@@ -291,11 +293,11 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Total to Dexterity", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Intelligence", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Maximum Energy Shield", "Eval": ">=", "Min": "32", "OrFlag": "1" },
-  { "#Key": "# increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "21", "OrFlag": "1" },
+  { "#Key": "#% increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "21", "OrFlag": "1" },
   { "#Key": "(Pseudo) Add Physical Damage to Attacks_Avg", "Eval": ">=", "Min": "6", "OrFlag": "1" },
   { "#Key": "# to Accuracy Rating", "Eval": ">=", "Min": "166", "OrFlag": "1" },
-  { "#Key": "# increased Cast Speed", "Eval": ">=", "Min": "5", "OrFlag": "1" },
-  { "#Key": "# increased Attack Speed", "Eval": ">=", "Min": "5", "OrFlag": "1" },
+  { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "5", "OrFlag": "1" },
+  { "#Key": "#% increased Attack Speed", "Eval": ">=", "Min": "5", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Cold Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Fire Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Lightning Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
@@ -318,12 +320,12 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Total to Maximum Life", "Eval": ">=", "Min": "70", "OrFlag": "1" },
   { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "65", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Maximum Energy Shield", "Eval": ">=", "Min": "32", "OrFlag": "1" },
-  { "#Key": "# increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "31", "OrFlag": "1" },
-  { "#Key": "# increased Global Critical Strike Chance", "Eval": ">=", "Min": "30", "OrFlag": "1" },
-  { "#Key": "# to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
+  { "#Key": "#% increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "31", "OrFlag": "1" },
+  { "#Key": "#% increased Global Critical Strike Chance", "Eval": ">=", "Min": "30", "OrFlag": "1" },
+  { "#Key": "#% to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
   { "#Key": "(Pseudo) Add Physical Damage to Attacks_Avg", "Eval": ">=", "Min": "4", "OrFlag": "1" },
   { "#Key": "# to Accuracy Rating", "Eval": ">=", "Min": "166", "OrFlag": "1" },
-  { "#Key": "# increased Attack Speed", "Eval": ">=", "Min": "8", "OrFlag": "1" },
+  { "#Key": "#% increased Attack Speed", "Eval": ">=", "Min": "8", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Cold Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Fire Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total to Lightning Resistance", "Eval": ">=", "Min": "36", "OrFlag": "1" },
@@ -346,7 +348,7 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "(Pseudo) Increased Cold Damage", "Eval": ">=", "Min": "80", "OrFlag": "1" },
   { "#Key": "(Pseudo) Increased Fire Damage", "Eval": ">=", "Min": "80", "OrFlag": "1" },
   { "#Key": "(Pseudo) Increased Lightning Damage", "Eval": ">=", "Min": "80", "OrFlag": "1" },
-  { "#Key": "# increased Spell Damage", "Eval": ">=", "Min": "65", "OrFlag": "1" },
+  { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "65", "OrFlag": "1" },
   { "#Key": "(Pseudo) Total Elemental Damage to Spells_Avg", "Eval": ">=", "Min": "38", "OrFlag": "1" },
   { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "120", "OrFlag": "1" },
   { "#Key": "# to Level of all Physical Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
@@ -356,16 +358,16 @@ These examples will show both basic functionality as well as advanced usage of t
   { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# to Level of all Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# to Level of all Spell Skill Gems", "Eval": ">=", "Min": "1", "OrFlag": "1" },
-  { "#Key": "Gain # of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
-  { "#Key": "Gain # of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
-  { "#Key": "Gain # of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
-  { "#Key": "Gain # of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
-  { "#Key": "# to Fire Damage over Time Multiplier", "Eval": ">=", "Min": "24", "OrFlag": "1" },
-  { "#Key": "# to Chaos Damage over Time Multiplier", "Eval": ">=", "Min": "24", "OrFlag": "1" },
-  { "#Key": "# to Cold Damage over Time Multiplier", "Eval": ">=", "Min": "24", "OrFlag": "1" },
-  { "#Key": "# increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "60", "OrFlag": "1" },
-  { "#Key": "# to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
-  { "#Key": "# increased Cast Speed", "Eval": ">=", "Min": "17", "OrFlag": "1" }
+  { "#Key": "Gain #% of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
+  { "#Key": "Gain #% of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
+  { "#Key": "Gain #% of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
+  { "#Key": "Gain #% of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "OrFlag": "1" },
+  { "#Key": "#% to Fire Damage over Time Multiplier", "Eval": ">=", "Min": "24", "OrFlag": "1" },
+  { "#Key": "#% to Chaos Damage over Time Multiplier", "Eval": ">=", "Min": "24", "OrFlag": "1" },
+  { "#Key": "#% to Cold Damage over Time Multiplier", "Eval": ">=", "Min": "24", "OrFlag": "1" },
+  { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "60", "OrFlag": "1" },
+  { "#Key": "#% to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
+  { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "17", "OrFlag": "1" }
  ],
  "Data": { "OrCount": 2, "StashTab": "2" },
  "Prop": [
@@ -381,11 +383,11 @@ These examples will show both basic functionality as well as advanced usage of t
 ```JSON
 {
  "Affix": [
-  { "#Key": "# increased Physical Damage", "Eval": ">=", "Min": "135", "OrFlag": "1" },
+  { "#Key": "#% increased Physical Damage", "Eval": ">=", "Min": "135", "OrFlag": "1" },
   { "#Key": "(Pseudo) Add Physical Damage to Attacks_Avg", "Eval": ">=", "Min": "21", "OrFlag": "1" },
-  { "#Key": "# to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
-  { "#Key": "# increased Attack Speed", "Eval": ">=", "Min": "20", "OrFlag": "1" },
-  { "#Key": "# increased Critical Strike Chance", "Eval": ">=", "Min": "25", "OrFlag": "1" }
+  { "#Key": "#% to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
+  { "#Key": "#% increased Attack Speed", "Eval": ">=", "Min": "20", "OrFlag": "1" },
+  { "#Key": "#% increased Critical Strike Chance", "Eval": ">=", "Min": "25", "OrFlag": "1" }
  ],
  "Data": { "OrCount": 2, "StashTab": "2" },
  "Prop": [
@@ -403,10 +405,10 @@ These examples will show both basic functionality as well as advanced usage of t
  "Affix": [
   { "#Key": "(Pseudo) Total Elemental Damage to Attacks_Avg", "Eval": ">=", "Min": "60", "OrFlag": "1" },
   { "#Key": "(Pseudo) Add Physical Damage to Attacks_Avg", "Eval": ">=", "Min": "21", "OrFlag": "1" },
-  { "#Key": "# to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
-  { "#Key": "# increased Attack Speed", "Eval": ">=", "Min": "20", "OrFlag": "1" },
-  { "#Key": "# increased Critical Strike Chance", "Eval": ">=", "Min": "25", "OrFlag": "1" },
-  { "#Key": "# increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "37", "OrFlag": "1" }
+  { "#Key": "#% to Global Critical Strike Multiplier", "Eval": ">=", "Min": "25", "OrFlag": "1" },
+  { "#Key": "#% increased Attack Speed", "Eval": ">=", "Min": "20", "OrFlag": "1" },
+  { "#Key": "#% increased Critical Strike Chance", "Eval": ">=", "Min": "25", "OrFlag": "1" },
+  { "#Key": "#% increased Elemental Damage with Attack Skills", "Eval": ">=", "Min": "37", "OrFlag": "1" }
  ],
  "Data": { "OrCount": 2, "StashTab": "2" },
  "Prop": [
@@ -422,12 +424,12 @@ These examples will show both basic functionality as well as advanced usage of t
 ```JSON
 {
  "Affix": [
-  { "#Key": "# increased maximum Life", "Eval": ">=", "Min": "1", "OrFlag": "1" },
-  { "#Key": "# increased maximum Energy Shield", "Eval": ">=", "Min": "1", "OrFlag": "1" },
+  { "#Key": "#% increased maximum Life", "Eval": ">=", "Min": "1", "OrFlag": "1" },
+  { "#Key": "#% increased maximum Energy Shield", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# to maximum Life", "Eval": ">=", "Min": "1", "OrFlag": "1" },
   { "#Key": "# to maximum Energy Shield", "Eval": ">=", "Min": "1", "OrFlag": "1" },
-  { "#Key": "Players have a # chance to gain Onslaught on Kill For 4 seconds", "Eval": ">=", "Min": "1", "OrFlag": "1" },
-  { "#Key": "# chance to gain Phasing for 4 seconds on Kill", "Eval": ">=", "Min": "1", "OrFlag": "1" }
+  { "#Key": "Players have a #% Chance to gain Onslaught on Kill For 4 seconds", "Eval": ">=", "Min": "1", "OrFlag": "1" },
+  { "#Key": "#% Chance to gain Phasing for 4 seconds on Kill", "Eval": ">=", "Min": "1", "OrFlag": "1" }
  ],
  "Data": { "OrCount": 1, "StashTab": "2" },
  "Prop": [
