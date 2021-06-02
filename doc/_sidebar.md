@@ -6,7 +6,6 @@
   * [Configuration Tab](/doc/configuration)
   - **Additional GUI**
   * [FindText Interface](/doc/findtext)
-* [Developer Info](/dev/)
 - **Links**
 - [![GitHub](https://icongr.am/simple/github.svg?color=808080&size=32)GitHub Latest Release](https://github.com/BanditTech/WingmanReloaded/releases/latest)
 - [![OwnedCore](https://icongr.am/material/brain.svg?size=32&color=808080)OwnedCore Forum Thread](https://www.ownedcore.com/forums/mmo/path-of-exile/poe-bots-programs/799983-wingmanreloaded-auto-flask-quit-mine-spell-loot-manage-filter-click.html#post4065545)
