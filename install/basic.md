@@ -15,6 +15,7 @@
 * For most things related to item parsing you must use english client.
   * The location system should work for any language client though
 * Enable the Overhead Health Bar in game, so the script knows when to pause.
+* Disable screen shake, as it will cause the OHB to not detect properly
 * Make sure the chat window text does not overlap inventory while stash is open
 
    
@@ -28,6 +29,8 @@
   * Also a submitted 43:18 aspect ( 21.5:9 )
 * UltraWide is 32:9
 
+> It is also possible determine if your game resolution is running a supported aspect ratio. Have the game open, then click get ratio.
+
    
 
 ## Client.txt file location
@@ -36,7 +39,9 @@
 * This file is required in order to determine the current location
 * Default file location is configured as C:\ drive in a steam library
 * If not found you will see a warning message, Simply locate your file in your PoE install folder
+* The file will be located in the PoE install location in the Logs folder
 * Double check that you have local chat enabled In-Game, and it should now update when you zone change
+  * If the location stops updating, make sure to check again if local chat is enabled
 
    
 
@@ -48,18 +53,34 @@
 * Weapon-Swap
 * Item Pickup
 
-> Optional hotkeys enable or disable script functions: (To disable leave blank)
+> The script requires these keys in order to press the correct button when interacting with the game.
+
+>Trigger keybindings
+* Movement
+* Main & Secondary attack
+
+> The script uses these trigger keybindings to understand which keys to monitor for presses
+
+> Main function bindings
 * Open the Main Menu (defaults to Alt-F10 if blank)
 * Auto-Flask toggle
 * Auto-Quit toggle
+* Auto-Move toggle
+* Auto-Utility toggle
+* Pause Detonate
+
+> Optional hotkeys enable or disable script functions: (To disable leave blank)
 * Logout
-* Auto-Quicksilver toggle
-* Coord/Pixel
+* Pop Flasks
 * Quick-Portal
 * Gem-Swap
-* Pop Flasks
-* ID/Vend/Stash
+* Grab Currency
+* Coord/Pixel
 * Item Info
+* Inventory Sort
+* Bulk Craft Maps
+* Chaos Recipe 
+* Basic Crafting
 
 > Find more information about these hotkey functions in the [**GUI Documentation**](documentation)
 
@@ -70,13 +91,18 @@
 * The simplest for newer players is probably the Wizard.
   * It allows you to select several samples to do at once.
   * It will prompt you with what to do for each step.
-* Individual Sample is the other method, and its easier when you only want to recalibrate one or two gamestates.
-  * Mouse over each button to see a discription.
-  * Click the appropriate sample button while the gamestate is active, read the popup and continue.
+* Individual Samples can be gathered by clicking the specific Gamestate.
+  * Click the appropriate Gamestate button while it is active.
 
-> Once you have done your calibrations, click Show Gamestates button to confirm everything is working. When changing game panels the corresponding gamestate should light up. If everything has lit up green the script is ready to work.
+> Once you have done your calibrations, observe your Gamestates. When changing game panels the corresponding Gamestate should light up red. If everything has lit up green the script is ready to work.
 
-   
+> All Gamestates should display green when ready to play. Any panels open that would pause the script should display as highlighted red when active. If opening and closing panels does not correctly toggle the Gamestate, then you need to redo the calibration for that specific panel.
+
+> Two special gamestates are considered FAILSAFES. They are required to be active at all times, and instead turn RED when they are not found. That is the Character Active and Overhead Health Bar Gamestates. 
+
+To properly calibrate Character Active, simply be loaded into a character then sample. (the health globes must be visible)
+
+To properly calibrate Overhead Health Bar you need to go to Sample Strings in the Configuration tab. 
 
 ## Adjust Globes
 
@@ -85,7 +111,11 @@
 * Change the "Base Color" to match against
 * Change the variance from the base color it will consider matching
 
-   
+> For mana, be careful of being too loose matching (high variance) because of issues inside the azurite mines (matching blue colors behind the transparent mana globe)
+
+> For HP be wary of the issue of matching health inside the Azurite mines (when inside the darkness it will overlay with black swirling effect)
+
+> Also be mindful of the similar colors on the overlay of the globe itself, which will cause the value to never go below its position.
 
 ## Assign Scroll Locations
 
