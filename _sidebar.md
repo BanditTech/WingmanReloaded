@@ -1,6 +1,5 @@
 * [About The Script](/main/wingmanreloaded)
-* [Basic Installation](/main/installation)
-* [Secondary Configurations](/main/configure)
+* [Installation](/install/)
 * [Documentation](/doc/)
 - **Links**
 - [![GitHub](https://icongr.am/simple/github.svg?color=808080&size=32)GitHub Latest Release](https://github.com/BanditTech/WingmanReloaded/releases/latest)
