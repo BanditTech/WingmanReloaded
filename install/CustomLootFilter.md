@@ -16,11 +16,13 @@ Assign the number of required OR matches, then check the OR box on all the affix
 ### Getting Started
 These examples will show both basic functionality as well as advanced usage of the CLF. Follow along with the descriptive text to learn more about how to use the CLF basic functionality.
 
-> Import these examples to the CLF to use, and then edit them for your own personal taste.  
+Import these examples to the CLF to use, and then edit them for your own personal taste. 
+
 > The CLF will always match with the first filter that is considered true, so order can be important. (Currently requires manually re-ordering in the file, not recommended)
 
-> Here we have a simple filter which is two conditions: ChaosValue is AT LEAST 4, and RarityCurrency is NOT true  
-> Notice that we are checking for both conditions, and they both must match to return true  
+Here we have a simple filter which is two conditions: ChaosValue is AT LEAST 4, and RarityCurrency is NOT true  
+Notice that we are checking for both conditions, and they both must match to return true  
+
 > Basic evaluations include these: < , > , = , != , <= , >=
 
 ```JSON
@@ -37,11 +39,11 @@ These examples will show both basic functionality as well as advanced usage of t
 > Now with a grasp of basic evaluations, we can begin to use the ~ evaluator to search for strings  
 > The basic tools of this search mode are the | symbol (OR) and & symbol (AND)
 
-> Let us create a hypothetical search, where we want to only get specific influenced items but also specific item types  
-> This will match with Redeemer OR Hunter OR (Crusader AND Elder)  
-> Notice that the third match condition will only be true when BOTH the strings "Crusader" AND "Elder" are contained in Influence  
-> It also requires that the item Class to contain the strings: "Boot", "Glove", "Ring", "Belt", or "Amulet"  
-> This allows for loose matching since some item classes are named in the plural like "Boots", "Gloves", etc..
+Let us create a hypothetical search, where we want to only get specific influenced items but also specific item types  
+This will match with Redeemer OR Hunter OR (Crusader AND Elder)  
+Notice that the third match condition will only be true when BOTH the strings "Crusader" AND "Elder" are contained in Influence  
+It also requires that the item Class to contain the strings: "Boot", "Glove", "Ring", "Belt", or "Amulet"  
+This allows for loose matching since some item classes are named in the plural like "Boots", "Gloves", etc..
 
 ```JSON
 {
@@ -57,10 +59,10 @@ These examples will show both basic functionality as well as advanced usage of t
 > The new item parser is capable of matching the affixes of nearly every item  
 > When looking to create filters remember that most numbers will be replaced with a # symbol
 
-> Lets begin this section by getting straight into the usage of the OR condition  
-> We can assign any number of the Keys as being mutually conditional with any number of others  
-> Assign a minimum number of matches that the OR group must contain in order to return true  
-> Check the OR CheckBox next to any Key to add it to the OR group
+Lets begin this section by getting straight into the usage of the OR condition  
+We can assign any number of the Keys as being mutually conditional with any number of others  
+Assign a minimum number of matches that the OR group must contain in order to return true  
+Check the OR CheckBox next to any Key to add it to the OR group
 
 > Let's contrive another hypothetical filter, where we want to use the OR condition  
 > We can assign the Min OR # to 1 in order to match any of the three conditions  
@@ -78,6 +80,8 @@ These examples will show both basic functionality as well as advanced usage of t
 }
 ```
 
+
+## Example Filters
 
 > The next examples will all take this idea to an extreme, using Affix Keys that are assigned to the OR group  
 > These filters are loosely based on the [Community CutSheet](https://docs.google.com/spreadsheets/d/1cH1Kd5nQnXSjY6SFQ_bPVei8n_Hy6fje5OWdG7s48UI/edit#gid=262670440) and expanded to T2 affixes by DanMarzola
