@@ -2,7 +2,7 @@
 * [Installation](/install/)
   * [Basic Installation](/install/basic)
   * [Secondary Configurations](/install/secondary)
-  * [Custom Loot Filter](/install/CLF)
+  * [Custom Loot Filter](/install/CustomLootFilter)
 * [Documentation](/doc/)
 - **Links**
 - [![GitHub](https://icongr.am/simple/github.svg?color=808080&size=32)GitHub Latest Release](https://github.com/BanditTech/WingmanReloaded/releases/latest)
