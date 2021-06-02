@@ -1,5 +1,5 @@
 * [About The Script](/)
-* [Installation](/Install/)
+* [Installation](/install/)
   * [Basic Installation](/install/basic)
   * [Secondary Configurations](/install/secondary)
 * [Documentation](/doc/)
