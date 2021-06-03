@@ -22,7 +22,9 @@
 * Auto-Fill Metamorph panel when opened in field
 * Auto-Stash Chaos/Regal recipe items, and hotkey to auto-vendor sets of items
 * Customizable list of Crafting items to stash
-* Automatically Craft the map items in your inventory
+* Bulk Craft the map items in your inventory
+* Auto-Open Stacked Decks
+* Basic crafting of Colors, Sockets, Links and Chancing
 
    
 
