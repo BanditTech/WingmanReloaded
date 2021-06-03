@@ -45,7 +45,7 @@
 
 > Quicksilver Flasks trigger with an optional delay
 * Quicksilver uses LButton as default trigger
-* Optionaly trigger with primary or secondary attack
+* Optionally trigger with primary or secondary attack
 
    
 
@@ -111,8 +111,14 @@ Also allows for pausing detonate so you can stack up for a boss by double tappin
 
 Assign a buff icon to look for, and a capture of the stack count
 
-Then assign the key you want it to release when it detects full stacks!
+Then assign the key you want it to release and repress when it detects full stacks!
 
 When configured correctly, it will provide maximum stack release the moment it reaches it.
 
 ![WingmanReloaded](/images/stack-release.gif)
+
+## Autofill Metamorph Panel
+
+> When interacting with the Metamorph Tank inside a map, easily fill the organ selections.
+
+When properly configured and calibrated, it will select the leftmost organs and then place the cursor over the confirm button. Metamorphs become a breeze, instantly fill and go!
