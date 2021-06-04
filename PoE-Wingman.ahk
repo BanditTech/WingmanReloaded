@@ -2607,9 +2607,9 @@ Return
         Return False
       If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
       {
-        RandomSleep(60,90)
+        RandomSleep(90,90)
         LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
-        RandomSleep(60,90)
+        RandomSleep(90,180)
         ContinueFlag := True
       }
       Else If (FirstAutomationSetting=="Search Vendor")
@@ -2633,8 +2633,9 @@ Return
       ; Search Stash and StashRoutine
       If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
       {
+        RandomSleep(90,180)
         SendHotkey(hotkeyCloseAllUI)
-        RandomSleep(45,90)
+        RandomSleep(90,180)
         If OnHideout
           Town := "Hideout"
         Else If OnMines
@@ -2767,9 +2768,9 @@ Return
       ; Vendor set
       If !VendorRoutineChaos() {
           Notify("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
-          sleep, 150
+          sleep, 180
           SendHotkey(hotkeyCloseAllUI)
-          sleep, 150
+          sleep, 180
           SendHotkey(hotkeyCloseAllUI)
           sleep, 200
           SearchStash()
