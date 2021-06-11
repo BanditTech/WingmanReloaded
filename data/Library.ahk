@@ -6605,7 +6605,7 @@
         }
         ;Auto Vendor Settings
         ;380,820
-        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3840/380))
+        WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3840/1340))
         WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
         ;Detonate Mines
         WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
@@ -6680,8 +6680,8 @@
         WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
         WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
         ;Status Check OnLocker ((3840/3)-2)
-        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3840 / 900))
-        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
+        WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3840 / 1415))
+        WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918)) 
         ;GUI overlay
         WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3840 / -10))
         WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
