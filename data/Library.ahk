@@ -2916,7 +2916,7 @@
         local
         CountSum := 0
         PotentialMatches := []
-        For k, elem in grp.ElementList {
+        For k, elem in grp["~ElementList"] {
           If elem.GroupType {
             matched := This.MatchGroup(elem)
           } Else {
