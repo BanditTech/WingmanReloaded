@@ -4045,7 +4045,7 @@
         Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
         Gui, Strings: Add, Button, hp w50 x+10 yp vOHB_EditorBtn gOHBUpdate , Make
         Gui, Strings: Add, Text, x+10 x+10 ys , Capture of the Skill up icon
-        Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"?"%1050_SkillUpStr%"?"%768_SkillUpStr%"
+        Gui, Strings: Add, ComboBox, y+8 w280 vSkillUpStr gUpdateStringEdit , %SkillUpStr%??"%1080_SkillUpStr%"?"%1440_SkillUpStr%"?"%1050_SkillUpStr%"?"%768_SkillUpStr%"
         Gui, Strings: Add, Text, xs y+15 section , Capture of the words Sell Items
         Gui, Strings: Add, ComboBox, y+8 w280 vSellItemsStr gUpdateStringEdit , %SellItemsStr%??"%1080_SellItemsStr%"?"%2160_SellItemsStr%"?"%1440_SellItemsStr%"?"%1050_SellItemsStr%"?"%768_SellItemsStr%"
         Gui, Strings: Add, Text, x+10 ys , Capture of the Stash
