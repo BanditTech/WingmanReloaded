@@ -1,6 +1,6 @@
 # WingmanReloaded
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 PoE-Wingman was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/)
@@ -142,6 +142,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/Hillgrove"><img src="https://avatars.githubusercontent.com/u/20029330?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hillgrove</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Hillgrove" title="Code">💻</a> <a href="#data-Hillgrove" title="Data">🔣</a></td>
     <td align="center"><a href="https://github.com/Violet-Vibes"><img src="https://avatars.githubusercontent.com/u/19490536?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Violet Vibes</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Violet-Vibes" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/linkeal"><img src="https://avatars.githubusercontent.com/u/11042882?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=linkeal" title="Code">💻</a></td>
   </tr>
 </table>
 
