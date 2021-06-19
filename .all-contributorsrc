@@ -39,6 +39,16 @@
         "maintenance",
         "question"
       ]
+    },
+    {
+      "login": "Barragek0",
+      "name": "Barragek0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24503018?v=4",
+      "profile": "https://github.com/Barragek0",
+      "contributions": [
+        "code",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
