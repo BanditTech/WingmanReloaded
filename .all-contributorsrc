@@ -96,6 +96,15 @@
         "code",
         "data"
       ]
+    },
+    {
+      "login": "Violet-Vibes",
+      "name": "Violet Vibes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19490536?v=4",
+      "profile": "https://github.com/Violet-Vibes",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
