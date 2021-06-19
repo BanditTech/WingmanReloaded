@@ -105,6 +105,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "linkeal",
+      "name": "Alex",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11042882?v=4",
+      "profile": "https://github.com/linkeal",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
