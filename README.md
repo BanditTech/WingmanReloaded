@@ -1,4 +1,7 @@
 # WingmanReloaded
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 PoE-Wingman was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/)
 
@@ -119,3 +122,22 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
     - If you are using globe scan, resampling colors is no longer needed when saving
       - Otherwise it will resample your Health, ES, and Mana for comparing against while the script runs
     - If the script instantly triggers when you exit town or hideout, you need to resample or adjust globe settings
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/BanditTech"><img src="https://avatars.githubusercontent.com/u/13251996?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BanditTech</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=BanditTech" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3ABanditTech" title="Bug reports">🐛</a> <a href="#data-BanditTech" title="Data">🔣</a> <a href="https://github.com/BanditTech/WingmanReloaded/commits?author=BanditTech" title="Documentation">📖</a> <a href="#design-BanditTech" title="Design">🎨</a> <a href="#ideas-BanditTech" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-BanditTech" title="Maintenance">🚧</a> <a href="#projectManagement-BanditTech" title="Project Management">📆</a> <a href="#question-BanditTech" title="Answering Questions">💬</a> <a href="#translation-BanditTech" title="Translation">🌍</a> <a href="https://github.com/BanditTech/WingmanReloaded/pulls?q=is%3Apr+reviewed-by%3ABanditTech" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
