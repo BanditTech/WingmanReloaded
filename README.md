@@ -1,6 +1,6 @@
 # WingmanReloaded
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 PoE-Wingman was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/)
@@ -138,6 +138,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/sebbi08"><img src="https://avatars.githubusercontent.com/u/9070136?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sebastian Mahr</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=sebbi08" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Sauron-Dev"><img src="https://avatars.githubusercontent.com/u/8209987?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sauron-Dev</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Sauron-Dev" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3ASauron-Dev" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/norecha"><img src="https://avatars.githubusercontent.com/u/10354246?v=4?s=100" width="100px;" alt=""/><br /><sub><b>norecha</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=norecha" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Hillgrove"><img src="https://avatars.githubusercontent.com/u/20029330?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hillgrove</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Hillgrove" title="Code">💻</a> <a href="#data-Hillgrove" title="Data">🔣</a></td>
   </tr>
 </table>
 
