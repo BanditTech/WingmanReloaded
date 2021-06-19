@@ -23,6 +23,22 @@
         "translation",
         "review"
       ]
+    },
+    {
+      "login": "danmarzola",
+      "name": "danmarzola",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20021542?v=4",
+      "profile": "https://github.com/danmarzola",
+      "contributions": [
+        "code",
+        "bug",
+        "data",
+        "doc",
+        "design",
+        "ideas",
+        "maintenance",
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 7,
