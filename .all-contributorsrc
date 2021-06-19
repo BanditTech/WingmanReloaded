@@ -86,6 +86,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Hillgrove",
+      "name": "Hillgrove",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20029330?v=4",
+      "profile": "https://github.com/Hillgrove",
+      "contributions": [
+        "code",
+        "data"
+      ]
     }
   ],
   "contributorsPerLine": 7,
