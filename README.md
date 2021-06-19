@@ -1,6 +1,6 @@
 # WingmanReloaded
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 PoE-Wingman was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/)
@@ -133,6 +133,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/BanditTech"><img src="https://avatars.githubusercontent.com/u/13251996?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BanditTech</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=BanditTech" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3ABanditTech" title="Bug reports">🐛</a> <a href="#data-BanditTech" title="Data">🔣</a> <a href="https://github.com/BanditTech/WingmanReloaded/commits?author=BanditTech" title="Documentation">📖</a> <a href="#design-BanditTech" title="Design">🎨</a> <a href="#ideas-BanditTech" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-BanditTech" title="Maintenance">🚧</a> <a href="#projectManagement-BanditTech" title="Project Management">📆</a> <a href="#question-BanditTech" title="Answering Questions">💬</a> <a href="#translation-BanditTech" title="Translation">🌍</a> <a href="https://github.com/BanditTech/WingmanReloaded/pulls?q=is%3Apr+reviewed-by%3ABanditTech" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/danmarzola"><img src="https://avatars.githubusercontent.com/u/20021542?v=4?s=100" width="100px;" alt=""/><br /><sub><b>danmarzola</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=danmarzola" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3Adanmarzola" title="Bug reports">🐛</a> <a href="#data-danmarzola" title="Data">🔣</a> <a href="https://github.com/BanditTech/WingmanReloaded/commits?author=danmarzola" title="Documentation">📖</a> <a href="#design-danmarzola" title="Design">🎨</a> <a href="#ideas-danmarzola" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-danmarzola" title="Maintenance">🚧</a> <a href="#question-danmarzola" title="Answering Questions">💬</a></td>
+    <td align="center"><a href="https://github.com/Barragek0"><img src="https://avatars.githubusercontent.com/u/24503018?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Barragek0</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Barragek0" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3ABarragek0" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
