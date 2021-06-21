@@ -3,6 +3,7 @@ save/
 temp/
 logs/
 data/Ninja.json
+data/Source.zip
 data/leagues.json
 .vscode/settings.json
 data/PoE.Watch_PerfectUnique.json

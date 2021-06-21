@@ -6702,9 +6702,10 @@ Return
     }
 
     runUpdate:
+    
       Fail:=False
       Log("update","Running")
-      7za.install(BanchName)
+      7za.install(BranchName)
       Run "%A_ScriptFullPath%"
       Sleep 5000 ;This shouldn't ever hit.
       Log("update","uhoh something has gone wrong")
