@@ -8968,6 +8968,7 @@
       Static Acc := "BanditTech"
       Static Proj := "WingmanReloaded"
       Link := "https://github.com/" Acc "/" Proj "/archive/refs/heads/" branch ".zip"
+      This.backup()      
       UrlDownloadToFile,% Link,% This.Source
       ExtArgs := "x """ This.Source """ -o""" A_ScriptDir """ -y"
       subfolder := Proj "-" branch

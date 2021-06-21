@@ -1,4 +1,28 @@
-﻿## Version .13.01 - Master version - June/1/2020
+﻿## Version .13.02 - Master version - June/21/2020
+Introducing a New update method
+* We now use 7z to backup and install
+* Makes a backup of the script when updating
+* Updating now updates all files, not just main files
+* Update is now just one zip File, and is MUCH faster
+
+To complete the update process and ensure full install
+* Once script restarts from update
+  * Right click the tray icon, then force update once more
+  * It will use the new update method to reinstall the script
+  * You should now have no worries going forward for future updates!
+
+With this new update method is a lot of freedom!
+It allows me to change the file structure of the script,
+without being burdened by ever increasing lists of files to be updated.
+
+The script has become a behemoth of code inside the two files.
+It has been way past time to seperate all the libraries out into their respective files,
+and this is exactly what I needed to do before that could happen.
+I look forward to an easier to edit codebase in the near future!
+
+---
+
+## Version .13.01 - Master version - June/1/2020
 Alpha changes are being merged back into the main Branch
 * Keep in mind that many files are changed which are not auto-updated
 * It is recommended to re-install the script to get all the newest files
