@@ -1,0 +1,66 @@
+﻿Synopsis
+Mtee is a Win32 console application that sends any data it receives to stdout and to any number of files. Useful if you want to watch and record the output from a batch file or program. It can also prefix each line of output with a timestamp.
+
+Mtee is a 19kb standalone executable. It does not create any temporary files or write to the registry. There is no installation procedure, just run it. To remove all traces of Mtee from your system, just delete it.
+
+Mtee is simple to use and only has several options. To list them, type:-
+
+mtee /?
+Usage
+  MTEE [/A | /U] [/C] [/D] [/T] [/E] [[/+] file] [...]
+
+  /A    Convert output to ANSI. Default output is same as input.
+  /C    Continue if errors occur opening/writing to file (advanced users only).
+  /D    Prefix each line of output with local date in YYYY-MM-DD format.
+  /T    Prefix each line of output with local time in HH:MM:SS.MSS format.
+  /U    Convert output to UNICODE. Default output is same as input.
+  /E    Exit with exit code of piped process.
+  /ET   Calculate and display elapsed time.  
+  /+    Append to existing file. If omitted, existing file is overwritten.
+  file  File to receive the output. File is overwritten if /+ not specified.
+  ...   Any number of additional files. Use /+ before each file to append.
+
+  Example usage:-
+
+  1) script.cmd | mtee result.txt
+  2) ftp -n -s:ftp.scr | mtee local.log /+ \\server\logs$\remote.log
+  3) update.cmd 2>&1 | mtee/d/t/+ log.txt
+
+  1) Sends the output of script.cmd to the console and to result.log. If
+     result.txt already exists, it will be overwritten.
+  2) Sends output of automated ftp session to the console and two log files,
+     local.log is overwritten if it already exists, remote.log is appended to.
+  3) Redirects stdout and stderr from update.cmd to console and appends to
+     log.txt. Each line is prefixed with local date and time.
+Examples
+View Mtee help screen:-
+
+mtee/?
+Send the output of script.cmd to the console and to RESULT.LOG. If RESULT.LOG already exists, it will be overwritten:-
+
+script.cmd | mtee result.log
+Send the output of the automated ftp session to the console and to two log files, LOCAL.LOG is overwritten if it already exists. REMOTE.LOG is appended to if it exists, otherwise it is created:-
+
+ftp -n -s:ftp.scr | mtee local.log /+ \\server\logs\remote.log
+Make two copies of LOG whilst viewing LOG on the screen. If NEW1 and NEW2 already exist, they are overwritten:-
+
+mtee < log new1 new2
+Redirect stdout and stderr from UPDATE.CMD to the console and appends to LOG.TXT. Each line is prefixed with local date and time:-
+
+update.cmd 2>&1 | mtee/d/t/+ log.txt
+Send the output from BACKUP.CMD to the console and two remote log files. If there is an error opening any of the log files (server offline for instance) MTEE will continue. If the destination files already exist, they are appended to:-
+
+backup.cmd | mtee /c/+ \\svr1\log$\bu.log /+ \\svr2\logs$\bu.log
+Make multiple carbon copies of patch.exe:-
+
+type patch.exe|mtee \\pc1\c$\patch.exe \\pc2\c$\patch.exe \\pc3\c$\patch.exe
+Make a unicode log of HFNETCHK:-
+
+hfnetchk|mtee/u log
+Display stdout on the console, and stderr on the console and also to a log file with each line of stderr prefixed with local date and time:-
+
+batch.cmd 2>&1 1>&3 3>&1 |mtee/t/d log
+FAQs
+How can I determine the exit code of the process piped into Mtee?
+
+Update Mtee to at least version v2.21 and use the /E option.

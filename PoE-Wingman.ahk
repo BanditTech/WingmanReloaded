@@ -88,6 +88,8 @@
     FileCreateDir, %A_ScriptDir%\temp
   IfNotExist, %A_ScriptDir%\logs
     FileCreateDir, %A_ScriptDir%\logs
+  IfNotExist, %A_ScriptDir%\backup
+    FileCreateDir, %A_ScriptDir%\backup
   
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global Script Object
@@ -1130,26 +1132,21 @@
       needReload := True
     }
   }
-  IfNotExist, %A_ScriptDir%\data\InventorySlots.png
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/InventorySlots.png, %A_ScriptDir%\data\InventorySlots.png
-    if ErrorLevel{
-       Log("data","uhoh", "InventorySlots.png")
-      MsgBox, Error ED02 : There was a problem downloading InventorySlots.png
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "InventorySlots.png")
-    }
-  }
-  IfNotExist, %A_ScriptDir%\data\boot_enchantment_mods.txt
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/boot_enchantment_mods.txt, %A_ScriptDir%\data\boot_enchantment_mods.txt
-    if ErrorLevel{
-       Log("data","uhoh", "boot_enchantment_mods")
-      MsgBox, Error ED02 : There was a problem downloading boot_enchantment_mods.txt
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "boot_enchantment_mods")
+  ; Verify we have essential files, and redownload if required
+  For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","item_corrupted_mods.txt"
+                ,"boot_enchantment_mods.txt","helmet_enchantment_mods.txt","glove_enchantment_mods.txt"
+                ,"WR_Prop.json","WR_Pseudo.json","WR_Affix.json"
+                ,"Controller.png","InventorySlots.png"] {
+    IfNotExist, %A_ScriptDir%\data\%str%
+    {
+      UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/%str%, %A_ScriptDir%\data\%str%
+      if ErrorLevel{
+        Log("data","uhoh", str)
+        MsgBox, Error ED02 : There was a problem downloading %str%
+      }
+      Else if (ErrorLevel=0){
+        Log("data","pass", str)
+      }
     }
   }
   Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
@@ -1158,32 +1155,10 @@
       Enchantment.push(A_LoopReadLine)
     }
   }
-  IfNotExist, %A_ScriptDir%\data\helmet_enchantment_mods.txt
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/helmet_enchantment_mods.txt, %A_ScriptDir%\data\helmet_enchantment_mods.txt
-    if ErrorLevel {
-       Log("data","uhoh", "helmet_enchantment_mods")
-      MsgBox, Error ED02 : There was a problem downloading helmet_enchantment_mods.txt
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "helmet_enchantment_mods")
-    }
-  }
   Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
   {
     If (StrLen(Trim(A_LoopReadLine)) > 0) {
       Enchantment.push(A_LoopReadLine)
-    }
-  }
-  IfNotExist, %A_ScriptDir%\data\glove_enchantment_mods.txt
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/glove_enchantment_mods.txt, %A_ScriptDir%\data\glove_enchantment_mods.txt
-    if ErrorLevel {
-       Log("data","uhoh", "glove_enchantment_mods")
-      MsgBox, Error ED02 : There was a problem downloading glove_enchantment_mods.txt
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "glove_enchantment_mods")
     }
   }
   Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
@@ -1192,76 +1167,10 @@
       Enchantment.push(A_LoopReadLine)
     }
   }
-  IfNotExist, %A_ScriptDir%\data\item_corrupted_mods.txt
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/item_corrupted_mods.txt, %A_ScriptDir%\data\item_corrupted_mods.txt
-    if ErrorLevel {
-       Log("data","uhoh", "item_corrupted_mods")
-      MsgBox, Error ED02 : There was a problem downloading item_corrupted_mods.txt
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "item_corrupted_mods")
-    }
-  }
   Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
   {
     If (StrLen(Trim(A_LoopReadLine)) > 0) {
       Corruption.push(A_LoopReadLine)
-    }
-  }
-  IfNotExist, %A_ScriptDir%\data\Controller.png
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Controller.png, %A_ScriptDir%\data\Controller.png
-    if ErrorLevel {
-       Log("data","uhoh", "Controller.png")
-      MsgBox, Error ED02 : There was a problem downloading Controller.png
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "Controller.png")
-    }
-  }
-  IfNotExist, %A_ScriptDir%\data\LootFilter.ahk
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
-    if ErrorLevel {
-       Log("data","uhoh", "LootFilter.ahk")
-      MsgBox, Error ED02 : There was a problem downloading LootFilter.ahk
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "LootFilter.ahk")
-    }
-  }
-  IfNotExist, %A_ScriptDir%\data\WR_Prop.json
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR_Prop.json, %A_ScriptDir%\data\WR_Prop.json
-    if ErrorLevel {
-       Log("data","uhoh", "WR_Prop.json")
-      MsgBox, Error ED02 : There was a problem downloading WR_Prop.json
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "WR_Prop.json")
-    }
-  }
-  IfNotExist, %A_ScriptDir%\data\WR_Pseudo.json
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR_Pseudo.json, %A_ScriptDir%\data\WR_Pseudo.json
-    if ErrorLevel {
-       Log("data","uhoh", "WR_Pseudo.json")
-      MsgBox, Error ED02 : There was a problem downloading WR_Pseudo.json
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "WR_Pseudo.json")
-    }
-  }
-  IfNotExist, %A_ScriptDir%\data\WR_Affix.json
-  {
-    UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR_Affix.json, %A_ScriptDir%\data\WR_Affix.json
-    if ErrorLevel {
-       Log("data","uhoh", "WR_Affix.json")
-      MsgBox, Error ED02 : There was a problem downloading WR_Affix.json
-    }
-    Else if (ErrorLevel=0){
-       Log("data","pass", "WR_Affix.json")
     }
   }
   IfNotExist, %A_ScriptDir%\data\Bases.json
@@ -6793,55 +6702,11 @@ Return
 
     runUpdate:
       Fail:=False
-      UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/PoE-Wingman.ahk, PoE-Wingman.ahk
-      if ErrorLevel {
-        Fail:=true
-      }
-      UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/LootFilter.ahk, %A_ScriptDir%\data\LootFilter.ahk
-      if ErrorLevel {
-        Fail:=true
-      }
-      UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
-      if ErrorLevel {
-        Fail:=true
-      }
-      UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
-      if ErrorLevel {
-        Fail:=true
-      } Else {
-        FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
-        Holder := []
-        Global Bases := JSON.Load(JSONtext)
-        For k, v in Bases
-        {
-          temp := {"name":v["name"]
-            ,"item_class":v["item_class"]
-            ,"domain":v["domain"]
-            ,"tags":v["tags"]
-            ,"inventory_width":v["inventory_width"]
-            ,"inventory_height":v["inventory_height"]
-            ,"drop_level":v["drop_level"]}
-          Holder.Push(temp)
-        }
-        Bases := Holder
-        JSONtext := JSON.Dump(Bases,,2)
-        FileDelete, %A_ScriptDir%\data\Bases.json
-        FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
-      }
-
-      UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Library.ahk, %A_ScriptDir%\data\Library.ahk
-      if ErrorLevel {
-        Fail:=true
-      }
-      if Fail {
-        Log("update","fail")
-      }
-      else {
-        Log("update","pass")
-        Run "%A_ScriptFullPath%"
-      }
+      Log("update","Running")
+      7za.install(BanchName)
+      Run "%A_ScriptFullPath%"
       Sleep 5000 ;This shouldn't ever hit.
-      Log("update","uhoh")
+      Log("update","uhoh something has gone wrong")
     Return
 
     dontUpdate:
