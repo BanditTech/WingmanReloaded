@@ -1,4 +1,7 @@
 # WingmanReloaded
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 PoE-Wingman was originally derived from [Nidark's PoE-Companion](https://github.com/nidark/Poe-Companion) and inspired by [Gurud's Beta-Autopot](https://github.com/badplayerr/beta-autopot/releases/)
 
@@ -119,3 +122,33 @@ In the same spirit as Andoesk I have been searching for a simple program that ha
     - If you are using globe scan, resampling colors is no longer needed when saving
       - Otherwise it will resample your Health, ES, and Mana for comparing against while the script runs
     - If the script instantly triggers when you exit town or hideout, you need to resample or adjust globe settings
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/BanditTech"><img src="https://avatars.githubusercontent.com/u/13251996?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BanditTech</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=BanditTech" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3ABanditTech" title="Bug reports">🐛</a> <a href="#data-BanditTech" title="Data">🔣</a> <a href="https://github.com/BanditTech/WingmanReloaded/commits?author=BanditTech" title="Documentation">📖</a> <a href="#design-BanditTech" title="Design">🎨</a> <a href="#ideas-BanditTech" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-BanditTech" title="Maintenance">🚧</a> <a href="#projectManagement-BanditTech" title="Project Management">📆</a> <a href="#question-BanditTech" title="Answering Questions">💬</a> <a href="#translation-BanditTech" title="Translation">🌍</a> <a href="https://github.com/BanditTech/WingmanReloaded/pulls?q=is%3Apr+reviewed-by%3ABanditTech" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/danmarzola"><img src="https://avatars.githubusercontent.com/u/20021542?v=4?s=100" width="100px;" alt=""/><br /><sub><b>danmarzola</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=danmarzola" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3Adanmarzola" title="Bug reports">🐛</a> <a href="#data-danmarzola" title="Data">🔣</a> <a href="https://github.com/BanditTech/WingmanReloaded/commits?author=danmarzola" title="Documentation">📖</a> <a href="#design-danmarzola" title="Design">🎨</a> <a href="#ideas-danmarzola" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-danmarzola" title="Maintenance">🚧</a> <a href="#question-danmarzola" title="Answering Questions">💬</a></td>
+    <td align="center"><a href="https://github.com/Barragek0"><img src="https://avatars.githubusercontent.com/u/24503018?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Barragek0</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Barragek0" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3ABarragek0" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/Hx2600"><img src="https://avatars.githubusercontent.com/u/48565218?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hx2600</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Hx2600" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/sebbi08"><img src="https://avatars.githubusercontent.com/u/9070136?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sebastian Mahr</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=sebbi08" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Sauron-Dev"><img src="https://avatars.githubusercontent.com/u/8209987?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sauron-Dev</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Sauron-Dev" title="Code">💻</a> <a href="https://github.com/BanditTech/WingmanReloaded/issues?q=author%3ASauron-Dev" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/norecha"><img src="https://avatars.githubusercontent.com/u/10354246?v=4?s=100" width="100px;" alt=""/><br /><sub><b>norecha</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=norecha" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Hillgrove"><img src="https://avatars.githubusercontent.com/u/20029330?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hillgrove</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Hillgrove" title="Code">💻</a> <a href="#data-Hillgrove" title="Data">🔣</a></td>
+    <td align="center"><a href="https://github.com/Violet-Vibes"><img src="https://avatars.githubusercontent.com/u/19490536?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Violet Vibes</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Violet-Vibes" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/linkeal"><img src="https://avatars.githubusercontent.com/u/11042882?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=linkeal" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

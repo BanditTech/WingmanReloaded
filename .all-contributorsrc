@@ -1,0 +1,125 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "BanditTech",
+      "name": "BanditTech",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13251996?v=4",
+      "profile": "https://github.com/BanditTech",
+      "contributions": [
+        "code",
+        "bug",
+        "data",
+        "doc",
+        "design",
+        "ideas",
+        "maintenance",
+        "projectManagement",
+        "question",
+        "translation",
+        "review"
+      ]
+    },
+    {
+      "login": "danmarzola",
+      "name": "danmarzola",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20021542?v=4",
+      "profile": "https://github.com/danmarzola",
+      "contributions": [
+        "code",
+        "bug",
+        "data",
+        "doc",
+        "design",
+        "ideas",
+        "maintenance",
+        "question"
+      ]
+    },
+    {
+      "login": "Barragek0",
+      "name": "Barragek0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24503018?v=4",
+      "profile": "https://github.com/Barragek0",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "Hx2600",
+      "name": "Hx2600",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48565218?v=4",
+      "profile": "https://github.com/Hx2600",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "sebbi08",
+      "name": "Sebastian Mahr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9070136?v=4",
+      "profile": "https://github.com/sebbi08",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Sauron-Dev",
+      "name": "Sauron-Dev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8209987?v=4",
+      "profile": "https://github.com/Sauron-Dev",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "norecha",
+      "name": "norecha",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10354246?v=4",
+      "profile": "https://github.com/norecha",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Hillgrove",
+      "name": "Hillgrove",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20029330?v=4",
+      "profile": "https://github.com/Hillgrove",
+      "contributions": [
+        "code",
+        "data"
+      ]
+    },
+    {
+      "login": "Violet-Vibes",
+      "name": "Violet Vibes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19490536?v=4",
+      "profile": "https://github.com/Violet-Vibes",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "linkeal",
+      "name": "Alex",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11042882?v=4",
+      "profile": "https://github.com/linkeal",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "WingmanReloaded",
+  "projectOwner": "BanditTech",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
