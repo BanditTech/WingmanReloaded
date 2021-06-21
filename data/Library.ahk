@@ -8972,7 +8972,7 @@
       ExtArgs := "x """ This.Source """ -o""" A_ScriptDir """ -y"
       subfolder := Proj "-" branch
       RunWait % comspec " /c "" """ This.ExeFile """ " ExtArgs " | """ This.Mtee """ /D/T/+ """ This.LogOutput """ """,, hide UseErrorLevel, ZipPID
-      MoveArgs := "ROBOCOPY " subfolder " /S /IS /IT """ A_ScriptDir """ /MOVE"
+      MoveArgs := "ROBOCOPY " subfolder " /S /IT """ A_ScriptDir """ /MOVE"
       RunWait % comspec " /c " MoveArgs,,hide
       RemoveArgs := "rmdir /s /q " subfolder
       RunWait % comspec " /c " RemoveArgs,,hide
