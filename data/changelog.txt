@@ -1,4 +1,17 @@
-﻿## Version .13.02 - Master version - June/21/2020
+﻿## Version .13.0201 - Alpha version - June/23/2020
+The Liberation is here!
+* Third Party Libraries have been split to ./lib/ref/
+* Script Libraries have been split to ./lib/
+
+Custom code is now included from save folder
+* Added ./save/MyCustomAutoRun.ahk and ./save/MyCustomLib.ahk
+  * Edit these files to include any custom code into the script
+  * They are both located inside the save folder
+  * If they do not exist a blank will be made.
+
+---
+
+## Version .13.02 - Master version - June/21/2020
 Introducing a New update method
 * We now use 7z to backup and install
 * Makes a backup of the script when updating
