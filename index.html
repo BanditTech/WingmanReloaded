@@ -23,6 +23,7 @@
     <!-- highlight.js -->
     <!-- <link rel="stylesheet" href="styles/xcode.css"> -->
     <!-- <script src="js/highlight.autohotkey.js"></script> -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
 </head>
 <nav></nav>
 
@@ -132,7 +133,10 @@
                     background_hover: "inherit",
                     background_transition: "0.5s"
                 }
-            }
+            },
+            plugins: [
+            EditOnGithubPlugin.create(docBase, docEditBase, title)
+            ]
         };
     </script>
     <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
