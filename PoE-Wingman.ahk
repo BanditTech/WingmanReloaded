@@ -97,6 +97,10 @@
                . "; Code must not include any return until in hotkey labels`n"
                . "; Arrange any hotkeys to end of this file`n"
               , %A_ScriptDir%\save\MyCustomAutoRun.ahk
+  IfNotExist, %A_ScriptDir%\save\MyCustomRoutine.ahk
+    FileAppend,% "; This file will be included at the end of the Logic Loop`n"
+               . "; Code must not include any return`n"
+              , %A_ScriptDir%\save\MyCustomRoutine.ahk
   IfNotExist, %A_ScriptDir%\save\MyCustomLib.ahk
     FileAppend,% "; This file will be included at the end of the Script`n", %A_ScriptDir%\save\MyCustomLib.ahk
   
@@ -3652,6 +3656,7 @@ Return
         LootScan()
       If WR.perChar.Setting.autolevelgemsEnable
         autoLevelGems()
+      #Include *i %A_ScriptDir%\save\MyCustomRoutine.ahk
       If (DebugMessages && YesTimeMS)
       {
         If ((t1-LastAverageTimer) > 100)
