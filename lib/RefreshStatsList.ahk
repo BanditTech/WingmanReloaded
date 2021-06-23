@@ -1,7 +1,9 @@
 ﻿RefreshStatsList(){
 	tooltip, refreshing stats
 	UrlDownloadToFile, https://www.pathofexile.com/api/trade/data/stats, %A_ScriptDir%\temp\new_Stats.json
-	FileRead, JSONtext, %A_ScriptDir%\temp\GGG_Stats.json
+	FileRead, JSONtext, %A_ScriptDir%\temp\new_Stats.json
+	; JSONtext := StrReplace(JSONtext," (\u00D7#)","")
+	JSONtext := RegExReplace(JSONtext, " \(\\u00d7#\)", "")
 	result := JSON.Load(JSONtext,,1).result
 	AffixKeyList := []
 	EnchantKeyList := []
@@ -36,6 +38,12 @@
 					for i, t in v.text
 						If !indexOf(t,EnchantKeyList)
 							EnchantKeyList.Push(t)
+				} Else If IsObject(v.option) {
+					desc := StrSplit(v.text,"#").1
+					For i, t in v.option.options
+						for i, tx in StrSplit(RegExReplace(RegExReplace(t.text, "\+", ""), rxNum, "#"), "`n")
+							If !indexOf(desc tx,EnchantKeyList)
+								EnchantKeyList.Push(desc tx)
 				} Else {
 					If !indexOf(v.text,EnchantKeyList)
 						EnchantKeyList.Push(v.text)
