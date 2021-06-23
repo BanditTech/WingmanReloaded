@@ -102,7 +102,9 @@
                . "; Code must not include any return`n"
               , %A_ScriptDir%\save\MyCustomRoutine.ahk
   IfNotExist, %A_ScriptDir%\save\MyCustomLib.ahk
-    FileAppend,% "; This file will be included at the end of the Script`n", %A_ScriptDir%\save\MyCustomLib.ahk
+    FileAppend,% "; This file will be included at the end of the Script`n"
+               . "; Include any Functions or Labels here`n"
+              , %A_ScriptDir%\save\MyCustomLib.ahk
   
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ; Global Script Object
