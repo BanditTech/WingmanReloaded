@@ -1,4 +1,11 @@
-﻿## Version .13.0201 - Alpha version - June/23/2020
+﻿## Version .13.0202 - Alpha version - June/23/2020
+Expanding the idea of Custom Code
+* ./save/MyCustomRoutine.ahk added
+* Code can now be included into the main logic loop
+
+---
+
+## Version .13.0201 - Alpha version - June/23/2020
 The Liberation is here!
 * Third Party Libraries have been split to ./lib/ref/
 * Script Libraries have been split to ./lib/
