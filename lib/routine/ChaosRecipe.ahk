@@ -592,7 +592,7 @@ VendorRoutineChaos(){
 				Ding(500,11,"Hit Scroll")
 				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 			} 
-			PointColor := ScreenShot_GetColor(GridX,GridY)
+			PointColor := FindText.GetColor(GridX,GridY)
 			
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info

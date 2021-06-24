@@ -17,9 +17,10 @@ LootScan(Reset:=0){
 				MouseGetPos mX, mY
 				ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
 				ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
-				If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0))
+				If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
 				{
-					ScanPx := loot.1.x + 10, ScanPy := loot.1.y + 10, ScanId := loot.1.id
+					ScanPx := loot.1.x + 10, ScanPy := loot.1.y + 10
+					, ScanId := loot.1.id
 					If ( LootVacuumActive )
 						GoSub LootScan_Click
 					LV_LastClick := A_TickCount

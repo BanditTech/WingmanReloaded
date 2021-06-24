@@ -9,6 +9,8 @@
 	Global Ninja := {}
 	Global Enchantment  := []
 	Global Corruption := []
+	Global InventoryGridX := []
+	Global InventoryGridY := []
 	Global Bases
 	Global GameActive
 	Global GamePID
@@ -402,8 +404,7 @@
 
 		ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
 ; Current log file
-	FormatTime, currentTime, , hh-mm-ss tt
-	Global logFile := currentTime
+	Global logFile := A_Now
 
 ; Login POESESSID
 	Global PoECookie := ""

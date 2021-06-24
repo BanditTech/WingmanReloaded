@@ -134,8 +134,10 @@ ShooMouse()
 ; ClearNotifications - Get rid of overlay messages if any are present
 ClearNotifications()
 {
+	; Global InventoryGridY
 	If (xBtn := FindText(GameW - 21,InventoryGridY[1] - 60,GameW,InventoryGridY[5] + 10,0.2,0.2,XButtonStr,0))
 	{
+		Log("Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
 			LeftClick(v.x,v.y)
 		Sleep, 195*Latency
@@ -203,7 +205,7 @@ VendorRoutine()
 				Ding(500,11,"Hit Scroll")
 				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 			} 
-			PointColor := ScreenShot_GetColor(GridX,GridY)
+			PointColor := FindText.GetColor(GridX,GridY)
 			
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
@@ -375,7 +377,7 @@ EmptyGrid(){
 		For R, GridY in InventoryGridY {
 			If IgnoredSlot[C][R]
 				Continue
-			PointColor := ScreenShot_GetColor(GridX,GridY)
+			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				EmptySlots[C R] := RandClick(GridX, GridY)
 			}
@@ -426,7 +428,7 @@ LockerRoutine(){
 				Ding(500,11,"Hit Scroll")
 				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 			} 
-			PointColor := ScreenShot_GetColor(GridX,GridY)
+			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
 				Continue
@@ -468,7 +470,7 @@ StashRoutine()
 	HeistCount := 0
 	BlackList := Array_DeepClone(IgnoredSlot)
 	; Move mouse away for Screenshot
-	ShooMouse(), ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
+	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
@@ -486,7 +488,7 @@ StashRoutine()
 				Ding(500,11,"Hit Scroll")
 				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 			} 
-			PointColor := ScreenShot_GetColor(GridX,GridY)
+			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
 				Continue
@@ -538,7 +540,7 @@ StashRoutine()
 						If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
 						{
 							Sleep, 250*Latency
-							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({"C":C,"R":R,"Item":Item})
@@ -564,7 +566,7 @@ StashRoutine()
 							&& sendstash != StashTabUniqueRing)
 							{
 								Sleep, 200*Latency
-								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueRing)
@@ -574,7 +576,7 @@ StashRoutine()
 							If (StashTabYesUniqueDump)
 							{
 								Sleep, 200*Latency
-								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
@@ -618,7 +620,7 @@ StashRoutine()
 						&& Tab != StashTabUniqueRing)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
 							; Check if the item is gone, if it is we can move on
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
@@ -629,7 +631,7 @@ StashRoutine()
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := ScreenShot_GetColor(GridX,GridY)
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
 							; Check if the item is gone, if it is we can move on
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
@@ -789,7 +791,7 @@ DivRoutine()
 				Ding(500,11,"Hit Scroll")
 				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 			} 
-			PointColor := ScreenShot_GetColor(GridX,GridY)
+			PointColor := FindText.GetColor(GridX,GridY)
 			
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
@@ -837,7 +839,7 @@ IdentifyRoutine()
 				Ding(500,11,"Hit Scroll")
 				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
 			} 
-			PointColor := ScreenShot_GetColor(GridX,GridY)
+			PointColor := FindText.GetColor(GridX,GridY)
 			
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info

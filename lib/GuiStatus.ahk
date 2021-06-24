@@ -2,35 +2,35 @@
 GuiStatus(Fetch:="",SS:=1){
   Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnMetamorph, OnLocker, OnDetonate
   If (SS)
-    ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
+    FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
   If (Fetch="OnDetonate")
   {
-    POnDetonateDelve := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y), POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
+    POnDetonateDelve := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y), POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
     , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
     Return OnDetonate
   }
   Else If !(Fetch="")
   {
-    P%Fetch% := ScreenShot_GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
+    P%Fetch% := FindText.GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
     temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
     Return temp
   }
   If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker)
     CheckXButton(), xChecked := True
-  POnChar := ScreenShot_GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
-  POnChat := ScreenShot_GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
-  POnMenu := ScreenShot_GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
-  POnInventory := ScreenShot_GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
-  POnStash := ScreenShot_GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
-  POnVendor := ScreenShot_GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
-  POnDiv := ScreenShot_GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
-  POnLeft := ScreenShot_GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
-  POnDelveChart := ScreenShot_GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
-  POnMetamorph := ScreenShot_GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
-  POnLocker := ScreenShot_GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
+  POnChar := FindText.GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
+  POnChat := FindText.GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
+  POnMenu := FindText.GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
+  POnInventory := FindText.GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
+  POnStash := FindText.GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
+  POnVendor := FindText.GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
+  POnDiv := FindText.GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
+  POnLeft := FindText.GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
+  POnDelveChart := FindText.GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+  POnMetamorph := FindText.GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
+  POnLocker := FindText.GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
   If OnMines
-  POnDetonate := ScreenShot_GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
-  Else POnDetonate := ScreenShot_GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
+  POnDetonate := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+  Else POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
   OnDetonate := (POnDetonate=varOnDetonate?True:False)
   If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
     CheckXButton()

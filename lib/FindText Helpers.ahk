@@ -2,7 +2,7 @@
   local
   s := StrSplit(String, ".")
   w := StrSplit(s.1, "$").2
-  s := StrSplit(StrReplace(StrReplace(base64tobit(s.2),"1",One),"0",Zero))
+  s := StrSplit(StrReplace(StrReplace(FindText.base64tobit(s.2),"1",One),"0",Zero))
   v := ""
   For k, c in s
   {

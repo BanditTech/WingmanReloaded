@@ -392,12 +392,12 @@ mainmenuGameLogicState(refresh:=False){
       TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
     }else{
       TT := "Grid information:" . "`n"
-      ScreenShot()
+      FindText.ScreenShot()
       For C, GridX in InventoryGridX  
       {
         For R, GridY in InventoryGridY
         {
-          PointColor := ScreenShot_GetColor(GridX,GridY)
+          PointColor := FindText.GetColor(GridX,GridY)
           if (indexOf(PointColor, varEmptyInvSlotColor)) {        
             TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
           }else{
@@ -468,3 +468,39 @@ WarningAutomation:
   Else 
     IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
 Return
+
+MouseTip(x:="", y:="", w:=21, h:=21)
+{
+  if (x="")
+  {
+    VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
+    x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
+  }
+  If IsObject(x){
+    w := Abs(x.X2-x.X1)
+    h := Abs(x.Y2-x.Y1)
+    y := (x.Y1<x.Y2?x.Y1:x.Y2)
+    x := (x.X1<x.X2?x.X1:x.X2)
+  }
+  ; x:=Round(x-10), y:=Round(y-10)
+  ;-------------------------
+  Gui, _MouseTip_: +AlwaysOnTop -Caption +ToolWindow +Hwndmyid +E0x08000000
+  Gui, _MouseTip_: Show, Hide w%w% h%h%
+  ;-------------------------
+  dhw:=A_DetectHiddenWindows
+  DetectHiddenWindows, On
+  d:=1, i:=w-d, j:=h-d
+  s=0-0 %w%-0 %w%-%h% 0-%h% 0-0
+  s=%s%  %d%-%d% %i%-%d% %i%-%j% %d%-%j% %d%-%d%
+  WinSet, Region, %s%, ahk_id %myid%
+  DetectHiddenWindows, %dhw%
+  ;-------------------------
+  Gui, _MouseTip_: Show, NA x%x% y%y%
+  Loop, 4
+  {
+    Gui, _MouseTip_: Color, % A_Index & 1 ? "Red" : "Blue"
+    Sleep, 500
+  }
+  Gui, _MouseTip_: Destroy
+}
+

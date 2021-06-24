@@ -13,7 +13,7 @@ Class PanelManager
   Status(ScreenShot := 1){
     Active := ""
     If ScreenShot
-      ScreenShot(GameX,GameY,GameX + GameW,GameY + GameH)
+      FindText.ScreenShot(GameX,GameY,GameX + GameW,GameY + GameH)
     If IsObject(This.Failsafe)
     {
       If !This.Failsafe.On()
@@ -39,7 +39,7 @@ Class PixelStatus
     This.Status := False
   }
   On(){
-    pSample := Screenshot_GetColor(This.X,This.Y)
+    pSample := FindText.GetColor(This.X,This.Y)
     Return (This.Status := (pSample = This.Hex ? True : False))
   }
 }

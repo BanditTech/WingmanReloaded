@@ -28,7 +28,7 @@ Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2,LR_Border:=0){
   endstr := bitstr
   Loop % Height - 1
   endstr .= "`n" . bitstr
-  bitstr := bit2base64(endstr)
+  bitstr := FindText.bit2base64(endstr)
   ; Width += 2*LR_Border
   If IsObject(Color)
   {
@@ -106,7 +106,7 @@ AverageAreaColor(AreaObj){
   M_Index := W * H
   Size := Round((W * H) / 300)
   ColorList := []
-  ScreenShot()
+  FindText.ScreenShot()
   Load_BarControl(,,1)
   ColorCount:=R_Count:=G_Count:=B_Count:=LastDisplay_LB:=EscBreak:=0
   Loop, % W
@@ -116,7 +116,7 @@ AverageAreaColor(AreaObj){
     Loop, % H
     {
       Cur_Y := Y1 + (A_Index - 1)
-      Temp_Hex := ScreenShot_GetColor(Cur_X,Cur_Y)
+      Temp_Hex := FindText.GetColor(Cur_X,Cur_Y)
       if !(indexOf(Temp_Hex, ColorList))
       {
         ColorCount++

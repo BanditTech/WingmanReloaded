@@ -1,2187 +1,1096 @@
-﻿if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
-{
-  ft_Gui("Show")
-  Return
-}
-
-#Include *i %A_ScriptDir%\..\Helpers.ahk
-#Include *i %A_ScriptDir%\..\TrayLabels.ahk
-#Include *i %A_ScriptDir%\Hotkey.ahk
-
-/* FindText - Capture screen image into text and then find it
- *  https://autohotkey.com/boards/viewtopic.php?f=6&t=17834
- *
- *  Author  :  FeiYue
- *  Version :  7.3
- *  Date  :  2019-12-21
- *
- *  Usage:
- *  1. Capture the image to text string.
- *  2. Test find the text string on full Screen.
- *  3. When test is successful, you may copy the code
- *   and paste it into your own script.
- *   Note: Copy the "FindText()" function and the following
- *   functions and paste it into your own script Just once.
- *  4. The more recommended way is to save the script as
- *   "FindText.ahk" and copy it to the "Lib" subdirectory
- *   of AHK program, instead of copying the "FindText()"
- *   function and the following functions, add a line to
- *   the beginning of your script: #Include <FindText>
- *
- *  Note:
- *   After upgrading to v7.0, the search scope using
- *   the upper left  corner coordinates (X1, Y1)
- *   and lower right corner coordinates (X2, Y2), similar to ImageSearch.
- *   This makes it easier for novices to understand and use.
- *
- *===========================================
- *  Introduction of function parameters:
- *
- *  returnArray := FindText(
- *    X1 --> the search scope's upper left corner X coordinates
- *  , Y1 --> the search scope's upper left corner Y coordinates
- *  , X2 --> the search scope's lower right corner X coordinates
- *  , Y2 --> the search scope's lower right corner Y coordinates
- *  , err1 --> Fault tolerance percentage of text     (0.1=10%)
- *  , err0 --> Fault tolerance percentage of background (0.1=10%)
- *  , Text --> can be a lot of text parsed into images, separated by "|"
- *  , ScreenShot --> if the value is 0, the last screenshot will be used
- *  , FindAll --> if the value is 0, Just find one result and return
- *  , JoinText --> if the value is 1, Join all Text for combination lookup
- *  , offsetX --> Set the max text offset for combination lookup
- *  , offsetY --> Set the max text offset for combination lookup
- *  )
- *
- *  The function returns a second-order array containing
- *  all lookup results, Any result is an associative array
- *  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
- *  if no image is found, the function returns 0.
- *
- *  If the return variable is set to "ok", ok.1 is the first result found.
- *  Where ok.1.1 is the X coordinate of the upper left corner of the found image,
- *  and ok.1.2 is the Y coordinate of the upper left corner of the found image,
- *  ok.1.3 is the width of the found image, and ok.1.4 is the height of the found image,
- *  ok.1.x <==> ok.1.1+ok.1.3//2 ( is the Center X coordinate of the found image ),
- *  ok.1.y <==> ok.1.2+ok.1.4//2 ( is the Center Y coordinate of the found image ),
- *  ok.1.id is the comment text, which is included in the <> of its parameter.
- *  ok.1.x can also be written as ok[1].x, which supports variables. (eg: ok[A_Index].x)
- *
- *  All coordinates are relative to Screen, colors are in RGB format,
- *  and combination lookup must use uniform color mode
- *===========================================
- */
+﻿;/*
+;===========================================
+;  FindText - Capture screen image into text and then find it
+;  https://autohotkey.com/boards/viewtopic.php?f=6&t=17834
+;
+;  Author  : FeiYue
+;  Version : 8.5
+;  Date    : 2021-04-22
+;
+;  Usage:  (required AHK v1.1.31+)
+;  1. Capture the image to text string.
+;  2. Test find the text string on full Screen.
+;  3. When test is successful, you may copy the code
+;     and paste it into your own script.
+;     Note: Copy the "FindText()" function and the following
+;     functions and paste it into your own script Just once.
+;  4. The more recommended way is to save the script as
+;     "FindText.ahk" and copy it to the "Lib" subdirectory
+;     of AHK program, instead of copying the "FindText()"
+;     function and the following functions, add a line to
+;     the beginning of your script: #Include <FindText>
+;
+;===========================================
+;*/
 
 
-ft_Gui(cmd)
-{
-  static
-  if (cmd="Show")
-  {
-  Gui, ft_Main:+LastFoundExist
-  IfWinExist
-  {
-    Gui, ft_Main:Show, Center
-    return
-  }
-  if (!ft_FuncBind1)
-    ft_FuncBind1:=Func("ft_Gui").Bind("Show")
-  #NoEnv
-  if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
-  {
-    Menu, Tray, Tip, FindText GUI
-    Menu, Tray, NoStandard
-    Menu, Tray, Add, FindText, %ft_FuncBind1%
-    Menu, Tray, Default, FindText
-    Menu, Tray, Click, 1
-    Menu, Tray, Icon, Shell32.dll, 23
-    Menu, Tray, Add
-    Menu, Tray, add, Window Spy, WINSPY
-    Menu, Tray, Add
-    Menu, Tray, add, Reload This Script, RELOAD  
-    Menu, Tray, add
-    Menu, Tray, add, Exit, QuitNow ; added exit script option
-  }
-  ft_BatchLines:=A_BatchLines
-  ft_IsCritical:=A_IsCritical
-  Critical
-  ww:=35, hh:=16, WindowColor:="0xDDEEFF"
-  ft_Gui("MakeCaptureWindow")
-  ft_Gui("MakeSubPicWindow")
-  ft_Gui("MakeMainWindow")
-  OnMessage(0x100, Func("ft_EditEvents1"))  ; WM_KEYDOWN
-  OnMessage(0x201, Func("ft_EditEvents2"))  ; WM_LBUTTONDOWN
-  OnMessage(0x200, Func("ft_ShowToolTip"))  ; WM_MOUSEMOVE
-  Gui, ft_Main:Show, Center
-  GuiControl, Focus, capture
-  Critical, %ft_IsCritical%
-  SetBatchLines, %ft_BatchLines%
-  return
-  ;-------------------
-  ft_Run:
-  Critical
-  ft_Gui(Trim(A_GuiControl))
-  return
-  }
-  if (cmd="MakeCaptureWindow")
-  {
-  Gui, ft_Capture:New
-  Gui, +AlwaysOnTop
-  Gui, Margin, 15, 15
-  Gui, Color, %WindowColor%
-  Gui, Font, s12, Verdana
-  Gui, Add, Text, xm w855 h315 +HwndhPic
-  Gui, Add, Slider, ym h315 vMySlider2 gft_Run
-    +Center Page20 Line20 NoTicks AltSubmit +Vertical
-  Gui, Add, Slider, xm w855 vMySlider1 gft_Run
-    +Center Page20 Line20 NoTicks AltSubmit
-  GuiControlGet, Pic, Pos, %hPic%
-  PicW:=Round(PicW), PicH:=Round(PicH), MySlider1:=MySlider2:=0
-  Gui, Add, Button, xm+125 w50 vRepU  gft_Run, -U
-  Gui, Add, Button, x+0  wp  vCutU  gft_Run, U
-  Gui, Add, Button, x+0  wp  vCutU3 gft_Run, U3
-  ;--------------
-  Gui, Add, Text,   x+50 yp+3 Section, Gray
-  Gui, Add, Edit,   x+3 yp-3 w60 vSelGray ReadOnly
-  Gui, Add, Text,   x+15 ys, Color
-  Gui, Add, Edit,   x+3 yp-3 w120 vSelColor ReadOnly
-  Gui, Add, Text,   x+15 ys, R
-  Gui, Add, Edit,   x+3 yp-3 w60 vSelR ReadOnly
-  Gui, Add, Text,   x+5 ys, G
-  Gui, Add, Edit,   x+3 yp-3 w60 vSelG ReadOnly
-  Gui, Add, Text,   x+5 ys, B
-  Gui, Add, Edit,   x+3 yp-3 w60 vSelB ReadOnly
-  ;--------------
-  Gui, Add, Button, xm   w50 vRepL  gft_Run, -L
-  Gui, Add, Button, x+0  wp  vCutL  gft_Run, L
-  Gui, Add, Button, x+0  wp  vCutL3 gft_Run, L3
-  Gui, Add, Button, x+15   w70 vAuto  gft_Run, Auto
-  Gui, Add, Button, x+15   w50 vRepR  gft_Run, -R
-  Gui, Add, Button, x+0  wp  vCutR  gft_Run, R
-  Gui, Add, Button, x+0  wp  vCutR3 gft_Run Section, R3
-  Gui, Add, Button, xm+125 w50 vRepD  gft_Run, -D
-  Gui, Add, Button, x+0  wp  vCutD  gft_Run, D
-  Gui, Add, Button, x+0  wp  vCutD3 gft_Run, D3
-  ;--------------
-  Gui, Add, Tab3,   ys-8 -Wrap, Gray|GrayDiff|Color|ColorPos|ColorDiff
-  Gui, Tab, 1
-  Gui, Add, Text,   x+15 y+15, Gray Threshold
-  Gui, Add, Edit,   x+15 w100 vThreshold
-  Gui, Add, Button, x+15 yp-3 vGray2Two gft_Run, Gray2Two
-  Gui, Tab, 2
-  Gui, Add, Text,   x+15 y+15, Gray Difference
-  Gui, Add, Edit,   x+15 w100 vGrayDiff, 50
-  Gui, Add, Button, x+15 yp-3 vGrayDiff2Two gft_Run, GrayDiff2Two
-  Gui, Tab, 3
-  Gui, Add, Text,   x+15 y+15, Similarity 0
-  Gui, Add, Slider, x+0 w100 vSimilar1 gft_Run
-    +Center Page1 NoTicks ToolTip, 100
-  Gui, Add, Text,   x+0, 100
-  Gui, Add, Button, x+15 yp-3 vColor2Two gft_Run, Color2Two
-  Gui, Tab, 4
-  Gui, Add, Text,   x+15 y+15, Similarity 0
-  Gui, Add, Slider, x+0 w100 vSimilar2 gft_Run
-    +Center Page1 NoTicks ToolTip, 100
-  Gui, Add, Text,   x+0, 100
-  Gui, Add, Button, x+15 yp-3 vColorPos2Two gft_Run, ColorPos2Two
-  Gui, Tab, 5
-  Gui, Add, Text,   x+10 y+15, R
-  Gui, Add, Edit,   x+2 w70 vDiffR Limit3
-  Gui, Add, UpDown, vdR Range0-255
-  Gui, Add, Text,   x+5, G
-  Gui, Add, Edit,   x+2 w70 vDiffG Limit3
-  Gui, Add, UpDown, vdG Range0-255
-  Gui, Add, Text,   x+5, B
-  Gui, Add, Edit,   x+2 w70 vDiffB Limit3
-  Gui, Add, UpDown, vdB Range0-255
-  Gui, Add, Button, x+5 yp-3 vColorDiff2Two gft_Run, ColorDiff2Two
-  Gui, Tab
-  ;--------------
-  Gui, Add, Button, xm vReset gft_Run, Reset
-  Gui, Add, Checkbox, x+15 yp+5 vModify gft_Run, Modify
-  Gui, Add, Text,   x+30, Comment
-  Gui, Add, Edit,   x+5 yp-2 w150 vComment
-  ; Gui, Add, Button, x+30 yp-3 vSplitAdd gft_Run, SplitAdd
-  Gui, Add, Button, x+30 yp-3 vAllAdd gft_Run, AllAdd
-  Gui, Add, Button, x+10 w80 vButtonOK gft_Run, OK
-  Gui, Add, Button, x+10 wp vClose gCancel, Close
-  Gui, Add, Button, xm   vBind1 gft_Run, BindWindow
-  Gui, Add, Button, x+15 vBind2 gft_Run, BindWindow+
-  Gui, Show, Hide, Capture Image To Text
-  return
-  }
-  if (cmd="MakeSubPicWindow")
-  {
-  Gui, ft_SubPic:New
-  Gui, +AlwaysOnTop -Caption +ToolWindow +Parent%hPic%
-  ; Gui, +AlwaysOnTop -Caption +ToolWindow -DPIScale +Parent%hPic%
-  Gui, Margin, 0, 0
-  Gui, Color, %WindowColor%
-  Gui, -Theme
-  nW:=2*ww+1, nH:=2*hh+1, C_:=[], w:=11
-  Loop, % nW*(nH+1)
-  {
-    i:=A_Index, j:=i=1 ? "x0 y0" : Mod(i,nW)=1 ? "x0 y+1" : "x+1"
-    j.=i>nW*nH ? " cRed BackgroundFFFFAA" : ""
-    Gui, Add, Progress, w%w% h%w% %j% +Hwndid
-    Control, ExStyle, -0x20000,, ahk_id %id%
-    C_[i]:=id
-  }
-  Gui, +Theme
-  GuiControlGet, SubPic, Pos, %id%
-  SubPicW:=Round(SubPicX+SubPicW), SubPicH:=Round(SubPicY+SubPicH)
-  Gui, Show, NA x0 y0 w%SubPicW% h%SubPicH%, SubPic
-  i:=(SubPicW>PicW), j:=(SubPicH>PicH)
-  Gui, ft_Capture:Default
-  GuiControl, Enable%i%, MySlider1
-  GuiControl, Enable%j%, MySlider2
-  GuiControl,, MySlider1, % MySlider1:=0
-  GuiControl,, MySlider2, % MySlider2:=0
-  return
-  }
-  if (cmd="MakeMainWindow")
-  {
-  Gui, ft_Main:New
-  Gui, +AlwaysOnTop
-  ; Gui, +AlwaysOnTop -DPIScale
-  Gui, Margin, 15, 15
-  Gui, Color, %WindowColor%
-  Gui, Font, s12 norm, Verdana
-  Gui, Add, Checkbox, xm y+15 r1 -Wrap vAddFunc Checked
-    , Add FindText() to Script
-  Gui, Add, Button, x+20 yp-5 w240 vTestClip gft_Run, Test Clipboard
-  Gui, Add, Button, x+0 w240 vCopyString gft_Run, Copy String
-
-
-
-  Gui, Font, s6 bold, Verdana
-  Gui, Add, Edit, xm w720 r25 vMyPic -Wrap
-  Gui, Font, s12 norm, Verdana
-  Gui, Add, Button, w240 vCapture gft_Run, Capture
-  Gui, Add, Button, x+0 wp vCaptureS gft_Run, Capture from ScreenShot
-  Gui, Add, Button, x+0 wp vTest gft_Run, Test Script
-
-  Gui, Font, cBlack, Verdana
-  Gui, Add, GroupBox, x+170 xm y+4 W240 h52 Section, Adjust Capture Box
-  Gui, Font, s12 norm, Verdana
-  Gui, Add, Text, xs+10 yp+22 h25, % "Width: "
-  Gui, Add, Text, x+0 yp w47, %ww%
-  Gui, Add, UpDown, vWidth Range1-110, %ww%
-  Gui, Add, Text, x+5 yp h25, % "Height: "
-  Gui, Add, Text, x+0 yp w40, %hh%
-  Gui, Add, UpDown, vHeight Range1-40, %hh%
-
-  Gui, Font, s12 cBlack, Verdana
-  Gui, Add, GroupBox, x+10 ys W240 h52 Section, ScreenShot Key
-  Gui, Font, s12 norm, Verdana
-  Gui, Add, ListView
-  , vlvar_SetHotkey1 r1 -Hdr -LV0x20 r1 w230 xs+5 ys+20  cGreen BackgroundFFFACD gft_LV_DblClick, 1|2
-  LV_ModifyCol(1, 0)
-  LV_ModifyCol(2, 225)
-  Gui, Add, Button, x+5 yp-5 w240 vCopy gft_Run , Copy Script
-
-
-  Gui, Font, s12 cBlue, Verdana
-  Gui, Add, Edit, xm w720 h350 vscr Hwndhscr -Wrap HScroll
-  Gui, Show, Hide, Capture Image To Text And Find Text Tool
-  return
-  }
-  if (cmd="Update")
-  {
-  Gui, ft_Main:Default
-  GuiControlGet, Width
-  GuiControlGet, Height
-  If (Width * Height > 2200)
-  {
-    MsgBox, 262144, Error Building Capture Menu, The area is too large, will crash the GUI creation`nMax Area is 110 x 20
-    Exit
-  }
-  Gui, Hide
-  If (Width != ww || Height != hh)
-  {
-    ToolTip, Building new Capture Box
-    ww:=Width, hh:=Height, ft_Gui("MakeSubPicWindow")
-    ToolTip
-  }
-  return
-  }
-  if (cmd="Capture") or (cmd="CaptureS")
-  {
-  ft_Gui("Update")
-  Gui, ft_Main:Default
-  Gui, +LastFound
-  WinMinimize
-  Gui, Hide
-  ShowScreenShot:=(cmd="CaptureS")
-  if (ShowScreenShot)
-    ft_ShowScreenShot(1)
-  ;----------------------
-  Gui, ft_Mini:New
-  Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow +E0x08000000
-  ; Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
-  Gui, Color, Red
-  d:=2, w:=nW+2*d, h:=nH+2*d, i:=w-d, j:=h-d
-  Gui, Show, Hide w%w% h%h%
-  s=0-0 %w%-0 %w%-%h% 0-%h% 0-0
-  s=%s%  %d%-%d% %i%-%d% %i%-%j% %d%-%j% %d%-%d%
-  WinSet, Region, %s%
-  ;------------------------------
-  Hotkey, $*RButton, ft_RButton_Off, On
-  lls:=A_ListLines=0 ? "Off" : "On"
-  ListLines, Off
-  CoordMode, Mouse
-  KeyWait, RButton
-  KeyWait, Ctrl
-  oldx:=oldy:=""
-  Loop
-  {
-    Sleep, 50
-    MouseGetPos, x, y, Bind_ID
-    if (oldx=x and oldy=y)
-    Continue
-    oldx:=x, oldy:=y
-    ;---------------
-    Gui, Show, % "NA x" (x-w//2) " y" (y-h//2)
-    ToolTip, % "Mark the Position : " x "," y
-    . "`nFirst: Press Ctrl, or RButton to mark area"
-  }
-  Until GetKeyState("RButton","P") or GetKeyState("Ctrl","P")
-  KeyWait, RButton
-  KeyWait, Ctrl
-  px:=x, py:=y, oldx:=oldy:=""
-  Loop
-  {
-    Sleep, 50
-    MouseGetPos, x, y
-    if (oldx=x and oldy=y)
-    Continue
-    oldx:=x, oldy:=y
-    ;---------------
-    ToolTip, % "The Capture Position : " px "," py
-    . "`nSecond: Press Ctrl, or RButton to capture"
-  }
-  Until GetKeyState("RButton","P") or GetKeyState("Ctrl","P") 
-  KeyWait, RButton
-  KeyWait, Ctrl
-  ToolTip
-  ListLines, %lls%
-  Gui, Destroy
-  WinWaitClose,,, 10
-  cors:=ft_getc(px,py,ww,hh,!ShowScreenShot)
-  Hotkey, $*RButton, ft_RButton_Off, Off
-  if (ShowScreenShot)
-    ft_ShowScreenShot(0)
-  ;--------------------------------
-  Gui, ft_Capture:Default
-  k:=nW*nH+1
-  Loop, % nW
-    GuiControl,, % C_[k++], 0
-  Loop, 6
-    GuiControl,, Edit%A_Index%
-  GuiControl,, Modify, % Modify:=0
-  GuiControl,, GrayDiff, 50
-  GuiControl, Focus, Gray2Two
-  GuiControl, +Default, Gray2Two
-  ft_Gui("Reset")
-  Gui, Show, Center
-  Event:=Result:=""
-  DetectHiddenWindows, Off
-  Gui, +LastFound
-  Critical, Off
-  WinWaitClose, % "ahk_id " WinExist()
-  Gui, ft_Main:Default
-  ;--------------------------------
-  if (cors.bind!="")
-  {
-    WinGetTitle, tt, ahk_id %Bind_ID%
-    WinGetClass, tc, ahk_id %Bind_ID%
-    tt:=Trim(SubStr(tt,1,30) (tc ? " ahk_class " tc:""))
-    tt:=StrReplace(RegExReplace(tt,"[;``]","``$0"),"""","""""")
-    Result:="`nSetTitleMatchMode, 2`nid:=WinExist(""" tt """)"
-    . "`nBindWindow(id" (cors.bind ? ",1":"")
-    . ")  `; Unbind Window using Bindwindow(0)`n`n" Result
-  }
-  if (Event="ButtonOK")
-  {
-    if (!A_IsCompiled)
-    {
-    FileRead, s, %A_LineFile%
-    s:=SubStr(s, s~="i)\n[;=]+ Copy The")
-    }
-    else s:=""
-    GuiControl,, scr, % Result "`n" s
-    GuiControl,, MyPic, % Trim(ASCII(Result),"`n")
-    Result:=s:=""
-  }
-  else if (Event="SplitAdd") or (Event="AllAdd")
-  {
-    GuiControlGet, s,, scr
-    i:=j:=0, r:="\|<[^>\n]*>[^$\n]+\$\d+\.[\w+/]+"
-    While j:=RegExMatch(s,r,"",j+1)
-    i:=InStr(s,"`n",0,j)
-    GuiControl,, scr, % SubStr(s,1,i-1) . "`n" . Result . SubStr(s,i+1)
-    GuiControl,, MyPic, % Trim(ASCII(Result),"`n")
-    Result:=s:=""
-  }
-  ;----------------------
-  Gui, Show
-  GuiControl, Focus, scr
-  ft_RButton_Off:
-  return
-  }
-  if (cmd="Bind1") or (cmd="Bind2")
-  {
-  BindWindow(Bind_ID, (cmd="Bind2"))
-  Hotkey, $*RButton, ft_RButton_Off, On
-  lls:=A_ListLines=0 ? "Off" : "On"
-  ListLines, Off
-  CoordMode, Mouse
-  KeyWait, RButton
-  KeyWait, Ctrl
-  oldx:=oldy:=""
-  Loop
-  {
-    Sleep, 50
-    MouseGetPos, x, y
-    if (oldx=x and oldy=y)
-    Continue
-    oldx:=x, oldy:=y
-    ;---------------
-    cors:=ft_getc(px:=x,py:=y,ww,hh)
-    ft_Gui("Reset")
-    ToolTip, % "The Capture Position : " x "," y
-    . "`nPerspective binding window"
-    . "`nRight click to finish capture"
-  }
-  Until GetKeyState("RButton","P") or GetKeyState("Ctrl","P")
-  KeyWait, RButton
-  KeyWait, Ctrl
-  ToolTip
-  ListLines, %lls%
-  Hotkey, $*RButton, ft_RButton_Off, Off
-  BindWindow(0), cors.bind:=(cmd="Bind2")
-  return
-  }
-  if (cmd="Test") or (cmd="TestClip")
-  {
-  Critical, Off
-  Gui, ft_Main:Default
-  Gui, +LastFound
-  WinMinimize
-  Gui, Hide
-  DetectHiddenWindows, Off
-  WinWaitClose, % "ahk_id " WinExist()
-  Sleep, 100
-  ;----------------------
-  if (cmd="Test")
-    GuiControlGet, s,, scr
-  if (!A_IsCompiled) and InStr(s,"MCode(") and (cmd="Test")
-  {
-    s:="`n#NoEnv`nMenu, Tray, Click, 1`n"
-    . "Gui, ft_ok_:Show, Hide, ft_ok_`n"
-    . s "`nExitApp`n"
-    ft_Exec(s)
-    DetectHiddenWindows, On
-    WinWait, ft_ok_ ahk_class AutoHotkeyGUI,, 3
-    if (!ErrorLevel)
-    WinWaitClose,,, 30
-  }
-  else
-  {
-    Gui, +OwnDialogs
-    t:=A_TickCount, n:=150000
-    if (cmd="TestClip")
-    v := Clipboard
-    Else
-    RegExMatch(s,"\|<[^>\n]*>[^$\n]+\$\d+\.[\w+/]+",v)
-    ok:=FindText(-n, -n, n, n, 0, 0, v)
-    , X:=ok.1.x, Y:=ok.1.y, Comment:=ok.1.id
-    MsgBox, 4096,Test Results, % "Found :`t" Round(ok.MaxIndex()) "`n`n"
-    . "Time  :`t" (A_TickCount-t) " ms`n`n"
-    . "Pos   :`t"  X ", " Y "`n`n"
-    . "Result:`t" (ok ? "Success ! " Comment : "Failed !"), 3
-    for i,v in ok
-    if (i<=5)
-      MouseTip(ok[i].x, ok[i].y)
-    ok:=""
-  }
-  ;----------------------
-  Gui, Show
-  GuiControl, Focus, scr
-  return
-  }
-  if (cmd="Copy") or (cmd="CopyString")
-  {
-  Gui, ft_Main:Default
-  ControlGet, s, Selected,,, ahk_id %hscr%
-  if (s="")
-  {
-    GuiControlGet, s,, scr
-    GuiControlGet, r,, AddFunc
-    if (r != 1)
-    s:=RegExReplace(s,"\n\K[\s;=]+ Copy The[\s\S]*")
-  }
-  If (cmd="Copy")
-    Clipboard:=RegExReplace(s,"\R","`r`n")
-  Else if (cmd="CopyString")
-    Clipboard:= copyString
-  return
-  }
-  if (cmd="MySlider1") or (cmd="MySlider2")
-  {
-  x:=SubPicW>PicW ? -(SubPicW-PicW)*MySlider1//100 : 0
-  y:=SubPicH>PicH ? -(SubPicH-PicH)*MySlider2//100 : 0
-  Gui, ft_SubPic:Show, NA x%x% y%y%
-  return
-  }
-  if (cmd="Reset")
-  {
-  if !IsObject(ascii)
-    ascii:=[], gray:=[], show:=[]
-  CutLeft:=CutRight:=CutUp:=CutDown:=k:=0, bg:=""
-  Loop, % nW*nH
-  {
-    show[++k]:=1, c:=cors[k]
-    gray[k]:=(((c>>16)&0xFF)*38+((c>>8)&0xFF)*75+(c&0xFF)*15)>>7
-    ft_Gui("SetColor")
-  }
-  Loop, % cors.CutLeft
-    ft_Gui("CutL")
-  Loop, % cors.CutRight
-    ft_Gui("CutR")
-  Loop, % cors.CutUp
-    ft_Gui("CutU")
-  Loop, % cors.CutDown
-    ft_Gui("CutD")
-  return
-  }
-  if (cmd="SetColor")
-  {
-  c:=c="Black" ? 0x000000 : c="White" ? 0xFFFFFF
-    : ((c&0xFF)<<16)|(c&0xFF00)|((c&0xFF0000)>>16)
-  SendMessage, 0x2001, 0, c,, % "ahk_id " . C_[k]
-  return
-  }
-  if (cmd="RepColor")
-  {
-  show[k]:=1, c:=(bg="" ? cors[k] : ascii[k]
-    ? "Black":"White"), ft_Gui("SetColor")
-  return
-  }
-  if (cmd="CutColor")
-  {
-  show[k]:=0, c:=WindowColor, ft_Gui("SetColor")
-  return
-  }
-  if (cmd="RepL")
-  {
-  if (CutLeft<=cors.CutLeft)
-  or (bg!="" and InStr(color,"**")
-  and CutLeft=cors.CutLeft+1)
-    return
-  k:=CutLeft-nW, CutLeft--
-  Loop, %nH%
-    k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
-    ? ft_Gui("RepColor") : "")
-  return
-  }
-  if (cmd="CutL")
-  {
-  if (CutLeft+CutRight>=nW)
-    return
-  CutLeft++, k:=CutLeft-nW
-  Loop, %nH%
-    k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
-    ? ft_Gui("CutColor") : "")
-  return
-  }
-  if (cmd="CutL3")
-  {
-  Loop, 3
-    ft_Gui("CutL")
-  return
-  }
-  if (cmd="RepR")
-  {
-  if (CutRight<=cors.CutRight)
-  or (bg!="" and InStr(color,"**")
-  and CutRight=cors.CutRight+1)
-    return
-  k:=1-CutRight, CutRight--
-  Loop, %nH%
-    k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
-    ? ft_Gui("RepColor") : "")
-  return
-  }
-  if (cmd="CutR")
-  {
-  if (CutLeft+CutRight>=nW)
-    return
-  CutRight++, k:=1-CutRight
-  Loop, %nH%
-    k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
-    ? ft_Gui("CutColor") : "")
-  return
-  }
-  if (cmd="CutR3")
-  {
-  Loop, 3
-    ft_Gui("CutR")
-  return
-  }
-  if (cmd="RepU")
-  {
-  if (CutUp<=cors.CutUp)
-  or (bg!="" and InStr(color,"**")
-  and CutUp=cors.CutUp+1)
-    return
-  k:=(CutUp-1)*nW, CutUp--
-  Loop, %nW%
-    k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
-    ? ft_Gui("RepColor") : "")
-  return
-  }
-  if (cmd="CutU")
-  {
-  if (CutUp+CutDown>=nH)
-    return
-  CutUp++, k:=(CutUp-1)*nW
-  Loop, %nW%
-    k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
-    ? ft_Gui("CutColor") : "")
-  return
-  }
-  if (cmd="CutU3")
-  {
-  Loop, 3
-    ft_Gui("CutU")
-  return
-  }
-  if (cmd="RepD")
-  {
-  if (CutDown<=cors.CutDown)
-  or (bg!="" and InStr(color,"**")
-  and CutDown=cors.CutDown+1)
-    return
-  k:=(nH-CutDown)*nW, CutDown--
-  Loop, %nW%
-    k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
-    ? ft_Gui("RepColor") : "")
-  return
-  }
-  if (cmd="CutD")
-  {
-  if (CutUp+CutDown>=nH)
-    return
-  CutDown++, k:=(nH-CutDown)*nW
-  Loop, %nW%
-    k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
-    ? ft_Gui("CutColor") : "")
-  return
-  }
-  if (cmd="CutD3")
-  {
-  Loop, 3
-    ft_Gui("CutD")
-  return
-  }
-  if (cmd="Gray2Two")
-  {
-  Gui, ft_Capture:Default
-  GuiControl, Focus, Threshold
-  GuiControlGet, Threshold
-  if (Threshold="")
-  {
-    pp:=[]
-    Loop, 256
-    pp[A_Index-1]:=0
-    Loop, % nW*nH
-    if (show[A_Index])
-      pp[gray[A_Index]]++
-    IP:=IS:=0
-    Loop, 256
-    k:=A_Index-1, IP+=k*pp[k], IS+=pp[k]
-    Threshold:=Floor(IP/IS)
-    Loop, 20
-    {
-    LastThreshold:=Threshold
-    IP1:=IS1:=0
-    Loop, % LastThreshold+1
-      k:=A_Index-1, IP1+=k*pp[k], IS1+=pp[k]
-    IP2:=IP-IP1, IS2:=IS-IS1
-    if (IS1!=0 and IS2!=0)
-      Threshold:=Floor((IP1/IS1+IP2/IS2)/2)
-    if (Threshold=LastThreshold)
-      Break
-    }
-    GuiControl,, Threshold, %Threshold%
-  }
-  Threshold:=Round(Threshold)
-  color:="*" Threshold, k:=i:=0
-  Loop, % nW*nH
-  {
-    ascii[++k]:=v:=(gray[k]<=Threshold)
-    if (show[k])
-    i:=(v?i+1:i-1), c:=(v?"Black":"White"), ft_Gui("SetColor")
-  }
-  bg:=i>0 ? "1":"0"
-  return
-  }
-  if (cmd="GrayDiff2Two")
-  {
-  Gui, ft_Capture:Default
-  GuiControlGet, GrayDiff
-  if (GrayDiff="")
-  {
-    Gui, +OwnDialogs
-    MsgBox, 4096, Tip, `n  Please Set Gray Difference First !  `n, 1
-    return
-  }
-  if (CutLeft=cors.CutLeft)
-    ft_Gui("CutL")
-  if (CutRight=cors.CutRight)
-    ft_Gui("CutR")
-  if (CutUp=cors.CutUp)
-    ft_Gui("CutU")
-  if (CutDown=cors.CutDown)
-    ft_Gui("CutD")
-  GrayDiff:=Round(GrayDiff)
-  color:="**" GrayDiff, k:=i:=0
-  Loop, % nW*nH
-  {
-    j:=gray[++k]+GrayDiff
-    , ascii[k]:=v:=( gray[k-1]>j or gray[k+1]>j
-    or gray[k-nW]>j or gray[k+nW]>j
-    or gray[k-nW-1]>j or gray[k-nW+1]>j
-    or gray[k+nW-1]>j or gray[k+nW+1]>j )
-    if (show[k])
-    i:=(v?i+1:i-1), c:=(v?"Black":"White"), ft_Gui("SetColor")
-  }
-  bg:=i>0 ? "1":"0"
-  return
-  }
-  if (cmd="Color2Two") or (cmd="ColorPos2Two")
-  {
-  Gui, ft_Capture:Default
-  GuiControlGet, c,, SelColor
-  if (c="")
-  {
-    Gui, +OwnDialogs
-    MsgBox, 4096, Tip, `n  Please Select a Color First !  `n, 1
-    return
-  }
-  UsePos:=(cmd="ColorPos2Two") ? 1:0
-  GuiControlGet, n,, Similar1
-  n:=Round(n/100,2), color:=c "@" n
-  , n:=Floor(9*255*255*(1-n)*(1-n)), k:=i:=0
-  , rr:=(c>>16)&0xFF, gg:=(c>>8)&0xFF, bb:=c&0xFF
-  Loop, % nW*nH
-  {
-    c:=cors[++k], r:=((c>>16)&0xFF)-rr
-    , g:=((c>>8)&0xFF)-gg, b:=(c&0xFF)-bb
-    , ascii[k]:=v:=(3*r*r+4*g*g+2*b*b<=n)
-    if (show[k])
-    i:=(v?i+1:i-1), c:=(v?"Black":"White"), ft_Gui("SetColor")
-  }
-  bg:=i>0 ? "1":"0"
-  return
-  }
-  if (cmd="ColorDiff2Two")
-  {
-  Gui, ft_Capture:Default
-  GuiControlGet, c,, SelColor
-  if (c="")
-  {
-    Gui, +OwnDialogs
-    MsgBox, 4096, Tip, `n  Please Select a Color First !  `n, 1
-    return
-  }
-  GuiControlGet, dR
-  GuiControlGet, dG
-  GuiControlGet, dB
-  rr:=(c>>16)&0xFF, gg:=(c>>8)&0xFF, bb:=c&0xFF
-  , n:=Format("{:06X}",(dR<<16)|(dG<<8)|dB)
-  , color:=StrReplace(c "-" n,"0x"), k:=i:=0
-  Loop, % nW*nH
-  {
-    c:=cors[++k], r:=(c>>16)&0xFF, g:=(c>>8)&0xFF
-    , b:=c&0xFF, ascii[k]:=v:=(Abs(r-rr)<=dR
-    and Abs(g-gg)<=dG and Abs(b-bb)<=dB)
-    if (show[k])
-    i:=(v?i+1:i-1), c:=(v?"Black":"White"), ft_Gui("SetColor")
-  }
-  bg:=i>0 ? "1":"0"
-  return
-  }
-  if (cmd="Modify")
-  {
-  GuiControlGet, Modify, ft_Capture:, Modify
-  return
-  }
-  if (cmd="Similar1")
-  {
-  GuiControl, ft_Capture:, Similar2, %Similar1%
-  return
-  }
-  if (cmd="Similar2")
-  {
-  GuiControl, ft_Capture:, Similar1, %Similar2%
-  return
-  }
-  if (cmd="getwz")
-  {
-  wz:=""
-  if (bg="")
-    return
-  k:=0
-  Loop, %nH%
-  {
-    v:=""
-    Loop, %nW%
-    v.=!show[++k] ? "" : ascii[k] ? "1":"0"
-    wz.=v="" ? "" : v "`n"
-  }
-  return
-  }
-  if (cmd="Auto")
-  {
-  ft_Gui("getwz")
-  if (wz="")
-  {
-    Gui, ft_Capture:+OwnDialogs
-    MsgBox, 4096, Tip, `nPlease Click Color2Two or Gray2Two First !, 1
-    return
-  }
-  While InStr(wz,bg)
-  {
-    if (wz~="^" bg "+\n")
-    wz:=RegExReplace(wz,"^" bg "+\n"), ft_Gui("CutU")
-    else if !(wz~="m`n)[^\n" bg "]$")
-    wz:=RegExReplace(wz,"m`n)" bg "$"), ft_Gui("CutR")
-    else if (wz~="\n" bg "+\n$")
-    wz:=RegExReplace(wz,"\n\K" bg "+\n$"), ft_Gui("CutD")
-    else if !(wz~="m`n)^[^\n" bg "]")
-    wz:=RegExReplace(wz,"m`n)^" bg), ft_Gui("CutL")
-    else Break
-  }
-  wz:=""
-  return
-  }
-  if (cmd="ButtonOK") or (cmd="SplitAdd") or (cmd="AllAdd")
-  {
-  Gui, ft_Capture:Default
-  Gui, +OwnDialogs
-  ft_Gui("getwz")
-  if (wz="")
-  {
-    MsgBox, 4096, Tip, `nPlease Click Color2Two or Gray2Two First !, 1
-    return
-  }
-  if InStr(color,"@") and (UsePos)
-  {
-    StringSplit, r, color, @
-    k:=i:=j:=0
-    Loop, % nW*nH
-    {
-    if (!show[++k])
-      Continue
-    i++
-    if (k=cors.SelPos)
-    {
-      j:=i
-      Break
-    }
-    }
-    if (j=0)
-    {
-    MsgBox, 4096, Tip, Please select the core color again !, 3
-    return
-    }
-    color:="#" (j-1) "@" r2
-  }
-  GuiControlGet, Comment
-  if (cmd="SplitAdd")
-  {
-    if InStr(color,"#")
-    {
-    MsgBox, 4096, Tip
-      , % "Can't be used in ColorPos mode, "
-      . "because it can cause position errors", 3
-    return
-    }
-    SetFormat, IntegerFast, d
-    bg:=StrLen(StrReplace(wz,"0"))
-    > StrLen(StrReplace(wz,"1")) ? "1":"0"
-    s:="", i:=0, k:=nW*nH+1+CutLeft
-    Loop, % w:=nW-CutLeft-CutRight
-    {
-    i++
-    GuiControlGet, j,, % C_[k++]
-    if (j=0 and A_Index<w)
-      Continue
-    v:=RegExReplace(wz,"m`n)^(.{" i "}).*","$1")
-    wz:=RegExReplace(wz,"m`n)^.{" i "}"), i:=0
-    While InStr(v,bg)
-    {
-      if (v~="^" bg "+\n")
-      v:=RegExReplace(v,"^" bg "+\n")
-      else if !(v~="m`n)[^\n" bg "]$")
-      v:=RegExReplace(v,"m`n)" bg "$")
-      else if (v~="\n" bg "+\n$")
-      v:=RegExReplace(v,"\n\K" bg "+\n$")
-      else if !(v~="m`n)^[^\n" bg "]")
-      v:=RegExReplace(v,"m`n)^" bg)
-      else Break
-    }
-    if (v!="")
-    {
-      v:=Format("{:d}",InStr(v,"`n")-1) "." bit2base64(v)
-      s.="`nText.=""|<" SubStr(Comment,1,1) ">" color "$" v """`n"
-      copyString.="|<" SubStr(Comment,1,1) ">" color "$" v
-      Comment:=SubStr(Comment, 2)
-    }
-    }
-    Event:=cmd, Result:=s
-    Gui, Hide
-    return
-  }
-  wz:=Format("{:d}",InStr(wz,"`n")-1) "." bit2base64(wz)
-  s:="`nText.=""|<" Comment ">" color "$" wz """`n"
-  if (cmd="AllAdd")
-  {
-    Event:=cmd, Result:=s
-    copyString.="|<" Comment ">" color "$" wz
-    Gui, Hide
-    return
-  }
-  x:=(bx:=(px-ww+CutLeft))+(bw:=(nW-CutLeft-CutRight))//2
-  y:=(by:=(py-hh+CutUp))+(bh:=(nH-CutUp-CutDown))//2
-  bx2:=bx+bw, by2:=by+bh
-  s:=StrReplace(s, "Text.=", "Text:=")
-  If !MonN
-  ft_Gui("Edges")
-  ldif := Abs(EdgeL - bx), tdif := Abs(EdgeT - by)
-  rdif := Abs(EdgeR - bx2), bdif := Abs(EdgeB - by2)
-  s=
-  (
-t1:=A_TickCount
-%s%
-`;X1,Y1,X2,Y2 are adjusted to screen edges
-if (ok:=FindText(%bx%-%ldif%, %by%-%tdif%, %bx2%+%rdif%, %by2%+%bdif%, 0, 0, Text))
-{
-  CoordMode, Mouse
-  X:=ok.1.x, Y:=ok.1.y, Comment:=ok.1.id
-  ; Click, `%X`%, `%Y`%
-}
-
-MsgBox, 4096,Test Results, `% "Found :``t" Round(ok.MaxIndex()) "``n``n"
-  . "Time  :``t" (A_TickCount-t1) " ms``n``n"
-  . "Pos   :``t" X ", " Y "``n``n"
-  . "Result:``t" (ok ? "Success ! " Comment : "Failed !")
-
-for i,v in ok
-  if (i<=5)
-  MouseTip(ok[i].x, ok[i].y)
-
-)
-  Event:=cmd, Result:=s, copyString:="|<" Comment ">" color "$" wz
-  Gui, Hide
-  return
-  }
-  if (cmd="ShowPic")
-  {
-  Critical
-  ControlGet, i, CurrentLine,,, ahk_id %hscr%
-  ControlGet, s, Line, %i%,, ahk_id %hscr%
-  GuiControl, ft_Main:, MyPic, % Trim(ASCII(s),"`n")
-  return
-  }
-  if (cmd="WM_LBUTTONDOWN")
-  {
-  Critical
-  MouseGetPos,,,, j
-  IfNotInString, j, progress
-    return
-  MouseGetPos,,,, j, 2
-  Gui, ft_Capture:Default
-  For k,v in C_
-  {
-    if (v!=j)
-    Continue
-    if (k>nW*nH)
-    {
-    GuiControlGet, i,, %v%
-    GuiControl,, %v%, % i ? 0:100
-    }
-    else if (Modify and bg!="" and show[k])
-    {
-    ascii[k]:=!ascii[k]
-    , c:=(ascii[k] ? "Black":"White")
-    , ft_Gui("SetColor")
-    }
-    else
-    {
-    c:=cors[k], cors.SelPos:=k
-    r:=(c>>16)&0xFF, g:=(c>>8)&0xFF, b:=c&0xFF
-    GuiControl,, SelGray, % gray[k]
-    GuiControl,, SelColor, %c%
-    GuiControl,, SelR, %r%
-    GuiControl,, SelG, %g%
-    GuiControl,, SelB, %b%
-    }
-    Break
-  }
-  return
-  }
-  if (cmd="Apply")
-  {
-  if (!ft_FuncBind2)
-    ft_FuncBind2:=Func("ft_Gui").Bind("ScreenShot")
-  Gui, ft_Main:Default
-  GuiControlGet, NowHotkey
-  Gui, ListView, lvar_SetHotkey1
-  LV_GetText(SetHotkey1, 1, 2)
-  Hotkey, IfWinActive
-  if (NowHotkey!="")
-    Hotkey, *%NowHotkey%,, Off UseErrorLevel
-  GuiControl,, NowHotkey, %SetHotkey1%
-  if (SetHotkey1!="")
-    Hotkey, *%SetHotkey1%, %ft_FuncBind2%, On UseErrorLevel
-  return
-
-  ;Label for assigning hotkeys
-  ft_LV_DblClick:
-    If a_guicontrolevent != DoubleClick
-      return
-    Gui, ft_Main:Default
-    ; varstr := StrSplit(Trim(A_GuiControl),"lvar_")[2]
-    if (!ft_FuncBind2)
-      ft_FuncBind2:=Func("ft_Gui").Bind("ScreenShot")
-    Gui, ListView, %a_guicontrol%
-    LV_GetText(old, 1, 2)
-    Hotkey, IfWinActive
-    if (old!="")
-      Hotkey, %old%,, Off UseErrorLevel
-    LV_Delete(1)
-    LV_Add("","",newHK:=Hotkey("+Default1 -LR -Symbols +Tooltips","Hold down your key combination","      Submit to bind  Cancel to clear","Select Screenshot Hotkey"))
-    ; %varstr% := newHK
-    Hotkey, IfWinActive
-    if (newHK!="")
-      Hotkey, %newHK%, %ft_FuncBind2%, On UseErrorLevel
-  return
-  }
-  if (cmd="ScreenShot")
-  {
-  Critical
-  ScreenShot()
-  Gui, ft_Tip:New
-  ; WS_EX_NOACTIVATE:=0x08000000, WS_EX_TRANSPARENT:=0x20
-  Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption +E0x08000020
-  ; Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
-  Gui, Color, Yellow
-  Gui, Font, cRed s48 bold
-  Gui, Add, Text,, Success
-  WinSet, Transparent, 200
-  Gui, Show, NA y0, ScreenShot Tip
-  Sleep, 1000
-  Gui, Destroy
-  return
-  }
-  If (cmd="Edges")
-  {
-  EdgeL:=EdgeT:=EdgeR:=EdgeB:=0
-  SysGet, MonN, 80
-  loop, %MonN%
-  {
-    SysGet, Mon%A_Index%, Monitor, %A_Index%
-    EdgeL := (Mon%A_Index%Left < EdgeL ? Mon%A_Index%Left : EdgeL ), EdgeR := (Mon%A_Index%Right > EdgeR ? Mon%A_Index%Right : EdgeR )
-    EdgeT := (Mon%A_Index%Top < EdgeT ? Mon%A_Index%Top : EdgeT ), EdgeB := (Mon%A_Index%Bottom > EdgeB ? Mon%A_Index%Bottom : EdgeB )
-  }
-  Return
-  }
-
-  ft_MainGuiClose:
-  ft_MainGuiEscape:
-  ExitApp
-}
-
-  ft_Load_ToolTip_Text()
-  {
-    s=
-    (LTrim
-    Update = Update the capture range by adjusting the numbers
-    AddFunc = Additional FindText() in Copy
-    lvar_SetHotkey1 = Currently assigned screenshot hotkey`rDouble click to assign new key
-    Apply = Clear old screenshot hotkey and apply a new hotkey`rHotkey assigned by priority from First to Second
-    TestClip = Test the Text data in the clipboard for searching images
-    Capture = Initiate Image Capture Sequence`rWill rebuild capture box if adjusted
-    CaptureS = Restore the last screenshot and then start capturing`rWill rebuild capture box if adjusted
-    Test = Test Results of Code
-    Copy = Copy Script Code to Clipboard`rUse this to make your own scripts
-    CopyString = Copy String Code to Clipboard`rUse this for Wingman Strings
-    Width = Change the width value to scale the capture box`rWidth ends up being 1 + Width * 2
-    Height = Change the height value to scale the capture box`rHeight ends up being 1 + Height * 2
-    --------------------
-    Reset = Reset to Original Captured Image
-    SplitAdd = Using Markup Segmentation to Generate Text Library
-    AllAdd = Append Another FindText Search Text into Previously Generated Code
-    ButtonOK = Create New FindText Code for Testing
-    Close = Close the Window Don't Do Anything
-    Gray2Two = Converts Image Pixels from Gray Threshold to Black or White
-    GrayDiff2Two = Converts Image Pixels from Gray Difference to Black or White
-    Color2Two = Converts Image Pixels from Color Similar to Black or White
-    ColorPos2Two = Converts Image Pixels from Color Position to Black or White
-    ColorDiff2Two = Converts Image Pixels from Color Difference to Black or White
-    SelGray = Gray value of the selected color
-    SelColor = The selected color
-    SelR = Red component of the selected color
-    SelG = Green component of the selected color
-    SelB = Blue component of the selected color
-    RepU = Undo Cut the Upper Edge by 1
-    CutU = Cut the Upper Edge by 1
-    CutU3 = Cut the Upper Edge by 3
-    RepL = Undo Cut the Left Edge by 1
-    CutL = Cut the Left Edge by 1
-    CutL3 = Cut the Left Edge by 3
-    Auto = Automatic Cutting Edge
-    RepR = Undo Cut the Right Edge by 1
-    CutR = Cut the Right Edge by 1
-    CutR3 = Cut the Right Edge by 3
-    RepD = Undo Cut the Lower Edge by 1
-    CutD = Cut the Lower Edge by 1
-    CutD3 = Cut the Lower Edge by 3
-    Modify = Allows Modify the Black and White Image
-    Comment = Optional Comment used to Label Code ( Within <> )
-    Threshold = Gray Threshold which Determines Black or White Pixel Conversion (0-255)
-    GrayDiff = Gray Difference which Determines Black or White Pixel Conversion (0-255)
-    Similar1 = Adjust color similarity as Equivalent to The Selected Color
-    Similar2 = Adjust color similarity as Equivalent to The Selected Color
-    DiffR = Red Difference which Determines Black or White Pixel Conversion (0-255)
-    DiffG = Green Difference which Determines Black or White Pixel Conversion (0-255)
-    DiffB = Blue Difference which Determines Black or White Pixel Conversion (0-255)
-    Bind1 = Bind the window so that it can find images when obscured by other windows
-    Bind2 = Modify the window to support transparency and then bind the window
-    )
-    return, s
-  }
-
-  ft_EditEvents1()
-  {
-    static ft_FuncBind3:=Func("ft_Gui").Bind("ShowPic")
-    ListLines, Off
-    if (A_Gui="ft_Main" && A_GuiControl="scr")
-      SetTimer, %ft_FuncBind3%, -150
-  }
-
-  ft_EditEvents2()
-  {
-    ListLines, Off
-    if (A_Gui="ft_SubPic")
-      ft_Gui("WM_LBUTTONDOWN")
-    else
-      ft_EditEvents1()
-  }
-
-  ft_ShowToolTip(cmd:="")
-  {
-    static
-    ListLines, Off
-    if (!ToolTip_Text)
-      ToolTip_Text:=ft_Load_ToolTip_Text()
-    if (!ft_FuncBind4)
-      ft_FuncBind4:=Func("ft_ShowToolTip").Bind("ToolTip")
-    if (!ft_FuncBind5)
-      ft_FuncBind5:=Func("ft_ShowToolTip").Bind("ToolTipOff")
-    if (cmd="ToolTip")
-    {
-      MouseGetPos,,, _TT
-      WinGetClass, _TT, ahk_id %_TT%
-      if (_TT = "AutoHotkeyGUI")
-      ToolTip, % RegExMatch(ToolTip_Text
-      , "im`n)^" CurrControl "\K\s*=.*", _TT)
-      ? StrReplace(Trim(_TT,"`t ="),"\n","`n") : ""
-      return
-    }
-    if (cmd="ToolTipOff")
-    {
-      ToolTip
-      return
-    }
-    CurrControl:=A_GuiControl
-    if (CurrControl!=PrevControl)
-    {
-      PrevControl:=CurrControl, _TT:=(CurrControl!="")
-      SetTimer, %ft_FuncBind4%, % _TT ? -500  : "Off"
-      SetTimer, %ft_FuncBind5%, % _TT ? -5500 : "Off"
-      ToolTip
-    }
-  }
-
-  ft_getc(px, py, ww, hh, ScreenShot:=1)
-  {
-      xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h)
-    if (w<1 or h<1)
-      return
-    bch:=A_BatchLines
-    SetBatchLines, -1
-    if (ScreenShot)
-      ScreenShot()
-    cors:=[], k:=0
-    lls:=A_ListLines=0 ? "Off" : "On"
-    ListLines, Off
-    Loop, % 2*hh+1
-    {
-      j:=py-hh+A_Index-1
-      Loop, % 2*ww+1
-        i:=px-ww+A_Index-1, cors[++k]:=ScreenShot_GetColor(i,j)
-    }
-    ListLines, %lls%
-    cors.CutLeft:=Abs(px-ww-x)
-    cors.CutRight:=Abs(px+ww-(x+w-1))
-    cors.CutUp:=Abs(py-hh-y)
-    cors.CutDown:=Abs(py+hh-(y+h-1))
-    SetBatchLines, %bch%
-    return, cors
-  }
-
-  ft_ShowScreenShot(Show:=1) {
-    local  ; Unaffected by Super-global variables
-    static hBM, Ptr:=A_PtrSize ? "UPtr" : "UInt"
-    Gui, ft_ScreenShot:Destroy
-    if (hBM)
-      DllCall("DeleteObject",Ptr,hBM), hBM:=""
-      bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
-      if (!Show or !bits.1 or zw<1 or zh<1)
-      return
-    ;---------------------
-    VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
-    NumPut(zw, bi, 4, "int"), NumPut(-zh, bi, 8, "int")
-    NumPut(1, bi, 12, "short"), NumPut(bpp:=32, bi, 14, "short")
-    if (hBM:=DllCall("CreateDIBSection", Ptr,0, Ptr,&bi
-      , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr))
-      DllCall("RtlMoveMemory",Ptr,ppvBits,Ptr,bits.1,Ptr,bits.2*zh)
-    ;-------------------------
-    win:=DllCall("GetDesktopWindow", Ptr)
-    hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
-    mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
-    oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
-    hBrush:=DllCall("CreateSolidBrush", "uint",0xFFFFFF, Ptr)
-    oBrush:=DllCall("SelectObject", Ptr,mDC, Ptr,hBrush, Ptr)
-    DllCall("BitBlt", Ptr,mDC, "int",0, "int",0, "int",zw, "int",zh
-      , Ptr,mDC, "int",0, "int",0, "uint",0xC000CA)
-    DllCall("SelectObject", Ptr,mDC, Ptr,oBrush)
-    DllCall("DeleteObject", Ptr,hBrush)
-    DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
-    DllCall("DeleteDC", Ptr,mDC)
-    DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
-    ;-------------------------
-    Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow +E0x08000000
-    ; Gui, ft_ScreenShot:+AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
-    Gui, ft_ScreenShot:Margin, 0, 0
-    Gui, ft_ScreenShot:Add, Picture, x0 y0 w%zw% h%zh% +HwndhPic +0xE
-    SendMessage, 0x172, 0, hBM,, ahk_id %hPic%
-    Gui, ft_ScreenShot:Show, NA x%zx% y%zy% w%zw% h%zh%, Show ScreenShot
-  }
-
-  ft_Exec(s)
-  {
-    Ahk:=A_IsCompiled ? A_ScriptDir "\AutoHotkey.exe":A_AhkPath
-    s:=RegExReplace(s, "\R", "`r`n")
-    Try
-    {
-      shell:=ComObjCreate("WScript.Shell")
-      oExec:=shell.Exec(Ahk " /f /ErrorStdOut *")
-      oExec.StdIn.Write(s)
-      oExec.StdIn.Close()
-    }
-    catch
-    {
-      f:=A_Temp "\~test1.tmp"
-      s:="`r`n FileDelete, " f "`r`n" s
-      FileDelete, %f%
-      FileAppend, %s%, %f%
-      Run, %Ahk% /f "%f%",, UseErrorLevel
-    }
-  }
+if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+  FindText.Gui("Show")
 
 
 ;===== Copy The Following Functions To Your Own Code Just once =====
-;=============== FindText Library Start ===================
 
-  ;--------------------------------
-  ; FindText - Capture screen image into text and then find it
-  ;--------------------------------
-  ; X1, Y1 --> the search scope's upper left corner coordinates
-  ; X2, Y2 --> the search scope's lower right corner coordinates
-  ; err1, err0 --> Fault tolerance percentage of text and background (0.1=10%)
-  ; Text --> can be a lot of text parsed into images, separated by "|"
-  ; ScreenShot --> if the value is 0, the last screenshot will be used
-  ; FindAll --> if the value is 0, Just find one result and return
-  ; JoinText --> if the value is 1, Join all Text for combination lookup
-  ; offsetX, offsetY --> Set the Max text offset for combination lookup
-  ; ruturn --> the function returns a second-order array
-  ; containing all lookup results, Any result is an associative array
-  ; {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment},
-  ; if no image is found, the function returns 0.
-  ; All coordinates are relative to Screen, colors are in RGB format,
-  ; and combination lookup must use uniform color mode
-  ;--------------------------------
 
-  FindText( x1, y1, x2, y2, err1, err0, text, ScreenShot:=1
-  , FindAll:=1, JoinText:=0, offsetX:=20, offsetY:=10 )
+;--------------------------------
+;  FindText - Capture screen image into text and then find it
+;--------------------------------
+;  returnArray := FindText(
+;      X1 --> the search scope's upper left corner X coordinates
+;    , Y1 --> the search scope's upper left corner Y coordinates
+;    , X2 --> the search scope's lower right corner X coordinates
+;    , Y2 --> the search scope's lower right corner Y coordinates
+;    , err1 --> Fault tolerance percentage of text       (0.1=10%)
+;    , err0 --> Fault tolerance percentage of background (0.1=10%)
+;    , Text --> can be a lot of text parsed into images, separated by "|"
+;    , ScreenShot --> if the value is 0, the last screenshot will be used
+;    , FindAll --> if the value is 0, Just find one result and return
+;    , JoinText --> if the value is 1, Join all Text for combination lookup
+;    , offsetX --> Set the max text offset (X) for combination lookup
+;    , offsetY --> Set the max text offset (Y) for combination lookup
+;    , dir --> Nine directions for searching: up, down, left, right and center
+;  )
+;
+;  The function returns a second-order array containing
+;  all lookup results, Any result is an associative array
+;  {1:X, 2:Y, 3:W, 4:H, x:X+W//2, y:Y+H//2, id:Comment}
+;  if no image is found, the function returns 0.
+;  All coordinates are relative to Screen, colors are in RGB format
+;
+;  If the return variable is set to "ok", ok.1 is the first result found.
+;  Where ok.1.1 is the X coordinate of the upper left corner of the found image,
+;  and ok.1.2 is the Y coordinate of the upper left corner of the found image,
+;  ok.1.3 is the width of the found image, and ok.1.4 is the height of the found image,
+;  ok.1.x <==> ok.1.1+ok.1.3//2 ( is the Center X coordinate of the found image ),
+;  ok.1.y <==> ok.1.2+ok.1.4//2 ( is the Center Y coordinate of the found image ),
+;  ok.1.id is the comment text, which is included in the <> of its parameter.
+;  ok.1.x can also be written as ok[1].x, which supports variables. (eg: ok[A_Index].x)
+;
+;--------------------------------
+
+FindText(args*)
+{
+  global FindText
+  return FindText.FindText(args*)
+}
+
+Class FindText
+{  ;// Class Begin
+
+static bind:=[], bits:=[], Lib:=[]
+
+__New()
+{
+  this.bind:=[], this.bits:=[], this.Lib:=[]
+}
+
+__Delete()
+{
+  if (this.bits.hBM)
+    DllCall("DeleteObject", "Ptr",this.bits.hBM)
+}
+
+FindText(x1:=0, y1:=0, x2:=0, y2:=0, err1:=0, err0:=0
+  , text:="", ScreenShot:=1, FindAll:=1
+  , JoinText:=0, offsetX:=20, offsetY:=10, dir:=1)
+{
+  local
+  SetBatchLines, % (bch:=A_BatchLines)?"-1":"-1"
+  centerX:=Round(x1+x2)//2, centerY:=Round(y1+y2)//2
+  if (x1*x1+y1*y1+x2*x2+y2*y2<=0)
+    n:=150000, x:=y:=-n, w:=h:=2*n
+  else
+    x:=Min(x1,x2), y:=Min(y1,y2), w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
+  bits:=this.GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
+  , info:=[]
+  Loop, Parse, text, |
+    if IsObject(j:=this.PicInfo(A_LoopField))
+      info.Push(j)
+  if (w<1 or h<1 or !(num:=info.MaxIndex()) or !bits.Scan0)
   {
-    local  ; Unaffected by Super-global variables
-    try {
-      bch:=A_BatchLines
-      SetBatchLines, -1
-      x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
-      , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
-      , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
-      if (w<1 or h<1)
-      {
-        SetBatchLines, %bch%
-        return, 0
-      }
-      bits:=GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
-      sx:=x-zx, sy:=y-zy, sw:=w, sh:=h, arr:=[], info:=[]
-      Loop, Parse, text, |
-        if IsObject(j:=PicInfo(A_LoopField))
-        info.Push(j)
-      if (!(num:=info.MaxIndex()) or !bits.1)
-      {
-        SetBatchLines, %bch%
-        return, 0
-      }
-      VarSetCapacity(input, num*7*4), k:=0
-      Loop, % num
-        k+=Round(info[A_Index].2 * info[A_Index].3)
-      VarSetCapacity(s1, k*4), VarSetCapacity(s0, k*4)
-      , VarSetCapacity(gs, sw*sh), VarSetCapacity(ss, sw*sh)
-      , allpos_max:=(FindAll ? 1024 : 1)
-      , VarSetCapacity(allpos, allpos_max*4)
-      Loop, 2
-      {
-        if (err1=0 and err0=0) and (num>1 or A_Index>1)
-        err1:=0.1, err0:=0.05
-        if (JoinText)
-        {
-        j:=info[1], mode:=j.8, color:=j.9, n:=j.10
-        , w1:=-1, h1:=j.3, comment:="", v:="", i:=0
-        Loop, % num
-        {
-          j:=info[A_Index], w1+=j.2+1, comment.=j.11
-          Loop, 7
-          NumPut((A_Index=1 ? StrLen(v)
-          : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
-          : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-          : j[A_Index]), input, 4*(i++), "int")
-          v.=j.1
-        }
-        ok:=PicFind( mode,color,n,offsetX,offsetY
-        , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
-        , input,num*7,allpos,allpos_max )
-        Loop, % ok
-          pos:=NumGet(allpos, 4*(A_Index-1), "uint")
-          , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
-          , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
-          , x:rx+w1//2, y:ry+h1//2, id:comment} )
-        }
-        else
-        {
-        For i,j in info
-        {
-          mode:=j.8, color:=j.9, n:=j.10, comment:=j.11
-          , w1:=j.2, h1:=j.3, v:=j.1
-          Loop, 7
-          NumPut((A_Index=1 ? 0
-          : A_Index=6 and err1 and !j.12 ? Round(j.4*err1)
-          : A_Index=7 and err0 and !j.12 ? Round(j.5*err0)
-          : j[A_Index]), input, 4*(A_Index-1), "int")
-          ok:=PicFind( mode,color,n,offsetX,offsetY
-          , bits,sx,sy,sw,sh,gs,ss,v,s1,s0
-          , input,7,allpos,allpos_max )
-          Loop, % ok
-          pos:=NumGet(allpos, 4*(A_Index-1), "uint")
-          , rx:=(pos&0xFFFF)+zx, ry:=(pos>>16)+zy
-          , arr.Push( {1:rx, 2:ry, 3:w1, 4:h1
-          , x:rx+w1//2, y:ry+h1//2, id:comment} )
-          if (ok and !FindAll)
-          Break
-        }
-        }
-        if (err1=0 and err0=0 and num=1 and !arr.MaxIndex())
-        {
-        k:=0
-        For i,j in info
-          k+=(!j.12)
-        IfEqual, k, 0, Break
-        }
-        else Break
-      }
-      SetBatchLines, %bch%
-      return, arr.MaxIndex() ? arr:0
-    } catch e {
-      Log("FindText Error: " ErrorText(e))
-      return 0
-    }
+    SetBatchLines, %bch%
+    return 0
   }
-
-  ; Bind the window so that it can find images when obscured
-  ; by other windows, it's equivalent to always being
-  ; at the front desk. Unbind Window using Bindwindow(0)
-  
-  BindWindow(window_id:=0, set_exstyle:=0, get:=0)
+  arr:=[], in:={zx:zx, zy:zy, zw:zw, zh:zh
+    , sx:x-zx, sy:y-zy, sw:w, sh:h}, k:=0
+  For i,j in info
+    k:=Max(k, j.2*j.3), in.comment .= j.11
+  VarSetCapacity(s1, k*4), VarSetCapacity(s0, k*4)
+  , VarSetCapacity(ss, 2*(w+2)*(h+2))
+  , FindAll:=(dir=9 ? 1 : FindAll)
+  , JoinText:=(num=1 ? 0 : JoinText)
+  , allpos_max:=(FindAll or JoinText ? 10240 : 1)
+  , VarSetCapacity(allpos, allpos_max*8)
+  Loop, 2
   {
-    static id, old, Ptr:=A_PtrSize ? "UPtr" : "UInt"
-    if (get)
-      return, id
-    if (window_id)
+    if (err1=0 and err0=0) and (num>1 or A_Index>1)
+      err1:=0.05, err0:=0.05
+    Loop, % JoinText ? 1 : num
     {
-      id:=window_id, old:=0
-      if (set_exstyle)
-      {
-        WinGet, old, ExStyle, ahk_id %id%
-        WinSet, Transparent, 255, ahk_id %id%
-        Loop, 30
-        {
-        Sleep, 100
-        WinGet, i, Transparent, ahk_id %id%
-        }
-        Until (i=255)
-      }
+      this.PicFind(arr, in, info, A_Index, err1, err0
+        , FindAll, JoinText, offsetX, offsetY, dir
+        , bits, ss, s1, s0, allpos, allpos_max)
+      if (!FindAll and arr.MaxIndex())
+        Break
+    }
+    if (err1!=0 or err0!=0 or arr.MaxIndex() or info.1.12)
+      Break
+  }
+  if (dir=9)
+    arr:=this.Sort2(arr, centerX, centerY)
+  SetBatchLines, %bch%
+  return arr.MaxIndex() ? arr:0
+}
+
+PicFind(arr, in, info, index, err1, err0
+  , FindAll, JoinText, offsetX, offsetY, dir
+  , bits, ByRef ss, ByRef s1, ByRef s0
+  , ByRef allpos, allpos_max)
+{
+  local
+  static MyFunc:=""
+  if (!MyFunc)
+  {
+    x32:=""
+    . "5557565383EC648B6C247883FD050F842C0900008BB424BC000000C744240C00"
+    . "00000085F60F8E0A0D000031FF31C0896C2478C74424080000000031C9C74424"
+    . "1400000000897C241089C5908D7426008B5C24108BBC24B80000008B7424148B"
+    . "54240C01DF89D829DE8B9C24B800000003B424B400000085DB7E58893C2489EB"
+    . "89D7EB198BAC24B000000083C70483C00189548D0083C1013904247429837C24"
+    . "780389FA0F45D0803C063175D78BAC24AC00000083C70483C00189549D0083C3"
+    . "0139042475D78BB424B80000000174241489DD83442408018BBC24A00000008B"
+    . "442408017C24108B9C248C000000015C240C398424BC0000000F8551FFFFFF89"
+    . "6C24088B6C2478894C240C31C08B74240839B424C00000008B7C240C0F4DF039"
+    . "BC24C4000000897424080F4CC739C68944240C0F4DC683FD038904240F84C501"
+    . "00008B84248C0000008BB424980000000FAF84249C000000C1E6028974243401"
+    . "F08BB4248C000000894424308B8424A0000000F7D885ED8D0486894424200F85"
+    . "5E0600008B44247CC744241C00000000C744242400000000C1E8100FB6E88B44"
+    . "247C0FB6C4894424100FB644247C894424148B8424A0000000C1E0028944242C"
+    . "8B8424A400000085C00F8EC60000008B7C24048B442430896C24188BAC24A000"
+    . "000085ED0F8E8D0000008BB424880000008B6C242403AC24A800000001C60344"
+    . "242C8944242803842488000000894424040FB67E028B4C24180FB6160FB64601"
+    . "2B5424142B44241089FB01CF29CB8D8F000400000FAFC00FAFCBC1E00B0FAFCB"
+    . "BBFE05000029FB0FAFDA01C10FAFD301CA399424800000000F93450083C60483"
+    . "C5013B74240475A98B9C24A0000000015C24248B4424288344241C0103442420"
+    . "8B74241C39B424A40000000F854AFFFFFF897C24048B8424A00000002B8424B8"
+    . "000000C644244B00C644244A00C744245000000000C744245C00000000894424"
+    . "548B8424A40000002B8424BC000000894424388B84248400000083E80183F807"
+    . "0F86A2000000C7442440000000008B4424388B7424548944245489742438E9A2"
+    . "000000897C247C83FD058B8424A00000000F9444244A83FD030F9444244B0384"
+    . "24980000002B8424B8000000894424548B84249C000000038424A40000002B84"
+    . "24BC000000894424388B84249C000000C784249C00000000000000894424508B"
+    . "842498000000C7842498000000000000008944245C8B84248400000083E80183"
+    . "F8070F875EFFFFFF83F803894424400F8E59FFFFFF8B44245C8B742450894424"
+    . "508974245C8B742454397424500F8F8F0900008B4424548B742408C744242C00"
+    . "000000894424588B8424AC0000008D04B08B7424408944244C89F083E0018944"
+    . "244489F08BB4248800000083E003894424608B44245C8B7C243839F80F8F7C01"
+    . "0000837C2460018B4C24500F4F4C2458897C24288944241C894C243C8D742600"
+    . "8B7C24448B44242885FF0F4444241C837C244003894424200F8F66010000807C"
+    . "244A008B44243C894424248B4424240F856E010000807C244B000F8510020000"
+    . "0FAF8424A00000008B14248B5C242085D28D2C180F8E850000008BBC24C40000"
+    . "008B9424A800000031C08B9C24C0000000896C24308B4C24088974241801EA89"
+    . "7C24148B2C248B7C240C895C2410669039C17E1C8B9C24AC0000008B348301D6"
+    . "803E00750B836C2410010F88F002000039C77E1C8B9C24B00000008B348301D6"
+    . "803E00740B836C2414010F88D002000083C00139E875B98B6C24308B7424188B"
+    . "44240885C074278BBC24A80000008B8424AC0000008B5C244C8D0C2F8D742600"
+    . "8B1083C00401CA39D8C6020075F28B442420038424980000008B5C242C8BBC24"
+    . "C80000008904DF8B4424240384249C0000008944DF0483C3013B9C24CC000000"
+    . "895C242C7D308344241C01836C2428018B44241C394424380F8DA2FEFFFF8344"
+    . "245001836C2458018B442450394424540F8D5CFEFFFF8B44242C83C4645B5E5F"
+    . "5DC258008B442420807C244A00894424248B44243C894424208B4424240F8492"
+    . "FEFFFF0FAF84248C0000008B1C248B4C242085DB8D2C880F8E51FFFFFF8BBC24"
+    . "C000000031C9896C24108DB6000000008B8424AC0000008B5C2410031C888B84"
+    . "24B00000008B2C880FB6441E0289EAC1EA100FB6D229D00FB6541E010FB61C1E"
+    . "0FAFC03B4424047F2789E80FB6C429C20FAFD23B5424047F1789E80FB6C029C3"
+    . "0FAFDB3B5C24047E108DB4260000000083EF010F887701000083C1013B0C2475"
+    . "8F896C247CE9C4FEFFFF8DB6000000000FAF84248C0000008B4C24208D048889"
+    . "4424100344247C0FB64C06010FB67C06020FB60406894C24148B0C2489442418"
+    . "85C90F8E86FEFFFF8B8424C400000031DB894424348B8424C000000089442430"
+    . "8B442404897C2404908DB42600000000395C24087E658B8424AC0000008B4C24"
+    . "108B7C2404030C980FB6440E020FB6540E010FB60C0E2B5424142B4C241889C5"
+    . "01F829FD8DB8000400000FAFD20FAFFDC1E20B0FAFFDBDFE05000029C50FAFE9"
+    . "01FA0FAFCD01D1398C2480000000730B836C2430010F889E000000395C240C7E"
+    . "618B8424B00000008B4C24108B7C2404030C980FB6440E020FB6540E010FB60C"
+    . "0E2B5424142B4C241889C501F829FD8DB8000400000FAFD20FAFFDC1E20B0FAF"
+    . "FDBDFE05000029C50FAFE901FA0FAFCD01D1398C24800000007207836C243401"
+    . "783783C3013B1C240F8522FFFFFF89442404E977FDFFFF89F68DBC2700000000"
+    . "8B742418E99DFDFFFF8DB42600000000896C247CE98DFDFFFF89442404E984FD"
+    . "FFFF83FD010F848404000083FD020F84EA0100008B44247C0FB67C247CC74424"
+    . "2800000000C744242C00000000C1E8100FB6D08B44247C89D50FB6DC8B842480"
+    . "000000C1E8100FB6C88B84248000000029CD01D1896C243889DD894C24100FB6"
+    . "F40FB684248000000029F501DE896C241489FD8974241829C501F8894424248B"
+    . "8424A0000000896C241CC1E002894424348B8424A400000085C00F8E15FAFFFF"
+    . "8B4C24308B6C24388B8424A000000085C00F8E8A0000008B8424880000008B54"
+    . "242C039424A800000001C8034C243489CF894C243003BC2488000000EB366690"
+    . "395C24107C3D394C24147F37394C24187C3189F30FB6F33974241C0F9EC33974"
+    . "24240F9DC183C00483C20121D9884AFF39C7741E0FB658020FB648010FB63039"
+    . "DD7EBD31C983C00483C201884AFF39C775E28BB424A00000000174242C8B4C24"
+    . "308344242801034C24208B442428398424A40000000F854DFFFFFFE955F9FFFF"
+    . "8B84248000000031C931F631FF8904248B44247CC744247C000000000FAFC089"
+    . "4424048B8424B40000000FB6108D5801EB2789FA8B8C24AC0000000FB7FFC1EA"
+    . "100FAF94248C0000008D14BA31FF8914B10FB61389C183C3010FBEC285C00F84"
+    . "5FF9FFFF8D50D083FA0977078D14BF8D7C50D083F82F74070FB61384D275D789"
+    . "C883F00185C974AA8B8C24B0000000893CB189C10FB61383C60131FFEBB88B84"
+    . "24A00000008BB4249C0000000FAF8424A400000083EE01038424A80000008974"
+    . "2410894424188B8424A0000000038424980000008944241C8B84249C00000003"
+    . "8424A400000039F00F8C0B0100008BB4249800000083C0012BAC249800000089"
+    . "4424288B44241CC74424240000000083EE018974242C8B74241001C50FAFB424"
+    . "8C0000008D7801896C2430897424208B44242C3944241C0F8C9E0000008B4C24"
+    . "108B5C24208B742424035C24342BB42498000000039C2488000000C1E91F0374"
+    . "2418894C2414EB53908DB42600000000398424900000007E4B807C2414007544"
+    . "8B4C2410398C24940000007E370FB64BFE0FB653FD83C3040FB66BF86BD24B6B"
+    . "C92601D189EAC1E20429EA01CAC1FA078854060183C00139F8741889C2C1EA1F"
+    . "84D274ACC64406010083C00183C30439F875E88B742430017424248344241001"
+    . "8B9C248C0000008B442410015C2420394424280F8536FFFFFF8B8424A0000000"
+    . "8B8C24A400000083C00285C98944241C0F8E3FF7FFFF8B8424A40000008B6C24"
+    . "18036C241CC744241801000000C74424200000000083C001894424248B8424A0"
+    . "000000896C241483C004894424288B8424800000008B9424A000000085D20F8E"
+    . "A40000008B4424148B5C24208B742428039C24A800000089C12B8C24A0000000"
+    . "89C201C6894C2410908DB426000000000FB642010FB62ABF010000000344247C"
+    . "39E8723D0FB66A0239E872358B4C24100FB669FF39E872290FB66EFF39E87221"
+    . "0FB669FE39E872190FB62939E872120FB66EFE39E8720A0FB63E39F80F92C189"
+    . "CF89F9834424100183C201880B83C60183C3018B4C2410394C241475938BBC24"
+    . "A0000000017C242083442418018B5C241C8B742418015C2414397424240F8532"
+    . "FFFFFF89842480000000E926F6FFFF8B44247C8BB424A400000031EDC7442414"
+    . "000000008D48018B8424A0000000C1E107C1E00285F6894C247C894424180F8E"
+    . "F1F5FFFF896C24108B4424308B6C247C8B9C24A000000085DB7E5F8B8C248800"
+    . "00008B5C2414039C24A800000001C1034424188944241C0384248800000089C7"
+    . "0FB651020FB641010FB6316BC04B6BD22601C289F0C1E00429F001D039C50F97"
+    . "0383C10483C30139F975D58BBC24A0000000017C24148B44241C834424100103"
+    . "4424208B74241039B424A40000007580E960F5FFFFC744240800000000E9C9F3"
+    . "FFFFC744242C00000000E947F8FFFF90"
+    x64:=""
+    . "4157415641554154555756534881EC88000000488BBC24F0000000488BB42430"
+    . "01000083F90589542468448944240844898C24E8000000488B9C243801000048"
+    . "8BAC24400100000F84B40900008B8424580100004531ED4531E485C00F8EDC00"
+    . "000044897C240C448BBC245001000031D231C04889BC24F00000004889B42430"
+    . "0100004531F64531ED4531E4C704240000000089D789C6660F1F840000000000"
+    . "4585FF7E6548631424478D1C374489F048039424480100004189F8EB1F0F1F00"
+    . "83C0014D63D54183C0044183C5014883C2014139C346894C9500742A83F90345"
+    . "89C1440F45C8803A3175D583C0014D63D44183C0044183C4014883C2014139C3"
+    . "46890C9375D644013C2483C6014403B4242001000003BC24F800000039B42458"
+    . "0100000F8577FFFFFF448B7C240C488BBC24F0000000488BB4243001000031C0"
+    . "4439A42460010000440F4DE04439AC2468010000440F4DE84539EC4589EE450F"
+    . "4DF483F9030F84110200008B8424F80000008B9424100100000FAF8424180100"
+    . "008D04908B9424F8000000894424208B842420010000F7D885C98D0482890424"
+    . "0F85CA0600008B4C24684889C84189CB0FB6C441C1EB1089C20FB6C1450FB6DB"
+    . "4189C28B84242801000085C00F8E370100008B842420010000448964242831C9"
+    . "44896C24304889B42430010000448B6C2420448B6424088BB42420010000C1E0"
+    . "0244897424184889BC24F00000004889AC24400100004189CEC744240C000000"
+    . "008944241089D748899C24380100004489D585F60F8E8A000000488B9C24F000"
+    . "00004963C54531D24C8D4C030248635C240C48039C2430010000660F1F440000"
+    . "450FB639410FB651FE410FB641FF29EA4489F94501DF4189D0418D9700040000"
+    . "4429D929F80FAFD10FAFC00FAFD1C1E00B8D0402BAFE0500004429FA410FAFD0"
+    . "410FAFD001D04139C4420F9304134983C2014983C1044439D67FA544036C2410"
+    . "0174240C4183C60144032C244439B424280100000F8558FFFFFF448B74241844"
+    . "8B642428448B6C2430488BBC24F0000000488BB42430010000488B9C24380100"
+    . "00488BAC24400100008B8424200100002B842450010000C644245700C644244C"
+    . "00C744246C00000000C744247800000000894424708B8424280100002B842458"
+    . "010000894424408B8424E800000083E80183F8070F86A3000000C74424480000"
+    . "00008B4424408B4C247089442470894C2440E9A300000044894C246883F9058B"
+    . "8424200100000F9444244C83F9030F94442457038424100100002B8424500100"
+    . "00894424708B842418010000038424280100002B842458010000894424408B84"
+    . "2418010000C7842418010000000000008944246C8B842410010000C784241001"
+    . "000000000000894424788B8424E800000083E80183F8070F875DFFFFFF83F803"
+    . "894424480F8E58FFFFFF8B4424788B4C246C8944246C894C24788B4C2470394C"
+    . "246C0F8F820A00008B4424708B4C244848899C24380100004889AC2440010000"
+    . "4489ED4589E5C74424300000000089442474418D4424FF4C8BA4244001000048"
+    . "8D4483044889F3488BB42438010000488944246089C883E0018944245089C883"
+    . "E0038944247C4489F04589FE4189C78B4424788B4C244039C80F8F3B01000083"
+    . "7C247C018B54246C0F4F542474894C2428890424895424440F1F840000000000"
+    . "8B44245085C08B4424280F440424837C2448038944240C0F8F33010000807C24"
+    . "4C008B442444894424100F853B010000807C2457000F85D50100008B4C24100F"
+    . "AF8C2420010000034C240C4585FF7E50448B942468010000448B8C2460010000"
+    . "31C04139C589C27E184189C84403048642803C0300750A4183E9010F88830000"
+    . "0039D57E1289CA41031484803C130074064183EA01786D4883C0014139C77FC2"
+    . "4585ED741C4C8B4424604889F00F1F0089CA03104883C0044C39C0C604130075"
+    . "EF8B4C24308B54240C039424100100004C8B94247001000089C801C048984189"
+    . "14828B54241003942418010000418954820489C883C0013B8424780100008944"
+    . "24307D2E83042401836C2428018B0424394424400F8DE6FEFFFF8344246C0183"
+    . "6C2474018B44246C394424700F8D9DFEFFFF8B4424304881C4880000005B5E5F"
+    . "5D415C415D415E415FC3660F1F4400008B44240C807C244C00894424108B4424"
+    . "448944240C0F84C5FEFFFF8B4424108B4C240C0FAF8424F80000004585FF448D"
+    . "14880F8E39FFFFFF448B8C24600100004531C04989DB662E0F1F840000000000"
+    . "428B1486438B1C844401D289D98D4202C1E9100FB6C948980FB6040729C88D4A"
+    . "014863D20FAFC00FB614174863C90FB60C0F4439F07F1A0FB6C729C10FAFC944"
+    . "39F17F0D0FB6C329C20FAFD24439F27E0A4183E9010F88950100004983C00145"
+    . "39C77F9C895C24684C89DBE9B1FEFFFF8B4424108B4C240C0FAF8424F8000000"
+    . "8D048889C1034424684585FF8D50024863D2440FB614178D500148980FB60407"
+    . "4863D20FB614170F8E74FEFFFF448B9C246801000048895C24584531C9488974"
+    . "24184C8964242089CB89C64189D444895C243C448B9C246001000044895C2438"
+    . "4539CD4589C87E6E488B442418428B148801DA8D42024898440FB634078D4201"
+    . "4863D20FB6141748980FB604074589F34501D6418D8E000400004529D329F241"
+    . "0FAFCB4429E00FAFC0410FAFCB41BBFE050000C1E00B4529F3440FAFDA01C841"
+    . "0FAFD301C239542408730B836C2438010F88A60000004439C57E6A488B442420"
+    . "428B148801DA8D42024898440FB634078D42014863D20FB6141748980FB60407"
+    . "4589F04501D6418D8E000400004529D029F2410FAFC84429E00FAFC0410FAFC8"
+    . "41B8FE050000C1E00B4529F0440FAFC201C8410FAFD001C2395424087207836C"
+    . "243C0178374983C1014539CF0F8F0EFFFFFF488B5C2458488B7424184C8B6424"
+    . "20E93BFDFFFF662E0F1F840000000000895C24684C89DBE968FDFFFF488B5C24"
+    . "58488B7424184C8B642420E954FDFFFF83F9010F845B05000083F9020F842002"
+    . "00008B542468448B542408C744241000000000C74424180000000089D0440FB6"
+    . "C2C1E810440FB6C84889D00FB6CC4489D04589CBC1E810894C240C0FB6D04C89"
+    . "D00FB6C44129D34401CA89C18B44240C29C8034C240C89442430410FB6C24589"
+    . "C24129C24401C0448B8424280100008944240C8B842420010000C1E0024585C0"
+    . "894424280F8EFFF9FFFF448974243C44896C244448899C2438010000448B7424"
+    . "20448B6C24308B9C242001000044897C243844896424404189CF4889AC244001"
+    . "00004189D44489D585DB7E724C635424184963C631D2488D4407024901F2EB31"
+    . "4539C47C3E4139CD7F394139CF7C344439CD410F9EC044394C240C0F9DC14883"
+    . "C0044421C141880C124883C20139D37E24440FB6000FB648FF440FB648FE4539"
+    . "C37EBD31C94883C00441880C124883C20139D37FDC4403742428015C24188344"
+    . "241001440334248B442410398424280100000F8570FFFFFF448B7C2438448B74"
+    . "243C448B642440448B6C2444488B9C2438010000488BAC2440010000E908F9FF"
+    . "FF8B442468448B7424084531C04531DB4531C94189C7440FAFF8488B84244801"
+    . "00000FB6104C8D5001EB2B4489CA450FB7C94D63C3C1EA100FAF9424F8000000"
+    . "428D148A4531C942891483410FB6124189C04983C2010FBEC285C00F8416F9FF"
+    . "FF8D50D083FA097709438D1489448D4C50D083F82F7408410FB61284D275D344"
+    . "89C083F0014585C074A14963D34189C04183C30144894C95004531C9410FB612"
+    . "EBB08B8424200100008B9424180100000FAF842428010000448D5AFF48984801"
+    . "F0488904248B842420010000038424100100008944240C8B8424180100000384"
+    . "24280100004439D80F8C610100008B94241001000083C001448B9424F8000000"
+    . "894424282B8C24100100004489642448448BA4240001000083EA01C744241800"
+    . "00000044897C24408D049500000000895424384489742444450FAFD344896C24"
+    . "4C48899C243801000089442420489848894424308B44240C448954241001C144"
+    . "8D5001894C243C8B4424383944240C0F8CA40000008B4C24108B5424204589DE"
+    . "488B5C24304C6344241841C1EE1F4C03042401CA4C63F94863D24C8D0C174829"
+    . "D3EB514139C47E554584F6755044399C24080100007E46410FB64902410FB651"
+    . "0183C0014983C0016BD24B6BC92601D14A8D140B4983C104460FB62C3A4489EA"
+    . "C1E2044429EA01D1C1F907418848FF4139C2741D89C2C1EA1F84D274A683C001"
+    . "41C600004983C1044983C0014139C275E38B5C243C015C24184183C3018B9C24"
+    . "F8000000015C241044395C24280F8534FFFFFF448B7C2440448B742444448B64"
+    . "2448448B6C244C488B9C24380100008B842420010000448B94242801000083C0"
+    . "024585D20F8E9FF6FFFF488B0C24489844897C24384889442410448B7C246848"
+    . "899C2438010000C7042401000000488D440101C744240C00000000448974243C"
+    . "4889C18B8424280100004889CB83C001894424184863842420010000488D5003"
+    . "48F7D048894424288B84242001000048895424208B54240883E8014883C00148"
+    . "89442430448B8C24200100004585C90F8EAE000000488B44242048634C240C4C"
+    . "8D0C18488B4424284801F14C8D0418488B4424304C8D34184889D80F1F440000"
+    . "0FB610440FB650FF41BB010000004401FA4439D2724A440FB650014439D27240"
+    . "450FB650FF4439D27236450FB651FF4439D2722C450FB650FE4439D27222450F"
+    . "B6104439D27219450FB651FE4439D2720F450FB6114439D2410F92C30F1F4000"
+    . "4883C0014488194983C1014883C1014983C0014C39F075888B8C242001000001"
+    . "4C240C8304240148035C24108B0424394424180F852BFFFFFF448B7C2438448B"
+    . "74243C89542408488B9C2438010000E935F5FFFF8B8424200100008B54246845"
+    . "31DBC744240C00000000C1E00283C201894424108B842428010000C1E2078954"
+    . "246885C00F8EFFF4FFFF44897C241848899C2438010000448B7C2468448B9424"
+    . "200100008B5C242044897424284585D27E504C6374240C4863C34531C0488D4C"
+    . "07024901F60FB6110FB641FF440FB649FE6BC04B6BD22601C24489C8C1E00444"
+    . "29C801D04139C7430F9704064983C0014883C1044539C27FCC035C2410440154"
+    . "240C4183C301031C2444399C2428010000759A448B7C2418448B742428488B9C"
+    . "2438010000E95FF4FFFFC744243000000000E93BF7FFFF909090909090909090"
+    this.MCode(MyFunc, A_PtrSize=8 ? x64:x32)
+  }
+  num:=info.MaxIndex(), j:=info[index]
+  , text:=j.1, w:=j.2, h:=j.3
+  , e1:=(!j.12 ? Floor(j.4*err1) : j.6)
+  , e0:=(!j.12 ? Floor(j.5*err0) : j.7)
+  , mode:=j.8, color:=j.9, n:=j.10, comment:=j.11
+  , sx:=in.sx, sy:=in.sy, sw:=in.sw, sh:=in.sh
+  if (JoinText and index>1)
+  {
+    x:=in.x, y:=in.y, sw:=Min(x+offsetX+w,sx+sw), sx:=x, sw-=sx
+    , sh:=Min(y+offsetY+h,sy+sh), sy:=Max(y-offsetY,sy), sh-=sy
+  }
+  if (mode=3)
+    color:=(color//w)*bits.Stride+Mod(color,w)*4
+  ok:=!bits.Scan0 ? 0 : DllCall(&MyFunc
+    , "int",mode, "uint",color, "uint",n, "int",dir
+    , "Ptr",bits.Scan0, "int",bits.Stride
+    , "int",in.zw, "int",in.zh
+    , "int",sx, "int",sy, "int",sw, "int",sh
+    , "Ptr",&ss, "Ptr",&s1, "Ptr",&s0
+    , "AStr",text, "int",w, "int",h, "int",e1, "int",e0
+    , "Ptr",&allpos, "int",allpos_max)
+  pos:=[]
+  Loop, % ok
+    pos[A_Index]:=NumGet(allpos, 8*A_Index-8, "uint")
+      | NumGet(allpos, 8*A_Index-4, "uint")<<32
+  Loop, % ok
+  {
+    x:=pos[A_Index]&0xFFFFFFFF, y:=pos[A_Index]>>32
+    if (!JoinText)
+    {
+      x1:=x+in.zx, y1:=y+in.zy
+      , arr.Push( {1:x1, 2:y1, 3:w, 4:h
+      , x:x1+w//2, y:y1+h//2, id:comment} )
+    }
+    else if (index=1)
+    {
+      in.x:=x+w, in.y:=y, in.minY:=y, in.maxY:=y+h
+      Loop, % num-1
+        if !this.PicFind(arr, in, info, A_Index+1, err1, err0
+        , FindAll, JoinText, offsetX, offsetY, 5
+        , bits, ss, s1, s0, allpos, 1)
+          Continue, 2
+      x1:=x+in.zx, y1:=in.minY+in.zy
+      , w1:=in.x-x, h1:=in.maxY-in.minY
+      , arr.Push( {1:x1, 2:y1, 3:w1, 4:h1
+      , x:x1+w1//2, y:y1+h1//2, id:in.comment} )
     }
     else
     {
-      if (old)
-        WinSet, ExStyle, %old%, ahk_id %id%
-      id:=old:=0
+      in.x:=x+w, in.y:=y
+      , (y<in.minY && in.minY:=y)
+      , (y+h>in.maxY && in.maxY:=y+h)
+      return 1
     }
+    if (!FindAll and arr.MaxIndex())
+      return
   }
+}
 
-  xywh2xywh(x1,y1,w1,h1, ByRef x,ByRef y,ByRef w,ByRef h
-    , ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
+GetBitsFromScreen(ByRef x, ByRef y, ByRef w, ByRef h
+  , ScreenShot:=1, ByRef zx:="", ByRef zy:=""
+  , ByRef zw:="", ByRef zh:="")
+{
+  local
+  static Ptr:="Ptr"
+  bits:=this.bits
+  if (!ScreenShot)
+  {
+    zx:=bits.zx, zy:=bits.zy, zw:=bits.zw, zh:=bits.zh
+    if IsByRef(x)
+      w:=Min(x+w,zx+zw), x:=Max(x,zx), w-=x
+      , h:=Min(y+h,zy+zh), y:=Max(y,zy), h-=y
+    return bits
+  }
+  bch:=A_BatchLines, cri:=A_IsCritical
+  Critical
+  if (id:=this.BindWindow(0,0,1))
+  {
+    WinGet, id, ID, ahk_id %id%
+    WinGetPos, zx, zy, zw, zh, ahk_id %id%
+  }
+  if (!id)
   {
     SysGet, zx, 76
     SysGet, zy, 77
     SysGet, zw, 78
     SysGet, zh, 79
-    left:=x1, right:=x1+w1-1, up:=y1, down:=y1+h1-1
-    left:=left<zx ? zx:left, right:=right>zx+zw-1 ? zx+zw-1:right
-    up:=up<zy ? zy:up, down:=down>zy+zh-1 ? zy+zh-1:down
-    x:=left, y:=up, w:=right-left+1, h:=down-up+1
   }
-
-  GetBitsFromScreen(x, y, w, h, ScreenShot:=1
-    , ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
+  bits.zx:=zx, bits.zy:=zy, bits.zw:=zw, bits.zh:=zh
+  , w:=Min(x+w,zx+zw), x:=Max(x,zx), w-=x
+  , h:=Min(y+h,zy+zh), y:=Max(y,zy), h-=y
+  if (zw>bits.oldzw or zh>bits.oldzh or !bits.hBM)
   {
-    local  ; Unaffected by Super-global variables
-      static hBM, oldzx, oldzy, oldzw, oldzh, bits:=[]
-    static Ptr:=A_PtrSize ? "UPtr" : "UInt"
-    static init:=!GetBitsFromScreen(0,0,0,0,1)
-    if (!ScreenShot)
-    {
-    zx:=oldzx, zy:=oldzy, zw:=oldzw, zh:=oldzh
-    return, bits
-    }
-    bch:=A_BatchLines, cri:=A_IsCritical
-    Critical
-    if (zw<1 or zh<1)
-    {
-    SysGet, zx, 76
-    SysGet, zy, 77
-    SysGet, zw, 78
-    SysGet, zh, 79
-    }
-    if (zw>oldzw or zh>oldzh or !hBM)
-    {
-    DllCall("DeleteObject", Ptr,hBM), hBM:="", bpp:=32
-    VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
-    NumPut(zw, bi, 4, "int"), NumPut(-zh, bi, 8, "int")
-    NumPut(1, bi, 12, "short"), NumPut(bpp, bi, 14, "short")
-    hBM:=DllCall("CreateDIBSection", Ptr,0, Ptr,&bi
-      , "int",0, Ptr "*",ppvBits, Ptr,0, "int",0, Ptr)
-    Scan0:=(!hBM ? 0:ppvBits), Stride:=((zw*bpp+31)//32)*4
-    bits.1:=Scan0, bits.2:=Stride
-    oldzx:=zx, oldzy:=zy, oldzw:=zw, oldzh:=zh
-    x:=zx, y:=zy, w:=zw, h:=zh
-    }
-    if (hBM) and !(w<1 or h<1)
-    {
-      win:=DllCall("GetDesktopWindow", Ptr)
-      hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
-      mDC:=DllCall("CreateCompatibleDC", Ptr,hDC, Ptr)
-      oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
-      DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
-        , Ptr,hDC, "int",x, "int",y, "uint",0x00CC0020) ; |0x40000000)
-      DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
-      if (id:=BindWindow(0,0,1))
-        WinGet, id, ID, ahk_id %id%
-      if (id)
-      {
-        WinGetPos, wx, wy, ww, wh, ahk_id %id%
-        left:=x, right:=x+w-1, up:=y, down:=y+h-1
-        left:=left<wx ? wx:left, right:=right>wx+ww-1 ? wx+ww-1:right
-        up:=up<wy ? wy:up, down:=down>wy+wh-1 ? wy+wh-1:down
-        x:=left, y:=up, w:=right-left+1, h:=down-up+1
-      }
-      if (id) and !(w<1 or h<1)
-      {
-        hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
-        DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
-        , Ptr,hDC2, "int",x-wx, "int",y-wy, "uint",0x00CC0020) ; |0x40000000)
-        DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
-      }
-      DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
-      DllCall("DeleteDC", Ptr,mDC)
-    }
+    hBM:=bits.hBM
+    , bits.hBM:=this.CreateDIBSection(zw, zh, bpp:=32, ppvBits)
+    , bits.Scan0:=(!bits.hBM ? 0:ppvBits)
+    , bits.Stride:=((zw*bpp+31)//32)*4
+    , bits.oldzw:=zw, bits.oldzh:=zh
+    , DllCall("DeleteObject", Ptr,hBM)
+  }
+  if (w<1 or h<1 or !bits.hBM)
+  {
     Critical, %cri%
     SetBatchLines, %bch%
-    return, bits
+    return bits
   }
-
-  PicInfo(text)
+  if IsFunc(k:="GetBitsFromScreen2")
+    and %k%(bits, x-zx, y-zy, w, h)
   {
-    static info:=[]
-    IfNotInString, text, $, return
-    if (info[text])
-      return, info[text]
-    v:=text, comment:="", e1:=e0:=0, set_e1_e0:=0
-    ; You Can Add Comment Text within The <>
-    if RegExMatch(v,"<([^>]*)>",r)
-      v:=StrReplace(v,r), comment:=Trim(r1)
-    ; You can Add two fault-tolerant in the [], separated by commas
-    if RegExMatch(v,"\[([^\]]*)]",r)
+    zx:=bits.zx, zy:=bits.zy, zw:=bits.zw, zh:=bits.zh
+    Critical, %cri%
+    SetBatchLines, %bch%
+    return bits
+  }
+  mDC:=DllCall("CreateCompatibleDC", Ptr,0, Ptr)
+  oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,bits.hBM, Ptr)
+  if (id)
+  {
+    if (mode:=this.BindWindow(0,0,0,1))<2
     {
-      v:=StrReplace(v,r), r1.=","
-      StringSplit, r, r1, `,
-      e1:=r1, e0:=r2, set_e1_e0:=1
-    }
-    StringSplit, r, v, $
-    color:=r1, v:=r2 "."
-    StringSplit, r, v, .
-    w1:=r1, v:=base64tobit(r2), h1:=StrLen(v)//w1
-    if (w1<1 or h1<1 or StrLen(v)!=w1*h1)
-      return
-    mode:=InStr(color,"-") ? 4 : InStr(color,"#") ? 3
-      : InStr(color,"**") ? 2 : InStr(color,"*") ? 1 : 0
-    if (mode=4)
-    {
-      color:=StrReplace(color,"0x")
-      StringSplit, r, color, -
-      color:="0x" . r1, n:="0x" . r2
+      hDC2:=DllCall("GetDCEx", Ptr,id, Ptr,0, "int",3, Ptr)
+      DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+        , Ptr,hDC2, "int",x-zx, "int",y-zy, "uint",0xCC0020) ; |0x40000000)
+      DllCall("ReleaseDC", Ptr,id, Ptr,hDC2)
     }
     else
     {
-      color:=RegExReplace(color,"[*#]") . "@"
-      StringSplit, r, color, @
-      color:=r1, n:=Round(r2,2)+(!r2)
-      , n:=Floor(9*255*255*(1-n)*(1-n))
+      hBM2:=this.CreateDIBSection(zw, zh)
+      mDC2:=DllCall("CreateCompatibleDC", Ptr,0, Ptr)
+      oBM2:=DllCall("SelectObject", Ptr,mDC2, Ptr,hBM2, Ptr)
+      DllCall("PrintWindow", Ptr,id, Ptr,mDC2, "uint",(mode>3)*3)
+      DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+        , Ptr,mDC2, "int",x-zx, "int",y-zy, "uint",0xCC0020) ; |0x40000000)
+      DllCall("SelectObject", Ptr,mDC2, Ptr,oBM2)
+      DllCall("DeleteDC", Ptr,mDC2)
+      DllCall("DeleteObject", Ptr,hBM2)
+    }
+  }
+  else
+  {
+    win:=DllCall("GetDesktopWindow", Ptr)
+    hDC:=DllCall("GetWindowDC", Ptr,win, Ptr)
+    DllCall("BitBlt",Ptr,mDC,"int",x-zx,"int",y-zy,"int",w,"int",h
+      , Ptr,hDC, "int",x, "int",y, "uint",0xCC0020) ; |0x40000000)
+    DllCall("ReleaseDC", Ptr,win, Ptr,hDC)
+  }
+  if this.CaptureCursor(0,0,0,0,0,1)
+    this.CaptureCursor(mDC, zx, zy, zw, zh)
+  DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
+  DllCall("DeleteDC", Ptr,mDC)
+  Critical, %cri%
+  SetBatchLines, %bch%
+  return bits
+}
+
+CreateDIBSection(w, h, bpp:=32, ByRef ppvBits:=0, ByRef bi:="")
+{
+  local
+  VarSetCapacity(bi, 40, 0), NumPut(40, bi, 0, "int")
+  , NumPut(w, bi, 4, "int"), NumPut(-h, bi, 8, "int")
+  , NumPut(1, bi, 12, "short"), NumPut(bpp, bi, 14, "short")
+  return DllCall("CreateDIBSection", "Ptr",0, "Ptr",&bi
+    , "int",0, "Ptr*",ppvBits:=0, "Ptr",0, "int",0, "Ptr")
+}
+
+PicInfo(text)
+{
+  local
+  static info:=[], Ptr:="Ptr"
+  if !InStr(text,"$")
+    return
+  key:=(r:=StrLen(text))<1000 ? text
+    : DllCall("ntdll\RtlComputeCrc32", "uint",0
+    , Ptr,&text, "uint",r*(1+!!A_IsUnicode), "uint")
+  if (info[key])
+    return info[key]
+  v:=text, comment:="", seterr:=e1:=e0:=0
+  ; You Can Add Comment Text within The <>
+  if RegExMatch(v,"<([^>]*)>",r)
+    v:=StrReplace(v,r), comment:=Trim(r1)
+  ; You can Add two fault-tolerant in the [], separated by commas
+  if RegExMatch(v,"\[([^\]]*)]",r)
+  {
+    v:=StrReplace(v,r), r:=StrSplit(r1, ",")
+    , seterr:=1, e1:=r.1, e0:=r.2
+  }
+  color:=StrSplit(v,"$").1, v:=Trim(SubStr(v,InStr(v,"$")+1))
+  mode:=InStr(color,"##") ? 5
+    : InStr(color,"-") ? 4 : InStr(color,"#") ? 3
+    : InStr(color,"**") ? 2 : InStr(color,"*") ? 1 : 0
+  color:=RegExReplace(color, "[*#\s]")
+  if (mode=5)
+  {
+    if (v~="[^\s\w/]") and FileExist(v)  ; ImageSearch
+    {
+      if !(hBM:=LoadPicture(v))
+        return
+      this.GetBitmapWH(hBM, w, h)
+      if (w<1 or h<1)
+        return
+      hBM2:=this.CreateDIBSection(w, h, 32, Scan0)
+      this.CopyHBM(hBM2, 0, 0, hBM, 0, 0, w, h)
+      DllCall("DeleteObject", Ptr,hBM)
+      if (!Scan0)
+        return
+      c1:=NumGet(Scan0+0,"uint")&0xFFFFFF
+      c2:=NumGet(Scan0+(w-1)*4,"uint")&0xFFFFFF
+      c3:=NumGet(Scan0+(w*h-w)*4,"uint")&0xFFFFFF
+      c4:=NumGet(Scan0+(w*h-1)*4,"uint")&0xFFFFFF
+      if (c1!=c2 or c1!=c3 or c1!=c4)
+        c1:=-1
+      VarSetCapacity(v, w*h*18*(1+!!A_IsUnicode)), i:=-4, n:=0
+      ListLines, % (lls:=A_ListLines)?"Off":"Off"
+      SetFormat, IntegerFast, d
+      Loop, %h%
+      {
+        y:=A_Index-1
+        Loop, %w%
+          if (c:=NumGet(Scan0+(i+=4),"uint")&0xFFFFFF)!=c1
+            v.=((A_Index-1)|y<<16) "/" c "/", n++
+      }
+      ListLines, %lls%
+      DllCall("DeleteObject", Ptr,hBM2)
+    }
+    else
+    {
+      v:=Trim(StrReplace(RegExReplace(v,"\s"),",","/"),"/")
+      r:=StrSplit(v,"/"), n:=r.MaxIndex()//3
+      if (!n)
+        return
+      VarSetCapacity(v, n*18*(1+!!A_IsUnicode))
+      x1:=x2:=r.1, y1:=y2:=r.2
+      ListLines, % (lls:=A_ListLines)?"Off":"Off"
+      SetFormat, IntegerFast, d
+      Loop, % n + (i:=-2)*0
+        x:=r[i+=3], y:=r[i+1]
+        , (x<x1 && x1:=x), (x>x2 && x2:=x)
+        , (y<y1 && y1:=y), (y>y2 && y2:=y)
+      Loop, % n + (i:=-2)*0
+        v.=(r[i+=3]-x1)|(r[i+1]-y1)<<16 . "/"
+        . Floor("0x" StrReplace(r[i+2],"0x"))&0xFFFFFF . "/"
+      ListLines, %lls%
+      w:=x2-x1+1, h:=y2-y1+1
+    }
+    len1:=n, len0:=0
+  }
+  else
+  {
+    r:=StrSplit(v,"."), w:=r.1
+    , v:=this.base64tobit(r.2), h:=StrLen(v)//w
+    if (w<1 or h<1 or StrLen(v)!=w*h)
+      return
+    if (mode=4)
+    {
+      r:=StrSplit(StrReplace(color,"0x"),"-")
+      , color:=Round("0x" r.1), n:=Round("0x" r.2)
+    }
+    else
+    {
+      r:=StrSplit(color,"@")
+      , color:=r.1, n:=Round(r.2,2)+(!r.2)
+      , n:=Floor(512*9*255*255*(1-n)*(1-n))
     }
     StrReplace(v,"1","",len1), len0:=StrLen(v)-len1
-    , e1:=Round(len1*e1), e0:=Round(len0*e0)
-    return, info[text]:=[v,w1,h1,len1,len0,e1,e0
-      , mode,color,n,comment,set_e1_e0]
   }
+  e1:=Floor(len1*e1), e0:=Floor(len0*e0)
+  return info[key]:=[v, w, h, len1, len0, e1, e0
+    , mode, color, n, comment, seterr]
+}
 
-  PicFind(mode, color, n, offsetX, offsetY
-  , bits, sx, sy, sw, sh
-  , ByRef gs, ByRef ss, ByRef text, ByRef s1, ByRef s0
-  , ByRef input, num, ByRef allpos, allpos_max)
+GetBitmapWH(hbm, ByRef w, ByRef h)
+{
+  local
+  VarSetCapacity(bm, size:=(A_PtrSize=8 ? 32:24), 0)
+  r:=DllCall("GetObject", "Ptr",hbm, "int",size, "Ptr",&bm)
+  w:=NumGet(bm,4,"int"), h:=Abs(NumGet(bm,8,"int"))
+  return r
+}
+
+CopyHBM(hBM1, x1, y1, hBM2, x2, y2, w2, h2)
+{
+  local
+  static Ptr:="Ptr"
+  mDC1:=DllCall("CreateCompatibleDC", Ptr,0, Ptr)
+  oBM1:=DllCall("SelectObject", Ptr,mDC1, Ptr,hBM1, Ptr)
+  mDC2:=DllCall("CreateCompatibleDC", Ptr,0, Ptr)
+  oBM2:=DllCall("SelectObject", Ptr,mDC2, Ptr,hBM2, Ptr)
+  DllCall("BitBlt", Ptr,mDC1
+    , "int",x1, "int",y1, "int",w2, "int",h2, Ptr,mDC2
+    , "int",x2, "int",y2, "uint",0xCC0020)
+  DllCall("SelectObject", Ptr,mDC2, Ptr,oBM2)
+  DllCall("DeleteDC", Ptr,mDC2)
+  DllCall("SelectObject", Ptr,mDC1, Ptr,oBM1)
+  DllCall("DeleteDC", Ptr,mDC1)
+}
+
+CopyBits(Scan01,Stride1,x1,y1,Scan02,Stride2,x2,y2,w2,h2)
+{
+  local
+  ListLines, % (lls:=A_ListLines)?"Off":"Off"
+    p1:=Scan01+(y1-1)*Stride1+x1*4
+  , p2:=Scan02+(y2-1)*Stride2+x2*4, w2*=4
+  Loop, % h2
+    DllCall("RtlMoveMemory", "Ptr",p1+=Stride1
+      , "Ptr",p2+=Stride2, "Ptr",w2)
+  ListLines, %lls%
+}
+
+; Bind the window so that it can find images when obscured
+; by other windows, it's equivalent to always being
+; at the front desk. Unbind Window using FindText.BindWindow(0)
+
+BindWindow(bind_id:=0, bind_mode:=0, get_id:=0, get_mode:=0)
+{
+  local
+  bind:=this.bind
+  if (get_id)
+    return bind.id
+  if (get_mode)
+    return bind.mode
+  if (bind_id)
   {
-    static MyFunc, Ptr:=A_PtrSize ? "UPtr" : "UInt"
-    if (!MyFunc)
+    bind.id:=bind_id, bind.mode:=bind_mode, bind.oldStyle:=0
+    if (bind_mode & 1)
     {
-      x32:="5557565383EC788B8424CC0000008BBC24CC000000C7442"
-      . "424000000008B40048B7F148944243C8B8424CC000000897C2"
-      . "42C8BBC24CC0000008B40088B7F18894424388B8424CC00000"
-      . "0897C24308B400C89C6894424288B8424CC0000008B401039C"
-      . "6894424200F4DC68944241C8B8424D000000085C00F8E15010"
-      . "0008BB424CC0000008B44242489F78B0C868B7486048B44870"
-      . "88974241085C0894424180F8ED700000089CD894C2414C7442"
-      . "40C00000000C744240800000000C744240400000000890C248"
-      . "D76008DBC27000000008B5C24108B7424088B4C24148B54240"
-      . "C89DF89F029F101F78BB424C000000001CE85DB7E5E8B0C248"
-      . "9EB893C2489D7EB198BAC24C800000083C70483C00189548D0"
-      . "083C101390424742C83BC248C0000000389FA0F45D0803C063"
-      . "175D48BAC24C400000083C70483C00189549D0083C30139042"
-      . "475D48B7424100174241489DD890C2483442404018BB424B00"
-      . "000008B442404017424088BBC24A4000000017C240C3944241"
-      . "80F8554FFFFFF83442424078B442424398424D00000000F8FE"
-      . "BFEFFFF83BC248C000000030F84A00600008B8424A40000008"
-      . "BB424A80000000FAF8424AC0000008BBC24A40000008D2CB08"
-      . "B8424B0000000F7D88D04878BBC248C0000008944241085FF0"
-      . "F84F702000083BC248C000000010F847F08000083BC248C000"
-      . "000020F84330900008B8424900000008B9C24940000000FB6B"
-      . "C24940000000FB6B42490000000C744241800000000C744242"
-      . "400000000C1E8100FB6DF0FB6D08B84249000000089D10FB6C"
-      . "4894424088B842494000000C1E8100FB6C029C101D08904248"
-      . "B442408894C24408B4C240801D829D9894424088D043E894C2"
-      . "40489F129F9894424148BBC24B40000008B8424B0000000894"
-      . "C240C89E98B6C2440C1E00285FF894424340F8EBA0000008BB"
-      . "424B000000085F60F8E910000008B8424A00000008B5424240"
-      . "39424BC00000001C8034C243489CF894C244003BC24A000000"
-      . "0EB3D8D76008DBC2700000000391C247C3D394C24047F37394"
-      . "C24087C3189F30FB6F33974240C0F9EC3397424140F9DC183C"
-      . "00483C20121D9884AFF39F8741E0FB658020FB648010FB6303"
-      . "9DD7EBE31C983C00483C201884AFF39F875E28BB424B000000"
-      . "0017424248B4C24408344241801034C24108B442418398424B"
-      . "40000000F8546FFFFFF8B8424B00000002B44243C8944240C8"
-      . "B8424B40000002B442438894424600F886D0900008B4424288"
-      . "BBC24C40000008B74243CC744241000000000C744243800000"
-      . "000C7442434000000008D3C8789C583EE01897C246C8974247"
-      . "48B44240C85C00F88E70000008B7C24388B8424AC000000BE0"
-      . "0000000C704240000000001F8C1E0108944246889F82B84249"
-      . "C0000000F49F08B84249C000000897424640FAFB424B000000"
-      . "001F8894424708974245C8DB6000000008B04240344241089C"
-      . "1894424088B442430394424200F84AA0100008B5C241C89C60"
-      . "38C24BC00000031C08B54242C85DB0F8EC8010000897424048"
-      . "B7C2420EB2D39C77E1C8BB424C80000008B1C8601CB803B007"
-      . "40B836C240401782B8D74260083C0013944241C0F849101000"
-      . "039C57ECF8BB424C40000008B1C8601CB803B0174BE83EA017"
-      . "9B9830424018B04243944240C0F8D68FFFFFF83442438018BB"
-      . "424B00000008B44243801742410394424600F8DEFFEFFFF8B4"
-      . "C243483C47889C85B5E5F5DC250008B8424900000008BB424B"
-      . "4000000C744240C00000000C744241400000000C1E8100FB6C"
-      . "08904248B8424900000000FB6C4894424040FB684249000000"
-      . "0894424088B8424B0000000C1E00285F68944242489E88BAC2"
-      . "4940000000F8E24FEFFFF8B9C24B000000085DB7E758B9C24A"
-      . "00000008B7424148BBC24A000000003B424BC00000001C3034"
-      . "424248944241801C78D76008DBC27000000000FB643020FB64"
-      . "B012B04242B4C24040FB6132B5424080FAFC00FAFC98D04400"
-      . "FAFD28D04888D045039C50F930683C30483C60139DF75C98BB"
-      . "C24B0000000017C24148B4424188344240C01034424108B742"
-      . "40C39B424B40000000F8566FFFFFFE985FDFFFF85ED7E358B7"
-      . "424088BBC24BC00000031C08B54242C8D1C378BB424C400000"
-      . "08B0C8601D9803901740983EA010F8890FEFFFF83C00139C57"
-      . "5E683BC24D0000000070F8EAA0100008B442474030424C7442"
-      . "44007000000896C2444894424288B8424CC00000083C020894"
-      . "4243C8B44243C8B9424B00000008B7C24288B0029C28944245"
-      . "08B84249800000001F839C20F4EC289C68944244C39FE0F8C0"
-      . "90100008B44243C8B700C8B78108B6808897424148B7014897"
-      . "C242489C7897424548BB424B40000002B700489F08B7424703"
-      . "9C60F4EC68BB424C4000000894424188B47FC89442404C1E00"
-      . "201C6038424C8000000894424588B4424648B7C2428037C245"
-      . "C3B442418894424040F8F8700000085ED7E268B8C24BC00000"
-      . "08B54242431C08D1C398B0C8601D9803901740583EA01784A8"
-      . "3C00139C575EA8B4424148B4C245439C8747E85C07E7A8B9C2"
-      . "4BC000000896C244831C08B6C245801FBEB0983C0013944241"
-      . "4745C8B54850001DA803A0074EC83E90179E78B6C244890834"
-      . "424040103BC24B00000008B442404394424180F8D79FFFFFF8"
-      . "3442428018B4424283944244C0F8D4CFFFFFF830424018B6C2"
-      . "4448B04243944240C0F8D7EFCFFFFE911FDFFFF8B4424288B7"
-      . "C245083442440078344243C1C8D4438FF894424288B4424403"
-      . "98424D00000000F8F7FFEFFFF8B6C24448B7C24348B0424038"
-      . "424A80000008BB424D40000000B4424688D4F01398C24D8000"
-      . "0008904BE0F8ED8FCFFFF85ED7E278B7424088BBC24BC00000"
-      . "08B8424C40000008D1C378B74246C8B1083C00401DA39F0C60"
-      . "20075F283042401894C24348B04243944240C0F8DDEFBFFFFE"
-      . "971FCFFFF89F68DBC27000000008B74243C8B8424900000003"
-      . "1D2F7F60FAF8424A40000008D0490894424188B8424B000000"
-      . "0038424A800000029F0894424348B8424AC000000038424B40"
-      . "000002B442438398424AC0000008944243C0F8F560400008B8"
-      . "424A40000008BB424A80000000FAF8424AC000000C74424240"
-      . "00000008D04B0034424188BB424A0000000894424388B44243"
-      . "4398424A80000000F8F320100008B8424AC000000C1E010894"
-      . "424408B442438894424148B8424A8000000894424088B44241"
-      . "40FB67C060289C52B6C2418893C240FB67C0601897C24040FB"
-      . "63C068B44241C85C00F8E1E0100008B442430894424108B442"
-      . "42C8944240C31C0EB678D76008DBC2700000000394424207E4"
-      . "A8B9C24C80000008B0C8301E90FB6540E020FB65C0E012B142"
-      . "42B5C24040FB60C0E0FAFD20FAFDB29F98D14520FAFC98D149"
-      . "A8D144A39942494000000720C836C2410017865908D7426008"
-      . "3C0013944241C0F84A3000000394424287E9D8B9C24C400000"
-      . "08B0C8301E90FB6540E020FB65C0E012B14242B5C24040FB60"
-      . "C0E0FAFD20FAFDB29F98D14520FAFC98D149A8D144A3B94249"
-      . "40000000F865BFFFFFF836C240C010F8950FFFFFF834424080"
-      . "183442414048B442408394424340F8DEFFEFFFF838424AC000"
-      . "000018BBC24A40000008B44243C017C24383B8424AC0000000"
-      . "F8D99FEFFFF8B4C242483C4785B5E89C85F5DC250008D74260"
-      . "08B7C24248B4424400B4424088B9C24D40000008D4F013B8C2"
-      . "4D80000008904BB0F8D64FAFFFF894C2424EB848B842490000"
-      . "0008B8C24B4000000C7042400000000C74424040000000083C"
-      . "001C1E00789C68B8424B0000000C1E00285C98944240889E88"
-      . "9F50F8EAFF8FFFF8B9424B000000085D27E5F8B8C24A000000"
-      . "08B5C2404039C24BC00000001C1034424088944240C038424A"
-      . "000000089C70FB651020FB641010FB6316BC04B6BD22601C28"
-      . "9F0C1E00429F001D039C50F970383C10483C30139F975D58BB"
-      . "424B0000000017424048B44240C83042401034424108B34243"
-      . "9B424B40000007582E92CF8FFFF8B8424B0000000C70424000"
-      . "00000C744240400000000C1E002894424088B8424B40000008"
-      . "5C00F8E920000008B8424B000000085C07E6F8B8C24A000000"
-      . "08B5C24048BB424B800000001E9036C240801DE039C24BC000"
-      . "000896C240C03AC24A00000000FB651020FB6410183C1040FB"
-      . "679FC83C60183C3016BC04B6BD22601C289F8C1E00429F801D"
-      . "0C1F8078846FFC643FF0039CD75CC8BBC24B0000000017C240"
-      . "48B6C240C83042401036C24108B0424398424B40000000F856"
-      . "EFFFFFF83BC24B4000000020F8E60F7FFFF8B8424BC0000000"
-      . "38424B00000008BAC24B800000003AC24B0000000C74424040"
-      . "1000000894424088B8424B400000083E8018944240C8B8424B"
-      . "000000083C0018944241083BC24B0000000027E798B4424108"
-      . "9E92B8C24B00000008B5C240889EA8D34288D45FE8904240FB"
-      . "642010FB63A0384249000000039F87C360FB67A0239F87C2E0"
-      . "FB6790139F87C260FB63E39F87C1F0FB63939F87C180FB6790"
-      . "239F87C100FB67EFF39F87C080FB67E0139F87D04C64301018"
-      . "3C20183C30183C10183C6013B0C2475A3834424040103AC24B"
-      . "00000008B4424048BBC24B0000000017C24083944240C0F855"
-      . "8FFFFFFE96FF6FFFF83C47831C95B89C85E5F5DC2500090909"
-      . "090909090"
-      x64:="4157415641554154555756534881EC88000000488B84245"
-      . "0010000488BB42450010000448B94245801000089542428448"
-      . "944240844898C24E80000008B40048B76144C8BBC244001000"
-      . "04C8BB42448010000C74424180000000089442430488B84245"
-      . "00100008974241C488BB424500100008B40088B76188944243"
-      . "C488B842450010000897424388B400C89C789442440488B842"
-      . "4500100008B401039C7894424100F4DC74585D289442454488"
-      . "B84245001000048894424200F8ECB000000488B442420448B0"
-      . "8448B68048B400885C0894424040F8E940000004489CE44890"
-      . "C244531E431FF31ED0F1F8400000000004585ED7E614863142"
-      . "4418D5C3D0089F848039424380100004589E0EB1D0F1F0083C"
-      . "0014D63D94183C0044183C1014883C20139C34789149E74288"
-      . "3F9034589C2440F45D0803A3175D783C0014C63DE4183C0048"
-      . "3C6014883C20139C34789149F75D844012C2483C50103BC241"
-      . "80100004403A42400010000396C24047582834424180748834"
-      . "424201C8B442418398424580100000F8F35FFFFFF83F9030F8"
-      . "43D0600008B8424000100008BBC24080100000FAF842410010"
-      . "0008BB424000100008D3CB88B842418010000F7D885C9448D2"
-      . "C860F841101000083F9010F844108000083F9020F84E008000"
-      . "08B742428C744240400000000C74424180000000089F0440FB"
-      . "6CEC1E8104589CC0FB6D84889F08B7424080FB6D44189DB89F"
-      . "0440FB6C64889F1C1E8100FB6CD89D60FB6C08D2C0A8B94242"
-      . "00100004129C301C3438D040129CE4529C48904248B8424180"
-      . "10000C1E00285D2894424080F8E660100004C89BC244001000"
-      . "0448BBC24180100004585FF0F8E91040000488B8C24F800000"
-      . "04863C74C6354241831D24C03942430010000488D440102EB3"
-      . "A0F1F80000000004439C37C4039CE7F3C39CD7C384539CC410"
-      . "F9EC044390C240F9DC14421C141880C124883C2014883C0044"
-      . "139D70F8E2D040000440FB6000FB648FF440FB648FE4539C37"
-      . "EBB31C9EBD58B5C2428448B8C242001000031ED4531E44889D"
-      . "84189DB0FB6DB0FB6F48B84241801000041C1EB10450FB6DBC"
-      . "1E0024585C98904240F8EA10000004C89BC24400100004C89B"
-      . "42448010000448B7C2408448BB424180100004585F67E60488"
-      . "B8C24F80000004D63D44C039424300100004863C74531C94C8"
-      . "D440102410FB600410FB648FF410FB650FE4429D829F10FAFC"
-      . "029DA0FAFC98D04400FAFD28D04888D04504139C7430F93040"
-      . "A4983C1014983C0044539CE7FC4033C244501F483C5014401E"
-      . "F39AC2420010000758C4C8BBC24400100004C8BB4244801000"
-      . "08B8424180100002B4424308904248B8424200100002B44243"
-      . "C894424680F88750800008B7C24404D89F5488BAC243001000"
-      . "0448B7424104C89FEC74424040000000048C74424280000000"
-      . "0C74424200000000089F883E801498D4487044189FF4889442"
-      . "4088B44243083E801894424788B042485C00F88D9000000488"
-      . "B5C24288B8424100100004D89EC448B6C245401D8C1E010894"
-      . "4247089D82B8424F000000089C7B8000000000F49C731FF894"
-      . "4246C0FAF842418010000894424648B8424F000000001D8894"
-      . "42474908B442404897C24188D1C388B4424384139C60F84AB0"
-      . "000004189C131C04585ED448B44241C7F36E9C30000000F1F4"
-      . "0004139CE7E1B418B148401DA4863D2807C150000740B4183E"
-      . "901782E0F1F4400004883C0014139C50F8E920000004139C78"
-      . "9C17ECC8B148601DA4863D2807C15000174BD4183E80179B74"
-      . "883C701393C240F8D7AFFFFFF4D89E54883442428018B9C241"
-      . "8010000488B442428015C2404394424680F8DFCFEFFFF8B4C2"
-      . "42089C84881C4880000005B5E5F5D415C415D415E415FC3458"
-      . "5FF7E278B4C241C4C8B4424084889F28B0201D84898807C050"
-      . "001740583E90178934883C2044939D075E583BC24580100000"
-      . "70F8EE60100008B442478488B8C24500100000344241844896"
-      . "C2450448BAC241801000044897C24404883C1204889742410C"
-      . "744243C07000000448974244448897C24484989CF895C247C8"
-      . "9C64C89642430418B074489EA29C28944245C8B8424E800000"
-      . "001F039C20F4EC239F0894424580F8CD0000000418B47148BB"
-      . "C2420010000412B7F0449635FFC458B4F08458B670C8944246"
-      . "08B442474458B771039C70F4FF8488B44241048C1E3024C8D1"
-      . "41848035C24308B442464448D04068B44246C39F84189C37F7"
-      . "2904585C97E234489F131D2418B04924401C04898807C05000"
-      . "1740583E90178464883C2014139D17FE28B4424604139C40F8"
-      . "4AA0000004585E40F8EA100000089C131D2EB0D4883C201413"
-      . "9D40F8E8E0000008B04934401C04898807C05000074E483E90"
-      . "179DF4183C3014501E84439DF7D8F83C601397424580F8D6EF"
-      . "FFFFF488B7C2448448B7C2440448B742444448B6C2450488B7"
-      . "424104C8B6424304883C701393C240F8D97FDFFFFE918FEFFF"
-      . "F6690037C240844017C241883442404014401EF8B442404398"
-      . "424200100000F854DFBFFFF4C8BBC2440010000E996FCFFFF8"
-      . "B44245C8344243C074983C71C8D7406FF8B44243C398424580"
-      . "100000F8F87FEFFFF448B7C2440448B742444448B6C2450488"
-      . "B7C24488B5C247C488B7424104C8B64243048634424208B542"
-      . "418039424080100004C8B9C24600100000B5424708D4801398"
-      . "C2468010000418914830F8E9AFDFFFF4585FF7E1D4C8B44240"
-      . "84889F08B104883C00401DA4C39C04863D2C64415000075EB4"
-      . "883C701393C24894C24200F8DBAFCFFFFE93BFDFFFF0F1F440"
-      . "0008B7C24308B44242831D2F7F70FAF8424000100008D04908"
-      . "94424208B8424180100000384240801000029F8894424308B8"
-      . "42410010000038424200100002B44243C39842410010000894"
-      . "424440F8F2B0400008B8424000100008BBC24080100000FAF8"
-      . "42410010000448B642440448B6C24544C8B8C24F8000000C74"
-      . "42428000000008D04B8034424208944243C8B4424303984240"
-      . "80100000F8F360100008B8424100100008B6C243CC1E010894"
-      . "424408B8424080100008904248D450289EF2B7C24204585ED4"
-      . "898450FB61C018D45014898410FB61C014863C5410FB634010"
-      . "F8E1C0100008B442438894424188B44241C8944240431C0EB6"
-      . "90F1F800000000044395424107E4E418B0C8601F98D5102448"
-      . "D41014863C9410FB60C094863D24D63C0410FB61411470FB60"
-      . "40129F10FAFC94429DA4129D80FAFD2450FAFC08D1452428D1"
-      . "4828D144A395424087207836C241801786B4883C0014139C50"
-      . "F8E9F0000004139C44189C27E96418B0C8701F98D5102448D4"
-      . "1014863C9410FB60C094863D24D63C0410FB61411470FB6040"
-      . "129F10FAFC94429DA4129D80FAFD2450FAFC08D1452428D148"
-      . "28D144A3B5424080F864BFFFFFF836C2404010F8940FFFFFF8"
-      . "304240183C5048B0424394424300F8DE6FEFFFF83842410010"
-      . "000018BBC24000100008B442444017C243C3B8424100100000"
-      . "F8D95FEFFFF8B4C2428E95CFBFFFF48634424288B5424400B1"
-      . "424488BBC24600100008D48013B8C24680100008914870F8D3"
-      . "5FBFFFF8304240183C504894C24288B0424394424300F8D7AF"
-      . "EFFFFEB92448B5C2428448B84242001000031DB8B842418010"
-      . "00031F6448B9424180100004183C30141C1E3074585C08D2C8"
-      . "5000000000F8E6BF9FFFF4585D27E57488B8C24F80000004C6"
-      . "3CE4C038C24300100004863C74531C0488D4C01020FB6110FB"
-      . "641FF440FB661FE6BC04B6BD22601C24489E0C1E0044429E00"
-      . "1D04139C3430F9704014983C0014883C1044539C27FCC01EF4"
-      . "401D683C3014401EF399C24200100007595E9FBF8FFFF8B8C2"
-      . "4200100008B84241801000031DB31F6448B8C241801000085C"
-      . "98D2C85000000007E7D4585C97E694C63C6488B8C24F800000"
-      . "04863C74D89C24C038424300100004C0394242801000031D24"
-      . "88D4C0102440FB6190FB641FF4883C104440FB661FA6BC04B4"
-      . "56BDB264101C34489E0C1E0044429E04401D8C1F8074188041"
-      . "241C60410004883C2014139D17FC401EF4401CE83C3014401E"
-      . "F399C2420010000758383BC2420010000020F8E4BF8FFFF486"
-      . "3B424180100008B9C24180100008BBC2420010000488D56014"
-      . "48D67FFBF010000004889D0480394243001000048038424280"
-      . "100004889D58D53FD4C8D6A0183BC241801000002488D1C067"
-      . "E7E4989C04D8D5C05004989D94929F04889E90FB610440FB65"
-      . "0FF035424284439D27C44440FB650014439D27C3A450FB6104"
-      . "439D27C31450FB6114439D27C28450FB650FF4439D27C1E450"
-      . "FB650014439D27C14450FB651FF4439D27C0A450FB65101443"
-      . "9D27D03C601014883C0014983C1014883C1014983C0014C39D"
-      . "8759383C7014801F54889D84139FC0F8562FFFFFFE968F7FFF"
-      . "F31C9E9D9F8FFFF909090909090909090909090"
-      MCode(MyFunc, A_PtrSize=8 ? x64:x32)
+      WinGet, oldStyle, ExStyle, ahk_id %bind_id%
+      bind.oldStyle:=oldStyle
+      WinSet, Transparent, 255, ahk_id %bind_id%
+      Loop, 30
+      {
+        Sleep, 100
+        WinGet, i, Transparent, ahk_id %bind_id%
+      }
+      Until (i=255)
     }
-    return, !bits.1 ? 0:DllCall(&MyFunc, "int",mode, "uint",color
-      , "uint",n, "int",offsetX, "int",offsetY, Ptr,bits.1
-      , "int",bits.2, "int",sx, "int",sy, "int",sw, "int",sh
-      , Ptr,&gs, Ptr,&ss, "AStr",text, Ptr,&s1, Ptr,&s0
-      , Ptr,&input, "int",num, Ptr,&allpos, "int",allpos_max)
   }
-
-
-  MCode(ByRef code, hex)
+  else
   {
-    bch:=A_BatchLines
-    SetBatchLines, -1
-    VarSetCapacity(code, len:=StrLen(hex)//2)
-    lls:=A_ListLines=0 ? "Off" : "On"
-    ListLines, Off
-    Loop, % len
-      NumPut("0x" SubStr(hex,2*A_Index-1,2),code,A_Index-1,"uchar")
-    ListLines, %lls%
-    Ptr:=A_PtrSize ? "UPtr" : "UInt", PtrP:=Ptr "*"
-    DllCall("VirtualProtect",Ptr,&code, Ptr,len,"uint",0x40,PtrP,0)
-    SetBatchLines, %bch%
+    bind_id:=bind.id
+    if (bind.mode & 1)
+      WinSet, ExStyle, % bind.oldStyle, ahk_id %bind_id%
+    bind.id:=0, bind.mode:=0, bind.oldStyle:=0
   }
+}
 
-  base64tobit(s)
+; Use FindText.CaptureCursor(1) to Capture Cursor
+; Use FindText.CaptureCursor(0) to Cancel Capture Cursor
+
+CaptureCursor(hDC:=0, zx:=0, zy:=0, zw:=0, zh:=0, get_cursor:=0)
+{
+  local
+  if (get_cursor)
+    return this.Cursor
+  if (hDC=1 or hDC=0) and (zw=0)
   {
-    Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      . "abcdefghijklmnopqrstuvwxyz"
-    SetFormat, IntegerFast, d
-    StringCaseSense, On
-    lls:=A_ListLines=0 ? "Off" : "On"
-    ListLines, Off
-    Loop, Parse, Chars
-    {
-      i:=A_Index-1, v:=(i>>5&1) . (i>>4&1)
-      . (i>>3&1) . (i>>2&1) . (i>>1&1) . (i&1)
-      s:=StrReplace(s,A_LoopField,v)
-    }
-    ListLines, %lls%
-    StringCaseSense, Off
-    s:=SubStr(s,1,InStr(s,"1",0,0)-1)
-    s:=RegExReplace(s,"[^01]+")
-    return, s
+    this.Cursor:=hDC
+    return
   }
+  Ptr:=(A_PtrSize ? "Ptr":"UInt"), PtrSize:=(A_PtrSize=8 ? 8:4)
+  VarSetCapacity(mi, 40, 0), NumPut(16+PtrSize, mi, "int")
+  DllCall("GetCursorInfo", Ptr,&mi)
+  bShow   := NumGet(mi, 4, "int")
+  hCursor := NumGet(mi, 8, Ptr)
+  x := NumGet(mi, 8+PtrSize, "int")
+  y := NumGet(mi, 12+PtrSize, "int")
+  if (!bShow) or (x<zx or y<zy or x>=zx+zw or y>=zy+zh)
+    return
+  VarSetCapacity(ni, 40, 0)
+  DllCall("GetIconInfo", Ptr,hCursor, Ptr,&ni)
+  xCenter  := NumGet(ni, 4, "int")
+  yCenter  := NumGet(ni, 8, "int")
+  hBMMask  := NumGet(ni, (PtrSize=8?16:12), Ptr)
+  hBMColor := NumGet(ni, (PtrSize=8?24:16), Ptr)
+  DllCall("DrawIconEx", Ptr,hDC
+    , "int",x-xCenter-zx, "int",y-yCenter-zy, Ptr,hCursor
+    , "int",0, "int",0, "int",0, "int",0, "int",3)
+  DllCall("DeleteObject", Ptr,hBMMask)
+  DllCall("DeleteObject", Ptr,hBMColor)
+}
 
-  bit2base64(s)
+MCode(ByRef code, hex)
+{
+  local
+  ListLines, % (lls:=A_ListLines)?"Off":"Off"
+  SetBatchLines, % (bch:=A_BatchLines)?"-1":"-1"
+  VarSetCapacity(code, len:=StrLen(hex)//2)
+  Loop, % len
+    NumPut("0x" SubStr(hex,2*A_Index-1,2),code,A_Index-1,"uchar")
+  DllCall("VirtualProtect","Ptr",&code,"Ptr",len,"uint",0x40,"Ptr*",0)
+  SetBatchLines, %bch%
+  ListLines, %lls%
+}
+
+base64tobit(s)
+{
+  local
+  Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    . "abcdefghijklmnopqrstuvwxyz"
+  ListLines, % (lls:=A_ListLines)?"Off":"Off"
+  Loop, Parse, Chars
   {
-    s:=RegExReplace(s,"[^01]+")
-    s.=SubStr("100000",1,6-Mod(StrLen(s),6))
-    s:=RegExReplace(s,".{6}","|$0")
-    Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      . "abcdefghijklmnopqrstuvwxyz"
-    SetFormat, IntegerFast, d
-    lls:=A_ListLines=0 ? "Off" : "On"
-    ListLines, Off
-    Loop, Parse, Chars
-    {
-      i:=A_Index-1, v:="|" . (i>>5&1) . (i>>4&1)
-      . (i>>3&1) . (i>>2&1) . (i>>1&1) . (i&1)
-      s:=StrReplace(s,v,A_LoopField)
-    }
-    ListLines, %lls%
-    return, s
+    s:=RegExReplace(s, "[" A_LoopField "]"
+    , StrReplace( ((i:=A_Index-1)>>5&1) . (i>>4&1)
+    . (i>>3&1) . (i>>2&1) . (i>>1&1) . (i&1), "0x"))
   }
+  ListLines, %lls%
+  return RegExReplace(RegExReplace(s,"10*$"),"[^01]+")
+}
 
-  ASCII(s)
+bit2base64(s)
+{
+  local
+  s:=RegExReplace(s,"[^01]+")
+  s.=SubStr("100000",1,6-Mod(StrLen(s),6))
+  s:=RegExReplace(s,".{6}","|$0")
+  Chars:="0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    . "abcdefghijklmnopqrstuvwxyz"
+  ListLines, % (lls:=A_ListLines)?"Off":"Off"
+  Loop, Parse, Chars
   {
-    if RegExMatch(s,"\$(\d+)\.([\w+/]+)",r)
-    {
-      s:=RegExReplace(base64tobit(r2),".{" r1 "}","$0`n")
-      s:=StrReplace(StrReplace(s,"0","_"),"1","0")
-    }
-    else s=
-    return, s
+    s:=StrReplace(s, StrReplace("|" . ((i:=A_Index-1)>>5&1)
+    . (i>>4&1) . (i>>3&1) . (i>>2&1) . (i>>1&1) . (i&1)
+    , "0x"), A_LoopField)
   }
+  ListLines, %lls%
+  return s
+}
 
-  ; You can put the text library at the beginning of the script,
-  ; and Use PicLib(Text,1) to add the text library to PicLib()'s Lib,
-  ; Use PicLib("comment1|comment2|...") to get text images from Lib
+xywh2xywh(x1,y1,w1,h1, ByRef x, ByRef y, ByRef w, ByRef h
+  , ByRef zx:="", ByRef zy:="", ByRef zw:="", ByRef zh:="")
+{
+  local
+  SysGet, zx, 76
+  SysGet, zy, 77
+  SysGet, zw, 78
+  SysGet, zh, 79
+  w:=Min(x1+w1,zx+zw), x:=Max(x1,zx), w-=x
+  , h:=Min(y1+h1,zy+zh), y:=Max(y1,zy), h-=y
+}
 
-  PicLib(comments, add_to_Lib:=0, index:=1)
+ASCII(s)
+{
+  local
+  if RegExMatch(s,"\$(\d+)\.([\w+/]+)",r)
   {
-    static Lib:=[]
-    SetFormat, IntegerFast, d
-    if (add_to_Lib)
-    {
-      re:="<([^>]*)>[^$]+\$\d+\.[\w+/]+"
-      Loop, Parse, comments, |
+    s:=RegExReplace(this.base64tobit(r2),".{" r1 "}","$0`n")
+    s:=StrReplace(StrReplace(s,"0","_"),"1","0")
+  }
+  else s=
+  return s
+}
+
+; You can put the text library at the beginning of the script,
+; and Use FindText.PicLib(Text,1) to add the text library to PicLib()'s Lib,
+; Use FindText.PicLib("comment1|comment2|...") to get text images from Lib
+
+PicLib(comments, add_to_Lib:=0, index:=1)
+{
+  local
+  Lib:=this.Lib
+  if (add_to_Lib)
+  {
+    re:="<([^>]*)>[^$]+\$\d+\.[\w+/]+"
+    Loop, Parse, comments, |
       if RegExMatch(A_LoopField,re,r)
       {
         s1:=Trim(r1), s2:=""
         Loop, Parse, s1
-        s2.="_" . Ord(A_LoopField)
+          s2.="_" . Format("{:d}",Ord(A_LoopField))
         Lib[index,s2]:=r
       }
-      Lib[index,""]:=""
-    }
-    else
+    Lib[index,""]:=""
+  }
+  else
+  {
+    Text:=""
+    Loop, Parse, comments, |
     {
-      Text:=""
-      Loop, Parse, comments, |
-      {
       s1:=Trim(A_LoopField), s2:=""
       Loop, Parse, s1
-        s2.="_" . Ord(A_LoopField)
+        s2.="_" . Format("{:d}",Ord(A_LoopField))
       Text.="|" . Lib[index,s2]
-      }
-      return, Text
     }
+    return Text
   }
+}
 
-  PicN(Number, index:=1)
+; Decompose a string into individual characters and get their data
+
+PicN(Number, index:=1)
+{
+  return this.PicLib(RegExReplace(Number,".","|$0"), 0, index)
+}
+
+; Use FindText.PicX(Text) to automatically cut into multiple characters
+; Can't be used in ColorPos mode, because it can cause position errors
+
+PicX(Text)
+{
+  local
+  if !RegExMatch(Text,"(<[^$]+)\$(\d+)\.([\w+/]+)",r)
+    return Text
+  v:=this.base64tobit(r3), Text:=""
+  c:=StrLen(StrReplace(v,"0"))<=StrLen(v)//2 ? "1":"0"
+  txt:=RegExReplace(v,".{" r2 "}","$0`n")
+  While InStr(txt,c)
   {
-    return, PicLib(RegExReplace(Number,".","|$0"), 0, index)
+    While !(txt~="m`n)^" c)
+      txt:=RegExReplace(txt,"m`n)^.")
+    i:=0
+    While (txt~="m`n)^.{" i "}" c)
+      i:=Format("{:d}",i+1)
+    v:=RegExReplace(txt,"m`n)^(.{" i "}).*","$1")
+    txt:=RegExReplace(txt,"m`n)^.{" i "}")
+    if (v!="")
+      Text.="|" r1 "$" i "." this.bit2base64(v)
   }
+  return Text
+}
 
-  ; Use PicX(Text) to automatically cut into multiple characters
-  ; Can't be used in ColorPos mode, because it can cause position errors
+; Screenshot and retained as the last screenshot.
 
-  PicX(Text,ObjMode:=0)
+ScreenShot(x1:=0, y1:=0, x2:=0, y2:=0)
+{
+  this.FindText(x1, y1, x2, y2)
+}
+
+; Get the RGB color of a point from the last screenshot.
+; If the point to get the color is beyond the range of
+; Screen, it will return White color (0xFFFFFF).
+
+GetColor(x, y, fmt:=1)
+{
+  local
+  bits:=this.GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
+  , c:=(x<zx or x>=zx+zw or y<zy or y>=zy+zh or !bits.Scan0)
+  ? 0xFFFFFF : NumGet(bits.Scan0+(y-zy)*bits.Stride+(x-zx)*4,"uint")
+  return (fmt ? Format("0x{:06X}",c&0xFFFFFF) : c)
+}
+
+; Set the RGB color of a point in the last screenshot
+
+SetColor(x, y, color:=0x000000)
+{
+  local
+  bits:=this.GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
+  if !(x<zx or x>=zx+zw or y<zy or y>=zy+zh or !bits.Scan0)
+    NumPut(color,bits.Scan0+(y-zy)*bits.Stride+(x-zx)*4,"uint")
+}
+
+; Identify a line of text or verification code
+; based on the result returned by FindText().
+; offsetX is the maximum interval between two texts,
+; if it exceeds, a "*" sign will be inserted.
+; offsetY is the maximum height difference between two texts.
+; overlapW is used to set the width of the overlap.
+; Return Association array {text:Text, x:X, y:Y, w:W, h:H}
+
+Ocr(ok, offsetX:=20, offsetY:=20, overlapW:=0)
+{
+  local
+  ocr_Text:=ocr_X:=ocr_Y:=min_X:=dx:=""
+  For k,v in ok
+    x:=v.1
+    , min_X:=(A_Index=1 or x<min_X ? x : min_X)
+    , max_X:=(A_Index=1 or x>max_X ? x : max_X)
+  While (min_X!="" and min_X<=max_X)
   {
-    if !RegExMatch(Text,"\|([^$]+)\$(\d+)\.([\w+/]+)",r)
-      return, Text
-    w:=r2, v:=base64tobit(r3), Text:="", Obj:=[]
-    c:=StrLen(StrReplace(v,"0"))<=StrLen(v)//2 ? "1":"0"
-    wz:=RegExReplace(v,".{" w "}","$0`n")
-    SetFormat, IntegerFast, d
-    While InStr(wz,c)
-    {
-      While !(wz~="m`n)^" c)
-      wz:=RegExReplace(wz,"m`n)^.")
-      i:=0
-      While (wz~="m`n)^.{" i "}" c)
-      i++
-      v:=RegExReplace(wz,"m`n)^(.{" i "}).*","$1")
-      wz:=RegExReplace(wz,"m`n)^.{" i "}")
-      if (v!="")
-      {
-        If ObjMode
-          Obj.Push({"String" : "|" r1 "$" i "." bit2base64(v), "ASCII" : v })
-        Else
-          Text.="|" r1 "$" i "." bit2base64(v)
-      }
-    }
-    If ObjMode
-      Return, Obj
-    Else
-      return, Text
-  }
-
-  ; Screenshot and retained as the last screenshot.
-
-  ScreenShot(x1:="", y1:="", x2:="", y2:="")
-  {
-    if (x1+y1+x2+y2="")
-      n:=150000, x:=y:=-n, w:=h:=2*n
-    else
-      x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
-      , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
-    xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
-    GetBitsFromScreen(x,y,w,h,1,zx,zy,zw,zh)
-  }
-
-  ; Get the RGB color of a point from the last screenshot.
-  ; If the point to get the color is beyond the range of
-  ; Screen, it will return White color (0xFFFFFF).
-
-  ScreenShot_GetColor(x,y)
-  {
-      bits:=GetBitsFromScreen(0,0,0,0,0,zx,zy,zw,zh)
-    return, (x<zx or x>zx+zw-1 or y<zy or y>zy+zh-1 or !bits.1)
-    ? "0xFFFFFF" : Format("0x{:06X}",NumGet(bits.1
-    +(y-zy)*bits.2+(x-zx)*4,"uint")&0xFFFFFF)
-  }
-
-  ; Identify a line of text or verification code
-  ; based on the result returned by FindText()
-  ; Return Association array {ocr:Text, x:X, y:Y}
-
-  OcrOK(ok, offsetX:=20, offsetY:=20)
-  {
-    ocr_Text:=ocr_X:=ocr_Y:=min_X:=""
+    LeftX:=""
     For k,v in ok
-      x:=v.1
-      , min_X:=(A_Index=1 or x<min_X ? x : min_X)
-      , max_X:=(A_Index=1 or x>max_X ? x : max_X)
-    While (min_X!="" and min_X<=max_X)
     {
-      LeftX:=""
-      For k,v in ok
-      {
-      x:=v.1, y:=v.2, w:=v.3, h:=v.4
+      x:=v.1, y:=v.2
       if (x<min_X) or Abs(y-ocr_Y)>offsetY
         Continue
       ; Get the leftmost X coordinates
       if (LeftX="" or x<LeftX)
-        LeftX:=x, LeftY:=y, LeftW:=w, LeftH:=h, LeftOCR:=v.id
-      else if (x=LeftX)
-      {
-        Loop, 100
-        {
-        err:=(A_Index-1)/100+0.000001
-        if FindText(LeftX,LeftY,LeftX+LeftW-1,LeftY+LeftH-1,err,err,Text,0)
-          Break
-        if FindText(x, y, x+w-1, y+h-1, err, err, Text, 0)
-        {
-          LeftX:=x, LeftY:=y, LeftW:=w, LeftH:=h, LeftOCR:=v.id
-          Break
-        }
-        }
-      }
-      }
-      if (ocr_X="")
-      ocr_X:=LeftX, ocr_Y:=LeftY
-      ; If the interval exceeds the set value, add "*" to the result
-      ocr_Text.=(ocr_Text!="" and LeftX-min_X>offsetX ? "*":"") . LeftOCR
-      ; Update min_X for next search
-      min_X:=LeftX+LeftW
+        LeftX:=x, LeftY:=y, LeftW:=v.3, LeftH:=v.4, LeftOCR:=v.id
     }
-    return, {ocr:ocr_Text, x:ocr_X, y:ocr_Y}
+    if (LeftX="")
+      Break
+    if (ocr_X="")
+      ocr_X:=LeftX, min_Y:=LeftY, max_Y:=LeftY+LeftH
+    ; If the interval exceeds the set value, add "*" to the result
+    ocr_Text.=(ocr_Text!="" and LeftX>dx ? "*":"") . LeftOCR
+    ; Update for next search
+    min_X:=LeftX+LeftW-(overlapW>LeftW//2 ? LeftW//2:overlapW)
+    , dx:=LeftX+LeftW+offsetX
+    , ocr_Y:=LeftY, (LeftY<min_Y && min_Y:=LeftY)
+    , (LeftY+LeftH>max_Y && max_Y:=LeftY+LeftH)
   }
+  return {text:ocr_Text, x:ocr_X, y:min_Y
+    , w: min_X-ocr_X, h: max_Y-min_Y}
+}
 
-  ; Sort the results returned by FindText() from left to right
-  ; and top to bottom, ignore slight height difference
+; Sort the results returned by FindText() from left to right
+; and top to bottom, ignore slight height difference
 
-  SortOK(ok, dy:=10)
+Sort(ok, dy:=10)
+{
+  local
+  if !IsObject(ok)
+    return ok
+  ypos:=[]
+  For k,v in ok
   {
-    if !IsObject(ok)
-      return, ok
-    SetFormat, IntegerFast, d
-    ypos:=[]
-    For k,v in ok
-    {
-      x:=v.x, y:=v.y, add:=1
-      For k2,v2 in ypos
+    x:=v.x, y:=v.y, add:=1
+    For k2,v2 in ypos
       if Abs(y-v2)<=dy
       {
         y:=v2, add:=0
         Break
       }
-      if (add)
+    if (add)
       ypos.Push(y)
-      n:=(y*150000+x) "." k, s:=A_Index=1 ? n : s "-" n
-    }
-    Sort, s, N D-
-    ok2:=[]
-    Loop, Parse, s, -
-      ok2.Push( ok[(StrSplit(A_LoopField,".")[2])] )
-    return, ok2
+    n:=(y*150000+x) "." k, s:=A_Index=1 ? n : s "-" n
   }
+  Sort, s, N D-
+  ok2:=[]
+  Loop, Parse, s, -
+    ok2.Push( ok[(StrSplit(A_LoopField,".")[2])] )
+  return ok2
+}
 
-  ; Reordering according to the nearest distance
+; Reordering according to the nearest distance
 
-  SortOK2(ok, px, py)
+Sort2(ok, px, py)
+{
+  local
+  if !IsObject(ok)
+    return ok
+  For k,v in ok
+    n:=((v.x-px)**2+(v.y-py)**2) "." k, s:=A_Index=1 ? n : s "-" n
+  Sort, s, N D-
+  ok2:=[]
+  Loop, Parse, s, -
+    ok2.Push( ok[(StrSplit(A_LoopField,".")[2])] )
+  return ok2
+}
+
+; Prompt mouse position in remote assistance
+
+MouseTip(x:="", y:="", w:=10, h:=10, d:=4)
+{
+  local
+  if (x="")
   {
-    if !IsObject(ok)
-      return, ok
-    SetFormat, IntegerFast, d
-    For k,v in ok
-    {
-      x:=v.1+v.3//2, y:=v.2+v.4//2
-      n:=((x-px)**2+(y-py)**2) "." k
-      s:=A_Index=1 ? n : s "-" n
-    }
-    Sort, s, N D-
-    ok2:=[]
-    Loop, Parse, s, -
-      ok2.Push( ok[(StrSplit(A_LoopField,".")[2])] )
-    return, ok2
+    VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
+    x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
   }
-
-  ; Prompt mouse position in remote assistance
-
-  MouseTip(x:="", y:="", w:=21, h:=21)
+  x:=Round(x-w-d), y:=Round(y-h-d), w:=(2*w+1)+2*d, h:=(2*h+1)+2*d
+  ;-------------------------
+  Gui, _MouseTip_: +AlwaysOnTop -Caption +ToolWindow +Hwndmyid -DPIScale
+  Gui, _MouseTip_: Show, Hide w%w% h%h%
+  ;-------------------------
+  DetectHiddenWindows, % (dhw:=A_DetectHiddenWindows)?"On":"On"
+  i:=w-d, j:=h-d
+  s=0-0 %w%-0 %w%-%h% 0-%h% 0-0  %d%-%d% %i%-%d% %i%-%j% %d%-%j% %d%-%d%
+  WinSet, Region, %s%, ahk_id %myid%
+  DetectHiddenWindows, %dhw%
+  ;-------------------------
+  Gui, _MouseTip_: Show, NA x%x% y%y%
+  Loop, 4
   {
-    if (x="")
-    {
-      VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
-      x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
-    }
-    If IsObject(x){
-      w := Abs(x.X2-x.X1)
-      h := Abs(x.Y2-x.Y1)
-      y := (x.Y1<x.Y2?x.Y1:x.Y2)
-      x := (x.X1<x.X2?x.X1:x.X2)
-    }
-    ; x:=Round(x-10), y:=Round(y-10)
-    ;-------------------------
-    Gui, _MouseTip_: +AlwaysOnTop -Caption +ToolWindow +Hwndmyid +E0x08000000
-    Gui, _MouseTip_: Show, Hide w%w% h%h%
-    ;-------------------------
-    dhw:=A_DetectHiddenWindows
-    DetectHiddenWindows, On
-    d:=1, i:=w-d, j:=h-d
-    s=0-0 %w%-0 %w%-%h% 0-%h% 0-0
-    s=%s%  %d%-%d% %i%-%d% %i%-%j% %d%-%j% %d%-%d%
-    WinSet, Region, %s%, ahk_id %myid%
-    DetectHiddenWindows, %dhw%
-    ;-------------------------
-    Gui, _MouseTip_: Show, NA x%x% y%y%
-    Loop, 4
-    {
-      Gui, _MouseTip_: Color, % A_Index & 1 ? "Red" : "Blue"
-      Sleep, 500
-    }
-    Gui, _MouseTip_: Destroy
+    Gui, _MouseTip_: Color, % A_Index & 1 ? "Red" : "Blue"
+    Sleep, 500
   }
+  Gui, _MouseTip_: Destroy
+}
 
-  GetTextFromScreen(x1, y1, x2, y2, Threshold:=""
+; Quickly get the search data of screen image
+
+GetTextFromScreen(x1, y1, x2, y2, Threshold:=""
   , ScreenShot:=1, ByRef rx:="", ByRef ry:="")
+{
+  local
+  SetBatchLines, % (bch:=A_BatchLines)?"-1":"-1"
+  x:=Min(x1,x2), y:=Min(y1,y2), w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
+  this.GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
+  if (w<1 or h<1)
   {
-    local
-    SetBatchLines, % (bch:=A_BatchLines)?"-1":"-1"
-    x:=(x1<x2 ? x1:x2), y:=(y1<y2 ? y1:y2)
-    , w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
-    , xywh2xywh(x,y,w,h,x,y,w,h,zx,zy,zw,zh)
-    if (w<1 or h<1)
+    SetBatchLines, %bch%
+    return
+  }
+  ListLines, % (lls:=A_ListLines)?"Off":"Off"
+  gs:=[], k:=0
+  Loop, %h%
+  {
+    j:=y+A_Index-1
+    Loop, %w%
+      i:=x+A_Index-1, c:=this.GetColor(i,j,0)
+      , gs[++k]:=(((c>>16)&0xFF)*38+((c>>8)&0xFF)*75+(c&0xFF)*15)>>7
+  }
+  if InStr(Threshold,"**")
+  {
+    Threshold:=StrReplace(Threshold,"*")
+    if (Threshold="")
+      Threshold:=50
+    s:="", sw:=w, w-=2, h-=2, x++, y++
+    Loop, %h%
     {
-      SetBatchLines, %bch%
-      return
-    }
-    ListLines, % (lls:=A_ListLines=0?"Off":"On")?"Off":"Off"
-    GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
-    gc:=[], k:=0
-    Loop, %h% {
-      j:=y+A_Index-1
+      y1:=A_Index
       Loop, %w%
-        i:=x+A_Index-1, c:=ScreenShot_GetColor(i,j)
-        , gc[++k]:=(((c>>16)&0xFF)*38+((c>>8)&0xFF)*75+(c&0xFF)*15)>>7
+        x1:=A_Index, i:=y1*sw+x1+1, j:=gs[i]+Threshold
+        , s.=( gs[i-1]>j || gs[i+1]>j
+        || gs[i-sw]>j || gs[i+sw]>j
+        || gs[i-sw-1]>j || gs[i-sw+1]>j
+        || gs[i+sw-1]>j || gs[i+sw+1]>j ) ? "1":"0"
     }
+    Threshold:="**" Threshold
+  }
+  else
+  {
     Threshold:=StrReplace(Threshold,"*")
     if (Threshold="")
     {
@@ -2189,7 +1098,7 @@ for i,v in ok
       Loop, 256
         pp[A_Index-1]:=0
       Loop, % w*h
-        pp[gc[A_Index]]++
+        pp[gs[A_Index]]++
       IP:=IS:=0
       Loop, 256
         k:=A_Index-1, IP+=k*pp[k], IS+=pp[k]
@@ -2209,39 +1118,1767 @@ for i,v in ok
     }
     s:=""
     Loop, % w*h
-      s.=gc[A_Index]<=Threshold ? "1":"0"
-    ListLines, %lls%
-    ;--------------------
-    w:=Format("{:d}",w), CutUp:=CutDown:=0
-    re1=(^0{%w%}|^1{%w%})
-    re2=(0{%w%}$|1{%w%}$)
-    While RegExMatch(s,re1)
-      s:=RegExReplace(s,re1), CutUp++
-    While RegExMatch(s,re2)
-      s:=RegExReplace(s,re2), CutDown++
-    rx:=x+w//2, ry:=y+CutUp+(h-CutUp-CutDown)//2
-    s:="|<>*" Threshold "$" w "." bit2base64(s)
-    ;--------------------
-    SetBatchLines, %bch%
-    return s
+      s.=gs[A_Index]<=Threshold ? "1":"0"
+    Threshold:="*" Threshold
   }
+  ;--------------------
+  w:=Format("{:d}",w), CutUp:=CutDown:=0
+  re1=(^0{%w%}|^1{%w%})
+  re2=(0{%w%}$|1{%w%}$)
+  While RegExMatch(s,re1)
+    s:=RegExReplace(s,re1), CutUp++
+  While RegExMatch(s,re2)
+    s:=RegExReplace(s,re2), CutDown++
+  rx:=x+w//2, ry:=y+CutUp+(h-CutUp-CutDown)//2
+  s:="|<>" Threshold "$" w "." this.bit2base64(s)
+  ;--------------------
+  SetBatchLines, %bch%
+  ListLines, %lls%
+  return s
+}
 
-  GetPicArr(x, y, w, h)
+; Quickly save screen image to BMP file for debugging
+
+SavePic(file, x1:=0, y1:=0, x2:=0, y2:=0, ScreenShot:=1)
+{
+  local
+  static Ptr:="Ptr"
+  if (x1*x1+y1*y1+x2*x2+y2*y2<=0)
+    n:=150000, x:=y:=-n, w:=h:=2*n
+  else
+    x:=Min(x1,x2), y:=Min(y1,y2), w:=Abs(x2-x1)+1, h:=Abs(y2-y1)+1
+  bits:=this.GetBitsFromScreen(x,y,w,h,ScreenShot,zx,zy,zw,zh)
+  if (w<1 or h<1 or !bits.hBM)
+    return
+  hBM:=this.CreateDIBSection(w, -h, bpp:=24, ppvBits, bi)
+  this.CopyHBM(hBM, 0, 0, bits.hBM, x-zx, y-zy, w, h)
+  size:=((w*bpp+31)//32)*4*h, NumPut(size, bi, 20, "uint")
+  VarSetCapacity(bf, 14, 0), StrPut("BM", &bf, "CP0")
+  NumPut(54+size, bf, 2, "uint"), NumPut(54, bf, 10, "uint")
+  f:=FileOpen(file,"w"), f.RawWrite(bf,14), f.RawWrite(bi,40)
+  , f.RawWrite(ppvBits+0, size), f.Close()
+  DllCall("DeleteObject", Ptr,hBM)
+}
+
+; Show the saved Picture file
+
+ShowPic(file:="", show:=1
+  , ByRef zx:="", ByRef zy:="", ByRef w:="", ByRef h:="")
+{
+  local
+  static Ptr:="Ptr"
+  Gui, FindText_Screen: Destroy
+  if (file="") or !FileExist(file)
+    return
+  bits:=this.GetBitsFromScreen(0,0,0,0,1,zx,zy,zw,zh)
+  hBM:=bits.hBM, hBM2:=LoadPicture(file)
+  this.GetBitmapWH(hBM2, w, h)
+  this.CopyHBM(hBM, 0, 0, hBM2, 0, 0, w, h)
+  DllCall("DeleteObject", Ptr,hBM2)
+  if (!show)
+    return
+  ;-------------------
+  mDC:=DllCall("CreateCompatibleDC", Ptr,0, Ptr)
+  oBM:=DllCall("SelectObject", Ptr,mDC, Ptr,hBM, Ptr)
+  hBrush:=DllCall("CreateSolidBrush", "uint",0xFFFFFF, Ptr)
+  oBrush:=DllCall("SelectObject", Ptr,mDC, Ptr,hBrush, Ptr)
+  DllCall("BitBlt", Ptr,mDC, "int",0, "int",0, "int",zw, "int",zh
+    , Ptr,mDC, "int",0, "int",0, "uint",0xC000CA) ; MERGECOPY
+  DllCall("SelectObject", Ptr,mDC, Ptr,oBrush)
+  DllCall("DeleteObject", Ptr,hBrush)
+  DllCall("SelectObject", Ptr,mDC, Ptr,oBM)
+  DllCall("DeleteDC", Ptr,mDC)
+  ;-------------------
+  Gui, FindText_Screen: +AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
+  Gui, FindText_Screen: Margin, 0, 0
+  Gui, FindText_Screen: Add, Pic,, HBITMAP:*%hBM%
+  Gui, FindText_Screen: Show, NA x%zx% y%zy% w%zw% h%zh%, Show Pic
+}
+
+; Running AHK code dynamically with new threads
+
+Class Thread
+{
+  __New(args*)
   {
-    ListLines, % (lls:=A_ListLines=0?"Off":"On") ? "Off":"Off"
-    SetBatchLines, % (bch:=A_BatchLines) ? "-1":"-1"
-    ScreenShot(x, y, x+w-1, y+h-1)
-    arr:=[], i:=1
-    Loop, % h {
-      yy:=y+A_Index-1
-      Loop, % w {
-        xx:=x+A_Index-1
-        , arr[i++]:=ScreenShot_GetColor(xx, yy)
+    this.pid:=this.Exec(args*)
+  }
+  __Delete()
+  {
+    Process, Close, % this.pid
+  }
+  Exec(s, Ahk:="", args:="")
+  {
+    local
+    Ahk:=Ahk ? Ahk:A_IsCompiled ? A_ScriptDir "\AutoHotkey.exe":A_AhkPath
+    s:="DllCall(""SetWindowText"",""Ptr"",A_ScriptHwnd,""Str"",""<AHK>"")`n"
+      . StrReplace(s,"`r"), pid:=""
+    Try
+    {
+      shell:=ComObjCreate("WScript.Shell")
+      oExec:=shell.Exec("""" Ahk """ /f * " args)
+      oExec.StdIn.Write(s)
+      oExec.StdIn.Close(), pid:=oExec.ProcessID
+    }
+    Catch
+    {
+      f:=A_Temp "\~ahk.tmp"
+      s:="`n FileDelete, " f "`n" s
+      FileDelete, %f%
+      FileAppend, %s%, %f%
+      r:=ObjBindMethod(this, "Clear")
+      SetTimer, %r%, -3000
+      Run, "%Ahk%" /f "%f%" %args%,, UseErrorLevel, pid
+    }
+    return pid
+  }
+  Clear()
+  {
+    FileDelete, % A_Temp "\~ahk.tmp"
+    SetTimer,, Off
+  }
+}
+
+; FindText.QPC() Use the same as A_TickCount
+
+QPC()
+{
+  static f:=0, c:=DllCall("QueryPerformanceFrequency", "Int*",f)
+  return (!DllCall("QueryPerformanceCounter","Int64*",c))*0+(c/f)*1000
+}
+
+WindowToScreen(ByRef x, ByRef y, x1, y1, id:="")
+{
+  local
+  WinGetPos, winx, winy,,, % id ? "ahk_id " id : "A"
+  x:=x1+Floor(winx), y:=y1+Floor(winy)
+}
+
+ScreenToWindow(ByRef x, ByRef y, x1, y1, id:="")
+{
+  local
+  this.WindowToScreen(dx,dy,0,0,id), x:=x1-dx, y:=y1-dy
+}
+
+ClientToScreen(ByRef x, ByRef y, x1, y1, id:="")
+{
+  local
+  if (!id)
+    WinGet, id, ID, A
+  VarSetCapacity(pt,8,0), NumPut(0,pt,"int64")
+  , DllCall("ClientToScreen", "Ptr",id, "Ptr",&pt)
+  , x:=x1+NumGet(pt,"int"), y:=y1+NumGet(pt,4,"int")
+}
+
+ScreenToClient(ByRef x, ByRef y, x1, y1, id:="")
+{
+  local
+  this.ClientToScreen(dx,dy,0,0,id), x:=x1-dx, y:=y1-dy
+}
+
+; It is not like FindText always use Screen Coordinates,
+; But like built-in command ImageSearch using CoordMode Settings
+
+ImageSearch(ByRef rx, ByRef ry, x1, y1, x2, y2, text
+  , ScreenShot:=1, FindAll:=0)
+{
+  local
+  dx:=dy:=0
+  if (A_CoordModePixel="Window")
+    this.WindowToScreen(dx,dy,0,0)
+  else if (A_CoordModePixel="Client")
+    this.ClientToScreen(dx,dy,0,0)
+  if (ok:=this.FindText(x1+dx, y1+dy, x2+dx, y2+dy
+    , 0, 0, text, ScreenShot, FindAll))
+  {
+    rx:=ok.1.x-dx, ry:=ok.1.y-dy, ErrorLevel:=0
+    return 1
+  }
+  else
+  {
+    rx:=ry:="", ErrorLevel:=1
+    return 0
+  }
+}
+
+
+/***** C source code of machine code *****
+
+int __attribute__((__stdcall__)) PicFind(
+  int mode, unsigned int c, unsigned int n, int dir
+  , unsigned char * Bmp, int Stride, int zw, int zh
+  , int sx, int sy, int sw, int sh
+  , char * ss, unsigned int * s1, unsigned int * s0
+  , char * text, int w, int h, int err1, int err0
+  , unsigned int * allpos, int allpos_max )
+{
+  int ok=0, o, i, j, k, v, r, g, b, rr, gg, bb;
+  int x, y, x1, y1, x2, y2, len1, len0, e1, e0, max;
+  int r_min, r_max, g_min, g_max, b_min, b_max, x3, y3;
+  unsigned char * gs;
+  //----------------------
+  // MultiColor or PixelSearch or ImageSearch Mode
+  if (mode==5)
+  {
+    max=n; v=c*c;
+    for (i=0, k=0, c=0, o=0; (j=text[o++])!='\0';)
+    {
+      if (j>='0' && j<='9') c=c*10+(j-'0');
+      if (j=='/' || text[o]=='\0')
+      {
+        if (k=!k)
+          s1[i]=(c>>16)*Stride+(c&0xFFFF)*4;
+        else
+          s0[i++]=c;
+        c=0;
       }
     }
-    SetBatchLines, %bch%
-    ListLines, %lls%
-    return arr
+    goto StartLookUp;
   }
-;===============  FindText Library End  ===================
+  //----------------------
+  // Generate Lookup Table
+  o=0; len1=0; len0=0;
+  for (y=0; y<h; y++)
+  {
+    for (x=0; x<w; x++)
+    {
+      i=(mode==3) ? y*Stride+x*4 : y*sw+x;
+      if (text[o++]=='1')
+        s1[len1++]=i;
+      else
+        s0[len0++]=i;
+    }
+  }
+  if (err1>=len1) len1=0;
+  if (err0>=len0) len0=0;
+  max=(len1>len0) ? len1 : len0;
+  //----------------------
+  // Color Position Mode
+  // only used to recognize multicolored Verification Code
+  if (mode==3) goto StartLookUp;
+  //----------------------
+  // Generate Two Value Image
+  o=sy*Stride+sx*4; j=Stride-sw*4; i=0;
+  if (mode==0)  // Color Mode
+  {
+    rr=(c>>16)&0xFF; gg=(c>>8)&0xFF; bb=c&0xFF;
+    for (y=0; y<sh; y++, o+=j)
+      for (x=0; x<sw; x++, o+=4, i++)
+      {
+        r=Bmp[2+o]-rr; g=Bmp[1+o]-gg; b=Bmp[o]-bb; v=r+rr+rr;
+        ss[i]=((1024+v)*r*r+2048*g*g+(1534-v)*b*b<=n) ? 1:0;
+      }
+  }
+  else if (mode==1)  // Gray Threshold Mode
+  {
+    c=(c+1)<<7;
+    for (y=0; y<sh; y++, o+=j)
+      for (x=0; x<sw; x++, o+=4, i++)
+        ss[i]=(Bmp[2+o]*38+Bmp[1+o]*75+Bmp[o]*15<c) ? 1:0;
+  }
+  else if (mode==2)  // Gray Difference Mode
+  {
+    gs=(unsigned char *)(ss+sw*sh);
+    x2=sx+sw; y2=sy+sh;
+    for (y=sy-1; y<=y2; y++)
+    {
+      for (x=sx-1; x<=x2; x++, i++)
+        if (x<0 || x>=zw || y<0 || y>=zh)
+          gs[i]=0;
+        else
+        {
+          o=y*Stride+x*4;
+          gs[i]=(Bmp[2+o]*38+Bmp[1+o]*75+Bmp[o]*15)>>7;
+        }
+    }
+    k=sw+2; i=0;
+    for (y=1; y<=sh; y++)
+      for (x=1; x<=sw; x++, i++)
+      {
+        o=y*k+x; n=gs[o]+c;
+        ss[i]=(gs[o-1]>n || gs[o+1]>n
+          || gs[o-k]>n   || gs[o+k]>n
+          || gs[o-k-1]>n || gs[o-k+1]>n
+          || gs[o+k-1]>n || gs[o+k+1]>n) ? 1:0;
+      }
+  }
+  else  // (mode==4) Color Difference Mode
+  {
+    r=(c>>16)&0xFF; g=(c>>8)&0xFF; b=c&0xFF;
+    rr=(n>>16)&0xFF; gg=(n>>8)&0xFF; bb=n&0xFF;
+    r_min=r-rr; g_min=g-gg; b_min=b-bb;
+    r_max=r+rr; g_max=g+gg; b_max=b+bb;
+    for (y=0; y<sh; y++, o+=j)
+      for (x=0; x<sw; x++, o+=4, i++)
+      {
+        r=Bmp[2+o]; g=Bmp[1+o]; b=Bmp[o];
+        ss[i]=(r>=r_min && r<=r_max
+            && g>=g_min && g<=g_max
+            && b>=b_min && b<=b_max) ? 1:0;
+      }
+  }
+  //----------------------
+  StartLookUp:
+  if (mode==5 || mode==3)
+    { x1=sx; y1=sy; x2=sx+sw-w; y2=sy+sh-h; sx=0; sy=0; }
+  else
+    { x1=0; y1=0; x2=sw-w; y2=sh-h; }
+  if (dir<1 || dir>8) dir=1;
+  // 1 ==> Top to Bottom ( Left to Right )
+  // 2 ==> Top to Bottom ( Right to Left )
+  // 3 ==> Bottom to Top ( Left to Right )
+  // 4 ==> Bottom to Top ( Right to Left )
+  // 5 ==> Left to Right ( Top to Bottom )
+  // 6 ==> Left to Right ( Bottom to Top )
+  // 7 ==> Right to Left ( Top to Bottom )
+  // 8 ==> Right to Left ( Bottom to Top )
+  if (--dir>3) { i=y1; y1=x1; x1=i; i=y2; y2=x2; x2=i; }
+  for (y3=y1; y3<=y2; y3++)
+  {
+    for (x3=x1; x3<=x2; x3++)
+    {
+      y=((dir&3)>1) ? y1+y2-y3 : y3;
+      x=(dir&1) ? x1+x2-x3 : x3;
+      if (dir>3) { i=y; y=x; x=i; }
+      //----------------------
+      e1=err1; e0=err0;
+      if (mode==5)
+      {
+        o=y*Stride+x*4;
+        for (i=0; i<max; i++)
+        {
+          j=o+s1[i]; c=s0[i]; r=Bmp[2+j]-((c>>16)&0xFF);
+          g=Bmp[1+j]-((c>>8)&0xFF); b=Bmp[j]-(c&0xFF);
+          if ((r*r>v || g*g>v || b*b>v) && (--e1)<0)
+            goto NoMatch;
+        }
+      }
+      else if (mode==3)
+      {
+        o=y*Stride+x*4;
+        j=o+c; rr=Bmp[2+j]; gg=Bmp[1+j]; bb=Bmp[j];
+        for (i=0; i<max; i++)
+        {
+          if (i<len1)
+          {
+            j=o+s1[i]; r=Bmp[2+j]-rr; g=Bmp[1+j]-gg; b=Bmp[j]-bb; v=r+rr+rr;
+            if ((1024+v)*r*r+2048*g*g+(1534-v)*b*b>n && (--e1)<0)
+              goto NoMatch;
+          }
+          if (i<len0)
+          {
+            j=o+s0[i]; r=Bmp[2+j]-rr; g=Bmp[1+j]-gg; b=Bmp[j]-bb; v=r+rr+rr;
+            if ((1024+v)*r*r+2048*g*g+(1534-v)*b*b<=n && (--e0)<0)
+              goto NoMatch;
+          }
+        }
+      }
+      else
+      {
+        o=y*sw+x;
+        for (i=0; i<max; i++)
+        {
+          if (i<len1 && ss[o+s1[i]]==0 && (--e1)<0) goto NoMatch;
+          if (i<len0 && ss[o+s0[i]]!=0 && (--e0)<0) goto NoMatch;
+        }
+        // Clear the image that has been found
+        for (i=0; i<len1; i++)
+          ss[o+s1[i]]=0;
+      }
+      allpos[ok*2]=sx+x; allpos[ok*2+1]=sy+y;
+      if (++ok>=allpos_max) goto Return1;
+      NoMatch:;
+    }
+  }
+  //----------------------
+  Return1:
+  return ok;
+}
 
+*/
+
+
+;==== Optional GUI interface ====
+
+
+Gui(cmd, arg1:="")
+{
+  local
+  static
+  global FindText
+  local lls, bch, cri
+  ListLines, % InStr("|KeyDown|LButtonDown|MouseMove|"
+    , "|" cmd "|") ? "Off" : A_ListLines
+  static init:=0
+  if (!init)
+  {
+    init:=1
+    Gui_:=ObjBindMethod(FindText,"Gui")
+    Gui_Off:=ObjBindMethod(FindText,"Gui","Off")
+    Gui_Show:=ObjBindMethod(FindText,"Gui","Show")
+    Gui_KeyDown:=ObjBindMethod(FindText,"Gui","KeyDown")
+    Gui_LButtonDown:=ObjBindMethod(FindText,"Gui","LButtonDown")
+    Gui_MouseMove:=ObjBindMethod(FindText,"Gui","MouseMove")
+    Gui_ScreenShot:=ObjBindMethod(FindText,"Gui","ScreenShot")
+    Gui_ShowPic:=ObjBindMethod(FindText,"Gui","ShowPic")
+    Gui_Slider:=ObjBindMethod(FindText,"Gui","Slider")
+    Gui_ToolTip:=ObjBindMethod(FindText,"Gui","ToolTip")
+    Gui_ToolTipOff:=ObjBindMethod(FindText,"Gui","ToolTipOff")
+    bch:=A_BatchLines, cri:=A_IsCritical
+    Critical
+    #NoEnv
+    %Gui_%("Load_Language_Text")
+    %Gui_%("MakeCaptureWindow")
+    %Gui_%("MakeMainWindow")
+    OnMessage(0x100, Gui_KeyDown)
+    OnMessage(0x201, Gui_LButtonDown)
+    OnMessage(0x200, Gui_MouseMove)
+    Menu, Tray, Add
+    Menu, Tray, Add, % Lang["1"], %Gui_Show%
+    if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
+    {
+      Menu, Tray, Default, % Lang["1"]
+      Menu, Tray, Click, 1
+      Menu, Tray, Icon, Shell32.dll, 23
+    }
+    Critical, %cri%
+    SetBatchLines, %bch%
+    if (0)
+    {
+      FindText_Run:
+      Critical
+      %Gui_%(A_GuiControl)
+      return
+    }
+  }
+  Switch cmd
+  {
+  Case "Off":
+    return (KeyDown:=1)
+  Case "Show":
+    Gui, FindText_Main: Default
+    Gui, Show, Center
+    GuiControl, Focus, scr
+    return
+  Case "MakeCaptureWindow":
+    ww:=35, hh:=12, WindowColor:="0xDDEEFF"
+    Gui, FindText_Capture: New
+    Gui, +AlwaysOnTop
+    Gui, Margin, 15, 15
+    Gui, Color, %WindowColor%
+    Gui, Font, s12, Verdana
+    Gui, -Theme
+    nW:=71, nH:=25, w:=11, C_:=[], Cid_:=[]
+    Loop, % nW*(nH+1)
+    {
+      i:=A_Index, j:=i=1 ? "" : Mod(i,nW)=1 ? "xm y+1":"x+1"
+      Gui, Add, Progress, w%w% h%w% %j% Hwndid
+      Control, ExStyle, -0x20000,, ahk_id %id%
+      C_[i]:=id, Cid_[id]:=i
+    }
+    Gui, +Theme
+    GuiControlGet, p, Pos, %id%
+    w:=pX+pW-15, h:=pY+pH-15
+    Gui, Add, Slider, xm w%w% vMySlider1 gFindText_Run Disabled
+      +Center Page20 Line10 NoTicks AltSubmit
+    Gui, Add, Slider, ym h%h% vMySlider2 gFindText_Run Disabled
+      +Center Page20 Line10 NoTicks AltSubmit +Vertical
+    GuiControlGet, p, Pos, MySlider2
+    k:=pX+pW, MySlider1:=MySlider2:=dx:=dy:=0
+    ;--------------
+    Gui, Add, Button, xm Hwndid Hidden Section, % Lang["Auto"]
+    GuiControlGet, p, Pos, %id%
+    w:=Round(pW*0.75), i:=Round(w*3+15+pW*0.5-w*1.5)
+    Gui, Add, Button, xm+%i% yp w%w% hp -Wrap vRepU gFindText_Run, % Lang["RepU"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutU gFindText_Run, % Lang["CutU"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutU3 gFindText_Run, % Lang["CutU3"]
+    Gui, Add, Button, xm wp hp -Wrap vRepL gFindText_Run, % Lang["RepL"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutL gFindText_Run, % Lang["CutL"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutL3 gFindText_Run, % Lang["CutL3"]
+    Gui, Add, Button, x+15 w%pW% hp -Wrap vAuto gFindText_Run, % Lang["Auto"]
+    Gui, Add, Button, x+15 w%w% hp -Wrap vRepR gFindText_Run, % Lang["RepR"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutR gFindText_Run, % Lang["CutR"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutR3 gFindText_Run, % Lang["CutR3"]
+    Gui, Add, Button, xm+%i% wp hp -Wrap vRepD gFindText_Run, % Lang["RepD"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutD gFindText_Run, % Lang["CutD"]
+    Gui, Add, Button, x+0 wp hp -Wrap vCutD3 gFindText_Run, % Lang["CutD3"]
+    ;--------------
+    Gui, Add, Text, x+80 ys+3 Section, % Lang["SelGray"]
+    Gui, Add, Edit, x+3 yp-3 w60 vSelGray ReadOnly
+    Gui, Add, Text, x+15 ys, % Lang["SelColor"]
+    Gui, Add, Edit, x+3 yp-3 w120 vSelColor ReadOnly
+    Gui, Add, Text, x+15 ys, % Lang["SelR"]
+    Gui, Add, Edit, x+3 yp-3 w60 vSelR ReadOnly
+    Gui, Add, Text, x+5 ys, % Lang["SelG"]
+    Gui, Add, Edit, x+3 yp-3 w60 vSelG ReadOnly
+    Gui, Add, Text, x+5 ys, % Lang["SelB"]
+    Gui, Add, Edit, x+3 yp-3 w60 vSelB ReadOnly
+    ;--------------
+    x:=w*6+pW+15*4
+    Gui, Add, Tab3, x%x% y+15 -Wrap, % Lang["2"]
+    Gui, Tab, 1
+    Gui, Add, Text, x+15 y+15, % Lang["Threshold"]
+    Gui, Add, Edit, x+15 w100 vThreshold
+    Gui, Add, Button, x+15 yp-3 vGray2Two gFindText_Run, % Lang["Gray2Two"]
+    Gui, Tab, 2
+    Gui, Add, Text, x+15 y+15, % Lang["GrayDiff"]
+    Gui, Add, Edit, x+15 w100 vGrayDiff, 50
+    Gui, Add, Button, x+15 yp-3 vGrayDiff2Two gFindText_Run, % Lang["GrayDiff2Two"]
+    Gui, Tab, 3
+    Gui, Add, Text, x+15 y+15, % Lang["Similar1"] " 0"
+    Gui, Add, Slider, x+0 w120 vSimilar1 gFindText_Run
+      +Center Page1 NoTicks ToolTip, 100
+    Gui, Add, Text, x+0, 100
+    Gui, Add, Button, x+15 yp-3 vColor2Two gFindText_Run, % Lang["Color2Two"]
+    Gui, Tab, 4
+    Gui, Add, Text, x+15 y+15, % Lang["Similar2"] " 0"
+    Gui, Add, Slider, x+0 w120 vSimilar2 gFindText_Run
+      +Center Page1 NoTicks ToolTip, 100
+    Gui, Add, Text, x+0, 100
+    Gui, Add, Button, x+15 yp-3 vColorPos2Two gFindText_Run, % Lang["ColorPos2Two"]
+    Gui, Tab, 5
+    Gui, Add, Text, x+10 y+15, % Lang["DiffR"]
+    Gui, Add, Edit, x+5 w80 vDiffR Limit3
+    Gui, Add, UpDown, vdR Range0-255 Wrap
+    Gui, Add, Text, x+5, % Lang["DiffG"]
+    Gui, Add, Edit, x+5 w80 vDiffG Limit3
+    Gui, Add, UpDown, vdG Range0-255 Wrap
+    Gui, Add, Text, x+5, % Lang["DiffB"]
+    Gui, Add, Edit, x+5 w80 vDiffB Limit3
+    Gui, Add, UpDown, vdB Range0-255 Wrap
+    Gui, Add, Button, x+15 yp-3 vColorDiff2Two gFindText_Run, % Lang["ColorDiff2Two"]
+    Gui, Tab, 6
+    Gui, Add, Text, x+10 y+15, % Lang["DiffRGB"]
+    Gui, Add, Edit, x+5 w80 vDiffRGB Limit3
+    Gui, Add, UpDown, vdRGB Range0-255 Wrap
+    Gui, Add, Checkbox, x+15 yp+5 vMultiColor gFindText_Run, % Lang["MultiColor"]
+    Gui, Add, Button, x+15 yp-5 vUndo gFindText_Run, % Lang["Undo"]
+    Gui, Tab
+    ;--------------
+    Gui, Add, Button, xm vReset gFindText_Run, % Lang["Reset"]
+    Gui, Add, Checkbox, x+15 yp+5 vModify gFindText_Run, % Lang["Modify"]
+    Gui, Add, Text, x+30, % Lang["Comment"]
+    Gui, Add, Edit, x+5 yp-2 w150 vComment
+    Gui, Add, Button, x+30 yp-3 vSplitAdd gFindText_Run, % Lang["SplitAdd"]
+    Gui, Add, Button, x+10 vAllAdd gFindText_Run, % Lang["AllAdd"]
+    Gui, Add, Button, x+10 wp vOK gFindText_Run, % Lang["OK"]
+    Gui, Add, Button, x+10 wp vCancel gCancel, % Lang["Cancel"]
+    Gui, Add, Button, xm vBind0 gFindText_Run, % Lang["Bind0"]
+    Gui, Add, Button, x+10 vBind1 gFindText_Run, % Lang["Bind1"]
+    Gui, Add, Button, x+10 vBind2 gFindText_Run, % Lang["Bind2"]
+    Gui, Add, Button, x+10 vBind3 gFindText_Run, % Lang["Bind3"]
+    Gui, Add, Button, x+10 vBind4 gFindText_Run, % Lang["Bind4"]
+    Gui, Add, Button, x+30 vSave gFindText_Run, % Lang["Save"]
+    Gui, Show, Hide, % Lang["3"]
+    return
+  Case "MakeMainWindow":
+    Gui, FindText_Main: New
+    Gui, +AlwaysOnTop -DPIScale
+    Gui, Margin, 15, 15
+    Gui, Color, %WindowColor%
+    Gui, Font, s12, Verdana
+    Gui, Add, Text, xm, % Lang["NowHotkey"]
+    Gui, Add, Edit, x+5 w200 vNowHotkey ReadOnly
+    Gui, Add, Hotkey, x+5 w200 vSetHotkey1
+    Gui, Add, DDL, x+5 w180 vSetHotkey2
+      , % "||F1|F2|F3|F4|F5|F6|F7|F8|F9|F10|F11|F12|LWin|MButton"
+      . "|ScrollLock|CapsLock|Ins|Esc|BS|Del|Tab|Home|End|PgUp|PgDn"
+      . "|NumpadDot|NumpadSub|NumpadAdd|NumpadDiv|NumpadMult"
+    Gui, Add, GroupBox, xm y+0 w280 h55 vMyGroup cBlack
+    Gui, Add, Text, xp+15 yp+20 Section, % Lang["Myww"] ": "
+    Gui, Add, Text, x+0 w60, %ww%
+    Gui, Add, UpDown, vMyww Range1-100, %ww%
+    Gui, Add, Text, x+15 ys, % Lang["Myhh"] ": "
+    Gui, Add, Text, x+0 w60, %hh%
+    Gui, Add, UpDown, vMyhh Hwndid Range1-100, %hh%
+    GuiControlGet, p, Pos, %id%
+    GuiControl, Move, MyGroup, % "w" (pX+pW) " h" (pH+30)
+    x:=pX+pW+15*2
+    Gui, Add, Button, x%x% ys-8 w150 vApply gFindText_Run, % Lang["Apply"]
+    Gui, Add, Checkbox, x+30 ys vAddFunc, % Lang["AddFunc"] " FindText()"
+    Gui, Add, Button, xm y+18 w144 vCutL2 gFindText_Run, % Lang["CutL2"]
+    Gui, Add, Button, x+0 wp vCutR2 gFindText_Run, % Lang["CutR2"]
+    Gui, Add, Button, x+0 wp vCutU2 gFindText_Run, % Lang["CutU2"]
+    Gui, Add, Button, x+0 wp vCutD2 gFindText_Run, % Lang["CutD2"]
+    Gui, Add, Button, x+0 wp vUpdate gFindText_Run, % Lang["Update"]
+    Gui, Font, s6 bold, Verdana
+    Gui, Add, Edit, xm y+10 w720 r20 vMyPic -Wrap
+    Gui, Font, s12 norm, Verdana
+    Gui, Add, Button, xm w240 vCapture gFindText_Run, % Lang["Capture"]
+    Gui, Add, Button, x+0 wp vTest gFindText_Run, % Lang["Test"]
+    Gui, Add, Button, x+0 wp vCopy gFindText_Run, % Lang["Copy"]
+    Gui, Add, Button, xm y+0 wp vCaptureS gFindText_Run, % Lang["CaptureS"]
+    Gui, Add, Button, x+0 wp vGetRange gFindText_Run, % Lang["GetRange"]
+    Gui, Add, Button, x+0 wp vTestClip gFindText_Run, % Lang["TestClip"]
+    Gui, Font, s12 cBlue, Verdana
+    Gui, Add, Edit, xm w720 h350 vscr Hwndhscr -Wrap HScroll
+    Gui, Show, Hide, % Lang["4"]
+    return
+  Case "Capture","CaptureS":
+    Gui, FindText_Main: +Hwndid
+    if (show_gui:=(WinExist()=id))
+    {
+      WinMinimize
+      Gui, FindText_Main: Hide
+    }
+    ShowScreenShot:=InStr(cmd,"CaptureS")
+    if (ShowScreenShot)
+    {
+      f:=%Gui_%("SelectPic")
+      if (f="") or !FileExist(f)
+      {
+        if (show_gui)
+        {
+          Gui, FindText_Main: Show
+          GuiControl, FindText_Main: Focus, scr
+        }
+        Exit
+      }
+      FindText.ShowPic(f)
+    }
+    ;----------------------
+    if GetKeyState("RButton")
+      Send {RButton Up}
+    if GetKeyState("Ctrl")
+      Send {Ctrl Up}
+    KeyDown:=0, State:=%Gui_%("State")
+    Gui, FindText_HotkeyIf: New, -Caption +ToolWindow +E0x80000
+    Gui, Show, NA x0 y0 w0 h0, FindText_HotkeyIf
+    Hotkey, IfWinExist, FindText_HotkeyIf
+    Hotkey, *RButton, %Gui_Off%, On UseErrorLevel
+    ListLines, % (lls:=A_ListLines)?"Off":"Off"
+    CoordMode, Mouse
+    w:=ww, h:=hh, oldx:=oldy:="", r:=StrSplit(Lang["5"],"|")
+    if (!show_gui)
+      w:=20, h:=8
+    Critical, Off
+    Loop
+    {
+      Sleep, 50
+      MouseGetPos, x, y, Bind_ID
+      if (!show_gui)
+      {
+        w:=x<=1 ? w-1 : x>=A_ScreenWidth-2 ? w+1:w
+        h:=y<=1 ? h-1 : y>=A_ScreenHeight-2 ? h+1:h
+        w:=(w<1 ? 1:w), h:=(h<1 ? 1:h)
+      }
+      %Gui_%("Mini_Show")
+      if (oldx=x and oldy=y)
+        Continue
+      oldx:=x, oldy:=y
+      ToolTip, % r.1 " : " x "," y "`n" r.2
+    }
+    Until (KeyDown=1) or (State!=%Gui_%("State"))
+    timeout:=A_TickCount+3000
+    While (A_TickCount<timeout) and (State!=%Gui_%("State"))
+      Sleep, 50
+    KeyDown:=0
+    px:=x, py:=y, oldx:=oldy:=""
+    Loop
+    {
+      Sleep, 50
+      %Gui_%("Mini_Show")
+      MouseGetPos, x1, y1
+      if (oldx=x1 and oldy=y1)
+        Continue
+      oldx:=x1, oldy:=y1
+      ToolTip, % r.1 " : " x "," y "`n" r.2
+    }
+    Until (KeyDown=1) or (State!=%Gui_%("State"))
+    timeout:=A_TickCount+3000
+    While (A_TickCount<timeout) and (State!=%Gui_%("State"))
+      Sleep, 50
+    ToolTip
+    Critical
+    %Gui_%("Mini_Hide")
+    ListLines, %lls%
+    Hotkey, *RButton, %Gui_Off%, Off UseErrorLevel
+    Hotkey, IfWinExist
+    Gui, FindText_HotkeyIf: Destroy
+    if (ShowScreenShot)
+      FindText.ShowPic()
+    if (!show_gui)
+      return [px-w, py-h, px+w, py+h]
+    ;-----------------------
+    %Gui_%("getcors", !ShowScreenShot)
+    %Gui_%("Reset")
+    Gui, FindText_Capture: Default
+    Loop, 71
+      SendMessage, 0x2001, 0, 0xAAFFFF
+        ,, % "ahk_id " C_[71*25+A_Index]
+    Loop, 6
+      GuiControl,, Edit%A_Index%
+    GuiControl,, Modify, % Modify:=0
+    GuiControl,, MultiColor, % MultiColor:=0
+    GuiControl,, GrayDiff, 50
+    GuiControl, Focus, Gray2Two
+    GuiControl, +Default, Gray2Two
+    Gui, Show, Center
+    Event:=Result:=""
+    DetectHiddenWindows, Off
+    Critical, Off
+    Gui, +LastFound
+    WinWaitClose, % "ahk_id " WinExist()
+    Critical
+    ToolTip
+    Gui, FindText_Main: Default
+    ;--------------------------------
+    if (cors.bind!="")
+    {
+      WinGetTitle, tt, ahk_id %Bind_ID%
+      WinGetClass, tc, ahk_id %Bind_ID%
+      tt:=Trim(SubStr(tt,1,30) (tc ? " ahk_class " tc:""))
+      tt:=StrReplace(RegExReplace(tt,"[;``]","``$0"),"""","""""")
+      Result:="`nSetTitleMatchMode, 2`nid:=WinExist(""" tt """)"
+        . "`nFindText.BindWindow(id" (cors.bind=0 ? "":"," cors.bind)
+        . ")  `; " Lang["6"] " FindText.BindWindow(0)`n`n" Result
+    }
+    if (Event="OK")
+    {
+      if (!A_IsCompiled)
+      {
+        FileRead, s, %A_LineFile%
+        s:=SubStr(s, s~="i)\n[;=]+ Copy The")
+      }
+      else s:=""
+      GuiControl,, scr, % Result "`n" s
+      if !InStr(Result,"##")
+        GuiControl,, MyPic, % Trim(FindText.ASCII(Result),"`n")
+      Result:=s:=""
+    }
+    else if (Event="SplitAdd") or (Event="AllAdd")
+    {
+      GuiControlGet, s,, scr
+      i:=j:=0, r:="<[^>\n]*>[^$\n]+\$[\w+/,.\-]+"
+      While j:=RegExMatch(s,r,"",j+1)
+        i:=InStr(s,"`n",0,j)
+      GuiControl,, scr, % SubStr(s,1,i) . Result . SubStr(s,i+1)
+      if !InStr(Result,"##")
+        GuiControl,, MyPic, % Trim(FindText.ASCII(Result),"`n")
+      Result:=s:=""
+    }
+    ;----------------------
+    Gui, Show
+    GuiControl, Focus, scr
+    return
+  Case "State":
+    return GetKeyState((arg1?"LButton":"RButton"),"P")
+      . "|" GetKeyState((arg1?"LButton":"RButton"))
+      . "|" GetKeyState("Ctrl","P")
+      . "|" GetKeyState("Ctrl")
+  Case "SelectPic":
+    Gui, FindText_SelectPic: +LastFoundExist
+    IfWinExist
+      return
+    Pics:=[], Names:=[], s:=""
+    Loop, Files, % A_Temp "\Ahk_ScreenShot\*.bmp"
+      Pics.Push(LoadPicture(v:=A_LoopFileFullPath))
+      , Names.Push(v), s.="|" RegExReplace(v,"i)^.*\\|\.bmp$")
+    if !Pics.Length()
+    {
+      Pics:="", Names:=""
+      SetTimer, %Gui_ToolTip%, Off
+      ToolTip
+      MsgBox, 4096, Tip, % Lang["15"] " !", 3
+      return
+    }
+    Gui, FindText_SelectPic: New
+    Gui, +LastFound +AlwaysOnTop -DPIScale
+    Gui, Margin, 15, 15
+    Gui, Font, s12, Verdana
+    Gui, Add, Pic, HwndhPic w800 h500 +Border
+    Gui, Add, ListBox, % "x+15 w120 hp vSelectBox gFindText_Run"
+      . " AltSubmit 0x100 Choose1", % Trim(s,"|")
+    Gui, Add, Button, xm w170 vOK2 gFindText_Run Default, % Lang["OK2"]
+    Gui, Add, Button, x+15 wp vCancel2 gCancel, % Lang["Cancel2"]
+    Gui, Add, Button, x+15 wp vClearAll gFindText_Run, % Lang["ClearAll"]
+    Gui, Add, Button, x+15 wp vOpenDir gFindText_Run, % Lang["OpenDir"]
+    Gui, Add, Button, x+15 wp vSavePic gFindText_Run, % Lang["SavePic"]
+    GuiControl, Focus, SelectBox
+    %Gui_%("SelectBox")
+    Gui, Show,, Select ScreenShot
+    ;-----------------------
+    DetectHiddenWindows, Off
+    Critical, Off
+    file:=""
+    WinWaitClose, % "ahk_id " WinExist()
+    Critical
+    Gui, Destroy
+    Loop, % Pics.Length()
+      DllCall("DeleteObject", "Ptr",Pics[A_Index])
+    Pics:="", Names:=""
+    return file
+  Case "SavePic":
+    GuiControlGet, SelectBox
+    f:=Names[SelectBox]
+    Gui, Destroy
+    Loop, % Pics.Length()
+      DllCall("DeleteObject", "Ptr",Pics[A_Index])
+    Pics:="", Names:="", show_gui_bak:=show_gui
+    FindText.ShowPic(f)
+    Gui, FindText_Screen: +OwnDialogs
+    Loop
+    {
+      pos:=%Gui_%("GetRange")
+      MsgBox, 4100, Tip, % Lang["16"] " !"
+      IfMsgBox, Yes
+        Break
+    }
+    %Gui_%("ScreenShot"
+      , pos.1 "|" pos.2 "|" pos.3 "|" pos.4 "|0")
+    FindText.ShowPic()
+    if (show_gui_bak)
+    {
+      GuiControl, FindText_Main: Focus, scr
+      Gui, FindText_Main: Show
+    }
+    Exit
+  Case "SelectBox":
+    GuiControlGet, SelectBox
+    if (hBM:=Pics[SelectBox])
+    {
+      FindText.GetBitmapWH(hBM, w, h)
+      GuiControl,, %hPic%, % "*W" (w<800?0:800)
+        . " *H" (h<500?0:500) " HBITMAP:*" hBM
+    }
+    return
+  Case "OK2":
+    GuiControlGet, SelectBox
+    file:=Names[SelectBox]
+    Gui, Hide
+    return
+  Case "ClearAll":
+    FileDelete, % A_Temp "\Ahk_ScreenShot\*.bmp"
+    Gui, Hide
+    return
+  Case "OpenDir":
+    Run, % A_Temp "\Ahk_ScreenShot\"
+    return
+  Case "Mini_Show":
+    Gui, FindText_Mini_4: +LastFoundExist
+    IfWinNotExist
+    {
+      Loop, 4
+      {
+        i:=A_Index
+        Gui, FindText_Mini_%i%: +AlwaysOnTop -Caption +ToolWindow -DPIScale +E0x08000000
+        Gui, FindText_Mini_%i%: Show, Hide, Mini
+      }
+    }
+    d:=2, w:=w<0 ? 0:w, h:=h<0 ? 0:h, c:=A_MSec<500 ? "Red":"Blue"
+    Loop, 4
+    {
+      i:=A_Index
+      x1:=Floor(i=3 ? x+w+1 : x-w-d)
+      y1:=Floor(i=4 ? y+h+1 : y-h-d)
+      w1:=Floor(i=1 or i=3 ? d : 2*(w+d)+1)
+      h1:=Floor(i=2 or i=4 ? d : 2*(h+d)+1)
+      Gui, FindText_Mini_%i%: Color, %c%
+      Gui, FindText_Mini_%i%: Show, NA x%x1% y%y1% w%w1% h%h1%
+    }
+    return
+  Case "Mini_Hide":
+    Gui, FindText_Mini_4: +Hwndid
+    Loop, 4
+      Gui, FindText_Mini_%A_Index%: Destroy
+    WinWaitClose, ahk_id %id%,, 3
+    return
+  Case "getcors":
+    FindText.xywh2xywh(px-ww,py-hh,2*ww+1,2*hh+1,x,y,w,h)
+    if (w<1 or h<1)
+      return
+    SetBatchLines, % (bch:=A_BatchLines)?"-1":"-1"
+    if (arg1)
+      FindText.ScreenShot()
+    cors:=[], gray:=[], k:=0
+    ListLines, % (lls:=A_ListLines)?"Off":"Off"
+    Loop, %nH%
+    {
+      j:=py-hh+A_Index-1, i:=px-ww
+      Loop, %nW%
+        cors[++k]:=c:=FindText.GetColor(i++,j,0)
+        , gray[k]:=(((c>>16)&0xFF)*38+((c>>8)&0xFF)*75+(c&0xFF)*15)>>7
+    }
+    ListLines, %lls%
+    cors.CutLeft:=Abs(px-ww-x)
+    cors.CutRight:=Abs(px+ww-(x+w-1))
+    cors.CutUp:=Abs(py-hh-y)
+    cors.CutDown:=Abs(py+hh-(y+h-1))
+    SetBatchLines, %bch%
+    return
+  Case "GetRange":
+    Gui, FindText_Main: +Hwndid
+    if (show_gui:=(WinExist()=id))
+      Gui, FindText_Main: Hide
+    ;---------------------
+    Gui, FindText_GetRange: New
+    Gui, +LastFound +AlWaysOnTop +ToolWindow -Caption -DPIScale +E0x08000000
+    Gui, Color, White
+    WinSet, Transparent, 10
+    FindText.xywh2xywh(0,0,0,0,0,0,0,0,x,y,w,h)
+    Gui, Show, NA x%x% y%y% w%w% h%h%, GetRange
+    ;---------------------
+    if GetKeyState("LButton")
+      Send {LButton Up}
+    if GetKeyState("Ctrl")
+      Send {Ctrl Up}
+    KeyDown:=0, State:=%Gui_%("State",1)
+    Gui, FindText_HotkeyIf: New, -Caption +ToolWindow +E0x80000
+    Gui, Show, NA x0 y0 w0 h0, FindText_HotkeyIf
+    Hotkey, IfWinExist, FindText_HotkeyIf
+    Hotkey, *LButton, %Gui_Off%, On UseErrorLevel
+    Hotkey, *LButton Up, %Gui_Off%, On UseErrorLevel
+    ListLines, % (lls:=A_ListLines)?"Off":"Off"
+    CoordMode, Mouse
+    oldx:=oldy:="", r:=Lang["7"]
+    Critical, Off
+    Loop
+    {
+      Sleep, 50
+      MouseGetPos, x, y
+      if (oldx=x and oldy=y)
+        Continue
+      oldx:=x, oldy:=y
+      ToolTip, %r%
+    }
+    Until (KeyDown=1) or (State!=%Gui_%("State",1))
+    KeyDown--
+    px:=x, py:=y, oldx:=oldy:=""
+    Loop
+    {
+      Sleep, 50
+      MouseGetPos, x, y
+      w:=Abs(px-x)//2, h:=Abs(py-y)//2, x:=(px+x)//2, y:=(py+y)//2
+      %Gui_%("Mini_Show")
+      if (oldx=x and oldy=y)
+        Continue
+      oldx:=x, oldy:=y
+      ToolTip, %r%
+    }
+    Until (KeyDown=1) or (KeyDown<0 and State=%Gui_%("State",1))
+    timeout:=A_TickCount+3000
+    While (A_TickCount<timeout) and (State!=%Gui_%("State",1))
+      Sleep, 50
+    ToolTip
+    Critical
+    %Gui_%("Mini_Hide")
+    ListLines, %lls%
+    Hotkey, *LButton, %Gui_Off%, Off UseErrorLevel
+    Hotkey, *LButton Up, %Gui_Off%, Off UseErrorLevel
+    Hotkey, IfWinExist
+    Gui, FindText_HotkeyIf: Destroy
+    Gui, FindText_GetRange: Destroy
+    Clipboard:=p:=(x-w) ", " (y-h) ", " (x+w) ", " (y+h)
+    if (!show_gui)
+      return StrSplit(p, ",", " ")
+    ;---------------------
+    Gui, FindText_Main: Default
+    GuiControlGet, s,, scr
+    if RegExMatch(s, "i)(=\s*FindText\()([^,]*,){4}", r)
+    {
+      s:=StrReplace(s, r, r1 . p ",", 0, 1)
+      GuiControl,, scr, %s%
+    }
+    Gui, Show
+    return
+  Case "Test","TestClip":
+    Gui, FindText_Main: Default
+    Gui, +LastFound
+    WinMinimize
+    Gui, Hide
+    DetectHiddenWindows, Off
+    WinWaitClose, % "ahk_id " WinExist()
+    Sleep, 100
+    ;----------------------
+    if (cmd="Test")
+      GuiControlGet, s,, scr
+    else
+      s:=Clipboard
+    if (!A_IsCompiled) and InStr(s,"MCode(") and (cmd="Test")
+    {
+      s:="`n#NoEnv`nMenu, Tray, Click, 1`n" s "`nExitApp`n"
+      Thread:= new FindText.Thread(s)
+      DetectHiddenWindows, On
+      WinWait, % "ahk_class AutoHotkey ahk_pid " Thread.pid,, 3
+      if (!ErrorLevel)
+        WinWaitClose,,, 30
+      Thread:=""  ; kill the Thread
+    }
+    else
+    {
+      Gui, +OwnDialogs
+      t:=A_TickCount, n:=150000
+      , RegExMatch(s,"<[^>\n]*>[^$\n]+\$[\w+/,.\-]+",k)
+      , v:=FindText.FindText(-n, -n, n, n, 0, 0, k)
+      , X:=v.1.x, Y:=v.1.y, Comment:=v.1.id
+      r:=StrSplit(Lang["8"],"|")
+      MsgBox, 4096, Tip, % r.1 ":`t" Round(v.MaxIndex()) "`n`n"
+        . r.2 ":`t" (A_TickCount-t) " " r.3 "`n`n"
+        . r.4 ":`t" X ", " Y "`n`n"
+        . r.5 ":`t" (v ? r.6 " ! " Comment : r.7 " !"), 3
+      for i,j in v
+        if (i<=2)
+          FindText.MouseTip(j.x, j.y)
+      v:=""
+    }
+    ;----------------------
+    Gui, Show
+    GuiControl, Focus, scr
+    return
+  Case "Copy":
+    Gui, FindText_Main: Default
+    ControlGet, s, Selected,,, ahk_id %hscr%
+    if (s="")
+    {
+      GuiControlGet, s,, scr
+      GuiControlGet, r,, AddFunc
+      if (r != 1)
+        s:=RegExReplace(s,"\n\K[\s;=]+ Copy The[\s\S]*")
+    }
+    Clipboard:=RegExReplace(s,"\R","`r`n")
+    ;----------------------
+    Gui, Hide
+    Sleep, 100
+    Gui, Show
+    GuiControl, Focus, scr
+    return
+  Case "Apply":
+    Gui, FindText_Main: Default
+    GuiControlGet, NowHotkey
+    GuiControlGet, SetHotkey1
+    GuiControlGet, SetHotkey2
+    if (NowHotkey!="")
+      Hotkey, *%NowHotkey%,, Off UseErrorLevel
+    k:=SetHotkey1!="" ? SetHotkey1 : SetHotkey2
+    if (k!="")
+      Hotkey, *%k%, %Gui_ScreenShot%, On UseErrorLevel
+    GuiControl,, NowHotkey, %k%
+    GuiControl,, SetHotkey1
+    GuiControl, Choose, SetHotkey2, 0
+    ;------------------------
+    GuiControlGet, Myww
+    GuiControlGet, Myhh
+    if (Myww!=ww or Myhh!=hh)
+    {
+      nW:=71, dx:=dy:=0
+      Loop, % 71*25
+        k:=A_Index, c:=WindowColor, %Gui_%("SetColor")
+      ww:=Myww, hh:=Myhh, nW:=2*ww+1, nH:=2*hh+1
+      i:=nW>71, j:=nH>25
+      Gui, FindText_Capture: Default
+      GuiControl, Enable%i%, MySlider1
+      GuiControl, Enable%j%, MySlider2
+      GuiControl,, MySlider1, % MySlider1:=0
+      GuiControl,, MySlider2, % MySlider2:=0
+    }
+    return
+  Case "ScreenShot":
+    Critical
+    f:=A_Temp "\Ahk_ScreenShot"
+    if !InStr(r:=FileExist(f), "D")
+    {
+      if (r)
+      {
+        FileSetAttrib, -R, %f%
+        FileDelete, %f%
+      }
+      FileCreateDir, %f%
+    }
+    Loop
+      f:=A_Temp "\Ahk_ScreenShot\" Format("{:03d}",A_Index) ".bmp"
+    Until !FileExist(f)
+    FindText.SavePic(f, StrSplit(arg1,"|")*)
+    Gui, FindText_Tip: New
+    ; WS_EX_NOACTIVATE:=0x08000000, WS_EX_TRANSPARENT:=0x20
+    Gui, +LastFound +AlwaysOnTop +ToolWindow -Caption -DPIScale +E0x08000020
+    Gui, Color, Yellow
+    Gui, Font, cRed s48 bold
+    Gui, Add, Text,, % Lang["9"]
+    WinSet, Transparent, 200
+    Gui, Show, NA y0, ScreenShot Tip
+    Sleep, 100
+    Gui, Destroy
+    return
+  Case "Bind0","Bind1","Bind2","Bind3","Bind4":
+    FindText.BindWindow(Bind_ID, bind_mode:=SubStr(cmd,0))
+    if GetKeyState("RButton")
+      Send {RButton Up}
+    if GetKeyState("Ctrl")
+      Send {Ctrl Up}
+    KeyDown:=0, State:=%Gui_%("State")
+    Gui, FindText_HotkeyIf: New, -Caption +ToolWindow +E0x80000
+    Gui, Show, NA x0 y0 w0 h0, FindText_HotkeyIf
+    Hotkey, IfWinExist, FindText_HotkeyIf
+    Hotkey, *RButton, %Gui_Off%, On UseErrorLevel
+    ListLines, % (lls:=A_ListLines)?"Off":"Off"
+    CoordMode, Mouse
+    oldx:=oldy:=""
+    Critical, Off
+    Loop
+    {
+      Sleep, 50
+      MouseGetPos, x, y
+      if (oldx=x and oldy=y)
+        Continue
+      oldx:=x, oldy:=y
+      ;---------------
+      px:=x, py:=y, %Gui_%("getcors",1)
+      %Gui_%("Reset"), r:=StrSplit(Lang["10"],"|")
+      ToolTip, % r.1 " : " x "," y "`n" r.2
+    }
+    Until (KeyDown=1) or (State!=%Gui_%("State"))
+    timeout:=A_TickCount+3000
+    While (A_TickCount<timeout) and (State!=%Gui_%("State"))
+      Sleep, 50
+    ToolTip
+    Critical
+    ListLines, %lls%
+    Hotkey, *RButton, %Gui_Off%, Off UseErrorLevel
+    Hotkey, IfWinExist
+    Gui, FindText_HotkeyIf: Destroy
+    FindText.BindWindow(0), cors.bind:=bind_mode
+    return
+  Case "MySlider1","MySlider2":
+    SetTimer, %Gui_Slider%, -10
+    return
+  Case "Slider":
+    Critical
+    dx:=nW>71 ? Round((nW-71)*MySlider1/100) : 0
+    dy:=nH>25 ? Round((nH-25)*MySlider2/100) : 0
+    if (oldx=dx and oldy=dy)
+      return
+    oldy:=dy, k:=0
+    Loop, % nW*nH
+      c:=(!show[++k] ? WindowColor
+      : bg="" ? cors[k] : ascii[k]
+      ? "Black":"White"), %Gui_%("SetColor")
+    Loop, % nW*(oldx!=dx)
+    {
+      i:=A_Index-dx
+      if (i>=1 && i<=71)
+      {
+        c:=show[nW*nH+A_Index] ? 0x0000FF : 0xAAFFFF
+        SendMessage, 0x2001, 0, c,, % "ahk_id " C_[71*25+i]
+      }
+    }
+    oldx:=dx
+    return
+  Case "Reset":
+    show:=[], ascii:=[], bg:=""
+    CutLeft:=CutRight:=CutUp:=CutDown:=k:=0
+    Loop, % nW*nH
+      show[++k]:=1, c:=cors[k], %Gui_%("SetColor")
+    Loop, % cors.CutLeft
+      %Gui_%("CutL")
+    Loop, % cors.CutRight
+      %Gui_%("CutR")
+    Loop, % cors.CutUp
+      %Gui_%("CutU")
+    Loop, % cors.CutDown
+      %Gui_%("CutD")
+    return
+  Case "SetColor":
+    if (nW=71 && nH=25)
+      tk:=k
+    else
+    {
+      tx:=Mod(k-1,nW)-dx, ty:=(k-1)//nW-dy
+      if (tx<0 || tx>=71 || ty<0 || ty>=25)
+        return
+      tk:=ty*71+tx+1
+    }
+    c:=c="Black" ? 0x000000 : c="White" ? 0xFFFFFF
+      : ((c&0xFF)<<16)|(c&0xFF00)|((c&0xFF0000)>>16)
+    SendMessage, 0x2001, 0, c,, % "ahk_id " . C_[tk]
+    return
+  Case "RepColor":
+    show[k]:=1, c:=(bg="" ? cors[k] : ascii[k]
+      ? "Black":"White"), %Gui_%("SetColor")
+    return
+  Case "CutColor":
+    show[k]:=0, c:=WindowColor, %Gui_%("SetColor")
+    return
+  Case "RepL":
+    if (CutLeft<=cors.CutLeft)
+    or (bg!="" and InStr(color,"**")
+    and CutLeft=cors.CutLeft+1)
+      return
+    k:=CutLeft-nW, CutLeft--
+    Loop, %nH%
+      k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
+        ? %Gui_%("RepColor") : "")
+    return
+  Case "CutL":
+    if (CutLeft+CutRight>=nW)
+      return
+    CutLeft++, k:=CutLeft-nW
+    Loop, %nH%
+      k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
+        ? %Gui_%("CutColor") : "")
+    return
+  Case "CutL3":
+    Loop, 3
+      %Gui_%("CutL")
+    return
+  Case "RepR":
+    if (CutRight<=cors.CutRight)
+    or (bg!="" and InStr(color,"**")
+    and CutRight=cors.CutRight+1)
+      return
+    k:=1-CutRight, CutRight--
+    Loop, %nH%
+      k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
+        ? %Gui_%("RepColor") : "")
+    return
+  Case "CutR":
+    if (CutLeft+CutRight>=nW)
+      return
+    CutRight++, k:=1-CutRight
+    Loop, %nH%
+      k+=nW, (A_Index>CutUp and A_Index<nH+1-CutDown
+        ? %Gui_%("CutColor") : "")
+    return
+  Case "CutR3":
+    Loop, 3
+      %Gui_%("CutR")
+    return
+  Case "RepU":
+    if (CutUp<=cors.CutUp)
+    or (bg!="" and InStr(color,"**")
+    and CutUp=cors.CutUp+1)
+      return
+    k:=(CutUp-1)*nW, CutUp--
+    Loop, %nW%
+      k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
+        ? %Gui_%("RepColor") : "")
+    return
+  Case "CutU":
+    if (CutUp+CutDown>=nH)
+      return
+    CutUp++, k:=(CutUp-1)*nW
+    Loop, %nW%
+      k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
+        ? %Gui_%("CutColor") : "")
+    return
+  Case "CutU3":
+    Loop, 3
+      %Gui_%("CutU")
+    return
+  Case "RepD":
+    if (CutDown<=cors.CutDown)
+    or (bg!="" and InStr(color,"**")
+    and CutDown=cors.CutDown+1)
+      return
+    k:=(nH-CutDown)*nW, CutDown--
+    Loop, %nW%
+      k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
+        ? %Gui_%("RepColor") : "")
+    return
+  Case "CutD":
+    if (CutUp+CutDown>=nH)
+      return
+    CutDown++, k:=(nH-CutDown)*nW
+    Loop, %nW%
+      k++, (A_Index>CutLeft and A_Index<nW+1-CutRight
+        ? %Gui_%("CutColor") : "")
+    return
+  Case "CutD3":
+    Loop, 3
+      %Gui_%("CutD")
+    return
+  Case "Gray2Two":
+    Gui, FindText_Capture: Default
+    GuiControl, Focus, Threshold
+    GuiControlGet, Threshold
+    if (Threshold="")
+    {
+      pp:=[]
+      Loop, 256
+        pp[A_Index-1]:=0
+      Loop, % nW*nH
+        if (show[A_Index])
+          pp[gray[A_Index]]++
+      IP:=IS:=0
+      Loop, 256
+        k:=A_Index-1, IP+=k*pp[k], IS+=pp[k]
+      Threshold:=Floor(IP/IS)
+      Loop, 20
+      {
+        LastThreshold:=Threshold
+        IP1:=IS1:=0
+        Loop, % LastThreshold+1
+          k:=A_Index-1, IP1+=k*pp[k], IS1+=pp[k]
+        IP2:=IP-IP1, IS2:=IS-IS1
+        if (IS1!=0 and IS2!=0)
+          Threshold:=Floor((IP1/IS1+IP2/IS2)/2)
+        if (Threshold=LastThreshold)
+          Break
+      }
+      GuiControl,, Threshold, %Threshold%
+    }
+    Threshold:=Round(Threshold)
+    color:="*" Threshold, k:=i:=0
+    Loop, % nW*nH
+    {
+      ascii[++k]:=v:=(gray[k]<=Threshold)
+      if (show[k])
+        i:=(v?i+1:i-1), c:=(v?"Black":"White"), %Gui_%("SetColor")
+    }
+    bg:=i>0 ? "1":"0"
+    return
+  Case "GrayDiff2Two":
+    Gui, FindText_Capture: Default
+    GuiControlGet, GrayDiff
+    if (GrayDiff="")
+    {
+      Gui, +OwnDialogs
+      MsgBox, 4096, Tip, % Lang["11"] " !", 1
+      return
+    }
+    if (CutLeft=cors.CutLeft)
+      %Gui_%("CutL")
+    if (CutRight=cors.CutRight)
+      %Gui_%("CutR")
+    if (CutUp=cors.CutUp)
+      %Gui_%("CutU")
+    if (CutDown=cors.CutDown)
+      %Gui_%("CutD")
+    GrayDiff:=Round(GrayDiff)
+    color:="**" GrayDiff, k:=i:=0
+    Loop, % nW*nH
+    {
+      j:=gray[++k]+GrayDiff
+      , ascii[k]:=v:=( gray[k-1]>j or gray[k+1]>j
+      or gray[k-nW]>j or gray[k+nW]>j
+      or gray[k-nW-1]>j or gray[k-nW+1]>j
+      or gray[k+nW-1]>j or gray[k+nW+1]>j )
+      if (show[k])
+        i:=(v?i+1:i-1), c:=(v?"Black":"White"), %Gui_%("SetColor")
+    }
+    bg:=i>0 ? "1":"0"
+    return
+  Case "Color2Two","ColorPos2Two":
+    Gui, FindText_Capture: Default
+    GuiControlGet, c,, SelColor
+    if (c="")
+    {
+      Gui, +OwnDialogs
+      MsgBox, 4096, Tip, % Lang["12"] " !", 1
+      return
+    }
+    UsePos:=(cmd="ColorPos2Two") ? 1:0
+    GuiControlGet, n,, Similar1
+    n:=Round(n/100,2), color:=c "@" n
+    , n:=Floor(512*9*255*255*(1-n)*(1-n)), k:=i:=0
+    , rr:=(c>>16)&0xFF, gg:=(c>>8)&0xFF, bb:=c&0xFF
+    Loop, % nW*nH
+    {
+      c:=cors[++k], r:=((c>>16)&0xFF)-rr
+      , g:=((c>>8)&0xFF)-gg, b:=(c&0xFF)-bb, j:=r+rr+rr
+      , ascii[k]:=v:=((1024+j)*r*r+2048*g*g+(1534-j)*b*b<=n)
+      if (show[k])
+        i:=(v?i+1:i-1), c:=(v?"Black":"White"), %Gui_%("SetColor")
+    }
+    bg:=i>0 ? "1":"0"
+    return
+  Case "ColorDiff2Two":
+    Gui, FindText_Capture: Default
+    GuiControlGet, c,, SelColor
+    if (c="")
+    {
+      Gui, +OwnDialogs
+      MsgBox, 4096, Tip, % Lang["12"] " !", 1
+      return
+    }
+    GuiControlGet, dR
+    GuiControlGet, dG
+    GuiControlGet, dB
+    rr:=(c>>16)&0xFF, gg:=(c>>8)&0xFF, bb:=c&0xFF
+    , n:=Format("{:06X}",(dR<<16)|(dG<<8)|dB)
+    , color:=StrReplace(c "-" n,"0x"), k:=i:=0
+    Loop, % nW*nH
+    {
+      c:=cors[++k], r:=(c>>16)&0xFF, g:=(c>>8)&0xFF
+      , b:=c&0xFF, ascii[k]:=v:=(Abs(r-rr)<=dR
+      and Abs(g-gg)<=dG and Abs(b-bb)<=dB)
+      if (show[k])
+        i:=(v?i+1:i-1), c:=(v?"Black":"White"), %Gui_%("SetColor")
+    }
+    bg:=i>0 ? "1":"0"
+    return
+  Case "Modify":
+    GuiControlGet, Modify
+    return
+  Case "MultiColor":
+    GuiControlGet, MultiColor
+    Result:=""
+    ToolTip
+    return
+  Case "Undo":
+    Result:=RegExReplace(Result,",[^/]+/[^/]+/[^/]+$")
+    ToolTip, % Trim(Result,"/,")
+    return
+  Case "Similar1":
+    GuiControl,, Similar2, %Similar1%
+    return
+  Case "Similar2":
+    GuiControl,, Similar1, %Similar2%
+    return
+  Case "GetTxt":
+    txt:=""
+    if (bg="")
+      return
+    ListLines, % (lls:=A_ListLines)?"Off":"Off"
+    k:=0
+    Loop, %nH%
+    {
+      v:=""
+      Loop, %nW%
+        v.=!show[++k] ? "" : ascii[k] ? "1":"0"
+      txt.=v="" ? "" : v "`n"
+    }
+    ListLines, %lls%
+    return
+  Case "Auto":
+    %Gui_%("GetTxt")
+    if (txt="")
+    {
+      Gui, FindText_Capture: +OwnDialogs
+      MsgBox, 4096, Tip, % Lang["13"] " !", 1
+      return
+    }
+    While InStr(txt,bg)
+    {
+      if (txt~="^" bg "+\n")
+        txt:=RegExReplace(txt,"^" bg "+\n"), %Gui_%("CutU")
+      else if !(txt~="m`n)[^\n" bg "]$")
+        txt:=RegExReplace(txt,"m`n)" bg "$"), %Gui_%("CutR")
+      else if (txt~="\n" bg "+\n$")
+        txt:=RegExReplace(txt,"\n\K" bg "+\n$"), %Gui_%("CutD")
+      else if !(txt~="m`n)^[^\n" bg "]")
+        txt:=RegExReplace(txt,"m`n)^" bg), %Gui_%("CutL")
+      else Break
+    }
+    txt:=""
+    return
+  Case "OK","SplitAdd","AllAdd":
+    Gui, FindText_Capture: Default
+    Gui, +OwnDialogs
+    %Gui_%("GetTxt")
+    if (txt="") and (!MultiColor)
+    {
+      MsgBox, 4096, Tip, % Lang["13"] " !", 1
+      return
+    }
+    if InStr(color,"@") and (UsePos) and (!MultiColor)
+    {
+      r:=StrSplit(color,"@")
+      k:=i:=j:=0
+      Loop, % nW*nH
+      {
+        if (!show[++k])
+          Continue
+        i++
+        if (k=cors.SelPos)
+        {
+          j:=i
+          Break
+        }
+      }
+      if (j=0)
+      {
+        MsgBox, 4096, Tip, % Lang["12"] " !", 1
+        return
+      }
+      color:="#" (j-1) "@" r.2
+    }
+    GuiControlGet, Comment
+    if (cmd="SplitAdd") and (!MultiColor)
+    {
+      if InStr(color,"#")
+      {
+        MsgBox, 4096, Tip, % Lang["14"], 3
+        return
+      }
+      bg:=StrLen(StrReplace(txt,"0"))
+        > StrLen(StrReplace(txt,"1")) ? "1":"0"
+      s:="", i:=0, k:=nW*nH+1+CutLeft
+      Loop, % w:=nW-CutLeft-CutRight
+      {
+        i++
+        if (!show[k++] and A_Index<w)
+          Continue
+        i:=Format("{:d}",i)
+        v:=RegExReplace(txt,"m`n)^(.{" i "}).*","$1")
+        txt:=RegExReplace(txt,"m`n)^.{" i "}"), i:=0
+        While InStr(v,bg)
+        {
+          if (v~="^" bg "+\n")
+            v:=RegExReplace(v,"^" bg "+\n")
+          else if !(v~="m`n)[^\n" bg "]$")
+            v:=RegExReplace(v,"m`n)" bg "$")
+          else if (v~="\n" bg "+\n$")
+            v:=RegExReplace(v,"\n\K" bg "+\n$")
+          else if !(v~="m`n)^[^\n" bg "]")
+            v:=RegExReplace(v,"m`n)^" bg)
+          else Break
+        }
+        if (v!="")
+        {
+          v:=Format("{:d}",InStr(v,"`n")-1) "." FindText.bit2base64(v)
+          s.="`nText.=""|<" SubStr(Comment,1,1) ">" color "$" v """`n"
+          Comment:=SubStr(Comment, 2)
+        }
+      }
+      Event:=cmd, Result:=s
+      Gui, Hide
+      return
+    }
+    if (!MultiColor)
+      txt:=Format("{:d}",InStr(txt,"`n")-1) "." FindText.bit2base64(txt)
+    else
+    {
+      GuiControlGet, dRGB
+      r:=StrSplit(Trim(StrReplace(Result,",","/"),"/"),"/")
+      , x:=r.1, y:=r.2, s:="", i:=1
+      Loop, % r.MaxIndex()//3
+        s.="," (r[i++]-x) "/" (r[i++]-y) "/" r[i++]
+      txt:=SubStr(s,2), color:="##" dRGB
+    }
+    s:="`nText.=""|<" Comment ">" color "$" txt """`n"
+    if (cmd="AllAdd")
+    {
+      Event:=cmd, Result:=s
+      Gui, Hide
+      return
+    }
+    x:=px-ww+CutLeft+(nW-CutLeft-CutRight)//2
+    y:=py-hh+CutUp+(nH-CutUp-CutDown)//2
+    s:=StrReplace(s, "Text.=", "Text:="), r:=StrSplit(Lang["8"],"|")
+    s:="`; #Include <FindText>`n"
+    . "`n t1:=A_TickCount, X:=Y:=""""`n" s
+    . "`n if (ok:=FindText(" x "-150000, " y "-150000, " x "+150000, " y "+150000, 0, 0, Text))"
+    . "`n {"
+    . "`n   CoordMode, Mouse"
+    . "`n   X:=ok.1.x, Y:=ok.1.y, Comment:=ok.1.id"
+    . "`n   `; Click, `%X`%, `%Y`%"
+    . "`n }`n"
+    . "`n MsgBox, 4096, Tip, `% """ r.1 ":``t"" Round(ok.MaxIndex())"
+    . "`n   . ""``n``n" r.2 ":``t"" (A_TickCount-t1) "" " r.3 """"
+    . "`n   . ""``n``n" r.4 ":``t"" X "", "" Y"
+    . "`n   . ""``n``n" r.5 ":``t"" (ok ? """ r.6 " !"" : """ r.7 " !"")`n"
+    . "`n for i,v in ok"
+    . "`n   if (i<=2)"
+    . "`n     FindText.MouseTip(ok[i].x, ok[i].y)`n"
+    Event:=cmd, Result:=s
+    Gui, Hide
+    return
+  Case "Save":
+    x:=px-ww+CutLeft, w:=nW-CutLeft-CutRight
+    y:=py-hh+CutUp, h:=nH-CutUp-CutDown
+    %Gui_%("ScreenShot"
+      , x "|" y "|" (x+w-1) "|" (y+h-1) "|0")
+    return
+  Case "KeyDown":
+    Critical
+    if (A_Gui="FindText_Main" && A_GuiControl="scr")
+      SetTimer, %Gui_ShowPic%, -150
+    return
+  Case "ShowPic":
+    ControlGet, i, CurrentLine,,, ahk_id %hscr%
+    ControlGet, s, Line, %i%,, ahk_id %hscr%
+    GuiControl, FindText_Main:, MyPic, % Trim(FindText.ASCII(s),"`n")
+    return
+  Case "LButtonDown":
+    Critical
+    if (A_Gui!="FindText_Capture")
+      return %Gui_%("KeyDown")
+    MouseGetPos,,,, k2, 2
+    if (k1:=Round(Cid_[k2]))<1
+      return
+    Gui, FindText_Capture: Default
+    if (k1>71*25)
+    {
+      k3:=nW*nH+(k1-71*25)+dx
+      k1:=(show[k3]:=!show[k3]) ? 0x0000FF : 0xAAFFFF
+      SendMessage, 0x2001, 0, k1,, % "ahk_id " k2
+      return
+    }
+    k2:=Mod(k1-1,71)+dx, k3:=(k1-1)//71+dy
+    if (k2>=nW || k3>=nH)
+      return
+    k1:=k, k:=k3*nW+k2+1, k2:=c
+    if (MultiColor and show[k])
+    {
+      c:="," Mod(k-1,nW) "/" k3 "/"
+      . Format("{:06X}",cors[k]&0xFFFFFF)
+      , Result.=InStr(Result,c) ? "":c
+      ToolTip, % Trim(Result,"/,")
+    }
+    else if (Modify and bg!="" and show[k])
+    {
+      c:=((ascii[k]:=!ascii[k]) ? "Black":"White")
+      , %Gui_%("SetColor")
+    }
+    else
+    {
+      c:=cors[k], cors.SelPos:=k
+      GuiControl,, SelGray, % gray[k]
+      GuiControl,, SelColor, % Format("0x{:06X}",c&0xFFFFFF)
+      GuiControl,, SelR, % (c>>16)&0xFF
+      GuiControl,, SelG, % (c>>8)&0xFF
+      GuiControl,, SelB, % c&0xFF
+    }
+    k:=k1, c:=k2
+    return
+  Case "MouseMove":
+    static PrevControl:=""
+    if (PrevControl!=A_GuiControl)
+    {
+      PrevControl:=A_GuiControl
+      SetTimer, %Gui_ToolTip%, % PrevControl ? -500 : "Off"
+      SetTimer, %Gui_ToolTipOff%, % PrevControl ? -5500 : "Off"
+      ToolTip
+    }
+    return
+  Case "ToolTip":
+    MouseGetPos,,, _TT
+    IfWinExist, ahk_id %_TT% ahk_class AutoHotkeyGUI
+      ToolTip, % Tip_Text[PrevControl ""]
+    return
+  Case "ToolTipOff":
+    ToolTip
+    return
+  Case "CutL2","CutR2","CutU2","CutD2":
+    Gui, FindText_Main: Default
+    GuiControlGet, s,, MyPic
+    s:=Trim(s,"`n") . "`n", v:=SubStr(cmd,4,1)
+    if (v="U")
+      s:=RegExReplace(s,"^[^\n]+\n")
+    else if (v="D")
+      s:=RegExReplace(s,"[^\n]+\n$")
+    else if (v="L")
+      s:=RegExReplace(s,"m`n)^[^\n]")
+    else if (v="R")
+      s:=RegExReplace(s,"m`n)[^\n]$")
+    GuiControl,, MyPic, % Trim(s,"`n")
+    return
+  Case "Update":
+    Gui, FindText_Main: Default
+    GuiControl, Focus, scr
+    ControlGet, i, CurrentLine,,, ahk_id %hscr%
+    ControlGet, s, Line, %i%,, ahk_id %hscr%
+    if !RegExMatch(s,"(<[^>]*>[^$]+\$)\d+\.[\w+/]+",r)
+      return
+    GuiControlGet, v,, MyPic
+    v:=Trim(v,"`n") . "`n", w:=Format("{:d}",InStr(v,"`n")-1)
+    v:=StrReplace(StrReplace(v,"0","1"),"_","0")
+    s:=StrReplace(s,r,r1 . w "." FindText.bit2base64(v))
+    v:="{End}{Shift Down}{Home}{Shift Up}{Del}"
+    ControlSend,, %v%, ahk_id %hscr%
+    Control, EditPaste, %s%,, ahk_id %hscr%
+    ControlSend,, {Home}, ahk_id %hscr%
+    return
+  Case "Load_Language_Text":
+    s=
+    (
+Myww       = Width = Adjust the width of the capture range
+Myhh       = Height = Adjust the height of the capture range
+AddFunc    = Add = Additional FindText() in Copy
+NowHotkey  = Hotkey = Current screenshot hotkey
+SetHotkey1 = = First sequence Screenshot hotkey
+SetHotkey2 = = Second sequence Screenshot hotkey
+Apply      = Apply = Apply new screenshot hotkey and adjusted capture range values
+CutU2      = CutU = Cut the Upper Edge of the text in the edit box below
+CutL2      = CutL = Cut the Left Edge of the text in the edit box below
+CutR2      = CutR = Cut the Right Edge of the text in the edit box below
+CutD2      = CutD = Cut the Lower Edge of the text in the edit box below
+Update     = Update = Update the text in the edit box below to the line of code
+GetRange   = GetRange = Get screen range to clipboard and replace the range in the code
+TestClip   = TestClipboard = Test the Text data in the clipboard for searching images
+Capture    = Capture = Initiate Image Capture Sequence
+CaptureS   = CaptureS = Restore the Saved ScreenShot By Hotkey and then start capturing
+Test       = Test = Test Results of Code
+Copy       = Copy = Copy Code to Clipboard
+Reset      = Reset = Reset to Original Captured Image
+SplitAdd   = SplitAdd = Using Markup Segmentation to Generate Text Library
+AllAdd     = AllAdd = Append Another FindText Search Text into Previously Generated Code
+OK         = OK = Create New FindText Code for Testing
+Cancel     = Cancel = Close the Window Don't Do Anything
+Save       = SavePic = Save the trimmed original image to the default directory
+Gray2Two      = Gray2Two = Converts Image Pixels from Gray Threshold to Black or White
+GrayDiff2Two  = GrayDiff2Two = Converts Image Pixels from Gray Difference to Black or White
+Color2Two     = Color2Two = Converts Image Pixels from Color Similar to Black or White
+ColorPos2Two  = ColorPos2Two = Converts Image Pixels from Color Position to Black or White
+ColorDiff2Two = ColorDiff2Two = Converts Image Pixels from Color Difference to Black or White
+SelGray    = Gray = Gray value of the selected color
+SelColor   = Color = The selected color
+SelR       = R = Red component of the selected color
+SelG       = G = Green component of the selected color
+SelB       = B = Blue component of the selected color
+RepU       = -U = Undo Cut the Upper Edge by 1
+CutU       = U = Cut the Upper Edge by 1
+CutU3      = U3 = Cut the Upper Edge by 3
+RepL       = -L = Undo Cut the Left Edge by 1
+CutL       = L = Cut the Left Edge by 1
+CutL3      = L3 = Cut the Left Edge by 3
+Auto       = Auto = Automatic Cut Edge after image has been converted to black and white
+RepR       = -R = Undo Cut the Right Edge by 1
+CutR       = R = Cut the Right Edge by 1
+CutR3      = R3 = Cut the Right Edge by 3
+RepD       = -D = Undo Cut the Lower Edge by 1
+CutD       = D = Cut the Lower Edge by 1
+CutD3      = D3 = Cut the Lower Edge by 3
+Modify     = Modify = Allows Modify the Black and White Image
+MultiColor = FindMultiColor = Click multiple colors with the mouse, then Click OK button
+Undo       = Undo = Undo the last selected color
+Comment    = Comment = Optional Comment used to Label Code ( Within <> )
+Threshold  = Gray Threshold = Gray Threshold which Determines Black or White Pixel Conversion (0-255)
+GrayDiff   = Gray Difference = Gray Difference which Determines Black or White Pixel Conversion (0-255)
+Similar1   = Similarity = Adjust color similarity as Equivalent to The Selected Color
+Similar2   = Similarity = Adjust color similarity as Equivalent to The Selected Color
+DiffR      = R = Red Difference which Determines Black or White Pixel Conversion (0-255)
+DiffG      = G = Green Difference which Determines Black or White Pixel Conversion (0-255)
+DiffB      = B = Blue Difference which Determines Black or White Pixel Conversion (0-255)
+DiffRGB    = R/G/B = Determine the allowed R/G/B Error (0-255) when Find MultiColor
+Bind0      = BindWin1 = Bind the window and Use GetDCEx() to get the image of background window
+Bind1      = BindWin1+ = Bind the window Use GetDCEx() and Modify the window to support transparency
+Bind2      = BindWin2 = Bind the window and Use PrintWindow() to get the image of background window
+Bind3      = BindWin2+ = Bind the window Use PrintWindow() and Modify the window to support transparency
+Bind4      = BindWin3 = Bind the window and Use PrintWindow(,,3) to get the image of background window
+OK2        = OK = Restore this ScreenShot
+Cancel2    = Cancel = Close the Window Don't Do Anything
+ClearAll   = ClearAll = Clean up all saved ScreenShots
+OpenDir    = OpenDir = Open the saved screenshots directory
+SavePic    = SavePic = Select a range and save as a picture
+1  = FindText
+2  = Gray|GrayDiff|Color|ColorPos|ColorDiff|MultiColor
+3  = Capture Image To Text
+4  = Capture Image To Text And Find Text Tool
+5  = Position|First click RButton\nMove the mouse away\nSecond click RButton
+6  = Unbind Window using
+7  = Please drag a range with the LButton\nCoordinates are copied to clipboard
+8  = Found|Time|ms|Pos|Result|Success|Failed
+9  = Success
+10 = The Capture Position|Perspective binding window\nRight click to finish capture
+11 = Please Set Gray Difference First
+12 = Please select the core color first
+13 = Please convert the image to black or white first
+14 = Can't be used in ColorPos mode, because it can cause position errors
+15 = Please set Hotkey and use Hotkey to get ScreenShot first
+16 = Are you sure about the scope of your choice?\n\nIf not, you can choose again
+    )
+    Lang:=[], Tip_Text:=[]
+    Loop, Parse, s, `n, `r
+      if InStr(v:=A_LoopField, "=")
+        r:=StrSplit(StrReplace(v,"\n","`n"), "=", "`t ")
+        , Lang[r.1 ""]:=r.2, Tip_Text[r.1 ""]:=r.3
+    return
+  }
+}
+
+}  ;// Class End
+
+;================= The End =================
+
+;

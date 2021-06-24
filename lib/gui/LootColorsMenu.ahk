@@ -96,12 +96,12 @@
 		if WinActive(ahk_group POEGameGroup){
 			BlockInput, MouseMove
 			MouseGetPos, mX, mY
-			ScreenShot(), BG_Color := ScreenShot_GetColor(mX,mY)
+			FindText.ScreenShot(), BG_Color := FindText.GetColor(mX,mY)
 			LootColors[BG_Index] := Format("0x{1:06X}",BG_Color)
 			Sleep, 100
 			SendInput {%hotkeyLootScan% down}
 			Sleep, 200
-			ScreenShot(), MO_Color := ScreenShot_GetColor(mX,mY)
+			FindText.ScreenShot(), MO_Color := FindText.GetColor(mX,mY)
 			LootColors[MO_Index] := Format("0x{1:06X}",MO_Color)
 			SendInput {%hotkeyLootScan% up}
 			BlockInput, MouseMoveOff

@@ -13,7 +13,7 @@ PoEWindowCheck()
 			If (!GameBound || newDim )
 			{
 				GameBound := True
-				BindWindow(GamePID)
+				FindText.BindWindow(GamePID)
 				WinGet, s, Style, ahk_class POEWindowClass
 				If (s & +0x80000000)
 					WinSet, Style, -0x80000000, ahk_class POEWindowClass
@@ -42,7 +42,7 @@ PoEWindowCheck()
 			If GameBound
 			{
 				GameBound := False
-				BindWindow()
+				FindText.BindWindow()
 			}
 			If (ToggleExist)
 			{
