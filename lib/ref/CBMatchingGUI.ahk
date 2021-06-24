@@ -73,13 +73,16 @@ CreateCBMatchingGUI(hCB, parentWindowTitle) {
 	CBMatchingGUI.parentWindowTitle := parentWindowTitle
 	
 	gFunction := Func("CBMatching").Bind(CBMatchingGUI)
-	GuiControl, +g, %hEdit%, %gFunction%
+	tFunction := Func("FuncTimer").Bind(gFunction,400)
+	GuiControl, +g, %hEdit%, %tFunction%
 	
 	Gui, Show, % "x"cX-50 " y"cY-5 " ", % "CBMatchingGUI"
 	ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
 	SetTimer, DestroyCBMatchingGUI, 80
 }
-
+FuncTimer(funcobj,duration){
+	SetTimer % funcobj,% "-" duration
+}
 ;--------------------------------------------------------------------------------
 CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
 ;--------------------------------------------------------------------------------
@@ -163,18 +166,8 @@ setCBMatchingGUILBChoice(CBMatchingGUI) {
 ;--------------------------------------------------------------------------------
 	; get ListBox choice
 	GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB 
-			
 	; set choice in parent ComboBox
 	Control, ChooseString, %LBMatchesSelectedChoice%,,% "ahk_id "CBMatchingGUI.hParentCB
 	; set focus to Parent ComboBox, this will destroy matching GUI
 	ControlFocus,, % "ahk_id "CBMatchingGUI.hParentCB
-
-	; execute next Tab_EnregFournisseursClients() step
-	; parentWinTitle := CBMatchingGUI.parentWindowTitle
-	; if (InStr(parentWinTitle, WinTitles.EnregFournisseurs)) {
-	;   ; Tab_EnregFournisseursClients("Fournisseurs")
-	; } 
-	; else if (InStr(parentWinTitle, WinTitles.EnregClients)) {
-	;   ; Tab_EnregFournisseursClients("Clients")
-	; }
 }
