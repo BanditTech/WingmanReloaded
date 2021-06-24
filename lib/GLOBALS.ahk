@@ -1,5 +1,6 @@
 ﻿; Extra vars - Not in INI
-	Global rxNum := "(\d+\.?\d*)"
+	; Global rxNum := "(\d+\.?\d*)"
+	Global rxNum := "(?<num>(?<isNegative>(?<!\d)-)?\d+(?<isFloat>\.\d+)?)"
 	Global Controller := {"Btn":{}}
 	Global Controller_Active := 0
 	Global Item
