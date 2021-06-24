@@ -743,6 +743,9 @@ ReplaceDigit000(Name:="Group1"){
   Return "Group" . Format("{1:03i}",StrSplit(Name,," ",6)[6])
 }
 
-#Include %A_ScriptDir%\Library.ahk
-; str := RTrim(RTrim(A_ScriptDir,"data"),"\")
-#Include %A_ScriptDir%\..\lib\sublist.ahk
+#Include %A_ScriptDir%\..\lib\ref\JSON.ahk
+#Include %A_ScriptDir%\..\lib\ref\DeepClone.ahk
+#Include %A_ScriptDir%\..\lib\ref\CBMatchingGUI.ahk
+#Include %A_ScriptDir%\..\lib\ref\OrderedAssociativeArray.ahk
+#Include %A_ScriptDir%\..\lib\ref\OrderedArray.ahk
+#Include %A_ScriptDir%\..\lib\Helpers.ahk

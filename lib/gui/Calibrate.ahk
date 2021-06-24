@@ -19,7 +19,7 @@
 	} else
 	MsgBox % "PoE Window is not active. `nRecalibrate of Character Active didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -47,7 +47,7 @@ updateOnInventory:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnInventory didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -74,7 +74,7 @@ updateOnMenu:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnMenu didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -101,7 +101,7 @@ updateOnDelveChart:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -128,7 +128,7 @@ updateOnMetamorph:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -155,7 +155,7 @@ updateOnLocker:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnLocker didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -183,7 +183,7 @@ updateOnStash:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnStash/OnLeft didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -249,7 +249,7 @@ updateEmptyColor:
 		MsgBox % "PoE Window is not active. `nRecalibrate Empty Slot Color didn't work"
 	}
 
-	hotkeys()
+	MainMenu()
 	Thread, NoTimers, False    ;End Critical
 return
 
@@ -275,7 +275,7 @@ updateOnChat:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of onChat didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -301,7 +301,7 @@ updateOnVendor:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -327,7 +327,7 @@ updateOnDiv:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnDiv didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 
@@ -355,7 +355,7 @@ updateDetonate:
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
 	
-	hotkeys()
+	MainMenu()
 	
 return
 

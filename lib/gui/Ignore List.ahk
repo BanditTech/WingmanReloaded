@@ -29,7 +29,7 @@ BuildIgnoreMenu:
 		}
 	}
 	ind=0
-	Hotkeys()
+	MainMenu()
 	Gui, Ignore: Show
 Return
 
@@ -57,4 +57,22 @@ SaveIgnoreArray()
 	FileAppend, %JSONtext%, %A_ScriptDir%\save\IgnoredSlot.json
 	LoadIgnoreArray()
 	Return
+}
+
+IgnoreSlotSetup(){
+  ;Ignore Slot setup
+  IfNotExist, %A_ScriptDir%\save\IgnoredSlot.json
+  {
+    For C, GridX in InventoryGridX
+    {
+      IgnoredSlot[C] := {}
+      For R, GridY in InventoryGridY
+      {
+        IgnoredSlot[C][R] := False
+      }
+    }
+    SaveIgnoreArray()
+  } 
+  Else
+    LoadIgnoreArray()
 }

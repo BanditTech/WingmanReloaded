@@ -435,3 +435,17 @@ StdOutStream(sCmd, Callback = "") {
 
   Return Isfunc( Callback ) ? %Callback%( "", 0 ) : sOutput
 }
+
+; PoePrices server status - PPServerStatus
+PPServerStatus()
+{
+  Global PPServerStatus
+  RTT := Ping4("www.poeprices.info", Result)
+  If (ErrorLevel){
+    Log("PoePrice Error: " ErrorLevel)
+    PPServerStatus := False
+  } Else {
+    PPServerStatus := True
+  }
+  Return PPServerStatus
+}

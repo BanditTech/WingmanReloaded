@@ -193,3 +193,33 @@ FireHotkey(func:="CtrlEnter",TypePrefix:="2",SuffixNum:="1"){
 	}
 	Return
 }
+
+; Reset Chat
+ResetChat(){
+  Send {Enter}{Up}{Escape}
+  return
+}
+
+; Grab Reply whisper recipient
+GrabRecipientName(){
+  Clipboard := ""
+  Send ^{Enter}^{A}^{C}{Escape}
+  ClipWait, 0
+  Loop, Parse, Clipboard, `n, `r
+    {
+    ; Clipboard must have "@" in the first line
+    If A_Index = 1
+      {
+      IfNotInString, A_LoopField, @
+        {
+        Exit
+        }
+      RecipientNameArr := StrSplit(A_LoopField, " ", @)
+      RecipientName1 := RecipientNameArr[1]
+      RecipientName := StrReplace(RecipientName1, "@")
+      }
+      Ding(, 1,%RecipientName%)
+    }
+  Sleep, 60
+  Return
+}

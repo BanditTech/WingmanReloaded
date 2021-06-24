@@ -127,6 +127,6 @@
 	LootColorsClose:
 	LootColorsEscape:
 		Gui, LootColors: Destroy
-		hotkeys()
+		MainMenu()
 	Return
 }

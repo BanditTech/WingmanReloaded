@@ -4,6 +4,9 @@
   Return
 }
 
+#Include *i %A_ScriptDir%\..\Helpers.ahk
+#Include *i %A_ScriptDir%\..\TrayLabels.ahk
+#Include *i %A_ScriptDir%\Hotkey.ahk
 
 /* FindText - Capture screen image into text and then find it
  *  https://autohotkey.com/boards/viewtopic.php?f=6&t=17834
@@ -2241,6 +2244,4 @@ for i,v in ok
     return arr
   }
 ;===============  FindText Library End  ===================
-#Include *i %A_ScriptDir%\..\subsublist.ahk
-#Include *i %A_ScriptDir%\..\..\data\Library.ahk
 

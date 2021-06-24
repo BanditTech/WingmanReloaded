@@ -50,4 +50,28 @@
 		return  
 }
 
-
+; DaysSince - Check how many days has it been since the last update
+DaysSince()
+{
+  Global LastDatabaseParseDate, UpdateDatabaseInterval
+  FormatTime, Date_now, A_Now, yyyyMMdd
+  If Date_now = LastDatabaseParseDate ;
+    Return False
+  daysCount := Date_now
+  daysCount -= LastDatabaseParseDate, days
+  If daysCount=
+  {
+    ;the value is too large of a dif to calculate, this means we should update
+    Return True
+  }
+  Else If (daysCount >= UpdateDatabaseInterval)
+  {
+    ;The Count between the two dates is at/above the threshold, this means we should update
+    Return daysCount
+  }
+  Else
+  {
+    ;The Count between the two dates is below the threshold, this means we should not
+    Return False
+  }
+}
