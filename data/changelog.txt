@@ -1,4 +1,25 @@
-﻿## Version .13.0202 - Alpha version - June/23/2021
+﻿## Version .13.0203 - Alpha version - June/24/2021
+The Liberation is Successful!
+* The main script is less than 40 lines
+* All portions of the script have been compartmentalized
+* Some lib files were sorted into gui, api, and routine folders
+* The script is much easier to mass-edit in VScode
+
+FindText Lib updated to version 8.5
+* Try his new edit window for the GUI
+* The GUI now supports editing after the capture
+* It also now supports image searches (advanced users)
+* The GUI is left vanilla, so there is no longer Copy String button
+  * I will have this added before merging to master
+
+Removed a dialogue scan in the main routine
+* May see some improvements in script speed
+
+General script formatting improvements
+
+---
+
+## Version .13.0202 - Alpha version - June/23/2021
 Expanding the idea of Custom Code
 * ./save/MyCustomRoutine.ahk added
 * Code can now be included into the main logic loop
