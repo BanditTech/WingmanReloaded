@@ -60,7 +60,7 @@ CreateCBMatchingGUI(hCB, parentWindowTitle) {
 	ControlGet, CBChoice, Choice,,, % "ahk_id " hCB
 	; MsgBox % CBList ? "True" : "False"
 	; set Gui controls with Parent ComboBox info
-	Gui, Add, Edit, % "+HWNDhEdit x0 y0 w"cW+200 " R1"
+	Gui, Add, Edit, % "+HWNDhEdit x0 y0 w"cW+400 " R1"
 	GuiControl,, %hEdit%, %CBChoice%
 	Gui, Add, ListBox, % "+HWNDhLB xp y+0 wp" " R20", % CBList
 	GuiControl, ChooseString, %hLB%, %CBChoice%
@@ -75,7 +75,7 @@ CreateCBMatchingGUI(hCB, parentWindowTitle) {
 	gFunction := Func("CBMatching").Bind(CBMatchingGUI)
 	GuiControl, +g, %hEdit%, %gFunction%
 	
-	Gui, Show, % "x"cX-5 " y"cY-5 " ", % "CBMatchingGUI"
+	Gui, Show, % "x"cX-50 " y"cY-5 " ", % "CBMatchingGUI"
 	ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
 	SetTimer, DestroyCBMatchingGUI, 80
 }
