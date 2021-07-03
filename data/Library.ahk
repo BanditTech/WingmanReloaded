@@ -6528,7 +6528,7 @@
         WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
         WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
         ;Status Check OnDiv
-        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 1098))
+        WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 1282))
         WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 294))
         ;Status Check OnLeft
         WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
