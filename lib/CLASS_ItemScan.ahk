@@ -1391,10 +1391,9 @@
 					}
 				}
 			}
-			; line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
-			; line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
-			; line :=  RegExReplace(line,  " . Unscalable Value" , "")
-			line :=  RegExReplace(A_LoopField,  " . Unscalable Value" , "")
+			line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+			line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
+			line :=  RegExReplace(line,  " . Unscalable Value" , "")
 			key := This.Standardize(line)
 			If (vals := This.MatchLine(line))
 			{
@@ -1459,10 +1458,9 @@
 		{
 			If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
 				Continue
-			; line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
-			; line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
-			; line :=  RegExReplace(line,  " . Unscalable Value" , "")
-			line :=  RegExReplace(A_LoopField,  " . Unscalable Value" , "")
+			line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+			line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
+			line :=  RegExReplace(line,  " . Unscalable Value" , "")
 			key := This.Standardize(line)
 			If (key ~= "^ \(.*\)$")
 				Continue
@@ -1490,26 +1488,22 @@
 		}
 	}
 	MatchLine(lineString){
-		If (lineString ~= rxNum )
+		If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
 		{
 			ret := {}
-			position := 1
-			While RegExMatch(lineString, "O`am)" rxNum, RxMatch, position){
-				; MsgBox % RxMatch.Pos("num") " " RxMatch.Len("num")
-				position := RxMatch.Pos("num") + RxMatch.Len("num") + 1
-				If (RxMatch.Value("num") != "")
-					ret.push(RxMatch.Value("num"))
+			Loop % RxMatch.Count()
+			{
+				If RxMatch[A_Index] != ""
+					ret.push(RxMatch[A_Index])
 			}
 			Return ret
 		}
-		Else {
-			; MsgBox % "Not Matching"
+		Else
 			Return False
-		}
 	}
 	Standardize(str:=""){
 		str := RegExReplace(str, "\+?"rxNum , "#")
-		str := RegExReplace(str, "#\(#-#\)" , "#")
+		; str := RegExReplace(str, "#\(#-#\)" , "#")
 		str := RegExReplace(str, " (augmented)" , "")
 		Return str
 	}
