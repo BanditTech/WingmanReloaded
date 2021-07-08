@@ -9,11 +9,11 @@
 #Include, %A_ScriptDir%\lib\CLASS_ItemScan.ahk
 #Include, %A_ScriptDir%\lib\CLASS_Perfect.ahk
 #Include, %A_ScriptDir%\lib\CLASS_Progress_Slider.ahk
+#Include, %A_ScriptDir%\lib\CLASS_SortByNum.ahk
 #Include, %A_ScriptDir%\lib\ColorHex.ahk
 #Include, %A_ScriptDir%\lib\Controller.ahk
 #Include, %A_ScriptDir%\lib\FindText Helpers.ahk
 #Include, %A_ScriptDir%\lib\GameLogs.ahk
-#Include, %A_ScriptDir%\lib\GroupByFourty.ahk
 #Include, %A_ScriptDir%\lib\GuiStatus.ahk
 #Include, %A_ScriptDir%\lib\Helpers.ahk
 #Include, %A_ScriptDir%\lib\MainMenu.ahk

@@ -173,8 +173,8 @@ VendorRoutine()
 {
 	tQ := 0
 	tGQ := 0
-	SortFlask := {}
-	SortGem := {}
+	SortFlask := []
+	SortGem := []
 	BlackList := Array_DeepClone(IgnoredSlot)
 	; Move mouse out of the way to grab screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
@@ -243,10 +243,8 @@ VendorRoutine()
 				{
 					If !YesBatchVendorGCP
 						Continue
-					If Item.Prop.Quality >= 20
+					If (Item.Prop.Quality >= 20)
 						Continue 
-					Else 
-						Q := Item.Prop.Quality
 					Q := Item.Prop.Quality
 					tGQ += Q
 					SortGem.Push({"C":C,"R":R,"Q":Q})
@@ -268,7 +266,7 @@ VendorRoutine()
 	; Sell any bulk Flasks or Gems
 	If (OnVendor && RunningToggle && YesVendor && tQ >= 40)
 	{
-		Grouped := GroupByFourty(SortFlask)
+		Grouped := New SortByNum(SortFlask)
 		For k, v in Grouped
 		{
 			If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
@@ -286,7 +284,7 @@ VendorRoutine()
 	}
 	If (OnVendor && RunningToggle && YesVendor && tGQ >= 40)
 	{
-		Grouped := GroupByFourty(SortGem)
+		Grouped := New SortByNum(SortGem)
 		For k, v in Grouped
 		{
 			If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.

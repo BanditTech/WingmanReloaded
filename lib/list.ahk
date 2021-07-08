@@ -24,3 +24,4 @@
 #Include, %A_ScriptDir%\lib\ref\ColorRange.ahk
 #Include, %A_ScriptDir%\lib\ref\DoPoePricesRequest.ahk
 #Include, %A_ScriptDir%\lib\ref\FindText.ahk
+#Include, %A_ScriptDir%\lib\ref\BigA.ahk
