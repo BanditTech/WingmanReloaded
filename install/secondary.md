@@ -68,12 +68,12 @@ Once you have gotten your background colors matching with the samples on the lis
 > Keep in mind that bad colors to sample are pure white and pure black, they often get matched against the background and can cause issues during combat.
 
 ## Chaos Recipe Automation
-Chaos recipe requires the configuration of your POE session ID, this can be retrieved by looking for the cookie within the developer console of your browser. You will need to paste this string into PoESessionID editbox found on the Configuration tab. 
+Chaos recipe requires the configuration of your POE cookie. This includes the sessid as well as any cloudflare data, this can be retrieved by looking for the cookie within the developer console of your browser. You will need to paste this string into PoE Cookie editbox found on the Configuration tab. 
 
 ### Getting your POE Cookie
 In order to see this value, you need to [log into your account](https://www.pathofexile.com/)
 
-Once you have logged in, Here is how I get the cookie text from Chrome:
+Once you have logged in, Here is how I get the cookie data from Chrome:
 
 #### Chrome
 
@@ -91,12 +91,20 @@ Once you have logged in, Here is how I get the cookie text from Chrome:
 > The ID will remain obscured, and shown as a password field. This is also saved to a separate Account.ini file to remain independent of the general settings.
 ### Enable the Chaos Recipe settings
 
-Once the ID is configured, we can enable the settings.  
-Open the Inventory Settings, then open Stash Tabs > Dump Tab  
-There is a checkbox to Enable the Dump Tab for chaos recipe  
-On the right is the option for how many sets it will attempt to build
-
-This allows the dump tab to remain disabled, and junk items that are not needed for sets will be vendored. Otherwise, it will stash the items that are needed for chaos recipe sets until you have reached the # of items needed for your sets.
+Once the Cookie is configured, we can enable the settings.  
+* Open the `Inventory Sorting` options on the Main Menu's `Configuration` tab
+* Open the `Chaos Recipe` tab to begin setting your options  
+* Check to Enable the overall chaos recipe logic  
+* Decide which type of stash method to use on the right, then set its associated options below.
+* Other settings directly effect the recipe behavior
+  * 2x jewelry and Belt options to allow for twice as many, for overflow to the next set
+  * Skipping jeweler and chroma from being put into chaos recipe, and instead vendor for the orb
+  * Set the max number of each part of the recipe, for weapons/rings this includes both slots
+  * Only stash small weapons will prevent anything larger than 1x3 or 2x2 to be used for recipe
+  * Recipe Rare UnId keeps rares unidentified within the level range `60-your choice`
+  * Keeping a seperate count for both identified and Unidentified will fill UnId then Id
+  * Only stash unid will not use Identified items for recipes in the level range
+  * The last option is to Choose when the UnId recipe range ends, and items will resume identifying
 
 > Configure the hotkey you wish to operate the Chaos Recipe, this is above the ID in the Keybinds section.
 
