@@ -70,36 +70,23 @@ Once you have gotten your background colors matching with the samples on the lis
 ## Chaos Recipe Automation
 Chaos recipe requires the configuration of your POE session ID, this can be retrieved by looking for the cookie within the developer console of your browser. You will need to paste this string into PoESessionID editbox found on the Configuration tab. 
 
-### Getting your POESESSID
+### Getting your POE Cookie
 In order to see this value, you need to [log into your account](https://www.pathofexile.com/)
 
-Once you have logged in, there are a few ways to look at the value:
+Once you have logged in, Here is how I get the cookie text from Chrome:
 
 #### Chrome
 
-* Press the F12 key.  
-* Select the "Application".  
-* Expand the "Cookies", select the https://www.pathofexile.com.  
-* Copy the value of the "POESESSID".
+* Press the F12 key to open the developer console.
+* Press the F5 key to refresh the page.
+* Select the `Network` option on the top row.  
+* Select the `Doc` option two rows below, on the right.  
+* Select the `https://www.pathofexile.com` entry. 
+* It will expand to show several sections, colapse them until you find `Request Headers` 
+* Copy the value of the `cookie:` entry
+  * Make sure to copy everything that is there, starting with `_ga=GA12345` and end with `POESESSID=BLAH1234XYZ`
 
-#### Firefox
-
-* Press the F12 key.  
-* Select the "Storage".  
-* Expand the "Cookies", select the https://www.pathofexile.com.  
-* Copy the value of the "POESESSID".  
-
-#### IE11
-
-* Press the F12 key.  
-* Select the "Network".  
-* Enables the capture of network traffic.  
-* Reloads the page.  
-* Select [DETAILS]-[Cookies].  
-* Copy the value of the "POESESSID".  
-
-
-**Once you have the copy of your session ID, paste that into the Configuration > PoESessionID editfield.** 
+**Once you have the copy of your cookie, paste that into the Configuration > PoE Cookie editfield.** 
 
 > The ID will remain obscured, and shown as a password field. This is also saved to a separate Account.ini file to remain independent of the general settings.
 ### Enable the Chaos Recipe settings
