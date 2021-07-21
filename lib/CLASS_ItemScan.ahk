@@ -531,6 +531,9 @@
 				Else
 					This.Prop.Item_Width := This.Prop.Item_Height := 2
 			}
+			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
+				This.Prop.ExpeditionCurrency := True
+			}
 		}
 		;End NamePlate Parser
 
