@@ -429,12 +429,20 @@
 				This.Prop.Item_Width := 2
 				This.Prop.Item_Height := 3
 			}
+			Else If (This.Prop.ItemBase ~= " Artifact$")
+			{
+				If (This.Prop.RarityCurrency)
+				{
+					This.Prop.Artifact := True
+					This.Prop.SpecialType := "Artifact"
+				}
+			}
 			Else If (This.Prop.ItemBase ~= " Oil$")
 			{
 				If (This.Prop.RarityCurrency)
 				{
-				This.Prop.Oil := True
-				This.Prop.SpecialType := "Oil"
+					This.Prop.Oil := True
+					This.Prop.SpecialType := "Oil"
 				}
 			}
 			Else If (InStr(This.Prop.ItemBase, "Catalyst"))
