@@ -253,7 +253,7 @@
 			}
 			;Start Parse
 			
-			
+			; We match one of these against an item to identify its purpose
 			If (This.Prop.ItemClass = "Misc Map Items")
 			{
 				This.Prop.MiscMapItem := True
@@ -515,6 +515,11 @@
 			{
 				This.Prop.Heist := True
 				This.Prop.SpecialType := "Heist Marker"
+			}
+			Else If (InStr(This.Prop.ItemBase, "Expedition Logbook"))
+			{
+				This.Prop.Expedition := True
+				This.Prop.SpecialType := "Expedition Logbook"
 			}
 			Else If (indexOf(This.Prop.ItemBase, HeistGear))
 			{
