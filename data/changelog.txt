@@ -1,4 +1,45 @@
-﻿## Version .13.02 - Master version - June/21/2020
+﻿## Version .13.0203 - Alpha version - June/24/2021
+The Liberation is Successful!
+* The main script is less than 40 lines
+* All portions of the script have been compartmentalized
+* Some lib files were sorted into gui, api, and routine folders
+* The script is much easier to mass-edit in VScode
+
+FindText Lib updated to version 8.5
+* Try his new edit window for the GUI
+* The GUI now supports editing after the capture
+* It also now supports image searches (advanced users)
+* The GUI is left vanilla, so there is no longer Copy String button
+  * I will have this added before merging to master
+
+Removed a dialogue scan in the main routine
+* May see some improvements in script speed
+
+General script formatting improvements
+
+---
+
+## Version .13.0202 - Alpha version - June/23/2021
+Expanding the idea of Custom Code
+* ./save/MyCustomRoutine.ahk added
+* Code can now be included into the main logic loop
+
+---
+
+## Version .13.0201 - Alpha version - June/23/2021
+The Liberation is here!
+* Third Party Libraries have been split to ./lib/ref/
+* Script Libraries have been split to ./lib/
+
+Custom code is now included from save folder
+* Added ./save/MyCustomAutoRun.ahk and ./save/MyCustomLib.ahk
+  * Edit these files to include any custom code into the script
+  * They are both located inside the save folder
+  * If they do not exist a blank will be made.
+
+---
+
+## Version .13.02 - Master version - June/21/2021
 Introducing a New update method
 * We now use 7z to backup and install
 * Makes a backup of the script when updating
@@ -22,7 +63,7 @@ I look forward to an easier to edit codebase in the near future!
 
 ---
 
-## Version .13.01 - Master version - June/1/2020
+## Version .13.01 - Master version - June/1/2021
 Alpha changes are being merged back into the main Branch
 * Keep in mind that many files are changed which are not auto-updated
 * It is recommended to re-install the script to get all the newest files
@@ -77,7 +118,7 @@ All the changes in their detail can be found in the Changelog.
 
 ---
 
-## Version .13.0020 - Alpha version - May/31/2020
+## Version .13.0020 - Alpha version - May/31/2021
 Preperations for merge to master
 * lots of small fixes in a push to merging back to the main Branch
 
@@ -94,7 +135,7 @@ Adjustments / Fixes
 
 ---
 
-## Version .13.0019 - Alpha version - May/25/2020
+## Version .13.0019 - Alpha version - May/25/2021
 New Features
 * Auto Open Stacked Deck
 * Basic Crafting menu is now functional
@@ -125,7 +166,7 @@ Added TopTier
 
 ---
 
-## Version .13.0018 - Alpha version - May/08/2020
+## Version .13.0018 - Alpha version - May/08/2021
 New Group based CLF matching now available
 * ```{ "ElementList": [], "GroupType": "Count", "TypeValue": 3, "Weight": 1 }```
 * Find more examples on Discord Custom-Loot-Filter channel
@@ -183,7 +224,7 @@ Pull requests added:
 
 ---
 
-## Version .13.0017 - Alpha version - April/29/2020
+## Version .13.0017 - Alpha version - April/29/2021
 Huge New additions to the CLF
 * Full support for suffix/prefix names in the CLF
 * Hybrid affix mods are given a special prefix (Hybrid)
@@ -222,7 +263,7 @@ Bugfixes
 
 ---
 
-## Version .13.0016 - Alpha version - April/23/2020
+## Version .13.0016 - Alpha version - April/23/2021
 New PROP keys added for use within the CLF
 * This works for leveling gear or endgame!
 * TopTierLife
@@ -248,7 +289,7 @@ More modifications related to ItemClass
 
 ---
 
-## Version .13.0015 - Alpha version - April/22/2020
+## Version .13.0015 - Alpha version - April/22/2021
 New Stash Tabs
 * Heist Gear: Itens to equip followers/companions/bandits on Heist Encounters
 * Misc Map Items: Items that work like a map, but are not a "map"/don't have a special slot in map tab
@@ -266,7 +307,7 @@ Parser Changes
 * Minor Backend changes
 
 ---
-## Version .13.0014 - Alpha version - April/16/2020
+## Version .13.0014 - Alpha version - April/16/2021
 Ultimatum is here, and it forced a bit of changes to how we deal with the parser. 
 * Basic changes required to add Item Class from clip contents
 * More changes will come to this once the servers stabilize
@@ -277,7 +318,7 @@ Backend Work being done on the crafting functions
 
 ---
 
-## Version .13.0013 - Alpha version - March/18/2020
+## Version .13.0013 - Alpha version - March/18/2021
 Improvements to Main Menu
 * Game Logic States now allows to click directly on the sample status to recalibrate
 * Individual samples menu has been removed
@@ -289,7 +330,7 @@ Bugfixes
 
 ---
 
-## Version .13.0012 - Alpha version - February/03/2020
+## Version .13.0012 - Alpha version - February/03/2021
 Merging the Ritual Scan Branch into alpha
 * This still needs some tuning to get the coloring working
 * Option to scan ritual added to inventory Sorting
@@ -309,14 +350,14 @@ Bugfixes
 
 ---
 
-## Version .13.0011 - Alpha version - January/24/2020
+## Version .13.0011 - Alpha version - January/24/2021
 Full implimentation
 * Perfect prices from PoE.Watch are updated alongside Poe.ninja DB update
 * Unique Affinity settings contains the option to filter based on stats
 
 ---
 
-## Version .13.0010 - Alpha version - January/21/2020
+## Version .13.0010 - Alpha version - January/21/2021
 Bugfixes
 * fix portal click on open for -2 click latency
 * add rogue harbour to towns and all translations
@@ -328,14 +369,14 @@ Bugfixes
 
 ---
 
-## Version .13.0009 - Alpha version - January/20/2020
+## Version .13.0009 - Alpha version - January/20/2021
 Bugfixes
 * Fix socket parse
 * Identified items will not stash for chaos recipe if UNID enabled
 
 ---
 
-## Version .13.0008 - Alpha version - January/19/2020
+## Version .13.0008 - Alpha version - January/19/2021
 Bugfixes
 * Fix for ritual type items
 * Currency ritual items will be allowed to stash
@@ -343,7 +384,7 @@ Bugfixes
 
 ---
 
-## Version .13.0007 - Alpha version - January/19/2020
+## Version .13.0007 - Alpha version - January/19/2021
 Bugfixes
 * Fix issue with gem swap not pressing weapon swap key
 * Fix issue with chaos recipe stash request
@@ -355,7 +396,7 @@ Chaos Recipe now requires a full Cookie
 
 ---
 
-## Version .13.0006 - Alpha version - January/17/2020
+## Version .13.0006 - Alpha version - January/17/2021
 Bugfixes
 * Location selection for Wisdom, Portal and Grab Currency are fixed
 * Fix issue when restocking scrolls and there are none to grab

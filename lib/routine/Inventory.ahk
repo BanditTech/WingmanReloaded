@@ -1,0 +1,990 @@
+﻿; ItemSortCommand - Sort inventory and determine action
+ItemSortCommand(){
+	; Thread, NoTimers, True
+	CheckRunning()
+	MouseGetPos xx, yy
+	IfWinActive, ahk_group POEGameGroup
+	{
+		CheckRunning("On")
+		GuiStatus()
+		If (!OnChar) 
+		{ ;Need to be on Character 
+			Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
+			CheckRunning("Off")
+			Return
+		} 
+		Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
+		{ 
+			; First Automation Entry
+			If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
+			{
+				; This automation use the following Else If (OnVendor && YesVendor) to entry on Vendor Routine
+				If !SearchVendor()
+				{
+					SendHotkey(hotkeyInventory)
+					CheckRunning("Off")
+					Return
+				}
+			}
+			; First Automation Entry
+			Else If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
+			{
+				; This automation use the following Else If (OnStash && YesStash) to entry on Stash Routine
+				If !SearchStash()
+				{
+					SendHotkey(hotkeyInventory)
+					CheckRunning("Off")
+					Return
+				}
+			}
+			Else
+			{
+				SendHotkey(hotkeyInventory)
+				CheckRunning("Off")
+				Return
+			}
+		}
+		Sleep, -1
+		GuiStatus()
+		If (OnDiv && YesDiv)
+			DivRoutine()
+		Else If (OnStash && YesStash)
+			StashRoutine()
+		Else If (OnVendor && YesVendor)
+			VendorRoutine()
+		Else If (OnLocker && YesHeistLocker)
+			LockerRoutine()
+		Else If (OnInventory&&YesIdentify)
+			IdentifyRoutine()
+	}
+	Sleep, 90*Latency
+	MouseMove, xx, yy, 0
+	CheckRunning("Off")
+	Return
+}
+
+CheckRunning(ret:=false){
+	Global RunningToggle
+	If (RunningToggle && !ret) ; This means an underlying thread is already running the loop below.
+	{
+		RunningToggle := False  ; Signal that thread's loop to stop.
+		ResetMainTimer("On")
+		Notify("Aborting Current Process","",2)
+		exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
+	} Else If (ret=="On") {
+		RunningToggle := True
+		ResetMainTimer("Off")
+	} Else If (ret) {
+		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+		ResetMainTimer("On")
+		Return
+	}
+}
+
+; Search Heist Locker
+	;Client:	638, 600 (recommended)
+	;Color:	1F2732 (Red=1F Green=27 Blue=32)
+SearchLocker()
+{
+	If (FindStock:=FindText(GameX,GameY,GameW,GameH,0,0,HeistLockerStr))
+	{
+		LeftClick(FindStock.1.1 + 5,FindStock.1.2 + 5)
+		Loop, 66
+		{
+			Sleep, 50
+			GuiStatus()
+			If OnLocker
+			{
+				Return True
+			}
+				
+		}
+	}
+	Return False
+}
+; Search Stash Routine
+SearchStash()
+{
+	If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
+	{
+		LeftClick(FindStash.1.x,FindStash.1.y)
+		Loop, 66
+		{
+			Sleep, 50
+			GuiStatus()
+			If OnStash
+				Return True
+			Else If ( !Mod(A_Index,20) && (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr)) )
+				LeftClick(FindStash.1.x,FindStash.1.y)
+		}
+	}
+	Return False
+}
+; ShooMouse - Move mouse out of the inventory area
+ShooMouse()
+{
+	MouseGetPos Checkx, Checky
+	If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+		Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
+		Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
+		MouseMove, RX, RY, 0
+		Sleep, 105*Latency
+	}
+}
+; ClearNotifications - Get rid of overlay messages if any are present
+ClearNotifications()
+{
+	; Global InventoryGridY
+	If (xBtn := FindText(GameW - 21,InventoryGridY[1] - 60,GameW,InventoryGridY[5] + 10,0.2,0.2,XButtonStr,0))
+	{
+		Log("Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
+		For k, v in xBtn
+			LeftClick(v.x,v.y)
+		Sleep, 195*Latency
+		GuiStatus()
+		ClearNotifications()
+		Return
+	}
+	Else
+		Return
+}
+; Make a more uniform method of checking for identification
+CheckToIdentify(){
+	If (Item.Affix["Unidentified"] && YesIdentify)
+	{
+		If (Item.Prop.IsInfluenceItem && YesInfluencedUnid && Item.Prop.RarityRare)
+			Return False
+		Else If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId  && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) 
+		&& Item.Prop.ItemLevel < ChaosRecipeLimitUnId && Item.StashChaosRecipe(false))
+			Return False
+		Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
+			Return True
+		Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
+			Return True
+		Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+			Return True
+		Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
+			Return True
+	} 
+	Return False
+}
+; VendorRoutine - Does vendor functions
+VendorRoutine()
+{
+	tQ := 0
+	tGQ := 0
+	SortFlask := []
+	SortGem := []
+	BlackList := Array_DeepClone(IgnoredSlot)
+	; Move mouse out of the way to grab screenshot
+	ShooMouse(), GuiStatus(), ClearNotifications()
+	If !OnVendor
+	{
+		Return
+	}
+	If StashTabYesPredictive
+	{
+		If !PPServerStatus()
+		Notify("PoEPrice.info Offline","",2)
+	}
+	VendoredItems := False
+	; Main loop through inventory
+	For C, GridX in InventoryGridX
+	{
+		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
+		For R, GridY in InventoryGridY
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If BlackList[C][R]
+				Continue
+			Grid := RandClick(GridX, GridY)
+			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+			{   
+				Ding(500,11,"Hit Scroll")
+				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+			} 
+			PointColor := FindText.GetColor(GridX,GridY)
+			
+			If indexOf(PointColor, varEmptyInvSlotColor) {
+				;Seems to be an empty slot, no need to clip item info
+				Continue
+			}
+			ClipItem(Grid.X,Grid.Y)
+			addToBlacklist(C, R)
+			If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
+				ShooMouse(),GuiStatus(),Continue
+			If CheckToIdentify()
+			{
+				WisdomScroll(Grid.X,Grid.Y)
+				ClipItem(Grid.X,Grid.Y)
+			}
+
+			If (OnVendor&&YesVendor)
+			{
+				If Item.MatchLootFilter()
+					Continue
+				If (Item.Prop.RarityCurrency && Item.Prop.ItemClass != "Heist Target")
+					Continue
+				If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
+				{
+					If !YesBatchVendorBauble
+						Continue
+					If (Item.Prop.Quality >= 20)
+						Q := 40 
+					Else 
+						Q := Item.Prop.Quality
+					tQ += Q
+					SortFlask.Push({"C":C,"R":R,"Q":Q})
+					Continue
+				}
+				If ( Item.Prop.RarityGem && Item.Prop.Quality > 0 )
+				{
+					If !YesBatchVendorGCP
+						Continue
+					If (Item.Prop.Quality >= 20)
+						Continue 
+					Q := Item.Prop.Quality
+					tGQ += Q
+					SortGem.Push({"C":C,"R":R,"Q":Q})
+					Continue
+				}
+				If (Item.Prop.StashReturnVal && !Item.Prop.DumpTabItem)
+				|| (Item.Prop.StashReturnVal && (!YesVendorDumpItems && Item.Prop.DumpTabItem))
+					Continue
+				If ( Item.Prop.SpecialType="" || Item.Prop.ItemClass = "Heist Target" )
+				{
+					CtrlClick(Grid.X,Grid.Y)
+					If !(Item.Prop.Chromatic || Item.Prop.Jeweler)
+						VendoredItems := True
+					Continue
+				}
+			}
+		}
+	}
+	; Sell any bulk Flasks or Gems
+	If (OnVendor && RunningToggle && YesVendor && tQ >= 40)
+	{
+		Grouped := New SortByNum(SortFlask)
+		For k, v in Grouped
+		{
+			If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+				exit
+			For kk, vv in v
+			{
+				If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+					exit
+				Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
+				CtrlClick(Grid.X,Grid.Y)
+				RandomSleep(60,90)
+				VendoredItems := True
+			}
+		}
+	}
+	If (OnVendor && RunningToggle && YesVendor && tGQ >= 40)
+	{
+		Grouped := New SortByNum(SortGem)
+		For k, v in Grouped
+		{
+			If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+				exit
+			For kk, vv in v
+			{
+				If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+					exit
+				Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
+				CtrlClick(Grid.X,Grid.Y)
+				RandomSleep(60,90)
+				VendoredItems := True
+			}
+		}
+	}
+	; Auto Confirm Vendoring Option
+	If (OnVendor && RunningToggle && YesEnableAutomation)
+	{
+		ContinueFlag := False
+		If (YesEnableAutoSellConfirmation || (!VendoredItems && YesEnableAutoSellConfirmationSafe))
+		{
+			RandomSleep(90,120)
+			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
+			RandomSleep(90,120)
+			ContinueFlag := True
+		}
+		Else If (FirstAutomationSetting=="Search Vendor")
+		{
+			CheckTime("Seconds",120,"VendorUI",A_Now)
+			If YesEnableAutoSellConfirmationSafe
+				MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y
+			While (!CheckTime("Seconds",120,"VendorUI"))
+			{
+				If (YesController)
+					Controller()
+				Sleep, 100
+				GuiStatus()
+				If !OnVendor && !OnInventory
+				{
+					ContinueFlag := True
+					break
+				}
+			}
+		}
+		; Search Stash and StashRoutine
+		If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
+		{
+			RandomSleep(90,120)
+			SendHotkey(hotkeyCloseAllUI)
+			RandomSleep(90,120)
+			If OnHideout
+				Town := "Hideout"
+			Else If OnMines
+				Town := "Mines"
+			Else
+				Town := CompareLocation("Town")
+
+			If OnMines
+			{
+				LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
+				Sleep, 800
+				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+			}
+			Else If (Town = "Oriath Docks")
+			{
+				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+				Sleep, 800
+				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+			}
+			Else If (Town = "The Sarn Encampment")
+			{
+				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+				Sleep, 800
+				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+			}
+			GuiStatus()
+			If SearchStash()
+			StashRoutine()
+		}
+	}
+	Return
+}
+; Build Empty Grid List
+EmptyGrid(){
+	ShooMouse(),GuiStatus()
+	EmptySlots := {}
+	For C, GridX in InventoryGridX {
+		For R, GridY in InventoryGridY {
+			If IgnoredSlot[C][R]
+				Continue
+			PointColor := FindText.GetColor(GridX,GridY)
+			If indexOf(PointColor, varEmptyInvSlotColor) {
+				EmptySlots[C R] := RandClick(GridX, GridY)
+			}
+		}
+	}
+	Return EmptySlots
+}
+; Open Stacked Decks Automatically
+StackedDeckOpen(number,x,y){
+	EmptySlots := EmptyGrid()
+	Loop %number% {
+		If (EmptySlots.Count() >= 1){
+			If !RunningToggle
+				Break
+			RightClick(x,y)
+			Sleep, 75
+			EmptySlot := EmptySlots.Pop()
+			LeftClick(EmptySlot.X,EmptySlot.Y)
+			Sleep, 75
+		} Else {
+			Break
+		}
+	}
+}
+; LockerRoutine - Deposit Contracts and Blueprints at the Heist Locker
+LockerRoutine(){
+	BlackList := Array_DeepClone(IgnoredSlot)
+	; Move mouse out of the way to grab screenshot
+	ShooMouse(), GuiStatus(), ClearNotifications()
+	If !OnLocker
+	{
+		Return
+	}
+	; Main loop through inventory
+	For C, GridX in InventoryGridX
+	{
+		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
+		For R, GridY in InventoryGridY
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If BlackList[C][R]
+				Continue
+			Grid := RandClick(GridX, GridY)
+			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+			{   
+				Ding(500,11,"Hit Scroll")
+				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+			} 
+			PointColor := FindText.GetColor(GridX,GridY)
+			If indexOf(PointColor, varEmptyInvSlotColor) {
+				;Seems to be an empty slot, no need to clip item info
+				Continue
+			}
+			ClipItem(Grid.X,Grid.Y)
+			addToBlacklist(C, R)
+			If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
+				ShooMouse(),GuiStatus(),Continue
+			If (Item.Prop.Heist)
+			{
+				CtrlClick(Grid.X,Grid.Y)
+				Sleep, 45 + (15*ClickLatency)
+			}
+		}
+	}
+	Return
+}
+ResetMainTimer(toggle:="On"){
+	If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.func.Toggle.Utility || WR.func.Toggle.Move || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
+		SetTimer, TGameTick, %toggle%
+}
+; StashRoutine - Does stash functions
+StashRoutine()
+{
+	Global PPServerStatus
+	If StashTabYesPredictive
+	{
+		If !PPServerStatus()
+		Notify("PoEPrice.info Offline","",2)
+	}
+	CurrentTab:=0
+	SortFirst := {}
+	Loop 99
+	{
+		SortFirst[A_Index] := {}
+	}
+	HeistC := {}
+	HeistR := {}
+	HeistCount := 0
+	BlackList := Array_DeepClone(IgnoredSlot)
+	; Move mouse away for Screenshot
+	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
+	; Main loop through inventory
+	For C, GridX in InventoryGridX
+	{
+		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
+		For R, GridY in InventoryGridY
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If BlackList[C][R]
+				Continue
+			Grid := RandClick(GridX, GridY)
+			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+			{   
+				Ding(500,11,"Hit Scroll")
+				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+			} 
+			PointColor := FindText.GetColor(GridX,GridY)
+			If indexOf(PointColor, varEmptyInvSlotColor) {
+				;Seems to be an empty slot, no need to clip item info
+				Continue
+			}
+			
+			ClipItem(Grid.X,Grid.Y)
+			addToBlacklist(C, R)
+			If CheckToIdentify()
+			{
+				WisdomScroll(Grid.X,Grid.Y)
+				ClipItem(Grid.X,Grid.Y)
+			}
+			If (YesOpenStackedDeck && Item.Prop.ItemName = "Stacked Deck") {
+				StackedDeckOpen(Item.Prop.Stack_Size,Grid.X,Grid.Y)
+				ShooMouse(),GuiStatus(),Continue
+			}
+
+			If (OnStash && YesStash) 
+			{
+				If (Item.Prop.SpecialType = "Quest Item" || Item.Prop.ItemClass = "Quest Items")
+					Continue
+				Else If (sendstash:=Item.MatchLootFilter())
+					Sleep, -1
+				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) && ((Item.Prop.RarityNormal && YesSkipMaps_normal) || (Item.Prop.RarityMagic && YesSkipMaps_magic) || (Item.Prop.RarityRare && YesSkipMaps_rare) || (Item.Prop.RarityUnique && YesSkipMaps_unique)))
+					Continue
+				Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
+				{
+					HeistC.Push(C)
+					HeistR.Push(R)
+					++HeistCount
+					Continue
+				}
+				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps
+				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
+				&& ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
+					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
+					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
+					|| (Item.Prop.RarityUnique && YesSkipMaps_unique)) 
+				&& (Item.Prop.Map_Tier >= YesSkipMaps_tier))
+					Continue
+				Else If (sendstash:=Item.MatchStashManagement(True)){
+					;Skip
+					If (sendstash == -1)
+						Continue
+					;Affinities
+					Else If (sendstash == -2)
+					{
+						CtrlClick(Grid.X,Grid.Y)
+						If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
+						{
+							Sleep, 250*Latency
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({"C":C,"R":R,"Item":Item})
+						}
+					}
+				}
+				Else
+					++Unstashed
+				If (sendstash > 0)
+				{
+					If YesSortFirst
+						SortFirst[sendstash].Push({"C":C,"R":R,"Item":Item})
+					Else
+					{
+						MoveStash(sendstash)
+						RandomSleep(45,45)
+						CtrlShiftClick(Grid.X,Grid.Y)
+						; Check if we need to send to alternate stash for uniques
+						If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
+						&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
+						{
+							If (StashTabYesUniqueRing && Item.Prop.Ring 
+							&& sendstash != StashTabUniqueRing)
+							{
+								Sleep, 200*Latency
+								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
+									Continue
+								MoveStash(StashTabUniqueRing)
+								RandomSleep(45,45)
+								CtrlShiftClick(Grid.X,Grid.Y)
+							}
+							If (StashTabYesUniqueDump)
+							{
+								Sleep, 200*Latency
+								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+								if (indexOfHex(Pitem, varEmptyInvSlotColor))
+									Continue
+								MoveStash(StashTabUniqueDump)
+								RandomSleep(45,45)
+								CtrlShiftClick(Grid.X,Grid.Y)
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	; Sorted items are sent together
+	If (OnStash && RunningToggle && YesStash)
+	{
+		If (YesSortFirst)
+		{
+			For Tab, Tv in SortFirst
+			{
+				If !RunningToggle
+				Break
+				For Items, Iv in Tv
+				{
+					If !RunningToggle
+					Break
+					MoveStash(Tab)
+					C := SortFirst[Tab][Items]["C"]
+					R := SortFirst[Tab][Items]["R"]
+					Item := SortFirst[Tab][Items]["Item"]
+					GridX := InventoryGridX[C]
+					GridY := InventoryGridY[R]
+					Grid := RandClick(GridX, GridY)
+					Sleep, 15*Latency
+					CtrlShiftClick(Grid.X,Grid.Y)
+					Sleep, 45*Latency
+					; Check for unique items
+					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
+					&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
+					{
+						If (StashTabYesUniqueRing && Item.Prop.Ring 
+						&& Tab != StashTabUniqueRing)
+						{
+							Sleep, 200*Latency
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+							; Check if the item is gone, if it is we can move on
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueRing)
+							RandomSleep(45,45)
+							CtrlShiftClick(Grid.X,Grid.Y)
+						}
+						If (StashTabYesUniqueDump)
+						{
+							Sleep, 200*Latency
+							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+							; Check if the item is gone, if it is we can move on
+							if (indexOfHex(Pitem, varEmptyInvSlotColor))
+								Continue
+							MoveStash(StashTabUniqueDump)
+							RandomSleep(45,45)
+							CtrlShiftClick(Grid.X,Grid.Y)
+						}
+					}
+				}
+			}
+		}
+		If (RunningToggle && (StockPortal||StockWisdom))
+		{
+			StockScrolls()
+		}
+		If (YesEnableLockerAutomation && HeistCount && RunningToggle)
+		{
+			SendHotkey(hotkeyCloseAllUI)
+			RandomSleep(45,90)
+			GuiStatus()
+			If (SearchLocker())
+			{
+				RandomSleep(45,90)
+				For k, v in HeistC
+				{
+					If !RunningToggle
+						Return
+					GridX := InventoryGridX[v]
+					GridY := InventoryGridY[ObjRawGet(HeistR, k)]
+					Grid := RandClick(GridX, GridY)
+					CtrlClick(Grid.X,Grid.Y)
+					RandomSleep(45,45)
+				}
+			}
+		}
+		; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
+		If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
+		{
+			SendHotkey(hotkeyCloseAllUI)
+			RandomSleep(45,90)
+			GuiStatus()
+			If SearchVendor()
+				VendorRoutine()
+		}
+	}
+	Return
+}
+
+; Search Vendor Routine
+SearchVendor()
+{
+	If OnHideout
+		SearchStr := VendorStr
+	Else If OnMines
+	{
+		SearchStr := VendorMineStr
+		Town := "Mines"
+	}
+	Else
+	{
+		Town := CompareLocation("Town")
+		If (Town = "Lioneye's Watch")
+			SearchStr := VendorLioneyeStr
+		Else If (Town = "The Forest Encampment")
+			SearchStr := VendorForestStr
+		Else If (Town = "The Sarn Encampment")
+			SearchStr := VendorSarnStr
+		Else If (Town = "Highgate")
+			SearchStr := VendorHighgateStr
+		Else If (Town = "Overseer's Tower")
+			SearchStr := VendorOverseerStr
+		Else If (Town = "The Bridge Encampment")
+			SearchStr := VendorBridgeStr
+		Else If (Town = "Oriath Docks")
+			SearchStr := VendorDocksStr
+		Else If (Town = "Oriath")
+			SearchStr := VendorOriathStr
+		Else If (Town = "The Rogue Harbour")
+			SearchStr := VendorHarbourStr
+		Else
+			Return
+	}
+	Sleep, 45*Latency
+	Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+	If (FirstAutomationSetting == "Search Stash" && !Vendor)
+	{
+		If (Town = "The Sarn Encampment")
+		{
+			LeftClick(GameX + GameW//6, GameY + GameH//1.5)
+			Sleep, 600
+			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+		}
+		Else If (Town = "Oriath Docks")
+		{
+			LeftClick(GameX + 5, GameY + GameH//2)
+			Sleep, 1200
+			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+		}
+		Else If (Town = "Mines")
+		{
+			LeftClick(GameX + GameW//3, GameY + GameH//5)
+			Sleep, 800
+			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+		}
+		Else If (Town = "The Rogue Harbour")
+		{
+			LeftClick(GameX + GameW//3, GameY + GameH//1.3)
+			Sleep, 800
+			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+		}
+	}
+	If (!Vendor)
+		Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
+	if (Vendor)
+	{
+		LeftClick(Vendor.1.x, Vendor.1.y)
+		Sleep, 60
+		Loop, 66
+		{
+			If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
+			{
+				Sleep, 30*Latency
+				LeftClick(Sell.1.x,Sell.1.y)
+				Sleep, 120*Latency
+				Return True
+			}
+			Else If !Mod(A_Index, 20)
+			{
+				If (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+					LeftClick(Vendor.1.x, Vendor.1.y)
+			}
+			Sleep, 50
+		}
+	}
+	Return False
+}
+
+; DivRoutine - Does divination trading function
+DivRoutine()
+{
+	BlackList := Array_DeepClone(IgnoredSlot)
+	ShooMouse(), GuiStatus(), ClearNotifications()
+	; Main loop through inventory
+	For C, GridX in InventoryGridX
+	{
+		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
+		For R, GridY in InventoryGridY
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If BlackList[C][R]
+				Continue
+			Grid := RandClick(GridX, GridY)
+			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+			{   
+				Ding(500,11,"Hit Scroll")
+				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+			} 
+			PointColor := FindText.GetColor(GridX,GridY)
+			
+			If indexOf(PointColor, varEmptyInvSlotColor) {
+				;Seems to be an empty slot, no need to clip item info
+				Continue
+			}
+			
+			ClipItem(Grid.X,Grid.Y)
+			addToBlacklist(C, R)
+			; Trade full div stacks
+			If (OnDiv && YesDiv) 
+			{
+				If (Item.Prop.RarityDivination && (Item.Prop.Stack = Item.Prop.StackMax)){
+					CtrlClick(Grid.X,Grid.Y)
+					RandomSleep(150,200)
+					LeftClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivTrade.Y)
+					Sleep, Abs(ClickLatency*15)
+					CtrlClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivItem.Y)
+					Sleep, Abs(ClickLatency*15)
+				}
+				Continue
+			}
+		}
+	}
+	Return
+}
+; IdentifyRoutine - Does basic function when not at other windows
+IdentifyRoutine()
+{
+	BlackList := Array_DeepClone(IgnoredSlot)
+	ShooMouse(), GuiStatus(), ClearNotifications()
+	; Main loop through inventory
+	For C, GridX in InventoryGridX
+	{
+		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
+		For R, GridY in InventoryGridY
+		{
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If BlackList[C][R]
+				Continue
+			Grid := RandClick(GridX, GridY)
+			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
+			{   
+				Ding(500,11,"Hit Scroll")
+				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
+			} 
+			PointColor := FindText.GetColor(GridX,GridY)
+			
+			If indexOf(PointColor, varEmptyInvSlotColor) {
+				;Seems to be an empty slot, no need to clip item info
+				Continue
+			}
+			
+			ClipItem(Grid.X,Grid.Y)
+			addToBlacklist(C, R)
+			; id if necessary
+			If CheckToIdentify()
+			{
+				WisdomScroll(Grid.X,Grid.Y)
+				ClipItem(Grid.X,Grid.Y)
+			}
+		}
+	}
+	Return
+}
+; ItemInfo - Display information about item under cursor
+ItemInfo(){
+	ItemInfoCommand:
+	MouseGetPos, Mx, My
+	ClipItem(Mx, My)
+	Item.ItemInfo()
+	Return
+}
+; MoveStash - Input any digit and it will move to that Stash tab
+MoveStash(Tab,CheckStatus:=0)
+{
+	If CheckStatus
+	{
+		If !GuiStatus("OnStash")
+		{
+			Notify("Was not able to verify OnStash","",2)
+			Return
+		}
+		CurrentTab := 0
+	}
+	If (CurrentTab==Tab)
+		return
+	If (CurrentTab!=Tab) 
+	{
+		Sleep, 60*Latency
+		Dif:=(CurrentTab-Tab)
+		If (CurrentTab = 0)
+		{
+			If (OnChat)
+			{
+				Send {Escape}
+				Sleep, 15
+			}
+			Loop 99
+				send {Left}
+			Loop % Tab - 1
+				send {Right}
+			CurrentTab:=Tab
+			Sleep, 210*Latency
+		}
+		Else
+		{
+			Loop % Abs(Dif)
+			{
+				If (Dif > 0)
+					SendInput {Left}
+				Else
+					SendInput {Right}
+			}
+			CurrentTab:=Tab
+			Sleep, 210*Latency
+		}
+	}
+	If (Tab == StashTabMap)
+	{
+		Sleep, 500*Latency
+	}
+	Else If (Tab == StashTabUnique)
+	{
+		Sleep, 500*Latency
+	}
+	return
+}
+; StockScrolls - Restock scrolls that have more than 10 missing
+StockScrolls(){
+	BlockInput, MouseMove
+	If StockWisdom{
+		ClipItem(WisdomScrollX, WisdomScrollY)
+		dif := (40 - Item.Prop.Stack_Size)
+		If(Item.Prop.ItemBase != "Scroll of Wisdom" && !(Item.Prop.ItemBase ~= "\w+"))
+			dif := 40
+		Else If(Item.Prop.ItemBase != "Scroll of Wisdom" && (Item.Prop.ItemBase ~= "\w+"))
+			dif := 0
+		If (dif>10)
+		{
+			MoveStash(StashTabCurrency)
+			ClipItem(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
+			If (Item.Prop.Stack_Size >= dif){
+				ShiftClick(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
+				Sleep, 60*Latency
+				Send %dif%
+				Sleep, 60*Latency
+				Send {Enter}
+				Sleep, 90*Latency
+				LeftClick(WisdomScrollX, WisdomScrollY)
+				Sleep, 90*Latency
+			}
+		}
+	}
+	If StockPortal{
+		ClipItem(PortalScrollX, PortalScrollY)
+		dif := (40 - Item.Prop.Stack_Size)
+		If(Item.Prop.ItemBase != "Portal Scroll" && !(Item.Prop.ItemBase ~= "\w+"))
+			dif := 40
+		Else If(Item.Prop.ItemBase != "Portal Scroll" && (Item.Prop.ItemBase ~= "\w+"))
+			dif := 0
+		If (dif>10)
+		{
+			MoveStash(StashTabCurrency)
+			ClipItem(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
+			If (Item.Prop.Stack_Size >= dif){
+				ShiftClick(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
+				Sleep, 60*Latency
+				Send %dif%
+				Sleep, 60*Latency
+				Send {Enter}
+				Sleep, 90*Latency
+				LeftClick(PortalScrollX, PortalScrollY)
+				Sleep, 90*Latency
+			}
+		}
+	}
+	BlockInput, MouseMoveOff
+	return
+}
+addToBlacklist(C, R){
+  Loop % Item.Prop.Item_Height
+  {
+    addNum := A_Index - 1
+    addR := R + addNum
+    addC := C + 1
+    If !IsObject(BlackList[C])
+      BlackList[C] := []
+    BlackList[C][addR] := True
+    If Item.Prop.Item_Width = 2
+    {
+      If !IsObject(BlackList[addC])
+        BlackList[addC] := []
+      BlackList[addC][addR] := True
+    }
+  }
+}

@@ -1607,7 +1607,7 @@ If they are not registering, go to hideout and run the wizard
 Once your done, save your configuration and your new samples are set!
 
 The reason for all this adjustment, is to standardize the script for a faster method
-Complete replacement of PixelGetColor with ScreenShot and ScreenShot_GetColor
+Complete replacement of PixelGetColor with ScreenShot and FindText.GetColor
     This provides a massive speed increase for all the pixel sampling
     Instead of sampling the screen multiple times, we capture once and reuse
     This also solves issues of false positives where the screen has changed
