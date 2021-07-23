@@ -1,4 +1,37 @@
-﻿## Version .13.0203 - Alpha version - June/24/2021
+﻿## Version .14.00 - Master version - July/23/2021
+Merging all Alpha Changes to Master Branch
+
+New custom injections are now available
+* Open your save folder to edit them
+* AutoRun is where to add custom hotkeys
+* Lib is for adding custom functions/classes
+* Routine is for injecting into the game loop
+  * Avoid adding any Sleep timers to the game loop
+  * If you want help setting up a custom routine, message me on discord
+
+New spam clicking function
+* For now it must be configured inside your MyCustomAutoRun.ahk file
+* When I finally get time, I will add it to the hotkey menu
+* Here is an example of setting it up:
+```AHK
+XButton1::SpamClick("On","Ctrl")
+XButton1 Up::SpamClick("Off")
+```
+
+Expedition Item types have been added
+* Took a glance at the item filter changes
+* New item class added, and new currency given specialtype
+* Please report any new item issues once the league is active
+
+In order to make the editing of the script easier it has been split
+* Everything that was inside the Library.ahk file has been moved
+* Many portions of the main script have been moved out
+* This should help with editing each individual portion
+* It is recommended to edit this project using VSCode
+
+---
+
+## Version .13.0203 - Alpha version - June/24/2021
 The Liberation is Successful!
 * The main script is less than 40 lines
 * All portions of the script have been compartmentalized
