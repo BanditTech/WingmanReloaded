@@ -8,6 +8,30 @@ SwiftClick(x, y){
 	Sleep, 30+(ClickLatency*15)
 	return
 }
+SpamClick(Toggle:="",Modifier:=""){
+	Static Spam := False
+	If (Toggle != "") {
+		If (Toggle == 1 || Toggle == 0)
+			Spam := Toggle
+		Else If (Toggle = "True" || Toggle = "true" || Toggle = "on" || Toggle = "On")
+			Spam := True
+		Else If (Toggle = "False" || Toggle = "false" || Toggle = "off" || Toggle = "Off")
+			Spam := False
+	} Else
+			Spam := !Spam
+	If (Modifier != "") {
+		Send {%Modifier% Down}
+		Sleep, 60+(ClickLatency*15)
+	}
+	While Spam {
+		Send {Click}
+		Sleep, 60+(ClickLatency*15)
+	}
+	If (Modifier != "") {
+		Send {%Modifier% Up}
+		Sleep, 60+(ClickLatency*15)
+	}
+}
 ; LeftClick - Left Click at Coord
 LeftClick(x, y){
 	Log("LeftClick: " x ", " y)
