@@ -435,6 +435,10 @@
 				This.Prop.Expedition := True
 				This.Prop.Artifact := True
 				This.Prop.SpecialType := "Expedition Artifact"
+				If (This.Prop.ItemBase ~= "^Greater" || This.Prop.ItemBase ~= "^Grand")
+					This.Prop.Item_Height := 2
+				If (This.Prop.ItemBase ~= "^Grand")
+					This.Prop.Item_Width := 2
 			}
 			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
 				This.Prop.Expedition := True
