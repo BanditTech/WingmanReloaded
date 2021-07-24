@@ -1,4 +1,12 @@
-﻿## Version .14.0002 - Alpha version - July/23/2021
+﻿## Version .14.0003 - Alpha version - July/24/2021
+Bugfixes
+* Fix Jewel
+* Fix perfect object miscount
+* Add width/height to artifacts
+
+---
+
+## Version .14.0002 - Alpha version - July/23/2021
 New global Prop PercentageAffix
 * This fixes the perfect unique calculations
 * Uniques will once again be vendored based on their affix percentage
