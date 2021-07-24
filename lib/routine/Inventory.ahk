@@ -512,13 +512,6 @@ StashRoutine()
 					Sleep, -1
 				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) && ((Item.Prop.RarityNormal && YesSkipMaps_normal) || (Item.Prop.RarityMagic && YesSkipMaps_magic) || (Item.Prop.RarityRare && YesSkipMaps_rare) || (Item.Prop.RarityUnique && YesSkipMaps_unique)))
 					Continue
-				Else If (Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint" || Item.Prop.SpecialType = "Heist Marker")
-				{
-					HeistC.Push(C)
-					HeistR.Push(R)
-					++HeistCount
-					Continue
-				}
 				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps
 				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
 				&& ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
@@ -644,26 +637,6 @@ StashRoutine()
 		If (RunningToggle && (StockPortal||StockWisdom))
 		{
 			StockScrolls()
-		}
-		If (YesEnableLockerAutomation && HeistCount && RunningToggle)
-		{
-			SendHotkey(hotkeyCloseAllUI)
-			RandomSleep(45,90)
-			GuiStatus()
-			If (SearchLocker())
-			{
-				RandomSleep(45,90)
-				For k, v in HeistC
-				{
-					If !RunningToggle
-						Return
-					GridX := InventoryGridX[v]
-					GridY := InventoryGridY[ObjRawGet(HeistR, k)]
-					Grid := RandClick(GridX, GridY)
-					CtrlClick(Grid.X,Grid.Y)
-					RandomSleep(45,45)
-				}
-			}
 		}
 		; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
 		If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))

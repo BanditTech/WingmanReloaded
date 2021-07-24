@@ -9,6 +9,7 @@
 		This.Affix := OrderedArray()
 		This.Prop := OrderedArray()
 		This.Modifier := OrderedArray()
+		This.Percent := {}
 		; Split our sections from the clipboard
 		; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
 		For SectionKey, SVal in This.Data.Sections
@@ -397,7 +398,7 @@
 				This.Prop.AbyssJewel := True
 				This.Prop.Jewel := True
 			}
-			Else If (This.Prop.ItemClass = "Jewel")
+			Else If (This.Prop.ItemClass = "Jewels")
 			{
 				If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
 				{
@@ -431,11 +432,23 @@
 			}
 			Else If (This.Prop.ItemBase ~= " Artifact$")
 			{
-				If (This.Prop.RarityCurrency)
-				{
-					This.Prop.Artifact := True
-					This.Prop.SpecialType := "Artifact"
-				}
+				This.Prop.Expedition := True
+				This.Prop.Artifact := True
+				This.Prop.SpecialType := "Expedition Artifact"
+				If (This.Prop.ItemBase ~= "^Greater" || This.Prop.ItemBase ~= "^Grand")
+					This.Prop.Item_Height := 2
+				If (This.Prop.ItemBase ~= "^Grand")
+					This.Prop.Item_Width := 2
+			}
+			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
+				This.Prop.Expedition := True
+				This.Prop.ExpeditionCurrency := True
+				This.Prop.SpecialType := "Expedition Currency"
+			}
+			Else If (InStr(This.Prop.ItemBase, "Expedition Logbook"))
+			{
+				This.Prop.Expedition := True
+				This.Prop.SpecialType := "Expedition Logbook"
 			}
 			Else If (This.Prop.ItemBase ~= " Oil$")
 			{
@@ -496,12 +509,12 @@
 					}
 				}
 			}
-			Else If (This.Prop.ItemClass = "Contract")
+			Else If (This.Prop.ItemClass = "Contracts")
 			{
 				This.Prop.Heist := True
 				This.Prop.SpecialType := "Heist Contract"
 			}
-			Else If (This.Prop.ItemClass = "Blueprint")
+			Else If (This.Prop.ItemClass = "Blueprints")
 			{
 				This.Prop.Heist := True
 				This.Prop.SpecialType := "Heist Blueprint"
@@ -516,11 +529,6 @@
 				This.Prop.Heist := True
 				This.Prop.SpecialType := "Heist Marker"
 			}
-			Else If (InStr(This.Prop.ItemBase, "Expedition Logbook"))
-			{
-				This.Prop.Expedition := True
-				This.Prop.SpecialType := "Expedition Logbook"
-			}
 			Else If (indexOf(This.Prop.ItemBase, HeistGear))
 			{
 				This.Prop.Heist := True
@@ -530,9 +538,6 @@
 					This.Prop.Item_Width := This.Prop.Item_Height := 1
 				Else
 					This.Prop.Item_Width := This.Prop.Item_Height := 2
-			}
-			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
-				This.Prop.ExpeditionCurrency := True
 			}
 		}
 		;End NamePlate Parser
@@ -1437,6 +1442,40 @@
 			Else
 				This.Affix[key] := True
 			LastLine := line
+
+			If (A_LoopField ~= rxNum "\(-*" rxNum "-*" rxNum "\)") {
+				EndValue := 0
+				Position := 1
+				While RegExMatch(A_LoopField, "O`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", RxMatch, Position) {
+					Position := RxMatch.Len(0) + RxMatch.Pos(0)
+					Value := RxMatch.Value(1)
+					Range1 := RxMatch.Value(2)
+					Range2 := RxMatch.Value(3)
+					Perc := This.perc(Value,[Range1,Range2])
+					EndEntries := A_Index
+					EndValue += Perc
+				}
+				EndValue := EndValue / EndEntries
+				If !This.Percent.HasKey(Key)
+					This.Percent[key] := EndValue
+				Else {
+					Loop {
+						If !This.Percent.HasKey(Key A_Index + 1){
+							This.Percent[Key A_Index + 1] := EndValue
+							Break
+						}
+					}
+				}
+			}
+		}
+		If This.Percent.Count() {
+			This.Prop.PercentageAffix := 0
+			For mod, val in This.Percent {
+				This.Prop.PercentageAffix += val
+			}
+			This.Prop.PercentageAffix := Round(This.Prop.PercentageAffix / This.Percent.Count(),2)
+		} Else {
+			This.Prop.PercentageAffix := 100
 		}
 	}
 	CheckIfActualHybridMod(value){
@@ -2595,6 +2634,10 @@
 		}
 		Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap)
 			sendstash := StashTabNinjaPrice
+		Else If (This.Prop.Expedition)
+			Return -2
+		Else If (This.Prop.Heist)
+			Return -2
 		Else If (This.Prop.Incubator)
 			Return -1
 		;Affinities
@@ -2657,7 +2700,7 @@
 				sendstash := StashTabDelve
 		}
 		Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
-		&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.UniquePercentage >= StashTabUniquePercentage) ) )
+		&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) )
 		{
 			If (StashTabYesUnique = 2)
 				Return -2
@@ -2669,7 +2712,7 @@
 			sendstash := StashTabUniqueDump
 		}
 		Else If ( ((StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
-		&& (StashTabYesUniquePercentage && This.Prop.UniquePercentage < StashTabUniquePercentage)  )
+		&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage)  )
 		{
 			If (StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring)
 			sendstash := StashTabUniqueRing
@@ -2955,22 +2998,13 @@
 	ApproximatePerfection(){
 		For ku, unique in WR.data.Perfect
 		{
-			If (match := This.ValidateUniqueModKeys(unique,ku))
-			{
-				tally := 0
-				For k, value in This.Data.Percentage
-				{
-					tally += value
-				}
-				This.Prop.UniquePercentage := This.Data.Percentage.Count()?(Round((tally / This.Data.Percentage.Count()),2)) : 100
-				If (match = "mismatch") ; Item is a mismatch
-					This.Prop.UniquePercentageError := "Stat/Range mismatch"
-				else If (match = "nodata") ; Item has no explicit data
-					This.Prop.UniquePercentageError := "Item DB has no explicits"
+			If ( This.Prop.ItemName = unique.name ) {
 				If unique.pricePerfect
 				{
-					perccalc := This.percval(This.Prop.UniquePercentage,[unique.mean,unique.pricePerfect]) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100) * (This.Prop.UniquePercentage/100)
-					This.Prop.UniquePerfectValue := perccalc >= unique.mean ? perccalc : unique.mean
+					perccalc := This.percval(This.Prop.PercentageAffix,[unique.mean,unique.pricePerfect]) * (This.Prop.PercentageAffix/90)
+					This.Prop.UniquePerfectValue := perccalc < unique.mean ? unique.mean 
+					: perccalc > unique.pricePerfect ? unique.pricePerfect 
+					: perccalc
 					This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
 					This.Prop.UniquePerfectMaxVal := unique.pricePerfect
 				} Else {
@@ -2981,72 +3015,9 @@
 				Return
 			}
 		}
-		If !match
-		Log("Unique Mod Database Missing","`t"This.Prop.ItemName,"`t"This.Prop.ItemBase,"`nItem.Affix : "JSON_Beautify(This.Affix,,1))
-		, This.Prop.UniquePercentageError := "Item not in DB"
-
-	}
-	ValidateUniqueModKeys(unique,key){
-		If (This.Prop.ItemName = unique.name)
-		{
-			UniqueMatchingKey := True
-			UniqueMisMatchMods := ""
-			This.Data.Percentage := {}
-			If IsObject(unique.explicits) 
-			{
-				for k, mod in unique.explicits
-				{
-					If !This.Affix[mod.key]
-						UniqueMisMatchMods .= "`n  [ " mod.key " ]"
-					Else If !mod.isvar
-						continue
-						; This.Data.Percentage[mod.key] := ""
-					Else If (mod.ranges.Count() == 1 && mod.text ~= "\d[ a-zA-Z%]*\(\d+-\d+\)")
-					{
-						If (This.Affix[mod.key "_Value2"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.1.2)
-						|| (This.Affix[mod.key "_Value2"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.1.2)
-						{
-							This.Data.Percentage[mod.key] := This.perc(This.Affix[mod.key "_Value2"],mod.ranges.1)
-						}
-						Else
-							UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range1"
-					}
-					Else If (mod.ranges.Count() == 1)
-					{
-						If (This.Affix[mod.key] >= mod.ranges.1.1 && This.Affix[mod.key] <= mod.ranges.1.2)
-						|| (This.Affix[mod.key] <= mod.ranges.1.1 && This.Affix[mod.key] >= mod.ranges.1.2)
-						{
-							This.Data.Percentage[mod.key] := This.perc(This.Affix[mod.key], mod.ranges.1)
-						}
-						Else
-							UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range2"
-					}
-					Else If (mod.ranges.Count() == 2)
-					{
-						If ((This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
-							&& (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2))
-						|| ((This.Affix[mod.key "_Value1"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] >= mod.ranges.1.2)
-							&& (This.Affix[mod.key "_Value2"] <= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.2.2))
-						|| ((This.Affix[mod.key "_Value1"] <= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] >= mod.ranges.1.2)
-							&& (This.Affix[mod.key "_Value2"] >= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] <= mod.ranges.2.2))
-						|| ((This.Affix[mod.key "_Value1"] >= mod.ranges.1.1 && This.Affix[mod.key "_Value1"] <= mod.ranges.1.2)
-							&& (This.Affix[mod.key "_Value2"] <= mod.ranges.2.1 && This.Affix[mod.key "_Value2"] >= mod.ranges.2.2))
-						{
-							This.Data.Percentage[mod.key] := ( This.perc(This.Affix[mod.key "_Value1"], mod.ranges.1) + This.perc(This.Affix[mod.key "_Value2"], mod.ranges.2) ) / 2
-						}
-						Else
-							UniqueMisMatchMods .= "`n  [ " mod.key " ] Item is not within DB Mod Range3"
-					}
-				}
-			} Else
-				Return "nodata"
-			If !UniqueMisMatchMods
-				Return key
-			Else
-				Log("Unique Mod Database Mismatch","`t"This.Prop.ItemName,"`t"This.Prop.ItemBase,"`nKeys which are mismatched:"UniqueMisMatchMods,"`nItem.Affix : "JSON_Beautify(This.Affix,,1),"`nWR.data.Uniques["key "] : "JSON_Beautify(unique,,2))
-			Return "mismatch"
-		} Else 
-			Return False
+		This.Prop.UniquePerfectValue := 0
+		This.Prop.UniqueNormalMean := 0
+		This.Prop.UniquePerfectMaxVal := 0
 	}
 	perc(value,range){
 		Return abs(((value - range.1) * 100) / (range.2 - range.1))

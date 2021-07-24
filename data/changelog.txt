@@ -1,4 +1,40 @@
-﻿## Version .14.00 - Master version - July/23/2021
+﻿## Version .14.01 - Master version - July/24/2021
+Expedition Support is completed
+* Updated itembases have been given their plural
+  * Let us know if you find any we missed!
+* Artifacts have their width and height
+* Heist and Expedition always use affinity now
+  * Tick the affinity checkbox on each locker to enable
+  * This is mandatory step or it will not work
+* Percentages for unique items is fixed
+  * All items are now given a percentage for their affix ranges
+
+---
+
+## Version .14.0003 - Alpha version - July/24/2021
+Bugfixes
+* Fix Jewel
+* Fix perfect object miscount
+* Add width/height to artifacts
+
+---
+
+## Version .14.0002 - Alpha version - July/23/2021
+New global Prop PercentageAffix
+* This fixes the perfect unique calculations
+* Uniques will once again be vendored based on their affix percentage
+* All items no matter the rarity now also get affix percentage prop
+
+---
+
+## Version .14.0001 - Alpha version - July/23/2021
+Updating to support Heist and Expedition Affinity
+* You will need to turn on affinity in the checkbox for each locker
+* Old method of finding the locker is removed
+
+---
+
+## Version .14.00 - Master version - July/23/2021
 Merging all Alpha Changes to Master Branch
 
 New custom injections are now available
