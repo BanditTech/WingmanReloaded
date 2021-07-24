@@ -1,4 +1,11 @@
-﻿## Version .14.00 - Master version - July/23/2021
+﻿## Version .14.0001 - Alpha version - July/23/2021
+Updating to support Heist and Expedition Affinity
+* You will need to turn on affinity in the checkbox for each locker
+* Old method of finding the locker is removed
+
+---
+
+## Version .14.00 - Master version - July/23/2021
 Merging all Alpha Changes to Master Branch
 
 New custom injections are now available
