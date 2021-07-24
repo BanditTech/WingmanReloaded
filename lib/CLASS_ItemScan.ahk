@@ -398,7 +398,7 @@
 				This.Prop.AbyssJewel := True
 				This.Prop.Jewel := True
 			}
-			Else If (This.Prop.ItemClass = "Jewel")
+			Else If (This.Prop.ItemClass = "Jewels")
 			{
 				If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
 				{
