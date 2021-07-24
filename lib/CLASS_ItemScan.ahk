@@ -9,7 +9,7 @@
 		This.Affix := OrderedArray()
 		This.Prop := OrderedArray()
 		This.Modifier := OrderedArray()
-		This.Percent := OrderedArray()
+		This.Percent := {}
 		; Split our sections from the clipboard
 		; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
 		For SectionKey, SVal in This.Data.Sections
@@ -1439,8 +1439,8 @@
 				This.Affix[key] := True
 			LastLine := line
 
-			EndValue := 0
 			If (A_LoopField ~= rxNum "\(-*" rxNum "-*" rxNum "\)") {
+				EndValue := 0
 				Position := 1
 				While RegExMatch(A_LoopField, "O`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", RxMatch, Position) {
 					Position := RxMatch.Len(0) + RxMatch.Pos(0)
