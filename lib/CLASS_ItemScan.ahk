@@ -431,11 +431,19 @@
 			}
 			Else If (This.Prop.ItemBase ~= " Artifact$")
 			{
-				If (This.Prop.RarityCurrency)
-				{
-					This.Prop.Artifact := True
-					This.Prop.SpecialType := "Artifact"
-				}
+				This.Prop.Expedition := True
+				This.Prop.Artifact := True
+				This.Prop.SpecialType := "Expedition Artifact"
+			}
+			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
+				This.Prop.Expedition := True
+				This.Prop.ExpeditionCurrency := True
+				This.Prop.SpecialType := "Expedition Currency"
+			}
+			Else If (InStr(This.Prop.ItemBase, "Expedition Logbook"))
+			{
+				This.Prop.Expedition := True
+				This.Prop.SpecialType := "Expedition Logbook"
 			}
 			Else If (This.Prop.ItemBase ~= " Oil$")
 			{
@@ -496,12 +504,12 @@
 					}
 				}
 			}
-			Else If (This.Prop.ItemClass = "Contract")
+			Else If (This.Prop.ItemClass = "Contracts")
 			{
 				This.Prop.Heist := True
 				This.Prop.SpecialType := "Heist Contract"
 			}
-			Else If (This.Prop.ItemClass = "Blueprint")
+			Else If (This.Prop.ItemClass = "Blueprints")
 			{
 				This.Prop.Heist := True
 				This.Prop.SpecialType := "Heist Blueprint"
@@ -516,11 +524,6 @@
 				This.Prop.Heist := True
 				This.Prop.SpecialType := "Heist Marker"
 			}
-			Else If (InStr(This.Prop.ItemBase, "Expedition Logbook"))
-			{
-				This.Prop.Expedition := True
-				This.Prop.SpecialType := "Expedition Logbook"
-			}
 			Else If (indexOf(This.Prop.ItemBase, HeistGear))
 			{
 				This.Prop.Heist := True
@@ -530,9 +533,6 @@
 					This.Prop.Item_Width := This.Prop.Item_Height := 1
 				Else
 					This.Prop.Item_Width := This.Prop.Item_Height := 2
-			}
-			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
-				This.Prop.ExpeditionCurrency := True
 			}
 		}
 		;End NamePlate Parser
@@ -2595,6 +2595,10 @@
 		}
 		Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap)
 			sendstash := StashTabNinjaPrice
+		Else If (This.Prop.Expedition)
+			Return -2
+		Else If (This.Prop.Heist)
+			Return -2
 		Else If (This.Prop.Incubator)
 			Return -1
 		;Affinities
