@@ -687,7 +687,8 @@ SearchVendor()
 	}
 	Sleep, 45*Latency
 	Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
-	If (FirstAutomationSetting == "Search Stash" && !Vendor)
+	Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0)
+	If (FirstAutomationSetting == "Search Stash" && !Vendor && !Sell)
 	{
 		If (Town = "The Sarn Encampment")
 		{
@@ -736,6 +737,11 @@ SearchVendor()
 			}
 			Sleep, 50
 		}
+	} Else If (Sell)	{
+		Sleep, 30*Latency
+		LeftClick(Sell.1.x,Sell.1.y)
+		Sleep, 120*Latency
+		Return True
 	}
 	Return False
 }
