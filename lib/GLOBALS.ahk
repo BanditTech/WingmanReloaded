@@ -478,6 +478,7 @@
 
 		, 1080_FenceStr := "|<1080 Fence>*40$48.0TzzzzzzUDzzzzzzbDzjvyDzbs37ls20bwnXllXAbwzVnXrDUQzUnbzDUw7UHbz1bw7Y3bz1bwza3XzDbwzb3XzDbwzbXlnDbw3bnk70zzzzzwTzU"
 
+		, 1440_JunStr := "|<1440 Jun>*89$45.zzzzzzzzzzzzzzzz3zzzzzzsTzzzzzz3zzzzzzsSDltzXz3lyD7wTsSDlsTnz3lyD1yTsSDls7nz3lyD0STsSDlsVnz3lyD66TsSDlssHz3lyD70TsSDlsw3z3kyT7kTsT03sz3z7w0z7wTszsTzzzz7zzzzzzlzzzzzzwTzzzzzzbzzzzzzU"
 	Global 1080_ChestStr := "|<1080 Door>*100$47.zzzzzzzz0zzzzzzy0TzzzzzwwTnznzztsS1y1s3nstltllbblXnXnX7DXDXDX6CT6T6T6AwyAyAyA3twNwNwM7ntltltl7b7lXlXX70TkTkT77zzvzvzzzzzzzzzzs"
 		, 1080_ChestStr .= "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
 		, 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
