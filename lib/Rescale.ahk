@@ -136,7 +136,7 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
       ;Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/175))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/120))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
       ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1920/605))
@@ -264,9 +264,8 @@ Rescale(){
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1440/1178))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
-              ;Currency
-        ;Scouring 175,476
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1440/175))
+      ;Scouring
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1440/120))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
         ;Chisel 605,220
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1440/605))
@@ -402,8 +401,6 @@ Rescale(){
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(2560/2298))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
-      ;Currency
-        ;Scouring 175,476
       ;Chance
       WR.loc.pixel.Chance.X:=GameX + Round(GameW/(2560/230))
       WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
@@ -417,7 +414,8 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2560/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
 
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/175))
+      ;Scouring 175,476
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/120))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
         ;Chisel 605,220
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(2560/605))
@@ -548,7 +546,6 @@ Rescale(){
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3440/3090))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1440/1202))
-      ;Currency
       ;Chance
       WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
       WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
@@ -562,9 +559,8 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
 
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/235))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/190))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/590))
-        ;Chisel 810,290
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3440/810))
       WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1440/250))
         ;Alchemy 655,390
@@ -703,7 +699,7 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3840/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
 
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/175))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/120))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
         ;Chisel 605,220
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3840/605))
@@ -854,8 +850,8 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
 
-      ;Scouring 175,460
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1680/175))
+      ;Scouring
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1680/120))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1050/430))      
       
       ;Chisel 590,210
