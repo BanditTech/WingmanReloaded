@@ -36,6 +36,9 @@
 	IniRead, ShowPixelGrid, %A_ScriptDir%\save\Settings.ini, General, ShowPixelGrid, 0
 	IniRead, ShowItemInfo, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo, 0
 	IniRead, LootVacuum, %A_ScriptDir%\save\Settings.ini, General, LootVacuum, 0
+	IniRead, LootVacuumTapZ, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZ, 1
+	IniRead, LootVacuumTapZEnd, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZEnd, 1
+	IniRead, LootVacuumTapZSec, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZSec, 3
 	IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
 	IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
 	IniRead, YesHeistLocker, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker, 1

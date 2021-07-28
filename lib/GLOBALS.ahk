@@ -240,6 +240,9 @@
 		hotkeyWeaponSwapKey = Put your ingame assigned hotkey to Weapon Swap here
 		hotkeyLootScan = Put your ingame assigned hotkey for Item Pickup Key here
 		LootVacuum = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
+		LootVacuumTapZ = When pressing the loot key, it will tap z two times to refresh the location of loot on the floor.
+		LootVacuumTapZEnd = This will make the loot resort when releasing the key.
+		LootVacuumTapZSec = How many seconds should elapse between resorting loot.
 		LootVacuumSettings = Assign your own loot colors and adjust the AreaScale and delay`rAlso contains options for openable containers
 		PopFlaskRespectCD = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
 		LaunchHelp = Opens the AutoHotkey List of Keys
@@ -538,6 +541,9 @@
 	Global AreaScale := 0
 	Global LVdelay := 0
 	Global LootVacuum := 1
+	Global LootVacuumTapZ := 1
+	Global LootVacuumTapZEnd := 1
+	Global LootVacuumTapZSec := 3
 	Global YesVendor := 1
 	Global YesStash := 1
 	Global YesHeistLocker := 1

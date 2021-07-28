@@ -52,6 +52,9 @@ UpdateExtra:
 	IniWrite, %ScriptUpdateTimeInterval%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval
 	IniWrite, %ScriptUpdateTimeType%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType
 	IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
+	IniWrite, %LootVacuumTapZ%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZ
+	IniWrite, %LootVacuumTapZEnd%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZEnd
+	IniWrite, %LootVacuumTapZSec%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZSec
 	IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
 	IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
 	IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker

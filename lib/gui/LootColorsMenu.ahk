@@ -7,7 +7,11 @@
 		gui,LootColors: new, LabelLootColors
 		gui,LootColors: -MinimizeBox
 		Gui LootColors: Add, Checkbox, section gUpdateExtra  vLootVacuum Checked%LootVacuum%   xm+5 ym+8 , Enable Loot Vacuum
-		
+		Gui LootColors: Add, Checkbox,  gUpdateExtra  vLootVacuumTapZ Checked%LootVacuumTapZ%   x+5 yp , Double tap Z
+		Gui LootColors: Add, Checkbox,  gUpdateExtra  vLootVacuumTapZEnd Checked%LootVacuumTapZEnd%   x+5 yp , on release
+		Gui LootColors: Add, Text,  x+5 yp , %LootVacuumTapZSec%
+		Gui LootColors: Add, UpDown,  gUpdateExtra  vLootVacuumTapZSec range1-10, %LootVacuumTapZSec%
+
 		Gui,LootColors: Add, DropDownList, gUpdateExtra vAreaScale w45 xm+5 y+8,  0|30|40|50|60|70|80|90|100|200|300|400|500
 		GuiControl,LootColors: ChooseString, AreaScale, %AreaScale%
 		Gui,LootColors: Add, Text,                     x+3 yp+5              , Area around mouse
