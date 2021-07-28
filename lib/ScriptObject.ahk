@@ -13,6 +13,7 @@ for k, v in []
 WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
 WR.cdExpires.Binding.Move := ""
 WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1","PopAll":"0"}
+WR.func.failsafe := {"OHB":"1"}
 WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
 	, "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
 	, "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"

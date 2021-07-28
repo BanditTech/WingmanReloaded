@@ -71,7 +71,7 @@ TGameTick(GuiCheck:=True){
 					}
 				Exit
 			}
-			Else If (YesOHB && !CheckOHB())
+			Else If (YesOHB && !(WR.func.failsafe.OHB := CheckOHB()))
 			{
 				If CheckTime("seconds",1,"StatusBar1")
 					SB_SetText("Script paused while no OHB", 1)
@@ -214,7 +214,7 @@ TGameTick(GuiCheck:=True){
 			}
 		}
 
-		If (WR.func.Toggle.Move)
+		If (WR.func.Toggle.Move && GuiCheck())
 		{
 			Loop 5
 				If WR.Flask[A_Index].Move
