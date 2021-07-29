@@ -422,25 +422,29 @@ WR_Menu(Function:="",Var*){
 
     Gui, Inventory: Tab, Chaos Recipe
     Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,Section w170 h255 xm+5 ym+25, Chaos Recipe Options
+      Gui, Inventory: Add, GroupBox,Section w175 h265 xm+5 ym+25, Chaos Recipe Options
       Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeUnloadAll Checked%ChaosRecipeUnloadAll% xs yp+20, Sell all sets back to back
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweler/Chroma Items
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs yp+20, Allow 2x Jewellery limit
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs yp+20, Allow 2x Belt limit
-        Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs yp+20 w50 center
-        Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
-        Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
-        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+22, Only stash Small Weap/Shield
+
+        Gui, Inventory: Add, GroupBox, w150 h50 xs y+5, Max # of each part
+        Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingIDUpDown xp+5 yp+20 w40 center
+        Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHoldingID , %ChaosRecipeMaxHoldingID%
+        Gui, Inventory: Add, Text, x+5 yp+3, ID
+        Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUNIDUpDown x+5 yp-3 w40 center
+        Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHoldingUNID , %ChaosRecipeMaxHoldingUNID%
+        Gui, Inventory: Add, Text, x+5 yp+3, UNID
+        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+32, Limit Weapons 1x3/2x2
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs yp+22, Leave Recipe Rare Un-Id
-        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSeperateCount Checked%ChaosRecipeSeperateCount% xs yp+22, Seperate count for Un-Id
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeOnlyUnId Checked%ChaosRecipeOnlyUnId% xs yp+22, Only Stash UnId in Range
         Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs yp+20 w50 center
         Gui, Inventory: Add, UpDown,gSaveChaos Range70-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
         Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,Section w170 h80 xs-5 y+25, Chaos Recipe Type
+      Gui, Inventory: Add, GroupBox,Section w175 h80 xs-10 y+25, Chaos Recipe Type
       Gui, Inventory: Font,
         Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
         Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl

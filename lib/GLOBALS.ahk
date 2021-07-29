@@ -272,7 +272,8 @@
 	ft_ToolTip_Text_Part2=
 		(LTrim
 		ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
-		ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
+		ChaosRecipeMaxHoldingID = Determine how many sets of identified Chaos Recipe to stash
+		ChaosRecipeMaxHoldingUNID = Determine how many sets of unidentified Chaos Recipe to stash
 		ChaosRecipeTypePure = Recipe will affect items which are between 60-74 which have not met other stash/CLF filters`ronly draw items within that range from stash for chaos recipe.
 		ChaosRecipeTypeHybrid = Recipe will affect all rares 60+ which have not met other stash/CLF filters`rRequires at least one lvl 60-74 item to make a recipe set`rPriority is given to regal items.
 		ChaosRecipeTypeRegal = Recipe will affect items which are 75+ which have not met other stash/CLF filters`ronly draw items for regal recipe from stash.
@@ -280,7 +281,6 @@
 		ChaosRecipeAllowDoubleBelt = Belts will be given double allowance of Parts limit
 		ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
 		ChaosRecipeSmallWeapons = Stash 1x3 or 2x2 Weapons and Shields only, filtering bulky items from wasting space.
-		ChaosRecipeSeperateCount = Seperate the count of Identified and Unidentified items.
 		ChaosRecipeOnlyUnId = When using Unidentified mode, should only UnId items be stashed?
 		ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
 		ChaosRecipeStashTabHelmet = Assign the Stash Tab that Helmets will be sorted into.
@@ -594,13 +594,13 @@
 	Global ChaosRecipeUnloadAll := True
 	Global ChaosRecipeEnableUnId := True
 	Global ChaosRecipeSmallWeapons := True
-	Global ChaosRecipeSeperateCount := True
 	Global ChaosRecipeOnlyUnId := True
 	Global ChaosRecipeSkipJC := True
 	Global ChaosRecipeLimitUnId := 74
 	Global ChaosRecipeAllowDoubleJewellery := True
 	Global ChaosRecipeAllowDoubleBelt := True
-	Global ChaosRecipeMaxHolding := 12
+	Global ChaosRecipeMaxHoldingID := 12
+	Global ChaosRecipeMaxHoldingUNID := 12
 	Global ChaosRecipeTypePure := 0
 	Global ChaosRecipeTypeHybrid := 1
 	Global ChaosRecipeTypeRegal := 0
