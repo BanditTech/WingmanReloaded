@@ -1,6 +1,6 @@
 ﻿; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{},"String":{}}
+Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{},"String":{},"Restock":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"

@@ -40,10 +40,11 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesOpenStackedDeck    Checked%YesOpenStackedDeck%    y+8    , Open Stacked Decks?
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
       
-      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Font, Bold s10 cBlack, Arial
       Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
 
-      Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox,         Section      w370 h90      xm+180   ym+25,         Scroll, Gem and Currency Locations
       Gui, Inventory: Font
 
       Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
@@ -61,13 +62,10 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
       Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
       Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
-      Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
-      Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
+      Gui, Inventory: Add, Button, gRestockMenu r2 x+16    ys+35, Inventory Slot`n`rManagement
       Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
       Gui, Inventory: Add, Text,                   x+33             h152 0x11
       Gui, Inventory: Add, Text,                   x+33             h152 0x11
-
-
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
       Gui, Inventory: Font,
