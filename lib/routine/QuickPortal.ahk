@@ -22,7 +22,7 @@ QuickPortal(ChickenFlag := False){
 		Found := False
 		For C, vv in WR.Restock {
 			For R, v in vv {
-				If (v.Restock && v.RestockName = "Portal"){
+				If (!v.Normal && v.RestockName = "Portal"){
 					Found := True
 					Break 2
 				}

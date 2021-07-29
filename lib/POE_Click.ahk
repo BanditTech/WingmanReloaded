@@ -145,7 +145,7 @@ WisdomScroll(x, y){
 	Found := False
 	For C, vv in WR.Restock {
 		For R, v in vv {
-			If (v.Restock && v.RestockName = "Wisdom"){
+			If (!v.Normal && v.RestockName = "Wisdom"){
 				Found := True
 				Break 2
 			}
