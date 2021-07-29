@@ -104,11 +104,6 @@ CraftingMaps(){
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-			{   
-				Ding(500,11,"Hit Scroll")
-				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-			} 
 			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) 
 			{

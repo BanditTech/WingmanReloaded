@@ -152,6 +152,7 @@
 	Global LootFilter := {}
 	Global BlackList
 	Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
+	Global StackSizes := {"Wisdom":40,"Portal":40,"Alchemy":10,"Alteration":20,"Transmutation":40,"Augment":30,"Vaal":10,"Chaos":10,"Binding":20,"Scouring":30,"Chisel":20,"Horizon":20,"Simple":10,"Prime":10,"Awakened":10,"Engineer":20,"Regal":10}
 	Global YesClickPortal := True
 	Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
 	Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
@@ -207,8 +208,7 @@
 		WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
 		GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
 		GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
-		StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
-		StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
+		EnableRestock = Enable this to restock any inventory slots assigned a currency type
 		YesEnableAutomation = Enable Automation Routines
 		FirstAutomationSetting = Start Automation selected option
 		YesEnableNextAutomation = Enable next automation after the first selected
@@ -585,6 +585,7 @@
 	Global YesBatchVendorGCP := 1
 	Global YesOpenStackedDeck := True
 	Global YesSpecial5Link := True
+	global EnableRestock:=True
 
 
 	; Chaos Recipe
@@ -844,9 +845,6 @@
 	global PortalScrollY:=825
 	global WisdomScrollX:=1875
 	global WisdomScrollY:=825
-	global StockPortal:=0
-	global StockWisdom:=0
-
 ; Inventory Colors
 	global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
 ; Failsafe Colors
