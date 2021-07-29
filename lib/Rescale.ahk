@@ -144,6 +144,9 @@ Rescale(){
       ;Alchemy
       WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1920/490))
       WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
+      ;Binding
+      WR.loc.pixel.Binding.X:=GameX + Round(GameW/(1920/173))
+      WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/512))
       ;Transmutation
       WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1920/60))
       WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))

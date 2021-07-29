@@ -2,8 +2,9 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{},"String":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
+WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
-, "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Chance", "Fusing"
+, "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Binding", "Chance", "Fusing"
 , "Transmutation", "Augmentation", "Alteration", "Vaal", "Jeweller", "Chromatic"
 , "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor"
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
