@@ -19,7 +19,20 @@ QuickPortal(ChickenFlag := False){
 			SendHotkey(hotkeyInventory)
 			RandomSleep(56,68)
 		}
-		RightClick(PortalScrollX, PortalScrollY)
+		Found := False
+		For C, vv in WR.Restock {
+			For R, v in vv {
+				If (v.Restock && v.RestockName = "Portal"){
+					Found := True
+					Break
+				}
+			}
+		}
+		If !Found
+			Return False
+		x := InventoryGridX[C], Y := InventoryGridY[R]
+		o := RandClick(X,Y)
+		RightClick(o.X, o.Y)
 
 		SendHotkey(hotkeyInventory)
 		If YesClickPortal || ChickenFlag

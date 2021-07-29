@@ -23,7 +23,7 @@ WR_Menu(Function:="",Var*){
 
     Gui, Inventory: Tab, Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,       Section    w170 h345    xm   ym+25,         Inventory Sort/CLF Options
+      Gui, Inventory: Add, GroupBox,       Section    w170 h315    xm   ym+25,         Inventory Sort/CLF Options
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
       Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
@@ -40,32 +40,25 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesOpenStackedDeck    Checked%YesOpenStackedDeck%    y+8    , Open Stacked Decks?
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
       
-      Gui, Inventory: Font, Bold s10 cBlack, Arial
-      Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
-
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,         Section      w370 h90      xm+180   ym+25,         Scroll, Gem and Currency Locations
+      Gui, Inventory: Add, GroupBox,         Section      w370 h100      xm+180   ym+25,         Scroll, Gem and Currency Locations
       Gui, Inventory: Font
 
       Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
       Gui, Inventory: Add, Text,                     x+12,             Y-Pos
 
-      Gui, Inventory: Add, Text,                     xs+21  y+5,         Portal Scroll:
-      Gui, Inventory: Add, Edit,       vPortalScrollX         x+8        y+-15   w34  h17,   %PortalScrollX%
-      Gui, Inventory: Add, Edit,       vPortalScrollY         x+8                w34  h17,   %PortalScrollY%  
-      Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
-      Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
-      Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
       Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
       Gui, Inventory: Add, Edit,       vGrabCurrencyX        x+8        y+-15   w34  h17,   %GrabCurrencyX%
       Gui, Inventory: Add, Edit,       vGrabCurrencyY        x+8                w34  h17,   %GrabCurrencyY%
       Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
       Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
       Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
-      Gui, Inventory: Add, Button, gRestockMenu r2 x+16    ys+35, Inventory Slot`n`rManagement
-      Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
-      Gui, Inventory: Add, Text,                   x+33             h152 0x11
-      Gui, Inventory: Add, Text,                   x+33             h152 0x11
+      Gui, Inventory: Add, Button, gRestockMenu r2 x+16    ys+30, Inventory Slot`n`rManagement
+      Gui, Inventory: Add, Checkbox, gSaveGeneral   vEnableRestock    Checked%EnableRestock%  xp  y+8   , Enable Restock?
+      
+      Gui, Inventory: Add, Text,                   xs+84   ys+25    h72 0x11
+      Gui, Inventory: Add, Text,                   x+33             h72 0x11
+      Gui, Inventory: Add, Text,                   x+33             h72 0x11
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
       Gui, Inventory: Font,

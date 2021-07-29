@@ -398,12 +398,6 @@
 	IniRead, GrabCurrencyX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX, 1877
 	IniRead, GrabCurrencyY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY, 772
 
-	;Coordinates
-	IniRead, PortalScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX, 1825
-	IniRead, PortalScrollY, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollY, 825
-	IniRead, WisdomScrollX, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollX, 1875
-	IniRead, WisdomScrollY, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollY, 825
-	
 	;~ hotkeys reset
 	hotkey, IfWinActive, ahk_group POEGameGroup
 	If hotkeyAutoQuit
@@ -899,12 +893,6 @@ updateEverything:
 	IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
 	IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
 	IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
-	
-	;~ Scroll locations
-	IniWrite, %PortalScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollX
-	IniWrite, %PortalScrollY%, %A_ScriptDir%\save\Settings.ini, Coordinates, PortalScrollY
-	IniWrite, %WisdomScrollX%, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollX
-	IniWrite, %WisdomScrollY%, %A_ScriptDir%\save\Settings.ini, Coordinates, WisdomScrollY
 	
 	;Stash Tab Management
 	IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency

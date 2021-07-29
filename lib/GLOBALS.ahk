@@ -202,10 +202,6 @@
 		Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
 		ClickLatency = Use this to modify delay to click actions`rAdd this many multiples of 15ms to each delay
 		ClipLatency = Use this to modify delay to Item clip`rAdd this many multiples of 15ms to each delay
-		PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rPress Locate to grab positions
-		PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
-		WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-		WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
 		GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
 		GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
 		EnableRestock = Enable this to restock any inventory slots assigned a currency type
@@ -840,11 +836,6 @@
 	global hotkeyCastOnDetonate := "Q"
 	Global hotkeyTriggerMovement := "LButton"
 
-; Coordinates
-	global PortalScrollX:=1825
-	global PortalScrollY:=825
-	global WisdomScrollX:=1875
-	global WisdomScrollY:=825
 ; Inventory Colors
 	global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev
 ; Failsafe Colors
