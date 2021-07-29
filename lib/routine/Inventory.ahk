@@ -510,7 +510,17 @@ StashRoutine()
 					Continue
 				Else If (sendstash:=Item.MatchLootFilter())
 					Sleep, -1
-				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) && ((Item.Prop.RarityNormal && YesSkipMaps_normal) || (Item.Prop.RarityMagic && YesSkipMaps_magic) || (Item.Prop.RarityRare && YesSkipMaps_rare) || (Item.Prop.RarityUnique && YesSkipMaps_unique)))
+				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep
+				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
+					|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) )
+					Continue
+				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps 
+				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
+					|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) 
+				&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal) 
+					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
+					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
+					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) ) )
 					Continue
 				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps
 				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )

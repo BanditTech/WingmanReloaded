@@ -256,6 +256,7 @@
 		YesCLFIgnoreImplicit = This option disable implicits being merged with Pseudos.`rEx: This will ignore implicits in base like two-stone boots (elemental resists)`ror two-stone rings (elemental resists) or wand (spell damage)
 		YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
 		YesSkipMaps = Select the inventory column which you will begin skipping rolled maps`rDisable by setting to 0
+		YesSkipMaps_Prep = Skip items such as sacrifice fragments and scarabs inside the map prep zone
 		YesSkipMaps_eval = Choose either Greater than or Less than the selected column`rYou can start skipping maps store on the right or left from the inventory column selected
 		YesSkipMaps_normal = Skip normal quality maps within the column range
 		YesSkipMaps_magic = Skip magic quality maps within the column range
@@ -784,6 +785,7 @@
 
 ; Skip Maps after column #
 	Global YesSkipMaps := 0
+	Global YesSkipMaps_Prep := 1
 	Global YesSkipMaps_eval := ">="
 	Global YesSkipMaps_normal := 0
 	Global YesSkipMaps_magic := 1

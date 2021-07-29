@@ -267,7 +267,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h140    section    xs   y+10,         Map/Contract Options
+      Gui, Inventory: Add, GroupBox,             w180 h160    section    xs   y+10,         Map/Contract Options
       Gui, Inventory: Font,
       Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
       GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
@@ -283,6 +283,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vBrickedWhenCorrupted Checked%BrickedWhenCorrupted% xs+5 y+8, Only consider a map to be`rbricked if it's corrupted
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_Prep Checked%YesSkipMaps_Prep% xs+5 y+8, Skip prep items also
 
 
       ; Affinity

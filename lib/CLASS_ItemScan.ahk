@@ -324,6 +324,7 @@
 			Else If (InStr(This.Prop.ItemBase, "Sacrifice at") && This.Prop.ItemClass ~= "Fragments")
 			{
 				This.Prop.SacrificeFragment := True
+				This.Prop.MapPrep := True
 				This.Prop.SpecialType := "Sacrifice Fragment"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Mortal Grief") 
@@ -350,6 +351,7 @@
 			Else If (InStr(This.Prop.ItemBase, "Scarab") && This.Prop.ItemClass ~= "Fragments")
 			{
 				This.Prop.Scarab := True
+				This.Prop.MapPrep := True
 				This.Prop.SpecialType := "Scarab"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Offering to the Goddess") && This.Prop.ItemClass ~= "Fragments")
