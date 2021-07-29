@@ -422,7 +422,7 @@ WR_Menu(Function:="",Var*){
 
     Gui, Inventory: Tab, Chaos Recipe
     Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,Section w175 h265 xm+5 ym+25, Chaos Recipe Options
+      Gui, Inventory: Add, GroupBox,Section w175 h245 xm+5 ym+25, Chaos Recipe Options
       Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeUnloadAll Checked%ChaosRecipeUnloadAll% xs yp+20, Sell all sets back to back
@@ -439,7 +439,6 @@ WR_Menu(Function:="",Var*){
         Gui, Inventory: Add, Text, x+5 yp+3, UNID
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+32, Limit Weapons 1x3/2x2
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs yp+22, Leave Recipe Rare Un-Id
-        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeOnlyUnId Checked%ChaosRecipeOnlyUnId% xs yp+22, Only Stash UnId in Range
         Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs yp+20 w50 center
         Gui, Inventory: Add, UpDown,gSaveChaos Range70-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
         Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id

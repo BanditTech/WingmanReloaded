@@ -1277,8 +1277,8 @@
 		|| ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
 		|| ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
 		|| ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass = "Shields") 
-			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) )
-		|| ( !This.Affix.Unidentified && ChaosRecipeEnableUnId && ChaosRecipeOnlyUnId && This.Prop.ItemLevel < ChaosRecipeLimitUnId)
+			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) 
+			&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width = 2 && This.Prop.Item_Height = 3) )
 			Return False
 		If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
 			Return False

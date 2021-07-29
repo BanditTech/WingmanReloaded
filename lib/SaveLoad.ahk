@@ -271,8 +271,7 @@
 	IniRead, ChaosRecipeSkipJC, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSkipJC, 1
 	IniRead, ChaosRecipeEnableUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeEnableUnId, 1
 	IniRead, ChaosRecipeSmallWeapons, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeSmallWeapons, 1
-	IniRead, ChaosRecipeOnlyUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeOnlyUnId, 1
-	IniRead, ChaosRecipeLimitUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeLimitUnId, 1
+	IniRead, ChaosRecipeLimitUnId, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeLimitUnId, 74
 	IniRead, ChaosRecipeAllowDoubleJewellery, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleJewellery, 1
 	IniRead, ChaosRecipeAllowDoubleBelt, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeAllowDoubleBelt, 0
 	IniRead, ChaosRecipeMaxHoldingID, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeMaxHoldingID, 12
