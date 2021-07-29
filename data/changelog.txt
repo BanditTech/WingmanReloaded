@@ -1,4 +1,13 @@
-﻿## Version .14.02032 - Alpha version - July/29/2021
+﻿## Version .14.0204 - Alpha version - July/29/2021
+Spam Clickers added for Ctrl and Ctrl+Shift
+* The hotkeys are disabled by default
+* To enable the hotkey, enter a name from [This Key List](https://www.autohotkey.com/docs/KeyList.htm)
+* Be careful holding it down for too long or it might disconnect you
+* Respects your click latency setting
+
+---
+
+## Version .14.02032 - Alpha version - July/29/2021
 Bugfixes! All working now
 
 ---
