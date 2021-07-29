@@ -1,4 +1,10 @@
-﻿## Version .14.0103 - Alpha version - July/28/2021
+﻿## Version .14.0104 - Alpha version - July/28/2021
+Add new option for skipping Map prep items in Map area
+* Will skip stashing Sacrifice fragments and scarabs within area
+
+---
+
+## Version .14.0103 - Alpha version - July/28/2021
 Bugfixes
 * Add scaled position for binding orb
   * 43:18 and WXGA need to submit the position to be added
