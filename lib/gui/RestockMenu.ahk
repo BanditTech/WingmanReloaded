@@ -102,6 +102,8 @@
 			Else
 				GuiControl, , Restock%k%, % LoadedValues[k]
 		}
+		GroupNumber := (Active.1 - 1) * 5 + Active.2
+		GuiControl, Text, RestockGroupBox, Slot Configuration: %GroupNumber%
 	Return
 
 	LoadRestockArray:
