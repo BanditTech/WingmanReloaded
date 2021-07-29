@@ -1,4 +1,13 @@
-﻿## Version .14.0101 - Alpha version - July/28/2021
+﻿## Version .14.0102 - Alpha version - July/28/2021
+Add Binding orbs to the options for map crafting
+* Choose explicity binding orbs, or set to hybrid mode
+* Hybrid switches between the higher of Alchemy or Binding
+* Map crafting should be smarter about what currency is available
+* Please submit any missing locations to github!
+
+---
+
+## Version .14.0101 - Alpha version - July/28/2021
 Add new option to loot vacuum for resorting loot
 * Taps the z button twice, to make loot reappear centered
 * Either on press, or on release of the loot pickup key
