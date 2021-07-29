@@ -1318,17 +1318,21 @@
 								RecipeArray.uChaos[v].Push(This)
 							Else If This.Prop.RegalRecipe
 								RecipeArray.uRegal[v].Push(This)
+							Else
+								Return False
 						} Else {
 							If This.Prop.ChaosRecipe
 								RecipeArray.Chaos[v].Push(This)
 							Else If This.Prop.RegalRecipe
 								RecipeArray.Regal[v].Push(This)
+							Else
+								Return False
 						}
 					}
 					Return True
 				}
 				Else
-					Return "000"
+					Return False
 			}
 		}
 		For k, v in WeaponList
