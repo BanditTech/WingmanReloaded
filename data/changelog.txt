@@ -3,7 +3,9 @@ Seperated the Chaos recipe count for ID and UNID
 * No longer option for having combined and Seperate
 * This did not really work well in practice and was unintuitive
 * Instead you can choose how many ID and how many UNID
-* Only Stash UNID in range also removed, set ID max to 0
+* Only Stash UNID in range option also removed
+  * Set ID max to 0 for similar behavior
+* 2x3 Two Hand (bows) added to small weapons limitation
 
 ---
 
