@@ -96,16 +96,25 @@
 		if (max <= 0)
 			max := 40
 		GuiControl, +Range0-%max%, RestockRestockMax
-		If (LoadedValues["RestockMax"] > max) {
+		GuiControl, +Range0-%max%, RestockRestockMin
+		GuiControl, +Range0-%max%, RestockRestockTo
+		If (LoadedValues["RestockMax"] > max || LoadedValues.RestockName = "") {
 			LoadedValues["RestockMax"] := max
 		}
-		GuiControl, +Range0-%max%, RestockRestockMin
-		If (LoadedValues["RestockMin"] > max) {
+		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues.RestockName = "") {
 			LoadedValues["RestockMin"] := max // 2
 		}
-		GuiControl, +Range0-%max%, RestockRestockTo
-		If (LoadedValues["RestockTo"] >= max){
+		If (LoadedValues["RestockTo"] >= max || LoadedValues.RestockName = ""){
 			LoadedValues["RestockTo"] := Round(max * (3/4))
+		}
+		If (LoadedValues["RestockMin"] >= LoadedValues["RestockMax"] - 1) {
+			LoadedValues["RestockMin"] := LoadedValues["RestockMax"] - 2
+		}
+		If (LoadedValues["RestockTo"] >= LoadedValues["RestockMax"]) {
+			LoadedValues["RestockTo"] := LoadedValues["RestockMax"] - 1
+		}
+		If (LoadedValues["RestockTo"] <= LoadedValues["RestockMin"]) {
+			LoadedValues["RestockTo"] := LoadedValues["RestockMin"] + 1
 		}
 		for k,v in DefaultSettings {
 			If !LoadedValues.HasKey(k)
