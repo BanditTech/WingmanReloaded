@@ -152,7 +152,8 @@ WisdomScroll(x, y){
 		}
 	}
 	If !Found {
-		Log("Wisdom Scroll is not configured in inventory slot options")
+		Notify("Missing Configuration","Assign an inventory slot to Wisdom Scrolls`nMake sure to select Ignore or Restock")
+		Log("Wisdom Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Wisdom Scrolls","The slot must be configured to Restock or Ignore and select Wisdom in the dropdown menu")
 		Return False
 	}
 	XX := InventoryGridX[C], YY := InventoryGridY[R]
