@@ -155,8 +155,8 @@ WisdomScroll(x, y){
 		Log("Wisdom Scroll is not configured in inventory slot options")
 		Return False
 	}
-	x := InventoryGridX[C], Y := InventoryGridY[R]
-	o := RandClick(X,Y)
+	XX := InventoryGridX[C], YY := InventoryGridY[R]
+	o := RandClick(XX,YY)
 	RightClick(o.X,o.Y)
 	Sleep, 30+Abs(ClickLatency*15)
 	LeftClick(x,y)

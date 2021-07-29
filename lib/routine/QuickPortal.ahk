@@ -24,7 +24,7 @@ QuickPortal(ChickenFlag := False){
 			For R, v in vv {
 				If (v.Restock && v.RestockName = "Portal"){
 					Found := True
-					Break
+					Break 2
 				}
 			}
 		}
@@ -32,8 +32,9 @@ QuickPortal(ChickenFlag := False){
 			Log("Portal Scroll is not configured in inventory slot options")
 			Return False
 		}
-		x := InventoryGridX[C], Y := InventoryGridY[R]
-		o := RandClick(X,Y)
+		XX := InventoryGridX[C], YY := InventoryGridY[R]
+		o := RandClick(XX,YY)
+
 		RightClick(o.X, o.Y)
 
 		SendHotkey(hotkeyInventory)
