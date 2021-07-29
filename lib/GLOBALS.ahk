@@ -150,8 +150,8 @@
 	Global ScriptPID := ErrorLevel
 	Global MainMenuIDAutoFlask, MainMenuIDAutoQuit, MainMenuIDAutoMove, MainMenuIDAutoUtility
 	Global LootFilter := {}
-	Global IgnoredSlot := {}
-	Global BlackList := {}
+	Global BlackList
+	Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
 	Global YesClickPortal := True
 	Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
 	Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex

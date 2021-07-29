@@ -566,7 +566,7 @@ retCount(obj){
 ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
 VendorRoutineChaos(){
 	CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse out of the way to grab screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If !OnVendor
@@ -584,7 +584,7 @@ VendorRoutineChaos(){
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))

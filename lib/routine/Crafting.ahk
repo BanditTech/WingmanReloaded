@@ -89,7 +89,7 @@ CraftingMaps(){
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel"])
 	; MsgBoxVals(WR.data.Counts)
 	; Start Scan on Inventory
@@ -101,7 +101,7 @@ CraftingMaps(){
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))

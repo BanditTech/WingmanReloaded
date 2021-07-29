@@ -14,7 +14,7 @@ Critical
 #Include, %A_ScriptDir%\lib\gui\ItemInfo.ahk
 DebugToggle()
 FirstScale()
-IgnoreSlotSetup()
+RestockMenu("Load")
 DBUpdateFirstRun()
 Critical, Off
 Tooltip,

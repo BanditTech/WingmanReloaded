@@ -175,7 +175,7 @@ VendorRoutine()
 	tGQ := 0
 	SortFlask := []
 	SortGem := []
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse out of the way to grab screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If !OnVendor
@@ -197,7 +197,7 @@ VendorRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
@@ -373,7 +373,7 @@ EmptyGrid(){
 	EmptySlots := {}
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
-			If IgnoredSlot[C][R]
+			If !WR.Restock[C][R].Normal
 				Continue
 			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
@@ -402,7 +402,7 @@ StackedDeckOpen(number,x,y){
 }
 ; LockerRoutine - Deposit Contracts and Blueprints at the Heist Locker
 LockerRoutine(){
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse out of the way to grab screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If !OnLocker
@@ -418,7 +418,7 @@ LockerRoutine(){
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
@@ -466,7 +466,7 @@ StashRoutine()
 	HeistC := {}
 	HeistR := {}
 	HeistCount := 0
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse away for Screenshot
 	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
 	; Main loop through inventory
@@ -478,7 +478,7 @@ StashRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
@@ -760,7 +760,7 @@ SearchVendor()
 ; DivRoutine - Does divination trading function
 DivRoutine()
 {
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
@@ -771,7 +771,7 @@ DivRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
@@ -808,7 +808,7 @@ DivRoutine()
 ; IdentifyRoutine - Does basic function when not at other windows
 IdentifyRoutine()
 {
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
@@ -819,7 +819,7 @@ IdentifyRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))

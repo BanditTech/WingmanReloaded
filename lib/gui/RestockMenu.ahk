@@ -1,4 +1,4 @@
-﻿RestockMenu(){
+﻿RestockMenu(choice:=""){
 	Global
 	static Built := False
 	static Active := [1,1]
@@ -13,6 +13,10 @@
 	                          ,"MapSlot":0
 	                          ,"MapPrep":0
 	                          ,"MapSpecial":0}
+	If (choice = "Load") {
+		Gosub, LoadRestockArray
+		Return
+	}
 	If !Built
 	{
 		Built := True
@@ -34,16 +38,15 @@
 			For R, GridY in InventoryGridY
 			{
 				++ind
-				checkboxStr := "IgnoredSlot_" . C . "_" . R
-				checkboxTik := IgnoredSlot[C][R]
-				Gui, Restock: Add, Button, v%checkboxStr% gRestockSetActive y+25 h27 w33 Checked%checkboxTik%,% (ind < 10 ? "0" . ind : ind)
+				buttonStr := "InventorySlot_" . C . "_" . R
+				Gui, Restock: Add, Button, v%buttonStr% gRestockSetActive y+25 h27 w33,% (ind < 10 ? "0" . ind : ind)
 			}
 		}
-		ind=0
+		ind=
 
 		
 		Gui, Restock: Font, Bold
-		Gui, Restock: Add, GroupBox, w220 h305 Section xs+670 ym, Slot Configuration:
+		Gui, Restock: Add, GroupBox, vRestockGroupBox w220 h305 Section xs+670 ym, Slot Configuration:
 		Gui, Restock: Font
 
 		LoadedValues := WR.Restock[Active.1][Active.2]
@@ -77,6 +80,8 @@
 	RestockSetActive:
 		Gui, Restock: Submit, NoHide
 		btnArr := StrSplit(A_GuiControl, "_")
+		GuiControlGet, ButtonNum, ,% A_GuiControl
+		Tooltip % ButtonNum
 		C := btnArr[2]
 		R := btnArr[3]
 		Active := [C,R]
