@@ -492,8 +492,8 @@
 	IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
 	IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
 	IniRead, hotkeyTriggerMovement, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement, LButton
-	IniRead, hotkeyCtrlClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker, A_Space
-	IniRead, hotkeyCtrlShiftClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker, A_Space
+	IniRead, hotkeyCtrlClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker, % A_Space
+	IniRead, hotkeyCtrlShiftClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker, % A_Space
 	
 	hotkey, IfWinActive, ahk_group POEGameGroup
 	If hotkeyAutoQuit
