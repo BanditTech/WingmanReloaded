@@ -142,7 +142,20 @@ ClipItem(x, y){
 WisdomScroll(x, y){
 	Log("WisdomScroll: " x ", " y)
 	BlockInput, MouseMove
-	RightClick(WisdomScrollX,WisdomScrollY)
+	Found := False
+	For C, vv in WR.Restock {
+		For R, v in vv {
+			If (v.Restock && v.RestockName = "Wisdom"){
+				Found := True
+				Break
+			}
+		}
+	}
+	If !Found
+		Return False
+	x := InventoryGridX[C], Y := InventoryGridY[R]
+	o := RandClick(X,Y)
+	RightClick(o.X,o.Y)
 	Sleep, 30+Abs(ClickLatency*15)
 	LeftClick(x,y)
 	Sleep, 45+Abs(ClickLatency*15)
