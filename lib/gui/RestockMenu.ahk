@@ -54,19 +54,19 @@
 		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Alchemy|Alteration|Transmutation|Augmentation|Vaal|Chaos|Binding|Scouring|Chisel|Horizon|Simple|Prime|Awakened|Engineer|Regal
 		Gui, Restock: Font, Bold s9
 		Gui, Restock: Add, Text, xs+5 y+10, Min stack:
-		Gui, Restock: Font
-		Gui, Restock: Add, Edit, h22 Number x+5 yp-3 w35 vRestockRestockMin gRestockSetValue, 0
-		Gui, Restock: Add, UpDown, range0-40 vRestockRestockMinUpDown gRestockSetValue, 0
+		Gui, Restock: Font, s9
+		Gui, Restock: Add, text, x+5 yp w35, 0
+		Gui, Restock: Add, UpDown, range0-40 vRestockRestockMin gRestockSetValue, 0
 		Gui, Restock: Font, Bold s9
-		Gui, Restock: Add, Text, x+5 yp+3, Max stack:
-		Gui, Restock: Font
-		Gui, Restock: Add, Edit, h22 Number x+5 yp-3 w35 vRestockRestockMax gRestockSetValue, 0
-		Gui, Restock: Add, UpDown, range0-40 vRestockRestockMaxUpDown gRestockSetValue, 0
+		Gui, Restock: Add, Text, x+5 yp, Max stack:
+		Gui, Restock: Font, s9
+		Gui, Restock: Add, text, x+5 yp w35, 0
+		Gui, Restock: Add, UpDown, range0-40 vRestockRestockMax gRestockSetValue, 0
 		Gui, Restock: Font, Bold s9
-		Gui, Restock: Add, Text, xs+5 y+13, Restock back to:
-		Gui, Restock: Font
-		Gui, Restock: Add, Edit, h22 Number x+5 yp-3 w35 vRestockRestockTo gRestockSetValue, 0
-		Gui, Restock: Add, UpDown, range0-40 vRestockRestockToUpDown gRestockSetValue, 0
+		Gui, Restock: Add, Text, xs+5 y+10, Restock back to:
+		Gui, Restock: Font, s9
+		Gui, Restock: Add, text, x+5 yp w35, 0
+		Gui, Restock: Add, UpDown, range0-40 vRestockRestockTo gRestockSetValue, 0
 		Gosub, RestockRefreshOption
 
 		Gui, ReStock: show, AutoSize
@@ -140,7 +140,6 @@
 	RestockSetValue:
 		Gui, Restock: Submit, NoHide
 		VarName := RegExReplace(A_GuiControl, "^Restock", "")
-		VarName := RegExReplace(VarName, "UpDown", "")
 		LoadedValues[VarName] := %A_GuiControl%
 		radios := ["Normal","Ignored","Restock"]
 		If indexOf(VarName,radios) {

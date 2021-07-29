@@ -50,9 +50,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
       Gui, Inventory: Add, Edit,       vGrabCurrencyX        x+8        y+-15   w34  h17,   %GrabCurrencyX%
       Gui, Inventory: Add, Edit,       vGrabCurrencyY        x+8                w34  h17,   %GrabCurrencyY%
-      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
-      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
-      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
+      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                     xs+173       ys+31  h17            , Locate
       Gui, Inventory: Add, Button, gRestockMenu r2 x+16    ys+30, Inventory Slot`n`rManagement
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vEnableRestock    Checked%EnableRestock%  xp  y+8   , Enable Restock?
       
