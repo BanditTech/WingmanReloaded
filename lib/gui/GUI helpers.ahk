@@ -52,11 +52,15 @@ UpdateExtra:
 	IniWrite, %ScriptUpdateTimeInterval%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval
 	IniWrite, %ScriptUpdateTimeType%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType
 	IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
+	IniWrite, %LootVacuumTapZ%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZ
+	IniWrite, %LootVacuumTapZEnd%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZEnd
+	IniWrite, %LootVacuumTapZSec%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZSec
 	IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
 	IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
 	IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
 	IniWrite, %YesPredictivePrice%, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice
 	IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+	IniWrite, %YesSkipMaps_Prep%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep
 	IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
 	IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
 	IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic

@@ -2,8 +2,9 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"cdExpires":{},"perChar":{},"func":{},"data":{},"String":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
+WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
-, "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Chance", "Fusing"
+, "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Binding", "Chance", "Fusing"
 , "Transmutation", "Augmentation", "Alteration", "Vaal", "Jeweller", "Chromatic"
 , "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor"
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
@@ -13,6 +14,7 @@ for k, v in []
 WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
 WR.cdExpires.Binding.Move := ""
 WR.func.Toggle := {"Flask":"1","Move":"1","Quit":"0","Utility":"1","PopAll":"0"}
+WR.func.failsafe := {"OHB":"1"}
 WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldritch":"0"
 	, "quitDC":"1", "quitPortal":"0", "quitExit":"0", "quitBelow":"20", "quitLogBackIn":"1"
 	, "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"

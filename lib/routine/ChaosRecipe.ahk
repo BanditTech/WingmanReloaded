@@ -663,7 +663,7 @@ VendorRoutineChaos(){
 			}
 		}
 		; Search Stash and StashRoutine
-		If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
+		If (YesEnableNextAutomation && ContinueFlag)
 		{
 			RandomSleep(90,180)
 			SendHotkey(hotkeyCloseAllUI)

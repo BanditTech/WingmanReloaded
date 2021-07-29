@@ -214,7 +214,7 @@
 		YesEnableNextAutomation = Enable next automation after the first selected
 		YesEnableLockerAutomation = Enable Heist automation to find and deposit at Heist Locker
 		YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
-		YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`n   The vendor is empty`n   The only items are Chromatic or Jeweler
+		YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r   The vendor is empty`r   The only items are Chromatic or Jeweler`r   During the chaos Recipe
 		DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
 		YesTimeMS = Enable to show a tooltip when game logic is running
 		YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
@@ -240,6 +240,9 @@
 		hotkeyWeaponSwapKey = Put your ingame assigned hotkey to Weapon Swap here
 		hotkeyLootScan = Put your ingame assigned hotkey for Item Pickup Key here
 		LootVacuum = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
+		LootVacuumTapZ = When pressing the loot key, it will tap z two times to refresh the location of loot on the floor.
+		LootVacuumTapZEnd = This will make the loot resort when releasing the key.
+		LootVacuumTapZSec = How many seconds should elapse between resorting loot.
 		LootVacuumSettings = Assign your own loot colors and adjust the AreaScale and delay`rAlso contains options for openable containers
 		PopFlaskRespectCD = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
 		LaunchHelp = Opens the AutoHotkey List of Keys
@@ -253,6 +256,7 @@
 		YesCLFIgnoreImplicit = This option disable implicits being merged with Pseudos.`rEx: This will ignore implicits in base like two-stone boots (elemental resists)`ror two-stone rings (elemental resists) or wand (spell damage)
 		YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
 		YesSkipMaps = Select the inventory column which you will begin skipping rolled maps`rDisable by setting to 0
+		YesSkipMaps_Prep = Skip items such as sacrifice fragments and scarabs inside the map prep zone
 		YesSkipMaps_eval = Choose either Greater than or Less than the selected column`rYou can start skipping maps store on the right or left from the inventory column selected
 		YesSkipMaps_normal = Skip normal quality maps within the column range
 		YesSkipMaps_magic = Skip magic quality maps within the column range
@@ -478,8 +482,10 @@
 
 		, 1080_FenceStr := "|<1080 Fence>*40$48.0TzzzzzzUDzzzzzzbDzjvyDzbs37ls20bwnXllXAbwzVnXrDUQzUnbzDUw7UHbz1bw7Y3bz1bwza3XzDbwzb3XzDbwzbXlnDbw3bnk70zzzzzwTzU"
 
+		, 1440_JunStr := "|<1440 Jun>*89$45.zzzzzzzzzzzzzzzz3zzzzzzsTzzzzzz3zzzzzzsSDltzXz3lyD7wTsSDlsTnz3lyD1yTsSDls7nz3lyD0STsSDlsVnz3lyD66TsSDlssHz3lyD70TsSDlsw3z3kyT7kTsT03sz3z7w0z7wTszsTzzzz7zzzzzzlzzzzzzwTzzzzzzbzzzzzzU"
 	Global 1080_ChestStr := "|<1080 Door>*100$47.zzzzzzzz0zzzzzzy0TzzzzzwwTnznzztsS1y1s3nstltllbblXnXnX7DXDXDX6CT6T6T6AwyAyAyA3twNwNwM7ntltltl7b7lXlXX70TkTkT77zzvzvzzzzzzzzzzs"
 		, 1080_ChestStr .= "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
+		, 1080_ChestStr .= "|<1080 Excavated Chest>*73$50.s7zzzzzzw0zzzzzzyDCTDzwzz7r7nUA201ztwwnAgMzyTDDnz7DzbnnwTllzs0w71wQTy0D1wD77zbnnzXlkytwwzwQS6CTDDrD7k7bnkA3lz7zzzznzy"
 		, 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
 		, 1080_ChestStr .= "|<1080 Rack>*100$41.zzzzzzz1zzzzzy0zzzzzwtzTwyytlwzUMsnXkyANnb7VsxnDCSFnzYy1wnbz3w3s7Dy3tXU6DwbnbDATtbb4yQQn7D1wQ3b7zzzyTzzzzzzzzs"
 		, 1080_ChestStr .= "|<1080 Cocoon>*100$71.zzzzzzzzzzzzwDzzzzzzzzzzU7zzzzzzzzzyDDnznzDzDvysyy1y1s7s7Xslztlslb7b7XnbzXnXqDCDD3bDzDXDwyAyC3CDyT6TtwNwQWQTwyAznsnstYsztwMzblbln1kyltlz7b7bb3kllXln6D6DD7k7kTkD1z1yTDxzvztzjzjzzzzzzzzzzzzzzs"
@@ -536,6 +542,9 @@
 	Global AreaScale := 0
 	Global LVdelay := 0
 	Global LootVacuum := 1
+	Global LootVacuumTapZ := 1
+	Global LootVacuumTapZEnd := 1
+	Global LootVacuumTapZSec := 3
 	Global YesVendor := 1
 	Global YesStash := 1
 	Global YesHeistLocker := 1
@@ -776,6 +785,7 @@
 
 ; Skip Maps after column #
 	Global YesSkipMaps := 0
+	Global YesSkipMaps_Prep := 1
 	Global YesSkipMaps_eval := ">="
 	Global YesSkipMaps_normal := 0
 	Global YesSkipMaps_magic := 1

@@ -90,6 +90,8 @@ CraftingMaps(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
 	BlackList := Array_DeepClone(IgnoredSlot)
+	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel"])
+	; MsgBoxVals(WR.data.Counts)
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
 	{
@@ -143,16 +145,17 @@ CraftingMaps(){
 					{
 						If (!Item.Prop.RarityNormal)
 						{
-							If ((Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
-							|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) 
-							|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy" || CraftingMapMethod%i% == "Chisel+Alchemy")))
+							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
+							|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) 
+							|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
 							{
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
 							}
 							Else
 							{
-								ApplyCurrency("Scouring",Grid.X,Grid.Y)
+								If !ApplyCurrency("Scouring",Grid.X,Grid.Y)
+									Return False
 							}
 						}
 						If (Item.Prop.RarityNormal)
@@ -170,27 +173,29 @@ CraftingMaps(){
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
 							}
-							Else if (CraftingMapMethod%i% == "Alchemy")
+							Else if (CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")
 							{
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
 							}
-							Else if (CraftingMapMethod%i% == "Chisel+Alchemy")
+							Else if (CraftingMapMethod%i% ~= "^Chisel\+(Alchemy$|Binding$|Hybrid$)")
 							{
 								Loop, %numberChisel%
 								{
-									ApplyCurrency("Chisel",Grid.X,Grid.Y)
+									If !ApplyCurrency("Chisel",Grid.X,Grid.Y)
+										Return False
 								}
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
 							}
-							Else if (CraftingMapMethod%i% == "Chisel+Alchemy+Vaal")
+							Else if (CraftingMapMethod%i% ~= "Chisel\+(Alchemy|Binding|Hybrid)\+Vaal")
 							{
 								Loop, %numberChisel%
 								{
-									ApplyCurrency("Chisel",Grid.X,Grid.Y)
+									If !ApplyCurrency("Chisel",Grid.X,Grid.Y)
+										Return False
 								}
-								MapRoll("Alchemy",Grid.X,Grid.Y)
+								MapRoll(CraftingMapMethod%i%,Grid.X,Grid.Y)
 								ApplyCurrency("Vaal",Grid.X,Grid.Y)
 								Continue
 							}
@@ -215,15 +220,42 @@ getMapCraftingMethod(){
 	}
 	Return False
 }
+; Find the stack sizes of all relevant currency, returns count object
+CountCurrency(NameList:=""){
+	retCount := {}
+	If (NameList = "")
+		Return False
+	If !IsObject(NameList)
+		NameList := StrSplit(NameList,",")
+	For key, currency in NameList {
+		If !WR.loc.pixel.HasKey(currency) 
+			Return False
+		If (WR.loc.pixel[currency].X = 0 && WR.loc.pixel[currency].Y = 0) {
+			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
+			retCount[currency] := 0
+		} Else {
+			ClipItem(WR.loc.pixel[currency].X,WR.loc.pixel[currency].Y)
+			retCount[currency] := Item.Prop.Stack_Size ? Item.Prop.Stack_Size : 0
+		}
+	}
+	Return retCount.Count() ? retCount : False
+}
 ; ApplyCurrency - Using cname = currency name string and x, y as apply position
 ApplyCurrency(cname, x, y){
+	If WR.data.Counts.HasKey(cname) {
+		If (WR.data.Counts[cname] <= 0) {
+			Notify("Error","Not enough " cname " to continue crafting",5)
+			Return False
+		}
+		WR.data.Counts[cname]--
+	}
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
 	Sleep, 45*Latency
 	LeftClick(x,y)
 	Sleep, 90*Latency
 	ClipItem(x,y)
 	Sleep, 45*Latency
-	return
+	return True
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 MapRoll(Method, x, y){
@@ -237,9 +269,22 @@ MapRoll(Method, x, y){
 			MMQIgnore := True
 		}
 	}
-	Else If indexOf(Method,["Alchemy","Chisel+Alchemy","Chisel+Alchemy+Vaal"])
+	Else If (Method ~= "Alchemy")
 	{
 		cname := "Alchemy"
+		crname := "Scouring"
+	}
+	Else If (Method ~= "Binding")
+	{
+		cname := "Binding"
+		crname := "Scouring"
+	}
+	Else If (Method ~= "Hybrid")
+	{
+		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+			cname := "Binding"
+		Else
+			cname := "Alchemy"
 		crname := "Scouring"
 	}
 	Else
@@ -256,6 +301,10 @@ MapRoll(Method, x, y){
 		{
 			Return
 		}
+		Else If (Item.Prop.Rarity_Digit > 2 && cname = "Binding" && YesMapUnid )
+		{
+			Return
+		}
 		Else
 		{
 			WisdomScroll(x,y)
@@ -266,11 +315,13 @@ MapRoll(Method, x, y){
 	; Apply Currency if Normal
 	If (Item.Prop.RarityNormal)
 	{
-		ApplyCurrency(cname, x, y)
+		If !ApplyCurrency(cname, x, y)
+			Return False
 	}
 	If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic && cname = "Transmutation")
 	{
-		ApplyCurrency("Augmentation",x,y)
+		If !ApplyCurrency("Augmentation",x,y)
+			Return False
 	}
 	antr := Item.Prop.Map_Rarity
 	antp := Item.Prop.Map_PackSize
@@ -283,28 +334,31 @@ MapRoll(Method, x, y){
 	|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
 	&& !Item.Affix["Unidentified"]
 	{
+		Notify("Inside roll while","These maps should not see this",1)
 		If (!RunningToggle)
 		{
 			break
 		}
-		antr := Item.Prop.Map_Rarity
-		antp := Item.Prop.Map_PackSize
-		antq := Item.Prop.Map_Quantity
 		; Scouring or Alteration
-		ApplyCurrency(crname, x, y)
+		If !ApplyCurrency(crname, x, y)
+			Return False
 		If (Item.Prop.RarityNormal)
 		{
-			ApplyCurrency(cname, x, y)
+			If !ApplyCurrency(cname, x, y)
+				Return False
 		}
 		; Augmentation if not 2 mods on magic maps
 		Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic)
 		{
-			ApplyCurrency("Augmentation",x,y)
+			If !ApplyCurrency("Augmentation",x,y)
+				Return False
 		}
+		; take fresh values to analyze in the following loop
+		antr := Item.Prop.Map_Rarity
+		antp := Item.Prop.Map_PackSize
+		antq := Item.Prop.Map_Quantity
 		If (DebugMessages)
-		{
-		Notify("MapCrafting: " Item.Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Item.Prop.Map_Rarity "`nMonsterPackSize: " Item.Prop.Map_PackSize "`nItem Quantity: " Item.Prop.Map_Quantity "`nEnd",4)
-		}
+			Notify("MapCrafting: " Item.Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Item.Prop.Map_Rarity "`nMonsterPackSize: " Item.Prop.Map_PackSize "`nItem Quantity: " Item.Prop.Map_Quantity "`nEnd",4)
 	}
-	return
+	return 1
 }

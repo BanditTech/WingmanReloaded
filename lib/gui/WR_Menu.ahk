@@ -267,7 +267,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h140    section    xs   y+10,         Map/Contract Options
+      Gui, Inventory: Add, GroupBox,             w180 h160    section    xs   y+10,         Map/Contract Options
       Gui, Inventory: Font,
       Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
       GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
@@ -283,6 +283,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vBrickedWhenCorrupted Checked%BrickedWhenCorrupted% xs+5 y+8, Only consider a map to be`rbricked if it's corrupted
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_Prep Checked%YesSkipMaps_Prep% xs+5 y+8, Skip prep items also
 
 
       ; Affinity
@@ -585,7 +586,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Basic Crafting
 
       Gui, Crafting: Tab, Map Crafting
-        MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal"
+        MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal|Binding|Chisel+Binding|Chisel+Binding+Vaal|Hybrid|Chisel+Hybrid|Chisel+Hybrid+Vaal"
         MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
         MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
         Gui, Crafting: Font, Bold s9 cBlack, Arial
@@ -775,7 +776,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
       Gui, Strings: +Delimiter?
       Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
-      Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1440_NavaliStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"
+      Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1440_NavaliStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"?"%1440_JunStr%"
       Gui, Strings: Add, Text, x+10 ys , Capture of the Azurite Mines vendor nameplate
       Gui, Strings: Add, ComboBox, y+8 w280 vVendorMineStr gUpdateStringEdit , %VendorMineStr%??"%1080_MasterStr%"?"%1050_MasterStr%"
       Gui, Strings: Add, Text, xs y+15 section, Capture of the Lioneye vendor nameplate

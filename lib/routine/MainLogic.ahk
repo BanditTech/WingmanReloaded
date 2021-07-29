@@ -71,7 +71,7 @@ TGameTick(GuiCheck:=True){
 					}
 				Exit
 			}
-			Else If (YesOHB && !CheckOHB())
+			Else If (YesOHB && !(WR.func.failsafe.OHB := CheckOHB()))
 			{
 				If CheckTime("seconds",1,"StatusBar1")
 					SB_SetText("Script paused while no OHB", 1)
@@ -139,12 +139,11 @@ TGameTick(GuiCheck:=True){
 				Loop 5
 				{
 					If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
-						If (WR.Flask[A_Index].ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask[A_Index].ResetCooldownAtHealthPercentageInput) {
+						If (WR.Flask[A_Index].ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask[A_Index].ResetCooldownAtHealthPercentageInput)
+						|| (WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentageInput) 
+						|| (WR.Flask[A_Index].ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask[A_Index].ResetCooldownAtManaPercentageInput) {
 							WR.cdExpires.Flask[A_Index] := 0
-						} Else If (WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentageInput) {
-							WR.cdExpires.Flask[A_Index] := 0
-						} Else If (WR.Flask[A_Index].ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask[A_Index].ResetCooldownAtManaPercentageInput) {
-							WR.cdExpires.Flask[A_Index] := 0
+							WR.cdExpires.Group[WR.Flask[A_Index].Group] := 0
 						}
 					} 
 					If (WR.cdExpires.Flask[A_Index] < A_TickCount) {
@@ -214,7 +213,7 @@ TGameTick(GuiCheck:=True){
 			}
 		}
 
-		If (WR.func.Toggle.Move)
+		If (WR.func.Toggle.Move && GuiCheck())
 		{
 			Loop 5
 				If WR.Flask[A_Index].Move

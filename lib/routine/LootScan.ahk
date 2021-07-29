@@ -73,11 +73,21 @@ LootScan(Reset:=0){
 		{
 			LootVacuumActive:=True
 		}
+		If (LootVacuum && LootVacuumTapZ && !LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
+			Send {z}
+			Sleep, 10
+			Send {z}
+		}
 	Return
 	LootScanCommandRelease:
 		If LootVacuumActive
 		{
 			LootVacuumActive:=False
+		}
+		If (LootVacuum && LootVacuumTapZ && LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
+			Send {z}
+			Sleep, 10
+			Send {z}
 		}
 	Return
 
