@@ -28,8 +28,10 @@ QuickPortal(ChickenFlag := False){
 				}
 			}
 		}
-		If !Found
+		If !Found {
+			Log("Portal Scroll is not configured in inventory slot options")
 			Return False
+		}
 		x := InventoryGridX[C], Y := InventoryGridY[R]
 		o := RandClick(X,Y)
 		RightClick(o.X, o.Y)
