@@ -145,17 +145,17 @@ CraftingMaps(){
 					{
 						If (!Item.Prop.RarityNormal)
 						{
-							If ((Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
-							|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% == "Alchemy")) 
-							|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)" )))
+							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
+							|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) 
+							|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
 							{
-								If ((msg := MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)) == 1)
-									MsgBox % msg
+								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
 							}
 							Else
 							{
-								ApplyCurrency("Scouring",Grid.X,Grid.Y)
+								If !ApplyCurrency("Scouring",Grid.X,Grid.Y)
+									Return False
 							}
 						}
 						If (Item.Prop.RarityNormal)
@@ -182,7 +182,8 @@ CraftingMaps(){
 							{
 								Loop, %numberChisel%
 								{
-									ApplyCurrency("Chisel",Grid.X,Grid.Y)
+									If !ApplyCurrency("Chisel",Grid.X,Grid.Y)
+										Return False
 								}
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
@@ -191,7 +192,8 @@ CraftingMaps(){
 							{
 								Loop, %numberChisel%
 								{
-									ApplyCurrency("Chisel",Grid.X,Grid.Y)
+									If !ApplyCurrency("Chisel",Grid.X,Grid.Y)
+										Return False
 								}
 								MapRoll(CraftingMapMethod%i%,Grid.X,Grid.Y)
 								ApplyCurrency("Vaal",Grid.X,Grid.Y)
@@ -226,10 +228,15 @@ CountCurrency(NameList:=""){
 	If !IsObject(NameList)
 		NameList := StrSplit(NameList,",")
 	For key, currency in NameList {
-		If !WR.loc.pixel.HasKey(currency)
-			Return "Error resolving currency type " currency
-		ClipItem(WR.loc.pixel[currency].X,WR.loc.pixel[currency].Y)
-		retCount[currency] := Item.Prop.Stack_Size ? Item.Prop.Stack_Size : 0
+		If !WR.loc.pixel.HasKey(currency) 
+			Return False
+		If (WR.loc.pixel[currency].X = 0 && WR.loc.pixel[currency].Y = 0) {
+			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
+			retCount[currency] := 0
+		} Else {
+			ClipItem(WR.loc.pixel[currency].X,WR.loc.pixel[currency].Y)
+			retCount[currency] := Item.Prop.Stack_Size ? Item.Prop.Stack_Size : 0
+		}
 	}
 	Return retCount.Count() ? retCount : False
 }
@@ -294,6 +301,10 @@ MapRoll(Method, x, y){
 		{
 			Return
 		}
+		Else If (Item.Prop.Rarity_Digit > 2 && cname = "Binding" && YesMapUnid )
+		{
+			Return
+		}
 		Else
 		{
 			WisdomScroll(x,y)
@@ -323,6 +334,7 @@ MapRoll(Method, x, y){
 	|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
 	&& !Item.Affix["Unidentified"]
 	{
+		Notify("Inside roll while","These maps should not see this",1)
 		If (!RunningToggle)
 		{
 			break
