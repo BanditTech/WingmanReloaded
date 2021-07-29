@@ -1,4 +1,17 @@
-﻿## Version .14.0201 - Alpha version - July/28/2021
+﻿## Version .14.0202 - Alpha version - July/29/2021
+Restock Scrolls has been expanded to all currency
+* Each inventory slot can be Normal, Ignore, or Restock
+* Ignore acts just like originally, blocking the slot
+* Restock allows you to select a currency to manage
+* You can choose the minimum, maximum and Restock amount
+* Some currency locations are not yet in the script
+  * They are on the list of selectable currency though
+  * Once they locations are added they will work as expected
+  * It will notify you of any missing pixel locations
+
+---
+
+## Version .14.0201 - Alpha version - July/28/2021
 Seperated the Chaos recipe count for ID and UNID
 * No longer option for having combined and Seperate
 * This did not really work well in practice and was unintuitive
