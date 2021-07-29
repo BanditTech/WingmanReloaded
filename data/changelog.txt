@@ -1,4 +1,12 @@
-﻿## Version .14.0102 - Alpha version - July/28/2021
+﻿## Version .14.0103 - Alpha version - July/28/2021
+Bugfixes
+* Add scaled position for binding orb
+  * 43:18 and WXGA need to submit the position to be added
+* Fix for chaos recipe automation requiring vendor before stash
+
+---
+
+## Version .14.0102 - Alpha version - July/28/2021
 Add Binding orbs to the options for map crafting
 * Choose explicity binding orbs, or set to hybrid mode
 * Hybrid switches between the higher of Alchemy or Binding
