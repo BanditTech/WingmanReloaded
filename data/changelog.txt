@@ -1,4 +1,9 @@
-﻿## Version .14.0202 - Alpha version - July/29/2021
+﻿## Version .14.02032 - Alpha version - July/29/2021
+Bugfixes! All working now
+
+---
+
+## Version .14.0202 - Alpha version - July/29/2021
 Restock Scrolls has been expanded to all currency
 * Each inventory slot can be Normal, Ignore, or Restock
 * Ignore acts just like originally, blocking the slot
