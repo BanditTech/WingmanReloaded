@@ -212,7 +212,6 @@
 		YesEnableAutomation = Enable Automation Routines
 		FirstAutomationSetting = Start Automation selected option
 		YesEnableNextAutomation = Enable next automation after the first selected
-		YesEnableLockerAutomation = Enable Heist automation to find and deposit at Heist Locker
 		YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
 		YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r   The vendor is empty`r   The only items are Chromatic or Jeweler`r   During the chaos Recipe
 		DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
@@ -523,7 +522,7 @@
 	, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr, VendorHarbourStr
 
 ; Automation Settings
-	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableLockerAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
+	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
 
 ; General
 	Global BranchName := "master"

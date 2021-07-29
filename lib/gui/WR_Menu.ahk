@@ -88,7 +88,7 @@ WR_Menu(Function:="",Var*){
       Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
+      Gui, Inventory: Add, GroupBox,             w180 h145    section    xm+370   ys,         Automation
       AutomationList := "Search Stash|Search Vendor"
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
@@ -97,7 +97,6 @@ WR_Menu(Function:="",Var*){
       GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
       Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
-      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableLockerAutomation Checked%YesEnableLockerAutomation%   xs+5    y+8  , Enable Heist Automation ?
       Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesEnableAutoSellConfirmationSafe Checked%YesEnableAutoSellConfirmationSafe%       y+8  , Enable Safe Auto Confirm?
       Gui, Inventory: Font, Bold s9 cBlack, Arial
