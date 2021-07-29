@@ -1,4 +1,14 @@
-﻿## Version .14.0104 - Alpha version - July/28/2021
+﻿## Version .14.02 - Master version - July/28/2021
+Merging all changes from alpha
+
+New features added to the script
+* Option for double tapping z before/after loot vacuum
+* Binding orbs are now useable in map crafting
+* Can skip fragments and scarabs in map area
+
+---
+
+## Version .14.0104 - Alpha version - July/28/2021
 Add new option for skipping Map prep items in Map area
 * Will skip stashing Sacrifice fragments and scarabs within area
 
