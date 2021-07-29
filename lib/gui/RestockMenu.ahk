@@ -86,6 +86,8 @@
 
 	RestockRefreshOption:
 		for k,v in DefaultSettings {
+			If !LoadedValues.HasKey(k)
+				LoadedValues[k] := v
 			If (k = "RestockName") {
 				If (LoadedValues[k] = "")
 					GuiControl, Choose, RestockRestockName, 0
