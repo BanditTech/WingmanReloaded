@@ -416,6 +416,19 @@
 		hotkey,% hotkeyStartCraft, Crafting, Off
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
+
+	
+	If hotkeyCtrlClicker
+		hotkey % hotkeyCtrlClicker,% CtrlSpam, Off
+	If hotkeyCtrlShiftClicker
+		hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, Off
+	Hotkey, If
+	If hotkeyCtrlClicker
+		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
+	If hotkeyCtrlShiftClicker
+		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
+	hotkey, IfWinActive, ahk_group POEGameGroup
+
 	If hotkeyGrabCurrency
 		hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off  
 	If hotkeyGetCoords
@@ -479,6 +492,8 @@
 	IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
 	IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
 	IniRead, hotkeyTriggerMovement, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement, LButton
+	IniRead, hotkeyCtrlClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker, A_Space
+	IniRead, hotkeyCtrlShiftClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker, A_Space
 	
 	hotkey, IfWinActive, ahk_group POEGameGroup
 	If hotkeyAutoQuit
@@ -497,6 +512,18 @@
 		hotkey,% hotkeyStartCraft, Crafting, On
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, On
+
+	If hotkeyCtrlClicker
+		hotkey % hotkeyCtrlClicker,% CtrlSpam, On
+	If hotkeyCtrlShiftClicker
+		hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, On
+	hotkey, If
+	If hotkeyCtrlClicker
+		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, On
+	If hotkeyCtrlShiftClicker
+		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, On
+	hotkey, IfWinActive, ahk_group POEGameGroup
+
 	If hotkeyGrabCurrency
 		hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, On
 	If hotkeyGetMouseCoords
@@ -677,6 +704,18 @@ updateEverything:
 		hotkey,% hotkeyStartCraft, Crafting, Off
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
+
+	If hotkeyCtrlClicker
+		hotkey % hotkeyCtrlClicker,% CtrlSpam, Off
+	If hotkeyCtrlShiftClicker
+		hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, Off
+	hotkey, If
+	If hotkeyCtrlClicker
+		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
+	If hotkeyCtrlShiftClicker
+		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
+	hotkey, IfWinActive, ahk_group POEGameGroup
+
 	If hotkeyGrabCurrency
 		hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
 	If hotkeyGetCoords
@@ -799,6 +838,8 @@ updateEverything:
 	IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
 	IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
 	IniWrite, %hotkeyCraftBasic%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic
+	IniWrite, %hotkeyCtrlClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker
+	IniWrite, %hotkeyCtrlShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker
 	IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
 	IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
 	IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks

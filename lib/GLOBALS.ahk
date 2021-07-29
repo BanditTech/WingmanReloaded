@@ -143,6 +143,11 @@
 	; Global GameStr := "ahk_group POEGameGroup"
 	Hotkey, IfWinActive, ahk_group POEGameGroup
 
+	; Binding Objects for Spam keys
+	Global CtrlSpam := Func("SpamClick").Bind("On","Ctrl")
+	Global CtrlShiftSpam := Func("SpamClick").Bind("On",["Ctrl","Shift"])
+	Global CtrlSpamOff := Func("SpamClick").Bind("Off")
+
 	Global PauseTooltips:=0
 	Global Clip_Contents:=""
 	Global CheckGamestates:=False
@@ -225,6 +230,8 @@
 		hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
 		hotkeyStartCraft = Set your hotkey to use Crafting Settings functions, as Map Crafting
 		hotkeyCraftBasic = Set your hotkey to use Basic Crafting pop-up, these can be configured in the Crafting Settings.
+		hotkeyCtrlClicker = Bind a key to use for fast Ctrl Clicks on your cursor.
+		hotkeyCtrlShiftClicker = Bind a key to use for fast Ctrl + Shift Clicks on your cursor.
 		hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
 		hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
 		hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
@@ -821,6 +828,8 @@
 	global hotkeyGemSwap:="!e"
 	global hotkeyStartCraft:="F7"
 	global hotkeyCraftBasic:="F9"
+	global hotkeyCtrlClicker:=""
+	global hotkeyCtrlShiftClicker:=""
 	global hotkeyGrabCurrency:="!a"
 	global hotkeyGetMouseCoords:="!o"
 	global hotkeyCloseAllUI:="Space"

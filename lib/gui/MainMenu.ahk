@@ -290,7 +290,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
 	Gui Add, Text, hp x+5   yp+3,         Detonate Mines
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h340               xs+175   ym+25,       Tool Keybinds: 
+	Gui Add, GroupBox,    center w170 h400               xs+175   ym+25,       Tool Keybinds: 
 	Gui, Font
 
 	Gui,Add,Edit, section xp+5 yp+20   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
@@ -317,6 +317,10 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
 	Gui Add, Text,                     hp x+5   yp+3,         Chaos Recipe
 	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCraftBasic        ,%hotkeyCraftBasic%
 	Gui Add, Text,                     hp x+5   yp+3,         Basic Crafting
+	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCtrlClicker        ,%hotkeyCtrlClicker%
+	Gui Add, Text,                     hp x+5   yp+3,         Ctrl Clicker
+	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCtrlShiftClicker   ,%hotkeyCtrlShiftClicker%
+	Gui Add, Text,                     hp x+5   yp+3,         CtrlShift Clicker
 
 	Gui, Font
 	Gui, Add, Checkbox, section xs+195 ys vYesController Checked%YesController%,     Enable Controller

@@ -20,16 +20,22 @@ SpamClick(Toggle:="",Modifier:=""){
 	} Else
 			Spam := !Spam
 	If (Modifier != "") {
-		Send {%Modifier% Down}
-		Sleep, 60+(ClickLatency*15)
+		If !isObject(Modifier)
+			Modifier := StrSplit(Modifier,",")
+		For k, mod in Modifier{
+			Send {%mod% Down}
+			Sleep, 60+(ClickLatency*15)
+		}
 	}
 	While Spam {
 		Send {Click}
 		Sleep, 60+(ClickLatency*15)
 	}
 	If (Modifier != "") {
-		Send {%Modifier% Up}
-		Sleep, 60+(ClickLatency*15)
+		For k, mod in Modifier{
+			Send {%mod% Up}
+			Sleep, 60+(ClickLatency*15)
+		}
 	}
 }
 ; LeftClick - Left Click at Coord
