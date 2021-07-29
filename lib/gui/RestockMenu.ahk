@@ -3,6 +3,16 @@
 	static Built := False
 	static Active := [1,1]
 	static LoadedValues := ""
+	Static DefaultSettings := {"Normal":"1"
+	                          ,"Ignored":"0"
+	                          ,"Restock":"0"
+	                          ,"RestockName":""
+	                          ,"RestockMin":0
+	                          ,"RestockMax":0
+	                          ,"RestockTo":0
+	                          ,"MapSlot":0
+	                          ,"MapPrep":0
+	                          ,"MapSpecial":0}
 	If !Built
 	{
 		Built := True
@@ -13,7 +23,7 @@
 		Gui, Restock: Add, Picture, w650 h-1 xs+5 ys+15, %A_ScriptDir%\data\InventorySlots.png
 		Gui, Restock: Font
 		Gui, Restock: +LabelRestock -MinimizeBox +AlwaysOnTop
-		LoadRestockArray()
+		Gosub, LoadRestockArray
 
 		Gui, Restock: Add, Text, w1 h1 xs+26 ys+13, ""
 
@@ -26,7 +36,7 @@
 				++ind
 				checkboxStr := "IgnoredSlot_" . C . "_" . R
 				checkboxTik := IgnoredSlot[C][R]
-				Gui, Restock: Add, Button, v%checkboxStr% gUpdateActiveRestock y+25 h27 w33 Checked%checkboxTik%,% (ind < 10 ? "0" . ind : ind)
+				Gui, Restock: Add, Button, v%checkboxStr% gRestockSetActive y+25 h27 w33 Checked%checkboxTik%,% (ind < 10 ? "0" . ind : ind)
 			}
 		}
 		ind=0
@@ -38,53 +48,97 @@
 
 		LoadedValues := WR.Restock[Active.1][Active.2]
 
-		Gui, Restock: Add, Checkbox, xs+5 ys+22 vRestockIgnored gUpdateRestockOption, Ignore this slot
-		Gui, Restock: Add, Checkbox, xs+5 y+5 vRestockRestock gUpdateRestockOption, Restock this slot
-		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gUpdateRestockOption, Wisdom||Portal|Alchemy|Alteration|Transmute|Augment|Vaal|Chaos|Binding|Scouring|Chisel|Horizon|Simple|Prime|Awakened|Engineer|Regal
-		Gui, Restock: Font, Bold s10
-		Gui, Restock: Add, Text, xs+5 y+5, Min
+		Gui, Restock: Add, Radio, xs+5 ys+22 vRestockNormal gRestockSetValue, Normal slot
+		Gui, Restock: Add, Radio, xs+5 y+5 vRestockIgnored gRestockSetValue, Ignore this slot
+		Gui, Restock: Add, Radio, xs+5 y+5 vRestockRestock gRestockSetValue, Restock this slot
+		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Alchemy|Alteration|Transmute|Augment|Vaal|Chaos|Binding|Scouring|Chisel|Horizon|Simple|Prime|Awakened|Engineer|Regal
+		Gui, Restock: Font, Bold s9
+		Gui, Restock: Add, Text, xs+5 y+10, Min stack:
 		Gui, Restock: Font
-		Gui, Restock: Add, Edit, x+5 yp vRestockRestockMin gUpdateRestockOption, 0
-		Gui, Restock: Font, Bold s10
-		Gui, Restock: Add, Text, x+5 yp, Max
+		Gui, Restock: Add, Edit, x+5 yp-3, 0
+		Gui, Restock: Add, UpDown, vRestockRestockMin gRestockSetValue, 0
+		Gui, Restock: Font, Bold s9
+		Gui, Restock: Add, Text, x+5 yp+3, Max stack:
 		Gui, Restock: Font
-		Gui, Restock: Add, Edit, x+5 yp , 0
-		Gui, Restock: Add, UpDown, vRestockRestockMax gUpdateRestockOption, 0
-		Gui, Restock: Font, Bold s10
-		Gui, Restock: Add, Text, x+5 yp, Target
+		Gui, Restock: Add, Edit, x+5 yp-3, 0
+		Gui, Restock: Add, UpDown, vRestockRestockMax gRestockSetValue, 0
+		Gui, Restock: Font, Bold s9
+		Gui, Restock: Add, Text, xs+5 y+13, Restock back to:
 		Gui, Restock: Font
-		Gui, Restock: Add, Edit, x+5 yp vRestockRestockTo gUpdateRestockOption, 0
-		Gui, Restock: Add, Checkbox, xs+5 y+5 vRestockMapSlot gUpdateRestockOption, Map slot
-		Gui, Restock: Add, Checkbox, xs+5 y+5 vRestockMapPrep gUpdateRestockOption, Map prep slot
-		Gui, Restock: Add, Checkbox, xs+5 y+5 vRestockMapSpecial gUpdateRestockOption, Map Special slot
+		Gui, Restock: Add, Edit, x+5 yp-3, 0
+		Gui, Restock: Add, UpDown, vRestockRestockTo gRestockSetValue, 0
+		Gosub, RestockRefreshOption
 
 		Gui, ReStock: show, AutoSize
 	} Else
 		Gui, ReStock: show, AutoSize
 	Return
 
-	UpdateActiveRestock:
+	RestockSetActive:
 		Gui, Restock: Submit, NoHide
 		btnArr := StrSplit(A_GuiControl, "_")
 		C := btnArr[2]
 		R := btnArr[3]
-		Tooltip Pressed Button %C% %R%
 		Active := [C,R]
 		LoadedValues := WR.Restock[C][R]
+		Gosub, RestockRefreshOption
 	Return
 
-	UpdateRestockOption:
+	RestockRefreshOption:
+		for k,v in DefaultSettings {
+			If (k = "RestockName") {
+				If (LoadedValues[k] = "")
+					GuiControl, Choose, RestockRestockName, 0
+				Else
+					GuiControl, ChooseString, RestockRestockName,% LoadedValues[k]
+			}
+			Else
+				GuiControl, , Restock%k%, % LoadedValues[k]
+		}
+	Return
+
+	LoadRestockArray:
+		If FileExist( A_ScriptDir "\save\Restock.json") {
+			FileRead, JSONtext, %A_ScriptDir%\save\Restock.json
+			WR.Restock := JSON.Load(JSONtext)
+		} Else {
+			WR.Restock := {}
+			For C, GridX in InventoryGridX{
+				If !WR.Restock.HasKey(C)
+					WR.Restock[C] := {}
+				For R, GridY in InventoryGridY{
+					If !WR.Restock[C].HasKey(R)
+						WR.Restock[C][R] := Array_DeepClone(DefaultSettings)
+				}
+			}
+		}
+	Return
+
+	RestockSetValue:
 		Gui, Restock: Submit, NoHide
 		VarName := RegExReplace(A_GuiControl, "^Restock", "")
-		Tooltip % VarName " has " %A_GuiControl% Value
+		LoadedValues[VarName] := %A_GuiControl%
+		radios := ["Normal","Ignored","Restock"]
+		If indexOf(VarName,radios) {
+			For k,v in radios {
+				if (v = VarName){
+					radios.Delete(k)
+					Break
+				}
+			}
+			For k,v in radios {
+				LoadedValues[v] := Restock%v%
+			}
+		}
 	Return
-
 
 	ReStockSaveValues:
 		FileDelete, %A_ScriptDir%\save\Restock.json
 		JSONtext := JSON.Dump(WR.ReStock,,2)
 		FileAppend, %JSONtext%, %A_ScriptDir%\save\Restock.json
+		JSONtext := ""
 	Return
+
 	RestockClose:
 	RestockEscape:
 		Built := False
@@ -95,22 +149,3 @@
 	Return
 }
 
-LoadRestockArray()
-{
-	Static DefaultSettings := {"Ignored":0,"Restock":0,"RestockName":"","RestockMin":0,"RestockMax":0,"RestockTo":0,"MapSlot":0,"MapPrep":0,"MapSpecial":0}
-	If FileExist( A_ScriptDir "\save\Restock.json") {
-		FileRead, JSONtext, %A_ScriptDir%\save\Restock.json
-		WR.Restock := JSON.Load(JSONtext)
-	} Else {
-		WR.Restock := {}
-		For C, GridX in InventoryGridX{
-			If !WR.Restock.HasKey(C)
-				WR.Restock[C] := {}
-			For R, GridY in InventoryGridY{
-				If !WR.Restock[C].HasKey(R)
-					WR.Restock[C][R] := Array_DeepClone(DefaultSettings)
-			}
-		}
-	}
-	Return
-}
