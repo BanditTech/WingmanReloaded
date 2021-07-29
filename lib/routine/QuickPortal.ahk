@@ -5,7 +5,7 @@ QuickPortal(ChickenFlag := False){
 		If (OnTown || OnHideout || OnMines)
 			Return
 		Critical
-		; BlockInput On
+		BlockInput On
 		BlockInput MouseMove
 		If (GetKeyState("LButton","P"))
 			Click, up
@@ -30,10 +30,12 @@ QuickPortal(ChickenFlag := False){
 		}
 		If !Found {
 			Log("Portal Scroll is not configured in inventory slot options")
+			BlockInput MouseMoveOff
+			BlockInput Off
 			Return False
 		}
-		XX := InventoryGridX[C], YY := InventoryGridY[R]
-		o := RandClick(XX,YY)
+		iX := InventoryGridX[C], iY := InventoryGridY[R]
+		o := RandClick(iX,iY)
 
 		RightClick(o.X, o.Y)
 
@@ -45,7 +47,7 @@ QuickPortal(ChickenFlag := False){
 		}
 		Else
 			MouseMove, xx, yy, 0
-		; BlockInput Off
+		BlockInput Off
 		BlockInput MouseMoveOff
 		RandomSleep(300,600)
 		Thread, NoTimers, False    ;End Critical
