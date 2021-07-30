@@ -422,7 +422,7 @@
 	Global CurrentLocation := ""
 	Global CLogFO
 ; ASCII converted strings of images
-	Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x1F1511@0.98$106.Tzzzzzzzzzzzzzzzzu|<1080 Overhead Health Bar>0x201411@0.98$106.Tzzzzzzzzzzzzzzzzu"
+	Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x201614@0.99$106.Tzzzzzzzzzzzzzzzzu"
 		, 1440_HealthBarStr := "|<1440 Overhead Health Bar>0x190D11@0.98$138.TzzzzzzzzzzzzzzzzzzzzzyU"
 		, 1440_HealthBarStr_Alt := "|<1440 OHB alt>*58$71.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
 		, 1050_HealthBarStr := "|<1050 Overhead Health Bar>0x221415@0.98$104.Tzzzzzzzzzzzzzzzzc"
