@@ -31,7 +31,7 @@ LootScan(Reset:=0){
 					MouseGetPos mX, mY
 					ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 					ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-					loot := FindText(x,y,xx,yy,0,0,DelveStr,0,0)
+					loot := FindText(x,y,xx,yy,0.1,0.1,DelveStr,0,0)
 				}
 				Else If YesLootChests
 				{
@@ -43,7 +43,7 @@ LootScan(Reset:=0){
 				If (loot)
 				{
 					ScanPx := loot.1.1, ScanPy := loot.1.y
-					, ScanPy += 30
+					, ScanPy += 15
 					If (OnMines && !(loot.Id ~= "cache" || loot.Id ~= "vein"))
 						ScanPx += loot.3
 					GoSub LootScan_Click

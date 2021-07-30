@@ -367,7 +367,6 @@ MapRoll(Method, x, y){
 	|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
 	&& !Item.Affix["Unidentified"]
 	{
-		Notify("Inside roll while","These maps should not see this",1)
 		If (!RunningToggle)
 		{
 			break
