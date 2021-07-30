@@ -92,6 +92,7 @@ CraftingMaps(){
 	BlackList := Array_DeepClone(BlackList_Default)
 	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel"])
 	; MsgBoxVals(WR.data.Counts)
+	MapList := {}
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
 	{
@@ -200,9 +201,46 @@ CraftingMaps(){
 			} Else If (indexOf(Item.Prop.ItemClass,["Blueprint","Contract"]) && Item.Prop.RarityNormal && HeistAlcNGo) {
 				ApplyCurrency("Alchemy",Grid.X,Grid.Y)
 			}
+			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep) && !InMapArea(C))
+				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
+		}
+	}
+	If (MoveMapsToArea && RunningToggle){
+		Slots := EmptyGrid()
+		RemoveKeys := []
+		; For k, v in Slots {
+		; 	If !InMapArea(StrSplit(k," ").1)
+		; 		RemoveKeys.Push(k)
+		; }
+		; Loop % RemoveKeys.Count() {
+		; 	k := RemoveKeys.Pop()
+		; 	Slots.Delete(k)
+		; }
+		For k, obj in MapList {
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If Slots.Count() {
+				split := StrSplit(k," ")
+				C := split.1
+				R := split.2
+				gogo := Slots.Pop()
+				LeftClick(obj.X,obj.Y)
+				Sleep, 180 + (15 * ClickLatency)
+				LeftClick(gogo.X,gogo.Y)
+				Sleep, 120 + (15 * ClickLatency)
+			}	Else
+				Break
 		}
 	}
 	Return
+}
+InMapArea(C:=0) {
+	If (C <= 0)
+		Return False
+	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
+	|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
+		Return True
+	Return False
 }
 getMapCraftingMethod(){
 	Loop, 3

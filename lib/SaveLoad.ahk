@@ -108,6 +108,7 @@
 	IniRead, YesSpecial5Link, %A_ScriptDir%\save\Settings.ini, General, YesSpecial5Link, 1
 	IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
 	IniRead, HeistAlcNGo, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo, 1
+	IniRead, MoveMapsToArea, %A_ScriptDir%\save\Settings.ini, General, MoveMapsToArea, 1
 	IniRead, EnableRestock, %A_ScriptDir%\save\Settings.ini, General, EnableRestock, 1
 
 	; Basic Crafting Settings
@@ -815,6 +816,7 @@ updateEverything:
 	IniWrite, %YesSpecial5Link%, %A_ScriptDir%\save\Settings.ini, General, YesSpecial5Link
 	IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
 	IniWrite, %HeistAlcNGo%, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo
+	IniWrite, %MoveMapsToArea%, %A_ScriptDir%\save\Settings.ini, General, MoveMapsToArea
 	IniWrite, %EnableRestock%, %A_ScriptDir%\save\Settings.ini, General, EnableRestock
 
 	; Overhead Health Bar

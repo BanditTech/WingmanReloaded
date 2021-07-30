@@ -1274,6 +1274,7 @@
 		Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
 		If ( This.Prop.Rarity_Digit != 3 )
 		|| ( This.Prop.ItemLevel < 60 )
+		|| !( This.Prop.SlotType )
 		|| ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
 		|| ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
 		|| ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass = "Shields") 

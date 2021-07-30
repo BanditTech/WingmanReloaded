@@ -185,6 +185,8 @@
 		,"Focal Stone","Conduit Line","Aggregator Charm","Burst Band"]
 
 	Global HeistLootLarge := ["Essence Burner","Ancient Seal","Blood of Innocence","Dekhara's Resolve","Orbala's Fifth Adventure","Staff of the first Sin Eater","Sword of the Inverse Relic"]
+
+	; Tooltip Texts
 	ft_ToolTip_Text_Part1=
 		(LTrim
 		UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
@@ -364,6 +366,7 @@
 		CraftingMapMethod1 = Select Crafting/ReCrafting Method for Range 1
 		CraftingMapMethod2 = Select Crafting/ReCrafting Method for Range 2
 		CraftingMapMethod3 = Select Crafting/ReCrafting Method for Range 3
+		MoveMapsToArea = When finished map crafting, move all crafted maps to the map area`rThis will include MapPrep Items that were not in map area
 		ElementalReflect = Select this if your build can't run maps with this mod
 		PhysicalReflect = Select this if your build can't run maps with this mod
 		NoLeech = Select this if your build can't run maps with this mod
@@ -589,6 +592,7 @@
 	Global YesOpenStackedDeck := True
 	Global YesSpecial5Link := True
 	global EnableRestock:=True
+	global MoveMapsToArea:=True
 
 
 	; Chaos Recipe

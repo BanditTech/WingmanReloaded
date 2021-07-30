@@ -369,13 +369,15 @@ EmptyGrid(){
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
 			If !WR.Restock[C][R].Normal
-				Continue
+				Continue 1
 			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
-				EmptySlots[C R] := RandClick(GridX, GridY)
+				EmptySlots.Push(RandClick(GridX, GridY))
 			}
 		}
 	}
+	If (YesSkipMaps_eval = "<=")
+		EmptySlots := AHK.Reverse(AHK.SortBy(EmptySlots,"X"))
 	Return EmptySlots
 }
 ; Open Stacked Decks Automatically
@@ -495,25 +497,20 @@ StashRoutine()
 					Continue
 				Else If (sendstash:=Item.MatchLootFilter())
 					Sleep, -1
-				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep
-				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
-					|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) )
+				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep && InMapArea(C) )
 					Continue
-				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps 
-				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
-					|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) 
+				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && InMapArea(C)
 				&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal) 
 					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
 					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
 					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) ) )
 					Continue
-				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps
-				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
-				&& ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
+				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps && InMapArea(C)
+				&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal) 
 					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
 					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
-					|| (Item.Prop.RarityUnique && YesSkipMaps_unique)) 
-				&& (Item.Prop.Map_Tier >= YesSkipMaps_tier))
+					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) ) 
+				&& (Item.Prop.Map_Tier >= YesSkipMaps_tier) )
 					Continue
 				Else If (sendstash:=Item.MatchStashManagement(True)){
 					;Skip
