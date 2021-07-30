@@ -579,7 +579,7 @@
 	Global YesPredictivePrice_Percent_Val := 100
 	Global HPerc := 100
 	Global GameX, GameY, GameW, GameH, mouseX, mouseY
-	Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
+	Global OHB
 	Global WinGuiX := 0
 	Global WinGuiY := 0
 	Global YesVendorDumpItems := 0

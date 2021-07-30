@@ -667,7 +667,7 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
-          Gui, Crafting: Add, Checkbox, vMoveMapsToArea xs+10 ys+40 Checked%MoveMapsToArea%, Move Crafted Maps and Enhance Itens to Map Area?
+          Gui, Crafting: Add, Checkbox, vMoveMapsToArea xs+10 ys+40 Checked%MoveMapsToArea%, Move Crafted Maps and Enhance Items to Map Area?
           Gui, Crafting: Font
       Gui, Crafting: Tab, Basic Crafting
         Gui, Crafting: Font, Bold s12 cBlack, Arial

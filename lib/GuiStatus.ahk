@@ -46,7 +46,7 @@ CheckOHB()
   Global YesOHBFound
   If GamePID
   {
-    if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2)), GameY + Round(GameH / (1080 / 50)), GameX + Round((GameW / 2)+(OHBStrW/2)), GameY + Round(GameH / (1080 / 430)) , 0, 0, HealthBarStr,0))
+    if (ok:=FindText(GameX + Round((GameW / 2)-(OHBStrW/2) - 2), GameY + Round(GameH / (1080 / 50)), GameX + Round((GameW / 2)+(OHBStrW/2) + 2), GameY + Round(GameH / (1080 / 430)) , 0.1, 0.1, HealthBarStr,0))
     {
       YesOHBFound := True
       Return {1:ok.1.1, 2:ok.1.2, 3:ok.1.3,4:ok.1.4,"Id":ok.1.Id}
@@ -61,19 +61,6 @@ CheckOHB()
   Else 
     Return False
 }
-
-; CheckDialogue()
-; {
-;   If GamePID
-;   {
-;     if (ok:=FindText(GameX + Round((GameW / 2)-100), GameY + Round(GameH / (1080 / 1)), GameX + Round((GameW / 2)+100), GameY + Round(GameH / (1080 / 10)) , 0, 0, "|<NPC Dialogue>0x3B454E@0.97$61.0M4UGdaEQ0zzw1zRIC6zs1RvoECDkk7yDywE7zbzy",0))
-;       Return True
-;     Else
-;       Return False
-;   }
-;   Else 
-;     Return False
-; }
 CheckXButton(retObj:=0)
 {
   Global YesXButtonFound
