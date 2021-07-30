@@ -409,7 +409,7 @@ WR_Menu(Function:="",Var*){
 
 
     Gui, Inventory: Tab, Chaos Recipe
-    Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,Section w175 h245 xm+5 ym+25, Chaos Recipe Options
       Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
@@ -420,10 +420,10 @@ WR_Menu(Function:="",Var*){
 
         Gui, Inventory: Add, GroupBox, w150 h50 xs y+5, Max # of each part
         Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingIDUpDown xp+5 yp+20 w40 center
-        Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHoldingID , %ChaosRecipeMaxHoldingID%
+        Gui, Inventory: Add, UpDown,gSaveChaos Range0-36 vChaosRecipeMaxHoldingID , %ChaosRecipeMaxHoldingID%
         Gui, Inventory: Add, Text, x+5 yp+3, ID
         Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUNIDUpDown x+5 yp-3 w40 center
-        Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHoldingUNID , %ChaosRecipeMaxHoldingUNID%
+        Gui, Inventory: Add, UpDown,gSaveChaos Range0-36 vChaosRecipeMaxHoldingUNID , %ChaosRecipeMaxHoldingUNID%
         Gui, Inventory: Add, Text, x+5 yp+3, UNID
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+32, Limit Weapons 1x3/2x2
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs yp+22, Leave Recipe Rare Un-Id

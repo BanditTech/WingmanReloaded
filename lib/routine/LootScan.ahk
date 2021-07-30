@@ -38,7 +38,7 @@ LootScan(Reset:=0){
 					MouseGetPos mX, mY
 					ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 					ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-					loot := FindText(x,y,xx,yy,0,0,ChestStr,0,0)
+					loot := FindText(x,y,xx,yy,0.1,0.1,ChestStr,0,0)
 				}
 				If (loot)
 				{
