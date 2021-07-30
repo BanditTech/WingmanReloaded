@@ -901,6 +901,8 @@ RunRestock(){
 			X := InventoryGridX[C], Y := InventoryGridY[R]
 			o := RandClick(X,Y)
 			ClipItem(o.X, o.Y)
+			If (Item.Prop.Stack_Size <= 0)
+				Item.Prop.Stack_Size := 0
 			dif := (StackSizes[v.RestockName] - Item.Prop.Stack_Size)
 			If(!(Item.Prop.ItemBase ~= v.RestockName) && !(Item.Prop.ItemBase ~= "\w+"))
 				dif := StackSizes[v.RestockName]
