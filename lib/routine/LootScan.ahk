@@ -43,7 +43,7 @@ LootScan(Reset:=0){
 				If (loot)
 				{
 					ScanPx := loot.1.1, ScanPy := loot.1.y
-					, ScanPy += 15
+					, ScanPy += 30
 					If (OnMines && !(loot.Id ~= "cache" || loot.Id ~= "vein"))
 						ScanPx += loot.3
 					GoSub LootScan_Click
