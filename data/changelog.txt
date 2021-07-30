@@ -4,6 +4,8 @@ Added new feature to map crafting
 * This includes mapprep items like sac frags and scarabs
 * Depending on your map skip direction it will go left or right
 
+Updated to latest version of BigA.ahk lib
+
 ---
 
 ## Version .14.0204 - Alpha version - July/29/2021
