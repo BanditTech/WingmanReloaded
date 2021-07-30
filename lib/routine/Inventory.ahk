@@ -904,9 +904,9 @@ RunRestock(){
 			If (Item.Prop.Stack_Size <= 0)
 				Item.Prop.Stack_Size := 0
 			dif := (StackSizes[v.RestockName] - Item.Prop.Stack_Size)
-			If(!(Item.Prop.ItemBase ~= v.RestockName) && !(Item.Prop.ItemBase ~= "\w+"))
+			If(!(Item.Prop.ItemBase ~= v.RestockName) && !Item.Prop.IsItem)
 				dif := StackSizes[v.RestockName]
-			Else If(!(Item.Prop.ItemBase ~= v.RestockName) && (Item.Prop.ItemBase ~= "\w+"))
+			Else If(!(Item.Prop.ItemBase ~= v.RestockName) && Item.Prop.IsItem)
 				dif := 0
 			; Store the item stack size
 			InvCount := Item.Prop.Stack_Size
