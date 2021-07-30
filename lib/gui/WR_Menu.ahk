@@ -494,7 +494,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
       Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashATLASCraftingIlvlMin , %YesStashATLASCraftingIlvlMin%
       Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
-
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         STR Bases
       Gui, Inventory: Font,
@@ -571,13 +570,13 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: New
       Gui, Crafting: +AlwaysOnTop -MinimizeBox
       ;Save Setting
-      Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+      Gui, Crafting: Add, Button, default gupdateEverything    x425 y510  w125 h23,   Save Configuration
       Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-      Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Basic Crafting
+      Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w675 h555 -wrap , Map Crafting|Basic Crafting
 
       Gui, Crafting: Tab, Map Crafting
-        Gui, Crafting: Add, Checkbox, vMoveMapsToArea x250 ym+25 Checked%MoveMapsToArea%, Move crafted maps / prep items to map area?
+        
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal|Binding|Chisel+Binding|Chisel+Binding+Vaal|Hybrid|Chisel+Hybrid|Chisel+Hybrid+Vaal"
         MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
         MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
@@ -620,7 +619,7 @@ WR_Menu(Function:="",Var*){
           GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
           Gui, Crafting: Font,
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w580 h200 xs, Undesirable Mods:
+        Gui, Crafting: Add,GroupBox,Section w630 h240 xs, Undesirable Mods:
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
@@ -634,17 +633,18 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, Checkbox, vPHLessAreaOfEffect xs+5 ys+180 Checked%PHLessAreaOfEffect%, Players Have # Less Area of Effect
           Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
           Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
-          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' Skills Chain # Additional Times
+          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters Skills Chain # Additional Times
           Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
           Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
           Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
           Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
           Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
+          Gui, Crafting: Add, Button, xs+215 ys+200 w200,  Custom Undesired Mods
           
 
           Gui, Crafting: Font, Bold
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+        Gui, Crafting: Add,GroupBox,Section w200 h130 x320 y50, Minimum Map Qualities:
           Gui, Crafting: Font, 
           Gui, Crafting: Font,s8
 
@@ -660,17 +660,15 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
           Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
 
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+10 ys+20 Checked%EnableMQQForMagicMap%, Enable on Magic Maps?
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h40 xs ys+50, Alc'n'go Heist:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract/Blueprint?
+          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+15 y+15 Checked%EnableMQQForMagicMap%, Enable on Magic Maps
 
+          Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add,GroupBox,Section w290 h60 x320 y190, Other Settings:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s8
+          Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
+          Gui, Crafting: Add, Checkbox, vMoveMapsToArea xs+10 ys+40 Checked%MoveMapsToArea%, Move Crafted Maps and Enhance Itens to Map Area?
+          Gui, Crafting: Font
       Gui, Crafting: Tab, Basic Crafting
         Gui, Crafting: Font, Bold s12 cBlack, Arial
         Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance
@@ -726,7 +724,7 @@ WR_Menu(Function:="",Var*){
         Gui, Crafting: Font
         Gui, Crafting: Show
     }
-    Gui, Crafting: show , w600 h500, Crafting Settings
+    Gui, Crafting: show , w650 h550, Crafting Settings
   }
   Else If (Function = "Strings")
   {
