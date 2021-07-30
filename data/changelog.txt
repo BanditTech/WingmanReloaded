@@ -1,4 +1,12 @@
-﻿## Version .14.0204 - Alpha version - July/29/2021
+﻿## Version .14.0205 - Alpha version - July/29/2021
+Added new feature to map crafting
+* After finishing crafting it can move the maps to your map area
+* This includes mapprep items like sac frags and scarabs
+* Depending on your map skip direction it will go left or right
+
+---
+
+## Version .14.0204 - Alpha version - July/29/2021
 Spam Clickers added for Ctrl and Ctrl+Shift
 * The hotkeys are disabled by default
 * To enable the hotkey, enter a name from [This Key List](https://www.autohotkey.com/docs/KeyList.htm)
