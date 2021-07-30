@@ -5,7 +5,7 @@ QuickPortal(ChickenFlag := False){
 		If (OnTown || OnHideout || OnMines)
 			Return
 		Critical
-		BlockInput On
+		; BlockInput On
 		BlockInput MouseMove
 		If (GetKeyState("LButton","P"))
 			Click, up
@@ -32,7 +32,6 @@ QuickPortal(ChickenFlag := False){
 			Notify("Missing Configuration","Assign an inventory slot to Portal Scrolls`nMake sure to select Ignore or Restock")
 			Log("Portal Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Portal Scrolls","The slot must be configured to Restock or Ignore and select Portal in the dropdown menu")
 			BlockInput MouseMoveOff
-			BlockInput Off
 			Return False
 		}
 		iX := InventoryGridX[C], iY := InventoryGridY[R]
@@ -48,7 +47,6 @@ QuickPortal(ChickenFlag := False){
 		}
 		Else
 			MouseMove, xx, yy, 0
-		BlockInput Off
 		BlockInput MouseMoveOff
 		RandomSleep(300,600)
 		Thread, NoTimers, False    ;End Critical

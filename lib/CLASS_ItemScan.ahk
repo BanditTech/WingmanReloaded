@@ -18,7 +18,7 @@
 			{
 				If (SectionKey = 1 && SVal ~= "Rarity:")
 					This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
-				Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix")
+				Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" )
 					This.Data.Blocks.Affix := SVal
 				Else If (SVal ~= " \(enchant\)$")
 					This.Data.Blocks.Enchant := SVal
@@ -1506,7 +1506,7 @@
 		; These lines remove the extra line created by "additional information bubbles"
 		If (content ~= "\n\(")
 			content := RegExReplace(content, "\n\(", "(")
-		content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,]+\)", "")
+		content := RegExReplace(content,"\(\w+ \w+ [\r\n\w\%\d,\: ]*\)", "")
 		; Do Stuff with info
 		Loop, Parse,% content, `r`n  ; , `r
 		{
