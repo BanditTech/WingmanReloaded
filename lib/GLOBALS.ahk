@@ -338,6 +338,8 @@
 		StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
 		StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
 		StashTabYesFlaskQuality = Enable to send Quality Flask items to the assigned tab on the left
+		StashTabFlaskAll = Assign the Stash tab for Quality Flask items
+		StashTabYesFlaskAll = Enable to send unquality flasks to the assigned tab on the left
 		StashTabLinked = Assign the Stash tab for 6 or 5 Linked items
 		StashTabYesLinked = Enable to send 6 or 5 Linked items to the assigned tab on the left
 		StashTabBrickedMaps = Assign the Stash tab for maps that have unwanted mods on them
@@ -421,10 +423,10 @@
 	Global CurrentLocation := ""
 	Global CLogFO
 ; ASCII converted strings of images
-	Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x221415@0.99$106.Tzzzzzzzzzzzzzzzzu"
-		, 1440_HealthBarStr := "|<1440 Overhead Health Bar>0x190D11@0.99$138.TzzzzzzzzzzzzzzzzzzzzzyU"
+	Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x201614@0.99$106.Tzzzzzzzzzzzzzzzzu"
+		, 1440_HealthBarStr := "|<1440 Overhead Health Bar>0x190D11@0.98$138.TzzzzzzzzzzzzzzzzzzzzzyU"
 		, 1440_HealthBarStr_Alt := "|<1440 OHB alt>*58$71.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
-		, 1050_HealthBarStr := "|<1050 Overhead Health Bar>0x221415@0.99$104.Tzzzzzzzzzzzzzzzzc"
+		, 1050_HealthBarStr := "|<1050 Overhead Health Bar>0x221415@0.98$104.Tzzzzzzzzzzzzzzzzc"
 		, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 
 		, 2160_SellItemsStr := "|<2160 Sell Items>0xE3D7A6@1.00$71.00000001k3U000000003U70003y000070C000AD0000C0Q000U60000Q0s003040000s1k006000001k3U00A000003U7000M000w070C000s007S0C0Q001s00MC0Q0s001s01UA0s1k001w020Q1k3U001w0A0M3U70001y0M0k70C0000y1rzUC0Q0000y3U00Q0s0000w7000s1k0000wC001k3U0000sQ003U700001ks0070C00003Uk00C0Q000071k00Q0s0000A3k20s1k0040k3k81k3U007z03zU3U70007s01y070C0000000000000000000000000000000000000000000000000000000000000000000000004"
@@ -581,7 +583,7 @@
 	Global YesPredictivePrice_Percent_Val := 100
 	Global HPerc := 100
 	Global GameX, GameY, GameW, GameH, mouseX, mouseY
-	Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
+	Global OHB
 	Global WinGuiX := 0
 	Global WinGuiY := 0
 	Global YesVendorDumpItems := 0
@@ -702,6 +704,7 @@
 	Global StashTabGemVaal := 1
 	Global StashTabGemQuality := 1
 	Global StashTabFlaskQuality := 1
+	Global StashTabFlaskAll := 1							 
 	Global StashTabLinked := 1
 	Global StashTabBrickedMaps := 1
 	Global StashTabInfluencedItem := 1
@@ -736,6 +739,7 @@
 	Global StashTabYesGemVaal := 1
 	Global StashTabYesGemQuality := 1
 	Global StashTabYesFlaskQuality := 1
+	Global StashTabYesFlaskAll := 1								
 	Global StashTabYesLinked := 1
 	Global StashTabYesBrickedMaps := 1
 	Global StashTabYesInfluencedItem := 1
