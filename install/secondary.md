@@ -1,24 +1,42 @@
 ## Flasks
 > The core of the script is the flask routine. You are given several options in how you would like each flask slot triggered. Depending on the Character Type you have selected, different options of the interface will become available. Life type will have only life triggers active, ES will have only ES triggers active, and Hybrid will have both. 
-* The 5 Flasks are arranged in columns 
-  * Flask slot 1 is on the left and slot 5 on the right
-* Assign the duration the flask lasts (Cooldown)
+* The 5 Flasks are given their own menus
+  * Click the button to open the configuration
+  * The settings will save when you close the menu
+* Assign the duration the individual flask will go on cooldown
+* Assign the Cooldown group name
+ * This will make all other slots in the same group go on cooldown
+ * The label names are irrelevant to the function of each flask
+* Assign the duration the group will go on cooldown
 * Assign key(s) to press when the flask slot triggers
-* Check options in the column to enable a trigger type
-  * Choose between Life/ES, Mana, Quicksilver, or Attack keys
+  * space seperate list of keys
+  * Delayed actions can be assigned with `[MS](KEY)` example: `[200](RButton)` will press Right mouse after 200ms
+* Select the trigger types which will be active on this flask slot
+  * Trigger on Move and On CD are special triggers, and will take priority over others
 * Choose whether each flask slot will be included in the Pop Flasks hotkey
+* Select a debuff type you want to trigger the flask with
+* Use the resource trigger sliders to select an amount of that resource
+ * The Resource triggers can be optionally bound to each other
+ * This will mean that all the resource triggers must match before it fires
+
+## Understanding Group Cooldowns
+> When Configuring Flask and Utility settings, you will discover a new feature of the script, which is group cooldowns. These allow us to optionaly disable other flasks/utilities while the group cooldown is activated by another.
+
+* When setting up multiple flasks to use in a group, take not of the individual duration of all flasks you want to toggle between.
+ * Take this value, and assign it to the cooldown of all flasks that are being rotated
+ * In the Group Cooldown field, enter the true duration of each flask.
 
 ### Life Flasks
 
-> These flasks are best used with a Life trigger. Select the row matching the percentage to trigger. For example, to trigger when below 90% select the radio box at the top row.
+> These flasks are best used with a Life Resource trigger. Drag the slider to around 70% and check the box to reset cooldown, and put 96% for reset point. Now you have a life flask which will fire when you take damage, and when you fill back up, its ready to fire again.
 
 ### Mana Flasks
 
-> These work best when assigned to the mana group. Select the threshold the mana will be considered triggered on the left. An alternative configuration is to use an attack key as the trigger. The Mana flask group will wait on cooldown together when any flask is active, and always cycles through each flask one at a time.
+> These work best with a Mana Resource Trigger. Set the threshold to as low as possible, 3% is usually best to work for all levels, even on new characters. If you are not using an enduring mana flask, then set to reset at whatever percentage mana you are full.
 
 ### Buff Flasks
 
-> These work well when assigned with an attack key as trigger. Another option is using a health trigger, or saving these for the Pop Flasks hotkey.
+> These work well when assigned with an attack key as trigger. Another option is using a Life/ES Resource trigger, or saving these for the Pop Flasks hotkey. Some builds such as Rightous Fire or Death's Oath simply run to attack, so Trigger on Move works well there to pop your buff flasks.
 
 ### Quicksilver Flasks
 
@@ -33,7 +51,7 @@
 * Start by assigning a CD (in Milliseconds) and Key
   * These allow for pressing several keys when triggered
   * put the initial key first then space then the rest of the keys
-    * to trigger 1 then 3rt we can put "1 3rt" or "1 3 r t"
+   * to trigger 1 then 3rt we can put `1 3rt` or `1 3 r t`
 * Check options in the row to enable a trigger type
   * Assign a buff icon to trigger when showing or not showing
   * Trigger alongside the Quicksilver flask group
