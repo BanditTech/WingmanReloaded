@@ -11,7 +11,7 @@ Find information about the script on the [Project Website](https://bandittech.gi
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -32,6 +32,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Hillgrove"><img src="https://avatars.githubusercontent.com/u/20029330?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hillgrove</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Hillgrove" title="Code">💻</a> <a href="#data-Hillgrove" title="Data">🔣</a></td>
     <td align="center"><a href="https://github.com/Violet-Vibes"><img src="https://avatars.githubusercontent.com/u/19490536?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Violet Vibes</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=Violet-Vibes" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/linkeal"><img src="https://avatars.githubusercontent.com/u/11042882?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=linkeal" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/chrotots"><img src="https://avatars.githubusercontent.com/u/88214590?v=4?s=100" width="100px;" alt=""/><br /><sub><b>chrotots</b></sub></a><br /><a href="https://github.com/BanditTech/WingmanReloaded/commits?author=chrotots" title="Code">💻</a></td>
   </tr>
 </table>
 
