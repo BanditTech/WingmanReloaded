@@ -72,6 +72,7 @@
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Move xs+10   yp+20 Checked" WR.Utility[slot].Move , Enable
 
 		Gui, Utility%slot%: Add, GroupBox, center xs y+20 w110 h95, Trigger with Attack
+		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttackOnly xs+10 yp+20 Checked" WR.Utility[slot].MainAttackOnly, Main	Attack Only	
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttackRelease xs+10 y+5 Checked" WR.Utility[slot].MainAttackRelease, Main Release
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+5 Checked" WR.Utility[slot].SecondaryAttack, Secondary
@@ -122,7 +123,7 @@
 	Return
 
 	UtilitySaveValues:
-		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
+		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttackOnly", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
 			WR.Utility[which][kind] := Utility%which%%kind%
 		for k, kind in ["Life", "ES", "Mana"]
 			WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 

@@ -2725,6 +2725,8 @@
 		}
 		Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality&&!This.Prop.RarityUnique)
 			sendstash := StashTabFlaskQuality
+		Else If (This.Prop.Flask&&(This.Prop.Quality<1)&&StashTabYesFlaskAll&&!This.Prop.RarityUnique)
+			sendstash := StashTabFlaskAll																															
 		Else If (This.Prop.RarityGem)
 		{
 			If ((This.Prop.Quality>0)&&StashTabYesGemQuality)

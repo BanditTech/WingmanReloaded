@@ -336,6 +336,8 @@
 		StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
 		StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
 		StashTabYesFlaskQuality = Enable to send Quality Flask items to the assigned tab on the left
+		StashTabFlaskAll = Assign the Stash tab for Quality Flask items
+		StashTabYesFlaskAll = Enable to send unquality flasks to the assigned tab on the left
 		StashTabLinked = Assign the Stash tab for 6 or 5 Linked items
 		StashTabYesLinked = Enable to send 6 or 5 Linked items to the assigned tab on the left
 		StashTabBrickedMaps = Assign the Stash tab for maps that have unwanted mods on them
@@ -700,6 +702,7 @@
 	Global StashTabGemVaal := 1
 	Global StashTabGemQuality := 1
 	Global StashTabFlaskQuality := 1
+	Global StashTabFlaskAll := 1							 
 	Global StashTabLinked := 1
 	Global StashTabBrickedMaps := 1
 	Global StashTabInfluencedItem := 1
@@ -734,6 +737,7 @@
 	Global StashTabYesGemVaal := 1
 	Global StashTabYesGemQuality := 1
 	Global StashTabYesFlaskQuality := 1
+	Global StashTabYesFlaskAll := 1								
 	Global StashTabYesLinked := 1
 	Global StashTabYesBrickedMaps := 1
 	Global StashTabYesInfluencedItem := 1
