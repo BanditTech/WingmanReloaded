@@ -39,7 +39,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesSpecial5Link       Checked%YesSpecial5Link%       y+8    , Give 5 link Special Type?
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesOpenStackedDeck    Checked%YesOpenStackedDeck%    y+8    , Open Stacked Decks?
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
-      
+
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,         Section      w370 h100      xm+180   ym+25,         Scroll, Gem and Currency Locations
       Gui, Inventory: Font
@@ -53,7 +53,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                     xs+173       ys+31  h17            , Locate
       Gui, Inventory: Add, Button, gRestockMenu r2 x+16    ys+30, Inventory Slot`n`rManagement
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vEnableRestock    Checked%EnableRestock%  xp  y+8   , Enable Restock?
-      
+
       Gui, Inventory: Add, Text,                   xs+84   ys+25    h72 0x11
       Gui, Inventory: Add, Text,                   x+33             h72 0x11
       Gui, Inventory: Add, Text,                   x+33             h72 0x11
@@ -67,7 +67,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
       Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
       GuiControl,Inventory: ChooseString, YesPredictivePrice, %YesPredictivePrice%
-      
+
       Gui, Inventory: Font, s18
       Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
       Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
@@ -145,7 +145,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabMiscMapItems x+0 yp hp ,  %StashTabMiscMapItems%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesMiscMapItems  Checked%StashTabYesMiscMapItems% x+5 yp+4, Enable
-      
+
       ; Second column Gui - GEMS
 
       Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -198,7 +198,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99  x+0 yp hp gSaveStashTabs vStashTabCrafting , %StashTabCrafting%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesCrafting Checked%StashTabYesCrafting% x+5 yp+4, Enable
-      
+
       Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Dump
       Gui, Inventory: Font,
@@ -233,7 +233,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabFlaskQuality , %StashTabFlaskQuality%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
-	  
+
 	  Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unquality Flask
       Gui, Inventory: Font,
@@ -264,7 +264,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,             w180 h160    section    xs   y+10,         Map/Contract Options
       Gui, Inventory: Font,
-      Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
+      Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<="
       GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
       Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps x+3 yp , 0|1|2|3|4|5|6|7|8|9|10|11|12
       GuiControl,Inventory: ChooseString, YesSkipMaps, %YesSkipMaps%
@@ -274,7 +274,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_unique Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
       Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
-      Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
+      Gui, Inventory: Add, Edit, Number w40 x+5 yp-3
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
 
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vBrickedWhenCorrupted Checked%BrickedWhenCorrupted% xs+5 y+8, Only consider a map to be`rbricked if it's corrupted
@@ -367,7 +367,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs  vStashTabMap x+0 yp hp ,  %StashTabMap%
       Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesMap x+5 yp-5 w90 h20, %StashTabYesMap%
       Gui, Inventory: Add, Text,  xp yp+22 w90 center vMapEditText, Disable Type
-      
+
       ; Unique
       Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Unique
@@ -383,9 +383,9 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, Section w200 h100 x+50 ys , Intructions:
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - You can enable Currency Affinity 
+      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - You can enable Currency Affinity
       Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, and set the stash for other functions
-      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - CLF will take priority over Affinity 
+      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - CLF will take priority over Affinity
       Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Use slider to choose logic type
       Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Enable overflow Unique tabs
 
@@ -564,6 +564,12 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashJewelleryCraftingIlvlMin , %YesStashJewelleryCraftingIlvlMin%
       Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
 
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox,             w150 h90    section    xs+160 ym+25,         Custom Strings
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  YesStashCustom Checked%YesStashCustom%    xs+5  ys+18 , Enable ?
+      Gui, Inventory: Add, Button, gCustomString xs+10 y+5  w120,   Edit Custom Strings
+
     }
     Gui, Inventory: show , w600 h500, Inventory Settings
   }
@@ -583,7 +589,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w675 h555 -wrap , Map Crafting|Basic Crafting
 
       Gui, Crafting: Tab, Map Crafting
-        
+
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal|Binding|Chisel+Binding|Chisel+Binding+Vaal|Hybrid|Chisel+Hybrid|Chisel+Hybrid+Vaal"
         MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
         MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
@@ -642,17 +648,17 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
           Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters Skills Chain # Additional Times
           Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
-          Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
-          Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
+          Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances
+          Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky
           Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
           Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
           Gui, Crafting: Add, Button, xs+215 ys+200 w200,  Custom Undesired Mods
-          
+
 
           Gui, Crafting: Font, Bold
           Gui, Crafting: Font, Bold s9 cBlack, Arial
         Gui, Crafting: Add,GroupBox,Section w200 h130 x320 y50, Minimum Map Qualities:
-          Gui, Crafting: Font, 
+          Gui, Crafting: Font,
           Gui, Crafting: Font,s8
 
           Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
@@ -695,7 +701,7 @@ WR_Menu(Function:="",Var*){
         Gui, Crafting: Font, Bold s12 cRed, Arial
         Gui, Crafting: Add, Text,% "xs+25 y+20"
         Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftR, % BasicCraftR
-        Gui, Crafting: Add, Text, x+5 yp, R 
+        Gui, Crafting: Add, Text, x+5 yp, R
         Gui, Crafting: Font, Bold s12 cGreen, Arial
         Gui, Crafting: Add, Text,% "x+25 yp"
         Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftG, % BasicCraftG
@@ -744,7 +750,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: +AlwaysOnTop -MinimizeBox
       ;Save Setting
       ; Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
-      
+
       Gui, Strings: Add, Button,      gLaunchSite     x295 y470           h23,   Website
       Gui, Strings: Add, Button,      gft_Start     x+5           h23,   FindText Gui (capture)
       Gui, Strings: Font, Bold cBlack
@@ -753,7 +759,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: Font,
 
     Gui, Strings: Tab, General
-      Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
+      Gui, Strings: Add, Button, xs+1 ys+1 w1 h1,
       Gui, Strings: +Delimiter?
       Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 1 pixel bar - Only Adjust if not 1080 Height
       Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
@@ -771,7 +777,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: +Delimiter|
 
     Gui, Strings: Tab, Vendor
-      Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+      Gui, Strings: Add, Button, Section x20 y30 w1 h1,
       Gui, Strings: +Delimiter?
       Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
       Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1440_NavaliStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"?"%1440_JunStr%"
@@ -797,7 +803,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: Add, ComboBox, y+8 w280 vVendorHarbourStr gUpdateStringEdit , %VendorHarbourStr%??"%1080_FenceStr%"
       Gui, Strings: +Delimiter|
     Gui, Strings: Tab, Debuff
-      Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+      Gui, Strings: Add, Button, Section x20 y30 w1 h1,
       Gui, Strings: +Delimiter?
 
       Gui, Strings: Add, Text, xs+10 ys+25 section, Curse - Elemental Weakness
@@ -963,10 +969,10 @@ WR_Menu(Function:="",Var*){
       Gui, Controller: New
       Gui, Controller: +AlwaysOnTop -MinimizeBox
       DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
-      textList= 
+      textList=
       For k, v in DefaultButtons
         textList .= (!textList ? "" : "|") v
-      
+
       Gui, Controller: Add, Picture, xm ym+20 w600 h400 +0x4000000, %A_ScriptDir%\data\Controller.png
 
       Gui, Controller: Add, Checkbox,  section  xp y+-10          vYesMovementKeys Checked%YesMovementKeys%                     , Use Move Keys?
@@ -1330,7 +1336,7 @@ WR_Menu(Function:="",Var*){
       Gui, hkStash: Add, Edit, Number y+5 w40
       Gui, hkStash: Add, UpDown, Range1-64  x+0 hp vstashSuffixTab9 , %stashSuffixTab9%
     }
-    
+
     Gui, hkStash: Show
 
   }
@@ -1370,7 +1376,7 @@ WR_Menu(Function:="",Var*){
     ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
     ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
     WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
-  }  
+  }
   Return
 
 
@@ -1412,7 +1418,7 @@ WR_Menu(Function:="",Var*){
     CheckGamestates:= True
     mainmenuGameLogicState(True)
   return
-  
+
   GlobeGuiClose:
   GlobeGuiEscape:
     GlobeActive := False

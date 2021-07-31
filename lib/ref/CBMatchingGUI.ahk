@@ -45,6 +45,24 @@ Tab::
 	}
 return
 
+#If WinActive("Edit Custom Strings Here")
+Tab::
+	Gui, submit, NoHide
+	;...context specific stuff
+	KeyWait, Tab
+	GuiControlGet, OutputVarE, CustomCrafting:Focus
+	GuiControlGet, varname, CustomCrafting:Focusv
+	If ( InStr(OutputVarE,"SysTabControl") || InStr(OutputVarE,"Button") || !InStr(varname, "CustomCrafting") )
+		Return
+	OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
+	ControlGet, hCBe, hwnd,,%OutputVarE%
+	ControlGet, hCB, hwnd,,%OutputVar%
+	if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
+		CreateCBMatchingGUI(hCB, "Edit Custom Strings Here")
+	}
+return
+
+
 CreateCBMatchingGUI(hCB, parentWindowTitle) {
 ;--------------------------------------------------------------------------------
 	Global CBMatchingGUI := {}
@@ -52,7 +70,7 @@ CreateCBMatchingGUI(hCB, parentWindowTitle) {
 	Gui, +HWNDhCBMatchesGui +Delimiter`n
 	Gui, Margin, 0, 0
 	Gui, Font, s14 q5
-	
+
 	; get Parent ComboBox info
 	WinGetPos, cX, cY, cW, cH, % "ahk_id " hCB
 	ControlGet, CBList, List,,, % "ahk_id " hCB
@@ -64,18 +82,18 @@ CreateCBMatchingGUI(hCB, parentWindowTitle) {
 	GuiControl,, %hEdit%, %CBChoice%
 	Gui, Add, ListBox, % "+HWNDhLB xp y+0 wp" " R20", % CBList
 	GuiControl, ChooseString, %hLB%, %CBChoice%
-	
+
 	CBMatchingGUI.hwnd := hCBMatchesGui
 	CBMatchingGUI.hEdit := hEdit
 	CBMatchingGUI.hLB := hLB
 	CBMatchingGUI.hParentCB := hCB
 	CBMatchingGUI.parentCBList := CBList
 	CBMatchingGUI.parentWindowTitle := parentWindowTitle
-	
+
 	gFunction := Func("CBMatching").Bind(CBMatchingGUI)
 	tFunction := Func("FuncTimer").Bind(gFunction,400)
 	GuiControl, +g, %hEdit%, %tFunction%
-	
+
 	Gui, Show, % "x"cX-50 " y"cY-5 " ", % "CBMatchingGUI"
 	ControlFocus,, % "ahk_id "CBMatchingGUI.hEdit
 	SetTimer, DestroyCBMatchingGUI, 80
@@ -142,10 +160,10 @@ CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
 		if (MatchCount = 1) {
 			UniqueMatch := Matches
 			GuiControl, ChooseString, % CBMatchingGUI.hLB, %UniqueMatch%
-		} 
+		}
 		else
 			GuiControl, Choose, % CBMatchingGUI.hLB, 1
-	} 
+	}
 	else
 		GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
 }
@@ -154,7 +172,7 @@ CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
 DestroyCBMatchingGUI() {
 ;--------------------------------------------------------------------------------
 	Global CBMatchingGUI ; global object created with the CBMatchingGUI
-	
+
 	if (!WinActive("Ahk_id " CBMatchingGUI.hwnd) and WinExist("ahk_id " CBMatchingGUI.hwnd)) {
 		Gui, % CBMatchingGUI.hwnd ":Destroy"
 		SetTimer, DestroyCBMatchingGUI, Delete
@@ -165,7 +183,7 @@ DestroyCBMatchingGUI() {
 setCBMatchingGUILBChoice(CBMatchingGUI) {
 ;--------------------------------------------------------------------------------
 	; get ListBox choice
-	GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB 
+	GuiControlGet, LBMatchesSelectedChoice,, % CBMatchingGUI.hLB
 	; set choice in parent ComboBox
 	Control, ChooseString, %LBMatchesSelectedChoice%,,% "ahk_id "CBMatchingGUI.hParentCB
 	; set focus to Parent ComboBox, this will destroy matching GUI
