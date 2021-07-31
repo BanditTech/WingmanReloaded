@@ -639,7 +639,7 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
           Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
           Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
-          Gui, Crafting: Add, Button, xs+215 ys+200 w200,  Custom Undesired Mods
+          Gui, Crafting: Add, Button, xs+215 ys+200 w200 gCustomUndesirableMods,  Custom Undesirable Mods
           
 
           Gui, Crafting: Font, Bold
