@@ -207,6 +207,7 @@ TGameTick(GuiCheck:=True){
 							
 							If ((WR.Utility[A_Index].IconShown && BuffIcon) || (!WR.Utility[A_Index].IconShown && !BuffIcon))
 								Trigger(WR.Utility[A_Index],True)
+							Else
 								WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
 						}
 						}
