@@ -5,8 +5,8 @@ DrawZoom( Switch := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
   Static zoom = 6        ; initial magnification, 1..32
   , halfside = 192      ; circa halfside of the magnifier
   , part := halfside/zoom
-  , L_edge := (A_ScreenWidth//2) - halfside - 18
-  , R_edge := (A_ScreenWidth//2) + halfside + 18
+  , L_edge := (A_ScreenWidth//2) - halfside
+  , R_edge := (A_ScreenWidth//2) + halfside
   , Rz := Round(part)
   , R := Rz*zoom
   , LineMargin := 10
@@ -16,6 +16,7 @@ DrawZoom( Switch := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
   If (Switch = "Toggle")
   {
     Gosub, ToggleZoom
+    Gosub, MoveAway
     Return
   }
   If (Switch = "Repaint")
@@ -80,7 +81,7 @@ DrawZoom( Switch := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
 
   MoveAway:
     ; keep the frame outside the magnifier and precalculate wanted position
-    If (x < R_edge && x > L_edge) && (y < (2*R+zoom+18))
+    If (x < R_edge && x > L_edge) && (y < (2*R+zoom))
       pos_new := (2*R+zoom+8)
     Else
       pos_new := 0
