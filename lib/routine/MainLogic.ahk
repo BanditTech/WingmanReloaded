@@ -187,6 +187,8 @@ TGameTick(GuiCheck:=True){
 				{
 					If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] <= A_TickCount)
 					{
+						If (NOT WR.Utility[A_Index].MainAttackOnly || ( WR.Utility[A_Index].MainAttackOnly && MainAttackPressedActive ))
+						{																									 
 						If (( WR.Utility[A_Index].OnCD )
 						|| ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
 						|| ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
@@ -207,6 +209,7 @@ TGameTick(GuiCheck:=True){
 								Trigger(WR.Utility[A_Index],True)
 							Else
 								WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
+						}
 						}
 					}
 				}
