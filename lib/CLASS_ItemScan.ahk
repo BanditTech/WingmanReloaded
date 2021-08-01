@@ -2966,11 +2966,13 @@
 		Return True
 	}
 	MatchCustomCrafting(){
-		If (This.Prop.Rarity_Digit == 4)
-			Return False
-		If(HasVal(CustomString,This.Prop.ItemBase))
+		For k, v in CustomStrings
 		{
-			This.Prop.CustomStringTab := "Atlas Base"
+		  ThisCustomString := CustomStrings[k]["str"]
+		  If InStr(ThisCustomString, ItemName)
+		  {
+		    CustomStringTab := CustomStrings[k]["tab"]
+		  }
 		}
 	}
 	MatchCraftingBases(){
