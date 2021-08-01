@@ -84,6 +84,7 @@
 	IniRead, YesStashJewellery, %A_ScriptDir%\save\Settings.ini, General, YesStashJewellery, 1
 	IniRead, YesStashJewelleryCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashJewelleryCraftingIlvl, 0
 	IniRead, YesStashJewelleryCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashJewelleryCraftingIlvlMin, 76
+	IniRead, YesStashCustom, %A_ScriptDir%\save\Settings.ini, General, YesStashCustom, 1
 	IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
 	IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
 	IniRead, YesSkipMaps_Prep, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep, 1
@@ -127,9 +128,6 @@
 	IniRead, BasicCraftSocketAuto, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftSocketAuto, 1
 
 	;Crafting Bases
-	IniRead, YesStashCustom, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashCustom, 1
-
-	;Crafting Bases
 	IniRead, YesStashATLAS, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS, 1
 	IniRead, YesStashATLASCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLASCraftingIlvl, 0
 	IniRead, YesStashATLASCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLASCraftingIlvlMin, 76
@@ -161,6 +159,9 @@
 	IniRead, YesStashJewellery, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewellery, 1
 	IniRead, YesStashJewelleryCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvl, 0
 	IniRead, YesStashJewelleryCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin, 76
+
+	;Crafting Bases
+	IniRead, YesStashCustom, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashCustom, 1
 
 	;Crafting Map Settings
 	IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
@@ -301,10 +302,10 @@
 
 	;Crafting Bases Settings
 	;Loading Default List
-	sDefaultCustomStrings := JSON.Dump(DefaultCustomStrings)
-	IniRead, CustomStrings, %A_ScriptDir%\save\Settings.ini, Custom String Settings, CustomString, %DefaultCustomStrings%
+	sDefaultCustomStringBases := JSON.Dump(DefaultCustomStringBases)
+	IniRead, CustomStringBases, %A_ScriptDir%\save\Settings.ini, Custom String Settings, CustomStringBases, %DefaultCustomStringBases%
 	;Converting string to array
-	CustomStrings := JSON.Load(CustomStrings)
+	CustomStringBases := JSON.Load(CustomStringBases)
 
 	;Crafting Bases Settings
 	;Loading Default List
@@ -881,8 +882,6 @@ updateEverything:
 	IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
 	IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
 
-	;Crafting Bases
-	IniWrite, %YesStashCustom%, %A_ScriptDir%\save\Settings.ini, Custom String Settings, YesStashCustom
 
 	;Crafting Bases
 	IniWrite, %YesStashATLAS%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS
@@ -917,6 +916,9 @@ updateEverything:
 	IniWrite, %YesStashJewelleryCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvl
 	IniWrite, %YesStashJewelleryCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin
 
+	;Crafting Bases
+	IniWrite, %YesStashCustom%, %A_ScriptDir%\save\Settings.ini, Custom String Settings, YesStashCustom
+	
 	;Crafting Map Settings
 	IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
 	IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2
@@ -1112,8 +1114,8 @@ updateEverything:
 	IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
 
 	;Crafting Bases Settings
-	sCustomStrings := JSON.Dump(CustomStrings)
-	IniWrite, %sCustomStrings%, %A_ScriptDir%\save\Settings.ini, Custom String Settings, CustomStrings
+	sCustomStringBases := JSON.Dump(CustomStringBases)
+	IniWrite, %sCustomStringBases%, %A_ScriptDir%\save\Settings.ini, Custom String Settings, CustomStringBases
 
 	;Crafting Bases Settings
 	scraftingBasesT1 := ArrayToString(craftingBasesT1)

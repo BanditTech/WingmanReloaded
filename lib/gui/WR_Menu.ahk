@@ -567,7 +567,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,             w150 h90    section    xs+160 ym+25,         Custom Strings
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra  YesStashCustom Checked%YesStashCustom%    xs+5  ys+18 , Enable ?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashCustom Checked%YesStashCustom%    xs+5  ys+18 , Enable ?
       Gui, Inventory: Add, Button, gCustomString xs+10 y+5  w120,   Edit Custom Strings
 
     }
@@ -653,7 +653,7 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
           Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
           Gui, Crafting: Add, Button, xs+215 ys+200 w200 gCustomUndesirableMods,  Custom Undesirable Mods
-          
+
 
           Gui, Crafting: Font, Bold
           Gui, Crafting: Font, Bold s9 cBlack, Arial

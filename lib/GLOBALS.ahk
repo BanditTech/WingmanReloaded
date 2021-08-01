@@ -55,7 +55,7 @@
 		, "Vial"]
 
 		; List Crafting Atlas Bases + Special Drops
-		jsonCustomStrings =
+		jsonCustomStringBases =
 		(
 			{
 			  "1": {
@@ -72,9 +72,9 @@
 			  }
 			}
 )
-		Global DefaultCustomStrings  := jsonCustomStrings
+		Global DefaultCustomStringBases  := jsonCustomStringBases
 
-		Global CustomStrings := []
+		Global CustomStringBases := []
 
 	; List Crafting Atlas Bases + Special Drops
 	Global DefaultcraftingBasesT1  := ["Apothecary's Gloves"
@@ -320,7 +320,6 @@
 		ChaosRecipeStashTab = Assign the Stash Tab that All Parts will be sorted into.
 		ChaosRecipeLimitUnId = Items will remain unidentified until this Item Level
 		AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
-		StashTabYesCustom = Assign a custom tab for strings.
 		StashTabCurrency = Assign the Stash tab for Currency items
 		StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
 		StashTabMap = Assign the Stash tab for Map items
@@ -744,7 +743,6 @@
 ; Checkbox to activate each tab
 
 			;Affinities
-	Global StashTabYesCustom := 0
 	Global StashTabYesCurrency := 0
 	Global StashTabYesMap := 0
 	Global StashTabYesDivination := 0
@@ -816,7 +814,7 @@
 	Global YesStashJewelleryCraftingIlvlMin := 76
 
 ; Custom Searches
-	Global YesCustomSearch = 1
+	Global YesStashCustom = 1
 
 ; Skip Maps after column #
 	Global YesSkipMaps := 0

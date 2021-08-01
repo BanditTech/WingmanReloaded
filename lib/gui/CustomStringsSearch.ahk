@@ -4,16 +4,17 @@ Global CustomStringBase
 StringTextList := ""
 StringText := "str"
 StringTab := "tab"
-textList1 .= JSON.Dump(CustomStrings)
-For k, v in CustomStrings
-StringTextList .= (!StringTextList ? "" : ", `r`n") CustomStrings[k][StringText] . ",  " . CustomStrings[k][StringTab]
+For k, v in CustomStringBases
+{
+  StringTextList .= (!StringTextList ? "" : ", `r`n") . CustomStringBases[k][StringText] . ",  " . CustomStringBases[k][StringTab]
+}
 
 Gui, CustomString: New
 Gui, CustomString: +AlwaysOnTop -MinimizeBox
 Gui, CustomString: Add, Button, default gupdateEverything    x225 y180  w150 h23,   Save Configuration
 Gui, CustomString: Add, Edit, vCustomStringBase xm+5 ym+28 w400
 Gui, CustomString: Add, Edit, vCustomStringTaba xm+405 ym+28 w50
-Gui, CustomString: Add, UpDown, vCustomStringTab w50
+Gui, CustomString: Add, UpDown, vCustomStringTab Range1-200 w50
 Gui, CustomString: Add, Tab2, vInventoryGuiTabs x3 y3 w600 h300 -wrap , Custom String Settings
 Gui, CustomString: Tab, Custom String Settings
 Gui, CustomString: Add, Edit, vCustomStringList ReadOnly y+28 w500 r8 , %StringTextList%
@@ -30,10 +31,10 @@ StringTextList := ""
 NewCustomStrings := []
 CustomStringIndex := 1
 
-For k, v in CustomStrings
+For k, v in CustomStringBases
 {
   NewCustomString := []
-  ThisCustomString := CustomStrings[k]
+  ThisCustomString := CustomStringBases[k]
   If HasVal(ThisCustomString, CustomStringBase)
   {
     Return
@@ -52,7 +53,7 @@ For k, v in NewCustomStrings
 {
   StringTextList .= (!StringTextList ? "" : ", `r`n") . NewCustomStrings[k][StringText] . ",  " . NewCustomStrings[k][StringTab]
 }
-CustomStrings := NewCustomStrings.Clone()
+CustomStringBases := NewCustomStrings.Clone()
 GuiControl,, CustomStringList, %StringTextList%
 Return
 
@@ -62,10 +63,10 @@ Gui, Submit, nohide
 StringTextList := ""
 NewCustomStrings := []
 CustomStringIndex := 1
-For k, v in CustomStrings
+For k, v in CustomStringBases
 {
   NewCustomString := []
-  ThisCustomString := CustomStrings[k]
+  ThisCustomString := CustomStringBases[k]
   If !HasVal(ThisCustomString, CustomStringBase)
   {
     NewCustomStrings.InsertAt(CustomStringIndex, "" CustomStringIndex)
@@ -78,19 +79,19 @@ For k, v in NewCustomStrings
 {
   StringTextList .= (!StringTextList ? "" : ", `r`n") . NewCustomStrings[k][StringText] . ",  " . NewCustomStrings[k][StringTab]
 }
-CustomStrings := NewCustomStrings.Clone()
+CustomStringBases := NewCustomStrings.Clone()
 GuiControl,, CustomStringList, %StringTextList%
 Return
 
 ResetCustomStringBase:
 
 StringTextList := ""
-NewCustomStrings :=  JSON.Load(DefaultCustomStrings).Clone()
+NewCustomStrings :=  JSON.Load(DefaultCustomStringBases).Clone()
 
 For k, v in NewCustomStrings
 {
   StringTextList .= (!StringTextList ? "" : ", `r`n") . NewCustomStrings[k][StringText] . ",  " . NewCustomStrings[k][StringTab]
 }
-CustomStrings := NewCustomStrings.Clone()
+CustomStringBases := NewCustomStrings.Clone()
 GuiControl,, CustomStringList, %StringTextList%
 Return

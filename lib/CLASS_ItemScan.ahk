@@ -2626,8 +2626,8 @@
 																			, "Blessing of Uul-Netol":0
 																			, "Blessing of Tul":0
 																			, "Blessing of Esh":0 }
-    If ((This.Prop.CustomTab) && StashTabYesCustom){
-	 			sendstash := This.Prop.CustomTabNumber
+    If ((This.Prop.CustomString) && YesStashCustom){
+	 			sendstash := This.Prop.CustomStringTab
 		}
 		Else If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
 		{
@@ -2966,12 +2966,13 @@
 		Return True
 	}
 	MatchCustomCrafting(){
-		For k, v in CustomStrings
+		For k, v in CustomStringBases
 		{
-		  ThisCustomString := CustomStrings[k]["str"]
-		  If InStr(ThisCustomString, ItemName)
+		  ThisCustomString := CustomStringBases[k]["str"]
+		  If InStr(This.Prop.ItemName, ThisCustomString)
 		  {
-		    CustomStringTab := CustomStrings[k]["tab"]
+				This.Prop.CustomString := True
+		    This.Prop.CustomStringTab := CustomStringBases[k]["tab"]
 		  }
 		}
 	}
