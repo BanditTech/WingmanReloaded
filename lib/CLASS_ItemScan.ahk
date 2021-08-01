@@ -904,6 +904,7 @@
 		|| (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
 		|| (This.Affix["Players have #% less Armour"] && PHLessArmour)
 		|| (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect))
+		|| HasCustomBrickedAffix()
 		{
 			Return True
 		} 
@@ -911,6 +912,14 @@
 		{
 			return False
 		}
+	}
+	HasCustomBrickedAffix() {
+		For k, v in CustomUndesirableMods{
+			if This.Affix[v]{
+				return true
+			}
+		}
+		return false
 	}
 	TopTierChaosResist(){
 		If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))

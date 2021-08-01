@@ -168,7 +168,12 @@
 	IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1, Disable
 	IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2, Disable
 	IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3, Disable
-	;MODS
+	IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
+	IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
+	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
+	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
+
+	;Crafting Map Mods
 	IniRead, ElementalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect, 0
 	IniRead, PhysicalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect, 0
 	IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen, 0
@@ -186,11 +191,12 @@
 	IniRead, PHReducedChanceToBlock, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHReducedChanceToBlock, 0
 	IniRead, PHLessArmour, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessArmour, 0
 	IniRead, PHLessAreaOfEffect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessAreaOfEffect, 0
-	
-	IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
-	IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
-	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
-	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
+
+	;Custom Crafting Map Mods
+	sDefaultCustomUndesirableMods := ArrayToString(DefaultCustomUndesirableMods)
+	IniRead, CustomUndesirableMods, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CustomUndesirableMods , %sDefaultCustomUndesirableMods%
+	;Converting string to array
+	CustomUndesirableMods := StringToArray(CustomUndesirableMods)
 
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
@@ -914,8 +920,12 @@ updateEverything:
 	IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1
 	IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2
 	IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
+	IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
+	IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
+	IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
+	IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
 
-		;MODS
+	;Crafting Map Mods
 	IniWrite, %ElementalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect
 	IniWrite, %PhysicalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect
 	IniWrite, %NoRegen%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen
@@ -934,11 +944,10 @@ updateEverything:
 	IniWrite, %PHLessArmour%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessArmour
 	IniWrite, %PHLessAreaOfEffect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessAreaOfEffect
 
-	IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
-	IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
-	IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
-	IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
-	
+	;Custom Crafting Map Mods
+	sCustomUndesirableMods := ArrayToString(CustomUndesirableMods)
+	IniWrite, %sCustomUndesirableMods%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CustomUndesirableMods
+
 	;Stash Tab Management
 	IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
 	IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap

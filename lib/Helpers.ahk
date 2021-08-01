@@ -38,8 +38,8 @@ ArrayToString(Array){
 }
 ; StringToArray - Make a array from a string using | as delimiters
 StringToArray(text){
-  Array := StrSplit(text,"|")
-  return array
+    Array := StrSplit(text,"|")
+    return array
 }
 ; Check if a specific value is part of an array and return the index
 indexOf(var, Arr, fromIndex:=1){
