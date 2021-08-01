@@ -6,7 +6,7 @@ Coord(){
 	Rect := LetUserSelectRect(1)
 	If (Rect)
 	{
-		If (Rect.X1 < Rect.X2) {
+		If (Rect.X1 > Rect.X2) {
 			swap := Rect.X1
 			Rect.X1 := Rect.X2
 			Rect.X2 := swap
