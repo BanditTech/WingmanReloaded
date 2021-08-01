@@ -14,8 +14,8 @@ Gui, CustomString: Add, Button, default gupdateEverything    x225 y180  w150 h23
 Gui, CustomString: Add, Edit, vCustomStringBase xm+5 ym+28 w400
 Gui, CustomString: Add, Edit, vCustomStringTaba xm+405 ym+28 w50
 Gui, CustomString: Add, UpDown, vCustomStringTab w50
-Gui, CustomString: Add, Tab2, vInventoryGuiTabs x3 y3 w600 h300 -wrap , Custom String Search
-Gui, CustomString: Tab, Custom String Search
+Gui, CustomString: Add, Tab2, vInventoryGuiTabs x3 y3 w600 h300 -wrap , Custom String Settings
+Gui, CustomString: Tab, Custom String Settings
 Gui, CustomString: Add, Edit, vCustomStringList ReadOnly y+28 w500 r8 , %StringTextList%
 Gui, CustomString: Add, Button, gAddCustomStringBase y+8 w60 r2 center, Add String
 Gui, CustomString: Add, Button, gRemoveCustomStringBase x+5 w60 r2 center, Remove String
@@ -26,38 +26,40 @@ Return
 AddCustomStringBase:
 Gui, Submit, nohide
 
+StringTextList := ""
 NewCustomStrings := []
 CustomStringIndex := 1
+
 For k, v in CustomStrings
 {
   NewCustomString := []
   ThisCustomString := CustomStrings[k]
   If HasVal(ThisCustomString, CustomStringBase)
   {
-    MsgBox, Already in your list!
     Return
   }
   NewCustomStrings.InsertAt(CustomStringIndex, "" CustomStringIndex)
   NewCustomStrings[CustomStringIndex] := ThisCustomString
-
-  StringTextList .= (!StringTextList ? "" : ", `r`n") CustomStrings[k][StringText] . ",  " . CustomStrings[k][StringTab]
   CustomStringIndex := CustomStringIndex+1
 }
 
 CustomStringBaseArr := []
-
 CustomStringBaseArr[StringText] := CustomStringBase
 CustomStringBaseArr[StringTab] := CustomStringTab
-
 NewCustomStrings.Push(CustomStringBaseArr)
 
-
+For k, v in NewCustomStrings
+{
+  StringTextList .= (!StringTextList ? "" : ", `r`n") . NewCustomStrings[k][StringText] . ",  " . NewCustomStrings[k][StringTab]
+}
+CustomStrings := NewCustomStrings.Clone()
 GuiControl,, CustomStringList, %StringTextList%
 Return
 
 RemoveCustomStringBase:
 Gui, Submit, nohide
 
+StringTextList := ""
 NewCustomStrings := []
 CustomStringIndex := 1
 For k, v in CustomStrings
@@ -68,27 +70,27 @@ For k, v in CustomStrings
   {
     NewCustomStrings.InsertAt(CustomStringIndex, "" CustomStringIndex)
     NewCustomStrings[CustomStringIndex] := ThisCustomString
-
-    StringTextList .= (!StringTextList ? "" : ", `r`n") CustomStrings[k][StringText] . ",  " . CustomStrings[k][StringTab]
     CustomStringIndex := CustomStringIndex+1
   }
 }
 
-CustomStringBaseArr := []
-
-CustomStringBaseArr[StringText] := CustomStringBase
-CustomStringBaseArr[StringTab] := CustomStringTab
-
+For k, v in NewCustomStrings
+{
+  StringTextList .= (!StringTextList ? "" : ", `r`n") . NewCustomStrings[k][StringText] . ",  " . NewCustomStrings[k][StringTab]
+}
+CustomStrings := NewCustomStrings.Clone()
 GuiControl,, CustomStringList, %StringTextList%
 Return
 
 ResetCustomStringBase:
-RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
-CustomStringsRes := DefaultCustomStrings.Clone()
-textList := ""
-For k, v in CustomStringsRes
+
+StringTextList := ""
+NewCustomStrings :=  JSON.Load(DefaultCustomStrings).Clone()
+
+For k, v in NewCustomStrings
 {
-  StringTextList .= (!StringTextList ? "" : ", `r`n") CustomStrings[k][StringText] . ",  " . CustomStrings[k][StringTab]
+  StringTextList .= (!StringTextList ? "" : ", `r`n") . NewCustomStrings[k][StringText] . ",  " . NewCustomStrings[k][StringTab]
 }
-GuiControl,, CustomStringList%RxMatch1%, %textList%
+CustomStrings := NewCustomStrings.Clone()
+GuiControl,, CustomStringList, %StringTextList%
 Return

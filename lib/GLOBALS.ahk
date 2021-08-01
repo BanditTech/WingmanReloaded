@@ -74,6 +74,7 @@
 )
 		Global DefaultCustomStrings  := jsonCustomStrings
 
+		Global CustomStrings := []
 
 	; List Crafting Atlas Bases + Special Drops
 	Global DefaultcraftingBasesT1  := ["Apothecary's Gloves"

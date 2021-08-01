@@ -302,7 +302,7 @@
 	;Crafting Bases Settings
 	;Loading Default List
 	sDefaultCustomStrings := JSON.Dump(DefaultCustomStrings)
-	IniRead, CustomStrings, %A_ScriptDir%\save\Settings.ini, Custom String Search, CustomString, %DefaultCustomStrings%
+	IniRead, CustomStrings, %A_ScriptDir%\save\Settings.ini, Custom String Settings, CustomString, %DefaultCustomStrings%
 	;Converting string to array
 	CustomStrings := JSON.Load(CustomStrings)
 
@@ -882,7 +882,7 @@ updateEverything:
 	IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
 
 	;Crafting Bases
-	IniWrite, %YesStashCustom%, %A_ScriptDir%\save\Settings.ini, Custom  Settings, YesStashCustom
+	IniWrite, %YesStashCustom%, %A_ScriptDir%\save\Settings.ini, Custom String Settings, YesStashCustom
 
 	;Crafting Bases
 	IniWrite, %YesStashATLAS%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS
@@ -1110,6 +1110,10 @@ updateEverything:
 	IniWrite, %YesNinjaDatabase%, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase
 	IniWrite, %ForceMatch6Link%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link
 	IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
+
+	;Crafting Bases Settings
+	sCustomStrings := JSON.Dump(CustomStrings)
+	IniWrite, %sCustomStrings%, %A_ScriptDir%\save\Settings.ini, Custom String Settings, CustomStrings
 
 	;Crafting Bases Settings
 	scraftingBasesT1 := ArrayToString(craftingBasesT1)
