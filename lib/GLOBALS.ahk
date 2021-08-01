@@ -156,6 +156,8 @@
 	Global craftingBasesT6 := []
 	Global craftingBasesT7 := []
 	Global craftingBasesT8 := []
+	; Custom Undesirable Mods
+	Global CustomCraftingBase := []
 	; Create Executable group for gameHotkey, IfWinActive
 	Global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
 	for n, exe in POEGameArr
