@@ -90,6 +90,5 @@ For k, v in CustomStringsRes
 {
   StringTextList .= (!StringTextList ? "" : ", `r`n") CustomStrings[k][StringText] . ",  " . CustomStrings[k][StringTab]
 }
-}
 GuiControl,, CustomStringList%RxMatch1%, %textList%
 Return
