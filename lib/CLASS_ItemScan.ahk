@@ -904,7 +904,7 @@
 		|| (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
 		|| (This.Affix["Players have #% less Armour"] && PHLessArmour)
 		|| (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect))
-		|| HasCustomBrickedAffix()
+		|| This.HasCustomBrickedAffix()
 		{
 			Return True
 		} 
