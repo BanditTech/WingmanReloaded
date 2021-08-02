@@ -11,7 +11,7 @@ return
 CustomUndesirableModsUI:
   Gui, CustomUndesirableModsUI1: New
   Gui, CustomUndesirableModsUI1: Default
-  Gui, CustomUndesirableModsUI1: +AlwaysOnTop -MinimizeBox
+  Gui, CustomUndesirableModsUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
   Gui, CustomUndesirableModsUI1: Add, ListView ,  w600 h300 -wrap gMyListView vlistview1, Map Modifier
   RefreshList()
   Gui, CustomUndesirableModsUI1: Add, Button, gNewRow x+5 w120 h30 center, Add New Map Modifier
@@ -41,6 +41,11 @@ SaveRowCUM:
     LV_Modify(RowNumber,,A_Edit)
   }
   Gui, CustomUndesirableModsUI2: Hide
+return
+
+CustomUndesirableContextMenu:	
+; Click %A_GuiX%, %A_GuiY%
+Tooltip,% "Clicked " A_GuiEvent " " A_EventInfo
 return
 
 RemoveRowCUM:
