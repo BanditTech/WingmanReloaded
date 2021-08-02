@@ -886,7 +886,7 @@ RunRestock(){
 	BlockInput, MouseMove
 	For C, vv in WR.Restock {
 		For R, v in vv {
-			If (v.Normal || v.Ignore || v.RestockName = "")
+			If (v.Normal || v.Ignored || v.RestockName = "")
 				Continue
 			If !WR.loc.pixel.HasKey(v.RestockName){
 				Notify("Missing Location","There is no entry for " v.RestockName,5)
