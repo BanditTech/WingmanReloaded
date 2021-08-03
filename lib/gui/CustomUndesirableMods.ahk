@@ -44,7 +44,6 @@ SaveRowCUM:
 return
 
 CustomUndesirableContextMenu:	
-; Click %A_GuiX%, %A_GuiY%
 Tooltip,% "Clicked " A_GuiEvent " " A_EventInfo
 return
 
