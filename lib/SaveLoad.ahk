@@ -104,7 +104,7 @@
 	IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
 	IniRead, YesBatchVendorBauble, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble, 1
 	IniRead, YesBatchVendorGCP, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP, 1
-	IniRead, BrickedWhenCorrupted, %A_ScriptDir%\save\Settings.ini, General, BrickedWhenCorrupted, 0
+	IniRead, BrickedWhenCorrupted, %A_ScriptDir%\save\Settings.ini, General, BrickedWhenCorrupted, 1
 	IniRead, YesOpenStackedDeck, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck, 0
 	IniRead, YesSpecial5Link, %A_ScriptDir%\save\Settings.ini, General, YesSpecial5Link, 1
 	IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
