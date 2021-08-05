@@ -206,10 +206,7 @@ TGameTick(GuiCheck:=True){
 
 								BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
 
-								If ((( WR.Utility[A_Index].IconShown && BuffIcon ) || ( !WR.Utility[A_Index].IconShown && !BuffIcon )) && ((!(WR.Utility[A_Index].StringResTrigger))
-								|| (WR.Utility[A_Index].StringResTrigger && (( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
-								|| ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
-								|| ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana ))))) 
+								If ((( WR.Utility[A_Index].IconShown && BuffIcon ) || ( !WR.Utility[A_Index].IconShown && !BuffIcon )) && (!(WR.Utility[A_Index].StringResTrigger)))
 									Trigger(WR.Utility[A_Index],True)
 								Else
 									WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
