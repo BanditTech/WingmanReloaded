@@ -23,7 +23,7 @@ WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldr
 		. ".108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
 	, "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
 	, "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseSingleTap":"2", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
-	, "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
+	, "autolevelgemsEnable":"0", "autolevelgemsWait":"0"
 	, "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
 	, "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"
 	, "profilesYesFlask":"0", "profilesFlask":"", "profilesYesUtility":"0", "profilesUtility":""}
@@ -37,7 +37,7 @@ for k, v in ["1","2","3","4","5"]
 }
 for k, v in ["1","2","3","4","5","6","7","8","9","10"]
 {
-	WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000"
+	WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "StringResTrigger":"0", "Key":v, "GroupCD":"5000", "CD":"5000"
 	, "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"
 	, "MainAttackOnly":"0", "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"0", "Life":0, "ES":0, "Mana":0
 	, "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0"
@@ -81,4 +81,3 @@ For k, name in ["perChar","Flask","Utility"]{
 	If !FileExist( A_ScriptDir "\save\profiles\" name "\Default.json")
 		Profile(name,"Save","Default")
 }
-
