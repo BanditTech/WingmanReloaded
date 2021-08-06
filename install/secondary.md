@@ -40,7 +40,7 @@
 
 ### Quicksilver Flasks
 
-> Assign to the quicksilver group to use these when holding Left mouse button. These will always wait for the previous flask to finish before using the next. The Quicksilver flask group will wait on cooldown together when any flask is active, and always cycles through each flask one at a time.
+> Assign to the movement trigger to use these when holding assigned Movement hotkey (Left mouse is default). To toggle between multiple flasks, reference the configuration tips from [Understanding Group Cooldowns](/#/install/secondary?id=understanding-group-cooldowns) to have them all rotate individually.
 
 ## Utility
 
