@@ -1,4 +1,24 @@
-﻿## Version .14.0205 - Alpha version - July/29/2021
+﻿## Version .14.03 - Master version - August/05/2021
+Merging All changes to Alpha
+* New Restock system for currency items in inventory
+* New Spam Clicking hotkey binds
+  * Used for Ctrl Click and Ctrl Shift Click
+* New custom Undesirable Mods
+  * Add specific affixes which are not already available
+* New option to trigger icon search only when main attack pressed
+* New option for sorting map items after map crafting.
+* Updated Filter file for WOW filterblade
+* Adjustments to the Chaos Recipe options
+
+Bugfixes
+* Map roll function now uses separate property than Bricked map
+* Fix portal hotkey sometimes leaving Alt pressed
+* Removed metamorph panel from wizard as it does not belong
+* Findtext GUI now has CopyString button instead of copy script
+
+---
+
+## Version .14.0205 - Alpha version - July/29/2021
 Added new feature to map crafting
 * After finishing crafting it can move the maps to your map area
 * This includes mapprep items like sac frags and scarabs
