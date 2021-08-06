@@ -1390,7 +1390,7 @@
 		; These lines remove the extra line created by "additional information bubbles"
 		If (content ~= "\n\(")
 			content := RegExReplace(content, "\n\(", "(")
-		content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,']+\)", "")
+		content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,'\+]+\)", "")
 		; Do Stuff with info
 		LastLine := ""
 		DoubleModCounter := 0
