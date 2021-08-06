@@ -184,7 +184,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesLinked Checked%StashTabYesLinked% x+5 yp+4, Enable
 
       Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , 'Bricked' Maps
+      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Bricked Maps
       Gui, Inventory: Font,
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabBrickedMaps , %StashTabBrickedMaps%
