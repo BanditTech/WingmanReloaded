@@ -293,14 +293,12 @@ ApplyCurrency(cname, x, y){
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 MapRoll(Method, x, y){
 	MMQIgnore := False
+	If (!EnableMQQForMagicMap && Item.Prop.Rarity_Digit = 2)
+		MMQIgnore := True
 	If (Method == "Transmutation+Augmentation")
 	{
 		cname := "Transmutation"
 		crname := "Alteration"
-		If (!EnableMQQForMagicMap)
-		{
-			MMQIgnore := True
-		}
 	}
 	Else If (Method ~= "Alchemy")
 	{
@@ -362,7 +360,8 @@ MapRoll(Method, x, y){
 	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
 	While ( Item.Prop.HasUndesirableMod
 	|| (Item.Prop.RarityNormal) 
-	|| (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
+	|| (!MMQIgnore 
+		&& (Item.Prop.Map_Rarity < MMapItemRarity 
 		|| Item.Prop.Map_PackSize < MMapMonsterPackSize 
 		|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
 	&& !Item.Affix["Unidentified"] && !This.Prop.Corrupted
