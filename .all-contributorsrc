@@ -47,7 +47,8 @@
       "profile": "https://github.com/Barragek0",
       "contributions": [
         "code",
-        "bug"
+        "bug",
+        "maintenance"
       ]
     },
     {
@@ -111,6 +112,15 @@
       "name": "Alex",
       "avatar_url": "https://avatars.githubusercontent.com/u/11042882?v=4",
       "profile": "https://github.com/linkeal",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "chrotots",
+      "name": "chrotots",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88214590?v=4",
+      "profile": "https://github.com/chrotots",
       "contributions": [
         "code"
       ]
