@@ -1,6 +1,6 @@
 ﻿Class 7za {
   Static ExeFile := A_ScriptDir "\data\7za.exe"
-  Static AddArgs := "a -w""" A_ScriptDir """ -t7z -x!backup\ -x!.git\ -x!.github\ -x!.vscode\"
+  Static AddArgs := "a -w""" A_ScriptDir """ -t7z -x!backup\ -x!.git\ -x!.github\ -x!github\ -x!.vscode\"
   Static SourceFile := ".\*"
   Static LogOutput := A_ScriptDir "\logs\Archive.log"
   Static Mtee := A_ScriptDir "\data\Mtee.exe"
