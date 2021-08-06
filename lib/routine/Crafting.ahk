@@ -363,8 +363,8 @@ MapRoll(Method, x, y){
 	While ( Item.Prop.HasUndesirableMod
 	|| (Item.Prop.RarityNormal) 
 	|| (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
-	|| Item.Prop.Map_PackSize < MMapMonsterPackSize 
-	|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
+		|| Item.Prop.Map_PackSize < MMapMonsterPackSize 
+		|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
 	&& !Item.Affix["Unidentified"] && !This.Prop.Corrupted
 	{
 		If (!RunningToggle)
