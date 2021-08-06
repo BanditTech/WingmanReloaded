@@ -904,23 +904,23 @@
 		|| (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
 		|| (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
 		|| (This.Affix["Players have #% less Armour"] && PHLessArmour)
-		|| (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect))
-		|| This.HasCustomBrickedAffix()
+		|| (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect)
+		|| (This.HasCustomBrickedAffix()))
 		{
 			Return True
 		} 
 		Else 
 		{
-			return False
+			Return False
 		}
 	}
 	HasCustomBrickedAffix() {
 		For k, v in CustomUndesirableMods{
 			if This.Affix[v]{
-				return true
+				Return True
 			}
 		}
-		return false
+		Return False
 	}
 	TopTierChaosResist(){
 		If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
