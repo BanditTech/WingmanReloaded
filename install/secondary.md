@@ -40,7 +40,7 @@
 
 ### Quicksilver Flasks
 
-> Assign to the movement trigger to use these when holding assigned Movement hotkey (Left mouse is default). To toggle between multiple flasks, reference the configuration tips from [Understanding Group Cooldowns](secondary?id=understanding-group-cooldowns) to have them all rotate individually.
+> Assign to the movement trigger to use these when holding assigned Movement hotkey (Left mouse is default). To toggle between multiple flasks, reference the configuration tips from [Understanding Group Cooldowns](https://bandittech.github.io/WingmanReloaded/#/install/secondary?id=understanding-group-cooldowns) to have them all rotate individually.
 
 ## Utility
 
