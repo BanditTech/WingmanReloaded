@@ -875,6 +875,7 @@
 	}
 	BrickedMap() {
 		If (This.HasBrickedAffix()) {
+			This.Prop.HasBadAffix := True
 			If (BrickedWhenCorrupted && This.Prop.Corrupted)
 				Return True
 			Else If (!BrickedWhenCorrupted)

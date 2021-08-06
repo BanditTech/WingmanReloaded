@@ -360,12 +360,12 @@ MapRoll(Method, x, y){
 	antp := Item.Prop.Map_PackSize
 	antq := Item.Prop.Map_Quantity
 	;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-	While ( Item.Prop.IsBrickedMap
+	While ( Item.Prop.HasBadAffix
 	|| (Item.Prop.RarityNormal) 
 	|| (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
 	|| Item.Prop.Map_PackSize < MMapMonsterPackSize 
 	|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
-	&& !Item.Affix["Unidentified"]
+	&& !Item.Affix["Unidentified"] && !This.Prop.Corrupted
 	{
 		If (!RunningToggle)
 		{
