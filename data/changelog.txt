@@ -1,4 +1,10 @@
-﻿## Version .14.03 - Master version - August/05/2021
+﻿## Version .14.0301 - Alpha version - August/06/2021
+Bugfixes
+* Parser fix for extended details text which contains + or - symbols
+
+---
+
+## Version .14.03 - Master version - August/05/2021
 Merging All changes to Alpha
 * New Restock system for currency items in inventory
 * New Spam Clicking hotkey binds
