@@ -175,7 +175,7 @@ VendorRoutine()
 	tGQ := 0
 	SortFlask := []
 	SortGem := []
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse out of the way to grab screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If !OnVendor
@@ -197,14 +197,9 @@ VendorRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-			{   
-				Ding(500,11,"Hit Scroll")
-				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-			} 
 			PointColor := FindText.GetColor(GridX,GridY)
 			
 			If indexOf(PointColor, varEmptyInvSlotColor) {
@@ -373,14 +368,16 @@ EmptyGrid(){
 	EmptySlots := {}
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
-			If IgnoredSlot[C][R]
-				Continue
+			If !WR.Restock[C][R].Normal
+				Continue 1
 			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
-				EmptySlots[C R] := RandClick(GridX, GridY)
+				EmptySlots.Push(RandClick(GridX, GridY))
 			}
 		}
 	}
+	If (YesSkipMaps_eval = "<=")
+		EmptySlots := AHK.Reverse(AHK.SortBy(EmptySlots,"X"))
 	Return EmptySlots
 }
 ; Open Stacked Decks Automatically
@@ -402,7 +399,7 @@ StackedDeckOpen(number,x,y){
 }
 ; LockerRoutine - Deposit Contracts and Blueprints at the Heist Locker
 LockerRoutine(){
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse out of the way to grab screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If !OnLocker
@@ -418,14 +415,9 @@ LockerRoutine(){
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-			{   
-				Ding(500,11,"Hit Scroll")
-				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-			} 
 			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
@@ -466,7 +458,7 @@ StashRoutine()
 	HeistC := {}
 	HeistR := {}
 	HeistCount := 0
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse away for Screenshot
 	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
 	; Main loop through inventory
@@ -478,14 +470,9 @@ StashRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-			{   
-				Ding(500,11,"Hit Scroll")
-				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-			} 
 			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
@@ -510,25 +497,20 @@ StashRoutine()
 					Continue
 				Else If (sendstash:=Item.MatchLootFilter())
 					Sleep, -1
-				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep
-				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
-					|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) )
+				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep && InMapArea(C) )
 					Continue
-				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps 
-				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
-					|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=") ) 
+				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && InMapArea(C)
 				&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal) 
 					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
 					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
 					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) ) )
 					Continue
-				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps
-				&& ( (C >= YesSkipMaps && YesSkipMaps_eval = ">=") || (C <= YesSkipMaps && YesSkipMaps_eval = "<=") )
-				&& ((Item.Prop.RarityNormal && YesSkipMaps_normal) 
+				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps && InMapArea(C)
+				&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal) 
 					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
 					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
-					|| (Item.Prop.RarityUnique && YesSkipMaps_unique)) 
-				&& (Item.Prop.Map_Tier >= YesSkipMaps_tier))
+					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) ) 
+				&& (Item.Prop.Map_Tier >= YesSkipMaps_tier) )
 					Continue
 				Else If (sendstash:=Item.MatchStashManagement(True)){
 					;Skip
@@ -644,9 +626,9 @@ StashRoutine()
 				}
 			}
 		}
-		If (RunningToggle && (StockPortal||StockWisdom))
+		If (RunningToggle && (EnableRestock))
 		{
-			StockScrolls()
+			RunRestock()
 		}
 		; Find Vendor if Automation Start with Search Stash and NextAutomation is enable
 		If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
@@ -760,7 +742,7 @@ SearchVendor()
 ; DivRoutine - Does divination trading function
 DivRoutine()
 {
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
@@ -771,14 +753,9 @@ DivRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-			{   
-				Ding(500,11,"Hit Scroll")
-				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-			} 
 			PointColor := FindText.GetColor(GridX,GridY)
 			
 			If indexOf(PointColor, varEmptyInvSlotColor) {
@@ -808,7 +785,7 @@ DivRoutine()
 ; IdentifyRoutine - Does basic function when not at other windows
 IdentifyRoutine()
 {
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
@@ -819,14 +796,9 @@ IdentifyRoutine()
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-			{   
-				Ding(500,11,"Hit Scroll")
-				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-			} 
 			PointColor := FindText.GetColor(GridX,GridY)
 			
 			If indexOf(PointColor, varEmptyInvSlotColor) {
@@ -909,52 +881,65 @@ MoveStash(Tab,CheckStatus:=0)
 	}
 	return
 }
-; StockScrolls - Restock scrolls that have more than 10 missing
-StockScrolls(){
+; RunRestock - Restock currency Items in inventory
+RunRestock(){
 	BlockInput, MouseMove
-	If StockWisdom{
-		ClipItem(WisdomScrollX, WisdomScrollY)
-		dif := (40 - Item.Prop.Stack_Size)
-		If(Item.Prop.ItemBase != "Scroll of Wisdom" && !(Item.Prop.ItemBase ~= "\w+"))
-			dif := 40
-		Else If(Item.Prop.ItemBase != "Scroll of Wisdom" && (Item.Prop.ItemBase ~= "\w+"))
-			dif := 0
-		If (dif>10)
-		{
-			MoveStash(StashTabCurrency)
-			ClipItem(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
-			If (Item.Prop.Stack_Size >= dif){
-				ShiftClick(WR.loc.pixel.Wisdom.X, WR.loc.pixel.Wisdom.Y)
-				Sleep, 60*Latency
-				Send %dif%
-				Sleep, 60*Latency
-				Send {Enter}
-				Sleep, 90*Latency
-				LeftClick(WisdomScrollX, WisdomScrollY)
-				Sleep, 90*Latency
+	For C, vv in WR.Restock {
+		For R, v in vv {
+			If (v.Normal || v.Ignored || v.RestockName = "")
+				Continue
+			If !WR.loc.pixel.HasKey(v.RestockName){
+				Notify("Missing Location","There is no entry for " v.RestockName,5)
+				Continue
+			} Else If (WR.loc.pixel[v.RestockName].X = 0 && WR.loc.pixel[v.RestockName].Y = 0) {
+				Notify("Unscaled Location","The entry for " v.RestockName " has not been scaled from 0",5)
+				Continue
 			}
-		}
-	}
-	If StockPortal{
-		ClipItem(PortalScrollX, PortalScrollY)
-		dif := (40 - Item.Prop.Stack_Size)
-		If(Item.Prop.ItemBase != "Portal Scroll" && !(Item.Prop.ItemBase ~= "\w+"))
-			dif := 40
-		Else If(Item.Prop.ItemBase != "Portal Scroll" && (Item.Prop.ItemBase ~= "\w+"))
-			dif := 0
-		If (dif>10)
-		{
-			MoveStash(StashTabCurrency)
-			ClipItem(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
-			If (Item.Prop.Stack_Size >= dif){
-				ShiftClick(WR.loc.pixel.Portal.X, WR.loc.pixel.Portal.Y)
-				Sleep, 60*Latency
-				Send %dif%
-				Sleep, 60*Latency
-				Send {Enter}
-				Sleep, 90*Latency
-				LeftClick(PortalScrollX, PortalScrollY)
-				Sleep, 90*Latency
+			X := InventoryGridX[C], Y := InventoryGridY[R]
+			o := RandClick(X,Y)
+			ClipItem(o.X, o.Y)
+			If (Item.Prop.Stack_Size <= 0)
+				Item.Prop.Stack_Size := 0
+			dif := (StackSizes[v.RestockName] - Item.Prop.Stack_Size)
+			If(!(Item.Prop.ItemBase ~= v.RestockName) && !Item.Prop.IsItem)
+				dif := StackSizes[v.RestockName]
+			Else If(!(Item.Prop.ItemBase ~= v.RestockName) && Item.Prop.IsItem)
+				dif := 0
+			; Store the item stack size
+			InvCount := Item.Prop.Stack_Size
+			
+			If (InvCount < v.RestockMin || InvCount >= v.RestockMax)
+			{
+				MoveStash(StashTabCurrency)
+				ClipItem(WR.loc.pixel[v.RestockName].X, WR.loc.pixel[v.RestockName].Y)
+				; Store the stash stack size
+				StashCount := Item.Prop.Stack_Size
+				; Determine if we need to add or subtract
+				If (InvCount > v.RestockTo) {
+					dif := InvCount - v.RestockTo
+					ShiftClick(o.X, o.Y)
+					Sleep, 90*Latency
+					Send %dif%
+					Sleep, 90*Latency
+					Send {Enter}
+					Sleep, 120*Latency
+					LeftClick(WR.loc.pixel[v.RestockName].X, WR.loc.pixel[v.RestockName].Y)
+					Sleep, 120*Latency
+				} Else {
+					dif := v.RestockTo - InvCount
+					If (StashCount < dif) {
+						Notify("Out of Stock","Attempting to restock " v.RestockName " but not enough in stock",2)
+						Continue
+					}
+					ShiftClick(WR.loc.pixel[v.RestockName].X, WR.loc.pixel[v.RestockName].Y)
+					Sleep, 90*Latency
+					Send %dif%
+					Sleep, 90*Latency
+					Send {Enter}
+					Sleep, 120*Latency
+					LeftClick(o.X, o.Y)
+					Sleep, 120*Latency
+				}
 			}
 		}
 	}

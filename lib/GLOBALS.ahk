@@ -135,6 +135,9 @@
 	Global craftingBasesT6 := []
 	Global craftingBasesT7 := []
 	Global craftingBasesT8 := []
+	; Custom Undesirable Mods
+	Global CustomUndesirableMods := []
+	Global DefaultCustomUndesirableMods := ["Double Click to edit or delete this row"]
 	; Create Executable group for gameHotkey, IfWinActive
 	Global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExile_EGS.exe"]
 	for n, exe in POEGameArr
@@ -143,6 +146,11 @@
 	; Global GameStr := "ahk_group POEGameGroup"
 	Hotkey, IfWinActive, ahk_group POEGameGroup
 
+	; Binding Objects for Spam keys
+	Global CtrlSpam := Func("SpamClick").Bind("On","Ctrl")
+	Global CtrlShiftSpam := Func("SpamClick").Bind("On",["Ctrl","Shift"])
+	Global CtrlSpamOff := Func("SpamClick").Bind("Off")
+
 	Global PauseTooltips:=0
 	Global Clip_Contents:=""
 	Global CheckGamestates:=False
@@ -150,8 +158,9 @@
 	Global ScriptPID := ErrorLevel
 	Global MainMenuIDAutoFlask, MainMenuIDAutoQuit, MainMenuIDAutoMove, MainMenuIDAutoUtility
 	Global LootFilter := {}
-	Global IgnoredSlot := {}
-	Global BlackList := {}
+	Global BlackList
+	Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
+	Global StackSizes := {"Wisdom":40,"Portal":40,"Alchemy":10,"Alteration":20,"Transmutation":40,"Augment":30,"Vaal":10,"Chaos":10,"Binding":20,"Scouring":30,"Chisel":20,"Horizon":20,"Simple":10,"Prime":10,"Awakened":10,"Engineer":20,"Regal":10}
 	Global YesClickPortal := True
 	Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
 	Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
@@ -160,9 +169,7 @@
 		, ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
 	Global FillMetamorph := {}
 	Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak"
-
 		,"Silver Brooch","Golden Brooch","Enamel Brooch","Foliate Brooch"
-
 		,"Simple Lockpick","Standard Lockpick","Fine Lockpick","Master Lockpick"
 		,"Leather Bracers","Studded Bracers","Runed Bracers","Steel Bracers"
 		,"Crude Sensing Charm","Fine Sensing Charm","Polished Sensing Charm","Thaumaturgical Sensing Charm"
@@ -173,12 +180,13 @@
 		,"Basic Disguise Kit","Theatre Disguise Kit","Espionage Disguise Kit","Regicide Disguise Kit"
 		,"Steel Drill","Flanged Drill"
 		,"Sulphur Blowtorch","Thaumetic Blowtorch"
-
 		,"Rough Sharpening Stone","Standard Sharpening Stone","Fine Sharpening Stone","Obsidian Sharpening Stone"
 		,"Flanged Arrowhead","Fragmenting Arrowhead","Hollowpoint Arrowhead","Precise Arrowhead"
 		,"Focal Stone","Conduit Line","Aggregator Charm","Burst Band"]
 
 	Global HeistLootLarge := ["Essence Burner","Ancient Seal","Blood of Innocence","Dekhara's Resolve","Orbala's Fifth Adventure","Staff of the first Sin Eater","Sword of the Inverse Relic"]
+
+	; Tooltip Texts
 	ft_ToolTip_Text_Part1=
 		(LTrim
 		UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
@@ -201,18 +209,12 @@
 		Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
 		ClickLatency = Use this to modify delay to click actions`rAdd this many multiples of 15ms to each delay
 		ClipLatency = Use this to modify delay to Item clip`rAdd this many multiples of 15ms to each delay
-		PortalScrollX = Select the X location at the center of Portal scrolls in inventory`rPress Locate to grab positions
-		PortalScrollY = Select the Y location at the center of Portal scrolls in inventory`rPress Locate to grab positions
-		WisdomScrollX = Select the X location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
-		WisdomScrollY = Select the Y location at the center of Wisdom scrolls in inventory`rPress Locate to grab positions
 		GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
 		GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
-		StockPortal = Enable this to restock Portal scrolls when more than 10 are missing`rThis requires an assigned currency tab to work
-		StockWisdom = Enable this to restock Wisdom scrolls when more than 10 are missing`rThis requires an assigned currency tab to work    
+		EnableRestock = Enable this to restock any inventory slots assigned a currency type
 		YesEnableAutomation = Enable Automation Routines
 		FirstAutomationSetting = Start Automation selected option
 		YesEnableNextAutomation = Enable next automation after the first selected
-		YesEnableLockerAutomation = Enable Heist automation to find and deposit at Heist Locker
 		YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
 		YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r   The vendor is empty`r   The only items are Chromatic or Jeweler`r   During the chaos Recipe
 		DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
@@ -230,6 +232,8 @@
 		hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
 		hotkeyStartCraft = Set your hotkey to use Crafting Settings functions, as Map Crafting
 		hotkeyCraftBasic = Set your hotkey to use Basic Crafting pop-up, these can be configured in the Crafting Settings.
+		hotkeyCtrlClicker = Bind a key to use for fast Ctrl Clicks on your cursor.
+		hotkeyCtrlShiftClicker = Bind a key to use for fast Ctrl + Shift Clicks on your cursor.
 		hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
 		hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
 		hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
@@ -272,16 +276,15 @@
 	ft_ToolTip_Text_Part2=
 		(LTrim
 		ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
-		ChaosRecipeMaxHolding = Determine how many sets of Chaos Recipe to stash
+		ChaosRecipeMaxHoldingID = Determine how many sets of identified Chaos Recipe to stash
+		ChaosRecipeMaxHoldingUNID = Determine how many sets of unidentified Chaos Recipe to stash
 		ChaosRecipeTypePure = Recipe will affect items which are between 60-74 which have not met other stash/CLF filters`ronly draw items within that range from stash for chaos recipe.
 		ChaosRecipeTypeHybrid = Recipe will affect all rares 60+ which have not met other stash/CLF filters`rRequires at least one lvl 60-74 item to make a recipe set`rPriority is given to regal items.
 		ChaosRecipeTypeRegal = Recipe will affect items which are 75+ which have not met other stash/CLF filters`ronly draw items for regal recipe from stash.
 		ChaosRecipeAllowDoubleJewellery = Amulets and Rings will be given double allowance of Parts limit
 		ChaosRecipeAllowDoubleBelt = Belts will be given double allowance of Parts limit
 		ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
-		ChaosRecipeSmallWeapons = Stash 1x3 or 2x2 Weapons and Shields only, filtering bulky items from wasting space.
-		ChaosRecipeSeperateCount = Seperate the count of Identified and Unidentified items.
-		ChaosRecipeOnlyUnId = When using Unidentified mode, should only UnId items be stashed?
+		ChaosRecipeSmallWeapons = Stash 1x3 or 2x2 Weapons and Shields only, filtering bulky items from wasting space.`rWill also stash 2x3 two handers.
 		ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
 		ChaosRecipeStashTabHelmet = Assign the Stash Tab that Helmets will be sorted into.
 		ChaosRecipeStashTabArmour = Assign the Stash Tab that Armours will be sorted into.
@@ -336,6 +339,8 @@
 		StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
 		StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
 		StashTabYesFlaskQuality = Enable to send Quality Flask items to the assigned tab on the left
+		StashTabFlaskAll = Assign the Stash tab for Quality Flask items
+		StashTabYesFlaskAll = Enable to send unquality flasks to the assigned tab on the left
 		StashTabLinked = Assign the Stash tab for 6 or 5 Linked items
 		StashTabYesLinked = Enable to send 6 or 5 Linked items to the assigned tab on the left
 		StashTabBrickedMaps = Assign the Stash tab for maps that have unwanted mods on them
@@ -363,6 +368,7 @@
 		CraftingMapMethod1 = Select Crafting/ReCrafting Method for Range 1
 		CraftingMapMethod2 = Select Crafting/ReCrafting Method for Range 2
 		CraftingMapMethod3 = Select Crafting/ReCrafting Method for Range 3
+		MoveMapsToArea = When finished map crafting, move all crafted maps to the map area`rThis will include MapPrep Items that were not in map area
 		ElementalReflect = Select this if your build can't run maps with this mod
 		PhysicalReflect = Select this if your build can't run maps with this mod
 		NoLeech = Select this if your build can't run maps with this mod
@@ -418,10 +424,10 @@
 	Global CurrentLocation := ""
 	Global CLogFO
 ; ASCII converted strings of images
-	Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x221415@0.99$106.Tzzzzzzzzzzzzzzzzu"
-		, 1440_HealthBarStr := "|<1440 Overhead Health Bar>0x190D11@0.99$138.TzzzzzzzzzzzzzzzzzzzzzyU"
+	Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x201614@0.99$106.Tzzzzzzzzzzzzzzzzu"
+		, 1440_HealthBarStr := "|<1440 Overhead Health Bar>0x190D11@0.98$138.TzzzzzzzzzzzzzzzzzzzzzyU"
 		, 1440_HealthBarStr_Alt := "|<1440 OHB alt>*58$71.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw"
-		, 1050_HealthBarStr := "|<1050 Overhead Health Bar>0x221415@0.99$104.Tzzzzzzzzzzzzzzzzc"
+		, 1050_HealthBarStr := "|<1050 Overhead Health Bar>0x221415@0.98$104.Tzzzzzzzzzzzzzzzzc"
 		, OHBStrW := StrSplit(StrSplit(1080_HealthBarStr, "$")[2], ".")[1]
 
 		, 2160_SellItemsStr := "|<2160 Sell Items>0xE3D7A6@1.00$71.00000001k3U000000003U70003y000070C000AD0000C0Q000U60000Q0s003040000s1k006000001k3U00A000003U7000M000w070C000s007S0C0Q001s00MC0Q0s001s01UA0s1k001w020Q1k3U001w0A0M3U70001y0M0k70C0000y1rzUC0Q0000y3U00Q0s0000w7000s1k0000wC001k3U0000sQ003U700001ks0070C00003Uk00C0Q000071k00Q0s0000A3k20s1k0040k3k81k3U007z03zU3U70007s01y070C0000000000000000000000000000000000000000000000000000000000000000000000004"
@@ -483,19 +489,19 @@
 		, 1080_FenceStr := "|<1080 Fence>*40$48.0TzzzzzzUDzzzzzzbDzjvyDzbs37ls20bwnXllXAbwzVnXrDUQzUnbzDUw7UHbz1bw7Y3bz1bwza3XzDbwzb3XzDbwzbXlnDbw3bnk70zzzzzwTzU"
 
 		, 1440_JunStr := "|<1440 Jun>*89$45.zzzzzzzzzzzzzzzz3zzzzzzsTzzzzzz3zzzzzzsSDltzXz3lyD7wTsSDlsTnz3lyD1yTsSDls7nz3lyD0STsSDlsVnz3lyD66TsSDlssHz3lyD70TsSDlsw3z3kyT7kTsT03sz3z7w0z7wTszsTzzzz7zzzzzzlzzzzzzwTzzzzzzbzzzzzzU"
-	Global 1080_ChestStr := "|<1080 Door>*100$47.zzzzzzzz0zzzzzzy0TzzzzzwwTnznzztsS1y1s3nstltllbblXnXnX7DXDXDX6CT6T6T6AwyAyAyA3twNwNwM7ntltltl7b7lXlXX70TkTkT77zzvzvzzzzzzzzzzs"
-		, 1080_ChestStr .= "|<1080 Chest>*100$52.zzzzzzzzzsTzzzzzzy0TzzzzzzltrxzzbzyDjDb0w40MzwySPaKBbznttyTsyTzDbbszXszw0S3kyDXzk1sTVsyDzDbbz7XsTQySTyCDklnttytszUDDbUMDXzrzzzzvzzzzzzzzzzy"
-		, 1080_ChestStr .= "|<1080 Excavated Chest>*73$50.s7zzzzzzw0zzzzzzyDCTDzwzz7r7nUA201ztwwnAgMzyTDDnz7DzbnnwTllzs0w71wQTy0D1wD77zbnnzXlkytwwzwQS6CTDDrD7k7bnkA3lz7zzzznzy"
-		, 1080_ChestStr .= "|<1080 Trunk>*100$57.zzzzzzzzzw0DzzzzzzzU1zzzzzzzxlzzrvrxvvyD0QSAT6CDlsnXtlttnyD6ATC7DAzlslXtkNtDyD6STCFD3zls7ntn9sDyD0yTCMD9zlsXnvnVtbyD6CCSSDATlsss7nttlzzzznzzzzzzzzzzzzzzU"
-		, 1080_ChestStr .= "|<1080 Rack>*100$41.zzzzzzz1zzzzzy0zzzzzwtzTwyytlwzUMsnXkyANnb7VsxnDCSFnzYy1wnbz3w3s7Dy3tXU6DwbnbDATtbb4yQQn7D1wQ3b7zzzyTzzzzzzzzs"
-		, 1080_ChestStr .= "|<1080 Cocoon>*100$71.zzzzzzzzzzzzwDzzzzzzzzzzU7zzzzzzzzzyDDnznzDzDvysyy1y1s7s7Xslztlslb7b7XnbzXnXqDCDD3bDzDXDwyAyC3CDyT6TtwNwQWQTwyAznsnstYsztwMzblbln1kyltlz7b7bb3kllXln6D6DD7k7kTkD1z1yTDxzvztzjzjzzzzzzzzzzzzzzs"
-		, 1080_ChestStr .= "|<1080 Lever>*100$46.DzzzzzzwzzzzzzznzzjvzzzDkATA3UAzatwtiAnyTXnbslDtzCSTX4zUwtsCAny7ljVs7DtzYyTUQzby7ty8naTsTbsl0M7ly1XXzzzjzzzs"
-		, 1080_ChestStr .= "|<1080 Crank>*100$54.wDzzzzzzzk3zzzzzzzXnzzrvyxx7r0TblwMs7z6T3swwtDz6D3sQwnDz6CFsAwb7z6SNt4wD7z0y1tYw77z0w0tUwb3v4QwtkwnVX69wtswlk771wNwwsyzzzzzzzzU"
-		, 1080_ChestStr .= "|<1080 Hoard>*100$56.DlzzzzzzznwTzzzzzzwz7wzxzzzzDlw3yT0Q1nwSQT3lba4z77bkwMtl01nst76CS00QyCNlbbUz7DXUQ3tsDlnsk30ySHwQSQwl7bYz7X6TAMtnDlw7bl761zzzrzzzzzy"
+	Global 1080_ChestStr := "|<Door>*86$33.XDXDX0swswsU|<Door>*86$33.XDXDX0swswsU"
+		, 1080_ChestStr .= "|<Chest>*85$26.bnnAtwwzCTDDlU3kQ80w7mTDDybnnzs"
+		, 1080_ChestStr .= "|<Excavated Chest>*75$28.bnkv6DD3wMtt7lnbYT74y1wSHk3lsTDD6"
+		, 1080_ChestStr .= "|<1080 Trunk>*100$30.6ATC76ATC36STCF0yTCNU"
+		, 1080_ChestStr .= "|<1080 Rack>*100$25.lsSDNt7Dlwnbsy1ny"
+		, 1080_ChestStr .= "|<Cocoon>*91$15.zzrzwzz1zl7y8znXyQTlXyAzlby1zsTzbzzU"
+		, 1080_ChestStr .= "|<Lever>*91$18.aTCyDCyCSDCSD4yzYyU"
+		, 1080_ChestStr .= "|<1080 Crank>*100$24.Xky7XYS3baSFDUSNU"
+		, 1080_ChestStr .= "|<1080 Hoard>*100$31.DXYQMblnCAnss70w"
 		, 1080_ChestStr .= "|<1080 Sulphite>*100$36.lzzzzziTzzzzDTzzzzDwywz17wywzAXwywzSlwywzSswywzSyQywz1yQywzDzQywzDSQwwzDUy1w3DU"
-		, 1080_ChestStr .= "|<1080 Hand>*47$48.7szzzzzzbszzzzzzbszjrxzTbsz7Xsk3bsy7lstVbsy7kttlU0wXkNtsU0wXk9tsbss3m1tsbss1n1tsbstlnVttbsnsnltXbsnsnts7U"
-		, 1080_ChestStr .= "|<1080 LodeStone>*88$69.7zzzzzzzzzzwzzzzzzzzzzzbzbzzzznzztwzkD0D0M40Q3bwMwkwnAgP6Az7Xb7btzXlsbtwQwQz7wST4zDXbXUsDXnsbtwQwQ7kwST4zDXbbbz7XnsbswwwwzwQSDAtX7bDbvbXslUA1w3w30wT0TztzzzzyTzyTU"
-		, 1080_ChestStr .= "|<1080 Blight>*98$57.0zzzzzzzzw1zzzzzzzzbDDnyTbnzwtlwT0MyM0bDDnlXbnMo3tyQSwyT7UDDnbzbnswstyQzw0T7b7DnbnU3swwtyQQQyT7b7DnXnbnswttqSCQyT7UT0ns3bnszzzzznzzzzU"
+		, 1080_ChestStr .= "|<1080 Hand>*47$28.mD0ba0wUSM1n1tU"
+		, 1080_ChestStr .= "|<1080 LodeStone>*88$32.wnAgPDDnz7VnwTltQ71wSL1wD7bnzXltU"
+		, 1080_ChestStr .= "|<1080 Blight>*98$21.bDz4twsb77A"
 
 	Global 1050_ChestStr := "|<1050 Door>*92$44.zzzzzzzs1zzzzzzADzzzzznVwDsS3wwQ1s3UDDWCAQMnnsbnDaAwy9wntXDDaTAyM3ntbnDa1wwMwltWDCC6QAsnk7kDUSCTzzDyTzzzzzzzzzU"
 		, 1050_ChestStr .= "|<1050 Chest>*84$48.zzzzzzzzw3zzzzzzlXzzzzzznn7X0sE3XzbX0k01bzbX7nSDbzbX7nyDbzU30kyDbzU30sSDXzbX7yCTXxbX7zCTknbX7rCTs3bX0kSDyTzzzxzzzzzzzzzzU"
@@ -524,7 +530,7 @@
 	, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr, VendorHarbourStr
 
 ; Automation Settings
-	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableLockerAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
+	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
 
 ; General
 	Global BranchName := "master"
@@ -578,15 +584,18 @@
 	Global YesPredictivePrice_Percent_Val := 100
 	Global HPerc := 100
 	Global GameX, GameY, GameW, GameH, mouseX, mouseY
-	Global OHB, OHBLHealthHex, OHBLManaHex, OHBLESHex, OHBLEBHex, OHBCheckHex
+	Global OHB
 	Global WinGuiX := 0
 	Global WinGuiY := 0
 	Global YesVendorDumpItems := 0
 	Global HeistAlcNGo := 1
 	Global YesBatchVendorBauble := 1
 	Global YesBatchVendorGCP := 1
+	Global BrickedWhenCorrupted := True
 	Global YesOpenStackedDeck := True
 	Global YesSpecial5Link := True
+	global EnableRestock:=True
+	global MoveMapsToArea:=True
 
 
 	; Chaos Recipe
@@ -594,13 +603,12 @@
 	Global ChaosRecipeUnloadAll := True
 	Global ChaosRecipeEnableUnId := True
 	Global ChaosRecipeSmallWeapons := True
-	Global ChaosRecipeSeperateCount := True
-	Global ChaosRecipeOnlyUnId := True
 	Global ChaosRecipeSkipJC := True
 	Global ChaosRecipeLimitUnId := 74
 	Global ChaosRecipeAllowDoubleJewellery := True
 	Global ChaosRecipeAllowDoubleBelt := True
-	Global ChaosRecipeMaxHolding := 12
+	Global ChaosRecipeMaxHoldingID := 12
+	Global ChaosRecipeMaxHoldingUNID := 12
 	Global ChaosRecipeTypePure := 0
 	Global ChaosRecipeTypeHybrid := 1
 	Global ChaosRecipeTypeRegal := 0
@@ -698,6 +706,7 @@
 	Global StashTabGemVaal := 1
 	Global StashTabGemQuality := 1
 	Global StashTabFlaskQuality := 1
+	Global StashTabFlaskAll := 1							 
 	Global StashTabLinked := 1
 	Global StashTabBrickedMaps := 1
 	Global StashTabInfluencedItem := 1
@@ -732,6 +741,7 @@
 	Global StashTabYesGemVaal := 1
 	Global StashTabYesGemQuality := 1
 	Global StashTabYesFlaskQuality := 1
+	Global StashTabYesFlaskAll := 1								
 	Global StashTabYesLinked := 1
 	Global StashTabYesBrickedMaps := 1
 	Global StashTabYesInfluencedItem := 1
@@ -827,6 +837,8 @@
 	global hotkeyGemSwap:="!e"
 	global hotkeyStartCraft:="F7"
 	global hotkeyCraftBasic:="F9"
+	global hotkeyCtrlClicker:=""
+	global hotkeyCtrlShiftClicker:=""
 	global hotkeyGrabCurrency:="!a"
 	global hotkeyGetMouseCoords:="!o"
 	global hotkeyCloseAllUI:="Space"
@@ -841,14 +853,6 @@
 	global hotkeyRight := "D"
 	global hotkeyCastOnDetonate := "Q"
 	Global hotkeyTriggerMovement := "LButton"
-
-; Coordinates
-	global PortalScrollX:=1825
-	global PortalScrollY:=825
-	global WisdomScrollX:=1875
-	global WisdomScrollY:=825
-	global StockPortal:=0
-	global StockWisdom:=0
 
 ; Inventory Colors
 	global varEmptyInvSlotColor := [0x000100, 0x020402, 0x000000, 0x020302, 0x010101, 0x010201, 0x060906, 0x050905] ;Default values from sauron-dev

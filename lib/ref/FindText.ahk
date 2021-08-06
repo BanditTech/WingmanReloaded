@@ -1706,7 +1706,7 @@ Gui(cmd, arg1:="")
     Gui, Font, s12 norm, Verdana
     Gui, Add, Button, xm w240 vCapture gFindText_Run, % Lang["Capture"]
     Gui, Add, Button, x+0 wp vTest gFindText_Run, % Lang["Test"]
-    Gui, Add, Button, x+0 wp vCopy gFindText_Run, % Lang["Copy"]
+    Gui, Add, Button, x+0 wp vCopy gFindText_Run, CopyString ; % Lang["Copy"]
     Gui, Add, Button, xm y+0 wp vCaptureS gFindText_Run, % Lang["CaptureS"]
     Gui, Add, Button, x+0 wp vGetRange gFindText_Run, % Lang["GetRange"]
     Gui, Add, Button, x+0 wp vTestClip gFindText_Run, % Lang["TestClip"]
@@ -2126,6 +2126,9 @@ Gui(cmd, arg1:="")
     GuiControl, Focus, scr
     return
   Case "Copy":
+    Clipboard := StoredValue
+    Return
+  Case "CopyOld":
     Gui, FindText_Main: Default
     ControlGet, s, Selected,,, ahk_id %hscr%
     if (s="")
@@ -2645,13 +2648,17 @@ Gui(cmd, arg1:="")
         s.="," (r[i++]-x) "/" (r[i++]-y) "/" r[i++]
       txt:=SubStr(s,2), color:="##" dRGB
     }
+    If !StoredValue
+      StoredValue := ""
     s:="`nText.=""|<" Comment ">" color "$" txt """`n"
     if (cmd="AllAdd")
     {
+      StoredValue .= "|<" Comment ">" color "$" txt
       Event:=cmd, Result:=s
       Gui, Hide
       return
-    }
+    } Else
+      StoredValue := "|<" Comment ">" color "$" txt
     x:=px-ww+CutLeft+(nW-CutLeft-CutRight)//2
     y:=py-hh+CutUp+(nH-CutUp-CutDown)//2
     s:=StrReplace(s, "Text.=", "Text:="), r:=StrSplit(Lang["8"],"|")

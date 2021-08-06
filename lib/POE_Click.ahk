@@ -20,16 +20,22 @@ SpamClick(Toggle:="",Modifier:=""){
 	} Else
 			Spam := !Spam
 	If (Modifier != "") {
-		Send {%Modifier% Down}
-		Sleep, 60+(ClickLatency*15)
+		If !isObject(Modifier)
+			Modifier := StrSplit(Modifier,",")
+		For k, mod in Modifier{
+			Send {%mod% Down}
+			Sleep, 60+(ClickLatency*15)
+		}
 	}
 	While Spam {
 		Send {Click}
 		Sleep, 60+(ClickLatency*15)
 	}
 	If (Modifier != "") {
-		Send {%Modifier% Up}
-		Sleep, 60+(ClickLatency*15)
+		For k, mod in Modifier{
+			Send {%mod% Up}
+			Sleep, 60+(ClickLatency*15)
+		}
 	}
 }
 ; LeftClick - Left Click at Coord
@@ -142,7 +148,23 @@ ClipItem(x, y){
 WisdomScroll(x, y){
 	Log("WisdomScroll: " x ", " y)
 	BlockInput, MouseMove
-	RightClick(WisdomScrollX,WisdomScrollY)
+	Found := False
+	For C, vv in WR.Restock {
+		For R, v in vv {
+			If (!v.Normal && v.RestockName = "Wisdom"){
+				Found := True
+				Break 2
+			}
+		}
+	}
+	If !Found {
+		Notify("Missing Configuration","Assign an inventory slot to Wisdom Scrolls`nMake sure to select Ignore or Restock")
+		Log("Wisdom Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Wisdom Scrolls","The slot must be configured to Restock or Ignore and select Wisdom in the dropdown menu")
+		Return False
+	}
+	XX := InventoryGridX[C], YY := InventoryGridY[R]
+	o := RandClick(XX,YY)
+	RightClick(o.X,o.Y)
 	Sleep, 30+Abs(ClickLatency*15)
 	LeftClick(x,y)
 	Sleep, 45+Abs(ClickLatency*15)

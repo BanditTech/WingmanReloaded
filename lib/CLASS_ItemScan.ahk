@@ -18,7 +18,7 @@
 			{
 				If (SectionKey = 1 && SVal ~= "Rarity:")
 					This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
-				Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix")
+				Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" )
 					This.Data.Blocks.Affix := SVal
 				Else If (SVal ~= " \(enchant\)$")
 					This.Data.Blocks.Enchant := SVal
@@ -875,6 +875,7 @@
 	}
 	BrickedMap() {
 		If (This.HasBrickedAffix()) {
+			This.Prop.HasBadAffix := True
 			If (BrickedWhenCorrupted && This.Prop.Corrupted)
 				Return True
 			Else If (!BrickedWhenCorrupted)
@@ -904,6 +905,7 @@
 		|| (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
 		|| (This.Affix["Players have #% less Armour"] && PHLessArmour)
 		|| (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect))
+		|| This.HasCustomBrickedAffix()
 		{
 			Return True
 		} 
@@ -911,6 +913,14 @@
 		{
 			return False
 		}
+	}
+	HasCustomBrickedAffix() {
+		For k, v in CustomUndesirableMods{
+			if This.Affix[v]{
+				return true
+			}
+		}
+		return false
 	}
 	TopTierChaosResist(){
 		If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
@@ -1274,11 +1284,12 @@
 		Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
 		If ( This.Prop.Rarity_Digit != 3 )
 		|| ( This.Prop.ItemLevel < 60 )
+		|| !( This.Prop.SlotType )
 		|| ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
 		|| ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
 		|| ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass = "Shields") 
-			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) )
-		|| ( !This.Affix.Unidentified && ChaosRecipeEnableUnId && ChaosRecipeOnlyUnId && This.Prop.ItemLevel < ChaosRecipeLimitUnId)
+			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) 
+			&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width = 2 && This.Prop.Item_Height = 3) )
 			Return False
 		If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
 			Return False
@@ -1294,13 +1305,12 @@
 		{
 			If (This.Prop.SlotType = v)
 			{
-				If ChaosRecipeSeperateCount {
-					If This.Affix.Unidentified
-						CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v])
-					Else
-						CountValue := retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+				If This.Affix.Unidentified {
+					CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v])
+					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingUNID
 				} Else {
-					CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v]) + retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+					CountValue := retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
+					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingID
 				}
 				If (v = "Ring")
 					CountValue := CountValue / 2
@@ -1319,40 +1329,38 @@
 								RecipeArray.uChaos[v].Push(This)
 							Else If This.Prop.RegalRecipe
 								RecipeArray.uRegal[v].Push(This)
+							Else
+								Return False
 						} Else {
 							If This.Prop.ChaosRecipe
 								RecipeArray.Chaos[v].Push(This)
 							Else If This.Prop.RegalRecipe
 								RecipeArray.Regal[v].Push(This)
+							Else
+								Return False
 						}
 					}
 					Return True
 				}
 				Else
-					Return "000"
+					Return False
 			}
 		}
 		For k, v in WeaponList
 		{
 			If (This.Prop.SlotType = v)
 			{
-				If ChaosRecipeSeperateCount {
-					If This.Affix.Unidentified{
-						WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) 
-						WeaponCount += (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"])) / 2
-						WeaponCount += (retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"])) / 2
-					}Else{
-						WeaponCount := retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"]) 
-						WeaponCount += (retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"])) / 2 
-						WeaponCount += (retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
-					}
-
-				} Else {
-					WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) + retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"])
-											+ (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"]) + retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"]) 
-												+ retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"]) + retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+				If This.Affix.Unidentified{
+					WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"]) 
+					WeaponCount += (retCount(RecipeArray.uRegal["One Hand"]) + retCount(RecipeArray.uChaos["One Hand"])) / 2
+					WeaponCount += (retCount(RecipeArray.uRegal["Shield"]) + retCount(RecipeArray.uChaos["Shield"])) / 2
+					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingUNID
+				}Else{
+					WeaponCount := retCount(RecipeArray.Regal["Two Hand"]) + retCount(RecipeArray.Chaos["Two Hand"]) 
+					WeaponCount += (retCount(RecipeArray.Regal["One Hand"]) + retCount(RecipeArray.Chaos["One Hand"])) / 2 
+					WeaponCount += (retCount(RecipeArray.Regal["Shield"]) + retCount(RecipeArray.Chaos["Shield"])) / 2
+					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingID
 				}
-
 				If (WeaponCount < ChaosRecipeMaxHolding)
 				{
 					If (OnStash && deposit)
@@ -1382,7 +1390,7 @@
 		; These lines remove the extra line created by "additional information bubbles"
 		If (content ~= "\n\(")
 			content := RegExReplace(content, "\n\(", "(")
-		content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,]+\)", "")
+		content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,']+\)", "")
 		; Do Stuff with info
 		LastLine := ""
 		DoubleModCounter := 0
@@ -1509,7 +1517,7 @@
 		; These lines remove the extra line created by "additional information bubbles"
 		If (content ~= "\n\(")
 			content := RegExReplace(content, "\n\(", "(")
-		content := RegExReplace(content,"\(\w+ \w+ [\w\d\.% ,]+\)", "")
+		content := RegExReplace(content,"\(\w+ \w+ [\r\n\w\%\d,\: ]*\)", "")
 		; Do Stuff with info
 		Loop, Parse,% content, `r`n  ; , `r
 		{
@@ -2727,6 +2735,8 @@
 		}
 		Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality&&!This.Prop.RarityUnique)
 			sendstash := StashTabFlaskQuality
+		Else If (This.Prop.Flask&&(This.Prop.Quality<1)&&StashTabYesFlaskAll&&!This.Prop.RarityUnique)
+			sendstash := StashTabFlaskAll																															
 		Else If (This.Prop.RarityGem)
 		{
 			If ((This.Prop.Quality>0)&&StashTabYesGemQuality)

@@ -379,13 +379,12 @@ CalibrationWizard(){
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationOnInventory     xp   y+10      wp h20 , Inventory Open
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor      xp   y+10      wp h20 , Vendor Trade Open
 		Gui, Wizard: Add, CheckBox, vCalibrationOnDiv             xp   y+10      wp h20 , Divination Trade Open
-		Gui, Wizard: Add, CheckBox, vCalibrationOnMetamorph           xp   y+10      wp h20 , Map Metamorph Open
+		Gui, Wizard: Add, CheckBox, vCalibrationDetonate          xp   y+10      wp h20 , Detonate Shown
 
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu        xp+140 ys       wp h20 , Talent Menu Open
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty         xp   y+10      wp h20 , !EMPTY! Inventory Open
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash       xp   y+10      wp h20 , Stash Open
 		Gui, Wizard: Add, CheckBox, vCalibrationOnDelveChart        xp   y+10      wp h20 , Delve Chart Open
-		Gui, Wizard: Add, CheckBox, vCalibrationDetonate          xp   y+10      wp h20 , Detonate Shown
 
 		Gui, Wizard: Add, Button, x100 y240 w160 h30 gRunWizard, Run Wizard
 		Gui, Wizard: Add, Button, x+20 yp wp hp gWizardClose, Cancel Wizard
@@ -668,29 +667,6 @@ CalibrationWizard(){
 			} else
 			MsgBox % "PoE Window is not active. `nRecalibrate of OnDelveChart didn't work"
 		}
-		If CalibrationOnMetamorph
-		{
-			ToolTip,% "This will sample the OnMetamorph Color"
-				. "`nMake sure you have the Metamorph Panel open"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
-				, % ScrCenter.X - 150 , % ScrCenter.Y -30
-			KeyWait, a, D L
-			ToolTip
-			KeyWait, a
-			If GetKeyState("Escape", "P")
-			{
-				MsgBox % "Escape key was held`n"
-				. "Canceling the Wizard!"
-				Gui, Wizard: Show
-				Exit
-			}
-			if WinActive(ahk_group POEGameGroup){
-				FindText.ScreenShot(), varOnMetamorph := FindText.GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y)
-				SampleTT .= "OnMetamorph       took RGB color hex: " . varOnMetamorph . "  At coords x: " . WR.loc.pixel.OnMetamorph.X . " and y: " . WR.loc.pixel.OnMetamorph.Y . "`n"
-			} else
-			MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
-		}
 		PauseTooltips:=0
 		If SampleTT =
 		{
@@ -733,8 +709,6 @@ CalibrationWizard(){
 			IniWrite, %varOnDiv%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDiv
 		If CalibrationOnDelveChart
 			IniWrite, %varOnDelveChart%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDelveChart
-		If CalibrationOnMetamorph
-			IniWrite, %varOnMetamorph%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph
 		If CalibrationDetonate
 			IniWrite, %varOnDetonate%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate
 		Gui, Wizard: Submit

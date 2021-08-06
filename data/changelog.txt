@@ -1,4 +1,52 @@
-﻿## Version .14.02 - Master version - July/28/2021
+﻿## Version .14.0205 - Alpha version - July/29/2021
+Added new feature to map crafting
+* After finishing crafting it can move the maps to your map area
+* This includes mapprep items like sac frags and scarabs
+* Depending on your map skip direction it will go left or right
+
+Updated to latest version of BigA.ahk lib
+
+---
+
+## Version .14.0204 - Alpha version - July/29/2021
+Spam Clickers added for Ctrl and Ctrl+Shift
+* The hotkeys are disabled by default
+* To enable the hotkey, enter a name from [This Key List](https://www.autohotkey.com/docs/KeyList.htm)
+* Be careful holding it down for too long or it might disconnect you
+* Respects your click latency setting
+
+---
+
+## Version .14.02032 - Alpha version - July/29/2021
+Bugfixes! All working now
+
+---
+
+## Version .14.0202 - Alpha version - July/29/2021
+Restock Scrolls has been expanded to all currency
+* Each inventory slot can be Normal, Ignore, or Restock
+* Ignore acts just like originally, blocking the slot
+* Restock allows you to select a currency to manage
+* You can choose the minimum, maximum and Restock amount
+* Some currency locations are not yet in the script
+  * They are on the list of selectable currency though
+  * Once they locations are added they will work as expected
+  * It will notify you of any missing pixel locations
+
+---
+
+## Version .14.0201 - Alpha version - July/28/2021
+Seperated the Chaos recipe count for ID and UNID
+* No longer option for having combined and Seperate
+* This did not really work well in practice and was unintuitive
+* Instead you can choose how many ID and how many UNID
+* Only Stash UNID in range option also removed
+  * Set ID max to 0 for similar behavior
+* 2x3 Two Hand (bows) added to small weapons limitation
+
+---
+
+## Version .14.02 - Master version - July/28/2021
 Merging all changes from alpha
 
 New features added to the script

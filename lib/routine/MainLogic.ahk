@@ -187,26 +187,29 @@ TGameTick(GuiCheck:=True){
 				{
 					If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] <= A_TickCount)
 					{
-						If (( WR.Utility[A_Index].OnCD )
-						|| ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
-						|| ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
-						|| ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana ))
-							Trigger(WR.Utility[A_Index])
-						Else If (WR.Utility[A_Index].Icon)
-						{
-							If (WR.Utility[A_Index].IconSearch == 1) ; Search Buff Area
-								x1:=GameX, y1:=GameY, x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/81))
-							Else If (WR.Utility[A_Index].IconSearch == 2) ; Search Debuff Area
-								x1:=GameX, y1:=GameY+Round(GameH/(1080/81)), x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/162))
-							Else If (WR.Utility[A_Index].IconSearch == 3) ; Custom Icon Area
-								x1:=WR.Utility[A_Index].IconArea.X1, y1:=WR.Utility[A_Index].IconArea.Y1, x2:=WR.Utility[A_Index].IconArea.X2, y2:=WR.Utility[A_Index].IconArea.Y2
+						If (NOT WR.Utility[A_Index].MainAttackOnly || ( WR.Utility[A_Index].MainAttackOnly && MainAttackPressedActive ))
+						{																									 
+							If (( WR.Utility[A_Index].OnCD )
+							|| ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
+							|| ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
+							|| ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana ))
+								Trigger(WR.Utility[A_Index])
+							Else If (WR.Utility[A_Index].Icon)
+							{
+								If (WR.Utility[A_Index].IconSearch == 1) ; Search Buff Area
+									x1:=GameX, y1:=GameY, x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/81))
+								Else If (WR.Utility[A_Index].IconSearch == 2) ; Search Debuff Area
+									x1:=GameX, y1:=GameY+Round(GameH/(1080/81)), x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/162))
+								Else If (WR.Utility[A_Index].IconSearch == 3) ; Custom Icon Area
+									x1:=WR.Utility[A_Index].IconArea.X1, y1:=WR.Utility[A_Index].IconArea.Y1, x2:=WR.Utility[A_Index].IconArea.X2, y2:=WR.Utility[A_Index].IconArea.Y2
 
-							BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
-							
-							If ((WR.Utility[A_Index].IconShown && BuffIcon) || (!WR.Utility[A_Index].IconShown && !BuffIcon))
-								Trigger(WR.Utility[A_Index],True)
-							Else
-								WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
+								BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
+								
+								If ((WR.Utility[A_Index].IconShown && BuffIcon) || (!WR.Utility[A_Index].IconShown && !BuffIcon))
+									Trigger(WR.Utility[A_Index],True)
+								Else
+									WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
+							}
 						}
 					}
 				}

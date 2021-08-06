@@ -189,7 +189,7 @@ ShowToolTip()
   ToolTip, % RegExMatch(ft_ToolTip_Text, "m`n)^"
     . StrReplace(CurrControl,"ft_") . "\K\s*=.*", _TT)
     ? StrReplace(Trim(_TT,"`t ="),"\n","`n") : ""
-  SetTimer, ft_RemoveToolTip, -5000
+  SetTimer, ft_RemoveToolTip, -10000
   }
   return
 

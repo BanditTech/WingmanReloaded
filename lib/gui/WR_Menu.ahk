@@ -23,7 +23,7 @@ WR_Menu(Function:="",Var*){
 
     Gui, Inventory: Tab, Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,       Section    w170 h345    xm   ym+25,         Inventory Sort/CLF Options
+      Gui, Inventory: Add, GroupBox,       Section    w170 h315    xm   ym+25,         Inventory Sort/CLF Options
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesIdentify           Checked%YesIdentify%    xs+5   ys+18  , Identify Items?
       Gui, Inventory: Add, Checkbox, gUpdateExtra   vYesStash              Checked%YesStash%              y+8    , Deposit at Stash?
@@ -41,33 +41,22 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveGeneral   vYesVendorDumpItems    Checked%YesVendorDumpItems%    y+8    , Vendor Dump Tab Items?
       
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, Button,   gBuildIgnoreMenu vWR_Btn_IgnoreSlot y+8  w160 center, Ignore Slots
-
-      Gui, Inventory: Add, GroupBox,         Section      w370 h180      xm+180   ym+25,         Scroll, Gem and Currency Locations
+      Gui, Inventory: Add, GroupBox,         Section      w370 h100      xm+180   ym+25,         Scroll, Gem and Currency Locations
       Gui, Inventory: Font
 
       Gui, Inventory: Add, Text,                     xs+93   ys+15,        X-Pos
       Gui, Inventory: Add, Text,                     x+12,             Y-Pos
 
-      Gui, Inventory: Add, Text,                     xs+21  y+5,         Portal Scroll:
-      Gui, Inventory: Add, Edit,       vPortalScrollX         x+8        y+-15   w34  h17,   %PortalScrollX%
-      Gui, Inventory: Add, Edit,       vPortalScrollY         x+8                w34  h17,   %PortalScrollY%  
-      Gui, Inventory: Add, Text,                     xs+10  y+6,         Wisdom Scroll:
-      Gui, Inventory: Add, Edit,       vWisdomScrollX         x+8        y+-15   w34  h17,   %WisdomScrollX%
-      Gui, Inventory: Add, Edit,       vWisdomScrollY         x+8                w34  h17,   %WisdomScrollY%  
       Gui, Inventory: Add, Text,                     xs+9  y+6,         Grab Currency:
       Gui, Inventory: Add, Edit,       vGrabCurrencyX        x+8        y+-15   w34  h17,   %GrabCurrencyX%
       Gui, Inventory: Add, Edit,       vGrabCurrencyY        x+8                w34  h17,   %GrabCurrencyY%
-      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_PortalScroll                     xs+173       ys+31  h17            , Locate
-      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_WisdomScroll                                  y+4    h17            , Locate
-      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                                  y+4    h17            , Locate
-      Gui, Inventory: Add, Checkbox,    vStockPortal                    Checked%StockPortal%                    x+13   ys+33          , Stock Portal?
-      Gui, Inventory: Add, Checkbox,    vStockWisdom                    Checked%StockWisdom%                    y+8                   , Stock Wisdom?
-      Gui, Inventory: Add, Text,                   xs+84   ys+25    h152 0x11
-      Gui, Inventory: Add, Text,                   x+33             h152 0x11
-      Gui, Inventory: Add, Text,                   x+33             h152 0x11
-
-
+      Gui, Inventory: Add, Button,      gWR_Update vWR_Btn_Locate_GrabCurrency                     xs+173       ys+31  h17            , Locate
+      Gui, Inventory: Add, Button, gRestockMenu r2 x+16    ys+30, Inventory Slot`n`rManagement
+      Gui, Inventory: Add, Checkbox, gSaveGeneral   vEnableRestock    Checked%EnableRestock%  xp  y+8   , Enable Restock?
+      
+      Gui, Inventory: Add, Text,                   xs+84   ys+25    h72 0x11
+      Gui, Inventory: Add, Text,                   x+33             h72 0x11
+      Gui, Inventory: Add, Text,                   x+33             h72 0x11
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,       Section    w180 h160        xs   y+5,         Item Parse Settings
       Gui, Inventory: Font,
@@ -88,7 +77,7 @@ WR_Menu(Function:="",Var*){
       Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h165    section    xm+370   ys,         Automation
+      Gui, Inventory: Add, GroupBox,             w180 h145    section    xm+370   ys,         Automation
       AutomationList := "Search Stash|Search Vendor"
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableAutomation Checked%YesEnableAutomation%       xs+5 ys+18  , Enable Automation ?
@@ -97,7 +86,6 @@ WR_Menu(Function:="",Var*){
       GuiControl,Inventory: ChooseString, FirstAutomationSetting, %FirstAutomationSetting%
       Gui, Inventory: Add, Button, ghelpAutomation   x+10    w20 h20,   ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableNextAutomation Checked%YesEnableNextAutomation%   xs+5    y+8  , Enable Second Automation ?
-      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesEnableLockerAutomation Checked%YesEnableLockerAutomation%   xs+5    y+8  , Enable Heist Automation ?
       Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation%       y+8  , Enable Auto Confirm Vendor ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesEnableAutoSellConfirmationSafe Checked%YesEnableAutoSellConfirmationSafe%       y+8  , Enable Safe Auto Confirm?
       Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -245,6 +233,13 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabFlaskQuality , %StashTabFlaskQuality%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
+	  
+	  Gui, Inventory: Font, Bold s8 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unquality Flask
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabFlaskAll , %StashTabFlaskAll%
+      Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesFlaskAll Checked%StashTabYesFlaskAll% x+5 yp+4, Enable
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,             w180 h60    section    x+15 ys,         Dump Tab
@@ -421,26 +416,29 @@ WR_Menu(Function:="",Var*){
 
 
     Gui, Inventory: Tab, Chaos Recipe
-    Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,Section w170 h255 xm+5 ym+25, Chaos Recipe Options
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox,Section w175 h245 xm+5 ym+25, Chaos Recipe Options
       Gui, Inventory: Font,
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeUnloadAll Checked%ChaosRecipeUnloadAll% xs yp+20, Sell all sets back to back
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweler/Chroma Items
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs yp+20, Allow 2x Jewellery limit
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs yp+20, Allow 2x Belt limit
-        Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUpDown xs yp+20 w50 center
-        Gui, Inventory: Add, UpDown,gSaveChaos Range1-36 vChaosRecipeMaxHolding , %ChaosRecipeMaxHolding%
-        Gui, Inventory: Add, Text, x+5 yp+3, Max # of each part
-        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+22, Only stash Small Weap/Shield
+
+        Gui, Inventory: Add, GroupBox, w150 h50 xs y+5, Max # of each part
+        Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingIDUpDown xp+5 yp+20 w40 center
+        Gui, Inventory: Add, UpDown,gSaveChaos Range0-36 vChaosRecipeMaxHoldingID , %ChaosRecipeMaxHoldingID%
+        Gui, Inventory: Add, Text, x+5 yp+3, ID
+        Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeMaxHoldingUNIDUpDown x+5 yp-3 w40 center
+        Gui, Inventory: Add, UpDown,gSaveChaos Range0-36 vChaosRecipeMaxHoldingUNID , %ChaosRecipeMaxHoldingUNID%
+        Gui, Inventory: Add, Text, x+5 yp+3, UNID
+        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSmallWeapons Checked%ChaosRecipeSmallWeapons% xs yp+32, Limit Weapons 1x3/2x2
         Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableUnId Checked%ChaosRecipeEnableUnId% xs yp+22, Leave Recipe Rare Un-Id
-        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSeperateCount Checked%ChaosRecipeSeperateCount% xs yp+22, Seperate count for Un-Id
-        Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeOnlyUnId Checked%ChaosRecipeOnlyUnId% xs yp+22, Only Stash UnId in Range
         Gui, Inventory: Add, Edit,gSaveChaos vChaosRecipeLimitUnIdUpDown xs yp+20 w50 center
         Gui, Inventory: Add, UpDown,gSaveChaos Range70-100 vChaosRecipeLimitUnId , %ChaosRecipeLimitUnId%
         Gui, Inventory: Add, Text, x+5 yp+3, Item lvl Resume Id
         Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,Section w170 h80 xs-5 y+25, Chaos Recipe Type
+      Gui, Inventory: Add, GroupBox,Section w175 h80 xs-10 y+25, Chaos Recipe Type
       Gui, Inventory: Font,
         Gui, Inventory: Add, Radio,gSaveChaosRadio xp+15 yp+20 vChaosRecipeTypePure Checked%ChaosRecipeTypePure% , Pure Chaos 60-74 ilvl
         Gui, Inventory: Add, Radio,gSaveChaosRadio xp yp+20 vChaosRecipeTypeHybrid Checked%ChaosRecipeTypeHybrid%  , Hybrid Chaos 60-100 ilvl
@@ -503,7 +501,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
       Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashATLASCraftingIlvlMin , %YesStashATLASCraftingIlvlMin%
       Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
-
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         STR Bases
       Gui, Inventory: Font,
@@ -580,12 +577,13 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: New
       Gui, Crafting: +AlwaysOnTop -MinimizeBox
       ;Save Setting
-      Gui, Crafting: Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+      Gui, Crafting: Add, Button, default gupdateEverything    x425 y510  w125 h23,   Save Configuration
       Gui, Crafting: Add, Button,      gLaunchSite     x+5           h23,   Website
 
-      Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w625 h505 -wrap , Map Crafting|Basic Crafting
+      Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w675 h555 -wrap , Map Crafting|Basic Crafting
 
       Gui, Crafting: Tab, Map Crafting
+        
         MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Chisel+Alchemy|Chisel+Alchemy+Vaal|Binding|Chisel+Binding|Chisel+Binding+Vaal|Hybrid|Chisel+Hybrid|Chisel+Hybrid+Vaal"
         MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
         MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
@@ -628,7 +626,7 @@ WR_Menu(Function:="",Var*){
           GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
           Gui, Crafting: Font,
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w580 h200 xs, Undesirable Mods:
+        Gui, Crafting: Add,GroupBox,Section w630 h240 xs, Undesirable Mods:
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
           Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
@@ -642,17 +640,18 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, Checkbox, vPHLessAreaOfEffect xs+5 ys+180 Checked%PHLessAreaOfEffect%, Players Have # Less Area of Effect
           Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
           Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
-          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters' Skills Chain # Additional Times
+          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters Skills Chain # Additional Times
           Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
           Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
           Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
           Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
           Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
+          Gui, Crafting: Add, Button, xs+215 ys+200 w200 gCustomUndesirableModsUI,  Custom Undesirable Mods
           
 
           Gui, Crafting: Font, Bold
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h110 x320 y50, Minimum Map Qualities:
+        Gui, Crafting: Add,GroupBox,Section w200 h130 x320 y50, Minimum Map Qualities:
           Gui, Crafting: Font, 
           Gui, Crafting: Font,s8
 
@@ -668,16 +667,15 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
           Gui, Crafting: Add, Text,         x+10 yp+3        , Monster Pack Size
 
+          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+15 y+15 Checked%EnableMQQForMagicMap%, Enable on Magic Maps
+
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h40 x320 y170, Minimum Settings Options:
+        Gui, Crafting: Add,GroupBox,Section w290 h60 x320 y190, Other Settings:
           Gui, Crafting: Font,
           Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+10 ys+20 Checked%EnableMQQForMagicMap%, Enable on Magic Maps?
-          Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w170 h40 xs ys+50, Alc'n'go Heist:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract/Blueprint?
+          Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
+          Gui, Crafting: Add, Checkbox, vMoveMapsToArea xs+10 ys+40 Checked%MoveMapsToArea%, Move Crafted Maps and Enhance Items to Map Area?
+          Gui, Crafting: Font
       Gui, Crafting: Tab, Basic Crafting
         Gui, Crafting: Font, Bold s12 cBlack, Arial
         Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance
@@ -733,7 +731,7 @@ WR_Menu(Function:="",Var*){
         Gui, Crafting: Font
         Gui, Crafting: Show
     }
-    Gui, Crafting: show , w600 h500, Crafting Settings
+    Gui, Crafting: show , w650 h550, Crafting Settings
   }
   Else If (Function = "Strings")
   {

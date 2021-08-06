@@ -89,9 +89,10 @@ CraftingMaps(){
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
-	BlackList := Array_DeepClone(IgnoredSlot)
+	BlackList := Array_DeepClone(BlackList_Default)
 	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel"])
 	; MsgBoxVals(WR.data.Counts)
+	MapList := {}
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
 	{
@@ -101,14 +102,9 @@ CraftingMaps(){
 		{
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If BlackList[C][R]
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			If (((Grid.X<(WisdomScrollX+24)&&(Grid.X>WisdomScrollX-24))&&(Grid.Y<(WisdomScrollY+24)&&(Grid.Y>WisdomScrollY-24)))||((Grid.X<(PortalScrollX+24)&&(Grid.X>PortalScrollX-24))&&(Grid.Y<(PortalScrollY+24)&&(Grid.Y>PortalScrollY-24))))
-			{   
-				Ding(500,11,"Hit Scroll")
-				Continue ;Dont want it touching our scrolls, location must be set to very center of 52 pixel square
-			} 
 			PointColor := FindText.GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) 
 			{
@@ -205,9 +201,46 @@ CraftingMaps(){
 			} Else If (indexOf(Item.Prop.ItemClass,["Blueprint","Contract"]) && Item.Prop.RarityNormal && HeistAlcNGo) {
 				ApplyCurrency("Alchemy",Grid.X,Grid.Y)
 			}
+			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep) && !InMapArea(C))
+				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
+		}
+	}
+	If (MoveMapsToArea && RunningToggle){
+		Slots := EmptyGrid()
+		RemoveKeys := []
+		; For k, v in Slots {
+		; 	If !InMapArea(StrSplit(k," ").1)
+		; 		RemoveKeys.Push(k)
+		; }
+		; Loop % RemoveKeys.Count() {
+		; 	k := RemoveKeys.Pop()
+		; 	Slots.Delete(k)
+		; }
+		For k, obj in MapList {
+			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If Slots.Count() {
+				split := StrSplit(k," ")
+				C := split.1
+				R := split.2
+				gogo := Slots.Pop()
+				LeftClick(obj.X,obj.Y)
+				Sleep, 180 + (15 * ClickLatency)
+				LeftClick(gogo.X,gogo.Y)
+				Sleep, 120 + (15 * ClickLatency)
+			}	Else
+				Break
 		}
 	}
 	Return
+}
+InMapArea(C:=0) {
+	If (C <= 0)
+		Return False
+	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
+	|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
+		Return True
+	Return False
 }
 getMapCraftingMethod(){
 	Loop, 3
@@ -327,14 +360,13 @@ MapRoll(Method, x, y){
 	antp := Item.Prop.Map_PackSize
 	antq := Item.Prop.Map_Quantity
 	;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-	While ( Item.Prop.IsBrickedMap
+	While ( Item.Prop.HasBadAffix
 	|| (Item.Prop.RarityNormal) 
 	|| (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
 	|| Item.Prop.Map_PackSize < MMapMonsterPackSize 
 	|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
-	&& !Item.Affix["Unidentified"]
+	&& !Item.Affix["Unidentified"] && !This.Prop.Corrupted
 	{
-		Notify("Inside roll while","These maps should not see this",1)
 		If (!RunningToggle)
 		{
 			break
