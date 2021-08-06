@@ -591,6 +591,7 @@
 	Global HeistAlcNGo := 1
 	Global YesBatchVendorBauble := 1
 	Global YesBatchVendorGCP := 1
+	Global BrickedWhenCorrupted := True
 	Global YesOpenStackedDeck := True
 	Global YesSpecial5Link := True
 	global EnableRestock:=True
