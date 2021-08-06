@@ -359,8 +359,8 @@ MapRoll(Method, x, y){
 	antr := Item.Prop.Map_Rarity
 	antp := Item.Prop.Map_PackSize
 	antq := Item.Prop.Map_Quantity
-	;MFAProjectiles,MDExtraPhysicalDamage,MICSC,MSCAT
-	While ( Item.Prop.HasBadAffix
+	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
+	While ( Item.Prop.HasUndesirableMod
 	|| (Item.Prop.RarityNormal) 
 	|| (!MMQIgnore && (Item.Prop.Map_Rarity < MMapItemRarity 
 	|| Item.Prop.Map_PackSize < MMapMonsterPackSize 

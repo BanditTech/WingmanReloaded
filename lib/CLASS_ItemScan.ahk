@@ -819,12 +819,20 @@
 		{
 			This.Prop.Veiled := False
 		}
-
-		If (This.BrickedMap())
-			This.Prop.IsBrickedMap := True
-		Else
-			This.Prop.IsBrickedMap := False
-
+		; Flags for Map Roll and Bricked Maps
+		If (This.HasBrickedAffix())
+		{
+			If (This.Prop.Corrupted)
+			{
+				;Set Flag for Bricked Map Stash
+				This.Prop.IsBrickedMap := True
+			}
+			Else
+			{
+				;Set Flag for MapRoll
+				This.Prop.HasUndesirableMod := True
+			}
+		}
 		;Stack size for anything with it
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d+\.?\,?\d*)\/" rxNum ,RxMatch))
 		{
@@ -873,18 +881,6 @@
 		If (This.Prop.TopTierRarityPre || This.Prop.TopTierRaritySuf)
 			This.Prop.TopTierRarity := (This.Prop.TopTierRarityPre?1:0) + (This.Prop.TopTierRaritySuf?1:0)
 	}
-	BrickedMap() {
-		If (This.HasBrickedAffix()) {
-			This.Prop.HasBadAffix := True
-			If (BrickedWhenCorrupted && This.Prop.Corrupted)
-				Return True
-			Else If (!BrickedWhenCorrupted)
-				Return True
-			Else
-				Return False
-		} Else
-			Return False
-	}
 	HasBrickedAffix() {
 		If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
 		|| (This.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
@@ -922,6 +918,7 @@
 		}
 		Return False
 	}
+	
 	TopTierChaosResist(){
 		If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
 			Return True

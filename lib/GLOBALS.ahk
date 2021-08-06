@@ -407,7 +407,6 @@
 		stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
 		hotkeyMainAttack = Bind the Main Attack for this Character
 		hotkeySecondaryAttack = Bind the Secondary Attack for this Character
-		BrickedWhenCorrupted = Enable this if you only want to consider a map 'bricked'`rwhen it's corrupted and has an undesired mod, otherwise,`rmaps of any tier with undesired mods will be flagged as 'bricked'
 		YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
 		YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweler's recipe items with 5 links.
 		)
@@ -591,7 +590,6 @@
 	Global HeistAlcNGo := 1
 	Global YesBatchVendorBauble := 1
 	Global YesBatchVendorGCP := 1
-	Global BrickedWhenCorrupted := True
 	Global YesOpenStackedDeck := True
 	Global YesSpecial5Link := True
 	global EnableRestock:=True

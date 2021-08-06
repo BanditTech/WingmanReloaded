@@ -242,27 +242,27 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashTabYesFlaskAll Checked%StashTabYesFlaskAll% x+5 yp+4, Enable
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h60    section    x+15 ys,         Dump Tab
+      Gui, Inventory: Add, GroupBox,             w185 h60    section    x+15 ys,         Dump Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
       Gui, Inventory: Add, Checkbox, gSaveStashTabs  vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweler/Chroma Items
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Priced Rares Tab
+      Gui, Inventory: Add, GroupBox,             w185 h40    section    xs   y+10,         Priced Rares Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
       Gui, Inventory: Add, Edit, x+5 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h40    section    xs   y+10,         Ninja Priced Tab
+      Gui, Inventory: Add, GroupBox,             w185 h40    section    xs   y+10,         Ninja Priced Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
       Gui, Inventory: Add, Edit, x+5 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox,             w180 h160    section    xs   y+10,         Map/Contract Options
+      Gui, Inventory: Add, GroupBox,             w185 h135    section    xs   y+10,         Map/Contract Options
       Gui, Inventory: Font,
       Gui, Inventory: Add, DropDownList, w40 gUpdateExtra  vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
       GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
@@ -276,9 +276,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
       Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
-
-      Gui, Inventory: Add, Checkbox, gUpdateExtra  vBrickedWhenCorrupted Checked%BrickedWhenCorrupted% xs+5 y+8, Only consider a map to be`rbricked if it's corrupted
-      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_Prep Checked%YesSkipMaps_Prep% xs+5 y+8, Skip prep items also
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_Prep Checked%YesSkipMaps_Prep% xs+5 y+8, Skip Enhance Items in Map Area
 
 
       ; Affinity
