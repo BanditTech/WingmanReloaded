@@ -523,7 +523,7 @@
 			}
 			Else If (InStr(This.Prop.ItemBase, "Thief's Trinket"))
 			{
-				This.Prop.Heist := True
+				This.Prop.HeistGear := True
 				This.Prop.SpecialType := "Heist Tricket"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Rogue's Marker"))
@@ -533,7 +533,6 @@
 			}
 			Else If (indexOf(This.Prop.ItemBase, HeistGear))
 			{
-				This.Prop.Heist := True
 				This.Prop.HeistGear := True
 				This.Prop.SpecialType := "Heist Gear"
 				If InStr(This.Prop.ItemBase, "Brooch")
