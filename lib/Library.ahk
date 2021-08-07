@@ -11,6 +11,7 @@
 #Include, %A_ScriptDir%\lib\CLASS_Progress_Slider.ahk
 #Include, %A_ScriptDir%\lib\CLASS_SortByNum.ahk
 #Include, %A_ScriptDir%\lib\ColorHex.ahk
+#Include, %A_ScriptDir%\lib\CompareToResource.ahk
 #Include, %A_ScriptDir%\lib\Controller.ahk
 #Include, %A_ScriptDir%\lib\FindText Helpers.ahk
 #Include, %A_ScriptDir%\lib\GameLogs.ahk
