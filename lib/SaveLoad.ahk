@@ -110,6 +110,7 @@ readFromFile(){
 	IniRead, YesVendorDumpItems, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems, 0
 	IniRead, HeistAlcNGo, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo, 1
 	IniRead, MoveMapsToArea, %A_ScriptDir%\save\Settings.ini, General, MoveMapsToArea, 1
+	IniRead, YesIncludeFandSItem, %A_ScriptDir%\save\Settings.ini, General, YesIncludeFandSItem, 1
 	IniRead, EnableRestock, %A_ScriptDir%\save\Settings.ini, General, EnableRestock, 1
 
 	; Basic Crafting Settings
@@ -828,6 +829,7 @@ updateEverything:
 	IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
 	IniWrite, %HeistAlcNGo%, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo
 	IniWrite, %MoveMapsToArea%, %A_ScriptDir%\save\Settings.ini, General, MoveMapsToArea
+	IniWrite, %YesIncludeFandSItem%, %A_ScriptDir%\save\Settings.ini, General, YesIncludeFandSItem
 	IniWrite, %EnableRestock%, %A_ScriptDir%\save\Settings.ini, General, EnableRestock
 
 	; Overhead Health Bar

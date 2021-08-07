@@ -278,6 +278,11 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_Prep Checked%YesSkipMaps_Prep% xs+5 y+8, Skip Enhance Items in Map Area
 
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox,             w185 h50    section    xs   y+15,         Influenced Item Options
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesIncludeFandSItem Checked%YesIncludeFandSItem% xs+5 ys+18, Fracture and Synthesised `nas Influenced Items
+
 
       ; Affinity
     Gui, Inventory: Tab, Affinity

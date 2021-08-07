@@ -2744,7 +2744,7 @@
 			Else If (StashTabYesGem)
 				sendstash := StashTabGem
 		}
-		Else If (This.Prop.IsInfluenceItem&&StashTabYesInfluencedItem)
+		Else If ((This.Prop.IsInfluenceItem||This.Prop.IsSynthesisItem&&YesIncludeFandSItem)&&StashTabYesInfluencedItem)
 			sendstash := StashTabInfluencedItem
 		Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
 			sendstash := StashTabLinked

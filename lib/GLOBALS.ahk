@@ -369,6 +369,7 @@
 		CraftingMapMethod2 = Select Crafting/ReCrafting Method for Range 2
 		CraftingMapMethod3 = Select Crafting/ReCrafting Method for Range 3
 		MoveMapsToArea = When finished map crafting, move all crafted maps to the map area`rThis will include MapPrep Items that were not in map area
+		YesIncludeFandSItem = Fracture and Synthesised itens will be considered as influenced items
 		ElementalReflect = Select this if your build can't run maps with this mod
 		PhysicalReflect = Select this if your build can't run maps with this mod
 		NoLeech = Select this if your build can't run maps with this mod
@@ -593,7 +594,8 @@
 	Global YesOpenStackedDeck := True
 	Global YesSpecial5Link := True
 	global EnableRestock:=True
-	global MoveMapsToArea:=True
+	Global MoveMapsToArea:=True
+	Global YesIncludeFandSItem := True
 
 
 	; Chaos Recipe
