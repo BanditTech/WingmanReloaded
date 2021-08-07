@@ -55,6 +55,9 @@ CompareLocation(cStr:="")
       Else
         OnMines := False
       Return True
+    } Else If (cStr ~= ": \w+ \(\w+\) is now level \d") {
+      RegExMatch(cStr, "O)is now level (\d*)", RxMatch)
+      Player.Level := RxMatch[1]
     }
   }
   Else If (Lang = "Spanish") 

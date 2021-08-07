@@ -202,24 +202,16 @@ ResetChat(){
 
 ; Grab Reply whisper recipient
 GrabRecipientName(){
+	CopyClip := Clipboard
   Clipboard := ""
   Send ^{Enter}^{A}^{C}{Escape}
   ClipWait, 0
-  Loop, Parse, Clipboard, `n, `r
-    {
-    ; Clipboard must have "@" in the first line
-    If A_Index = 1
-      {
-      IfNotInString, A_LoopField, @
-        {
-        Exit
-        }
-      RecipientNameArr := StrSplit(A_LoopField, " ", @)
-      RecipientName1 := RecipientNameArr[1]
-      RecipientName := StrReplace(RecipientName1, "@")
-      }
-      Ding(, 1,%RecipientName%)
-    }
-  Sleep, 60
-  Return
+	Content := Clipboard
+	Clipboard := CopyClip
+	If (Content ~= "^@"){
+		RecipientName := StrSplit(Content, " ", "@").1
+		Return RecipientName
+	}
+	Else
+		Return False
 }
