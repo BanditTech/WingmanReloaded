@@ -72,7 +72,7 @@
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Move xs+10   yp+20 Checked" WR.Utility[slot].Move , Enable
 
 		Gui, Utility%slot%: Add, GroupBox, center xs y+20 w120 h115, Trigger with Attack
-		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttackOnly xs+10 yp+20 Checked" WR.Utility[slot].MainAttackOnly, Main	Attack Only	
+		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttackOnly xs+10 yp+20 Checked" WR.Utility[slot].MainAttackOnly, Main	Attack Only
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttack xs+10 yp+20 Checked" WR.Utility[slot].MainAttack, Main
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "MainAttackRelease xs+10 y+5 Checked" WR.Utility[slot].MainAttackRelease, Main Release
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "SecondaryAttack xs+10   y+5 Checked" WR.Utility[slot].SecondaryAttack, Secondary
@@ -104,6 +104,9 @@
 		Gui, Utility%slot%: Add, Radio, % "vUtility" slot "Condition  x+5   yp-5 h22 Checked" (WR.Utility[slot].Condition==1?1:0), Any
 		Gui, Utility%slot%: Add, Radio, %                              " x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), All
 
+		Gui, Utility%slot%: Add, GroupBox, center xs ys+155 w240 h50, Sample String and Resource
+		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "StringResTrigger xs+10 yp+20 Checked" WR.Utility[slot].StringResTrigger, Sample String and Resource
+
 
 		Gui, Utility%slot%: show, AutoSize
 	}
@@ -123,10 +126,10 @@
 	Return
 
 	UtilitySaveValues:
-		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttackOnly", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
+		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttackOnly", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "StringResTrigger", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
 			WR.Utility[which][kind] := Utility%which%%kind%
 		for k, kind in ["Life", "ES", "Mana"]
-			WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value 
+			WR.Utility[which][kind] := Utility%which%%kind%_Slider.Slider_Value
 		for k, kind in ["IconVar1", "IconVar0"]
 			WR.Utility[which][kind] := Round(Utility%which%%kind% / 100,2)
 

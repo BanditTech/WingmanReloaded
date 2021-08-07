@@ -47,11 +47,11 @@ TGameTick(GuiCheck:=True){
 				Msg := "Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(OnMetamorph?"Metamorph is Open":(YesXButtonFound?"X Button is Detected":"Error")))))))))))
 				If CheckTime("seconds",1,"StatusBar1")
 					SB_SetText(Msg, 1)
-				If (YesFillMetamorph) 
+				If (YesFillMetamorph)
 				{
 					If (Metamorph_Filled && (OnMetamorph || FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr )))
 						OnScreenMM := A_TickCount
-					Else If (OnMetamorph && !Metamorph_Filled 
+					Else If (OnMetamorph && !Metamorph_Filled
 					&& FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr ) )
 					{
 						Metamorph_Filled := True
@@ -140,12 +140,12 @@ TGameTick(GuiCheck:=True){
 				{
 					If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
 						If (WR.Flask[A_Index].ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask[A_Index].ResetCooldownAtHealthPercentageInput)
-						|| (WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentageInput) 
+						|| (WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentageInput)
 						|| (WR.Flask[A_Index].ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask[A_Index].ResetCooldownAtManaPercentageInput) {
 							WR.cdExpires.Flask[A_Index] := 0
 							WR.cdExpires.Group[WR.Flask[A_Index].Group] := 0
 						}
-					} 
+					}
 					If (WR.cdExpires.Flask[A_Index] < A_TickCount) {
 						If ((WR.Flask[A_Index].Life && WR.Flask[A_Index].Life > Player.Percent.Life)
 						|| (WR.Flask[A_Index].ES && WR.Flask[A_Index].ES > Player.Percent.ES)
@@ -188,12 +188,13 @@ TGameTick(GuiCheck:=True){
 					If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] <= A_TickCount)
 					{
 						If (NOT WR.Utility[A_Index].MainAttackOnly || ( WR.Utility[A_Index].MainAttackOnly && MainAttackPressedActive ))
-						{																									 
-							If (( WR.Utility[A_Index].OnCD )
+						{
+							If ((( WR.Utility[A_Index].OnCD )
 							|| ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
 							|| ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
-							|| ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana ))
-								Trigger(WR.Utility[A_Index])
+							|| ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana )) && (( !WR.Utility[A_Index].StringResTrigger )
+							|| ( WR.Utility[A_Index].StringResTrigger && (( WR.Utility[A_Index].IconShown && BuffIcon ) || ( !WR.Utility[A_Index].IconShown && !BuffIcon )))))
+							  Trigger(WR.Utility[A_Index])
 							Else If (WR.Utility[A_Index].Icon)
 							{
 								If (WR.Utility[A_Index].IconSearch == 1) ; Search Buff Area
@@ -204,8 +205,8 @@ TGameTick(GuiCheck:=True){
 									x1:=WR.Utility[A_Index].IconArea.X1, y1:=WR.Utility[A_Index].IconArea.Y1, x2:=WR.Utility[A_Index].IconArea.X2, y2:=WR.Utility[A_Index].IconArea.Y2
 
 								BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
-								
-								If ((WR.Utility[A_Index].IconShown && BuffIcon) || (!WR.Utility[A_Index].IconShown && !BuffIcon))
+
+								If ((( WR.Utility[A_Index].IconShown && BuffIcon ) || ( !WR.Utility[A_Index].IconShown && !BuffIcon )) && (!(WR.Utility[A_Index].StringResTrigger)))
 									Trigger(WR.Utility[A_Index],True)
 								Else
 									WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
@@ -258,7 +259,7 @@ TGameTick(GuiCheck:=True){
 			SB_SetText("No game found", 1)
 		If CheckTime("seconds",5,"StatusBar3")
 			SB_SetText("No game found", 3)
-	} 
+	}
 	Return
 }
 ; TDetonated - Detonate CD Timer
