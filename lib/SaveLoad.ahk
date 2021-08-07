@@ -8,7 +8,6 @@ readFromFile(){
 	Settings("perChar","Load")
 	Settings("func","Load")
 	Settings("String","Load")
-	Settings("Objhelpers","Load")
 
 	For k, name in ["perChar","Flask","Utility"]
 		IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -307,9 +306,6 @@ readFromFile(){
 
 	;Crafting Bases Settings
 	;Loading Default List
-	/*
-
-
 	sDefaultcraftingBasesT1 := ArrayToString(DefaultcraftingBasesT1)
 	sDefaultcraftingBasesT2 := ArrayToString(DefaultcraftingBasesT2)
 	sDefaultcraftingBasesT3 := ArrayToString(DefaultcraftingBasesT3)
@@ -335,19 +331,7 @@ readFromFile(){
 	craftingBasesT6 := StringToArray(craftingBasesT6)
 	craftingBasesT7 := StringToArray(craftingBasesT7)
 	craftingBasesT8 := StringToArray(craftingBasesT8)
-*/
-	/*
-
-
-	WR.Objhelpers.CB.craftingBasesT1
-	WR.Objhelpers.CB.craftingBasesT2
-	WR.Objhelpers.CB.craftingBasesT3
-	WR.Objhelpers.CB.craftingBasesT4
-	WR.Objhelpers.CB.craftingBasesT5
-	WR.Objhelpers.CB.craftingBasesT6
-	WR.Objhelpers.CB.craftingBasesT7
-	WR.Objhelpers.CB.craftingBasesT8
-	*/
+	
 	;Settings for the Client Log file location
 	IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
 	
@@ -708,7 +692,6 @@ updateEverything:
 	Settings("perChar","Save")
 	Settings("func","Save")
 	Settings("String","Save")
-	Settings("Objhelpers","Save")
 
 	;GUI Position
 	WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
@@ -1130,7 +1113,6 @@ updateEverything:
 	IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
 
 	;Crafting Bases Settings
-	/*
 	scraftingBasesT1 := ArrayToString(craftingBasesT1)
 	scraftingBasesT2 := ArrayToString(craftingBasesT2)
 	scraftingBasesT3 := ArrayToString(craftingBasesT3)
@@ -1147,8 +1129,6 @@ updateEverything:
 	IniWrite, %scraftingBasesT6%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT6
 	IniWrite, %scraftingBasesT7%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT7
 	IniWrite, %scraftingBasesT8%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT8
-*/
-	;Experimental
 
 	readFromFile()
 	GuiUpdate()
