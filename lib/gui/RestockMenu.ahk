@@ -104,14 +104,14 @@
 		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues.RestockName = "") {
 			LoadedValues["RestockMin"] := max // 2
 		}
-		If (LoadedValues["RestockTo"] >= max || LoadedValues.RestockName = ""){
+		If (LoadedValues["RestockTo"] > max || LoadedValues.RestockName = ""){
 			LoadedValues["RestockTo"] := Round(max * (3/4))
 		}
 		If (LoadedValues["RestockMin"] >= LoadedValues["RestockMax"] - 1) {
 			LoadedValues["RestockMin"] := LoadedValues["RestockMax"] - 2
 		}
-		If (LoadedValues["RestockTo"] >= LoadedValues["RestockMax"]) {
-			LoadedValues["RestockTo"] := LoadedValues["RestockMax"] - 1
+		If (LoadedValues["RestockTo"] > LoadedValues["RestockMax"]) {
+			LoadedValues["RestockTo"] := LoadedValues["RestockMax"]
 		}
 		If (LoadedValues["RestockTo"] <= LoadedValues["RestockMin"]) {
 			LoadedValues["RestockTo"] := LoadedValues["RestockMin"] + 1
