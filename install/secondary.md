@@ -22,7 +22,8 @@
 ## Understanding Group Cooldowns
 > When Configuring Flask and Utility settings, you will discover a new feature of the script, which is group cooldowns. These allow us to optionaly disable other flasks/utilities while the group cooldown is activated by another.
 
-* When setting up multiple flasks to use in a group, take not of the individual duration of all flasks you want to toggle between.
+* When setting up multiple flasks to use in a group, take note of the individual duration of all flasks you want to toggle between.
+ * Add the duration of all the flasks together and remember the value
  * Take this value, and assign it to the cooldown of all flasks that are being rotated
  * In the Group Cooldown field, enter the true duration of each flask.
 
