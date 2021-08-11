@@ -567,17 +567,18 @@ Rescale(){
       ;Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
-
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/190))
-      WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/590))
+      ;Scouring
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/150))
+      WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/585))
+      ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3440/810))
       WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1440/250))
       ;Alchemy 655,390
       WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(3440/655))
       WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1440/350))
-      ; ;Binding
-      ; WR.loc.pixel.Binding.X:=GameX + Round(GameW/(1920/173))
-      ; WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/512))
+      ;Binding
+      WR.loc.pixel.Binding.X:=GameX + Round(GameW/(3840/230))
+      WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1440/685))
       ;Transmutation 80,390
       WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(3440/80))
       WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1440/350))
