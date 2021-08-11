@@ -159,6 +159,22 @@ Rescale(){
       ;Vaal
       WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1920/230))
       WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
+      ;Harbinger
+      WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1920/548))
+      WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/380))
+      ;Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(1920/600))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/380))
+      ;Engineer
+      WR.loc.pixel.Engineer.X:=GameX + Round(GameW/(1920/233))
+      WR.loc.pixel.Engineer.Y:=GameY + Round(GameH/(1080/515))
+      ;Regal
+      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(1920/425))
+      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/255))
+      ;Chaos
+      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(1920/545))
+      WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/255))
+
       ;Wisdom/Portal Scrolls
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/115))
       WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1920/175))
