@@ -62,6 +62,20 @@
 > The utility section is tied to the Auto-Flasks toggle. If the flask routine is ON then utilities will also fire.
 
 
+## Detonate Mines
+
+To have the script automatically detonate mines when available, you will require a few things to get setup.
+
+* First ensure the detonate key in the Hotkeys section is matching your ingame key
+* Second you will want to ensure you have your detonate shown calibrated correctly
+ * Click the Detonate Shown label while you have a mine layed to calibrate the detonate icon
+* Enable the option in the Per-Character settings menu
+ * Save this setup to a new miner profile to make future configuration easier
+* The script uses the same color for the Mines and Normal
+ * Calibration of detonate can break for non standard Aspect ratios
+ * When entering the mines, the position is offset
+ * If you have an affected aspect ratio, please submit information to the github issue thread about this
+
 ## Loot Vacuum
 
 The Loot Vacuum system is put in place to facilitate looting items that drop in the game.  
