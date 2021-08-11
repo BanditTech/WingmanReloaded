@@ -160,7 +160,11 @@
 	Global LootFilter := {}
 	Global BlackList
 	Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
-	Global StackSizes := {"Wisdom":40,"Portal":40,"Alchemy":10,"Alteration":20,"Transmutation":40,"Augment":30,"Vaal":10,"Chaos":10,"Binding":20,"Scouring":30,"Chisel":20,"Horizon":20,"Simple":10,"Prime":10,"Awakened":10,"Engineer":20,"Regal":10}
+	Global StackSizes := {"Wisdom":40,"Portal":40,"Scouring":30,"Perandus":5000
+		,"Alteration":20,"Transmutation":40,"Augment":30,"Chance":20
+		,"Alchemy":10,"Binding":20,"Vaal":10,"Chisel":20
+		,"Harbinger":20,"Horizon":20,"Chaos":10,"Engineer":20,"Regal":10
+		,"Simple":10,"Prime":10,"Awakened":10,"Exalted":10,"Veiled":10}
 	Global YesClickPortal := True
 	Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
 	Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex

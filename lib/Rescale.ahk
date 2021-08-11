@@ -174,6 +174,15 @@ Rescale(){
       ;Chaos
       WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(1920/545))
       WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/255))
+      ;Simple
+      WR.loc.pixel.Simple.X:=GameX + Round(GameW/(1920/545))
+      WR.loc.pixel.Simple.Y:=GameY + Round(GameH/(1080/255))
+      ;Prime
+      WR.loc.pixel.Prime.X:=GameX + Round(GameW/(1920/545))
+      WR.loc.pixel.Prime.Y:=GameY + Round(GameH/(1080/255))
+      ;Awakened
+      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(1920/545))
+      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/255))
 
       ;Wisdom/Portal Scrolls
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/115))
@@ -506,6 +515,7 @@ Rescale(){
       WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
     }
     Else If (ResolutionScale="Cinematic(43:18)") {
+      ; 1080 version of this aspect is 2580x1080
       ;Item Inventory Grid
       Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
       Global InventoryGridY := [ Round(GameH/(1440/851)), Round(GameH/(1440/921)), Round(GameH/(1440/992)), Round(GameH/(1440/1062)), Round(GameH/(1440/1132)) ]
