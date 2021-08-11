@@ -855,6 +855,7 @@
 			This.Prop.TopTierMS := 1
 		If This.TopTierChaosResist()
 			This.Prop.TopTierChaosResist := 1
+		This.ActualTierChaosResist()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -935,6 +936,26 @@
 			Return True
 		Else
 			Return False
+	}
+	;Data https://poedb.tw/us/mod.php?cn=Boots&tags=str_armour
+	;Get Relative tier based on IlvL for leveling purpose, if tier actual tier = 1 means top tier for that ilvl, 2 second best so it goes
+	ActualTierChaosResist(){
+		AffixList := ["of the Lost","of Banishment","of Eviction","of Expulsion","of Exile","of Bameth"]
+		ILvLList := [16,30,44,56,65,81]
+		for k,v in ILvLList
+		{
+			if (This.Prop.ItemLevel =< v)
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value:= k-ki+1
+						This.Prop.ActualTierChaosResist := value
+					}
+				}
+
+			}
+		}
 	}
 	TopTierLightningResist(){
 		If (This.Prop.ItemLevel < 13 && This.HasAffix("of the Cloud"))
