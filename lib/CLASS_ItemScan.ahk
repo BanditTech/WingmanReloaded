@@ -855,7 +855,7 @@
 			This.Prop.TopTierMS := 1
 		If This.TopTierChaosResist()
 			This.Prop.TopTierChaosResist := 1
-		This.ActualTierChaosResist()
+		This.GetActualResistTier()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -939,22 +939,86 @@
 	}
 	;Data https://poedb.tw/us/mod.php?cn=Boots&tags=str_armour
 	;Get Relative tier based on IlvL for leveling purpose, if tier actual tier = 1 means top tier for that ilvl, 2 second best so it goes
-	ActualTierChaosResist(){
-		AffixList := ["of the Lost","of Banishment","of Eviction","of Expulsion","of Exile","of Bameth"]
-		ILvLList := [16,30,44,56,65,81]
-		for k,v in ILvLList
+	GetActualResistTier()
+	{
+		loop, 5
 		{
-			if (This.Prop.ItemLevel =< v)
+			if (A_Index == 1)
 			{
-				for ki,vi in AffixList
+				Name:= "Chaos"
+				AffixName:= "#% to Chaos Resistance"
+				AffixList := ["of the Lost","of Banishment","of Eviction","of Expulsion","of Exile","of Bameth"]
+				ILvLList := [16,30,44,56,65,81]
+				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
 				{
-					If (This.HasAffix(vi)){
-						value:= k-ki+1
-						This.Prop.ActualTierChaosResist := value
-					}
+					This.Prop["ActualTier" Name "Resist"] := 1
+					Break
 				}
 
+			}else if (A_Index == 2){
+				;Fire
+				Name:= "Fire"
+				AffixName:= "#% to Fire Resistance"
+				AffixList := ["of the Whelpling","of the Salamander","of the Drake","of the Kiln","of the Furnace","of the Volcano","of the Magma","of Tzteosh"]
+				ILvLList := [1,12,24,36,48,60,72,84]
+				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				{
+					This.Prop["ActualTier" Name "Resist"] := 1
+					Break
+				}
+
+			}else if (A_Index == 3){
+				;Cold
+				Name:="Cold"
+				AffixName:= "#% to Cold Resistance"
+				AffixList := ["of the Inuit","of the Seal","of the Penguin","of the Yeti","of the Walrus","of the Polar Bear","of the Ice","of Haast"]
+				ILvLList := [1,14,26,38,50,60,72,84]
+				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				{
+					This.Prop["ActualTier" Name "Resist"] := 1
+					Break
+				}
+				
+			}else if (A_Index == 4){
+				;Lightning
+				Name:="Lightning"
+				AffixName:= "#% to Lightning Resistance"
+				AffixList := ["of the Cloud","of the Squall","of the Storm","of the Thunderhead","of the Tempest","of the Maelstrom","of the Lightning","of Ephij"]
+				ILvLList := [1,13,25,37,49,60,72,84]
+				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				{
+					This.Prop["ActualTier" Name "Resist"] := 1
+					Break
+				}
+			}else if (A_Index == 5){
+				; All Elemental
+				Name:="AllElemental"
+				AffixName:= "#% to all Elemental Resistances"
+				AffixList := ["of the Crystal","of the Prism","of the Kaleidoscope","of Variegation","of the Rainbow","of the Span"]
+				ILvLList := [12,24,36,48,60,85]
+				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				{
+					This.Prop["ActualTier" Name "Resist"] := 1
+					Break
+				}
 			}
+		
+			for k,v in ILvLList
+			{
+				if (This.Prop.ItemLevel <= v)
+				{
+					for ki,vi in AffixList
+					{
+						If (This.HasAffix(vi)){
+							value:= k-ki
+							This.Prop["ActualTier" Name "Resist"] := value
+							break
+						}
+					}
+					break
+				}
+			}
+
 		}
 	}
 	TopTierLightningResist(){
