@@ -856,6 +856,7 @@
 		If This.TopTierChaosResist()
 			This.Prop.TopTierChaosResist := 1
 		This.GetActualResistTier()
+		This.GetActualLifeTier()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -995,7 +996,7 @@
 				Name:="AllElemental"
 				AffixName:= "#% to all Elemental Resistances"
 				AffixList := ["of the Crystal","of the Prism","of the Kaleidoscope","of Variegation","of the Rainbow","of the Span"]
-				ILvLList := [12,24,36,48,60,85]
+				ILvLList := [12,24,36,48,60,85,100]
 				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
@@ -1005,12 +1006,12 @@
 		
 			for k,v in ILvLList
 			{
-				if (This.Prop.ItemLevel <= v)
+				if (This.Prop.ItemLevel <= v || k == ILvLList.Length())
 				{
 					for ki,vi in AffixList
 					{
 						If (This.HasAffix(vi)){
-							value:= k-ki
+							value:= k-ki+1
 							This.Prop["ActualTier" Name "Resist"] := value
 							break
 						}
@@ -1019,6 +1020,43 @@
 				}
 			}
 
+		}
+	}
+
+	GetActualLifeTier(){
+	AffixList := ["Hale","Healthy","Sanguine","Stalwart","Stout","Robust","Rotund","Virile","Athlete's","Fecund","Vigorous","Rapturous","Prime"]
+	ILvLList := []
+	ILvLListRings := 				[1,5,11,18,24,30,36,44]
+	ILvLListBootsGlovesAmulets := 	[1,5,11,18,24,30,36,44,54]
+	ILvLListBeltsHelmets := 			[1,5,11,18,24,30,36,44,54,64]
+	ILvLListShields := 				[1,5,11,18,24,30,36,44,54,64,73]
+	ILvLListBodyArmours := 			[1,5,11,18,24,30,36,44,54,64,73,81,86]
+	;Guatelitzi's
+	if(indexOf(This.Prop.ItemClass,["Rings"])){
+		ILvLList := ILvLListRings
+	}else if(indexOf(This.Prop.ItemClass,["Boots","Gloves","Amulets"])){
+		ILvLList := ILvLListBootsGlovesAmulets
+	}else if(indexOf(This.Prop.ItemClass,["Belts","Helmets"])){
+		ILvLList := ILvLListBeltsHelmets
+	}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+		ILvLList := ILvLListShields
+	}else if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+		ILvLList := ILvLListBodyArmours
+	}
+	for k,v in ILvLList
+		{
+			if (This.Prop.ItemLevel <= v || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value:= k-ki+1
+						This.Prop["ActualTierLife"] := value
+						break
+					}
+				}
+				break
+			}
 		}
 	}
 	TopTierLightningResist(){
