@@ -996,7 +996,7 @@
 				Name:="AllElemental"
 				AffixName:= "#% to all Elemental Resistances"
 				AffixList := ["of the Crystal","of the Prism","of the Kaleidoscope","of Variegation","of the Rainbow","of the Span"]
-				ILvLList := [12,24,36,48,60,85,100]
+				ILvLList := [12,24,36,48,60,85]
 				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
