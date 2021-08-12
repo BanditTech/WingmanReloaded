@@ -1024,26 +1024,46 @@
 	}
 
 	GetActualLifeTier(){
-	AffixList := ["Hale","Healthy","Sanguine","Stalwart","Stout","Robust","Rotund","Virile","Athlete's","Fecund","Vigorous","Rapturous","Prime"]
-	ILvLList := []
-	ILvLListRings := 				[1,5,11,18,24,30,36,44]
-	ILvLListBootsGlovesAmulets := 	[1,5,11,18,24,30,36,44,54]
-	ILvLListBeltsHelmets := 			[1,5,11,18,24,30,36,44,54,64]
-	ILvLListShields := 				[1,5,11,18,24,30,36,44,54,64,73]
-	ILvLListBodyArmours := 			[1,5,11,18,24,30,36,44,54,64,73,81,86]
-	;Guatelitzi's
-	if(indexOf(This.Prop.ItemClass,["Rings"])){
-		ILvLList := ILvLListRings
-	}else if(indexOf(This.Prop.ItemClass,["Boots","Gloves","Amulets"])){
-		ILvLList := ILvLListBootsGlovesAmulets
-	}else if(indexOf(This.Prop.ItemClass,["Belts","Helmets"])){
-		ILvLList := ILvLListBeltsHelmets
-	}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-		ILvLList := ILvLListShields
-	}else if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-		ILvLList := ILvLListBodyArmours
+		AffixList := ["Hale","Healthy","Sanguine","Stalwart","Stout","Robust","Rotund","Virile","Athlete's","Fecund","Vigorous","Rapturous","Prime"]
+		ILvLList := []
+		ILvLListRings := 				[1,5,11,18,24,30,36,44]
+		ILvLListBootsGlovesAmulets := 	[1,5,11,18,24,30,36,44,54]
+		ILvLListBeltsHelmets := 			[1,5,11,18,24,30,36,44,54,64]
+		ILvLListShields := 				[1,5,11,18,24,30,36,44,54,64,73]
+		ILvLListBodyArmours := 			[1,5,11,18,24,30,36,44,54,64,73,81,86]
+		;Guatelitzi's
+		if(indexOf(This.Prop.ItemClass,["Rings"])){
+			ILvLList := ILvLListRings
+		}else if(indexOf(This.Prop.ItemClass,["Boots","Gloves","Amulets"])){
+			ILvLList := ILvLListBootsGlovesAmulets
+		}else if(indexOf(This.Prop.ItemClass,["Belts","Helmets"])){
+			ILvLList := ILvLListBeltsHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+			ILvLList := ILvLListShields
+		}else if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}
+		for k,v in ILvLList
+			{
+				if (This.Prop.ItemLevel <= v || k == ILvLList.Length())
+				{
+					for ki,vi in AffixList
+					{
+						If (This.HasAffix(vi)){
+							value:= k-ki+1
+							This.Prop["ActualTierLife"] := value
+							break
+						}
+					}
+					break
+				}
+			}
 	}
-	for k,v in ILvLList
+	GetActualMSTier(){
+		AffixList := ["Runner's","Sprinter's","Stallion's","Gazelle's","Cheetah's","Hellion's"]
+		ILvLList := [1,15,30,40,55,86]
+
+		for k,v in ILvLList
 		{
 			if (This.Prop.ItemLevel <= v || k == ILvLList.Length())
 			{
@@ -1051,7 +1071,7 @@
 				{
 					If (This.HasAffix(vi)){
 						value:= k-ki+1
-						This.Prop["ActualTierLife"] := value
+						This.Prop["ActualTierMS"] := value
 						break
 					}
 				}
