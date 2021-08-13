@@ -857,6 +857,7 @@
 			This.Prop.TopTierChaosResist := 1
 		This.GetActualResistTier()
 		This.GetActualLifeTier()
+		This.GetActualMSTier()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -940,8 +941,7 @@
 	}
 	;Data https://poedb.tw/us/mod.php?cn=Boots&tags=str_armour
 	;Get Relative tier based on IlvL for leveling purpose, if tier actual tier = 1 means top tier for that ilvl, 2 second best so it goes
-	GetActualResistTier()
-	{
+	GetActualResistTier(){
 		loop, 5
 		{
 			if (A_Index == 1)
@@ -1022,13 +1022,12 @@
 
 		}
 	}
-
 	GetActualLifeTier(){
 		AffixList := ["Hale","Healthy","Sanguine","Stalwart","Stout","Robust","Rotund","Virile","Athlete's","Fecund","Vigorous","Rapturous","Prime"]
 		ILvLList := []
 		ILvLListRings := 				[1,5,11,18,24,30,36,44]
 		ILvLListBootsGlovesAmulets := 	[1,5,11,18,24,30,36,44,54]
-		ILvLListBeltsHelmets := 			[1,5,11,18,24,30,36,44,54,64]
+		ILvLListBeltsHelmetsQuivers := 	[1,5,11,18,24,30,36,44,54,64]
 		ILvLListShields := 				[1,5,11,18,24,30,36,44,54,64,73]
 		ILvLListBodyArmours := 			[1,5,11,18,24,30,36,44,54,64,73,81,86]
 		;Guatelitzi's
@@ -1036,7 +1035,7 @@
 			ILvLList := ILvLListRings
 		}else if(indexOf(This.Prop.ItemClass,["Boots","Gloves","Amulets"])){
 			ILvLList := ILvLListBootsGlovesAmulets
-		}else if(indexOf(This.Prop.ItemClass,["Belts","Helmets"])){
+		}else if(indexOf(This.Prop.ItemClass,["Belts","Helmets","Quivers"])){
 			ILvLList := ILvLListBeltsHelmets
 		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
 			ILvLList := ILvLListShields
