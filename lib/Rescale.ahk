@@ -643,9 +643,9 @@ Rescale(){
       WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1440/685))
 
       ;Scrolls in currency tab
-      WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3440/164))
-      WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3440/228))
-      WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1440/299))
+      WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3440/150))
+      WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3440/235))
+      WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1440/250))
       ;Status Check OnMenu
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
