@@ -858,6 +858,10 @@
 		This.GetActualResistTier()
 		This.GetActualLifeTier()
 		This.GetActualMSTier()
+		This.GetActualSTRTier()
+		This.GetActualDEXTier()
+		This.GetActualINTTier()
+		This.GetActualAllAttributesTier()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -1006,12 +1010,12 @@
 		
 			for k,v in ILvLList
 			{
-				if (This.Prop.ItemLevel <= v || k == ILvLList.Length())
+				if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 				{
 					for ki,vi in AffixList
 					{
 						If (This.HasAffix(vi)){
-							value:= k-ki+1
+							value := k-ki+1
 							This.Prop["ActualTier" Name "Resist"] := value
 							break
 						}
@@ -1044,12 +1048,12 @@
 		}
 		for k,v in ILvLList
 			{
-				if (This.Prop.ItemLevel <= v || k == ILvLList.Length())
+				if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 				{
 					for ki,vi in AffixList
 					{
 						If (This.HasAffix(vi)){
-							value:= k-ki+1
+							value := k-ki+1
 							This.Prop["ActualTierLife"] := value
 							break
 						}
@@ -1064,13 +1068,114 @@
 
 		for k,v in ILvLList
 		{
-			if (This.Prop.ItemLevel <= v || k == ILvLList.Length())
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 			{
 				for ki,vi in AffixList
 				{
 					If (This.HasAffix(vi)){
-						value:= k-ki+1
+						value := k-ki+1
 						This.Prop["ActualTierMS"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualSTRTier(){
+		AffixList := ["of the Brute","of the Wrestler","of the Bear","of the Lion","of the Gorilla","of the Goliath","of the Leviathan","of the Titan","of the Gods","of the Godslayer"]
+		ILvLList := [1,11,22,33,44,55,66,74,82]
+		ILvLListBelts := [1,11,22,33,44,55,66,74,82,85]
+
+		if(indexOf(This.Prop.ItemClass,["Belts"])){
+			ILvLList := ILvLListBelts
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierSTR"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualDEXTier(){
+		AffixList := ["of the Mongoose","of the Lynx","of the Fox","of the Falcon","of the Panther","of the Leopard","of the Jaguar","of the Phantom","of the Wind","of the Blur"]
+		ILvLList := [1,11,22,33,44,55,66,74,82]
+		ILvLListQuiversGloves := [1,11,22,33,44,55,66,74,82,85]
+
+		if(indexOf(This.Prop.ItemClass,["Quivers","Gloves"])){
+			ILvLList := ILvLListQuiversGloves
+		}
+
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierDEX"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualINTTier(){
+		AffixList := ["of the Pupil","of the Student","of the Prodigy","of the Augur","of the Philosopher","of the Sage","of the Savant","of the Virtuoso","of the Genius","of the Polymath"]
+		ILvLList := [1,11,22,33,44,55,66,74,82]
+		ILvLListHelmets := [1,11,22,33,44,55,66,74,82,85]
+
+		if(indexOf(This.Prop.ItemClass,["Helmets"])){
+			ILvLList := ILvLListHelmets
+		}
+
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierINT"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualAllAttributesTier(){
+		AffixList := ["of the Clouds","of the Sky","of the Meteor","of the Comet","of the Heavens","of the Galaxy","of the Universe","of the Infinite","of the Multiverse"]
+		ILvLListRings := [1,11,22,33]
+		;Amulets
+		ILvLList := [1,11,22,33,44,55,66,77,85]
+		
+
+		if(indexOf(This.Prop.ItemClass,["Rings"])){
+			ILvLList := ILvLListRings
+		}
+
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierAllAttributes"] := value
 						break
 					}
 				}
