@@ -862,6 +862,8 @@
 		This.GetActualDEXTier()
 		This.GetActualINTTier()
 		This.GetActualAllAttributesTier()
+		This.GetActualESTier()
+		This.GetActualIncESTier()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -1034,7 +1036,7 @@
 		ILvLListBeltsHelmetsQuivers := 	[1,5,11,18,24,30,36,44,54,64]
 		ILvLListShields := 				[1,5,11,18,24,30,36,44,54,64,73]
 		ILvLListBodyArmours := 			[1,5,11,18,24,30,36,44,54,64,73,81,86]
-		;Guatelitzi's
+
 		if(indexOf(This.Prop.ItemClass,["Rings"])){
 			ILvLList := ILvLListRings
 		}else if(indexOf(This.Prop.ItemClass,["Boots","Gloves","Amulets"])){
@@ -1045,6 +1047,11 @@
 			ILvLList := ILvLListShields
 		}else if(indexOf(This.Prop.ItemClass,["Body Armours"])){
 			ILvLList := ILvLListBodyArmours
+		}
+		;Incursion Mod
+		If (This.HasAffix("Guatelitzi's") and This.HasAffix("#% increased maximum Life")){
+			This.Prop["ActualTierLife"] := 1
+			return
 		}
 		for k,v in ILvLList
 			{
@@ -1063,8 +1070,13 @@
 			}
 	}
 	GetActualMSTier(){
+		ILvLList := []
 		AffixList := ["Runner's","Sprinter's","Stallion's","Gazelle's","Cheetah's","Hellion's"]
-		ILvLList := [1,15,30,40,55,86]
+		ILvLListBoots := [1,15,30,40,55,86]
+
+		if(indexOf(This.Prop.ItemClass,["Boots"])){
+			ILvLList := ILvLListBoots
+		}
 
 		for k,v in ILvLList
 		{
@@ -1157,14 +1169,44 @@
 		}
 	}
 	GetActualAllAttributesTier(){
+		ILvLList := []
 		AffixList := ["of the Clouds","of the Sky","of the Meteor","of the Comet","of the Heavens","of the Galaxy","of the Universe","of the Infinite","of the Multiverse"]
 		ILvLListRings := [1,11,22,33]
-		;Amulets
-		ILvLList := [1,11,22,33,44,55,66,77,85]
+		ILvLListAmulets := [1,11,22,33,44,55,66,77,85]
 		
 
 		if(indexOf(This.Prop.ItemClass,["Rings"])){
 			ILvLList := ILvLListRings
+		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
+			ILvLList := ILvLListAmulets
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierAllAttributes"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncESTier(){
+		ILvLList := []
+		AffixList := ["Protective","Strong-Willed","Resolute","Fearless","Dauntless","Indomitable","Unassailable","Unfaltering"]
+		ILvLListBodyArmoursShields := [3,18,30,44,60,72,84,86]
+		ILvLListHelmetsGlovesBoots:= [3,18,30,44,60,72,84]
+		
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
+			ILvLList := ILvLListBodyArmoursShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
+			ILvLList := ILvLListHelmetsGlovesBoots
 		}
 
 		for k,v in ILvLList
@@ -1175,7 +1217,47 @@
 				{
 					If (This.HasAffix(vi)){
 						value := k-ki+1
-						This.Prop["ActualTierAllAttributes"] := value
+						This.Prop["ActualTierIncES"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualESTier(){
+		ILvLList := []
+		AffixList := ["Shining","Glimmering","Glittering","Glowing","Radiating","Pulsing","Seething","Blazing","Scintillating","Incandescent","Resplendent"]
+		ILvLListBodyArmours:= 	[3,11,17,23,29,35,43,51,60,69,75]
+		ILvLListShields:= 		[3,11,17,23,29,35,43,51,60,69]
+		ILvLListHelmets:= 		[3,11,17,23,29,35,43,51]
+		ILvLListGlovesBoots:= 	[3,11,17,23,29,35,43]
+		
+		;Incursion Mod
+		If (This.HasAffix("Guatelitzi's") and This.HasAffix("#% increased maximum Energy Shield")){
+			This.Prop["ActualTierES"] := 1
+			return
+		}
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+			ILvLList := ILvLListShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
+			ILvLList := ILvLListHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierES"] := value
 						break
 					}
 				}
