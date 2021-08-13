@@ -4,14 +4,17 @@ Bugfixes
 * Rework Bricked maps
 * Rework How to Get Recipient Name, for chat functions
 * HeistGear Fix
-  * Trinkets and Gear dont have affinity
-* Fracture and Synthesised Option to be considered as Influenced Items
-* Discriptive name of matched CLF Group
+  * Trinkets and Gear don't have affinity
+* Fracture and Synthesis Option to be considered as Influenced Items
+* Descriptive name of matched CLF Group
 * Restock Setting can be max value (not recommended)
-  * The ideia is having free space on stacks, to not waste a new inventory slot for that currency/item
+  * To allow it to behave as before, it can restock to MAX
+  * Ideally the function is designed for free space after restocking
+  * This leaves room for that currency/item to be picked up
 * Update Currency for Cinematic (43:18)
 * New Currency for Restock
-  * Only 1080p, need submitions from other resolutions/aspects
+  * Only 1080p, need submissions from other resolutions/aspects
+
 ---
 
 ## Version .14.0301 - Alpha version - August/06/2021
