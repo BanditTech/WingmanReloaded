@@ -1201,12 +1201,15 @@
 		AffixList := ["Protective","Strong-Willed","Resolute","Fearless","Dauntless","Indomitable","Unassailable","Unfaltering"]
 		ILvLListBodyArmoursShields := [3,18,30,44,60,72,84,86]
 		ILvLListHelmetsGlovesBoots:= [3,18,30,44,60,72,84]
+		ILvLListAmulets:= [3,18,30,42,56,70,77]
 		
 
 		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
 			ILvLList := ILvLListBodyArmoursShields
 		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
 			ILvLList := ILvLListHelmetsGlovesBoots
+		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
+			ILvLList := ILvLListAmulets
 		}
 
 		for k,v in ILvLList
@@ -1229,6 +1232,8 @@
 		ILvLList := []
 		AffixList := ["Shining","Glimmering","Glittering","Glowing","Radiating","Pulsing","Seething","Blazing","Scintillating","Incandescent","Resplendent"]
 		ILvLListBodyArmours:= 	[3,11,17,23,29,35,43,51,60,69,75]
+		ILvLListRings:= 		[3,11,17,23,29,35,42,50,59,68,74]
+		ILvLListAmulets:= 		[3,11,17,23,29,35,42,50,59,68,74,80]
 		ILvLListShields:= 		[3,11,17,23,29,35,43,51,60,69]
 		ILvLListHelmets:= 		[3,11,17,23,29,35,43,51]
 		ILvLListGlovesBoots:= 	[3,11,17,23,29,35,43]
@@ -1247,6 +1252,10 @@
 			ILvLList := ILvLListHelmets
 		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
 			ILvLList := ILvLListGlovesBoots
+		}else if(indexOf(This.Prop.ItemClass,["Rings"])){
+			ILvLList := ILvLListRings
+		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
+			ILvLList := ILvLListAmulets
 		}
 
 		for k,v in ILvLList
