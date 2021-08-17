@@ -31,7 +31,6 @@ Class Util {
 	; JSON wrapper for loading files
 	Load(File){
 		local t, f, fStr, _JSON
-		MsgBox % "Received Load Command for " File
 		Try {
 			If File {
 				If (File ~= "^\w:\\.+\.json$") { ; This File is a Full Path
@@ -47,10 +46,12 @@ Class Util {
 					Else
 						fStr := This.Dir.save "\" File ".json"
 				}
-				If (FileExist(fStr))
+				If (FileExist(fStr)) {
 					f := FileOpen(fStr,"r")
+					This.Log.Msg("Verbose","Loading settings from " File, fStr )
+				} Else
+					This.Log.Msg("Error","Issue properly locating " File, fStr )
 			}
-
 			If f {
 				_JSON := JSON.Load(f.Read())
 				If IsObject(_JSON)
