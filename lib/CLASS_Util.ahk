@@ -192,7 +192,7 @@ Class Util {
 				line .= A_Hour ":" A_Min ":" A_Sec (k=1 ? (flag?" " flag ": " : " ") : "`t") v "`n"
 			}
 			File.WriteLine( line )
-			updateLogViewer( line )
+			; updateLogViewer( line )
 			; File.WriteLine("")
 			File.Close()
 		}
