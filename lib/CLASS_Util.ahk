@@ -1,5 +1,6 @@
 ﻿; Add simple shared functions 
 Class Util {
+	Static Name := "WingmanReloaded"
 	; List the files within a folder
 	FileList(dir,pat:="*.*"){
 		Local Files := []
@@ -59,7 +60,7 @@ Class Util {
 			} Else
 				Return "0" ; No File Object
 		} Catch e {
-			This.Util.Err(e, "Failed during JSON Load:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ))
+			This.Err(e, "Failed during JSON Load:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ))
 		}
 	}
 	; JSON wrapper for saving files
@@ -87,7 +88,7 @@ Class Util {
 			} Else
 				Return "0" ; File object not loaded
 		} Catch e {
-			This.Util.Err( e, "Failed during JSON Save:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ) )
+			This.Err( e, "Failed during JSON Save:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ) )
 		}
 	}
 	; Simple JSON string dump
@@ -95,7 +96,7 @@ Class Util {
 		Try {
 			Return JSON.Dump(Object,,2)
 		} Catch e {
-			This.Util.Err( e )
+			This.Err( e )
 		}
 	}
 	; Error report for standard error message
@@ -113,7 +114,7 @@ Class Util {
 			l.Push(v ": " e[v])
 		This.Log.Msg("Error ", l)
 		If This.Debug.ErrorMsgBox
-			MsgBox,% 4096+16, %A_ScriptName%,% This.Util.PrintArray(l,False)
+			MsgBox,% 4096+16, %A_ScriptName%,% This.PrintArray(l,False)
 		Return l
 	}
 	; Allow child process to terminate script
@@ -158,7 +159,7 @@ Class Util {
 			This.Log.ActiveFile := This.Dir.temp "\" This.Name " " A_Now ".log"
 			This.Log.File := FileOpen(This.Log.ActiveFile,"w")
 			This.Log.File.Close()
-			loglist := This.Util.FileList(This.Dir.temp, This.Name " ??????????????.log")
+			loglist := This.FileList(This.Dir.temp, This.Name " ??????????????.log")
 			If (loglist.Count() > This.Log.Limit && This.Log.Limit)
 			{
 				While (loglist.Count() > This.Log.Limit) {

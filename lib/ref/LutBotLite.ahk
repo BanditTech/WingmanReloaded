@@ -125,17 +125,18 @@ logout(executable){
 ; Log file function
 Log(var*) 
 {
-	if (FileExist(A_ScriptDir "\logs\" logFile ".txt")) {
-			FormatTime, appendTime, , hh:mm:ss
-			print := appendTime
-			For k, v in var
-				print .= "," . v
-			print .= "`n"
-	} else {
-			StringReplace, FormattedVersion, VersionNumber, ., 
-			print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
-	}
-	FileAppend, %print%, %A_ScriptDir%\logs\%logFile%.txt, UTF-16
+	; if (FileExist(A_ScriptDir "\logs\" logFile ".txt")) {
+	; 		FormatTime, appendTime, , hh:mm:ss
+	; 		print := appendTime
+	; 		For k, v in var
+	; 			print .= "," . v
+	; 		print .= "`n"
+	; } else {
+	; 		StringReplace, FormattedVersion, VersionNumber, ., 
+	; 		print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
+	; }
+	; FileAppend, %print%, %A_ScriptDir%\logs\%logFile%.txt, UTF-16
+	Util.Log.Msg(var*)
 	return
 }
 
