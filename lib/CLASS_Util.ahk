@@ -132,6 +132,19 @@ Class Util {
 		Static media := A_ScriptDir "\media"
 		Static temp := A_ScriptDir "\temp"
 	}
+	; Debugging settings
+	Class Debug {
+		Static Log := True
+		Static Verbose := True
+		Static UberVerbose := False
+		Static LogNum := 0
+		Static Timers := 1
+		Static AllowQuit := 0
+		Static Kill := 1
+		Static SpecifyUser := "limited"
+		Static ColorGlobes := 0
+		Static ErrorMsgBox := 1
+	}
 
 	; Create a rotating log file
 	Class Log extends Util {
