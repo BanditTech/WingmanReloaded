@@ -6,7 +6,7 @@
 		FileRead, newestVersion, %A_ScriptDir%\temp\version.html
 		If InStr(newestVersion, ":")
 		{
-			Log("Error loading version number",newestVersion)
+			Log("Error","There was an issue when attempting to download the version file",newestVersion)
 			Return
 		}
 		If RegExMatch(newestVersion, "[.0-9]+", matchVersion)
@@ -37,11 +37,11 @@
 		Return
 	runUpdate:
 		Fail:=False
-		Log("update","Running")
+		Log("Update","Running")
 		7za.install(BranchName)
 		Run "%A_ScriptFullPath%"
 		Sleep 5000 ;This shouldn't ever hit.
-		Log("update","uhoh something has gone wrong")
+		Log("Error","There was an issue with the update")
 		Return
 	dontUpdate:
 		IniWrite, 1, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff

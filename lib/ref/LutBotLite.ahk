@@ -79,7 +79,7 @@ logout(executable){
 		
 		IfEqual, tcpNum, 0
 		{
-			Log("ED11",tcpNum,l,executable)
+			Log("Logout","ED11",tcpNum,l,executable)
 			return False
 		}
 		
@@ -101,7 +101,7 @@ logout(executable){
 					result := DllCall(SetEntry, UInt, &newEntry)
 					IfNotEqual, result, 0
 					{
-						Log("TCP" . result,out,result,l,executable)
+						Log("Logout","TCP" . result,out,result,l,executable)
 						return False
 					}
 					out++
@@ -109,36 +109,19 @@ logout(executable){
 			}
 		}
 		if ( out = 0 ) {
-			Log("ED10",out,l,executable)
+			Log("Logout","ED10",out,l,executable)
 			return False
 		} else {
-			Log(l . ":" . A_TickCount - start,out,l,executable)
+			Log("Logout",l . ":" . A_TickCount - start,out,l,executable)
 		}
 	} catch e	{
-		Log("ED14","catcherror",ErrorText(e))
+		Log("Logout","ED14","catcherror",ErrorText(e))
 		return False
 	}
 	
 	return True
 }
 
-; Log file function
-Log(var*) 
-{
-	; if (FileExist(A_ScriptDir "\logs\" logFile ".txt")) {
-	; 		FormatTime, appendTime, , hh:mm:ss
-	; 		print := appendTime
-	; 		For k, v in var
-	; 			print .= "," . v
-	; 		print .= "`n"
-	; } else {
-	; 		StringReplace, FormattedVersion, VersionNumber, ., 
-	; 		print .= "Wingman Version: " . FormattedVersion . " | AHK Version: " . A_AhkVersion . "`n"
-	; }
-	; FileAppend, %print%, %A_ScriptDir%\logs\%logFile%.txt, UTF-16
-	Util.Log.Msg(var*)
-	return
-}
 
 ; checkActiveType - Check for active executable
 checkActiveType() 

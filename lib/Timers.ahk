@@ -11,7 +11,7 @@ If FileExist(ClientLog)
 Else
 {
 	MsgBox, 262144, Client Log Error, Client.txt Log File not found!`nAssign the location in Configuration Tab`nClick ""Locate Logfile"" to find yours
-	Log("Client Log not Found",ClientLog)
+	Log("Error","Client Log not Found",ClientLog)
 	SB_SetText("Client.txt file not found", 2)
 }
 ; Check for Flask presses

@@ -27,7 +27,7 @@ LogoutCommand(){
         }
       }
       If !dc
-        Log("Logout Failed","Could not find game EXE",tt)
+        Log("Error","Logout Failed","Could not find game EXE",tt)
       If WR.perChar.Setting.quitLogBackIn
       {
         RandomSleep(750,750)
@@ -56,9 +56,9 @@ LogoutCommand(){
       }
     }
     If (!WR.perChar.Setting.typeES)
-      Log("Exit with " . Player.Percent.Life . "`% Life", CurrentLocation)
+      Log("Logout","Exit with " . Player.Percent.Life . "`% Life", CurrentLocation)
     Else
-      Log("Exit with " . Player.Percent.ES . "`% ES", CurrentLocation)
+      Log("Logout","Exit with " . Player.Percent.ES . "`% ES", CurrentLocation)
     Thread, NoTimers, False    ;End Critical
   return
 }

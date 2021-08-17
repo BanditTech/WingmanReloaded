@@ -40,7 +40,7 @@ SpamClick(Toggle:="",Modifier:=""){
 }
 ; LeftClick - Left Click at Coord
 LeftClick(x, y){
-	Log("LeftClick: " x ", " y)
+	Log("Verbose","LeftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
 	Sleep, 60+(ClickLatency*15)
@@ -51,7 +51,7 @@ LeftClick(x, y){
 }
 ; RightClick - Right Click at Coord
 RightClick(x, y){
-	Log("RightClick: " x ", " y)
+	Log("Verbose","RightClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
 	Sleep, 60+(ClickLatency*15)
@@ -62,7 +62,7 @@ RightClick(x, y){
 }
 ; ShiftClick - Shift Click +Click at Coord
 ShiftClick(x, y){
-	Log("ShiftClick: " x ", " y)
+	Log("Verbose","ShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
 	Sleep, 60+(ClickLatency*15)
@@ -79,7 +79,7 @@ ShiftClick(x, y){
 }
 ; CtrlClick - Ctrl Click ^Click at Coord
 CtrlClick(x, y){
-	Log("CtrlClick: " x ", " y)
+	Log("Verbose","CtrlClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
 	Sleep, 30+(ClickLatency*15)
@@ -96,7 +96,7 @@ CtrlClick(x, y){
 }
 ; CtrlShiftClick - Ctrl + Shift Click +^Click at Coord
 CtrlShiftClick(x, y){
-	Log("CtrlShiftClick: " x ", " y)
+	Log("Verbose","CtrlShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
 	Sleep, 30+(ClickLatency*15)
@@ -116,7 +116,7 @@ RandClick(x, y){
 	Random, Rx, x+10, x+30
 	Random, Ry, y-30, y-10
 	If DebugMessages
-		Log("Randomize: " x ", " y " position to " Rx ", " Ry )
+		Log("Verbose","Randomize: " x ", " y " position to " Rx ", " Ry )
 	return {"X": Rx, "Y": Ry}
 }
 ; ClipItem - Capture Clip at Coord
@@ -146,7 +146,7 @@ ClipItem(x, y){
 }
 ; WisdomScroll - Identify Item at Coord
 WisdomScroll(x, y){
-	Log("WisdomScroll: " x ", " y)
+	Log("Error","WisdomScroll: " x ", " y)
 	BlockInput, MouseMove
 	Found := False
 	For C, vv in WR.Restock {
@@ -159,7 +159,7 @@ WisdomScroll(x, y){
 	}
 	If !Found {
 		Notify("Missing Configuration","Assign an inventory slot to Wisdom Scrolls`nMake sure to select Ignore or Restock")
-		Log("Wisdom Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Wisdom Scrolls","The slot must be configured to Restock or Ignore and select Wisdom in the dropdown menu")
+		Log("Error","Wisdom Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Wisdom Scrolls","The slot must be configured to Restock or Ignore and select Wisdom in the dropdown menu")
 		Return False
 	}
 	XX := InventoryGridX[C], YY := InventoryGridY[R]

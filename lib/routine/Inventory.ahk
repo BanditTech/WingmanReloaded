@@ -137,7 +137,7 @@ ClearNotifications()
 	; Global InventoryGridY
 	If (xBtn := FindText(GameW - 21,InventoryGridY[1] - 60,GameW,InventoryGridY[5] + 10,0.2,0.2,XButtonStr,0))
 	{
-		Log("Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
+		Log("Verbose","Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
 			LeftClick(v.x,v.y)
 		Sleep, 195*Latency

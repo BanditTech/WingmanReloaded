@@ -132,6 +132,7 @@ Class Util {
 		Static save := A_ScriptDir "\save"
 		Static media := A_ScriptDir "\media"
 		Static temp := A_ScriptDir "\temp"
+		Static logs := A_ScriptDir "\logs"
 	}
 	; Debugging settings
 	Class Debug {
@@ -153,23 +154,23 @@ Class Util {
 		Static ActiveFile := ""
 		Open(){
 			local loglist, filename, TimeString
-			If !FileExist(This.Dir.temp "\"){
-				FileCreateDir, % This.Dir.temp
+			If !FileExist(This.Dir.logs "\"){
+				FileCreateDir, % This.Dir.logs
 			}
-			This.Log.ActiveFile := This.Dir.temp "\" This.Name " " A_Now ".log"
+			This.Log.ActiveFile := This.Dir.logs "\" This.Name " " A_Now ".log"
 			This.Log.File := FileOpen(This.Log.ActiveFile,"w")
 			This.Log.File.Close()
-			loglist := This.FileList(This.Dir.temp, This.Name " ??????????????.log")
+			loglist := This.FileList(This.Dir.logs, This.Name " ??????????????.log")
 			If (loglist.Count() > This.Log.Limit && This.Log.Limit)
 			{
 				While (loglist.Count() > This.Log.Limit) {
-					FileDelete,% This.Dir.temp "\" loglist.RemoveAt(1)
+					FileDelete,% This.Dir.logs "\" loglist.RemoveAt(1)
 				}
 			}
 			FormatTime, TimeString, T12, Time
 			FormatTime, TimeString, A_Now, yyyy/MM/d
 			This.Log.Msg(This.Name " Log ", TimeString
-			, "Script Version " This.Version 
+			, "Script Version " VersionNumber
 			, "AHK v" A_AhkVersion " " (A_IsUnicode ? "Unicode" : "ANSI") " " (A_PtrSize = 4 ? 32 : 64) "-b"
 			, "AHK " A_AhkPath
 			, "OS " (A_OSVersion ~= "^WIN_" ? A_OSVersion : A_OSVersion >= 10 ? "WIN_"A_OSVersion : "Unknown OS " A_OSVersion) (A_Is64bitOS?" 64-b":" 32-b")
@@ -178,7 +179,7 @@ Class Util {
 		}
 		Msg(t*){
 			local flag := "", k, v, File, line := ""
-			If (t.1 ~= "Verbose ?$" && !This.Debug.Verbose)
+			If (t.1 ~= "Verbose" && !This.Debug.Verbose)
 				Return
 			Else If (t.1 ~= "^\w+$" || t.1 ~= ".+ $")
 				flag := Rtrim(t.RemoveAt(1))
@@ -204,4 +205,11 @@ Class Util {
 			This.Log.ActiveFile := ""
 		}
 	}
+}
+
+; Log file function
+Log(var*) 
+{
+	Util.Log.Msg(var*)
+	return
 }

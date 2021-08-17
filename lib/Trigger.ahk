@@ -140,6 +140,6 @@ TimerPassthrough:
 		If GetKeyState(StrSplit(WR.Flask[A_Index].Key," ")[1], "P")
 			WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask[A_Index].CD
 		} catch e {
-			Log("TimerPassthrough Error: " ErrorText(e))
+			Log("Error","TimerPassthrough Error: " ErrorText(e))
 		}
 Return

@@ -21,7 +21,7 @@ DBUpdateCheck()
 			LastDatabaseParseDate := Date_now
 		}
 	} catch e {
-		Log("DBUpdateCheck Error: " ErrorText(e))
+		Log("Error","DBUpdateCheck Error: " ErrorText(e))
 	}
 	Return
 }

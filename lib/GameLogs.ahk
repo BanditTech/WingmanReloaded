@@ -26,7 +26,7 @@ CompareLocation(cStr:="")
       {
         Lang := k
         If (VersionNumber > 0)
-        Log("Client.txt language has been detected as: " Lang)
+        Log("Verbose","Client.txt language has been detected as: " Lang)
         Break
       }
     }
@@ -239,7 +239,7 @@ Monitor_GameLogs(Initialize:=0)
         CLogFO.Seek(0, 2)
         If (VersionNumber != "")
         {
-          Log("Client.txt Log File is too large (" . errchk . "MB)")
+          Log("Error","Client.txt Log File is too large (" . errchk . "MB)")
           Notify("Client.txt file is too large (" . errchk . "MB)`nDelete contents of the log file and reload`nYou Must change zones to update Location","",0,,110)
         }
         Return
@@ -257,7 +257,7 @@ Monitor_GameLogs(Initialize:=0)
         If (A_Index > 1000)
         {
           CurrentLocation := "1k Line Break"
-          Log("1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
+          Log("Error","1k Line Break reached, ensure the file is encoded with UTF-8-BOM")
           Break
         }
       }
@@ -273,13 +273,13 @@ Monitor_GameLogs(Initialize:=0)
         Ding(6000,5,CurrentLocation)
       }
       If (VersionNumber != "")
-        Log("Log File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
+        Log("Location","Client.txt File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
     }
     Catch, loaderror
     {
       Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
       CurrentLocation := "Client File Load Error"
-      Log("Error loading File, Submit information about your client.txt",loaderror)
+      Log("Error","Error loading File, Submit information about your client.txt",loaderror)
     }
     Return
   } Else {
@@ -302,7 +302,7 @@ Monitor_GameLogs(Initialize:=0)
     {
       StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
       If YesLocation
-        Log("Zone Change Detected", StatusText , "Located:" CurrentLocation)
+        Log("Location","Zone Change Detected", StatusText , "Located:" CurrentLocation)
       SB_SetText("Status:" StatusText " (" CurrentLocation ")",2)
     }
     Return

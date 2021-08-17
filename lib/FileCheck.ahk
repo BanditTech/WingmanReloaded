@@ -37,11 +37,11 @@ IfNotExist, %A_ScriptDir%\data\WR.ico
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR.ico, %A_ScriptDir%\data\WR.ico
 	if ErrorLevel{
-			Log("data","uhoh", "WR.ico")
+			Log("Error","Data download error", "WR.ico")
 		MsgBox, Error ED02 : There was a problem downloading WR.ico
 	}
 	Else if (ErrorLevel=0){
-			Log("data","pass", "WR.ico")
+			Log("Verbose","Data downloaded Correctly", "WR.ico")
 		needReload := True
 	}
 }
@@ -54,11 +54,11 @@ For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","item_corrupted_mods.txt"
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/%str%, %A_ScriptDir%\data\%str%
 		if ErrorLevel{
-			Log("data","uhoh", str)
+			Log("Error","Data download error", str)
 			MsgBox, Error ED02 : There was a problem downloading %str%
 		}
 		Else if (ErrorLevel=0){
-			Log("data","pass", str)
+			Log("Verbose","Data downloaded Correctly", str)
 		}
 	}
 }
@@ -90,11 +90,11 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
 	if ErrorLevel {
-			Log("data","uhoh", "Bases.json")
+			Log("Error","Data download error", "Bases.json")
 		MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
 	}
 	Else if (ErrorLevel=0){
-			Log("data","pass", "Downloading Bases.json was a success")
+			Log("Verbose","Data downloaded Correctly", "Downloading Bases.json was a success")
 		FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
 		Holder := []
 		Bases := JSON.Load(JSONtext)
@@ -126,11 +126,11 @@ IfNotExist, %A_ScriptDir%\data\Quest.json
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
 	if ErrorLevel {
-		Log("data","uhoh", "Quest.json")
+		Log("Error","Data download error", "Quest.json")
 		MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
 	}
 	Else if (ErrorLevel=0){
-		Log("data","pass", "Downloading Quest.json was a success")
+		Log("Verbose","Data downloaded Correctly", "Downloading Quest.json was a success")
 		FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
 		QuestItems := JSON.Load(JSONtext)
 		JSONtext := ""

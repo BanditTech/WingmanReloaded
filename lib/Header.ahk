@@ -26,7 +26,7 @@ SendMode Input
 StringCaseSense, On ; Match strings with case.
 If A_AhkVersion < 1.1.28
 {
-	Log("Load Error","Too Low version")
+	Log("Error","Too Low version")
 	msgbox 1, ,% "Version " A_AhkVersion " AutoHotkey has been found`nThe script requires minimum version 1.1.28+`nPress OK to go to download page"
 	IfMsgBox, OK
 	{

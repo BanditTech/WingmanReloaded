@@ -442,7 +442,7 @@ PPServerStatus()
   Global PPServerStatus
   RTT := Ping4("www.poeprices.info", Result)
   If (ErrorLevel){
-    Log("PoePrice Error: " ErrorLevel)
+    Log("Error","PoePrice Error: " ErrorLevel)
     PPServerStatus := False
   } Else {
     PPServerStatus := True

@@ -21,7 +21,7 @@ ScrapeNinjaData(apiString)
       Try {
         holder := JSON.Load(JSONtext)
       } Catch e {
-        Log("Something has gone wrong downloading " apiString " Ninja API data",e)
+        Log("Error","Something has gone wrong downloading " apiString " Ninja API data",e)
         RetryDL := True
       }
       If RetryDL
@@ -32,7 +32,7 @@ ScrapeNinjaData(apiString)
         Try {
           holder := JSON.Load(JSONtext)
         } Catch e {
-          Log("Something has gone all wrong downloading " apiString ,e)
+          Log("Error","Something has gone all wrong downloading " apiString ,e)
           Return
         }
       }
@@ -67,7 +67,7 @@ ScrapeNinjaData(apiString)
       Try {
         holder := JSON.Load(JSONtext)
       } Catch e {
-        Log("Something has gone wrong downloading " apiString " Ninja API data",e)
+        Log("Error","Something has gone wrong downloading " apiString " Ninja API data",e)
         RetryDL := True
       }
       If RetryDL
@@ -78,7 +78,7 @@ ScrapeNinjaData(apiString)
         Try {
           holder := JSON.Load(JSONtext)
         } Catch e {
-          Log("Something has gone all wrong downloading " apiString ,e)
+          Log("Error","Something has gone all wrong downloading " apiString ,e)
           Return
         }
       }
@@ -137,7 +137,7 @@ ScrapeNinjaData(apiString)
         Try {
           holder := JSON.Load(JSONtext)
         } Catch e {
-          Log("Something has gone all wrong downloading " apiString ,e)
+          Log("Error","Error","Something has gone all wrong downloading " apiString ,e)
           Return
         }
       }
@@ -211,7 +211,7 @@ DBUpdate(){
 			IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
 			LastDatabaseParseDate := Date_now
   } catch e {
-		Log("DBUpdate Error: " ErrorText(e))
+		Log("Error","DBUpdate Error: " ErrorText(e))
 	}
 }
 

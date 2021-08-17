@@ -30,7 +30,7 @@ QuickPortal(ChickenFlag := False){
 		}
 		If !Found {
 			Notify("Missing Configuration","Assign an inventory slot to Portal Scrolls`nMake sure to select Ignore or Restock")
-			Log("Portal Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Portal Scrolls","The slot must be configured to Restock or Ignore and select Portal in the dropdown menu")
+			Log("Error","Portal Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Portal Scrolls","The slot must be configured to Restock or Ignore and select Portal in the dropdown menu")
 			BlockInput MouseMoveOff
 			Return False
 		}
