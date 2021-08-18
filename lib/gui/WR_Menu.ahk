@@ -272,7 +272,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_normal Checked%YesSkipMaps_normal%     xs+5  y+8    , Skip Normal?
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_magic Checked%YesSkipMaps_magic%     x+0 yp   , Skip Magic?
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
-      Gui, Inventory: Add, Checkbox, gUpdateExtra  vf Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
       Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
       Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
