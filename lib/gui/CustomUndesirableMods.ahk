@@ -3,16 +3,19 @@
 RowNumber := 0
 
 RefreshList(){
-For k, v in CustomUndesirableMods
-    LV_Add("",v)
+  For k, v in WR.CustomMapMods.CustomMods
+  {
+    LV_Add("",v["Map Modifier"],v["Mod Type"],v["Weight"])
+  }
+      
 }
-return
+Return
 
 CustomUndesirableModsUI:
   Gui, CustomUndesirableModsUI1: New
   Gui, CustomUndesirableModsUI1: Default
   Gui, CustomUndesirableModsUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomUndesirableModsUI1: Add, ListView ,  w600 h300 -wrap gMyListView vlistview1, Map Modifier
+  Gui, CustomUndesirableModsUI1: Add, ListView ,  w600 h300 -wrap gMyListView vlistview1, Map Modifier|Mod Type|Weight
   RefreshList()
   Gui, CustomUndesirableModsUI1: Add, Button, gNewRow x+5 w120 h30 center, Add New Map Modifier
   Gui, CustomUndesirableModsUI1: Add, Button, gSaveData w120 h30 center, Save Map Modifiers
@@ -58,17 +61,21 @@ Search:
 return
 
 SaveData:
-CustomUndesirableMods := []
 Gui, CustomUndesirableModsUI1:Default
+WR.CustomMapMods.CustomMods := []
 Loop % LV_GetCount()
 {
-    LV_GetText(RetrievedText, A_Index)
-    CustomUndesirableMods.Push(RetrievedText)
+    rowindex := A_Index
+    Loop % LV_GetCount(Column){
+      LV_GetText(RetrievedText%A_Index%, rowindex, A_Index)
+    }
+    aux := {"Map Modifier":RetrievedText1,"Mod Type":RetrievedText2,"Weight":RetrievedText3}
+    WR.CustomMapMods.CustomMods.Push(aux)
 }
 submit()
 Return
 
 NewRow:
 Gui, CustomUndesirableModsUI1:Default
-LV_Add("","Double Click to edit or delete this row")
+LV_Add("","thebbandit can't be nerfed", "Impossible", "1")
 return

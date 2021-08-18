@@ -8,6 +8,9 @@ readFromFile(){
 	Settings("perChar","Load")
 	Settings("func","Load")
 	Settings("String","Load")
+	Settings("CustomCraftingBases","Load")
+	Settings("CustomMapMods","Load")
+	
 
 	For k, name in ["perChar","Flask","Utility"]
 		IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -693,6 +696,8 @@ updateEverything:
 	Settings("perChar","Save")
 	Settings("func","Save")
 	Settings("String","Save")
+	Settings("CustomCraftingBases","Save")
+	Settings("CustomMapMods","Save")
 
 	;GUI Position
 	WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
@@ -1151,11 +1156,9 @@ Settings(name:="perChar",Action:="Load"){
 		obj := JSON.Load(JSONtext)
 		For k, v in WR[name]
 			If (IsObject(obj[k]))
-				For l, w in v
-					If (obj[k].HasKey(l)) 
-						WR[name][k][l] := obj[k][l]
+				WR[name][k] := obj[k]
 		obj := JSONtext := ""
-	} Else If (Action = "Save"){
+	}Else If (Action = "Save"){
 		FileDelete, %A_ScriptDir%\save\%name%.json
 		JSONtext := JSON.Dump(WR[name],,2)
 		FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
