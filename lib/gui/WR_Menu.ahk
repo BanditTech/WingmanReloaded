@@ -272,7 +272,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_normal Checked%YesSkipMaps_normal%     xs+5  y+8    , Skip Normal?
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_magic Checked%YesSkipMaps_magic%     x+0 yp   , Skip Magic?
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_rare Checked%YesSkipMaps_rare%   xs+5 y+8        , Skip Rare?
-      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesSkipMaps_unique Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vf Checked%YesSkipMaps_unique%   x+0 yp       , Skip Unique?
       Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
       Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
@@ -649,7 +649,7 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
           Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
           Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
-          Gui, Crafting: Add, Button, xs+215 ys+200 w200 gCustomUndesirableModsUI,  Custom Undesirable Mods
+          Gui, Crafting: Add, Button, xs+215 ys+200 w200 gCustomMapModsUI,  Custom Map Mods
           
 
           Gui, Crafting: Font, Bold

@@ -51,7 +51,7 @@
 #Include, %A_ScriptDir%\lib\gui\UtilityMenu.ahk
 #Include, %A_ScriptDir%\lib\gui\WR_Menu.ahk
 #Include, %A_ScriptDir%\lib\gui\CustomCraftingBase.ahk
-#Include, %A_ScriptDir%\lib\gui\CustomUndesirableMods.ahk
+#Include, %A_ScriptDir%\lib\gui\CustomMapMods.ahk
 
 #Include, %A_ScriptDir%\lib\routine\AutoLevelGems.ahk
 #Include, %A_ScriptDir%\lib\routine\ChaosRecipe.ahk
