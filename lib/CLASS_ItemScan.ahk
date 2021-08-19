@@ -920,12 +920,14 @@
 	}
 	HasCustomBrickedAffix() {
 		sum := 0
+		good := 0
 		For k, v in WR.CustomMapMods.CustomMods{
 			if(v["Enable"] == 1 && This.Affix[v["Map Modifier"]])
 			{
 				if(v["Mod Type"] == "Impossible"){
 					Return True
 				}else if(v["Mod Type"] == "Good"){
+					good++
 					sum += v["Weight"]
 				}else if(v["Mod Type"] == "Bad"){
 					sum -= v["Weight"]
@@ -933,6 +935,8 @@
 			}
 		}
 		if(sum >= 0){
+			If good
+				This.Prop.HasDesirableMod := good
 			Return False
 		}else{
 			Return True

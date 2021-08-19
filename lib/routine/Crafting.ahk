@@ -360,7 +360,7 @@ MapRoll(Method, x, y){
 	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
 	While ( Item.Prop.HasUndesirableMod
 	|| (Item.Prop.RarityNormal) 
-	|| (!MMQIgnore 
+	|| (!MMQIgnore && !Item.Prop.HasDesirableMod
 		&& (Item.Prop.Map_Rarity < MMapItemRarity 
 		|| Item.Prop.Map_PackSize < MMapMonsterPackSize 
 		|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
