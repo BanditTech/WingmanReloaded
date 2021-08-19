@@ -304,30 +304,54 @@ Rescale(){
       ;Binding
       WR.loc.pixel.Binding.X:=GameX + Round(GameW/(1440/173))
       WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/512))
-      ;Transmutation 60,290
+      ;Transmutation
       WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1440/60))
       WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
-      ;Alteration 120,290
+      ;Alteration
       WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(1440/120))
       WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
-      ;Augmentation 230,340
+      ;Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1440/230))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
-      ;Vaal 230,475
+      ;Vaal
       WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1440/230))
       WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
       ;Chance
-      WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1920/230))
+      WR.loc.pixel.Chance.X:=GameX + Round(GameW/(1440/230))
       WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/260))
       ;Fusing
-      WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/170))
+      WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1440/170))
       WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/380))
       ;Jeweller
-      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/120))
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1440/120))
       WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/380))
       ;Chromatic
-      WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
+      WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1440/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
+      ;Harbinger
+      WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1440/548))
+      WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/380))
+      ;Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(1440/600))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/380))
+      ;Engineer
+      WR.loc.pixel.Engineer.X:=GameX + Round(GameW/(1440/233))
+      WR.loc.pixel.Engineer.Y:=GameY + Round(GameH/(1080/515))
+      ;Regal
+      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(1440/425))
+      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/255))
+      ;Chaos
+      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(1440/545))
+      WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/255))
+      ;Simple
+      WR.loc.pixel.Simple.X:=GameX + Round(GameW/(1440/545))
+      WR.loc.pixel.Simple.Y:=GameY + Round(GameH/(1080/255))
+      ;Prime
+      WR.loc.pixel.Prime.X:=GameX + Round(GameW/(1440/545))
+      WR.loc.pixel.Prime.Y:=GameY + Round(GameH/(1080/255))
+      ;Awakened
+      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(1440/545))
+      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/255))
       ;Scrolls in currency tab
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1440/125))
       WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1440/175))
@@ -444,31 +468,54 @@ Rescale(){
       ;Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2560/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
-
-      ;Scouring 175,476
+      ;Scouring
       WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/120))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
-      ;Chisel 605,220
+      ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(2560/605))
       WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
-      ;Alchemy 490,290
+      ;Alchemy
       WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(2560/490))
       WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
       ;Binding
       WR.loc.pixel.Binding.X:=GameX + Round(GameW/(2560/173))
       WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/512))
-      ;Transmutation 60,290
+      ;Transmutation
       WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(2560/60))
       WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
-      ;Alteration 120,290
+      ;Alteration
       WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(2560/120))
       WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
-      ;Augmentation 230,340
+      ;Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(2560/230))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
-      ;Vaal 230,475
+      ;Vaal
       WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(2560/230))
       WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
+      ;Harbinger
+      WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(2560/548))
+      WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/380))
+      ;Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(2560/600))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/380))
+      ;Engineer
+      WR.loc.pixel.Engineer.X:=GameX + Round(GameW/(2560/233))
+      WR.loc.pixel.Engineer.Y:=GameY + Round(GameH/(1080/515))
+      ;Regal
+      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(2560/425))
+      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/255))
+      ;Chaos
+      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(2560/545))
+      WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/255))
+      ;Simple
+      WR.loc.pixel.Simple.X:=GameX + Round(GameW/(2560/545))
+      WR.loc.pixel.Simple.Y:=GameY + Round(GameH/(1080/255))
+      ;Prime
+      WR.loc.pixel.Prime.X:=GameX + Round(GameW/(2560/545))
+      WR.loc.pixel.Prime.Y:=GameY + Round(GameH/(1080/255))
+      ;Awakened
+      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(2560/545))
+      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/255))
       ;Scrolls in currency tab
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(2560/125))
       WR.loc.pixel.Portal.X:=GameX + Round(GameW/(2560/175))
@@ -761,30 +808,54 @@ Rescale(){
       ;Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3840/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
-
+      ;Scouring
       WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/120))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
-      ;Chisel 605,220
+      ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3840/605))
       WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
-      ;Alchemy 490,290
+      ;Alchemy
       WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(3840/490))
       WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/260))
       ;Binding
       WR.loc.pixel.Binding.X:=GameX + Round(GameW/(3840/173))
       WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/512))
-      ;Transmutation 60,290
+      ;Transmutation
       WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(3840/60))
       WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/260))
-      ;Alteration 120,290
+      ;Alteration
       WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(3840/120))
       WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/260))
-      ;Augmentation 230,340
+      ;Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(3840/230))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/310))
-      ;Vaal 230,475
+      ;Vaal
       WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(3840/230))
       WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/445))
+      ;Harbinger
+      WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(3840/548))
+      WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/380))
+      ;Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(3840/600))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/380))
+      ;Engineer
+      WR.loc.pixel.Engineer.X:=GameX + Round(GameW/(3840/233))
+      WR.loc.pixel.Engineer.Y:=GameY + Round(GameH/(1080/515))
+      ;Regal
+      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(3840/425))
+      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/255))
+      ;Chaos
+      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(3840/545))
+      WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/255))
+      ;Simple
+      WR.loc.pixel.Simple.X:=GameX + Round(GameW/(3840/545))
+      WR.loc.pixel.Simple.Y:=GameY + Round(GameH/(1080/255))
+      ;Prime
+      WR.loc.pixel.Prime.X:=GameX + Round(GameW/(3840/545))
+      WR.loc.pixel.Prime.Y:=GameY + Round(GameH/(1080/255))
+      ;Awakened
+      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(3840/545))
+      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/255))
       ;Scrolls in currency tab
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3840/125))
       WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3840/175))
@@ -927,9 +998,6 @@ Rescale(){
       ;Alchemy 475,280
       WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(1680/475))
       WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1050/250))
-      ; ;Binding
-      ; WR.loc.pixel.Binding.X:=GameX + Round(GameW/(1680/120))
-      ; WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1050/507))
       
       ;Transmutation 55,280
       WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(1680/55))
@@ -947,6 +1015,35 @@ Rescale(){
       WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(1680/225))
       WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1050/430))
       
+      ; These positions need to be verfied if working
+      ;Binding
+      WR.loc.pixel.Binding.X:=GameX + Round(GameW/(1728/173))
+      WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/512))
+      ;Harbinger
+      WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1728/548))
+      WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/380))
+      ;Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(1728/600))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/380))
+      ;Engineer
+      WR.loc.pixel.Engineer.X:=GameX + Round(GameW/(1728/233))
+      WR.loc.pixel.Engineer.Y:=GameY + Round(GameH/(1080/515))
+      ;Regal
+      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(1728/425))
+      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/255))
+      ;Chaos
+      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(1728/545))
+      WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/255))
+      ;Simple
+      WR.loc.pixel.Simple.X:=GameX + Round(GameW/(1728/545))
+      WR.loc.pixel.Simple.Y:=GameY + Round(GameH/(1080/255))
+      ;Prime
+      WR.loc.pixel.Prime.X:=GameX + Round(GameW/(1728/545))
+      WR.loc.pixel.Prime.Y:=GameY + Round(GameH/(1080/255))
+      ;Awakened
+      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(1728/545))
+      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/255))
+
       ;Scrolls in currency tab
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1680/115))
       WR.loc.pixel.Portal.X:=GameX + Round(GameW/(1680/170))

@@ -354,22 +354,26 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False
 	}
-	antr := Item.Prop.Map_Rarity
-	antp := Item.Prop.Map_PackSize
-	antq := Item.Prop.Map_Quantity
 	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
 	While ( Item.Prop.HasUndesirableMod
 	|| (Item.Prop.RarityNormal) 
 	|| (!MMQIgnore && !Item.Prop.HasDesirableMod
-		&& (Item.Prop.Map_Rarity < MMapItemRarity 
-		|| Item.Prop.Map_PackSize < MMapMonsterPackSize 
-		|| Item.Prop.Map_Quantity < MMapItemQuantity)) )
+		&& ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) 
+		|| (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) 
+		|| (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)) ) )
 	&& !Item.Affix["Unidentified"] && !This.Prop.Corrupted
 	{
 		If (!RunningToggle)
 		{
 			break
 		}
+		Log("Crafting","Map reroll initiated because" 
+			. (Item.Prop.RarityNormal?" Normal Item":"")
+			. (Item.Prop.HasUndesirableMod?" Undesirable Mod":"")
+			. (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity:"") 
+			. (BelowPackSize?" Below Min PackSize " MMapMonsterPackSize " @" Item.Prop.Map_PackSize:"")
+			. (BelowQuantity?" Below Min Quantity " MMapItemQuantity " @" Item.Prop.Map_Quantity:"")
+		,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
 			Return False
@@ -384,12 +388,16 @@ MapRoll(Method, x, y){
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
-		; take fresh values to analyze in the following loop
-		antr := Item.Prop.Map_Rarity
-		antp := Item.Prop.Map_PackSize
-		antq := Item.Prop.Map_Quantity
-		If (DebugMessages)
-			Notify("MapCrafting: " Item.Prop.ItemBase "","Before Rolling`nItem Rarity: " antr "`nMonsterPackSize: " antp "`nItem Quantity: " antq "`nAfter Rolling`nItem Rarity: " Item.Prop.Map_Rarity "`nMonsterPackSize: " Item.Prop.Map_PackSize "`nItem Quantity: " Item.Prop.Map_Quantity "`nEnd",4)
 	}
+	Log("Crafting","Map crafting resulted in a" 
+		. (Item.Prop.RarityNormal?" Normal Map":"")
+		. (Item.Prop.RarityMagic?" Magic Map":"")
+		. (Item.Prop.RarityRare?" Rare Map":"") 
+		. (Item.Prop.HasUndesirableMod?", with an Undesirable Mod":"")
+		. (Item.Prop.HasDesirableMod?", with a Desirable Mod":"")
+	, "Map is" (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
+		. (BelowPackSize?" Below Min PackSize " MMapMonsterPackSize " @" Item.Prop.Map_PackSize ",":" Adequate PackSize,")
+		. (BelowQuantity?" Below Min Quantity " MMapItemQuantity " @" Item.Prop.Map_Quantity:" Adequate Quantity")
+	,JSON.Dump(Item) )
 	return 1
 }
