@@ -57,7 +57,7 @@ PoEWindowCheck()
 			}
 		}
 	} catch e {
-		Log("Error","PoEWindowCheck Error: " ErrorText(e))
+		Log("Error","PoEWindowCheck", ErrorText(e))
 	}
 	Return
 }

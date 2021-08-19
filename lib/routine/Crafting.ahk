@@ -277,11 +277,12 @@ CountCurrency(NameList:=""){
 ApplyCurrency(cname, x, y){
 	If WR.data.Counts.HasKey(cname) {
 		If (WR.data.Counts[cname] <= 0) {
-			Notify("Error","Not enough " cname " to continue crafting",5)
+			Log("Error","Not enough " cname " to continue crafting")
 			Return False
 		}
 		WR.data.Counts[cname]--
 	}
+	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
 	Sleep, 45*Latency
 	LeftClick(x,y)

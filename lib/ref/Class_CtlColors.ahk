@@ -245,8 +245,8 @@ Change(HWND, BkColor, TxColor := "") {
 	; Store Colors ---------------------------------------------------------------------------------------------------
 	If (BkColor <> CTL.BkColor) {
 		If (CTL.Brush) {
-			If (Ctl.Brush <> This.NullBrush)
-			DllCall("Gdi32.dll\DeleteObject", "Prt", CTL.Brush)
+			If (CTL.Brush <> This.NullBrush)
+			DllCall("Gdi32.dll\DeleteObject", "Ptr", CTL.Brush)
 			This.Attached[HWND].Brush := 0
 		}
 		If (BkColor = "Trans")
