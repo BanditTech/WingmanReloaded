@@ -14,6 +14,7 @@ RefreshList(){
   }
   LV_ModifyCol()
   LV_ModifyCol(3, 100)
+  LV_ModifyCol(2,"Sort")
 }
 Return
 
@@ -54,15 +55,14 @@ if (A_GuiEvent = "DoubleClick")
   Gui, CustomMapModsUI2: Add, Text,,Weight:
   Gui, CustomMapModsUI2: Add, Edit, Number w40, %OutputVar3%
   Gui, CustomMapModsUI2: Add, UpDown,Range1-100 vCMP_Weight, %OutputVar3%
-  Gui, CustomMapModsUI2: Add, Button, gSaveRowCUM y+8 w120 h30 center, Save Modifier
-  Gui, CustomMapModsUI2: Add, Button, gRemoveRowCUM x+5 w120 h30 center, Remove Modifier
+  Gui, CustomMapModsUI2: Add, Button, gSaveRowCUM y+8 w120 h30 center, Save
+  Gui, CustomMapModsUI2: Add, Button, gRemoveRowCUM x+5 w120 h30 center, Remove
   Gui, CustomMapModsUI2: Show, , Edit Row %RowNumber%
 }
 return
 
 SaveRowCUM:
   Gui, CustomMapModsUI2: Submit, NoHide
-  msgbox, %A_Edit% %CMP_ModType% %CMP_Weight%
   Gui, CustomMapModsUI1:Default
   LV_Modify(RowNumber,,A_Edit,CMP_ModType,CMP_Weight)
   Gui, CustomMapModsUI2: Hide
