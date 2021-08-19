@@ -105,7 +105,7 @@ Return
 
 ResetData:
 Gui, CustomMapModsUI1:Default
-WR.CustomMapMods.CustomMods := WR.CustomMapMods.Default
+WR.CustomMapMods.CustomMods := WR.CustomMapMods.Default.Clone()
 LV_Delete()
 RefreshList()
 return

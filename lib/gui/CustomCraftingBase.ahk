@@ -124,7 +124,7 @@ Return
 
 ResetCustomCraftingBase:
   RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
-  WR.CustomCraftingBases.CustomBases[RxMatch1] := WR.CustomCraftingBases.Default[RxMatch1]
+  WR.CustomCraftingBases.CustomBases[RxMatch1] := WR.CustomCraftingBases.Default[RxMatch1].Clone()
   textList := ""
   For k, v in WR.CustomCraftingBases.CustomBases[RxMatch1]
         textList .= (!textList ? "" : ", ") v
