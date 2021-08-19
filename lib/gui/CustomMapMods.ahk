@@ -48,7 +48,7 @@ if (A_GuiEvent = "DoubleClick")
   Gui, CustomMapModsUI2: New
   Gui, CustomMapModsUI2: +AlwaysOnTop -MinimizeBox
   Gui, CustomMapModsUI2: Add, Text,, Map Modifier:
-  Gui, CustomMapModsUI2: Add, Edit, w400 r2 vA_Edit gSearch, %OutputVar1%
+  Gui, CustomMapModsUI2: Add, Edit, w400 r2 vA_Edit, %OutputVar1%
   Gui, CustomMapModsUI2: Add, Text,, Mod Type:
   Gui, CustomMapModsUI2: Add, DropDownList, vCMP_ModType Choose%OutputVar2%, Good|Bad|Impossible
   Gui, CustomMapModsUI2: Add, Text,,Weight:
@@ -56,11 +56,12 @@ if (A_GuiEvent = "DoubleClick")
   Gui, CustomMapModsUI2: Add, UpDown,Range1-100 vCMP_Weight, %OutputVar3%
   Gui, CustomMapModsUI2: Add, Button, gSaveRowCUM y+8 w120 h30 center, Save Modifier
   Gui, CustomMapModsUI2: Add, Button, gRemoveRowCUM x+5 w120 h30 center, Remove Modifier
-  Gui, CustomMapModsUI2: Show, , Edit Box
+  Gui, CustomMapModsUI2: Show, , Edit Row %RowNumber%
 }
 return
 
 SaveRowCUM:
+  Gui, CustomMapModsUI2: Submit, NoHide
   msgbox, %A_Edit% %CMP_ModType% %CMP_Weight%
   Gui, CustomMapModsUI1:Default
   LV_Modify(RowNumber,,A_Edit,CMP_ModType,CMP_Weight)
@@ -77,9 +78,6 @@ RemoveRowCUM:
   Gui, CustomMapModsUI2: Hide
 return
 
-Search:
-  Gui, CustomMapModsUI2: Submit, NoHide
-return
 
 SaveData:
 Gui, CustomMapModsUI1:Default
