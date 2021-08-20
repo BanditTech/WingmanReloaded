@@ -165,7 +165,7 @@ CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
 			GuiControl, Choose, % CBMatchingGUI.hLB, 1
 	} 
 	else
-		GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
+		GuiControl,, % CBMatchingGUI.hLB, % "`n<! No Match !>`n" CBMatchingGUI.parentCBList
 }
 
 ;--------------------------------------------------------------------------------
