@@ -37,14 +37,6 @@ if (A_GuiEvent = "DoubleClick")
   RowNumber :=  A_EventInfo
   LV_GetText(OutputVar1, RowNumber,1)
   LV_GetText(OutputVar2, RowNumber,2)
-  ; if(OutputVar2 == "Good")
-  ; {
-  ;   OutputVar2 := 1
-  ; }else if(OutputVar2 == "Bad"){
-  ;   OutputVar2 := 2
-  ; }else if(OutputVar2 == "Impossible"){
-  ;   OutputVar2 := 3
-  ; }
   LV_GetText(OutputVar3, RowNumber,3)
   Gui, CustomMapModsUI2: New
   Gui, CustomMapModsUI2: +AlwaysOnTop -MinimizeBox

@@ -5,6 +5,8 @@ New development feature is being merged to try
 * Double click an entry to edit it
 * Mods can be given weight
 * Mods can be good (+Weight), bad (-weight), or Impossible
+* Custom crafting bases is now using json instead a string-array conversion
+  * All modification will be reseted when moving for this version
 
 New Class for refreshing map affixes from POEDB
 * This Class will be expanded in the future for other data
