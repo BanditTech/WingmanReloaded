@@ -118,6 +118,19 @@ Class Util {
 			MsgBox,% 4096+16, %A_ScriptName%,% This.PrintArray(l,False)
 		Return l
 	}
+	HttpGet(url){
+		Try {
+			whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+			whr.Open("GET", url, true)
+			whr.Send()
+			; Using 'true' above and the call below allows the script to remain responsive.
+			whr.WaitForResponse()
+			response := whr.ResponseText
+			Return response
+		} catch e {
+			This.Err(e,"Download failed for " url)
+		}
+	}
 	; Allow child process to terminate script
 	Quit() {
 		This.Log.Msg("Quit Was Called")
