@@ -1,4 +1,24 @@
-﻿## Version .14.0302 - Alpha version - August/13/2021
+﻿## Version .14.0303 - Alpha version - August/19/2021
+New development feature is being merged to try
+* Assign custom map mods for rolling maps
+* Check the box to enable that entry
+* Double click an entry to edit it
+* Mods can be given weight
+* Mods can be good (+Weight), bad (-weight), or Impossible
+
+New Class for refreshing map affixes from POEDB
+* This Class will be expanded in the future for other data
+
+Bugfixes
+* Found typo in CTL_Colors lib
+* Many aspects missing positions added to rescale
+* Log System reworked and much more useful
+* Epic Game Store exe name fixed
+* Affix search list will repopulate when no match found
+
+---
+
+## Version .14.0302 - Alpha version - August/13/2021
 Bugfixes
 * Actual Tier for Resist, Attributes and Movespeed
 * Rework Bricked maps
