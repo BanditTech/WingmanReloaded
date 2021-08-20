@@ -146,7 +146,6 @@ ClipItem(x, y){
 }
 ; WisdomScroll - Identify Item at Coord
 WisdomScroll(x, y){
-	Log("Error","WisdomScroll: " x ", " y)
 	BlockInput, MouseMove
 	Found := False
 	For C, vv in WR.Restock {
@@ -162,6 +161,7 @@ WisdomScroll(x, y){
 		Log("Error","Wisdom Scroll is not configured in inventory slot options","Please configure the slot in your inventory from which to draw Wisdom Scrolls","The slot must be configured to Restock or Ignore and select Wisdom in the dropdown menu")
 		Return False
 	}
+	Log("Currency","Applying Wisdom onto item at " x "," y)
 	XX := InventoryGridX[C], YY := InventoryGridY[R]
 	o := RandClick(XX,YY)
 	RightClick(o.X,o.Y)

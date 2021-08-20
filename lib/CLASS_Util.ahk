@@ -151,7 +151,7 @@ Class Util {
 	; Debugging settings
 	Class Debug {
 		Static Log := True
-		Static Verbose := True
+		Static Verbose := False
 		Static UberVerbose := False
 		Static LogNum := 0
 		Static Timers := 1

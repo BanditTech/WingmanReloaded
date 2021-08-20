@@ -2,35 +2,35 @@
 CustomCrafting:
   Global CustomCraftingBase
   textList1 := ""
-  For k, v in craftingBasesT1
+  For k, v in WR.CustomCraftingBases.CustomBases[1]
     textList1 .= (!textList1 ? "" : ", ") v
   baseList := ""
   textList2 := ""
-  For k, v in craftingBasesT2
+  For k, v in WR.CustomCraftingBases.CustomBases[2]
     textList2 .= (!textList2 ? "" : ", ") v
   baseList := ""
   textList3 := ""
-  For k, v in craftingBasesT3
+  For k, v in WR.CustomCraftingBases.CustomBases[3]
     textList3 .= (!textList3 ? "" : ", ") v
   baseList := ""
   textList4 := ""
-  For k, v in craftingBasesT4
+  For k, v in WR.CustomCraftingBases.CustomBases[4]
     textList4 .= (!textList4 ? "" : ", ") v
   baseList := ""
   textList5 := ""
-  For k, v in craftingBasesT5
+  For k, v in WR.CustomCraftingBases.CustomBases[5]
     textList5 .= (!textList5 ? "" : ", ") v
   baseList := ""
   textList6 := ""
-  For k, v in craftingBasesT6
+  For k, v in WR.CustomCraftingBases.CustomBases[6]
     textList6 .= (!textList6 ? "" : ", ") v
   baseList := ""
   textList7 := ""
-  For k, v in craftingBasesT7
+  For k, v in WR.CustomCraftingBases.CustomBases[7]
     textList7 .= (!textList7 ? "" : ", ") v
   baseList := ""
   textList8 := ""
-  For k, v in craftingBasesT8
+  For k, v in WR.CustomCraftingBases.CustomBases[8]
     textList8 .= (!textList8 ? "" : ", ") v
   baseList := ""
   For k, v in Bases
@@ -98,11 +98,11 @@ Return
 AddCustomCraftingBase:
   Gui, Submit, nohide
   RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
-  If (CustomCraftingBase = "" || IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
+  If (CustomCraftingBase = "" || IndexOf(CustomCraftingBase,WR.CustomCraftingBases.CustomBases[RxMatch1]))
     Return
-  craftingBasesT%RxMatch1%.Push(CustomCraftingBase)
+  WR.CustomCraftingBases.CustomBases[RxMatch1].Push(CustomCraftingBase)
   textList := ""
-  For k, v in craftingBasesT%RxMatch1%
+  For k, v in WR.CustomCraftingBases.CustomBases[RxMatch1]
         textList .= (!textList ? "" : ", ") v
   GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
 Return
@@ -110,13 +110,13 @@ Return
 RemoveCustomCraftingBase:
   Gui, Submit, nohide
   RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
-  If (CustomCraftingBase = "" || !IndexOf(CustomCraftingBase,craftingBasesT%RxMatch1%))
+  If (CustomCraftingBase = "" || !IndexOf(CustomCraftingBase,WR.CustomCraftingBases.CustomBases[RxMatch1]))
     Return
-  For k, v in craftingBasesT%RxMatch1%
+  For k, v in WR.CustomCraftingBases.CustomBases[RxMatch1]
     If (v = CustomCraftingBase)
-      craftingBasesT%RxMatch1%.Delete(k)
+      WR.CustomCraftingBases.CustomBases[RxMatch1].RemoveAt(k)
   textList := ""
-  For k, v in craftingBasesT%RxMatch1%
+  For k, v in WR.CustomCraftingBases.CustomBases[RxMatch1]
         textList .= (!textList ? "" : ", ") v
   GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
   Gui, Show
@@ -124,9 +124,9 @@ Return
 
 ResetCustomCraftingBase:
   RegExMatch(A_GuiControl, "T" rxNum " Base", RxMatch )
-  craftingBasesT%RxMatch1% := DefaultcraftingBasesT%RxMatch1%.Clone()
+  WR.CustomCraftingBases.CustomBases[RxMatch1] := WR.CustomCraftingBases.Default[RxMatch1].Clone()
   textList := ""
-  For k, v in craftingBasesT%RxMatch1%
+  For k, v in WR.CustomCraftingBases.CustomBases[RxMatch1]
         textList .= (!textList ? "" : ", ") v
   GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
 Return

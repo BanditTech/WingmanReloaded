@@ -919,13 +919,30 @@
 		}
 	}
 	HasCustomBrickedAffix() {
-		For k, v in CustomUndesirableMods{
-			if This.Affix[v]{
-				Return True
+		sum := 0
+		good := 0
+		For k, v in WR.CustomMapMods.CustomMods{
+			if(v["Enable"] == 1 && This.Affix[v["Map Modifier"]])
+			{
+				if(v["Mod Type"] == "Impossible"){
+					Return True
+				}else if(v["Mod Type"] == "Good"){
+					good++
+					sum += v["Weight"]
+				}else if(v["Mod Type"] == "Bad"){
+					sum -= v["Weight"]
+				}
 			}
 		}
-		Return False
+		if(sum >= 0){
+			If good
+				This.Prop.HasDesirableMod := good
+			Return False
+		}else{
+			Return True
+		}
 	}
+		
 	
 	TopTierChaosResist(){
 		If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))

@@ -45,6 +45,24 @@ Tab::
 	}
 return
 
+#If WinActive("Edit Map Mod")
+Tab::
+	Gui, submit, NoHide
+	;...context specific stuff
+	KeyWait, Tab
+	GuiControlGet, OutputVarE, CustomMapModsUI2:Focus
+	GuiControlGet, varname, CustomMapModsUI2:Focusv
+	Tooltip % OutputVarE " - " varname
+	If ( !InStr(varname, "MapModField") )
+		Return
+	OutputVar := StrReplace(OutputVarE, "Edit", "ComboBox")
+	ControlGet, hCBe, hwnd,,%OutputVarE%
+	ControlGet, hCB, hwnd,,%OutputVar%
+	if (!WinExist("ahk_id "hCBMatchesGui) && hCB && hCBe) {
+		CreateCBMatchingGUI(hCB, "Edit Map Mod")
+	}
+return
+
 CreateCBMatchingGUI(hCB, parentWindowTitle) {
 ;--------------------------------------------------------------------------------
 	Global CBMatchingGUI := {}
@@ -147,7 +165,7 @@ CBMatching(ByRef CBMatchingGUI) { ; ByRef object generated at the GUI creation
 			GuiControl, Choose, % CBMatchingGUI.hLB, 1
 	} 
 	else
-		GuiControl,, % CBMatchingGUI.hLB, `n<! No Match !>
+		GuiControl,, % CBMatchingGUI.hLB, % "`n<! No Match !>`n" CBMatchingGUI.parentCBList
 }
 
 ;--------------------------------------------------------------------------------
