@@ -21,25 +21,16 @@ MsgBoxVals(obj,indent:=0){
   Else
     MsgBox % txt
 }
-; ArrayToString - Make a string from array using | as delimiters
-ArrayToString(Array){
+; ArrayToString - Make a string from array using specified delimiter
+ArrayToString(Array,delim:="|"){
+  text := ""
   for index, element in Array
-  {
-    if(text == "")
-    {
-      text = %element% 
-    }
-    else
-    {
-      text = %text%|%element% 
-    }
-  }
+    text .= (!text?"":delim) element
   return text
 }
-; StringToArray - Make a array from a string using | as delimiters
-StringToArray(text){
-    Array := StrSplit(text,"|")
-    return array
+; StringToArray - Make a array from a string using specified delimiter
+StringToArray(text,delim:="|"){
+  return StrSplit(text,delim)
 }
 ; Check if a specific value is part of an array and return the index
 indexOf(var, Arr, fromIndex:=1){

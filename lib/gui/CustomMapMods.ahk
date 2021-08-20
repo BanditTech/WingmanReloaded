@@ -37,34 +37,34 @@ if (A_GuiEvent = "DoubleClick")
   RowNumber :=  A_EventInfo
   LV_GetText(OutputVar1, RowNumber,1)
   LV_GetText(OutputVar2, RowNumber,2)
-  if(OutputVar2 == "Good")
-  {
-    OutputVar2 := 1
-  }else if(OutputVar2 == "Bad"){
-    OutputVar2 := 2
-  }else if(OutputVar2 == "Impossible"){
-    OutputVar2 := 3
-  }
+  ; if(OutputVar2 == "Good")
+  ; {
+  ;   OutputVar2 := 1
+  ; }else if(OutputVar2 == "Bad"){
+  ;   OutputVar2 := 2
+  ; }else if(OutputVar2 == "Impossible"){
+  ;   OutputVar2 := 3
+  ; }
   LV_GetText(OutputVar3, RowNumber,3)
   Gui, CustomMapModsUI2: New
   Gui, CustomMapModsUI2: +AlwaysOnTop -MinimizeBox
   Gui, CustomMapModsUI2: Add, Text,, Map Modifier:
-  Gui, CustomMapModsUI2: Add, Edit, w400 r2 vA_Edit, %OutputVar1%
+  Gui, CustomMapModsUI2: Add, ComboBox, w400 vMapModField , % OutputVar1 "||" WR.Data.Map_Affixes
   Gui, CustomMapModsUI2: Add, Text,, Mod Type:
-  Gui, CustomMapModsUI2: Add, DropDownList, vCMP_ModType Choose%OutputVar2%, Good|Bad|Impossible
+  Gui, CustomMapModsUI2: Add, DropDownList, vCMP_ModType, %OutputVar2%||Good|Bad|Impossible
   Gui, CustomMapModsUI2: Add, Text,,Weight:
   Gui, CustomMapModsUI2: Add, Edit, Number w40, %OutputVar3%
   Gui, CustomMapModsUI2: Add, UpDown,Range1-100 vCMP_Weight, %OutputVar3%
   Gui, CustomMapModsUI2: Add, Button, gSaveRowCUM y+8 w120 h30 center, Save
   Gui, CustomMapModsUI2: Add, Button, gRemoveRowCUM x+5 w120 h30 center, Remove
-  Gui, CustomMapModsUI2: Show, , Edit Row %RowNumber%
+  Gui, CustomMapModsUI2: Show, , Edit Map Mod
 }
 return
 
 SaveRowCUM:
   Gui, CustomMapModsUI2: Submit, NoHide
   Gui, CustomMapModsUI1:Default
-  LV_Modify(RowNumber,,A_Edit,CMP_ModType,CMP_Weight)
+  LV_Modify(RowNumber,,MapModField,CMP_ModType,CMP_Weight)
   Gui, CustomMapModsUI2: Hide
 return
 
