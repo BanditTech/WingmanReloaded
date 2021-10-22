@@ -1059,7 +1059,7 @@
 		}else if(indexOf(This.Prop.ItemClass,["Boots","Gloves","Amulets"])){
 			ILvLList := ILvLListBootsGlovesAmulets
 		}else if(indexOf(This.Prop.ItemClass,["Belts","Helmets","Quivers"])){
-			ILvLList := ILvLListBeltsHelmets
+			ILvLList := ILvLListBeltsHelmetsQuivers
 		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
 			ILvLList := ILvLListShields
 		}else if(indexOf(This.Prop.ItemClass,["Body Armours"])){
