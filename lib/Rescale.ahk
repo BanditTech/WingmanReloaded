@@ -136,8 +136,11 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
       ;Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/120))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/58))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
+      ;Scouring Old
+      ;WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/120))
+      ;WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
       ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1920/605))
       WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))

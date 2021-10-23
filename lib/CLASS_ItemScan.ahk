@@ -45,7 +45,6 @@
 				Else If (SVal ~= "^Scourged$")
 				{
 					This.Prop.Scourged := True
-					This.Prop.Corrupted := True
 					This.Prop.SpecialType := "Scourged Item"
 				}
 				Else If (SVal ~= "^Corrupted$")
