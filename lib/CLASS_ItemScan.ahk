@@ -42,6 +42,12 @@
 					This.Data.Blocks.Enchant := SVal
 				Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
 					This.Data.Blocks.Influence := SVal
+				Else If (SVal ~= "^Scourged$")
+				{
+					This.Prop.Scourged := True
+					This.Prop.Corrupted := True
+					This.Prop.SpecialType := "Scourged Item"
+				}
 				Else If (SVal ~= "^Corrupted$")
 					This.Prop.Corrupted := True
 				Else If (SVal ~= "^Abyss$")
@@ -3325,35 +3331,35 @@
 	MatchCraftingBases(){
 		If (This.Prop.Rarity_Digit == 4)
 			Return False
-		If(HasVal(craftingBasesT1,This.Prop.ItemBase))
+		If(HasVal(WR.CustomCraftingBases.CustomBases[1],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "Atlas Base"
 		}
-		Else If(HasVal(craftingBasesT2,This.Prop.ItemBase))
+		Else If(HasVal(WR.CustomCraftingBases.CustomBases[2],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "STR Base"
 		}
-		Else If(HasVal(craftingBasesT3,This.Prop.ItemBase))
+		Else If(HasVal(WR.CustomCraftingBases.CustomBases[3],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "DEX Base"
 		}
-		Else If(HasVal(craftingBasesT4,This.Prop.ItemBase))
+		Else If(HasVal(WR.CustomCraftingBases.CustomBases[4],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "INT Base"
 		}
-		Else If(HasVal(craftingBasesT5,This.Prop.ItemBase))
+		Else If(HasVal(WR.CustomCraftingBases.CustomBases[5],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "Hybrid Base"
 		}
-		Else If(HasVal(craftingBasesT6,This.Prop.ItemBase))
+		Else If(HasVal(WR.CustomCraftingBases.CustomBases[6],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "Jewel Base"
 		}
-		Else If(HasVal(craftingBasesT7,This.Prop.ItemBase))
+		Else If(HasVal(WR.CustomCraftingBases.CustomBases[7],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "Abyss Jewel Base"
 		}
-		Else If(HasVal(craftingBasesT8,This.Prop.ItemBase))
+		Else If(HasVal(WR.CustomCraftingBases.CustomBases[8],This.Prop.ItemBase))
 		{
 			This.Prop.CraftingBase := "Jewellery Base"
 		}
