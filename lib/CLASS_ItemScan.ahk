@@ -39,9 +39,9 @@
 				Else If (SVal ~= "Adds \d{1,} Passive Skills (enchant)")
 					This.Data.Blocks.ClusterImplicit := SVal
 				Else If (SVal ~= "\(enchant\)$")
-					This.Data.Blocks.Scourge := SVal
-				Else If (SVal ~= "\(scourge\)$")
 					This.Data.Blocks.Enchant := SVal
+				Else If (SVal ~= "\(scourge\)$")
+					This.Data.Blocks.Scourge := SVal
 				Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
 					This.Data.Blocks.Influence := SVal
 				Else If (SVal ~= "^Scourged$")
