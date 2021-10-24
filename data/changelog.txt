@@ -1,4 +1,9 @@
-﻿## Version .14.0303 - Alpha version - August/19/2021
+﻿## Version .14.0304 - Alpha version - October/23/2021
+Bugfixes
+  * Scouring Itens now have special type for avoid auto sell 
+  * Fix Scouring Position for 1080p (They shift to left, others resolution need correction!)
+
+## Version .14.0303 - Alpha version - August/19/2021
 New development feature is being merged to try
 * Assign custom map mods for rolling maps
 * Check the box to enable that entry
