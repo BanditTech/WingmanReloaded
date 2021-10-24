@@ -843,8 +843,8 @@
 		;Stack size for anything with it
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" ,RxMatch))
 		{
-			This.Prop.Stack_Size := RegExReplace(RxMatch1,",","") + 0
-			This.Prop.Stack_Max := RegExReplace(RxMatch2,",","") + 0
+			This.Prop.Stack_Size := RegExReplace(RxMatch1,"\.","")
+			This.Prop.Stack_Max := RegExReplace(RxMatch2,"\.","")
 		}
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Seed Tier: "rxNum,RxMatch))
 		{
