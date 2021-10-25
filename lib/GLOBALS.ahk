@@ -53,10 +53,6 @@
 		, "UniqueAccessory"
 		, "Beast"
 		, "Vial"]
-	
-	; Custom Undesirable Mods
-	Global CustomUndesirableMods := []
-	Global DefaultCustomUndesirableMods := ["Double Click to edit or delete this row"]
 	; Create Executable group for gameHotkey, IfWinActive
 	Global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExileEGS.exe"]
 	for n, exe in POEGameArr
