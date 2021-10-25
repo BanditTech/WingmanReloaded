@@ -876,6 +876,7 @@
 		This.GetActualAllAttributesTier()
 		This.GetActualESTier()
 		This.GetActualIncESTier()
+		This.GetActualSpellSuppress()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -1302,6 +1303,34 @@
 				break
 			}
 		}
+	}
+
+	GetActualSpellSuppress(){
+		ILvLList := []
+		AffixList := ["of Rebuttal","of Snuffing","of Revoking","of Abjuration","of Nullification"]
+		ILvLListBodyArmoursBootsGlovesHelmetsShields:= 	[46,57,68,76,86]
+		
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields","Gloves","Boots","Helmets"])){
+			ILvLList := ILvLListBodyArmoursBootsGlovesHelmetsShields
+		}
+
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualSpellSuppress"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+
 	}
 	TopTierLightningResist(){
 		If (This.Prop.ItemLevel < 13 && This.HasAffix("of the Cloud"))
