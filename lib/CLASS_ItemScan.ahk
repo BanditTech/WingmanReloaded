@@ -876,7 +876,7 @@
 		This.GetActualAllAttributesTier()
 		This.GetActualESTier()
 		This.GetActualIncESTier()
-		This.GetActualSpellSuppress()
+		This.GetActualSpellSuppressTier()
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -1305,7 +1305,7 @@
 		}
 	}
 
-	GetActualSpellSuppress(){
+	GetActualSpellSuppressTier(){
 		ILvLList := []
 		AffixList := ["of Rebuttal","of Snuffing","of Revoking","of Abjuration","of Nullification"]
 		ILvLListBodyArmoursBootsGlovesHelmetsShields:= 	[46,57,68,76,86]
@@ -1323,7 +1323,7 @@
 				{
 					If (This.HasAffix(vi)){
 						value := k-ki+1
-						This.Prop["ActualSpellSuppress"] := value
+						This.Prop["ActualTierSpellSuppress"] := value
 						break
 					}
 				}
