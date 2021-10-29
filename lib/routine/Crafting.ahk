@@ -266,7 +266,7 @@ CountCurrency(NameList:=""){
 }
 ; ApplyCurrency - Using cname = currency name string and x, y as apply position
 ApplyCurrency(cname, x, y){
-	If cname = "Hybrid" {
+	If (cname = "Hybrid") {
 		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
 			cname := "Binding"
 		Else
