@@ -138,9 +138,6 @@ Rescale(){
       ;Scouring
       WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/58))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
-      ;Scouring Old
-      ;WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1920/120))
-      ;WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
       ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1920/605))
       WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/190))
@@ -296,7 +293,7 @@ Rescale(){
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1440/1178))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
       ;Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1440/120))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1440/58))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
       ;Chisel 605,220
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(1440/605))
@@ -472,7 +469,7 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2560/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
       ;Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/120))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2560/58))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
       ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(2560/605))
@@ -643,9 +640,10 @@ Rescale(){
       ;Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3440/310))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1440/510))
+      ; Attempting to match 43:18 from 1080 base
       ;Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/150))
-      WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/585))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2580/58))
+      WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
       ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3440/810))
       WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1440/250))
@@ -812,7 +810,7 @@ Rescale(){
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3840/234))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
       ;Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/120))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3840/58))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/445))
       ;Chisel
       WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3840/605))
@@ -991,7 +989,7 @@ Rescale(){
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/380))
 
       ;Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1680/120))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(1680/58))
       WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1050/430))      
       
       ;Chisel 590,210
@@ -1263,7 +1261,7 @@ FirstScale(){
     WR.loc.pixel.Portal.X:=175
     WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=190
     ; Scouring
-    WR.loc.pixel.Scouring.X:=175
+    WR.loc.pixel.Scouring.X:=58
     WR.loc.pixel.Scouring.Y:=445
     ; Chisel
     WR.loc.pixel.Chisel.X:=605
