@@ -7,17 +7,17 @@ QuickPortal(ChickenFlag := False){
 		Critical
 		; BlockInput On
 		BlockInput MouseMove
-		If (GetKeyState("LButton","P"))
-			Click, up
-		If (GetKeyState("RButton","P"))
-			Click, Right, up
 		MouseGetPos xx, yy
-		RandomSleep(53,87)
+		If (GetKeyState("LButton","P") || GetKeyState("RButton","P")) {
+			Click, up
+			Click, Right, up
+			RandomSleep(53,87)
+		}
 
 		If !(OnInventory)
 		{
 			SendHotkey(hotkeyInventory)
-			RandomSleep(56,68)
+			RandomSleep(105,135)
 		}
 		Found := False
 		For C, vv in WR.Restock {
@@ -38,7 +38,7 @@ QuickPortal(ChickenFlag := False){
 		o := RandClick(iX,iY)
 
 		RightClick(o.X, o.Y)
-
+		RandomSleep(60,60)
 		SendHotkey(hotkeyInventory)
 		If YesClickPortal || ChickenFlag
 		{

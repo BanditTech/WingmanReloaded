@@ -303,7 +303,7 @@ VendorRoutine()
 		If (YesEnableAutoSellConfirmation || (!VendoredItems && YesEnableAutoSellConfirmationSafe))
 		{
 			RandomSleep(90,120)
-			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y)
+			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
 			RandomSleep(90,120)
 			ContinueFlag := True
 		}
@@ -311,7 +311,7 @@ VendorRoutine()
 		{
 			CheckTime("Seconds",120,"VendorUI",A_Now)
 			If YesEnableAutoSellConfirmationSafe
-				MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y
+				MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0)
 			While (!CheckTime("Seconds",120,"VendorUI"))
 			{
 				If (YesController)
