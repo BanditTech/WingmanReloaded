@@ -6,6 +6,9 @@ Bugfixes
   * Detonate in Delve has its own sample color
     * click "Detonate Shown" in delve to calibrate the new color
   * Heist target is now Heist Targets, so those can vendor again
+  * Fixes for restock with larger than 1000
+  * Spell suppression Tiers
+  * Fix for No Leach unwanted map mod
 
 ## Version .14.0304 - Alpha version - October/23/2021
 Bugfixes
