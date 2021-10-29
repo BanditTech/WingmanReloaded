@@ -198,8 +198,8 @@ CraftingMaps(){
 						}
 					}
 				}
-			} Else If (indexOf(Item.Prop.ItemClass,["Blueprint","Contract"]) && Item.Prop.RarityNormal && HeistAlcNGo) {
-				ApplyCurrency("Alchemy",Grid.X,Grid.Y)
+			} Else If (indexOf(Item.Prop.ItemClass,["Blueprints","Contracts"]) && Item.Prop.RarityNormal && HeistAlcNGo) {
+				ApplyCurrency("Hybrid",Grid.X,Grid.Y)
 			}
 			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep) && !InMapArea(C))
 				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
@@ -275,6 +275,12 @@ CountCurrency(NameList:=""){
 }
 ; ApplyCurrency - Using cname = currency name string and x, y as apply position
 ApplyCurrency(cname, x, y){
+	If cname = "Hybrid" {
+		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+			cname := "Binding"
+		Else
+			cname := "Alchemy"
+	}
 	If WR.data.Counts.HasKey(cname) {
 		If (WR.data.Counts[cname] <= 0) {
 			Log("Error","Not enough " cname " to continue crafting")
@@ -282,6 +288,7 @@ ApplyCurrency(cname, x, y){
 		}
 		WR.data.Counts[cname]--
 	}
+
 	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
 	Sleep, 45*Latency
