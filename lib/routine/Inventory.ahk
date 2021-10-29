@@ -124,11 +124,11 @@ SearchStash()
 ShooMouse()
 {
 	MouseGetPos Checkx, Checky
-	If (((Checkx<InventoryGridX[12])&&(Checkx>InventoryGridX[1]))&&((Checky<InventoryGridY[5])&&(Checky>InventoryGridY[1]))){
+	If (((Checkx<InventoryGridX[12]+10)&&(Checkx>InventoryGridX[1]-10))&&((Checky<InventoryGridY[5]+10)&&(Checky>InventoryGridY[1]-10))){
 		Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
 		Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
 		MouseMove, RX, RY, 0
-		Sleep, 105*Latency
+		Sleep, 135*Latency
 	}
 }
 ; ClearNotifications - Get rid of overlay messages if any are present
@@ -365,7 +365,7 @@ VendorRoutine()
 }
 ; Build Empty Grid List
 EmptyGrid(){
-	ShooMouse(),GuiStatus()
+	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
 	EmptySlots := {}
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
