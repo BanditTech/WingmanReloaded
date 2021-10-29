@@ -1,6 +1,6 @@
 ﻿## Version .14.0305 - Alpha version - October/28/2021
 Bugfixes
-  * Scoured items are garbage and we recognize that
+  * Scourged items are garbage and we recognize that
   * The Rogue Harbour now has a separate vendor sample
     * click "Vendor Trade Open" at the fence to calibrate the new color
   * Detonate in Delve has its own sample color
