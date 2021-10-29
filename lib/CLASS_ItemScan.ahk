@@ -843,12 +843,8 @@
 		;Stack size for anything with it
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" ,RxMatch))
 		{
-			;EUA Layout
-			This.Prop.Stack_Max := RegExReplace(RxMatch2,"\.","")
-			This.Prop.Stack_Size := RegExReplace(RxMatch1,"\.","")
-			;US Layout
-			This.Prop.Stack_Size := RegExReplace(RxMatch1,",","")
-			This.Prop.Stack_Max := RegExReplace(RxMatch2,",","")
+			This.Prop.Stack_Size := RegExReplace(RxMatch1,"[\.,]","")
+			This.Prop.Stack_Max := RegExReplace(RxMatch2,"[\.,]","")
 		}
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Seed Tier: "rxNum,RxMatch))
 		{
@@ -908,7 +904,7 @@
 		|| (This.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
 		|| (This.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
 		|| (This.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
-		|| (This.Affix["Cannot Leech Life from Monsters"] && NoLeech)
+		|| (This.Affix["Cannot Leech from Monsters"] && NoLeech)
 		|| (This.Affix["-#% maximum Player Resistances"] && MinusMPR)
 		|| (This.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
 		|| (This.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
