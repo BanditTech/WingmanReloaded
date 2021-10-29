@@ -1,6 +1,15 @@
-﻿## Version .14.0304 - Alpha version - October/23/2021
+﻿## Version .14.0305 - Alpha version - October/28/2021
 Bugfixes
-  * Scouring Itens now have special type for avoid auto sell 
+  * Scoured items are garbage and we recognize that
+  * The Rogue Harbour now has a separate vendor sample
+    * click "Vendor Trade Open" at the fence to calibrate the new color
+  * Detonate in Delve has its own sample color
+    * click "Detonate Shown" in delve to calibrate the new color
+  * Heist target is now Heist Targets, so those can vendor again
+
+## Version .14.0304 - Alpha version - October/23/2021
+Bugfixes
+  * Scouring Items now have special type for avoid auto sell 
   * Fix Scouring Position for 1080p (They shift to left, others resolution need correction!)
 
 ## Version .14.0303 - Alpha version - August/19/2021
