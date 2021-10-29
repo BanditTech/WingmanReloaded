@@ -12,8 +12,8 @@ Bugfixes
 
 ## Version .14.0304 - Alpha version - October/23/2021
 Bugfixes
-  * Scouring Items now have special type for avoid auto sell 
-  * Fix Scouring Position for 1080p (They shift to left, others resolution need correction!)
+  * Scourged Items now have special type to avoid auto-sell 
+  * Fix Scouring Position for 1080p (They shifted left, others resolution need correction!)
 
 ## Version .14.0303 - Alpha version - August/19/2021
 New development feature is being merged to try
