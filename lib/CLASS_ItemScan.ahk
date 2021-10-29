@@ -522,11 +522,13 @@
 			Else If (This.Prop.ItemClass = "Contracts")
 			{
 				This.Prop.Heist := True
+				This.Prop.MapLikeItem := True
 				This.Prop.SpecialType := "Heist Contract"
 			}
 			Else If (This.Prop.ItemClass = "Blueprints")
 			{
 				This.Prop.Heist := True
+				This.Prop.MapLikeItem := True
 				This.Prop.SpecialType := "Heist Blueprint"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Thief's Trinket"))

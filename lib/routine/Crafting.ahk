@@ -201,21 +201,12 @@ CraftingMaps(){
 			} Else If (indexOf(Item.Prop.ItemClass,["Blueprints","Contracts"]) && Item.Prop.RarityNormal && HeistAlcNGo) {
 				ApplyCurrency("Hybrid",Grid.X,Grid.Y)
 			}
-			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep) && !InMapArea(C))
+			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
 				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
 		}
 	}
 	If (MoveMapsToArea && RunningToggle){
 		Slots := EmptyGrid()
-		RemoveKeys := []
-		; For k, v in Slots {
-		; 	If !InMapArea(StrSplit(k," ").1)
-		; 		RemoveKeys.Push(k)
-		; }
-		; Loop % RemoveKeys.Count() {
-		; 	k := RemoveKeys.Pop()
-		; 	Slots.Delete(k)
-		; }
 		For k, obj in MapList {
 			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
