@@ -22,16 +22,27 @@ GuiStatus(Fetch:="",SS:=1){
   POnMenu := FindText.GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
   POnInventory := FindText.GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
   POnStash := FindText.GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
-  POnVendor := FindText.GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y), OnVendor := (POnVendor=varOnVendor?True:False)
   POnDiv := FindText.GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
   POnLeft := FindText.GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
   POnDelveChart := FindText.GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
   POnMetamorph := FindText.GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y), OnMetamorph := (POnMetamorph=varOnMetamorph?True:False)
   POnLocker := FindText.GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y), OnLocker := (POnLocker=varOnLocker?True:False)
-  If OnMines
-  POnDetonate := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
-  Else POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
-  OnDetonate := (POnDetonate=varOnDetonate?True:False)
+  If OnMines {
+    POnDetonate := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+    OnDetonate := (POnDetonate=varOnDetonateDelve?True:False)
+  } Else {
+    POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
+    OnDetonate := (POnDetonate=varOnDetonate?True:False)
+  } 
+  If (CurrentLocation = "The Rogue Harbour") {
+    POnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+    OnVendor := (POnVendor=varOnVendorHeist?True:False)
+  } Else {
+    POnVendor := FindText.GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y)
+    OnVendor := (POnVendor=varOnVendor?True:False)
+  } 
+  
+
   If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
     CheckXButton()
   Return (OnChar && !(OnChat||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker||YesXButtonFound))

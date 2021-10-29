@@ -206,6 +206,9 @@ Rescale(){
       ;Status Check OnVendor
       WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
       WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
+      ;Status Check OnVendorHeist
+      WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
+      WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       ;Status Check OnDiv
       WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1920 / 618))
       WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
@@ -374,6 +377,9 @@ Rescale(){
       ;Status Check OnVendor
       WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1440 / 378))
       WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+      ;Status Check OnVendorHeist
+      WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
+      WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       ;Status Check OnDiv
       WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1440 / 378))
       WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
@@ -538,6 +544,9 @@ Rescale(){
       ;Status Check OnVendor
       WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (2560 / 618))
       WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+      ;Status Check OnVendorHeist
+      WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
+      WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       ;Status Check OnDiv
       WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (2560 / 618))
       WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
@@ -712,6 +721,9 @@ Rescale(){
       ;Status Check OnVendor
       WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
       WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
+      ;Status Check OnVendorHeist
+      WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
+      WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       ;Status Check OnDiv
       WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
       WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
@@ -879,6 +891,9 @@ Rescale(){
       ;Status Check OnVendor
       WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3840 / 1578))
       WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 88))
+      ;Status Check OnVendorHeist
+      WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
+      WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       ;Status Check OnDiv
       WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3840 / 1578))
       WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1080 / 135))
@@ -1073,6 +1088,9 @@ Rescale(){
       ;Status Check OnVendor
       WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1680 / 525))
       WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1050 / 120))
+      ;Status Check OnVendorHeist
+      WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
+      WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       
       ;Status Check OnDiv
       WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (1680 / 519))

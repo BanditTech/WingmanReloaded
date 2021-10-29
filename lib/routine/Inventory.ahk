@@ -220,7 +220,7 @@ VendorRoutine()
 			{
 				If Item.MatchLootFilter()
 					Continue
-				If (Item.Prop.RarityCurrency && Item.Prop.ItemClass != "Heist Target")
+				If (Item.Prop.RarityCurrency && !Item.Prop.Vendorable)
 					Continue
 				If ( Item.Prop.Flask && Item.Prop.Quality > 0 )
 				{
@@ -245,10 +245,11 @@ VendorRoutine()
 					SortGem.Push({"C":C,"R":R,"Q":Q})
 					Continue
 				}
-				If (Item.Prop.StashReturnVal && !Item.Prop.DumpTabItem)
-				|| (Item.Prop.StashReturnVal && (!YesVendorDumpItems && Item.Prop.DumpTabItem))
+				If ((Item.Prop.StashReturnVal && !Item.Prop.DumpTabItem)
+				|| (Item.Prop.StashReturnVal && (!YesVendorDumpItems && Item.Prop.DumpTabItem)))
+				&& !(Item.Prop.Vendorable)
 					Continue
-				If ( Item.Prop.SpecialType="" || Item.Prop.ItemClass = "Heist Target" )
+				If ( Item.Prop.SpecialType="" || Item.Prop.Vendorable )
 				{
 					CtrlClick(Grid.X,Grid.Y)
 					If !(Item.Prop.Chromatic || Item.Prop.Jeweler)

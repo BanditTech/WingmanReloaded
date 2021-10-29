@@ -294,10 +294,17 @@ updateOnVendor:
 	
 	if WinActive(ahk_group POEGameGroup){
 		FindText.ScreenShot()
-		varOnVendor := FindText.GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y)
-		IniWrite, %varOnVendor%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendor
-		readFromFile()
-		MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . WR.loc.pixel.OnVendor.X . " and y: " . WR.loc.pixel.OnVendor.Y
+		If (CurrentLocation = "The Rogue Harbour") {
+			varOnVendorHeist := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+			IniWrite, %varOnVendorHeist%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendorHeist
+			readFromFile()
+			MsgBox % "OnVendorHeist recalibrated!`nTook color hex: " . varOnVendorHeist . " `nAt coords x: " . WR.loc.pixel.OnVendorHeist.X . " and y: " . WR.loc.pixel.OnVendorHeist.Y
+		} Else {
+			varOnVendor := FindText.GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y)
+			IniWrite, %varOnVendor%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnVendor
+			readFromFile()
+			MsgBox % "OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . WR.loc.pixel.OnVendor.X . " and y: " . WR.loc.pixel.OnVendor.Y
+		}
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnVendor didn't work"
 	
@@ -345,13 +352,17 @@ updateDetonate:
 	
 	if WinActive(ahk_group POEGameGroup){
 		FindText.ScreenShot()
-		If OnMines
-			varOnDetonate := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
-		Else
+		If OnMines {
+			varOnDetonateDelve := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+			IniWrite, %varOnDetonateDelve%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonateDelve
+			readFromFile()
+			MsgBox % "OnDetonateDelve recalibrated!`nTook color hex: " . varOnDetonateDelve . " `nAt coords x: " . WR.loc.pixel.DetonateDelve.X . " and y: " . WR.loc.pixel.Detonate.Y
+		} Else {
 			varOnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
-		IniWrite, %varOnDetonate%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate
-		readFromFile()
-		MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . (OnMines?WR.loc.pixel.DetonateDelve.X:WR.loc.pixel.Detonate.X) . " and y: " . WR.loc.pixel.Detonate.Y
+			IniWrite, %varOnDetonate%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnDetonate
+			readFromFile()
+			MsgBox % "OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . WR.loc.pixel.Detonate.X . " and y: " . WR.loc.pixel.Detonate.Y
+		}
 	}else
 	MsgBox % "PoE Window is not active. `nRecalibrate of OnDetonate didn't work"
 	

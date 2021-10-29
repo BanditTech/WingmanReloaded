@@ -419,9 +419,10 @@
 					This.Prop.Jewel := True
 				}
 			}
-			Else If (This.Prop.ItemClass = "Heist Target")
+			Else If (This.Prop.ItemClass = "Heist Targets")
 			{
 				This.Prop.Heist := True
+				This.Prop.Vendorable := True
 				This.Prop.SpecialType := "Heist Goods"
 				This.Prop.Item_Width := This.Prop.Item_Height := 2
 				If indexOf(This.Prop.ItemBase, HeistLootLarge)

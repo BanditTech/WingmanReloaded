@@ -782,12 +782,14 @@
 	global varOnInventory:=0xDCC289
 	global varOnStash:=0xECDBA6
 	global varOnVendor:=0xCEB178
+	global varOnVendorHeist:=0xCEB178
 	global varOnDiv:=0xF6E2C5
 	global varOnLeft:=0xB58C4D
 	global varOnDelveChart:=0xB58C4D
 	global varOnMetamorph:=0xE06718
 	global varOnLocker:=0xE97724
 	Global varOnDetonate := 0x5D4661
+	Global varOnDetonateDelve := 0x5D4661
 
 ; Grab Currency
 	global GrabCurrencyX:=1877
