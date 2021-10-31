@@ -639,6 +639,11 @@ StashRoutine()
 			GuiStatus()
 			If SearchVendor()
 				VendorRoutine()
+		} Else If (FirstAutomationSetting == "Search Vendor") {
+			RandomSleep(90,120)
+			SendHotkey(hotkeyCloseAllUI)
+			RandomSleep(90,120)
+			GuiStatus()
 		}
 	}
 	Return

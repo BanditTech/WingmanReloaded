@@ -14,10 +14,10 @@ QuickPortal(ChickenFlag := False){
 			RandomSleep(53,87)
 		}
 
-		If !(OnInventory)
+		If (!(OnInventory) || OnInventory && !GuiStatus("OnInventory"))
 		{
 			SendHotkey(hotkeyInventory)
-			RandomSleep(105,135)
+			RandomSleep(60,90)
 		}
 		Found := False
 		For C, vv in WR.Restock {
@@ -38,7 +38,7 @@ QuickPortal(ChickenFlag := False){
 		o := RandClick(iX,iY)
 
 		RightClick(o.X, o.Y)
-		RandomSleep(60,60)
+		RandomSleep(60,90)
 		SendHotkey(hotkeyInventory)
 		If YesClickPortal || ChickenFlag
 		{
