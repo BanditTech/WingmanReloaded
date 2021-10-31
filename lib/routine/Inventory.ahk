@@ -709,7 +709,7 @@ SearchVendor()
 		Else If (Town = "Mines")
 		{
 			LeftClick(GameX + GameW//3, GameY + GameH//5)
-			Sleep, 800
+			Sleep, 1300
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
 		Else If (Town = "The Rogue Harbour")
