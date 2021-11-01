@@ -865,16 +865,38 @@
 			This.Prop.TopTierMS := 1
 		If This.TopTierChaosResist()
 			This.Prop.TopTierChaosResist := 1
-		This.GetActualResistTier()
+		
+		;Basics
 		This.GetActualLifeTier()
+		This.GetActualResistTier()
 		This.GetActualMSTier()
+		;Stats
 		This.GetActualSTRTier()
 		This.GetActualDEXTier()
 		This.GetActualINTTier()
 		This.GetActualAllAttributesTier()
+		;Defenses
+		This.GetActualSpellSuppressTier()
 		This.GetActualESTier()
 		This.GetActualIncESTier()
-		This.GetActualSpellSuppressTier()
+		This.GetActualArmourTier()
+		This.GetActualIncArmourTier()
+		This.GetActualEvasionTier()
+		This.GetActualIncEvasionTier()
+		;;Hybrid
+		This.GetActualIncArmourEvasionTier()
+		This.GetActualIncArmourES()
+		This.GetActualIncEvasionES()
+		;;;Hybrid
+		This.GetActualEvasionES()
+		This.GetActualArmourES()
+		This.GetActualArmourEvasion()
+		;;;;Hybrid
+		This.GetActualArmourLife()
+		This.GetActualEvasionLife()
+		This.GetActualESLife()
+		This.GetActualESMana()
+
 		If This.TopTierLightningResist()
 			This.Prop.TopTierLightningResist := 1
 		If This.TopTierFireResist()
@@ -953,8 +975,6 @@
 			Return True
 		}
 	}
-		
-	
 	TopTierChaosResist(){
 		If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
 			Return True
@@ -973,8 +993,6 @@
 		Else
 			Return False
 	}
-	;Data https://poedb.tw/us/mod.php?cn=Boots&tags=str_armour
-	;Get Relative tier based on IlvL for leveling purpose, if tier actual tier = 1 means top tier for that ilvl, 2 second best so it goes
 	GetActualResistTier(){
 		loop, 5
 		{
@@ -1302,7 +1320,440 @@
 			}
 		}
 	}
+	GetActualArmourTier(){
+		ILvLList := []
+		AffixList := ["Lacquered","Studded","Ribbed","Fortified","Plated","Carapaced","Encased","Enveloped","Abating","Unmoving","Impervious"]
+		ILvLListBodyArmours:= 	[1,11,17,23,29,35,43,51,60,69,77]
+		ILvLListGlovesBoots:= 	[1,11,17,23,29,35,43]
+		ILvLListHelmets:= 	[1,11,17,23,29,35,43,51]
+		ILvLListShields:= [1,11,17,23,29,35,43,51,60,69]
+		ILvLListBelts:= [1,18,30,44,57,71,83,86]
 
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+			ILvLList := ILvLListShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
+			ILvLList := ILvLListHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}else if(indexOf(This.Prop.ItemClass,["Belts"])){
+			ILvLList := ILvLListBelts
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierArmour"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncArmourTier(){
+		ILvLList := []
+		AffixList := ["Reinforced","Layered","Lobstered","Buttressed","Thickened","Girded","Impregnable","Impenetrable"]
+		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
+
+		ILvLListAmulets:= 	[2,18,30,42,56,70,77]
+		ILvLListGlovesBootsHelmets:= 	[3,17,29,42,60,72,84]
+
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
+			ILvLList := ILvLListBodyArmoursShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBootsHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
+			ILvLList := ILvLListAmulets
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncArmour"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualEvasionTier(){
+		ILvLList := []
+		AffixList := ["Agile","Dancer's","Acrobat's","Fleet","Blurred","Phased","Vaporous","Elusory","Adroit","Lissome","Fugitive"]
+		ILvLListBodyArmours:= 	[1,11,17,23,29,35,43,51,60,69,77]
+		ILvLListGlovesBoots:= 	[1,11,17,23,29,35,43]
+		ILvLListHelmets:= 	[1,11,17,23,29,35,43,51]
+		ILvLListShields:= [1,11,17,23,29,35,43,51,60,69]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+			ILvLList := ILvLListShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
+			ILvLList := ILvLListHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierEvasion"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncEvasionTier(){
+		ILvLList := []
+		AffixList := ["Shade's","Ghost's","Spectre's","Wraith's","Phantasm's","Nightmare's","Mirage's","Illusion's"]
+		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
+		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
+		ILvLListAmulets:= 	[2,18,30,42,56,70,77]
+		
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
+			ILvLList := ILvLListBodyArmoursShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
+			ILvLList := ILvLListHelmetsGlovesBoots
+		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
+			ILvLList := ILvLListAmulets
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncEvasion"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}	
+	GetActualIncArmourEvasionTier(){
+		ILvLList := []
+		AffixList := ["Scrapper's","Brawler's","Fencer's","Gladiator's","Duelist's","Hero's","Legend's","Victor's"]
+		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
+		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
+		
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
+			ILvLList := ILvLListBodyArmoursShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
+			ILvLList := ILvLListHelmetsGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncArmourEvasion"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncArmourES(){
+		ILvLList := []
+		AffixList := ["Infixed","Ingrained","Instilled","Infused","Inculcated","Interpolated","Inspired","Interpermeated"]
+		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
+		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
+			ILvLList := ILvLListBodyArmoursShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
+			ILvLList := ILvLListHelmetsGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncArmourES"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncEvasionES(){
+		ILvLList := []
+		AffixList := ["Shadowy","Ethereal","Unworldly","Ephemeral","Evanescent","Unreal","Illusory","Incorporeal"]
+		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
+		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
+		
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
+			ILvLList := ILvLListBodyArmoursShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
+			ILvLList := ILvLListHelmetsGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncEvasionES"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualEvasionES(){
+		ILvLList := []
+		AffixList := ["Will-o-wisp's","Nymph's","Sylph's","Cherub's","Spirit's","Eidolon's","Apparition's","Phantasm's"]
+		ILvLListBodyArmours:= 	[1,18,30,38,46,58,69,79]
+		ILvLListShields:= 	[1,18,30,38,46,58,69]
+		ILvLListHelmets:= 	[1,18,30,38,46]
+		ILvLListGlovesBoots:= 	[1,18,30,38]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+			ILvLList := ILvLListShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
+			ILvLList := ILvLListHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierEvasionES"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualArmourES(){
+		ILvLList := []
+		AffixList := ["Blessed","Anointed","Sanctified","Hallowed","Beatified","Consecrated","Saintly","Godly"]
+		ILvLListBodyArmours:= 	[1,18,30,38,46,58,69,79]
+		ILvLListShields:= 	[1,18,30,38,46,58,69]
+		ILvLListHelmets:= 	[1,18,30,38,46]
+		ILvLListGlovesBoots:= 	[1,18,30,38]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+			ILvLList := ILvLListShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
+			ILvLList := ILvLListHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierArmourES"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualArmourEvasion(){
+		ILvLList := []
+		AffixList := ["Supple","Pliant","Flexible","Durable","Sturdy","Resilient","Adaptable","Versatile"]
+		ILvLListBodyArmours:= 	[1,18,30,38,46,58,69,79]
+		ILvLListShields:= 	[1,18,30,38,46,58,69]
+		ILvLListHelmets:= 	[1,18,30,38,46]
+		ILvLListGlovesBoots:= 	[1,18,30,38]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
+			ILvLList := ILvLListShields
+		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
+			ILvLList := ILvLListHelmets
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierArmourEvasion"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualArmourLife(){
+		ILvLList := []
+		AffixList := ["Oyster's","Urchin's","Nautilus's","Crocodile's"]
+		ILvLListBodyArmours:= 	[30,46,62,78]
+		ILvLListHelmetsShields:= 	[30,46,62]
+		ILvLListGlovesBoots:= 	[30,46]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
+			ILvLList := ILvLListHelmetsShields
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierArmourLife"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualEvasionLife(){
+		ILvLList := []
+		AffixList := ["Flea's","Fawn's","Ram's","Ibex's"]
+		ILvLListBodyArmours:= 	[30,46,62,78]
+		ILvLListHelmetsShields:= 	[30,46,62]
+		ILvLListGlovesBoots:= 	[30,46]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
+			ILvLList := ILvLListHelmetsShields
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierEvasionLife"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualESLife(){
+		ILvLList := []
+		AffixList := ["Monk's","Prior's","Abbot's","Exarch's"]
+		ILvLListBodyArmours:= 	[30,46,62,78]
+		ILvLListHelmetsShields:= 	[30,46,62]
+		ILvLListGlovesBoots:= 	[30,46]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
+			ILvLList := ILvLListHelmetsShields
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierESLife"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualESMana(){
+		ILvLList := []
+		AffixList := ["Acolyte's","Deacon's","Priest's","Bishop's"]
+		ILvLListBodyArmours:= 	[30,46,62,78]
+		ILvLListHelmetsShields:= 	[30,46,62]
+		ILvLListGlovesBoots:= 	[30,46]
+
+		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
+			ILvLList := ILvLListBodyArmours
+		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
+			ILvLList := ILvLListHelmetsShields
+		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
+			ILvLList := ILvLListGlovesBoots
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierESMana"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}	
 	GetActualSpellSuppressTier(){
 		ILvLList := []
 		AffixList := ["of Rebuttal","of Snuffing","of Revoking","of Abjuration","of Nullification"]
