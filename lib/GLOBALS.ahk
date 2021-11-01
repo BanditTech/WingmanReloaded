@@ -28,7 +28,8 @@
 		, "#% increased Evasion Rating"
 		, "#% increased Armour and Evasion"
 		, "#% increased Evasion and Energy Shield"
-		, "#% increased Armour and Energy Shield" ]
+		, "#% increased Armour and Energy Shield"
+		, "#% increased Armour, Evasion and Energy Shield" ]
 	; List available database endpoints
 	Global apiList := ["Currency"
 		, "Fragment"
