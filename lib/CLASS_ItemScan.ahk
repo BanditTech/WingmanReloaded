@@ -1470,7 +1470,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && (This.HasAffix("Required_Dex") && This.HasAffix("Required_Str"))){
 						value := k-ki+1
 						This.Prop["ActualTierIncArmourEvasion"] := value
 						break
@@ -1497,7 +1497,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && (This.HasAffix("Required_Int") && This.HasAffix("Required_Str"))){
 						value := k-ki+1
 						This.Prop["ActualTierIncArmourES"] := value
 						break
@@ -1525,7 +1525,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && (This.HasAffix("Required_Dex") && This.HasAffix("Required_Int"))){
 						value := k-ki+1
 						This.Prop["ActualTierIncEvasionES"] := value
 						break
@@ -1558,7 +1558,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && (This.HasAffix("Required_Dex") && This.HasAffix("Required_Int")) ){
 						value := k-ki+1
 						This.Prop["ActualTierEvasionES"] := value
 						break
@@ -1591,7 +1591,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && (This.HasAffix("Required_Int") && This.HasAffix("Required_Str"))){
 						value := k-ki+1
 						This.Prop["ActualTierArmourES"] := value
 						break
@@ -1624,7 +1624,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && (This.HasAffix("Required_Dex") && This.HasAffix("Required_Str"))){
 						value := k-ki+1
 						This.Prop["ActualTierArmourEvasion"] := value
 						break
