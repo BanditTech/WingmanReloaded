@@ -1558,7 +1558,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("(Hybrid) # to Evasion Rating")){
+					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Evasion Rating"]){
 						value := k-ki+1
 						This.Prop["ActualTierEvasionES"] := value
 						break
@@ -1591,7 +1591,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("(Hybrid) # to Armour")){
+					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Armour"]){
 						value := k-ki+1
 						This.Prop["ActualTierArmourES"] := value
 						break
@@ -1624,7 +1624,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("(Hybrid) # to Armour")){
+					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Armour"]){
 						value := k-ki+1
 						This.Prop["ActualTierArmourEvasion"] := value
 						break
@@ -1654,7 +1654,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("(Hybrid) # to Armour")){
+					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Armour"]){
 						value := k-ki+1
 						This.Prop["ActualTierArmourLife"] := value
 						break
@@ -1684,7 +1684,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("(Hybrid) # to Evasion Rating")){
+					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Evasion Rating"]){
 						value := k-ki+1
 						This.Prop["ActualTierEvasionLife"] := value
 						break
@@ -1714,7 +1714,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("(Hybrid) # to maximum Energy Shield")){
+					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to maximum Energy Shield"]){
 						value := k-ki+1
 						This.Prop["ActualTierESLife"] := value
 						break
@@ -1744,7 +1744,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("(Hybrid) # to maximum Energy Shield")){
+					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to maximum Energy Shield"]){
 						value := k-ki+1
 						This.Prop["ActualTierESMana"] := value
 						break
