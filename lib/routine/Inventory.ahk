@@ -123,13 +123,14 @@ SearchStash()
 ; ShooMouse - Move mouse out of the inventory area
 ShooMouse()
 {
-	MouseGetPos Checkx, Checky
-	If (((Checkx<InventoryGridX[12]+10)&&(Checkx>InventoryGridX[1]-10))&&((Checky<InventoryGridY[5]+10)&&(Checky>InventoryGridY[1]-10))){
-		Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
-		Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
-		MouseMove, RX, RY, 0
-		Sleep, 135*Latency
-	}
+	; MouseGetPos Checkx, Checky
+	; If (((Checkx<InventoryGridX[12]+10)&&(Checkx>InventoryGridX[1]-10))&&((Checky<InventoryGridY[5]+10)&&(Checky>InventoryGridY[1]-10))){
+	Sleep, 60*Latency
+	Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
+	Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
+	MouseMove, RX, RY, 0
+	Sleep, 60*Latency
+	; }
 }
 ; ClearNotifications - Get rid of overlay messages if any are present
 ClearNotifications()
@@ -365,7 +366,8 @@ VendorRoutine()
 }
 ; Build Empty Grid List
 EmptyGrid(){
-	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
+	ShooMouse()
+	FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
 	EmptySlots := {}
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
