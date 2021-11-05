@@ -1781,6 +1781,79 @@
 		}
 
 	}
+	GetActualAccuracyTier(){
+		ILvLList := [1,20,40,60,75]
+		AffixList := ["of Steadiness","of Precision","of the Sniper","of the Marksman","of the Ranger","of Lioneye"]
+		ILvLListWandsHelmetsGloves := 	[1,20,40,60,75,85]
+		
+
+		if(indexOf(This.Prop.ItemClass,["Gloves","Helmets","Wands"])){
+			ILvLList := ILvLListWandsHelmetsGloves
+		}
+
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierAccuracy"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+
+	}
+	GetActualIncPhysicalDamageTier(){
+		ILvLList := [1,11,23,35,46,60,73,83]
+		AffixList := ["Heavy","Serrated","Wicked","Vicious","Bloodthirsty","Cruel","Tyrannical","Merciless"]
+
+		;Incursion Mod
+		If (This.HasAffix("Tacati's") and This.HasAffix("#% increased Physical Damage")){
+			This.Prop["ActualTierIncPhysicalDamage"] := 1
+			return
+		}
+		
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncPhysicalDamage"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualAddPhysicalDamageTier(){
+		ILvLList := [1,11,23,35,46,60,73,83]
+		AffixList := ["Glinting","Burnished","Polished","Honed","Gleaming","Annealed","Razor-sharp","Tempered","Flaring"]
+		
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierAddPhysicalDamage"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
 	TopTierLightningResist(){
 		If (This.Prop.ItemLevel < 13 && This.HasAffix("of the Cloud"))
 			Return True
