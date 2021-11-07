@@ -341,7 +341,7 @@ VendorRoutine()
 
 			If OnMines
 			{
-				LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
+				LeftClick(GameX + GameW//1.5, GameY + GameH//1.1)
 				Sleep, 800
 				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
