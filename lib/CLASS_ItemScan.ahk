@@ -1002,7 +1002,7 @@
 				AffixName:= "#% to Chaos Resistance"
 				AffixList := ["of the Lost","of Banishment","of Eviction","of Expulsion","of Exile","of Bameth"]
 				ILvLList := [16,30,44,56,65,81]
-				if(This.HasAffix("of Tacati") && This.Affix[AffixName]))
+				if(This.HasAffix("of Tacati") && This.Affix(AffixName))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1014,7 +1014,7 @@
 				AffixName:= "#% to Fire Resistance"
 				AffixList := ["of the Whelpling","of the Salamander","of the Drake","of the Kiln","of the Furnace","of the Volcano","of the Magma","of Tzteosh"]
 				ILvLList := [1,12,24,36,48,60,72,84]
-				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
+				if(This.HasAffix("of Tacati") && This.Affix(AffixName))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1026,7 +1026,7 @@
 				AffixName:= "#% to Cold Resistance"
 				AffixList := ["of the Inuit","of the Seal","of the Penguin","of the Yeti","of the Walrus","of the Polar Bear","of the Ice","of Haast"]
 				ILvLList := [1,14,26,38,50,60,72,84]
-				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
+				if(This.HasAffix("of Tacati") && This.Affix(AffixName))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1038,7 +1038,7 @@
 				AffixName:= "#% to Lightning Resistance"
 				AffixList := ["of the Cloud","of the Squall","of the Storm","of the Thunderhead","of the Tempest","of the Maelstrom","of the Lightning","of Ephij"]
 				ILvLList := [1,13,25,37,49,60,72,84]
-				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
+				if(This.HasAffix("of Tacati") && This.Affix(AffixName))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1049,7 +1049,7 @@
 				AffixName:= "#% to all Elemental Resistances"
 				AffixList := ["of the Crystal","of the Prism","of the Kaleidoscope","of Variegation","of the Rainbow","of the Span"]
 				ILvLList := [12,24,36,48,60,85]
-				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
+				if(This.HasAffix("of Tacati") && This.Affix(AffixName))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1062,7 +1062,7 @@
 				{
 					for ki,vi in AffixList
 					{
-						If (This.HasAffix(vi) && This.Affix[AffixName]){
+						If (This.HasAffix(vi) && This.Affix(AffixName)){
 							value := k-ki+1
 							This.Prop["ActualTier" Name "Resist"] := value
 							break
@@ -1095,7 +1095,8 @@
 			ILvLList := ILvLListBodyArmours
 		}
 		;Incursion Mod
-		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])){
+		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])
+		{
 			This.Prop["ActualTierLife"] := 1
 			return
 		}
@@ -1125,7 +1126,7 @@
 		}
 
 		;Incursion Mod
-		If (This.HasAffix("Matatl's") && This.Affix["#% increased Movement Speed"])){
+		If (This.HasAffix("Matatl's") && This.Affix["#% increased Movement Speed"]){
 			This.Prop["ActualTierMS"] := 1
 			return
 		}
