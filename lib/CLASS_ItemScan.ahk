@@ -1002,7 +1002,7 @@
 				AffixName:= "#% to Chaos Resistance"
 				AffixList := ["of the Lost","of Banishment","of Eviction","of Expulsion","of Exile","of Bameth"]
 				ILvLList := [16,30,44,56,65,81]
-				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				if(This.HasAffix("of Tacati") && This.Affix[AffixName]))
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1014,7 +1014,7 @@
 				AffixName:= "#% to Fire Resistance"
 				AffixList := ["of the Whelpling","of the Salamander","of the Drake","of the Kiln","of the Furnace","of the Volcano","of the Magma","of Tzteosh"]
 				ILvLList := [1,12,24,36,48,60,72,84]
-				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1026,7 +1026,7 @@
 				AffixName:= "#% to Cold Resistance"
 				AffixList := ["of the Inuit","of the Seal","of the Penguin","of the Yeti","of the Walrus","of the Polar Bear","of the Ice","of Haast"]
 				ILvLList := [1,14,26,38,50,60,72,84]
-				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1038,7 +1038,7 @@
 				AffixName:= "#% to Lightning Resistance"
 				AffixList := ["of the Cloud","of the Squall","of the Storm","of the Thunderhead","of the Tempest","of the Maelstrom","of the Lightning","of Ephij"]
 				ILvLList := [1,13,25,37,49,60,72,84]
-				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1049,7 +1049,7 @@
 				AffixName:= "#% to all Elemental Resistances"
 				AffixList := ["of the Crystal","of the Prism","of the Kaleidoscope","of Variegation","of the Rainbow","of the Span"]
 				ILvLList := [12,24,36,48,60,85]
-				if(This.HasAffix("of Tacati") && This.HasAffix(AffixName))
+				if(This.HasAffix("of Tacati") && This.Affix[AffixName])
 				{
 					This.Prop["ActualTier" Name "Resist"] := 1
 					Break
@@ -1062,7 +1062,7 @@
 				{
 					for ki,vi in AffixList
 					{
-						If (This.HasAffix(vi)){
+						If (This.HasAffix(vi) && This.Affix[AffixName]){
 							value := k-ki+1
 							This.Prop["ActualTier" Name "Resist"] := value
 							break
@@ -1095,7 +1095,7 @@
 			ILvLList := ILvLListBodyArmours
 		}
 		;Incursion Mod
-		If (This.HasAffix("Guatelitzi's") and This.HasAffix("#% increased maximum Life")){
+		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])){
 			This.Prop["ActualTierLife"] := 1
 			return
 		}
@@ -1105,7 +1105,7 @@
 				{
 					for ki,vi in AffixList
 					{
-						If (This.HasAffix(vi)){
+						If (This.HasAffix(vi) && This.Affix["# to maximum Life"]){
 							value := k-ki+1
 							This.Prop["ActualTierLife"] := value
 							break
@@ -1124,13 +1124,20 @@
 			ILvLList := ILvLListBoots
 		}
 
+		;Incursion Mod
+		If (This.HasAffix("Matatl's") && This.Affix["#% increased Movement Speed"])){
+			This.Prop["ActualTierMS"] := 1
+			return
+		}
+		
+
 		for k,v in ILvLList
 		{
 			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["#% increased Movement Speed"]){
 						value := k-ki+1
 						This.Prop["ActualTierMS"] := value
 						break
@@ -1154,7 +1161,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to Strength"]){
 						value := k-ki+1
 						This.Prop["ActualTierSTR"] := value
 						break
@@ -1179,7 +1186,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to Dexterity"]){
 						value := k-ki+1
 						This.Prop["ActualTierDEX"] := value
 						break
@@ -1204,7 +1211,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to Intelligence"]){
 						value := k-ki+1
 						This.Prop["ActualTierINT"] := value
 						break
@@ -1232,7 +1239,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to all Attributes"]){
 						value := k-ki+1
 						This.Prop["ActualTierAllAttributes"] := value
 						break
@@ -1264,7 +1271,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["#% increased Energy Shield"]){
 						value := k-ki+1
 						This.Prop["ActualTierIncES"] := value
 						break
@@ -1276,7 +1283,7 @@
 	}
 	GetActualESTier(){
 		ILvLList := []
-		AffixList := ["Shining","Glimmering","Glittering","Glowing","Radiating","Pulsing","Seething","Blazing","Scintillating","Incandescent","Resplendent"]
+		AffixList := ["Shining","Glimmering","Glittering","Glowing","Radiating","Pulsing","Seething","Blazing","Scintillating","Incandescent","Resplendent","Dazzling"]
 		ILvLListBodyArmours:= 	[3,11,17,23,29,35,43,51,60,69,75]
 		ILvLListRings:= 		[3,11,17,23,29,35,42,50,59,68,74]
 		ILvLListAmulets:= 		[3,11,17,23,29,35,42,50,59,68,74,80]
@@ -1285,7 +1292,7 @@
 		ILvLListGlovesBoots:= 	[3,11,17,23,29,35,43]
 		
 		;Incursion Mod
-		If (This.HasAffix("Guatelitzi's") and This.HasAffix("#% increased maximum Energy Shield")){
+		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Energy Shield"]){
 			This.Prop["ActualTierES"] := 1
 			return
 		}
@@ -1310,7 +1317,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to maximum Energy Shield"]){
 						value := k-ki+1
 						This.Prop["ActualTierES"] := value
 						break
@@ -1346,7 +1353,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to Armour"]){
 						value := k-ki+1
 						This.Prop["ActualTierArmour"] := value
 						break
@@ -1378,7 +1385,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["#% increased Armour"]){
 						value := k-ki+1
 						This.Prop["ActualTierIncArmour"] := value
 						break
@@ -1411,7 +1418,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to Evasion Rating"] ){
 						value := k-ki+1
 						This.Prop["ActualTierEvasion"] := value
 						break
@@ -1442,7 +1449,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["#% increased Evasion Rating"]){
 						value := k-ki+1
 						This.Prop["ActualTierIncEvasion"] := value
 						break
@@ -1470,7 +1477,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("#% increased Armour and Evasion")){
+					If (This.HasAffix(vi) && This.Affix["#% increased Armour and Evasion"]){
 						value := k-ki+1
 						This.Prop["ActualTierIncArmourEvasion"] := value
 						break
@@ -1497,7 +1504,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("#% increased Armour and Energy Shield")){
+					If (This.HasAffix(vi) && This.Affix["#% increased Armour and Energy Shield"]){
 						value := k-ki+1
 						This.Prop["ActualTierIncArmourES"] := value
 						break
@@ -1525,7 +1532,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.HasAffix("#% increased Evasion and Energy Shield")){
+					If (This.HasAffix(vi) && This.Affix["#% increased Evasion and Energy Shield"]){
 						value := k-ki+1
 						This.Prop["ActualTierIncEvasionES"] := value
 						break
@@ -1754,6 +1761,7 @@
 			}
 		}
 	}	
+	;Need a Review in Item Scan Affix
 	GetActualSpellSuppressTier(){
 		ILvLList := []
 		AffixList := ["of Rebuttal","of Snuffing","of Revoking","of Abjuration","of Nullification"]
@@ -1797,7 +1805,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["# to Accuracy Rating"]){
 						value := k-ki+1
 						This.Prop["ActualTierAccuracy"] := value
 						break
@@ -1813,7 +1821,7 @@
 		AffixList := ["Heavy","Serrated","Wicked","Vicious","Bloodthirsty","Cruel","Tyrannical","Merciless"]
 
 		;Incursion Mod
-		If (This.HasAffix("Tacati's") and This.HasAffix("#% increased Physical Damage")){
+		If (This.HasAffix("Tacati's") && This.Affix["#% increased Physical Damage"]){
 			This.Prop["ActualTierIncPhysicalDamage"] := 1
 			return
 		}
@@ -1824,7 +1832,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["#% increased Physical Damage"] ){
 						value := k-ki+1
 						This.Prop["ActualTierIncPhysicalDamage"] := value
 						break
@@ -1844,7 +1852,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["Adds # to # Physical Damage"]){
 						value := k-ki+1
 						This.Prop["ActualTierAddPhysicalDamage"] := value
 						break
