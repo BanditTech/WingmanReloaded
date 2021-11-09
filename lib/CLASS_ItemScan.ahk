@@ -1289,7 +1289,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Energy Shield"]){
+					If (This.HasAffix(vi) && (This.Affix["#% increased Energy Shield"] || This.Affix["#% increased maximum Energy Shield"])){
 						value := k-ki+1
 						This.Prop["ActualTierIncES"] := value
 						break
@@ -1863,6 +1863,14 @@
 	GetActualAddPhysicalDamageTier(){
 		ILvLList := [1,11,23,35,46,60,73,83]
 		AffixList := ["Glinting","Burnished","Polished","Honed","Gleaming","Annealed","Razor-sharp","Tempered","Flaring"]
+		ILvLListRings := [5,13,19,28,35,44]
+		ILvLListAmulets := [5,13,19.28,35,44,52,64,76]
+
+		if(indexOf(This.Prop.ItemClass,["Rings"])){
+			ILvLList := ILvLListRings
+		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
+			ILvLList := ILvLListAmulets
+		}
 		
 		for k,v in ILvLList
 		{
@@ -1870,7 +1878,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.Affix["Adds # to # Physical Damage"]){
+					If (This.HasAffix(vi) && (This.Affix["Adds # to # Physical Damage"] || This.Affix["Adds # to # Physical Damage to Attacks"]) ){
 						value := k-ki+1
 						This.Prop["ActualTierAddPhysicalDamage"] := value
 						break
@@ -1883,14 +1891,18 @@
 	GetActualAddFireDamageTier(){
 		ILvLList := [1,11,18,26,33,42,51,62,74,82]
 		AffixList := ["Heated","Smouldering","Smoking","Burning","Flaming","Scorching","Incinerating","Blasting","Cremating","Carbonising"]
+		ILvLListAmuletsRings := [1,12,20,28,35,44,52,64,76]
 		
+		if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
+			ILvLList := ILvLListAmuletsRings
+		}
 		for k,v in ILvLList
 		{
 			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.Affix["Adds # to # Fire Damage"]){
+					If (This.HasAffix(vi) && (This.Affix["Adds # to # Fire Damage"] || This.Affix["Adds # to # Fire Damage to Attacks"]) ){
 						value := k-ki+1
 						This.Prop["ActualTierAddFireDamage"] := value
 						break
@@ -1903,14 +1915,18 @@
 	GetActualAddColdDamageTier(){
 		ILvLList := [2,12,19,27,34,43,52,63,75,82]
 		AffixList := ["Frosted","Chilled","Icy","Frigid","Freezing","Frozen","Glaciated","Polar","Entombing","Crystalising"]
+		ILvLListAmuletsRings := [2,13,21,29,36,45,53,65,77]
 		
+		if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
+			ILvLList := ILvLListAmuletsRings
+		}
 		for k,v in ILvLList
 		{
 			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.Affix["Adds # to # Cold Damage"]){
+					If (This.HasAffix(vi) && (This.Affix["Adds # to # Cold Damage"] || This.Affix["Adds # to # Cold Damage to Attacks"]) ){
 						value := k-ki+1
 						This.Prop["ActualTierAddColdDamage"] := value
 						break
@@ -1923,14 +1939,18 @@
 	GetActualAddLightningDamageTier(){
 		ILvLList := [3,13,19,31,34,42,51,63,74,82]
 		AffixList := ["Humming","Buzzing","Snapping","Crackling","Sparking","Arcing","Shocking","Discharging","Electrocuting","Vapourising"]
+		ILvLListAmuletsRings := [3,13,22,28,35,44,52,64,76]
 		
+		if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
+			ILvLList := ILvLListAmuletsRings
+		}
 		for k,v in ILvLList
 		{
 			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.Affix["Adds # to # Lightning Damage"]){
+					If (This.HasAffix(vi) && (This.Affix["Adds # to # Lightning Damage"] || This.Affix["Adds # to # Lightning Damage to Attacks"]) ){
 						value := k-ki+1
 						This.Prop["ActualTierAddLightningDamage"] := value
 						break
@@ -1943,6 +1963,12 @@
 	GetActualIncElementalDamageTier(){
 		ILvLList := [4,15,30,60,81,86]
 		AffixList := ["Catalysing","Infusing","Empowering","Unleashed","Overpowering","Devastating"]
+		ILvLListRings := [4,15,30,60,81]
+
+		if(indexOf(This.Prop.ItemClass,["Rings"])){
+			ILvLList := ILvLListRings
+		}
+
 		for k,v in ILvLList
 		{
 			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
@@ -1992,10 +2018,17 @@
 			}
 		}
 	}
-	;LOCAL
 	GetActualIncCriticalStrikeChanceTier(){
 		ILvLList := [1,20,30,44,59,73]
-		AffixList := ["of Needling","of Stinging","of Piercing","of Puncturing","of Penetrating","of Incision"]
+		AffixList := ["of Needling","of Stinging","of Piercing","of Puncturing","of Penetrating","of Incision","of Rending"]
+		ILvLListAmulets := [5,20,30,44,58,72]
+		ILvLListQuivers := [5,20,30,44,58,72,85]
+
+		if(indexOf(This.Prop.ItemClass,["Amulets"])){
+			ILvLList := ILvLListAmulets
+		}else if(indexOf(This.Prop.ItemClass,["Quivers"])){
+			ILvLList := ILvLListQuivers
+		}
 
 		for k,v in ILvLList
 		{
@@ -2003,7 +2036,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Critical Strike Chance"]){
+					If (This.HasAffix(vi) && (This.Affix["#% increased Critical Strike Chance"] || This.Affix["#% increased Global Critical Strike Chance"] || This.Affix["#% increased Critical Strike Chance with Bows"])){
 						value := k-ki+1
 						This.Prop["ActualTierCriticalStrikeChance"] := value
 						break
@@ -2043,11 +2076,6 @@
 	GetActualDOTMultiplierTier(){
 		ILvLList := [44,55,68,76,82]
 		AffixList := ["of Acrimony","of Dispersion","of Liquefaction","of Melting","of Dissolution"]
-		ILvLListAmulets := [8,21,31,45,59,74]
-
-		if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
 
 		for k,v in ILvLList
 		{
