@@ -1,4 +1,13 @@
-﻿## Version .14.0305 - Alpha version - October/28/2021
+﻿## Version .14.0306 - Alpha version - November/09/2021
+Bugfixes
+  * Fix some Actual Tier not working as intented
+  * Fix Shoo Mouse
+  * Fix Empty Grid
+  * Click to Vendor in Mines (Automation)
+Actual Tier
+  * Add more Actual Tier covering all defenses and major damage options
+
+## Version .14.0305 - Alpha version - October/28/2021
 Bugfixes
   * Scourged items are garbage and we recognize that
   * The Rogue Harbour now has a separate vendor sample
