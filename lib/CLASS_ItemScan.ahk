@@ -3846,6 +3846,10 @@
 			Return (val < min)
 		} else if (eval = "<=") {
 			Return (val <= min)
+		} else if (eval = ">0<") {
+			Return (val > 0 && val < min)
+		} else if (eval = ">0<=") {
+			Return (val > 0 && val <= min)
 		} else if (eval = "!=") {
 			Return (val != min)
 		} else if (eval = "~=") {
