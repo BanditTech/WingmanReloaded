@@ -1762,7 +1762,7 @@
 			}
 		}
 	}	
-	;Need a Review in Item Scan Affix
+	;Review Item Scan Affix content in () after affix
 	GetActualSpellSuppressTier(){
 		ILvLList := []
 		AffixList := ["of Rebuttal","of Snuffing","of Revoking","of Abjuration","of Nullification"]
@@ -1856,6 +1856,118 @@
 					If (This.HasAffix(vi) && This.Affix["Adds # to # Physical Damage"]){
 						value := k-ki+1
 						This.Prop["ActualTierAddPhysicalDamage"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualAddFireDamageTier(){
+		ILvLList := [1,11,18,26,33,42,51,62,74,82]
+		AffixList := ["Heated","Smouldering","Smoking","Burning","Flaming","Scorching","Incinerating","Blasting","Cremating","Carbonising"]
+		
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi) && This.Affix["Adds # to # Fire Damage"]){
+						value := k-ki+1
+						This.Prop["ActualTierAddFireDamage"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualAddColdDamageTier(){
+		ILvLList := [2,12,19,27,34,43,52,63,75,82]
+		AffixList := ["Frosted","Chilled","Icy","Frigid","Freezing","Frozen","Glaciated","Polar","Entombing","Crystalising"]
+		
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi) && This.Affix["Adds # to # Cold Damage"]){
+						value := k-ki+1
+						This.Prop["ActualTierAddColdDamage"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualAddLightningDamageTier(){
+		ILvLList := [3,13,19,31,34,42,51,63,74,82]
+		AffixList := ["Humming","Buzzing","Snapping","Crackling","Sparking","Arcing","Shocking","Discharging","Electrocuting","Vapourising"]
+		
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi) && This.Affix["Adds # to # Lightning Damage"]){
+						value := k-ki+1
+						This.Prop["ActualTierAddLightningDamage"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncElementalDamage(){
+		ILvLList := [4,15,30,60,81,86]
+		AffixList := ["Catalysing","Infusing","Empowering","Unleashed","Overpowering","Devastating"]
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi) && This.Affix["#% increased Elemental Damage with Attack Skills"]){
+						value := k-ki+1
+						This.Prop["ActualTierIncElementalDamage"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualAttackSpeed(){
+		ILvLList := [1,11,22,30,37,45,60,77]
+		AffixList := ["of Skill","of Ease","of Mastery","of Renown","of Acclaim","of Fame","of Infamy","of Celebration"]
+		ILvLListGloves := 	[1,11,22,76]
+		ILvLListQuiversShields := 	[1,11,22]
+		ILvLListRings := 	[1]
+		ILvLListWandsBows := 	[1,11,22,30,37]
+
+		if(indexOf(This.Prop.ItemClass,["Gloves"])){
+			ILvLList := ILvLListGloves
+		}else if(indexOf(This.Prop.ItemClass,["Quiver","Shields"])){
+			ILvLList := ILvLListQuiversShields
+		}else if(indexOf(This.Prop.ItemClass,["Rings"])){
+			ILvLList := ILvLListRings
+		}else if(indexOf(This.Prop.ItemClass,["Wands","Bows"])){
+			ILvLList := ILvLListWandsBows
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi) && This.Affix["#% increased Attack Speed"]){
+						value := k-ki+1
+						This.Prop["ActualTierAttackSpeed"] := value
 						break
 					}
 				}
@@ -3871,7 +3983,6 @@
 			Return matchedOR ; If any of the sections produced a match it will flag true
 		}
 	}
-
 	inRange(key,obj,base){
 		If (obj.ranges.Count() = 1) {
 			If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
