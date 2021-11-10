@@ -2578,6 +2578,8 @@
 			line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
 			line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
 			line :=  RegExReplace(line,  " . Unscalable Value" , "")
+			;Fix Extra Text from Spell Suppress Mods
+			line :=  RegExReplace(line,  "\(50% of Damage from Suppressed Hits and Ailments they inflict is prevented\)" , "")
 			key := This.Standardize(line)
 			If (vals := This.MatchLine(line))
 			{
