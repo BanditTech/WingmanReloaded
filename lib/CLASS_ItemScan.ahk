@@ -1796,7 +1796,7 @@
 			{
 				for ki,vi in AffixList
 				{
-					If (This.HasAffix(vi)){
+					If (This.HasAffix(vi) && This.Affix["#% chance to Suppress Spell Damage"]){
 						value := k-ki+1
 						This.Prop["ActualTierSpellSuppress"] := value
 						break
