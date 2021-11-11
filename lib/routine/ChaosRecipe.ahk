@@ -578,11 +578,13 @@ VendorRoutineChaos(){
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
-		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+		If !RunningToggle || RecipeComplete ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
 		For R, GridY in InventoryGridY
 		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+      If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
+        RecipeComplete := True
+			If !RunningToggle || RecipeComplete   ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
@@ -628,8 +630,6 @@ VendorRoutineChaos(){
 	If (OnVendor && RunningToggle && YesEnableAutomation)
 	{
 		ContinueFlag := False
-		If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
-			RecipeComplete := True
 		If !RecipeComplete
 			Return False
 		If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
