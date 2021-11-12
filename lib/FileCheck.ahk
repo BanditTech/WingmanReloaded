@@ -94,30 +94,12 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 		MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
 	}
 	Else if (ErrorLevel=0){
-			Log("Verbose","Data downloaded Correctly", "Downloading Bases.json was a success")
+		Log("Verbose","Data downloaded Correctly", "Downloading Bases.json was a success")
 		FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
-		Holder := []
 		Bases := JSON.Load(JSONtext)
-		For k, v in Bases
-		{
-			temp := {"name":v["name"]
-				,"item_class":v["item_class"]
-				,"domain":v["domain"]
-				,"tags":v["tags"]
-				,"inventory_width":v["inventory_width"]
-				,"inventory_height":v["inventory_height"]
-				,"drop_level":v["drop_level"]}
-			Holder.Push(temp)
-		}
-		Bases := Holder
-		JSONtext := JSON.Dump(Bases,,2)
-		FileDelete, %A_ScriptDir%\data\Bases.json
-		FileAppend, %JSONtext%, %A_ScriptDir%\data\Bases.json
-		JSONtext := Holder := k := v := temp := ""
+		JSONtext := ""
 	}
-}
-Else
-{
+} Else {
 	FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
 	Bases := JSON.Load(JSONtext)
 	JSONtext := ""
