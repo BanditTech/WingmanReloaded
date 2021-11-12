@@ -3091,6 +3091,31 @@
 					This.Prop.ItemBase := v["name"]
 					This.Prop.DropLevel := v["drop_level"]
 
+
+					If (This.Prop.Rating_Armour || This.Prop.Rating_EnergyShield || This.Prop.Rating_Evasion){
+						tally := total := 0
+						If This.Prop.Rating_Armour {
+							tally++
+							val := This.Perc(This.Prop.Rating_Armour,[v.properties.armour.min,v.properties.armour.max])
+							total += val
+							This.Prop.Rating_Armour_Percent := round(val,2)
+						}
+						If This.Prop.Rating_EnergyShield {
+							tally++
+							val := This.Perc(This.Prop.Rating_EnergyShield,[v.properties.energy_shield.min,v.properties.energy_shield.max])
+							total += val
+							This.Prop.Rating_EnergyShield_Percent := round(val,2)
+						}
+						If This.Prop.Rating_Evasion {
+							tally++
+							val := This.Perc(This.Prop.Rating_Evasion,[v.properties.evasion.min,v.properties.evasion.max])
+							total += val
+							This.Prop.Rating_Evasion_Percent := round(val,2)
+						}
+						This.Prop.Rating_Percent := round(total/tally,2)
+						tally := total := val := ""
+					}
+
 					If InStr(This.Prop.ItemClass, "Rings")
 						This.Prop.Ring := True
 					If InStr(This.Prop.ItemClass, "Amulets")
@@ -3219,7 +3244,7 @@
 			If This.MatchNinjaDB("Map","ItemBase","name")
 				Return
 		}
-		If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "")
+		If (This.Prop.ItemLevel >= 82 && This.Prop.Influence != "" && !This.Prop.RarityUnique)
 		{
 			For k, v in Ninja.BaseType
 			{
