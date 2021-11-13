@@ -9,6 +9,7 @@ Improvements
 Bugfixes
   * Chaos Recipe Automation continues when the recipe is filled
   * Increased the delay on spam clicker to prevent DC
+  * Fixes for spell suppress parsing
 
 ---
 
