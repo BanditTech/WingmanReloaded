@@ -1,4 +1,8 @@
-﻿## Version .14.0307 - Alpha version - November/12/2021
+﻿## Version .14.0308 - Alpha version - November/12/2021
+Bugfixes
+  * Prevent modifiers from stopping Spam Click binding to release
+
+## Version .14.0307 - Alpha version - November/12/2021
 Improvements
   * Item parser now calculates Base defenses rating percentage
   * Added another spam clicker for Shift+Click

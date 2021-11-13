@@ -443,11 +443,11 @@ readFromFile(){
 		hotkey % hotkeyShiftClicker,% ShiftSpam, Off
 	Hotkey, If
 	If hotkeyCtrlClicker
-		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
+		hotkey % "*" hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
 	If hotkeyCtrlShiftClicker
-		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
+		hotkey % "*" hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
 	If hotkeyShiftClicker
-		hotkey % hotkeyShiftClicker " Up",% CtrlSpamOff, Off
+		hotkey % "*" hotkeyShiftClicker " Up",% CtrlSpamOff, Off
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
 	If hotkeyGrabCurrency
@@ -543,11 +543,11 @@ readFromFile(){
 		hotkey % hotkeyShiftClicker,% ShiftSpam, On
 	hotkey, If
 	If hotkeyCtrlClicker
-		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, On
+		hotkey % "*" hotkeyCtrlClicker " Up",% CtrlSpamOff, On
 	If hotkeyCtrlShiftClicker
-		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, On
+		hotkey % "*" hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, On
 	If hotkeyShiftClicker
-		hotkey % hotkeyShiftClicker " Up",% CtrlSpamOff, On
+		hotkey % "*" hotkeyShiftClicker " Up",% CtrlSpamOff, On
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
 	If hotkeyGrabCurrency
@@ -741,11 +741,11 @@ updateEverything:
 		hotkey % hotkeyShiftClicker,% ShiftSpam, Off
 	hotkey, If
 	If hotkeyCtrlClicker
-		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
+		hotkey % "*" hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
 	If hotkeyCtrlShiftClicker
-		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
+		hotkey % "*" hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
 	If hotkeyShiftClicker
-		hotkey % hotkeyShiftClicker " Up",% CtrlSpamOff, Off
+		hotkey % "*" hotkeyShiftClicker " Up",% CtrlSpamOff, Off
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
 	If hotkeyGrabCurrency
