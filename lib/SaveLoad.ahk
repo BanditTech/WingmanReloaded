@@ -467,19 +467,19 @@ readFromFile(){
 	If hotkeyLootScan
 	{
 		hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
-		hotkey, $~%hotkeyLootScan% Up, LootScanCommandRelease, Off
+		hotkey, $~*%hotkeyLootScan% Up, LootScanCommandRelease, Off
 	}
 	If hotkeyPauseMines
 		hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
 	If hotkeyMainAttack
 	{
 		hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
-		hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
+		hotkey, $~*%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
 	}
 	If hotkeySecondaryAttack
 	{
 		hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
-		hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
+		hotkey, $~*%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
 	}
 
 	hotkey, IfWinActive
@@ -567,17 +567,17 @@ readFromFile(){
 	If hotkeyLootScan
 	{
 		hotkey, $~%hotkeyLootScan%, LootScanCommand, On
-		hotkey, $~%hotkeyLootScan% Up, LootScanCommandRelease, On
+		hotkey, $~*%hotkeyLootScan% Up, LootScanCommandRelease, On
 	}
 	If hotkeyMainAttack
 	{
 		hotkey, $~%hotkeyMainAttack%, MainAttackCommand, On
-		hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, On
+		hotkey, $~*%hotkeyMainAttack% Up, MainAttackCommandRelease, On
 	}
 	If hotkeySecondaryAttack
 	{
 		hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, On
-		hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, On
+		hotkey, $~*%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, On
 	}
 	
 	#MaxThreadsPerHotkey, 1
@@ -765,19 +765,19 @@ updateEverything:
 	If hotkeyLootScan
 	{
 		hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
-		hotkey, $~%hotkeyLootScan% Up, LootScanCommandRelease, Off
+		hotkey, $~*%hotkeyLootScan% Up, LootScanCommandRelease, Off
 	}
 	If hotkeyPauseMines
 		hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
 	If hotkeyMainAttack
 	{
 		hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
-		hotkey, $~%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
+		hotkey, $~*%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
 	}
 	If hotkeySecondaryAttack
 	{
 		hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
-		hotkey, $~%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
+		hotkey, $~*%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
 	}
 
 	UnRegisterHotkeys()
