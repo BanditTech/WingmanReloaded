@@ -439,11 +439,15 @@ readFromFile(){
 		hotkey % hotkeyCtrlClicker,% CtrlSpam, Off
 	If hotkeyCtrlShiftClicker
 		hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, Off
+	If hotkeyShiftClicker
+		hotkey % hotkeyShiftClicker,% ShiftSpam, Off
 	Hotkey, If
 	If hotkeyCtrlClicker
 		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
 	If hotkeyCtrlShiftClicker
 		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
+	If hotkeyShiftClicker
+		hotkey % hotkeyShiftClicker " Up",% CtrlSpamOff, Off
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
 	If hotkeyGrabCurrency
@@ -511,6 +515,7 @@ readFromFile(){
 	IniRead, hotkeyTriggerMovement, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement, LButton
 	IniRead, hotkeyCtrlClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker, % A_Space
 	IniRead, hotkeyCtrlShiftClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker, % A_Space
+	IniRead, hotkeyShiftClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, ShiftClicker, % A_Space
 	
 	hotkey, IfWinActive, ahk_group POEGameGroup
 	If hotkeyAutoQuit
@@ -534,11 +539,15 @@ readFromFile(){
 		hotkey % hotkeyCtrlClicker,% CtrlSpam, On
 	If hotkeyCtrlShiftClicker
 		hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, On
+	If hotkeyShiftClicker
+		hotkey % hotkeyShiftClicker,% ShiftSpam, On
 	hotkey, If
 	If hotkeyCtrlClicker
 		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, On
 	If hotkeyCtrlShiftClicker
 		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, On
+	If hotkeyShiftClicker
+		hotkey % hotkeyShiftClicker " Up",% CtrlSpamOff, On
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
 	If hotkeyGrabCurrency
@@ -728,11 +737,15 @@ updateEverything:
 		hotkey % hotkeyCtrlClicker,% CtrlSpam, Off
 	If hotkeyCtrlShiftClicker
 		hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, Off
+	If hotkeyShiftClicker
+		hotkey % hotkeyShiftClicker,% ShiftSpam, Off
 	hotkey, If
 	If hotkeyCtrlClicker
 		hotkey % hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
 	If hotkeyCtrlShiftClicker
 		hotkey % hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
+	If hotkeyShiftClicker
+		hotkey % hotkeyShiftClicker " Up",% CtrlSpamOff, Off
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
 	If hotkeyGrabCurrency
@@ -862,6 +875,7 @@ updateEverything:
 	IniWrite, %hotkeyCraftBasic%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic
 	IniWrite, %hotkeyCtrlClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker
 	IniWrite, %hotkeyCtrlShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker
+	IniWrite, %hotkeyShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, ShiftClicker
 	IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
 	IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
 	IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks

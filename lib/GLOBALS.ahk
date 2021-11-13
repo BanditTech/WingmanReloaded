@@ -65,6 +65,7 @@
 	; Binding Objects for Spam keys
 	Global CtrlSpam := Func("SpamClick").Bind("On","Ctrl")
 	Global CtrlShiftSpam := Func("SpamClick").Bind("On",["Ctrl","Shift"])
+	Global ShiftSpam := Func("SpamClick").Bind("On",["Shift"])
 	Global CtrlSpamOff := Func("SpamClick").Bind("Off")
 
 	Global PauseTooltips:=0
@@ -154,6 +155,7 @@
 		hotkeyCraftBasic = Set your hotkey to use Basic Crafting pop-up, these can be configured in the Crafting Settings.
 		hotkeyCtrlClicker = Bind a key to use for fast Ctrl Clicks on your cursor.
 		hotkeyCtrlShiftClicker = Bind a key to use for fast Ctrl + Shift Clicks on your cursor.
+		hotkeyShiftClicker = Bind a key to use for fast Shift Clicks on your cursor.
 		hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
 		hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
 		hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
@@ -759,6 +761,7 @@
 	global hotkeyCraftBasic:="F9"
 	global hotkeyCtrlClicker:=""
 	global hotkeyCtrlShiftClicker:=""
+	global hotkeyShiftClicker:=""
 	global hotkeyGrabCurrency:="!a"
 	global hotkeyGetMouseCoords:="!o"
 	global hotkeyCloseAllUI:="Space"

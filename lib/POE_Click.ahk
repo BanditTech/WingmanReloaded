@@ -29,7 +29,7 @@ SpamClick(Toggle:="",Modifier:=""){
 	}
 	While Spam {
 		Send {Click}
-		Sleep, 60+(ClickLatency*15)
+		Sleep, 120+(ClickLatency*15)
 	}
 	If (Modifier != "") {
 		For k, mod in Modifier{
