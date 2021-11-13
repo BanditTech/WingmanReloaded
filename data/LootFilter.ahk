@@ -38,7 +38,7 @@
 
   JSONtext := temp := ""
 
-  Eval := [ "<","<=","=","!=",">=",">","~","~=" ]
+  Eval := [ "<","<=","=","!=",">=",">","~","~=",">0<",">0<=" ]
   textListEval:="" 
   For k, v in Eval
     textListEval .= (!textListEval ? "" : "|") v
