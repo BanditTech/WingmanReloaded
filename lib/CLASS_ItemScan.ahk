@@ -20,8 +20,10 @@
 					This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
 				Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" )
 					This.Data.Blocks.Affix := SVal
-				Else If (SVal ~= " \(enchant\)$")
+				Else If (SVal ~= " \(enchant\)$"){
+					This.Prop.Enchanted := True
 					This.Data.Blocks.Enchant := SVal
+				}
 				Else If (SVal ~= "Open Rooms:"){
 					temp := StrSplit(SVal,"Obstructed Rooms:")
 					This.Data.Blocks.TempleRooms := StrSplit(temp.1,"Open Rooms:").2
@@ -34,18 +36,21 @@
 			{
 				If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
 					This.Data.Blocks.FlavorText := SVal
-				Else If (SVal ~= "\(implicit\)$")
+				Else If (SVal ~= "\(implicit\)$"){
+					This.Prop.HasImplicit := True
 					This.Data.Blocks.Implicit := SVal
+				}
 				Else If (SVal ~= "Adds \d{1,} Passive Skills (enchant)")
 					This.Data.Blocks.ClusterImplicit := SVal
-				Else If (SVal ~= "\(enchant\)$")
+				Else If (SVal ~= "\(enchant\)$"){
+					This.Prop.HasEnchant := True
 					This.Data.Blocks.Enchant := SVal
+				}
 				Else If (SVal ~= "\(scourge\)$")
 					This.Data.Blocks.Scourge := SVal
 				Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
 					This.Data.Blocks.Influence := SVal
-				Else If (SVal ~= "^Scourged$")
-				{
+				Else If (SVal ~= "^Scourged$") {
 					This.Prop.Scourged := True
 				}
 				Else If (SVal ~= "^Corrupted$")

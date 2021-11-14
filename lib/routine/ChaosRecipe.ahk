@@ -725,7 +725,7 @@ VendorChaosRecipe(){
 		CheckRunning("On")
 	} Else
 		Return
-
+  Object.1 := AHK.SortBy(Object.1,Func("fn_sortByTab"))
 	For k, v in Object.1
 	{
 		; Move to Tab
@@ -857,4 +857,7 @@ PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
 	. "Two Hand: " . (Tally["Two Hand"]?Tally["Two Hand"]:0) . "/" . (uTally["Two Hand"]?uTally["Two Hand"]:0) . "`n"
 	, (Duration != "False" ? Duration : 20))
 	Return
+}
+fn_sortByTab(o){
+  Return o.Prop.StashTab
 }
