@@ -2744,7 +2744,7 @@
 		; These lines remove the extra line created by "additional information bubbles"
 		If (content ~= "\n\(")
 			content := RegExReplace(content, "\n\(", "(")
-		content := RegExReplace(content,"\(\w+ \w+ [\r\n\w\%\d,\: ]*\)", "")
+		content := RegExReplace(content," ?\(\w+ \w+ [\r\n\w\%\d,\: ]*\)( \(enchant\))?", "")
 		; Do Stuff with info
 		Loop, Parse,% content, `r`n  ; , `r
 		{
