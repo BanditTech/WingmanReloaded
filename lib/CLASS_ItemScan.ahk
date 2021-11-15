@@ -85,12 +85,20 @@
 		This.MatchCraftingBases()
 		This.MatchBase2Slot()
 		This.MatchChaosRegal()
-		This.Prop.StashChaosItem := This.StashChaosRecipe(False)
+		If (This.Prop.SlotType)
+			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off")  ){
 			This.Prop.PredictPrice := This.PredictPrice()
 		}
 		This.Prop.StashReturnVal := This.MatchStashManagement(false)
 		; This.FuckingSugoiFreeMate()
+		If (This.Prop.ClusterJewel) {
+			This.Prop.ClusterSkills := 0
+			For k, v in This.Affix {
+				If InStr(k, "# Added Passive Skill is")
+					This.Prop.ClusterSkills += 1
+			}
+		}
 	}
 	; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
 	PredictPrice(Switch:="")
