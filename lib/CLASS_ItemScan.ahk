@@ -246,6 +246,8 @@
 			}
 			If (This.Prop.Rarity_Digit < 3)
 				This.Prop.OpenAffix -= 4
+			Else If (This.Prop.ItemClass ~= "Jewels" && This.Prop.Rarity_Digit = 3)
+				This.Prop.OpenAffix -= 2
 			; 4 Lines in NamePlate => Rarity / Item Name/ Item Base
 			If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)",RxMatch))
 			{
