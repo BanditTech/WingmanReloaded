@@ -94,9 +94,12 @@
 		; This.FuckingSugoiFreeMate()
 		If (This.Prop.ClusterJewel) {
 			This.Prop.ClusterSkills := 0
+			This.Prop.ClusterSmall := 0
 			For k, v in This.Affix {
 				If InStr(k, "# Added Passive Skill is")
 					This.Prop.ClusterSkills += 1
+				If InStr(k, "Added Small Passive Skills also grant:")
+					This.Prop.ClusterSmall += 1
 			}
 		}
 	}
