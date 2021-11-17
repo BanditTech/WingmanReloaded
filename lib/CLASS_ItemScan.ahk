@@ -285,7 +285,12 @@
 				This.Prop.MiscMapItem := True
 				This.Prop.SpecialType := "Misc Map Item"
 			}
-			If (This.Prop.ItemClass = "Maps")
+			Else If (This.Prop.ItemClass = "Atlas Region Upgrade Items")
+			{
+				This.Prop.MiscMapItem := True
+				This.Prop.SpecialType := "Atlas Watchstone"
+			}
+			Else If (This.Prop.ItemClass = "Maps")
 			{
 				This.Prop.IsMap := True
 				; Deal with Blighted Map
@@ -299,7 +304,7 @@
 					This.Prop.SpecialType := "Map"
 				}
 			}
-			If (This.Prop.ItemBase ~= "Invitation:" && This.Data.Blocks.FlavorText ~= "Map Device")
+			Else If (This.Prop.ItemBase ~= "Invitation:" && This.Data.Blocks.FlavorText ~= "Map Device")
 			{
 				This.Prop.SpecialType := "Invitation Map"
 			}
