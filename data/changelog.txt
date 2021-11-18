@@ -1,4 +1,12 @@
-﻿## Version .14.0308 - Alpha version - November/12/2021
+﻿## Version .14.0309 - Alpha version - November/18/2021
+Bugfixes
+  * Parser Improvements - Cluster, jewels, watchstones
+  * Chaos recipe improvements
+
+---
+
+
+## Version .14.0308 - Alpha version - November/12/2021
 Bugfixes
   * Prevent modifiers from stopping Spam Click binding to release
 
