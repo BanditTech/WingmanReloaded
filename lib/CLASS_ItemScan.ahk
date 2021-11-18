@@ -186,6 +186,9 @@
 				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" . (.*) \}", rxm ) {
 					This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
 					This.Affix[rxm1] := This.Modifier[rxm1] := 1
+				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \}", rxm ) {
+					This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:""})
+					This.Affix[rxm1] := This.Modifier[rxm1] := 1
 				}
 				This.Prop.PrefixCount++, This.Prop.AffixCount++
 			} Else If (v ~= "\{ Suffix Modifier") {
@@ -194,6 +197,9 @@
 					This.Affix[rxm1] := This.Modifier[rxm1] := 1
 				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" . (.*) \}", rxm ) {
 					This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
+					This.Affix[rxm1] := This.Modifier[rxm1] := 1
+				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \}", rxm ) {
+					This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:""})
 					This.Affix[rxm1] := This.Modifier[rxm1] := 1
 				}
 				This.Prop.SuffixCount++, This.Prop.AffixCount++
@@ -846,6 +852,12 @@
 		{
 			This.Prop.Veiled := True
 			This.Prop.SpecialType := "Veiled Item"
+			For k, v in This.Modifier {
+				If RegExMatch(k, "(.*) Veiled", rxm) {
+					This.Prop.VeiledType := rxm1
+					Break
+				}
+			}
 		}
 		Else
 		{
