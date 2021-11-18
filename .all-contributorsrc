@@ -95,7 +95,8 @@
       "profile": "https://github.com/Hillgrove",
       "contributions": [
         "code",
-        "data"
+        "data",
+        "maintenance"
       ]
     },
     {
@@ -123,6 +124,16 @@
       "profile": "https://github.com/chrotots",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "kwabam",
+      "name": "kwabam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32689562?v=4",
+      "profile": "https://github.com/kwabam",
+      "contributions": [
+        "data",
+        "maintenance"
       ]
     }
   ],
