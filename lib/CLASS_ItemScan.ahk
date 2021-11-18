@@ -85,7 +85,7 @@
 		This.MatchCraftingBases()
 		This.MatchBase2Slot()
 		This.MatchChaosRegal()
-		If (This.Prop.SlotType)
+		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off")  ){
 			This.Prop.PredictPrice := This.PredictPrice()
