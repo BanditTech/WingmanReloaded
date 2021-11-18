@@ -1,0 +1,2161 @@
+{
+ "~~Amulets": { "GroupName": "Amulets", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Amulets", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDOTMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDOTMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDOTMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDOTMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "40", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~Boots": { "GroupName": "Boots", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Boots", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierMS", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "#Key": "ActualTierMS", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierMS", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierMS", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+       ]},
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~CASTER WEAPONS, 3": { "GroupName": "CASTER WEAPONS, 3", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Empress's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Queen's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Martinet's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incanter's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Xoph's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Pyroclastic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magmatic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tul's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cryomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalline", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Esh's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Ionising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Smiting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Discharging", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Entombing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Polar", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blasting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flame Shaper's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Frost Singer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Thunderhand's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mad Lord's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lithomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruin", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Finesse", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Zaffre", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~CASTER WEAPONS, 4": { "GroupName": "CASTER WEAPONS, 4", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Empress's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Queen's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Martinet's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incanter's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Xoph's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Pyroclastic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magmatic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tul's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cryomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalline", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Esh's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Ionising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Smiting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Discharging", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Shocking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Entombing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Polar", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glaciated", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blasting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incinerating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flame Shaper's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Frost Singer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Thunderhand's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mad Lord's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lithomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruin", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Calamity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Finesse", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Sortilege", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Nirvana", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Zaffre", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blue", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mazarine", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Archmage's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~ELE WEAPONS, 3": { "GroupName": "ELE WEAPONS, 3", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemBase", "Eval": "~", "Min": "Ambusher|Corsair Sword|Eye Gouger|Fancy Foil|Gemini Claw|Grove Bow|Hellion's Paw|Imperial Bow|Imperial Claw|Jewelled Foil|Maraketh Bow|Spiraled Foil|Thicket Bow", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Carbonising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Entombing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Vapourising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Celebration", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Incision", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Penetrating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~ELE WEAPONS, 4": { "GroupName": "ELE WEAPONS, 4", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "IsOneHanded", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Carbonising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blasting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Entombing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Polar", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Vapourising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Discharging", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Celebration", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Infamy", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Incision", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Penetrating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Puncturing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~ELE+CHAOS CASTER WEAPONS, CHAOS": { "GroupName": "ELE+CHAOS CASTER WEAPONS, CHAOS", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incanter's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mad Lord's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tecton's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruin", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Calamity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Finesse", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Sortilege", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Nirvana", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Euphoria", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Zaffre", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blue", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mazarine", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Liquefaction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Dispersion", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Baleful", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Inimical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Disintegrating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Atrophying", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Deteriorating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~ELE+CHAOS CASTER WEAPONS, COLD": { "GroupName": "ELE+CHAOS CASTER WEAPONS, COLD", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incanter's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tul's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cryomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalline", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Entombing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Polar", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glaciated", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Winter Beckoner's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tecton's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruin", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Calamity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Finesse", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Sortilege", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Nirvana", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Zaffre", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blue", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mazarine", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Liquefaction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Dispersion", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Baleful", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Inimical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mortifying", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Festering", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Heartstopping", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Gelid", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Boreal", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~ELE+CHAOS CASTER WEAPONS, FIRE": { "GroupName": "ELE+CHAOS CASTER WEAPONS, FIRE", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incanter's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Xoph's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Pyroclastic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magmatic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Discharging", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Shocking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lava Conjurer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tecton's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruin", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Calamity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Finesse", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Sortilege", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Nirvana", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Zaffre", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blue", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mazarine", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Liquefaction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Dispersion", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Conflagrating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Combusting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Carbonising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Fanatical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Zealous", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Baleful", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Inimical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Corrosive", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Dissolving", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Ardent", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~ELE+CHAOS CASTER WEAPONS, LIGHT": { "GroupName": "ELE+CHAOS CASTER WEAPONS, LIGHT", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incanter's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Esh's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Ionising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Smiting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blasting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incinerating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tempest Master's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tecton's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruin", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Calamity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Finesse", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Sortilege", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Nirvana", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Zaffre", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blue", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mazarine", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Liquefaction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Dispersion", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Vapourising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Baleful", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Inimical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Excruciating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Harrowing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's ", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~Elemental One Handed Weapon": { "GroupName": "Elemental One Handed Weapon", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "IsOneHanded", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" }
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" }
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "AffixCount", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" }
+       ]},
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" }
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~Gloves": { "GroupName": "Gloves", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Gloves", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierArmour", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+       ]},
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~Helmets": { "GroupName": "Helmets", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Helmets", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of Socketed Minion Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasionLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of Socketed Minion Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierArmour", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmourEvasion", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierArmourLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierEvasionLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]},
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of Socketed Minion Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~Jewels": { "GroupName": "Jewels", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Jewels|Abyss Jewels", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+       { "#Key": "#% increased maximum Life", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased maximum Energy Shield", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased maximum Mana", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to maximum Life", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to maximum Energy Shield", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+     ]},
+     { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+       { "#Key": "Corrupted Blood cannot be inflicted on you (implicit)", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "You cannot be Hindered (implicit)", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "You cannot be Cursed with Silence (implicit)", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+     ]},
+     { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased maximum Life", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased maximum Energy Shield", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Global Critical Strike Multiplier", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Damage over Time", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Area Damage", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Attack Speed", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Attack and Cast Speed", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to all Elemental Resistances", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Melee Damage", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Projectile Damage", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Damage", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier with One Handed Melee Weapons", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier with Two Handed Melee Weapons", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier while Dual Wielding", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier with Fire Skills", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier with Cold Skills", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier with Lightning Skills", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier with Elemental Skills", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% to Critical Strike Multiplier for Spells", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Minions have #% increased maximum Life", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Minions have #% to all Elemental Resistances", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Minions deal #% increased Damage", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Minions deal #% increased Damage", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+     ]}
+   ]}
+ ]},
+ "~~MAGIC - 35% MOVEMENT SPEED BOOTS": { "GroupName": "MAGIC - 35% MOVEMENT SPEED BOOTS", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+     { "#Key": "ItemClass", "Eval": "~", "Min": "Boots", "Type": "Prop", "Weight": "1" },
+     { "#Key": "RarityMagic", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" }
+   ]},
+   { "#Key": "Hellion's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+ ]},
+ "~~MAGIC - PHYSICAL WEAPONS": { "GroupName": "MAGIC - PHYSICAL WEAPONS", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+     { "#Key": "IsWeapon", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+     { "#Key": "RarityMagic", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" }
+   ]},
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "#Key": "Merciless", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tyrannical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~MAP FILTERING": { "GroupName": "MAP FILTERING", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Maps", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "#Key": "Players in Area are #% Delirious (enchant)", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Area is influenced by The Elder (implicit)", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Area is influenced by The Shaper (implicit)", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~MOD ITEMS BOW": { "GroupName": "MOD ITEMS BOW", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Bows", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+     { "#Key": "# to Level of Socketed Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "# to Level of Socketed Bow Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~MOD ITEMS CASTER": { "GroupName": "MOD ITEMS CASTER", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Martinet's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~MOD ITEMS D": { "GroupName": "MOD ITEMS D", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Staves", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Martinet's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lava Conjurer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Winter Beckoner's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tempest Master's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Splintermind's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tecton's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~PHYS WEAPONS, 2": { "GroupName": "PHYS WEAPONS, 2", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "IsWeapon", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flaring", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tempered", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Merciless", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tyrannical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Dictator's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Emperor's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Celebration", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~PHYS WEAPONS, 3": { "GroupName": "PHYS WEAPONS, 3", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "IsWeapon", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flaring", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tempered", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Razor-sharp", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Merciless", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tyrannical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cruel", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Dictator's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Emperor's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Conqueror's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Celebration", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Infamy", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Incision", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~PHYS WEAPONS, 4": { "GroupName": "PHYS WEAPONS, 4", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "IsWeapon", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flaring", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tempered", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Razor-sharp", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Annealed", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Merciless", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tyrannical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cruel", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Bloodthirsty", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Dictator's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Emperor's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Conqueror's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Champion's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Celebration", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Infamy", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Fame", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Incision", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Penetrating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~Physical One Handed Weapon": { "GroupName": "Physical One Handed Weapon", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "IsOneHanded", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "ActualTierIncPhysicalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" }
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "ActualTierIncPhysicalDamage", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" }
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "AffixCount", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" }
+       ]},
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierIncPhysicalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" }
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~Quivers": { "GroupName": "Quivers", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Quivers", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDOTMultiplier", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Projectile Speed", "Eval": ">=", "Min": "34", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Mana", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Life", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierGlobalCriticalStrikeMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierCriticalStrikeChance", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDOTMultiplier", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Projectile Speed", "Eval": ">=", "Min": "26", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Mana", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Life", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~RARE MODIFIERS - CASTER/SUMMONER": { "GroupName": "RARE MODIFIERS - CASTER/SUMMONER", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands|Shields", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Xoph's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tul's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Esh's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Empress's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Martinet's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~Resist Gear": { "GroupName": "Resist Gear", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Gloves|Boots|Body Armours|Helmets|Shields|Rings|Amulets|Quivers", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierIncArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierArmourLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierEvasionLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "#Key": "ActualTierMS", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+     { "GroupType": "And", "~ElementList": [
+       { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~Rings": { "GroupName": "Rings", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rings", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "1", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to Level of Socketed Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Mana", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Life", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "1", "Type": "Prop", "Weight": "1" },
+         { "#Key": "# to Level of Socketed Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Mana", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% of Physical Attack Damage Leeched as Life", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierAccuracy", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncElementalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddPhysicalDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddFireDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddColdDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAddLightningDamage", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "1", "Type": "Prop", "Weight": "1" },
+       { "#Key": "# to Level of Socketed Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% of Physical Attack Damage Leeched as Mana", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% of Physical Attack Damage Leeched as Life", "Eval": ">=", "Min": "0.2", "Type": "Affix", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "1", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "18", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "1", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "5", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "69", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of Socketed Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "1", "Type": "Prop", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "5", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "69", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of Socketed Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierAllAttributes", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "4", "Type": "Prop", "Weight": "1" },
+       { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "13", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierAttackSpeed", "Eval": ">0<=", "Min": "1", "Type": "Prop", "Weight": "1" },
+       { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "5", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "69", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of Socketed Gems", "Eval": ">=", "Min": "2", "Type": "Affix", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~Shields": { "GroupName": "Shields", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Shields", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "80", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Physical Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Fire Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Cold Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Lightning Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "85", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "85", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "85", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block", "Eval": ">=", "Min": "12", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block Spell Damage", "Eval": ">=", "Min": "10", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% chance to Avoid Elemental Ailments", "Eval": ">=", "Min": "26", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "40", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Physical Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Fire Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Cold Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Lightning Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block", "Eval": ">=", "Min": "12", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block Spell Damage", "Eval": ">=", "Min": "10", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% chance to Avoid Elemental Ailments", "Eval": ">=", "Min": "26", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Physical Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Fire Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Cold Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Lightning Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "40", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block", "Eval": ">=", "Min": "10", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block Spell Damage", "Eval": ">=", "Min": "7", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% chance to Avoid Elemental Ailments", "Eval": ">=", "Min": "21", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "And", "~ElementList": [
+       { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+         { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]},
+       { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+         { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "85", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "85", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "85", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Physical Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Fire Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Cold Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Lightning Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "Gain #% of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "80", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+         { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block", "Eval": ">=", "Min": "12", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% Chance to Block Spell Damage", "Eval": ">=", "Min": "10", "Type": "Affix", "Weight": "1" },
+         { "#Key": "#% chance to Avoid Elemental Ailments", "Eval": ">=", "Min": "26", "Type": "Affix", "Weight": "1" },
+         { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "And", "~ElementList": [
+           { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+           { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+             { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+             { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+           ]}
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Cold Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Fire Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Lightning Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Physical Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "11", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "80", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Mana Regeneration Rate", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "65", "Type": "Affix", "Weight": "1" }
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Spell Damage", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Fire Damage", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Cold Damage", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Lightning Damage", "Eval": ">=", "Min": "50", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Cold Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Fire Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Lightning Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Physical Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to Level of all Chaos Spell Skill Gems", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Physical Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Lightning Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Cold Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+       { "#Key": "Gain #% of Fire Damage as Extra Chaos Damage", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Cast Speed", "Eval": ">=", "Min": "8", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% increased Critical Strike Chance for Spells", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+       { "#Key": "% increased Mana Regeneration Rate", "Eval": ">=", "Min": "40", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# to maximum Mana", "Eval": ">=", "Min": "60", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% Chance to Block", "Eval": ">=", "Min": "10", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% Chance to Block Spell Damage", "Eval": ">=", "Min": "7", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% chance to Avoid Elemental Ailments", "Eval": ">=", "Min": "21", "Type": "Affix", "Weight": "1" },
+       { "#Key": "# Life gained when you Block", "Eval": ">=", "Min": "86", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "2", "~ElementList": [
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]},
+     { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+       { "#Key": "ActualTierLife", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "#% Chance to Block", "Eval": ">=", "Min": "10", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% Chance to Block Spell Damage", "Eval": ">=", "Min": "7", "Type": "Affix", "Weight": "1" },
+       { "#Key": "#% chance to Avoid Elemental Ailments", "Eval": ">=", "Min": "21", "Type": "Affix", "Weight": "1" },
+       { "#Key": "ActualTierAllElementalResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierFireResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierLightningResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierColdResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierChaosResist", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSpellSuppress", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierSTR", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierDEX", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierINT", "Eval": ">0<=", "Min": "3", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmour", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierIncEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourES", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourEvasion", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierArmourLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierEvasionLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESLife", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "#Key": "ActualTierESMana", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "PrefixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "# to maximum Life", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "# to maximum Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% increased Energy Shield", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]},
+       { "GroupType": "And", "~ElementList": [
+         { "#Key": "SuffixCount", "Eval": ">0<=", "Min": "2", "Type": "Prop", "Weight": "1" },
+         { "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+           { "#Key": "#% to Fire Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Lightning Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" },
+           { "#Key": "#% to Cold Resistance", "Eval": "<=", "Min": "0", "Type": "Affix", "Weight": "1" }
+         ]}
+       ]}
+     ]}
+   ]}
+ ]},
+ "~~SPELLSLINGER WEAPONS 3": { "GroupName": "SPELLSLINGER WEAPONS 3", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "3", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "RunicxGlyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flame Shaper's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Frost Singer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Thunderhand's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mad Lord's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lithomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruinxof Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Baleful", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Xoph's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Pyroclastic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tul's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cryomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Esh's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Ionising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Discharging", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Entombing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Polar", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blasting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flaring", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Carbonising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Vapourising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Merciless", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tyrannical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cruel", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Malicious", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]},
+ "~~SPELLSLINGER WEAPONS 4": { "GroupName": "SPELLSLINGER WEAPONS 4", "GroupType": "And", "StashTab": "11", "~ElementList": [
+   { "#Key": "ItemClass", "Eval": "~", "Min": "Rune Daggers|Sceptres|Wands", "Type": "Prop", "Weight": "1" },
+   { "GroupType": "Count", "TypeValue": "4", "~ElementList": [
+     { "#Key": "Veiled", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Veil", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Matatl's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tacati", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Topotante's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of the Underground", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Subterranean", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Many", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Runic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glyphic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incanter's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flame Shaper's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Frost Singer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Thunderhand's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Mad Lord's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lithomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magister's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Unmaking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ruin", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Calamity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Destruction", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Ferocity", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Fury", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Baleful", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Inimical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Lich's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Xoph's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Pyroclastic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Magmatic", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tul's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cryomancer's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalline", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Esh's", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Ionising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Smiting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Electrocuting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Discharging", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Shocking", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Entombing", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Polar", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Glaciated", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cremating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Blasting", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Incinerating", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Flaring", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tempered", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Carbonising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Crystalising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Vapourising", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Merciless", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Tyrannical", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Cruel", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "Malicious", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" },
+     { "#Key": "of Acclaim", "Eval": ">=", "Min": "1", "Type": "Affix", "Weight": "1" }
+   ]}
+ ]}
+}
