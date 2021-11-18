@@ -1,10 +1,31 @@
-﻿## Version .14.0309 - Alpha version - November/18/2021
+﻿## Version .14.04 - Master version - November/18/2021
+Alpha Changes are merged into Master
+
+Bugfixes
+  * Many Parser Improvements/fixes
+  * Fixes for identifying empty slot list
+  * Detonate mines separate delve sample
+  * Rogue Harbour separate vendor sample
+
+Improvements
+  * Chaos Recipe routine made faster
+  * Chaos Recipe respects option to disable
+  * Mines Inventory Automation improved
+  * Heist Inventory Automation improved
+  * Actual Tier parsing expanded with several new types
+  * New spam clicker for Shift+Click
+  * New CLF evaluators >0< and >0<= for below a value but above 0
+  * Parser now calculates Itembase defense rating percentage
+  * Parser now calculates the number of Cluster Passive Skills and small nodes
+
+---
+
+## Version .14.0309 - Alpha version - November/18/2021
 Bugfixes
   * Parser Improvements - Cluster, jewels, watchstones
   * Chaos recipe improvements
 
 ---
-
 
 ## Version .14.0308 - Alpha version - November/12/2021
 Bugfixes
