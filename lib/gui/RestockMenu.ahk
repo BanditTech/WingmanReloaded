@@ -51,7 +51,7 @@
 		Gui, Restock: Add, Radio, xs+5 ys+22 vRestockNormal gRestockSetValue, Normal slot
 		Gui, Restock: Add, Radio, xs+5 y+5 vRestockIgnored gRestockSetValue, Ignore this slot
 		Gui, Restock: Add, Radio, xs+5 y+5 vRestockRestock gRestockSetValue, Restock this slot
-		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Alteration|Transmutation|Augmentation|Alchemy|Binding|Chaos|Vaal|Scouring|Chisel|Harbinger|Horizon|Engineer|Regal|Simple|Prime|Awakened
+		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Alteration|Transmutation|Augmentation|Alchemy|Binding|Chaos|Vaal|Scouring|Chisel|Harbinger|Horizon|Engineer|Regal|Simple|Prime|Awakened|Custom
 		Gui, Restock: Font, Bold s9
 		Gui, Restock: Add, Text, xs+5 y+10, Min stack:
 		Gui, Restock: Font, s9
@@ -68,7 +68,10 @@
 		Gui, Restock: Add, text, x+5 yp w35, 0
 		Gui, Restock: Add, UpDown, range0-40 vRestockRestockTo gRestockSetValue, 0
 		Gosub, RestockRefreshOption
-
+		Gui, Restock: Add, Text, xs+5 y+10, Custom Slot:
+		Gui, Restock: Add, Edit,       vCustomSlotX        x+8 y+-15          w34  h17,   %CustomSlotX%
+		Gui, Restock: Add, Edit,       vCustomSlotY        x+8                w34  h17,   %CustomSlotY%
+        Gui, Restock: Add, Edit,       vCustomSlotTab      x+8                w34  h17,   %CustomSlotTab%
 		Gui, ReStock: show, AutoSize
 	} Else
 		Gui, ReStock: show, AutoSize

@@ -1,6 +1,6 @@
 ﻿; Rescale - Rescales values of the script to the user's resolution
 Rescale(){
-  Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR
+  Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR, CustomSlotX, CustomSlotY
   If checkActiveType()
   {
     ; Build array framework
@@ -183,6 +183,9 @@ Rescale(){
       ;Awakened
       WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(1920/545))
       WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/255))
+      ;Custom
+      WR.loc.pixel.Custom.X:=GameX + Round(GameW/(1920/CustomSlotX))
+      WR.loc.pixel.Custom.Y:=GameY + Round(GameH/(1080/CustomSlotY))
 
       ;Wisdom/Portal Scrolls
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/115))
