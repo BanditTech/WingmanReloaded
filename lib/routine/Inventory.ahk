@@ -919,6 +919,9 @@ RunRestock(){
 			If (InvCount < v.RestockMin || InvCount >= v.RestockMax)
 			{
 				MoveStash(StashTabCurrency)
+				If (v.RestockName = "Custom") {
+				MoveStash(CustomSlotTab)
+				}
 				ClipItem(WR.loc.pixel[v.RestockName].X, WR.loc.pixel[v.RestockName].Y)
 				; Store the stash stack size
 				StashCount := Item.Prop.Stack_Size

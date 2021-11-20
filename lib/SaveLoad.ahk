@@ -415,6 +415,10 @@ readFromFile(){
 	IniRead, GrabCurrencyX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX, 1877
 	IniRead, GrabCurrencyY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY, 772
 
+	;Custom slot for restocking
+	IniRead, CustomSlotX, %A_ScriptDir%\save\Settings.ini, Custom Slot, CustomSlotX, 553
+	IniRead, CustomSlotY, %A_ScriptDir%\save\Settings.ini, Custom Slot, CustomSlotY, 564
+	IniRead, CustomSlotTab, %A_ScriptDir%\save\Settings.ini, Custom Slot, CustomSlotTab, 4
 	;~ hotkeys reset
 	hotkey, IfWinActive, ahk_group POEGameGroup
 	If hotkeyAutoQuit
@@ -902,6 +906,11 @@ updateEverything:
 	;Grab Currency
 	IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
 	IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
+
+	;Custom Slot for restocking
+	IniWrite, %CustomSlotX%, %A_ScriptDir%\save\Settings.ini, Custom Slot, CustomSlotX
+	IniWrite, %CustomSlotY%, %A_ScriptDir%\save\Settings.ini, Custom Slot, CustomSlotY
+	IniWrite, %CustomSlotTab%, %A_ScriptDir%\save\Settings.ini, Custom Slot, CustomSlotTab
 
 	;Crafting Bases
 	IniWrite, %YesStashATLAS%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashATLAS
