@@ -892,15 +892,6 @@
 			This.Prop.SpecialType := "Harvest Item"
 		If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
 			This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
-		If This.TopTierLife()
-			This.Prop.TopTierLife := 1
-		If This.TopTierES()
-			This.Prop.TopTierES := 1
-		If This.TopTierMS()
-			This.Prop.TopTierMS := 1
-		If This.TopTierChaosResist()
-			This.Prop.TopTierChaosResist := 1
-		
 		;Basics
 		This.GetActualLifeTier()
 		This.GetActualResistTier()
@@ -951,30 +942,6 @@
 		;Caster Mods
 		This.GetActualSpellDamageModsTier()
 
-		If This.TopTierLightningResist()
-			This.Prop.TopTierLightningResist := 1
-		If This.TopTierFireResist()
-			This.Prop.TopTierFireResist := 1
-		If This.TopTierColdResist()
-			This.Prop.TopTierColdResist := 1
-		If This.TopTierAllResist()
-			This.Prop.TopTierAllResist := 1
-		If This.TopTierRarityPre()
-			This.Prop.TopTierRarityPre := 1
-		If This.TopTierRaritySuf()
-			This.Prop.TopTierRaritySuf := 1
-		If This.TopTierAttackSpeed()
-			This.Prop.TopTierAttackSpeed := 1
-		If This.TopTierCastSpeed()
-			This.Prop.TopTierCastSpeed := 1
-		If This.TopTierCritChance()
-			This.Prop.TopTierCritChance := 1
-		If This.TopTierCritMulti()
-			This.Prop.TopTierCritMulti := 1
-		If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist || This.Prop.TopTierAllResist)
-			This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0) + (This.Prop.TopTierAllResist?1:0)
-		If (This.Prop.TopTierRarityPre || This.Prop.TopTierRaritySuf)
-			This.Prop.TopTierRarity := (This.Prop.TopTierRarityPre?1:0) + (This.Prop.TopTierRaritySuf?1:0)
 	}
 	HasBrickedAffix() {
 		If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
@@ -2154,6 +2121,15 @@
 				AffixName:= "#% increased Cast Speed"
 				ILvLList := [2,15,30,40,55,72,83]
 				AffixList := ["of Talent","of Nimbleness","of Expertise","of Legerdemain","of Prestidigitation","of Sortilege","of Finesse"]
+
+				ILvLListRings := [2]
+				ILvLListAmulets := [2,15,30]
+
+				if(indexOf(This.Prop.ItemClass,["Amulets"])){
+					ILvLList := ILvLListAmulets
+				}else if(indexOf(This.Prop.ItemClass,["Rings"])){
+					ILvLList := ILvLListRings
+				}
 			}else if (A_Index == 6){
 				Name:="ChaosDOT"
 				AffixName:= "#% to Chaos Damage over Time Multiplier"
@@ -2194,303 +2170,6 @@
 
 		}
 		
-	}
-	TopTierLightningResist(){
-		If (This.Prop.ItemLevel < 13 && This.HasAffix("of the Cloud"))
-			Return True
-		Else If (This.Prop.ItemLevel < 25 && This.HasAffix("of the Squall"))
-			Return True
-		Else If (This.Prop.ItemLevel < 37 && This.HasAffix("of the Storm"))
-			Return True
-		Else If (This.Prop.ItemLevel < 49 && This.HasAffix("of the Thunderhead"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Tempest"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Maelstrom"))
-			Return True
-		Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Lightning"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Ephij"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Lightning Resistance"])
-			Return True
-		Else
-			Return False
-	}
-	TopTierFireResist(){
-		If (This.Prop.ItemLevel < 12 && This.HasAffix("of the Whelpling"))
-			Return True
-		Else If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Salamander"))
-			Return True
-		Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Drake"))
-			Return True
-		Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kiln"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Furnace"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Volcano"))
-			Return True
-		Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Magma"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tzteosh"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Fire Resistance"])
-			Return True
-		Else
-			Return False
-	}
-	TopTierColdResist(){
-		If (This.Prop.ItemLevel < 14 && This.HasAffix("of the Inuit"))
-			Return True
-		Else If (This.Prop.ItemLevel < 26 && This.HasAffix("of the Seal"))
-			Return True
-		Else If (This.Prop.ItemLevel < 38 && This.HasAffix("of the Penguin"))
-			Return True
-		Else If (This.Prop.ItemLevel < 50 && This.HasAffix("of the Yeti"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Walrus"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Polar Bear"))
-			Return True
-		Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Ice"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Haast"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Cold Resistance"])
-			Return True
-		Else
-			Return False
-	}
-	TopTierAllResist(){
-		If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Crystal"))
-			Return True
-		Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Prism"))
-			Return True
-		Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kaleidoscope"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Variegation"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 85 || indexOf(This.Prop.ItemClass,["Rings"])) 
-		&& This.HasAffix("of the Rainbow"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of the Span"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierCastSpeed(){
-		If ((This.Prop.ItemLevel < 15 || indexOf(This.Prop.ItemClass,["Rings"]))
-		&& This.HasAffix("of Talent"))
-			Return True
-		Else If (This.Prop.ItemLevel < 30 && This.HasAffix("of Nimbleness"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 40 || indexOf(This.Prop.ItemClass,["Amulets"])) 
-		&& This.HasAffix("of Expertise"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 55 || indexOf(This.Prop.ItemClass,["Gloves"])) 
-		&& This.HasAffix("of Legerdemain"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of Prestidigitation"))
-			Return True
-		Else If (This.Prop.ItemLevel < 83 && This.HasAffix("of Sortilege"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Finesse"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierAttackSpeed(){
-		If ((This.Prop.ItemLevel < 11 || indexOf(This.Prop.ItemClass,["Rings"]))
-		&& This.HasAffix("of Skill"))
-			Return True
-		Else If (This.Prop.ItemLevel < 22 && This.HasAffix("of Ease"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 30 || indexOf(This.Prop.ItemClass,["Shields"])) 
-		&& This.HasAffix("of Mastery"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 37 || indexOf(This.Prop.ItemClass,["Gloves"])) 
-		&& This.HasAffix("of Renown"))
-			Return True
-		Else If (This.Prop.ItemLevel < 45 && This.HasAffix("of Acclaim"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Fame"))
-			Return True
-		Else If (This.Prop.ItemLevel < 77 && This.HasAffix("of Infamy"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Celebration"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierRaritySuf(){
-		If (This.Prop.ItemLevel < 30 && This.HasAffix("of Plunder"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 53 || indexOf(This.Prop.ItemClass,["Gloves","Boots"]) ) && This.HasAffix("of Raiding"))
-			Return True
-		Else If (This.Prop.ItemLevel < 75 && This.HasAffix("of Archaeology"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Excavation"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierRarityPre(){
-		If (This.Prop.ItemLevel < 39 && This.HasAffix("Magpie's"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 62 || indexOf(This.Prop.ItemClass,["Gloves","Boots"]) ) && This.HasAffix("Pirate's"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 84 || indexOf(This.Prop.ItemClass,["Helmet"]) ) && This.HasAffix("Dragon's"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Perandus's"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierCritMulti(){
-		If (This.Prop.ItemLevel < 21
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 8 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 31
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 13 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 45
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 20 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 20 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 59
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 25 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 25 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 75
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 75 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 75
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 80 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 ))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 35 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 35 ))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 17 ))
-			Return True
-		Else
-			Return False
-	}
-	TopTierCritChance(){
-		If ((This.Prop.ItemLevel < 20 || This.Prop.ItemClass = "Rings")
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 10 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 10 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 10 ))
-			Return True
-		Else If ((This.Prop.ItemLevel < 30 || !(This.Prop.IsWeapon || This.Prop.ItemClass = "Amulets" || This.Prop.ItemClass = "Quivers"))
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 15 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 15 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 15 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 44 
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 20 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 20 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 20 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 58 
-		&& (This.Affix["#% increased Global Critical Strike Chance"] >= 25 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 25 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 59 
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 25 ))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 30 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 30 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 30 ))
-			Return True
-		Else
-			Return False
-	}
-	TopTierMS(){
-		If (This.Prop.ItemLevel < 15 && This.HasAffix("Runner's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Sprinter's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 40 && This.HasAffix("Stallion's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 55 && This.HasAffix("Gazelle's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Cheetah's"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Hellion's"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierES(){
-		If (This.Prop.ItemLevel < 11 && This.HasAffix("Shining"))
-			Return True
-		Else If (This.Prop.ItemLevel < 17 && This.HasAffix("Glimmering"))
-			Return True
-		Else If (This.Prop.ItemLevel < 23 && This.HasAffix("Glittering"))
-			Return True
-		Else If (This.Prop.ItemLevel < 29 && This.HasAffix("Glowing"))
-			Return True
-		Else If (This.Prop.ItemLevel < 35 && This.HasAffix("Radiating"))
-			Return True
-		Else If (This.Prop.ItemLevel < 43 && This.HasAffix("Pulsing"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 51 || indexOf(This.Prop.ItemClass,["Gloves","Boots"])) && This.HasAffix("Seething"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 60 || indexOf(This.Prop.ItemClass,["Helmets"])) && This.HasAffix("Blazing"))
-			Return True
-		Else If (This.Prop.ItemLevel < 69 && This.HasAffix("Scintillating"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 75 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Incandescent"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 80 || indexOf(This.Prop.ItemClass,["Rings","Body Armours"])) && This.HasAffix("Resplendent"))
-			Return True
-		Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Belts","Amulets"])) && This.HasAffix("Dazzling"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierLife(){
-		If (This.Prop.ItemLevel < 5 && This.HasAffix("Hale"))
-			Return True
-		Else If (This.Prop.ItemLevel < 11 && This.HasAffix("Healthy"))
-			Return True
-		Else If (This.Prop.ItemLevel < 18 && This.HasAffix("Sanguine"))
-			Return True
-		Else If (This.Prop.ItemLevel < 24 && This.HasAffix("Stalwart"))
-			Return True
-		Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Stout"))
-			Return True
-		Else If (This.Prop.ItemLevel < 36 && This.HasAffix("Robust"))
-			Return True
-		Else If (This.Prop.ItemLevel < 44 && This.HasAffix("Rotund"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 54 || indexOf(This.Prop.ItemClass,["Rings"])) && This.HasAffix("Virile"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 64 || indexOf(This.Prop.ItemClass,["Amulets","Gloves","Boots"])) && This.HasAffix("Athlete's"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 73 || indexOf(This.Prop.ItemClass,["Helmets","Belts","Quivers"])) && This.HasAffix("Fecund"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 81 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Vigorous"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && (This.HasAffix("Rapturous") || This.HasAffix("Prime") || (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])))
-			Return True
-		Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && )
-			Return True
-		Else
-			Return False
 	}
 	HasAffix(Name){
 		local Type, Obj, k, v
