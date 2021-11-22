@@ -1950,6 +1950,11 @@
 				ILvLListWandsBows := 	[1,11,22,30,37]
 				if(indexOf(This.Prop.ItemClass,["Gloves"])){
 					ILvLList := ILvLListGloves
+					;Special Case for Gloves
+					if(This.HasAffix("of Grandmastery"){
+						This.Prop["ActualTier"Name] := 1
+						Continue
+					}
 				}else if(indexOf(This.Prop.ItemClass,["Quiver","Shields"])){
 					ILvLList := ILvLListQuiversShields
 				}else if(indexOf(This.Prop.ItemClass,["Rings"])){
@@ -2012,7 +2017,7 @@
 				AffixList := ["Heavy","Serrated","Wicked","Vicious","Bloodthirsty","Cruel","Tyrannical","Merciless"]
 				;Incursion Mod
 				If (This.HasAffix("Tacati's") && This.Affix["#% increased Physical Damage"]){
-					This.Prop["ActualTierIncPhysicalDamage"] := 1
+					This.Prop["ActualTier"Name] := := 1
 					return
 				}
 			}else if (A_Index == 20){
