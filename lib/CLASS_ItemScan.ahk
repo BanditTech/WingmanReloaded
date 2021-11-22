@@ -1951,7 +1951,7 @@
 				if(indexOf(This.Prop.ItemClass,["Gloves"])){
 					ILvLList := ILvLListGloves
 					;Special Case for Gloves
-					if(This.HasAffix("of Grandmastery"){
+					if(This.HasAffix("of Grandmastery")){
 						This.Prop["ActualTier"Name] := 1
 						Continue
 					}
