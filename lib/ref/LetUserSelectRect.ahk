@@ -86,3 +86,39 @@ LetUserSelectRect(PixelToo:=0)
 	lusr_return:
 	return
 }
+
+LetUserSelectPixel(){
+	Hotkey Ifwinactive
+	; Create the "selection rectangle" GUIs (one for each edge).
+	PauseTooltips := 1
+	If (GamePID)
+	{
+		Gui, Submit
+		WinActivate, %GameStr%
+	}
+	Ding(0,-11,"Click or Press CTRL to select a location")
+	; Wait for release of LButton
+	KeyWait, LButton
+	; Wait for release of Ctrl
+	KeyWait, Ctrl
+	; Disable LButton.
+	Hotkey, *LButton, lusr_return, On
+	DrawZoom("Toggle")
+	Loop
+	{
+		; Get initial coordinates.
+		MouseGetPos, xorigin, yorigin
+		PixelGetColor, col, %xorigin%, %yorigin%, RGB
+		ToolTip, % "   " col " @ " xorigin "," yorigin 
+		DrawZoom("Repaint")
+		DrawZoom("MoveAway")
+	} Until (GetKeyState("LButton", "P") || GetKeyState("Ctrl", "P"))
+	Tooltip
+	; Re-enable LButton.
+	Hotkey, *LButton, Off
+	PauseTooltips := 0
+	Ding(1,-11,"")
+	DrawZoom("Toggle")
+	Gui, Show
+	return { "X":xorigin,"Y":yorigin,"Color":col }
+}

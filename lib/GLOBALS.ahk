@@ -193,9 +193,10 @@
 		selectedLeague = Which league are you playing on?
 		UpdateLeaguesBtn = Use this button when there is a new league
 		LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
-		CustomSlotY = Y cord positions for custom slot restocking
-		CustomSlotX = X cord positions for custom slot restocking
-		CustomSlotTab = Stash tab number for custom slot restocking
+		RestockCustomY = Y cord positions for custom slot restocking
+		RestockCustomX = X cord positions for custom slot restocking
+		RestockCustomTab = Stash tab number for custom slot restocking
+
 		)
 
 	ft_ToolTip_Text_Part2=
@@ -280,6 +281,7 @@
 		StashTabYesDelve = Enable to send Delve items to the assigned tab on the left
 		StashTabCrafting = Assign the Stash tab for Crafting items
 		StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
+		
 		)
 
 	ft_ToolTip_Text_Part3=
@@ -802,10 +804,6 @@
 	global GrabCurrencyX:=1877
 	global GrabCurrencyY:=772
 
-; Custom slot for restocking
-	global CustomSlotX:=553
-	global CustomSlotY:=564
-	global CustomSlotTab:=4
 ; Chat Hotkeys, and stash hotkeys
 	Global CharName := "ReplaceWithCharName"
 	Global RecipientName := "NothingYet"

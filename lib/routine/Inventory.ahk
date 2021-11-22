@@ -896,33 +896,35 @@ RunRestock(){
 		For R, v in vv {
 			If (v.Normal || v.Ignored || v.RestockName = "")
 				Continue
-			If !WR.loc.pixel.HasKey(v.RestockName){
-				Notify("Missing Location","There is no entry for " v.RestockName,5)
-				Continue
-			} Else If (WR.loc.pixel[v.RestockName].X = 0 && WR.loc.pixel[v.RestockName].Y = 0) {
-				Notify("Unscaled Location","The entry for " v.RestockName " has not been scaled from 0",5)
-				Continue
+			If !(v.RestockName = "Custom") {
+				If !WR.loc.pixel.HasKey(v.RestockName){
+					Notify("Missing Location","There is no entry for " v.RestockName,5)
+					Continue
+				} Else If (WR.loc.pixel[v.RestockName].X = 0 && WR.loc.pixel[v.RestockName].Y = 0) {
+					Notify("Unscaled Location","The entry for " v.RestockName " has not been scaled from 0",5)
+					Continue
+				}
 			}
 			X := InventoryGridX[C], Y := InventoryGridY[R]
 			o := RandClick(X,Y)
 			ClipItem(o.X, o.Y)
 			If (Item.Prop.Stack_Size <= 0)
 				Item.Prop.Stack_Size := 0
-			dif := (StackSizes[v.RestockName] - Item.Prop.Stack_Size)
-			If(!(Item.Prop.ItemBase ~= v.RestockName) && !Item.Prop.IsItem)
-				dif := StackSizes[v.RestockName]
-			Else If(!(Item.Prop.ItemBase ~= v.RestockName) && Item.Prop.IsItem)
-				dif := 0
 			; Store the item stack size
 			InvCount := Item.Prop.Stack_Size
 			
 			If (InvCount < v.RestockMin || InvCount >= v.RestockMax)
 			{
-				MoveStash(StashTabCurrency)
 				If (v.RestockName = "Custom") {
-				MoveStash(CustomSlotTab)
+					MoveStash(v.CustomTab)
+					StockX := v.CustomX
+					StockY := v.CustomY
+				} Else {
+					MoveStash(StashTabCurrency)
+					StockX := WR.loc.pixel[v.RestockName].X
+					StockY := WR.loc.pixel[v.RestockName].Y
 				}
-				ClipItem(WR.loc.pixel[v.RestockName].X, WR.loc.pixel[v.RestockName].Y)
+				ClipItem(StockX, StockY)
 				; Store the stash stack size
 				StashCount := Item.Prop.Stack_Size
 				; Determine if we need to add or subtract
@@ -934,7 +936,7 @@ RunRestock(){
 					Sleep, 90*Latency
 					Send {Enter}
 					Sleep, 120*Latency
-					LeftClick(WR.loc.pixel[v.RestockName].X, WR.loc.pixel[v.RestockName].Y)
+					LeftClick(StockX, StockY)
 					Sleep, 120*Latency
 				} Else {
 					dif := v.RestockTo - InvCount
@@ -942,7 +944,7 @@ RunRestock(){
 						Notify("Out of Stock","Attempting to restock " v.RestockName " but not enough in stock",2)
 						Continue
 					}
-					ShiftClick(WR.loc.pixel[v.RestockName].X, WR.loc.pixel[v.RestockName].Y)
+					ShiftClick(StockX, StockY)
 					Sleep, 90*Latency
 					Send %dif%
 					Sleep, 90*Latency
