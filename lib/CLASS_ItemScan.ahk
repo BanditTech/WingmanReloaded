@@ -1963,7 +1963,6 @@
 				ILvLList := [4,15,30,60,81,86]
 				AffixList := ["Catalysing","Infusing","Empowering","Unleashed","Overpowering","Devastating"]
 				ILvLListRings := [4,15,30,60,81]
-
 				if(indexOf(This.Prop.ItemClass,["Rings"])){
 					ILvLList := ILvLListRings
 				}
@@ -1972,27 +1971,27 @@
 				AffixName := ["Adds # to # Lightning Damage","Adds # to # Lightning Damage to Attacks"]
 				ILvLList := [3,13,19,31,34,42,51,63,74,82]
 				AffixList := ["Humming","Buzzing","Snapping","Crackling","Sparking","Arcing","Shocking","Discharging","Electrocuting","Vapourising"]
-				ILvLListAmuletsRings := [3,13,22,28,35,44,52,64,76]
-				if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
-					ILvLList := ILvLListAmuletsRings
+				ILvLListAmuletsRingsQuivers := [3,13,22,28,35,44,52,64,76]
+				if(indexOf(This.Prop.ItemClass,["Amulets","Rings","Quivers"])){
+					ILvLList := ILvLListAmuletsRingsQuivers
 				}
 			}else if (A_Index == 16){
 				Name:="AddColdDamage"
 				AffixName := ["Adds # to # Cold Damage","Adds # to # Cold Damage to Attacks"]
 				ILvLList := [2,12,19,27,34,43,52,63,75,82]
 				AffixList := ["Frosted","Chilled","Icy","Frigid","Freezing","Frozen","Glaciated","Polar","Entombing","Crystalising"]
-				ILvLListAmuletsRings := [2,13,21,29,36,45,53,65,77]
-				if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
-					ILvLList := ILvLListAmuletsRings
+				ILvLListAmuletsRingsQuivers := [2,13,21,29,36,45,53,65,77]
+				if(indexOf(This.Prop.ItemClass,["Amulets","Rings","Quivers"])){
+					ILvLList := ILvLListAmuletsRingsQuivers
 				}
 			}else if (A_Index == 17){
 				Name:="AddFireDamage"
 				AffixName := ["Adds # to # Fire Damage","Adds # to # Fire Damage to Attacks"]
 				ILvLList := [1,11,18,26,33,42,51,62,74,82]
 				AffixList := ["Heated","Smouldering","Smoking","Burning","Flaming","Scorching","Incinerating","Blasting","Cremating","Carbonising"]
-				ILvLListAmuletsRings := [1,12,20,28,35,44,52,64,76]
-				if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
-					ILvLList := ILvLListAmuletsRings
+				ILvLListAmuletsRingsQuivers := [1,12,20,28,35,44,52,64,76]
+				if(indexOf(This.Prop.ItemClass,["Amulets","Rings","Quivers"])){
+					ILvLList := ILvLListAmuletsRingsQuivers
 				}
 			}else if (A_Index == 18){
 				Name:="AddPhysicalDamage"
@@ -2000,11 +1999,11 @@
 				ILvLList := [1,11,23,35,46,60,73,83]
 				AffixList := ["Glinting","Burnished","Polished","Honed","Gleaming","Annealed","Razor-sharp","Tempered","Flaring"]
 				ILvLListRings := [5,13,19,28,35,44]
-				ILvLListAmulets := [5,13,19.28,35,44,52,64,76]
+				ILvLListAmuletsQuivers := [5,13,19.28,35,44,52,64,76]
 				if(indexOf(This.Prop.ItemClass,["Rings"])){
 					ILvLList := ILvLListRings
-				}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
-					ILvLList := ILvLListAmulets
+				}else if(indexOf(This.Prop.ItemClass,["Amulets","Quivers"])){
+					ILvLList := ILvLListAmuletsQuivers
 				}
 			}else if (A_Index == 19){
 				Name:="IncPhysicalDamage"
