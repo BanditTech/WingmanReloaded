@@ -1079,12 +1079,6 @@
 		}else if(indexOf(This.Prop.ItemClass,["Body Armours"])){
 			ILvLList := ILvLListBodyArmours
 		}
-		;Incursion Mod
-		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])
-		{
-			This.Prop["ActualTierLife"] := 1
-			return
-		}
 
 		if(!This.HasModifierFromList(AffixName)){
 			Return
@@ -1117,13 +1111,6 @@
 		if(indexOf(This.Prop.ItemClass,["Boots"])){
 			ILvLList := ILvLListBoots
 		}
-
-		;Incursion Mod
-		If (This.HasAffix("Matatl's") && This.Affix["#% increased Movement Speed"]){
-			This.Prop["ActualTierMS"] := 1
-			return
-		}
-		
 
 		for k,v in ILvLList
 		{
@@ -1306,11 +1293,6 @@
 
 		if(!This.HasModifierFromList(AffixName)){
 			Return
-		}
-		;Incursion Mod
-		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Energy Shield"]){
-			This.Prop["ActualTierES"] := 1
-			return
 		}
 
 		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
@@ -1836,8 +1818,7 @@
 		if(!This.HasModifierFromList(AffixName)){
 			Return
 		}
-
-
+		
 		for k,v in ILvLList
 		{
 			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
@@ -2015,11 +1996,6 @@
 				AffixName := ["#% increased Physical Damage"]
 				ILvLList := [1,11,23,35,46,60,73,83]
 				AffixList := ["Heavy","Serrated","Wicked","Vicious","Bloodthirsty","Cruel","Tyrannical","Merciless"]
-				;Incursion Mod
-				If (This.HasAffix("Tacati's") && This.Affix["#% increased Physical Damage"]){
-					This.Prop["ActualTier"Name] := := 1
-					return
-				}
 			}else if (A_Index == 20){
 				Name:="Accuracy"
 				AffixName := ["# to Accuracy Rating"]
