@@ -8,4 +8,4 @@ Take the `LootFilter.json` file and place it within your `Save` folder, if you a
 
 When pasting in old file entries, always ensure it starts with a quoted `"keyname"`, and that they end with a comma. Paste the entries into line 2 of the file.
 
-[Here is a link to edit the filter on the cloud](https://jsoneditoronline.org/#left=cloud.c2fd7fddf8b04c91a5ee6108fff4f4cc)
+[Here is a link to edit the filter on the cloud](https://jsoneditoronline.org/#left=cloud.c33e0c7b6de047489bcac324f50039dc)
