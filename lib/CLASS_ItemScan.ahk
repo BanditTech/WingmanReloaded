@@ -688,7 +688,7 @@
 			{
 				This.Prop.Rating_EnergyShield := RxMatch1
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion Rating: "rxNum,RxMatch))
 			{
 				This.Prop.Rating_Evasion := RxMatch1
 			}

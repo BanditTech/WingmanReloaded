@@ -117,7 +117,7 @@ CraftingMaps(){
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
 				If ( Item.Prop.IsMap
-				&& (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "Alchemy" )))
+				&& (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" )))
 				&&!Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
@@ -176,21 +176,15 @@ CraftingMaps(){
 							}
 							Else if (CraftingMapMethod%i% ~= "^Chisel\+(Alchemy$|Binding$|Hybrid$)")
 							{
-								Loop, %numberChisel%
-								{
-									If !ApplyCurrency("Chisel",Grid.X,Grid.Y)
-										Return False
-								}
+								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
+									Return False
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
 							}
 							Else if (CraftingMapMethod%i% ~= "Chisel\+(Alchemy|Binding|Hybrid)\+Vaal")
 							{
-								Loop, %numberChisel%
-								{
-									If !ApplyCurrency("Chisel",Grid.X,Grid.Y)
-										Return False
-								}
+								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
+									Return False
 								MapRoll(CraftingMapMethod%i%,Grid.X,Grid.Y)
 								ApplyCurrency("Vaal",Grid.X,Grid.Y)
 								Continue
@@ -265,7 +259,9 @@ CountCurrency(NameList:=""){
 	Return retCount.Count() ? retCount : False
 }
 ; ApplyCurrency - Using cname = currency name string and x, y as apply position
-ApplyCurrency(cname, x, y){
+ApplyCurrency(cname, x, y, Amount:=1){
+	If (Amount < 1)
+		Return True
 	If (cname = "Hybrid") {
 		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
 			cname := "Binding"
@@ -283,7 +279,18 @@ ApplyCurrency(cname, x, y){
 	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
 	Sleep, 45*Latency
-	LeftClick(x,y)
+	If (Amount > 1) {
+		Send, {Shift down}
+		RandomSleep(30,45)
+	}
+	Loop, %Amount% {
+		LeftClick(x,y)
+		RandomSleep(30,45)
+	}
+	If (Amount > 1) {
+		Send, {Shift up}
+		RandomSleep(30,45)
+	}
 	Sleep, 90*Latency
 	ClipItem(x,y)
 	Sleep, 45*Latency
