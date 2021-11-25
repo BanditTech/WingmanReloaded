@@ -913,6 +913,13 @@
 		This.GetActualIncArmourEvasionTier()
 		This.GetActualIncArmourESTier()
 		This.GetActualIncEvasionESTier()
+		;Hybrid INC and SBR
+		This.GetActualIncArmourSBRTier()
+		This.GetActualIncEvasionSBRTier()
+		This.GetActualIncESSBRTier()
+		This.GetActualIncArmourEvasionSBRTier()
+		This.GetActualIncArmourESSBRTier()
+		This.GetActualIncEvasionESSBRTier()
 		;Hybrid Defenses
 		This.GetActualEvasionESTier()
 		This.GetActualArmourESTier()
@@ -1556,6 +1563,150 @@
 					If (This.HasAffix(vi)){
 						value := k-ki+1
 						This.Prop["ActualTierIncEvasionES"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncArmourSBRTier(){
+		AffixName := ["(Hybrid) #% increased Armour"]
+		ILvLList := [1,17,29,42,60,78]
+		AffixList := ["Beetle's","Crab's","Armadillo's","Rhino's","Elephant's","Mammoth's"]
+
+		if(!This.HasModifierFromList(AffixName)){
+			Return
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncArmourSBR"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncEvasionSBRTier(){
+		AffixName := ["(Hybrid) #% increased Evasion Rating"]
+		ILvLList := [2,19,30,44,60,78]
+		AffixList := ["Mosquito's","Moth's","Butterfly's","Wasp's","Dragonfly's","Hummingbird's"]
+
+		if(!This.HasModifierFromList(AffixName)){
+			Return
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncEvasionSBR"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncESSBRTier(){
+		AffixName := ["(Hybrid) #% increased Energy Shield"]
+		ILvLList := [3,18,30,44,60,78]
+		AffixList := ["Pixie's","Gremlin's","Boggart's","Naga's","Djinn's","Seraphim's"]
+
+		if(!This.HasModifierFromList(AffixName)){
+			Return
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncESSBR"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncArmourEvasionSBRTier(){
+		AffixName := ["(Hybrid) #% increased Armour and Evasion"]
+		ILvLList := [2,19,30,44,60,78]
+		AffixList := ["Beetle's","Crab's","Armadillo's","Rhino's","Elephant's","Mammoth's"]
+
+		if(!This.HasModifierFromList(AffixName)){
+			Return
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncArmourEvasionSBR"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncArmourESSBRTier(){
+		AffixName := ["(Hybrid) #% increased Armour and Energy Shield"]
+		ILvLList := [2,19,30,44,60,78]
+		AffixList := ["Pixie's","Gremlin's","Boggart's","Naga's","Djinn's","Seraphim's"]
+
+		if(!This.HasModifierFromList(AffixName)){
+			Return
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncArmourESSBR"] := value
+						break
+					}
+				}
+				break
+			}
+		}
+	}
+	GetActualIncEvasionESSBRTier(){
+		AffixName := ["(Hybrid) #% increased Evasion and Energy Shield"]
+		ILvLList := [2,19,30,44,60,78]
+		AffixList := ["Mosquito's","Moth's","Butterfly's","Wasp's","Dragonfly's","Hummingbird's"]
+
+		if(!This.HasModifierFromList(AffixName)){
+			Return
+		}
+		for k,v in ILvLList
+		{
+			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
+			{
+				for ki,vi in AffixList
+				{
+					If (This.HasAffix(vi)){
+						value := k-ki+1
+						This.Prop["ActualTierIncEvasionESSBR"] := value
 						break
 					}
 				}
