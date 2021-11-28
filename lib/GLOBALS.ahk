@@ -573,7 +573,8 @@
 	Global EnableChatHotkeys := 0
 	; Dont change the speed & the tick unless you know what you are doing
 	global Speed:=1
-	global Tick:=150
+	global Tick:=50
+	global KeyscanRate:=15
 ; Globe
 	Global Globe:= OrderedArray()
 	Globe.Life := OrderedArray("X1",106,"Y1",886,"X2",146,"Y2",1049)
