@@ -535,8 +535,9 @@ StashRoutine()
 				}
 				Else
 					++Unstashed
-				If (sendstash > 0)
-				{
+				If (sendstash == -2) {
+					CtrlClick(Grid.X,Grid.Y)
+				} Else If (sendstash > 0) {
 					If YesSortFirst
 						SortFirst[sendstash].Push({"C":C,"R":R,"Item":Item})
 					Else

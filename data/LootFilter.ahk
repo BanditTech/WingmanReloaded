@@ -42,7 +42,7 @@
   textListEval:="" 
   For k, v in Eval
     textListEval .= (!textListEval ? "" : "|") v
-  StashTabs := []
+  StashTabs := [-2]
   Loop 99
     StashTabs.Push(A_Index)
   textListStashTabs:="" 
