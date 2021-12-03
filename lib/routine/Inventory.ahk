@@ -530,6 +530,8 @@ StashRoutine()
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({"C":C,"R":R,"Item":Item})
+						} Else {
+							Continue
 						}
 					}
 				}
