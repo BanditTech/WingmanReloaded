@@ -829,17 +829,17 @@ PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
   CountObj := CountChaosRecipe()
   Tally := CountObj.Tally
   uTally := CountObj.uTally
-	Notify("Chaos Recipe ID/UNID", Message . "`n"
-	. "Amulet: " . Tally.Amulet . "/" . uTally.Amulet . "`t"
-	. "Ring: " . Tally.Ring . "/" . uTally.Ring . "`n"
-	. "Belt: " . Tally.Belt . "/" . uTally.Belt . "`t`t"
-	. "Body: " . Tally.Body . "/" . uTally.Body . "`n"
-	. "Boots: " . Tally.Boots . "/" . uTally.Boots . "`t"
-	. "Gloves: " . Tally.Gloves . "/" . uTally.Gloves . "`n"
-	. "Helmet: " . Tally.Helmet . "/" . uTally.Helmet . "`t"
-	. "Shield: " . Tally.Shield . "/" . uTally.Shield . "`n"
-	. "One Hand: " . Tally["One Hand"] . "/" . uTally["One Hand"] . "`t"
-	. "Two Hand: " . Tally["Two Hand"] . "/" . uTally["Two Hand"] . "`n"
+	Notify("Chaos Recipe ID/UNID", Message "`n"
+	. "Amulet: " Tally.Amulet "/" uTally.Amulet "`t"
+	. "Ring: " Tally.Ring "/" uTally.Ring "`n"
+	. "Belt: " Tally.Belt "/" uTally.Belt "`t`t"
+	. "Body: " Tally.Body "/" uTally.Body "`n"
+	. "Boots: " Tally.Boots "/" uTally.Boots "`t"
+	. "Gloves: " Tally.Gloves "/" uTally.Gloves "`n"
+	. "Helmet: " Tally.Helmet "/" uTally.Helmet "`t"
+	. "Shield: " Tally.Shield "/" uTally.Shield "`n"
+	. "One Hand: " Tally["One Hand"] "/" uTally["One Hand"] "`t"
+	. "Two Hand: " Tally["Two Hand"] "/" uTally["Two Hand"] "`n"
 	, (Duration != "False" ? Duration : 20))
 	Return
 }
