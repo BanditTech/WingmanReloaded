@@ -44,24 +44,24 @@ ChaosRecipe(endAtRefresh := 0){
 }
 ChaosRecipeSort(Object,Merge:=False){
   Global RecipeArray
-  Chaos := {}
-  Regal := {}
-  uChaos := {}
-  uRegal := {}
+  Static TypeList := ["Chaos","Regal"]
+  Static SlotList := ["Body","Helmet","Gloves","Boots","Amulet","Ring","Belt","Two Hand","One Hand","Shield"]
+
+  For k, TypeName in TypeList {
+    %TypeName% := {}
+    u%TypeName% := {}
+    For k, SlotName in SlotList {
+      %TypeName%[SlotName] := {}
+      u%TypeName%[SlotName] := {}
+    }
+  } 
+
   For i, content in Object.items
   {
     item := new ItemBuild(content,Object.quadLayout)
-    ; Array_Gui(item)
-    If (item.Prop.ChaosRecipe)
-    {
-      If !IsObject((item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType])
-        (item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType] := {}
+    If (item.Prop.ChaosRecipe){
       (item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType].Push(item)
-    }
-    If (item.Prop.RegalRecipe)
-    {
-      If !IsObject((item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType])
-        (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType] := {}
+    }Else If (item.Prop.RegalRecipe){
       (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType].Push(item)
     }
   }
