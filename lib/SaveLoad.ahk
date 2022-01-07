@@ -1104,6 +1104,9 @@ updateEverything:
 return  
 }
 
+;;First Update Crafting Base
+;CraftingBasesRequest()
+
 ; Settings Save/Load
 Settings(name:="perChar",Action:="Load"){
 	If (Action = "Load"){
