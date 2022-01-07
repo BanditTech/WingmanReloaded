@@ -3964,7 +3964,7 @@
 		{
 				if (v.BaseName == This.Prop.ItemBase){
 					This.Prop.CraftingBase := vi
-					if (v.ILvL < This.Prop.ItemLevel){
+					if (v.ILvL < This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
 						v.ILvL := This.Prop.ItemLevel
 						update := True
 		}
