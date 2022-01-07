@@ -721,6 +721,12 @@
 	Global YesStashJewelleryCraftingIlvl := 0
 	Global YesStashJewelleryCraftingIlvlMin := 76
 
+	Global YesStashJewelleryCraftingIlvlMin := True
+	Global YesCraftingBaseAutoUpdateOnStart := True
+	Global YesCraftingBaseAutoILvLUP := True 
+	Global YesCraftingBaseAutoUpdate := True
+	Global YesCraftingBaseAutoRemoveLower := True
+
 ; Skip Maps after column #
 	Global YesSkipMaps := 0
 	Global YesSkipMaps_Prep := 1

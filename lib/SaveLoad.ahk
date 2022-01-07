@@ -63,30 +63,6 @@ readFromFile(){
 	IniRead, CharName, %A_ScriptDir%\save\Settings.ini, General, CharName, ReplaceWithCharName
 	IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
 	IniRead, YesStashKeys, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys, 1
-	IniRead, YesStashATLAS, %A_ScriptDir%\save\Settings.ini, General, YesStashATLAS, 1
-	IniRead, YesStashATLASCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashATLASCraftingIlvl, 0
-	IniRead, YesStashATLASCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashATLASCraftingIlvlMin, 76
-	IniRead, YesStashSTR, %A_ScriptDir%\save\Settings.ini, General, YesStashSTR, 1
-	IniRead, YesStashSTRCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashSTRCraftingIlvl, 0
-	IniRead, YesStashSTRCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashSTRCraftingIlvlMin, 76
-	IniRead, YesStashDEX, %A_ScriptDir%\save\Settings.ini, General, YesStashDEX, 1
-	IniRead, YesStashDEXCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashDEXCraftingIlvl, 0
-	IniRead, YesStashDEXCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashDEXCraftingIlvlMin, 76
-	IniRead, YesStashINT, %A_ScriptDir%\save\Settings.ini, General, YesStashINT, 1
-	IniRead, YesStashINTCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashINTCraftingIlvl, 0
-	IniRead, YesStashINTCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashINTCraftingIlvlMin, 76
-	IniRead, YesStashHYBRID, %A_ScriptDir%\save\Settings.ini, General, YesStashHYBRID, 1
-	IniRead, YesStashHYBRIDCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashHYBRIDCraftingIlvl, 0
-	IniRead, YesStashHYBRIDCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashHYBRIDCraftingIlvlMin, 76
-	IniRead, YesStashJ, %A_ScriptDir%\save\Settings.ini, General, YesStashJ, 1
-	IniRead, YesStashJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashJCraftingIlvl, 0
-	IniRead, YesStashJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashJCraftingIlvlMin, 76
-	IniRead, YesStashAJ, %A_ScriptDir%\save\Settings.ini, General, YesStashAJ, 1
-	IniRead, YesStashAJCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashAJCraftingIlvl, 0
-	IniRead, YesStashAJCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashAJCraftingIlvlMin, 76
-	IniRead, YesStashJewellery, %A_ScriptDir%\save\Settings.ini, General, YesStashJewellery, 1
-	IniRead, YesStashJewelleryCraftingIlvl, %A_ScriptDir%\save\Settings.ini, General, YesStashJewelleryCraftingIlvl, 0
-	IniRead, YesStashJewelleryCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, General, YesStashJewelleryCraftingIlvlMin, 76
 	IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
 	IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
 	IniRead, YesSkipMaps_Prep, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep, 1
@@ -163,6 +139,13 @@ readFromFile(){
 	IniRead, YesStashJewellery, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewellery, 1
 	IniRead, YesStashJewelleryCraftingIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvl, 0
 	IniRead, YesStashJewelleryCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin, 76
+
+	;Options
+	IniRead, YesStashJewelleryCraftingIlvlMin, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin, 1
+	IniRead, YesCraftingBaseAutoUpdateOnStart, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart, 1
+	IniRead, YesCraftingBaseAutoILvLUP, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoILvLUP, 1
+	IniRead, YesCraftingBaseAutoUpdate, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdate, 1
+	IniRead, YesCraftingBaseAutoRemoveLower, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoRemoveLower, 1
 
 	;Crafting Map Settings
 	IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
@@ -308,35 +291,6 @@ readFromFile(){
 	IniRead, ChaosRecipeStashTabAmulet, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabAmulet, 1
 	IniRead, ChaosRecipeStashTabRing, %A_ScriptDir%\save\Settings.ini, Chaos Recipe, ChaosRecipeStashTabRing, 1
 
-
-	;Crafting Bases Settings
-	;Loading Default List
-	sDefaultcraftingBasesT1 := ArrayToString(DefaultcraftingBasesT1)
-	sDefaultcraftingBasesT2 := ArrayToString(DefaultcraftingBasesT2)
-	sDefaultcraftingBasesT3 := ArrayToString(DefaultcraftingBasesT3)
-	sDefaultcraftingBasesT4 := ArrayToString(DefaultcraftingBasesT4)
-	sDefaultcraftingBasesT5 := ArrayToString(DefaultcraftingBasesT5)
-	sDefaultcraftingBasesT6 := ArrayToString(DefaultcraftingBasesT6)
-	sDefaultcraftingBasesT7 := ArrayToString(DefaultcraftingBasesT7)
-	sDefaultcraftingBasesT8 := ArrayToString(DefaultcraftingBasesT8)
-	IniRead, craftingBasesT1, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT1, %sDefaultcraftingBasesT1%
-	IniRead, craftingBasesT2, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT2, %sDefaultcraftingBasesT2%
-	IniRead, craftingBasesT3, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT3, %sDefaultcraftingBasesT3%
-	IniRead, craftingBasesT4, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT4, %sDefaultcraftingBasesT4%
-	IniRead, craftingBasesT5, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT5, %sDefaultcraftingBasesT5%
-	IniRead, craftingBasesT6, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT6, %sDefaultcraftingBasesT6%
-	IniRead, craftingBasesT7, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT7, %sDefaultcraftingBasesT7%
-	IniRead, craftingBasesT8, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT8, %sDefaultcraftingBasesT8%
-	;Converting string to array
-	craftingBasesT1 := StringToArray(craftingBasesT1)
-	craftingBasesT2 := StringToArray(craftingBasesT2)
-	craftingBasesT3 := StringToArray(craftingBasesT3)
-	craftingBasesT4 := StringToArray(craftingBasesT4)
-	craftingBasesT5 := StringToArray(craftingBasesT5)
-	craftingBasesT6 := StringToArray(craftingBasesT6)
-	craftingBasesT7 := StringToArray(craftingBasesT7)
-	craftingBasesT8 := StringToArray(craftingBasesT8)
-	
 	;Settings for the Client Log file location
 	IniRead, ClientLog, %A_ScriptDir%\save\Settings.ini, Log, ClientLog, %ClientLog%
 	
@@ -937,6 +891,14 @@ updateEverything:
 	IniWrite, %YesStashJewelleryCraftingIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvl
 	IniWrite, %YesStashJewelleryCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin
 
+	;Options
+	IniWrite, %YesStashJewelleryCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin
+	IniWrite, %YesCraftingBaseAutoUpdateOnStart%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart
+	IniWrite, %YesCraftingBaseAutoILvLUP%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoILvLUP
+	IniWrite, %YesCraftingBaseAutoUpdate%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdate
+	IniWrite, %YesCraftingBaseAutoRemoveLower%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoRemoveLower
+
+
 	;Crafting Map Settings
 	IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
 	IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2
@@ -970,10 +932,6 @@ updateEverything:
 	IniWrite, %PHReducedChanceToBlock%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHReducedChanceToBlock
 	IniWrite, %PHLessArmour%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessArmour
 	IniWrite, %PHLessAreaOfEffect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessAreaOfEffect
-
-	;Custom Crafting Map Mods
-	sCustomUndesirableMods := ArrayToString(CustomUndesirableMods)
-	IniWrite, %sCustomUndesirableMods%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CustomUndesirableMods
 
 	;Stash Tab Management
 	IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
@@ -1135,24 +1093,6 @@ updateEverything:
 	IniWrite, %YesNinjaDatabase%, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase
 	IniWrite, %ForceMatch6Link%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link
 	IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
-
-	;Crafting Bases Settings
-	scraftingBasesT1 := ArrayToString(craftingBasesT1)
-	scraftingBasesT2 := ArrayToString(craftingBasesT2)
-	scraftingBasesT3 := ArrayToString(craftingBasesT3)
-	scraftingBasesT4 := ArrayToString(craftingBasesT4)
-	scraftingBasesT5 := ArrayToString(craftingBasesT5)
-	scraftingBasesT6 := ArrayToString(craftingBasesT6)
-	scraftingBasesT7 := ArrayToString(craftingBasesT7)
-	scraftingBasesT8 := ArrayToString(craftingBasesT8)
-	IniWrite, %scraftingBasesT1%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT1
-	IniWrite, %scraftingBasesT2%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT2
-	IniWrite, %scraftingBasesT3%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT3
-	IniWrite, %scraftingBasesT4%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT4
-	IniWrite, %scraftingBasesT5%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT5
-	IniWrite, %scraftingBasesT6%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT6
-	IniWrite, %scraftingBasesT7%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT7
-	IniWrite, %scraftingBasesT8%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, craftingBasesT8
 
 	readFromFile()
 	GuiUpdate()

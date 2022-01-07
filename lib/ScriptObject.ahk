@@ -79,89 +79,82 @@ WR.String.General:={"OHB":"|<OHB_Bar>0x241814@0.99$106.Tzzzzzzzzzzzzzzzzu"
 	,"Xbutton":"|<1080 X Button>*43$12.0307sDwSDwDs7k7sDwSSwTsDk7U"
 	,"HeistLocker":"|<1080 Locker>*90$59.7zzzzzzzzzDzzzzzzzzyTyTyTDTzzwzkDk4QE60tz6D6AlnANnwSASt7bslbtwNzkTDlXDnsnzVy3XCTblbz1w70QzDX7yFty1tyDCDwXnwFnaASCNXbslUA1y1nX0llzyTzDzzzzy"}
 
-
 WR.CustomCraftingBases.Default := []
-WR.CustomCraftingBases.Default[1]:=["Apothecary's Gloves"
-		,"Blessed Boots"
-		,"Fingerless Silk Gloves"
-		,"Gripped Gloves"
-		,"Spiked Gloves"
-		,"Two-Toned Boots"
-		,"Convoking Wand"
-		,"Bone Helmet"
-		,"Artillery Quiver"
-		,"Marble Amulet"
-		,"Seaglass Amulet"
-		,"Blue Pearl Amulet"
-		,"Iolite Ring"
-		,"Vanguard Belt"
-		,"Crystal Belt"
-		,"Opal Ring"
-		,"Steel Ring"
-		,"Stygian Vise"
-		,"Vermillion Ring"
-		,"Grasping Mail"
-		,"Sacrificial Garb"
-		,"Brimstone Treads"
-		,"Stormrider Boots"
-		,"Dreamquest Slippers"
-		,"Debilitation Gauntlets"
-		,"Sinistral Gloves"
-		,"Nexus Gloves"
-		,"Penitent Mask"
-		,"Blizzard Crown"
-		,"Archdemon Crown"
-		,"Heat-attuned Tower Shield"
-		,"Cold-attuned Buckle"
-		,"Transfer-attuned Spirit Shield"
-		,"Penitent Mask"]
-
-WR.CustomCraftingBases.Default[2]:=["Glorious Plate"
-		,"Astral Plate"
-		,"Titan Greaves"
-		,"Titan Gauntlets"
-		,"Royal Burgonet"
-		,"Eternal Burgonet"
-		,"Pinnacle Tower Shield"]
-
-WR.CustomCraftingBases.Default[3]:=["Assassin's Garb"
-		,"Zodiac Leather"
-		,"Slink Boots"
-		,"Slink Gloves"
-		,"Lion Pelt"
-		,"Imperial Buckler"]
-
-WR.CustomCraftingBases.Default[4]:=["Vaal Regalia"
-		,"Sorcerer Boots"
-		,"Sorcerer Gloves"
-		,"Hubris Circlet"
-		,"Titanium Spirit Shield"
-		,"Harmonic Spirit Shield"]
-
-WR.CustomCraftingBases.Default[5]:=["Triumphant Lamellar"
-		,"Dragonscale Gauntlets"
-		,"Archon Kite Shield"
-		,"Murder Mitts"
-		,"Crusader Gloves"]
-
-WR.CustomCraftingBases.Default[6]:=["Cobalt Jewel"
-		, "Viridian Jewel"
-		, "Crimson Jewel"]
-
-WR.CustomCraftingBases.Default[7]:=["Searching Eye Jewel"
-		, "Murderous Eye Jewel"
-		, "Ghastly Eye Jewel"]
-
-WR.CustomCraftingBases.Default[8]:=["Onyx Amulet"
-		, "Turquoise Amulet"
-		, "Citrine Amulet"
-		, "Agate Amulet"
-		, "Prismatic Ring"
-		, "Two-Stone Ring"
-		, "Diamond Ring"]
+WR.CustomCraftingBases.Default[1]:=[{"BaseName": "Apothecary's Gloves", "ILvL":0}
+		,{"BaseName": "Blessed Boots", "ILvL":0}
+		,{"BaseName": "Fingerless Silk Gloves", "ILvL":0}
+		,{"BaseName": "Gripped Gloves", "ILvL":0}
+		,{"BaseName": "Spiked Gloves", "ILvL":0}
+		,{"BaseName": "Two-Toned Boots", "ILvL":0}
+		,{"BaseName": "Convoking Wand", "ILvL":0}
+		,{"BaseName": "Bone Helmet", "ILvL":0}
+		,{"BaseName": "Artillery Quiver", "ILvL":0}
+		,{"BaseName": "Marble Amulet", "ILvL":0}
+		,{"BaseName": "Seaglass Amulet", "ILvL":0}
+		,{"BaseName": "Blue Pearl Amulet", "ILvL":0}
+		,{"BaseName": "Iolite Ring", "ILvL":0}
+		,{"BaseName": "Vanguard Belt", "ILvL":0}
+		,{"BaseName": "Crystal Belt", "ILvL":0}
+		,{"BaseName": "Opal Ring", "ILvL":0}
+		,{"BaseName": "Steel Ring", "ILvL":0}
+		,{"BaseName": "Stygian Vise", "ILvL":0}
+		,{"BaseName": "Vermillion Ring", "ILvL":0}
+		,{"BaseName": "Grasping Mail", "ILvL":0}
+		,{"BaseName": "Sacrificial Garb", "ILvL":0}
+		,{"BaseName": "Brimstone Treads", "ILvL":0}
+		,{"BaseName": "Stormrider Boots", "ILvL":0}
+		,{"BaseName": "Dreamquest Slippers", "ILvL":0}
+		,{"BaseName": "Debilitation Gauntlets", "ILvL":0}
+		,{"BaseName": "Sinistral Gloves", "ILvL":0}
+		,{"BaseName": "Nexus Gloves", "ILvL":0}
+		,{"BaseName": "Penitent Mask", "ILvL":0}
+		,{"BaseName": "Blizzard Crown", "ILvL":0}
+		,{"BaseName": "Archdemon Crown", "ILvL":0}
+		,{"BaseName": "Heat-attuned Tower Shield", "ILvL":0}
+		,{"BaseName": "Cold-attuned Buckle", "ILvL":0}
+		,{"BaseName": "Transfer-attuned Spirit Shield", "ILvL":0}
+		,{"BaseName": "Penitent Mask", "ILvL":0}]
+WR.CustomCraftingBases.Default[2]:=[{"BaseName": "Glorious Plate", "ILvL":0}
+		,{"BaseName": "Astral Plate", "ILvL":0}
+		,{"BaseName": "Titan Greaves", "ILvL":0}
+		,{"BaseName": "Titan Gauntlets", "ILvL":0}
+		,{"BaseName": "Royal Burgonet", "ILvL":0}
+		,{"BaseName": "Eternal Burgonet", "ILvL":0}
+		,{"BaseName": "Pinnacle Tower Shield", "ILvL":0}]
+WR.CustomCraftingBases.Default[3]:=[{"BaseName": "Assassin's Garb", "ILvL":0}
+		,{"BaseName": "Zodiac Leather", "ILvL":0}
+		,{"BaseName": "Slink Boots", "ILvL":0}
+		,{"BaseName": "Slink Gloves", "ILvL":0}
+		,{"BaseName": "Lion Pelt", "ILvL":0}
+		,{"BaseName": "Imperial Buckler", "ILvL":0}]
+WR.CustomCraftingBases.Default[4]:=[{"BaseName": "Vaal Regalia", "ILvL":0}
+		,{"BaseName": "Sorcerer Boots", "ILvL":0}
+		,{"BaseName": "Sorcerer Gloves", "ILvL":0}
+		,{"BaseName": "Hubris Circlet", "ILvL":0}
+		,{"BaseName": "Titanium Spirit Shield", "ILvL":0}
+		,{"BaseName": "Harmonic Spirit Shield", "ILvL":0}]
+WR.CustomCraftingBases.Default[5]:=[{"BaseName": "Triumphant Lamellar", "ILvL":0}
+		,{"BaseName": "Dragonscale Gauntlets", "ILvL":0}
+		,{"BaseName": "Archon Kite Shield", "ILvL":0}
+		,{"BaseName": "Murder Mitts", "ILvL":0}
+		,{"BaseName": "Crusader Gloves", "ILvL":0}]
+WR.CustomCraftingBases.Default[6]:=[{"BaseName": "Cobalt Jewel", "ILvL":0}
+		, {"BaseName": "Viridian Jewel", "ILvL":0}
+		, {"BaseName": "Crimson Jewel", "ILvL":0}]
+WR.CustomCraftingBases.Default[7]:=[{"BaseName": "Searching Eye Jewel", "ILvL":0}
+		, {"BaseName": "Murderous Eye Jewel", "ILvL":0}
+		, {"BaseName": "Ghastly Eye Jewel", "ILvL":0}]
+WR.CustomCraftingBases.Default[8]:=[{"BaseName": "Onyx Amulet", "ILvL":0}
+		, {"BaseName": "Turquoise Amulet", "ILvL":0}
+		, {"BaseName": "Citrine Amulet", "ILvL":0}
+		, {"BaseName": "Agate Amulet", "ILvL":0}
+		, {"BaseName": "Prismatic Ring", "ILvL":0}
+		, {"BaseName": "Two-Stone Ring", "ILvL":0}
+		, {"BaseName": "Diamond Ring", "ILvL":0}]
 
 
 WR.CustomCraftingBases.CustomBases:=[]
+
 for k,v in [1,2,3,4,5,6,7,8]
 {
 	WR.CustomCraftingBases.CustomBases[k]:=WR.CustomCraftingBases.Default[k].Clone()

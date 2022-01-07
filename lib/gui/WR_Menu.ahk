@@ -567,6 +567,14 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashJewelleryCraftingIlvlMin , %YesStashJewelleryCraftingIlvlMin%
       Gui, Inventory: Add, Button, gCustomCrafting xs+10 y+5  w120,   Edit Crafting Bases
 
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox,             w240 h100    section    xs+160 ym+25,         Options
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart%    xs+5  ys+18 , Get Higher ILvL on Start ?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesCraftingBaseAutoILvLUP Checked%YesCraftingBaseAutoILvLUP%    xs+5  y+8 , Auto Increase IlvL Based on Last Item ?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesCraftingBaseAutoUpdate Checked%YesCraftingBaseAutoUpdate%    xs+5  y+8 , Auto Update Crafting Base API Stash ?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesCraftingBaseAutoRemoveLower Checked%YesCraftingBaseAutoRemoveLower%    xs+5  y+8 , Remove Lower ILvL Itens ?
+
     }
     Gui, Inventory: show , w600 h500, Inventory Settings
   }
