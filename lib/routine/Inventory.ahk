@@ -12,7 +12,7 @@ ItemSortCommand(){
 			Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
 			CheckRunning("Off")
 			Return
-		} 
+		}
 		Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
 		{ 
 			; First Automation Entry
@@ -52,8 +52,6 @@ ItemSortCommand(){
 			StashRoutine()
 		Else If (OnVendor && YesVendor)
 			VendorRoutine()
-		Else If (OnLocker && YesHeistLocker)
-			LockerRoutine()
 		Else If (OnInventory&&YesIdentify)
 			IdentifyRoutine()
 	}
@@ -79,28 +77,6 @@ CheckRunning(ret:=false){
 		ResetMainTimer("On")
 		Return
 	}
-}
-
-; Search Heist Locker
-	;Client:	638, 600 (recommended)
-	;Color:	1F2732 (Red=1F Green=27 Blue=32)
-SearchLocker()
-{
-	If (FindStock:=FindText(GameX,GameY,GameW,GameH,0,0,HeistLockerStr))
-	{
-		LeftClick(FindStock.1.1 + 5,FindStock.1.2 + 5)
-		Loop, 66
-		{
-			Sleep, 50
-			GuiStatus()
-			If OnLocker
-			{
-				Return True
-			}
-				
-		}
-	}
-	Return False
 }
 ; Search Stash Routine
 SearchStash()
@@ -274,7 +250,7 @@ VendorRoutine()
 					exit
 				Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
 				CtrlClick(Grid.X,Grid.Y)
-				RandomSleep(60,90)
+				RandomSleep(20,40)
 				VendoredItems := True
 			}
 		}
@@ -292,7 +268,7 @@ VendorRoutine()
 					exit
 				Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
 				CtrlClick(Grid.X,Grid.Y)
-				RandomSleep(60,90)
+				RandomSleep(20,40)
 				VendoredItems := True
 			}
 		}
@@ -303,9 +279,9 @@ VendorRoutine()
 		ContinueFlag := False
 		If (YesEnableAutoSellConfirmation || (!VendoredItems && YesEnableAutoSellConfirmationSafe))
 		{
-			RandomSleep(90,120)
+			RandomSleep(20,40)
 			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
-			RandomSleep(90,120)
+			RandomSleep(20,40)
 			ContinueFlag := True
 		}
 		Else If (FirstAutomationSetting=="Search Vendor")
@@ -329,9 +305,9 @@ VendorRoutine()
 		; Search Stash and StashRoutine
 		If (YesEnableNextAutomation && FirstAutomationSetting=="Search Vendor" && ContinueFlag)
 		{
-			RandomSleep(90,120)
+			RandomSleep(20,40)
 			SendHotkey(hotkeyCloseAllUI)
-			RandomSleep(90,120)
+			RandomSleep(20,40)
 			If OnHideout
 				Town := "Hideout"
 			Else If OnMines
@@ -400,45 +376,6 @@ StackedDeckOpen(number,x,y){
 		}
 	}
 }
-; LockerRoutine - Deposit Contracts and Blueprints at the Heist Locker
-LockerRoutine(){
-	BlackList := Array_DeepClone(BlackList_Default)
-	; Move mouse out of the way to grab screenshot
-	ShooMouse(), GuiStatus(), ClearNotifications()
-	If !OnLocker
-	{
-		Return
-	}
-	; Main loop through inventory
-	For C, GridX in InventoryGridX
-	{
-		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-			Break
-		For R, GridY in InventoryGridY
-		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
-				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
-				Continue
-			Grid := RandClick(GridX, GridY)
-			PointColor := FindText.GetColor(GridX,GridY)
-			If indexOf(PointColor, varEmptyInvSlotColor) {
-				;Seems to be an empty slot, no need to clip item info
-				Continue
-			}
-			ClipItem(Grid.X,Grid.Y)
-			addToBlacklist(C, R)
-			If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
-				ShooMouse(),GuiStatus(),Continue
-			If (Item.Prop.Heist)
-			{
-				CtrlClick(Grid.X,Grid.Y)
-				Sleep, 45 + (15*ClickLatency)
-			}
-		}
-	}
-	Return
-}
 ResetMainTimer(toggle:="On"){
 	If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.func.Toggle.Utility || WR.func.Toggle.Move || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
 		SetTimer, TGameTick, %toggle%
@@ -458,9 +395,6 @@ StashRoutine()
 	{
 		SortFirst[A_Index] := {}
 	}
-	HeistC := {}
-	HeistR := {}
-	HeistCount := 0
 	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse away for Screenshot
 	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
@@ -545,7 +479,7 @@ StashRoutine()
 					Else
 					{
 						MoveStash(sendstash)
-						RandomSleep(45,45)
+						RandomSleep(20,40)
 						CtrlShiftClick(Grid.X,Grid.Y)
 						; Check if we need to send to alternate stash for uniques
 						If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
@@ -559,7 +493,7 @@ StashRoutine()
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueRing)
-								RandomSleep(45,45)
+								RandomSleep(20,40)
 								CtrlShiftClick(Grid.X,Grid.Y)
 							}
 							If (StashTabYesUniqueDump)
@@ -569,7 +503,7 @@ StashRoutine()
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
-								RandomSleep(45,45)
+								RandomSleep(20,40)
 								CtrlShiftClick(Grid.X,Grid.Y)
 							}
 						}
@@ -614,7 +548,7 @@ StashRoutine()
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueRing)
-							RandomSleep(45,45)
+							RandomSleep(20,40)
 							CtrlShiftClick(Grid.X,Grid.Y)
 						}
 						If (StashTabYesUniqueDump)
@@ -625,7 +559,7 @@ StashRoutine()
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
-							RandomSleep(45,45)
+							RandomSleep(20,40)
 							CtrlShiftClick(Grid.X,Grid.Y)
 						}
 					}
@@ -640,14 +574,14 @@ StashRoutine()
 		If (FirstAutomationSetting == "Search Stash" && YesEnableAutomation && YesEnableNextAutomation && Unstashed && RunningToggle && (OnHideout || OnTown || OnMines))
 		{
 			SendHotkey(hotkeyCloseAllUI)
-			RandomSleep(45,90)
+			RandomSleep(20,40)
 			GuiStatus()
 			If SearchVendor()
 				VendorRoutine()
 		} Else If (FirstAutomationSetting == "Search Vendor") {
-			RandomSleep(90,120)
+			RandomSleep(20,40)
 			SendHotkey(hotkeyCloseAllUI)
-			RandomSleep(90,120)
+			RandomSleep(20,40)
 			GuiStatus()
 		}
 	}
@@ -783,9 +717,9 @@ DivRoutine()
 					CtrlClick(Grid.X,Grid.Y)
 					RandomSleep(150,200)
 					LeftClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivTrade.Y)
-					Sleep, Abs(ClickLatency*15)
+					Sleep, 40+(ClickLatency*15)
 					CtrlClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivItem.Y)
-					Sleep, Abs(ClickLatency*15)
+					Sleep, 40+(ClickLatency*15)
 				}
 				Continue
 			}

@@ -174,7 +174,6 @@
 		LaunchHelp = Opens the AutoHotkey List of Keys
 		YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
 		YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
-		YesHeistLocker = This option is for the Heist Locker logic`rEnable to stash Blueprints and contracts when the Heist Locker panel is open
 		YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
 		YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
 		YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
@@ -480,7 +479,6 @@
 	Global LootVacuumTapZSec := 3
 	Global YesVendor := 1
 	Global YesStash := 1
-	Global YesHeistLocker := 1
 	Global YesIdentify := 1
 	Global YesDiv := 1
 	Global YesMapUnid := 1

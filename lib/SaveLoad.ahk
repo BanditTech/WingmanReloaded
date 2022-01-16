@@ -45,7 +45,6 @@ readFromFile(){
 	IniRead, LootVacuumTapZSec, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZSec, 3
 	IniRead, YesVendor, %A_ScriptDir%\save\Settings.ini, General, YesVendor, 1
 	IniRead, YesStash, %A_ScriptDir%\save\Settings.ini, General, YesStash, 1
-	IniRead, YesHeistLocker, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker, 1
 	IniRead, YesIdentify, %A_ScriptDir%\save\Settings.ini, General, YesIdentify, 1
 	IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
 	IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 0
@@ -771,7 +770,6 @@ updateEverything:
 	IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
 	IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
 	IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-	IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
 	IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
 	IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
 	IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
