@@ -1,4 +1,41 @@
 ﻿; Wingman Crafting Labels - By DanMarzola
+
+
+RowNumber := 0
+
+RefreshList2(){
+  For k, v in Bases
+  {
+    If (IndexOf("str_armour",v["tags"])){
+      LV_Add("Check",v["name"],"0",RegexFixLeadingZeros(v["drop_level"]),RegexFixLeadingZeros(v["properties"]["armour"]["min"]),v["properties"]["evasion"]["min"],v["properties"]["energy_shield"]["min"])
+    }
+  }
+}
+Return
+
+RegexFixLeadingZeros(content){
+Loop, 2
+{
+	content := RegExReplace(content, "(?<!\d)\d(?!\d)", "00$0")
+	content := RegExReplace(content, "(?<!\d)\d{2}(?!\d)", "0$0")
+}
+return content
+}
+
+
+CustomCraftingBaseUI:
+  Gui, CustomCraftingBaseUI1: New
+  Gui, CustomCraftingBaseUI1: Default
+  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
+  Gui, CustomCraftingBaseUI1: Add, ListView ,  w600 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Base Name|Max ILvL Found|Drop Level|Base Armour|Base Evasion|Base ES
+  RefreshList2()
+  Gui, CustomCraftingBaseUI1: Add, Button, gNewRow x+5 w120 h30 center, Add New Map Modifier
+  Gui, CustomCraftingBaseUI1: Add, Button, gSaveData w120 h30 center, Save Map Modifiers
+  Gui, CustomCraftingBaseUI1: Add, Button, gResetData w120 h30 center, Reset Map Modifiers
+  Gui, CustomCraftingBaseUI1: Show, , Custom Map Mods
+Return
+
+
 CustomCrafting:
   Global CustomCraftingBase
   textList1 := ""
