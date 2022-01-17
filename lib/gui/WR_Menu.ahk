@@ -599,6 +599,7 @@ WR_Menu(Function:="",Var*){
         MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
         Gui, Crafting: Font, Bold s9 cBlack, Arial
         Gui, Crafting: Add, Text,       Section              x12   ym+25,         Map Crafting
+
         Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 1:
           Gui, Crafting: Font,
           Gui, Crafting: Font,s7
@@ -611,6 +612,7 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod1    Choose%CraftingMapMethod1%,   %MapMethodList%
           GuiControl,Crafting: ChooseString, CraftingMapMethod1, %CraftingMapMethod1%
           Gui, Crafting: Font, Bold s9 cBlack, Arial
+
         Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 2:
           Gui, Crafting: Font,
           Gui, Crafting: Font,s7
@@ -622,7 +624,9 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, DropDownList, xs+55  ys+35    w40    vEndMapTier2    Choose%EndMapTier2%,    %MapTierList%
           Gui, Crafting: Add, DropDownList, xs+105 ys+35    w175   vCraftingMapMethod2    Choose%CraftingMapMethod2%,    %MapMethodList%
           GuiControl,Crafting: ChooseString, CraftingMapMethod2, %CraftingMapMethod2%
+          Gui, Crafting: Font,
           Gui, Crafting: Font, Bold s9 cBlack, Arial
+
         Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Range 3:
           Gui, Crafting: Font,
           Gui, Crafting: Font,s7
@@ -636,31 +640,15 @@ WR_Menu(Function:="",Var*){
           GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
           Gui, Crafting: Font,
           Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add,GroupBox,Section w630 h240 xs, Undesirable Mods:
-          Gui, Crafting: Font,
-          Gui, Crafting: Font,s8
-          Gui, Crafting: Add, Checkbox, vElementalReflect xs+5 ys+20 Checked%ElementalReflect%, Reflect # of Elemental Damage
-          Gui, Crafting: Add, Checkbox, vPhysicalReflect xs+5 ys+40 Checked%PhysicalReflect%, Reflect # of Physical Damage
-          Gui, Crafting: Add, Checkbox, vNoLeech xs+5 ys+60 Checked%NoLeech%, Cannot Leech Life/Mana from Monsters
-          Gui, Crafting: Add, Checkbox, vNoRegen xs+5 ys+80 Checked%NoRegen%, Cannot Regenerate Life, Mana or Energy Shield
-          Gui, Crafting: Add, Checkbox, vAvoidAilments xs+5 ys+100 Checked%AvoidAilments%, Chance to Avoid Elemental Ailments
-          Gui, Crafting: Add, Checkbox, vAvoidPBB xs+5 ys+120 Checked%AvoidPBB%, Chance to Avoid Poison, Blind, and Bleeding
-          Gui, Crafting: Add, Checkbox, vLRRLES xs+5 ys+140 Checked%LRRLES%, Players Have # Less Recovery Rate of Life and ES
-          Gui, Crafting: Add, Checkbox, vPHReducedChanceToBlock xs+5 ys+160 Checked%PHReducedChanceToBlock%, Players Have # Reduced Chance to Block
-          Gui, Crafting: Add, Checkbox, vPHLessAreaOfEffect xs+5 ys+180 Checked%PHLessAreaOfEffect%, Players Have # Less Area of Effect
-          Gui, Crafting: Add, Checkbox, vMDExtraPhysicalDamage xs+290 ys+20 Checked%MDExtraPhysicalDamage%,  Monsters Deal # Extra Physical Damage as F/C/L
-          Gui, Crafting: Add, Checkbox, vMICSC xs+290 ys+40 Checked%MICSC%,  Monsters Have # Increased Critical Strike Chance
-          Gui, Crafting: Add, Checkbox, vMSCAT xs+290 ys+60 Checked%MSCAT%, Monsters Skills Chain # Additional Times
-          Gui, Crafting: Add, Checkbox, vMFAProjectiles xs+290 ys+80 Checked%MFAProjectiles%, Monsters Fire # Additional Projectiles
-          Gui, Crafting: Add, Checkbox, vMinusMPR xs+290 ys+100 Checked%MinusMPR%, Reduced # Maximum Player Resistances 
-          Gui, Crafting: Add, Checkbox, vPCDodgeUnlucky xs+290 ys+120 Checked%PCDodgeUnlucky%, Player Chance to Dodge is Unlucky  
-          Gui, Crafting: Add, Checkbox, vMHAccuracyRating xs+290 ys+140 Checked%MHAccuracyRating%, Monsters Have # Increased Accuracy Rating
-          Gui, Crafting: Add, Checkbox, vPHLessArmour xs+290 ys+160 Checked%PHLessArmour%, Players Have # Less Armour
-          Gui, Crafting: Add, Button, xs+215 ys+200 w200 gCustomMapModsUI,  Custom Map Mods
-          
 
-          Gui, Crafting: Font, Bold
+        Gui, Crafting: Add,GroupBox,Section w285 h55 xs, Map Mods:
+          Gui, Crafting: Font,
+          Gui, Crafting: Font,s7
+          Gui, Crafting: Add, Button, xs+40 ys+20  w200 gCustomMapModsUI,  Custom Map Mods
+          Gui, Crafting: Font,
           Gui, Crafting: Font, Bold s9 cBlack, Arial
+
+
         Gui, Crafting: Add,GroupBox,Section w200 h130 x320 y50, Minimum Map Qualities:
           Gui, Crafting: Font, 
           Gui, Crafting: Font,s8
@@ -686,6 +674,8 @@ WR_Menu(Function:="",Var*){
           Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
           Gui, Crafting: Add, Checkbox, vMoveMapsToArea xs+10 ys+40 Checked%MoveMapsToArea%, Move Crafted Maps and Enhance Items to Map Area?
           Gui, Crafting: Font
+
+
       Gui, Crafting: Tab, Basic Crafting
         Gui, Crafting: Font, Bold s12 cBlack, Arial
         Gui, Crafting: Add, GroupBox,section Center xm+15 ym+25 w275 h100, Chance

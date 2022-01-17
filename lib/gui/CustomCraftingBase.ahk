@@ -147,6 +147,7 @@ CustomCrafting:
       GuiControl,, ActiveCraftTier%RxMatch1%, %textList%
     Return
 
+;; Test Function to Feed Crafting Base Obj
     CraftingBasesRequest(endAtRefresh := 0){
       If (AccountNameSTR = "")
         AccountNameSTR := POE_RequestAccount().accountName
@@ -161,7 +162,6 @@ CustomCrafting:
       {
         For i, content in Object[k].items
         {
-          msgbox,entrou
           item := new ItemBuild(content,Object[k].quadLayout)
         }
       }
