@@ -35,7 +35,7 @@ RefreshBaseList(type){
       }
     }
   }
-  
+
   ;; Style
   Loop % LV_GetCount("Column")
   {
@@ -166,44 +166,58 @@ CraftingBaseBELTUI:
   Gui, CustomCraftingBaseUI1: Show, , Belt
 Return
 
-
 ResetCraftingBase:
-Loop % LV_GetCount()
+  Loop % LV_GetCount()
   {
-  LV_Modify(A_Index,"-Check")
+    LV_Modify(A_Index,"-Check")
   }
 Return
 
 SaveCraftingBase:
-RowNumber := 0  ; This causes the first loop iteration to start the search at the top of the list.
-update:=false
-Loop
-{
-    RowNumber := LV_GetNext(RowNumber,"C")  ; Resume the search at the row after that found by the previous iteration.
-    if not RowNumber  ; The above returned zero, so there are no more selected rows.
-        break
-    LV_GetText(BaseName, RowNumber,2)
-    ;Avoid Duplicate Values
-    If(!HasBase(BaseName) && BaseName !=""){
+  update:=false
+  Counter := 0
+  RowNumber := LV_GetNext(1,"C")
+  Loop % LV_GetCount()
+  {
+    LV_GetText(BaseName, A_Index,2)
+    If(Counter:=HasBase(BaseName) && RowNumber!=A_Index){
       update:=true
-      auxobj := {"BaseName": BaseName,"ILvL": 0}
-      WR.CustomCraftingBases.Bases.Push(auxobj)
+      WR.CustomCraftingBases.Bases.RemoveAt(Counter)
+      ; I not sure why, but without this sleep/delay sometimes array skip some values
+      sleep,10
     }
-}
-if(update){
-Settings("CustomCraftingBases","Save")
-}
+    RowNumber := LV_GetNext(A_Index,"C")
+  }
+
+  RowNumber := 0
+  Counter := 0
+  Loop
+  {
+    RowNumber := LV_GetNext(RowNumber,"C")
+    if not RowNumber  ; The above returned zero, so there are no more selected rows.
+        Break
+    LV_GetText(BaseName, RowNumber,2)
+    If(Counter:=HasBase(BaseName)){
+      Continue
+    }Else{
+      update:=true
+      aux:= {"BaseName":BaseName,"ILvL":"0"}
+      WR.CustomCraftingBases.Bases.Push(aux)
+    }
+  }
+  if(update){
+    Settings("CustomCraftingBases","Save")
+  }
 Return
 
 HasBase(Base){
   for k, v in WR.CustomCraftingBases.Bases{
     if (v.BaseName == Base){
-      return True
+      return k
     }
   }
-  return False
+return False
 }
-
 
 ;; Test Function to Feed Crafting Base Obj
 CraftingBasesRequest(endAtRefresh := 0){
