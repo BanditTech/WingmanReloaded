@@ -161,31 +161,6 @@ readFromFile(){
 	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
 	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
 
-	;Crafting Map Mods
-	IniRead, ElementalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect, 0
-	IniRead, PhysicalReflect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect, 0
-	IniRead, NoRegen, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen, 0
-	IniRead, NoLeech, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech, 0
-	IniRead, MinusMPR, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR, 0
-	IniRead, AvoidAilments, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments, 0
-	IniRead, AvoidPBB, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB, 0
-	IniRead, LRRLES, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, LRRLES, 0    
-	IniRead, MFAProjectiles, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MFAProjectiles, 0
-	IniRead, MDExtraPhysicalDamage, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage, 0
-	IniRead, MICSC, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC, 0
-	IniRead, MSCAT, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MSCAT, 0
-	IniRead, PCDodgeUnlucky, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PCDodgeUnlucky, 0   
-	IniRead, MHAccuracyRating, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MHAccuracyRating, 0
-	IniRead, PHReducedChanceToBlock, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHReducedChanceToBlock, 0
-	IniRead, PHLessArmour, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessArmour, 0
-	IniRead, PHLessAreaOfEffect, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessAreaOfEffect, 0
-
-	;Custom Crafting Map Mods
-	sDefaultCustomUndesirableMods := ArrayToString(DefaultCustomUndesirableMods)
-	IniRead, CustomUndesirableMods, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CustomUndesirableMods , %sDefaultCustomUndesirableMods%
-	;Converting string to array
-	CustomUndesirableMods := StringToArray(CustomUndesirableMods)
-
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
 	IniRead, FirstAutomationSetting, %A_ScriptDir%\save\Settings.ini, Automation Settings, FirstAutomationSetting, %A_Space%
@@ -911,25 +886,6 @@ updateEverything:
 	IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
 	IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
 	IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
-
-	;Crafting Map Mods
-	IniWrite, %ElementalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ElementalReflect
-	IniWrite, %PhysicalReflect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PhysicalReflect
-	IniWrite, %NoRegen%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoRegen
-	IniWrite, %NoLeech%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, NoLeech
-	IniWrite, %AvoidAilments%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidAilments
-	IniWrite, %AvoidPBB%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, AvoidPBB
-	IniWrite, %MinusMPR%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MinusMPR
-	IniWrite, %LRRLES%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, LRRLES
-	IniWrite, %MFAProjectiles%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MFAProjectiles
-	IniWrite, %MDExtraPhysicalDamage%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MDExtraPhysicalDamage
-	IniWrite, %MICSC%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MICSC
-	IniWrite, %MSCAT%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MSCAT
-	IniWrite, %PCDodgeUnlucky%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PCDodgeUnlucky
-	IniWrite, %MHAccuracyRating%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MHAccuracyRating
-	IniWrite, %PHReducedChanceToBlock%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHReducedChanceToBlock
-	IniWrite, %PHLessArmour%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessArmour
-	IniWrite, %PHLessAreaOfEffect%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, PHLessAreaOfEffect
 
 	;Stash Tab Management
 	IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
