@@ -502,7 +502,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra  vYesStashATLASCraftingIlvl Checked%YesStashATLASCraftingIlvl%     xs+5  y+8    , Above Ilvl:
       Gui, Inventory: Add, Edit, Number w40  x+2 yp-3  w40
       Gui, Inventory: Add, UpDown, Range1-100  hp gUpdateExtra vYesStashATLASCraftingIlvlMin , %YesStashATLASCraftingIlvlMin%
-      Gui, Inventory: Add, Button, gCustomCraftingBaseUI xs+10 y+5  w120,   Edit Crafting Bases
+      Gui, Inventory: Add, Button, gCraftingBaseSTRUI xs+10 y+5  w120,   Edit Crafting Bases
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox,             w150 h90    section    xs y+25,         STR Bases
       Gui, Inventory: Font,
