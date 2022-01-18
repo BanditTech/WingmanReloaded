@@ -31,7 +31,7 @@ RefreshBaseList(type){
     LV_GetText(OutputVar, A_Index , 2)
     For k, v in WR.CustomCraftingBases.Bases{ 
       if (v.BaseName == OutputVar){
-        LV_Modify(Index,"Check")
+        LV_Modify(Index,"Check",,,v.ILvL)
       }
     }
   }
