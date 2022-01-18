@@ -1,26 +1,56 @@
 ﻿; Wingman Crafting Labels - By DanMarzola
 
+Global MinILvLFromSettings := 68
 RowNumber := 0
 
 RefreshBaseList(type){
   For k, v in Bases
   {
-    If (IndexOf(type,v["tags"])){
-      if(type = "str_armour"){
+    if(type = "str_armour"){
+      If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]))
-      }else if(type = "dex_armour"){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),,RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]))
-      }else if(type = "int_armour"){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),,RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
-      }else if(type = "str_dex_armour"){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]))
-      }else if(type = "str_int_armour"){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
-      }else if(type = "dex_int_armour"){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
-      }else{
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]))
       }
+      MinILvLFromSettings := YesStashSTRBasesIlvl
+    }else if(type = "dex_armour"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),,RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]))
+      }
+      MinILvLFromSettings := YesStashDEXBasesIlvl
+    }else if(type = "int_armour"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),,RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
+      } 
+      MinILvLFromSettings := YesStashINTBasesIlvl
+    }else if(type = "str_dex_armour"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]))
+      }
+      MinILvLFromSettings := YesStashSTRDEXBasesIlvl
+    }else if(type = "str_int_armour"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
+      }
+      MinILvLFromSettings := YesStashSTRINTBasesIlvl
+    }else if(type = "dex_int_armour"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
+      }
+      MinILvLFromSettings := YesStashDEXINTBasesIlvl
+    }else if(type = "amulet"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
+      }
+      MinILvLFromSettings := YesStashAMULETBasesIlvl
+    }else if(type = "belt"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
+      }
+      MinILvLFromSettings := YesStashBELTBasesIlvl
+    }else if(type = "ring"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
+      }
+      MinILvLFromSettings := YesStashRINGBasesIlvl
     }
   }
 
@@ -29,7 +59,7 @@ RefreshBaseList(type){
   {
     Index := A_Index
     LV_GetText(OutputVar, A_Index , 2)
-    For k, v in WR.CustomCraftingBases.Bases{ 
+    For k, v in WR.CustomCraftingBases.Bases{
       if (v.BaseName == OutputVar){
         LV_Modify(Index,"Check",,,v.ILvL)
       }
@@ -44,7 +74,6 @@ RefreshBaseList(type){
   LV_ModifyCol(1, 100)
   LV_ModifyCol(2, 200)
   LV_ModifyCol(4,"SortDesc")
-
 }
 Return
 
@@ -194,14 +223,14 @@ SaveCraftingBase:
   Loop
   {
     RowNumber := LV_GetNext(RowNumber,"C")
-    if not RowNumber  ; The above returned zero, so there are no more selected rows.
-        Break
+    if not RowNumber ; The above returned zero, so there are no more selected rows.
+      Break
     LV_GetText(BaseName, RowNumber,2)
     If(Counter:=HasBase(BaseName)){
       Continue
     }Else{
       update:=true
-      aux:= {"BaseName":BaseName,"ILvL":"0"}
+      aux:= {"BaseName":BaseName,"ILvL":"0","MinILvL":MinILvLFromSettings}
       WR.CustomCraftingBases.Bases.Push(aux)
     }
   }

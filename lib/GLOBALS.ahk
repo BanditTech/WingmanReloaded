@@ -687,39 +687,33 @@
 	Global StashTabYesNinjaPrice_Price := 5
 
 ; Crafting Bases
-	Global YesStashATLAS := 1
-	Global YesStashATLASCraftingIlvl := 0
-	Global YesStashATLASCraftingIlvlMin := 76
+	Global YesStashSTRBases := 1
+	Global YesStashSTRBasesIlvl := 0
 
-	Global YesStashSTR := 1
-	Global YesStashSTRCraftingIlvl := 0
-	Global YesStashSTRCraftingIlvlMin := 76
+	Global YesStashDEXBases := 1
+	Global YesStashDEXBasesIlvl := 0
 
-	Global YesStashDEX := 1
-	Global YesStashDEXCraftingIlvl := 0
-	Global YesStashDEXCraftingIlvlMin := 76
+	Global YesStashINTBases := 1
+	Global YesStashINTBasesIlvl := 0
 
-	Global YesStashINT := 1
-	Global YesStashINTCraftingIlvl := 0
-	Global YesStashINTCraftingIlvlMin := 76
+	Global YesStashSTRDEXBases := 1
+	Global YesStashSTRDEXBasesIlvl := 0
 
-	Global YesStashHYBRID := 1
-	Global YesStashHYBRIDCraftingIlvl := 0
-	Global YesStashHYBRIDCraftingIlvlMin := 76
+	Global YesStashSTRINTBases := 1
+	Global YesStashSTRINTBasesIlvl := 0
 
-	Global YesStashJ := 1
-	Global YesStashJCraftingIlvl := 0
-	Global YesStashJCraftingIlvlMin := 76
+	Global YesStashDEXINTBases := 1
+	Global YesStashDEXINTBasesIlvl := 0
 
-	Global YesStashAJ := 1
-	Global YesStashAJCraftingIlvl := 0
-	Global YesStashAJCraftingIlvlMin := 76
+	Global YesStashAMULETBases := 1
+	Global YesStashAMULETBasesIlvl := 0
 
-	Global YesStashJewellery := 1
-	Global YesStashJewelleryCraftingIlvl := 0
-	Global YesStashJewelleryCraftingIlvlMin := 76
+	Global YesStashBELTBases := 1
+	Global YesStashBELTBasesIlvl := 0
 
-	Global YesStashJewelleryCraftingIlvlMin := True
+	Global YesStashRINGBases := 1
+	Global YesStashRINGBasesIlvl := 0
+
 	Global YesCraftingBaseAutoUpdateOnStart := True
 	Global YesCraftingBaseAutoILvLUP := True 
 	Global YesCraftingBaseAutoUpdate := True

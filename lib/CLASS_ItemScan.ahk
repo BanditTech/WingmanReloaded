@@ -3739,16 +3739,7 @@
 			sendstash := StashTabClusterJewel
 		Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
 			sendstash := StashTabHeistGear
-		Else If (StashTabYesCrafting 
-			&& ((YesStashATLAS && This.Prop.CraftingBase = "Atlas Base" && ((This.Prop.ItemLevel >= YesStashATLASCraftingIlvlMin && YesStashATLASCraftingIlvl ) || !YesStashATLASCraftingIlvl)) 
-				|| (YesStashSTR && This.Prop.CraftingBase = "STR Base" && ((This.Prop.ItemLevel >= YesStashSTRCraftingIlvlMin && YesStashSTRCraftingIlvl) || !YesStashSTRCraftingIlvl)) 
-				|| (YesStashDEX && This.Prop.CraftingBase = "DEX Base" && ((This.Prop.ItemLevel >= YesStashDEXCraftingIlvlMin && YesStashDEXCraftingIlvl) || !YesStashDEXCraftingIlvl)) 
-				|| (YesStashINT && This.Prop.CraftingBase = "INT Base" && ((This.Prop.ItemLevel >= YesStashINTCraftingIlvlMin && YesStashINTCraftingIlvl) || !YesStashINTCraftingIlvl)) 
-				|| (YesStashHYBRID && This.Prop.CraftingBase = "Hybrid Base" && ((This.Prop.ItemLevel >= YesStashHYBRIDCraftingIlvlMin && YesStashHYBRIDCraftingIlvl) || !YesStashHYBRIDCraftingIlvl)) 
-				|| (YesStashJ && This.Prop.CraftingBase = "Jewel Base" && ((This.Prop.ItemLevel >= YesStashJCraftingIlvlMin && YesStashJCraftingIlvl) || !YesStashJCraftingIlvl)) 
-				|| (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base" && ((This.Prop.ItemLevel >= YesStashAJCraftingIlvlMin && YesStashAJCraftingIlvl) || !YesStashAJCraftingIlvl))
-				|| (YesStashJewellery && This.Prop.CraftingBase = "Jewellery Base" && ((This.Prop.ItemLevel >= YesStashJewelleryCraftingIlvlMin && YesStashJewelleryCraftingIlvl) || !YesStashJewelleryCraftingIlvl)) )
-				&& (YesCraftingBaseAutoILvLUP && This.Prop.ItemLevel >= This.Prop.CraftingBaseHigherILvL) )
+		Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase)
 			sendstash := StashTabCrafting
 		Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
 			sendstash := StashTabPredictive
@@ -3956,22 +3947,20 @@
 	MatchCraftingBases(){
 		If (This.Prop.Rarity_Digit == 4 || This.Prop.Corrupted)
 			Return False
-		CraftingBaseNameList := ["Atlas Base","STR Base","DEX Base","INT Base","Hybrid Base","Jewel Base","Abyss Jewel Base","Jewellery Base"]
+
 		update := false
-		for ki, vi in CraftingBaseNameList
-		{
-			for k,v in WR.CustomCraftingBases.CustomBases[ki]
+		for k,v in WR.CustomCraftingBases.Bases
 		{
 				if (v.BaseName == This.Prop.ItemBase){
-					This.Prop.CraftingBase := vi
+					This.Prop.CraftingBase := v.BaseName
 					if (v.ILvL < This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
 						v.ILvL := This.Prop.ItemLevel
-						update := True
-		}
+						update := True		
+					}
 					This.Prop.CraftingBaseHigherILvL := v.ILvL
+				}
 		}
-		}
-		}
+
 		if(update){
 			Settings("CustomCraftingBases","Save")
 		}
