@@ -494,81 +494,58 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Tab, Crafting Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xm+5 ym+25, Armour Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xm+5 ym+25, Armour Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashSTRBases Checked%YesStashSTRBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashSTRBasesIlvl , %YesStashSTRBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseSTRUI xs+10 y+5 w120, Edit STR Bases
+      Gui, Inventory: Add, Button, gCraftingBaseSTRUI xs+10 ys+20 w120, Edit STR Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs y+25, Armour Evasion Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Armour Evasion Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashSTRDEXBases Checked%YesStashSTRDEXBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashSTRDEXBasesIlvl , %YesStashSTRDEXBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseSTRDEXUI xs+10 y+5 w120, Edit STR DEX Bases
+      Gui, Inventory: Add, Button, gCraftingBaseSTRDEXUI xs+10 ys+20 w120, Edit STR DEX Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs y+25, Ring Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Ring Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashRINGBases Checked%YesStashRINGBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashRINGBasesIlvl , %YesStashRINGBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseRINGUI xs+10 y+5 w120, Edit Ring Bases
+      Gui, Inventory: Add, Button, gCraftingBaseRINGUI xs+10 ys+20 w120, Edit Ring Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs+160 ym+25, Evasion Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs+160 ym+25, Evasion Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashDEXBases Checked%YesStashDEXBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashDEXBasesIlvl , %YesStashDEXBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseDEXUI xs+10 y+5 w120, Edit DEX Bases
+      Gui, Inventory: Add, Button, gCraftingBaseDEXUI xs+10 ys+20 w120, Edit DEX Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs y+25, Armour ES Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Armour ES Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashSTRINTBases Checked%YesStashSTRINTBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashSTRINTBasesIlvl , %YesStashSTRINTBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseSTRINTUI xs+10 y+5 w120, Edit STR INT Bases
+      Gui, Inventory: Add, Button, gCraftingBaseSTRINTUI xs+10 ys+20 w120, Edit STR INT Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs y+25, Belt Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Belt Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashBELTBases Checked%YesStashBELTBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashBELTBasesIlvl , %YesStashBELTBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseBELTUI xs+10 y+5 w120, Edit Belt Bases
+      Gui, Inventory: Add, Button, gCraftingBaseBELTUI xs+10 ys+20 w120, Edit Belt Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs+160 ym+25, ES Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs+160 ym+25, ES Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashINTBases Checked%YesStashINTBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashINTBasesIlvl , %YesStashINTBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseINTUI xs+10 y+5 w120, Edit INT Bases
+      Gui, Inventory: Add, Button, gCraftingBaseINTUI xs+10 ys+20 w120, Edit INT Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs y+25, Evasion ES Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Evasion ES Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashDEXINTBases Checked%YesStashDEXINTBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashDEXINTBasesIlvl , %YesStashDEXINTBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseDEXINTUI xs+10 y+5 w120, Edit DEX INT Bases
+      Gui, Inventory: Add, Button, gCraftingBaseDEXINTUI xs+10 ys+20 w120, Edit DEX INT Bases
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w150 h90 section xs y+25, Amulet Bases
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Amulet Bases
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashAMULETBases Checked%YesStashAMULETBases% xs+5 ys+20 , Above Ilvl:
-      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vYesStashAMULETBasesIlvl , %YesStashAMULETBasesIlvl%
-      Gui, Inventory: Add, Button, gCraftingBaseAMULETUI xs+10 y+5 w120, Edit Amulet Bases
+      Gui, Inventory: Add, Button, gCraftingBaseAMULETUI xs+10 ys+20 w120, Edit Amulet Bases
 
+      ; Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w240 h100 section xm+5 ym+320, Options
+      Gui, Inventory: Add, GroupBox, w240 h150 section xm+5 ym+250, Options
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+5 ys+18 , Get Higher ILvL on Start ?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashBasesAboveIlvl Checked%YesStashBasesAboveIlvl% xs+5 ys+20 , Above Ilvl:
+      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
+      Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vStashBasesAboveIlvl , %StashBasesAboveIlvl%
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+5 y+8 , Get Higher ILvL on Start ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoILvLUP Checked%YesCraftingBaseAutoILvLUP% xs+5 y+8 , Auto Increase IlvL Based on Last Item ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdate Checked%YesCraftingBaseAutoUpdate% xs+5 y+8 , Auto Update Crafting Base API Stash ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoRemoveLower Checked%YesCraftingBaseAutoRemoveLower% xs+5 y+8 , Remove Lower ILvL Itens ?

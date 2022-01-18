@@ -104,36 +104,10 @@ readFromFile(){
 	IniRead, BasicCraftDesiredSockets, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftDesiredSockets, 0
 	IniRead, BasicCraftSocketAuto, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftSocketAuto, 1
 
-	;Crafting Bases
+	;Crafting Bases Options
 
-	IniRead, YesStashSTRBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRBases, 0
-	IniRead, YesStashSTRBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRBasesIlvl, 68
-
-	IniRead, YesStashDEXBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXBases, 0
-	IniRead, YesStashDEXBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXBasesIlvl, 68
-
-	IniRead, YesStashINTBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTBases, 0
-	IniRead, YesStashINTBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTBasesIlvl, 68
-
-	IniRead, YesStashSTRDEXBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRDEXBases, 0
-	IniRead, YesStashSTRDEXBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRDEXBasesIlvl, 68
-
-	IniRead, YesStashSTRINTBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRINTBases, 0
-	IniRead, YesStashSTRINTBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRINTBasesIlvl, 68
-
-	IniRead, YesStashDEXINTBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXINTBases, 0
-	IniRead, YesStashDEXINTBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXINTBasesIlvl, 68
-
-	IniRead, YesStashAMULETBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAMULETBases, 0
-	IniRead, YesStashAMULETBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAMULETBasesIlvl, 68
-
-	IniRead, YesStashRINGBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashRINGBases, 0
-	IniRead, YesStashRINGBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashRINGBasesIlvl, 68
-
-	IniRead, YesStashBELTBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBELTBases
-	IniRead, YesStashBELTBasesIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBELTBasesIlvl, 68
-
-	;Options
+	IniRead, YesStashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl, 1
+	IniRead, StashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl, 68
 	IniRead, YesCraftingBaseAutoUpdateOnStart, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart, 1
 	IniRead, YesCraftingBaseAutoILvLUP, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoILvLUP, 1
 	IniRead, YesCraftingBaseAutoUpdate, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdate, 1
@@ -822,36 +796,10 @@ submit(){
 		IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
 		IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
 
-		;Crafting Bases
-		IniWrite, %YesStashSTRBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRBases
-		IniWrite, %YesStashSTRBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRBasesIlvl
+		;Crafting Bases Options
 
-		IniWrite, %YesStashDEXBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXBases
-		IniWrite, %YesStashDEXBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXBasesIlvl
-
-		IniWrite, %YesStashINTBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTBases
-		IniWrite, %YesStashINTBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashINTBasesIlvl
-
-		IniWrite, %YesStashSTRDEXBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRDEXBases
-		IniWrite, %YesStashSTRDEXBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRDEXBasesIlvl
-
-		IniWrite, %YesStashSTRINTBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRINTBases
-		IniWrite, %YesStashSTRINTBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashSTRINTBasesIlvl
-
-		IniWrite, %YesStashDEXINTBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXINTBases
-		IniWrite, %YesStashDEXINTBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashDEXINTBasesIlvl
-
-		IniWrite, %YesStashAMULETBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAMULETBases
-		IniWrite, %YesStashAMULETBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashAMULETBasesIlvl
-
-		IniWrite, %YesStashRINGBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashRINGBases
-		IniWrite, %YesStashRINGBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashRINGBasesIlvl
-
-		IniWrite, %YesStashBELTBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBELTBases
-		IniWrite, %YesStashBELTBasesIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBELTBasesIlvl
-
-		;Options
-		IniWrite, %YesStashJewelleryCraftingIlvlMin%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashJewelleryCraftingIlvlMin
+		IniWrite, %YesStashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl
+		IniWrite, %StashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl
 		IniWrite, %YesCraftingBaseAutoUpdateOnStart%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart
 		IniWrite, %YesCraftingBaseAutoILvLUP%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoILvLUP
 		IniWrite, %YesCraftingBaseAutoUpdate%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdate

@@ -933,35 +933,6 @@
 
 	}
 	HasBrickedAffix() {
-		If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
-		|| (This.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
-		|| (This.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
-		|| (This.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
-		|| (This.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
-		|| (This.Affix["Cannot Leech from Monsters"] && NoLeech)
-		|| (This.Affix["-#% maximum Player Resistances"] && MinusMPR)
-		|| (This.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
-		|| (This.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
-		|| (This.Affix["Monsters deal #% extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
-		|| (This.Affix["Monsters deal #% extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
-		|| (This.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
-		|| (This.Affix["Monsters' skills Chain # additional times"] && MSCAT)
-		|| (This.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
-		|| (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
-		|| (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
-		|| (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
-		|| (This.Affix["Players have #% less Armour"] && PHLessArmour)
-		|| (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect)
-		|| (This.HasCustomBrickedAffix()))
-		{
-			Return True
-		} 
-		Else 
-		{
-			Return False
-		}
-	}
-	HasCustomBrickedAffix() {
 		sum := 0
 		good := 0
 		For k, v in WR.CustomMapMods.CustomMods{
@@ -3739,7 +3710,7 @@
 			sendstash := StashTabClusterJewel
 		Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
 			sendstash := StashTabHeistGear
-		Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase)
+		Else If (StashTabYesCrafting && This.Prop.CraftingBase)
 			sendstash := StashTabCrafting
 		Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
 			sendstash := StashTabPredictive
@@ -3947,12 +3918,12 @@
 	MatchCraftingBases(){
 		If (This.Prop.Rarity_Digit == 4 || This.Prop.Corrupted)
 			Return False
-
 		update := false
 		for k,v in WR.CustomCraftingBases.Bases
 		{
-				if (v.BaseName == This.Prop.ItemBase){
-					This.Prop.CraftingBase := v.BaseName
+				if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
+				{
+					This.Prop.CraftingBase := True
 					if (v.ILvL < This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
 						v.ILvL := This.Prop.ItemLevel
 						update := True		

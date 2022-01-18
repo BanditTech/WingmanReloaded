@@ -10,47 +10,38 @@ RefreshBaseList(type){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]))
       }
-      MinILvLFromSettings := YesStashSTRBasesIlvl
     }else if(type = "dex_armour"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),,RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]))
       }
-      MinILvLFromSettings := YesStashDEXBasesIlvl
     }else if(type = "int_armour"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),,RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       } 
-      MinILvLFromSettings := YesStashINTBasesIlvl
     }else if(type = "str_dex_armour"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]))
       }
-      MinILvLFromSettings := YesStashSTRDEXBasesIlvl
     }else if(type = "str_int_armour"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       }
-      MinILvLFromSettings := YesStashSTRINTBasesIlvl
     }else if(type = "dex_int_armour"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       }
-      MinILvLFromSettings := YesStashDEXINTBasesIlvl
     }else if(type = "amulet"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       }
-      MinILvLFromSettings := YesStashAMULETBasesIlvl
     }else if(type = "belt"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       }
-      MinILvLFromSettings := YesStashBELTBasesIlvl
     }else if(type = "ring"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       }
-      MinILvLFromSettings := YesStashRINGBasesIlvl
     }
   }
 
@@ -210,10 +201,9 @@ SaveCraftingBase:
   {
     LV_GetText(BaseName, A_Index,2)
     If(Counter:=HasBase(BaseName) && RowNumber!=A_Index){
+      msgbox, Removed at position %Counter%
       update:=true
       WR.CustomCraftingBases.Bases.RemoveAt(Counter)
-      ; I not sure why, but without this sleep/delay sometimes array skip some values
-      sleep,10
     }
     RowNumber := LV_GetNext(A_Index,"C")
   }
@@ -230,7 +220,7 @@ SaveCraftingBase:
       Continue
     }Else{
       update:=true
-      aux:= {"BaseName":BaseName,"ILvL":"0","MinILvL":MinILvLFromSettings}
+      aux:= {"BaseName":BaseName,"ILvL":"0"}
       WR.CustomCraftingBases.Bases.Push(aux)
     }
   }
