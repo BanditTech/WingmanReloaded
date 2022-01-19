@@ -31,7 +31,7 @@ RefreshBaseList(type){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       }
     }else if(type = "amulet"){
-      If (IndexOf(type,v["tags"])){
+      If (IndexOf(type,v["tags"]) && !IndexOf("talisman",v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]))
       }
     }else if(type = "belt"){
@@ -195,33 +195,27 @@ Return
 
 SaveCraftingBase:
   update:=false
-  Counter := 0
-  RowNumber := LV_GetNext(1,"C")
-  Loop % LV_GetCount()
-  {
-    LV_GetText(BaseName, A_Index,2)
-    If(Counter:=HasBase(BaseName) && RowNumber!=A_Index){
-      msgbox, Removed at position %Counter%
-      update:=true
-      WR.CustomCraftingBases.Bases.RemoveAt(Counter)
-    }
-    RowNumber := LV_GetNext(A_Index,"C")
-  }
-
   RowNumber := 0
-  Counter := 0
+  RowList := []
+  ;Get All Checked Rows
   Loop
   {
     RowNumber := LV_GetNext(RowNumber,"C")
-    if not RowNumber ; The above returned zero, so there are no more selected rows.
-      Break
-    LV_GetText(BaseName, RowNumber,2)
-    If(Counter:=HasBase(BaseName)){
-      Continue
-    }Else{
+    if not RowNumber
+      break
+    RowList.Push(RowNumber)
+  }
+  ;Save Logic
+  Loop % LV_GetCount()
+  {
+    LV_GetText(BaseName, A_Index,2)
+    If(!HasBase(BaseName) && IndexOf(A_Index,RowList)){
       update:=true
       aux:= {"BaseName":BaseName,"ILvL":"0"}
       WR.CustomCraftingBases.Bases.Push(aux)
+    }Else If(aux:=HasBase(BaseName) && !IndexOf(A_Index,RowList)){
+      update:=true
+      WR.CustomCraftingBases.Bases.RemoveAt(aux)
     }
   }
   if(update){
@@ -237,6 +231,7 @@ HasBase(Base){
   }
 return False
 }
+
 
 ;; Test Function to Feed Crafting Base Obj
 CraftingBasesRequest(endAtRefresh := 0){
