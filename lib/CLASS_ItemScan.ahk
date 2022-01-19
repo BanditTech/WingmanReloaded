@@ -3710,7 +3710,7 @@
 			sendstash := StashTabClusterJewel
 		Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
 			sendstash := StashTabHeistGear
-		Else If (StashTabYesCrafting && This.Prop.CraftingBase)
+		Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase)
 			sendstash := StashTabCrafting
 		Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
 			sendstash := StashTabPredictive
@@ -3923,12 +3923,15 @@
 		{
 				if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
 				{
-					This.Prop.CraftingBase := True
+					This.Prop.CraftingBase := v.BaseName
 					if (v.ILvL < This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
+						This.Prop.WantedCraftingBase := True
 						v.ILvL := This.Prop.ItemLevel
 						update := True		
+					}else if(!YesCraftingBaseAutoILvLUP){
+						This.Prop.WantedCraftingBase := True
 					}
-					This.Prop.CraftingBaseHigherILvL := v.ILvL
+					This.Prop.CraftingBaseHigherILvLFound := v.ILvL
 				}
 		}
 
