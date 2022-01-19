@@ -3926,8 +3926,10 @@
 					This.Prop.CraftingBase := v.BaseName
 					if (v.ILvL < This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
 						This.Prop.WantedCraftingBase := True
-						v.ILvL := This.Prop.ItemLevel
-						update := True		
+						if(This.Prop.ItemLevel < 85){
+							v.ILvL := This.Prop.ItemLevel
+							update := True	
+						}
 					}else if(!YesCraftingBaseAutoILvLUP){
 						This.Prop.WantedCraftingBase := True
 					}

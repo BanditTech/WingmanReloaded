@@ -65,6 +65,7 @@ RefreshBaseList(type){
   LV_ModifyCol(1, 100)
   LV_ModifyCol(2, 200)
   LV_ModifyCol(4,"SortDesc")
+  LV_ModifyCol(1,"Sort")
 }
 Return
 
@@ -95,7 +96,7 @@ CraftingBaseSTRUI:
   RefreshBaseList("str_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Str Armour
+  Gui, CustomCraftingBaseUI1: Show, , Str Armour Bases
 Return
 
 CraftingBaseDEXUI:
@@ -106,7 +107,7 @@ CraftingBaseDEXUI:
   RefreshBaseList("dex_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Str Armour
+  Gui, CustomCraftingBaseUI1: Show, , Dex Armour Bases
 Return
 
 CraftingBaseINTUI:
@@ -117,7 +118,7 @@ CraftingBaseINTUI:
   RefreshBaseList("int_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Str Armour
+  Gui, CustomCraftingBaseUI1: Show, , Int Armour Bases
 Return
 
 CraftingBaseSTRDEXUI:
@@ -128,7 +129,7 @@ CraftingBaseSTRDEXUI:
   RefreshBaseList("str_dex_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Str Armour
+  Gui, CustomCraftingBaseUI1: Show, , StrDex Armour Bases
 Return
 
 CraftingBaseSTRINTUI:
@@ -139,7 +140,7 @@ CraftingBaseSTRINTUI:
   RefreshBaseList("str_int_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Str Armour
+  Gui, CustomCraftingBaseUI1: Show, , StrInt Armour Bases
 Return
 
 CraftingBaseDEXINTUI:
@@ -150,7 +151,7 @@ CraftingBaseDEXINTUI:
   RefreshBaseList("dex_int_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Str Armour
+  Gui, CustomCraftingBaseUI1: Show, , DexInt Armour Bases
 Return
 
 CraftingBaseAMULETUI:
@@ -161,7 +162,7 @@ CraftingBaseAMULETUI:
   RefreshBaseList("amulet")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Amulet
+  Gui, CustomCraftingBaseUI1: Show, , Amulet Bases
 Return
 
 CraftingBaseRINGUI:
@@ -172,7 +173,7 @@ CraftingBaseRINGUI:
   RefreshBaseList("ring")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Ring
+  Gui, CustomCraftingBaseUI1: Show, , Ring Bases
 Return
 
 CraftingBaseBELTUI:
@@ -183,7 +184,7 @@ CraftingBaseBELTUI:
   RefreshBaseList("belt")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Belt
+  Gui, CustomCraftingBaseUI1: Show, , Belt Bases
 Return
 
 ResetCraftingBase:
