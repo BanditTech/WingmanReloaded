@@ -92,7 +92,7 @@ CraftingBaseSTRUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Armour
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Armour
   RefreshBaseList("str_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -103,7 +103,7 @@ CraftingBaseDEXUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Evasion
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Evasion
   RefreshBaseList("dex_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -114,7 +114,7 @@ CraftingBaseINTUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Energy Shield
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Energy Shield
   RefreshBaseList("int_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -125,7 +125,7 @@ CraftingBaseSTRDEXUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Armour|Base Evasion
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Armour|Base Evasion
   RefreshBaseList("str_dex_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -136,7 +136,7 @@ CraftingBaseSTRINTUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Armour|Base Energy Shield
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Armour|Base Energy Shield
   RefreshBaseList("str_int_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -147,7 +147,7 @@ CraftingBaseDEXINTUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Evasion|Base Energy Shield
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level|Base Evasion|Base Energy Shield
   RefreshBaseList("dex_int_armour")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -158,7 +158,7 @@ CraftingBaseAMULETUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level
   RefreshBaseList("amulet")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -169,7 +169,7 @@ CraftingBaseRINGUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level
   RefreshBaseList("ring")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -180,7 +180,7 @@ CraftingBaseBELTUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked gMyListView vlistview1, Slot|Base Name|Max ILvL Found|Drop Level
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Slot|Base Name|Max ILvL Found|Drop Level
   RefreshBaseList("belt")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
