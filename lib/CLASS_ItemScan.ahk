@@ -3924,7 +3924,7 @@
 				if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
 				{
 					This.Prop.CraftingBase := v.BaseName
-					if (v.ILvL < This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
+					if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
 						This.Prop.WantedCraftingBase := True
 						if(This.Prop.ItemLevel < 85){
 							v.ILvL := This.Prop.ItemLevel
