@@ -538,6 +538,11 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font,
       Gui, Inventory: Add, Button, gCraftingBaseAMULETUI xs+10 ys+20 w120, Edit Amulet Bases
 
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Weapon Bases
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Button, gCraftingBaseWeaponUI xs+10 ys+20 w120, Edit Weapon Bases
+
       ; Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w240 h150 section xm+5 ym+250, Options
