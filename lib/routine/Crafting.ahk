@@ -132,6 +132,10 @@ CraftingMaps(){
 			;Crafting Map Script
 			If (Item.Prop.IsMap && !Item.Prop.IsBlightedMap && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
 			{
+				If (Item.Prop.Map_Quality < 20)
+					numberChisel := (20 - Item.Prop.Map_Quality)//5
+				Else
+					numberChisel := 0
 				;Check all 3 ranges tier with same logic
 				i = 0
 				Loop, 3
@@ -156,50 +160,12 @@ CraftingMaps(){
 						}
 						If (Item.Prop.RarityNormal)
 						{
-							If (Item.Prop.Map_Quality <= 20)
-							{
-								numberChisel := (20 - Item.Prop.Map_Quality)//5
-							}  
-							Else
-							{
-								numberChisel := 0
-							}
-							If (CraftingMapMethod%i% == "Transmutation+Augmentation")
-							{
-								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
-								Continue
-							}
-							Else if (CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")
-							{
-								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
-								Continue
-							}
-							Else if (CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")
-							{
-								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
-								Continue
-							}
-							Else if (CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)\+Vaal")
-							{
-								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
-								ApplyCurrency("Vaal",Grid.X,Grid.Y)
-								Continue
-							}
-							Else if (CraftingMapMethod%i% ~= "Chisel\+(Alchemy$|Binding$|Hybrid$)")
-							{
+							If (CraftingMapMethod%i% ~= "^Chisel")
 								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
 									Return False
-								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
-								Continue
-							}
-							Else if (CraftingMapMethod%i% ~= "Chisel\+(Alchemy|Binding|Hybrid)\+Vaal")
-							{
-								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
-									Return False
-								MapRoll(CraftingMapMethod%i%,Grid.X,Grid.Y)
+							MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+							If (CraftingMapMethod%i% ~= "Vaal$")
 								ApplyCurrency("Vaal",Grid.X,Grid.Y)
-								Continue
-							}
 						}
 					}
 				}
