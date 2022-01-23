@@ -174,7 +174,18 @@ CraftingMaps(){
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
 							}
-							Else if (CraftingMapMethod%i% ~= "^Chisel\+(Alchemy$|Binding$|Hybrid$)")
+							Else if (CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")
+							{
+								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+								Continue
+							}
+							Else if (CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)\+Vaal")
+							{
+								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
+								ApplyCurrency("Vaal",Grid.X,Grid.Y)
+								Continue
+							}
+							Else if (CraftingMapMethod%i% ~= "Chisel\+(Alchemy$|Binding$|Hybrid$)")
 							{
 								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
 									Return False
