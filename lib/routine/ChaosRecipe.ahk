@@ -636,7 +636,7 @@ VendorRoutineChaos(){
 			Return False
 		If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
 		{
-			RandomSleep(90,90)
+			RandomSleep(180,210)
 			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
 			RandomSleep(90,180)
 			ContinueFlag := True
