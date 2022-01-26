@@ -861,6 +861,8 @@
 					This.Prop.ItemName := "Vaal " . This.Prop.ItemName
 				}
 			}
+			If (RegExMatch(This.Prop.ItemBase,"(^Divergent|^Phantasmal|^Anomalous)",RxMatch))
+				This.Prop.Gem_AltQuality := RxMatch1
 		}
 		;End Prop Block Parser for Vaal Gems
 
