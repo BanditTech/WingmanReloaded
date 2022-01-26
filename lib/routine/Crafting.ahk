@@ -169,8 +169,11 @@ CraftingMaps(){
 						}
 					}
 				}
-			} Else If (indexOf(Item.Prop.ItemClass,["Blueprints","Contracts"]) && Item.Prop.RarityNormal && HeistAlcNGo) {
-				ApplyCurrency("Hybrid",Grid.X,Grid.Y)
+			} Else If (indexOf(Item.Prop.ItemClass,["Blueprints","Contracts"]) && HeistAlcNGo) {
+				If (Item.Prop.RarityMagic)
+					ApplyCurrency("Scouring",Grid.X,Grid.Y)
+				If (Item.Prop.RarityNormal)		
+					ApplyCurrency("Hybrid",Grid.X,Grid.Y)
 			}
 			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
 				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
