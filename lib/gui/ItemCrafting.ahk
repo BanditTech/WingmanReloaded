@@ -1,5 +1,5 @@
 ﻿RefreshModList(type){
-  For k, v in ModsTeste
+  For k, v in ModsBeta
   {
     if(v["generation_type"] == "suffix"||v["generation_type"] == "prefix"){
       LV_Add("",v["generation_type"],v["name"],v["required_level"],v["stats"][1]["id"],v["stats"][1]["min"],v["stats"][1]["max"])
@@ -13,7 +13,6 @@
   }
 }
 Return
-
 
 
 ModsUI:
