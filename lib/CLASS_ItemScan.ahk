@@ -863,6 +863,10 @@
 			}
 			If (RegExMatch(This.Prop.ItemBase,"(^Divergent|^Phantasmal|^Anomalous)",RxMatch))
 				This.Prop.Gem_AltQuality := RxMatch1
+			If (This.Prop.ItemBase ~= "^Awakened")
+				This.Prop.Gem_Awakened := True
+			If (This.Prop.Gem_Tags ~= "Exceptional")
+				This.Prop.Gem_Exceptional := True
 		}
 		;End Prop Block Parser for Vaal Gems
 
