@@ -621,9 +621,19 @@
 			{
 				This.Prop.SpecialType := "Enchanted Item"
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: "rxNum,RxMatch))
+			If (position := RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum "( \(Max\))?",RxMatch))
 			{
-				This.Prop.Required_Level := RxMatch1
+				If (This.Prop.RarityGem) {
+					This.Prop.Gem_Level := RxMatch1
+					If (RxMatch2 = " (Max)")
+						This.Prop.Gem_MaxLevel := True
+					If RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum,RxMatch,position+10)
+						This.Prop.Required_Level := RxMatch1
+					If RegExMatch(This.Data.Blocks.Properties, "`am)([, \w]+)\r", RxMatch)
+						This.Prop.Gem_Tags := RxMatch1
+				} Else {
+					This.Prop.Required_Level := RxMatch1
+				}
 			}
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum,RxMatch))
 			{
@@ -841,13 +851,15 @@
 			}
 		}
 		; End Prop Block Parser for Heist
-		;Start Prop Block Parser for Vaal Gems
-		If (This.Prop.RarityGem && This.Prop.Corrupted)
+		;Start Prop Block Parser for Gems
+		If (This.Prop.RarityGem)
 		{
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
-			{
-				This.Prop.VaalGem := True
-				This.Prop.ItemName := "Vaal " . This.Prop.ItemName
+			If (This.Prop.Corrupted) {
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
+				{
+					This.Prop.VaalGem := True
+					This.Prop.ItemName := "Vaal " . This.Prop.ItemName
+				}
 			}
 		}
 		;End Prop Block Parser for Vaal Gems
@@ -2997,6 +3009,7 @@
 			If( RegExMatch(key, "^Required")
 			|| RegExMatch(key, "^Rating")
 			|| RegExMatch(key, "^Sockets")
+			|| RegExMatch(key, "^Gem")
 			|| RegExMatch(key, "^Quality")
 			|| RegExMatch(key, "^Map")
 			|| RegExMatch(key, "^Heist_")
