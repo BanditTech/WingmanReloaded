@@ -571,7 +571,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Button, default gupdateEverything x425 y510 w125 h23, Save Configuration
       Gui, Crafting: Add, Button, gLaunchSite x+5 h23, Website
 
-      Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w675 h555 -wrap , Map Crafting|Basic Crafting
+      Gui, Crafting: Add, Tab2, vCraftingGuiTabs x3 y3 w675 h555 -wrap , Map Crafting|Basic Crafting|Item Craft Beta
 
       Gui, Crafting: Tab, Map Crafting
 
@@ -708,6 +708,18 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
       Gui, Crafting: Add, CheckBox, x+10 yp gSaveBasicCraft vBasicCraftSocketAuto Checked%BasicCraftSocketAuto%, Auto
       Gui, Crafting: Font
+
+
+      Gui, Crafting: Tab, Item Craft Beta
+
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, GroupBox, w150 h60 section xm+5 ym+25, Beta
+        Gui, Crafting: Font,
+        Gui, Crafting: Add, Button, gModsUI xs+10 ys+20 w120, Beta
+      
+
+
+
       Gui, Crafting: Show
     }
     Gui, Crafting: show , w650 h550, Crafting Settings

@@ -12,6 +12,7 @@ Global Corruption := []
 Global InventoryGridX := []
 Global InventoryGridY := []
 Global Bases
+Global ModsBeta
 Global GameActive
 Global GamePID
 Global QuestItems
