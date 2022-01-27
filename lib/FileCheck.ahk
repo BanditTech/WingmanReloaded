@@ -45,10 +45,7 @@ IfNotExist, %A_ScriptDir%\data\WR.ico
 	}
 }
 ; Verify we have essential files, and redownload if required
-For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","item_corrupted_mods.txt"
-	,"boot_enchantment_mods.txt","helmet_enchantment_mods.txt","glove_enchantment_mods.txt"
-,"WR_Prop.json","WR_Pseudo.json","WR_Affix.json"
-,"Controller.png","InventorySlots.png"] {
+For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","WR_Prop.json","WR_Pseudo.json","WR_Affix.json","Controller.png","InventorySlots.png"] {
 	IfNotExist, %A_ScriptDir%\data\%str%
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/%str%, %A_ScriptDir%\data\%str%
@@ -59,30 +56,6 @@ For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","item_corrupted_mods.txt"
 		Else if (ErrorLevel=0){
 			Log("Verbose","Data downloaded Correctly", str)
 		}
-	}
-}
-Loop, Read, %A_ScriptDir%\data\boot_enchantment_mods.txt
-{
-	If (StrLen(Trim(A_LoopReadLine)) > 0) {
-		Enchantment.push(A_LoopReadLine)
-	}
-}
-Loop, Read, %A_ScriptDir%\data\helmet_enchantment_mods.txt
-{
-	If (StrLen(Trim(A_LoopReadLine)) > 0) {
-		Enchantment.push(A_LoopReadLine)
-	}
-}
-Loop, Read, %A_ScriptDir%\data\glove_enchantment_mods.txt
-{
-	If (StrLen(Trim(A_LoopReadLine)) > 0) {
-		Enchantment.push(A_LoopReadLine)
-	}
-}
-Loop, read, %A_ScriptDir%\data\item_corrupted_mods.txt
-{
-	If (StrLen(Trim(A_LoopReadLine)) > 0) {
-		Corruption.push(A_LoopReadLine)
 	}
 }
 IfNotExist, %A_ScriptDir%\data\Bases.json
@@ -104,9 +77,7 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 	JSONtext := ""
 }
 
-auxlist:= ["Life Flask","Mana Flask","Hybrid Flask","Amulet","Ring","Claw","Dagger","Wand","One Hand Sword","Thrusting One Hand Sword","One Hand Axe","One Hand Mace","Bow","Stave","Two Hand Sword","Two Hand Axe","Two Hand Mace","Quiver","Belt","Gloves","Boots","Body Armour","Helmet","Shield","Sceptre","Utility Flask","Jewel","Abyss Jewel","Rune Dagger","Warstaff","Trinket"]
-
-for k, v in auxlist{
+For k, v in PoeDBAPI{
 
 	content := RegExReplace(v," ","")
 
@@ -119,16 +90,8 @@ for k, v in auxlist{
 		}
 		Else if (ErrorLevel=0){
 			Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
-			FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
-			Mods%content% := JSON.Load(JSONtext)
-			JSONtext := ""
 		}
-	} Else {
-		FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
-		Mods%content% := JSON.Load(JSONtext)
-		JSONtext := ""
-	}
-
+	} 
 }
 
 IfNotExist, %A_ScriptDir%\data\Quest.json

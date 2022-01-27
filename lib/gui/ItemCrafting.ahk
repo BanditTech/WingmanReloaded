@@ -1,7 +1,6 @@
 ﻿RefreshModList(type){
-  auxlist:= ["normal","elder","shaper","crusader","redeemer","hunter","warlord"]
-
-  For ki ,vi in auxlist
+  LoadOnDemand(type)
+  For ki ,vi in ["normal","elder","shaper","crusader","redeemer","hunter","warlord"]
   {
     For k, v in Mods%type%[vi]
     {
@@ -17,7 +16,7 @@
       }
     }
   }
-
+  FreeOnDemand(type)
   ;;Check Box
   Gui, ListView, LVP
   Loop % LV_GetCount()
@@ -59,8 +58,8 @@ FixName(content){
   content := RegExReplace(content,"\<br\>"," \n ")
   content := RegExReplace(content,"\<.*?\>","")
   content := RegExReplace(content,"&ndash;","-")
-    return content
-  }
+  return content
+}
 
   ModsUI:
     Gui, ModsUI1: New
@@ -117,3 +116,13 @@ FixName(content){
     }
     Settings("ItemCrafting","Save")
   Return
+
+LoadOnDemand(content){
+  FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
+	Mods%content% := JSON.Load(JSONtext)
+	JSONtext := ""
+}
+
+FreeOnDemand(content){
+	Mods%content% := []
+}
