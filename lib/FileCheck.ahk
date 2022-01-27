@@ -104,13 +104,7 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 	JSONtext := ""
 }
 
-auxlist:= ["Life Flask","Mana Flask","Hybrid Flask",
-"Amulet","Ring","Claw","Dagger","Wand","One Hand Sword",
-"Thrusting One Hand Sword","One Hand Axe","One Hand Mace",
-"Bow","Stave","Two Hand Sword","Two Hand Axe","Two Hand Mace",
-"Quiver","Belt","Gloves","Boots","Body Armour","Helmet","Shield",
-"Sceptre","Utility Flask","Jewel","Abyss Jewel","Rune Dagger",
-"Warstaff","Trinket"]
+auxlist:= ["Life Flask","Mana Flask","Hybrid Flask","Amulet","Ring","Claw","Dagger","Wand","One Hand Sword","Thrusting One Hand Sword","One Hand Axe","One Hand Mace","Bow","Stave","Two Hand Sword","Two Hand Axe","Two Hand Mace","Quiver","Belt","Gloves","Boots","Body Armour","Helmet","Shield","Sceptre","Utility Flask","Jewel","Abyss Jewel","Rune Dagger","Warstaff","Trinket"]
 
 for k, v in auxlist{
 
