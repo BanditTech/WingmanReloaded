@@ -104,43 +104,34 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 	Bases := JSON.Load(JSONtext)
 	JSONtext := ""
 }
-IfNotExist, %A_ScriptDir%\data\Mods.json
+
+auxlist:= ["Life Flask","Mana Flask","Hybrid Flask","Amulet","Ring","Claw","Dagger","Wand","One Hand Sword","Thrusting One Hand Sword","One Hand Axe","One Hand Mace","Bow","Stave","Two Hand Sword","Two Hand Axe","Two Hand Mace","Quiver","Belt","Gloves","Boots","Body Armour","Helmet","Shield","Sceptre","Utility Flask","Jewel","Abyss Jewel","Rune Dagger","Warstave","Trinket"]
+
+for k, v in auxlist{
+
+content := RegExReplace(v," ","")
+
+IfNotExist, %A_ScriptDir%\data\Mods%content%.json
 {
-	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/mods.json, %A_ScriptDir%\data\Mods.json
+	UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%content%, %A_ScriptDir%\data\Mods%content%.json
 	if ErrorLevel {
 			Log("Error","Data download error", "Mods.json")
-		MsgBox, Error ED02 : There was a problem downloading Mods.json from RePoE
+		MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb
 	}
 	Else if (ErrorLevel=0){
 		Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
-		FileRead, JSONtext, %A_ScriptDir%\data\Mods.json
-		ModsBeta := JSON.Load(JSONtext)
+		FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
+		Mods%content% := JSON.Load(JSONtext)
 		JSONtext := ""
 	}
 } Else {
-	FileRead, JSONtext, %A_ScriptDir%\data\Mods.json
-	ModsBeta := JSON.Load(JSONtext)
+	FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
+	Mods%content% := JSON.Load(JSONtext)
 	JSONtext := ""
 }
 
-IfNotExist, %A_ScriptDir%\data\Mods02.json
-{
-	UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=Claw, %A_ScriptDir%\data\Mods02.json
-	if ErrorLevel {
-			Log("Error","Data download error", "Mods.json")
-		MsgBox, Error ED02 : There was a problem downloading Mods.json from RePoE
-	}
-	Else if (ErrorLevel=0){
-		Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
-		FileRead, JSONtext, %A_ScriptDir%\data\Mods02.json
-		ModsBeta := JSON.Load(JSONtext)
-		JSONtext := ""
-	}
-} Else {
-	FileRead, JSONtext, %A_ScriptDir%\data\Mods02.json
-	ModsClaw := JSON.Load(JSONtext)
-	JSONtext := ""
 }
+
 
 IfNotExist, %A_ScriptDir%\data\Quest.json
 {

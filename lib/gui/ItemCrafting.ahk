@@ -1,30 +1,13 @@
 ﻿RefreshModList(type){
-  For k, v in ModsBeta
+  For k, v in Mods%type%["normal"]
   {
-    if(v["generation_type"] == "suffix"||v["generation_type"] == "prefix"){
-      LV_Add("",v["generation_type"],v["name"],v["required_level"],v["stats"][1]["id"],v["stats"][1]["min"],v["stats"][1]["max"])
-    }
-    
-  }
-  ;; Style
-  Loop % LV_GetCount("Column")
-  {
-    LV_ModifyCol(A_Index,"AutoHdr")
-  }
-  
-}
-Return
-
-RefreshModList2(type){
-  For k, v in ModsClaw["normal"]
-  {
-    If InStr(v["Name"],"of ")
+    If (v["ModGenerationTypeID"] == 1)
     {
-      Affix :=  "Suffix"
+      Affix :=  "Prefix"
     }
     Else
     {
-      Affix :=  "Prefix"
+      Affix := "Suffix"
     }
     LV_Add("",Affix,v["Name"],v["Code"],v["Level"],FixName(v["str"]))
   }
@@ -48,18 +31,8 @@ FixName(content){
 ModsUI:
   Gui, ModsUI1: New
   Gui, ModsUI1: Default
-  Gui, ModsUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, ModsUI1: Add, ListView , w1200 h800 -wrap -Multi Grid Checked vlistview1, PreSu|Name|LvL|statsid|statsmin|statsmax
-  RefreshModList("str_armour")
-  Gui, ModsUI1: Show, , Str Armour Bases
+  Gui, ModsUI1: +AlwaysOnTop -MinimizeBox
+  Gui, ModsUI1: Add, ListView , w1200 h800 -wrap -Multi Grid Checked vlistview1, Affix|Name|Code|ILvL|Full String
+  RefreshModList("Claw")
+  Gui, ModsUI1: Show, , Mod List %
 Return
-
-ModsUI2:
-  Gui, ModsUI1: New
-  Gui, ModsUI1: Default
-  Gui, ModsUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, ModsUI1: Add, ListView , w1200 h800 -wrap -Multi Grid Checked vlistview1, Affix|Name|Code|Level|ModString
-  RefreshModList2("str_armour")
-  Gui, ModsUI1: Show, , Str Armour Bases
-Return
-
