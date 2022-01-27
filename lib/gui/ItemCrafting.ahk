@@ -30,6 +30,7 @@ Return
 FixName(content){
   ; content := RegExReplace(content, "^Adds <.+>", "Adds #")
   ; content := RegExReplace(content, "^<.+>", "#")
+  content := RegExReplace(content,"\<br\>"," \n ")
   content := RegExReplace(content,"\<.*?\>","")
   content := RegExReplace(content,"&ndash;","-")
   return content
