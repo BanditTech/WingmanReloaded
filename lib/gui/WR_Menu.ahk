@@ -711,11 +711,17 @@ WR_Menu(Function:="",Var*){
 
 
       Gui, Crafting: Tab, Item Craft Beta
-
+        ;Load DDL Content from API
+        aux := ""
+        for k, v in PoeDBAPI
+          aux .= v  . "|"
+        
         Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, GroupBox, w150 h60 section xm+5 ym+25, Beta
+        Gui, Crafting: Add, GroupBox, w150 h100 section xm+5 ym+25, Mod Selector
         Gui, Crafting: Font,
-        Gui, Crafting: Add, Button, gModsUI xs+10 ys+20 w120, Beta
+        
+        Gui, Crafting: Add, DropDownList, vItemClassSelector gChooseMenuTest Sort xs+10 ys+20 w120, %aux%
+        Gui, Crafting: Add, Button, gModsUI xs+10 y+10 w120, Open UI
 
 
       Gui, Crafting: Show

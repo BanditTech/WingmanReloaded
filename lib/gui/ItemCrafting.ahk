@@ -1,4 +1,6 @@
-﻿RefreshModList(type){
+﻿Selector :=
+
+RefreshModList(type){
   LoadOnDemand(type)
   For ki ,vi in ["normal","elder","shaper","crusader","redeemer","hunter","warlord"]
   {
@@ -69,7 +71,7 @@ FixName(content){
     Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVP, Type|Affix Name|ILvL|Detail|Code
     Gui, ModsUI1: Add, Text,, Suffix
     Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVS, Type|Affix Name|ILvL|Detail|Code
-    RefreshModList("Claw")
+    RefreshModList(Selector)
     Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
     Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
     Gui, ModsUI1: Show, , Mod List
@@ -126,3 +128,8 @@ LoadOnDemand(content){
 FreeOnDemand(content){
 	Mods%content% := []
 }
+
+ChooseMenuTest:
+Gui,Submit, Nohide
+Selector := ItemClassSelector
+return
