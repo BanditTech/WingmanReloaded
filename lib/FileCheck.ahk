@@ -20,36 +20,35 @@ IfNotExist, %A_ScriptDir%\lib
 	FileCreateDir, %A_ScriptDir%\lib
 IfNotExist, %A_ScriptDir%\save\MyCustomAutoRun.ahk
 	FileAppend,% "; This file will be included at the end of the Auto Execute section`n"
-							. "; Code must not include any return until in hotkey labels`n"
-							. "; Arrange any hotkeys to end of this file`n"
-						, %A_ScriptDir%\save\MyCustomAutoRun.ahk
+. "; Code must not include any return until in hotkey labels`n"
+. "; Arrange any hotkeys to end of this file`n"
+, %A_ScriptDir%\save\MyCustomAutoRun.ahk
 IfNotExist, %A_ScriptDir%\save\MyCustomRoutine.ahk
 	FileAppend,% "; This file will be included at the end of the Logic Loop`n"
-							. "; Code must not include any return`n"
-						, %A_ScriptDir%\save\MyCustomRoutine.ahk
+. "; Code must not include any return`n"
+, %A_ScriptDir%\save\MyCustomRoutine.ahk
 IfNotExist, %A_ScriptDir%\save\MyCustomLib.ahk
 	FileAppend,% "; This file will be included at the end of the Script`n"
-							. "; Include any Functions or Labels here`n"
-						, %A_ScriptDir%\save\MyCustomLib.ahk
-
+. "; Include any Functions or Labels here`n"
+, %A_ScriptDir%\save\MyCustomLib.ahk
 
 IfNotExist, %A_ScriptDir%\data\WR.ico
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR.ico, %A_ScriptDir%\data\WR.ico
 	if ErrorLevel{
-			Log("Error","Data download error", "WR.ico")
+		Log("Error","Data download error", "WR.ico")
 		MsgBox, Error ED02 : There was a problem downloading WR.ico
 	}
 	Else if (ErrorLevel=0){
-			Log("Verbose","Data downloaded Correctly", "WR.ico")
+		Log("Verbose","Data downloaded Correctly", "WR.ico")
 		needReload := True
 	}
 }
 ; Verify we have essential files, and redownload if required
 For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","item_corrupted_mods.txt"
-							,"boot_enchantment_mods.txt","helmet_enchantment_mods.txt","glove_enchantment_mods.txt"
-							,"WR_Prop.json","WR_Pseudo.json","WR_Affix.json"
-							,"Controller.png","InventorySlots.png"] {
+	,"boot_enchantment_mods.txt","helmet_enchantment_mods.txt","glove_enchantment_mods.txt"
+,"WR_Prop.json","WR_Pseudo.json","WR_Affix.json"
+,"Controller.png","InventorySlots.png"] {
 	IfNotExist, %A_ScriptDir%\data\%str%
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/%str%, %A_ScriptDir%\data\%str%
@@ -90,7 +89,7 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
 	if ErrorLevel {
-			Log("Error","Data download error", "Bases.json")
+		Log("Error","Data download error", "Bases.json")
 		MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
 	}
 	Else if (ErrorLevel=0){
@@ -105,33 +104,38 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 	JSONtext := ""
 }
 
-auxlist:= ["Life Flask","Mana Flask","Hybrid Flask","Amulet","Ring","Claw","Dagger","Wand","One Hand Sword","Thrusting One Hand Sword","One Hand Axe","One Hand Mace","Bow","Stave","Two Hand Sword","Two Hand Axe","Two Hand Mace","Quiver","Belt","Gloves","Boots","Body Armour","Helmet","Shield","Sceptre","Utility Flask","Jewel","Abyss Jewel","Rune Dagger","Warstave","Trinket"]
+auxlist:= ["Life Flask","Mana Flask","Hybrid Flask",
+"Amulet","Ring","Claw","Dagger","Wand","One Hand Sword",
+"Thrusting One Hand Sword","One Hand Axe","One Hand Mace",
+"Bow","Stave","Two Hand Sword","Two Hand Axe","Two Hand Mace",
+"Quiver","Belt","Gloves","Boots","Body Armour","Helmet","Shield",
+"Sceptre","Utility Flask","Jewel","Abyss Jewel","Rune Dagger",
+"Warstaff","Trinket"]
 
 for k, v in auxlist{
 
-content := RegExReplace(v," ","")
+	content := RegExReplace(v," ","")
 
-IfNotExist, %A_ScriptDir%\data\Mods%content%.json
-{
-	UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%content%, %A_ScriptDir%\data\Mods%content%.json
-	if ErrorLevel {
+	IfNotExist, %A_ScriptDir%\data\Mods%content%.json
+	{
+		UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%content%, %A_ScriptDir%\data\Mods%content%.json
+		if ErrorLevel {
 			Log("Error","Data download error", "Mods.json")
-		MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb
-	}
-	Else if (ErrorLevel=0){
-		Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
+			MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb
+		}
+		Else if (ErrorLevel=0){
+			Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
+			FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
+			Mods%content% := JSON.Load(JSONtext)
+			JSONtext := ""
+		}
+	} Else {
 		FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
 		Mods%content% := JSON.Load(JSONtext)
 		JSONtext := ""
 	}
-} Else {
-	FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
-	Mods%content% := JSON.Load(JSONtext)
-	JSONtext := ""
-}
 
 }
-
 
 IfNotExist, %A_ScriptDir%\data\Quest.json
 {
@@ -168,7 +172,7 @@ IfNotExist, %A_ScriptDir%\data\Affix_Lines.json
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_Lines.json, %A_ScriptDir%\data\Affix_Lines.json
 	FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
 	WR.Data.Affix := JSON.Load(JSONtext,,1)
-	JSONtext := ""  
+	JSONtext := "" 
 } Else {
 	FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
 	WR.Data.Affix := JSON.Load(JSONtext,,1)
@@ -176,6 +180,4 @@ IfNotExist, %A_ScriptDir%\data\Affix_Lines.json
 }
 If needReload
 	Reload
-
-
 
