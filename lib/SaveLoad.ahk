@@ -10,6 +10,7 @@ readFromFile(){
 	Settings("String","Load")
 	Settings("CustomCraftingBases","Load")
 	Settings("CustomMapMods","Load")
+	Settings("ItemCrafting","Load")
 
 	For k, name in ["perChar","Flask","Utility"]
 		IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -603,6 +604,7 @@ submit(){
 		Settings("String","Save")
 		Settings("CustomCraftingBases","Save")
 		Settings("CustomMapMods","Save")
+		Settings("ItemCrafting","Save")
 
 		;GUI Position
 		WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
