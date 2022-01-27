@@ -716,6 +716,11 @@ WR_Menu(Function:="",Var*){
         Gui, Crafting: Add, GroupBox, w150 h60 section xm+5 ym+25, Beta
         Gui, Crafting: Font,
         Gui, Crafting: Add, Button, gModsUI xs+10 ys+20 w120, Beta
+
+        Gui, Crafting: Font, Bold s9 cBlack, Arial
+        Gui, Crafting: Add, GroupBox, w150 h60 section xs yp+20, Beta
+        Gui, Crafting: Font,
+        Gui, Crafting: Add, Button, gModsUI2 xs+10 ys+20 w120, Beta
       
 
 

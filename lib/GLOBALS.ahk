@@ -13,6 +13,7 @@ Global InventoryGridX := []
 Global InventoryGridY := []
 Global Bases
 Global ModsBeta
+Global ModsClaw
 Global GameActive
 Global GamePID
 Global QuestItems

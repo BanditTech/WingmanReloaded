@@ -122,6 +122,26 @@ IfNotExist, %A_ScriptDir%\data\Mods.json
 	ModsBeta := JSON.Load(JSONtext)
 	JSONtext := ""
 }
+
+IfNotExist, %A_ScriptDir%\data\Mods02.json
+{
+	UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=Claw, %A_ScriptDir%\data\Mods02.json
+	if ErrorLevel {
+			Log("Error","Data download error", "Mods.json")
+		MsgBox, Error ED02 : There was a problem downloading Mods.json from RePoE
+	}
+	Else if (ErrorLevel=0){
+		Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
+		FileRead, JSONtext, %A_ScriptDir%\data\Mods02.json
+		ModsBeta := JSON.Load(JSONtext)
+		JSONtext := ""
+	}
+} Else {
+	FileRead, JSONtext, %A_ScriptDir%\data\Mods02.json
+	ModsClaw := JSON.Load(JSONtext)
+	JSONtext := ""
+}
+
 IfNotExist, %A_ScriptDir%\data\Quest.json
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
