@@ -17,7 +17,7 @@ Return
 RefreshModList2(type){
   For k, v in ModsClaw["normal"]
   {
-      LV_Add("",v["Name"],v["Code"],v["Level"],FixName(v["str"]))
+    LV_Add("",v["Name"],v["Code"],v["Level"],FixName(v["str"]))
   }
   ;; Style
   Loop % LV_GetCount("Column")
@@ -28,9 +28,11 @@ RefreshModList2(type){
 Return
 
 FixName(content){
-content := RegExReplace(content, "^Adds <.+>", "Adds #")
-content := RegExReplace(content, "^<.+>", "#")
-return content
+  ; content := RegExReplace(content, "^Adds <.+>", "Adds #")
+  ; content := RegExReplace(content, "^<.+>", "#")
+  content := RegExReplace(content,"\<.*?\>","")
+  content := RegExReplace(content,"&ndash;","-")
+  return content
 }
 
 
