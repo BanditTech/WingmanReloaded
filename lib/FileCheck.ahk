@@ -1,4 +1,6 @@
-﻿IfNotExist, %A_ScriptDir%\data
+﻿#Include, %A_ScriptDir%\lib\GLOBALS.ahk
+
+IfNotExist, %A_ScriptDir%\data
 	FileCreateDir, %A_ScriptDir%\data
 IfNotExist, %A_ScriptDir%\save
 	FileCreateDir, %A_ScriptDir%\save
@@ -77,19 +79,20 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 	JSONtext := ""
 }
 
-For k, v in PoeDBAPI{
-
+For k, v in PoeDBAPI
+{
+	contentdownload := RegExReplace(v," ","%20")
 	content := RegExReplace(v," ","")
-
 	IfNotExist, %A_ScriptDir%\data\Mods%content%.json
 	{
-		UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%content%, %A_ScriptDir%\data\Mods%content%.json
+		UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%contentdownload%, %A_ScriptDir%\data\Mods%content%.json
 		if ErrorLevel {
 			Log("Error","Data download error", "Mods.json")
 			MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb
 		}
 		Else if (ErrorLevel=0){
 			Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
+			
 		}
 	} 
 }
