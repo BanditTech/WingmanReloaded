@@ -1,10 +1,8 @@
-﻿Selector :=
-
-RefreshModList(type){
-  LoadOnDemand(type)
+﻿RefreshModList(type){
+  Mods := LoadOnDemand(type)
   For ki ,vi in ["normal","elder","shaper","crusader","redeemer","hunter","warlord"]
   {
-    For k, v in Mods%type%[vi]
+    For k, v in Mods[vi]
     {
       If (v["ModGenerationTypeID"] == 1)
       {
@@ -18,7 +16,7 @@ RefreshModList(type){
       }
     }
   }
-  FreeOnDemand(type)
+  Mods := []
   ;;Check Box
   Gui, ListView, LVP
   Loop % LV_GetCount()
@@ -71,7 +69,7 @@ FixName(content){
     Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVP, Type|Affix Name|ILvL|Detail|Code
     Gui, ModsUI1: Add, Text,, Suffix
     Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVS, Type|Affix Name|ILvL|Detail|Code
-    RefreshModList(Selector)
+    RefreshModList(ItemClassSelector)
     Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
     Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
     Gui, ModsUI1: Show, , Mod List
@@ -120,16 +118,12 @@ FixName(content){
   Return
 
 LoadOnDemand(content){
+  content := RegExReplace(content," ","")
   FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
-	Mods%content% := JSON.Load(JSONtext)
-	JSONtext := ""
-}
-
-FreeOnDemand(content){
-	Mods%content% := []
+	return JSON.Load(JSONtext)
 }
 
 ChooseMenuTest:
 Gui,Submit, Nohide
-Selector := ItemClassSelector
+Selector := 
 return

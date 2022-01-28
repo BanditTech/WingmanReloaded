@@ -10,14 +10,42 @@ Global Ninja := {}
 Global InventoryGridX := []
 Global InventoryGridY := []
 Global Bases
-Global ModsBeta
-Global ModsClaw
 Global GameActive
 Global GamePID
 Global QuestItems
 Global DelayAction := {}
 Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar
-Global PoeDBAPI := ["Life Flask","Mana Flask","Hybrid Flask","Amulet","Ring","Claw","Dagger","Wand","One Hand Sword","Thrusting One Hand Sword","One Hand Axe","One Hand Mace","Bow","Stave","Two Hand Sword","Two Hand Axe","Two Hand Mace","Quiver","Belt","Gloves","Boots","Body Armour","Helmet","Shield","Sceptre","Utility Flask","Jewel","Abyss Jewel","Rune Dagger","Warstaff","Trinket"]
+Global PoeDBAPI := ["Life Flask"
+,"Mana Flask"
+,"Hybrid Flask"
+,"Amulet"
+,"Ring"
+,"Claw"
+,"Dagger"
+,"Wand"
+,"One Hand Sword"
+,"Thrusting One Hand Sword"
+,"One Hand Axe"
+,"One Hand Mace"
+,"Bow"
+,"Two Hand Sword"
+,"Two Hand Axe"
+,"Two Hand Mace"
+,"Quiver"
+,"Belt"
+,"Gloves"
+,"Boots"
+,"Body Armour"
+,"Helmet"
+,"Shield"
+,"Sceptre"
+,"Utility Flask"
+,"Jewel"
+,"Abyss Jewel"
+,"Rune Dagger"
+,"Warstaff"
+,"Trinket"
+,"Staff"]
 Global ItemClassSelector
 Global Active_executable := "TempName"
 Global selectedLeague := "Standard"
