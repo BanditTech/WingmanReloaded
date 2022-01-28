@@ -81,8 +81,14 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 
 For k, v in PoeDBAPI
 {
-	contentdownload := RegExReplace(v," ","%20")
 	content := RegExReplace(v," ","")
+	contentdownload := RegExReplace(v," ","%20")
+	contentdownload := RegExReplace(contentdownload,"\(STR\)","&tags=str_armour")
+    contentdownload := RegExReplace(contentdownload,"\(DEX\)","&tags=dex_armour")
+    contentdownload := RegExReplace(contentdownload,"\(INT\)","&tags=int_armour")
+    contentdownload := RegExReplace(contentdownload,"\(STR-DEX\)","&tags=str_dex_armour")
+    contentdownload := RegExReplace(contentdownload,"\(STR-INT\)","&tags=str_int_armour")
+    contentdownload := RegExReplace(contentdownload,"\(DEX-INT\)","&tags=dex_int_armour")
 	IfNotExist, %A_ScriptDir%\data\Mods%content%.json
 	{
 		UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%contentdownload%, %A_ScriptDir%\data\Mods%content%.json
