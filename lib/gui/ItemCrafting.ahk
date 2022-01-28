@@ -99,7 +99,7 @@ FixName(content){
         break
       LV_GetText(ModLine, RowNumber,4)
       ;Parse ModLine Missing
-      aux := {"Mod":ModLine,"Value":"0"}
+      aux := {"Mod":ModLine,"Value":"0","ModGenerationTypeID":"1"}
       WR.ItemCrafting.Active.push(aux)
     }
     RowNumber := 0
@@ -111,7 +111,7 @@ FixName(content){
         break
       LV_GetText(ModLine, RowNumber,4)
       ;Parse ModLine Missing
-      aux := {"Mod":ModLine,"Value":"0"}
+      aux := {"Mod":ModLine,"Value":"0","ModGenerationTypeID":"2"}
       WR.ItemCrafting.Active.push(aux)
     }
     Settings("ItemCrafting","Save")
