@@ -229,8 +229,7 @@ SelectClientLog:
 Return
 
 GreyOutAffinity(){
-  Static Lista := ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique"]
-  for key, val in Lista
+  for key, val in ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique","Gem","Flask"]
   {
     GuiControlGet, CheckBoxState,, StashTabYes%val%
     If (CheckBoxState == 0)

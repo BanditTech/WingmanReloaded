@@ -3682,17 +3682,31 @@
 			Else
 				sendstash := StashTabDelve
 		}
+		Else If (This.Prop.Flask&&!This.Prop.RarityUnique)
+		{
+			If StashTabYesFlask > 1
+				sendstash := -2
+			Else
+				sendstash := StashTabFlask
+		}																												
+		Else If (This.Prop.RarityGem && StashTabYesGem)
+		{
+			If StashTabYesGem > 1
+				sendstash := -2
+			Else
+				sendstash := StashTabGem
+		}
 		Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
 		&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) )
 		{
 			If (StashTabYesUnique = 2)
 				Return -2
 			Else if (StashTabYesUnique)
-			sendstash := StashTabUnique
+				sendstash := StashTabUnique
 			Else If (StashTabYesUniqueRing&&This.Prop.Ring)
-			sendstash := StashTabUniqueRing
+				sendstash := StashTabUniqueRing
 			Else If (StashTabYesUniqueDump)
-			sendstash := StashTabUniqueDump
+				sendstash := StashTabUniqueDump
 		}
 		Else If ( ((StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
 		&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage)  )
@@ -3703,30 +3717,11 @@
 			sendstash := StashTabUniqueDump
 		}
 		Else If (This.Prop.MiscMapItem&&StashTabYesMiscMapItems)
-		{
 			sendstash := StashTabMiscMapItems
-		}
-		Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality&&!This.Prop.RarityUnique)
-			sendstash := StashTabFlaskQuality
-		Else If (This.Prop.Flask&&(This.Prop.Quality<1)&&StashTabYesFlaskAll&&!This.Prop.RarityUnique)
-			sendstash := StashTabFlaskAll																															
-		Else If (This.Prop.RarityGem)
-		{
-			If ((This.Prop.Quality>0)&&StashTabYesGemQuality)
-				sendstash := StashTabGemQuality
-			Else If (This.Prop.VaalGem && StashTabYesGemVaal)
-				sendstash := StashTabGemVaal
-			Else If (This.Prop.Support && StashTabYesGemSupport)
-				sendstash := StashTabGemSupport
-			Else If (StashTabYesGem)
-				sendstash := StashTabGem
-		}
 		Else If ((This.Prop.IsInfluenceItem||This.Prop.IsSynthesisItem&&YesIncludeFandSItem)&&StashTabYesInfluencedItem)
 			sendstash := StashTabInfluencedItem
 		Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
 			sendstash := StashTabLinked
-		Else If (This.Prop.Prophecy&&StashTabYesProphecy)
-			sendstash := StashTabProphecy
 		Else If (This.Prop.Veiled&&StashTabYesVeiled)
 			sendstash := StashTabVeiled
 		Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
@@ -3735,9 +3730,8 @@
 			sendstash := StashTabHeistGear
 		Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase)
 			sendstash := StashTabCrafting
-		Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
+		Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price )
 			sendstash := StashTabPredictive
-		}
 		Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough))
 		{
 			If (ChaosRecipeStashMethodDump)

@@ -100,15 +100,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Text, Section xm+5 ym+25,Stash Tab Management
       Gui, Inventory: Font,
 
-      ; Prophecy
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Prophecy
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabProphecy x+0 yp hp , %StashTabProphecy%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesProphecy Checked%StashTabYesProphecy% x+5 yp+4, Enable
-
       ; Veiled
 
       Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -148,35 +139,7 @@ WR_Menu(Function:="",Var*){
       ; Second column Gui - GEMS
 
       Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , Quality Gem
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabGemQuality , %StashTabGemQuality%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesGemQuality Checked%StashTabYesGemQuality% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Vaal Gem
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabGemVaal , %StashTabGemVaal%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesGemVaal Checked%StashTabYesGemVaal% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Support Gem
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabGemSupport , %StashTabGemSupport%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesGemSupport Checked%StashTabYesGemSupport% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Gem
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabGem , %StashTabGem%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesGem Checked%StashTabYesGem% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , 5/6 linked
+      Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , 5/6 linked
       Gui, Inventory: Font,
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabLinked , %StashTabLinked%
@@ -188,6 +151,13 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabBrickedMaps , %StashTabBrickedMaps%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesBrickedMaps Checked%StashTabYesBrickedMaps% x+5 yp+4, Enable
+
+      Gui, Inventory: Font, Bold s8 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabInfluencedItem , %StashTabInfluencedItem%
+      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
 
       ; Third column Gui - Rare itens
 
@@ -218,27 +188,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabNinjaPrice , %StashTabNinjaPrice%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesNinjaPrice Checked%StashTabYesNinjaPrice% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabInfluencedItem , %StashTabInfluencedItem%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Quality Flask
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabFlaskQuality , %StashTabFlaskQuality%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesFlaskQuality Checked%StashTabYesFlaskQuality% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Unquality Flask
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabFlaskAll , %StashTabFlaskAll%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesFlaskAll Checked%StashTabYesFlaskAll% x+5 yp+4, Enable
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w185 h60 section x+15 ys, Dump Tab
@@ -333,6 +282,15 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesMetamorph x+5 yp-5 w90 h20, %StashTabYesMetamorph%
       Gui, Inventory: Add, Text, xp yp+22 w90 center vMetamorphEditText, Disable Type
 
+      ; Gem
+      Gui, Inventory: Font, Bold s8 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Gem
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Edit, Number vGemEdit w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabGem x+0 yp hp , %StashTabGem%
+      Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesGem x+5 yp-5 w90 h20, %StashTabYesGem%
+      Gui, Inventory: Add, Text, xp yp+22 w90 center vGemEditText, Disable Type
+
       ; Currency
       Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, Section w145 h50 x+15 ys+18 , Currency
@@ -377,6 +335,15 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabUnique x+0 yp hp , %StashTabUnique%
       Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesUnique x+5 yp-5 w90 h20, %StashTabYesUnique%
       Gui, Inventory: Add, Text, xp yp+22 w90 center vUniqueEditText, Disable Type
+
+      ; Flask
+      Gui, Inventory: Font, Bold s8 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Flask
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Edit, Number vFlaskEdit w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabFlask x+0 yp hp , %StashTabFlask%
+      Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesFlask x+5 yp-5 w90 h20, %StashTabYesFlask%
+      Gui, Inventory: Add, Text, xp yp+22 w90 center vFlaskEditText, Disable Type
 
       ;Run GreyOut
       GreyOutAffinity()
@@ -550,10 +517,10 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashBasesAboveIlvl Checked%YesStashBasesAboveIlvl% xs+8 ys+20 , Above Ilvl:
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vStashBasesAboveIlvl , %StashBasesAboveIlvl%
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Get Higher ILvL on Start ?
+      ;Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Get Higher ILvL on Start ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoILvLUP Checked%YesCraftingBaseAutoILvLUP% xs+8 y+8 , Auto Increase IlvL Based on Last Item ?
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdate Checked%YesCraftingBaseAutoUpdate% xs+8 y+8 , Auto Update Crafting Base API Stash ?
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoRemoveLower Checked%YesCraftingBaseAutoRemoveLower% xs+8 y+8 , Remove Lower ILvL Itens ?
+      ;Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdate Checked%YesCraftingBaseAutoUpdate% xs+8 y+8 , Auto Update Crafting Base API Stash ?
+      ;Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoRemoveLower Checked%YesCraftingBaseAutoRemoveLower% xs+8 y+8 , Remove Lower ILvL Itens ?
 
     }
     Gui, Inventory: show , w600 h500, Inventory Settings
