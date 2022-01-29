@@ -675,21 +675,17 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, x+5 yp, Desired Sockets
       Gui, Crafting: Add, CheckBox, x+10 yp gSaveBasicCraft vBasicCraftSocketAuto Checked%BasicCraftSocketAuto%, Auto
       Gui, Crafting: Font
-
-
+      ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
-        ;Load DDL Content from API
-        aux := ""
-        for k, v in PoeDBAPI
-          aux .= v  . "|"
-        
-        Gui, Crafting: Font, Bold s9 cBlack, Arial
-        Gui, Crafting: Add, GroupBox, w320 h100 section xm+5 ym+25, Mod Selector
-        Gui, Crafting: Font,
-        
-        Gui, Crafting: Add, DropDownList, vItemClassSelector gChooseMenuTest Sort xs+10 ys+20 w300, %aux%
-        Gui, Crafting: Add, Button, gModsUI xs+10 y+10 w300, Open UI
-
+      ;Load DDL Content from API
+      aux := ""
+      for k, v in PoeDBAPI
+        aux .= v . "|"
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add, GroupBox, w320 h100 section xm+5 ym+25, Mod Selector
+      Gui, Crafting: Font,
+      Gui, Crafting: Add, DropDownList, vItemClassSelector gChooseMenuTest Sort Choose1 xs+10 ys+20 w300, %aux%
+      Gui, Crafting: Add, Button, gModsUI xs+10 y+10 w300, Open UI
 
       Gui, Crafting: Show
     }
