@@ -71,7 +71,7 @@ Global PoeDBAPI := ["Life Flask"
 ,"Warstaff"
 ,"Trinket"
 ,"Staff"]
-Global ItemClassSelector
+Global ItemClassSelector := "Abyss Jewel"
 Global Active_executable := "TempName"
 Global selectedLeague := "Standard"
 ; Hybrid Mods First Line

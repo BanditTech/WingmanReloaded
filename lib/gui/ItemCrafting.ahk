@@ -33,8 +33,7 @@ SaveItemCrafting:
         If not RowNumber
             break
         LV_GetText(ModLine, RowNumber,4)
-        ;Parse ModLine Missing
-        aux := {"Mod":ModLine,"Value":"0","ModGenerationTypeID":"1"}
+        aux := MatchLineForItemCraft(ModLine,1)
         WR.ItemCrafting.Active.push(aux)
     }
     RowNumber := 0
@@ -46,7 +45,7 @@ SaveItemCrafting:
             break
         LV_GetText(ModLine, RowNumber,4)
         ;Parse ModLine Missing
-        aux := {"Mod":ModLine,"Value":"0","ModGenerationTypeID":"2"}
+        aux := MatchLineForItemCraft(ModLine,2)
         WR.ItemCrafting.Active.push(aux)
     }
     Settings("ItemCrafting","Save")
@@ -57,6 +56,35 @@ ChooseMenuTest:
 Return
 
 ;; Functions
+
+MatchLineForItemCraft(Line,ModGenerationTypeID)
+{
+    Item := New Itemscan() 
+    Line := RegExReplace(Line,"\(" rxNum "-" rxNum "\)", "$1")
+    Line := RegExReplace(Line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
+    Mod := Item.Standardize(Line)
+    If (vals := Item.MatchLine(Line))
+    {
+        If (vals.Count() >= 2)
+        {
+            If (Line ~= rxNum " to " rxNum || Line ~= rxNum "-" rxNum)
+                FinalValue := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+            Else
+                FinalValue := vals[1]
+        }
+        Else
+        {
+            FinalValue := vals[1]
+        }
+    }
+    Else
+    {
+        FinalValue := True
+    }
+    Output := {"Mod":Line,"ModWRFormat":Mod,"Value":FinalValue,"ModGenerationTypeID":ModGenerationTypeID}
+Return Output
+}
+
 LoadOnDemand(content)
 {
     content := RegExReplace(content," ","")
@@ -71,18 +99,15 @@ RefreshModList(type)
     {
         For k, v in Mods[vi]
         {
-            ModLine := RegExReplace(v["str"],"\<br\>"," \n ")
-            ModLine := RegExReplace(content,"\<.*?\>","")
-            ModLine := RegExReplace(content,"–","-")
             If (v["ModGenerationTypeID"] == 1)
             {
                 Gui, ListView, LVP
                 StringUpper, vi, vi, T
-                LV_Add("",vi,v["Name"],v["Level"],ModLine,v["Code"])
+                LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["Code"])
             }else {
                 Gui, ListView, LVS
                 StringUpper, vi, vi, T
-                LV_Add("",vi,v["Name"],v["Level"],ModLine,v["Code"])
+                LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["Code"])
             }
         }
     }
@@ -118,4 +143,12 @@ RefreshModList(type)
     Loop % LV_GetCount("Column")
         LV_ModifyCol(A_Index,"AutoHdr")
 Return
+}
+
+ItemCraftingNaming(Content)
+{
+    Content := RegExReplace(Content,"\<br\>"," \n ")
+    Content := RegExReplace(Content,"\<.*?\>","")
+    Content := RegExReplace(Content,"&ndash;","-")
+Return Content
 }
