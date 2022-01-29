@@ -57,10 +57,10 @@ Return
 
 ;; Functions
 
-MatchLineForItemCraft(Line,ModGenerationTypeID)
+MatchLineForItemCraft(FullLine,ModGenerationTypeID)
 {
     Item := New Itemscan() 
-    Line := RegExReplace(Line,"\(" rxNum "-" rxNum "\)", "$1")
+    Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
     Line := RegExReplace(Line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
     Mod := Item.Standardize(Line)
     If (vals := Item.MatchLine(Line))
@@ -81,7 +81,7 @@ MatchLineForItemCraft(Line,ModGenerationTypeID)
     {
         FinalValue := True
     }
-    Output := {"Mod":Line,"ModWRFormat":Mod,"Value":FinalValue,"ModGenerationTypeID":ModGenerationTypeID}
+    Output := {"Mod":FullLine,"ModWRFormat":Mod,"Value":FinalValue,"ModGenerationTypeID":ModGenerationTypeID}
 Return Output
 }
 
