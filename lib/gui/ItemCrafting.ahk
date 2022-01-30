@@ -24,7 +24,7 @@ ResetItemCrafting:
 Return
 
 SaveItemCrafting:
-    WR.ItemCrafting.Active := []
+    WR.ItemCrafting[ItemClassSelector] := []
     RowNumber := 0
     Gui, ListView, LVP
     Loop
@@ -33,8 +33,7 @@ SaveItemCrafting:
         If not RowNumber
             break
         LV_GetText(ModLine, RowNumber,4)
-        aux := MatchLineForItemCraft(ModLine,1)
-        WR.ItemCrafting.Active.push(aux)
+        MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemClassSelector])
     }
     RowNumber := 0
     Gui, ListView, LVS
@@ -45,8 +44,7 @@ SaveItemCrafting:
             break
         LV_GetText(ModLine, RowNumber,4)
         ;Parse ModLine Missing
-        aux := MatchLineForItemCraft(ModLine,2)
-        WR.ItemCrafting.Active.push(aux)
+        MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemClassSelector])
     }
     Settings("ItemCrafting","Save")
 Return
@@ -57,32 +55,49 @@ Return
 
 ;; Functions
 
-MatchLineForItemCraft(FullLine,ModGenerationTypeID)
+MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush)
 {
-    Item := New Itemscan() 
-    Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
-    Line := RegExReplace(Line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
-    Mod := Item.Standardize(Line)
-    If (vals := Item.MatchLine(Line))
+    Repeat := 1
+    Item := New Itemscan()
+    if(RegExMatch(FullLine, "(.+) n (.+)", RxMatch)){
+        Repeat := 2
+        Line := RegExReplace(RxMatch1,"\(" rxNum "-" rxNum "\)", "$1")
+        Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
+        Mod := Item.Standardize(Line)
+        If(Item.CheckIfActualHybridMod(Mod)){
+            IsHybridMod := True
+        }
+    }
+    Loop, %Repeat%
     {
-        If (vals.Count() >= 2)
+        If(A_Index == 1 && Repeat == 2)
+            FullLine := RxMatch1
+        Else If(A_Index == 2)
+            FullLine := RxMatch2
+
+        Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
+        Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
+        Mod := Item.Standardize(Line)
+        If (vals := Item.MatchLine(Line))
         {
-            If (Line ~= rxNum " to " rxNum || Line ~= rxNum "-" rxNum)
-                FinalValue := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+            If (vals.Count() >= 2)
+            {
+                If (Line ~= rxNum " to " rxNum || Line ~= rxNum "-" rxNum)
+                    FinalValue := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+                Else
+                    FinalValue := vals[1]
+            }
             Else
                 FinalValue := vals[1]
         }
         Else
-        {
-            FinalValue := vals[1]
+            FinalValue := True
+        If(IsHybridMod){
+            Mod := "(Hybrid) " . Mod
         }
+        aux := {"Mod":FullLine,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormat":FinalValue}
+        ObjectToPush.push(aux) 
     }
-    Else
-    {
-        FinalValue := True
-    }
-    Output := {"Mod":FullLine,"ModWRFormat":Mod,"Value":FinalValue,"ModGenerationTypeID":ModGenerationTypeID}
-Return Output
 }
 
 LoadOnDemand(content)
@@ -118,7 +133,7 @@ RefreshModList(type)
     {
         Index := A_Index
         LV_GetText(OutputVar, A_Index , 4)
-        For k, v in WR.ItemCrafting.Active
+        For k, v in WR.ItemCrafting[ItemClassSelector]
         {
             If (v.Mod == OutputVar)
                 LV_Modify(Index,"Check")
@@ -129,7 +144,7 @@ RefreshModList(type)
     {
         Index := A_Index
         LV_GetText(OutputVar, A_Index , 4)
-        For k, v in WR.ItemCrafting.Active
+        For k, v in WR.ItemCrafting[ItemClassSelector]
         {
             If (v.Mod == OutputVar)
                 LV_Modify(Index,"Check")
@@ -147,8 +162,8 @@ Return
 
 ItemCraftingNaming(Content)
 {
-    Content := RegExReplace(Content,"\<br\>"," \n ")
+    Content := RegExReplace(Content,"\<br\>"," n ")
     Content := RegExReplace(Content,"\<.*?\>","")
     Content := RegExReplace(Content,"&ndash;","-")
-Return Content
-}
+        Return Content
+    }
