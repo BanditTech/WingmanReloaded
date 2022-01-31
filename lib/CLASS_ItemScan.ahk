@@ -984,19 +984,31 @@
 		}
 	}
 	MatchCraftingItemMods() {
-		prefix:=0
-		suffix:=0
-		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]{
-			if(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormat"] )
+		This.Prop.CraftingMatchedPrefix:=0
+		This.Prop.CraftingMatchedSuffix:=0
+		DoubleModP := 0
+		DoubleModS := 0
+		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
+		{
+			if(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormat"])
 			{
 				if(v["ModGenerationTypeID"] == 1){
-					prefix++
+					This.Prop.CraftingMatchedPrefix++
+					If(v["RNMod"] == 2){
+						DoubleModP++
+					}
 				}Else{
-					suffix++
+					This.Prop.CraftingMatchedSuffix++
+					If(v["RNMod"] == 2){
+						DoubleModS++
+					}
 				}
 			}
 		}
-		if(prefix >= ItemCraftingNumberPrefix && suffix >= ItemCraftingNumberPrefix){
+		; Deal with Double Mods
+		This.Prop.CraftingMatchedPrefix := This.Prop.CraftingMatchedPrefix - DoubleModP//2
+		This.Prop.CraftingMatchedSuffix := This.Prop.CraftingMatchedSuffix - DoubleModS//2
+		if(This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix && This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberPrefix){
 			Return True
 		}else{
 			Return False
