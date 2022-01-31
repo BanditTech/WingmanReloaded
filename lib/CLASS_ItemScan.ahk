@@ -899,6 +899,11 @@
 				This.Prop.HasUndesirableMod := True
 			}
 		}
+		; Flags for Item Crafting
+		If (This.MatchCraftingItemMods())
+		{
+			This.Prop.ItemCraftingHit := True
+		}
 		;Stack size for anything with it
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" ,RxMatch))
 		{
@@ -976,6 +981,25 @@
 			Return False
 		}else{
 			Return True
+		}
+	}
+	MatchCraftingItemMods() {
+		prefix:=0
+		suffix:=0
+		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]{
+			if(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormat"] ])
+			{
+				if(v["ModGenerationTypeID"] == 1){
+					prefix++
+				}Else{
+					suffix++
+				}
+			}
+		}
+		if(prefix >= ItemCraftingNumberPrefix && suffix >= ItemCraftingNumberPrefix){
+			Return True
+		}else{
+			Return False
 		}
 	}
 	GetActualResistTier(){

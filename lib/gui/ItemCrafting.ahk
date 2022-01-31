@@ -8,10 +8,10 @@ ModsUI:
     Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVP, Influence|Affix Name|ILvL|Detail|Code
     Gui, ModsUI1: Add, Text,, Suffix List
     Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVS, Influence|Affix Name|ILvL|Detail|Code
-    RefreshModList(ItemClassSelector)
+    RefreshModList(ItemCraftingBaseSelector)
     Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
     Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
-    Gui, ModsUI1: Show, , %ItemClassSelector% Affix List 
+    Gui, ModsUI1: Show, , %ItemCraftingBaseSelector% Affix List 
 Return
 
 ResetItemCrafting:
@@ -24,7 +24,7 @@ ResetItemCrafting:
 Return
 
 SaveItemCrafting:
-    WR.ItemCrafting[ItemClassSelector] := []
+    WR.ItemCrafting[ItemCraftingBaseSelector] := []
     RowNumber := 0
     Gui, ListView, LVP
     Loop
@@ -33,7 +33,7 @@ SaveItemCrafting:
         If not RowNumber
             break
         LV_GetText(ModLine, RowNumber,4)
-        MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemClassSelector])
+        MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingBaseSelector])
     }
     RowNumber := 0
     Gui, ListView, LVS
@@ -43,13 +43,15 @@ SaveItemCrafting:
         If not RowNumber
             break
         LV_GetText(ModLine, RowNumber,4)
-        ;Parse ModLine Missing
-        MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemClassSelector])
+        MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingBaseSelector])
     }
     Settings("ItemCrafting","Save")
 Return
 
-ChooseMenuTest:
+SaveItemCraftingMenu:
+Return
+
+ItemCraftingSubmit:
     Gui,Submit, Nohide
 Return
 
@@ -133,7 +135,7 @@ RefreshModList(type)
     {
         Index := A_Index
         LV_GetText(OutputVar, A_Index , 4)
-        For k, v in WR.ItemCrafting[ItemClassSelector]
+        For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
         {
             If (v.Mod == OutputVar)
                 LV_Modify(Index,"Check")
@@ -144,7 +146,7 @@ RefreshModList(type)
     {
         Index := A_Index
         LV_GetText(OutputVar, A_Index , 4)
-        For k, v in WR.ItemCrafting[ItemClassSelector]
+        For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
         {
             If (v.Mod == OutputVar)
                 LV_Modify(Index,"Check")

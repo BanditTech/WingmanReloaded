@@ -71,7 +71,6 @@ Global PoeDBAPI := ["Life Flask"
 ,"Warstaff"
 ,"Trinket"
 ,"Staff"]
-Global ItemClassSelector := "Abyss Jewel"
 Global Active_executable := "TempName"
 Global selectedLeague := "Standard"
 ; Hybrid Mods First Line
@@ -576,6 +575,16 @@ Global YesSpecial5Link := True
 Global EnableRestock:=True
 Global MoveMapsToArea:=True
 Global YesIncludeFandSItem := True
+
+; Item Crafting
+
+Global ItemCraftingBaseSelector := "Abyss Jewel"
+Global ItemCraftingMethodAlt := 0
+Global ItemCraftingMethodAltAug := 0
+Global ItemCraftingMethodScoAlt := 0
+Global ItemCraftingMethodChaos := 0
+Global ItemCraftingNumberPrefix := 0
+Global ItemCraftingNumberSuffix := 0
 
 ; Chaos Recipe
 Global ChaosRecipeEnableFunction := False
