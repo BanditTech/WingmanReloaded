@@ -41,7 +41,7 @@ Crafting(selection:="Maps"){
 				RandomSleep(45,45)
 				CurrentTab := 0
 				MoveStash(StashTabCurrency)
-				If indexOf(selection,["Maps","Socket","Color","Link","Chance","Item"])
+				If indexOf(selection,["Maps","Socket","Color","Link","Chance"])
 					Crafting%selection%()
 				Else
 					Notify("Unknown Result is:",selection,2)
@@ -85,12 +85,12 @@ CraftingSocket(){
 }
 CraftingItem(){
 	Global RunningToggle
-	; Move mouse away for Screenshot
+	; Cursor
 	MouseGetPos, xx, yy
+	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Augmentation","Chaos"])
-	MouseMove %xx%, %yy%
-	sleep, 2000
+	Sleep, 500
 	ItemCraftingRoll("AltAug", xx, yy)
 	/*
 
@@ -455,7 +455,7 @@ ItemCraftingRoll(Method, x, y)
 		}
 		If(Item.Prop.RarityMagic && Method == "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)){
 			If !ApplyCurrency("Augmentation",x,y)
-				Return False
+				Continue
 		}
 	}
 	Return 1

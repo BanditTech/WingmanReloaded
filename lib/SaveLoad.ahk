@@ -324,6 +324,8 @@ readFromFile(){
 		hotkey,% hotkeyGemSwap, GemSwapCommand, Off
 	If hotkeyStartCraft
 		hotkey,% hotkeyStartCraft, Crafting, Off
+	If hotkeyItemCrafting
+		hotkey,% hotkeyItemCrafting, CraftingItem, Off
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
 
@@ -387,6 +389,8 @@ readFromFile(){
 	IniRead, hotkeyAutoUtility, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoUtility, !MButton
 	IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
 	IniRead, hotkeyStartCraft, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft, F7
+	IniRead, hotkeyItemCrafting, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemCrafting, F11
+	
 	IniRead, hotkeyCraftBasic, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic, F9
 	IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
 	IniRead, hotkeyGrabCurrency, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency, !a
@@ -424,6 +428,8 @@ readFromFile(){
 		hotkey,% hotkeyGemSwap, GemSwapCommand, On
 	If hotkeyStartCraft
 		hotkey,% hotkeyStartCraft, Crafting, On
+	If hotkeyItemCrafting
+		hotkey,% hotkeyItemCrafting, CraftingItem, On
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, On
 
@@ -622,6 +628,8 @@ submit(){
 			hotkey,% hotkeyGemSwap, GemSwapCommand, Off
 		If hotkeyStartCraft
 			hotkey,% hotkeyStartCraft, Crafting, Off
+		If hotkeyItemCrafting
+			hotkey,% hotkeyStartCraft, CraftingItem, Off
 		If hotkeyCraftBasic
 			hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
 
@@ -763,6 +771,7 @@ submit(){
 		IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
 		IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
 		IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
+		IniWrite, %hotkeyItemCrafting%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemCrafting
 		IniWrite, %hotkeyCraftBasic%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic
 		IniWrite, %hotkeyCtrlClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker
 		IniWrite, %hotkeyCtrlShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker
