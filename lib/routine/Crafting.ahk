@@ -41,7 +41,7 @@ Crafting(selection:="Maps"){
 				RandomSleep(45,45)
 				CurrentTab := 0
 				MoveStash(StashTabCurrency)
-				If indexOf(selection,["Maps","Socket","Color","Link","Chance"])
+				If indexOf(selection,["Maps","Socket","Color","Link","Chance","Item"])
 					Crafting%selection%()
 				Else
 					Notify("Unknown Result is:",selection,2)
@@ -83,6 +83,30 @@ CraftingSocket(){
 	local f
 	f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }
+CraftingItem(){
+	Global RunningToggle
+	; Move mouse away for Screenshot
+	MouseGetPos, xx, yy
+	ShooMouse(), GuiStatus(), ClearNotifications()
+	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Augmentation","Chaos"])
+	MouseMove %xx%, %yy%
+	sleep, 2000
+	ItemCraftingRoll("AltAug", xx, yy)
+	/*
+
+	If(ItemCraftingMethodAlt){
+		ItemCraftingRoll("Alt", xx, yy)
+	}Else If(ItemCraftingMethodAltAug){
+		ItemCraftingRoll("AltAug", xx, yy)
+	}Else If(ItemCraftingMethodAltSco){
+		ItemCraftingRoll("AltSco", xx, yy)
+	}Else If(ItemCraftingMethodChaos){
+		ItemCraftingRoll("Chaos", xx, yy)
+	}
+	
+
+	*/
+}
 ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
 CraftingMaps(){
 	Global RunningToggle
@@ -90,17 +114,17 @@ CraftingMaps(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
 	BlackList := Array_DeepClone(BlackList_Default)
-	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel"])
+	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Augmentation"])
 	; MsgBoxVals(WR.data.Counts)
 	MapList := {}
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
 	{
-		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
 		For R, GridY in InventoryGridY
 		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
@@ -117,7 +141,7 @@ CraftingMaps(){
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
 				If ( Item.Prop.IsMap
-				&& (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" )))
+						&& (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" )))
 				&&!Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
@@ -146,7 +170,7 @@ CraftingMaps(){
 						If (!Item.Prop.RarityNormal)
 						{
 							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
-							|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) 
+									|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) 
 							|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
 							{
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
@@ -162,7 +186,7 @@ CraftingMaps(){
 						{
 							If (CraftingMapMethod%i% ~= "^Chisel")
 								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
-									Return False
+								Return False
 							MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 							If (CraftingMapMethod%i% ~= "Vaal$")
 								ApplyCurrency("Vaal",Grid.X,Grid.Y)
@@ -182,7 +206,7 @@ CraftingMaps(){
 	If (MoveMapsToArea && RunningToggle){
 		Slots := EmptyGrid()
 		For k, obj in MapList {
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			If Slots.Count() {
 				split := StrSplit(k," ")
@@ -194,27 +218,27 @@ CraftingMaps(){
 				LeftClick(gogo.X,gogo.Y)
 				Sleep, 120 + (15 * ClickLatency)
 			}	Else
-				Break
+			Break
 		}
 	}
 	Return
 }
-InMapArea(C:=0) {
+InMapArea(C:=0){
 	If (C <= 0)
 		Return False
 	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
-	|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
-		Return True
+		|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
+	Return True
 	Return False
 }
 getMapCraftingMethod(){
 	Loop, 3
 	{
 		If ( EndMapTier%A_Index% >= StartMapTier%A_Index% 
-		&& CraftingMapMethod%A_Index% != "Disable" 
-		&& Item.Prop.Map_Tier >= StartMapTier%A_Index% 
+				&& CraftingMapMethod%A_Index% != "Disable" 
+			&& Item.Prop.Map_Tier >= StartMapTier%A_Index% 
 		&& Item.Prop.Map_Tier <= EndMapTier%A_Index% )
-			Return CraftingMapMethod%A_Index%
+		Return CraftingMapMethod%A_Index%
 	}
 	Return False
 }
@@ -340,14 +364,8 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False
 	}
-	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
-	While ( Item.Prop.HasUndesirableMod
-	|| (Item.Prop.RarityNormal) 
-	|| (!MMQIgnore && !Item.Prop.HasDesirableMod
-		&& ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) 
-		|| (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) 
-		|| (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)) ) )
-	&& !Item.Affix["Unidentified"] && !This.Prop.Corrupted
+	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
+	While ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) || (!MMQIgnore && !Item.Prop.HasDesirableMod && ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)))) && !Item.Affix["Unidentified"] && !Item.Prop.Corrupted
 	{
 		If (!RunningToggle)
 		{
@@ -381,9 +399,64 @@ MapRoll(Method, x, y){
 		. (Item.Prop.RarityRare?" Rare Map":"") 
 		. (Item.Prop.HasUndesirableMod?", with an Undesirable Mod":"")
 		. (Item.Prop.HasDesirableMod?", with a Desirable Mod":"")
-	, "Map is" (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
+		, "Map is" (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
 		. (BelowPackSize?" Below Min PackSize " MMapMonsterPackSize " @" Item.Prop.Map_PackSize ",":" Adequate PackSize,")
 		. (BelowQuantity?" Below Min Quantity " MMapItemQuantity " @" Item.Prop.Map_Quantity:" Adequate Quantity")
 	,JSON.Dump(Item) )
-	return 1
+	Return 1
+}
+
+ItemCraftingRoll(Method, x, y)
+{
+	If (Method == "Alt")
+	{
+		cname := "Transmutation"
+		crname := "Alteration"
+	}
+	If (Method == "AltAug")
+	{
+		cname := "Transmutation"
+		crname := "Alteration"
+	}
+	Else If (Method == "AlcSco")
+	{
+		cname := "Alchemy"
+		crname := "Scouring"
+	}
+	Else If (Method == "Chaos")
+	{
+		cname := "Alchemy"
+		crname := "Chaos"
+	}
+	Else
+	{
+		Return
+	}
+	If (Item.Affix["Unidentified"])
+	{
+		WisdomScroll(x,y)
+		ClipItem(x,y)
+		Sleep, 45*Latency
+	}Else{
+		ClipItem(x,y)
+		Sleep, 45*Latency
+	}
+	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
+	While (!Item.Prop.ItemCraftingHit)
+	{
+		If (Item.Prop.RarityNormal)
+		{
+			If !ApplyCurrency(cname, x, y)
+				Return False
+		}Else{
+			; Scouring or Alteration (Reroll Currency)
+			If !ApplyCurrency(crname, x, y)
+				Return False
+		}
+		If(Item.Prop.RarityMagic && Method == "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)){
+			If !ApplyCurrency("Augmentation",x,y)
+				Return False
+		}
+	}
+	Return 1
 }
