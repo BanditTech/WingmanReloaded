@@ -61,9 +61,10 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush)
 {
     Repeat := 1
     Item := New Itemscan()
-    if(RegExMatch(FullLine, "(.+) n (.+)", RxMatch)){
-        Repeat := 2
-        Line := RegExReplace(RxMatch1,"\(" rxNum "-" rxNum "\)", "$1")
+    if(RxMatch := StrSplit(FullLine, " | ", RxMatch))
+    {
+        Repeat := RxMatch.Count()
+        Line := RegExReplace(RxMatch[1],"\(" rxNum "-" rxNum "\)", "$1")
         Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
         Mod := Item.Standardize(Line)
         If(Item.CheckIfActualHybridMod(Mod)){
@@ -72,11 +73,8 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush)
     }
     Loop, %Repeat%
     {
-        If(A_Index == 1 && Repeat == 2)
-            FullLine := RxMatch1
-        Else If(A_Index == 2)
-            FullLine := RxMatch2
-
+        If(Repeat > 1)
+            FullLine := RxMatch[A_Index]
         Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
         Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
         Mod := Item.Standardize(Line)
@@ -164,7 +162,9 @@ Return
 
 ItemCraftingNaming(Content)
 {
-    Content := RegExReplace(Content,"\<br\>"," n ")
+    Content := RegExReplace(Content,"\<br\>"," | ")
+    ;Odd Mod Flask lowercase followed by uppercase replace by " | "
+    ;Content := RegExReplace(Content,"[a-z]()[A-Z]"," | ")
     Content := RegExReplace(Content,"\<.*?\>","")
     Content := RegExReplace(Content,"&ndash;","-")
         Return Content
