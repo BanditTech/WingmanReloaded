@@ -698,10 +698,10 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, w320 h80 xs yp+35 , Affix Matcher
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+20, How Many Prefix From Mod List ?
-      Gui, Crafting: Add, Edit, Number w40 x+10 yp
+      Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberPrefix gItemCraftingSubmit x+0 yp hp , 0
       Gui, Crafting: Add, Text, xs+10 yp+30, How Many Suffix From Mod List ?
-      Gui, Crafting: Add, Edit, Number w40 x+10 yp
+      Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberSuffix gItemCraftingSubmit x+0 yp hp , 0
 
       ; Crafting Method
@@ -710,45 +710,10 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Add, Radio, vItemCraftingMethodAlt gItemCraftingSubmit xs+10 yp+20, Alteration Spam
       Gui, Crafting: Add, Radio, vItemCraftingMethodAltAug gItemCraftingSubmit xs+10 yp+20, Alteration + Aug Spam
-      Gui, Crafting: Add, Radio, vItemCraftingMethodScoAlt gItemCraftingSubmit xs+10 yp+20, Scouring + Alchemy Spam
+      Gui, Crafting: Add, Radio, vItemCraftingMethodScoAlc gItemCraftingSubmit xs+10 yp+20, Scouring + Alchemy Spam
       Gui, Crafting: Add, Radio, vItemCraftingMethodChaos gItemCraftingSubmit xs+10 yp+20, Chaos Spam
 
-/*
 
-
-      Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, Section w320 h150 xm+5 ym+25, Mod Selector
-      Gui, Crafting: Font,
-     
-      
-
-      Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox,Section  w320 h150 xs y+25, Affix Matcher
-      Gui, Crafting: Font,
-      Gui, Crafting: Add, Edit, Number,gSaveItemCraftingMenu vItemCraftingMenuAffix y+5 w50
-      Gui, Crafting: Add, UpDown, Range0-3 x+0 hp vstashSuffixTab143 , %stashSuffixTab1%
-      Gui, Crafting: Add, Text, xs+10 ys+3, Prefix Matcher
-      Gui, Crafting: Add, Edit, Number,gSaveItemCraftingMenu vItemCraftingMenuSuffix y+5 w50
-      Gui, Crafting: Add, Text, xs+10 ys+3, Suffix Matcher
-
-      Gui, Crafting: Font,
-
-      Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox,Section  w320 h150 xs y+25, Crafting Method
-      Gui, Crafting: Font,
-      
-
-      
-
-      ; Delirium
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Delirium
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number vDeliriumEdit w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabDelirium, %StashTabDelirium%
-      Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesDelirium x+5 yp-5 w90 h20, %StashTabYesDelirium%
-      Gui, Inventory: Add, Text, xp yp+22 w90 center vDeliriumEditText, Disable Type
-*/
       Gui, Crafting: Font,
 
       Gui, Crafting: Show
