@@ -160,12 +160,9 @@ RefreshModList(type)
 Return
 }
 
-ItemCraftingNaming(Content)
-{
-    Content := RegExReplace(Content,"\<br\>"," | ")
-    ;Odd Mod Flask lowercase followed by uppercase replace by " | "
-    ;Content := RegExReplace(Content,"[a-z]()[A-Z]"," | ")
+ItemCraftingNaming(Content) {
+    Content := RegExReplace(Content,"\<br\/?\>"," | ")
     Content := RegExReplace(Content,"\<.*?\>","")
     Content := RegExReplace(Content,"&ndash;","-")
-        Return Content
-    }
+    Return Content
+}
