@@ -987,7 +987,7 @@
 		prefix:=0
 		suffix:=0
 		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]{
-			if(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormat"] ])
+			if(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormat"] )
 			{
 				if(v["ModGenerationTypeID"] == 1){
 					prefix++
