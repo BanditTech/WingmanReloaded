@@ -89,23 +89,17 @@ CraftingItem(){
 	MouseGetPos, xx, yy
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
-	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Augmentation","Chaos"])
-	Sleep, 500
-	ItemCraftingRoll("AltAug", xx, yy)
-	/*
-
-	If(ItemCraftingMethodAlt){
+	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos"])
+	Sleep, 1000
+	If(ItemCraftingMethod == "Alteration Spam"){
 		ItemCraftingRoll("Alt", xx, yy)
-	}Else If(ItemCraftingMethodAltAug){
+	}Else If(ItemCraftingMethod == "Alteration + Aug Spam"){
 		ItemCraftingRoll("AltAug", xx, yy)
-	}Else If(ItemCraftingMethodAltSco){
+	}Else If(ItemCraftingMethod == "Scouring + Alchemy Spam"){
 		ItemCraftingRoll("AltSco", xx, yy)
-	}Else If(ItemCraftingMethodChaos){
+	}Else If(ItemCraftingMethod == "Chaos Spam"){
 		ItemCraftingRoll("Chaos", xx, yy)
 	}
-	
-
-	*/
 }
 ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
 CraftingMaps(){

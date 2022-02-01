@@ -119,10 +119,7 @@ readFromFile(){
 	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Abyss Jewel
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
-	IniRead, ItemCraftingMethodAlt, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodAlt, 0
-	IniRead, ItemCraftingMethodAltAug, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodAltAug, 0
-	IniRead, ItemCraftingMethodScoAlc, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodScoAlc, 1
-	IniRead, ItemCraftingMethodChaos, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodChaos, 1
+	IniRead, ItemCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod, Alteration Spam
 
 	;Crafting Map Settings
 	IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
@@ -827,10 +824,7 @@ submit(){
 		IniWrite, %ItemCraftingBaseSelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector
 		IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
 		IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
-		IniWrite, %ItemCraftingMethodAlt%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodAlt
-		IniWrite, %ItemCraftingMethodAltAug%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodAltAug
-		IniWrite, %ItemCraftingMethodScoAlc%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodScoAlc
-		IniWrite, %ItemCraftingMethodChaos%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethodChaos
+		IniWrite, %ItemCraftingMethod%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod
 
 		;Crafting Map Settings
 		IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1

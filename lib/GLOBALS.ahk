@@ -579,10 +579,7 @@ Global YesIncludeFandSItem := True
 ; Item Crafting
 
 Global ItemCraftingBaseSelector
-Global ItemCraftingMethodAlt := 0
-Global ItemCraftingMethodAltAug := 0
-Global ItemCraftingMethodScoAlc := 0
-Global ItemCraftingMethodChaos := 0
+Global ItemCraftingMethod
 Global ItemCraftingNumberPrefix
 Global ItemCraftingNumberSuffix
 

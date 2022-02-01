@@ -708,13 +708,11 @@ WR_Menu(Function:="",Var*){
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h110 xs yp+35 , Crafting Method
+      Gui, Crafting: Add, GroupBox, w320 h45 xs yp+35 , Crafting Method
       Gui, Crafting: Font,
-      Gui, Crafting: Add, Radio, vItemCraftingMethodAlt gItemCraftingSubmit xs+10 yp+20, Alteration Spam
-      Gui, Crafting: Add, Radio, vItemCraftingMethodAltAug gItemCraftingSubmit xs+10 yp+20, Alteration + Aug Spam
-      Gui, Crafting: Add, Radio, vItemCraftingMethodScoAlc gItemCraftingSubmit xs+10 yp+20, Scouring + Alchemy Spam
-      Gui, Crafting: Add, Radio, vItemCraftingMethodChaos gItemCraftingSubmit xs+10 yp+20, Chaos Spam
-
+      Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration + Aug Spam|Scouring + Alchemy Spam|Chaos Spam
+      ;;Select DDL Value Based on Last Value Saved
+      GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
 
       Gui, Crafting: Font,
 
