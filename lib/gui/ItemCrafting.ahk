@@ -33,7 +33,7 @@ SaveItemCrafting:
         If not RowNumber
             break
         LV_GetText(ModLine, RowNumber,4)
-        MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingBaseSelector])
+        MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingBaseSelector],A_Index)
     }
     RowNumber := 0
     Gui, ListView, LVS
@@ -43,7 +43,7 @@ SaveItemCrafting:
         If not RowNumber
             break
         LV_GetText(ModLine, RowNumber,4)
-        MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingBaseSelector])
+        MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingBaseSelector],A_Index)
     }
     Settings("ItemCrafting","Save")
 Return
@@ -57,24 +57,22 @@ Return
 
 ;; Functions
 
-MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush)
+MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,ID)
 {
     Repeat := 1
     Item := New Itemscan()
+    IsHybridMod := False
     if(RxMatch := StrSplit(FullLine, " | ", RxMatch))
     {
         Repeat := RxMatch.Count()
-        Line := RegExReplace(RxMatch[1],"\(" rxNum "-" rxNum "\)", "$1")
-        Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
-        Mod := Item.Standardize(Line)
-        If(Item.CheckIfActualHybridMod(Mod)){
-            IsHybridMod := True
-        }
     }
     Loop, %Repeat%
     {
-        If(Repeat > 1)
+        If(Repeat > 1){
             FullLine := RxMatch[A_Index]
+            If(!IsHybridMod && Item.CheckIfActualHybridMod(Mod))
+              IsHybridMod := True
+        }
         Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
         Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
         Mod := Item.Standardize(Line)
@@ -95,7 +93,7 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush)
         If(IsHybridMod){
             Mod := "(Hybrid) " . Mod
         }
-        aux := {"Mod":FullLine,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormat":FinalValue,"RNMod":Repeat}
+        aux := {"Mod":FullLine,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormat":FinalValue,"RNMod":Repeat,"ID":ID}
         ObjectToPush.push(aux) 
     }
 }
