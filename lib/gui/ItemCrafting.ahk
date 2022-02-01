@@ -60,7 +60,7 @@ SaveItemCraftingMenu:
 Return
 
 ItemCraftingSubmit:
-  Gui,Submit, Nohide
+  SaveINI("Item Crafting Settings")
 Return
 
 ;; Functions
