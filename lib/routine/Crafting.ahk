@@ -93,9 +93,9 @@ CraftingItem(){
 	Sleep, 1000
 	If(ItemCraftingMethod == "Alteration Spam"){
 		ItemCraftingRoll("Alt", xx, yy)
-	}Else If(ItemCraftingMethod == "Alteration + Aug Spam"){
+	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
 		ItemCraftingRoll("AltAug", xx, yy)
-	}Else If(ItemCraftingMethod == "Scouring + Alchemy Spam"){
+	}Else If(ItemCraftingMethod == "Scouring and Alchemy Spam"){
 		ItemCraftingRoll("AltSco", xx, yy)
 	}Else If(ItemCraftingMethod == "Chaos Spam"){
 		ItemCraftingRoll("Chaos", xx, yy)

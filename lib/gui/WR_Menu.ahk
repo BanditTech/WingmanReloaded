@@ -700,17 +700,17 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, w320 h80 xs yp+35 , Affix Matcher
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+20, How Many Prefix From Mod List ?
-      Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberPrefix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberPrefix%
       Gui, Crafting: Add, Text, xs+10 yp+30, How Many Suffix From Mod List ?
-      Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberSuffix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberSuffix%
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, w320 h45 xs yp+35 , Crafting Method
       Gui, Crafting: Font,
-      Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration + Aug Spam|Scouring + Alchemy Spam|Chaos Spam
+      Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration and Aug Spam|Scouring and Alchemy Spam|Chaos Spam
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
 
