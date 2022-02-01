@@ -1,4 +1,14 @@
-﻿## Version .14.04 - Master version - November/18/2021
+﻿## Version .14.05 - Alpha version - February/01/2021
+Improvements
+  * Add Affinities for Flask and Gem
+  * Crafting Bases are much easier to select and have a new option to auto increase item lvl as you take more itens
+  * Item Crafting BETA (This is a experimental feature, please use with care)
+    * This allow you to crafting itens using Alterations,Chaos,Alchemy and Scouring until hit mods you select in UI, plz report any bugs in GitHub or Discord Channel
+  * Clear Stash Management
+  * Using new Databases to feed Crafting Bases and Item Crafting, Map Crafting will use same model.
+
+
+## Version .14.04 - Master version - November/18/2021
 Alpha Changes are merged into Master
 
 Bugfixes
