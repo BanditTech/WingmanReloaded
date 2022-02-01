@@ -453,5 +453,6 @@ ItemCraftingRoll(Method, x, y)
 				Continue
 		}
 	}
+	RunningToggle := False
 	Return 1
 }
