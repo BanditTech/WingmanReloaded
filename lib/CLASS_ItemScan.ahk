@@ -984,31 +984,40 @@
 		}
 	}
 	MatchCraftingItemMods() {
-		This.Prop.CraftingMatchedPrefix:=0
-		This.Prop.CraftingMatchedSuffix:=0
-		DoubleModP := 0
-		DoubleModS := 0
+		This.Prop.CraftingMatchedPrefix := 0
+		This.Prop.CraftingMatchedSuffix := 0
+		SumRNP:= 0
+		SumRNS:= 0
 		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
 		{
-			if(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormat"])
+			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormat"])
 			{
-				if(v["ModGenerationTypeID"] == 1){
+				If(v["ModGenerationTypeID"] == 1){
 					This.Prop.CraftingMatchedPrefix++
-					If(v["RNMod"] == 2){
-						DoubleModP++
+					If(v["RNMod"] > 1){
+						SumRNP++
+						If(SumRNP == v["RNMod"]){
+							This.Prop.CraftingMatchedPrefix := This.Prop.CraftingMatchedPrefix - SumRNP + 1
+							SumRNP := 0
+						}
+					}Else{
+						SumRNP := 0
 					}
 				}Else{
 					This.Prop.CraftingMatchedSuffix++
-					If(v["RNMod"] == 2){
-						DoubleModS++
+					If(v["RNMod"] > 1){
+						SumRNS++
+						If(SumRNS == v["RNMod"]){
+							This.Prop.CraftingMatchedSuffix := This.Prop.CraftingMatchedSuffix - SumRNS + 1
+							SumRNS := 0
+						}
+					}Else{
+						SumRNS := 0
 					}
 				}
 			}
 		}
-		; Deal with Double Mods
-		This.Prop.CraftingMatchedPrefix := This.Prop.CraftingMatchedPrefix - DoubleModP//2
-		This.Prop.CraftingMatchedSuffix := This.Prop.CraftingMatchedSuffix - DoubleModS//2
-		if(This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix && This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberPrefix){
+		If (This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix && This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberSuffix){
 			Return True
 		}else{
 			Return False

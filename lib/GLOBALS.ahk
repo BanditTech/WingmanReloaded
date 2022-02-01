@@ -578,13 +578,13 @@ Global YesIncludeFandSItem := True
 
 ; Item Crafting
 
-Global ItemCraftingBaseSelector := "Abyss Jewel"
+Global ItemCraftingBaseSelector
 Global ItemCraftingMethodAlt := 0
 Global ItemCraftingMethodAltAug := 0
 Global ItemCraftingMethodScoAlc := 0
 Global ItemCraftingMethodChaos := 0
-Global ItemCraftingNumberPrefix := 1
-Global ItemCraftingNumberSuffix := 1
+Global ItemCraftingNumberPrefix
+Global ItemCraftingNumberSuffix
 
 ; Chaos Recipe
 Global ChaosRecipeEnableFunction := False

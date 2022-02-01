@@ -690,7 +690,9 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, w320 h80 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort Choose1 xp+10 yp+20 w300, %aux%
+      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort xp+10 yp+20 w300, %aux%
+      ;;Select DDL Value Based on Last Value Saved
+      GuiControl, ChooseString, ItemCraftingBaseSelector, %ItemCraftingBaseSelector%
       Gui, Crafting: Add, Button, gModsUI xp yp+25 w300, Open UI
 
       ; Affix Matcher
@@ -699,10 +701,10 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+20, How Many Prefix From Mod List ?
       Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
-      Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberPrefix gItemCraftingSubmit x+0 yp hp , 0
+      Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberPrefix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberPrefix%
       Gui, Crafting: Add, Text, xs+10 yp+30, How Many Suffix From Mod List ?
       Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
-      Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberSuffix gItemCraftingSubmit x+0 yp hp , 0
+      Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberSuffix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberSuffix%
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
