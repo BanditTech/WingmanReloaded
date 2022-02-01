@@ -67,41 +67,70 @@ Return
 
 MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID)
 {
-  Repeat := 1
   Item := New Itemscan()
+  Repeat := 1
   IsHybridMod := False
   OriginalFullLine:=FullLine
-  if(RxMatch := StrSplit(FullLine, " | ", RxMatch))
+  if(SplittedModLine := StrSplit(FullLine, " | "))
   {
-    Repeat := RxMatch.Count()
+    Repeat := SplittedModLine.Count()
   }
   Loop, %Repeat%
   {
-    If(Repeat > 1)
-      FullLine := RxMatch[A_Index]
+    ; Start Aux
+    StartingPos := 1
+    FullLine := SplittedModLine[A_Index]
+    HighValue:=[]
+    LowValue:=[]
+
+    ;Catch Values
+    While(RegExMatch(FullLine,"O)\(" rxNum "-" rxNum "\)", RxMatch, StartingPos))
+    {
+      LowValue.push(RxMatch[1])
+      HighValue.push(RxMatch[2])
+      StartingPos := RxMatch.Pos(2)
+    }
+    While(RegExMatch(FullLine,"O)\(-" rxNum "--" rxNum "\)", RxMatch, StartingPos))
+    {
+      LowValue.push(RxMatch[1])
+      HighValue.push(RxMatch[2])
+      StartingPos := RxMatch.Pos(2)
+    }
+    ; Create WR Mod Line
     Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
     Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
-    Mod := Item.Standardize(Line)
+    Mod := RegExReplace(Line, "\+?"rxNum , "#")
+
+    ; Check for Hybrid Mods
     If(!IsHybridMod && Item.CheckIfActualHybridMod(Mod))
       IsHybridMod := True
-    If (vals := Item.MatchLine(Line))
-    {
-      If (vals.Count() >= 2)
-      {
-        If (Line ~= rxNum " to " rxNum || Line ~= rxNum "-" rxNum)
-          FinalValue := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
-        Else
-          FinalValue := vals[1]
-      }
-      Else
-        FinalValue := vals[1]
+
+    ;; Match (#-#) to (#-#)
+    If(HighValue.Count() == 2 && LowValue.Count() == 2){
+      FinalValueLow := (Format("{1:0.3g}",(LowValue[1] + LowValue[2]) / 2))
+      FinalValueHigh := (Format("{1:0.3g}", (HighValue[1] + HighValue[2]) / 2))
+    ;; Match # to (#-#) ODD Mod from Lower Tiers
+    }Else If(RegExMatch(FullLine,"O)" rxNum " to \(" rxNum "-" rxNum "\)", RxMatch)){
+      FinalValueLow := (Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))
+      FinalValueHigh := (Format("{1:0.3g}", (RxMatch[1] + RxMatch[3]) / 2))
+    ;; Match (#-#)
+    }Else If(HighValue.Count() == 1){
+      FinalValueLow := LowValue[1]
+      FinalValueHigh := HighValue[1]
+      ;; Match #
+    }Else If(RegExMatch(FullLine, "O)\+?"rxNum, RxMatch)){
+      FinalValueLow := RxMatch[1]
+      FinalValueHigh := RxMatch[1]
+      ;; Match no number
+    }Else{
+      FinalValueLow := True
+      FinalValueHigh := True
     }
-    Else
-      FinalValue := True
+    ;; Add (Hybrid) to Hybrid Mods in WR Format
     If(IsHybridMod){
       Mod := "(Hybrid) " . Mod
     }
-    aux := {"Mod":OriginalFullLine,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormat":FinalValue,"RNMod":Repeat,"ID":MyID}
+    aux := {"Mod":OriginalFullLine,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormatLow":FinalValueLow,"ValueWRFormatHigh":FinalValueHigh,"RNMod":Repeat,"ID":MyID}
     ObjectToPush.push(aux) 
   }
 }
