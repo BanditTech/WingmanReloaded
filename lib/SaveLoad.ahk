@@ -1036,67 +1036,60 @@ Profile(args*){
 		Action := args[2]
 		name := args[3]
 	}
-	If (name = "")
-	{
+	If (name = ""){
 		MsgBox, 262144, Whoah there clicky fingers, Profile name cannot be blank
-	Return
-}
-If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json")
-{
-	If confirm
-	{
-		MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
-		IfMsgBox No
-	Return
-}
-} Else If (Action != "Save") {
-	MsgBox, 262144, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
-	Return
-}
-
-If (Action = "Save")
-{
-	FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-	JSONtext := JSON.Dump(WR[Type],,2)
-	FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-	IniWrite, % ProfileMenu%Type%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
-}
-Else If (Action = "Load")
-{
-	FileRead, JSONtext, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-	obj := JSON.Load(JSONtext)
-	For k, v in WR[Type]
-		If (IsObject(obj[k]))
-		For l, w in v
-		If (obj[k].HasKey(l)) 
-		WR[Type][k][l] := obj[k][l]
-	If (Type = "perChar"){
-		If WR.perChar.Setting.profilesYesFlask
-			If WR.perChar.Setting.profilesFlask
-			Profile("Flask","Load",WR.perChar.Setting.profilesFlask)
-		If WR.perChar.Setting.profilesYesUtility
-			If WR.perChar.Setting.profilesUtility
-			Profile("Utility","Load",WR.perChar.Setting.profilesUtility)
+		Return
 	}
-	GuiControl, ChooseString, ProfileMenu%Type%, % name
-	IniWrite, % name, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
-	Return
-}
-Else If (Action = "Remove")
-{
-	FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-}
+	If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json"){
+		If confirm
+		{
+			MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
+			IfMsgBox No
+			Return
+		}
+	} Else If (Action != "Save") {
+		MsgBox, 262144, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
+		Return
+	}
 
-l := [], s := ""
-Loop, Files, %A_ScriptDir%\save\profiles\%Type%\*.json
-	l.Push(StrReplace(A_LoopFileName,".json",""))
-For k, v in l
-	s .=(k=1?"||":"|") v
-If (s = "")
-	s := "||"
-GuiControl, , ProfileMenu%Type% , %s%
-If (Action != "Remove")
-	GuiControl, ChooseString, ProfileMenu%Type% , %name%
-Return
+	If (Action = "Save"){
+		FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+		JSONtext := JSON.Dump(WR[Type],,2)
+		FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+		IniWrite, % ProfileMenu%Type%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
+	} Else If (Action = "Load"){
+		FileRead, JSONtext, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+		obj := JSON.Load(JSONtext)
+		For k, v in WR[Type]
+			If (IsObject(obj[k]))
+			For l, w in v
+			If (obj[k].HasKey(l)) 
+			WR[Type][k][l] := obj[k][l]
+		If (Type = "perChar"){
+			If WR.perChar.Setting.profilesYesFlask
+				If WR.perChar.Setting.profilesFlask
+				Profile("Flask","Load",WR.perChar.Setting.profilesFlask)
+			If WR.perChar.Setting.profilesYesUtility
+				If WR.perChar.Setting.profilesUtility
+				Profile("Utility","Load",WR.perChar.Setting.profilesUtility)
+		}
+		GuiControl, ChooseString, ProfileMenu%Type%, % name
+		IniWrite, % name, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
+		Return
+	}	Else If (Action = "Remove"){
+		FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+	}
+
+	l := [], s := ""
+	Loop, Files, %A_ScriptDir%\save\profiles\%Type%\*.json
+		l.Push(StrReplace(A_LoopFileName,".json",""))
+	For k, v in l
+		s .=(k=1?"||":"|") v
+	If (s = "")
+		s := "||"
+	GuiControl, , ProfileMenu%Type% , %s%
+	If (Action != "Remove")
+		GuiControl, ChooseString, ProfileMenu%Type% , %name%
+	Return
 }
 
