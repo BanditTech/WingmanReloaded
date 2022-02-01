@@ -714,6 +714,12 @@ WR_Menu(Function:="",Var*){
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
 
+      ; Guide
+      Gui, Crafting: Font, Bold s12 cBlack, Arial
+      Gui, Crafting: Add, GroupBox, Section w250 h400 xs+330 ym+25 , Instructions
+      Gui, Crafting: Font, 
+      Gui, Crafting: Font, s11 cBlack, Arial
+      Gui, Crafting: Add, Link, xs+10 yp+20 w220, This is a Experimental Feature!`nWe highly recommend using <a href="https://www.craftofexile.com/">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.`nSteps:`n1) Select Item Base in Mod Selector`n2) Open UI and Check Mods that You Want (Remember to Check Higher Mods too, This Feature is Tier Sensitive)`n3) Select How Many Prefix/Suffix from Mod Selector It Should Match to Stop`n4) Select the Crafting Method.`n5) Use the Bound Key (Default Key F11) with Your Cursor Over The Item and Stash Open to Start The Process`nP.S: You Can Break the Loop Pressing Bound Key Again
       Gui, Crafting: Font,
 
       Gui, Crafting: Show

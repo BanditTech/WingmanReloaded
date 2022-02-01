@@ -84,11 +84,13 @@ CraftingSocket(){
 	f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }
 CraftingItem(){
-	Global RunningToggle
+	Global RunningToggle := !RunningToggle
 	; Cursor
 	MouseGetPos, xx, yy
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
+	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+		Return
 	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos"])
 	Sleep, 1000
 	If(ItemCraftingMethod == "Alteration Spam"){
@@ -134,9 +136,7 @@ CraftingMaps(){
 			addToBlacklist(C, R)
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( Item.Prop.IsMap
-						&& (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" )))
-				&&!Item.Prop.Corrupted)
+				If ( Item.Prop.IsMap && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) &&!Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
 					ClipItem(Grid.X,Grid.Y)
@@ -163,9 +163,7 @@ CraftingMaps(){
 					{
 						If (!Item.Prop.RarityNormal)
 						{
-							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
-									|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) 
-							|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
+							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) || (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
 							{
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
@@ -402,6 +400,8 @@ MapRoll(Method, x, y){
 
 ItemCraftingRoll(Method, x, y)
 {
+	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+		Return
 	If (Method == "Alt")
 	{
 		cname := "Transmutation"
@@ -435,9 +435,10 @@ ItemCraftingRoll(Method, x, y)
 		ClipItem(x,y)
 		Sleep, 45*Latency
 	}
-	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
 	While (!Item.Prop.ItemCraftingHit)
 	{
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
 		If (Item.Prop.RarityNormal)
 		{
 			If !ApplyCurrency(cname, x, y)
