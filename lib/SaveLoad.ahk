@@ -116,7 +116,7 @@ readFromFile(){
 
 	;Item Crafting Options
 
-	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Abyss Jewel
+	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Amulet
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
