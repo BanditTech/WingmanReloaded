@@ -41,7 +41,7 @@ Crafting(selection:="Maps"){
 				RandomSleep(45,45)
 				CurrentTab := 0
 				MoveStash(StashTabCurrency)
-				If indexOf(selection,["Maps","Socket","Color","Link","Chance"])
+				If indexOf(selection,["Maps","Socket","Color","Link","Chance","Item"])
 					Crafting%selection%()
 				Else
 					Notify("Unknown Result is:",selection,2)
@@ -83,16 +83,38 @@ CraftingSocket(){
 	local f
 	f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }
+CraftingItemCaller(){
+	Crafting("Item")
+}
 CraftingItem(){
-	Global RunningToggle := !RunningToggle
-	; Cursor
-	MouseGetPos, xx, yy
-	; Move mouse away for Screenshot
-	ShooMouse(), GuiStatus(), ClearNotifications()
+	Global RunningToggle
+	MouseGetPos xx, yy
+
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
+
+	; Move mouse away for Screenshot
+	ShooMouse(), GuiStatus(), ClearNotifications()
 	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos","Regal"])
-	Sleep, 1000
+	Notify("Item Crafting Starting","Move your Cursor to your item in next 5s",5)
+	MouseMove %xx%, %yy%
+	Sleep, 5000
+	; Cursor
+	MouseGetPos, xx, yy
+	ClipItem(x,y)
+	Sleep, 45*Latency
+	/*
+
+
+	ItemClass := RegExReplace(ItemCraftingBaseSelector,"\(.+\)", "")
+	Comparator := RegExReplace(Item.Prop.ItemClass,"s$", "")
+	msgbox, %ItemClass% e %Comparator%
+	If(Comparator ~= ItemClass){
+		Notify("Entrou","Entrou",5)
+		Sleep,10000
+	}
+	Return
+	*/
 	If(ItemCraftingMethod == "Alteration Spam"){
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
@@ -104,6 +126,7 @@ CraftingItem(){
 	}Else If(ItemCraftingMethod == "Chaos Spam"){
 		ItemCraftingRoll("Chaos", xx, yy)
 	}
+	Return
 }
 ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
 CraftingMaps(){
@@ -398,9 +421,7 @@ MapRoll(Method, x, y){
 	,JSON.Dump(Item) )
 	Return 1
 }
-
-ItemCraftingRoll(Method, x, y)
-{
+ItemCraftingRoll(Method, x, y){
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
 	If (Method == "Alt")
@@ -483,7 +504,7 @@ ItemCraftingRoll(Method, x, y)
 	,JSON.Dump(Item) )
 		
 	}
-	Notify("Item Crafting Notification","Desired Mods Crafted!! Please report anybug in GitHub or Discord",5)
-	RunningToggle := False
-	Return 1
+	If(Item.Prop.ItemCraftingHit)
+		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
+	Return
 }

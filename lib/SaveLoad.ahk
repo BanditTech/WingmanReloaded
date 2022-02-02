@@ -333,7 +333,7 @@ readFromFile(){
 	If hotkeyStartCraft
 		hotkey,% hotkeyStartCraft, Crafting, Off
 	If hotkeyItemCrafting
-		hotkey,% hotkeyItemCrafting, CraftingItem, Off
+		hotkey,% hotkeyItemCrafting, CraftingItemCaller, Off
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
 
@@ -437,7 +437,7 @@ readFromFile(){
 	If hotkeyStartCraft
 		hotkey,% hotkeyStartCraft, Crafting, On
 	If hotkeyItemCrafting
-		hotkey,% hotkeyItemCrafting, CraftingItem, On
+		hotkey,% hotkeyItemCrafting, CraftingItemCaller, On
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, On
 
