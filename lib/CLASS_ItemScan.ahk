@@ -986,40 +986,49 @@
 	MatchCraftingItemMods() {
 		This.Prop.CraftingMatchedPrefix := 0
 		This.Prop.CraftingMatchedSuffix := 0
-		SumRNP:= 0
-		SumRNS:= 0
+		SumRNP := 0
+		SumRNS := 0
+		LastID :=0
 		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
 		{
 			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"])
 			{
 				If(v["ModGenerationTypeID"] == 1){
-					This.Prop.CraftingMatchedPrefix++
 					If(v["RNMod"] > 1){
-						SumRNP++
-						If(SumRNP == v["RNMod"]){
-							This.Prop.CraftingMatchedPrefix := This.Prop.CraftingMatchedPrefix - SumRNP + 1
+						If(v["ID"] != LastID){
+							SumRNP := 1
+						}Else If(SumRNP == (v["RNMod"] - 1)){
+							This.Prop.CraftingMatchedPrefix++
 							SumRNP := 0
+						}Else{
+							SumRNP++
 						}
 					}Else{
 						SumRNP := 0
+						This.Prop.CraftingMatchedPrefix++
 					}
 				}Else{
-					This.Prop.CraftingMatchedSuffix++
 					If(v["RNMod"] > 1){
-						SumRNS++
-						If(SumRNS == v["RNMod"]){
-							This.Prop.CraftingMatchedSuffix := This.Prop.CraftingMatchedSuffix - SumRNS + 1
+						If(v["ID"] != LastID){
+							SumRNS := 1
+						}Else If(SumRNS == (v["RNMod"] - 1)){
+							This.Prop.CraftingMatchedSuffix++
 							SumRNS := 0
+						}Else{
+							SumRNS++
 						}
 					}Else{
 						SumRNS := 0
+						This.Prop.CraftingMatchedSuffix++
 					}
 				}
 			}
+			LastID := v["ID"]
 		}
-		If (This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix && This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberSuffix){
+		SumCombination := This.Prop.CraftingMatchedPrefix + This.Prop.CraftingMatchedSuffix
+		If ((This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix && This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberSuffix) || (SumCombination >= ItemCraftingNumberCombination && ItemCraftingNumberCombination > 0)){
 			Return True
-		}else{
+		}Else{
 			Return False
 		}
 	}

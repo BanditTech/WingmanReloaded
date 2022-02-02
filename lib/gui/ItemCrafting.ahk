@@ -33,10 +33,10 @@ SaveItemCrafting:
   Gui, ListView, LVP
   Loop
   {
-    TrueIndex++
     RowNumber := LV_GetNext(RowNumber,"C")
     If not RowNumber
-      break
+      Break
+    TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex)
   }
@@ -45,10 +45,11 @@ SaveItemCrafting:
   Gui, ListView, LVS
   Loop
   {
-    TrueIndex++
+    
     RowNumber := LV_GetNext(RowNumber,"C")
     If not RowNumber
-      break
+      Break
+    TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex)
   }
@@ -102,7 +103,7 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID)
     Mod := RegExReplace(Line, "\+?"rxNum , "#")
 
     ; Check for Hybrid Mods
-    If(!IsHybridMod && Item.CheckIfActualHybridMod(Mod))
+    If(!IsHybridMod && Item.CheckIfActualHybridMod(Mod) && Repeat > 1)
       IsHybridMod := True
 
     ;; Match (#-#) to (#-#)

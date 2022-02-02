@@ -119,6 +119,7 @@ readFromFile(){
 	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Abyss Jewel
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
+	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
 	IniRead, ItemCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod, Alteration Spam
 
 	;Crafting Map Settings
@@ -824,6 +825,7 @@ submit(){
 		IniWrite, %ItemCraftingBaseSelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector
 		IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
 		IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
+		IniWrite, %ItemCraftingNumberCombination%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination
 		IniWrite, %ItemCraftingMethod%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod
 
 		;Crafting Map Settings

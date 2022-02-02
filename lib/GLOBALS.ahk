@@ -582,6 +582,7 @@ Global ItemCraftingBaseSelector
 Global ItemCraftingMethod
 Global ItemCraftingNumberPrefix
 Global ItemCraftingNumberSuffix
+Global ItemCraftingNumberCombination
 
 ; Chaos Recipe
 Global ChaosRecipeEnableFunction := False

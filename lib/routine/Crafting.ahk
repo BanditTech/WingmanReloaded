@@ -457,16 +457,18 @@ ItemCraftingRoll(Method, x, y)
 			; Scouring or Alteration (Reroll Currency)
 			If !ApplyCurrency(crname, x, y)
 				Return False
+
 		}
 		If(Item.Prop.RarityMagic && Method == "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)){
 			If !ApplyCurrency("Augmentation",x,y)
-				Continue
+				Return False
 		}
-		If(Item.Prop.RarityMagic && Method == "AltAugRegal" && (Item.Prop.CraftingMatchedPrefix >= 1 && Item.Prop.CraftingMatchedSuffix >= 1)){
+		If(Item.Prop.RarityMagic && Method == "AltAugRegal" && (Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)){
 			If !ApplyCurrency("Regal",x,y)
 				Return False
 		}
 	}
+	Notify("Item Crafting Notification","Desired Mods Crafted!! Please report anybug in GitHub or Discord",5)
 	RunningToggle := False
 	Return 1
 }
