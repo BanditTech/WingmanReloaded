@@ -86,6 +86,24 @@ CraftingSocket(){
 CraftingItemCaller(){
 	Crafting("Item")
 }
+
+ItemCraftingBaseComparator(base1,base2){
+	base1 := RegExReplace(base1,"\(.+\)", "")
+	base1 := RegExReplace(base1,"Cobalt |Viridian |Crimson ", "")
+	base1 := RegExReplace(base1,"Ghastly Eye|Hypnotic Eye|Searching Eye|Murderous Eye", "Abyss")
+	base1 := RegExReplace(base1,"Staff", "Staves")
+	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
+	base2 := RegExReplace(base2,"s$", "")
+	If(base1 == base2)
+	{
+		Return True
+	}Else{
+		Return False
+	}
+		
+
+}
+
 CraftingItem(){
 	Global RunningToggle
 	MouseGetPos xx, yy
@@ -103,18 +121,13 @@ CraftingItem(){
 	MouseGetPos, xx, yy
 	ClipItem(x,y)
 	Sleep, 45*Latency
-	/*
 
-
-	ItemClass := RegExReplace(ItemCraftingBaseSelector,"\(.+\)", "")
-	Comparator := RegExReplace(Item.Prop.ItemClass,"s$", "")
-	msgbox, %ItemClass% e %Comparator%
-	If(Comparator ~= ItemClass){
-		Notify("Entrou","Entrou",5)
-		Sleep,10000
+	If(ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
+		Notify("Item Crafting Start","Base Match starting process!",2)
+	}Else{
+		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
+		Return
 	}
-	Return
-	*/
 	If(ItemCraftingMethod == "Alteration Spam"){
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
