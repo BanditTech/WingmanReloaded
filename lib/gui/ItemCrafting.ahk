@@ -38,7 +38,8 @@ SaveItemCrafting:
       Break
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
-    MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex)
+    LV_GetText(Affix, RowNumber,2)
+    MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex,Affix)
   }
 
   RowNumber := 0
@@ -51,7 +52,8 @@ SaveItemCrafting:
       Break
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
-    MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex)
+    LV_GetText(Affix, RowNumber,2)
+    MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex,Affix)
   }
 
   Settings("ItemCrafting","Save")
@@ -66,7 +68,7 @@ Return
 
 ;; Functions
 
-MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID)
+MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID,Affix)
 {
   Item := New Itemscan()
   Repeat := 1
@@ -131,7 +133,7 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID)
     If(IsHybridMod){
       Mod := "(Hybrid) " . Mod
     }
-    aux := {"Mod":OriginalFullLine,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormatLow":FinalValueLow,"ValueWRFormatHigh":FinalValueHigh,"RNMod":Repeat,"ID":MyID}
+    aux := {"Mod":OriginalFullLine,"Affix":Affix,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormatLow":FinalValueLow,"ValueWRFormatHigh":FinalValueHigh,"RNMod":Repeat,"ID":MyID}
     ObjectToPush.push(aux) 
   }
 }

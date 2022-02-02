@@ -441,32 +441,47 @@ ItemCraftingRoll(Method, x, y)
 		ClipItem(x,y)
 		Sleep, 45*Latency
 	}
-	While (!Item.Prop.ItemCraftingHit)
-	{
+	While (!Item.Prop.ItemCraftingHit){
 		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
 		If (Item.Prop.RarityNormal)
 		{
 			If !ApplyCurrency(cname, x, y)
 				Return False
-		}Else{
-			If (Method == "AltAugRegal" && Item.Prop.RarityRare){
-				If !ApplyCurrency(cr2name, x, y)
+		}
+		Else If(Item.Prop.RarityMagic){
+			If(Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0))
+			{
+				If !ApplyCurrency("Augmentation",x,y)
+					Return False
+			}Else If(Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)
+			{
+				If !ApplyCurrency("Regal",x,y)
 					Return False
 			}
-			; Scouring or Alteration (Reroll Currency)
-			If !ApplyCurrency(crname, x, y)
-				Return False
-
+			Else
+			{
+				If !ApplyCurrency(crname, x, y)
+					Return False
+			}
 		}
-		If(Item.Prop.RarityMagic && Method == "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)){
-			If !ApplyCurrency("Augmentation",x,y)
-				Return False
+		Else If (Item.Prop.RarityRare){
+			If(Method ~= "Regal")
+			{
+				If !ApplyCurrency(cr2name, x, y)
+						Return False
+			}
+			Else
+			{
+				If !ApplyCurrency(crname, x, y)
+					Return False
+			}
 		}
-		If(Item.Prop.RarityMagic && Method == "AltAugRegal" && (Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)){
-			If !ApplyCurrency("Regal",x,y)
-				Return False
-		}
+		Log("Crafting Item","Item Crafting resulted in a " 
+		. "CraftingMatchedPrefix: "Item.Prop.CraftingMatchedPrefix
+		. " CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
+	,JSON.Dump(Item) )
+		
 	}
 	Notify("Item Crafting Notification","Desired Mods Crafted!! Please report anybug in GitHub or Discord",5)
 	RunningToggle := False
