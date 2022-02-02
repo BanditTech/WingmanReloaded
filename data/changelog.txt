@@ -1,4 +1,12 @@
-﻿## Version .14.05 - Alpha version - February/01/2021
+﻿## Version .14.06 - Alpha version - February/02/2021
+Bugfixes
+  * Fix Reversed comparators for Item Crafting
+
+Improvements
+  * Add New Method Alt Aug Regal
+
+
+## Version .14.05 - Alpha version - February/01/2021
 Improvements
   * Add Affinities for Flask and Gem
   * Crafting Bases are much easier to select and have a new option to auto increase item lvl as you take more itens

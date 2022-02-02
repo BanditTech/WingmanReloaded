@@ -91,12 +91,14 @@ CraftingItem(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
-	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos"])
+	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos","Regal"])
 	Sleep, 1000
 	If(ItemCraftingMethod == "Alteration Spam"){
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
 		ItemCraftingRoll("AltAug", xx, yy)
+	}Else If(ItemCraftingMethod == "Alteration and Aug and Regal Spam"){
+		ItemCraftingRoll("AltAugRegal", xx, yy)
 	}Else If(ItemCraftingMethod == "Scouring and Alchemy Spam"){
 		ItemCraftingRoll("AltSco", xx, yy)
 	}Else If(ItemCraftingMethod == "Chaos Spam"){
@@ -271,7 +273,6 @@ ApplyCurrency(cname, x, y, Amount:=1){
 		}
 		WR.data.Counts[cname]--
 	}
-
 	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
 	Sleep, 45*Latency
@@ -407,10 +408,16 @@ ItemCraftingRoll(Method, x, y)
 		cname := "Transmutation"
 		crname := "Alteration"
 	}
-	If (Method == "AltAug")
+	Else If (Method == "AltAug")
 	{
 		cname := "Transmutation"
 		crname := "Alteration"
+	}
+	Else If (Method == "AltAugRegal")
+	{
+		cname := "Transmutation"
+		crname := "Alteration"
+		cr2name := "Scouring"
 	}
 	Else If (Method == "AlcSco")
 	{
@@ -426,12 +433,11 @@ ItemCraftingRoll(Method, x, y)
 	{
 		Return
 	}
+	ClipItem(x,y)
+	Sleep, 45*Latency
 	If (Item.Affix["Unidentified"])
 	{
 		WisdomScroll(x,y)
-		ClipItem(x,y)
-		Sleep, 45*Latency
-	}Else{
 		ClipItem(x,y)
 		Sleep, 45*Latency
 	}
@@ -444,6 +450,10 @@ ItemCraftingRoll(Method, x, y)
 			If !ApplyCurrency(cname, x, y)
 				Return False
 		}Else{
+			If (Method == "AltAugRegal" && Item.Prop.RarityRare){
+				If !ApplyCurrency(cr2name, x, y)
+					Return False
+			}
 			; Scouring or Alteration (Reroll Currency)
 			If !ApplyCurrency(crname, x, y)
 				Return False
@@ -451,6 +461,10 @@ ItemCraftingRoll(Method, x, y)
 		If(Item.Prop.RarityMagic && Method == "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)){
 			If !ApplyCurrency("Augmentation",x,y)
 				Continue
+		}
+		If(Item.Prop.RarityMagic && Method == "AltAugRegal" && (Item.Prop.CraftingMatchedPrefix >= 1 && Item.Prop.CraftingMatchedSuffix >= 1)){
+			If !ApplyCurrency("Regal",x,y)
+				Return False
 		}
 	}
 	RunningToggle := False

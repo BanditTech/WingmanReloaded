@@ -990,7 +990,7 @@
 		SumRNS:= 0
 		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
 		{
-			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatHigh"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatLow"])
+			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"])
 			{
 				If(v["ModGenerationTypeID"] == 1){
 					This.Prop.CraftingMatchedPrefix++
