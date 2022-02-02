@@ -115,24 +115,45 @@ CraftingItem(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos","Regal"])
 	Notify("Item Crafting Starting","Move your Cursor to your item in next 5s",5)
+	Log("[Start]Item Crafting","Waiting for Item Position")
 	MouseMove %xx%, %yy%
 	Sleep, 5000
 	; Cursor
 	MouseGetPos, xx, yy
 	ClipItem(x,y)
+	Log("Item Crafting","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
 
-	If(ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
-		Notify("Item Crafting Start","Base Match starting process!",2)
-	}Else{
-		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
+	If(!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
+		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",2)
+		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
+		Return
+	}
+	If(ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix ==0 && ItemCraftingNumberCombination == 0){
+		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",2)
+		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
 	If(ItemCraftingMethod == "Alteration Spam"){
+		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
+			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",2)
+			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
+			Return
+		}
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
+		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
+			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",2)
+			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
+			Return
+		}
 		ItemCraftingRoll("AltAug", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug and Regal Spam"){
+		If(((ItemCraftingNumberPrefix + ItemCraftingNumberSuffix) > 3) || ItemCraftingNumberCombination > 3){
+			Notify("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",2)
+			Log("[End]Item Crafting - Item Crafting Error","Magic Itens with Regal Orb can only have 3 Mods")
+			Return
+		}
 		ItemCraftingRoll("AltAugRegal", xx, yy)
 	}Else If(ItemCraftingMethod == "Scouring and Alchemy Spam"){
 		ItemCraftingRoll("AltSco", xx, yy)
@@ -511,13 +532,15 @@ ItemCraftingRoll(Method, x, y){
 					Return False
 			}
 		}
-		Log("Crafting Item","Item Crafting resulted in a " 
+		Log("Item Crafting Loop","Item Crafting resulted in a " 
 		. "CraftingMatchedPrefix: "Item.Prop.CraftingMatchedPrefix
-		. " CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
+		. " | CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
 	,JSON.Dump(Item) )
 		
 	}
 	If(Item.Prop.ItemCraftingHit)
 		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
+		Log("[End]Item Crafting - Sucess","End Rotine")
+
 	Return
 }
