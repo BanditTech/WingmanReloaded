@@ -993,7 +993,6 @@
 		{
 			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"] && This.Affix[v["Affix"]])
 			{
-				aux:=v["ModWRFormat"]
 				If(v["ModGenerationTypeID"] == 1){
 					If(v["RNMod"] > 1){
 						If(v["ID"] != LastID){
