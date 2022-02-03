@@ -90,7 +90,7 @@ return
 SaveRowCUM:
   Gui, CustomMapModsUI2: Submit, NoHide
   Gui, CustomMapModsUI1:Default
-  LV_Modify(RowNumber,,,,,CMP_ModType,CMP_Weight)
+  LV_Modify(RowNumber,,,,,,CMP_ModType,CMP_Weight)
   Gui, CustomMapModsUI2: Hide
 return
 
