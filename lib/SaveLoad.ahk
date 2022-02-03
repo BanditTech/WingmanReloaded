@@ -116,9 +116,10 @@ readFromFile(){
 
 	;Item Crafting Options
 
-	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Abyss Jewel
+	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Amulet
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
+	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
 	IniRead, ItemCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod, Alteration Spam
 
 	;Crafting Map Settings
@@ -332,7 +333,7 @@ readFromFile(){
 	If hotkeyStartCraft
 		hotkey,% hotkeyStartCraft, Crafting, Off
 	If hotkeyItemCrafting
-		hotkey,% hotkeyItemCrafting, CraftingItem, Off
+		hotkey,% hotkeyItemCrafting, CraftingItemCaller, Off
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
 
@@ -436,7 +437,7 @@ readFromFile(){
 	If hotkeyStartCraft
 		hotkey,% hotkeyStartCraft, Crafting, On
 	If hotkeyItemCrafting
-		hotkey,% hotkeyItemCrafting, CraftingItem, On
+		hotkey,% hotkeyItemCrafting, CraftingItemCaller, On
 	If hotkeyCraftBasic
 		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, On
 
@@ -824,6 +825,7 @@ submit(){
 		IniWrite, %ItemCraftingBaseSelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector
 		IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
 		IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
+		IniWrite, %ItemCraftingNumberCombination%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination
 		IniWrite, %ItemCraftingMethod%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod
 
 		;Crafting Map Settings

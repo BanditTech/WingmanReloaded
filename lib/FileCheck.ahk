@@ -89,6 +89,10 @@ For k, v in PoeDBAPI
     contentdownload := RegExReplace(contentdownload,"\(STR-DEX\)","&tags=str_dex_armour")
     contentdownload := RegExReplace(contentdownload,"\(STR-INT\)","&tags=str_int_armour")
     contentdownload := RegExReplace(contentdownload,"\(DEX-INT\)","&tags=dex_int_armour")
+	if(contentdownload ~= "Jewel"){
+		contentdownload := "BaseItemTypes&an=" . contentdownload
+	}
+	
 	IfNotExist, %A_ScriptDir%\data\Mods%content%.json
 	{
 		UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%contentdownload%, %A_ScriptDir%\data\Mods%content%.json

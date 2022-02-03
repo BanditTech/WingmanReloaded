@@ -65,8 +65,13 @@ Global PoeDBAPI := ["Life Flask"
 ,"Shield(STR-INT)"
 ,"Sceptre"
 ,"Utility Flask"
-,"Jewel"
-,"Abyss Jewel"
+,"Cobalt Jewel"
+,"Viridian Jewel"
+,"Crimson Jewel"
+,"Murderous Eye Jewel"
+,"Searching Eye Jewel"
+,"Hypnotic Eye Jewel"
+,"Ghastly Eye Jewel"
 ,"Rune Dagger"
 ,"Warstaff"
 ,"Trinket"
@@ -582,6 +587,7 @@ Global ItemCraftingBaseSelector
 Global ItemCraftingMethod
 Global ItemCraftingNumberPrefix
 Global ItemCraftingNumberSuffix
+Global ItemCraftingNumberCombination
 
 ; Chaos Recipe
 Global ChaosRecipeEnableFunction := False

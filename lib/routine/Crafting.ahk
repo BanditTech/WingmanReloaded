@@ -41,7 +41,7 @@ Crafting(selection:="Maps"){
 				RandomSleep(45,45)
 				CurrentTab := 0
 				MoveStash(StashTabCurrency)
-				If indexOf(selection,["Maps","Socket","Color","Link","Chance"])
+				If indexOf(selection,["Maps","Socket","Color","Link","Chance","Item"])
 					Crafting%selection%()
 				Else
 					Notify("Unknown Result is:",selection,2)
@@ -83,23 +83,84 @@ CraftingSocket(){
 	local f
 	f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }
+CraftingItemCaller(){
+	Crafting("Item")
+}
+
+ItemCraftingBaseComparator(base1,base2){
+	base1 := RegExReplace(base1,"\(.+\)", "")
+	base1 := RegExReplace(base1,"Cobalt |Viridian |Crimson ", "")
+	base1 := RegExReplace(base1,"Ghastly Eye|Hypnotic Eye|Searching Eye|Murderous Eye", "Abyss")
+	base1 := RegExReplace(base1,"Staff", "Staves")
+	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
+	base2 := RegExReplace(base2,"s$", "")
+	If(base1 == base2)
+	{
+		Return True
+	}Else{
+		Return False
+	}
+		
+
+}
+
 CraftingItem(){
 	Global RunningToggle
-	; Cursor
-	MouseGetPos, xx, yy
+	MouseGetPos xx, yy
+
+	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+		Return
+
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
-	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos"])
-	Sleep, 1000
+	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos","Regal"])
+	Notify("Item Crafting Starting","Move your Cursor to your item in next 5s",5)
+	Log("[Start]Item Crafting","Waiting for Item Position")
+	MouseMove %xx%, %yy%
+	Sleep, 5000
+	; Cursor
+	MouseGetPos, xx, yy
+	ClipItem(x,y)
+	Log("Item Crafting","Initial Clip",JSON.Dump(Item))
+	Sleep, 45*Latency
+
+	If(!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
+		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",2)
+		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
+		Return
+	}
+	If(ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix ==0 && ItemCraftingNumberCombination == 0){
+		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",2)
+		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
+		Return
+	}
 	If(ItemCraftingMethod == "Alteration Spam"){
+		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
+			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",2)
+			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
+			Return
+		}
 		ItemCraftingRoll("Alt", xx, yy)
-	}Else If(ItemCraftingMethod == "Alteration + Aug Spam"){
+	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
+		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
+			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",2)
+			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
+			Return
+		}
 		ItemCraftingRoll("AltAug", xx, yy)
-	}Else If(ItemCraftingMethod == "Scouring + Alchemy Spam"){
+	}Else If(ItemCraftingMethod == "Alteration and Aug and Regal Spam"){
+		If(((ItemCraftingNumberPrefix + ItemCraftingNumberSuffix) > 3) || ItemCraftingNumberCombination > 3){
+			Notify("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",2)
+			Log("[End]Item Crafting - Item Crafting Error","Magic Itens with Regal Orb can only have 3 Mods")
+			Return
+		}
+		ItemCraftingRoll("AltAugRegal", xx, yy)
+	}Else If(ItemCraftingMethod == "Scouring and Alchemy Spam"){
 		ItemCraftingRoll("AltSco", xx, yy)
 	}Else If(ItemCraftingMethod == "Chaos Spam"){
 		ItemCraftingRoll("Chaos", xx, yy)
 	}
+	Return
 }
 ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
 CraftingMaps(){
@@ -134,9 +195,7 @@ CraftingMaps(){
 			addToBlacklist(C, R)
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( Item.Prop.IsMap
-						&& (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" )))
-				&&!Item.Prop.Corrupted)
+				If ( Item.Prop.IsMap && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) &&!Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
 					ClipItem(Grid.X,Grid.Y)
@@ -163,9 +222,7 @@ CraftingMaps(){
 					{
 						If (!Item.Prop.RarityNormal)
 						{
-							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") 
-									|| (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) 
-							|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
+							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) || (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
 							{
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								Continue
@@ -273,7 +330,6 @@ ApplyCurrency(cname, x, y, Amount:=1){
 		}
 		WR.data.Counts[cname]--
 	}
-
 	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
 	Sleep, 45*Latency
@@ -399,18 +455,24 @@ MapRoll(Method, x, y){
 	,JSON.Dump(Item) )
 	Return 1
 }
-
-ItemCraftingRoll(Method, x, y)
-{
+ItemCraftingRoll(Method, x, y){
+	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+		Return
 	If (Method == "Alt")
 	{
 		cname := "Transmutation"
 		crname := "Alteration"
 	}
-	If (Method == "AltAug")
+	Else If (Method == "AltAug")
 	{
 		cname := "Transmutation"
 		crname := "Alteration"
+	}
+	Else If (Method == "AltAugRegal")
+	{
+		cname := "Transmutation"
+		crname := "Alteration"
+		cr2name := "Scouring"
 	}
 	Else If (Method == "AlcSco")
 	{
@@ -426,31 +488,59 @@ ItemCraftingRoll(Method, x, y)
 	{
 		Return
 	}
+	ClipItem(x,y)
+	Sleep, 45*Latency
 	If (Item.Affix["Unidentified"])
 	{
 		WisdomScroll(x,y)
 		ClipItem(x,y)
 		Sleep, 45*Latency
-	}Else{
-		ClipItem(x,y)
-		Sleep, 45*Latency
 	}
-	; Corrupted White Maps can break the function without !This.Prop.Corrupted in loop
-	While (!Item.Prop.ItemCraftingHit)
-	{
+	While (!Item.Prop.ItemCraftingHit){
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
 		If (Item.Prop.RarityNormal)
 		{
 			If !ApplyCurrency(cname, x, y)
 				Return False
-		}Else{
-			; Scouring or Alteration (Reroll Currency)
-			If !ApplyCurrency(crname, x, y)
-				Return False
 		}
-		If(Item.Prop.RarityMagic && Method == "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)){
-			If !ApplyCurrency("Augmentation",x,y)
-				Continue
+		Else If(Item.Prop.RarityMagic){
+			If(Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0))
+			{
+				If !ApplyCurrency("Augmentation",x,y)
+					Return False
+			}Else If(Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)
+			{
+				If !ApplyCurrency("Regal",x,y)
+					Return False
+			}
+			Else
+			{
+				If !ApplyCurrency(crname, x, y)
+					Return False
+			}
 		}
+		Else If (Item.Prop.RarityRare){
+			If(Method ~= "Regal")
+			{
+				If !ApplyCurrency(cr2name, x, y)
+						Return False
+			}
+			Else
+			{
+				If !ApplyCurrency(crname, x, y)
+					Return False
+			}
+		}
+		Log("Item Crafting Loop","Item Crafting resulted in a " 
+		. "CraftingMatchedPrefix: "Item.Prop.CraftingMatchedPrefix
+		. " | CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
+	,JSON.Dump(Item) )
+		
 	}
-	Return 1
+	If(Item.Prop.ItemCraftingHit)
+		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
+		Log("[End]Item Crafting - Sucess","End Rotine")
+
+	Return
 }

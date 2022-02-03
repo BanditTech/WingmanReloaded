@@ -697,23 +697,32 @@ WR_Menu(Function:="",Var*){
 
       ; Affix Matcher
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h80 xs yp+35 , Affix Matcher
+      Gui, Crafting: Add, GroupBox, w320 h110 xs yp+35 , Affix Matcher
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+20, How Many Prefix From Mod List ?
-      Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberPrefix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberPrefix%
       Gui, Crafting: Add, Text, xs+10 yp+30, How Many Suffix From Mod List ?
-      Gui, Crafting: Add, Edit, Number gItemCraftingSubmit w40 x+10 yp
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberSuffix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberSuffix%
+      Gui, Crafting: Add, Text, xs+10 yp+30, Any Combination From Mod List ? (Set 0 to Disable)
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp
+      Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberCombination gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberCombination%
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, w320 h45 xs yp+35 , Crafting Method
       Gui, Crafting: Font,
-      Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration + Aug Spam|Scouring + Alchemy Spam|Chaos Spam
+      Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
 
+      ; Guide
+      Gui, Crafting: Font, Bold s12 cBlack, Arial
+      Gui, Crafting: Add, GroupBox, Section w250 h400 xs+330 ym+25 , Instructions
+      Gui, Crafting: Font, 
+      Gui, Crafting: Font, s11 cBlack, Arial
+      Gui, Crafting: Add, Link, xs+10 yp+20 w220, This is a Experimental Feature!`nWe highly recommend using <a href="https://www.craftofexile.com/">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.`nSteps:`n1) Select Item Base in Mod Selector`n2) Open UI and Check Mods that You Want (Remember to Check Higher Mods too, This Feature is Tier Sensitive)`n3) Select How Many Prefix/Suffix from Mod Selector It Should Match to Stop`n4) Select the Crafting Method.`n5) Use the Bound Key (Default Key F11) with Your Cursor Over The Item and Stash Open to Start The Process`nP.S: You Can Break the Loop Pressing Bound Key Again
       Gui, Crafting: Font,
 
       Gui, Crafting: Show
