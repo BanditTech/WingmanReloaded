@@ -962,8 +962,8 @@
 	HasBrickedAffix() {
 		sum := 0
 		good := 0
-		For k, v in WR.CustomMapMods.CustomMods{
-			if(v["Enable"] == 1 && This.Affix[v["Map Modifier"]])
+		For k, v in WR.CustomMapMods.MapMods{
+			if(This.Affix[v["Map Affix"]])
 			{
 				if(v["Mod Type"] == "Impossible"){
 					Return True

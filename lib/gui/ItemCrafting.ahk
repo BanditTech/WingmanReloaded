@@ -198,9 +198,10 @@ RefreshModList(type)
 Return
 }
 
-ItemCraftingNaming(Content) {
+ItemCraftingNaming(Content) 
+{
   Content := RegExReplace(Content,"\<br\/?\>"," | ")
   Content := RegExReplace(Content,"\<.*?\>","")
   Content := RegExReplace(Content,"&ndash;","-")
-    Return Content
-  }
+  Return Content
+}
