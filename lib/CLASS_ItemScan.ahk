@@ -291,10 +291,10 @@
 				This.Prop.MiscMapItem := True
 				This.Prop.SpecialType := "Misc Map Item"
 			}
-			Else If (This.Prop.ItemClass = "Atlas Region Upgrade Items")
+			Else If (This.Prop.ItemClass = "Atlas Region Upgrade Items" || This.Prop.ItemClass ~= "Atlas Upgrade Item" )
 			{
 				This.Prop.MiscMapItem := True
-				This.Prop.SpecialType := "Atlas Watchstone"
+				This.Prop.SpecialType := "Atlas Voidstone"
 			}
 			Else If (This.Prop.ItemClass = "Maps")
 			{
