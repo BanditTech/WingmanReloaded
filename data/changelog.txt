@@ -1,4 +1,13 @@
-﻿## Version .14.06 - Alpha version - February/02/2021
+﻿## Version .14.07 - Alpha version - February/03/2021
+Improvements
+  * ItemCrafting now has many FailSafes, checking if base match or if you have select at least one affix on Mod Selector
+  * MapCrafting now use DB
+    * You only need to check the line and double click to change Weight or Mod Type as before
+
+Bugfixes
+  * You maybe need to manually remove .json files from your save folder if you are updating from lower versions
+
+## Version .14.06 - Alpha version - February/02/2021
 Bugfixes
   * Fix Reversed comparators for Item Crafting
 
