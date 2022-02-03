@@ -93,8 +93,7 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"Ghastly Eye|Hypnotic Eye|Searching Eye|Murderous Eye", "Abyss")
 	base1 := RegExReplace(base1,"Staff", "Staves")
 	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
-	base2 := RegExReplace(base2,"s$", "")
-	If(base1 == base2)
+	If(base1 ~= base2)
 	{
 		Return True
 	}Else{
@@ -125,32 +124,37 @@ CraftingItem(){
 	Sleep, 45*Latency
 
 	If(!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
-		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",2)
+		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
 		Return
 	}
+	If(WR.ItemCrafting[ItemCraftingBaseSelector].Count() == 0){
+		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
+		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
+		Return
+	}
 	If(ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix ==0 && ItemCraftingNumberCombination == 0){
-		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",2)
+		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
 	If(ItemCraftingMethod == "Alteration Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",2)
+			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",4)
 			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
 			Return
 		}
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",2)
+			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",4)
 			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
 			Return
 		}
 		ItemCraftingRoll("AltAug", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug and Regal Spam"){
 		If(((ItemCraftingNumberPrefix + ItemCraftingNumberSuffix) > 3) || ItemCraftingNumberCombination > 3){
-			Notify("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",2)
+			Notify("Magic Item Mismatch","Magic Itens with Regal Orb can only have 3 Mods",4)
 			Log("[End]Item Crafting - Item Crafting Error","Magic Itens with Regal Orb can only have 3 Mods")
 			Return
 		}
