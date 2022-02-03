@@ -75,7 +75,10 @@ Global PoeDBAPI := ["Life Flask"
 ,"Rune Dagger"
 ,"Warstaff"
 ,"Trinket"
-,"Staff"]
+,"Staff"
+,"Map(LOW)"
+,"Map(MID)"
+,"Map(TOP)"]
 Global Active_executable := "TempName"
 Global selectedLeague := "Standard"
 ; Hybrid Mods First Line

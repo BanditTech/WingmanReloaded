@@ -89,6 +89,9 @@ For k, v in PoeDBAPI
     contentdownload := RegExReplace(contentdownload,"\(STR-DEX\)","&tags=str_dex_armour")
     contentdownload := RegExReplace(contentdownload,"\(STR-INT\)","&tags=str_int_armour")
     contentdownload := RegExReplace(contentdownload,"\(DEX-INT\)","&tags=dex_int_armour")
+	contentdownload := RegExReplace(contentdownload,"\(LOW\)","&tags=low_tier_map")
+	contentdownload := RegExReplace(contentdownload,"\(MID\)","&tags=mid_tier_map")
+	contentdownload := RegExReplace(contentdownload,"\(TOP\)","&tags=top_tier_map")
 	if(contentdownload ~= "Jewel"){
 		contentdownload := "BaseItemTypes&an=" . contentdownload
 	}
