@@ -5,9 +5,9 @@ ModsUI:
   Gui, ModsUI1: Default
   Gui, ModsUI1: +AlwaysOnTop -MinimizeBox
   Gui, ModsUI1: Add, Text,, Prefix List
-  Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVP, Influence|Affix Name|ILvL|Detail|Code
+  Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVP, Influence|Affix Name|ILvL|Detail|Mod Weight|Code
   Gui, ModsUI1: Add, Text,, Suffix List
-  Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVS, Influence|Affix Name|ILvL|Detail|Code
+  Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVS, Influence|Affix Name|ILvL|Detail|Mod Weight|Code
   RefreshModList(ItemCraftingBaseSelector)
   Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
   Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
@@ -152,15 +152,18 @@ RefreshModList(type)
   {
     For k, v in Mods[vi]
     {
-      If (v["ModGenerationTypeID"] == 1)
+      if(v["DropChance"] != 0)
       {
-        Gui, ListView, LVP
-        StringUpper, vi, vi, T
-        LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["Code"])
-      }else {
-        Gui, ListView, LVS
-        StringUpper, vi, vi, T
-        LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["Code"])
+        If (v["ModGenerationTypeID"] == 1)
+        {
+          Gui, ListView, LVP
+          StringUpper, vi, vi, T
+          LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["DropChance"],v["Code"])
+        }else {
+          Gui, ListView, LVS
+          StringUpper, vi, vi, T
+          LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["DropChance"],v["Code"])
+        }
       }
     }
   }

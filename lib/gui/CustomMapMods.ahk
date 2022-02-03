@@ -26,13 +26,16 @@ RefreshMapList()
   Mods := LoadOnDemand("Map(TOP)")
     For k, v in Mods["normal"]
     {
+      if(v["DropChance"] != 0)
+      {
         StringUpper, vi, vi, T
         If(v["ModGenerationTypeID"] == 1){
           AffixName := "Prefix"
         }Else{
           AffixName := "Suffix"
         }
-        LV_Add("",AffixName,v["Name"],ItemCraftingNamingMaping(v["str"]),v["Code"],"Impossible","1")
+        LV_Add("",AffixName,v["Name"],ItemCraftingNamingMaping(v["str"]),v["DropChance"],"Impossible","1")
+      }
     }
   Mods := []
   ;;Check Box
@@ -57,7 +60,7 @@ CustomMapModsUI:
   Gui, CustomMapModsUI1: New
   Gui, CustomMapModsUI1: Default
   Gui, CustomMapModsUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomMapModsUI1: Add, ListView ,  w1200 h350 -wrap -Multi Grid Checked gMyListView vlistview1, Affix Type|Affix Name|Detail|Code|Mod Type|Weight
+  Gui, CustomMapModsUI1: Add, ListView ,  w1200 h350 -wrap -Multi Grid Checked gMyListView vlistview1, Affix Type|Affix Name|Detail|Mod Weight|Mod Type|Weight
   RefreshMapList()
   Gui, CustomMapModsUI1: Add, Button, gSaveData x+5 w120 h30 center, Save Map Modifiers
   Gui, CustomMapModsUI1: Add, Button, gResetData w120 h30 center, Reset Map Modifiers
