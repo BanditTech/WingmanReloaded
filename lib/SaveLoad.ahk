@@ -637,7 +637,7 @@ submit(){
 		If hotkeyStartCraft
 			hotkey,% hotkeyStartCraft, Crafting, Off
 		If hotkeyItemCrafting
-			hotkey,% hotkeyStartCraft, CraftingItem, Off
+			hotkey,% hotkeyItemCrafting, CraftingItem, Off
 		If hotkeyCraftBasic
 			hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
 
