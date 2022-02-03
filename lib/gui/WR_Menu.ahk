@@ -680,8 +680,14 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
       aux := ""
-      for k, v in PoeDBAPI
-        aux .= v . "|"
+      for k, v in PoeDBAPI{
+        If(v ~= "Map(.+)"){
+          Continue
+        }Else{
+          aux .= v . "|"
+        } 
+      }
+        
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, Text, Section xm+5 ym+25, Item Crafting BETA
       Gui, Crafting: Font,
