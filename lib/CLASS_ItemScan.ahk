@@ -352,6 +352,11 @@
 				This.Prop.BreachSplinter := True
 				This.Prop.SpecialType := "Breach Splinter"
 			}
+			Else If (InStr(This.Prop.ItemBase, "Crest") && This.Prop.ItemClass ~= "Fragments")
+			{
+				This.Prop.ConquererFragment := True
+				This.Prop.SpecialType := "Conquerer Fragment"
+			}
 			Else If (InStr(This.Prop.ItemBase, "Breachstone") && This.Prop.ItemClass ~= "Fragments")
 			{
 				This.Prop.BreachSplinter := True
@@ -2562,6 +2567,10 @@
 		str := RegExReplace(str, "\+?"rxNum , "#")
 		; str := RegExReplace(str, "#\(#-#\)" , "#")
 		str := RegExReplace(str, " (augmented)" , "")
+		If (str ~= "\(fractured\)") {
+			str := RegexReplace(str, " \(fractured\)", "")
+			This.Prop.FracturedModKey := str
+		}
 		Return str
 	}
 	MatchPseudoAffix(){
@@ -2948,7 +2957,7 @@
 			If This.MatchNinjaDB("Prophecy")
 				Return
 		}
-		If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment|| This.Prop.ItemName ~= "Simulacrum")
+		If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment || This.Prop.ConquererFragment || This.Prop.ItemName ~= "Simulacrum")
 		{
 			If This.MatchNinjaDB("Fragment")
 				Return
