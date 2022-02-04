@@ -1,0 +1,262 @@
+[
+    {
+        "ActualTierName": "ChaosResist",
+        "AffixWRLine": "#% to Chaos Resistance"
+    },
+    {
+        "ActualTierName": "FireResist",
+        "AffixWRLine": "#% to Fire Resistance"
+    },
+    {
+        "ActualTierName": "ColdResist",
+        "AffixWRLine": "#% to Cold Resistance"
+    },
+    {
+        "ActualTierName": "LightningResist",
+        "AffixWRLine": "#% to Lightning Resistance"
+    },
+    {
+        "ActualTierName": "AllElementalResist",
+        "AffixWRLine": "#% to all Elemental Resistances"
+    },
+    {
+        "ActualTierName": "Life",
+        "AffixWRLine": "# to maximum Life"
+    },
+    {
+        "ActualTierName": "Mana",
+        "AffixWRLine": "# to maximum Mana"
+    },
+    {
+        "ActualTierName": "MS",
+        "AffixWRLine": "#% increased Movement Speed"
+    },
+    {
+        "ActualTierName": "STR",
+        "AffixWRLine": "# to Strength"
+    },
+    {
+        "ActualTierName": "DEX",
+        "AffixWRLine": "# to Dexterity"
+    },
+    {
+        "ActualTierName": "INT",
+        "AffixWRLine": "# to Intelligence"
+    },
+    {
+        "ActualTierName": "AllAttributes",
+        "AffixWRLine": "# to all Attributes"
+    },
+    {
+        "ActualTierName": "IncES",
+        "AffixWRLine": "#% increased Energy Shield"
+    },
+    {
+        "ActualTierName": "IncES",
+        "AffixWRLine": "#% increased maximum Energy Shield"
+    },
+    {
+        "ActualTierName": "ES",
+        "AffixWRLine": "# to maximum Energy Shield"
+    },
+    {
+        "ActualTierName": "Armour",
+        "AffixWRLine": "# to Armour"
+    },
+    {
+        "ActualTierName": "IncArmour",
+        "AffixWRLine": "#% increased Armour"
+    },
+    {
+        "ActualTierName": "Evasion",
+        "AffixWRLine": "# to Evasion Rating"
+    },
+    {
+        "ActualTierName": "IncEvasion",
+        "AffixWRLine": "#% increased Evasion Rating"
+    },
+    {
+        "ActualTierName": "IncArmourEvasion",
+        "AffixWRLine": "#% increased Armour and Evasion"
+    },
+    {
+        "ActualTierName": "IncArmourES",
+        "AffixWRLine": "#% increased Armour and Energy Shield"
+    },
+    {
+        "ActualTierName": "IncEvasionES",
+        "AffixWRLine": "#% increased Evasion and Energy Shield"
+    },
+    {
+        "ActualTierName": "IncArmourSBR",
+        "AffixWRLine": "#% increased Armour | #% increased Stun and Block Recovery"
+    },
+    {
+        "ActualTierName": "IncEvasionSBR",
+        "AffixWRLine": "#% increased Evasion Rating | #% increased Stun and Block Recovery"
+    },
+    {
+        "ActualTierName": "IncESSBR",
+        "AffixWRLine": "#% increased Energy Shield | #% increased Stun and Block Recovery"
+    },
+    {
+        "ActualTierName": "IncArmourEvasionSBR",
+        "AffixWRLine": "#% increased Armour and Evasion | #% increased Stun and Block Recovery"
+    },
+    {
+        "ActualTierName": "IncArmourESSBR",
+        "AffixWRLine": "#% increased Armour and Energy Shield | #% increased Stun and Block Recovery"
+    },
+    {
+        "ActualTierName": "IncEvasionESSBR",
+        "AffixWRLine": "#% increased Evasion and Energy Shield | #% increased Stun and Block Recovery"
+    },
+    {
+        "ActualTierName": "EvasionES",
+        "AffixWRLine": "# to Evasion Rating | # to maximum Energy Shield"
+    },
+    {
+        "ActualTierName": "ArmourES",
+        "AffixWRLine": "# to Armour | # to maximum Energy Shield"
+    },
+    {
+        "ActualTierName": "ArmourEvasion",
+        "AffixWRLine": "# to Armour | # to Evasion Rating "
+    },
+    {
+        "ActualTierName": "ArmourLife",
+        "AffixWRLine": "# to Armour | # to maximum Life"
+    },
+    {
+        "ActualTierName": "EvasionLife",
+        "AffixWRLine": "# to Evasion Rating | # to maximum Life"
+    },
+    {
+        "ActualTierName": "ESLife",
+        "AffixWRLine": "# to maximum Energy Shield | # to maximum Life"
+    },
+    {
+        "ActualTierName": "ESMana",
+        "AffixWRLine": "# to maximum Energy Shield | # to maximum Mana"
+    },
+    {
+        "ActualTierName": "SpellSuppress",
+        "AffixWRLine": "#% chance to Suppress Spell Damage"
+    },
+    {
+        "ActualTierName": "INCSpellDamage",
+        "AffixWRLine": "#% increased Spell Damage"
+    },
+    {
+        "ActualTierName": "INCFireDamage",
+        "AffixWRLine": "#% increased Fire Damage"
+    },
+    {
+        "ActualTierName": "INCColdDamage",
+        "AffixWRLine": "#% increased Cold Damage"
+    },
+    {
+        "ActualTierName": "INCLightningDamage",
+        "AffixWRLine": "#% increased Lightning Damage"
+    },
+    {
+        "ActualTierName": "CastSpeed",
+        "AffixWRLine": "#% increased Cast Speed"
+    },
+    {
+        "ActualTierName": "ChaosDOT",
+        "AffixWRLine": "#% to Chaos Damage over Time Multiplier"
+    },
+    {
+        "ActualTierName": "ColdDOT",
+        "AffixWRLine": "#% to Cold Damage over Time Multiplier"
+    },
+    {
+        "ActualTierName": "FireDOT",
+        "AffixWRLine": "#% to Fire Damage over Time Multiplier"
+    },
+    {
+        "ActualTierName": "PhysicalDOT",
+        "AffixWRLine": "#% to Physical Damage over Time Multiplier"
+    },
+    {
+        "ActualTierName": "DOTMultiplier",
+        "AffixWRLine": "#% to Damage over Time Multiplier"
+    },
+    {
+        "ActualTierName": "DOTMultiplier",
+        "AffixWRLine": "#% to Damage over Time Multiplier with Attack Skills"
+    },
+    {
+        "ActualTierName": "GlobalCriticalStrikeMultiplier",
+        "AffixWRLine": "#% to Global Critical Strike Multiplier"
+    },
+    {
+        "ActualTierName": "GlobalCriticalStrikeMultiplier",
+        "AffixWRLine": "#% to Critical Strike Multiplier with Bows"
+    },
+    {
+        "ActualTierName": "CriticalStrikeChance",
+        "AffixWRLine": "#% increased Critical Strike Chance"
+    },
+    {
+        "ActualTierName": "CriticalStrikeChance",
+        "AffixWRLine": "#% increased Critical Strike Chance with Bows"
+    },
+    {
+        "ActualTierName": "CriticalStrikeChance",
+        "AffixWRLine": "#% increased Global Critical Strike Chance"
+    },
+    {
+        "ActualTierName": "AttackSpeed",
+        "AffixWRLine": "#% increased Attack Speed"
+    },
+    {
+        "ActualTierName": "IncElementalDamage",
+        "AffixWRLine": "#% increased Elemental Damage with Attack Skills"
+    },
+    {
+        "ActualTierName": "IncElementalDamage",
+        "AffixWRLine": "#% increased Elemental Damage with Attack Skills"
+    },
+    {
+        "ActualTierName": "AddLightningDamage",
+        "AffixWRLine": "Adds # to # Lightning Damage"
+    },
+    {
+        "ActualTierName": "AddLightningDamage",
+        "AffixWRLine": "Adds # to # Lightning Damage to Attacks"
+    },
+    {
+        "ActualTierName": "AddColdDamage",
+        "AffixWRLine": "Adds # to # Cold Damage"
+    },
+    {
+        "ActualTierName": "AddColdDamage",
+        "AffixWRLine": "Adds # to # Cold Damage to Attacks"
+    },
+    {
+        "ActualTierName": "AddFireDamage",
+        "AffixWRLine": "Adds # to # Fire Damage"
+    },
+    {
+        "ActualTierName": "AddFireDamage",
+        "AffixWRLine": "Adds # to # Fire Damage to Attacks"
+    },
+    {
+        "ActualTierName": "AddPhysicalDamage",
+        "AffixWRLine": "Adds # to # Physical Damage"
+    },
+    {
+        "ActualTierName": "AddPhysicalDamage",
+        "AffixWRLine": "Adds # to # Physical Damage to Attacks"
+    },
+    {
+        "ActualTierName": "IncPhysicalDamage",
+        "AffixWRLine": "#% increased Physical Damage"
+    },
+    {
+        "ActualTierName": "Accuracy",
+        "AffixWRLine": "# to Accuracy Rating"
+    }
+]

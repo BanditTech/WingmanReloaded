@@ -1,7 +1,12 @@
-
+LoadActualTierName()
+{
+    FileRead, JSONtext, %A_ScriptDir%\data\ActualTierName.json
+    Return JSON.Load(JSONtext)
+}
 
 ActualTierCreator()
 {
+    ActualTierNameJSON := LoadActualTierName()
     For kii , vii in PoeDBAPI
     {
         Mods := LoadOnDemand(vii)
@@ -11,23 +16,26 @@ ActualTierCreator()
             For k, v in Mods[vi]
             {
                 AffixWRLine := FirstLineToWRFormat(v["str"])
-                If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii]))
+                If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ActualTierNameJSON))
                 {
-                    WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
-                    WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
+                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii]))
+                    {
+                        WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
+                        WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
+                    }
+                    Else
+                    {
+                        aux := {"ActualTierName":ActualTierName,"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
+                        WR.ActualTier[vii].Push(aux)
+                    }
                 }
-                Else
-                {
-                    aux := {"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
-                    WR.ActualTier[vii].Push(aux)
-                }
+
             }
         }
     }
     Settings("ActualTier","Save")
     Return
 }
-
 
 CheckAffixWR(Line,Obj){
     for k , v in Obj
@@ -38,25 +46,19 @@ CheckAffixWR(Line,Obj){
     }
 }
 
-trimArray(arr) { ; Hash O(n) 
-
-    hash := {}, newArr := []
-
-    for e, v in arr
-        if (!hash[v])
-        hash[(v)] := 1, newArr.push(v)
-
-    return newArr
+CheckAffixWRFromJson(Line,Obj){
+    for k , v in Obj
+    {
+        If(v["AffixWRLine"] == Line){
+            aux:= "ActualTier" . v["ActualTierName"]
+            Return aux
+        }
+    }
 }
 
 FirstLineToWRFormat(FullLine)
 {
     FullLine := ItemCraftingNaming(FullLine)
-    ;SplittedModLine := StrSplit(FullLine, " | ")
-    ; Start Aux
-    StartingPos := 1
-    ;FullLine := SplittedModLine[1]
-
     ; Create WR Mod Line
     Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
     Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
