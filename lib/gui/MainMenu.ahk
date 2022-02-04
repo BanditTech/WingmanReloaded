@@ -11,7 +11,7 @@ SB_SetText("Logic Status", 1)
 SB_SetText("Location Status", 2)
 SB_SetText("Percentage not updated", 3)
 
-Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
+Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|Debug
 ; #Main Tab
 	Gui, Tab, Main
 	Gui, Font,
@@ -358,4 +358,6 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
 	Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
 
 	Gui, +LastFound +AlwaysOnTop
+; Debug Tab
+	Gui, Tab, Debug
 
