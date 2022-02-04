@@ -360,4 +360,8 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, +LastFound +AlwaysOnTop
 ; Debug Tab
 	Gui, Tab, Debug
-
+	Gui, Font, Bold s9 cBlack, Arial
+	Gui Add, GroupBox,    center w200 h100               xm+5   ym+25,         Script Information:
+	Gui, Font
+	Gui, Add, Text, , Wingman Reloaded %VersionNumber%
+	Gui, Add, Button, , Force Update
