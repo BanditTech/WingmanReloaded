@@ -1,4 +1,12 @@
-﻿## Version .14.07 - Alpha version - February/03/2021
+﻿## Version .14.08 - Alpha version - February/04/2021
+Improvements
+  * All currency from the currency tab is now available as a restock option
+  
+Bugfixes
+  * Currency tab positions have been updated for all aspect ratio
+
+
+## Version .14.07 - Alpha version - February/03/2021
 Improvements
   * ItemCrafting now has many FailSafes, checking if base match or if you have select at least one affix on Mod Selector
   * MapCrafting now use DB
