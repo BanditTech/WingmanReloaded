@@ -2,7 +2,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{}
 ,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
-,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{}}
+,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
@@ -83,8 +83,14 @@ WR.CustomCraftingBases.Bases := []
 
 WR.CustomMapMods.MapMods := []
 
+
+
 for k,v in PoeDBAPI
+{
 	WR.ItemCrafting[v] := []
+	WR.ActualTier[v] := []
+}
+	
 
 WR.Data.Map_Affixes := RegexReplace(ArrayToString(Util.Load("Affix_List_Map")),"\%","`%")
 WR.Data.Map_Affixes := RegexReplace(WR.Data.Map_Affixes,",","`,")

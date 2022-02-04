@@ -107,7 +107,7 @@ For k, v in PoeDBAPI
 			Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
 			
 		}
-	} 
+	}
 }
 
 IfNotExist, %A_ScriptDir%\data\Quest.json

@@ -29,6 +29,7 @@
 #Include, %A_ScriptDir%\lib\Tooltips.ahk
 #Include, %A_ScriptDir%\lib\TrayLabels.ahk
 #Include, %A_ScriptDir%\lib\Trigger.ahk
+#Include, %A_ScriptDir%\lib\DatabaseHelpers.ahk
 
 #Include, %A_ScriptDir%\lib\api\POE_RequestAccount.ahk
 #Include, %A_ScriptDir%\lib\api\POE_RequestStash.ahk
