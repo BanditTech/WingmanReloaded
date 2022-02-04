@@ -153,10 +153,3 @@ IfNotExist, %A_ScriptDir%\data\Affix_Lines.json
 }
 If needReload
 	Reload
-
-
-IfNotExist, %A_ScriptDir%\save\ActualTier.json
-{
-	ActualTierCreator()
-}
-
