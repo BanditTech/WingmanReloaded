@@ -147,14 +147,14 @@ Rescale(){
       ; Veiled
       WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(1920/605))
       WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1080/272))
-      ---
+
       ; Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1920/225))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/327))
       ; Divine
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1920/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
-      ---
+
       ; Jeweler
       WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(1920/112))
       WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
@@ -173,10 +173,10 @@ Rescale(){
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1920/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
-      ; Horizons
-      WR.loc.pixel.Horizons.X:=GameX + Round(GameW/(1920/605))
-      WR.loc.pixel.Horizons.Y:=GameY + Round(GameH/(1080/396))
-      ---
+      ; Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(1920/605))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/396))
+
       ; Enkindling
       WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(1920/54))
       WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/453))
@@ -195,7 +195,7 @@ Rescale(){
       ; Unmaking
       WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(1920/494))
       WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/451))
-      ---
+
       ; Instilling
       WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(1920/57))
       WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/509))
@@ -348,14 +348,14 @@ Rescale(){
       ; Veiled
       WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(1440/605))
       WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1080/272))
-      ---
+
       ; Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1440/225))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/327))
       ; Divine
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1440/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
-      ---
+
       ; Jeweler
       WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(1440/112))
       WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
@@ -374,10 +374,10 @@ Rescale(){
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1440/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
-      ; Horizons
-      WR.loc.pixel.Horizons.X:=GameX + Round(GameW/(1440/605))
-      WR.loc.pixel.Horizons.Y:=GameY + Round(GameH/(1080/396))
-      ---
+      ; Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(1440/605))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/396))
+
       ; Enkindling
       WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(1440/54))
       WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/453))
@@ -396,7 +396,7 @@ Rescale(){
       ; Unmaking
       WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(1440/494))
       WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/451))
-      ---
+
       ; Instilling
       WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(1440/57))
       WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/509))
@@ -543,14 +543,14 @@ Rescale(){
       ; Veiled
       WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(2560/605))
       WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1080/272))
-      ---
+
       ; Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(2560/225))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/327))
       ; Divine
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(2560/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
-      ---
+
       ; Jeweler
       WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(2560/112))
       WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
@@ -569,10 +569,10 @@ Rescale(){
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(2560/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
-      ; Horizons
-      WR.loc.pixel.Horizons.X:=GameX + Round(GameW/(2560/605))
-      WR.loc.pixel.Horizons.Y:=GameY + Round(GameH/(1080/396))
-      ---
+      ; Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(2560/605))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/396))
+
       ; Enkindling
       WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(2560/54))
       WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/453))
@@ -591,7 +591,7 @@ Rescale(){
       ; Unmaking
       WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(2560/494))
       WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/451))
-      ---
+
       ; Instilling
       WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(2560/57))
       WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/509))
@@ -746,14 +746,14 @@ Rescale(){
       ; Veiled
       WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(2580/605))
       WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1080/272))
-      ---
+
       ; Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(2580/225))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/327))
       ; Divine
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(2580/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
-      ---
+
       ; Jeweler
       WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(2580/112))
       WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
@@ -772,10 +772,10 @@ Rescale(){
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(2580/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
-      ; Horizons
-      WR.loc.pixel.Horizons.X:=GameX + Round(GameW/(2580/605))
-      WR.loc.pixel.Horizons.Y:=GameY + Round(GameH/(1080/396))
-      ---
+      ; Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(2580/605))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/396))
+
       ; Enkindling
       WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(2580/54))
       WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/453))
@@ -794,7 +794,7 @@ Rescale(){
       ; Unmaking
       WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(2580/494))
       WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/451))
-      ---
+
       ; Instilling
       WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(2580/57))
       WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/509))
@@ -944,14 +944,14 @@ Rescale(){
       ; Veiled
       WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(3840/605))
       WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1080/272))
-      ---
+
       ; Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(3840/225))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/327))
       ; Divine
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(3840/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
-      ---
+
       ; Jeweler
       WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(3840/112))
       WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
@@ -970,10 +970,10 @@ Rescale(){
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(3840/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
-      ; Horizons
-      WR.loc.pixel.Horizons.X:=GameX + Round(GameW/(3840/605))
-      WR.loc.pixel.Horizons.Y:=GameY + Round(GameH/(1080/396))
-      ---
+      ; Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(3840/605))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/396))
+
       ; Enkindling
       WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(3840/54))
       WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/453))
@@ -992,7 +992,7 @@ Rescale(){
       ; Unmaking
       WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(3840/494))
       WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/451))
-      ---
+
       ; Instilling
       WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(3840/57))
       WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/509))
@@ -1008,10 +1008,6 @@ Rescale(){
       ; Vaal
       WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(3840/608))
       WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/510))
-      ;Scrolls in currency tab
-      WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3840/125))
-      WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3840/175))
-      WR.loc.pixel.Wisdom.Y:=WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
       ;Status Check OnMenu
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
@@ -1153,14 +1149,14 @@ Rescale(){
       ; Veiled
       WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(1728/605))
       WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1080/272))
-      ---
+
       ; Augmentation
       WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(1728/225))
       WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/327))
       ; Divine
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1728/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
-      ---
+
       ; Jeweler
       WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(1728/112))
       WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
@@ -1179,10 +1175,10 @@ Rescale(){
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1728/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
-      ; Horizons
-      WR.loc.pixel.Horizons.X:=GameX + Round(GameW/(1728/605))
-      WR.loc.pixel.Horizons.Y:=GameY + Round(GameH/(1080/396))
-      ---
+      ; Horizon
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(1728/605))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/396))
+
       ; Enkindling
       WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(1728/54))
       WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/453))
@@ -1201,7 +1197,7 @@ Rescale(){
       ; Unmaking
       WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(1728/494))
       WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/451))
-      ---
+
       ; Instilling
       WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(1728/57))
       WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/509))

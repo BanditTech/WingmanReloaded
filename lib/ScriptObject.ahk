@@ -6,12 +6,22 @@ Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
-, "Wisdom", "Portal", "Scouring", "Chisel", "Alchemy", "Chance", "Fusing", "Vaal"
-, "Transmutation", "Augmentation", "Alteration", "Jeweller", "Chromatic", "Binding"
-, "Harbinger", "Horizon", "Engineer", "Chaos", "Regal", "Simple", "Prime", "Awakened"
+, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
+,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"
+,"Augmentation","Divine"
+,"Jeweler","Fusing","Chromatic","Awakened","Elevated","Harbinger","Horizon"
+,"Enkindling","Ancient","Binding","Engineer","Regret","Unmaking"
+,"Instilling","Scouring","Sacred","Blessed","Vaal"
 , "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor", "OnVendorHeist"
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
 	WR.loc.pixel[v] := {"X":0,"Y":0}
+
+/*
+
+"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled","Augmentation","Divine","Jeweler","Fusing","Chromatic","Awakened","Elevated","Harbinger","Horizons","Enkindling","Ancient","Binding","Engineer","Regret","Unmaking","Instilling","Scouring","Sacred","Blessed","Vaal"
+*/
+
+
 for k, v in []
 	WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
 WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
