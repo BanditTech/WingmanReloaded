@@ -1,10 +1,4 @@
-﻿Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     x610   y5     w13 h13
-Gui Add, Text,                     x515  y5,         Debug Messages:
-Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     x490   y5     w13 h13
-Gui Add, Text,         vYesTimeMS_t            x455  y5,         Logic:
-Gui Add, Checkbox,   vYesLocation Checked%YesLocation%  gUpdateDebug     x435   y5     w13 h13
-Gui Add, Text,         vYesLocation_t            x385  y5,         Location:
-
+﻿
 Gui, Add, StatusBar, vWR_Statusbar hwndWR_hStatusbar, %WR_Statusbar%
 SB_SetParts(220,220)
 SB_SetText("Logic Status", 1)
@@ -174,20 +168,27 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Checkbox, gUpdateExtra  vYesGuiLastPosition Checked%YesGuiLastPosition%      xs        , Remember Last GUI Position?
 
 	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section x295 ym+20  w350 h90              ,Update Control
+	Gui,Add,GroupBox,Section x295 ym+20  w350 h130              ,Update Control
 	Gui,Font,Norm
 
-	Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha
+	Gui, Add, Text, xs+5 yp+20 , Wingman Reloaded  %VersionNumber% 
+	Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 y+5           , master|Alpha
 	GuiControl, ChooseString, BranchName                                                  , %BranchName%
 	Gui, Add, Text,       x+8 yp+3                                                        , Update Branch
 	Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs+5 y+10  w90                  , Off|days|hours|minutes
 	GuiControl, ChooseString, ScriptUpdateTimeType                                        , %ScriptUpdateTimeType%
 	Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
 	Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
-	Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%     xs+5 y+10              , Turn off Auto-Update?
+	Gui, Add, Button, hwndHWND xs+5 y+10, Force Update
+	Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%     x+7 yp+4              , Turn off Auto-Update?
+
+
+	f := Func("checkUpdate").Bind(True)
+	GuiControl, +g,% HWND,% f
+	f := ""
 
 	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section xs y+10  w350 h140                                                     , Game Setup
+	Gui,Add,GroupBox,Section xs y+20  w350 h140                                                     , Game Setup
 	Gui, Add, Text,          xs+5 yp+20                                                             , Aspect Ratio:
 	Gui,Font,Norm
 
@@ -361,7 +362,9 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 ; Debug Tab
 	Gui, Tab, Debug
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w200 h100               xm+5   ym+25,         Script Information:
+	Gui Add, GroupBox,  section  center w200 h100               xm+5   ym+25,         Debug Tooltips:
 	Gui, Font
-	Gui, Add, Text, , Wingman Reloaded %VersionNumber%
-	Gui, Add, Button, , Force Update
+
+	Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     xs+20 ys+20, Show Debug Tooltips
+	Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     , Logic Tooltips
+	Gui Add, Checkbox,   vYesLocation Checked%YesLocation%  gUpdateDebug , Location Tooltips

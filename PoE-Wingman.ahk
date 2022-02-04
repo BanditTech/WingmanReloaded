@@ -12,7 +12,6 @@ checkUpdate()
 Critical
 #Include, %A_ScriptDir%\lib\gui\MainMenu.ahk
 #Include, %A_ScriptDir%\lib\gui\ItemInfo.ahk
-DebugToggle()
 FirstScale()
 RestockMenu("Load")
 DBUpdateFirstRun()
