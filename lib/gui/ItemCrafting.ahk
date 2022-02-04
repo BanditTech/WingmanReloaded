@@ -12,7 +12,7 @@ ModsUI:
   Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
   Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
   Gui, ModsUI1: Show, , %ItemCraftingBaseSelector% Affix List 
-  ActualTierCreator()
+  ;ActualTierCreator()
 Return
 
 ResetItemCrafting:

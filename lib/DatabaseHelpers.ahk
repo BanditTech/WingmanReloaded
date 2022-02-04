@@ -5,7 +5,7 @@ ActualTierCreator()
     For kii , vii in PoeDBAPI
     {
         Mods := LoadOnDemand(vii)
-
+        WR.ActualTier[vii] := []
         For ki ,vi in ["normal"]
         {
             For k, v in Mods[vi]
@@ -52,10 +52,10 @@ trimArray(arr) { ; Hash O(n)
 FirstLineToWRFormat(FullLine)
 {
     FullLine := ItemCraftingNaming(FullLine)
-    SplittedModLine := StrSplit(FullLine, " | ")
+    ;SplittedModLine := StrSplit(FullLine, " | ")
     ; Start Aux
     StartingPos := 1
-    FullLine := SplittedModLine[1]
+    ;FullLine := SplittedModLine[1]
 
     ; Create WR Mod Line
     Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
