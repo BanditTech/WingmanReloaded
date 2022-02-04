@@ -1029,15 +1029,18 @@
 		Base := RegExReplace(Base,"^Warstaff", "Warstaves")
 		Base := RegExReplace(Base,"^Staff", "Staves")
 		Base := Base . CheckBaseType
-		aux3232 := This.Prop.ItemClass
+		; aux3232 := This.Prop.ItemClass
 		;tooltip, %aux3232% %Base%
 		for a , b in WR.ActualTier[Base]
 		{
 			ILvLList := b["ILvL"]
 			AffixList := b["AffixLine"]
 			Name := b["ActualTierName"]
-			AffixWRLine := b["AffixWRLine"]
-			If(!This.Affix[AffixWRLine])
+			AffixWRLine := StrSplit(b["AffixWRLine"], " | ")
+			if(AffixWRLine.Count() > 1){
+				AffixWRLine[1] := "(Hybrid) " . AffixWRLine[1]
+			}
+			If(!This.Affix[AffixWRLine[1]])
 			{
 				Continue
 			}

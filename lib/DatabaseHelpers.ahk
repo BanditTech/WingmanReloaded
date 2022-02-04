@@ -33,6 +33,9 @@ ActualTierCreator()
             }
         }
     }
+    ;Free at End
+    Mods := []
+    ;Save Json
     Settings("ActualTier","Save")
     Return
 }
