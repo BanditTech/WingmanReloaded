@@ -1,4 +1,11 @@
-﻿## Version .14.0801 - Alpha version - February/04/2021
+﻿## Version .14.0802 - Alpha version - February/04/2021
+Bugfixes
+  * Fix for vendor calibration
+  * Still needs seperate calibration of Rogue Harbour
+
+---
+
+## Version .14.0802 - Alpha version - February/04/2021
 Bugfixes
   * Revert accidental find and replace in Rescale function
   * This should fix issues with standard aspect ratio
