@@ -1,4 +1,9 @@
-﻿## Version .15.00 - Master version - February/05/2021
+﻿## Version .15.01 - Master version - February/05/2021
+  Bugfixes
+    * Rogue harbour vendor accept
+    * Sleep timers for some click functions
+
+## Version .15.00 - Master version - February/05/2021
 Alpha changes are being merged into master branch
 
 Improvements
