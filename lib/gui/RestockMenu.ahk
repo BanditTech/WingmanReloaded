@@ -9,7 +9,10 @@
 	                          ,"RestockName":""
 	                          ,"RestockMin":20
 	                          ,"RestockMax":40
-	                          ,"RestockTo":30}
+	                          ,"RestockTo":30
+														,"CustomTab":0
+														,"CustomX":0
+														,"CustomY":0}
 	If (choice = "Load") {
 		Gosub, LoadRestockArray
 		Return
@@ -51,7 +54,7 @@
 		Gui, Restock: Add, Radio, xs+5 ys+22 vRestockNormal gRestockSetValue, Normal slot
 		Gui, Restock: Add, Radio, xs+5 y+5 vRestockIgnored gRestockSetValue, Ignore this slot
 		Gui, Restock: Add, Radio, xs+5 y+5 vRestockRestock gRestockSetValue, Restock this slot
-		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Alteration|Transmutation|Augmentation|Alchemy|Binding|Chaos|Vaal|Scouring|Chisel|Harbinger|Horizon|Engineer|Regal|Simple|Prime|Awakened
+		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Blacksmith|Armourer|Glassblower|Gemcutter|Chisel|Transmutation|Alteration|Annulment|Chance|Regal|Alchemy|Chaos|Veiled|Augmentation|Divine|Jeweler|Fusing|Chromatic|Awakened|Elevated|Harbinger|Horizon|Enkindling|Ancient|Binding|Engineer|Regret|Unmaking|Instilling|Scouring|Sacred|Blessed|Vaal|Custom
 		Gui, Restock: Font, Bold s9
 		Gui, Restock: Add, Text, xs+5 y+10, Min stack:
 		Gui, Restock: Font, s9
@@ -67,11 +70,30 @@
 		Gui, Restock: Font, s9
 		Gui, Restock: Add, text, x+5 yp w35, 0
 		Gui, Restock: Add, UpDown, range0-40 vRestockRestockTo gRestockSetValue, 0
+		CustomSlotHWND := []
+		Gui, Restock: Add, Text, HWNDhwnd			   xs+5 y+20, Custom Tab:
+		CustomSlotHWND.Push(hwnd)
+    Gui, Restock: Add, Edit, HWNDhwnd      vRestockCustomTab gRestockSetValue     x+8 yp-3               w34  ,   0
+		CustomSlotHWND.Push(hwnd)
+		Gui, Restock: Add, Text, HWNDhwnd			   xs+5 y+10, Position:
+		CustomSlotHWND.Push(hwnd)
+		Gui, Restock: Add, Edit, HWNDhwnd      vRestockCustomX  gRestockSetValue      x+8 yp-3         w34 ,   0
+		CustomSlotHWND.Push(hwnd)
+		Gui, Restock: Add, Edit, HWNDhwnd      vRestockCustomY  gRestockSetValue      x+8                w34 ,   0
+		CustomSlotHWND.Push(hwnd)
+		Gui, Restock: Add, Button, HWNDhwnd    gRestockGetPosition    x+8              ,   Locate
+		CustomSlotHWND.Push(hwnd)
 		Gosub, RestockRefreshOption
-
 		Gui, ReStock: show, AutoSize
 	} Else
 		Gui, ReStock: show, AutoSize
+	Return
+
+	RestockGetPosition:
+		Coord := LetUserSelectPixel()
+		LoadedValues["CustomX"] := Coord.X
+		LoadedValues["CustomY"] := Coord.Y
+		Gosub RestockRefreshOption
 	Return
 
 	RestockSetActive:
@@ -98,24 +120,18 @@
 		GuiControl, +Range0-%max%, RestockRestockMax
 		GuiControl, +Range0-%max%, RestockRestockMin
 		GuiControl, +Range0-%max%, RestockRestockTo
-		If (LoadedValues["RestockMax"] > max || LoadedValues.RestockName = "") {
+		If (LoadedValues["RestockMax"] > max || LoadedValues.RestockName = "")
 			LoadedValues["RestockMax"] := max
-		}
-		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues.RestockName = "") {
+		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues.RestockName = "")
 			LoadedValues["RestockMin"] := max // 2
-		}
-		If (LoadedValues["RestockTo"] > max || LoadedValues.RestockName = ""){
+		If (LoadedValues["RestockTo"] > max || LoadedValues.RestockName = "")
 			LoadedValues["RestockTo"] := Round(max * (3/4))
-		}
-		If (LoadedValues["RestockMin"] >= LoadedValues["RestockMax"] - 1) {
+		If (LoadedValues["RestockMin"] >= LoadedValues["RestockMax"] - 1)
 			LoadedValues["RestockMin"] := LoadedValues["RestockMax"] - 2
-		}
-		If (LoadedValues["RestockTo"] > LoadedValues["RestockMax"]) {
+		If (LoadedValues["RestockTo"] > LoadedValues["RestockMax"])
 			LoadedValues["RestockTo"] := LoadedValues["RestockMax"]
-		}
-		If (LoadedValues["RestockTo"] <= LoadedValues["RestockMin"]) {
+		If (LoadedValues["RestockTo"] <= LoadedValues["RestockMin"])
 			LoadedValues["RestockTo"] := LoadedValues["RestockMin"] + 1
-		}
 		for k,v in DefaultSettings {
 			If !LoadedValues.HasKey(k)
 				LoadedValues[k] := v
@@ -124,6 +140,11 @@
 			Else
 				GuiControl, , Restock%k%, % LoadedValues[k]
 		}
+
+		For k, v in CustomSlotHWND {
+			GuiControl,% "Show" (LoadedValues["RestockName"] = "Custom") , % v
+		}
+
 		GroupNumber := (Active.1 - 1) * 5 + Active.2
 		GuiControl, Text, RestockGroupBox, Slot Configuration: %GroupNumber%
 		Gui, Restock: Show

@@ -117,26 +117,9 @@ UpdateResolutionScale:
 	Rescale()
 Return
 
-DebugToggle(){
-	If (DebugMessages)
-	{
-		GuiControl, Show, YesTimeMS
-		GuiControl, Show, YesTimeMS_t
-		GuiControl, Show, YesLocation
-		GuiControl, Show, YesLocation_t
-	}
-	Else
-	{
-		GuiControl, Hide, YesTimeMS
-		GuiControl, Hide, YesTimeMS_t
-		GuiControl, Hide, YesLocation
-		GuiControl, Hide, YesLocation_t
-	}
-}
 
 UpdateDebug:
 	Gui, Submit, NoHide
-	DebugToggle()
 	IniWrite, %DebugMessages%, %A_ScriptDir%\save\Settings.ini, General, DebugMessages
 	IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
 	IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
@@ -229,8 +212,7 @@ SelectClientLog:
 Return
 
 GreyOutAffinity(){
-  Static Lista := ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique"]
-  for key, val in Lista
+  for key, val in ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique","Gem","Flask"]
   {
     GuiControlGet, CheckBoxState,, StashTabYes%val%
     If (CheckBoxState == 0)

@@ -15,6 +15,6 @@ Else
 	SB_SetText("Client.txt file not found", 2)
 }
 ; Check for Flask presses
-SetTimer, TimerPassthrough, 15
+SetTimer, TimerPassthrough, %KeyscanRate%
 ; Main Game Timer
 SetTimer, TGameTick, %Tick%

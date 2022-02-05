@@ -65,8 +65,8 @@
 					This.Data.Blocks.Affix := SVal
 			}
 		}
-			This.Data.Sections := ""
-			This.Data.Delete("Sections")
+		This.Data.Sections := ""
+		This.Data.Delete("Sections")
 
 		This.MatchAffixesWithoutDoubleMods(This.Data.Blocks.Affix)
 		;This.MatchAffixes(This.Data.Blocks.Affix)
@@ -87,7 +87,7 @@
 		This.MatchChaosRegal()
 		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
-		If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off")  ){
+		If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off") ){
 			This.Prop.PredictPrice := This.PredictPrice()
 		}
 		This.Prop.StashReturnVal := This.MatchStashManagement(false)
@@ -146,8 +146,8 @@
 				PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
 				PriceObj.Price := Price
 
-				tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " <<  " Format("{1:0.3g}", PriceObj.Avg ) "  >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
-					. "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
+				tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " << " Format("{1:0.3g}", PriceObj.Avg ) " >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
+				. "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
 				For k, reason in PriceObj.pred_explanation
 					tt .= "`n" Round(reason.2 * 100) "`% " reason.1
 				tt.= "`nEnd Of Predicive Price Information"
@@ -175,7 +175,7 @@
 		For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
 		{
 			If (v = "")
-			Continue
+				Continue
 			; Flag curse on hit items
 			If (v ~= "^Curse Enemies with .+ on Hit$")
 				This.Prop.IsCurseOnHit := True
@@ -186,6 +186,9 @@
 				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" . (.*) \}", rxm ) {
 					This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
 					This.Affix[rxm1] := This.Modifier[rxm1] := 1
+				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \}", rxm ) {
+					This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:""})
+					This.Affix[rxm1] := This.Modifier[rxm1] := 1
 				}
 				This.Prop.PrefixCount++, This.Prop.AffixCount++
 			} Else If (v ~= "\{ Suffix Modifier") {
@@ -194,6 +197,9 @@
 					This.Affix[rxm1] := This.Modifier[rxm1] := 1
 				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" . (.*) \}", rxm ) {
 					This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
+					This.Affix[rxm1] := This.Modifier[rxm1] := 1
+				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \}", rxm ) {
+					This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:""})
 					This.Affix[rxm1] := This.Modifier[rxm1] := 1
 				}
 				This.Prop.SuffixCount++, This.Prop.AffixCount++
@@ -271,24 +277,24 @@
 				This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^Synthesised ", "")
 			If (This.Prop.RarityMagic){
 				If (This.Prop.ItemBase ~= " of .+")
-						This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
+					This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, " of .+", "")
 				For k, v in This.Data.AffixNames.Prefix {
 					If (This.Prop.ItemBase ~= "^" v.Name)
 						This.Prop.ItemBase := RegExReplace(This.Prop.ItemBase, "^" v.Name " ", "")
 				}
 			}
 			;Start Parse
-			
+
 			; We match one of these against an item to identify its purpose
 			If (This.Prop.ItemClass = "Misc Map Items")
 			{
 				This.Prop.MiscMapItem := True
 				This.Prop.SpecialType := "Misc Map Item"
 			}
-			Else If (This.Prop.ItemClass = "Atlas Region Upgrade Items")
+			Else If (This.Prop.ItemClass = "Atlas Region Upgrade Items" || This.Prop.ItemClass ~= "Atlas Upgrade Item" )
 			{
 				This.Prop.MiscMapItem := True
-				This.Prop.SpecialType := "Atlas Watchstone"
+				This.Prop.SpecialType := "Atlas Voidstone"
 			}
 			Else If (This.Prop.ItemClass = "Maps")
 			{
@@ -314,18 +320,18 @@
 				This.Prop.SpecialType := "Incubator"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Timeless Karui Splinter") 
-			|| InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
-			|| InStr(This.Prop.ItemBase, "Timeless Vaal Splinter") 
-			|| InStr(This.Prop.ItemBase, "Timeless Templar Splinter") 
+					|| InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
+				|| InStr(This.Prop.ItemBase, "Timeless Vaal Splinter") 
+				|| InStr(This.Prop.ItemBase, "Timeless Templar Splinter") 
 			|| InStr(This.Prop.ItemBase, "Timeless Maraketh Splinter"))
 			{
 				This.Prop.TimelessSplinter := True
 				This.Prop.SpecialType := "Timeless Splinter"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Timeless Karui Emblem") 
-			|| InStr(This.Prop.ItemBase, "Timeless Eternal Emblem") 
-			|| InStr(This.Prop.ItemBase, "Timeless Vaal Emblem") 
-			|| InStr(This.Prop.ItemBase, "Timeless Templar Emblem") 
+					|| InStr(This.Prop.ItemBase, "Timeless Eternal Emblem") 
+				|| InStr(This.Prop.ItemBase, "Timeless Vaal Emblem") 
+				|| InStr(This.Prop.ItemBase, "Timeless Templar Emblem") 
 			|| InStr(This.Prop.ItemBase, "Timeless Maraketh Emblem"))
 			{
 				This.Prop.TimelessEmblem := True
@@ -346,6 +352,11 @@
 				This.Prop.BreachSplinter := True
 				This.Prop.SpecialType := "Breach Splinter"
 			}
+			Else If (InStr(This.Prop.ItemBase, "Crest") && This.Prop.ItemClass ~= "Fragments")
+			{
+				This.Prop.ConquererFragment := True
+				This.Prop.SpecialType := "Conquerer Fragment"
+			}
 			Else If (InStr(This.Prop.ItemBase, "Breachstone") && This.Prop.ItemClass ~= "Fragments")
 			{
 				This.Prop.BreachSplinter := True
@@ -358,8 +369,8 @@
 				This.Prop.SpecialType := "Sacrifice Fragment"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Mortal Grief") 
-			|| InStr(This.Prop.ItemBase, "Mortal Hope") 
-			|| InStr(This.Prop.ItemBase, "Mortal Ignorance")
+					|| InStr(This.Prop.ItemBase, "Mortal Hope") 
+				|| InStr(This.Prop.ItemBase, "Mortal Ignorance")
 			|| InStr(This.Prop.ItemBase, "Mortal Rage"))
 			{
 				This.Prop.MortalFragment := True
@@ -371,8 +382,8 @@
 				This.Prop.SpecialType := "Guardian Fragment"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Volkuur's Key") 
-			|| InStr(This.Prop.ItemBase, "Eber's Key")
-			|| InStr(This.Prop.ItemBase, "Yriel's Key")
+					|| InStr(This.Prop.ItemBase, "Eber's Key")
+				|| InStr(This.Prop.ItemBase, "Yriel's Key")
 			|| InStr(This.Prop.ItemBase, "Inya's Key"))
 			{
 				This.Prop.ProphecyFragment := True
@@ -395,13 +406,13 @@
 				This.Prop.SpecialType := "Uber Duber Offering"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Essence of")
-			|| InStr(This.Prop.ItemBase, "Remnant of Corruption"))
+				|| InStr(This.Prop.ItemBase, "Remnant of Corruption"))
 			{
 				This.Prop.Essence := True
 				This.Prop.SpecialType := "Essence"
 			}
 			Else If (This.Prop.RarityCurrency 
-			&& (This.Prop.ItemBase ~= " Fossil$"))
+				&& (This.Prop.ItemBase ~= " Fossil$"))
 			{
 				This.Prop.Fossil := True
 				This.Prop.SpecialType := "Fossil"
@@ -414,7 +425,7 @@
 					This.Prop.Item_Width := 1
 				Else
 					This.Prop.Item_Width := 2
-				
+
 				If (InStr(This.Prop.ItemName, "Primitive"))
 					This.Prop.Item_Height := 1
 				Else
@@ -495,8 +506,8 @@
 			{
 				If (This.Prop.RarityCurrency)
 				{
-				This.Prop.Catalyst := True
-				This.Prop.SpecialType := "Catalyst"
+					This.Prop.Catalyst := True
+					This.Prop.SpecialType := "Catalyst"
 				}
 			}
 			Else If (This.Prop.ItemClass = "Metamorph Sample")
@@ -577,7 +588,7 @@
 		;End NamePlate Parser
 
 		;Start Extra Blocks Parser
-			;Parse Influence data block
+		;Parse Influence data block
 		Loop, Parse,% This.Data.Blocks.Influence, `n, `r
 		{
 			; Match for influence type
@@ -596,15 +607,15 @@
 			This.Prop.Prophecy := True
 			This.Prop.SpecialType := "Prophecy"
 		}
-			Else If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary",RxMatch))
+		Else If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary",RxMatch))
 		{
-				This.Prop.IsBeast := True
-				This.Prop.SpecialType := "Beast"
+			This.Prop.IsBeast := True
+			This.Prop.SpecialType := "Beast"
 		}
 		;End Extra Blocks Parser
 
 		;Start Prop Block Parser for General Items
-			;Every Item has a Item Level
+		;Every Item has a Item Level
 		If (This.Prop.Rarity)
 		{
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: "rxNum,RxMatch))
@@ -615,9 +626,19 @@
 			{
 				This.Prop.SpecialType := "Enchanted Item"
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Level: "rxNum,RxMatch))
+			If (position := RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum "( \(Max\))?",RxMatch))
 			{
-				This.Prop.Required_Level := RxMatch1
+				If (This.Prop.RarityGem) {
+					This.Prop.Gem_Level := RxMatch1
+					If (RxMatch2 = " (Max)")
+						This.Prop.Gem_MaxLevel := True
+					If RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum,RxMatch,position+10)
+						This.Prop.Required_Level := RxMatch1
+					If RegExMatch(This.Data.Blocks.Properties, "`am)([, \w]+)\r", RxMatch)
+						This.Prop.Gem_Tags := RxMatch1
+				} Else {
+					This.Prop.Required_Level := RxMatch1
+				}
 			}
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum,RxMatch))
 			{
@@ -682,7 +703,7 @@
 			{
 				This.Prop.Rating_EnergyShield := RxMatch1
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion Rating: "rxNum,RxMatch))
 			{
 				This.Prop.Rating_Evasion := RxMatch1
 			}
@@ -692,19 +713,19 @@
 			}
 
 			;Weapon Specific Props
-				;Every Weapon has APS
+			;Every Weapon has APS
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum,RxMatch))
 			{
 				This.Prop.IsWeapon := True
 				This.Prop.Weapon_APS := RxMatch1
 				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Two Handed",RxMatch)){
-					This.Prop.IsTwoHanded := True  
+					This.Prop.IsTwoHanded := True 
 				}
 				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Staff",RxMatch)){
-					This.Prop.IsTwoHanded := True  
+					This.Prop.IsTwoHanded := True 
 				}
 				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Bow",RxMatch)){
-					This.Prop.IsTwoHanded := True  
+					This.Prop.IsTwoHanded := True 
 				}
 				Else
 				{
@@ -766,7 +787,7 @@
 		;End Prop Block Parser for General Items
 
 		;Start Prop Block Parser for Maps
-			;Every map has a Map Tier!
+		;Every map has a Map Tier!
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
 		{
 			This.Prop.Map_Tier := RxMatch1
@@ -799,9 +820,9 @@
 			}
 		}
 		;End Prop Block Parser for Maps
-		
+
 		; Start Prop Block Parser for Heist
-		If indexOf(This.Prop.ItemClass, ["Contract","Blueprint"]) {
+		If indexOf(This.Prop.ItemClass, ["Contracts","Blueprints"]) {
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Heist Target: (.*)",RxMatch))
 				This.Prop.Heist_Target := RxMatch1
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Client: (.*)",RxMatch))
@@ -826,19 +847,31 @@
 				This.Prop.Heist_RewardRoomsRevealed := RxMatch1, This.Prop.Heist_RewardRoomsRevealedMax := RxMatch2
 			For k, job in ["Brute Force","Agility","Perception","Demolition","Counter-Thaumaturgy","Trap Disarmament","Deception","Engineering","Lockpicking"] {
 				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "\)",RxMatch)) {
-					This.Prop["Heist_Requires" job ] := RxMatch1
+					This.Prop["Heist_Requires_" job ] := RxMatch1
+					If (This.Prop.ItemClass == "Contracts"){
+						This.Prop["Heist_Contract_Type"] := job
+					}
 				}
+
 			}
 		}
 		; End Prop Block Parser for Heist
-		;Start Prop Block Parser for Vaal Gems
-		If (This.Prop.RarityGem && This.Prop.Corrupted)
+		;Start Prop Block Parser for Gems
+		If (This.Prop.RarityGem)
 		{
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
-			{
-				This.Prop.VaalGem := True
-				This.Prop.ItemName := "Vaal " . This.Prop.ItemName
+			If (This.Prop.Corrupted) {
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
+				{
+					This.Prop.VaalGem := True
+					This.Prop.ItemName := "Vaal " . This.Prop.ItemName
+				}
 			}
+			If (RegExMatch(This.Prop.ItemBase,"(^Divergent|^Phantasmal|^Anomalous)",RxMatch))
+				This.Prop.Gem_AltQuality := RxMatch1
+			If (This.Prop.ItemBase ~= "^Awakened")
+				This.Prop.Gem_Awakened := True
+			If (This.Prop.Gem_Tags ~= "Exceptional")
+				This.Prop.Gem_Exceptional := True
 		}
 		;End Prop Block Parser for Vaal Gems
 
@@ -846,6 +879,12 @@
 		{
 			This.Prop.Veiled := True
 			This.Prop.SpecialType := "Veiled Item"
+			For k, v in This.Modifier {
+				If RegExMatch(k, "(.*) Veiled", rxm) {
+					This.Prop.VeiledType := rxm1
+					Break
+				}
+			}
 		}
 		Else
 		{
@@ -865,6 +904,11 @@
 				This.Prop.HasUndesirableMod := True
 			}
 		}
+		; Flags for Item Crafting
+		If (This.MatchCraftingItemMods())
+		{
+			This.Prop.ItemCraftingHit := True
+		}
 		;Stack size for anything with it
 		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" ,RxMatch))
 		{
@@ -880,124 +924,15 @@
 			This.Prop.SpecialType := "Harvest Item"
 		If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
 			This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
-		If This.TopTierLife()
-			This.Prop.TopTierLife := 1
-		If This.TopTierES()
-			This.Prop.TopTierES := 1
-		If This.TopTierMS()
-			This.Prop.TopTierMS := 1
-		If This.TopTierChaosResist()
-			This.Prop.TopTierChaosResist := 1
-		
-		;Basics
-		This.GetActualLifeTier()
-		This.GetActualResistTier()
-		This.GetActualMSTier()
-		;Stats
-		This.GetActualSTRTier()
-		This.GetActualDEXTier()
-		This.GetActualINTTier()
-		This.GetActualAllAttributesTier()
-		;Defenses
-		This.GetActualSpellSuppressTier()
-		This.GetActualESTier()
-		This.GetActualIncESTier()
-		This.GetActualArmourTier()
-		This.GetActualIncArmourTier()
-		This.GetActualEvasionTier()
-		This.GetActualIncEvasionTier()
-		;Hybrid INC
-		This.GetActualIncArmourEvasionTier()
-		This.GetActualIncArmourESTier()
-		This.GetActualIncEvasionESTier()
-		;Hybrid Defenses
-		This.GetActualEvasionESTier()
-		This.GetActualArmourESTier()
-		This.GetActualArmourEvasionTier()
-		This.GetActualArmourLifeTier()
-		This.GetActualEvasionLifeTier()
-		This.GetActualESLifeTier()
-		This.GetActualESManaTier()
-		;ADD damage
-		This.GetActualAddLightningDamageTier()
-		This.GetActualAddColdDamageTier()
-		This.GetActualAddFireDamageTier()
-		This.GetActualAddPhysicalDamageTier()
-		;DOT
-		This.GetActualDOTMultiplierTier()
-		;Critical
-		This.GetActualGlobalCriticalStrikeMultiplierTier()
-		This.GetActualIncCriticalStrikeChanceTier()
-		;AS
-		This.GetActualAttackSpeedTier()
-		;Elemental INC
-		This.GetActualIncElementalDamageTier()
-		;Physical INC
-		This.GetActualIncPhysicalDamageTier()
-		;ACC
-		This.GetActualAccuracyTier()
-		;Caster Mods
-		This.GetActualSpellDamageModsTier()
+		;Actual Tier
+		This.CreateAllActualTiers()
 
-		If This.TopTierLightningResist()
-			This.Prop.TopTierLightningResist := 1
-		If This.TopTierFireResist()
-			This.Prop.TopTierFireResist := 1
-		If This.TopTierColdResist()
-			This.Prop.TopTierColdResist := 1
-		If This.TopTierAllResist()
-			This.Prop.TopTierAllResist := 1
-		If This.TopTierRarityPre()
-			This.Prop.TopTierRarityPre := 1
-		If This.TopTierRaritySuf()
-			This.Prop.TopTierRaritySuf := 1
-		If This.TopTierAttackSpeed()
-			This.Prop.TopTierAttackSpeed := 1
-		If This.TopTierCastSpeed()
-			This.Prop.TopTierCastSpeed := 1
-		If This.TopTierCritChance()
-			This.Prop.TopTierCritChance := 1
-		If This.TopTierCritMulti()
-			This.Prop.TopTierCritMulti := 1
-		If (This.Prop.TopTierLightningResist || This.Prop.TopTierFireResist || This.Prop.TopTierColdResist || This.Prop.TopTierChaosResist || This.Prop.TopTierAllResist)
-			This.Prop.TopTierResists := (This.Prop.TopTierLightningResist?1:0) + (This.Prop.TopTierFireResist?1:0) + (This.Prop.TopTierColdResist?1:0) + (This.Prop.TopTierChaosResist?1:0) + (This.Prop.TopTierAllResist?1:0)
-		If (This.Prop.TopTierRarityPre || This.Prop.TopTierRaritySuf)
-			This.Prop.TopTierRarity := (This.Prop.TopTierRarityPre?1:0) + (This.Prop.TopTierRaritySuf?1:0)
 	}
 	HasBrickedAffix() {
-		If ((This.Affix["Monsters have #% chance to Avoid Elemental Ailments"] && AvoidAilments) 
-		|| (This.Affix["Monsters have a #% chance to avoid Poison, Blind, and Bleeding"] && AvoidPBB) 
-		|| (This.Affix["Monsters reflect #% of Elemental Damage"] && ElementalReflect) 
-		|| (This.Affix["Monsters reflect #% of Physical Damage"] && PhysicalReflect) 
-		|| (This.Affix["Players cannot Regenerate Life, Mana or Energy Shield"] && NoRegen) 
-		|| (This.Affix["Cannot Leech from Monsters"] && NoLeech)
-		|| (This.Affix["-#% maximum Player Resistances"] && MinusMPR)
-		|| (This.Affix["Monsters fire # additional Projectiles"] && MFAProjectiles)
-		|| (This.Affix["Monsters deal #% extra Physical Damage as Fire"] && MDExtraPhysicalDamage)
-		|| (This.Affix["Monsters deal #% extra Physical Damage as Cold"] && MDExtraPhysicalDamage)
-		|| (This.Affix["Monsters deal #% extra Physical Damage as Lightning"] && MDExtraPhysicalDamage)
-		|| (This.Affix["Monsters have #% increased Critical Strike Chance"] && MICSC)
-		|| (This.Affix["Monsters' skills Chain # additional times"] && MSCAT)
-		|| (This.Affix["Players have #% less Recovery Rate of Life and Energy Shield"] && LRRLES)
-		|| (This.Affix["Player chance to Dodge is Unlucky"] && PCDodgeUnlucky)
-		|| (This.Affix["Monsters have #% increased Accuracy Rating"] && MHAccuracyRating)
-		|| (This.Affix["Players have #% reduced Chance to Block"] && PHReducedChanceToBlock)
-		|| (This.Affix["Players have #% less Armour"] && PHLessArmour)
-		|| (This.Affix["Players have #% less Area of Effect"] && PHLessAreaOfEffect)
-		|| (This.HasCustomBrickedAffix()))
-		{
-			Return True
-		} 
-		Else 
-		{
-			Return False
-		}
-	}
-	HasCustomBrickedAffix() {
 		sum := 0
 		good := 0
-		For k, v in WR.CustomMapMods.CustomMods{
-			if(v["Enable"] == 1 && This.Affix[v["Map Modifier"]])
+		For k, v in WR.CustomMapMods.MapMods{
+			if(This.Affix[v["Map Affix"]])
 			{
 				if(v["Mod Type"] == "Impossible"){
 					Return True
@@ -1017,1468 +952,122 @@
 			Return True
 		}
 	}
-	TopTierChaosResist(){
-		If (This.Prop.ItemLevel < 30 && This.HasAffix("of the Lost"))
-			Return True
-		Else If (This.Prop.ItemLevel < 44 && This.HasAffix("of Banishment"))
-			Return True
-		Else If (This.Prop.ItemLevel < 56 && This.HasAffix("of Eviction"))
-			Return True
-		Else If (This.Prop.ItemLevel < 65 && This.HasAffix("of Expulsion"))
-			Return True
-		Else If (This.Prop.ItemLevel < 81 && This.HasAffix("of Exile"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Bameth"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tacati") && This.Affix["#% to Chaos Resistance"] >= 31)
-			Return True
-		Else
-			Return False
-	}
-	GetActualResistTier(){
-		loop, 5
+	MatchCraftingItemMods() {
+		This.Prop.CraftingMatchedPrefix := 0
+		This.Prop.CraftingMatchedSuffix := 0
+		SumRNP := 0
+		SumRNS := 0
+		LastID :=0
+		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
 		{
-			if (A_Index == 1)
+			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"] && This.Affix[v["Affix"]])
 			{
-				Name:= "Chaos"
-				AffixName:= "#% to Chaos Resistance"
-				AffixList := ["of the Lost","of Banishment","of Eviction","of Expulsion","of Exile","of Bameth"]
-				ILvLList := [16,30,44,56,65,81]
-				if(This.HasAffix("of Tacati") & This.Affix[AffixName])
-				{
-					This.Prop["ActualTier" Name "Resist"] := 1
-					Break
-				}
-
-			}else if (A_Index == 2){
-				;Fire
-				Name:= "Fire"
-				AffixName:= "#% to Fire Resistance"
-				AffixList := ["of the Whelpling","of the Salamander","of the Drake","of the Kiln","of the Furnace","of the Volcano","of the Magma","of Tzteosh"]
-				ILvLList := [1,12,24,36,48,60,72,84]
-				if(This.HasAffix("of Tacati") & This.Affix[AffixName])
-				{
-					This.Prop["ActualTier" Name "Resist"] := 1
-					Break
-				}
-
-			}else if (A_Index == 3){
-				;Cold
-				Name:="Cold"
-				AffixName:= "#% to Cold Resistance"
-				AffixList := ["of the Inuit","of the Seal","of the Penguin","of the Yeti","of the Walrus","of the Polar Bear","of the Ice","of Haast"]
-				ILvLList := [1,14,26,38,50,60,72,84]
-				if(This.HasAffix("of Tacati") & This.Affix[AffixName])
-				{
-					This.Prop["ActualTier" Name "Resist"] := 1
-					Break
-				}
-				
-			}else if (A_Index == 4){
-				;Lightning
-				Name:="Lightning"
-				AffixName:= "#% to Lightning Resistance"
-				AffixList := ["of the Cloud","of the Squall","of the Storm","of the Thunderhead","of the Tempest","of the Maelstrom","of the Lightning","of Ephij"]
-				ILvLList := [1,13,25,37,49,60,72,84]
-				if(This.HasAffix("of Tacati") & This.Affix[AffixName])
-				{
-					This.Prop["ActualTier" Name "Resist"] := 1
-					Break
-				}
-			}else if (A_Index == 5){
-				; All Elemental
-				Name:="AllElemental"
-				AffixName:= "#% to all Elemental Resistances"
-				AffixList := ["of the Crystal","of the Prism","of the Kaleidoscope","of Variegation","of the Rainbow","of the Span"]
-				ILvLList := [12,24,36,48,60,85]
-				if(This.HasAffix("of Tacati") & This.Affix[AffixName])
-				{
-					This.Prop["ActualTier" Name "Resist"] := 1
-					Break
+				If(v["ModGenerationTypeID"] == 1){
+					If(v["RNMod"] > 1){
+						If(v["ID"] != LastID){
+							SumRNP := 1
+						}Else If(SumRNP == (v["RNMod"] - 1)){
+							This.Prop.CraftingMatchedPrefix++
+							SumRNP := 0
+						}Else{
+							SumRNP++
+						}
+					}Else{
+						SumRNP := 0
+						This.Prop.CraftingMatchedPrefix++
+					}
+				}Else{
+					If(v["RNMod"] > 1){
+						If(v["ID"] != LastID){
+							SumRNS := 1
+						}Else If(SumRNS == (v["RNMod"] - 1)){
+							This.Prop.CraftingMatchedSuffix++
+							SumRNS := 0
+						}Else{
+							SumRNS++
+						}
+					}Else{
+						SumRNS := 0
+						This.Prop.CraftingMatchedSuffix++
+					}
 				}
 			}
-		
+			LastID := v["ID"]
+		}
+		SumCombination := This.Prop.CraftingMatchedPrefix + This.Prop.CraftingMatchedSuffix
+		If ((This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix && This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberSuffix) || (SumCombination >= ItemCraftingNumberCombination && ItemCraftingNumberCombination > 0)){
+			Return True
+		}Else{
+			Return False
+		}
+	}
+	CreateAllActualTiers()
+	{
+		Base := This.Prop.ItemClass
+		CheckBaseType:= ""
+		If(This.Prop.Rating_Armour > 0)
+		{
+			CheckBaseType .= "-STR-"
+		}
+		If(This.Prop.Rating_Evasion > 0)
+		{
+			CheckBaseType .= "-DEX-"
+		}
+		If(This.Prop.Rating_EnergyShield > 0)
+		{
+			CheckBaseType .= "-INT-"
+		}
+		CheckBaseType:= RegExReplace(CheckBaseType,"^-|-$", "")
+		CheckBaseType:= RegExReplace(CheckBaseType,"--", "-")
+		If(CheckBaseType != "")
+		{
+			CheckBaseType:= "(" . CheckBaseType . ")"
+		}
+		Base := RegExReplace(Base,"s$", "")
+		Base := RegExReplace(Base,"Boot", "Boots")
+		Base := RegExReplace(Base,"Glove", "Gloves")
+		Base := RegExReplace(Base,"^Warstaff", "Warstaves")
+		Base := RegExReplace(Base,"^Staff", "Staves")
+		Base := Base . CheckBaseType
+		; aux3232 := This.Prop.ItemClass
+		;tooltip, %aux3232% %Base%
+		for a , b in WR.ActualTier[Base]
+		{
+			ILvLList := b["ILvL"]
+			AffixList := b["AffixLine"]
+			Name := b["ActualTierName"]
+			AffixWRLine := StrSplit(b["AffixWRLine"], " | ")
+			if(AffixWRLine.Count() > 1){
+				AffixWRLine[1] := "(Hybrid) " . AffixWRLine[1]
+			}
+			If(!This.Affix[AffixWRLine[1]])
+			{
+				Continue
+			}
 			for k,v in ILvLList
 			{
 				if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 				{
 					for ki,vi in AffixList
 					{
-						If (This.HasAffix(vi) && This.Affix[AffixName]){
+						If (This.HasAffix(vi)){
 							value := k-ki+1
-							This.Prop["ActualTier" Name "Resist"] := value
+							This.Prop[Name] := value
 							break
 						}
 					}
 					break
 				}
 			}
-
 		}
 	}
-	GetActualLifeTier(){
-		AffixList := ["Hale","Healthy","Sanguine","Stalwart","Stout","Robust","Rotund","Virile","Athlete's","Fecund","Vigorous","Rapturous","Prime"]
-		ILvLList := []
-		ILvLListRings := 				[1,5,11,18,24,30,36,44]
-		ILvLListBootsGlovesAmulets := 	[1,5,11,18,24,30,36,44,54]
-		ILvLListBeltsHelmetsQuivers := 	[1,5,11,18,24,30,36,44,54,64]
-		ILvLListShields := 				[1,5,11,18,24,30,36,44,54,64,73]
-		ILvLListBodyArmours := 			[1,5,11,18,24,30,36,44,54,64,73,81,86]
-
-		if(indexOf(This.Prop.ItemClass,["Rings"])){
-			ILvLList := ILvLListRings
-		}else if(indexOf(This.Prop.ItemClass,["Boots","Gloves","Amulets"])){
-			ILvLList := ILvLListBootsGlovesAmulets
-		}else if(indexOf(This.Prop.ItemClass,["Belts","Helmets","Quivers"])){
-			ILvLList := ILvLListBeltsHelmetsQuivers
-		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-			ILvLList := ILvLListShields
-		}else if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}
-		;Incursion Mod
-		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])
-		{
-			This.Prop["ActualTierLife"] := 1
-			return
-		}
-		for k,v in ILvLList
-			{
-				if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-				{
-					for ki,vi in AffixList
-					{
-						If (This.HasAffix(vi) && This.Affix["# to maximum Life"]){
-							value := k-ki+1
-							This.Prop["ActualTierLife"] := value
-							break
-						}
-					}
-					break
-				}
-			}
-	}
-	GetActualMSTier(){
-		ILvLList := []
-		AffixList := ["Runner's","Sprinter's","Stallion's","Gazelle's","Cheetah's","Hellion's"]
-		ILvLListBoots := [1,15,30,40,55,86]
-
-		if(indexOf(This.Prop.ItemClass,["Boots"])){
-			ILvLList := ILvLListBoots
-		}
-
-		;Incursion Mod
-		If (This.HasAffix("Matatl's") && This.Affix["#% increased Movement Speed"]){
-			This.Prop["ActualTierMS"] := 1
-			return
-		}
-		
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Movement Speed"]){
-						value := k-ki+1
-						This.Prop["ActualTierMS"] := value
-						break
-					}
-				}
-				break
+	HasModifierFromList(ModList){
+		for k,v in ModList{
+			if (This.Affix[v]){
+				return true
 			}
 		}
-	}
-	GetActualSTRTier(){
-		AffixList := ["of the Brute","of the Wrestler","of the Bear","of the Lion","of the Gorilla","of the Goliath","of the Leviathan","of the Titan","of the Gods","of the Godslayer"]
-		ILvLList := [1,11,22,33,44,55,66,74,82]
-		ILvLListBelts := [1,11,22,33,44,55,66,74,82,85]
-
-		if(indexOf(This.Prop.ItemClass,["Belts"])){
-			ILvLList := ILvLListBelts
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to Strength"]){
-						value := k-ki+1
-						This.Prop["ActualTierSTR"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualDEXTier(){
-		AffixList := ["of the Mongoose","of the Lynx","of the Fox","of the Falcon","of the Panther","of the Leopard","of the Jaguar","of the Phantom","of the Wind","of the Blur"]
-		ILvLList := [1,11,22,33,44,55,66,74,82]
-		ILvLListQuiversGloves := [1,11,22,33,44,55,66,74,82,85]
-
-		if(indexOf(This.Prop.ItemClass,["Quivers","Gloves"])){
-			ILvLList := ILvLListQuiversGloves
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to Dexterity"]){
-						value := k-ki+1
-						This.Prop["ActualTierDEX"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualINTTier(){
-		AffixList := ["of the Pupil","of the Student","of the Prodigy","of the Augur","of the Philosopher","of the Sage","of the Savant","of the Virtuoso","of the Genius","of the Polymath"]
-		ILvLList := [1,11,22,33,44,55,66,74,82]
-		ILvLListHelmets := [1,11,22,33,44,55,66,74,82,85]
-
-		if(indexOf(This.Prop.ItemClass,["Helmets"])){
-			ILvLList := ILvLListHelmets
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to Intelligence"]){
-						value := k-ki+1
-						This.Prop["ActualTierINT"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualAllAttributesTier(){
-		ILvLList := []
-		AffixList := ["of the Clouds","of the Sky","of the Meteor","of the Comet","of the Heavens","of the Galaxy","of the Universe","of the Infinite","of the Multiverse"]
-		ILvLListRings := [1,11,22,33]
-		ILvLListAmulets := [1,11,22,33,44,55,66,77,85]
-		
-
-		if(indexOf(This.Prop.ItemClass,["Rings"])){
-			ILvLList := ILvLListRings
-		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to all Attributes"]){
-						value := k-ki+1
-						This.Prop["ActualTierAllAttributes"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualIncESTier(){
-		ILvLList := []
-		AffixList := ["Protective","Strong-Willed","Resolute","Fearless","Dauntless","Indomitable","Unassailable","Unfaltering"]
-		ILvLListBodyArmoursShields := [3,18,30,44,60,72,84,86]
-		ILvLListHelmetsGlovesBoots:= [3,18,30,44,60,72,84]
-		ILvLListAmulets:= [3,18,30,42,56,70,77]
-		
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
-			ILvLList := ILvLListBodyArmoursShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
-			ILvLList := ILvLListHelmetsGlovesBoots
-		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["#% increased Energy Shield"] || This.Affix["#% increased maximum Energy Shield"])){
-						value := k-ki+1
-						This.Prop["ActualTierIncES"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualESTier(){
-		ILvLList := []
-		AffixList := ["Shining","Glimmering","Glittering","Glowing","Radiating","Pulsing","Seething","Blazing","Scintillating","Incandescent","Resplendent","Dazzling"]
-		ILvLListBodyArmours:= 	[3,11,17,23,29,35,43,51,60,69,75]
-		ILvLListRings:= 		[3,11,17,23,29,35,42,50,59,68,74]
-		ILvLListAmulets:= 		[3,11,17,23,29,35,42,50,59,68,74,80]
-		ILvLListShields:= 		[3,11,17,23,29,35,43,51,60,69]
-		ILvLListHelmets:= 		[3,11,17,23,29,35,43,51]
-		ILvLListGlovesBoots:= 	[3,11,17,23,29,35,43]
-		
-		;Incursion Mod
-		If (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Energy Shield"]){
-			This.Prop["ActualTierES"] := 1
-			return
-		}
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-			ILvLList := ILvLListShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
-			ILvLList := ILvLListHelmets
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}else if(indexOf(This.Prop.ItemClass,["Rings"])){
-			ILvLList := ILvLListRings
-		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to maximum Energy Shield"]){
-						value := k-ki+1
-						This.Prop["ActualTierES"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualArmourTier(){
-		ILvLList := []
-		AffixList := ["Lacquered","Studded","Ribbed","Fortified","Plated","Carapaced","Encased","Enveloped","Abating","Unmoving","Impervious"]
-		ILvLListBodyArmours:= 	[1,11,17,23,29,35,43,51,60,69,77]
-		ILvLListGlovesBoots:= 	[1,11,17,23,29,35,43]
-		ILvLListHelmets:= 	[1,11,17,23,29,35,43,51]
-		ILvLListShields:= [1,11,17,23,29,35,43,51,60,69]
-		ILvLListBelts:= [1,18,30,44,57,71,83,86]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-			ILvLList := ILvLListShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
-			ILvLList := ILvLListHelmets
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}else if(indexOf(This.Prop.ItemClass,["Belts"])){
-			ILvLList := ILvLListBelts
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to Armour"]){
-						value := k-ki+1
-						This.Prop["ActualTierArmour"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualIncArmourTier(){
-		ILvLList := []
-		AffixList := ["Reinforced","Layered","Lobstered","Buttressed","Thickened","Girded","Impregnable","Impenetrable"]
-		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
-
-		ILvLListAmulets:= 	[2,18,30,42,56,70,77]
-		ILvLListGlovesBootsHelmets:= 	[3,17,29,42,60,72,84]
-
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
-			ILvLList := ILvLListBodyArmoursShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBootsHelmets
-		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Armour"]){
-						value := k-ki+1
-						This.Prop["ActualTierIncArmour"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualEvasionTier(){
-		ILvLList := []
-		AffixList := ["Agile","Dancer's","Acrobat's","Fleet","Blurred","Phased","Vaporous","Elusory","Adroit","Lissome","Fugitive"]
-		ILvLListBodyArmours:= 	[1,11,17,23,29,35,43,51,60,69,77]
-		ILvLListGlovesBoots:= 	[1,11,17,23,29,35,43]
-		ILvLListHelmets:= 	[1,11,17,23,29,35,43,51]
-		ILvLListShields:= [1,11,17,23,29,35,43,51,60,69]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-			ILvLList := ILvLListShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
-			ILvLList := ILvLListHelmets
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to Evasion Rating"] ){
-						value := k-ki+1
-						This.Prop["ActualTierEvasion"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualIncEvasionTier(){
-		ILvLList := []
-		AffixList := ["Shade's","Ghost's","Spectre's","Wraith's","Phantasm's","Nightmare's","Mirage's","Illusion's"]
-		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
-		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
-		ILvLListAmulets:= 	[2,18,30,42,56,70,77]
-		
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
-			ILvLList := ILvLListBodyArmoursShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
-			ILvLList := ILvLListHelmetsGlovesBoots
-		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Evasion Rating"]){
-						value := k-ki+1
-						This.Prop["ActualTierIncEvasion"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}	
-	GetActualIncArmourEvasionTier(){
-		ILvLList := []
-		AffixList := ["Scrapper's","Brawler's","Fencer's","Gladiator's","Duelist's","Hero's","Legend's","Victor's"]
-		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
-		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
-		
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
-			ILvLList := ILvLListBodyArmoursShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
-			ILvLList := ILvLListHelmetsGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Armour and Evasion"]){
-						value := k-ki+1
-						This.Prop["ActualTierIncArmourEvasion"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualIncArmourESTier(){
-		ILvLList := []
-		AffixList := ["Infixed","Ingrained","Instilled","Infused","Inculcated","Interpolated","Inspired","Interpermeated"]
-		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
-		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
-			ILvLList := ILvLListBodyArmoursShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
-			ILvLList := ILvLListHelmetsGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Armour and Energy Shield"]){
-						value := k-ki+1
-						This.Prop["ActualTierIncArmourES"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualIncEvasionESTier(){
-		ILvLList := []
-		AffixList := ["Shadowy","Ethereal","Unworldly","Ephemeral","Evanescent","Unreal","Illusory","Incorporeal"]
-		ILvLListBodyArmoursShields:= 	[3,17,29,42,60,72,84,86]
-		ILvLListHelmetsGlovesBoots:= 	[3,17,29,42,60,72,84]
-		
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours","Shields"])){
-			ILvLList := ILvLListBodyArmoursShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Gloves","Boots"])){
-			ILvLList := ILvLListHelmetsGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Evasion and Energy Shield"]){
-						value := k-ki+1
-						This.Prop["ActualTierIncEvasionES"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualEvasionESTier(){
-		ILvLList := []
-		AffixList := ["Will-o-wisp's","Nymph's","Sylph's","Cherub's","Spirit's","Eidolon's","Apparition's","Phantasm's"]
-		ILvLListBodyArmours:= 	[1,18,30,38,46,58,69,79]
-		ILvLListShields:= 	[1,18,30,38,46,58,69]
-		ILvLListHelmets:= 	[1,18,30,38,46]
-		ILvLListGlovesBoots:= 	[1,18,30,38]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-			ILvLList := ILvLListShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
-			ILvLList := ILvLListHelmets
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Evasion Rating"]){
-						value := k-ki+1
-						This.Prop["ActualTierEvasionES"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualArmourESTier(){
-		ILvLList := []
-		AffixList := ["Blessed","Anointed","Sanctified","Hallowed","Beatified","Consecrated","Saintly","Godly"]
-		ILvLListBodyArmours:= 	[1,18,30,38,46,58,69,79]
-		ILvLListShields:= 	[1,18,30,38,46,58,69]
-		ILvLListHelmets:= 	[1,18,30,38,46]
-		ILvLListGlovesBoots:= 	[1,18,30,38]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-			ILvLList := ILvLListShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
-			ILvLList := ILvLListHelmets
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Armour"]){
-						value := k-ki+1
-						This.Prop["ActualTierArmourES"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualArmourEvasionTier(){
-		ILvLList := []
-		AffixList := ["Supple","Pliant","Flexible","Durable","Sturdy","Resilient","Adaptable","Versatile"]
-		ILvLListBodyArmours:= 	[1,18,30,38,46,58,69,79]
-		ILvLListShields:= 	[1,18,30,38,46,58,69]
-		ILvLListHelmets:= 	[1,18,30,38,46]
-		ILvLListGlovesBoots:= 	[1,18,30,38]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Shields"])){
-			ILvLList := ILvLListShields
-		}else if(indexOf(This.Prop.ItemClass,["Helmets"])){
-			ILvLList := ILvLListHelmets
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Armour"]){
-						value := k-ki+1
-						This.Prop["ActualTierArmourEvasion"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualArmourLifeTier(){
-		ILvLList := []
-		AffixList := ["Oyster's","Urchin's","Nautilus's","Crocodile's"]
-		ILvLListBodyArmours:= 	[30,46,62,78]
-		ILvLListHelmetsShields:= 	[30,46,62]
-		ILvLListGlovesBoots:= 	[30,46]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
-			ILvLList := ILvLListHelmetsShields
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Armour"]){
-						value := k-ki+1
-						This.Prop["ActualTierArmourLife"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualEvasionLifeTier(){
-		ILvLList := []
-		AffixList := ["Flea's","Fawn's","Ram's","Ibex's"]
-		ILvLListBodyArmours:= 	[30,46,62,78]
-		ILvLListHelmetsShields:= 	[30,46,62]
-		ILvLListGlovesBoots:= 	[30,46]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
-			ILvLList := ILvLListHelmetsShields
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to Evasion Rating"]){
-						value := k-ki+1
-						This.Prop["ActualTierEvasionLife"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualESLifeTier(){
-		ILvLList := []
-		AffixList := ["Monk's","Prior's","Abbot's","Exarch's"]
-		ILvLListBodyArmours:= 	[30,46,62,78]
-		ILvLListHelmetsShields:= 	[30,46,62]
-		ILvLListGlovesBoots:= 	[30,46]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
-			ILvLList := ILvLListHelmetsShields
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to maximum Energy Shield"]){
-						value := k-ki+1
-						This.Prop["ActualTierESLife"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualESManaTier(){
-		ILvLList := []
-		AffixList := ["Acolyte's","Deacon's","Priest's","Bishop's"]
-		ILvLListBodyArmours:= 	[30,46,62,78]
-		ILvLListHelmetsShields:= 	[30,46,62]
-		ILvLListGlovesBoots:= 	[30,46]
-
-		if(indexOf(This.Prop.ItemClass,["Body Armours"])){
-			ILvLList := ILvLListBodyArmours
-		}else if(indexOf(This.Prop.ItemClass,["Helmets","Shields"])){
-			ILvLList := ILvLListHelmetsShields
-		}else if(indexOf(This.Prop.ItemClass,["Gloves","Boots"])){
-			ILvLList := ILvLListGlovesBoots
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["(Hybrid) # to maximum Energy Shield"]){
-						value := k-ki+1
-						This.Prop["ActualTierESMana"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualSpellSuppressTier(){
-		ILvLList := [46,57,68,76,86]
-		AffixList := ["of Rebuttal","of Snuffing","of Revoking","of Abjuration","of Nullification"]
-
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% chance to Suppress Spell Damage"]){
-						value := k-ki+1
-						This.Prop["ActualTierSpellSuppress"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-
-	}
-	GetActualAccuracyTier(){
-		ILvLList := [1,20,40,60,75]
-		AffixList := ["of Steadiness","of Precision","of the Sniper","of the Marksman","of the Ranger","of Lioneye"]
-		ILvLListWandsHelmetsGloves := 	[1,20,40,60,75,85]
-		
-
-		if(indexOf(This.Prop.ItemClass,["Gloves","Helmets","Wands"])){
-			ILvLList := ILvLListWandsHelmetsGloves
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["# to Accuracy Rating"]){
-						value := k-ki+1
-						This.Prop["ActualTierAccuracy"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-
-	}
-	GetActualIncPhysicalDamageTier(){
-		ILvLList := [1,11,23,35,46,60,73,83]
-		AffixList := ["Heavy","Serrated","Wicked","Vicious","Bloodthirsty","Cruel","Tyrannical","Merciless"]
-
-		;Incursion Mod
-		If (This.HasAffix("Tacati's") && This.Affix["#% increased Physical Damage"]){
-			This.Prop["ActualTierIncPhysicalDamage"] := 1
-			return
-		}
-		
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Physical Damage"] ){
-						value := k-ki+1
-						This.Prop["ActualTierIncPhysicalDamage"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualAddPhysicalDamageTier(){
-		ILvLList := [1,11,23,35,46,60,73,83]
-		AffixList := ["Glinting","Burnished","Polished","Honed","Gleaming","Annealed","Razor-sharp","Tempered","Flaring"]
-		ILvLListRings := [5,13,19,28,35,44]
-		ILvLListAmulets := [5,13,19.28,35,44,52,64,76]
-
-		if(indexOf(This.Prop.ItemClass,["Rings"])){
-			ILvLList := ILvLListRings
-		}else if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
-		
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["Adds # to # Physical Damage"] || This.Affix["Adds # to # Physical Damage to Attacks"]) ){
-						value := k-ki+1
-						This.Prop["ActualTierAddPhysicalDamage"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualAddFireDamageTier(){
-		ILvLList := [1,11,18,26,33,42,51,62,74,82]
-		AffixList := ["Heated","Smouldering","Smoking","Burning","Flaming","Scorching","Incinerating","Blasting","Cremating","Carbonising"]
-		ILvLListAmuletsRings := [1,12,20,28,35,44,52,64,76]
-		
-		if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
-			ILvLList := ILvLListAmuletsRings
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["Adds # to # Fire Damage"] || This.Affix["Adds # to # Fire Damage to Attacks"]) ){
-						value := k-ki+1
-						This.Prop["ActualTierAddFireDamage"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualAddColdDamageTier(){
-		ILvLList := [2,12,19,27,34,43,52,63,75,82]
-		AffixList := ["Frosted","Chilled","Icy","Frigid","Freezing","Frozen","Glaciated","Polar","Entombing","Crystalising"]
-		ILvLListAmuletsRings := [2,13,21,29,36,45,53,65,77]
-		
-		if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
-			ILvLList := ILvLListAmuletsRings
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["Adds # to # Cold Damage"] || This.Affix["Adds # to # Cold Damage to Attacks"]) ){
-						value := k-ki+1
-						This.Prop["ActualTierAddColdDamage"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualAddLightningDamageTier(){
-		ILvLList := [3,13,19,31,34,42,51,63,74,82]
-		AffixList := ["Humming","Buzzing","Snapping","Crackling","Sparking","Arcing","Shocking","Discharging","Electrocuting","Vapourising"]
-		ILvLListAmuletsRings := [3,13,22,28,35,44,52,64,76]
-		
-		if(indexOf(This.Prop.ItemClass,["Amulets","Rings"])){
-			ILvLList := ILvLListAmuletsRings
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["Adds # to # Lightning Damage"] || This.Affix["Adds # to # Lightning Damage to Attacks"]) ){
-						value := k-ki+1
-						This.Prop["ActualTierAddLightningDamage"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualIncElementalDamageTier(){
-		ILvLList := [4,15,30,60,81,86]
-		AffixList := ["Catalysing","Infusing","Empowering","Unleashed","Overpowering","Devastating"]
-		ILvLListRings := [4,15,30,60,81]
-
-		if(indexOf(This.Prop.ItemClass,["Rings"])){
-			ILvLList := ILvLListRings
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Elemental Damage with Attack Skills"]){
-						value := k-ki+1
-						This.Prop["ActualTierIncElementalDamage"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualAttackSpeedTier(){
-		ILvLList := [1,11,22,30,37,45,60,77]
-		AffixList := ["of Skill","of Ease","of Mastery","of Renown","of Acclaim","of Fame","of Infamy","of Celebration"]
-		ILvLListGloves := 	[1,11,22,76]
-		ILvLListQuiversShields := 	[1,11,22]
-		ILvLListRings := 	[1]
-		ILvLListWandsBows := 	[1,11,22,30,37]
-
-		if(indexOf(This.Prop.ItemClass,["Gloves"])){
-			ILvLList := ILvLListGloves
-		}else if(indexOf(This.Prop.ItemClass,["Quiver","Shields"])){
-			ILvLList := ILvLListQuiversShields
-		}else if(indexOf(This.Prop.ItemClass,["Rings"])){
-			ILvLList := ILvLListRings
-		}else if(indexOf(This.Prop.ItemClass,["Wands","Bows"])){
-			ILvLList := ILvLListWandsBows
-		}
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && This.Affix["#% increased Attack Speed"]){
-						value := k-ki+1
-						This.Prop["ActualTierAttackSpeed"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	GetActualIncCriticalStrikeChanceTier(){
-		ILvLList := [1,20,30,44,59,73]
-		AffixList := ["of Needling","of Stinging","of Piercing","of Puncturing","of Penetrating","of Incision","of Rending"]
-		ILvLListAmulets := [5,20,30,44,58,72]
-		ILvLListQuivers := [5,20,30,44,58,72,85]
-
-		if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}else if(indexOf(This.Prop.ItemClass,["Quivers"])){
-			ILvLList := ILvLListQuivers
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["#% increased Critical Strike Chance"] || This.Affix["#% increased Global Critical Strike Chance"] || This.Affix["#% increased Critical Strike Chance with Bows"])){
-						value := k-ki+1
-						This.Prop["ActualTierCriticalStrikeChance"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	;Special Case 1 include bow specific
-	GetActualGlobalCriticalStrikeMultiplierTier(){
-		ILvLList := [8,21,30,44,59,73]
-		AffixList := ["of Ire","of Anger","of Rage","of Fury","of Ferocity","of Destruction"]
-		ILvLListAmulets := [8,21,31,45,59,74]
-
-		if(indexOf(This.Prop.ItemClass,["Amulets"])){
-			ILvLList := ILvLListAmulets
-		}
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["#% to Global Critical Strike Multiplier"] || This.Affix["#% to Critical Strike Multiplier with Bows"])){
-						value := k-ki+1
-						This.Prop["ActualTierGlobalCriticalStrikeMultiplier"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	;Generic DOT | Special Case 2 include bow specific
-	GetActualDOTMultiplierTier(){
-		ILvLList := [44,55,68,76,82]
-		AffixList := ["of Acrimony","of Dispersion","of Liquefaction","of Melting","of Dissolution"]
-
-		for k,v in ILvLList
-		{
-			if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-			{
-				for ki,vi in AffixList
-				{
-					If (This.HasAffix(vi) && (This.Affix["#% to Damage over Time Multiplier"] || This.Affix["#% to Damage over Time Multiplier with Attack Skills"])){
-						value := k-ki+1
-						This.Prop["ActualTierDOTMultiplier"] := value
-						break
-					}
-				}
-				break
-			}
-		}
-	}
-	;Spell Mods
-	GetActualSpellDamageModsTier(){
-		loop, 9
-		{
-			if (A_Index == 1)
-			{
-				Name:= "INCSpelDamage"
-				AffixName:= "#% increased Spell Damage"
-				ILvLList := [2,11,23,35,46,58,64,84]
-				AffixList := ["Apprentice's","Adept's","Scholar's","Professor's","Occultist's","Incanter's","Glyphic","Runic"]
-			}else if (A_Index == 2){
-				Name:= "INCFireDamage"
-				AffixName:= "#% increased Fire Damage"
-				ILvLList := [2,11,23,35,46,58,64,84]
-				AffixList := ["Searing","Sizzling","Blistering","Cauterising","Volcanic","Magmatic","Pyroclastic","Xoph's"]
-			}else if (A_Index == 3){
-				Name:="INCColdDamage"
-				AffixName:= "#% increased Cold Damage"
-				ILvLList := [2,11,23,35,46,58,64,84]
-				AffixList := ["Bitter","Biting","Alpine","Snowy","Hailing","Crystalline","Cryomancer's","Tul's"]	
-			}else if (A_Index == 4){
-				Name:="INCLightningDamage"
-				AffixName:= "#% increased Lightning Damage"
-				ILvLList := [2,11,23,35,46,58,64,84]
-				AffixList := ["Charged","Hissing","Bolting","Coursing","Striking","Smiting","Ionising","Esh's"]
-			}else if (A_Index == 5){
-				Name:="CastSpeed"
-				AffixName:= "#% increased Cast Speed"
-				ILvLList := [2,15,30,40,55,72,83]
-				AffixList := ["of Talent","of Nimbleness","of Expertise","of Legerdemain","of Prestidigitation","of Sortilege","of Finesse"]
-			}else if (A_Index == 6){
-				Name:="ChaosDOT"
-				AffixName:= "#% to Chaos Damage over Time Multiplier"
-				ILvLList := [4,12,36,64,78]
-				AffixList := ["of Waning","of Wasting","of Deteriorating","of Atrophying","of Disintegrating"]
-			}else if (A_Index == 7){
-				Name:="ColdDOT"
-				AffixName:= "#% to Cold Damage over Time Multiplier"
-				ILvLList := [4,12,36,64,78]
-				AffixList := ["of the Inclement","of the Bleak","of the Boreal","of the Gelid","of Heartstopping"]
-			}else if (A_Index == 8){
-				Name:="FireDOT"
-				AffixName:= "#% to Fire Damage over Time Multiplier"
-				ILvLList := [4,12,36,64,78]
-				AffixList := ["of the Earnest","of the Fervid","of the Ardent","of the Zealous","of the Fanatical"]
-			}else if (A_Index == 9){
-				Name:="PhysicalDOT"
-				AffixName:= "#% to Physical Damage over Time Multiplier"
-				ILvLList := [4,12,36,64,78]
-				AffixList := ["of Seeping","of Spilling","of Phlebotomising","of Hemorrhaging","of Exsanguinating"]
-			}
-		
-			for k,v in ILvLList
-			{
-				if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
-				{
-					for ki,vi in AffixList
-					{
-						If (This.HasAffix(vi) && This.Affix[AffixName]){
-							value := k-ki+1
-							This.Prop["ActualTier"Name] := value
-							break
-						}
-					}
-					break
-				}
-			}
-
-		}
-		
-	}
-	TopTierLightningResist(){
-		If (This.Prop.ItemLevel < 13 && This.HasAffix("of the Cloud"))
-			Return True
-		Else If (This.Prop.ItemLevel < 25 && This.HasAffix("of the Squall"))
-			Return True
-		Else If (This.Prop.ItemLevel < 37 && This.HasAffix("of the Storm"))
-			Return True
-		Else If (This.Prop.ItemLevel < 49 && This.HasAffix("of the Thunderhead"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Tempest"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Maelstrom"))
-			Return True
-		Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Lightning"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Ephij"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Lightning Resistance"])
-			Return True
-		Else
-			Return False
-	}
-	TopTierFireResist(){
-		If (This.Prop.ItemLevel < 12 && This.HasAffix("of the Whelpling"))
-			Return True
-		Else If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Salamander"))
-			Return True
-		Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Drake"))
-			Return True
-		Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kiln"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Furnace"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Volcano"))
-			Return True
-		Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Magma"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Tzteosh"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Fire Resistance"])
-			Return True
-		Else
-			Return False
-	}
-	TopTierColdResist(){
-		If (This.Prop.ItemLevel < 14 && This.HasAffix("of the Inuit"))
-			Return True
-		Else If (This.Prop.ItemLevel < 26 && This.HasAffix("of the Seal"))
-			Return True
-		Else If (This.Prop.ItemLevel < 38 && This.HasAffix("of the Penguin"))
-			Return True
-		Else If (This.Prop.ItemLevel < 50 && This.HasAffix("of the Yeti"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of the Walrus"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of the Polar Bear"))
-			Return True
-		Else If (This.Prop.ItemLevel < 84 && This.HasAffix("of the Ice"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Haast"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Puhuarte") && This.Affix["#% to Cold Resistance"])
-			Return True
-		Else
-			Return False
-	}
-	TopTierAllResist(){
-		If (This.Prop.ItemLevel < 24 && This.HasAffix("of the Crystal"))
-			Return True
-		Else If (This.Prop.ItemLevel < 36 && This.HasAffix("of the Prism"))
-			Return True
-		Else If (This.Prop.ItemLevel < 48 && This.HasAffix("of the Kaleidoscope"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Variegation"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 85 || indexOf(This.Prop.ItemClass,["Rings"])) 
-		&& This.HasAffix("of the Rainbow"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of the Span"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierCastSpeed(){
-		If ((This.Prop.ItemLevel < 15 || indexOf(This.Prop.ItemClass,["Rings"]))
-		&& This.HasAffix("of Talent"))
-			Return True
-		Else If (This.Prop.ItemLevel < 30 && This.HasAffix("of Nimbleness"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 40 || indexOf(This.Prop.ItemClass,["Amulets"])) 
-		&& This.HasAffix("of Expertise"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 55 || indexOf(This.Prop.ItemClass,["Gloves"])) 
-		&& This.HasAffix("of Legerdemain"))
-			Return True
-		Else If (This.Prop.ItemLevel < 72 && This.HasAffix("of Prestidigitation"))
-			Return True
-		Else If (This.Prop.ItemLevel < 83 && This.HasAffix("of Sortilege"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Finesse"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierAttackSpeed(){
-		If ((This.Prop.ItemLevel < 11 || indexOf(This.Prop.ItemClass,["Rings"]))
-		&& This.HasAffix("of Skill"))
-			Return True
-		Else If (This.Prop.ItemLevel < 22 && This.HasAffix("of Ease"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 30 || indexOf(This.Prop.ItemClass,["Shields"])) 
-		&& This.HasAffix("of Mastery"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 37 || indexOf(This.Prop.ItemClass,["Gloves"])) 
-		&& This.HasAffix("of Renown"))
-			Return True
-		Else If (This.Prop.ItemLevel < 45 && This.HasAffix("of Acclaim"))
-			Return True
-		Else If (This.Prop.ItemLevel < 60 && This.HasAffix("of Fame"))
-			Return True
-		Else If (This.Prop.ItemLevel < 77 && This.HasAffix("of Infamy"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Celebration"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierRaritySuf(){
-		If (This.Prop.ItemLevel < 30 && This.HasAffix("of Plunder"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 53 || indexOf(This.Prop.ItemClass,["Gloves","Boots"]) ) && This.HasAffix("of Raiding"))
-			Return True
-		Else If (This.Prop.ItemLevel < 75 && This.HasAffix("of Archaeology"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("of Excavation"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierRarityPre(){
-		If (This.Prop.ItemLevel < 39 && This.HasAffix("Magpie's"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 62 || indexOf(This.Prop.ItemClass,["Gloves","Boots"]) ) && This.HasAffix("Pirate's"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 84 || indexOf(This.Prop.ItemClass,["Helmet"]) ) && This.HasAffix("Dragon's"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Perandus's"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierCritMulti(){
-		If (This.Prop.ItemLevel < 21
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 8 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 31
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 13 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 45
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 20 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 20 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 59
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 25 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 25 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 75
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 75 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 8 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 75
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 30 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 30 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 80 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 13 ))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 35 
-			|| This.Affix["#% to Critical Strike Multiplier with Bows"] >= 35 ))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && (This.Prop.ItemClass = "Rings" || This.Prop.ItemClass = "Helmets")
-		&& (This.Affix["#% to Global Critical Strike Multiplier"] >= 17 ))
-			Return True
-		Else
-			Return False
-	}
-	TopTierCritChance(){
-		If ((This.Prop.ItemLevel < 20 || This.Prop.ItemClass = "Rings")
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 10 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 10 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 10 ))
-			Return True
-		Else If ((This.Prop.ItemLevel < 30 || !(This.Prop.IsWeapon || This.Prop.ItemClass = "Amulets" || This.Prop.ItemClass = "Quivers"))
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 15 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 15 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 15 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 44 
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 20 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 20 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 20 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 58 
-		&& (This.Affix["#% increased Global Critical Strike Chance"] >= 25 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 25 ))
-			Return True
-		Else If (This.Prop.ItemLevel < 59 
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 25 ))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 
-		&& (This.Affix["#% increased Critical Strike Chance"] >= 30 
-			|| This.Affix["#% increased Global Critical Strike Chance"] >= 30 
-			|| This.Affix["#% increased Critical Strike Chance with Bows"] >= 30 ))
-			Return True
-		Else
-			Return False
-	}
-	TopTierMS(){
-		If (This.Prop.ItemLevel < 15 && This.HasAffix("Runner's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Sprinter's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 40 && This.HasAffix("Stallion's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 55 && This.HasAffix("Gazelle's"))
-			Return True
-		Else If (This.Prop.ItemLevel < 86 && This.HasAffix("Cheetah's"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && This.HasAffix("Hellion's"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierES(){
-		If (This.Prop.ItemLevel < 11 && This.HasAffix("Shining"))
-			Return True
-		Else If (This.Prop.ItemLevel < 17 && This.HasAffix("Glimmering"))
-			Return True
-		Else If (This.Prop.ItemLevel < 23 && This.HasAffix("Glittering"))
-			Return True
-		Else If (This.Prop.ItemLevel < 29 && This.HasAffix("Glowing"))
-			Return True
-		Else If (This.Prop.ItemLevel < 35 && This.HasAffix("Radiating"))
-			Return True
-		Else If (This.Prop.ItemLevel < 43 && This.HasAffix("Pulsing"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 51 || indexOf(This.Prop.ItemClass,["Gloves","Boots"])) && This.HasAffix("Seething"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 60 || indexOf(This.Prop.ItemClass,["Helmets"])) && This.HasAffix("Blazing"))
-			Return True
-		Else If (This.Prop.ItemLevel < 69 && This.HasAffix("Scintillating"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 75 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Incandescent"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 80 || indexOf(This.Prop.ItemClass,["Rings","Body Armours"])) && This.HasAffix("Resplendent"))
-			Return True
-		Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Belts","Amulets"])) && This.HasAffix("Dazzling"))
-			Return True
-		Else
-			Return False
-	}
-	TopTierLife(){
-		If (This.Prop.ItemLevel < 5 && This.HasAffix("Hale"))
-			Return True
-		Else If (This.Prop.ItemLevel < 11 && This.HasAffix("Healthy"))
-			Return True
-		Else If (This.Prop.ItemLevel < 18 && This.HasAffix("Sanguine"))
-			Return True
-		Else If (This.Prop.ItemLevel < 24 && This.HasAffix("Stalwart"))
-			Return True
-		Else If (This.Prop.ItemLevel < 30 && This.HasAffix("Stout"))
-			Return True
-		Else If (This.Prop.ItemLevel < 36 && This.HasAffix("Robust"))
-			Return True
-		Else If (This.Prop.ItemLevel < 44 && This.HasAffix("Rotund"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 54 || indexOf(This.Prop.ItemClass,["Rings"])) && This.HasAffix("Virile"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 64 || indexOf(This.Prop.ItemClass,["Amulets","Gloves","Boots"])) && This.HasAffix("Athlete's"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 73 || indexOf(This.Prop.ItemClass,["Helmets","Belts","Quivers"])) && This.HasAffix("Fecund"))
-			Return True
-		Else If ((This.Prop.ItemLevel < 81 || indexOf(This.Prop.ItemClass,["Shields"])) && This.HasAffix("Vigorous"))
-			Return True
-		Else If (This.Prop.ItemLevel <= 100 && (This.HasAffix("Rapturous") || This.HasAffix("Prime") || (This.HasAffix("Guatelitzi's") && This.Affix["#% increased maximum Life"])))
-			Return True
-		Else If ((This.Prop.ItemLevel <= 100 || indexOf(This.Prop.ItemClass,["Body Armours"])) && )
-			Return True
-		Else
-			Return False
+		return false
 	}
 	HasAffix(Name){
 		local Type, Obj, k, v
@@ -2526,14 +1115,14 @@
 		Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
 		Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
 		If ( This.Prop.Rarity_Digit != 3 )
-		|| ( This.Prop.ItemLevel < 60 )
+			|| ( This.Prop.ItemLevel < 60 )
 		|| !( This.Prop.SlotType )
 		|| ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
 		|| ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
 		|| ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass = "Shields") 
 			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) 
-			&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width = 2 && This.Prop.Item_Height = 3) )
-			Return False
+		&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width = 2 && This.Prop.Item_Height = 3) )
+		Return False
 		If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
 			Return False
 		If !IsObject(RecipeArray)
@@ -2637,7 +1226,7 @@
 		; Do Stuff with info
 		LastLine := ""
 		DoubleModCounter := 0
-		Loop, Parse,% content, `r`n  ; , `r
+		Loop, Parse,% content, `r`n ; , `r
 		{
 			If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
 			{
@@ -2665,11 +1254,11 @@
 					}
 				}
 			}
-			line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
-			line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
-			line :=  RegExReplace(line,  " . Unscalable Value" , "")
+			line := RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+			line := RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
+			line := RegExReplace(line, " . Unscalable Value" , "")
 			;Fix Extra Text from Spell Suppress Mods
-			line :=  RegExReplace(line,  "\(50% of Damage from Suppressed Hits and Ailments they inflict is prevented\)" , "")
+			line := RegExReplace(line, "\(50% of Damage from Suppressed Hits and Ailments they inflict is prevented\)" , "")
 			key := This.Standardize(line)
 			If (vals := This.MatchLine(line))
 			{
@@ -2736,10 +1325,10 @@
 	CheckIfActualHybridMod(value){
 		for k, v in HybridModsFirstLine
 		{
-				if (v == value)
-				{
-					return true
-				}
+			if (v == value)
+			{
+				return true
+			}
 		}
 		return false
 	}
@@ -2748,12 +1337,12 @@
 		If(!This.Affix[HybridKey])
 		{
 			aux := Value
-			If  (aux != 0)
+			If (aux != 0)
 				This.Affix[HybridKey] := aux
 		}Else
 		{
 			aux := This.GetValue("Affix", HybridKey) + Value
-			If  (aux != 0)
+			If (aux != 0)
 				This.Affix[HybridKey] := aux
 		}
 		return
@@ -2764,13 +1353,13 @@
 			content := RegExReplace(content, "\n\(", "(")
 		content := RegExReplace(content," ?\(\w+ \w+ [\r\n\w\%\d,\: ]*\)( \(enchant\))?", "")
 		; Do Stuff with info
-		Loop, Parse,% content, `r`n  ; , `r
+		Loop, Parse,% content, `r`n ; , `r
 		{
 			If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
 				Continue
-			line :=  RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
-			line :=  RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
-			line :=  RegExReplace(line,  " . Unscalable Value" , "")
+			line := RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
+			line := RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
+			line := RegExReplace(line, " . Unscalable Value" , "")
 			key := This.Standardize(line)
 			If (key ~= "^ \(.*\)$")
 				Continue
@@ -2815,6 +1404,10 @@
 		str := RegExReplace(str, "\+?"rxNum , "#")
 		; str := RegExReplace(str, "#\(#-#\)" , "#")
 		str := RegExReplace(str, " (augmented)" , "")
+		If (str ~= "\(fractured\)") {
+			str := RegexReplace(str, " \(fractured\)", "")
+			This.Prop.FracturedModKey := str
+		}
 		Return str
 	}
 	MatchPseudoAffix(){
@@ -3075,7 +1668,7 @@
 	AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
 		HybridKey := "(Hybrid) " . StandardKey
 		aux := This.GetValue("Pseudo", PseudoKey) + This.GetValue("Affix", HybridKey) + This.GetValue(StandardType, StandardKey)
-		If  (aux != 0)
+		If (aux != 0)
 			This.Pseudo[PseudoKey] := aux
 		return
 	}
@@ -3113,7 +1706,6 @@
 					This.Prop.Item_Height := v["inventory_height"]
 					This.Prop.ItemBase := v["name"]
 					This.Prop.DropLevel := v["drop_level"]
-
 
 					If (This.Prop.Rating_Armour || This.Prop.Rating_EnergyShield || This.Prop.Rating_Evasion){
 						tally := total := 0
@@ -3202,7 +1794,7 @@
 			If This.MatchNinjaDB("Prophecy")
 				Return
 		}
-		If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment|| This.Prop.ItemName ~= "Simulacrum")
+		If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment || This.Prop.ConquererFragment || This.Prop.ItemName ~= "Simulacrum")
 		{
 			If This.MatchNinjaDB("Fragment")
 				Return
@@ -3272,7 +1864,7 @@
 			For k, v in Ninja.BaseType
 			{
 				If (This.Prop.ItemBase = v["name"] 
-				&& This.Prop.Influence ~= v["variant"] 
+						&& This.Prop.Influence ~= v["variant"] 
 				&& This.Prop.ItemLevel >= v["levelRequired"])
 				{
 					This.Prop.ChaosValue := v["chaosValue"]
@@ -3292,11 +1884,11 @@
 			If (This.Prop[MatchKey] = v[NinjaKey])
 			{
 				If ((ApiStr = "Map" || ApiStr = "UniqueMap") 
-				&& This.Prop.Map_Tier < v["mapTier"])
-					Continue
+					&& This.Prop.Map_Tier < v["mapTier"])
+				Continue
 				If (v["links"] && ApiStr ~= "Unique"
-				&& This.Prop.Sockets_Link < v["links"])
-					Continue
+					&& This.Prop.Sockets_Link < v["links"])
+				Continue
 				This.Prop.ChaosValue := This.GetValue("Prop","ChaosValue") + v["chaosValue"]
 				If v["exaltedValue"]
 					This.Prop.ExaltValue := This.GetValue("Prop","ExaltValue") + v["exaltedValue"]
@@ -3311,23 +1903,24 @@
 		For key, value in This.Prop
 		{
 			If( RegExMatch(key, "^Required")
-			|| RegExMatch(key, "^Rating")
-			|| RegExMatch(key, "^Sockets")
-			|| RegExMatch(key, "^Quality")
-			|| RegExMatch(key, "^Map")
-			|| RegExMatch(key, "^Heist_")
-			|| RegExMatch(key, "^Stack")
+					|| RegExMatch(key, "^Rating")
+				|| RegExMatch(key, "^Sockets")
+				|| RegExMatch(key, "^Gem")
+				|| RegExMatch(key, "^Quality")
+				|| RegExMatch(key, "^Map")
+				|| RegExMatch(key, "^Heist_")
+				|| RegExMatch(key, "^Stack")
 			|| RegExMatch(key, "^Weapon"))
 			{
 				If indexOf(key,this.MatchedCLF)
 					statText .= "CLF⭐"
-				statText .= key . ":  " . value . "`n"
+				statText .= key . ": " . value . "`n"
 			}
 			Else
 			{
 				If indexOf(key,this.MatchedCLF)
 					propText .= "CLF⭐"
-				propText .= key . ":  " . value . "`n"
+				propText .= key . ": " . value . "`n"
 			}
 		}
 
@@ -3338,17 +1931,17 @@
 		For key, value in This.Affix
 		{
 			If(!This.Modifier[key]){
-					If (value != 0 && value != "" && value != False){
+				If (value != 0 && value != "" && value != False){
 					If indexOf(key,this.MatchedCLF){
 						affixText .= "CLF⭐"
 					}
-					affixText .= key . ":  " . value . "`n"
-					}
+					affixText .= key . ": " . value . "`n"
+				}
 			}Else{
 				If indexOf(key,this.MatchedCLF){
 					modifierText .= "CLF⭐"
 				}
-				modifierText .= key . ":  " . value . "`n"
+				modifierText .= key . ": " . value . "`n"
 			}
 		}
 		GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
@@ -3369,7 +1962,7 @@
 			Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":"")
 			Return
 		}
-			
+
 		If (This.Data.Ninja["paySparkLine"])
 		{
 			dataPayPoint := This.Data.Ninja["paySparkLine"]["data"]
@@ -3384,15 +1977,15 @@
 					basePayPoint := Abs(v)
 			}
 			If basePayPoint = 0
-			FormatStr := "{1:0.0f}"
+				FormatStr := "{1:0.0f}"
 			Else If basePayPoint < 1
-			FormatStr := "{1:0.3f}"
+				FormatStr := "{1:0.3f}"
 			Else If basePayPoint < 10
-			FormatStr := "{1:0.2f}"
+				FormatStr := "{1:0.2f}"
 			Else If basePayPoint < 100
-			FormatStr := "{1:0.1f}"
+				FormatStr := "{1:0.1f}"
 			Else If basePayPoint > 100
-			FormatStr := "{1:0.0f}"
+				FormatStr := "{1:0.0f}"
 
 			GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
 			GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
@@ -3416,7 +2009,6 @@
 			GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
 			GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
 
-
 			baseRecPoint := 0
 			For k, v in dataRecPoint
 			{
@@ -3424,15 +2016,15 @@
 					baseRecPoint := Abs(v)
 			}
 			If baseRecPoint = 0
-			FormatStr := "{1:0.0f}"
+				FormatStr := "{1:0.0f}"
 			Else If baseRecPoint < 1
-			FormatStr := "{1:0.3f}"
+				FormatStr := "{1:0.3f}"
 			Else If baseRecPoint < 10
-			FormatStr := "{1:0.2f}"
+				FormatStr := "{1:0.2f}"
 			Else If baseRecPoint < 100
-			FormatStr := "{1:0.1f}"
+				FormatStr := "{1:0.1f}"
 			Else If baseRecPoint > 100
-			FormatStr := "{1:0.0f}"
+				FormatStr := "{1:0.0f}"
 
 			GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
 			GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
@@ -3455,7 +2047,6 @@
 			GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
 			GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
 			GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
-
 
 			AvgPay := {}
 			Loop 5
@@ -3602,15 +2193,15 @@
 						basePoint := Abs(v)
 				}
 				If basePoint = 0
-				FormatStr := "{1:0.0f}"
+					FormatStr := "{1:0.0f}"
 				Else If basePoint < 1
-				FormatStr := "{1:0.3f}"
+					FormatStr := "{1:0.3f}"
 				Else If basePoint < 10
-				FormatStr := "{1:0.2f}"
+					FormatStr := "{1:0.2f}"
 				Else If basePoint < 100
-				FormatStr := "{1:0.1f}"
+					FormatStr := "{1:0.1f}"
 				Else If basePoint > 100
-				FormatStr := "{1:0.0f}"
+					FormatStr := "{1:0.0f}"
 
 				GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePoint*1.0)) "`%"
 				GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePoint*0.9)) "`%"
@@ -3697,15 +2288,15 @@
 						baseLTPoint := Abs(v)
 				}
 				If baseLTPoint = 0
-				FormatStr := "{1:0.0f}"
+					FormatStr := "{1:0.0f}"
 				If baseLTPoint < 1
-				FormatStr := "{1:0.3f}"
+					FormatStr := "{1:0.3f}"
 				Else If baseLTPoint < 10
-				FormatStr := "{1:0.2f}"
+					FormatStr := "{1:0.2f}"
 				Else If baseLTPoint < 100
-				FormatStr := "{1:0.1f}"
+					FormatStr := "{1:0.1f}"
 				Else If baseLTPoint > 100
-				FormatStr := "{1:0.0f}"
+					FormatStr := "{1:0.0f}"
 
 				GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseLTPoint*1.0)) "`%"
 				GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseLTPoint*0.9)) "`%"
@@ -3887,24 +2478,24 @@
 	MatchStashManagement(passthrough:=False){
 		; Create associative array so HasKey function can be used
 		UnsupportedAffinityCurrencies := { "Stacked Deck":0
-																			, "Prime Regrading Lens":0
-																			, "Secondary Regrading Lens":0
-																			, "Veiled Chaos Orb":0
-																			, "Vial of Transcendence":0
-																			, "Vial of Sacrifice":0
-																			, "Vial of the Ghost":0
-																			, "Vial of Consequence":0
-																			, "Vial of Summoning":0
-																			, "Vial of Dominance":0
-																			, "Vial of Awakening":0
-																			, "Vial of the Ritual":0
-																			, "Vial of Fate":0
-																			, "Bestiary Orb":0
-																			, "Blessing of Chayula":0
-																			, "Blessing of Xoph":0
-																			, "Blessing of Uul-Netol":0
-																			, "Blessing of Tul":0
-																			, "Blessing of Esh":0 }
+			, "Prime Regrading Lens":0
+			, "Secondary Regrading Lens":0
+			, "Veiled Chaos Orb":0
+			, "Vial of Transcendence":0
+			, "Vial of Sacrifice":0
+			, "Vial of the Ghost":0
+			, "Vial of Consequence":0
+			, "Vial of Summoning":0
+			, "Vial of Dominance":0
+			, "Vial of Awakening":0
+			, "Vial of the Ritual":0
+			, "Vial of Fate":0
+			, "Bestiary Orb":0
+			, "Blessing of Chayula":0
+			, "Blessing of Xoph":0
+			, "Blessing of Uul-Netol":0
+			, "Blessing of Tul":0
+		, "Blessing of Esh":0 }
 		If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
 		{
 			If (StashTabYesCurrency > 1 && !UnsupportedAffinityCurrencies.HasKey(This.Prop.ItemName))
@@ -3915,399 +2506,375 @@
 		Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap)
 			sendstash := StashTabNinjaPrice
 		Else If (This.Prop.Expedition)
-			Return -2
-		Else If (This.Prop.Heist)
-			Return -2
-		Else If (This.Prop.Incubator)
-			Return -1
-		;Affinities
-		Else If (This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight
-		{
-			If StashTabYesBlight > 1
-				sendstash := -2
-			Else
-				sendstash := StashTabBlight
-		}
-		Else If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
-				sendstash := StashTabBrickedMaps
-		Else If (This.Prop.IsMap && StashTabYesMap)
-		{
-			If StashTabYesMap > 1
-				sendstash := -2
-			Else
-				sendstash := StashTabMap
-		}
-		Else If (This.Prop.Catalyst || This.Prop.IsOrgan != "") && StashTabYesMetamorph
-		{
-			If StashTabYesMetamorph > 1
-				sendstash := -2
-			Else
-				sendstash := StashTabMetamorph
-		}
-		Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium)
-		{
-			If StashTabYesDelirium > 1
-				sendstash := -2
-			Else
-				sendstash := StashTabDelirium
-		}
-		Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.UberDuberOffering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment )&&StashTabYesFragment
-		{
-			If StashTabYesFragment > 1 
-				sendstash := -2
-			Else
-				sendstash := StashTabFragment 
-		}
-		Else If (This.Prop.RarityDivination) && StashTabYesDivination
-		{
-			If StashTabYesDivination > 1
-				sendstash := -2
-			Else
-				sendstash := StashTabDivination
-		}
-		Else If (This.Prop.Essence) && StashTabYesEssence
-		{
-			If StashTabYesEssence > 1
-				sendstash := -2
-			Else
-				sendstash := StashTabEssence
-		}
-		Else If (This.Prop.Fossil || This.Prop.Resonator) && StashTabYesDelve
-		{
-			If StashTabYesDelve > 1
-				sendstash := -2
-			Else
-				sendstash := StashTabDelve
-		}
-		Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
-		&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) )
-		{
-			If (StashTabYesUnique = 2)
-				Return -2
-			Else if (StashTabYesUnique)
-			sendstash := StashTabUnique
-			Else If (StashTabYesUniqueRing&&This.Prop.Ring)
-			sendstash := StashTabUniqueRing
-			Else If (StashTabYesUniqueDump)
-			sendstash := StashTabUniqueDump
-		}
-		Else If ( ((StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
-		&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage)  )
-		{
-			If (StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring)
-			sendstash := StashTabUniqueRing
-			Else If (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)
-			sendstash := StashTabUniqueDump
-		}
-		Else If (This.Prop.MiscMapItem&&StashTabYesMiscMapItems)
-		{
-			sendstash := StashTabMiscMapItems
-		}
-		Else If (This.Prop.Flask&&(This.Prop.Quality>0)&&StashTabYesFlaskQuality&&!This.Prop.RarityUnique)
-			sendstash := StashTabFlaskQuality
-		Else If (This.Prop.Flask&&(This.Prop.Quality<1)&&StashTabYesFlaskAll&&!This.Prop.RarityUnique)
-			sendstash := StashTabFlaskAll																															
-		Else If (This.Prop.RarityGem)
-		{
-			If ((This.Prop.Quality>0)&&StashTabYesGemQuality)
-				sendstash := StashTabGemQuality
-			Else If (This.Prop.VaalGem && StashTabYesGemVaal)
-				sendstash := StashTabGemVaal
-			Else If (This.Prop.Support && StashTabYesGemSupport)
-				sendstash := StashTabGemSupport
-			Else If (StashTabYesGem)
-				sendstash := StashTabGem
-		}
-		Else If ((This.Prop.IsInfluenceItem||This.Prop.IsSynthesisItem&&YesIncludeFandSItem)&&StashTabYesInfluencedItem)
-			sendstash := StashTabInfluencedItem
-		Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
-			sendstash := StashTabLinked
-		Else If (This.Prop.Prophecy&&StashTabYesProphecy)
-			sendstash := StashTabProphecy
-		Else If (This.Prop.Veiled&&StashTabYesVeiled)
-			sendstash := StashTabVeiled
-		Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
-			sendstash := StashTabClusterJewel
-		Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
-			sendstash := StashTabHeistGear
-		Else If (StashTabYesCrafting 
-			&& ((YesStashATLAS && This.Prop.CraftingBase = "Atlas Base" && ((This.Prop.ItemLevel >= YesStashATLASCraftingIlvlMin && YesStashATLASCraftingIlvl) || !YesStashATLASCraftingIlvl)) 
-				|| (YesStashSTR && This.Prop.CraftingBase = "STR Base" && ((This.Prop.ItemLevel >= YesStashSTRCraftingIlvlMin && YesStashSTRCraftingIlvl) || !YesStashSTRCraftingIlvl)) 
-				|| (YesStashDEX && This.Prop.CraftingBase = "DEX Base" && ((This.Prop.ItemLevel >= YesStashDEXCraftingIlvlMin && YesStashDEXCraftingIlvl) || !YesStashDEXCraftingIlvl)) 
-				|| (YesStashINT && This.Prop.CraftingBase = "INT Base" && ((This.Prop.ItemLevel >= YesStashINTCraftingIlvlMin && YesStashINTCraftingIlvl) || !YesStashINTCraftingIlvl)) 
-				|| (YesStashHYBRID && This.Prop.CraftingBase = "Hybrid Base" && ((This.Prop.ItemLevel >= YesStashHYBRIDCraftingIlvlMin && YesStashHYBRIDCraftingIlvl) || !YesStashHYBRIDCraftingIlvl)) 
-				|| (YesStashJ && This.Prop.CraftingBase = "Jewel Base" && ((This.Prop.ItemLevel >= YesStashJCraftingIlvlMin && YesStashJCraftingIlvl) || !YesStashJCraftingIlvl)) 
-				|| (YesStashAJ && This.Prop.CraftingBase = "Abyss Jewel Base" && ((This.Prop.ItemLevel >= YesStashAJCraftingIlvlMin && YesStashAJCraftingIlvl) || !YesStashAJCraftingIlvl))
-				|| (YesStashJewellery && This.Prop.CraftingBase = "Jewellery Base" && ((This.Prop.ItemLevel >= YesStashJewelleryCraftingIlvlMin && YesStashJewelleryCraftingIlvl) || !YesStashJewelleryCraftingIlvl)) )
-			&& (!This.Prop.Corrupted))
-			sendstash := StashTabCrafting
-		Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ){
-			sendstash := StashTabPredictive
-		}
-		Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough))
-		{
-			If (ChaosRecipeStashMethodDump)
-				sendstash := StashTabDump
-			Else If (ChaosRecipeStashMethodTab)
-				sendstash := ChaosRecipeStashTab
-			Else If (ChaosRecipeStashMethodSort)
-			{
-				If (This.Prop.SlotType = "Body")
-					sendstash := ChaosRecipeStashTabArmour
-				Else If (This.Prop.SlotType = "One Hand" || This.Prop.SlotType = "Two Hand" || This.Prop.SlotType = "Shield")
-					sendstash := ChaosRecipeStashTabWeapon
-				Else If This.Prop.SlotType
-				{
-					w := This.Prop.SlotType
-					sendstash := ChaosRecipeStashTab%w%
-				}
-			}
-		}
-		Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
-			|| (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
-			sendstash := StashTabDump, This.Prop.DumpTabItem := True
-		Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
-			Return -1
+		Return -2
+	Else If (This.Prop.Heist)
+		Return -2
+	Else If (This.Prop.Incubator)
+		Return -1
+	;Affinities
+	Else If (This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight
+	{
+		If StashTabYesBlight > 1
+			sendstash := -2
 		Else
-			Return False
-		Return sendstash
+			sendstash := StashTabBlight
 	}
-	MatchLootFilter(GroupOut:=0){
-		For GKey, Groups in LootFilter
+	Else If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
+		sendstash := StashTabBrickedMaps
+	Else If (This.Prop.IsMap && StashTabYesMap)
+	{
+		If StashTabYesMap > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabMap
+	}
+	Else If (This.Prop.Catalyst || This.Prop.IsOrgan != "") && StashTabYesMetamorph
+	{
+		If StashTabYesMetamorph > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabMetamorph
+	}
+	Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium)
+	{
+		If StashTabYesDelirium > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabDelirium
+	}
+	Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.UberDuberOffering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment || This.Prop.ConquererFragment )&&StashTabYesFragment
+	{
+		If StashTabYesFragment > 1 
+			sendstash := -2
+		Else
+			sendstash := StashTabFragment 
+	}
+	Else If (This.Prop.RarityDivination) && StashTabYesDivination
+	{
+		If StashTabYesDivination > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabDivination
+	}
+	Else If (This.Prop.Essence) && StashTabYesEssence
+	{
+		If StashTabYesEssence > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabEssence
+	}
+	Else If (This.Prop.Fossil || This.Prop.Resonator) && StashTabYesDelve
+	{
+		If StashTabYesDelve > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabDelve
+	}
+	Else If (This.Prop.Flask&&!This.Prop.RarityUnique)
+	{
+		If StashTabYesFlask > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabFlask
+	}																												
+	Else If (This.Prop.RarityGem && StashTabYesGem)
+	{
+		If StashTabYesGem > 1
+			sendstash := -2
+		Else
+			sendstash := StashTabGem
+	}
+	Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
+		&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) )
+	{
+		If (StashTabYesUnique = 2)
+		Return -2
+	Else if (StashTabYesUnique)
+		sendstash := StashTabUnique
+	Else If (StashTabYesUniqueRing&&This.Prop.Ring)
+		sendstash := StashTabUniqueRing
+	Else If (StashTabYesUniqueDump)
+		sendstash := StashTabUniqueDump
+}
+Else If ( ((StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
+	&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage) )
+{
+	If (StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring)
+		sendstash := StashTabUniqueRing
+	Else If (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)
+		sendstash := StashTabUniqueDump
+}
+Else If (This.Prop.MiscMapItem&&StashTabYesMiscMapItems)
+	sendstash := StashTabMiscMapItems
+Else If ((This.Prop.IsInfluenceItem||This.Prop.IsSynthesisItem&&YesIncludeFandSItem)&&StashTabYesInfluencedItem)
+	sendstash := StashTabInfluencedItem
+Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
+	sendstash := StashTabLinked
+Else If (This.Prop.Veiled&&StashTabYesVeiled)
+	sendstash := StashTabVeiled
+Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
+	sendstash := StashTabClusterJewel
+Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
+	sendstash := StashTabHeistGear
+Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase)
+	sendstash := StashTabCrafting
+Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price )
+	sendstash := StashTabPredictive
+Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough))
+{
+	If (ChaosRecipeStashMethodDump)
+		sendstash := StashTabDump
+	Else If (ChaosRecipeStashMethodTab)
+		sendstash := ChaosRecipeStashTab
+	Else If (ChaosRecipeStashMethodSort)
+	{
+		If (This.Prop.SlotType = "Body")
+			sendstash := ChaosRecipeStashTabArmour
+		Else If (This.Prop.SlotType = "One Hand" || This.Prop.SlotType = "Two Hand" || This.Prop.SlotType = "Shield")
+			sendstash := ChaosRecipeStashTabWeapon
+		Else If This.Prop.SlotType
 		{
-			If (Groups.GroupType) {
-				If (val := This.MatchGroup(Groups)){
-					this.Prop.CLF_Tab := Groups["StashTab"]
-					this.Prop.CLF_Group := (Groups["GroupName"]?Groups["GroupName"]:GKey)
-					This.MatchedCLF := val
-					Return this.Prop.CLF_Tab
-				}
-			} Else {
-				this.MatchedCLF := []
-				matched := False
-				nomatched := False
-				ormatched := 0
-				ormismatch := False
-				orcount := Groups["Data"]["OrCount"]
-				For SKey, Selected in Groups
-				{
-					If ( SKey = "Data" )
-						Continue
-					For AKey, AVal in Selected {
-						orflag := AVal["OrFlag"]
-						If (AVal.GroupType){
-							If keylist := This.MatchGroup(AVal) {
-								matched := True
-								If orflag
-									ormatched++
-								For _, __ in keylist
-									this.MatchedCLF.Push(__)
-							} Else {
-								if !orflag
-									nomatched := True
-								ormismatch := True
-							}
+			w := This.Prop.SlotType
+			sendstash := ChaosRecipeStashTab%w%
+		}
+	}
+}
+Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
+	|| (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
+sendstash := StashTabDump, This.Prop.DumpTabItem := True
+Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
+	Return -1
+Else
+	Return False
+Return sendstash
+}
+MatchLootFilter(GroupOut:=0){
+	For GKey, Groups in LootFilter
+	{
+		If (Groups.GroupType) {
+			If (val := This.MatchGroup(Groups)){
+				this.Prop.CLF_Tab := Groups["StashTab"]
+				this.Prop.CLF_Group := (Groups["GroupName"]?Groups["GroupName"]:GKey)
+				This.MatchedCLF := val
+				Return this.Prop.CLF_Tab
+			}
+		} Else {
+			this.MatchedCLF := []
+			matched := False
+			nomatched := False
+			ormatched := 0
+			ormismatch := False
+			orcount := Groups["Data"]["OrCount"]
+			For SKey, Selected in Groups
+			{
+				If ( SKey = "Data" )
+					Continue
+				For AKey, AVal in Selected {
+					orflag := AVal["OrFlag"]
+					If (AVal.GroupType){
+						If keylist := This.MatchGroup(AVal) {
+							matched := True
+							If orflag
+								ormatched++
+							For _, __ in keylist
+								this.MatchedCLF.Push(__)
 						} Else {
-							arrval := Item[SKey][AVal["#Key"]]
-							eval := AVal["Eval"]
-							min := AVal["Min"]
-							orflag := AVal["OrFlag"]
+							if !orflag
+								nomatched := True
+							ormismatch := True
+						}
+					} Else {
+						arrval := Item[SKey][AVal["#Key"]]
+						eval := AVal["Eval"]
+						min := AVal["Min"]
+						orflag := AVal["OrFlag"]
 
-							If This.Evaluate(eval,arrval,min){
-								matched := True
-								If orflag
-									ormatched++
-								This.MatchedCLF.Push(AVal["#Key"])
-							} Else {
-								if !orflag
-									nomatched := True
-								ormismatch := True
-							}
+						If This.Evaluate(eval,arrval,min){
+							matched := True
+							If orflag
+								ormatched++
+							This.MatchedCLF.Push(AVal["#Key"])
+						} Else {
+							if !orflag
+								nomatched := True
+							ormismatch := True
 						}
 					}
 				}
-				If (ormismatch && ormatched < orcount)
-					nomatched := True
-				If (matched && !nomatched)
-				{
-					this.Prop.CLF_Tab := Groups["Data"]["StashTab"]
-					this.Prop.CLF_Group := GKey
-					Return this.Prop.CLF_Tab
-				}
+			}
+			If (ormismatch && ormatched < orcount)
+				nomatched := True
+			If (matched && !nomatched)
+			{
+				this.Prop.CLF_Tab := Groups["Data"]["StashTab"]
+				this.Prop.CLF_Group := GKey
+				Return this.Prop.CLF_Tab
 			}
 		}
-		This.MatchedCLF := False
+	}
+	This.MatchedCLF := False
+	Return False
+}
+MatchGroup(grp){
+	local
+	CountSum := 0
+	PotentialMatches := []
+	For k, elem in grp["~ElementList"] {
+		If elem.GroupType {
+			matched := This.MatchGroup(elem)
+		} Else {
+			arrval := This[elem["Type"]][elem["#Key"]]
+			matched := This.Evaluate(elem["Eval"],arrval,elem["Min"])
+		}
+		If matched {
+			If (grp.GroupType ~= "[nN][oO][tT]")
+				Return False
+			If elem["#Key"]
+				PotentialMatches.Push(elem["#Key"])
+			Else If IsObject(matched) {
+				for kk, vv in matched {
+					PotentialMatches.Push(vv)
+				}
+			}
+			If (grp.GroupType ~= "[cC]ount"){
+				CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1)
+			} Else If (grp.GroupType ~= "[wW]eight"){
+				CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1) * (arrval != "" ? arrval : 1)
+			}
+		} Else {
+			If (grp.GroupType ~= "[aA][nN][dD]")
+				Return False
+		}
+	}
+	If (grp.GroupType ~= "[aA][nN][dD]" || grp.GroupType ~= "[nN][oO][tT]"){
+		Return PotentialMatches
+	}
+	Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
+		If (CountSum >= grp.TypeValue) {
+		Return PotentialMatches
+	} Else {
 		Return False
 	}
-	MatchGroup(grp){
-		local
-		CountSum := 0
-		PotentialMatches := []
-		For k, elem in grp["~ElementList"] {
-			If elem.GroupType {
-				matched := This.MatchGroup(elem)
-			} Else {
-				arrval := This[elem["Type"]][elem["#Key"]]
-				matched := This.Evaluate(elem["Eval"],arrval,elem["Min"])
-			}
-			If matched {
-				If (grp.GroupType ~= "[nN][oO][tT]")
-					Return False
-				If elem["#Key"]
-					PotentialMatches.Push(elem["#Key"])
-				Else If IsObject(matched) {
-					for kk, vv in matched {
-						PotentialMatches.Push(vv)
-					}
+}
+}
+Evaluate(eval,val,min){
+	local
+	if (eval = ">") {
+		Return (val > min)
+	} Else if (eval = ">=") {
+		Return (val >= min)
+	} Else if (eval = "=") {
+		Return (val = min)
+	} Else if (eval = "<") {
+		Return (val < min)
+	} else if (eval = "<=") {
+		Return (val <= min)
+	} else if (eval = ">0<") {
+		Return (val > 0 && val < min)
+	} else if (eval = ">0<=") {
+		Return (val > 0 && val <= min)
+	} else if (eval = "!=") {
+		Return (val != min)
+	} else if (eval = "~=") {
+		Return (val ~= min)
+	} else if (eval = "~") {
+		matchedOR := False
+		for k, v in StrSplit(min, "|"," ") { ; Split OR first
+			if InStr(v, "&") { 					 ; Check for any & sections
+				mismatched := false
+				for kk, vv in StrSplit(v, "&"," ") { ; Split the array again
+					If !InStr(val, vv) ; Check AND sections for mismatch
+						mismatched := true
 				}
-				If (grp.GroupType ~= "[cC]ount"){
-					CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1)
-				} Else If (grp.GroupType ~= "[wW]eight"){
-					CountSum += (elem["Weight"] != "" ? elem["Weight"] : 1) * (arrval != "" ? arrval : 1)
+				if !mismatched { ; no mismatch means all sections found in the string
+					matchedOR := true 
+					Break
 				}
-			} Else {
-				If (grp.GroupType ~= "[aA][nN][dD]")
-					Return False
+			}	Else if InStr(val, v)	{ ; If there was no & symbol this is an OR section
+				matchedOR := True
+				break
 			}
 		}
-		If (grp.GroupType ~= "[aA][nN][dD]" || grp.GroupType ~= "[nN][oO][tT]"){
-			Return PotentialMatches
-		}
-		Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
-			If (CountSum >= grp.TypeValue) {
-				Return PotentialMatches
-			} Else {
-				Return False
-			}
-		}
+		Return matchedOR ; If any of the sections produced a match it will flag true
 	}
-	Evaluate(eval,val,min){
-		local
-		if (eval = ">") {
-			Return (val > min)
-		} Else if (eval = ">=") {
-			Return (val >= min)
-		} Else if (eval = "=") {
-			Return (val = min)
-		} Else if (eval = "<") {
-			Return (val < min)
-		} else if (eval = "<=") {
-			Return (val <= min)
-		} else if (eval = ">0<") {
-			Return (val > 0 && val < min)
-		} else if (eval = ">0<=") {
-			Return (val > 0 && val <= min)
-		} else if (eval = "!=") {
-			Return (val != min)
-		} else if (eval = "~=") {
-			Return (val ~= min)
-		} else if (eval = "~") {
-			matchedOR := False
-			for k, v in StrSplit(min, "|"," ") { ; Split OR first
-				if InStr(v, "&") { 					       ; Check for any & sections
-					mismatched := false
-					for kk, vv in StrSplit(v, "&"," ") { ; Split the array again
-						If !InStr(val, vv)              ; Check AND sections for mismatch
-							mismatched := true
-					}
-					if !mismatched {    ; no mismatch means all sections found in the string
-						matchedOR := true 
-						Break
-					}
-				}	Else if InStr(val, v)	{          ; If there was no & symbol this is an OR section
-					matchedOR := True
-					break
-				}
-			}
-			Return matchedOR ; If any of the sections produced a match it will flag true
-		}
-	}
-	inRange(key,obj,base){
-		If (obj.ranges.Count() = 1) {
-			If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
+}
+inRange(key,obj,base){
+	If (obj.ranges.Count() = 1) {
+		If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
 			|| (base[key] <= obj.ranges.1.1 && base[key] >= obj.ranges.1.2))
-				Return False
-		} Else If (obj.ranges.Count() >= 2) {
-			for k, v in obj.ranges
-			{
-				If !((base[key "_Value" k] >= v.1 && base[key "_Value" k] <= v.2)
+		Return False
+	} Else If (obj.ranges.Count() >= 2) {
+		for k, v in obj.ranges
+		{
+			If !((base[key "_Value" k] >= v.1 && base[key "_Value" k] <= v.2)
 				|| (base[key "_Value" k] <= v.1 && base[key "_Value" k] >= v.2))
-					Return False
-			}
-		} Else If (obj.values.Count() = 1) {
-			If !(base[key] == obj.values.1 )
-				Return False
-		} Else If (obj.values.Count() >= 2) {
-			for k, v in obj.values
-				If !(base[key "_Value" k] == v )
-					Return False
-		}
-		Return True
+		Return False
 	}
-	MatchCraftingBases(){
-		If (This.Prop.Rarity_Digit == 4)
-			Return False
-		If(HasVal(WR.CustomCraftingBases.CustomBases[1],This.Prop.ItemBase))
+} Else If (obj.values.Count() = 1) {
+	If !(base[key] == obj.values.1 )
+		Return False
+} Else If (obj.values.Count() >= 2) {
+	for k, v in obj.values
+		If !(base[key "_Value" k] == v )
+		Return False
+}
+Return True
+}
+MatchCraftingBases(){
+	If (This.Prop.Rarity_Digit == 4 || This.Prop.Corrupted)
+		Return False
+	update := false
+	for k,v in WR.CustomCraftingBases.Bases
+	{
+		if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
 		{
-			This.Prop.CraftingBase := "Atlas Base"
-		}
-		Else If(HasVal(WR.CustomCraftingBases.CustomBases[2],This.Prop.ItemBase))
-		{
-			This.Prop.CraftingBase := "STR Base"
-		}
-		Else If(HasVal(WR.CustomCraftingBases.CustomBases[3],This.Prop.ItemBase))
-		{
-			This.Prop.CraftingBase := "DEX Base"
-		}
-		Else If(HasVal(WR.CustomCraftingBases.CustomBases[4],This.Prop.ItemBase))
-		{
-			This.Prop.CraftingBase := "INT Base"
-		}
-		Else If(HasVal(WR.CustomCraftingBases.CustomBases[5],This.Prop.ItemBase))
-		{
-			This.Prop.CraftingBase := "Hybrid Base"
-		}
-		Else If(HasVal(WR.CustomCraftingBases.CustomBases[6],This.Prop.ItemBase))
-		{
-			This.Prop.CraftingBase := "Jewel Base"
-		}
-		Else If(HasVal(WR.CustomCraftingBases.CustomBases[7],This.Prop.ItemBase))
-		{
-			This.Prop.CraftingBase := "Abyss Jewel Base"
-		}
-		Else If(HasVal(WR.CustomCraftingBases.CustomBases[8],This.Prop.ItemBase))
-		{
-			This.Prop.CraftingBase := "Jewellery Base"
-		}
-	}
-	ApproximatePerfection(){
-		For ku, unique in WR.data.Perfect
-		{
-			If ( This.Prop.ItemName = unique.name ) {
-				If unique.pricePerfect
-				{
-					perccalc := This.percval(This.Prop.PercentageAffix,[unique.mean,unique.pricePerfect]) * (This.Prop.PercentageAffix/90)
-					This.Prop.UniquePerfectValue := perccalc < unique.mean ? unique.mean 
-					: perccalc > unique.pricePerfect ? unique.pricePerfect 
-					: perccalc
-					This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
-					This.Prop.UniquePerfectMaxVal := unique.pricePerfect
-				} Else {
-					This.Prop.UniquePerfectValue := 0
-					This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
-					This.Prop.UniquePerfectMaxVal := 0
+			This.Prop.CraftingBase := v.BaseName
+			if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
+				This.Prop.WantedCraftingBase := True
+				if(This.Prop.ItemLevel < 85 && v.ILvL < This.Prop.ItemLevel){
+					v.ILvL := This.Prop.ItemLevel
+					update := True	
 				}
-				Return
+			}else if(!YesCraftingBaseAutoILvLUP){
+				This.Prop.WantedCraftingBase := True
 			}
+			This.Prop.CraftingBaseHigherILvLFound := v.ILvL
 		}
-		This.Prop.UniquePerfectValue := 0
-		This.Prop.UniqueNormalMean := 0
-		This.Prop.UniquePerfectMaxVal := 0
 	}
-	perc(value,range){
-		Return abs(((value - range.1) * 100) / (range.2 - range.1))
+
+	if(update){
+		Settings("CustomCraftingBases","Save")
 	}
-	percval(perc,range){
-		Return ((perc * (range.2 - range.1) / 100) + range.1)
+
+}
+ApproximatePerfection(){
+	For ku, unique in WR.data.Perfect
+	{
+		If ( This.Prop.ItemName = unique.name ) {
+			If unique.pricePerfect
+			{
+				perccalc := This.percval(This.Prop.PercentageAffix,[unique.mean,unique.pricePerfect]) * (This.Prop.PercentageAffix/90)
+				This.Prop.UniquePerfectValue := perccalc < unique.mean ? unique.mean 
+				: perccalc > unique.pricePerfect ? unique.pricePerfect 
+				: perccalc
+				This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
+				This.Prop.UniquePerfectMaxVal := unique.pricePerfect
+			} Else {
+				This.Prop.UniquePerfectValue := 0
+				This.Prop.UniqueNormalMean := unique.mean?unique.mean:0
+				This.Prop.UniquePerfectMaxVal := 0
+			}
+		Return
 	}
+}
+This.Prop.UniquePerfectValue := 0
+This.Prop.UniqueNormalMean := 0
+This.Prop.UniquePerfectMaxVal := 0
+}
+perc(value,range){
+	Return abs(((value - range.1) * 100) / (range.2 - range.1))
+}
+percval(perc,range){
+	Return ((perc * (range.2 - range.1) / 100) + range.1)
+}
 }

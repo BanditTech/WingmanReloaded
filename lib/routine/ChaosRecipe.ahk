@@ -44,24 +44,24 @@ ChaosRecipe(endAtRefresh := 0){
 }
 ChaosRecipeSort(Object,Merge:=False){
   Global RecipeArray
-  Chaos := {}
-  Regal := {}
-  uChaos := {}
-  uRegal := {}
+  Static TypeList := ["Chaos","Regal"]
+  Static SlotList := ["Body","Helmet","Gloves","Boots","Amulet","Ring","Belt","Two Hand","One Hand","Shield"]
+
+  For k, TypeName in TypeList {
+    %TypeName% := {}
+    u%TypeName% := {}
+    For k, SlotName in SlotList {
+      %TypeName%[SlotName] := {}
+      u%TypeName%[SlotName] := {}
+    }
+  } 
+
   For i, content in Object.items
   {
     item := new ItemBuild(content,Object.quadLayout)
-    ; Array_Gui(item)
-    If (item.Prop.ChaosRecipe)
-    {
-      If !IsObject((item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType])
-        (item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType] := {}
+    If (item.Prop.ChaosRecipe){
       (item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType].Push(item)
-    }
-    If (item.Prop.RegalRecipe)
-    {
-      If !IsObject((item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType])
-        (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType] := {}
+    }Else If (item.Prop.RegalRecipe){
       (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType].Push(item)
     }
   }
@@ -584,8 +584,10 @@ VendorRoutineChaos(){
 		{
       If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
         RecipeComplete := True
-			If !RunningToggle || RecipeComplete   ; The user signaled the loop to stop by pressing Hotkey again.
-				Break
+			If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
+				Sleep, 45
+        Break
+      }
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
@@ -634,7 +636,7 @@ VendorRoutineChaos(){
 			Return False
 		If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
 		{
-			RandomSleep(90,90)
+			RandomSleep(180,210)
 			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
 			RandomSleep(90,180)
 			ContinueFlag := True
@@ -803,58 +805,43 @@ VendorChaosRecipe(){
 	CheckRunning("Off")
 	Return True
 }
-PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
+
+CountChaosRecipe(){
 	Global RecipeArray
-	ShowUNID := False
+  Static TypeList := ["Chaos","Regal"]
+  Static SlotList := ["Body","Helmet","Gloves","Boots","Amulet","Ring","Belt","Two Hand","One Hand","Shield"]
 	Tally := {}
 	uTally := {}
-	For Slot, Items in RecipeArray.Chaos
-	{
-		For k, v in Items 
-		{
-			If !Tally[Slot]
-				Tally[Slot] := 0
-			Tally[Slot] += 1
-		}
-	}
-	For Slot, Items in RecipeArray.Regal
-	{
-		For k, v in Items 
-		{
-			If !Tally[Slot]
-				Tally[Slot] := 0
-			Tally[Slot] += 1
-		}
-	}
-	For Slot, Items in RecipeArray.uChaos
-	{
-		For k, v in Items 
-		{
-			If !uTally[Slot]
-				uTally[Slot] := 0
-			uTally[Slot] += 1
-		}
-	}
-	For Slot, Items in RecipeArray.uRegal
-	{
-		For k, v in Items 
-		{
-			If !uTally[Slot]
-				uTally[Slot] := 0
-			uTally[Slot] += 1
-		}
-	}
-	Notify("Chaos Recipe ID/UNID", Message . "`n"
-	. "Amulet: " . (Tally.Amulet?Tally.Amulet:0) . "/" . (uTally.Amulet?uTally.Amulet:0) . "`t"
-	. "Ring: " . (Tally.Ring?Tally.Ring:0) . "/" . (uTally.Ring?uTally.Ring:0) . "`n"
-	. "Belt: " . (Tally.Belt?Tally.Belt:0) . "/" . (uTally.Belt?uTally.Belt:0) . "`t`t"
-	. "Body: " . (Tally.Body?Tally.Body:0) . "/" . (uTally.Body?uTally.Body:0) . "`n"
-	. "Boots: " . (Tally.Boots?Tally.Boots:0) . "/" . (uTally.Boots?uTally.Boots:0) . "`t"
-	. "Gloves: " . (Tally.Gloves?Tally.Gloves:0) . "/" . (uTally.Gloves?uTally.Gloves:0) . "`n"
-	. "Helmet: " . (Tally.Helmet?Tally.Helmet:0) . "/" . (uTally.Helmet?uTally.Helmet:0) . "`t"
-	. "Shield: " . (Tally.Shield?Tally.Shield:0) . "/" . (uTally.Shield?uTally.Shield:0) . "`n"
-	. "One Hand: " . (Tally["One Hand"]?Tally["One Hand"]:0) . "/" . (uTally["One Hand"]?uTally["One Hand"]:0) . "`t"
-	. "Two Hand: " . (Tally["Two Hand"]?Tally["Two Hand"]:0) . "/" . (uTally["Two Hand"]?uTally["Two Hand"]:0) . "`n"
+  For k, SlotName in SlotList {
+    Tally[SlotName] := 0
+    uTally[SlotName] := 0
+  }
+  For k, TypeName in TypeList {
+    For Slot, Items in RecipeArray[TypeName]{
+      Tally[Slot] += getCount(Items)
+    }
+    For Slot, Items in RecipeArray["u" TypeName]{
+      uTally[Slot] += getCount(Items)
+    }
+  }
+  Return {"Tally":Tally,"uTally":uTally}
+}
+
+PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
+  CountObj := CountChaosRecipe()
+  Tally := CountObj.Tally
+  uTally := CountObj.uTally
+	Notify("Chaos Recipe ID/UNID", Message "`n"
+	. "Amulet: " Tally.Amulet "/" uTally.Amulet "`t"
+	. "Ring: " Tally.Ring "/" uTally.Ring "`n"
+	. "Belt: " Tally.Belt "/" uTally.Belt "`t`t"
+	. "Body: " Tally.Body "/" uTally.Body "`n"
+	. "Boots: " Tally.Boots "/" uTally.Boots "`t"
+	. "Gloves: " Tally.Gloves "/" uTally.Gloves "`n"
+	. "Helmet: " Tally.Helmet "/" uTally.Helmet "`t"
+	. "Shield: " Tally.Shield "/" uTally.Shield "`n"
+	. "One Hand: " Tally["One Hand"] "/" uTally["One Hand"] "`t"
+	. "Two Hand: " Tally["Two Hand"] "/" uTally["Two Hand"] "`n"
 	, (Duration != "False" ? Duration : 20))
 	Return
 }

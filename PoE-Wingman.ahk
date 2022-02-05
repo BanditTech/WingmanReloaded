@@ -1,4 +1,4 @@
-﻿Global VersionNumber := .14.04
+﻿Global VersionNumber := .15.00
 #Include, %A_ScriptDir%\lib\Header.ahk
 ;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
 #Include, %A_ScriptDir%\lib\RunAdmin.ahk
@@ -12,12 +12,12 @@ checkUpdate()
 Critical
 #Include, %A_ScriptDir%\lib\gui\MainMenu.ahk
 #Include, %A_ScriptDir%\lib\gui\ItemInfo.ahk
-DebugToggle()
 FirstScale()
 RestockMenu("Load")
 DBUpdateFirstRun()
 Critical, Off
 Tooltip,
+ActualTierCreator()
 #Include, %A_ScriptDir%\lib\gui\IngameOverlay.ahk
 If (ShowOnStart)
   MainMenu()

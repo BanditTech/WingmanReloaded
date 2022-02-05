@@ -29,6 +29,7 @@
 #Include, %A_ScriptDir%\lib\Tooltips.ahk
 #Include, %A_ScriptDir%\lib\TrayLabels.ahk
 #Include, %A_ScriptDir%\lib\Trigger.ahk
+#Include, %A_ScriptDir%\lib\DatabaseHelpers.ahk
 
 #Include, %A_ScriptDir%\lib\api\POE_RequestAccount.ahk
 #Include, %A_ScriptDir%\lib\api\POE_RequestStash.ahk
@@ -53,6 +54,7 @@
 #Include, %A_ScriptDir%\lib\gui\WR_Menu.ahk
 #Include, %A_ScriptDir%\lib\gui\CustomCraftingBase.ahk
 #Include, %A_ScriptDir%\lib\gui\CustomMapMods.ahk
+#Include, %A_ScriptDir%\lib\gui\ItemCrafting.ahk
 
 #Include, %A_ScriptDir%\lib\routine\AutoLevelGems.ahk
 #Include, %A_ScriptDir%\lib\routine\ChaosRecipe.ahk

@@ -34,14 +34,8 @@ GuiStatus(Fetch:="",SS:=1){
     POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
   } 
-  If (CurrentLocation = "The Rogue Harbour") {
-    POnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
-    OnVendor := (POnVendor=varOnVendorHeist?True:False)
-  } Else {
-    POnVendor := FindText.GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y)
-    OnVendor := (POnVendor=varOnVendor?True:False)
-  } 
-  
+  POnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+  OnVendor := (POnVendor=varOnVendor?True:(POnVendor=varOnVendorHeist?True:False))
 
   If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart||OnMetamorph||OnLocker))
     CheckXButton()

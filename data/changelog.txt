@@ -1,4 +1,76 @@
-﻿## Version .14.04 - Master version - November/18/2021
+﻿## Version .15.00 - Master version - February/05/2021
+Alpha changes are being merged into master branch
+
+Improvements
+  * New item crafting GUI and hotkey
+    * This is a work in progress, so please give feedback
+  * New menu for selecting crafting bases
+  * Map, Bases and Item crafting now uses Poedb.tw database
+  * More currency is available in restock selection
+  * Flasks and Gems are now in Affinity menu
+    * Use CLF groups if you wish to maintain the ability of separating your gem types
+    * There will be a special tab for exotic gems soon
+
+Bugfixes
+  * Vendor Accept position has been updated
+  * Now supports the new vendors, but no longer supports old vendor UI
+  * Currency positions updated in currency tab
+
+---
+
+## Version .14.0802 - Alpha version - February/04/2021
+Bugfixes
+  * Fix for vendor calibration
+  * Still needs seperate calibration of Rogue Harbour
+
+---
+
+## Version .14.0802 - Alpha version - February/04/2021
+Bugfixes
+  * Revert accidental find and replace in Rescale function
+  * This should fix issues with standard aspect ratio
+
+## Version .14.08 - Alpha version - February/04/2021
+Improvements
+  * All currency from the currency tab is now available as a restock option
+  
+Bugfixes
+  * Currency tab positions have been updated for all aspect ratio
+
+---
+
+## Version .14.07 - Alpha version - February/03/2021
+Improvements
+  * ItemCrafting now has many FailSafes, checking if base match or if you have select at least one affix on Mod Selector
+  * MapCrafting now use DB
+    * You only need to check the line and double click to change Weight or Mod Type as before
+
+Bugfixes
+  * You maybe need to manually remove .json files from your save folder if you are updating from lower versions
+
+---
+
+## Version .14.06 - Alpha version - February/02/2021
+Bugfixes
+  * Fix Reversed comparators for Item Crafting
+
+Improvements
+  * Add New Method Alt Aug Regal
+
+---
+
+## Version .14.05 - Alpha version - February/01/2021
+Improvements
+  * Add Affinities for Flask and Gem
+  * Crafting Bases are much easier to select and have a new option to auto increase item lvl as you take more itens
+  * Item Crafting BETA (This is a experimental feature, please use with care)
+    * This allow you to crafting itens using Alterations,Chaos,Alchemy and Scouring until hit mods you select in UI, plz report any bugs in GitHub or Discord Channel
+  * Clear Stash Management
+  * Using new Databases to feed Crafting Bases and Item Crafting, Map Crafting will use same model.
+
+---
+
+## Version .14.04 - Master version - November/18/2021
 Alpha Changes are merged into Master
 
 Bugfixes

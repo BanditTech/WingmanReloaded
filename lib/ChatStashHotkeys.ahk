@@ -36,97 +36,97 @@ UnRegisterHotkeys(){
 	global
 	Hotkey If, % fn1
 		Loop, 9
+	{
+		If 1Suffix%A_Index%
 		{
-			If 1Suffix%A_Index%
-			{
-				1bind%A_Index% := Func("FireHotkey").Bind("Enter","1",A_Index)
-				Hotkey,% "*" 1Suffix%A_Index%,% 1bind%A_Index%, off
-			}
+			1bind%A_Index% := Func("FireHotkey").Bind("Enter","1",A_Index)
+			Hotkey,% "*" 1Suffix%A_Index%,% 1bind%A_Index%, off
 		}
+	}
 	Hotkey If, % fn2
 		Loop, 9
+	{
+		If 2Suffix%A_Index%
 		{
-			If 2Suffix%A_Index%
-			{
-				2bind%A_Index% := Func("FireHotkey").Bind("CtrlEnter","2",A_Index)
-				Hotkey,% "*" 2Suffix%A_Index%,% 2bind%A_Index%, off
-			}
+			2bind%A_Index% := Func("FireHotkey").Bind("CtrlEnter","2",A_Index)
+			Hotkey,% "*" 2Suffix%A_Index%,% 2bind%A_Index%, off
 		}
+	}
 	Hotkey If, % fn3
 		Loop, 9
+	{
+		If stashSuffix%A_Index%
 		{
-			If stashSuffix%A_Index%
-			{
-				stashbind%A_Index% := Func("FireHotkey").Bind("Stash","stash", "Tab" A_Index)
-				Hotkey,% "*" stashSuffix%A_Index%,% stashbind%A_Index%, off
-			}
+			stashbind%A_Index% := Func("FireHotkey").Bind("Stash","stash", "Tab" A_Index)
+			Hotkey,% "*" stashSuffix%A_Index%,% stashbind%A_Index%, off
 		}
+	}
 	Return
 }
 ; HotkeyShouldFire - Functions to evaluate keystate
 1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
 	IfWinActive, ahk_group POEGameGroup
-		{
+	{
 		If (EnableChatHotkeys){
 			If ( 1Prefix1 && 1Prefix2 ){
 				If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( 1Prefix1 && !1Prefix2 ) {
 				If ( GetKeyState(1Prefix1) ) 
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( !1Prefix1 && 1Prefix2 ) {
 				If ( GetKeyState(1Prefix2) ) 
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( !1Prefix1 && !1Prefix2 ) {
 				return True
-				}
-			} 
-		}
-		Else {
-			Return False
-		}
+			}
+		} 
+	}
+	Else {
+		Return False
+	}
 }
 2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
 	IfWinActive, ahk_group POEGameGroup
-		{
+	{
 		If (EnableChatHotkeys){
 			If ( 2Prefix1 && 2Prefix2 ){
 				If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( 2Prefix1 && !2Prefix2 ) {
 				If ( GetKeyState(2Prefix1) ) 
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( !2Prefix1 && 2Prefix2 ) {
 				If ( GetKeyState(2Prefix2) ) 
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( !2Prefix1 && !2Prefix2 ) {
 				return True
-				}
 			}
+		}
 		Else
 			Return False 
-		}
+	}
 	Else {
-			Return False
-		}
+		Return False
+	}
 }
 stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 	IfWinActive, ahk_group POEGameGroup
@@ -137,28 +137,28 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( stashPrefix1 && !stashPrefix2 ) {
 				If ( GetKeyState(stashPrefix1) ) 
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( !stashPrefix1 && stashPrefix2 ) {
 				If ( GetKeyState(stashPrefix2) ) 
 					return True
 				Else
 					return False
-				}
+			}
 			Else If ( !stashPrefix1 && !stashPrefix2 ) {
 				return True
-				}
+			}
 		}
 		Else
 			Return False 
 	}
 	Else {
-			Return False
+		Return False
 	}
 }
 
@@ -196,16 +196,16 @@ FireHotkey(func:="CtrlEnter",TypePrefix:="2",SuffixNum:="1"){
 
 ; Reset Chat
 ResetChat(){
-  Send {Enter}{Up}{Escape}
-  return
+	Send {Enter}{Up}{Escape}
+	return
 }
 
 ; Grab Reply whisper recipient
 GrabRecipientName(){
 	CopyClip := Clipboard
-  Clipboard := ""
-  Send ^{Enter}^{A}^{C}{Escape}
-  ClipWait, 0
+	Clipboard := ""
+	Send ^{Enter}^{A}^{C}{Escape}
+	ClipWait, 0
 	Content := Clipboard
 	Clipboard := CopyClip
 	If (Content ~= "^@"){

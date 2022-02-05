@@ -1,17 +1,11 @@
-﻿Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     x610   y5     w13 h13
-Gui Add, Text,                     x515  y5,         Debug Messages:
-Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     x490   y5     w13 h13
-Gui Add, Text,         vYesTimeMS_t            x455  y5,         Logic:
-Gui Add, Checkbox,   vYesLocation Checked%YesLocation%  gUpdateDebug     x435   y5     w13 h13
-Gui Add, Text,         vYesLocation_t            x385  y5,         Location:
-
+﻿
 Gui, Add, StatusBar, vWR_Statusbar hwndWR_hStatusbar, %WR_Statusbar%
 SB_SetParts(220,220)
 SB_SetText("Logic Status", 1)
 SB_SetText("Location Status", 2)
 SB_SetText("Percentage not updated", 3)
 
-Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
+Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|Debug
 ; #Main Tab
 	Gui, Tab, Main
 	Gui, Font,
@@ -174,20 +168,27 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
 	Gui Add, Checkbox, gUpdateExtra  vYesGuiLastPosition Checked%YesGuiLastPosition%      xs        , Remember Last GUI Position?
 
 	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section x295 ym+20  w350 h90              ,Update Control
+	Gui,Add,GroupBox,Section x295 ym+20  w350 h130              ,Update Control
 	Gui,Font,Norm
 
-	Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 yp+15           , master|Alpha
+	Gui, Add, Text, xs+5 yp+20 , Wingman Reloaded  %VersionNumber% 
+	Gui Add, DropDownList, gUpdateExtra  vBranchName     w90   xs+5 y+5           , master|Alpha
 	GuiControl, ChooseString, BranchName                                                  , %BranchName%
 	Gui, Add, Text,       x+8 yp+3                                                        , Update Branch
 	Gui Add, DropDownList, gUpdateExtra  vScriptUpdateTimeType   xs+5 y+10  w90                  , Off|days|hours|minutes
 	GuiControl, ChooseString, ScriptUpdateTimeType                                        , %ScriptUpdateTimeType%
 	Gui Add, Edit, gUpdateExtra  vScriptUpdateTimeInterval  x+5   w40                     , %ScriptUpdateTimeInterval%
 	Gui, Add, Text,       x+8 yp+3                                   , Auto-check Update
-	Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%     xs+5 y+10              , Turn off Auto-Update?
+	Gui, Add, Button, hwndHWND xs+5 y+10, Force Update
+	Gui Add, Checkbox, gUpdateExtra  vAutoUpdateOff Checked%AutoUpdateOff%     x+7 yp+4              , Turn off Auto-Update?
+
+
+	f := Func("checkUpdate").Bind(True)
+	GuiControl, +g,% HWND,% f
+	f := ""
 
 	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section xs y+10  w350 h140                                                     , Game Setup
+	Gui,Add,GroupBox,Section xs y+20  w350 h140                                                     , Game Setup
 	Gui, Add, Text,          xs+5 yp+20                                                             , Aspect Ratio:
 	Gui,Font,Norm
 
@@ -290,7 +291,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
 	Gui Add, Text, hp x+5   yp+3,         Detonate Mines
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h430               xs+175   ym+25,       Tool Keybinds: 
+	Gui Add, GroupBox,    center w170 h450               xs+175   ym+25,       Tool Keybinds: 
 	Gui, Font
 
 	Gui,Add,Edit, section xp+5 yp+20   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
@@ -317,6 +318,8 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
 	Gui Add, Text,                     hp x+5   yp+3,         Chaos Recipe
 	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCraftBasic        ,%hotkeyCraftBasic%
 	Gui Add, Text,                     hp x+5   yp+3,         Basic Crafting
+	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyItemCrafting       ,%hotkeyItemCrafting%
+	Gui Add, Text,                     hp x+5   yp+3,         Item Crafting
 	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCtrlClicker        ,%hotkeyCtrlClicker%
 	Gui Add, Text,                     hp x+5   yp+3,         Ctrl Clicker
 	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyCtrlShiftClicker   ,%hotkeyCtrlShiftClicker%
@@ -352,8 +355,16 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys
 
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything    x295 y470  w150 h23,   Save Configuration
+	Gui, Add, Button, default gupdateEverything    x380 y470  w150 h23,   Save Configuration
 	Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
 
 	Gui, +LastFound +AlwaysOnTop
+; Debug Tab
+	Gui, Tab, Debug
+	Gui, Font, Bold s9 cBlack, Arial
+	Gui Add, GroupBox,  section  center w200 h100               xm+5   ym+25,         Debug Tooltips:
+	Gui, Font
 
+	Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     xs+20 ys+20, Show Debug Tooltips
+	Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     , Logic Tooltips
+	Gui Add, Checkbox,   vYesLocation Checked%YesLocation%  gUpdateDebug , Location Tooltips
