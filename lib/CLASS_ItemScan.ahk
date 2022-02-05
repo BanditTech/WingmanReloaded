@@ -1052,7 +1052,7 @@
 					{
 						If (This.HasAffix(vi)){
 							value := k-ki+1
-							This.Prop["ActualTier"Name] := value
+							This.Prop[Name] := value
 							break
 						}
 					}
