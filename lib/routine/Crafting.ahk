@@ -89,7 +89,7 @@ CraftingItemCaller(){
 
 ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"\(.+\)", "")
-	base1 := RegExReplace(base1,"Cobalt |Viridian |Crimson ", "")
+	base1 := RegExReplace(base1,"Cobalt Jewel|Viridian Jewel|Crimson Jewel", "Jewels")
 	base1 := RegExReplace(base1,"Ghastly Eye|Hypnotic Eye|Searching Eye|Murderous Eye", "Abyss")
 	base1 := RegExReplace(base1,"Staff", "Staves")
 	base1 := RegExReplace(base1,"Warstaff", "Warstaves")

@@ -116,8 +116,8 @@ Rescale(){
         InvGrid.SlotSpacing:=Round(GameH/(1080/2))
       }
       ;Auto Vendor Settings
-      WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1920/380))
-      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+      WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1920/410))
+      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/860))
       ;Detonate Mines
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1920/1542))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1920/1658))
