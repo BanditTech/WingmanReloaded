@@ -154,6 +154,8 @@ readFromFile(){
 	IniRead, StashTabYesDivination, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination, 0	
 	IniRead, StashTabGem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem, 1
 	IniRead, StashTabYesGem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem, 1
+	IniRead, StashTabFlask, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlask, 1
+	IniRead, StashTabYesFlask, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlask, 1
 	IniRead, StashTabFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment, 1
 	IniRead, StashTabYesFragment, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment, 0
 	IniRead, StashTabEssence, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence, 1
@@ -854,6 +856,8 @@ submit(){
 		IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination	
 		IniWrite, %StashTabGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem
 		IniWrite, %StashTabYesGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem
+		IniWrite, %StashTabFlask%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlask
+		IniWrite, %StashTabYesFlask%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlask
 		IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
 		IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
 		IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
