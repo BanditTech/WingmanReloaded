@@ -717,9 +717,9 @@ DivRoutine()
 					CtrlClick(Grid.X,Grid.Y)
 					RandomSleep(150,200)
 					LeftClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivTrade.Y)
-					Sleep, 40+(ClickLatency*15)
+					Sleep, 45+(ClickLatency*15)
 					CtrlClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivItem.Y)
-					Sleep, 40+(ClickLatency*15)
+					Sleep, 45+(ClickLatency*15)
 				}
 				Continue
 			}

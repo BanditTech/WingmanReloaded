@@ -3,9 +3,9 @@
 SwiftClick(x, y){
 	Log("SwiftClick: " x ", " y)
 	MouseMove, x, y  
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	return
 }
 SpamClick(Toggle:="",Modifier:=""){
@@ -24,17 +24,17 @@ SpamClick(Toggle:="",Modifier:=""){
 			Modifier := StrSplit(Modifier,",")
 		For k, mod in Modifier{
 			Send {%mod% Down}
-			Sleep, 40+(ClickLatency*15)
+			Sleep, 45+(ClickLatency*15)
 		}
 	}
 	While Spam {
 		Send {Click}
-		Sleep, 40+(ClickLatency*15)
+		Sleep, 45+(ClickLatency*15)
 	}
 	If (Modifier != "") {
 		For k, mod in Modifier{
 			Send {%mod% Up}
-			Sleep, 40+(ClickLatency*15)
+			Sleep, 45+(ClickLatency*15)
 		}
 	}
 }
@@ -43,9 +43,9 @@ LeftClick(x, y){
 	Log("Verbose","LeftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -54,9 +54,9 @@ RightClick(x, y){
 	Log("Verbose","RightClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click, Right}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -65,15 +65,15 @@ ShiftClick(x, y){
 	Log("Verbose","ShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Shift Down}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click, Down, x, y}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click, Up, x, y}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Shift Up}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -82,15 +82,15 @@ CtrlClick(x, y){
 	Log("Verbose","CtrlClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Ctrl Down}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click, Down, x, y}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click, Up, x, y}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Ctrl Up}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -99,15 +99,15 @@ CtrlShiftClick(x, y){
 	Log("Verbose","CtrlShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Ctrl Down}{Shift Down}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click, Down, x, y}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Click, Up, x, y}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	Send {Ctrl Up}{Shift Up}
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -126,9 +126,9 @@ ClipItem(x, y){
   Backup := Clipboard
   Clipboard := ""
   Item := ""
-  Sleep, 40+(ClipLatency*15)
+  Sleep, 45+(ClipLatency*15)
   MouseMove %x%, %y%
-  Sleep, 40+(ClipLatency*15)
+  Sleep, 45+(ClipLatency*15)
   Send ^!c
   ClipWait, 0.1
   If ErrorLevel
@@ -164,9 +164,9 @@ WisdomScroll(x, y){
 	Log("Currency","Applying Wisdom onto item at " x "," y)
 	XX := InventoryGridX[C], YY := InventoryGridY[R]
 	o := RandClick(XX,YY)
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	RightClick(o.X,o.Y)
-	Sleep, 40+(ClickLatency*15)
+	Sleep, 45+(ClickLatency*15)
 	LeftClick(x,y)
 	BlockInput, MouseMoveOff
 	return
