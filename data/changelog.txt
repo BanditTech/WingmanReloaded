@@ -1,4 +1,9 @@
-﻿## Version .14.08 - Alpha version - February/04/2021
+﻿## Version .14.0801 - Alpha version - February/04/2021
+Bugfixes
+  * Revert accidental find and replace in Rescale function
+  * This should fix issues with standard aspect ratio
+
+## Version .14.08 - Alpha version - February/04/2021
 Improvements
   * All currency from the currency tab is now available as a restock option
   
