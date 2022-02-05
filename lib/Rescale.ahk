@@ -339,7 +339,7 @@ Rescale(){
       ;Auto Vendor Settings
         ;380,820
       WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1440/380))
-      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/860))
       ;Detonate Mines
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1440/1178))
@@ -555,7 +555,7 @@ Rescale(){
       ;Auto Vendor Settings
       ;380,820
       WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(2560/380))
-      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/860))
       ;Detonate Mines
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(2560/2298))
@@ -997,7 +997,7 @@ Rescale(){
       ;Auto Vendor Settings
       ;380,820
       WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3840/1340))
-      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/820))
+      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1080/860))
       ;Detonate Mines
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3840/3462))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3840/3578))
@@ -1221,7 +1221,7 @@ Rescale(){
       ;Auto Vendor Settings
       ;270,800
       WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(1680/270))
-      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1050/800))
+      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1050/855))
       
       ;Detonate Mines
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1680/1310))
