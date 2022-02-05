@@ -575,8 +575,8 @@ CalibrationWizard(){
 				Exit
 			}
 			if WinActive(ahk_group POEGameGroup){
-				FindText.ScreenShot(), varOnVendor := FindText.GetColor(WR.loc.pixel.OnVendor.X,WR.loc.pixel.OnVendor.Y)
-				SampleTT .= "Vendor Trade Open took RGB color hex: " . varOnVendor . "  At coords x: " . WR.loc.pixel.OnVendor.X . " and y: " . WR.loc.pixel.OnVendor.Y . "`n"
+				FindText.ScreenShot(), varOnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+				SampleTT .= "Vendor Trade Open took RGB color hex: " . varOnVendor . "  At coords x: " . WR.loc.pixel.OnVendorHeist.X . " and y: " . WR.loc.pixel.OnVendorHeist.Y . "`n"
 			} else
 			MsgBox % "PoE Window is not active. `nRecalibrate of Vendor Trade Open didn't work"
 		}
