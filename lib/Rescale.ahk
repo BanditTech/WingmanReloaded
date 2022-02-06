@@ -1,4 +1,4 @@
-﻿; Rescale - Rescales values of the script to the user's resolution
+; Rescale - Rescales values of the script to the user's resolution
 Rescale(){
   Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR
   If checkActiveType()
@@ -795,127 +795,127 @@ Rescale(){
         InvGrid.Corners.Ritual.Y2:=GameY + Round(GameH/(1440/1058))
       }
       ;Auto Vendor Settings
-      WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3440/945))
-      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
+      WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3440/982))
+      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1440/1157))
       ;Detonate Mines
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3440/3090))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1440/1202))
       ;General Button
-      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(2580/250))
-      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(3440/320))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1440/190))
       ;Influence Button
-      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(2580/420))
-      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(3440/560))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1440/190))
       ;Wisdom
-      WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(2580/125))
-      WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))
+      WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3440/150))
+      WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1440/275))
       ;Portal
-      WR.loc.pixel.Portal.X:=GameX + Round(GameW/(2580/175))
-      WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1080/190))
+      WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3440/230))
+      WR.loc.pixel.Portal.Y:=GameY + Round(GameH/(1440/275))
       ; Blacksmith
-      WR.loc.pixel.Blacksmith.X:=GameX + Round(GameW/(2580/380))
-      WR.loc.pixel.Blacksmith.Y:=GameY + Round(GameH/(1080/202))
+      WR.loc.pixel.Blacksmith.X:=GameX + Round(GameW/(3440/510))
+      WR.loc.pixel.Blacksmith.Y:=GameY + Round(GameH/(1440/270))
       ; Armourer
-      WR.loc.pixel.Armourer.X:=GameX + Round(GameW/(2580/432))
-      WR.loc.pixel.Armourer.Y:=GameY + Round(GameH/(1080/199))
+      WR.loc.pixel.Armourer.X:=GameX + Round(GameW/(3440/580))
+      WR.loc.pixel.Armourer.Y:=GameY + Round(GameH/(1440/275))
       ; Glassblower
-      WR.loc.pixel.Glassblower.X:=GameX + Round(GameW/(2580/490))
-      WR.loc.pixel.Glassblower.Y:=GameY + Round(GameH/(1080/200))
+      WR.loc.pixel.Glassblower.X:=GameX + Round(GameW/(3440/660))
+      WR.loc.pixel.Glassblower.Y:=GameY + Round(GameH/(1440/275))
       ; Gemcutter
-      WR.loc.pixel.Gemcutter.X:=GameX + Round(GameW/(2580/550))
-      WR.loc.pixel.Gemcutter.Y:=GameY + Round(GameH/(1080/201))
+      WR.loc.pixel.Gemcutter.X:=GameX + Round(GameW/(3440/735))
+      WR.loc.pixel.Gemcutter.Y:=GameY + Round(GameH/(1440/275))
       ; Chisel
-      WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(2580/606))
-      WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1080/200))
+      WR.loc.pixel.Chisel.X:=GameX + Round(GameW/(3440/810))
+      WR.loc.pixel.Chisel.Y:=GameY + Round(GameH/(1440/275))
       ; Transmutation
-      WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(2580/53))
-      WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1080/272))	
+      WR.loc.pixel.Transmutation.X:=GameX + Round(GameW/(3440/75))
+      WR.loc.pixel.Transmutation.Y:=GameY + Round(GameH/(1440/375))	
       ; Alteration
-      WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(2580/113))
-      WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1080/272))
+      WR.loc.pixel.Alteration.X:=GameX + Round(GameW/(3440/150))
+      WR.loc.pixel.Alteration.Y:=GameY + Round(GameH/(1440/375))
       ; Annulment
-      WR.loc.pixel.Annulment.X:=GameX + Round(GameW/(2580/166))
-      WR.loc.pixel.Annulment.Y:=GameY + Round(GameH/(1080/272))
+      WR.loc.pixel.Annulment.X:=GameX + Round(GameW/(3440/230))
+      WR.loc.pixel.Annulment.Y:=GameY + Round(GameH/(1440/375))
       ; Chance
-      WR.loc.pixel.Chance.X:=GameX + Round(GameW/(2580/226))
-      WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1080/272))
+      WR.loc.pixel.Chance.X:=GameX + Round(GameW/(3440/300))
+      WR.loc.pixel.Chance.Y:=GameY + Round(GameH/(1440/375))
       ; Regal
-      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(2580/434))
-      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1080/272))
+      WR.loc.pixel.Regal.X:=GameX + Round(GameW/(3440/585))
+      WR.loc.pixel.Regal.Y:=GameY + Round(GameH/(1440/370))
       ; Alchemy
-      WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(2580/490))
-      WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1080/272))
+      WR.loc.pixel.Alchemy.X:=GameX + Round(GameW/(3440/660))
+      WR.loc.pixel.Alchemy.Y:=GameY + Round(GameH/(1440/370))
       ; Chaos
-      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(2580/548))
-      WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1080/272))
+      WR.loc.pixel.Chaos.X:=GameX + Round(GameW/(3440/735))
+      WR.loc.pixel.Chaos.Y:=GameY + Round(GameH/(1440/370))
       ; Veiled
-      WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(2580/605))
-      WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1080/272))
+      WR.loc.pixel.Veiled.X:=GameX + Round(GameW/(3440/810))
+      WR.loc.pixel.Veiled.Y:=GameY + Round(GameH/(1440/370))
 
       ; Augmentation
-      WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(2580/225))
-      WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1080/327))
+      WR.loc.pixel.Augmentation.X:=GameX + Round(GameW/(3440/305))
+      WR.loc.pixel.Augmentation.Y:=GameY + Round(GameH/(1440/450))
       ; Divine
-      WR.loc.pixel.Divine.X:=GameX + Round(GameW/(2580/607))
-      WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
+      WR.loc.pixel.Divine.X:=GameX + Round(GameW/(3440/810))
+      WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1440/450))
 
       ; Jeweler
-      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(2580/112))
-      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
+      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(3440/150))
+      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1440/540))
       ; Fusing
-      WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(2580/167))
-      WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/396))
+      WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(3440/225))
+      WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1440/540))
       ; Chromatic
-      WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2580/226))
-      WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/396))
+      WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3440/305))
+      WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1440/540))
       ; Awakened
-      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(2580/436))
-      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/396))
+      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(3440/580))
+      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1440/535))
       ; Elevated
-      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(2580/493))
-      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1080/396))
+      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(3440/660))
+      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1440/535))
       ; Harbinger
-      WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(2580/548))
-      WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
+      WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(3440/735))
+      WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1440/535))
       ; Horizon
-      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(2580/605))
-      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1080/396))
+      WR.loc.pixel.Horizon.X:=GameX + Round(GameW/(3440/810))
+      WR.loc.pixel.Horizon.Y:=GameY + Round(GameH/(1440/535))
 
       ; Enkindling
-      WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(2580/54))
-      WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1080/453))
+      WR.loc.pixel.Enkindling.X:=GameX + Round(GameW/(3440/75))
+      WR.loc.pixel.Enkindling.Y:=GameY + Round(GameH/(1440/612))
       ; Ancient
-      WR.loc.pixel.Ancient.X:=GameX + Round(GameW/(2580/113))
-      WR.loc.pixel.Ancient.Y:=GameY + Round(GameH/(1080/454))
+      WR.loc.pixel.Ancient.X:=GameX + Round(GameW/(3440/150))
+      WR.loc.pixel.Ancient.Y:=GameY + Round(GameH/(1440/612))
       ; Binding
-      WR.loc.pixel.Binding.X:=GameX + Round(GameW/(2580/168))
-      WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1080/451))
+      WR.loc.pixel.Binding.X:=GameX + Round(GameW/(3440/227))
+      WR.loc.pixel.Binding.Y:=GameY + Round(GameH/(1440/612))
       ; Engineer
-      WR.loc.pixel.Engineer.X:=GameX + Round(GameW/(2580/225))
-      WR.loc.pixel.Engineer.Y:=GameY + Round(GameH/(1080/451))
+      WR.loc.pixel.Engineer.X:=GameX + Round(GameW/(3440/604))
+      WR.loc.pixel.Engineer.Y:=GameY + Round(GameH/(1440/612))
       ; Regret
-      WR.loc.pixel.Regret.X:=GameX + Round(GameW/(2580/436))
-      WR.loc.pixel.Regret.Y:=GameY + Round(GameH/(1080/451))
+      WR.loc.pixel.Regret.X:=GameX + Round(GameW/(3440/583))
+      WR.loc.pixel.Regret.Y:=GameY + Round(GameH/(1440/612))
       ; Unmaking
-      WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(2580/494))
+      WR.loc.pixel.Unmaking.X:=GameX + Round(GameW/(2580/494)) ; Don't have any, can't check
       WR.loc.pixel.Unmaking.Y:=GameY + Round(GameH/(1080/451))
 
       ; Instilling
-      WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(2580/57))
-      WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1080/509))
+      WR.loc.pixel.Instilling.X:=GameX + Round(GameW/(3440/75))
+      WR.loc.pixel.Instilling.Y:=GameY + Round(GameH/(1440/687))
       ; Scouring
-      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(2580/435))
-      WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1080/508))
+      WR.loc.pixel.Scouring.X:=GameX + Round(GameW/(3440/583))
+      WR.loc.pixel.Scouring.Y:=GameY + Round(GameH/(1440/687))
       ; Sacred
-      WR.loc.pixel.Sacred.X:=GameX + Round(GameW/(2580/494))
+      WR.loc.pixel.Sacred.X:=GameX + Round(GameW/(2580/494)) ; Don't have any, can't check
       WR.loc.pixel.Sacred.Y:=GameY + Round(GameH/(1080/509))
       ; Blessed
-      WR.loc.pixel.Blessed.X:=GameX + Round(GameW/(2580/550))
-      WR.loc.pixel.Blessed.Y:=GameY + Round(GameH/(1080/508))
+      WR.loc.pixel.Blessed.X:=GameX + Round(GameW/(3440/735))
+      WR.loc.pixel.Blessed.Y:=GameY + Round(GameH/(1440/687))
       ; Vaal
-      WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(2580/608))
-      WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1080/510))
+      WR.loc.pixel.Vaal.X:=GameX + Round(GameW/(3440/811))
+      WR.loc.pixel.Vaal.Y:=GameY + Round(GameH/(1440/687))
       ;Scrolls in currency tab
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3440/150))
       WR.loc.pixel.Portal.X:=GameX + Round(GameW/(3440/235))
@@ -936,14 +936,14 @@ Rescale(){
       WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (3440 / 448))
       WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
       ;Status Check OnVendor
-      WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
-      WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
+      WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1282))
+      WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 263))
       ;Status Check OnVendorHeist
       WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       ;Status Check OnDiv
-      WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
-      WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
+      WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 1275))
+      WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 200))
       ;Status Check OnLeft
       WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
       WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
@@ -960,8 +960,8 @@ Rescale(){
       WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
       WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
       ;Divination Y locations
-      WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
-      WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
+      WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1440 / 980))
+      WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1440 / 750))
     }
     Else If (ResolutionScale="UltraWide") {
       ; Item Inventory Grid
