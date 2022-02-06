@@ -123,6 +123,12 @@ Rescale(){
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1920/1658))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
       ;Currency
+      ;General Button
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(1920/250))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      ;Influence Button
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(1920/420))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
       ;Wisdom
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1920/125))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))
@@ -344,6 +350,12 @@ Rescale(){
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(1440/1062))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(1440/1178))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
+      ;General Button
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(1440/250))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      ;Influence Button
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(1440/420))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
       ;Wisdom
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1440/125))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))
@@ -560,6 +572,12 @@ Rescale(){
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(2560/2185))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(2560/2298))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
+      ;General Button
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(2560/250))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      ;Influence Button
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(2560/420))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
       ;Wisdom
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(2560/125))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))
@@ -784,6 +802,12 @@ Rescale(){
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3440/3090))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1440/1202))
+      ;General Button
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(2580/250))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      ;Influence Button
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(2580/420))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
       ;Wisdom
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(2580/125))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))
@@ -1003,6 +1027,12 @@ Rescale(){
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3840/3578))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1080/901))
       ;Currency
+      ;General Button
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(3840/250))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      ;Influence Button
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(3840/420))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
       ;Wisdom
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(3840/125))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))
@@ -1229,6 +1259,12 @@ Rescale(){
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1050/880))
       
       ;Currency
+      ;General Button
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(1728/250))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      ;Influence Button
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(1728/420))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
       ;Wisdom
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(1728/125))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))

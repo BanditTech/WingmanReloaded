@@ -6,6 +6,7 @@ Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
+,"CurrencyGeneral","CurrencyInfluence"
 , "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
 ,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"
 ,"Augmentation","Divine"

@@ -858,6 +858,7 @@ RunRestock(){
 					StockY := v.CustomY
 				} Else {
 					MoveStash(StashTabCurrency)
+					LeftClick(WR.loc.pixel.CurrencyGeneral.X, WR.loc.pixel.CurrencyGeneral.Y)
 					StockX := WR.loc.pixel[v.RestockName].X
 					StockY := WR.loc.pixel[v.RestockName].Y
 				}
