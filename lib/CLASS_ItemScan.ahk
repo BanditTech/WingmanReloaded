@@ -2824,21 +2824,24 @@ MatchCraftingBases(){
 	If (This.Prop.Rarity_Digit == 4 || This.Prop.Corrupted)
 		Return False
 	update := false
-	for k,v in WR.CustomCraftingBases.Bases
+	for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
 	{
-		if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
+		for k,v in WR.CustomCraftingBases[vi]
 		{
-			This.Prop.CraftingBase := v.BaseName
-			if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
-				This.Prop.WantedCraftingBase := True
-				if(This.Prop.ItemLevel < 85 && v.ILvL < This.Prop.ItemLevel){
-					v.ILvL := This.Prop.ItemLevel
-					update := True	
+			if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
+			{
+				This.Prop.CraftingBase := v.BaseName
+				if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
+					This.Prop.WantedCraftingBase := True
+					if(This.Prop.ItemLevel < 85 && v.ILvL < This.Prop.ItemLevel){
+						v.ILvL := This.Prop.ItemLevel
+						update := True	
+					}
+				}else if(!YesCraftingBaseAutoILvLUP){
+					This.Prop.WantedCraftingBase := True
 				}
-			}else if(!YesCraftingBaseAutoILvLUP){
-				This.Prop.WantedCraftingBase := True
+				This.Prop.CraftingBaseHigherILvLFound := v.ILvL
 			}
-			This.Prop.CraftingBaseHigherILvLFound := v.ILvL
 		}
 	}
 

@@ -84,10 +84,13 @@ WR.String.General:={"OHB":"|<OHB_Bar>0x241814@0.99$106.Tzzzzzzzzzzzzzzzzu"
 	,"Xbutton":"|<1080 X Button>*43$12.0307sDwSDwDs7k7sDwSSwTsDk7U"
 	,"HeistLocker":"|<1080 Locker>*90$59.7zzzzzzzzzDzzzzzzzzyTyTyTDTzzwzkDk4QE60tz6D6AlnANnwSASt7bslbtwNzkTDlXDnsnzVy3XCTblbz1w70QzDX7yFty1tyDCDwXnwFnaASCNXbslUA1y1nX0llzyTzDzzzzy"}
 
-WR.CustomCraftingBases.Bases := []
 
 WR.CustomMapMods.MapMods := []
 
+for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
+{
+	WR.CustomCraftingBases[v] := []
+}
 
 
 for k,v in PoeDBAPI

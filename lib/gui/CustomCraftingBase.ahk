@@ -1,9 +1,7 @@
 ﻿; Wingman Crafting Labels - By DanMarzola
 
-Global MinILvLFromSettings := 68
-RowNumber := 0
-
 RefreshBaseList(type){
+  CraftingBaseTypeSelector := type
   For k, v in Bases
   {
     if(type = "str_armour"){
@@ -54,7 +52,7 @@ RefreshBaseList(type){
   {
     Index := A_Index
     LV_GetText(OutputVar, A_Index , 2)
-    For k, v in WR.CustomCraftingBases.Bases{
+    For k, v in WR.CustomCraftingBases[type]{
       if (v.BaseName == OutputVar){
         LV_Modify(Index,"Check",,,v.ILvL)
       }
@@ -207,47 +205,25 @@ ResetCraftingBase:
   {
     LV_Modify(A_Index,"-Check")
   }
+  WR.CustomCraftingBases[CraftingBaseTypeSelector] := []
+  Settings("CustomCraftingBases","Save")
 Return
 
 SaveCraftingBase:
-  update:=false
   RowNumber := 0
-  RowList := []
-  ;Get All Checked Rows
+  WR.CustomCraftingBases[CraftingBaseTypeSelector] := []
   Loop
   {
     RowNumber := LV_GetNext(RowNumber,"C")
     if not RowNumber
       break
-    RowList.Push(RowNumber)
+    LV_GetText(BaseName, RowNumber,2)
+    aux:= {"BaseName":BaseName,"ILvL":"0"}
+    WR.CustomCraftingBases[CraftingBaseTypeSelector].Push(aux)
   }
-  ;Save Logic
-  Loop % LV_GetCount()
-  {
-    LV_GetText(BaseName, A_Index,2)
-    If(!HasBase(BaseName) && IndexOf(A_Index,RowList)){
-      update:=true
-      aux:= {"BaseName":BaseName,"ILvL":"0"}
-      WR.CustomCraftingBases.Bases.Push(aux)
-    }Else If(aux:=HasBase(BaseName) && !IndexOf(A_Index,RowList)){
-      update:=true
-      WR.CustomCraftingBases.Bases.RemoveAt(aux)
-    }
-  }
-  if(update){
-    Settings("CustomCraftingBases","Save")
-  }
+  Settings("CustomCraftingBases","Save")
+
 Return
-
-HasBase(Base){
-  for k, v in WR.CustomCraftingBases.Bases{
-    if (v.BaseName == Base){
-      return k
-    }
-  }
-return False
-}
-
 
 ;; Test Function to Feed Crafting Base Obj
 CraftingBasesRequest(endAtRefresh := 0){
