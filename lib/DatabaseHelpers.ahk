@@ -18,14 +18,14 @@ ActualTierCreator()
                 AffixWRLine := FirstLineToWRFormat(v["str"])
                 If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ActualTierNameJSON))
                 {
-                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii]))
+                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii],v["ModGenerationTypeID"]))
                     {
                         WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
                         WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
                     }
                     Else
                     {
-                        aux := {"ActualTierName":ActualTierName,"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
+                        aux := {"ActualTierName":ActualTierName,"ModGenerationTypeID":v["ModGenerationTypeID"],"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
                         WR.ActualTier[vii].Push(aux)
                     }
                 }
@@ -40,10 +40,10 @@ ActualTierCreator()
     Return
 }
 
-CheckAffixWR(Line,Obj){
+CheckAffixWR(Line,Obj,ModGenerationTypeID){
     for k , v in Obj
     {
-        If(v["AffixWRLine"] == Line){
+        If(v["AffixWRLine"] == Line && ModGenerationTypeID == v["ModGenerationTypeID"]){
             Return k
         }
     }
