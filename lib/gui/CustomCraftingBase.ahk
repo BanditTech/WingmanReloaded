@@ -218,7 +218,7 @@ SaveCraftingBase:
     if not RowNumber
       break
     LV_GetText(BaseName, RowNumber,2)
-    aux:= {"BaseName":BaseName,"ILvL":"0"}
+    aux:= {"BaseName":BaseName,"ILvL":"0","Quant":"0"}
     WR.CustomCraftingBases[CraftingBaseTypeSelector].Push(aux)
   }
   Settings("CustomCraftingBases","Save")
