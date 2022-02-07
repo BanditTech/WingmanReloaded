@@ -795,18 +795,18 @@ Rescale(){
         InvGrid.Corners.Ritual.Y2:=GameY + Round(GameH/(1440/1058))
       }
       ;Auto Vendor Settings
-      WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3440/945))
-      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1440/1090))
+      WR.loc.pixel.VendorAccept.X:=GameX + Round(GameW/(3440/982))
+      WR.loc.pixel.VendorAccept.Y:=GameY + Round(GameH/(1440/1157))
       ;Detonate Mines
       WR.loc.pixel.DetonateDelve.X:=GameX + Round(GameW/(3440/2934))
       WR.loc.pixel.Detonate.X:=GameX + Round(GameW/(3440/3090))
       WR.loc.pixel.Detonate.Y:=GameY + Round(GameH/(1440/1202))
       ;General Button
-      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(2580/250))
-      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1080/148))
+      WR.loc.pixel.CurrencyGeneral.X:=GameX + Round(GameW/(3440/320))
+      WR.loc.pixel.CurrencyGeneral.Y:=GameY + Round(GameH/(1440/190))
       ;Influence Button
-      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(2580/420))
-      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1080/148))
+      WR.loc.pixel.CurrencyInfluence.X:=GameX + Round(GameW/(3440/560))
+      WR.loc.pixel.CurrencyInfluence.Y:=GameY + Round(GameH/(1440/190))
       ;Wisdom
       WR.loc.pixel.Wisdom.X:=GameX + Round(GameW/(2580/125))
       WR.loc.pixel.Wisdom.Y:=GameY + Round(GameH/(1080/190))
@@ -936,14 +936,14 @@ Rescale(){
       WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (3440 / 448))
       WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1440 / 42))
       ;Status Check OnVendor
-      WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1264))
-      WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 146))
+      WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (3440 / 1282))
+      WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1440 / 263))
       ;Status Check OnVendorHeist
       WR.loc.pixel.OnVendorHeist.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnVendorHeist.Y:=GameY + Round(GameH / ( 1080 / 183))
       ;Status Check OnDiv
-      WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 822))
-      WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 181))
+      WR.loc.pixel.OnDiv.X:=GameX + Round(GameW / (3440 / 1275))
+      WR.loc.pixel.OnDiv.Y:=GameY + Round(GameH / ( 1440 / 200))
       ;Status Check OnLeft
       WR.loc.pixel.OnLeft.X:=GameX + Round(GameW / (3440 / 365))
       WR.loc.pixel.OnLeft.Y:=GameY + Round(GameH / ( 1440 / 90))
@@ -960,8 +960,8 @@ Rescale(){
       WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
       WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
       ;Divination Y locations
-      WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1440 / 983))
-      WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1440 / 805))
+      WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1440 / 980))
+      WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1440 / 750))
     }
     Else If (ResolutionScale="UltraWide") {
       ; Item Inventory Grid
