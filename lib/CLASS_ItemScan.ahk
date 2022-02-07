@@ -36,6 +36,18 @@
 			{
 				If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
 					This.Data.Blocks.FlavorText := SVal
+				Else If (SVal ~= "^{ Searing Exarch"){
+					This.Prop.IsInfluenceItem := True
+					This.Prop.Influence := "Searing Exarch"
+					This.Prop.HasImplicit := True
+					This.Data.Blocks.Implicit := SVal
+				}
+				Else If (SVal ~= "^{ Eater of Worlds"){
+					This.Prop.IsInfluenceItem := True
+					This.Prop.Influence := "Eater of Worlds"
+					This.Prop.HasImplicit := True
+					This.Data.Blocks.Implicit := SVal
+				}
 				Else If (SVal ~= "\(implicit\)$"){
 					This.Prop.HasImplicit := True
 					This.Data.Blocks.Implicit := SVal
