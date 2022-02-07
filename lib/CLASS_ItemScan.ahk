@@ -2833,7 +2833,7 @@ MatchCraftingBases(){
 				This.Prop.CraftingBase := v.BaseName
 				if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
 					This.Prop.WantedCraftingBase := True
-					if(This.Prop.ItemLevel < 85 && v.ILvL < This.Prop.ItemLevel){
+					if(This.Prop.ItemLevel < 87 && v.ILvL < This.Prop.ItemLevel){
 						v.ILvL := This.Prop.ItemLevel
 						update := True	
 					}
