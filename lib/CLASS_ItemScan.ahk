@@ -36,18 +36,6 @@
 			{
 				If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
 					This.Data.Blocks.FlavorText := SVal
-				Else If (SVal ~= "^{ Searing Exarch"){
-					This.Prop.IsInfluenceItem := True
-					This.Prop.Influence := "Searing Exarch"
-					This.Prop.HasImplicit := True
-					This.Data.Blocks.Implicit := SVal
-				}
-				Else If (SVal ~= "^{ Eater of Worlds"){
-					This.Prop.IsInfluenceItem := True
-					This.Prop.Influence := "Eater of Worlds"
-					This.Prop.HasImplicit := True
-					This.Data.Blocks.Implicit := SVal
-				}
 				Else If (SVal ~= "\(implicit\)$"){
 					This.Prop.HasImplicit := True
 					This.Data.Blocks.Implicit := SVal
@@ -112,6 +100,17 @@
 					This.Prop.ClusterSkills += 1
 				If InStr(k, "Added Small Passive Skills also grant:")
 					This.Prop.ClusterSmall += 1
+			}
+		}
+		If (This.Prop.HasImplicit) {
+			Static Tiers := {"Lesser":1,"Greater":2,"Grand":3,"Exceptional":4,"ReplaceWithTier5Name":5,"Perfect":6}
+			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", RxMatch) {
+				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
+				This.Prop.EldritchImplicit := True
+			}
+			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Eater of Worlds Implicit Modifier \((.*?)\)", RxMatch){
+				This.Prop.TierImplicitEater := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
+				This.Prop.EldritchImplicit := True
 			}
 		}
 	}
