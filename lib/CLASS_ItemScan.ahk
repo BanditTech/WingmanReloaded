@@ -107,10 +107,14 @@
 			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", RxMatch) {
 				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
+				This.Prop.IsInfluenceItem := True
+				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Searing Exarch"
 			}
 			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Eater of Worlds Implicit Modifier \((.*?)\)", RxMatch){
 				This.Prop.TierImplicitEater := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
+				This.Prop.IsInfluenceItem := True
+				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Eater of Worlds"
 			}
 		}
 	}
