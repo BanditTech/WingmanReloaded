@@ -2835,7 +2835,7 @@
 		}
 		Return True
 	}
-	MatchCraftingBases(){
+	MatchCraftingBases(Flag:=false){
 		If (This.Prop.Rarity_Digit == 4 || This.Prop.Corrupted)
 			Return False
 		update := false
@@ -2852,7 +2852,11 @@
 							v.ILvL := This.Prop.ItemLevel
 							update := True	
 						}
-					}else if(!YesCraftingBaseAutoILvLUP){
+						If(Flag){
+							v.Quant++
+							update := true
+						}
+					}Else If(!YesCraftingBaseAutoILvLUP){
 						This.Prop.WantedCraftingBase := True
 					}
 					This.Prop.CraftingBaseHigherILvLFound := v.ILvL

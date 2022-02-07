@@ -63,7 +63,7 @@ class ItemBuild extends ItemScan
 		This.MatchAffixes(This.Data.Blocks.Affix)
 		This.MatchBase2Slot()
 		This.MatchChaosRegal()
-		This.MatchCraftingBases()
+		This.MatchCraftingBases(True)
 	}
 	MatchBaseType(){
 		For k, v in Bases

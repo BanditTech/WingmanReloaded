@@ -230,17 +230,18 @@ CraftingBasesRequest(endAtRefresh := 0){
   If (AccountNameSTR = "")
     AccountNameSTR := POE_RequestAccount().accountName
 
-  If(YesCraftingBaseAutoUpdate || YesCraftingBaseAutoUpdateOnStart)
+  Object := POE_RequestStash(StashTabCrafting,0)
+
+  For k, v in Object.items
   {
-    Object := POE_RequestStash(StashTabCrafting,0)
-  }Else{
-    Return
-  }
-  For k, v in Object
-  {
-    For i, content in Object[k].items
-    {
-      item := new ItemBuild(content,Object[k].quadLayout)
-    }
+    item := new ItemBuild(v,Object.quadLayout)
   }
 }
+
+ClearQuantCraftingBase(){
+		for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]{
+			for k,v in WR.CustomCraftingBases[vi]{
+				v.Quant:=0
+			}
+		}
+	}
