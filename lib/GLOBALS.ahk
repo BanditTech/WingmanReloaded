@@ -749,6 +749,7 @@ Global StashTabYesUniqueRing := 1
 Global StashTabYesUniqueDump := 1
 
 ; Crafting Bases Options
+Global CraftingBaseLastObj
 Global CraftingBaseTypeSelector
 Global YesStashBasesAboveIlvl := True
 Global StashBasesAboveIlvl := True

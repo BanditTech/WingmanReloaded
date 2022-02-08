@@ -90,8 +90,6 @@
 		If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off") ){
 			This.Prop.PredictPrice := This.PredictPrice()
 		}
-		This.Prop.StashReturnVal := This.MatchStashManagement(false)
-		; This.FuckingSugoiFreeMate()
 		If (This.Prop.ClusterJewel) {
 			This.Prop.ClusterSkills := 0
 			This.Prop.ClusterSmall := 0
@@ -117,6 +115,7 @@
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Eater of Worlds"
 			}
 		}
+		This.Prop.StashReturnVal := This.MatchStashManagement(false)
 	}
 	; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
 	PredictPrice(Switch:="")
@@ -2510,7 +2509,7 @@
 			, "Blessing of Xoph":0
 			, "Blessing of Uul-Netol":0
 			, "Blessing of Tul":0
-		, "Blessing of Esh":0 }
+			, "Blessing of Esh":0 }
 		If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
 		{
 			If (StashTabYesCurrency > 1 && !UnsupportedAffinityCurrencies.HasKey(This.Prop.ItemName))
@@ -2521,7 +2520,7 @@
 		Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap)
 			sendstash := StashTabNinjaPrice
 		Else If (This.Prop.Expedition)
-		Return -2
+			Return -2
 		Else If (This.Prop.Heist)
 			Return -2
 		Else If (This.Prop.Incubator)
@@ -2846,25 +2845,26 @@
 				if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
 				{
 					This.Prop.CraftingBase := v.BaseName
-					if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP){
+					if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP && v.Quant < 4){
 						This.Prop.WantedCraftingBase := True
-						if(This.Prop.ItemLevel < 85 && v.ILvL < This.Prop.ItemLevel){
+						if(v.ILvL < This.Prop.ItemLevel){
 							v.ILvL := This.Prop.ItemLevel
-							update := True	
+							update := True
 						}
 						If(Flag){
 							v.Quant++
 							update := true
 						}
-					}Else If(!YesCraftingBaseAutoILvLUP){
+					}Else If(!YesCraftingBaseAutoILvLUP && v.Quant < 4){
 						This.Prop.WantedCraftingBase := True
 					}
 					This.Prop.CraftingBaseHigherILvLFound := v.ILvL
+					This.Prop.CraftingBaseQuantFound := v.Quant
 				}
 			}
 		}
 
-		if(update){
+		If(update){
 			Settings("CustomCraftingBases","Save")
 		}
 

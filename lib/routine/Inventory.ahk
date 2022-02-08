@@ -398,7 +398,6 @@ StashRoutine()
 	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse away for Screenshot
 	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
-	ClearQuantCraftingBase()
 	CraftingBasesRequest()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
