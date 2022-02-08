@@ -510,16 +510,21 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font,
       Gui, Inventory: Add, Button, gCraftingBaseWeaponUI xs+10 ys+20 w120, Edit Weapon Bases
 
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Quiver Bases
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Button, gCraftingBaseQuiverUI xs+10 ys+20 w120, Edit Quiver Bases
+
       ; Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w240 h150 section xm+5 ym+250, Options
+      Gui, Inventory: Add, GroupBox, w310 h150 section xm+5 ym+250, Options
       Gui, Inventory: Font,
       ;Above ILvL
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashBasesAboveIlvl Checked%YesStashBasesAboveIlvl% xs+8 ys+20 , Above Ilvl:
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vStashBasesAboveIlvl , %StashBasesAboveIlvl%
       ;Update from API
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Update ILvL and How Many from Each Bases in Crafting Stash?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Update ILvL and How Many from Each Bases?
       ;Max Number     
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseLimitBases Checked%YesCraftingBaseLimitBases% xs+8 y+8 , Max Number of Each Bases (At Max ILvL Found)
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40

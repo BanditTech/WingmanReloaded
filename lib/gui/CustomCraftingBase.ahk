@@ -30,19 +30,23 @@ RefreshBaseList(type){
       }
     }else if(type = "amulet"){
       If (IndexOf(type,v["tags"]) && !IndexOf("talisman",v["tags"])){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]))
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),v["implicits"][1])
       }
     }else if(type = "belt"){
       If (IndexOf(type,v["tags"])){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]))
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),v["implicits"][1])
       }
     }else if(type = "ring"){
       If (IndexOf(type,v["tags"])){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]))
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),v["implicits"][1])
       }
     }else if(type = "weapon"){
       If (IndexOf(type,v["tags"])){
-        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]))
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),v["implicits"][1])
+      }
+    }else if(type = "quiver"){
+      If (IndexOf(type,v["tags"])){
+        LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),v["implicits"][1])
       }
     }
   }
@@ -160,7 +164,7 @@ CraftingBaseAMULETUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level|Implicit
   RefreshBaseList("amulet")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -171,7 +175,7 @@ CraftingBaseRINGUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level|Implicit
   RefreshBaseList("ring")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -182,7 +186,7 @@ CraftingBaseBELTUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level|Implicit
   RefreshBaseList("belt")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
@@ -193,11 +197,22 @@ CraftingBaseWEAPONUI:
   Gui, CustomCraftingBaseUI1: New
   Gui, CustomCraftingBaseUI1: Default
   Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level|Implicit
   RefreshBaseList("weapon")
   Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
   Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
   Gui, CustomCraftingBaseUI1: Show, , Belt Bases
+Return
+
+CraftingBaseQUIVERUI:
+  Gui, CustomCraftingBaseUI1: New
+  Gui, CustomCraftingBaseUI1: Default
+  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
+  Gui, CustomCraftingBaseUI1: Add, ListView , w700 h300 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Drop Level|Implicit
+  RefreshBaseList("quiver")
+  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
+  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
+  Gui, CustomCraftingBaseUI1: Show, , Quiver Bases
 Return
 
 ResetCraftingBase:
