@@ -4,6 +4,8 @@ RefreshBaseList(type){
   CraftingBaseTypeSelector := type
   For k, v in Bases
   {
+    If (k ~= "Royale[\d_]?$")
+      Continue
     if(type = "str_armour"){
       If (IndexOf(type,v["tags"])){
         LV_Add("",v["item_class"],v["name"],"0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]))
