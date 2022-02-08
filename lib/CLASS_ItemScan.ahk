@@ -2838,25 +2838,30 @@
 		If (This.Prop.Rarity_Digit == 4 || This.Prop.Corrupted)
 			Return False
 		update := false
-		for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
+		For ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
 		{
-			for k,v in WR.CustomCraftingBases[vi]
+			For k,v in WR.CustomCraftingBases[vi]
 			{
-				if (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
+				If (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
 				{
-					This.Prop.CraftingBase := v.BaseName
-					if (v.ILvL <= This.Prop.ItemLevel && YesCraftingBaseAutoILvLUP && v.Quant < 4){
-						This.Prop.WantedCraftingBase := True
-						if(v.ILvL < This.Prop.ItemLevel){
+					If (v.ILvL <= This.Prop.ItemLevel)
+					{
+						If (v.ILvL < This.Prop.ItemLevel)
+						{
 							v.ILvL := This.Prop.ItemLevel
+							v.Quant := 1
 							update := True
 						}
-						If(Flag){
+						If ((YesCraftingBaseLimitBases && v.Quant < CraftingBaseLimitBasesNumber) || !YesCraftingBaseLimitBases)
+						{
+							This.Prop.WantedCraftingBase := True
+						}
+						If (Flag && !update)
+						{
 							v.Quant++
 							update := true
 						}
-					}Else If(!YesCraftingBaseAutoILvLUP && v.Quant < 4){
-						This.Prop.WantedCraftingBase := True
+						
 					}
 					This.Prop.CraftingBaseHigherILvLFound := v.ILvL
 					This.Prop.CraftingBaseQuantFound := v.Quant

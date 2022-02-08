@@ -224,27 +224,3 @@ SaveCraftingBase:
   Settings("CustomCraftingBases","Save")
 
 Return
-
-;; Test Function to Feed Crafting Base Obj
-CraftingBasesRequest(endAtRefresh := 0){
-  If (AccountNameSTR = ""){
-    AccountNameSTR := POE_RequestAccount().accountName
-  }
-  Object := POE_RequestStash(StashTabCrafting,0)
-  ClearQuantCraftingBase()
-  For k, v in Object.items
-  {
-    item := new ItemBuild(v,Object.quadLayout)
-  }
-Return
-}
-
-ClearQuantCraftingBase(){
-  for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]{
-    for k,v in WR.CustomCraftingBases[vi]{
-      v.Quant:=0
-      v.ILvL:=0
-    }
-  }
-  Return
-}

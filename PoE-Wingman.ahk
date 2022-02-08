@@ -15,9 +15,11 @@ Critical
 FirstScale()
 RestockMenu("Load")
 DBUpdateFirstRun()
+ActualTierCreator()
+CraftingBasesRequest()
 Critical, Off
 Tooltip,
-ActualTierCreator()
+
 #Include, %A_ScriptDir%\lib\gui\IngameOverlay.ahk
 If (ShowOnStart)
   MainMenu()

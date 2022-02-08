@@ -749,14 +749,12 @@ Global StashTabYesUniqueRing := 1
 Global StashTabYesUniqueDump := 1
 
 ; Crafting Bases Options
-Global CraftingBaseLastObj
 Global CraftingBaseTypeSelector
 Global YesStashBasesAboveIlvl := True
 Global StashBasesAboveIlvl := True
 Global YesCraftingBaseAutoUpdateOnStart := True
-Global YesCraftingBaseAutoILvLUP := True 
-Global YesCraftingBaseAutoUpdate := True
-Global YesCraftingBaseAutoRemoveLower := True
+Global YesCraftingBaseLimitBases := True
+Global CraftingBaseLimitBasesNumber := 1
 
 ; Skip Maps after column #
 Global YesSkipMaps := 0
