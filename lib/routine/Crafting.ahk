@@ -95,6 +95,7 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
 	base1 := RegExReplace(base1,"([^s])$", "$1s")
 	tooltip, %base1% %base2%
+	SetTimer, tooltipclear, -10000
 	If(base1 ~= base2)
 	{
 		Return True
@@ -103,6 +104,10 @@ ItemCraftingBaseComparator(base1,base2){
 	}
 		
 
+}
+tooltipclear:
+{
+	tooltip,
 }
 
 CraftingItem(){
@@ -121,10 +126,9 @@ CraftingItem(){
 	Sleep, 5000
 	; Cursor
 	MouseGetPos, xx, yy
-	ClipItem(x,y)
+	ClipItem(xx,yy)
 	Log("Item Crafting","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
-
 	If(!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
 		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
