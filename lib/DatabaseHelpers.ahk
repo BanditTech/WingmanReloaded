@@ -69,25 +69,30 @@ FirstLineToWRFormat(FullLine)
     Return Mod
 }
 
-CraftingBasesRequest(){
-  If (AccountNameSTR = ""){
-    AccountNameSTR := POE_RequestAccount().accountName
-  }
-  Object := POE_RequestStash(StashTabCrafting,0)
-  ClearQuantCraftingBase()
-  For k, v in Object.items
-  {
-    item := new ItemBuild(v,Object.quadLayout)
-  }
-Return
+CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart){
+    If(!YesCraftingBaseAutoUpdateOnStart){
+        Return
+    }
+    If (AccountNameSTR = ""){
+        AccountNameSTR := POE_RequestAccount().accountName
+    }
+    Object := POE_RequestStash(StashTabCrafting,0)
+    ClearQuantCraftingBase()
+    For k, v in Object.items
+    {
+        item := new ItemBuild(v,Object.quadLayout)
+        text := % "Item Base: "item["Prop"]["ItemBase"]" Item Name: "item["Prop"]["ItemName"]" Item Higher ILvL Found: "item["Prop"]["CraftingBaseHigherILvLFound"]" Item Quant Found: "item["Prop"]["CraftingBaseQuantFound"]
+        Log("CraftingBasesRequest",text)
+    }
+    Return
 }
 
 ClearQuantCraftingBase(){
-  for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]{
-    for k,v in WR.CustomCraftingBases[vi]{
-      v.Quant:=0
-      v.ILvL:=0
+    for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]{
+        for k,v in WR.CustomCraftingBases[vi]{
+            v.Quant:=0
+            v.ILvL:=0
+        }
     }
-  }
-  Return
+    Return
 }
