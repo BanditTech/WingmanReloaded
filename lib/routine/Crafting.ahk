@@ -93,6 +93,8 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"Ghastly Eye|Hypnotic Eye|Searching Eye|Murderous Eye", "Abyss")
 	base1 := RegExReplace(base1,"Staff", "Staves")
 	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
+	base1 := RegExReplace(base1,"([^s])$", "$1s")
+	tooltip, %base1% %base2%
 	If(base1 ~= base2)
 	{
 		Return True
