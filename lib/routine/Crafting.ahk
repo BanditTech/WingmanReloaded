@@ -94,20 +94,9 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"Staff", "Staves")
 	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
 	base1 := RegExReplace(base1,"([^s])$", "$1s")
-	tooltip, %base1% %base2%
-	SetTimer, tooltipclear, -10000
-	If(base1 ~= base2)
-	{
-		Return True
-	}Else{
-		Return False
-	}
-		
-
-}
-tooltipclear:
-{
-	tooltip,
+	result := base1 ~= base2
+	Log("Item Crafting Base Comparison ","Evaluating " base1 " and " base2 " returned " (result?"True":"False"))
+	return result
 }
 
 CraftingItem(){
