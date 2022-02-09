@@ -16,21 +16,23 @@
 		{
 			If ((SVal ~= ":" || SVal ~= "Currently has \d+ Charges") && !(SVal ~= "grant:") && !(SVal ~= "slot:"))
 			{
-				If (SectionKey = 1 && SVal ~= "Rarity:")
+				If (SectionKey = 1 && SVal ~= "Rarity:"){
 					This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
-				Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" )
+				} Else If (SVal ~= "\(implicit\)$"){
+					This.Prop.HasImplicit := True
+					This.Data.Blocks.Implicit := SVal
+				} Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" ) {
 					This.Data.Blocks.Affix := SVal
-				Else If (SVal ~= " \(enchant\)$"){
+				} Else If (SVal ~= " \(enchant\)$"){
 					This.Prop.Enchanted := True
 					This.Data.Blocks.Enchant := SVal
-				}
-				Else If (SVal ~= "Open Rooms:"){
+				} Else If (SVal ~= "Open Rooms:"){
 					temp := StrSplit(SVal,"Obstructed Rooms:")
 					This.Data.Blocks.TempleRooms := StrSplit(temp.1,"Open Rooms:").2
 					This.Data.Blocks.ObstructedRooms := RegExReplace(temp.2, "$", " (Obstructed)")
-				}
-				Else
+				}	Else {
 					This.Data.Blocks.Properties .= SVal "`r`n"
+				}
 			}
 			Else 
 			{
@@ -1233,10 +1235,8 @@
 		Return False
 	}
 	MatchAffixesWithoutDoubleMods(content:=""){
-		; These lines remove the extra line created by "additional information bubbles"
-		If (content ~= "\n\(")
-			content := RegExReplace(content, "\n\(", "(")
-		content := RegExReplace(content,"\(\w+ \w+ [\w\d\.\% ,'\+\-]+\)( \(implicit\))?( \(enchant\))?", "")
+		; Remove the extra line created by "additional information bubbles"
+		content := RegExReplace(content,"\n? ?\(\w+ \w+ [\w\d\.\% ,'\+\-]+\)( \(implicit\))?( \(enchant\))?", "")
 		; Do Stuff with info
 		LastLine := ""
 		DoubleModCounter := 0
@@ -1362,10 +1362,8 @@
 		return
 	}
 	MatchAffixes(content:=""){
-		; These lines remove the extra line created by "additional information bubbles"
-		If (content ~= "\n\(")
-			content := RegExReplace(content, "\n\(", "(")
-		content := RegExReplace(content," ?\(\w+ \w+ [\r\n\w\%\d,\: ]*\)( \(implicit\))?( \(enchant\))?", "")
+		; Remove the extra line created by "additional information bubbles"
+		content := RegExReplace(content,"\n? ?\(\w+ \w+ [\r\n\w\%\d,\: ]*\)( \(implicit\))?( \(enchant\))?", "")
 		; Do Stuff with info
 		Loop, Parse,% content, `r`n ; , `r
 		{
@@ -2765,11 +2763,11 @@
 		}
 		Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
 			If (CountSum >= grp.TypeValue) {
-			Return PotentialMatches
-		} Else {
-			Return False
+				Return PotentialMatches
+			} Else {
+				Return False
+			}
 		}
-	}
 	}
 	Evaluate(eval,val,min){
 		local
