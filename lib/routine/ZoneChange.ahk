@@ -4,4 +4,5 @@
 	If !Mod(Changes,2) {
 		CraftingBasesRequest()
 	}
+	#Include *i %A_ScriptDir%\save\MyCustomZoneChange.ahk
 }
