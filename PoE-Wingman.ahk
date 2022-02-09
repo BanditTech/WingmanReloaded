@@ -16,7 +16,7 @@ FirstScale()
 RestockMenu("Load")
 DBUpdateFirstRun()
 ActualTierCreator()
-CraftingBasesRequest()
+; CraftingBasesRequest()
 Critical, Off
 Tooltip,
 

@@ -71,5 +71,6 @@
 #Include, %A_ScriptDir%\lib\routine\PopFlasks.ahk
 #Include, %A_ScriptDir%\lib\routine\QuickPortal.ahk
 #Include, %A_ScriptDir%\lib\routine\StackRelease.ahk
+#Include, %A_ScriptDir%\lib\routine\ZoneChange.ahk
 
 #Include *i %A_ScriptDir%\save\MyCustomLib.ahk

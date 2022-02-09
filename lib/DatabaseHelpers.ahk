@@ -69,7 +69,7 @@ FirstLineToWRFormat(FullLine)
     Return Mod
 }
 
-CraftingBasesRequest(endAtRefresh := 0){
+CraftingBasesRequest(){
   If (AccountNameSTR = ""){
     AccountNameSTR := POE_RequestAccount().accountName
   }
