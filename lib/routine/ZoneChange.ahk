@@ -14,14 +14,3 @@
 	OldLoc := ThisLoc
 	#Include *i %A_ScriptDir%\save\MyCustomZoneChange.ahk
 }
-
-func(){
-  static oldloc := 0
-  thisloc := OnHideout || OnTown
-  If (thisloc && oldloc != thisloc) {
-    otherfuncs()
-    oldloc := thisloc
-  } Else {
-    oldloc := thisloc
-  }
-}
