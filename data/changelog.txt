@@ -1,7 +1,18 @@
-﻿## Version .15.01 - Master version - February/05/2021
-  Bugfixes
-    * Rogue harbour vendor accept
-    * Sleep timers for some click functions
+﻿## Version .15.02 - Master version - February/10/2021
+Alpha changes are being merged into master branch
+
+Various bugfixes and Adjustments
+
+Improvements to Crafting Bases
+  * Now includes the implicit of items when selecting bases
+  * Option to auto update on zone changes, script launch or both
+
+---
+
+## Version .15.01 - Alpha version - February/05/2021
+Bugfixes
+  * Rogue harbour vendor accept
+  * Sleep timers for some click functions
 
 ---
 
