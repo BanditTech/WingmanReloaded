@@ -1,5 +1,5 @@
 ﻿ZoneChange(){
-  Static Changes := 0
+	Static Changes := 0
 	Static OldLoc := 0
 	; Zone change can be evaluated for number or in town/hideout or not
 	Changes++
