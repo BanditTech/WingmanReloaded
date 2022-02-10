@@ -753,6 +753,7 @@ Global CraftingBaseTypeSelector
 Global YesStashBasesAboveIlvl := True
 Global StashBasesAboveIlvl := True
 Global YesCraftingBaseAutoUpdateOnStart := True
+Global YesCraftingBaseAutoUpdateOnZone := True
 Global YesCraftingBaseLimitBases := True
 Global CraftingBaseLimitBasesNumber := 1
 

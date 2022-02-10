@@ -524,7 +524,8 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vStashBasesAboveIlvl , %StashBasesAboveIlvl%
       ;Update from API
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Update ILvL and How Many from Each Bases?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Update Bases ILvL/Quantity on start?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnZone Checked%YesCraftingBaseAutoUpdateOnZone% xs+8 y+8 , Update Bases ILvL/Quantity on zone change?
       ;Max Number     
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseLimitBases Checked%YesCraftingBaseLimitBases% xs+8 y+8 , Max Number of Each Bases (At Max ILvL Found)
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
