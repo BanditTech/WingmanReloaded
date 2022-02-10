@@ -93,14 +93,10 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"Ghastly Eye|Hypnotic Eye|Searching Eye|Murderous Eye", "Abyss")
 	base1 := RegExReplace(base1,"Staff", "Staves")
 	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
-	If(base1 ~= base2)
-	{
-		Return True
-	}Else{
-		Return False
-	}
-		
-
+	base1 := RegExReplace(base1,"([^s])$", "$1s")
+	result := base1 ~= base2
+	Log("Item Crafting Base Comparison ","Evaluating " base1 " and " base2 " returned " (result?"True":"False"))
+	return result
 }
 
 CraftingItem(){
@@ -119,10 +115,9 @@ CraftingItem(){
 	Sleep, 5000
 	; Cursor
 	MouseGetPos, xx, yy
-	ClipItem(x,y)
+	ClipItem(xx,yy)
 	Log("Item Crafting","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
-
 	If(!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
 		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")

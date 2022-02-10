@@ -510,17 +510,26 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font,
       Gui, Inventory: Add, Button, gCraftingBaseWeaponUI xs+10 ys+20 w120, Edit Weapon Bases
 
+      Gui, Inventory: Font, Bold s9 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w150 h60 section xs y+25, Quiver Bases
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Button, gCraftingBaseQuiverUI xs+10 ys+20 w120, Edit Quiver Bases
+
       ; Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w240 h150 section xm+5 ym+250, Options
+      Gui, Inventory: Add, GroupBox, w310 h150 section xm+5 ym+250, Options
       Gui, Inventory: Font,
+      ;Above ILvL
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStashBasesAboveIlvl Checked%YesStashBasesAboveIlvl% xs+8 ys+20 , Above Ilvl:
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 hp gUpdateExtra vStashBasesAboveIlvl , %StashBasesAboveIlvl%
-      ;Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Get Higher ILvL on Start ?
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoILvLUP Checked%YesCraftingBaseAutoILvLUP% xs+8 y+8 , Auto Increase IlvL Based on Last Item ?
-      ;Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdate Checked%YesCraftingBaseAutoUpdate% xs+8 y+8 , Auto Update Crafting Base API Stash ?
-      ;Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoRemoveLower Checked%YesCraftingBaseAutoRemoveLower% xs+8 y+8 , Remove Lower ILvL Itens ?
+      ;Update from API
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Update Bases ILvL/Quantity on start?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnZone Checked%YesCraftingBaseAutoUpdateOnZone% xs+8 y+8 , Update Bases ILvL/Quantity on zone change?
+      ;Max Number     
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseLimitBases Checked%YesCraftingBaseLimitBases% xs+8 y+8 , Max Number of Each Bases (At Max ILvL Found)
+      Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
+      Gui, Inventory: Add, UpDown, Range1-10 hp gUpdateExtra vCraftingBaseLimitBasesNumber , %CraftingBaseLimitBasesNumber%
 
     }
     Gui, Inventory: show , w600 h500, Inventory Settings

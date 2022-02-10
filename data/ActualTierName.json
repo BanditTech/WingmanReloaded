@@ -208,6 +208,10 @@
         "AffixWRLine": "#% increased Global Critical Strike Chance"
     },
     {
+        "ActualTierName": "CriticalStrikeChance",
+        "AffixWRLine": "#% increased Critical Strike Chance for Spells"
+    },
+    {
         "ActualTierName": "AttackSpeed",
         "AffixWRLine": "#% increased Attack Speed"
     },
@@ -216,8 +220,8 @@
         "AffixWRLine": "#% increased Elemental Damage with Attack Skills"
     },
     {
-        "ActualTierName": "IncElementalDamage",
-        "AffixWRLine": "#% increased Elemental Damage with Attack Skills"
+        "ActualTierName": "IncBowDamage",
+        "AffixWRLine": "#% increased Damage with Bow Skills"
     },
     {
         "ActualTierName": "AddLightningDamage",
@@ -258,5 +262,29 @@
     {
         "ActualTierName": "Accuracy",
         "AffixWRLine": "# to Accuracy Rating"
+    },
+    {
+        "ActualTierName": "INCProjectileSpeed",
+        "AffixWRLine": "#% increased Projectile Speed"
+    },
+    {
+        "ActualTierName": "ManaRegeneration",
+        "AffixWRLine": "#% increased Mana Regeneration Rate"
+    },
+    {
+        "ActualTierName": "LifeRegeneration",
+        "AffixWRLine": "Regenerate # Life per second"
+    },
+    {
+        "ActualTierName": "AvoidElementalAilments",
+        "AffixWRLine": "#% change to Avoid Elemental Ailments"
+    },
+    {
+        "ActualTierName": "ChanceBlock",
+        "AffixWRLine": "#% Chance to Block"
+    },
+    {
+        "ActualTierName": "FasterESRecharge",
+        "AffixWRLine": "#% faster start of Energy Shield Recharge"
     }
 ]

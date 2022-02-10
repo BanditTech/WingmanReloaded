@@ -18,14 +18,14 @@ ActualTierCreator()
                 AffixWRLine := FirstLineToWRFormat(v["str"])
                 If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ActualTierNameJSON))
                 {
-                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii]))
+                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii],v["ModGenerationTypeID"]))
                     {
                         WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
                         WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
                     }
                     Else
                     {
-                        aux := {"ActualTierName":ActualTierName,"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
+                        aux := {"ActualTierName":ActualTierName,"ModGenerationTypeID":v["ModGenerationTypeID"],"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
                         WR.ActualTier[vii].Push(aux)
                     }
                 }
@@ -40,10 +40,10 @@ ActualTierCreator()
     Return
 }
 
-CheckAffixWR(Line,Obj){
+CheckAffixWR(Line,Obj,ModGenerationTypeID){
     for k , v in Obj
     {
-        If(v["AffixWRLine"] == Line){
+        If(v["AffixWRLine"] == Line && ModGenerationTypeID == v["ModGenerationTypeID"]){
             Return k
         }
     }
@@ -67,4 +67,32 @@ FirstLineToWRFormat(FullLine)
     Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
     Mod := RegExReplace(Line, "\+?"rxNum , "#")
     Return Mod
+}
+
+CraftingBasesRequest(ShouldRun){
+    If(!ShouldRun){
+        Return
+    }
+    If (AccountNameSTR = ""){
+        AccountNameSTR := POE_RequestAccount().accountName
+    }
+    Object := POE_RequestStash(StashTabCrafting,0)
+    ClearQuantCraftingBase()
+    For k, v in Object.items
+    {
+        item := new ItemBuild(v,Object.quadLayout)
+        text := % "Item Base: "item["Prop"]["ItemBase"]" Item Name: "item["Prop"]["ItemName"]" Item Higher ILvL Found: "item["Prop"]["CraftingBaseHigherILvLFound"]" Item Quant Found: "item["Prop"]["CraftingBaseQuantFound"]
+        Log("CraftingBasesRequest",text)
+    }
+    Return
+}
+
+ClearQuantCraftingBase(){
+    for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]{
+        for k,v in WR.CustomCraftingBases[vi]{
+            v.Quant:=0
+            v.ILvL:=0
+        }
+    }
+    Return
 }

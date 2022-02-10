@@ -398,6 +398,7 @@ StashRoutine()
 	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse away for Screenshot
 	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
+	; CraftingBasesRequest()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
@@ -858,6 +859,7 @@ RunRestock(){
 					StockY := v.CustomY
 				} Else {
 					MoveStash(StashTabCurrency)
+					LeftClick(WR.loc.pixel.CurrencyGeneral.X, WR.loc.pixel.CurrencyGeneral.Y)
 					StockX := WR.loc.pixel[v.RestockName].X
 					StockY := WR.loc.pixel[v.RestockName].Y
 				}

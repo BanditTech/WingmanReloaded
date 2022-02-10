@@ -33,6 +33,10 @@ IfNotExist, %A_ScriptDir%\save\MyCustomLib.ahk
 	FileAppend,% "; This file will be included at the end of the Script`n"
 . "; Include any Functions or Labels here`n"
 , %A_ScriptDir%\save\MyCustomLib.ahk
+IfNotExist, %A_ScriptDir%\save\MyCustomZoneChange.ahk
+	FileAppend,% "; This file will be included at the end of the Zone Change function`n"
+. "; Include executed code, any return must be true`n"
+, %A_ScriptDir%\save\MyCustomZoneChange.ahk
 
 IfNotExist, %A_ScriptDir%\data\WR.ico
 {

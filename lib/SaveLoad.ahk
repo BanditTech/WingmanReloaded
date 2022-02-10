@@ -111,9 +111,9 @@ readFromFile(){
 	IniRead, YesStashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl, 1
 	IniRead, StashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl, 68
 	IniRead, YesCraftingBaseAutoUpdateOnStart, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart, 1
-	IniRead, YesCraftingBaseAutoILvLUP, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoILvLUP, 1
-	IniRead, YesCraftingBaseAutoUpdate, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdate, 1
-	IniRead, YesCraftingBaseAutoRemoveLower, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoRemoveLower, 1
+	IniRead, YesCraftingBaseAutoUpdateOnZone, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone, 1
+	IniRead, YesCraftingBaseLimitBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases, 1
+	IniRead, CraftingBaseLimitBasesNumber, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, CraftingBaseLimitBasesNumber, 3
 
 	;Item Crafting Options
 
@@ -820,9 +820,9 @@ submit(){
 		IniWrite, %YesStashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl
 		IniWrite, %StashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl
 		IniWrite, %YesCraftingBaseAutoUpdateOnStart%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart
-		IniWrite, %YesCraftingBaseAutoILvLUP%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoILvLUP
-		IniWrite, %YesCraftingBaseAutoUpdate%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdate
-		IniWrite, %YesCraftingBaseAutoRemoveLower%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoRemoveLower
+		IniWrite, %YesCraftingBaseAutoUpdateOnZone%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone
+		IniWrite, %YesCraftingBaseLimitBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases
+		IniWrite, %CraftingBaseLimitBasesNumber%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, CraftingBaseLimitBasesNumber
 
 		;Item Crafting Options
 

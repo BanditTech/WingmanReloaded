@@ -34,7 +34,7 @@ RefreshMapList()
         }Else{
           AffixName := "Suffix"
         }
-        LV_Add("",AffixName,v["Name"],ItemCraftingNamingMaping(v["str"]),v["DropChance"],"Impossible","1")
+        LV_Add("",AffixName,v["Name"],ItemCraftingNamingMaping(v["str"]),v["DropChance"],"Good","10")
       }
     }
   Mods := []
@@ -46,7 +46,7 @@ RefreshMapList()
     For k, v in WR.CustomMapMods.MapMods
     {
       If (v["Map Affix"] == OutputVar)
-        LV_Modify(Index,"Check")
+        LV_Modify(Index,"Check",,,,,v["Mod Type"],v["Weight"])
     }
   }
   ;; Style
