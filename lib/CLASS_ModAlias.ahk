@@ -9,6 +9,8 @@
 		; possible := This.ConvertJStoAHK(possible)
 		; for now we just return the first entry
 		string := possible[0]["string"]
+		string := RegExReplace(string,"\{\d\}","#")
+		string := RegExReplace(string,RxNum,"#")
 		Return string
 	}
 	LoadDatabase(){
