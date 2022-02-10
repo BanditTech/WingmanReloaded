@@ -2863,14 +2863,13 @@
 					}
 					This.Prop.CraftingBaseHigherILvLFound := v.ILvL
 					This.Prop.CraftingBaseQuantFound := v.Quant
+					If(update){
+						Settings("CustomCraftingBases","Save")
+					}
+					Return
 				}
 			}
 		}
-
-		If(update){
-			Settings("CustomCraftingBases","Save")
-		}
-
 	}
 	ApproximatePerfection(){
 		For ku, unique in WR.data.Perfect
