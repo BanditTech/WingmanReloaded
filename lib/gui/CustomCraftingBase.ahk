@@ -32,47 +32,27 @@ RefreshBaseList(type){
       }
     }else if(type = "amulet"){
       If (IndexOf(type,v["tags"]) && !IndexOf("talisman",v["tags"])){
-        If (v["implicits"][1] != "") {
-          translateimplicit := ModAlias.Translate(v["implicits"][1])
-        } Else {
-          translateimplicit := 0
-        }
+        translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "belt"){
       If (IndexOf(type,v["tags"])){
-        If (v["implicits"][1] != "") {
-          translateimplicit := ModAlias.Translate(v["implicits"][1])
-        } Else {
-          translateimplicit := 0
-        }
+        translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "ring"){
       If (IndexOf(type,v["tags"])){
-        If (v["implicits"][1] != "") {
-          translateimplicit := ModAlias.Translate(v["implicits"][1])
-        } Else {
-          translateimplicit := 0
-        }
+        translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "weapon"){
       If (IndexOf(type,v["tags"])){
-        If (v["implicits"][1] != "") {
-          translateimplicit := ModAlias.Translate(v["implicits"][1])
-        } Else {
-          translateimplicit := 0
-        }
+        translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "quiver"){
       If (IndexOf(type,v["tags"])){
-        If (v["implicits"][1] != "") {
-          translateimplicit := ModAlias.Translate(v["implicits"][1])
-        } Else {
-          translateimplicit := 0
-        }
+        translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }
