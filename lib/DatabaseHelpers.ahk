@@ -69,8 +69,8 @@ FirstLineToWRFormat(FullLine)
     Return Mod
 }
 
-CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart){
-    If(!YesCraftingBaseAutoUpdateOnStart){
+CraftingBasesRequest(ShouldRun){
+    If(!ShouldRun){
         Return
     }
     If (AccountNameSTR = ""){
