@@ -7,6 +7,7 @@
 #Include, %A_ScriptDir%\lib\CLASS_Craft.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ItemBuild.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ItemScan.ahk
+#Include, %A_ScriptDir%\lib\CLASS_ModAlias.ahk
 #Include, %A_ScriptDir%\lib\CLASS_Perfect.ahk
 #Include, %A_ScriptDir%\lib\CLASS_Progress_Slider.ahk
 #Include, %A_ScriptDir%\lib\CLASS_RefreshAffixes.ahk
