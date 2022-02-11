@@ -78,12 +78,16 @@ CraftingBasesRequest(ShouldRun){
     }
     Object := POE_RequestStash(StashTabCrafting,0)
     ClearQuantCraftingBase()
+    Strings := []
     For k, v in Object.items
     {
         item := new ItemBuild(v,Object.quadLayout)
-        text := "Item Base: " item["Prop"]["ItemBase"] " Item Name: " item["Prop"]["ItemName"] " Item Higher ILvL Found: " item["Prop"]["CraftingBaseHigherILvLFound"] " Item Quant Found: " item["Prop"]["CraftingBaseQuantFound"]
-        Log("CraftingBasesRequest",text)
+        Strings.Push("Item Base: " item["Prop"]["ItemBase"] 
+        . ", Name: " item["Prop"]["ItemName"] 
+        . ", ILVL: " item["Prop"]["CraftingBaseHigherILvLFound"] 
+        . ", Quantity: " item["Prop"]["CraftingBaseQuantFound"])
     }
+    Log("Crafting Bases ","Refreshing quantity and minimum ilvl from stash items",Strings*)
     Return
 }
 

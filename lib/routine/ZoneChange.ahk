@@ -11,12 +11,15 @@
 	Strings.Push("This zone is considered a " (OnTown?"Town":OnHideout?"Hideout":"Playable Area"))
 	If (ThisLoc && OldLoc != ThisLoc) {
 		Strings.Push("Refreshing Crafting Bases")
-		CraftingBasesRequest(YesCraftingBaseAutoUpdateOnZone)
+		RunRefresh := True
 	}
 	; We store the OldLoc temporarily for custom routines to use
 	TempOld := OldLoc
 	; Set OldLoc to the new one for next run
 	OldLoc := ThisLoc
 	Log("Zone Change ",Strings*)
+	If (RunRefresh) {
+		CraftingBasesRequest(YesCraftingBaseAutoUpdateOnZone)
+	}
 	#Include *i %A_ScriptDir%\save\MyCustomZoneChange.ahk
 }
