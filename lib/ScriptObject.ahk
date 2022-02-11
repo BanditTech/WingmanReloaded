@@ -87,7 +87,7 @@ WR.String.General:={"OHB":"|<OHB_Bar>0x241814@0.99$106.Tzzzzzzzzzzzzzzzzu"
 
 WR.CustomMapMods.MapMods := []
 
-for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
+for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]
 {
 	WR.CustomCraftingBases[v] := []
 }

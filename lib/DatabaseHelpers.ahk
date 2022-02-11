@@ -92,7 +92,7 @@ CraftingBasesRequest(ShouldRun){
 }
 
 ClearQuantCraftingBase(){
-    for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]{
+    for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]{
         for k,v in WR.CustomCraftingBases[vi]{
             v.Quant:=0
             v.ILvL:=0
