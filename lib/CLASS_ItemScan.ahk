@@ -907,7 +907,7 @@
 			This.Prop.Veiled := False
 		}
 		; Flags for Map Roll and Bricked Maps
-		If (This.HasBrickedAffix())
+		If (This.HasBrickedAffix() && This.Prop.IsMap)
 		{
 			If (This.Prop.Corrupted)
 			{
