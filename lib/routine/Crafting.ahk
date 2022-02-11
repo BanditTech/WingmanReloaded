@@ -353,6 +353,7 @@ ApplyCurrency(cname, x, y, Amount:=1){
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 MapRoll(Method, x, y){
+	Global
 	MMQIgnore := False
 	If (!EnableMQQForMagicMap && Item.Prop.Rarity_Digit = 2)
 		MMQIgnore := True
