@@ -63,7 +63,7 @@
 		file := FileOpen(This.FilePath, "w")
 		split := StrSplit(This.Content, This.MarkerText)
 		file.Write(split.1)
-		file.WriteLine(This.MarkerText)
+		file.WriteLine(This.MarkerText "`r`n")
 		file.WriteLine(NewContent)
 		file.Write(This.MarkerText)
 		file.Write(split.3)
