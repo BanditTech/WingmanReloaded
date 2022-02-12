@@ -3,7 +3,7 @@
 	__New(Settings){
 		This.String := []
 		This.Settings := Settings
-		This.Add(FBheader)
+		This.Add(This.FBheader)
 		This.Add("Show")
 		If This.Settings.HasKey("ItemLevel") {
 			This.ItemLevel()
