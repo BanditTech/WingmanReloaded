@@ -5,6 +5,7 @@
 #Include, %A_ScriptDir%\lib\CLASS_7za.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ColorPicker.ahk
 #Include, %A_ScriptDir%\lib\CLASS_Craft.ahk
+#Include, %A_ScriptDir%\lib\CLASS_FilterAdjuster.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ItemBuild.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ItemScan.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ModAlias.ahk
