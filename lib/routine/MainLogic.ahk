@@ -221,9 +221,10 @@ TGameTick(GuiCheck:=True){
 			Loop 5
 				If WR.Flask[A_Index].Move
 					Trigger(WR.Flask[A_Index])
-			Loop 10
-				If WR.Utility[A_Index].Move
-					Trigger(WR.Utility[A_Index])
+			if (WR.func.Toggle.Utility)
+				Loop 10
+					If WR.Utility[A_Index].Move
+						Trigger(WR.Utility[A_Index])
 		}
 
 		If (WR.perChar.Setting.channelrepressEnable)
