@@ -29,7 +29,14 @@
 			This.Dimensions()
 		}
 		This.Add("")
-		Return This.String
+		Return This.ReturnString()
+	}
+	ReturnString(){
+		str := ""
+		For k, v in This.String {
+			str .= (str?"`r`n":"") v
+		}
+		Return str
 	}
 	Add(String){
 		This.String.Push(String)
