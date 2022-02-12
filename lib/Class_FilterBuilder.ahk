@@ -14,16 +14,16 @@
 			This.Classes()
 		}
 		If This.Settings.HasKey("BorderColor") {
-			This.BorderColor()
+			This.SetColor("Border")
 		}
 		If This.Settings.HasKey("FontSize") {
 			This.FontSize()
 		}
 		If This.Settings.HasKey("BackgroundColor") {
-			This.BackgroundColor()
+			This.SetColor("Background")
 		}
 		If This.Settings.HasKey("TextColor") {
-			This.TextColor()
+			This.SetColor("Text")
 		}
 		If This.Settings.HasKey("Dimensions") {
 			This.Dimensions()
@@ -48,17 +48,14 @@
 		}
 		This.Add(str)
 	}
-	BorderColor(){
-		colors := ToRGB(This.Settings.BorderColor)
-		This.Add("SetBorderColor " colors.r " " colors.g " " colors.b)
-	}
-	BackgroundColor(){
-		colors := ToRGB(This.Settings.BackgroundColor)
-		This.Add("SetBackgroundColor " colors.r " " colors.g " " colors.b)
-	}
-	TextColor(){
-		colors := ToRGB(This.Settings.TextColor)
-		This.Add("SetTextColor " colors.r " " colors.g " " colors.b)
+	SetColor(kind){
+		c := This.Settings[kind "Color"]
+		If (c is xdigit) {
+			colors := ToRGB(c)
+			This.Add("Set" kind "Color " colors.r " " colors.g " " colors.b)
+		} Else If (c ~= "^\d+ \d+ \d+") {
+			This.Add("Set" kind "Color " c)
+		}
 	}
 	FontSize(){
 		This.Add("SetFontSize " This.Settings.FontSize)
