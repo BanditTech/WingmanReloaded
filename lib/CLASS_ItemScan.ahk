@@ -703,7 +703,7 @@
 				}
 				If (This.Prop.Sockets_Num == 6)
 				{
-					This.Prop.Jeweler := True
+					This.Prop.Jeweller := True
 				}
 			}
 			;Generic Props
@@ -1139,7 +1139,7 @@
 			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) 
 		&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width = 2 && This.Prop.Item_Height = 3) )
 		Return False
-		If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
+		If (ChaosRecipeSkipJC && (This.Prop.Jeweller || This.Prop.Chromatic))
 			Return False
 		If !IsObject(RecipeArray)
 		{
@@ -2652,7 +2652,7 @@
 			}
 		}
 		Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
-			|| (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
+			|| (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweller || This.Prop.Chromatic)))))
 		sendstash := StashTabDump, This.Prop.DumpTabItem := True
 		Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
 			Return -1

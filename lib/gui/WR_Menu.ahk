@@ -193,7 +193,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, GroupBox, w185 h60 section x+15 ys, Dump Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweler/Chroma Items
+      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweller/Chroma Items
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w185 h40 section xs y+10, Priced Rares Tab
@@ -388,7 +388,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeUnloadAll Checked%ChaosRecipeUnloadAll% xs yp+20, Sell all sets back to back
-      Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweler/Chroma Items
+      Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweller/Chroma Items
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs yp+20, Allow 2x Jewellery limit
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs yp+20, Allow 2x Belt limit
 

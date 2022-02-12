@@ -182,9 +182,9 @@ Rescale(){
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1920/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
 
-      ; Jeweler
-      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(1920/112))
-      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
+      ; Jeweller
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1920/112))
+      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/396))
       ; Fusing
       WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1920/167))
       WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/396))
@@ -409,9 +409,9 @@ Rescale(){
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1440/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
 
-      ; Jeweler
-      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(1440/112))
-      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
+      ; Jeweller
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1440/112))
+      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/396))
       ; Fusing
       WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1440/167))
       WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/396))
@@ -630,9 +630,9 @@ Rescale(){
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(2560/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
 
-      ; Jeweler
-      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(2560/112))
-      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
+      ; Jeweller
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(2560/112))
+      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/396))
       ; Fusing
       WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(2560/167))
       WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/396))
@@ -860,9 +860,9 @@ Rescale(){
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(2580/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
 
-      ; Jeweler
-      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(2580/112))
-      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
+      ; Jeweller
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(2580/112))
+      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/396))
       ; Fusing
       WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(2580/167))
       WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/396))
@@ -1085,9 +1085,9 @@ Rescale(){
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(3840/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
 
-      ; Jeweler
-      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(3840/112))
-      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
+      ; Jeweller
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(3840/112))
+      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/396))
       ; Fusing
       WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(3840/167))
       WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/396))
@@ -1317,9 +1317,9 @@ Rescale(){
       WR.loc.pixel.Divine.X:=GameX + Round(GameW/(1728/607))
       WR.loc.pixel.Divine.Y:=GameY + Round(GameH/(1080/327))
 
-      ; Jeweler
-      WR.loc.pixel.Jeweler.X:=GameX + Round(GameW/(1728/112))
-      WR.loc.pixel.Jeweler.Y:=GameY + Round(GameH/(1080/396))
+      ; Jeweller
+      WR.loc.pixel.Jeweller.X:=GameX + Round(GameW/(1728/112))
+      WR.loc.pixel.Jeweller.Y:=GameY + Round(GameH/(1080/396))
       ; Fusing
       WR.loc.pixel.Fusing.X:=GameX + Round(GameW/(1728/167))
       WR.loc.pixel.Fusing.Y:=GameY + Round(GameH/(1080/396))

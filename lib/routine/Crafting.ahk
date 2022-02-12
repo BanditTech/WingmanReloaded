@@ -77,7 +77,7 @@ CraftingLink(){
 	local f
 	f := New Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
 }
-; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
+; CraftingSocket - Use the settings to apply Jewellers to item(s) until minimum sockets
 CraftingSocket(){
 	Global
 	local f

@@ -199,7 +199,7 @@ ft_ToolTip_Text_Part1=
 	FirstAutomationSetting = Start Automation selected option
 	YesEnableNextAutomation = Enable next automation after the first selected
 	YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
-	YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r The vendor is empty`r The only items are Chromatic or Jeweler`r During the chaos Recipe
+	YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r The vendor is empty`r The only items are Chromatic or Jeweller`r During the chaos Recipe
 	DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
 	YesTimeMS = Enable to show a tooltip when game logic is running
 	YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
@@ -397,7 +397,7 @@ ft_ToolTip_Text_Part3=
 	hotkeyMainAttack = Bind the Main Attack for this Character
 	hotkeySecondaryAttack = Bind the Secondary Attack for this Character
 	YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
-	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweler's recipe items with 5 links.
+	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
 	)
 
 ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3

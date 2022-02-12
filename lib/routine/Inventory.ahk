@@ -138,9 +138,9 @@ CheckToIdentify(){
 			Return True
 		Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
 			Return True
-		Else If ( Item.Prop.Jeweler && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
+		Else If ( Item.Prop.Jeweller && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
 			Return True
-		Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweler && !Item.Prop.IsMap)
+		Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweller && !Item.Prop.IsMap)
 			Return True
 	} 
 	Return False
@@ -229,7 +229,7 @@ VendorRoutine()
 				If ( Item.Prop.SpecialType="" || Item.Prop.Vendorable )
 				{
 					CtrlClick(Grid.X,Grid.Y)
-					If !(Item.Prop.Chromatic || Item.Prop.Jeweler)
+					If !(Item.Prop.Chromatic || Item.Prop.Jeweller)
 						VendoredItems := True
 					Continue
 				}
