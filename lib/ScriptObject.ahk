@@ -1,6 +1,6 @@
 ﻿; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{}
+Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
 ,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
 ,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
