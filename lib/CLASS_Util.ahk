@@ -118,10 +118,39 @@ Class Util {
 			MsgBox,% 4096+16, %A_ScriptName%,% This.PrintArray(l,False)
 		Return l
 	}
-	HttpGet(url){
+	; Com method of fetching URL text data.
+	; Pass postdata, headers and cookies as keypair arrays, if postdata is text do not prepend "?"
+	HttpGet(url,postdata:="",headers:="",cookies:=""){
 		Try {
 			whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+			If (postdata){
+				appended := ""
+				If isObject(postdata) {
+					for k, v in postdata {
+						appended .= (appended?"&":"?")  k "=" v
+					}
+				} else {
+					appended .= "?" postdata
+				}
+				url .= appended
+			}
 			whr.Open("GET", url, true)
+			whr.SetRequestHeader("User-Agent", "Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
+			whr.SetRequestHeader("accept", "*.*")
+			; Handle headers individually
+			If (headers) {
+				For k, v in headers {
+					whr.SetRequestHeader(k,v)
+				}
+			}
+			; Handle Cookies into one line
+			If (cookies) {
+				cStr := ""
+				For k, v in cookies {
+					cStr .= (cStr?"; ":"") k "=" v
+				}
+				whr.SetRequestHeader("cookie",cStr)
+			}
 			whr.Send()
 			; Using 'true' above and the call below allows the script to remain responsive.
 			whr.WaitForResponse()
