@@ -120,7 +120,7 @@ Class Util {
 	}
 	; Com method of fetching URL text data.
 	; Pass postdata, headers and cookies as keypair arrays, if postdata is text do not prepend "?"
-	HttpGet(url,postdata:="",headers:="",cookies:=""){
+	HttpGet(url,headers:="",postdata:="",cookies:=""){
 		Try {
 			whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
 			If (postdata){
