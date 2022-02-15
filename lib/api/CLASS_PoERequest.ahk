@@ -20,6 +20,11 @@ Class PoERequest {
     obj := This.HandleResponse(response)
     Return ( obj ? obj.accountName : False )
   }
+  Leagues(){
+    Static Url := "http://api.pathofexile.com/leagues"
+    response := Util.HttpGet(Url)
+    Return This.HandleResponse(response)
+  }
   HandleResponse(response){
     Try {
       obj := JSON.Load(response)
