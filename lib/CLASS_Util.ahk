@@ -155,6 +155,9 @@ Class Util {
 			; Using 'true' above and the call below allows the script to remain responsive.
 			whr.WaitForResponse()
 			response := whr.ResponseText
+			If WR.Debug.LogHttpGet {
+				Log("HttpGet Response ","Account Response",response)
+			}
 			Return response
 		} catch e {
 			This.Err(e,"Download failed for " url)
