@@ -156,7 +156,8 @@ Class Util {
 			whr.WaitForResponse()
 			response := whr.ResponseText
 			If WR.Debug.LogHttpGet {
-				Log("HttpGet Response ","Account Response",response)
+				responseheaders := whr.GetAllResponseHeaders()
+				Log("HttpGet Response ","Account Response",response,"---------Headers---------",responseheaders)
 			}
 			Return response
 		} catch e {
