@@ -12,8 +12,7 @@ Class PoERequest {
 
     response := Util.HttpGet(Url,Headers,postdata)
 
-    obj := This.HandleResponse(response)
-    Return obj
+    Return This.HandleResponse(response)
   }
   Account() {
     Static Url := "https://www.pathofexile.com/character-window/get-account-name"
@@ -21,12 +20,8 @@ Class PoERequest {
     Headers["cookie"] := PoECookie
 
     response := Util.HttpGet(Url,Headers)
-    
-    If (obj := This.HandleResponse(response)) {
-      Return obj.accountName
-    } Else {
-      Return False
-    }
+    obj := This.HandleResponse(response)
+    Return ( obj ? obj.accountName : False )
   }
   HandleResponse(response){
     Try {
