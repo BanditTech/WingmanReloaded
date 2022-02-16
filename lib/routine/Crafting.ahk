@@ -155,7 +155,7 @@ CraftingItem(){
 		}
 		ItemCraftingRoll("AltAugRegal", xx, yy)
 	}Else If(ItemCraftingMethod == "Scouring and Alchemy Spam"){
-		ItemCraftingRoll("AltSco", xx, yy)
+		ItemCraftingRoll("AlcSco", xx, yy)
 	}Else If(ItemCraftingMethod == "Chaos Spam"){
 		ItemCraftingRoll("Chaos", xx, yy)
 	}
