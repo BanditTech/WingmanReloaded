@@ -1,4 +1,4 @@
-﻿class ItemScan
+class ItemScan
 {
 	__New(){
 		This.Data := {}
@@ -526,7 +526,7 @@
 					This.Prop.SpecialType := "Catalyst"
 				}
 			}
-			Else If (This.Prop.ItemClass = "Metamorph Sample")
+			Else If (This.Prop.ItemClass = "Metamorph Samples")
 			{
 				If (InStr(This.Prop.ItemBase, "'s Lung"))
 				{
