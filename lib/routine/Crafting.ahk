@@ -457,6 +457,7 @@ MapRoll(Method, x, y){
 	Return 1
 }
 ItemCraftingRoll(Method, x, y){
+	desirednumber := ItemCraftingNumberPrefix + ItemCraftingNumberSuffix + ItemCraftingNumberCombination
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
 	If (Method == "Alt")
@@ -505,11 +506,14 @@ ItemCraftingRoll(Method, x, y){
 			If !ApplyCurrency(cname, x, y)
 				Return False
 		}
-		Else If(Item.Prop.RarityMagic){
-			If(Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)) {
+		Else If (Item.Prop.RarityMagic) {
+			If (Method ~= "AltAug" && Item.Prop.AffixCount < 2 && !(Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0) && (desirednumber <= 1) ) {
 				If !ApplyCurrency("Augmentation",x,y)
 					Return False
-			} Else If (Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)	{
+			} Else If (Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)) {
+				If !ApplyCurrency("Augmentation",x,y)
+					Return False
+			} Else If (Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1) {
 				If !ApplyCurrency("Regal",x,y)
 					Return False
 			}	Else {
