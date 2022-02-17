@@ -506,17 +506,13 @@ ItemCraftingRoll(Method, x, y){
 				Return False
 		}
 		Else If(Item.Prop.RarityMagic){
-			If(Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0))
-			{
+			If(Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)) {
 				If !ApplyCurrency("Augmentation",x,y)
 					Return False
-			}Else If(Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)
-			{
+			} Else If (Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)	{
 				If !ApplyCurrency("Regal",x,y)
 					Return False
-			}
-			Else
-			{
+			}	Else {
 				If !ApplyCurrency(crname, x, y)
 					Return False
 			}
@@ -536,7 +532,7 @@ ItemCraftingRoll(Method, x, y){
 		Log("Item Crafting Loop","Item Crafting resulted in a " 
 		. "CraftingMatchedPrefix: "Item.Prop.CraftingMatchedPrefix
 		. " | CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
-	,JSON.Dump(Item) )
+		,JSON.Dump(Item) )
 		
 	}
 	If(Item.Prop.ItemCraftingHit)
