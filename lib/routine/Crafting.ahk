@@ -515,10 +515,10 @@ ItemCraftingRoll(Method, x, y){
 			{
 				If !ApplyCurrency(crname, x, y)
 					Return False
-				ClipItem(x,y)
-				Sleep, 45*Latency
 				If(Method ~= "AltAug" && Item.Prop.AffixCount < 2)
 				{
+					ClipItem(x,y)
+					Sleep, 45*Latency
 					If !ApplyCurrency("Augmentation",x,y)
 						Return False
 				}
