@@ -703,12 +703,16 @@ WR_Menu(Function:="",Var*){
 
       ; Mod Selector
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h80 xs yp+20 , Mod Selector
+      Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort xp+10 yp+20 w300, %aux%
+      Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, Catagory:
+      Gui, Crafting: Add, DropDownList, vItemCraftingCatagorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
+      GuiControl, ChooseString, ItemCraftingCatagorySelector, %ItemCraftingCatagorySelector%
+      Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
+      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, %aux%
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingBaseSelector, %ItemCraftingBaseSelector%
-      Gui, Crafting: Add, Button, gModsUI xp yp+25 w300, Open UI
+      Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w300, Open UI
 
       ; Affix Matcher
       Gui, Crafting: Font, Bold s9 cBlack, Arial
