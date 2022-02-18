@@ -230,7 +230,7 @@ Class Util {
 				Return
 			Else If (t.1 ~= "^\w+$" || t.1 ~= ".+ $")
 				flag := Rtrim(t.RemoveAt(1))
-			If !(flag ~= "[eE]rror") && !This.Debug.Log
+			If !(flag ~= "[eE]rror|WingmanReloaded|[iI]nit|[bB]ug|[iI]ssue|[fF]ail") && (This.Debug.Log >= 0 && !This.Debug.Log)
 				Return False
 			If !This.Log.ActiveFile
 				This.Log.Open()
@@ -238,11 +238,14 @@ Class Util {
 			If t.1.Count()
 				t := t.1
 			For k, v in t {
-				line .= A_Hour ":" A_Min ":" A_Sec (k=1 ? (flag?" " flag ": " : " ") : "`t") v "`n"
+				If isObject(v)
+					vstr := JSON.Dump(v)
+				Else
+					vstr := v
+				vstr := StrReplace(vstr, A_ScriptDir, ".")
+				line .= A_Hour ":" A_Min ":" A_Sec (k=1 ? (flag?" " flag ": " : "`t") : " ----- ") vstr "`n"
 			}
 			File.WriteLine( line )
-			; updateLogViewer( line )
-			; File.WriteLine("")
 			File.Close()
 		}
 		Close(t*){
