@@ -1,7 +1,7 @@
 ﻿; Find and retreive Chaos recipe items from a Stash Tab
 ChaosRecipe(endAtRefresh := 0){
-  If (AccountNameSTR = "")
-    AccountNameSTR := POE_RequestAccount().accountName
+  If (!AccountNameSTR)
+    AccountNameSTR := PoERequest.Account()
   Global RecipeArray := {}
 
   If ChaosRecipeStashMethodDump

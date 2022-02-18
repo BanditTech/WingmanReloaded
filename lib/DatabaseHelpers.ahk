@@ -73,8 +73,8 @@ CraftingBasesRequest(ShouldRun){
     If(!ShouldRun){
         Return
     }
-    If (AccountNameSTR = ""){
-        AccountNameSTR := POE_RequestAccount().accountName
+    If (!AccountNameSTR){
+        AccountNameSTR := PoeRequest.Account()
     }
     Object := POE_RequestStash(StashTabCrafting,0)
     ClearQuantCraftingBase()
