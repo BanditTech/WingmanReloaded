@@ -36,8 +36,6 @@
 #Include, %A_ScriptDir%\lib\NeverSinkLootFilterModifier.ahk
 
 #Include, %A_ScriptDir%\lib\api\CLASS_PoERequest.ahk
-#Include, %A_ScriptDir%\lib\api\POE_RequestAccount.ahk
-#Include, %A_ScriptDir%\lib\api\POE_RequestStash.ahk
 #Include, %A_ScriptDir%\lib\api\POE_UpdateLeagues.ahk
 #Include, %A_ScriptDir%\lib\api\ScrapeNinjaData.ahk
 #Include, %A_ScriptDir%\lib\api\RefreshStatsList.ahk

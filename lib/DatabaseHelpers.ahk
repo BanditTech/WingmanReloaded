@@ -76,7 +76,7 @@ CraftingBasesRequest(ShouldRun){
     If (!AccountNameSTR){
         AccountNameSTR := PoeRequest.Account()
     }
-    Object := POE_RequestStash(StashTabCrafting,0)
+    Object := PoERequest.Stash(StashTabCrafting)
     ClearQuantCraftingBase()
     Strings := []
     For k, v in Object.items
