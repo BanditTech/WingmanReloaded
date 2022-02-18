@@ -26,23 +26,12 @@ Class PoERequest {
     Return This.HandleResponse(response)
   }
   HandleResponse(response){
-    If RegExMatch(response, "is)(.*?({.*}))?.*?'(.*?)'.*", responseMatch) {
-      response := responseMatch1
-      responseHeader := responseMatch3
-    } Else If RegExMatch(response, "is)(.*)?({.*})(.*)?", responseMatch) {
-      response := responseMatch2
-    } Else {
-      FileOpen(A_ScriptDir "\temp\responsedump.txt", "w").Write(response)
-      Log("PoERequest Error ","Cannot locate any JSON in response",response)
-    }
-
+    response := RegexReplace(response,"[]","")
     Try {
       obj := JSON.Load(response)
       If obj.error {
         Log("POERequest Error ", "API endpoint returned an error code",obj)
         Return False
-      } Else {
-        Log("POERequest Success ","Loaded this response",obj)
       }
     } Catch e {
       Log("POERequest Error ","Invalid JSON error",response)
