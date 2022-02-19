@@ -960,7 +960,7 @@
 				}
 			}
 		}
-		if(sum >= 0){
+		if(sum >= MMapWeight){
 			If good
 				This.Prop.HasDesirableMod := good
 			Return False
