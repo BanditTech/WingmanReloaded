@@ -1,4 +1,18 @@
-﻿## Version .15.02 - Master version - February/10/2021
+﻿## Version .15.0201 - Alpha version - February/18/2021
+Various bugfixes and Adjustments
+  * Added adjustment for minimum weight in map crafting
+  * Changes to how we request API endpoints
+  * New classes for editing item filters
+  * Jeweler has been changed to Jeweller across the script
+  * Formatting changes to use One True Brace style
+  * Add placeholder dropdown for item crafting catagories
+  * Utility being disabled stops Movement trigger utility from firing
+  * Add quivers to crafting bases
+  * Improvement to log function, can directly print objects
+
+---
+
+## Version .15.02 - Master version - February/10/2021
 Alpha changes are being merged into master branch
 
 Various bugfixes and Adjustments
