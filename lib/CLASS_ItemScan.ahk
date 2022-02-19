@@ -960,11 +960,11 @@
 				}
 			}
 		}
-		if(sum >= MMapWeight){
+		if (sum >= MMapWeight || (This.Affix.Unidentified && This.Prop.Corrupted)) {
 			If good
 				This.Prop.HasDesirableMod := good
 			Return False
-		}else{
+		} else {
 			Return True
 		}
 	}
