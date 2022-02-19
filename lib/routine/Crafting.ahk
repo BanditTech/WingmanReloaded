@@ -416,10 +416,10 @@ MapRoll(Method, x, y){
 			Return False
 	}
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	While ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) || (!MMQIgnore && !Item.Prop.HasDesirableMod && ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)))) && !Item.Affix["Unidentified"] && !Item.Prop.Corrupted
-	{
-		If (!RunningToggle)
-		{
+	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted) 
+	&& ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) 
+	|| (!MMQIgnore && !Item.Prop.HasDesirableMod && ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)))) {
+		If (!RunningToggle) {
 			break
 		}
 		Log("Crafting","Map reroll initiated because" 
@@ -432,14 +432,11 @@ MapRoll(Method, x, y){
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
 			Return False
-		If (Item.Prop.RarityNormal)
-		{
+		If (Item.Prop.RarityNormal) {
 			If !ApplyCurrency(cname, x, y)
 				Return False
-		}
 		; Augmentation if not 2 mods on magic maps
-		Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic)
-		{
+		} Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic) {
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
