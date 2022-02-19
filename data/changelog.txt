@@ -9,6 +9,8 @@ Various bugfixes and Adjustments
   * Utility being disabled stops Movement trigger utility from firing
   * Add quivers to crafting bases
   * Improvement to log function, can directly print objects
+  * Adjustable minimum weight for map crafting
+  * Unid Corrupted maps not considered bricked
 
 ---
 
