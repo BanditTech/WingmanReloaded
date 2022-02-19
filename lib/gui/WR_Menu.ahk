@@ -598,13 +598,13 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
-      Gui, Crafting: Add,GroupBox,Section w285 h55 xs, Map Mods:
+      Gui, Crafting: Add,GroupBox,Section w285 h85 xs, Map Mods:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s7
       Gui, Crafting: Add, Button, xs+40 ys+20 w200 gCustomMapModsUI, Custom Map Mods
-      Gui, Crafting: Add, Text, xs+5 y+5 center w100, Minimum Weight:
-      Gui, Crafting: Add, Edit, x+5 yp-4 w30, 
-      Gui, Crafting: Add, UpDown, Range-100-200 vMMapWeight, 0 
+      Gui, Crafting: Add, Text, xs+35 y+15 center w100, Minimum Weight:
+      Gui, Crafting: Add, Edit, x+5 yp-4 w50, 
+      Gui, Crafting: Add, UpDown, Range-100-200 vMMapWeight, %MMapWeight% 
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
