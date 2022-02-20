@@ -1,4 +1,13 @@
-﻿## Version .15.0201 - Alpha version - February/18/2021
+﻿## Version .15.03 - Master version - February/19/2021
+Alpha changes are being merged into master branch
+
+Improvements to Crafting Bases
+  * Cluster jewels are now supported
+  * Category selector added to organize dropdown lists
+
+---
+
+## Version .15.0201 - Alpha version - February/18/2021
 Various bugfixes and Adjustments
   * Added adjustment for minimum weight in map crafting
   * Changes to how we request API endpoints
