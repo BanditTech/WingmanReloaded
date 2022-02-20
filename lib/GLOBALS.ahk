@@ -637,7 +637,7 @@ Global YesIncludeFandSItem := True
 
 ; Item Crafting
 
-Global ItemCraftingCatagorySelector
+Global ItemCraftingcategorySelector
 Global ItemCraftingBaseSelector
 Global ItemCraftingMethod
 Global ItemCraftingNumberPrefix

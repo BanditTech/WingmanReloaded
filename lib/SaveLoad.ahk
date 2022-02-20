@@ -119,7 +119,7 @@ readFromFile(){
 	;Item Crafting Options
 
 	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Amulet
-	IniRead, ItemCraftingCatagorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCatagorySelector, Weapons
+	IniRead, ItemCraftingcategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingcategorySelector, Weapons
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
@@ -830,7 +830,7 @@ submit(){
 		;Item Crafting Options
 
 		IniWrite, %ItemCraftingBaseSelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector
-		IniWrite, %ItemCraftingCatagorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCatagorySelector
+		IniWrite, %ItemCraftingcategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingcategorySelector
 		IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
 		IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
 		IniWrite, %ItemCraftingNumberCombination%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination

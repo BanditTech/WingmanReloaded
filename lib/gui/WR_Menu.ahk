@@ -698,25 +698,25 @@ WR_Menu(Function:="",Var*){
         If (v ~= "Map(.+)")
           Continue
         If (v ~= "^SCJ") {
-          catagory := "Small Cluster"
+          category := "Small Cluster"
         } Else If (v ~= "^MCJ") {
-          catagory := "Medium Cluster"
+          category := "Medium Cluster"
         } Else If (v ~= "^LCJ") {
-          catagory := "Large Cluster"
+          category := "Large Cluster"
         } Else If (v ~= "Jewel$") {
-          catagory := "Jewels"
+          category := "Jewels"
         } Else If (v ~= "Flask$") {
-          catagory := "Flasks"
+          category := "Flasks"
         } Else If (v ~= "Amulet|Ring|Belt|Trinket") {
-          catagory := "Jewellery"
+          category := "Jewellery"
         } Else If (v ~= "^(Gloves|Boots|Body Armour|Helmet|Shield|Quiver)") {
-          catagory := "Armours"
+          category := "Armours"
         } Else {
-          catagory := "Weapons"
+          category := "Weapons"
         }
-        WR.MenuDDLstr[catagory] .= v "|"
+        WR.MenuDDLstr[category] .= v "|"
       }
-      catagory := ""
+      category := ""
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, Text, Section xm+5 ym+25, Item Crafting BETA
@@ -726,11 +726,11 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, Catagory:
-      Gui, Crafting: Add, DropDownList, vItemCraftingCatagorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
-      GuiControl, ChooseString, ItemCraftingCatagorySelector, %ItemCraftingCatagorySelector%
+      Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, category:
+      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
+      GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
       Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingCatagorySelector]
+      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingcategorySelector]
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingBaseSelector, %ItemCraftingBaseSelector%
       Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w300, Open UI

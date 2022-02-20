@@ -64,12 +64,12 @@ Return
 
 ItemCraftingSubmit:
   SaveINI("Item Crafting Settings")
-  If (A_GuiControl ~= "CatagorySelector") {
-    GuiControl, , ItemCraftingBaseSelector, % "|" WR.MenuDDLstr[ItemCraftingCatagorySelector]
-    GuiControl, ChooseString, ItemCraftingBaseSelector,% WR.MenuDDLselect[ItemCraftingCatagorySelector]
+  If (A_GuiControl ~= "categorySelector") {
+    GuiControl, , ItemCraftingBaseSelector, % "|" WR.MenuDDLstr[ItemCraftingcategorySelector]
+    GuiControl, ChooseString, ItemCraftingBaseSelector,% WR.MenuDDLselect[ItemCraftingcategorySelector]
   }
   If (A_GuiControl ~= "BaseSelector") {
-    WR.MenuDDLselect[ItemCraftingCatagorySelector] := ItemCraftingBaseSelector
+    WR.MenuDDLselect[ItemCraftingcategorySelector] := ItemCraftingBaseSelector
     Settings("MenuDDLselect","Save")
   }
 Return
