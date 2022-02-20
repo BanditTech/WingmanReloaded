@@ -87,6 +87,10 @@ For k, v in PoeDBAPI
 {
 	content := RegExReplace(v," ","")
 	contentdownload := v
+	; Replace cluster jewel text
+	contentdownload := RegExReplace(contentdownload,"LCJ","Large Cluster Jewel")
+	contentdownload := RegExReplace(contentdownload,"MCJ","Medium Cluster Jewel")
+	contentdownload := RegExReplace(contentdownload,"SCJ","Small Cluster Jewel")
 	; Large clusters
 	contentdownload := RegExReplace(contentdownload,"\(axe and sword damage\)","&tags=affliction_axe_and_sword_damage")
 	contentdownload := RegExReplace(contentdownload,"\(mace and staff damage\)","&tags=affliction_mace_and_staff_damage")
