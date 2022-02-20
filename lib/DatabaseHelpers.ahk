@@ -73,22 +73,26 @@ CraftingBasesRequest(ShouldRun){
     If(!ShouldRun){
         Return
     }
-    If (AccountNameSTR = ""){
-        AccountNameSTR := POE_RequestAccount().accountName
+    If (!AccountNameSTR){
+        AccountNameSTR := PoeRequest.Account()
     }
-    Object := POE_RequestStash(StashTabCrafting,0)
+    Object := PoERequest.Stash(StashTabCrafting)
     ClearQuantCraftingBase()
+    Strings := []
     For k, v in Object.items
     {
         item := new ItemBuild(v,Object.quadLayout)
-        text := % "Item Base: "item["Prop"]["ItemBase"]" Item Name: "item["Prop"]["ItemName"]" Item Higher ILvL Found: "item["Prop"]["CraftingBaseHigherILvLFound"]" Item Quant Found: "item["Prop"]["CraftingBaseQuantFound"]
-        Log("CraftingBasesRequest",text)
+        Strings.Push("Item Base: " item["Prop"]["ItemBase"] 
+        . ", Name: " item["Prop"]["ItemName"] 
+        . ", ILVL: " item["Prop"]["CraftingBaseHigherILvLFound"] 
+        . ", Quantity: " item["Prop"]["CraftingBaseQuantFound"])
     }
+    Log("Crafting Bases ","Refreshing quantity and minimum ilvl from stash items",Strings*)
     Return
 }
 
 ClearQuantCraftingBase(){
-    for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]{
+    for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]{
         for k,v in WR.CustomCraftingBases[vi]{
             v.Quant:=0
             v.ILvL:=0

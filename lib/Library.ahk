@@ -5,6 +5,8 @@
 #Include, %A_ScriptDir%\lib\CLASS_7za.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ColorPicker.ahk
 #Include, %A_ScriptDir%\lib\CLASS_Craft.ahk
+#Include, %A_ScriptDir%\lib\CLASS_FilterAdjuster.ahk
+#Include, %A_ScriptDir%\lib\CLASS_FilterBuilder.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ItemBuild.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ItemScan.ahk
 #Include, %A_ScriptDir%\lib\CLASS_ModAlias.ahk
@@ -31,9 +33,9 @@
 #Include, %A_ScriptDir%\lib\TrayLabels.ahk
 #Include, %A_ScriptDir%\lib\Trigger.ahk
 #Include, %A_ScriptDir%\lib\DatabaseHelpers.ahk
+#Include, %A_ScriptDir%\lib\NeverSinkLootFilterModifier.ahk
 
-#Include, %A_ScriptDir%\lib\api\POE_RequestAccount.ahk
-#Include, %A_ScriptDir%\lib\api\POE_RequestStash.ahk
+#Include, %A_ScriptDir%\lib\api\CLASS_PoERequest.ahk
 #Include, %A_ScriptDir%\lib\api\POE_UpdateLeagues.ahk
 #Include, %A_ScriptDir%\lib\api\ScrapeNinjaData.ahk
 #Include, %A_ScriptDir%\lib\api\RefreshStatsList.ahk

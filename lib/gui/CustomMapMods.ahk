@@ -34,7 +34,7 @@ RefreshMapList()
         }Else{
           AffixName := "Suffix"
         }
-        LV_Add("",AffixName,v["Name"],ItemCraftingNamingMaping(v["str"]),v["DropChance"],"Good","10")
+        LV_Add("",AffixName,v["Name"],ItemCraftingNamingMaping(v["str"]),v["DropChance"],"Good","1")
       }
     }
   Mods := []

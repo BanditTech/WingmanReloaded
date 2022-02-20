@@ -1,6 +1,6 @@
 ﻿; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{}
+Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{},"MenuDDLstr":{},"MenuDDLselect":{}
 ,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
 ,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
@@ -10,13 +10,16 @@ for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "Di
 , "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
 ,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"
 ,"Augmentation","Divine"
-,"Jeweler","Fusing","Chromatic","Awakened","Elevated","Harbinger","Horizon"
+,"Jeweller","Fusing","Chromatic","Awakened","Elevated","Harbinger","Horizon"
 ,"Enkindling","Ancient","Binding","Engineer","Regret","Unmaking"
 ,"Instilling","Scouring","Sacred","Blessed","Vaal"
 , "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor", "OnVendorHeist"
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
 	WR.loc.pixel[v] := {"X":0,"Y":0}
 
+for k, v in ["Armours","Flasks","Jewellery","Jewels","Large Cluster","Medium Cluster","Small Cluster","Weapons"] {
+	WR.MenuDDLselect[v] := ""
+}
 for k, v in []
 	WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
 WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
@@ -87,7 +90,7 @@ WR.String.General:={"OHB":"|<OHB_Bar>0x241814@0.99$106.Tzzzzzzzzzzzzzzzzu"
 
 WR.CustomMapMods.MapMods := []
 
-for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
+for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]
 {
 	WR.CustomCraftingBases[v] := []
 }

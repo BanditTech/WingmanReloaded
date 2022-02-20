@@ -526,7 +526,7 @@
 					This.Prop.SpecialType := "Catalyst"
 				}
 			}
-			Else If (This.Prop.ItemClass = "Metamorph Sample")
+			Else If (This.Prop.ItemClass = "Metamorph Samples")
 			{
 				If (InStr(This.Prop.ItemBase, "'s Lung"))
 				{
@@ -703,7 +703,7 @@
 				}
 				If (This.Prop.Sockets_Num == 6)
 				{
-					This.Prop.Jeweler := True
+					This.Prop.Jeweller := True
 				}
 			}
 			;Generic Props
@@ -907,7 +907,7 @@
 			This.Prop.Veiled := False
 		}
 		; Flags for Map Roll and Bricked Maps
-		If (This.HasBrickedAffix())
+		If (This.HasBrickedAffix() && This.Prop.IsMap)
 		{
 			If (This.Prop.Corrupted)
 			{
@@ -960,11 +960,11 @@
 				}
 			}
 		}
-		if(sum >= 0){
+		if (sum >= MMapWeight || (This.Affix.Unidentified && This.Prop.Corrupted)) {
 			If good
 				This.Prop.HasDesirableMod := good
 			Return False
-		}else{
+		} else {
 			Return True
 		}
 	}
@@ -1139,7 +1139,7 @@
 			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3)) 
 		&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width = 2 && This.Prop.Item_Height = 3) )
 		Return False
-		If (ChaosRecipeSkipJC && (This.Prop.Jeweler || This.Prop.Chromatic))
+		If (ChaosRecipeSkipJC && (This.Prop.Jeweller || This.Prop.Chromatic))
 			Return False
 		If !IsObject(RecipeArray)
 		{
@@ -2508,156 +2508,127 @@
 			, "Blessing of Uul-Netol":0
 			, "Blessing of Tul":0
 			, "Blessing of Esh":0 }
-		If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item"))
-		{
+		If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item")) {
 			If (StashTabYesCurrency > 1 && !UnsupportedAffinityCurrencies.HasKey(This.Prop.ItemName))
 				sendstash := -2
 			Else
 				sendstash := StashTabCurrency
-		}
-		Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap)
+		} Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap) {
 			sendstash := StashTabNinjaPrice
-		Else If (This.Prop.Expedition)
+		} Else If (This.Prop.Expedition) {
 			Return -2
-		Else If (This.Prop.Heist)
+		} Else If (This.Prop.Heist) {
 			Return -2
-		Else If (This.Prop.Incubator)
+		} Else If (This.Prop.Incubator) {
 			Return -1
 		;Affinities
-		Else If (This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight
-		{
-			If StashTabYesBlight > 1
+		} Else If ((This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight) {
+			If (StashTabYesBlight > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabBlight
-		}
-		Else If ((This.Prop.IsBrickedMap) && StashTabYesBrickedMaps)
+		} Else If (This.Prop.IsBrickedMap && StashTabYesBrickedMaps) {
 			sendstash := StashTabBrickedMaps
-		Else If (This.Prop.IsMap && StashTabYesMap)
-		{
-			If StashTabYesMap > 1
+		} Else If (This.Prop.IsMap && StashTabYesMap) {
+			If (StashTabYesMap > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabMap
-		}
-		Else If (This.Prop.Catalyst || This.Prop.IsOrgan != "") && StashTabYesMetamorph
-		{
-			If StashTabYesMetamorph > 1
+		} Else If ((This.Prop.Catalyst || This.Prop.IsOrgan != "") && StashTabYesMetamorph) {
+			If (StashTabYesMetamorph > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabMetamorph
-		}
-		Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium)
-		{
-			If StashTabYesDelirium > 1
+		} Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium) {
+			If (StashTabYesDelirium > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabDelirium
-		}
-		Else If (This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.UberDuberOffering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment || This.Prop.ConquererFragment )&&StashTabYesFragment
-		{
-			If StashTabYesFragment > 1 
+		} Else If ((This.Prop.TimelessSplinter || This.Prop.TimelessEmblem || This.Prop.BreachSplinter || This.Prop.Offering || This.Prop.UberDuberOffering || This.Prop.Vessel || This.Prop.Scarab || This.Prop.SacrificeFragment || This.Prop.MortalFragment || This.Prop.GuardianFragment || This.Prop.ProphecyFragment || This.Prop.ConquererFragment ) && StashTabYesFragment) {
+			If (StashTabYesFragment > 1) 
 				sendstash := -2
 			Else
 				sendstash := StashTabFragment 
-		}
-		Else If (This.Prop.RarityDivination) && StashTabYesDivination
-		{
-			If StashTabYesDivination > 1
+		} Else If (This.Prop.RarityDivination) && StashTabYesDivination {
+			If (StashTabYesDivination > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabDivination
-		}
-		Else If (This.Prop.Essence) && StashTabYesEssence
-		{
-			If StashTabYesEssence > 1
+		} Else If (This.Prop.Essence) && StashTabYesEssence {
+			If (StashTabYesEssence > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabEssence
-		}
-		Else If (This.Prop.Fossil || This.Prop.Resonator) && StashTabYesDelve
-		{
-			If StashTabYesDelve > 1
+		} Else If (This.Prop.Fossil || This.Prop.Resonator) && StashTabYesDelve {
+			If (StashTabYesDelve > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabDelve
-		}
-		Else If (This.Prop.Flask&&!This.Prop.RarityUnique)
-		{
-			If StashTabYesFlask > 1
+		} Else If (This.Prop.Flask&&!This.Prop.RarityUnique) {
+			If (StashTabYesFlask > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabFlask
-		}																												
-		Else If (This.Prop.RarityGem && StashTabYesGem)
-		{
-			If StashTabYesGem > 1
+		} Else If (This.Prop.RarityGem && StashTabYesGem) {
+			If (StashTabYesGem > 1)
 				sendstash := -2
 			Else
 				sendstash := StashTabGem
-		}
-		Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
-			&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) )
-		{
+		} Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && !This.Prop.IsOrgan 
+			&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) ) {
 			If (StashTabYesUnique = 2)
-			Return -2
-		Else if (StashTabYesUnique)
-			sendstash := StashTabUnique
-		Else If (StashTabYesUniqueRing&&This.Prop.Ring)
-			sendstash := StashTabUniqueRing
-		Else If (StashTabYesUniqueDump)
-			sendstash := StashTabUniqueDump
-		}
-		Else If ( ((StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
-			&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage) )
-		{
-			If (StashTabYesUniqueRing&&StashTabYesUniqueRingAll&&This.Prop.Ring)
+				Return -2
+			Else if (StashTabYesUnique)
+				sendstash := StashTabUnique
+			Else If (StashTabYesUniqueRing&&This.Prop.Ring)
+				sendstash := StashTabUniqueRing
+			Else If (StashTabYesUniqueDump)
+				sendstash := StashTabUniqueDump
+		} Else If ( ((StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan="" 
+			&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage) ) {
+			If (StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring)
 				sendstash := StashTabUniqueRing
 			Else If (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)
 				sendstash := StashTabUniqueDump
-		}
-		Else If (This.Prop.MiscMapItem&&StashTabYesMiscMapItems)
+		} Else If (This.Prop.MiscMapItem&&StashTabYesMiscMapItems) {
 			sendstash := StashTabMiscMapItems
-		Else If ((This.Prop.IsInfluenceItem||This.Prop.IsSynthesisItem&&YesIncludeFandSItem)&&StashTabYesInfluencedItem)
+		} Else If ((This.Prop.IsInfluenceItem||This.Prop.IsSynthesisItem&&YesIncludeFandSItem)&&StashTabYesInfluencedItem) {
 			sendstash := StashTabInfluencedItem
-		Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked)
+		} Else If ((This.Prop.Sockets_Link >= 5)&&StashTabYesLinked) {
 			sendstash := StashTabLinked
-		Else If (This.Prop.Veiled&&StashTabYesVeiled)
+		} Else If (This.Prop.Veiled&&StashTabYesVeiled) {
 			sendstash := StashTabVeiled
-		Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel)
+		} Else If (This.Prop.ClusterJewel&&StashTabYesClusterJewel) {
 			sendstash := StashTabClusterJewel
-		Else If (This.Prop.HeistGear&&StashTabYesHeistGear)
+		} Else If (This.Prop.HeistGear&&StashTabYesHeistGear) {
 			sendstash := StashTabHeistGear
-		Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase)
+		} Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase) {
 			sendstash := StashTabCrafting
-		Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price )
+		} Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ) {
 			sendstash := StashTabPredictive
-		Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough))
-		{
+		} Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough)) {
 			If (ChaosRecipeStashMethodDump)
 				sendstash := StashTabDump
 			Else If (ChaosRecipeStashMethodTab)
 				sendstash := ChaosRecipeStashTab
-			Else If (ChaosRecipeStashMethodSort)
-			{
+			Else If (ChaosRecipeStashMethodSort) {
 				If (This.Prop.SlotType = "Body")
 					sendstash := ChaosRecipeStashTabArmour
 				Else If (This.Prop.SlotType = "One Hand" || This.Prop.SlotType = "Two Hand" || This.Prop.SlotType = "Shield")
 					sendstash := ChaosRecipeStashTabWeapon
-				Else If This.Prop.SlotType
-				{
+				Else If (This.Prop.SlotType) {
 					w := This.Prop.SlotType
 					sendstash := ChaosRecipeStashTab%w%
 				}
 			}
-		}
-		Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
-			|| (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweler || This.Prop.Chromatic)))))
-		sendstash := StashTabDump, This.Prop.DumpTabItem := True
-		Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods")
+		} Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial") 
+			|| (StashTabYesDump && (!StashDumpSkipJC || (StashDumpSkipJC && !(This.Prop.Jeweller || This.Prop.Chromatic))))) {
+			sendstash := StashTabDump, This.Prop.DumpTabItem := True
+		} Else If (This.Prop.SpecialType && This.Prop.SpecialType != "Heist Goods") {
 			Return -1
-		Else
+		}	Else {
 			Return False
+		}
 		Return sendstash
 	}
 	MatchLootFilter(GroupOut:=0){

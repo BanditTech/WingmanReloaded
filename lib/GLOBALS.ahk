@@ -78,7 +78,58 @@ Global PoeDBAPI := ["Life Flask"
 ,"Staff"
 ,"Map(LOW)"
 ,"Map(MID)"
-,"Map(TOP)"]
+,"Map(TOP)"
+,"LCJ(axe and sword damage)"
+,"LCJ(mace and staff damage)"
+,"LCJ(dagger and claw damage)"
+,"LCJ(bow damage)"
+,"LCJ(wand damage)"
+,"LCJ(damage with two handed melee weapons)"
+,"LCJ(attack damage while dual wielding)"
+,"LCJ(atack damage while holding a shield)"
+,"LCJ(attack damage)"
+,"LCJ(spell damage)"
+,"LCJ(elemental damage)"
+,"LCJ(physical damage)"
+,"LCJ(fire damage)"
+,"LCJ(lightning damage)"
+,"LCJ(cold damage)"
+,"LCJ(chaos damage)"
+,"LCJ(minion damage)"
+,"MCJ(fire damage over time multiplier)"
+,"MCJ(chaos damage over time multiplier)"
+,"MCJ(physical damage over time multiplier)"
+,"MCJ(cold damage over time multiplier)"
+,"MCJ(damage over time multiplier)"
+,"MCJ(effect of non-damaging ailments)"
+,"MCJ(legacy aura effect)"
+,"MCJ(legacy curse effect)"
+,"MCJ(damage while you have a herald)"
+,"MCJ(minion damage while you have a herald)"
+,"MCJ(warcry buff effect)"
+,"MCJ(critical chance)"
+,"MCJ(minion life)"
+,"MCJ(area damage)"
+,"MCJ(projectile damage)"
+,"MCJ(trap and mine damage)"
+,"MCJ(totem damage)"
+,"MCJ(brand damage)"
+,"MCJ(channelling skill damage)"
+,"MCJ(flask duration)"
+,"MCJ(life and mana recovery from flasks)"
+,"SCJ(maximum life)"
+,"SCJ(maximum energy shield)"
+,"SCJ(maximum mana)"
+,"SCJ(armour)"
+,"SCJ(evasion)"
+,"SCJ(chance to block)"
+,"SCJ(fire resistance)"
+,"SCJ(cold resistance)"
+,"SCJ(lightning resistance)"
+,"SCJ(chaos resistance)"
+,"SCJ(chance to dodge attacks)"
+,"SCJ(reservation efficiency)"
+,"SCJ(curse effect)"]
 Global Active_executable := "TempName"
 Global selectedLeague := "Standard"
 ; Hybrid Mods First Line
@@ -199,7 +250,7 @@ ft_ToolTip_Text_Part1=
 	FirstAutomationSetting = Start Automation selected option
 	YesEnableNextAutomation = Enable next automation after the first selected
 	YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
-	YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r The vendor is empty`r The only items are Chromatic or Jeweler`r During the chaos Recipe
+	YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r The vendor is empty`r The only items are Chromatic or Jeweller`r During the chaos Recipe
 	DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
 	YesTimeMS = Enable to show a tooltip when game logic is running
 	YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
@@ -397,7 +448,7 @@ ft_ToolTip_Text_Part3=
 	hotkeyMainAttack = Bind the Main Attack for this Character
 	hotkeySecondaryAttack = Bind the Secondary Attack for this Character
 	YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
-	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweler's recipe items with 5 links.
+	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
 	)
 
 ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
@@ -586,6 +637,7 @@ Global YesIncludeFandSItem := True
 
 ; Item Crafting
 
+Global ItemCraftingcategorySelector
 Global ItemCraftingBaseSelector
 Global ItemCraftingMethod
 Global ItemCraftingNumberPrefix
@@ -854,7 +906,7 @@ Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuf
 Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
 
 ; Map Crafting Settings
-Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3
+Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,EnableMQQForMagicMap,MMapItemRarity,MMapMonsterPackSize,MMapItemQuantity,MMapWeight
 
 ; ItemInfo GUI
 Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 

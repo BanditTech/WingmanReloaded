@@ -1,17 +1,17 @@
 ﻿; Find and retreive Chaos recipe items from a Stash Tab
 ChaosRecipe(endAtRefresh := 0){
-  If (AccountNameSTR = "")
-    AccountNameSTR := POE_RequestAccount().accountName
+  If (!AccountNameSTR)
+    AccountNameSTR := PoERequest.Account()
   Global RecipeArray := {}
 
   If ChaosRecipeStashMethodDump
   {
-    Object := POE_RequestStash(StashTabDump,0)
+    Object := PoERequest.Stash(StashTabDump)
     ItemTypes := ChaosRecipeSort(Object)
   }
   Else If ChaosRecipeStashMethodTab
   {
-    Object := POE_RequestStash(ChaosRecipeStashTab,0)
+    Object := PoERequest.Stash(ChaosRecipeStashTab)
     ItemTypes := ChaosRecipeSort(Object)
   }
   Else If ChaosRecipeStashMethodSort
@@ -22,7 +22,7 @@ ChaosRecipe(endAtRefresh := 0){
       If !indexOf(ChaosRecipeStashTab%part%,requestedTabs)
       {
         requestedTabs.Push(ChaosRecipeStashTab%part%)
-        Object := POE_RequestStash(ChaosRecipeStashTab%part%,0)
+        Object := PoERequest.Stash(ChaosRecipeStashTab%part%)
         ChaosRecipeSort(Object,True)
         Sleep, 300
       }

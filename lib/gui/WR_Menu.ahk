@@ -193,7 +193,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, GroupBox, w185 h60 section x+15 ys, Dump Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpInTrial Checked%StashDumpInTrial% xs+5 ys+18, Enable Dump in Trial
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweler/Chroma Items
+      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweller/Chroma Items
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w185 h40 section xs y+10, Priced Rares Tab
@@ -388,7 +388,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeEnableFunction Checked%ChaosRecipeEnableFunction% xs+10 yp+20 Section, Enable Chaos Recipe Logic
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeUnloadAll Checked%ChaosRecipeUnloadAll% xs yp+20, Sell all sets back to back
-      Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweler/Chroma Items
+      Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeSkipJC Checked%ChaosRecipeSkipJC% xs yp+20, Skip Jeweller/Chroma Items
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleJewellery Checked%ChaosRecipeAllowDoubleJewellery% xs yp+20, Allow 2x Jewellery limit
       Gui, Inventory: Add, Checkbox,gSaveChaos vChaosRecipeAllowDoubleBelt Checked%ChaosRecipeAllowDoubleBelt% xs yp+20, Allow 2x Belt limit
 
@@ -598,10 +598,13 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
-      Gui, Crafting: Add,GroupBox,Section w285 h55 xs, Map Mods:
+      Gui, Crafting: Add,GroupBox,Section w285 h85 xs, Map Mods:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s7
       Gui, Crafting: Add, Button, xs+40 ys+20 w200 gCustomMapModsUI, Custom Map Mods
+      Gui, Crafting: Add, Text, xs+35 y+15 center w100, Minimum Weight:
+      Gui, Crafting: Add, Edit, x+5 yp-4 w50, 
+      Gui, Crafting: Add, UpDown, Range-100-200 vMMapWeight, %MMapWeight% 
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
@@ -688,27 +691,49 @@ WR_Menu(Function:="",Var*){
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
-      aux := ""
-      for k, v in PoeDBAPI{
-        If(v ~= "Map(.+)"){
-          Continue
-        }Else{
-          aux .= v . "|"
-        } 
+      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster"] {
+        WR.MenuDDLstr[v] := ""
       }
-        
+      for k, v in PoeDBAPI{
+        If (v ~= "Map(.+)")
+          Continue
+        If (v ~= "^SCJ") {
+          category := "Small Cluster"
+        } Else If (v ~= "^MCJ") {
+          category := "Medium Cluster"
+        } Else If (v ~= "^LCJ") {
+          category := "Large Cluster"
+        } Else If (v ~= "Jewel$") {
+          category := "Jewels"
+        } Else If (v ~= "Flask$") {
+          category := "Flasks"
+        } Else If (v ~= "Amulet|Ring|Belt|Trinket") {
+          category := "Jewellery"
+        } Else If (v ~= "^(Gloves|Boots|Body Armour|Helmet|Shield|Quiver)") {
+          category := "Armours"
+        } Else {
+          category := "Weapons"
+        }
+        WR.MenuDDLstr[category] .= v "|"
+      }
+      category := ""
+
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, Text, Section xm+5 ym+25, Item Crafting BETA
       Gui, Crafting: Font,
 
       ; Mod Selector
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h80 xs yp+20 , Mod Selector
+      Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort xp+10 yp+20 w300, %aux%
+      Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, category:
+      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
+      GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
+      Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
+      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingcategorySelector]
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingBaseSelector, %ItemCraftingBaseSelector%
-      Gui, Crafting: Add, Button, gModsUI xp yp+25 w300, Open UI
+      Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w300, Open UI
 
       ; Affix Matcher
       Gui, Crafting: Font, Bold s9 cBlack, Arial

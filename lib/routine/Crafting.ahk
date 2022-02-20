@@ -77,7 +77,7 @@ CraftingLink(){
 	local f
 	f := New Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
 }
-; CraftingSocket - Use the settings to apply Jewelers to item(s) until minimum sockets
+; CraftingSocket - Use the settings to apply Jewellers to item(s) until minimum sockets
 CraftingSocket(){
 	Global
 	local f
@@ -93,6 +93,9 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"Ghastly Eye|Hypnotic Eye|Searching Eye|Murderous Eye", "Abyss")
 	base1 := RegExReplace(base1,"Staff", "Staves")
 	base1 := RegExReplace(base1,"Warstaff", "Warstaves")
+	base1 := RegExReplace(base1,"SCJ", "Small Cluster Jewel")
+	base1 := RegExReplace(base1,"MCJ", "Medium Cluster Jewel")
+	base1 := RegExReplace(base1,"LCJ", "Large Cluster Jewel")
 	base1 := RegExReplace(base1,"([^s])$", "$1s")
 	result := base1 ~= base2
 	Log("Item Crafting Base Comparison ","Evaluating " base1 " and " base2 " returned " (result?"True":"False"))
@@ -155,7 +158,7 @@ CraftingItem(){
 		}
 		ItemCraftingRoll("AltAugRegal", xx, yy)
 	}Else If(ItemCraftingMethod == "Scouring and Alchemy Spam"){
-		ItemCraftingRoll("AltSco", xx, yy)
+		ItemCraftingRoll("AlcSco", xx, yy)
 	}Else If(ItemCraftingMethod == "Chaos Spam"){
 		ItemCraftingRoll("Chaos", xx, yy)
 	}
@@ -416,10 +419,10 @@ MapRoll(Method, x, y){
 			Return False
 	}
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	While ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) || (!MMQIgnore && !Item.Prop.HasDesirableMod && ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)))) && !Item.Affix["Unidentified"] && !Item.Prop.Corrupted
-	{
-		If (!RunningToggle)
-		{
+	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted) 
+	&& ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) 
+	|| (!MMQIgnore && !Item.Prop.HasDesirableMod && ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)))) {
+		If (!RunningToggle) {
 			break
 		}
 		Log("Crafting","Map reroll initiated because" 
@@ -432,14 +435,11 @@ MapRoll(Method, x, y){
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
 			Return False
-		If (Item.Prop.RarityNormal)
-		{
+		If (Item.Prop.RarityNormal) {
 			If !ApplyCurrency(cname, x, y)
 				Return False
-		}
 		; Augmentation if not 2 mods on magic maps
-		Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic)
-		{
+		} Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic) {
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
@@ -457,6 +457,7 @@ MapRoll(Method, x, y){
 	Return 1
 }
 ItemCraftingRoll(Method, x, y){
+	desirednumber := ItemCraftingNumberPrefix + ItemCraftingNumberSuffix + ItemCraftingNumberCombination
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
 	If (Method == "Alt")
@@ -505,18 +506,17 @@ ItemCraftingRoll(Method, x, y){
 			If !ApplyCurrency(cname, x, y)
 				Return False
 		}
-		Else If(Item.Prop.RarityMagic){
-			If(Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0))
-			{
+		Else If (Item.Prop.RarityMagic) {
+			If (Method ~= "AltAug" && Item.Prop.AffixCount < 2 && !(Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0) && (desirednumber <= 1) ) {
 				If !ApplyCurrency("Augmentation",x,y)
 					Return False
-			}Else If(Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)
-			{
+			} Else If (Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)) {
+				If !ApplyCurrency("Augmentation",x,y)
+					Return False
+			} Else If (Method ~= "Regal" && Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1) {
 				If !ApplyCurrency("Regal",x,y)
 					Return False
-			}
-			Else
-			{
+			}	Else {
 				If !ApplyCurrency(crname, x, y)
 					Return False
 			}
@@ -536,7 +536,7 @@ ItemCraftingRoll(Method, x, y){
 		Log("Item Crafting Loop","Item Crafting resulted in a " 
 		. "CraftingMatchedPrefix: "Item.Prop.CraftingMatchedPrefix
 		. " | CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
-	,JSON.Dump(Item) )
+		,JSON.Dump(Item) )
 		
 	}
 	If(Item.Prop.ItemCraftingHit)

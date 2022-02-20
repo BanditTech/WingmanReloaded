@@ -12,6 +12,7 @@ readFromFile(){
 	Settings("CustomMapMods","Load")
 	Settings("ItemCrafting","Load")
 	Settings("ActualTier","Load")
+	Settings("MenuDDLselect","Load")
 
 	For k, name in ["perChar","Flask","Utility"]
 		IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -118,6 +119,7 @@ readFromFile(){
 	;Item Crafting Options
 
 	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Amulet
+	IniRead, ItemCraftingcategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingcategorySelector, Weapons
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
@@ -137,6 +139,7 @@ readFromFile(){
 	IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
 	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
 	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
+	IniRead, MMapWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight, 0
 
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
@@ -827,6 +830,7 @@ submit(){
 		;Item Crafting Options
 
 		IniWrite, %ItemCraftingBaseSelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector
+		IniWrite, %ItemCraftingcategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingcategorySelector
 		IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
 		IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
 		IniWrite, %ItemCraftingNumberCombination%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination
@@ -846,6 +850,7 @@ submit(){
 		IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
 		IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
 		IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
+		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
 
 		;Affinities
 		IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
@@ -1033,8 +1038,8 @@ Settings(name:="perChar",Action:="Load"){
 		FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
 		obj := JSON.Load(JSONtext)
 		For k, v in WR[name]
-			If (IsObject(obj[k]))
-			WR[name][k] := obj[k]
+			If (obj.HasKey(k))
+				WR[name][k] := obj[k]
 		obj := JSONtext := ""
 	}Else If (Action = "Save"){
 		FileDelete, %A_ScriptDir%\save\%name%.json

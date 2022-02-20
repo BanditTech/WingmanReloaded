@@ -118,14 +118,47 @@ Class Util {
 			MsgBox,% 4096+16, %A_ScriptName%,% This.PrintArray(l,False)
 		Return l
 	}
-	HttpGet(url){
+	; Com method of fetching URL text data.
+	; Pass postdata, headers and cookies as keypair arrays, if postdata is text do not prepend "?"
+	HttpGet(url,headers:="",postdata:="",cookies:=""){
 		Try {
 			whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+			If (postdata){
+				appended := ""
+				If isObject(postdata) {
+					for k, v in postdata {
+						appended .= (appended?"&":"?")  k "=" v
+					}
+				} else {
+					appended .= "?" postdata
+				}
+				url .= appended
+			}
 			whr.Open("GET", url, true)
+			whr.SetRequestHeader("User-Agent", "Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
+			whr.SetRequestHeader("accept", "*.*")
+			; Handle headers individually
+			If (headers) {
+				For k, v in headers {
+					whr.SetRequestHeader(k,v)
+				}
+			}
+			; Handle Cookies into one line
+			If (cookies) {
+				cStr := ""
+				For k, v in cookies {
+					cStr .= (cStr?"; ":"") k "=" v
+				}
+				whr.SetRequestHeader("cookie",cStr)
+			}
 			whr.Send()
 			; Using 'true' above and the call below allows the script to remain responsive.
 			whr.WaitForResponse()
 			response := whr.ResponseText
+			If WR.Debug.LogHttpGet {
+				responseheaders := whr.GetAllResponseHeaders()
+				Log("HttpGet Response ","Account Response",response,"---------Headers---------",responseheaders)
+			}
 			Return response
 		} catch e {
 			This.Err(e,"Download failed for " url)
@@ -197,7 +230,7 @@ Class Util {
 				Return
 			Else If (t.1 ~= "^\w+$" || t.1 ~= ".+ $")
 				flag := Rtrim(t.RemoveAt(1))
-			If !(flag ~= "[eE]rror") && !This.Debug.Log
+			If !(flag ~= "[eE]rror|WingmanReloaded|[iI]nit|[bB]ug|[iI]ssue|[fF]ail") && (This.Debug.Log >= 0 && !This.Debug.Log)
 				Return False
 			If !This.Log.ActiveFile
 				This.Log.Open()
@@ -205,11 +238,14 @@ Class Util {
 			If t.1.Count()
 				t := t.1
 			For k, v in t {
-				line .= A_Hour ":" A_Min ":" A_Sec (k=1 ? (flag?" " flag ": " : " ") : "`t") v "`n"
+				If isObject(v)
+					vstr := JSON.Dump(v)
+				Else
+					vstr := v
+				vstr := StrReplace(vstr, A_ScriptDir, ".")
+				line .= A_Hour ":" A_Min ":" A_Sec (k=1 ? (flag?" " flag ": " : "`t") : " ----- ") vstr "`n"
 			}
 			File.WriteLine( line )
-			; updateLogViewer( line )
-			; File.WriteLine("")
 			File.Close()
 		}
 		Close(t*){
