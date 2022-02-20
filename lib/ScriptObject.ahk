@@ -1,6 +1,6 @@
 ﻿; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
+Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{},"MenuDDLstr":{},"MenuDDLselect":{}
 ,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
 ,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
@@ -17,6 +17,9 @@ for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "Di
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
 	WR.loc.pixel[v] := {"X":0,"Y":0}
 
+for k, v in ["Armours","Flasks","Jewellery","Jewels","Large Cluster","Medium Cluster","Small Cluster","Weapons"] {
+	WR.MenuDDLselect[v] := ""
+}
 for k, v in []
 	WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
 WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}

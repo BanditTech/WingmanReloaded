@@ -691,15 +691,33 @@ WR_Menu(Function:="",Var*){
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
-      aux := ""
-      for k, v in PoeDBAPI{
-        If(v ~= "Map(.+)"){
-          Continue
-        }Else{
-          aux .= v . "|"
-        } 
+      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster"] {
+        WR.MenuDDLstr[v] := ""
       }
-        
+      for k, v in PoeDBAPI{
+        If (v ~= "Map(.+)")
+          Continue
+        If (v ~= "^SCJ") {
+          catagory := "Small Cluster"
+        } Else If (v ~= "^MCJ") {
+          catagory := "Medium Cluster"
+        } Else If (v ~= "^LCJ") {
+          catagory := "Large Cluster"
+        } Else If (v ~= "Jewel$") {
+          catagory := "Jewels"
+        } Else If (v ~= "Flask$") {
+          catagory := "Flasks"
+        } Else If (v ~= "Amulet|Ring|Belt|Trinket") {
+          catagory := "Jewellery"
+        } Else If (v ~= "^(Gloves|Boots|Body Armour|Helmet|Shield|Quiver)") {
+          catagory := "Armours"
+        } Else {
+          catagory := "Weapons"
+        }
+        WR.MenuDDLstr[catagory] .= v "|"
+      }
+      catagory := ""
+
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, Text, Section xm+5 ym+25, Item Crafting BETA
       Gui, Crafting: Font,
@@ -712,7 +730,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, DropDownList, vItemCraftingCatagorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
       GuiControl, ChooseString, ItemCraftingCatagorySelector, %ItemCraftingCatagorySelector%
       Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, %aux%
+      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingCatagorySelector]
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingBaseSelector, %ItemCraftingBaseSelector%
       Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w300, Open UI

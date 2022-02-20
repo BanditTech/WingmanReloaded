@@ -12,6 +12,7 @@ readFromFile(){
 	Settings("CustomMapMods","Load")
 	Settings("ItemCrafting","Load")
 	Settings("ActualTier","Load")
+	Settings("MenuDDLselect","Load")
 
 	For k, name in ["perChar","Flask","Utility"]
 		IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -118,7 +119,7 @@ readFromFile(){
 	;Item Crafting Options
 
 	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Amulet
-	IniRead, ItemCraftingCatagorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCatagorySelector, Amulet
+	IniRead, ItemCraftingCatagorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCatagorySelector, Weapons
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
@@ -1037,8 +1038,8 @@ Settings(name:="perChar",Action:="Load"){
 		FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
 		obj := JSON.Load(JSONtext)
 		For k, v in WR[name]
-			If (IsObject(obj[k]))
-			WR[name][k] := obj[k]
+			If (obj.HasKey(k))
+				WR[name][k] := obj[k]
 		obj := JSONtext := ""
 	}Else If (Action = "Save"){
 		FileDelete, %A_ScriptDir%\save\%name%.json
