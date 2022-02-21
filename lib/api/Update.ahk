@@ -36,6 +36,10 @@
 		Gui, Update: Destroy
 		Return
 	runUpdate:
+		GuiControl, Disable, runUpdate
+		GuiControl, Disable, LaunchDonate
+		GuiControl, Disable, dontUpdate
+  		GuiControl, , runUpdate, Updating...
 		Fail:=False
 		Log("Update","Running")
 		7za.install(BranchName)
