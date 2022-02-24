@@ -140,6 +140,7 @@ readFromFile(){
 	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
 	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
 	IniRead, MMapWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight, 0
+	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
 
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
@@ -851,6 +852,7 @@ submit(){
 		IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
 		IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
 		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
+		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
 
 		;Affinities
 		IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency

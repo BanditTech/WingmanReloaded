@@ -627,11 +627,12 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+15 y+15 Checked%EnableMQQForMagicMap%, Enable on Magic Maps
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w290 h60 x320 y190, Other Settings:
+      Gui, Crafting: Add,GroupBox,Section w290 h90 x320 y190, Other Settings:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
       Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
       Gui, Crafting: Add, Checkbox, vMoveMapsToArea xs+10 ys+40 Checked%MoveMapsToArea%, Move Crafted Maps and Enhance Items to Map Area?
+      Gui, Crafting: Add, Checkbox, vForceMaxChisel xs+10 ys+60 Checked%ForceMaxChisel%, Force Maps to 20 Quality?
       Gui, Crafting: Font
 
       Gui, Crafting: Tab, Basic Crafting
