@@ -109,11 +109,11 @@ readFromFile(){
 
 	;Crafting Bases Options
 
-	IniRead, YesStashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl, 1
+	IniRead, YesStashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl, 0
 	IniRead, StashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl, 68
-	IniRead, YesCraftingBaseAutoUpdateOnStart, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart, 1
-	IniRead, YesCraftingBaseAutoUpdateOnZone, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone, 1
-	IniRead, YesCraftingBaseLimitBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases, 1
+	IniRead, YesCraftingBaseAutoUpdateOnStart, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart, 0
+	IniRead, YesCraftingBaseAutoUpdateOnZone, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone, 0
+	IniRead, YesCraftingBaseLimitBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases, 0
 	IniRead, CraftingBaseLimitBasesNumber, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, CraftingBaseLimitBasesNumber, 3
 
 	;Item Crafting Options
