@@ -1,4 +1,13 @@
-﻿## Version .15.03 - Master version - February/19/2021
+﻿## Version .15.032 - Alpha version - February/19/2021
+Various bugfixes and Adjustments
+  * new option to force 20% quality on maps with natural quality
+  * Fix for cookie not being input
+  * Crafting base refresh is now default to false
+  * Crafting base returns if cookie is not set
+
+---
+
+## Version .15.03 - Master version - February/19/2021
 Alpha changes are being merged into master branch
 
 Improvements to Crafting Bases
