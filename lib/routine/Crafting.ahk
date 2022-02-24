@@ -212,12 +212,9 @@ CraftingMaps(){
 			If (Item.Prop.IsMap && !Item.Prop.IsBlightedMap && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
 			{
 				If (Item.Prop.Map_Quality < 20)
-					If(ForceMaxChisel)
-					{
-						;Do math expression later
-						numberChisel := 4
-					}Else
-					{
+					If (ForceMaxChisel) {
+						numberChisel := Ceil((20 - Item.Prop.Map_Quality)/5)
+					} Else {
 						numberChisel := (20 - Item.Prop.Map_Quality)//5
 					}
 				Else
