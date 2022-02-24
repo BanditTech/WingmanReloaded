@@ -726,7 +726,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, category:
+      Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, Category:
       Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
       GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
       Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
@@ -762,7 +762,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, Section w250 h400 xs+330 ym+25 , Instructions
       Gui, Crafting: Font, 
       Gui, Crafting: Font, s11 cBlack, Arial
-      Gui, Crafting: Add, Link, xs+10 yp+20 w220, This is a Experimental Feature!`nWe highly recommend using <a href="https://www.craftofexile.com/">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.`nSteps:`n1) Select Item Base in Mod Selector`n2) Open UI and Check Mods that You Want (Remember to Check Higher Mods too, This Feature is Tier Sensitive)`n3) Select How Many Prefix/Suffix from Mod Selector It Should Match to Stop`n4) Select the Crafting Method.`n5) Use the Bound Key (Default Key F11) with Your Cursor Over The Item and Stash Open to Start The Process`nP.S: You Can Break the Loop Pressing Bound Key Again
+      Gui, Crafting: Add, Link, xs+10 yp+20 w220, This is a Experimental Feature!`nWe highly recommend using <a href="https://www.craftofexile.com/">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.`nSteps:`n1) Select Category and ItemClass in Mod Selector`n2) Open UI and Check Mods that You Want (Remember to Check Higher Mods too, This Feature is Tier Sensitive)`n3) Select How Many Prefix/Suffix from Mod Selector It Should Match to Stop`n4) Select the Crafting Method.`n5) Use the Bound Key (Default Key F11) with Your Cursor Over The Item and Stash Open to Start The Process`nP.S: You Can Break the Loop Pressing Bound Key Again
       Gui, Crafting: Font,
 
       Gui, Crafting: Show

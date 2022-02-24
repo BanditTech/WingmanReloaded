@@ -802,12 +802,12 @@ Global StashTabYesUniqueDump := 1
 
 ; Crafting Bases Options
 Global CraftingBaseTypeSelector
-Global YesStashBasesAboveIlvl := True
-Global StashBasesAboveIlvl := True
-Global YesCraftingBaseAutoUpdateOnStart := True
-Global YesCraftingBaseAutoUpdateOnZone := True
-Global YesCraftingBaseLimitBases := True
-Global CraftingBaseLimitBasesNumber := 1
+Global YesStashBasesAboveIlvl := False
+Global StashBasesAboveIlvl := False
+Global YesCraftingBaseAutoUpdateOnStart := False
+Global YesCraftingBaseAutoUpdateOnZone := False
+Global YesCraftingBaseLimitBases := False
+Global CraftingBaseLimitBasesNumber := 3
 
 ; Skip Maps after column #
 Global YesSkipMaps := 0
