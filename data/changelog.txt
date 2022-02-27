@@ -1,4 +1,10 @@
-## Version .15.032 - Alpha version - February/19/2021
+﻿## Version .15.033 - Alpha version - February/26/2022
+Bugfix
+  * resolved issue with strange unicode characters in POE accountname api
+
+---
+
+## Version .15.032 - Alpha version - February/19/2022
 Various bugfixes and Adjustments
   * new option to force 20% quality on maps with natural quality
   * Fix for cookie not being input
