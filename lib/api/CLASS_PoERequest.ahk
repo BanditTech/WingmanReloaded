@@ -26,9 +26,9 @@ Class PoERequest {
     Return This.HandleResponse(response)
   }
   HandleResponse(response){
-    response := RegexReplace(response,"[]","")
-    ; response := RegexReplace(response,"^\X*","")
-    ; response := RegexReplace(response,"\X*$","")
+    ; response := RegexReplace(response,"[]","")
+    response := RegexReplace(response,"^[^\]\[\{\}""]*","")
+    response := RegexReplace(response,"[^\]\[\{\}""]*$","")
     Try {
       obj := JSON.Load(response)
       If obj.error {
