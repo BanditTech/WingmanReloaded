@@ -1,4 +1,9 @@
-﻿## Version .15.033 - Alpha version - February/26/2022
+﻿## Version .15.04 - Master version - M<arch/1/2022
+Alpha changes are being merged into master branch
+
+---
+
+## Version .15.033 - Alpha version - February/26/2022
 Bugfix
   * resolved issue with strange unicode characters in POE accountname api
 
