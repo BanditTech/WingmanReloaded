@@ -70,7 +70,7 @@ FirstLineToWRFormat(FullLine)
 }
 
 CraftingBasesRequest(ShouldRun){
-    If(!ShouldRun){
+    If(!ShouldRun || PoECookie == ""){
         Return
     }
     If (!AccountNameSTR){

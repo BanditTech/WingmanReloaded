@@ -109,11 +109,11 @@ readFromFile(){
 
 	;Crafting Bases Options
 
-	IniRead, YesStashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl, 1
+	IniRead, YesStashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl, 0
 	IniRead, StashBasesAboveIlvl, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl, 68
-	IniRead, YesCraftingBaseAutoUpdateOnStart, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart, 1
-	IniRead, YesCraftingBaseAutoUpdateOnZone, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone, 1
-	IniRead, YesCraftingBaseLimitBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases, 1
+	IniRead, YesCraftingBaseAutoUpdateOnStart, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart, 0
+	IniRead, YesCraftingBaseAutoUpdateOnZone, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone, 0
+	IniRead, YesCraftingBaseLimitBases, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases, 0
 	IniRead, CraftingBaseLimitBasesNumber, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, CraftingBaseLimitBasesNumber, 3
 
 	;Item Crafting Options
@@ -140,6 +140,7 @@ readFromFile(){
 	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
 	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
 	IniRead, MMapWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight, 0
+	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
 
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
@@ -851,6 +852,7 @@ submit(){
 		IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
 		IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
 		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
+		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
 
 		;Affinities
 		IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency

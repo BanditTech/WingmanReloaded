@@ -1,4 +1,24 @@
-﻿## Version .15.03 - Master version - February/19/2021
+﻿## Version .15.04 - Master version - M<arch/1/2022
+Alpha changes are being merged into master branch
+
+---
+
+## Version .15.033 - Alpha version - February/26/2022
+Bugfix
+  * resolved issue with strange unicode characters in POE accountname api
+
+---
+
+## Version .15.032 - Alpha version - February/19/2022
+Various bugfixes and Adjustments
+  * new option to force 20% quality on maps with natural quality
+  * Fix for cookie not being input
+  * Crafting base refresh is now default to false
+  * Crafting base returns if cookie is not set
+
+---
+
+## Version .15.03 - Master version - February/19/2022
 Alpha changes are being merged into master branch
 
 Improvements to Crafting Bases
@@ -7,7 +27,7 @@ Improvements to Crafting Bases
 
 ---
 
-## Version .15.0201 - Alpha version - February/18/2021
+## Version .15.0201 - Alpha version - February/18/2022
 Various bugfixes and Adjustments
   * Added adjustment for minimum weight in map crafting
   * Changes to how we request API endpoints
@@ -22,7 +42,7 @@ Various bugfixes and Adjustments
 
 ---
 
-## Version .15.02 - Master version - February/10/2021
+## Version .15.02 - Master version - February/10/2022
 Alpha changes are being merged into master branch
 
 Various bugfixes and Adjustments
@@ -33,16 +53,14 @@ Improvements to Crafting Bases
 
 ---
 
-## Version .15.01 - Alpha version - February/05/2021
+## Version .15.01 - Alpha version - February/05/2022
 Bugfixes
   * Rogue harbour vendor accept
   * Sleep timers for some click functions
 
 ---
 
----
-
-## Version .15.00 - Master version - February/05/2021
+## Version .15.00 - Master version - February/05/2022
 Alpha changes are being merged into master branch
 
 Improvements
@@ -62,19 +80,19 @@ Bugfixes
 
 ---
 
-## Version .14.0802 - Alpha version - February/04/2021
+## Version .14.0802 - Alpha version - February/04/2022
 Bugfixes
   * Fix for vendor calibration
   * Still needs seperate calibration of Rogue Harbour
 
 ---
 
-## Version .14.0802 - Alpha version - February/04/2021
+## Version .14.0802 - Alpha version - February/04/2022
 Bugfixes
   * Revert accidental find and replace in Rescale function
   * This should fix issues with standard aspect ratio
 
-## Version .14.08 - Alpha version - February/04/2021
+## Version .14.08 - Alpha version - February/04/2022
 Improvements
   * All currency from the currency tab is now available as a restock option
   
@@ -83,7 +101,7 @@ Bugfixes
 
 ---
 
-## Version .14.07 - Alpha version - February/03/2021
+## Version .14.07 - Alpha version - February/03/2022
 Improvements
   * ItemCrafting now has many FailSafes, checking if base match or if you have select at least one affix on Mod Selector
   * MapCrafting now use DB
@@ -94,7 +112,7 @@ Bugfixes
 
 ---
 
-## Version .14.06 - Alpha version - February/02/2021
+## Version .14.06 - Alpha version - February/02/2022
 Bugfixes
   * Fix Reversed comparators for Item Crafting
 
@@ -103,7 +121,7 @@ Improvements
 
 ---
 
-## Version .14.05 - Alpha version - February/01/2021
+## Version .14.05 - Alpha version - February/01/2022
 Improvements
   * Add Affinities for Flask and Gem
   * Crafting Bases are much easier to select and have a new option to auto increase item lvl as you take more itens
