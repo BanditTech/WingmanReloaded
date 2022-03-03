@@ -1,0 +1,1395 @@
+{
+  "Awakened": [
+    {
+      "Enchants": [
+        "Map Bosses drop 1 additional Unique Item (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses deal 100% more Damage (enchant)",
+        "Map Bosses have 200% more Life (enchant)",
+        "Map Bosses drop an additional Shaper Guardian Map (Tier 14+) (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses deal 100% more Damage (enchant)",
+        "Map Bosses have 200% more Life (enchant)",
+        "Map Bosses drop an additional Elder Guardian Map (Tier 14+) (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses deal 100% more Damage (enchant)",
+        "Map Bosses have 200% more Life (enchant)",
+        "Map Bosses drop an additional Conqueror Map (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Found Items drop Identified in Identified Maps (enchant)",
+        "20% increased Pack Size in Unidentified Maps (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "Areas are inhabited by an additional Invasion Boss (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "hall_of_grandmasters": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 12% increased Fire Damage (enchant)",
+        "Areas contain 6 additional packs of Monsters that deal Fire Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 12% increased Cold Damage (enchant)",
+        "Areas contain 6 additional packs of Monsters that deal Cold Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 12% increased Lightning Damage (enchant)",
+        "Areas contain 6 additional packs of Monsters that deal Lightning Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 12% increased Physical Damage (enchant)",
+        "Areas contain 6 additional packs of Monsters that deal Physical Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 12% increased Chaos Damage (enchant)",
+        "Areas contain 6 additional packs of Monsters that deal Chaos Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Unique Monsters drop Corrupted Items (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "hall_of_grandmasters": 0,
+        "vaults_of_atziri": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses deal 20% increased Damage (enchant)",
+        "Maps have 20% Quality (enchant)"
+      ],
+      "Weights": {
+        "default": 500
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses have 20% increased Life (enchant)",
+        "Quality bonus of Maps also applies to Rarity of Items found (enchant)"
+      ],
+      "Weights": {
+        "default": 500
+      }
+    },
+    {
+      "Enchants": [
+        "Areas are Alluring (enchant)"
+      ],
+      "Weights": {
+        "default": 10
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Einhar (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Alva (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Niko (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Jun (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 2 additional Strongboxes (enchant)",
+        "Strongboxes in Areas are Corrupted (enchant)",
+        "Strongboxes in Areas are at least Rare (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_strongboxes": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses of Corrupted Maps drop 2 additional Vaal Items (enchant)",
+        "Found Items have 5% chance to drop Corrupted in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 500
+      }
+    },
+    {
+      "Enchants": [
+        "25% increased Magic Pack Size (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Rogue Exiles deal 20% increased Damage (enchant)",
+        "Rogue Exiles drop 2 additional Jewels (enchant)",
+        "Rogue Exiles in Areas have 20% increased Maximum Life (enchant)",
+        "Areas are inhabited by 2 additional Rogue Exiles (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Magic Maps contain 4 additional packs of Magic Monsters (enchant)",
+        "Normal Maps contain 4 additional packs of Normal Monsters (enchant)",
+        "Rare Maps contain 4 additional Rare Monster packs (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and their Minions cannot take Reflected Damage (enchant)",
+        "Areas contain 4 additional Packs with Mirrored Rare Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 1000
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 25 additional Clusters of Mysterious Barrels (enchant)"
+      ],
+      "Weights": {
+        "default": 50
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 25 additional Clusters of Mysterious Barrels (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "Strongbox Monsters are Enraged (enchant)",
+        "Strongbox Monsters have 500% increased Item Quantity (enchant)",
+        "Areas contain an additional Strongbox (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "hall_of_grandmasters": 0,
+        "no_strongboxes": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain hunted traitors (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 6 additional packs of Monsters that Convert when Killed (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Player's Life and Mana Recovery from Flasks are instant (enchant)",
+        "Areas contain 6 additional packs of Monsters that Heal (enchant)"
+      ],
+      "Weights": {
+        "default": 1000
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses are accompanied by Bodyguards (enchant)",
+        "An additional Map drops on Completing Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas can contain Breaches (enchant)",
+        "Areas contain an additional Breach (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Xoph (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Tul (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Esh (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Uul-Netol (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Chayula (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain an additional Abyss (enchant)",
+        "Areas can contain Abysses (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain an additional Gloom Shrine (enchant)",
+        "50% increased Duration of Shrine Effects on Players in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain an additional Resonating Shrine (enchant)",
+        "50% increased Duration of Shrine Effects on Players in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption (enchant)",
+        "Areas contain an additional Essence (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Maps found in Areas are Corrupted with 8 Modifiers (enchant)"
+      ],
+      "Weights": {
+        "default": 50
+      }
+    },
+    {
+      "Enchants": [
+        "100% chance to create a copy of Beasts Captured in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 100% increased number of Runic Monster Markers (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Legion Monsters in Areas have 100% more Life (enchant)",
+        "Splinters and Emblems dropped by Legion Monsters in Areas are duplicated (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Catalysts dropped by Metamorphs in Areas are duplicated (enchant)",
+        "Metamorphs in Areas have 100% more Life (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Oils found in Areas have 100% chance to be 1 tier higher (enchant)",
+        "Cost of Building and Upgrading Blight Towers in Areas is doubled (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Gain 100% increased Immortal Syndicate Intelligence in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Delirium Reward Bars fill 100% faster in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
+        "Harvest Monsters in Areas have 100% more Life (enchant)",
+        "Harvests in Areas contain at least one Crop of Blue Plants (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
+        "Harvest Monsters in Areas have 100% more Life (enchant)",
+        "Harvests in Areas contain at least one Crop of Purple Plants (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
+        "Harvest Monsters in Areas have 100% more Life (enchant)",
+        "Harvests in Areas contain at least one Crop of Yellow Plants (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Non-Unique Heist Contracts found in Areas have an additional Implicit Modifier (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Ritual Altars in Areas allow rerolling Favours an additional time at no Cost (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses are accompanied by a mysterious Harbinger (enchant)",
+        "Map Bosses drop additional Currency Shards (enchant)",
+        "Harbingers drop additional Currency Shards (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players gain an additional Vaal Soul on Kill (enchant)",
+        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)",
+        "Items dropped by Corrupted Vaal Monsters in Areas have 25% chance to be Corrupted (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Slaying Enemies close together in Areas has a 6% chance to attract monsters from Beyond (enchant)",
+        "Beyond Portals in Areas have 25% chance to spawn an additional Beyond Demon (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "The First 3 Possessed Monsters drop an additional Rusted Scarab (enchant)",
+        "Areas contain an additional Tormented Betrayer (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "The First 3 Possessed Monsters drop an additional Polished Scarab (enchant)",
+        "Areas contain an additional Tormented Betrayer (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "The First 3 Possessed Monsters drop an additional Gilded Scarab (enchant)",
+        "Areas contain an additional Tormented Betrayer (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "The First 3 Possessed Monsters drop an additional Map (enchant)",
+        "Areas contain an additional Tormented Heretic (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "The First 3 Possessed Monsters drop an additional Unique Item (enchant)",
+        "Areas contain an additional Tormented Graverobber (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)",
+        "Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used (enchant)",
+        "Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players' Vaal Skills do not apply Soul Gain Prevention (enchant)",
+        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain an additional Legion Encounter (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains Metamorph Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain a Blight Encounter (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "map_has_blight_encounter": 0,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain a mirror of Delirium (enchant)"
+      ],
+      "Weights": {
+        "default": 100,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain The Sacred Grove (enchant)"
+      ],
+      "Weights": {
+        "default": 100,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains a Smuggler's Cache (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Ritual Altars (enchant)"
+      ],
+      "Weights": {
+        "default": 100,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    }
+  ],
+  "Elevated": [
+    {
+      "Enchants": [
+        "Map Bosses deal 100% more Damage (enchant)",
+        "Map Bosses have 200% more Life (enchant)",
+        "Map Bosses drop an additional Shaper Guardian Map (Tier 14+) (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses deal 100% more Damage (enchant)",
+        "Map Bosses have 200% more Life (enchant)",
+        "Map Bosses drop an additional Elder Guardian Map (Tier 14+) (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses deal 100% more Damage (enchant)",
+        "Map Bosses have 200% more Life (enchant)",
+        "Map Bosses drop an additional Conqueror Map (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Found Items drop Identified in Identified Maps (enchant)",
+        "25% increased Pack Size in Unidentified Maps (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 14% increased Fire Damage (enchant)",
+        "Areas contain 8 additional packs of Monsters that deal Fire Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 14% increased Cold Damage (enchant)",
+        "Areas contain 8 additional packs of Monsters that deal Cold Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 14% increased Lightning Damage (enchant)",
+        "Areas contain 8 additional packs of Monsters that deal Lightning Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 14% increased Physical Damage (enchant)",
+        "Areas contain 8 additional packs of Monsters that deal Physical Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and Monsters take 14% increased Chaos Damage (enchant)",
+        "Areas contain 8 additional packs of Monsters that deal Chaos Damage (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Unique Monsters drop Corrupted Items (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "hall_of_grandmasters": 0,
+        "vaults_of_atziri": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Einhar (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Alva (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Niko (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Jun (enchant)"
+      ],
+      "Weights": {
+        "default": 125,
+        "elder_occupied_map": 0,
+        "has_atlas_mission": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 3 additional Strongboxes (enchant)",
+        "Strongboxes in Areas are Corrupted (enchant)",
+        "Strongboxes in Areas are at least Rare (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_strongboxes": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses of Corrupted Maps drop 3 additional Vaal Items (enchant)",
+        "Found Items have 5% chance to drop Corrupted in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 500
+      }
+    },
+    {
+      "Enchants": [
+        "30% increased Magic Pack Size (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Magic Maps contain 5 additional packs of Magic Monsters (enchant)",
+        "Normal Maps contain 5 additional packs of Normal Monsters (enchant)",
+        "Rare Maps contain 5 additional Rare Monster packs (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players and their Minions cannot take Reflected Damage (enchant)",
+        "Areas contain 5 additional Packs with Mirrored Rare Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 1000
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 35 additional Clusters of Mysterious Barrels (enchant)"
+      ],
+      "Weights": {
+        "default": 50
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 35 additional Clusters of Mysterious Barrels (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "Strongbox Monsters are Enraged (enchant)",
+        "Strongbox Monsters have 600% increased Item Quantity (enchant)",
+        "Areas contain an additional Strongbox (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "hall_of_grandmasters": 0,
+        "no_strongboxes": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain hunted traitors (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 8 additional packs of Monsters that Convert when Killed (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Player's Life and Mana Recovery from Flasks are instant (enchant)",
+        "Areas contain 8 additional packs of Monsters that Heal (enchant)"
+      ],
+      "Weights": {
+        "default": 1000
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses are accompanied by Bodyguards (enchant)",
+        "2 additional Maps drop on Completing Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas can contain Breaches (enchant)",
+        "Areas contain 2 additional Breaches (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Xoph (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Tul (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Esh (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Uul-Netol (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Breaches in Areas belong to Chayula (enchant)",
+        "Breaches in Areas contain 3 additional Clasped Hands (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 2 additional Abysses (enchant)",
+        "Areas can contain Abysses (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain an additional Gloom Shrine (enchant)",
+        "Areas contain an additional Shrine (enchant)",
+        "50% increased Duration of Shrine Effects on Players in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain an additional Resonating Shrine (enchant)",
+        "Areas contain an additional Shrine (enchant)",
+        "50% increased Duration of Shrine Effects on Players in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 1000,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption (enchant)",
+        "Areas contain 2 additional Essences (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Maps found in Areas are Corrupted with 8 Modifiers (enchant)"
+      ],
+      "Weights": {
+        "default": 50
+      }
+    },
+    {
+      "Enchants": [
+        "100% chance to create a copy of Beasts Captured in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain 100% increased number of Runic Monster Markers (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Legion Monsters in Areas have 100% more Life (enchant)",
+        "Splinters and Emblems dropped by Legion Monsters in Areas are duplicated (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Catalysts dropped by Metamorphs in Areas are duplicated (enchant)",
+        "Metamorphs in Areas have 100% more Life (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Oils found in Areas have 100% chance to be 1 tier higher (enchant)",
+        "Cost of Building and Upgrading Blight Towers in Areas is doubled (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Gain 100% increased Immortal Syndicate Intelligence in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Delirium Reward Bars fill 100% faster in Areas (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
+        "Harvest Monsters in Areas have 100% more Life (enchant)",
+        "Harvests in Areas contain at least one Crop of Blue Plants (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
+        "Harvest Monsters in Areas have 100% more Life (enchant)",
+        "Harvests in Areas contain at least one Crop of Purple Plants (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
+        "Harvest Monsters in Areas have 100% more Life (enchant)",
+        "Harvests in Areas contain at least one Crop of Yellow Plants (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Non-Unique Heist Contracts found in Areas have an additional Implicit Modifier (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Ritual Altars in Areas allow rerolling Favours an additional time at no Cost (enchant)"
+      ],
+      "Weights": {
+        "default": 50,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Map Bosses are accompanied by a mysterious Harbinger (enchant)",
+        "Map Bosses drop additional Currency Shards (enchant)",
+        "Harbingers drop additional Currency Shards (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_boss": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players gain an additional Vaal Soul on Kill (enchant)",
+        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 500,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)",
+        "Items dropped by Corrupted Vaal Monsters in Areas have 30% chance to be Corrupted (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Slaying Enemies close together in Areas has a 8% chance to attract monsters from Beyond (enchant)",
+        "Beyond Portals in Areas have 25% chance to spawn an additional Beyond Demon (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "The First 3 Possessed Monsters drop an additional Winged Scarab (enchant)",
+        "Areas contain an additional Tormented Betrayer (enchant)"
+      ],
+      "Weights": {
+        "default": 50
+      }
+    },
+    {
+      "Enchants": [
+        "The First 3 Possessed Monsters drop an additional Map (enchant)",
+        "Areas contain an additional Tormented Heretic (enchant)"
+      ],
+      "Weights": {
+        "default": 250
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)",
+        "Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used (enchant)",
+        "Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Players' Vaal Skills do not apply Soul Gain Prevention (enchant)",
+        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain an additional Legion Encounter (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains Metamorph Monsters (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain a Blight Encounter (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "map_has_blight_encounter": 0,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain a mirror of Delirium (enchant)"
+      ],
+      "Weights": {
+        "default": 100,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain The Sacred Grove (enchant)"
+      ],
+      "Weights": {
+        "default": 100,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Area contains a Smuggler's Cache (enchant)"
+      ],
+      "Weights": {
+        "default": 250,
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    },
+    {
+      "Enchants": [
+        "Areas contain Ritual Altars (enchant)"
+      ],
+      "Weights": {
+        "default": "",
+        "no_monster_packs": 0,
+        "unique_map": 0
+      }
+    }
+  ]
+}
