@@ -1,4 +1,4 @@
-﻿﻿## Version .15.05 - Master version - March/3/2022
+﻿## Version .15.05 - Master version - March/3/2022
 Bugfix
   * Resolved issue with stack size having non digits
 
