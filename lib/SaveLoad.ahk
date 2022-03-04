@@ -19,6 +19,7 @@ readFromFile(){
 
 	; Login Information
 	; IniRead, PoECookie, %A_ScriptDir%\save\Account.ini, GGG, PoECookie, %A_Space%
+	IniRead, AccountNameSTR, %A_ScriptDir%\save\Account.ini, GGG, AccountNameSTR, %A_Space%
 	FileRead, temp, %A_ScriptDir%\save\Cookie.json
 	PoECookie := JSON.Load(temp).Cookie
 	temp := ""
@@ -714,6 +715,7 @@ submit(){
 
 		Gui, Submit, NoHide
 
+		IniWrite, %AccountNameSTR%, %A_ScriptDir%\save\Account.ini, GGG, AccountNameSTR
 		temp := {"Cookie":PoECookie}
 		t := JSON_Beautify(temp)
 		FileDelete, %A_ScriptDir%\save\Cookie.json
