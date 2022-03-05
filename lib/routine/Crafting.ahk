@@ -425,7 +425,8 @@ MapRoll(Method, x, y){
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
 	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted) 
 	&& ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) 
-	|| (!MMQIgnore && !Item.Prop.HasDesirableMod && ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)))) {
+	|| (((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)) && !MMQIgnore && !Item.Prop.HasDesirableMod)
+	|| ((BelowRarity || BelowPackSize || BelowQuantity) && !MMQIgnore && EnableMMQAlways)) {
 		If (!RunningToggle) {
 			break
 		}
