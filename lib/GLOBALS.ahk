@@ -12,6 +12,7 @@ Global InventoryGridY := []
 Global Bases
 Global GameActive
 Global GamePID
+Global ItemParseActive
 Global QuestItems
 Global DelayAction := {}
 Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar

@@ -767,9 +767,11 @@ IdentifyRoutine()
 ; ItemInfo - Display information about item under cursor
 ItemInfo(){
 	ItemInfoCommand:
+	ItemParseActive := True
 	MouseGetPos, Mx, My
 	ClipItem(Mx, My)
 	Item.ItemInfo()
+	ItemParseActive := False
 	Return
 }
 ; MoveStash - Input any digit and it will move to that Stash tab
