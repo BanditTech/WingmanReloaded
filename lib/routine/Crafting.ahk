@@ -447,9 +447,9 @@ MapRoll(Method, x, y){
 			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
 			. (Item.Prop.MapSumMod < 0?" Good Weight < Bad Weight":"")
 			. (Item.Prop.MapSumMod < MMapWeight?" Sum Weight < Minimum Weight":"")
-			. (Item.Prop.Map_Rarity < MMapItemRarity?" Below Min Rarity Settings: " MMapItemRarity " | Map_Rarity: " Item.Prop.Map_Rarity:"") 
-			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize:"")
-			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:"")
+		, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,") 
+			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
+			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
 		,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
