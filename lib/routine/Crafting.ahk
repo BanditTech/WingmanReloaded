@@ -446,9 +446,10 @@ MapRoll(Method, x, y){
 			. (Item.Prop.RarityNormal?" Normal Item":"")
 			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
 			. (Item.Prop.MapSumMod < 0?" Good Weight < Bad Weight":"")
+			. (Item.Prop.MapSumMod < MMapWeight?" Sum Weight < Minimum Weight":"")
 			. (Item.Prop.Map_Rarity < MMapItemRarity?" Below Min Rarity Settings: " MMapItemRarity " | Map_Rarity: " Item.Prop.Map_Rarity:"") 
-			. (MMapMonsterPackSize < Item.Prop.Map_PackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize:"")
-			. (MMapItemQuantity < Item.Prop.Map_Quantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:"")
+			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize:"")
+			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:"")
 		,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
@@ -469,11 +470,11 @@ MapRoll(Method, x, y){
 		. (Item.Prop.RarityNormal?" Normal Map":"")
 		. (Item.Prop.RarityMagic?" Magic Map":"")
 		. (Item.Prop.RarityRare?" Rare Map":"") 
-		. (Item.Prop.HasUndesirableMod?", with an Undesirable Mod":"")
-		. (Item.Prop.HasDesirableMod?", with a Desirable Mod":"")
+		. (Item.Prop.MapSumMod >= MMapWeight?" with Good Mods":"")
+		. (Item.Prop.IsBricked?" with Bricked Mods":"")
 		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below Min Rarity Settings: " MMapItemRarity " | Map_Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
-		. (MMapMonsterPackSize < Item.Prop.Map_PackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
-		. (MMapItemQuantity < Item.Prop.Map_Quantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:" Adequate Quantity")
+		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
+		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:" Adequate Quantity")
 	,JSON.Dump(Item) )
 	Return 1
 }
