@@ -469,7 +469,7 @@ MapRoll(Method, x, y){
 		. (Item.Prop.RarityNormal?" Normal Map":"")
 		. (Item.Prop.RarityMagic?" Magic Map":"")
 		. (Item.Prop.RarityRare?" Rare Map":"") 
-		. (Item.Prop.MapSumMod >= MMapWeight?" with " Item.Prop.MapSumMod " weight Mods":"")
+		. (Item.Prop.MapSumMod >= MMapWeight?" with sum Mod weight of " Item.Prop.MapSumMod :"")
 		. (Item.Prop.IsBricked?" with Bricked Mods":"")
 		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
 		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
