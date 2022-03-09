@@ -428,6 +428,9 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False
 	}
+	BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
+	BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
+	BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
 	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
 	{
@@ -458,6 +461,9 @@ MapRoll(Method, x, y){
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
+		BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
+		BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
+		BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	}
 	Log("Crafting","Map crafting resulted in a" 
 		. (Item.Prop.RarityNormal?" Normal Map":"")
