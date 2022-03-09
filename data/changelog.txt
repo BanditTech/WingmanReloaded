@@ -1,4 +1,19 @@
-﻿## Version .15.05 - Master version - March/3/2022
+﻿## Version .15.0501 - Alpha version - March/9/2022
+Improvement to map crafting
+  * You can now force MMQ to affect maps with good mods
+  * This will allow force rolling for specific mods while also above minimum qualities
+  * Log output has been improved to show more details in the basic outcome lines
+
+Adjustments
+  * Adjusted clip routine to add longer delay for error getting clip
+  * Put specific variable for Item Info hotkey for allowing old clip parse
+  * Accountname is now saved/loaded to remove one API request
+    * this also fixes a mysterious issue where AccountName API returns a blank response
+    * If you have this issue, manually enter you accountname into the Save\Account.ini file
+
+---
+
+## Version .15.05 - Master version - March/3/2022
 Bugfix
   * Resolved issue with stack size having non digits
 
