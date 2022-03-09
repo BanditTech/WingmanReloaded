@@ -13,6 +13,7 @@ Global Bases
 Global GameActive
 Global GamePID
 Global ItemParseActive
+Global ClipParseError
 Global QuestItems
 Global DelayAction := {}
 Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar

@@ -356,6 +356,10 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	Sleep, 90*Latency
 	ClipItem(x,y)
 	Sleep, 45*Latency
+	If(ClipParseError){
+		Log("Error","Stop apply currency as WR can't work without advanced mods")
+		Return False
+	}
 	return True
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
