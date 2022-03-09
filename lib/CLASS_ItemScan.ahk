@@ -906,20 +906,8 @@
 		{
 			This.Prop.Veiled := False
 		}
-		; Flags for Map Roll and Bricked Maps
-		If (This.HasBrickedAffix() && This.Prop.IsMap)
-		{
-			If (This.Prop.Corrupted)
-			{
-				;Set Flag for Bricked Map Stash
-				This.Prop.IsBrickedMap := True
-			}
-			Else
-			{
-				;Set Flag for MapRoll
-				This.Prop.HasUndesirableMod := True
-			}
-		}
+		; Call MapCraft Logic
+		This.MapCraftItemLogic()
 		; Flags for Item Crafting
 		If (This.MatchCraftingItemMods())
 		{
@@ -944,29 +932,38 @@
 		This.CreateAllActualTiers()
 
 	}
-	HasBrickedAffix() {
-		sum := 0
-		good := 0
+	MapCraftItemLogic() 
+	{
+		If(!This.Prop.IsMap){
+			Return
+		}
+		This.Prop.MapSumWeightGoodMod := 0
+		This.Prop.MapSumWeightBadMod := 0
 		For k, v in WR.CustomMapMods.MapMods{
 			if(This.Affix[v["Map Affix"]])
 			{
 				if(v["Mod Type"] == "Impossible"){
-					Return True
+					This.Prop.MapImpossibleMod := True
+					;Set Flag to Reroll
+					This.Prop.MapRerollFlag := True
 				}else if(v["Mod Type"] == "Good"){
-					good++
-					sum += v["Weight"]
+					This.Prop.MapSumWeightGoodMod += v["Weight"]
 				}else if(v["Mod Type"] == "Bad"){
-					sum -= v["Weight"]
+					This.Prop.MapSumWeightBadMod += v["Weight"]
 				}
 			}
 		}
-		if (sum >= MMapWeight || (This.Affix.Unidentified && This.Prop.Corrupted)) {
-			If good
-				This.Prop.HasDesirableMod := good
-			Return False
-		} else {
-			Return True
+		This.Prop.MapSumMod := This.Prop.MapSumWeightGoodMod - This.Prop.MapSumWeightBadMod
+		;Check if MapSum > Minimum Weight Settings
+		If(This.Prop.MapSumMod >= MMapWeight && This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity)
+		{
+			This.Prop.MapKeepFlag := True
+		}Else If(This.Prop.Corrupted){
+			This.Prop.IsBrickedMap := True
+		}Else{
+			This.Prop.MapRerollFlag := True
 		}
+
 	}
 	MatchCraftingItemMods() {
 		This.Prop.CraftingMatchedPrefix := 0

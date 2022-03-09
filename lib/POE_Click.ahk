@@ -121,7 +121,6 @@ RandClick(x, y){
 }
 ; ClipItem - Capture Clip at Coord
 ClipItem(x, y){
-  ClipParseError := False
   Global RunningToggle
   BlockInput, MouseMove
   Backup := Clipboard
@@ -142,11 +141,6 @@ ClipItem(x, y){
   }
   Clip_Contents := Clipboard
   Item := new ItemScan
-  If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
-	  ClipParseError:= True
-	  Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
-	  Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
-  }
   BlockInput, MouseMoveOff
   Return
 }

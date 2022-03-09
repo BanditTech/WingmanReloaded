@@ -121,6 +121,7 @@ CraftingItem(){
 	ClipItem(xx,yy)
 	Log("Item Crafting","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
+
 	If(!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
 		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
@@ -134,6 +135,11 @@ CraftingItem(){
 	If(ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix ==0 && ItemCraftingNumberCombination == 0){
 		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
+		Return
+	}
+	If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
+		Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
+		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 		Return
 	}
 	If(ItemCraftingMethod == "Alteration Spam"){
@@ -356,10 +362,6 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	Sleep, 90*Latency
 	ClipItem(x,y)
 	Sleep, 45*Latency
-	If(ClipParseError){
-		Log("Error","Stop apply currency as WR can't work without advanced mods")
-		Return False
-	}
 	return True
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
@@ -427,19 +429,23 @@ MapRoll(Method, x, y){
 			Return False
 	}
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted) 
-	&& ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) 
-	|| (((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)) && !MMQIgnore && !Item.Prop.HasDesirableMod)
-	|| ((BelowRarity || BelowPackSize || BelowQuantity) && !MMQIgnore && EnableMMQAlways)) {
+	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
+	{
 		If (!RunningToggle) {
 			break
 		}
-		Log("Crafting","Map reroll initiated because" 
+		If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
+			Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
+			Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+			Return
+		}
+		Log("Crafting","Map reroll initiated because:" 
 			. (Item.Prop.RarityNormal?" Normal Item":"")
-			. (Item.Prop.HasUndesirableMod?" Undesirable Mod":"")
-			. (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity:"") 
-			. (BelowPackSize?" Below Min PackSize " MMapMonsterPackSize " @" Item.Prop.Map_PackSize:"")
-			. (BelowQuantity?" Below Min Quantity " MMapItemQuantity " @" Item.Prop.Map_Quantity:"")
+			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
+			. (Item.Prop.MapSumMod < 0?" Good Weight < Bad Weight":"")
+			. (Item.Prop.Map_Rarity < MMapItemRarity?" Below Min Rarity Settings: " MMapItemRarity " | Map_Rarity: " Item.Prop.Map_Rarity:"") 
+			. (MMapMonsterPackSize < Item.Prop.Map_PackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize:"")
+			. (MMapItemQuantity < Item.Prop.Map_Quantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:"")
 		,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
@@ -459,9 +465,9 @@ MapRoll(Method, x, y){
 		. (Item.Prop.RarityRare?" Rare Map":"") 
 		. (Item.Prop.HasUndesirableMod?", with an Undesirable Mod":"")
 		. (Item.Prop.HasDesirableMod?", with a Desirable Mod":"")
-		, "Map is" (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
-		. (BelowPackSize?" Below Min PackSize " MMapMonsterPackSize " @" Item.Prop.Map_PackSize ",":" Adequate PackSize,")
-		. (BelowQuantity?" Below Min Quantity " MMapItemQuantity " @" Item.Prop.Map_Quantity:" Adequate Quantity")
+		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below Min Rarity Settings: " MMapItemRarity " | Map_Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
+		. (MMapMonsterPackSize < Item.Prop.Map_PackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
+		. (MMapItemQuantity < Item.Prop.Map_Quantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:" Adequate Quantity")
 	,JSON.Dump(Item) )
 	Return 1
 }
