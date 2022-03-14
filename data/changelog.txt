@@ -1,4 +1,17 @@
-﻿## Version .15.0501 - Alpha version - March/9/2022
+﻿## Version .15.0502 - Alpha version - March/13/2022
+Improvement to map crafting
+  * The option to enforce MMQ is now default behavior
+  * New option MMQ or Weight to allow either to be considered good
+  * This allows for rolling specific mods but stopping when MMQ is met
+
+Bugfix
+  * Rework how bricked maps are considered onto their own line
+  * Unidentified Corrupted maps not considered bricked if YesMapUnid enabled
+  * Unique Corrupted maps are never considered bricked
+
+---
+
+## Version .15.0501 - Alpha version - March/9/2022
 Improvement to map crafting
   * You can now force MMQ to affect maps with good mods
   * This will allow force rolling for specific mods while also above minimum qualities
