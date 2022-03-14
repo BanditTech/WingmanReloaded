@@ -963,7 +963,7 @@
 		} Else {
 			This.Prop.MapRerollFlag := True
 		}
-		If (This.Prop.Corrupted && !This.Affix.Unidentified && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
+		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Unidentified || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
 			This.Prop.IsBrickedMap := True
 		}
 	}
