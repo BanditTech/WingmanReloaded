@@ -625,7 +625,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, x+10 yp+3 , Monster Pack Size
 
       Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+15 y+15 Checked%EnableMQQForMagicMap%, Enable on Magic Maps
-      Gui, Crafting: Add, Checkbox, vEnableMQQAlways xs+15 y+5 Checked%EnableMQQAlways%, Always enforce MMQ
+      Gui, Crafting: Add, Checkbox, vMMQorWeight xs+15 y+5 Checked%MMQorWeight%, Match MMQ or Weight
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add,GroupBox,Section w290 h90 x320 y210, Other Settings:
