@@ -3,6 +3,7 @@ Improvement to map crafting
   * The option to enforce MMQ is now default behavior
   * New option MMQ or Weight to allow either to be considered good
   * This allows for rolling specific mods but stopping when MMQ is met
+  * EnableMQQForMagicMap option now functional again
 
 Bugfix
   * Rework how bricked maps are considered onto their own line
