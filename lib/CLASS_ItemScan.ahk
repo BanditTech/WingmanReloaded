@@ -955,7 +955,12 @@
 		}
 		This.Prop.MapSumMod := This.Prop.MapSumWeightGoodMod - This.Prop.MapSumWeightBadMod
 		;Check if MapSum > Minimum Weight Settings
-		MeetsMMQ := This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity
+		ConsiderMMQ := (This.Prop.RarityMagic && EnableMQQForMagicMap) || This.Prop.RarityRare
+		If (ConsiderMMQ) {
+			MeetsMMQ := This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity
+		} Else {
+			MeetsMMQ := True
+		}
 		MeetsWeight := This.Prop.MapSumMod >= MMapWeight
 		GoodEnough := (!MMQorWeight && MeetsWeight && MeetsMMQ) || (MMQorWeight && (MeetsWeight || MeetsMMQ))
 		If (GoodEnough && !This.Prop.MapImpossibleMod) {
