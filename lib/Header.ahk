@@ -13,11 +13,11 @@
 ListLines Off
 ; Process, Priority, , A
 SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
+SetKeyDelay, 15, 0
+SetMouseDelay, 15
+SetDefaultMouseSpeed, 1
 SetWinDelay, -1
-SetControlDelay, -1
+SetControlDelay, 15
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 CoordMode, Tooltip, Screen
