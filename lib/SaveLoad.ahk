@@ -140,7 +140,7 @@ readFromFile(){
 	IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
 	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
 	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
-	IniRead, EnableMQQAlways, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQAlways, 0
+	IniRead, MMQorWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight, 0
 	IniRead, MMapWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight, 0
 	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
 
@@ -854,7 +854,7 @@ submit(){
 		IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
 		IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
 		IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
-		IniWrite, %EnableMQQAlways%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQAlways
+		IniWrite, %MMQorWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight
 		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
 		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
 

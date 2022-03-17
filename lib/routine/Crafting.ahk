@@ -366,9 +366,6 @@ ApplyCurrency(cname, x, y, Amount:=1){
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 MapRoll(Method, x, y){
-	MMQIgnore := False
-	If (!EnableMQQForMagicMap && Item.Prop.Rarity_Digit = 2)
-		MMQIgnore := True
 	If (Method == "Transmutation+Augmentation")
 	{
 		cname := "Transmutation"
@@ -445,11 +442,10 @@ MapRoll(Method, x, y){
 		Log("Crafting","Map reroll initiated because:" 
 			. (Item.Prop.RarityNormal?" Normal Item":"")
 			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
-			. (Item.Prop.MapSumMod < 0?" Good Weight < Bad Weight":"")
-			. (Item.Prop.MapSumMod < MMapWeight?" Sum Weight < Minimum Weight":"")
-			. (Item.Prop.Map_Rarity < MMapItemRarity?" Below Min Rarity Settings: " MMapItemRarity " | Map_Rarity: " Item.Prop.Map_Rarity:"") 
-			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize:"")
-			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:"")
+			. (Item.Prop.MapSumMod < MMapWeight?  " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
+		, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,") 
+			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
+			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
 		,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
@@ -470,11 +466,11 @@ MapRoll(Method, x, y){
 		. (Item.Prop.RarityNormal?" Normal Map":"")
 		. (Item.Prop.RarityMagic?" Magic Map":"")
 		. (Item.Prop.RarityRare?" Rare Map":"") 
-		. (Item.Prop.MapSumMod >= MMapWeight?" with Good Mods":"")
+		. (Item.Prop.MapSumMod >= MMapWeight?" with sum Mod weight of " Item.Prop.MapSumMod :"")
 		. (Item.Prop.IsBricked?" with Bricked Mods":"")
-		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below Min Rarity Settings: " MMapItemRarity " | Map_Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
-		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below Min PackSize Settings: " MMapMonsterPackSize " | Map_PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
-		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below Min Quantity Settings: " MMapItemQuantity " | Map_Quantity: " Item.Prop.Map_Quantity:" Adequate Quantity")
+		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
+		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
+		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity :" Adequate Quantity")
 	,JSON.Dump(Item) )
 	Return 1
 }

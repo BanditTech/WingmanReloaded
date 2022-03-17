@@ -955,15 +955,22 @@
 		}
 		This.Prop.MapSumMod := This.Prop.MapSumWeightGoodMod - This.Prop.MapSumWeightBadMod
 		;Check if MapSum > Minimum Weight Settings
-		If(This.Prop.MapSumMod >= MMapWeight && This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity)
-		{
+		ConsiderMMQ := (This.Prop.RarityMagic && EnableMQQForMagicMap) || This.Prop.RarityRare
+		If (ConsiderMMQ) {
+			MeetsMMQ := This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity
+		} Else {
+			MeetsMMQ := True
+		}
+		MeetsWeight := This.Prop.MapSumMod >= MMapWeight
+		GoodEnough := (!MMQorWeight && MeetsWeight && MeetsMMQ) || (MMQorWeight && (MeetsWeight || MeetsMMQ))
+		If (GoodEnough && !This.Prop.MapImpossibleMod) {
 			This.Prop.MapKeepFlag := True
-		}Else If(This.Prop.Corrupted){
-			This.Prop.IsBrickedMap := True
-		}Else{
+		} Else {
 			This.Prop.MapRerollFlag := True
 		}
-
+		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Unidentified || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
+			This.Prop.IsBrickedMap := True
+		}
 	}
 	MatchCraftingItemMods() {
 		This.Prop.CraftingMatchedPrefix := 0
