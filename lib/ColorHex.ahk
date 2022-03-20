@@ -141,11 +141,11 @@ AverageAreaColor(AreaObj){
   For k, color in ColorList
   {
     Split := ToRGB(color)
-    R_Count += Split.r
-    G_Count += Split.g
-    B_Count += Split.b
+    R_Count += Split.r ** 2
+    G_Count += Split.g ** 2
+    B_Count += Split.b ** 2
   }
-  Split := {"r":Round(R_Count / ColorCount),"g":Round(G_Count / ColorCount),"b":Round(B_Count / ColorCount)}
+  Split := {"r":Round(Sqrt(R_Count) / ColorCount),"g":Round(Sqrt(G_Count) / ColorCount),"b":Round(Sqrt(B_Count) / ColorCount)}
   Load_BarControl(100,"Done.",-1)
   Return ToHex(Split)
 }
