@@ -852,7 +852,7 @@ RunRestock(){
 				Item.Prop.Stack_Size := 0
 			; Store the item stack size
 			InvCount := Item.Prop.Stack_Size
-			If (InvCount = v.RestockMin && v.RestockMin = v.RestockMax) {
+			If (InvCount = v.RestockTo && v.RestockTo = v.RestockMax) {
 				Continue
 			}
 			If (InvCount < v.RestockMin || InvCount >= v.RestockMax) {
