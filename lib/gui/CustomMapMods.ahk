@@ -78,7 +78,6 @@ RefreshSextantList()
     For k, v in WR.CustomSextantMods.SextantMods
     {
       If (v["Sextant Enchant"] == OutputVar){
-        tooltip, entrou
         LV_Modify(Index,"Check",,,,v["Mod Type"])
       }
     }
