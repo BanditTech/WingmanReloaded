@@ -1,4 +1,15 @@
-﻿## Version .15.0502 - Alpha version - March/13/2022
+﻿## Version .15.0503 - Alpha version - March/22/2022
+Improvement to map crafting
+  * Add option to Roll Sextant on experimental stage (Only roll atlas stone on inventory using the same map crafting hotkey)
+    * We are using data scraped from POEDB, but as we don't have their endpoint url it was done manually scrapping the page using other tools any update need be manually
+    * Please give a feedback on discord about speed or if is not working as it should
+
+Bugfix
+  * Fix Restock minor bug
+
+---
+
+## Version .15.0502 - Alpha version - March/13/2022
 Improvement to map crafting
   * The option to enforce MMQ is now default behavior
   * New option MMQ or Weight to allow either to be considered good

@@ -302,6 +302,10 @@
 			;Start Parse
 
 			; We match one of these against an item to identify its purpose
+			If (This.Prop.ItemClass = "Atlas Upgrade Items")
+			{
+				This.Prop.AtlasStone := True
+			}
 			If (This.Prop.ItemClass = "Misc Map Items")
 			{
 				This.Prop.MiscMapItem := True
@@ -908,6 +912,7 @@
 		}
 		; Call MapCraft Logic
 		This.MapCraftItemLogic()
+		This.SextantLogic()
 		; Flags for Item Crafting
 		If (This.MatchCraftingItemMods())
 		{
@@ -970,6 +975,28 @@
 		}
 		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Unidentified || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
 			This.Prop.IsBrickedMap := True
+		}
+	}
+	SextantLogic(){
+		If(!This.Prop.AtlasStone){
+			Return
+		}
+		For k, v in WR.CustomSextantMods.SextantMods{
+			Content := StrSplit(v["Sextant Enchant"], " | ")
+			; Only need match the first line
+			Content := Content[1] . " (enchant)"
+			If(This.Affix[Content])
+			{
+				If(v["Mod Type"] == "Good")
+				{
+					This.Prop.SextantGoodFlag := True
+				}
+				Else If(v["Mod Type"] == "Bad")
+				{
+					This.Prop.SextantBadFlag := True
+				}
+				Return
+			}
 		}
 	}
 	MatchCraftingItemMods() {

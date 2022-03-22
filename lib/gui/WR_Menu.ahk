@@ -598,6 +598,8 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
+
+      ;MapMods GroupBox
       Gui, Crafting: Add,GroupBox,Section w285 h85 xs, Map Mods:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s7
@@ -608,6 +610,19 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
+      ;Sextant GroupBox
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add, GroupBox,Section w285 h105 xs, Sextant Mods
+      Gui, Crafting: Font,
+      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Sextant:
+      Gui, Crafting: Add, DropDownList, vSextantTypeDDLSelector x+10 yp-4 w190, Awakened|Elevated
+      GuiControl, ChooseString, SextantTypeDDLSelector, %SextantTypeDDLSelector%
+      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Behaviour:
+      Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w190, Reroll until Good Match|Reroll until not Bad Match
+      GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
+      Gui, Crafting: Add, Button, gCustomSextantModsUI xs+10 yp+25 w260, Custom Sextant Mods
+
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add,GroupBox,Section w200 h150 x320 y50, Minimum Map Qualities:
       Gui, Crafting: Font, 
       Gui, Crafting: Font,s8
@@ -693,11 +708,11 @@ WR_Menu(Function:="",Var*){
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
-      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster","Heist"] {
+      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster"] {
         WR.MenuDDLstr[v] := ""
       }
       for k, v in PoeDBAPI{
-        If (v ~= "Map(.+)")
+        If (v ~= "Map(.+)" || v ~= "Sextant" || v ~= "Heist")
           Continue
         If (v ~= "^SCJ") {
           category := "Small Cluster"
@@ -713,8 +728,6 @@ WR_Menu(Function:="",Var*){
           category := "Jewellery"
         } Else If (v ~= "^(Gloves|Boots|Body Armour|Helmet|Shield|Quiver)") {
           category := "Armours"
-        } Else If (v ~= "^Heist") {
-          category := "Heist"
         } Else {
           category := "Weapons"
         }
@@ -731,7 +744,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, Category:
-      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Heist
+      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
       GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
       Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
       Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingcategorySelector]
