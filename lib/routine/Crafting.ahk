@@ -266,13 +266,13 @@ CraftingMaps(){
 			} Else If (Item.Prop.AtlasStone) {
 				If(SextantDDLSelector == "Reroll until Good Match")
 				{
-					While(!Item.Prop.SextantGoodFlag){
+					While(Item.Prop.SextantFlag != "Good"){
 						ApplyCurrency(SextantTypeDDLSelector,Grid.X,Grid.Y)
 					}
 				}
 				Else If(SextantDDLSelector == "Reroll until not Bad Match")
 				{
-					While(!Item.Prop.SextantBadFlag){
+					While(Item.Prop.SextantFlag == "Bad"){
 						ApplyCurrency(SextantTypeDDLSelector,Grid.X,Grid.Y)
 					}
 				}
