@@ -756,7 +756,7 @@ WR_Menu(Function:="",Var*){
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h45 xs yp+35 , Crafting Method
+      Gui, Crafting: Add, GroupBox, w320 h55 xs yp+35 , Crafting Method
       Gui, Crafting: Font,
       Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
       ;;Select DDL Value Based on Last Value Saved
@@ -764,12 +764,11 @@ WR_Menu(Function:="",Var*){
 
       ;Sextant GroupBox
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox,Section w285 h85 xs, Sextant Mods
+      Gui, Crafting: Add, GroupBox,Section w320 h55 xs y+20, Sextant Mods
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Behaviour:
-      Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w190, Reroll until Good Match|Reroll until not Bad Match
+      Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w225, Reroll until Good Match|Reroll until not Bad Match
       GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
-      Gui, Crafting: Add, Button, gCustomSextantModsUI xs+10 yp+25 w260, Custom Sextant Mods
 
       ; Guide
       Gui, Crafting: Font, Bold s12 cBlack, Arial

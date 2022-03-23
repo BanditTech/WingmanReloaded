@@ -1,6 +1,9 @@
 ﻿; Main UI
 
 ModsUI:
+  If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
+    GoTo, CustomSextantModsUI
+  }
   Gui, ModsUI1: New
   Gui, ModsUI1: Default
   Gui, ModsUI1: +AlwaysOnTop -MinimizeBox
