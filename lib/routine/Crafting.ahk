@@ -532,8 +532,6 @@ ItemCraftingRoll(Method, x, y){
 	{
 		Return
 	}
-	ClipItem(x,y)
-	Sleep, 45*Latency
 	If (Item.Affix["Unidentified"])
 	{
 		WisdomScroll(x,y)
