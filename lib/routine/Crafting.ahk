@@ -597,9 +597,10 @@ ItemCraftingRoll(Method, x, y){
 		,JSON.Dump(Item) )
 		
 	}
-	If(Item.Prop.ItemCraftingHit)
+	If (Item.Prop.ItemCraftingHit) {
 		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
-		Log("[End]Item Crafting - Sucess","End Rotine")
+		Log("[End]Item Crafting - Sucess ","End Routine")
+	}
 
 	Return
 }
@@ -611,4 +612,6 @@ SextantCraftingRoll(Method, x, y){
 			Return False
 		Log("Sextant Crafting Loop ", "Sextant result has " (Item.Prop.SextantFlag?Item.Prop.SextantFlag:"no Good or Bad") " Mod", Item)
 	}
+	If (Item.Prop.SextantCraftingHit)
+	Log("[End]Sextant Crafting - Sucess ","End Routine")
 }
