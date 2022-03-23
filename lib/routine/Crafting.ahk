@@ -96,6 +96,7 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"SCJ", "Small Cluster Jewel")
 	base1 := RegExReplace(base1,"MCJ", "Medium Cluster Jewel")
 	base1 := RegExReplace(base1,"LCJ", "Large Cluster Jewel")
+	base1 := RegExReplace(base1,"Awakened|Elevated", "Atlas Upgrade Items")
 	base1 := RegExReplace(base1,"([^s])$", "$1s")
 	result := base1 ~= base2
 	Log("Item Crafting Base Comparison ","Evaluating " base1 " and " base2 " returned " (result?"True":"False"))
