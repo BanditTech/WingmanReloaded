@@ -1,4 +1,16 @@
-﻿## Version .15.0503 - Alpha version - March/22/2022
+﻿## Version .15.0504 - Alpha version - March/23/2022
+Improvement to Item crafting
+  * Delay Removed from Item Crafting
+  * Only Required currency for crafting are counted
+  * Sextant Crafting Moved from Map crafting to Item Craft
+    * Allows rolling Voidstones socketed in atlas slot
+    * Mouse over the Voidstone and press item craft key
+    * Requires Atlas, Stash and Inventory Open
+    * To do this, you click the stash then press Atlas key at same time
+
+---
+
+## Version .15.0503 - Alpha version - March/22/2022
 Improvement to map crafting
   * Add option to Roll Sextant on experimental stage (Only roll atlas stone on inventory using the same map crafting hotkey)
     * We are using data scraped from POEDB, but as we don't have their endpoint url it was done manually scrapping the page using other tools any update need be manually
