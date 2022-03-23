@@ -610,18 +610,6 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
-      ;Sextant GroupBox
-      Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox,Section w285 h105 xs, Sextant Mods
-      Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Sextant:
-      Gui, Crafting: Add, DropDownList, vSextantTypeDDLSelector x+10 yp-4 w190, Awakened|Elevated
-      GuiControl, ChooseString, SextantTypeDDLSelector, %SextantTypeDDLSelector%
-      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Behaviour:
-      Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w190, Reroll until Good Match|Reroll until not Bad Match
-      GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
-      Gui, Crafting: Add, Button, gCustomSextantModsUI xs+10 yp+25 w260, Custom Sextant Mods
-
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add,GroupBox,Section w200 h150 x320 y50, Minimum Map Qualities:
       Gui, Crafting: Font, 
@@ -773,6 +761,18 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
+
+      ;Sextant GroupBox
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add, GroupBox,Section w285 h105 xs, Sextant Mods
+      Gui, Crafting: Font,
+      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Sextant:
+      Gui, Crafting: Add, DropDownList, vSextantTypeDDLSelector x+10 yp-4 w190, Awakened|Elevated
+      GuiControl, ChooseString, SextantTypeDDLSelector, %SextantTypeDDLSelector%
+      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Behaviour:
+      Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w190, Reroll until Good Match|Reroll until not Bad Match
+      GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
+      Gui, Crafting: Add, Button, gCustomSextantModsUI xs+10 yp+25 w260, Custom Sextant Mods
 
       ; Guide
       Gui, Crafting: Font, Bold s12 cBlack, Arial
