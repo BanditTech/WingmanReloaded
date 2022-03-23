@@ -3,7 +3,7 @@ Adjustment to Sextant modifier list
   * All first entries of the mod list are now unique
   * Uses remaining removed as it was not useful information
     * Will require reconfigure of Sextant mod list
-    * To fix manually without reconfigure, Replace ` | # uses remaining` with blank (nothing) in `save\CustomSextantMods.json` file then reload
+    * To fix manually without reconfigure, Replace " | # uses remaining" with blank (nothing) in "save\CustomSextantMods.json" file then reload
 
 ---
 
