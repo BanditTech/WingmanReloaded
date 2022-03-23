@@ -1,4 +1,4 @@
-﻿; Crafting Section - main routine and all subroutines and popup
+; Crafting Section - main routine and all subroutines and popup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Crafting(selection:="Maps"){
 	; Thread, NoTimers, True
@@ -112,7 +112,25 @@ CraftingItem(){
 
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
-	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos","Regal"])
+	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
+		CurrencyList := []
+		CurrencyList.Push(ItemCraftingBaseSelector)
+	} Else {
+		CurrencyList := []
+		If (ItemCraftingMethod ~= "Alteration")
+			CurrencyList.Push("Alteration")
+		If (ItemCraftingMethod ~= "Aug")
+			CurrencyList.Push("Augmentation")
+		If (ItemCraftingMethod ~= "Regal")
+			CurrencyList.Push("Regal")
+		If (ItemCraftingMethod ~= "Scouring")
+			CurrencyList.Push("Scouring")
+		If (ItemCraftingMethod ~= "Alchemy")
+			CurrencyList.Push("Alchemy")
+		If (ItemCraftingMethod ~= "Chaos")
+			CurrencyList.Push("Chaos")
+	}
+	WR.data.Counts := CountCurrency(CurrencyList)
 	Notify("Item Crafting Starting","Move your Cursor to your item in next 3s",3)
 	Log("[Start]Item Crafting","Waiting for Item Position")
 	MouseMove %xx%, %yy%
