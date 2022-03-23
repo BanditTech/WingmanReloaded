@@ -912,7 +912,8 @@
 		}
 		; Call MapCraft Logic
 		This.MapCraftItemLogic()
-		This.SextantLogic()
+		If (This.Prop.ItemClass = "Atlas Upgrade Items")
+			This.SextantLogic()
 		; Flags for Item Crafting
 		If (This.MatchCraftingItemMods())
 		{
@@ -984,18 +985,20 @@
 		For k, v in WR.CustomSextantMods.SextantMods{
 			Content := StrSplit(v["Sextant Enchant"], " | ")
 			Content := Content[1] . " (enchant)"
-			If(This.Affix[Content])
-			{
-				If(v["Mod Type"] == "Good")
-				{
+			If(This.Affix[Content]) {
+				If(v["Mod Type"] == "Good") {
 					This.Prop.SextantFlag := "Good"
-				}
-				Else If(v["Mod Type"] == "Bad")
-				{
+				} Else If(v["Mod Type"] == "Bad") {
 					This.Prop.SextantFlag := "Bad"
 				}
-				Return
+				Break
 			}
+		}
+		If (SextantDDLSelector ~= "Good" && This.Prop.SextantFlag != "Good")
+		|| (SextantDDLSelector ~= "Bad" && (Item.Affix.Count() <= 0 || Item.Prop.SextantFlag == "Bad")) {
+			This.Prop.SextantCraftingHit := False
+		} Else {
+			This.Prop.SextantCraftingHit := True
 		}
 	}
 	MatchCraftingItemMods() {
