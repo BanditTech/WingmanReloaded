@@ -993,11 +993,11 @@
 				Break
 			}
 		}
-		If (SextantDDLSelector ~= "Good" && This.Prop.SextantFlag != "Good")
-		|| (SextantDDLSelector ~= "Bad" && (Item.Affix.Count() <= 0 || Item.Prop.SextantFlag == "Bad")) {
-			This.Prop.SextantCraftingHit := False
-		} Else {
+		If (SextantDDLSelector ~= "Good" && This.Prop.SextantFlag == "Good")
+		|| (SextantDDLSelector ~= "Bad" && (This.Affix.Count() > 0 && This.Prop.SextantFlag != "Bad")) {
 			This.Prop.SextantCraftingHit := True
+		} Else {
+			This.Prop.SextantCraftingHit := False
 		}
 	}
 	MatchCraftingItemMods() {
