@@ -749,8 +749,7 @@ WR_Menu(Function:="",Var*){
       GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
       Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
       Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingcategorySelector]
-      ;;Select DDL Value Based on Last Value Saved
-      GuiControl, ChooseString, ItemCraftingBaseSelector, %ItemCraftingBaseSelector%
+      GuiControl, ChooseString, ItemCraftingBaseSelector, % WR.MenuDDLselect[ItemCraftingcategorySelector]
       Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w300, Open UI
 
       ; Affix Matcher
