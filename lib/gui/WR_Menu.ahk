@@ -764,11 +764,8 @@ WR_Menu(Function:="",Var*){
 
       ;Sextant GroupBox
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox,Section w285 h105 xs, Sextant Mods
+      Gui, Crafting: Add, GroupBox,Section w285 h85 xs, Sextant Mods
       Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Sextant:
-      Gui, Crafting: Add, DropDownList, vSextantTypeDDLSelector x+10 yp-4 w190, Awakened|Elevated
-      GuiControl, ChooseString, SextantTypeDDLSelector, %SextantTypeDDLSelector%
       Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Behaviour:
       Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w190, Reroll until Good Match|Reroll until not Bad Match
       GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%

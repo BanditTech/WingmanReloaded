@@ -145,9 +145,6 @@ readFromFile(){
 	IniRead, MMapWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight, 0
 	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
 	IniRead, SextantDDLSelector, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, SextantDDLSelector, Reroll until Good Match
-	IniRead, SextantTypeDDLSelector, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, SextantTypeDDLSelector, Awakened
-	
-	
 
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
@@ -864,7 +861,6 @@ submit(){
 		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
 		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
 		IniWrite, %SextantDDLSelector%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, SextantDDLSelector
-		IniWrite, %SextantTypeDDLSelector%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, SextantTypeDDLSelector
 
 		;Affinities
 		IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
