@@ -502,9 +502,9 @@
     },
     {
       "Enchants": [
+        "Harvests in Areas contain at least one Crop of Blue Plants (enchant)",
         "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
-        "Harvest Monsters in Areas have 100% more Life (enchant)",
-        "Harvests in Areas contain at least one Crop of Blue Plants (enchant)"
+        "Harvest Monsters in Areas have 100% more Life (enchant)"
       ],
       "Weights": {
         "default": 50,
@@ -514,9 +514,9 @@
     },
     {
       "Enchants": [
+        "Harvests in Areas contain at least one Crop of Purple Plants (enchant)",
         "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
-        "Harvest Monsters in Areas have 100% more Life (enchant)",
-        "Harvests in Areas contain at least one Crop of Purple Plants (enchant)"
+        "Harvest Monsters in Areas have 100% more Life (enchant)"
       ],
       "Weights": {
         "default": 50,
@@ -526,9 +526,9 @@
     },
     {
       "Enchants": [
+        "Harvests in Areas contain at least one Crop of Yellow Plants (enchant)",
         "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
-        "Harvest Monsters in Areas have 100% more Life (enchant)",
-        "Harvests in Areas contain at least one Crop of Yellow Plants (enchant)"
+        "Harvest Monsters in Areas have 100% more Life (enchant)"
       ],
       "Weights": {
         "default": 50,
@@ -579,8 +579,8 @@
     },
     {
       "Enchants": [
-        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)",
-        "Items dropped by Corrupted Vaal Monsters in Areas have 25% chance to be Corrupted (enchant)"
+        "Items dropped by Corrupted Vaal Monsters in Areas have 25% chance to be Corrupted (enchant)",
+        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)"
       ],
       "Weights": {
         "default": 250,
@@ -644,9 +644,9 @@
     },
     {
       "Enchants": [
-        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)",
         "Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used (enchant)",
-        "Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used (enchant)"
+        "Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used (enchant)",
+        "Area contains 6 additional packs of Corrupted Vaal Monsters (enchant)"
       ],
       "Weights": {
         "default": 250,
@@ -1184,9 +1184,9 @@
     },
     {
       "Enchants": [
+        "Harvests in Areas contain at least one Crop of Blue Plants (enchant)",
         "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
-        "Harvest Monsters in Areas have 100% more Life (enchant)",
-        "Harvests in Areas contain at least one Crop of Blue Plants (enchant)"
+        "Harvest Monsters in Areas have 100% more Life (enchant)"
       ],
       "Weights": {
         "default": 50,
@@ -1196,9 +1196,9 @@
     },
     {
       "Enchants": [
+        "Harvests in Areas contain at least one Crop of Purple Plants (enchant)",
         "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
-        "Harvest Monsters in Areas have 100% more Life (enchant)",
-        "Harvests in Areas contain at least one Crop of Purple Plants (enchant)"
+        "Harvest Monsters in Areas have 100% more Life (enchant)"
       ],
       "Weights": {
         "default": 50,
@@ -1208,9 +1208,9 @@
     },
     {
       "Enchants": [
+        "Harvests in Areas contain at least one Crop of Yellow Plants (enchant)",
         "Plants Harvested in Areas are more likely to give less common Crafting Options (enchant)",
-        "Harvest Monsters in Areas have 100% more Life (enchant)",
-        "Harvests in Areas contain at least one Crop of Yellow Plants (enchant)"
+        "Harvest Monsters in Areas have 100% more Life (enchant)"
       ],
       "Weights": {
         "default": 50,
@@ -1261,8 +1261,8 @@
     },
     {
       "Enchants": [
-        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)",
-        "Items dropped by Corrupted Vaal Monsters in Areas have 30% chance to be Corrupted (enchant)"
+        "Items dropped by Corrupted Vaal Monsters in Areas have 30% chance to be Corrupted (enchant)",
+        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)"
       ],
       "Weights": {
         "default": 250,
@@ -1299,9 +1299,9 @@
     },
     {
       "Enchants": [
-        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)",
         "Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used (enchant)",
-        "Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used (enchant)"
+        "Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used (enchant)",
+        "Area contains 8 additional packs of Corrupted Vaal Monsters (enchant)"
       ],
       "Weights": {
         "default": 250,

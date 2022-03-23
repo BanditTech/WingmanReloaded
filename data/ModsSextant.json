@@ -60,7 +60,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Awakened Sextant",
       "Level": 1,
-      "Mod": "Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | Harvests in Areas contain at least one Crop of Blue Plants | 3 uses remaining",
+      "Mod": "Harvests in Areas contain at least one Crop of Blue Plants | Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | 3 uses remaining",
       "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
     },
     {
@@ -116,7 +116,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Elevated Sextant",
       "Level": 1,
-      "Mod": "Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | Harvests in Areas contain at least one Crop of Blue Plants | 15 uses remaining",
+      "Mod": "Harvests in Areas contain at least one Crop of Blue Plants | Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | 15 uses remaining",
       "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
     },
     {
@@ -356,7 +356,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Awakened Sextant",
       "Level": 1,
-      "Mod": "Area contains 6 additional packs of Corrupted Vaal Monsters | Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | 3 uses remaining",
+      "Mod": "Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | Area contains 6 additional packs of Corrupted Vaal Monsters | 3 uses remaining",
       "Weight": "no_monster_packs 0 | default 250"
     },
     {
@@ -380,7 +380,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Elevated Sextant",
       "Level": 1,
-      "Mod": "Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | Harvests in Areas contain at least one Crop of Purple Plants | 15 uses remaining",
+      "Mod": "Harvests in Areas contain at least one Crop of Purple Plants | Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | 15 uses remaining",
       "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
     },
     {
@@ -516,7 +516,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Elevated Sextant",
       "Level": 1,
-      "Mod": "Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | Harvests in Areas contain at least one Crop of Yellow Plants | 15 uses remaining",
+      "Mod": "Harvests in Areas contain at least one Crop of Yellow Plants | Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | 15 uses remaining",
       "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
     },
     {
@@ -724,7 +724,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Elevated Sextant",
       "Level": 1,
-      "Mod": "Area contains 8 additional packs of Corrupted Vaal Monsters | Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | 15 uses remaining",
+      "Mod": "Area has 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Area has 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | Area contains 8 additional packs of Corrupted Vaal Monsters | 15 uses remaining",
       "Weight": "no_monster_packs 0 | default 250"
     },
     {
@@ -772,7 +772,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Awakened Sextant",
       "Level": 1,
-      "Mod": "Area contains 6 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in Areas have 25% chance to be Corrupted | 3 uses remaining",
+      "Mod": "Items dropped by Corrupted Vaal Monsters in Areas have 25% chance to be Corrupted | Area contains 6 additional packs of Corrupted Vaal Monsters | 3 uses remaining",
       "Weight": "no_monster_packs 0 | default 250"
     },
     {
@@ -788,7 +788,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Elevated Sextant",
       "Level": 1,
-      "Mod": "Area contains 8 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in Areas have 30% chance to be Corrupted | 15 uses remaining",
+      "Mod": "Items dropped by Corrupted Vaal Monsters in Areas have 30% chance to be Corrupted | Area contains 8 additional packs of Corrupted Vaal Monsters | 15 uses remaining",
       "Weight": "no_monster_packs 0 | default 250"
     },
     {
@@ -924,7 +924,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Awakened Sextant",
       "Level": 1,
-      "Mod": "Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | Harvests in Areas contain at least one Crop of Yellow Plants | 3 uses remaining",
+      "Mod": "Harvests in Areas contain at least one Crop of Yellow Plants | Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | 3 uses remaining",
       "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
     },
     {
@@ -948,7 +948,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Awakened Sextant",
       "Level": 1,
-      "Mod": "Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | Harvests in Areas contain at least one Crop of Purple Plants | 3 uses remaining",
+      "Mod": "Harvests in Areas contain at least one Crop of Purple Plants | Plants Harvested in Areas are more likely to give less common Crafting Options | Harvest Monsters in Areas have 100% more Life | 3 uses remaining",
       "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
     },
     {
