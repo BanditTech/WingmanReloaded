@@ -292,19 +292,6 @@ CraftingMaps(){
 					ApplyCurrency("Scouring",Grid.X,Grid.Y)
 				If (Item.Prop.RarityNormal)		
 					ApplyCurrency("Hybrid",Grid.X,Grid.Y)
-			} Else If (Item.Prop.AtlasStone) {
-				If(SextantDDLSelector == "Reroll until Good Match")
-				{
-					While(Item.Prop.SextantFlag != "Good"){
-						ApplyCurrency(SextantTypeDDLSelector,Grid.X,Grid.Y)
-					}
-				}
-				Else If(SextantDDLSelector == "Reroll until not Bad Match")
-				{
-					While(Item.Prop.SextantFlag == "Bad"){
-						ApplyCurrency(SextantTypeDDLSelector,Grid.X,Grid.Y)
-					}
-				}
 			}
 			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
 				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
