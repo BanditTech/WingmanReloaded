@@ -708,7 +708,7 @@ WR_Menu(Function:="",Var*){
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
-      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster"] {
+      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster","Sextant"] {
         WR.MenuDDLstr[v] := ""
       }
       for k, v in PoeDBAPI{
@@ -733,6 +733,7 @@ WR_Menu(Function:="",Var*){
         }
         WR.MenuDDLstr[category] .= v "|"
       }
+      WR.MenuDDLstr["Sextant"] .= "Awakened|Elevated"
       category := ""
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
@@ -744,7 +745,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, Category:
-      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
+      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
       GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
       Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
       Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingcategorySelector]
