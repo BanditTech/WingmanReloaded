@@ -300,7 +300,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Awakened Sextant",
       "Level": 1,
-      "Mod": "Found Items drop Identified in Identified Maps | 20% increased Pack Size in Unidentified Maps | 3 uses remaining",
+      "Mod": "20% increased Pack Size in Unidentified Maps | 3 uses remaining",
       "Weight": "default 250"
     },
     {
@@ -804,7 +804,7 @@
       "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
       "Item": "Elevated Sextant",
       "Level": 1,
-      "Mod": "Found Items drop Identified in Identified Maps | 25% increased Pack Size in Unidentified Maps | 15 uses remaining",
+      "Mod": "25% increased Pack Size in Unidentified Maps | 15 uses remaining",
       "Weight": "default 250"
     },
     {
