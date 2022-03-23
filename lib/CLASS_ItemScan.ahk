@@ -994,7 +994,7 @@
 			}
 		}
 		If (SextantDDLSelector ~= "Good" && This.Prop.SextantFlag == "Good")
-		|| (SextantDDLSelector ~= "Bad" && (This.Affix.Count() > 0 && This.Prop.SextantFlag != "Bad")) {
+		|| (SextantDDLSelector ~= "Bad" && (This.Prop.HasEnchant && This.Prop.SextantFlag != "Bad")) {
 			This.Prop.SextantCraftingHit := True
 		} Else {
 			This.Prop.SextantCraftingHit := False
