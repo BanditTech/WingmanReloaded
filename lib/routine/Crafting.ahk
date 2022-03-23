@@ -112,10 +112,10 @@ CraftingItem(){
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos","Regal"])
-	Notify("Item Crafting Starting","Move your Cursor to your item in next 5s",5)
+	Notify("Item Crafting Starting","Move your Cursor to your item in next 3s",3)
 	Log("[Start]Item Crafting","Waiting for Item Position")
 	MouseMove %xx%, %yy%
-	Sleep, 5000
+	Sleep, 3000
 	; Cursor
 	MouseGetPos, xx, yy
 	ClipItem(xx,yy)
