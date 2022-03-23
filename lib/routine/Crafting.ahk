@@ -1,4 +1,4 @@
-; Crafting Section - main routine and all subroutines and popup
+﻿; Crafting Section - main routine and all subroutines and popup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Crafting(selection:="Maps"){
 	; Thread, NoTimers, True
@@ -138,7 +138,7 @@ CraftingItem(){
 	; Cursor
 	MouseGetPos, xx, yy
 	ClipItem(xx,yy)
-	Log("Item Crafting","Initial Clip",JSON.Dump(Item))
+	Log("Item Crafting ","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
 
 	If (!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)) {
@@ -591,9 +591,9 @@ ItemCraftingRoll(Method, x, y){
 					Return False
 			}
 		}
-		Log("Item Crafting Loop","Item Crafting resulted in a " 
-		. "CraftingMatchedPrefix: "Item.Prop.CraftingMatchedPrefix
-		. " | CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
+		Log("Item Crafting Loop ","Item result has " 
+		. Item.Prop.CraftingMatchedPrefix " Matched Prefix and " 
+		. Item.Prop.CraftingMatchedSuffix " Matched Suffix" 
 		,JSON.Dump(Item) )
 		
 	}
@@ -609,5 +609,6 @@ SextantCraftingRoll(Method, x, y){
 			Break
 		If !ApplyCurrency(Method,x,y)
 			Return False
+		Log("Sextant Crafting Loop ", "Sextant result has " (Item.Prop.SextantFlag?Item.Prop.SextantFlag:"no Good or Bad") " Mod", Item)
 	}
 }
