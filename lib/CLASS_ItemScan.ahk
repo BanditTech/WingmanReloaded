@@ -912,11 +912,10 @@
 		}
 		; Call MapCraft Logic
 		This.MapCraftItemLogic()
-		If (This.Prop.ItemClass = "Atlas Upgrade Items")
+		If (This.Prop.ItemClass = "Atlas Upgrade Items") {
 			This.SextantLogic()
-		; Flags for Item Crafting
-		If (This.MatchCraftingItemMods())
-		{
+		} Else If (This.MatchCraftingItemMods()) {
+			; Flags for Item Crafting
 			This.Prop.ItemCraftingHit := True
 		}
 		;Stack size for anything with it
