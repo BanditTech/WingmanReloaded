@@ -131,14 +131,10 @@ CraftingItem(){
 			CurrencyList.Push("Chaos")
 	}
 	WR.data.Counts := CountCurrency(CurrencyList)
-	Notify("Item Crafting Starting","Move your Cursor to your item in next 3s",3)
-	Log("[Start]Item Crafting","Waiting for Item Position")
 	MouseMove %xx%, %yy%
-	Sleep, 3000
-	; Cursor
-	MouseGetPos, xx, yy
+	Sleep, 150
 	ClipItem(xx,yy)
-	Log("Item Crafting ","Initial Clip",JSON.Dump(Item))
+	Log("[Start] Item Crafting ","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
 
 	If (!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)) {
