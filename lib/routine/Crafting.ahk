@@ -228,7 +228,7 @@ CraftingMaps(){
 			addToBlacklist(C, R)
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( Item.Prop.IsMap && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) &&!Item.Prop.Corrupted)
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) &&!Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
 					ClipItem(Grid.X,Grid.Y)
@@ -240,7 +240,7 @@ CraftingMaps(){
 				}
 			}
 			;Crafting Map Script
-			If (Item.Prop.IsMap && !Item.Prop.IsBlightedMap && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
+			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
 			{
 				If (Item.Prop.Map_Quality < 20)
 					If (ForceMaxChisel) {
@@ -289,7 +289,7 @@ CraftingMaps(){
 				If (Item.Prop.RarityNormal)		
 					ApplyCurrency("Hybrid",Grid.X,Grid.Y)
 			}
-			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
+			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.IsBlightedMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
 				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
 		}
 	}
