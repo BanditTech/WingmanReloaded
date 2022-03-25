@@ -939,7 +939,7 @@
 	}
 	MapCraftItemLogic() 
 	{
-		If(!This.Prop.IsMap){
+		If(!This.Prop.IsMap || !This.Prop.IsBlightedMap){
 			Return
 		}
 		This.Prop.MapSumWeightGoodMod := 0
@@ -1077,8 +1077,6 @@
 		Base := RegExReplace(Base,"^Warstaff", "Warstaves")
 		Base := RegExReplace(Base,"^Staff", "Staves")
 		Base := Base . CheckBaseType
-		; aux3232 := This.Prop.ItemClass
-		;tooltip, %aux3232% %Base%
 		for a , b in WR.ActualTier[Base]
 		{
 			ILvLList := b["ILvL"]
