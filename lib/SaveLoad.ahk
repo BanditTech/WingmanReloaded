@@ -627,7 +627,6 @@ submit(){
 		Settings("CustomMapMods","Save")
 		Settings("CustomSextantMods","Save")
 		Settings("ItemCrafting","Save")
-		Settings("ActualTier","Save")
 
 		;GUI Position
 		WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
