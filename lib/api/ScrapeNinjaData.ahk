@@ -215,51 +215,29 @@ DBUpdate(){
 	}
 }
 
-DBUpdateFirstRun(){
+DBUpdateNinja(){
   ;Update ninja Database
   FormatTime, Date_now, A_Now, yyyyMMdd
-  If YesNinjaDatabase
+  l := apiList.MaxIndex()
+  Load_BarControl(0,"Initializing",1)
+  For k, apiKey in apiList
   {
-    l := apiList.MaxIndex()
-    IfNotExist, %A_ScriptDir%\data\Ninja.json
-    {
-      Load_BarControl(0,"Initializing",1)
-      For k, apiKey in apiList
-      {
-        Load_BarControl(k/l*100,"Downloading " k " of " l " (" apiKey ")")
-        Sleep, -1
-        ScrapeNinjaData(apiKey)
-      }
-      Load_BarControl(100,"Database Updated",-1)
-      JSONtext := JSON.Dump(Ninja,,2)
-      FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-      IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
-    }
-    Else
-    {
-      If DaysSince()
-      {
-        Load_BarControl(0,"Initializing",1)
-        For k, apiKey in apiList
-        {
-          Load_BarControl(k/l*90,"Downloading " k " of " l " (" apiKey ")")
-          Sleep, -1
-          ScrapeNinjaData(apiKey)
-        }
-        JSONtext := JSON.Dump(Ninja,,2)
-        FileDelete, %A_ScriptDir%\data\Ninja.json
-        FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
-        Load_BarControl(95,"Downloading Perfect Prices")
-        RefreshPoeWatchPerfect()
-        IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
-        LastDatabaseParseDate := Date_now
-        Load_BarControl(100,"Database Updated",-1)
-      }
-      Else
-      {
-        FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
-        Ninja := JSON.Load(JSONtext)
-      }
-    }
+    Load_BarControl(k/l*90,"Downloading " k " of " l " (" apiKey ")")
+    Sleep, -1
+    ScrapeNinjaData(apiKey)
   }
+  sleep, -1
+  Load_BarControl(92,"Saving Ninja JSON")
+  sleep, -1
+  JSONtext := JSON.Dump(Ninja,,2)
+  FileDelete, %A_ScriptDir%\data\Ninja.json
+  FileAppend, %JSONtext%, %A_ScriptDir%\data\Ninja.json
+  sleep, -1
+  Load_BarControl(95,"Downloading Perfect Prices")
+  sleep, -1
+  RefreshPoeWatchPerfect()
+  IniWrite, %Date_now%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
+  LastDatabaseParseDate := Date_now
+  sleep, -1
+  Load_BarControl(100,"Database Updated",-1)
 }
