@@ -14,8 +14,13 @@ Critical
 #Include, %A_ScriptDir%\lib\gui\ItemInfo.ahk
 FirstScale()
 RestockMenu("Load")
-DBUpdateFirstRun()
-ActualTierCreator()
+If (YesNinjaDatabase && DaysSince()) {
+  DBUpdateNinja()
+} Else {
+  FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
+  Ninja := JSON.Load(JSONtext)
+}
+; ActualTierCreator()
 CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart)
 Critical, Off
 Tooltip,
