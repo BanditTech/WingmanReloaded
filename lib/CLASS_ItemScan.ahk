@@ -939,7 +939,7 @@
 	}
 	MapCraftItemLogic() 
 	{
-		If(!This.Prop.IsMap && !This.Prop.IsBlightedMap){
+		If(!This.Prop.IsMap){
 			Return
 		}
 		This.Prop.MapSumWeightGoodMod := 0
