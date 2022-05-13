@@ -1,4 +1,10 @@
-﻿## Version .15.0505 - Alpha version - March/23/2022
+﻿## Version .15.0506 - Alpha version - May/13/2022
+Update PoEDB API Mods
+  * Mostly no changes
+
+---
+
+## Version .15.0505 - Alpha version - March/23/2022
 Adjustment to Sextant modifier list
   * All first entries of the mod list are now unique
   * Uses remaining removed as it was not useful information

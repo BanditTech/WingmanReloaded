@@ -1,4 +1,4 @@
-﻿Global VersionNumber := .15.0505
+﻿Global VersionNumber := .15.0506
 #Include, %A_ScriptDir%\lib\Header.ahk
 ;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
 #Include, %A_ScriptDir%\lib\RunAdmin.ahk
