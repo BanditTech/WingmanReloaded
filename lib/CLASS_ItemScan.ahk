@@ -461,6 +461,11 @@
 				This.Prop.AbyssJewel := True
 				This.Prop.Jewel := True
 			}
+			Else If (This.Prop.ItemClass = "Sentinel")
+			{
+				This.Prop.Sentinel := True
+				This.Prop.SpecialType := "Sentinel"
+			}
 			Else If (This.Prop.ItemClass = "Jewels")
 			{
 				If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
@@ -2552,6 +2557,8 @@
 		} Else If (This.Prop.Expedition) {
 			Return -2
 		} Else If (This.Prop.Heist) {
+			Return -2
+		} Else If (This.Prop.Sentinel) {
 			Return -2
 		} Else If (This.Prop.Incubator) {
 			Return -1
