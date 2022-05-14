@@ -35,7 +35,7 @@ readFromFile(){
 	IniRead, ScriptUpdateTimeType, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType, Off
 	IniRead, Speed, %A_ScriptDir%\save\Settings.ini, General, Speed, 1
 	IniRead, Tick, %A_ScriptDir%\save\Settings.ini, General, Tick, 50
-	IniRead, Tick, %A_ScriptDir%\save\Settings.ini, General, KeyscanRate, 15
+	IniRead, KeyscanRate, %A_ScriptDir%\save\Settings.ini, General, KeyscanRate, 15
 	IniRead, QTick, %A_ScriptDir%\save\Settings.ini, General, QTick, 250
 	IniRead, DebugMessages, %A_ScriptDir%\save\Settings.ini, General, DebugMessages, 0
 	IniRead, YesTimeMS, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS, 0
