@@ -463,6 +463,11 @@
 			}
 			Else If (This.Prop.ItemClass = "Sentinel")
 			{
+				If RegExMatch(This.Prop.ItemBase,"((P|A|S)\w+) Sentinel$", RxMatch) {
+					This.Prop.Item_Width := 2
+					This.Prop.Item_Height := 2
+					This.Prop.SentinelType := RxMatch1
+				}
 				This.Prop.Sentinel := True
 				This.Prop.SpecialType := "Sentinel"
 			}
