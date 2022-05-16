@@ -1,4 +1,4 @@
-﻿Global VersionNumber := .15.05
+﻿Global VersionNumber := .15.06
 #Include, %A_ScriptDir%\lib\Header.ahk
 ;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
 #Include, %A_ScriptDir%\lib\RunAdmin.ahk
@@ -14,8 +14,13 @@ Critical
 #Include, %A_ScriptDir%\lib\gui\ItemInfo.ahk
 FirstScale()
 RestockMenu("Load")
-DBUpdateFirstRun()
-ActualTierCreator()
+If (YesNinjaDatabase && DaysSince()) {
+  DBUpdateNinja()
+} Else {
+  FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
+  Ninja := JSON.Load(JSONtext)
+}
+; ActualTierCreator()
 CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart)
 Critical, Off
 Tooltip,

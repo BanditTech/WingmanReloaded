@@ -56,50 +56,114 @@ RefreshMapList()
 Return
 }
 
+RefreshSextantList()
+{
+  AffixName:= ""
+  Mods := LoadOnDemand("Sextant")
+    For k, v in Mods
+    {
+      If(RegExMatch(v["Weight"], "`am)default (\d+)",RxMatch)){
+        LV_Add("",v["Item"],FirstLineToWRFormat(v["Mod"]),RxMatch1,"Good")
+      }Else{
+        LV_Add("",v["Item"],FirstLineToWRFormat(v["Mod"]),"0","Good")
+      }
+      
+    }
+  Mods := []
+  ;;Check Box
+  Loop % LV_GetCount()
+  {
+    Index := A_Index
+    LV_GetText(OutputVar, A_Index , 2)
+    For k, v in WR.CustomSextantMods.SextantMods
+    {
+      If (v["Sextant Enchant"] == OutputVar){
+        LV_Modify(Index,"Check",,,,v["Mod Type"])
+      }
+    }
+  }
+  ;; Style
+  Loop % LV_GetCount("Column")
+    LV_ModifyCol(A_Index,"AutoHdr")
+  LV_ModifyCol(2,"700")
+  LV_ModifyCol(1, "Sort")
+Return
+}
+
 CustomMapModsUI:
-  Gui, CustomMapModsUI1: New
-  Gui, CustomMapModsUI1: Default
-  Gui, CustomMapModsUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomMapModsUI1: Add, ListView ,  w1200 h350 -wrap -Multi Grid Checked gMyListView vlistview1, Affix Type|Affix Name|Detail|Mod Weight|Mod Type|Weight
+  Gui, CustomMapModsUI: New
+  Gui, CustomMapModsUI: Default
+  Gui, CustomMapModsUI: +AlwaysOnTop -MinimizeBox
+  Gui, CustomMapModsUI: Add, ListView ,  w1200 h350 -wrap -Multi Grid Checked gMyListViewMap vlistview1, Affix Type|Affix Name|Detail|Mod Weight|Mod Type|Weight
   RefreshMapList()
-  Gui, CustomMapModsUI1: Add, Button, gSaveData x+5 w120 h30 center, Save Map Modifiers
-  Gui, CustomMapModsUI1: Add, Button, gResetData w120 h30 center, Reset Map Modifiers
-  Gui, CustomMapModsUI1: Show, , Custom Map Mods
+  Gui, CustomMapModsUI: Add, Button, gSaveMapData x+5 w120 h30 center, Save Map Modifiers
+  Gui, CustomMapModsUI: Add, Button, gResetMapData w120 h30 center, Reset Map Modifiers
+  Gui, CustomMapModsUI: Show, , Custom Map Mods
 Return
 
 
-MyListView:
+CustomSextantModsUI:
+  Gui, CustomSextantModsUI: New
+  Gui, CustomSextantModsUI: Default
+  Gui, CustomSextantModsUI: +AlwaysOnTop -MinimizeBox
+  Gui, CustomSextantModsUI: Add, ListView ,  w1200 h350 -wrap -Multi Grid Checked gMyListViewSextant vlistview1, Sextant Type|Sextant Enchant|Mod Weight|Mod Type
+  RefreshSextantList()
+  Gui, CustomSextantModsUI: Add, Button, gSaveSextantData x+5 w120 h30 center, Save Sextant Modifiers
+  Gui, CustomSextantModsUI: Add, Button, gResetSextantData w120 h30 center, Reset Sextant Modifiers
+  Gui, CustomSextantModsUI: Show, , Custom Sextant Mods
+Return
+
+MyListViewSextant:
+if (A_GuiEvent = "DoubleClick")
+{
+  RowNumber :=  A_EventInfo
+  LV_GetText(OutputVar1, RowNumber,4)
+  Gui, CustomUI: New
+  Gui, CustomUI: +AlwaysOnTop -MinimizeBox
+  Gui, CustomUI: Add, Text,, Mod Type:
+  Gui, CustomUI: Add, DropDownList, vCSP_ModType, Good|Bad
+  GuiControl, ChooseString, CSP_ModType, %OutputVar1%
+  Gui, CustomUI: Add, Button, gSaveRowLVS y+8 w120 h30 center, Save
+  Gui, CustomUI: Show, , Edit Sextant Mod
+}
+Return
+
+
+MyListViewMap:
 if (A_GuiEvent = "DoubleClick")
 {
   RowNumber :=  A_EventInfo
   LV_GetText(OutputVar1, RowNumber,5)
   LV_GetText(OutputVar2, RowNumber,6)
-  Gui, CustomMapModsUI2: New
-  Gui, CustomMapModsUI2: +AlwaysOnTop -MinimizeBox
-  Gui, CustomMapModsUI2: Add, Text,, Mod Type:
-  Gui, CustomMapModsUI2: Add, DropDownList, vCMP_ModType, Good|Bad|Impossible
+  Gui, CustomUI: New
+  Gui, CustomUI: +AlwaysOnTop -MinimizeBox
+  Gui, CustomUI: Add, Text,, Mod Type:
+  Gui, CustomUI: Add, DropDownList, vCMP_ModType, Good|Bad|Impossible
   GuiControl, ChooseString, CMP_ModType, %OutputVar1%
-  Gui, CustomMapModsUI2: Add, Text,,Weight:
-  Gui, CustomMapModsUI2: Add, Edit, Number w40, %OutputVar2%
-  Gui, CustomMapModsUI2: Add, UpDown,Range1-100 vCMP_Weight, %OutputVar2%
-  Gui, CustomMapModsUI2: Add, Button, gSaveRowCUM y+8 w120 h30 center, Save
-  Gui, CustomMapModsUI2: Show, , Edit Map Mod
+  Gui, CustomUI: Add, Text,,Weight:
+  Gui, CustomUI: Add, Edit, Number w40, %OutputVar2%
+  Gui, CustomUI: Add, UpDown,Range1-100 vCMP_Weight, %OutputVar2%
+  Gui, CustomUI: Add, Button, gSaveRowLVM y+8 w120 h30 center, Save
+  Gui, CustomUI: Show, , Edit Map Mod
 }
-return
+Return
 
-SaveRowCUM:
-  Gui, CustomMapModsUI2: Submit, NoHide
-  Gui, CustomMapModsUI1:Default
+SaveRowLVM:
+  Gui, CustomUI: Submit, NoHide
+  Gui, CustomMapModsUI:Default
   LV_Modify(RowNumber,,,,,,CMP_ModType,CMP_Weight)
-  Gui, CustomMapModsUI2: Hide
+  Gui, CustomUI: Hide
 return
 
-CustomUndesirableContextMenu:	
-Tooltip,% "Clicked " A_GuiEvent " " A_EventInfo
+SaveRowLVS:
+  Gui, CustomUI: Submit, NoHide
+  Gui, CustomSextantModsUI:Default
+  LV_Modify(RowNumber,,,,,CSP_ModType)
+  Gui, CustomUI: Hide
 return
 
-SaveData:
-Gui, CustomMapModsUI1:Default
+SaveMapData:
+Gui, CustomMapModsUI:Default
   TrueIndex:=0
   WR.CustomMapMods.MapMods := []
   RowNumber := 0
@@ -120,10 +184,39 @@ Gui, CustomMapModsUI1:Default
 
 Return
 
-ResetData:
-Gui, CustomMapModsUI1:Default
+ResetMapData:
+Gui, CustomSextantModsUI:Default
   Loop % LV_GetCount()
     LV_Modify(A_Index,"-Check")
   WR.CustomMapMods.MapMods := []
   Settings("CustomMapMods","Save")
+Return
+
+SaveSextantData:
+Gui, CustomSextantModsUI:Default
+  TrueIndex:=0
+  WR.CustomSextantMods.SextantMods := []
+  RowNumber := 0
+  Loop
+  {
+    RowNumber := LV_GetNext(RowNumber,"C")
+    If not RowNumber
+      Break
+    TrueIndex++
+    LV_GetText(SextantType, RowNumber, 1)
+    LV_GetText(SextantEnchant, RowNumber, 2)
+    LV_GetText(ModType, RowNumber, 4)
+    aux:={"Sextant Type":SextantType,"Sextant Enchant":SextantEnchant,"Mod Type":ModType}
+    WR.CustomSextantMods.SextantMods.Push(aux)
+  }
+  Settings("CustomSextantMods","Save")
+
+Return
+
+ResetSextantData:
+Gui, CustomSextantModsUI:Default
+  Loop % LV_GetCount()
+    LV_Modify(A_Index,"-Check")
+  WR.CustomSextantMods.SextantMods := []
+  Settings("CustomSextantMods","Save")
 Return

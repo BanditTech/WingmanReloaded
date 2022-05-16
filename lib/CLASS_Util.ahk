@@ -155,9 +155,9 @@ Class Util {
 			; Using 'true' above and the call below allows the script to remain responsive.
 			whr.WaitForResponse()
 			response := whr.ResponseText
-			If WR.Debug.LogHttpGet {
+			If (False || WR.Debug.LogHttpGet) {
 				responseheaders := whr.GetAllResponseHeaders()
-				Log("HttpGet Response ","Account Response",response,"---------Headers---------",responseheaders)
+				Log("HttpGet Response ","Response was:",response,"---------Headers---------",responseheaders)
 			}
 			Return response
 		} catch e {

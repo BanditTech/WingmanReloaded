@@ -96,6 +96,7 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"SCJ", "Small Cluster Jewel")
 	base1 := RegExReplace(base1,"MCJ", "Medium Cluster Jewel")
 	base1 := RegExReplace(base1,"LCJ", "Large Cluster Jewel")
+	base1 := RegExReplace(base1,"Awakened|Elevated", "Atlas Upgrade Items")
 	base1 := RegExReplace(base1,"([^s])$", "$1s")
 	result := base1 ~= base2
 	Log("Item Crafting Base Comparison ","Evaluating " base1 " and " base2 " returned " (result?"True":"False"))
@@ -111,32 +112,62 @@ CraftingItem(){
 
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
-	WR.data.Counts := CountCurrency(["Alchemy","Transmutation","Scouring","Augmentation","Chaos","Regal"])
-	Notify("Item Crafting Starting","Move your Cursor to your item in next 5s",5)
-	Log("[Start]Item Crafting","Waiting for Item Position")
+	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
+		CurrencyList := []
+		CurrencyList.Push(ItemCraftingBaseSelector)
+	} Else {
+		CurrencyList := []
+		If (ItemCraftingMethod ~= "Alteration")
+			CurrencyList.Push("Alteration")
+		If (ItemCraftingMethod ~= "Aug")
+			CurrencyList.Push("Augmentation")
+		If (ItemCraftingMethod ~= "Regal")
+			CurrencyList.Push("Regal")
+		If (ItemCraftingMethod ~= "Scouring")
+			CurrencyList.Push("Scouring")
+		If (ItemCraftingMethod ~= "Alchemy")
+			CurrencyList.Push("Alchemy")
+		If (ItemCraftingMethod ~= "Chaos")
+			CurrencyList.Push("Chaos")
+	}
+	WR.data.Counts := CountCurrency(CurrencyList)
 	MouseMove %xx%, %yy%
-	Sleep, 5000
-	; Cursor
-	MouseGetPos, xx, yy
+	Sleep, 150
 	ClipItem(xx,yy)
-	Log("Item Crafting","Initial Clip",JSON.Dump(Item))
+	Log("[Start] Item Crafting ","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
-	If(!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)){
+
+	If (!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)) {
 		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
 		Return
 	}
-	If(WR.ItemCrafting[ItemCraftingBaseSelector].Count() == 0){
+	If !(ItemCraftingBaseSelector ~= "Awakened|Elevated")
+	&& (WR.ItemCrafting[ItemCraftingBaseSelector].Count() == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
+	} Else If (ItemCraftingBaseSelector ~= "Awakened|Elevated")
+	&& (WR.CustomSextantMods.SextantMods.Count() <= 0) {
+		Notify("Sextant Mod Selector Empty","You Need Select at Least 1 Affix on Sextant Mod Selector",4)
+		Log("[End]Item Crafting - Sextant Crafting Error","You Need Select at Least 1 Affix on Sextant Mod Selector")
+		Return
 	}
-	If(ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix ==0 && ItemCraftingNumberCombination == 0){
+	If !(ItemCraftingBaseSelector ~= "Awakened|Elevated")
+	&& (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
 		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
-	If(ItemCraftingMethod == "Alteration Spam"){
+	If !(ItemCraftingBaseSelector ~= "Awakened|Elevated")
+	&& (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
+		Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
+		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+		Return
+	}
+	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
+		SextantCraftingRoll(ItemCraftingBaseSelector,xx,yy)
+	}Else If(ItemCraftingMethod == "Alteration Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
 			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",4)
 			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
@@ -171,7 +202,7 @@ CraftingMaps(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
 	BlackList := Array_DeepClone(BlackList_Default)
-	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Augmentation"])
+	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Augmentation","Awakened","Elevated"])
 	; MsgBoxVals(WR.data.Counts)
 	MapList := {}
 	; Start Scan on Inventory
@@ -197,7 +228,7 @@ CraftingMaps(){
 			addToBlacklist(C, R)
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( Item.Prop.IsMap && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) &&!Item.Prop.Corrupted)
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) &&!Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
 					ClipItem(Grid.X,Grid.Y)
@@ -209,7 +240,7 @@ CraftingMaps(){
 				}
 			}
 			;Crafting Map Script
-			If (Item.Prop.IsMap && !Item.Prop.IsBlightedMap && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
+			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
 			{
 				If (Item.Prop.Map_Quality < 20)
 					If (ForceMaxChisel) {
@@ -258,7 +289,7 @@ CraftingMaps(){
 				If (Item.Prop.RarityNormal)		
 					ApplyCurrency("Hybrid",Grid.X,Grid.Y)
 			}
-			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
+			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.IsBlightedMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
 				MapList[C " " R] := {X:Grid.X,Y:Grid.Y}
 		}
 	}
@@ -360,9 +391,6 @@ ApplyCurrency(cname, x, y, Amount:=1){
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 MapRoll(Method, x, y){
-	MMQIgnore := False
-	If (!EnableMQQForMagicMap && Item.Prop.Rarity_Digit = 2)
-		MMQIgnore := True
 	If (Method == "Transmutation+Augmentation")
 	{
 		cname := "Transmutation"
@@ -422,19 +450,27 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False
 	}
+	BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
+	BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
+	BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted) 
-	&& ( Item.Prop.HasUndesirableMod || (Item.Prop.RarityNormal) 
-	|| (!MMQIgnore && !Item.Prop.HasDesirableMod && ((BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity) || (BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize) || (BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity)))) {
+	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
+	{
 		If (!RunningToggle) {
 			break
 		}
-		Log("Crafting","Map reroll initiated because" 
+		If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
+			Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
+			Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+			Return
+		}
+		Log("Crafting","Map reroll initiated because:" 
 			. (Item.Prop.RarityNormal?" Normal Item":"")
-			. (Item.Prop.HasUndesirableMod?" Undesirable Mod":"")
-			. (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity:"") 
-			. (BelowPackSize?" Below Min PackSize " MMapMonsterPackSize " @" Item.Prop.Map_PackSize:"")
-			. (BelowQuantity?" Below Min Quantity " MMapItemQuantity " @" Item.Prop.Map_Quantity:"")
+			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
+			. (Item.Prop.MapSumMod < MMapWeight?  " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
+		, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,") 
+			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
+			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
 		,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
@@ -447,16 +483,19 @@ MapRoll(Method, x, y){
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
+		BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
+		BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
+		BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	}
 	Log("Crafting","Map crafting resulted in a" 
 		. (Item.Prop.RarityNormal?" Normal Map":"")
 		. (Item.Prop.RarityMagic?" Magic Map":"")
 		. (Item.Prop.RarityRare?" Rare Map":"") 
-		. (Item.Prop.HasUndesirableMod?", with an Undesirable Mod":"")
-		. (Item.Prop.HasDesirableMod?", with a Desirable Mod":"")
-		, "Map is" (BelowRarity?" Below Min Rarity " MMapItemRarity " @" Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
-		. (BelowPackSize?" Below Min PackSize " MMapMonsterPackSize " @" Item.Prop.Map_PackSize ",":" Adequate PackSize,")
-		. (BelowQuantity?" Below Min Quantity " MMapItemQuantity " @" Item.Prop.Map_Quantity:" Adequate Quantity")
+		. (Item.Prop.MapSumMod >= MMapWeight?" with sum Mod weight of " Item.Prop.MapSumMod :"")
+		. (Item.Prop.IsBricked?" with Bricked Mods":"")
+		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
+		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
+		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity :" Adequate Quantity")
 	,JSON.Dump(Item) )
 	Return 1
 }
@@ -494,8 +533,6 @@ ItemCraftingRoll(Method, x, y){
 	{
 		Return
 	}
-	ClipItem(x,y)
-	Sleep, 45*Latency
 	If (Item.Affix["Unidentified"])
 	{
 		WisdomScroll(x,y)
@@ -537,15 +574,27 @@ ItemCraftingRoll(Method, x, y){
 					Return False
 			}
 		}
-		Log("Item Crafting Loop","Item Crafting resulted in a " 
-		. "CraftingMatchedPrefix: "Item.Prop.CraftingMatchedPrefix
-		. " | CraftingMatchedSuffix: "Item.Prop.CraftingMatchedSuffix
+		Log("Item Crafting Loop ","Item result has " 
+		. Item.Prop.CraftingMatchedPrefix " Matched Prefix and " 
+		. Item.Prop.CraftingMatchedSuffix " Matched Suffix" 
 		,JSON.Dump(Item) )
 		
 	}
-	If(Item.Prop.ItemCraftingHit)
+	If (Item.Prop.ItemCraftingHit) {
 		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
-		Log("[End]Item Crafting - Sucess","End Rotine")
+		Log("[End]Item Crafting - Sucess ","End Routine")
+	}
 
 	Return
+}
+SextantCraftingRoll(Method, x, y){
+	While (!Item.Prop.SextantCraftingHit) {
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+			Break
+		If !ApplyCurrency(Method,x,y)
+			Return False
+		Log("Sextant Crafting Loop ", "Sextant result has " (Item.Prop.SextantFlag?Item.Prop.SextantFlag:"no Good or Bad") " Mod", Item)
+	}
+	If (Item.Prop.SextantCraftingHit)
+	Log("[End]Sextant Crafting - Sucess ","End Routine")
 }

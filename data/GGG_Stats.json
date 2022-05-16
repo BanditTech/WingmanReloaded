@@ -6918,7 +6918,6 @@
    { "id":"enchant.stat_3891165938", "type":"enchant", "text":"Your Imbuing Towers also grant #% increased Critical Strike Chance" },
    { "id":"enchant.stat_4089551985", "type":"enchant", "text":"Your Temporal Towers have #% increased Range" },
    { "id":"enchant.stat_3384161880", "type":"enchant", "text":"Enemies inside Glacial Cage take #% increased Damage" },
-   { "id":"enchant.stat_75100665", "type":"enchant", "text":"Found Items drop Identified in Identified Maps" },
    { "id":"enchant.stat_1478653032", "type":"enchant", "text":"#% reduced Effect of Chill on you" },
    { "id":"enchant.stat_4148328809", "type":"enchant", "text":"Minions summoned by Your Sentinel Towers Leech #% of Damage as Life" },
    { "id":"enchant.stat_3640837971", "type":"enchant", "text":"Minions summoned by Your Sentinel Towers have #% increased Life" },

@@ -1,4 +1,86 @@
-﻿## Version .15.05 - Master version - March/3/2022
+﻿## Version .15.06 - Master version - May/14/2022
+Alpha changes are being merged into master branch
+
+---
+
+## Version .15.0507 - Alpha version - May/14/2022
+Bugfixes and changes
+  * Sentinel will use affinity
+  * Add SentinelType prop for the category of sentinel
+  * Give sentinel objects a width/height of 2
+  * Fix for an optional setting.ini key value (KeyScanRate)
+  * Add error message for issues loading a setting json
+
+---
+
+## Version .15.0506 - Alpha version - May/13/2022
+Update PoEDB API Mods
+  * Mostly no changes
+
+---
+
+## Version .15.0505 - Alpha version - March/23/2022
+Adjustment to Sextant modifier list
+  * All first entries of the mod list are now unique
+  * Uses remaining removed as it was not useful information
+    * Will require reconfigure of Sextant mod list
+    * To fix manually without reconfigure, Replace " | # uses remaining" with blank (nothing) in "save\CustomSextantMods.json" file then reload
+
+---
+
+## Version .15.0504 - Alpha version - March/23/2022
+Improvement to Item crafting
+  * Delay Removed from Item Crafting
+  * Only Required currency for crafting are counted
+  * Sextant Crafting Moved from Map crafting to Item Craft
+    * Allows rolling Voidstones socketed in atlas slot
+    * Mouse over the Voidstone and press item craft key
+    * Requires Atlas, Stash and Inventory Open
+    * To do this, you click the stash then press Atlas key at same time
+
+---
+
+## Version .15.0503 - Alpha version - March/22/2022
+Improvement to map crafting
+  * Add option to Roll Sextant on experimental stage (Only roll atlas stone on inventory using the same map crafting hotkey)
+    * We are using data scraped from POEDB, but as we don't have their endpoint url it was done manually scrapping the page using other tools any update need be manually
+    * Please give a feedback on discord about speed or if is not working as it should
+
+Bugfix
+  * Fix Restock minor bug
+
+---
+
+## Version .15.0502 - Alpha version - March/13/2022
+Improvement to map crafting
+  * The option to enforce MMQ is now default behavior
+  * New option MMQ or Weight to allow either to be considered good
+  * This allows for rolling specific mods but stopping when MMQ is met
+  * EnableMQQForMagicMap option now functional again
+
+Bugfix
+  * Rework how bricked maps are considered onto their own line
+  * Unidentified Corrupted maps not considered bricked if YesMapUnid enabled
+  * Unique Corrupted maps are never considered bricked
+
+---
+
+## Version .15.0501 - Alpha version - March/9/2022
+Improvement to map crafting
+  * You can now force MMQ to affect maps with good mods
+  * This will allow force rolling for specific mods while also above minimum qualities
+  * Log output has been improved to show more details in the basic outcome lines
+
+Adjustments
+  * Adjusted clip routine to add longer delay for error getting clip
+  * Put specific variable for Item Info hotkey for allowing old clip parse
+  * Accountname is now saved/loaded to remove one API request
+    * this also fixes a mysterious issue where AccountName API returns a blank response
+    * If you have this issue, manually enter you accountname into the Save\Account.ini file
+
+---
+
+## Version .15.05 - Master version - March/3/2022
 Bugfix
   * Resolved issue with stack size having non digits
 

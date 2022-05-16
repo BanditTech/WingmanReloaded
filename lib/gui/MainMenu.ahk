@@ -368,3 +368,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     xs+20 ys+20, Show Debug Tooltips
 	Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     , Logic Tooltips
 	Gui Add, Checkbox,   vYesLocation Checked%YesLocation%  gUpdateDebug , Location Tooltips
+
+	Gui, Add, Button,      gActualTierCreator     xs ys+120          h23,   Update Actual Tiers
+	Gui, Add, Button,      gDBUpdateNinja           h23,   Update Ninja Database
+	

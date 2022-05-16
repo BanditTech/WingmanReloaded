@@ -133,10 +133,10 @@ ClipItem(x, y){
   ClipWait, 0.1
   If ErrorLevel
   {
-    Sleep, 15
+    Sleep, 60
     Send ^!c
     ClipWait, 0.1
-    If ErrorLevel && !RunningToggle
+    If (ErrorLevel && ItemParseActive)
       Clipboard := Backup
   }
   Clip_Contents := Clipboard

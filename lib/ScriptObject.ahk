@@ -2,7 +2,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{},"MenuDDLstr":{},"MenuDDLselect":{}
 ,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
-,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
+,"CustomCraftingBases":{},"CustomMapMods":{},"CustomSextantMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
@@ -17,7 +17,7 @@ for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "Di
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
 	WR.loc.pixel[v] := {"X":0,"Y":0}
 
-for k, v in ["Armours","Flasks","Jewellery","Jewels","Large Cluster","Medium Cluster","Small Cluster","Weapons"] {
+for k, v in ["Armours","Flasks","Jewellery","Jewels","Large Cluster","Medium Cluster","Small Cluster","Weapons","Sextant"] {
 	WR.MenuDDLselect[v] := ""
 }
 for k, v in []
@@ -89,6 +89,7 @@ WR.String.General:={"OHB":"|<OHB_Bar>0x241814@0.99$106.Tzzzzzzzzzzzzzzzzu"
 
 
 WR.CustomMapMods.MapMods := []
+WR.CustomSextantMods.SextantMods := []
 
 for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]
 {

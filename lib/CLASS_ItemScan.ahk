@@ -302,6 +302,10 @@
 			;Start Parse
 
 			; We match one of these against an item to identify its purpose
+			If (This.Prop.ItemClass = "Atlas Upgrade Items")
+			{
+				This.Prop.AtlasStone := True
+			}
 			If (This.Prop.ItemClass = "Misc Map Items")
 			{
 				This.Prop.MiscMapItem := True
@@ -456,6 +460,16 @@
 			{
 				This.Prop.AbyssJewel := True
 				This.Prop.Jewel := True
+			}
+			Else If (This.Prop.ItemClass = "Sentinel")
+			{
+				If RegExMatch(This.Prop.ItemBase,"((P|A|S)\w+) Sentinel$", RxMatch) {
+					This.Prop.Item_Width := 2
+					This.Prop.Item_Height := 2
+					This.Prop.SentinelType := RxMatch1
+				}
+				This.Prop.Sentinel := True
+				This.Prop.SpecialType := "Sentinel"
 			}
 			Else If (This.Prop.ItemClass = "Jewels")
 			{
@@ -906,23 +920,12 @@
 		{
 			This.Prop.Veiled := False
 		}
-		; Flags for Map Roll and Bricked Maps
-		If (This.HasBrickedAffix() && This.Prop.IsMap)
-		{
-			If (This.Prop.Corrupted)
-			{
-				;Set Flag for Bricked Map Stash
-				This.Prop.IsBrickedMap := True
-			}
-			Else
-			{
-				;Set Flag for MapRoll
-				This.Prop.HasUndesirableMod := True
-			}
-		}
-		; Flags for Item Crafting
-		If (This.MatchCraftingItemMods())
-		{
+		; Call MapCraft Logic
+		This.MapCraftItemLogic()
+		If (This.Prop.ItemClass = "Atlas Upgrade Items") {
+			This.SextantLogic()
+		} Else If (This.MatchCraftingItemMods()) {
+			; Flags for Item Crafting
 			This.Prop.ItemCraftingHit := True
 		}
 		;Stack size for anything with it
@@ -944,28 +947,67 @@
 		This.CreateAllActualTiers()
 
 	}
-	HasBrickedAffix() {
-		sum := 0
-		good := 0
+	MapCraftItemLogic() 
+	{
+		If(!This.Prop.IsMap){
+			Return
+		}
+		This.Prop.MapSumWeightGoodMod := 0
+		This.Prop.MapSumWeightBadMod := 0
 		For k, v in WR.CustomMapMods.MapMods{
 			if(This.Affix[v["Map Affix"]])
 			{
 				if(v["Mod Type"] == "Impossible"){
-					Return True
+					This.Prop.MapImpossibleMod := True
+					;Set Flag to Reroll
+					This.Prop.MapRerollFlag := True
 				}else if(v["Mod Type"] == "Good"){
-					good++
-					sum += v["Weight"]
+					This.Prop.MapSumWeightGoodMod += v["Weight"]
 				}else if(v["Mod Type"] == "Bad"){
-					sum -= v["Weight"]
+					This.Prop.MapSumWeightBadMod += v["Weight"]
 				}
 			}
 		}
-		if (sum >= MMapWeight || (This.Affix.Unidentified && This.Prop.Corrupted)) {
-			If good
-				This.Prop.HasDesirableMod := good
-			Return False
-		} else {
-			Return True
+		This.Prop.MapSumMod := This.Prop.MapSumWeightGoodMod - This.Prop.MapSumWeightBadMod
+		;Check if MapSum > Minimum Weight Settings
+		ConsiderMMQ := (This.Prop.RarityMagic && EnableMQQForMagicMap) || This.Prop.RarityRare
+		If (ConsiderMMQ) {
+			MeetsMMQ := This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity
+		} Else {
+			MeetsMMQ := True
+		}
+		MeetsWeight := This.Prop.MapSumMod >= MMapWeight
+		GoodEnough := (!MMQorWeight && MeetsWeight && MeetsMMQ) || (MMQorWeight && (MeetsWeight || MeetsMMQ))
+		If (GoodEnough && !This.Prop.MapImpossibleMod) {
+			This.Prop.MapKeepFlag := True
+		} Else {
+			This.Prop.MapRerollFlag := True
+		}
+		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Unidentified || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
+			This.Prop.IsBrickedMap := True
+		}
+	}
+	SextantLogic(){
+		If(!This.Prop.AtlasStone){
+			Return
+		}
+		For k, v in WR.CustomSextantMods.SextantMods{
+			Content := StrSplit(v["Sextant Enchant"], " | ")
+			Content := Content[1] . " (enchant)"
+			If(This.Affix[Content]) {
+				If(v["Mod Type"] == "Good") {
+					This.Prop.SextantFlag := "Good"
+				} Else If(v["Mod Type"] == "Bad") {
+					This.Prop.SextantFlag := "Bad"
+				}
+				Break
+			}
+		}
+		If (SextantDDLSelector ~= "Good" && This.Prop.SextantFlag == "Good")
+		|| (SextantDDLSelector ~= "Bad" && (This.Prop.HasEnchant && This.Prop.SextantFlag != "Bad")) {
+			This.Prop.SextantCraftingHit := True
+		} Else {
+			This.Prop.SextantCraftingHit := False
 		}
 	}
 	MatchCraftingItemMods() {
@@ -1045,8 +1087,6 @@
 		Base := RegExReplace(Base,"^Warstaff", "Warstaves")
 		Base := RegExReplace(Base,"^Staff", "Staves")
 		Base := Base . CheckBaseType
-		; aux3232 := This.Prop.ItemClass
-		;tooltip, %aux3232% %Base%
 		for a , b in WR.ActualTier[Base]
 		{
 			ILvLList := b["ILvL"]
@@ -1272,7 +1312,7 @@
 			line := RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
 			line := RegExReplace(line, " . Unscalable Value" , "")
 			;Fix Extra Text from Spell Suppress Mods
-			line := RegExReplace(line, "\(50% of Damage from Suppressed Hits and Ailments they inflict is prevented\)" , "")
+			line := RegExReplace(line, "\(50% of Damage from Suppressed Hits and Ailments they inflict is prevented\)", "")
 			key := This.Standardize(line)
 			If (vals := This.MatchLine(line))
 			{
@@ -1297,8 +1337,12 @@
 					}
 				}
 			}
-			Else
-				This.Affix[key] := True
+			Else{
+				If(key == "")
+					Continue
+				Else
+					This.Affix[key] := True
+			}
 			LastLine := line
 
 			If (A_LoopField ~= rxNum "\(-*" rxNum "-*" rxNum "\)") {
@@ -2518,6 +2562,8 @@
 		} Else If (This.Prop.Expedition) {
 			Return -2
 		} Else If (This.Prop.Heist) {
+			Return -2
+		} Else If (This.Prop.Sentinel) {
 			Return -2
 		} Else If (This.Prop.Incubator) {
 			Return -1

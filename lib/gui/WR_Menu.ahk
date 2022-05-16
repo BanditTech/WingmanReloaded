@@ -598,6 +598,8 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
+
+      ;MapMods GroupBox
       Gui, Crafting: Add,GroupBox,Section w285 h85 xs, Map Mods:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s7
@@ -608,7 +610,8 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
-      Gui, Crafting: Add,GroupBox,Section w200 h130 x320 y50, Minimum Map Qualities:
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add,GroupBox,Section w200 h150 x320 y50, Minimum Map Qualities:
       Gui, Crafting: Font, 
       Gui, Crafting: Font,s8
 
@@ -625,9 +628,10 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, x+10 yp+3 , Monster Pack Size
 
       Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+15 y+15 Checked%EnableMQQForMagicMap%, Enable on Magic Maps
+      Gui, Crafting: Add, Checkbox, vMMQorWeight xs+15 y+5 Checked%MMQorWeight%, Match MMQ or Weight
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w290 h90 x320 y190, Other Settings:
+      Gui, Crafting: Add,GroupBox,Section w290 h90 x320 y210, Other Settings:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
       Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
@@ -692,11 +696,11 @@ WR_Menu(Function:="",Var*){
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
-      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster"] {
+      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster","Sextant"] {
         WR.MenuDDLstr[v] := ""
       }
       for k, v in PoeDBAPI{
-        If (v ~= "Map(.+)")
+        If (v ~= "Map(.+)" || v ~= "Sextant" || v ~= "Heist")
           Continue
         If (v ~= "^SCJ") {
           category := "Small Cluster"
@@ -717,6 +721,7 @@ WR_Menu(Function:="",Var*){
         }
         WR.MenuDDLstr[category] .= v "|"
       }
+      WR.MenuDDLstr["Sextant"] .= "Awakened|Elevated"
       category := ""
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
@@ -728,12 +733,11 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, Category:
-      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster
+      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
       GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
       Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
       Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingcategorySelector]
-      ;;Select DDL Value Based on Last Value Saved
-      GuiControl, ChooseString, ItemCraftingBaseSelector, %ItemCraftingBaseSelector%
+      GuiControl, ChooseString, ItemCraftingBaseSelector, % WR.MenuDDLselect[ItemCraftingcategorySelector]
       Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w300, Open UI
 
       ; Affix Matcher
@@ -752,11 +756,19 @@ WR_Menu(Function:="",Var*){
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h45 xs yp+35 , Crafting Method
+      Gui, Crafting: Add, GroupBox, w320 h55 xs yp+35 , Crafting Method
       Gui, Crafting: Font,
       Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
       ;;Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
+
+      ;Sextant GroupBox
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add, GroupBox,Section w320 h55 xs y+20, Sextant Mods
+      Gui, Crafting: Font,
+      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Behaviour:
+      Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w225, Reroll until Good Match|Reroll until not Bad Match
+      GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
 
       ; Guide
       Gui, Crafting: Font, Bold s12 cBlack, Arial
