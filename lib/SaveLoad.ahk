@@ -1041,8 +1041,8 @@ submit(){
 
 ; Settings Save/Load
 Settings(name:="perChar",Action:="Load"){
-	Try {
-		If (Action = "Load"){
+	If (Action = "Load"){
+		Try {
 			IfNotExist, %A_ScriptDir%\save\%name%.json
 				Return False
 			FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
@@ -1051,15 +1051,14 @@ Settings(name:="perChar",Action:="Load"){
 				If (obj.HasKey(k))
 					WR[name][k] := obj[k]
 			obj := JSONtext := ""
-		}Else If (Action = "Save"){
-			IfExist, %A_ScriptDir%\save\%name%.json
-				FileDelete, %A_ScriptDir%\save\%name%.json
-			JSONtext := JSON.Dump(WR[name],,2)
-			FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
-			JSONtext := ""
+		} Catch e {
+			Util.Err(e, "Setting Load failed for .\save\" name ".json")
 		}
-	} Catch e {
-		Util.Err(e, "Setting " Action " failed for .\save\" name ".json")
+	}Else If (Action = "Save"){
+		FileDelete, %A_ScriptDir%\save\%name%.json
+		JSONtext := JSON.Dump(WR[name],,2)
+		FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
+		JSONtext := ""
 	}
 }
 ; Profile Save/Load/Remove
