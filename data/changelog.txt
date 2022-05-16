@@ -1,4 +1,9 @@
-﻿## Version .15.0507 - Alpha version - May/14/2022
+﻿## Version .15.06 - Master version - May/14/2022
+Alpha changes are being merged into master branch
+
+---
+
+## Version .15.0507 - Alpha version - May/14/2022
 Bugfixes and changes
   * Sentinel will use affinity
   * Add SentinelType prop for the category of sentinel
