@@ -1052,7 +1052,8 @@ Settings(name:="perChar",Action:="Load"){
 					WR[name][k] := obj[k]
 			obj := JSONtext := ""
 		}Else If (Action = "Save"){
-			FileDelete, %A_ScriptDir%\save\%name%.json
+			IfExist, %A_ScriptDir%\save\%name%.json
+				FileDelete, %A_ScriptDir%\save\%name%.json
 			JSONtext := JSON.Dump(WR[name],,2)
 			FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
 			JSONtext := ""
