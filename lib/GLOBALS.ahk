@@ -457,7 +457,39 @@ ft_ToolTip_Text_Part3=
 	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
 	)
 
-ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3
+; Tooltips for the utility and flask menus
+ft_ToolTip_Text_Part4=
+(LTrim
+	MainAttackOnly = Only trigger other settings when the main attack is being held
+	MainAttack = Trigger this when the Main attack button is pressed
+	MainAttackRelease = Trigger this when the Main attack button is released
+	SecondaryAttack = Trigger this when the Secondary attack button is pressed
+	SecondaryAttackRelease = Trigger this when the Secondary attack button is released
+	Enable = Enable this to trigger
+	OnCD = Fire this every time it comes off cooldown
+	CD = Set the time between firing
+	Key = Set the key to press`rThis can include multiple keys seperated with a space`rIt can also include a delay like so [100](k)
+	Group = Which cooldown group will this belong to
+	GroupCD = How long will the group remain on cooldown when this fires
+	Curse = Trigger when a Curse is found`rRequires the strings configured in string settings to work
+	Shock = Trigger when a Shock is found`rRequires the strings configured in string settings to work
+	Bleed = Trigger when a Bleed is found`rRequires the strings configured in string settings to work
+	Freeze = Trigger when a Freeze is found`rRequires the strings configured in string settings to work
+	Ignite = Trigger when a Ignite is found`rRequires the strings configured in string settings to work
+	Poison = Trigger when a Poison is found`rRequires the strings configured in string settings to work
+	Icon = Trigger this when the sample cannot be found
+	IconShown = Inverts the logic to trigger when the sample is found
+	IconSearch = Which type of search area do you want configured
+	IconArea_Show = Show the area which is configured for custom
+	IconArea_Set = Set the custom area for searching for an icon
+	IconVar1 = Change the allowed error value for 1's in the sample
+	IconVar0 = Change the allowed error value for 0's in the sample
+	PopAll = Include this in the Pop All hotkey
+	Move = Trigger this when the Movement key is pressed
+	Condition = Make the resource triggers fire when any are true, or when all are true
+	)
+
+ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3 . ft_ToolTip_Text_Part4
 ; Current log file
 Global logFile := A_Now
 

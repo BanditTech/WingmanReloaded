@@ -169,31 +169,31 @@ ShowToolTip()
   ListLines, Off
   static CurrControl, PrevControl, _TT
   CurrControl := A_GuiControl
-  if (CurrControl != PrevControl)
-  {
-  PrevControl := CurrControl
-  ToolTip
-  if (CurrControl != "")
-    SetTimer, ft_DisplayToolTip, -500
+  if (CurrControl != PrevControl) {
+    PrevControl := CurrControl
+    ToolTip
+    if (CurrControl != "")
+      SetTimer, ft_DisplayToolTip, -500
   }
   return
 
   ft_DisplayToolTip:
-  If PauseTooltips
-    Return
-  ListLines, Off
-  MouseGetPos,,, _TT
-  WinGetClass, _TT, ahk_id %_TT%
-  if (_TT = "AutoHotkeyGUI")
-  {
-  ToolTip, % RegExMatch(ft_ToolTip_Text, "m`n)^"
-    . StrReplace(CurrControl,"ft_") . "\K\s*=.*", _TT)
-    ? StrReplace(Trim(_TT,"`t ="),"\n","`n") : ""
-  SetTimer, ft_RemoveToolTip, -10000
-  }
+    If PauseTooltips
+      Return
+    ListLines, Off
+    MouseGetPos,,, _TT
+    WinGetClass, _TT, ahk_id %_TT%
+    if (_TT = "AutoHotkeyGUI") {
+      stripCtrl := StrReplace(CurrControl,"ft_")
+      stripCtrl := RegExReplace(stripCtrl,"^Utility\d*","")
+      stripCtrl := RegExReplace(stripCtrl,"^Flask\d*","")
+      ToolTip, % RegExMatch(ft_ToolTip_Text, "m`n)^" stripCtrl "\K\s*=.*", _TT)
+        ? StrReplace(Trim(_TT,"`t ="),"\n","`n") : ""
+      SetTimer, ft_RemoveToolTip, -10000
+    }
   return
 
   ft_RemoveToolTip:
-  ToolTip
+    ToolTip
   return
 }
