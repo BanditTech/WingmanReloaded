@@ -455,7 +455,8 @@ ft_ToolTip_Text_Part3=
 	hotkeySecondaryAttack = Bind the Secondary Attack for this Character
 	YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
 	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
-	)
+
+)
 
 ; Tooltips for the utility and flask menus
 ft_ToolTip_Text_Part4=
@@ -487,7 +488,8 @@ ft_ToolTip_Text_Part4=
 	PopAll = Include this in the Pop All hotkey
 	Move = Trigger this when the Movement key is pressed
 	Condition = Make the resource triggers fire when any are true, or when all are true
-	)
+
+)
 
 ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3 . ft_ToolTip_Text_Part4
 ; Current log file
