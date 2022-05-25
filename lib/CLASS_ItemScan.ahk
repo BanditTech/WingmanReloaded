@@ -2684,6 +2684,7 @@
 				If (val := This.MatchGroup(Groups)){
 					this.Prop.CLF_Tab := Groups["StashTab"]
 					this.Prop.CLF_Group := (Groups["GroupName"]?Groups["GroupName"]:GKey)
+					this.Prop.CLF_Strictness := (Groups["Strictness"]?Groups["Strictness"]:0)
 					This.MatchedCLF := val
 					Return this.Prop.CLF_Tab
 				}

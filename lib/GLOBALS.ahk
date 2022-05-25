@@ -675,6 +675,11 @@ Global EnableRestock:=True
 Global MoveMapsToArea:=True
 Global YesIncludeFandSItem := True
 
+; CLF Options
+Global YesCLFStrictness := False
+Global CLFStrictnessNumber := 1
+
+
 ; Item Crafting
 
 Global ItemCraftingcategorySelector
