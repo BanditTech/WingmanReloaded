@@ -95,6 +95,10 @@ readFromFile(){
 	IniRead, YesIncludeFandSItem, %A_ScriptDir%\save\Settings.ini, General, YesIncludeFandSItem, 1
 	IniRead, EnableRestock, %A_ScriptDir%\save\Settings.ini, General, EnableRestock, 1
 
+	; CLF Options
+	IniRead, YesCLFStrictness, %A_ScriptDir%\save\Settings.ini, General, YesCLFStrictness, 0
+	IniRead, CLFStrictnessNumber, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber, 1
+
 	; Basic Crafting Settings
 	IniRead, BasicCraftChanceMethod, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceMethod, 1
 	IniRead, BasicCraftChanceScour, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceScour, 1
@@ -771,6 +775,10 @@ submit(){
 		IniWrite, %MoveMapsToArea%, %A_ScriptDir%\save\Settings.ini, General, MoveMapsToArea
 		IniWrite, %YesIncludeFandSItem%, %A_ScriptDir%\save\Settings.ini, General, YesIncludeFandSItem
 		IniWrite, %EnableRestock%, %A_ScriptDir%\save\Settings.ini, General, EnableRestock
+
+		; CLF Options
+		IniWrite, %YesCLFStrictness%, %A_ScriptDir%\save\Settings.ini, General, YesCLFStrictness
+		IniWrite, %CLFStrictnessNumber%, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber
 
 		; Overhead Health Bar
 		IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
