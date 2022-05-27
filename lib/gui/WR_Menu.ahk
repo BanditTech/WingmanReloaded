@@ -850,42 +850,42 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: +Delimiter?
 
       Gui, Strings: Add, Text, xs+10 ys+25 section, Curse - Elemental Weakness
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEleWeakStr gUpdateStringEdit ,% debuffCurseEleWeakStr "??" WR.String.Debuff.EleW
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEleWeakStr gUpdateStringEdit ,% debuffCurseEleWeakStr "??" WR.String.h1080.Debuff.EleW
 
       Gui, Strings: Add, Text, x+10 ys , Curse - Vulnerability
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseVulnStr gUpdateStringEdit ,% debuffCurseVulnStr "??" WR.String.Debuff.Vuln
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseVulnStr gUpdateStringEdit ,% debuffCurseVulnStr "??" WR.String.h1080.Debuff.Vuln
 
       Gui, Strings: Add, Text, xs y+15 section, Curse - Enfeeble
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEnfeebleStr gUpdateStringEdit ,% debuffCurseEnfeebleStr "??" WR.String.Debuff.Enfeeble
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseEnfeebleStr gUpdateStringEdit ,% debuffCurseEnfeebleStr "??" WR.String.h1080.Debuff.Enfeeble
 
       Gui, Strings: Add, Text, x+10 ys , Curse - Temporal Chains
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseTempChainStr gUpdateStringEdit ,% debuffCurseTempChainStr "??" WR.String.Debuff.TempChains
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseTempChainStr gUpdateStringEdit ,% debuffCurseTempChainStr "??" WR.String.h1080.Debuff.TempChains
 
       Gui, Strings: Add, Text, xs y+15 section, Curse - Condutivity
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseCondStr gUpdateStringEdit ,% debuffCurseCondStr "??" WR.String.Debuff.Conductivity
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseCondStr gUpdateStringEdit ,% debuffCurseCondStr "??" WR.String.h1080.Debuff.Conductivity
 
       Gui, Strings: Add, Text, x+10 ys , Curse - Flammability
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFlamStr gUpdateStringEdit ,% debuffCurseFlamStr "??" WR.String.Debuff.Flammability
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFlamStr gUpdateStringEdit ,% debuffCurseFlamStr "??" WR.String.h1080.Debuff.Flammability
 
       Gui, Strings: Add, Text, xs y+15 section, Curse - Frostbite
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFrostStr gUpdateStringEdit ,% debuffCurseFrostStr "??" WR.String.Debuff.Frostbite
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseFrostStr gUpdateStringEdit ,% debuffCurseFrostStr "??" WR.String.h1080.Debuff.Frostbite
 
       Gui, Strings: Add, Text, x+10 ys , Curse - Warlord's Mark
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseWarMarkStr gUpdateStringEdit ,% debuffCurseWarMarkStr "??" WR.String.Debuff.WMark
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffCurseWarMarkStr gUpdateStringEdit ,% debuffCurseWarMarkStr "??" WR.String.h1080.Debuff.WMark
 
       Gui, Strings: Add, Text, xs y+15 section, Shock
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffShockStr gUpdateStringEdit ,% debuffShockStr "??" WR.String.Debuff.Shock
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffShockStr gUpdateStringEdit ,% debuffShockStr "??" WR.String.h1080.Debuff.Shock
 
       Gui, Strings: Add, Text, x+10 ys , Bleed
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffBleedStr gUpdateStringEdit ,% debuffBleedStr "??" WR.String.Debuff.Bleed
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffBleedStr gUpdateStringEdit ,% debuffBleedStr "??" WR.String.h1080.Debuff.Bleed
       Gui, Strings: Add, Text, xs y+15 section, Freeze
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffFreezeStr gUpdateStringEdit ,% debuffFreezeStr "??" WR.String.Debuff.Freeze
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffFreezeStr gUpdateStringEdit ,% debuffFreezeStr "??" WR.String.h1080.Debuff.Freeze
 
       Gui, Strings: Add, Text, x+10 ys , Ignite
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffIgniteStr gUpdateStringEdit ,% debuffIgniteStr "??" WR.String.Debuff.Ignite
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffIgniteStr gUpdateStringEdit ,% debuffIgniteStr "??" WR.String.h1080.Debuff.Ignite
 
       Gui, Strings: Add, Text, xs y+15 section, Poison
-      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffPoisonStr gUpdateStringEdit ,% debuffPoisonStr "??" WR.String.Debuff.Poison
+      Gui, Strings: Add, ComboBox, y+8 w280 vdebuffPoisonStr gUpdateStringEdit ,% debuffPoisonStr "??" WR.String.h1080.Debuff.Poison
 
       Gui, Strings: +Delimiter|
     }

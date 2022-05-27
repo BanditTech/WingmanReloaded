@@ -58,7 +58,10 @@ for k, v in ["1","2","3","4","5","6","7","8","9","10"]
 for k, v in ["f1","f2","f3","f4","f5","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
 	WR.cdExpires.Group[v] := A_TickCount
 
-WR.String.Debuff :={"EleW":"|<1080 Ele Weakness>0xF6E9FE@0.75$22.01s000s401k005W14vo2LZE3PO05ZykDHblYi/rOMpoVVFH44mYEncH0NE8U11V04A209U40w067005U2i"
+for k, v in ["h768","h1050","h1080","h1440","h2160"]
+	WR.String[v] := {}
+
+WR.String.h1080.Debuff :={"EleW":"|<1080 Ele Weakness>0xF6E9FE@0.75$22.01s000s401k005W14vo2LZE3PO05ZykDHblYi/rOMpoVVFH44mYEncH0NE8U11V04A209U40w067005U2i"
 	,"Vuln":"|<1080 Vulnerability>0xAF1015@0.90$34.0kE7000DAC013xwQ84Drsk0YzzV02xzs0U3rzY60CkSEA1k0s0k4E1k1WV03XX0U03wAC0UDsm000Tl0001zaE007yM000TsU001sU0007kA000zk003bz0020zsQ0k0zXUADvwA11zzVk0Dys0007llU00D0807000U1YM0M00HsME00Dzk003zy0003rEE2"
 	,"Enfeeble":"|<1080 Enfeeble>0x6A7E25@0.75$24.Ms30BntUDjyk5TzM1Tzc3zzc2zzU2zza2zza2Tza3Tva3zfj7jcT7rYT7sETryFTzzOjzvOjzrCyzbjTzjjSTDzyTTzwDTztKTzmMzz6gDwTjU1xU"
 	,"TempChains":"|<1080 Temp Chains>0x7442D7@0.75$29.03kA00ttq03vzq0Tnzi1zrzi3zbzA7z7zQzy3yzjs7wzTkjxyzZTnxz0zbvz1yTrznszbzbbzjzgDjDz1zT7w7yTU0Dxzk07vzzV7rzz9VzzwPsTztrwxznbzlzjjVVzTQ01wyc8"
@@ -71,17 +74,17 @@ WR.String.Debuff :={"EleW":"|<1080 Ele Weakness>0xF6E9FE@0.75$22.01s000s401k005W
 	,"Bleed":"|<1080 Bleed>0xE41B27@0.79$27.01s000DU0074000zk00430012M008G0010E00040000Y001AU011U00AA001V000A8U03V007s0Q1w03szU07rD00DvwLxzzyzbtbbqTCAXXsvYsP0wS3s51kA|<Corrupting Blood>*39$11.sV+2K6yHC7wDgDQSs9WO02U"
 	,"Freeze":"|<1080 Frozen>0xCBEEF6@0.93$14.EXo0Q01U0M0a81U0c0/b3M0y0C"
 	,"Ignite":"|<1080 Ignite>0xFFEC00@0.70$23.0F003y4060M03lk1jXU20L040C0M0A3k0M7U0kD03wD07sy0Dlw0TXw0z7s1zDU1wS03ys03z000Q000A"}
-WR.String.Vendor:={"Hideout":"|<1080 Navali>*100$56.TtzzzzzzznyTzzzzzzwTbxxzTjrx3tyCDXnsy0ST3ntsTDk3bkwSS7nw8Nt77D8wz36SNtnmDDks7USBw3nwD1k3mS0Qz3sQwwDbbDkz6TD3ntngDtblswyA38|<1080 Zana>*100$44.U3zzzzzs0zzzzzyyTrvyzjz7twT7nzXwDXnsTsz3sQy7wTYS3D8yDtbYHnDXy1tYw3lz0CMC0Mznnb3ba01wtsnt02T6TAy8"
-	,"Mines":"|<niko>*104$121.7yTzzzzzzzzzzzzzzzzzXyDzzzzzzzzzzzzzzzzzlz7xzDzzzzzzbzzzzrxzsT3wz1043UDz0w3w0Nws4DVwDAgPBlbzCDBylgySO3oy7byDbslz7bbzsyTDD1mSFlz7nwMzblnzwTDbbYtDAwDXsCAznssDyDU3kG9bUT3lwD0ztwQDz7k1sNYnU7lsyTUTwyCTzXtwwwktnnwQTDl7yDDDzlwySSMQHtiSDbslzX7bzsyTDDCS9wET7kAQTsDnzwTDbUTjzzyzzzzzzzTzzzzzzzs"
+WR.String.h1080.Vendor:={"Hideout":"|<1080 Lilly Roth>*93$29.bDtll4TnX79zbCT7z0wyDy1twTwlnsztlX|<1080 Einhar>*93$28.0TznYNzzCFXzw36Dzk4NzzC07zws0zznkFzzC1XDwt74zkC"
+	,"Mines":"|<1080 niko>*104$121.7yTzzzzzzzzzzzzzzzzzXyDzzzzzzzzzzzzzzzzzlz7xzDzzzzzzbzzzzrxzsT3wz1043UDz0w3w0Nws4DVwDAgPBlbzCDBylgySO3oy7byDbslz7bbzsyTDD1mSFlz7nwMzblnzwTDbbYtDAwDXsCAznssDyDU3kG9bUT3lwD0ztwQDz7k1sNYnU7lsyTUTwyCTzXtwwwktnnwQTDl7yDDDzlwySSMQHtiSDbslzX7bzsyTDDCS9wET7kAQTsDnzwTDbUTjzzyzzzzzzzTzzzzzzzs"
 	,"Lioneye":"|<1080 Nessa>*100$48.TtzzzzzzDtzzzzzz7tzzbtzj3tkD1kTD1ttiNaS70ttyTby78NtyDXwXANsD3kwnC9sTVsQ3D1tzlwM1DVtzsy9tDltytiHtDts63UnszzzzjvzzU|<1080 Bestel>*100$54.zzzzzzzzzUzzzzzzzzUTzzzzzzzbDzwzzzyzbC1s80UQTbDBn/6nSTUTDnz7nyTUDDlz7nyTb71sT7kSTb73wD7kyTbbDyD7nyTbbDz77nyTbDDrD7nyRUT0kT7kC1zzzxzzzzzzzzzzzzzzU"
-	,"Forest":"|<Greust>*87$59.s7zzzzzzzzU7zzzzzzzyDDzzzTjbzsys3UASA201zlbaMyNZX7zX7Dlwnz7Dz6CTXtXyCDaAw7bn1wQSA1sDDbVssyM7nyTDXlkwl7bwyzXXktX7DstrD7k3761s7USDszzzzwznzy"
+	,"Forest":"|<1080 Greust>*87$59.s7zzzzzzzzU7zzzzzzzyDDzzzTjbzsys3UASA201zlbaMyNZX7zX7Dlwnz7Dz6CTXtXyCDaAw7bn1wQSA1sDDbVssyM7nyTDXlkwl7bwyzXXktX7DstrD7k3761s7USDszzzzwznzy"
 	,"Sarn":"|<1080 Clarissa>*100$73.zzzzzzzzzzzzz3zzzzzzzzzzy0TzzzzzzzzzyDCzxzzvwzDxyDiDwy0sw71wz7zbwD6SQnAwDbzny7X7CTby7nztyFlXb7lyFszwzAsnnkwDAwTyTUQ3twD3USDzDU61wz7lU73vbnn4STlwHnklnXtX7CtiHtw1s1wFlb1kNwTrzzzzzzvyzzzzzzzzzzzzzzy"
 	,"Highgate":"|<1080 Petarus>*100$69.zzzzzzzzzzzw7zzzzzzzzzzUDzzzzzzzzzwtzzzzTzyzTDb61U3ns3XlkQsthXQD6QTAnb7DwTVslXtbwttzXt76ATATUT1wTAsnntkwDsTXs70yTD3bzDwS0M7ntwQztzXnn4STTlbzDwQyMllniQzs7Xbl770w7zzzzzzzzyTvzzzzzzzzzzzzU"
 	,"Overseer":"|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"
 	,"Bridge":"|<1080 Helena>*100$62.DlzzzzzzzznwTzzzzzzzwz7zxzzvyzjDlkCDUQT7nnwSPnwrXnsQz7bwzDsQy701tzDny3D8k0S3nw7YHnAz7Vwz3tYw3DltzDnyMC0HwSTnwzb3bYz7bwvDtsntDls70kCTAy8"
 	,"Docks":"|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"
 	,"Oriath":"|<1080 Lani>*100$36.zzzzzzbzzzzzbzzzzzbzjrxvbzDXslby7lttby7kttbwXkNtbwnm9tbw3n9tbs1n1tbttnVtb3tnltU3snttzzzzzzU"}
-WR.String.General:={"OHB":"|<OHB_Bar>0x241814@0.99$106.Tzzzzzzzzzzzzzzzzu"
+WR.String.h1080.General:={"OHB":"|<1080 Overhead Health Bar>0x201614@0.99$106.Tzzzzzzzzzzzzzzzzu"
 	,"SkillUp":"|<1080 Skill Up>0xAA6204@0.80$9.sz7ss0000sz7sw"
 	,"SellItems":"|<1080 Sell Items>*100$80.zzzjTzzzzzzzzzzzlXzzzzzzzzy3zwMzlzzzzzzz0TzbDyTzzzzzznbztnzbbzzzzzwzsSQztkC74AT37w3bDyQ30k03UESQtnzbbbAAANa3b6Qztttlb76TsM1bDySS0NllVz6Ttnzb7byQQQ7sbyQztltzb77lyMxbDyQSDFlly360NnzbUU4QQPY3kCQztsA37761nzDzzzzDnzzzts"
 	,"Stash":"|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
