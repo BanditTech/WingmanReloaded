@@ -617,7 +617,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, 
       Gui, Crafting: Font,s8
 
-      Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w50
+      Gui, Crafting: Add, Edit, number limit3 xs+15 yp+18 w50
       Gui, Crafting: Add, UpDown, Range1-130 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
       Gui, Crafting: Add, Text, x+10 yp+3 , Item Quantity
 
