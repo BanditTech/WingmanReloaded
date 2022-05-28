@@ -617,15 +617,15 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, 
       Gui, Crafting: Font,s8
 
-      Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w40
-      Gui, Crafting: Add, UpDown, Range1-99 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
+      Gui, Crafting: Add, Edit, number limit2 xs+15 yp+18 w50
+      Gui, Crafting: Add, UpDown, Range1-130 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
       Gui, Crafting: Add, Text, x+10 yp+3 , Item Quantity
 
-      Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+      Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w50
       Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
       Gui, Crafting: Add, Text, x+10 yp+3 , Item Rarity
 
-      Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w40
+      Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w50
       Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
       Gui, Crafting: Add, Text, x+10 yp+3 , Monster Pack Size
 
