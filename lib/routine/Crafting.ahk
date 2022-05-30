@@ -8,7 +8,7 @@ Crafting(selection:="Maps"){
 	{
 		CheckRunning("On")
 		GuiStatus()
-		If (!OnChar) 
+		If (!OnChar)
 		{
 			Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
 			CheckRunning("Off")
@@ -106,10 +106,8 @@ ItemCraftingBaseComparator(base1,base2){
 CraftingItem(){
 	Global RunningToggle
 	MouseGetPos xx, yy
-
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
-
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
@@ -165,6 +163,11 @@ CraftingItem(){
 		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 		Return
 	}
+	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") && (GrabCompassX <= 0) or (GrabCompassY <=0) {
+		Notify("Missing Surveyor's Compass Location","You must setup the co-ordinates in your currency tab before you can craft with sextants")
+		Log("Missing Surveyor's Compass Location","You must setup the co-ordinates in your currency tab before you can craft with sextants")
+		Return
+	}
 	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
 		SextantCraftingRoll(ItemCraftingBaseSelector,xx,yy)
 	}Else If(ItemCraftingMethod == "Alteration Spam"){
@@ -218,7 +221,7 @@ CraftingMaps(){
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText.GetColor(GridX,GridY)
-			If indexOf(PointColor, varEmptyInvSlotColor) 
+			If indexOf(PointColor, varEmptyInvSlotColor)
 			{
 				;Seems to be an empty slot, no need to clip item info
 				Continue
@@ -228,7 +231,7 @@ CraftingMaps(){
 			addToBlacklist(C, R)
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) &&!Item.Prop.Corrupted)
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) && !Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
 					ClipItem(Grid.X,Grid.Y)
@@ -240,7 +243,7 @@ CraftingMaps(){
 				}
 			}
 			;Crafting Map Script
-			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique) 
+			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
 			{
 				If (Item.Prop.Map_Quality < 20)
 					If (ForceMaxChisel) {
@@ -286,7 +289,7 @@ CraftingMaps(){
 			} Else If (indexOf(Item.Prop.ItemClass,["Blueprints","Contracts"]) && HeistAlcNGo) {
 				If (Item.Prop.RarityMagic)
 					ApplyCurrency("Scouring",Grid.X,Grid.Y)
-				If (Item.Prop.RarityNormal)		
+				If (Item.Prop.RarityNormal)
 					ApplyCurrency("Hybrid",Grid.X,Grid.Y)
 			}
 			If (MoveMapsToArea && (Item.Prop.IsMap || Item.Prop.IsBlightedMap || Item.Prop.MapPrep || Item.Prop.MapLikeItem) && !InMapArea(C))
@@ -316,7 +319,7 @@ CraftingMaps(){
 InMapArea(C:=0){
 	If (C <= 0)
 		Return False
-	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=") 
+	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=")
 		|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
 	Return True
 	Return False
@@ -324,9 +327,9 @@ InMapArea(C:=0){
 getMapCraftingMethod(){
 	Loop, 3
 	{
-		If ( EndMapTier%A_Index% >= StartMapTier%A_Index% 
-				&& CraftingMapMethod%A_Index% != "Disable" 
-			&& Item.Prop.Map_Tier >= StartMapTier%A_Index% 
+		If ( EndMapTier%A_Index% >= StartMapTier%A_Index%
+				&& CraftingMapMethod%A_Index% != "Disable"
+			&& Item.Prop.Map_Tier >= StartMapTier%A_Index%
 		&& Item.Prop.Map_Tier <= EndMapTier%A_Index% )
 		Return CraftingMapMethod%A_Index%
 	}
@@ -340,7 +343,7 @@ CountCurrency(NameList:=""){
 	If !IsObject(NameList)
 		NameList := StrSplit(NameList,",")
 	For key, currency in NameList {
-		If !WR.loc.pixel.HasKey(currency) 
+		If !WR.loc.pixel.HasKey(currency)
 			Return False
 		If (WR.loc.pixel[currency].X = 0 && WR.loc.pixel[currency].Y = 0) {
 			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
@@ -464,11 +467,11 @@ MapRoll(Method, x, y){
 			Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 			Return
 		}
-		Log("Crafting","Map reroll initiated because:" 
+		Log("Crafting","Map reroll initiated because:"
 			. (Item.Prop.RarityNormal?" Normal Item":"")
 			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
 			. (Item.Prop.MapSumMod < MMapWeight?  " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
-		, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,") 
+		, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,")
 			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
 			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
 		,JSON.Dump(Item) )
@@ -487,13 +490,13 @@ MapRoll(Method, x, y){
 		BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 		BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	}
-	Log("Crafting","Map crafting resulted in a" 
+	Log("Crafting","Map crafting resulted in a"
 		. (Item.Prop.RarityNormal?" Normal Map":"")
 		. (Item.Prop.RarityMagic?" Magic Map":"")
-		. (Item.Prop.RarityRare?" Rare Map":"") 
+		. (Item.Prop.RarityRare?" Rare Map":"")
 		. (Item.Prop.MapSumMod >= MMapWeight?" with sum Mod weight of " Item.Prop.MapSumMod :"")
 		. (Item.Prop.IsBricked?" with Bricked Mods":"")
-		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,") 
+		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,")
 		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
 		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity :" Adequate Quantity")
 	,JSON.Dump(Item) )
@@ -574,11 +577,11 @@ ItemCraftingRoll(Method, x, y){
 					Return False
 			}
 		}
-		Log("Item Crafting Loop ","Item result has " 
-		. Item.Prop.CraftingMatchedPrefix " Matched Prefix and " 
-		. Item.Prop.CraftingMatchedSuffix " Matched Suffix" 
+		Log("Item Crafting Loop ","Item result has "
+		. Item.Prop.CraftingMatchedPrefix " Matched Prefix and "
+		. Item.Prop.CraftingMatchedSuffix " Matched Suffix"
 		,JSON.Dump(Item) )
-		
+
 	}
 	If (Item.Prop.ItemCraftingHit) {
 		Notify("Item Crafting Notification","Sucess!! Please Report Bugs in GitHub or Discord",3)
@@ -588,13 +591,49 @@ ItemCraftingRoll(Method, x, y){
 	Return
 }
 SextantCraftingRoll(Method, x, y){
-	While (!Item.Prop.SextantCraftingHit) {
-		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+	While (WR.data.Counts[Method] > 0) {
+		If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+		Break
+		Log("Sextant Crafting Loop ", "Sextant available for crafting")
+		ClipItem(GrabCompassX,GrabCompassY)
+		If (Item.Prop.Stack_Size <= 0){
+			Log("Sextant Crafting Loop ", "No compass available to seal the sextant")
 			Break
-		If !ApplyCurrency(Method,x,y)
-			Return False
-		Log("Sextant Crafting Loop ", "Sextant result has " (Item.Prop.SextantFlag?Item.Prop.SextantFlag:"no Good or Bad") " Mod", Item)
+		}
+		Log("Sextant Crafting Loop ", "Compass available for use")
+		EmptySlots := EmptyGrid()
+		If (EmptySlots.Count() = 0) {
+			Log("Sextant Crafting Loop ", "No inventory slot available for compass")
+			Break
+		}
+		Log("Sextant Crafting Loop ", "Inventory slot available for compass")
+		While (!Item.Prop.SextantCraftingHit) {
+			If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
+				Break
+			If !ApplyCurrency(Method,x,y) ; Ran out of sextants so end loop
+				Break
+			Log("Sextant Crafting Loop ", "Sextant result has " (Item.Prop.SextantFlag?Item.Prop.SextantFlag:"no Good or Bad") " Mod", Item)
+		}
+		If (Item.Prop.SextantCraftingHit) {
+			Log("Sextant Crafting Loop ", "Hit a match, saving sextant with compass")
+			If (OnInventory && OnStash) {
+				EmptySlot := EmptySlots.Pop()
+				MouseGetPos xx, yy
+				RightClick(GrabCompassX, GrabCompassY)
+				RandomSleep(75,75)
+				LeftClick(xx, yy)
+				RandomSleep(45,45)
+				LeftClick(EmptySlot.X,EmptySlot.Y)
+				RandomSleep(75,75)
+			} Else {
+				Log("[End]Sextant Crafting - Inventory or Stash closed ","End Routine")
+				Break
+			}
+		} Else {
+			Log("[End]Sextant Crafting Loop ", "No Sextant available for crafting", "End Routine")
+			Break
+		}
 	}
-	If (Item.Prop.SextantCraftingHit)
-	Log("[End]Sextant Crafting - Sucess ","End Routine")
+	Log("[End]Sextant Crafting","End Routine")
+	Return
 }
