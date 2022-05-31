@@ -52,7 +52,7 @@ readFromFile(){
 	IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
 	IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 0
 	IniRead, YesInfluencedUnid, %A_ScriptDir%\save\Settings.ini, General, YesInfluencedUnid, 0
-	IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0 
+	IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0
 	IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
 	IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
 	IniRead, ClickLatency, %A_ScriptDir%\save\Settings.ini, General, ClickLatency, 0
@@ -163,7 +163,7 @@ readFromFile(){
 	IniRead, StashTabMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap, 1
 	IniRead, StashTabYesMap, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap, 0
 	IniRead, StashTabDivination, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination, 1
-	IniRead, StashTabYesDivination, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination, 0	
+	IniRead, StashTabYesDivination, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination, 0
 	IniRead, StashTabGem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem, 1
 	IniRead, StashTabYesGem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem, 1
 	IniRead, StashTabFlask, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlask, 1
@@ -206,7 +206,7 @@ readFromFile(){
 	IniRead, StashTabYesLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked, 1
 	IniRead, StashTabBrickedMaps, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBrickedMaps, 1
 	IniRead, StashTabYesBrickedMaps, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBrickedMaps, 1
-	IniRead, StashTabInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem, 1 
+	IniRead, StashTabInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem, 1
 	IniRead, StashTabYesInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem, 1
 	IniRead, StashTabCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting, 1
 	IniRead, StashTabYesCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting, 1
@@ -216,7 +216,7 @@ readFromFile(){
 	IniRead, StashTabYesPredictive, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive, 0
 	IniRead, StashTabNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice, 1
 	IniRead, StashTabYesNinjaPrice, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice, 0
-	
+
 	;Dump Tab Options
 	IniRead, StashDumpInTrial, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial, 0
 	IniRead, StashDumpInTrial, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpSkipJC, 0
@@ -331,6 +331,10 @@ readFromFile(){
 	IniRead, GrabCurrencyX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX, 1877
 	IniRead, GrabCurrencyY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY, 772
 
+	;Grab Compass From Location
+	IniRead, GrabCompassX, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassX, 327
+	IniRead, GrabCompassY, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassY, 602
+
 	;~ hotkeys reset
 	hotkey, IfWinActive, ahk_group POEGameGroup
 		If hotkeyAutoQuit
@@ -368,7 +372,7 @@ readFromFile(){
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
 	If hotkeyGrabCurrency
-		hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off 
+		hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
 	If hotkeyGetCoords
 		hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
 	If hotkeyPopFlasks
@@ -413,7 +417,7 @@ readFromFile(){
 	IniRead, hotkeyQuickPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal, !q
 	IniRead, hotkeyStartCraft, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft, F7
 	IniRead, hotkeyItemCrafting, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftingItemCaller, F11
-	
+
 	IniRead, hotkeyCraftBasic, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic, F9
 	IniRead, hotkeyGemSwap, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap, !e
 	IniRead, hotkeyGrabCurrency, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency, !a
@@ -616,7 +620,7 @@ readFromFile(){
 	Return
 }
 
-submit(){ 
+submit(){
 	updateEverything:
 		global
 		Thread, NoTimers, True ;Critical
@@ -711,7 +715,7 @@ submit(){
 			hotkey,% hotkeyOptions, optionsCommand, Off
 		hotkey, IfWinActive, ahk_group POEGameGroup
 
-		IfWinExist, ahk_group POEGameGroup 
+		IfWinExist, ahk_group POEGameGroup
 		{
 			Gui, Submit
 			Rescale()
@@ -791,7 +795,7 @@ submit(){
 		IniWrite, %HeistLockerStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, HeistLockerStr
 		IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
 
-		;~ Hotkeys 
+		;~ Hotkeys
 		IniWrite, %hotkeyOptions%, %A_ScriptDir%\save\Settings.ini, hotkeys, Options
 		IniWrite, %hotkeyAutoQuit%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit
 		IniWrite, %hotkeyAutoFlask%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask
@@ -805,7 +809,7 @@ submit(){
 		IniWrite, %hotkeyCtrlClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker
 		IniWrite, %hotkeyCtrlShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker
 		IniWrite, %hotkeyShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, ShiftClicker
-		IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency 
+		IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency
 		IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
 		IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
 		IniWrite, %hotkeyLogout%, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout
@@ -831,6 +835,10 @@ submit(){
 		;Grab Currency
 		IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
 		IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
+
+		;Grab Compass From Location
+		IniWrite, %GrabCompassX%, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassX
+		IniWrite, %GrabCompassY%, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassY
 
 		;Crafting Bases Options
 
@@ -875,7 +883,7 @@ submit(){
 		IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap
 		IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
 		IniWrite, %StashTabDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination
-		IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination	
+		IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination
 		IniWrite, %StashTabGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem
 		IniWrite, %StashTabYesGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem
 		IniWrite, %StashTabFlask%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlask
@@ -918,7 +926,7 @@ submit(){
 		IniWrite, %StashTabYesLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked
 		IniWrite, %StashTabBrickedMaps%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBrickedMaps
 		IniWrite, %StashTabYesBrickedMaps%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBrickedMaps
-		IniWrite, %StashTabInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem 
+		IniWrite, %StashTabInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem
 		IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
 		IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
 		IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
@@ -928,7 +936,7 @@ submit(){
 		IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
 		IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
 		IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
-		
+
 		;Dump Tab Options
 		IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
 		IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpSkipJC
@@ -1041,7 +1049,7 @@ submit(){
 			WinActivate, ahk_group POEGameGroup
 		}
 		Thread, NoTimers, False ;End Critical
-	return 
+	return
 }
 
 ;;First Update Crafting Base
@@ -1111,7 +1119,7 @@ Profile(args*){
 		For k, v in WR[Type]
 			If (IsObject(obj[k]))
 			For l, w in v
-			If (obj[k].HasKey(l)) 
+			If (obj[k].HasKey(l))
 			WR[Type][k][l] := obj[k][l]
 		If (Type = "perChar"){
 			If WR.perChar.Setting.profilesYesFlask
@@ -1140,4 +1148,3 @@ Profile(args*){
 		GuiControl, ChooseString, ProfileMenu%Type% , %name%
 	Return
 }
-

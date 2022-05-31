@@ -250,6 +250,8 @@ ft_ToolTip_Text_Part1=
 	ClipLatency = Use this to modify delay to Item clip`rAdd this many multiples of 15ms to each delay
 	GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
 	GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+	GrabCompassX = Select the X location that your Surveyor's Compass is stored at. Must be a slot in your currency tab`rPress Locate to grab positions
+	GrabCompassY = Select the Y location that your Surveyor's Compass is stored at. Must be a slot in your currency tab`rPress Locate to grab positions
 	EnableRestock = Enable this to restock any inventory slots assigned a currency type
 	YesEnableAutomation = Enable Automation Routines
 	FirstAutomationSetting = Start Automation selected option
@@ -359,7 +361,7 @@ ft_ToolTip_Text_Part2=
 	StashTabVeiled = Assign the Stash tab for Veiled items
 	StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
 	StashTabNinjaPrice = Assign the Stash tab for Ninja Priced items
-	StashTabYesNinjaPrice = Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold 
+	StashTabYesNinjaPrice = Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold
 	StashTabYesNinjaPrice_Price = Assign the minimum value in chaos to send to Ninja Priced Tab
 	StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
 	StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
@@ -371,7 +373,7 @@ ft_ToolTip_Text_Part2=
 	StashDumpInTrial = Enables dump tab for all unsorted items when in Aspirant's Trial
 	StashDumpSkipJC = Do not stash Jewler or Chromatic items when dumping
 	StashTabGemSupport = Assign the Stash tab for Support Gem items
-	StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left 
+	StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left
 	StashTabMetamorph = Assign the Stash tab for Metamorph items
 	StashTabYesMetamorph = Enable to send Metamorph items to the assigned tab on the left
 	StashTabGem = Assign the Stash tab for Normal Gem items
@@ -881,7 +883,7 @@ Global hotkeyControllerButtonA,hotkeyControllerButtonB,hotkeyControllerButtonX,h
 Global YesTriggerUtilityJoystickKey := 1
 Global YesTriggerJoystickRightKey := 1
 ; ~ Hotkeys
-; Legend:    ! = Alt    ^ = Ctrl    + = Shift 
+; Legend:    ! = Alt    ^ = Ctrl    + = Shift
 Global hotkeyOptions:="!F10"
 Global hotkeyAutoFlask:="!F11"
 Global hotkeyAutoQuit:="!F12"
@@ -939,6 +941,10 @@ Global varOnDetonateDelve := 0x5D4661
 Global GrabCurrencyX:=1877
 Global GrabCurrencyY:=772
 
+; Grab Compass
+Global GrabCompassX:=503
+Global GrabCompassY:=604
+
 ; Chat Hotkeys, and stash hotkeys
 Global CharName := "ReplaceWithCharName"
 Global RecipientName := "NothingYet"
@@ -955,8 +961,8 @@ Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuff
 Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,EnableMQQForMagicMap,MMQorWeight,MMapItemRarity,MMapMonsterPackSize,MMapItemQuantity,MMapWeight,ForceMaxChisel,SextantDDLSelector
 
 ; ItemInfo GUI
-Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21, 
-Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21, 
+Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21,
+Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21,
 Global PComment1 := "LongDataTextNameSpace"
 Global PData1 := "000.000"
 Global PComment2 := "LongDataTextNameSpace"
@@ -1009,4 +1015,3 @@ Global ForceMatch6Link := False
 Global ForceMatchGem20 := False
 ; Ingame Overlay Transparency
 Global YesInGameOverlay := 0
-

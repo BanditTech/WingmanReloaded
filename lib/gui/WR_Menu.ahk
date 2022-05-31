@@ -1,7 +1,7 @@
 ﻿; WR_Menu - New menu handling method
 WR_Menu(Function:="",Var*){
   Global
-  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_Locate_GrabCompass, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
   , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
 
   Log("Verbose","Load menu: " Function,Var*)
@@ -214,7 +214,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w185 h135 section xs y+10, Map/Contract Options
       Gui, Inventory: Font,
-      Gui, Inventory: Add, DropDownList, w40 gUpdateExtra vYesSkipMaps_eval xs+5 yp+18 , % ">=|<=" 
+      Gui, Inventory: Add, DropDownList, w40 gUpdateExtra vYesSkipMaps_eval xs+5 yp+18 , % ">=|<="
       GuiControl,Inventory: ChooseString, YesSkipMaps_eval, %YesSkipMaps_eval%
       Gui, Inventory: Add, DropDownList, w40 gUpdateExtra vYesSkipMaps x+3 yp , 0|1|2|3|4|5|6|7|8|9|10|11|12
       GuiControl,Inventory: ChooseString, YesSkipMaps, %YesSkipMaps%
@@ -224,7 +224,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesSkipMaps_rare Checked%YesSkipMaps_rare% xs+5 y+8 , Skip Rare?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesSkipMaps_unique Checked%YesSkipMaps_unique% x+0 yp , Skip Unique?
       Gui, Inventory: Add, Text, xs+5 y+8 , Skip Maps => Tier
-      Gui, Inventory: Add, Edit, Number w40 x+5 yp-3 
+      Gui, Inventory: Add, Edit, Number w40 x+5 yp-3
       Gui, Inventory: Add, UpDown, center hp w40 range1-16 gUpdateExtra vYesSkipMaps_tier , %YesSkipMaps_tier%
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesSkipMaps_Prep Checked%YesSkipMaps_Prep% xs+5 y+8, Skip Enhance Items in Map Area
 
@@ -353,9 +353,9 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, Section w200 h100 x+50 ys , Intructions:
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - You can enable Currency Affinity 
+      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - You can enable Currency Affinity
       Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, and set the stash for other functions
-      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - CLF will take priority over Affinity 
+      Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - CLF will take priority over Affinity
       Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Use slider to choose logic type
       Gui, Inventory: Add, Text, xs+10 yp+15 +Wrap w180, - Enable overflow Unique tabs
 
@@ -528,7 +528,7 @@ WR_Menu(Function:="",Var*){
       ;Update from API
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnStart Checked%YesCraftingBaseAutoUpdateOnStart% xs+8 y+8 , Update Bases ILvL/Quantity on start?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseAutoUpdateOnZone Checked%YesCraftingBaseAutoUpdateOnZone% xs+8 y+8 , Update Bases ILvL/Quantity on zone change?
-      ;Max Number     
+      ;Max Number
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseLimitBases Checked%YesCraftingBaseLimitBases% xs+8 y+8 , Max Number of Each Bases (At Max ILvL Found)
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-10 hp gUpdateExtra vCraftingBaseLimitBasesNumber , %CraftingBaseLimitBasesNumber%
@@ -607,14 +607,14 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,s7
       Gui, Crafting: Add, Button, xs+40 ys+20 w200 gCustomMapModsUI, Custom Map Mods
       Gui, Crafting: Add, Text, xs+35 y+15 center w100, Minimum Weight:
-      Gui, Crafting: Add, Edit, x+5 yp-4 w50, 
-      Gui, Crafting: Add, UpDown, Range-100-200 vMMapWeight, %MMapWeight% 
+      Gui, Crafting: Add, Edit, x+5 yp-4 w50,
+      Gui, Crafting: Add, UpDown, Range-100-200 vMMapWeight, %MMapWeight%
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add,GroupBox,Section w200 h150 x320 y50, Minimum Map Qualities:
-      Gui, Crafting: Font, 
+      Gui, Crafting: Font,
       Gui, Crafting: Font,s8
 
       Gui, Crafting: Add, Edit, number limit3 xs+15 yp+18 w50
@@ -660,7 +660,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, Bold s12 cRed, Arial
       Gui, Crafting: Add, Text,% "xs+25 y+20"
       Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftR, % BasicCraftR
-      Gui, Crafting: Add, Text, x+5 yp, R 
+      Gui, Crafting: Add, Text, x+5 yp, R
       Gui, Crafting: Font, Bold s12 cGreen, Arial
       Gui, Crafting: Add, Text,% "x+25 yp"
       Gui, Crafting: Add, UpDown,gSaveBasicCraft Range0-6 vBasicCraftG, % BasicCraftG
@@ -726,60 +726,63 @@ WR_Menu(Function:="",Var*){
       WR.MenuDDLstr["Sextant"] .= "Awakened|Elevated"
       category := ""
 
+      ; Item Type
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, Text, Section xm+5 ym+25, Item Crafting BETA
+      Gui, Crafting: Add, GroupBox, Section w292 h80 xm ym+25 , Item Type
       Gui, Crafting: Font,
-
-      ; Mod Selector
-      Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h95 xs yp+20 , Mod Selector
-      Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+10 yp+20 Center w60, Category:
-      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit x+10 yp-4 w230, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
+      Gui, Crafting: Add, Text, xs+15 yp+25 w60, Category:
+      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit xs+70 yp-4 w210, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
       GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
-      Gui, Crafting: Add, Text, xs+10 y+5 Center w60, Itemclass:
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort x+10 yp-4 w230, % WR.MenuDDLstr[ItemCraftingcategorySelector]
+      Gui, Crafting: Add, Text, xs+15 y+5 w60, Class:
+      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort xs+70 yp-4 w210, % WR.MenuDDLstr[ItemCraftingcategorySelector]
       GuiControl, ChooseString, ItemCraftingBaseSelector, % WR.MenuDDLselect[ItemCraftingcategorySelector]
-      Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w300, Open UI
 
-      ; Affix Matcher
+      ; Affix Rules
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h110 xs yp+35 , Affix Matcher
+      Gui, Crafting: Add, GroupBox, w292 h165 xs yp+40 , Affix Rules
       Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+10 yp+20, How Many Prefix From Mod List ?
-      Gui, Crafting: Add, Edit, Number w40 x+10 yp
+      Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w272, Affix Selector
+      Gui, Crafting: Add, Text, xs+15 yp+30, Match how many Prefix?
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp-4
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberPrefix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberPrefix%
-      Gui, Crafting: Add, Text, xs+10 yp+30, How Many Suffix From Mod List ?
-      Gui, Crafting: Add, Edit, Number w40 x+10 yp
+      Gui, Crafting: Add, Text, xs+15 yp+30, Match how many Suffix?
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp-4
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberSuffix gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberSuffix%
-      Gui, Crafting: Add, Text, xs+10 yp+30, Any Combination From Mod List ? (Set 0 to Disable)
-      Gui, Crafting: Add, Edit, Number w40 x+10 yp
+      Gui, Crafting: Add, Text, xs+15 yp+30, Match Combination of Affixes? (0 to Disable)
+      Gui, Crafting: Add, Edit, Number w40 x+10 yp-4
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberCombination gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberCombination%
+      Gui, Crafting: Add, Text, xs+15 yp+30 w40, Sextant:
+      Gui, Crafting: Add, DropDownList, vSextantDDLSelector xs+70 yp-4 w210, Reroll until Good Match|Reroll until not Bad Match
+      GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w320 h55 xs yp+35 , Crafting Method
+      Gui, Crafting: Add, GroupBox, w292 h90 xs yp+40 , Crafting Method
       Gui, Crafting: Font,
-      Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+20 w300, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
-      ;;Select DDL Value Based on Last Value Saved
+      Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+25 w270, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
+      ; Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
-
-      ;Sextant GroupBox
-      Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox,Section w320 h55 xs y+20, Sextant Mods
-      Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+10 yp+25 Center w60, Behaviour:
-      Gui, Crafting: Add, DropDownList, vSextantDDLSelector x+10 yp-4 w225, Reroll until Good Match|Reroll until not Bad Match
-      GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
+      ; Compass Location
+      Gui, Crafting: Add, Text, xs+15 yp+35 w90, Compass Location:
+      Gui, Crafting: Add, Text, x+10 yp-10, X-Pos
+      Gui, Crafting: Add, Edit, vGrabCompassX xp yp+15 w34 h17, %GrabCompassX%
+      Gui, Crafting: Add, Text, x+5 yp-15, Y-Pos
+      Gui, Crafting: Add, Edit, vGrabCompassY xp yp+15 w34 h17, %GrabCompassY%
+      Gui, Crafting: Add, Button, gWR_Update vWR_Btn_Locate3_GrabCompass x+5 yp h17, Locate
 
       ; Guide
-      Gui, Crafting: Font, Bold s12 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, Section w250 h400 xs+330 ym+25 , Instructions
-      Gui, Crafting: Font, 
-      Gui, Crafting: Font, s11 cBlack, Arial
-      Gui, Crafting: Add, Link, xs+10 yp+20 w220, This is a Experimental Feature!`nWe highly recommend using <a href="https://www.craftofexile.com/">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.`nSteps:`n1) Select Category and ItemClass in Mod Selector`n2) Open UI and Check Mods that You Want (Remember to Check Higher Mods too, This Feature is Tier Sensitive)`n3) Select How Many Prefix/Suffix from Mod Selector It Should Match to Stop`n4) Select the Crafting Method.`n5) Use the Bound Key (Default Key F11) with Your Cursor Over The Item and Stash Open to Start The Process`nP.S: You Can Break the Loop Pressing Bound Key Again
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add, GroupBox, Section w320 h400 xs+300 ym+25 , Instructions
       Gui, Crafting: Font,
-
+      Gui, Crafting: Font, s9 cBlack, Arial
+      Gui, Crafting: Add, Link, xs+10 yp+20 w290, This is an Experimental Feature!`nWe highly recommend using <a href="https://www.craftofexile.com/">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.
+      Gui, Crafting: Add, Link, xs+10 yp+55 w290, Steps:`n1) Select the item 'Category' and 'Class' you are going to craft.`n`n2) Press 'Affix Selector' and 'Tick' all the mods that you want to look for.
+      Gui, Crafting: Font, s10 cRed Bold, Arial
+      Gui, Crafting: Add, Link, xs+10 yp+95 w290, This is Tier Sensitive so you must tick every tier you would be happy to keep`n
+      Gui, Crafting: Font,
+      Gui, Crafting: Font, s9 cBlack, Arial
+      Gui, Crafting: Add, Link, xs+10 yp+50 w290, 3) Setup the 'Prefix / Suffix / Combination' rules it should match before stopping as a successful craft.`n`n4) Select the 'Crafting Method' that should be used.`n`n5) Use the Bound Key (Default is F11) with your cursor over the item and Stash open to start the process`n`nP.S.: You can Break the Loop by pressing Bound Key again when it's running.
+      Gui, Crafting: Font,
       Gui, Crafting: Show
     }
     Gui, Crafting: show , w650 h550, Crafting Settings
@@ -804,7 +807,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: Font,
 
       Gui, Strings: Tab, General
-      Gui, Strings: Add, Button, xs+1 ys+1 w1 h1, 
+      Gui, Strings: Add, Button, xs+1 ys+1 w1 h1,
       Gui, Strings: +Delimiter?
       Gui, Strings: Add, Text, xs+10 ys+25 section, OHB 1 pixel bar - Only Adjust if not 1080 Height
       Gui, Strings: Add, ComboBox, xp y+8 w220 vHealthBarStr gUpdateStringEdit , %HealthBarStr%??"%1080_HealthBarStr%"?"%1440_HealthBarStr%"?"%1440_HealthBarStr_Alt%"?"%1050_HealthBarStr%"
@@ -822,7 +825,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: +Delimiter|
 
       Gui, Strings: Tab, Vendor
-      Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+      Gui, Strings: Add, Button, Section x20 y30 w1 h1,
       Gui, Strings: +Delimiter?
       Gui, Strings: Add, Text, xs+10 ys+25 section, Capture of the Hideout vendor nameplate
       Gui, Strings: Add, ComboBox, y+8 w280 vVendorStr gUpdateStringEdit , %VendorStr%??"%1080_MasterStr%"?"%1080_NavaliStr%"?"%1080_HelenaStr%"?"%1080_ZanaStr%"?"%2160_NavaliStr%"?"%1440_ZanaStr%"?"%1440_NavaliStr%"?"%1050_MasterStr%"?"%1050_NavaliStr%"?"%1050_HelenaStr%"?"%1050_ZanaStr%"?"%768_NavaliStr%"?"%1440_JunStr%"
@@ -848,7 +851,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: Add, ComboBox, y+8 w280 vVendorHarbourStr gUpdateStringEdit , %VendorHarbourStr%??"%1080_FenceStr%"
       Gui, Strings: +Delimiter|
       Gui, Strings: Tab, Debuff
-      Gui, Strings: Add, Button, Section x20 y30 w1 h1, 
+      Gui, Strings: Add, Button, Section x20 y30 w1 h1,
       Gui, Strings: +Delimiter?
 
       Gui, Strings: Add, Text, xs+10 ys+25 section, Curse - Elemental Weakness
@@ -1014,7 +1017,7 @@ WR_Menu(Function:="",Var*){
       Gui, Controller: New
       Gui, Controller: +AlwaysOnTop -MinimizeBox
       DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
-      textList= 
+      textList=
       For k, v in DefaultButtons
         textList .= (!textList ? "" : "|") v
 
@@ -1230,6 +1233,24 @@ WR_Menu(Function:="",Var*){
     MsgBox % x "," y " was captured as the new location for Swap "slot " "position
     Gui, Show
   }
+  Else If (Function = "Locate3")
+  {
+    LocateType := Var[2]
+    Gui, Hide
+    Loop
+    {
+      MouseGetPos, x, y
+      If (x != oldx || y != oldy)
+        ToolTip, % "-- Locate "LocateType " --`n@ " x "," y "`nPress Ctrl to set"
+      oldx := x, oldy := y
+    } Until GetKeyState("Ctrl")
+    Tooltip
+    %LocateType%X := x, %LocateType%Y := y
+    GuiControl, Crafting: ,% LocateType "X", %x%
+    GuiControl, Crafting: ,% LocateType "Y", %y%
+    MsgBox % x "," y " was captured as the new location for "LocateType
+    Gui, Show
+  }
   Else if (Function = "Area")
   {
     Gui, Submit
@@ -1420,7 +1441,7 @@ WR_Menu(Function:="",Var*){
       ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
       ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
       WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
-    } 
+    }
   Return
 
   ColorLabel_Life:
