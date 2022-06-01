@@ -690,6 +690,7 @@ Global ItemCraftingMethod
 Global ItemCraftingNumberPrefix
 Global ItemCraftingNumberSuffix
 Global ItemCraftingNumberCombination
+Global SextantCraftingMethod
 
 ; Chaos Recipe
 Global ChaosRecipeEnableFunction := False

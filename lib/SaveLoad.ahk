@@ -130,6 +130,8 @@ readFromFile(){
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
 	IniRead, ItemCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod, Alteration Spam
+	IniRead, SextantCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, SextantCraftingMethod, 2
+
 
 	;Crafting Map Settings
 	IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1

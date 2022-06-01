@@ -757,13 +757,24 @@ WR_Menu(Function:="",Var*){
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w292 h90 xs yp+40 , Crafting Method
+      Gui, Crafting: Add, GroupBox, w292 h60 xs yp+40 , Item Crafting Method
       Gui, Crafting: Font,
       Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+25 w270, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
       ; Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
+
+      ; Sextant Crafting Style
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add, GroupBox, w292 h83 xs yp+40 , Sextant Crafting Method
+      Gui, Crafting: Font,
+      Gui, Crafting: Add, Radio, xs+15 yp+25 hwndtemp1 vSextantCraftingMethod gSaveSextantMethodRadio, Use Compasses (Multiple)
+      Gui, Crafting: Add, Radio, x+15 yp hwndtemp2 gSaveSextantMethodRadio, One craft (Single)
+      GuiControl, ,% (SextantCraftingMethod=1?temp1:temp2), 1
+      temp1:=
+      temp2:=
+
       ; Compass Location
-      Gui, Crafting: Add, Text, xs+15 yp+35 w90, Compass Location:
+      Gui, Crafting: Add, Text, xs+15 yp+30 w90, Compass Location:
       Gui, Crafting: Add, Text, x+10 yp-10, X-Pos
       Gui, Crafting: Add, Edit, vGrabCompassX xp yp+15 w34 h17, %GrabCompassX%
       Gui, Crafting: Add, Text, x+5 yp-15, Y-Pos
