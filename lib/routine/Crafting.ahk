@@ -595,19 +595,21 @@ SextantCraftingRoll(Method, x, y){
 		While (WR.data.Counts[Method] > 0) {
 			If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
-			Log("Sextant Crafting Loop ", "Sextant available for crafting")
 			ClipItem(GrabCompassX,GrabCompassY)
-			If (Item.Prop.Stack_Size <= 0){
+			If (Item.Prop.Stack_Size < 1){
 				Log("Sextant Crafting Loop ", "No compass available to seal the sextant")
 				Break
 			}
-			Log("Sextant Crafting Loop ", "Compass available for use")
 			EmptySlots := EmptyGrid()
 			If (EmptySlots.Count() = 0) {
 				Log("Sextant Crafting Loop ", "No inventory slot available for compass")
 				Break
 			}
-			Log("Sextant Crafting Loop ", "Inventory slot available for compass")
+			Log("Sextant Crafting Loop ", "Starting with:"
+				, WR.data.Counts[Method] " Sextants available"
+				, Item.Prop.Stack_Size " Compass available"
+				, EmptySlots.Count() " Inventory slots available")
+
 			While (!Item.Prop.SextantCraftingHit) {
 				If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 					Break
@@ -619,10 +621,9 @@ SextantCraftingRoll(Method, x, y){
 				Log("Sextant Crafting Loop ", "Hit a match, saving sextant with compass")
 				If (OnInventory && OnStash) {
 					EmptySlot := EmptySlots.Pop()
-					MouseGetPos xx, yy
 					RightClick(GrabCompassX, GrabCompassY)
 					RandomSleep(75,75)
-					LeftClick(xx, yy)
+					LeftClick(x, y)
 					RandomSleep(45,45)
 					LeftClick(EmptySlot.X,EmptySlot.Y)
 					RandomSleep(75,75)
