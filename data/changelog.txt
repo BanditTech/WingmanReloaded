@@ -1,4 +1,9 @@
-﻿## Version .15.0603 - Alpha version - May/27/2022
+﻿## Version .15.0603 - Alpha version - June/13/2022
+Alpha changes are being merged into master branch
+
+---
+
+## Version .15.0603 - Alpha version - May/27/2022
 Bugfix
   * Fix for sextant modifiers being overwritten
   * Adjustments to strings, default Debuff strings added to dropdown for 1080 height
