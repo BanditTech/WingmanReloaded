@@ -166,3 +166,27 @@ The second section is the Map Mods, which allows you to select from the availabl
 The third section is Minimum Map Qualities, which allows you to require more basic values than the actual affix rolls. This includes the `Item Quality`, `Item Rarity`, and `Monster Pack Size`. Be wary of setting these values too high if you do not intend to spend large amounts of currency rerolling your maps. This section is also disabled on magic maps, unless you check the box for `Enable on Magic Maps`. Lastly, the `Match MMQ or Weight` option allows you to match EITHER Map Mods section or Minimum Map Qualities section. This would allow you to Set extremely high values for the MMQ, while also having very specific Map mods selected. Then in that situation, when a map is rolled that does not meet the map mods, but has a high enough MMQ it would be determined adequate. Inversely, when the option is unchecked, you can ensure that not only do the map mods match, but that the map also passes the MMQ values.
 
 The fourth section is the Other Settings, they are some general options in regard to the behavior of the function. First we have the option for alch and go with contracts and blueprints. Second option allows you to have the maps which are finished rolling to be moved to the left or right side, depending on how you set up your map skip area. The third option allows you to ensure that Maps are always chiseled to 20% quality, which will result in chisels being used for less than 5% quality. When disabled, maps will be chiseled to the closest to 20 without using chisels for anything less than 5%. (resulting maps are 16-20%)
+
+### Basic Crafting
+
+This is the basic section for Chancing, Linking, Coloring or Socketing an item. All of the sections are limited to crafting on the item under your cursor when you activate the crafting method. Currency Stash and Bulk Inventory options are disabled for now.
+
+Chance section has a single option, to scour and retry. This will usually remain enabled for crafting on cursor, but when bulk crafting is enabled it will be there to give an option.
+
+Link can be configured to set the desired links, or have on auto mode. Auto is recommended, and will use the highest number of links available on the item (linking all sockets).
+
+Color can be configured to set the number of each color required on the item.
+
+Socket can be configured to require a set number of Sockets. Auto is recommended, and will determine the maximum number of sockets automatically and use that as the required number to reach.
+
+### Item Craft Beta
+
+This is a more advanced feature for crafting items based on their affixes. It is recommended to do some research on [Craft of Exile](https://www.craftofexile.com/) before you start, in order to ensure you are not wasting your currency attempting to make something impossible.
+
+First section is the `Item Type` which you select the `Category` of item, and the `Class` of item. For example, the Weapons category would have all the different types of weapon classes, then you would select one such as Claw to begin choosing affixes for that specific type of item.
+
+Second section is the `Affix Rules` where you choose the specific affixes, and how many of them you will require. For sextants, this is also how you determine the match behavior. To select an affix to become part of the requirements, check the box on the left hand side. When selecting the specific affixes to require, be advised that it is range specific, so select all versions of the modifier which you would like to keep. Now choose how many of each type of affix you would like it to require. Specify values for either Prefix, Suffix, or Combination to change the match requirements.
+
+Item Crafting method is where you set the style of craft which will be used to make the item. This will affect which currency is used.
+
+Sextant Crafting Method is specific to the Sextant category. This allows you to select whether you will be crafting sextants in bulk, using compasses, or if you wish to craft a single sextant. Keep in mind that in order to do your sextant crafting, you need to have both the Stash and Atlas displayed at the same time. To do this, you click on the stash, at that same moment you press your atlas hotkey.
