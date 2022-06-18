@@ -148,3 +148,21 @@ If you see a message saying there are more sets to vendor, further presses of th
 Once you have sold all sets, pressing the hotkey again will re-fetch your stash API. So you may want to re-zone to refresh the contents of your stash for the request. To do this easily, zone into the Garden or the Mines and Zone back in.
 
 > If you get stuck with a stale list, restart the script with Alt+Escape to force a fresh request.
+
+## Crafting Maps and Items
+
+To get to the different crafting tools, you will want to go into `Configuration` tab, and click `Crafting`
+
+You are not presented with three tabs of crafting tools, the first is `Map Crafting`, second is `Basic Crafting` and the third is `Item Craft Beta`. `Map crafting` is where you can configure how it will bulk craft your maps in your inventory. `Basic crafting` is where you set up options for Chancing, Linking, Coloring, and Socketing items. `Item Craft Beta` is where you are doing item affix crafts with specified currency. So lets get into what each section can do.
+
+### Map Crafting
+
+The map crafting tab is split into a few pieces. Tier ranges, Map mods, Minimum Map Qualities, and Other settings.
+
+The first section is where you decide what currency you will be using to make your maps, and what tier maps belong in each range. The default ranges are 1-10, 11-13, 14-16. This means that any map which is within those tier ranges, will use the crafting method chosen to roll the map. This allows you to specify different methods for each of the 3 ranges, which means no reconfiguring as you go up in map tiers.
+
+The second section is the Map Mods, which allows you to select from the available mod pool and the minimum weight required of all affixes added together. When browsing the Custom Map Mods you can set each option to `Good`, `Bad`, or `Impossible`. Remember that in order to save any of these changes, you must check the box to the left to activate that affix. Other than the mod type, you can also change its `Weight` which will affect how much value each mod is given. When matched, Good modifiers will add their weight value to the total. Inversely, Bad Modifiers will subtract their weight value from the total. Any matched modifier with Impossible will reroll the map, their weight is irrelevant. Minimum weight setting will allow you to change the minimum total value required for a map to be determined adequate. If set to 10, then there would need to be enough weight added to the total in order to reach 10. For example, if we had 4 Good affixes matched, with a weight of 2 given to each. In this situation of minimum 10, it would not be an adequate amount to prevent rerolling (total of 8). This is left up to your discretion in order to allow it to be flexible.
+
+The third section is Minimum Map Qualities, which allows you to require more basic values than the actual affix rolls. This includes the `Item Quality`, `Item Rarity`, and `Monster Pack Size`. Be wary of setting these values too high if you do not intend to spend large amounts of currency rerolling your maps. This section is also disabled on magic maps, unless you check the box for `Enable on Magic Maps`. Lastly, the `Match MMQ or Weight` option allows you to match EITHER Map Mods section or Minimum Map Qualities section. This would allow you to Set extremely high values for the MMQ, while also having very specific Map mods selected. Then in that situation, when a map is rolled that does not meet the map mods, but has a high enough MMQ it would be determined adequate. Inversely, when the option is unchecked, you can ensure that not only do the map mods match, but that the map also passes the MMQ values.
+
+The fourth section is the Other Settings, they are some general options in regard to the behavior of the function. First we have the option for alch and go with contracts and blueprints. Second option allows you to have the maps which are finished rolling to be moved to the left or right side, depending on how you set up your map skip area. The third option allows you to ensure that Maps are always chiseled to 20% quality, which will result in chisels being used for less than 5% quality. When disabled, maps will be chiseled to the closest to 20 without using chisels for anything less than 5%. (resulting maps are 16-20%)
