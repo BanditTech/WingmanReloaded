@@ -1,4 +1,10 @@
-﻿## Version .15.0603 - Alpha version - June/13/2022
+﻿## Version .15.0701 - Alpha version - June/13/2022
+Bugfix
+  * Update for changed wording on Sacred Grove, Elder Guardian, Shaper Guardian, and Conqueror sextants
+
+---
+
+## Version .15.07 - Master version - June/13/2022
 Alpha changes are being merged into master branch
 
 ---
