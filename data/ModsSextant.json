@@ -196,7 +196,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Map Bosses drop an additional Shaper Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+		"Mod": "Final Map Boss in each Map drops an additional Shaper Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
 		"Weight": "no_boss 0 | default 50"
 	},
 	{
@@ -388,7 +388,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Map Bosses drop an additional Conqueror Map | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+		"Mod": "Final Map Boss in each Map drops an additional Conqueror Map | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
 		"Weight": "no_boss 0 | default 50"
 	},
 	{
@@ -500,7 +500,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Your Maps have +100% chance to contain The Sacred Grove",
+		"Mod": "Your Maps contain The Sacred Grove",
 		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
 	},
 	{
@@ -524,7 +524,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Map Bosses drop an additional Conqueror Map | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+		"Mod": "Final Map Boss in each Map drops an additional Conqueror Map | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
 		"Weight": "no_boss 0 | default 50"
 	},
 	{
@@ -604,7 +604,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Map Bosses drop an additional Shaper Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+		"Mod": "Final Map Boss in each Map drops an additional Shaper Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
 		"Weight": "no_boss 0 | default 50"
 	},
 	{
@@ -876,7 +876,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Map Bosses drop an additional Elder Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+		"Mod": "Final Map Boss in each Map drops an additional Elder Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
 		"Weight": "no_boss 0 | default 50"
 	},
 	{
@@ -908,7 +908,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Your Maps have +100% chance to contain The Sacred Grove",
+		"Mod": "Your Maps contain The Sacred Grove",
 		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
 	},
 	{
@@ -956,7 +956,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Map Bosses drop an additional Elder Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+		"Mod": "Final Map Boss in each Map drops an additional Elder Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
 		"Weight": "no_boss 0 | default 50"
 	},
 	{
