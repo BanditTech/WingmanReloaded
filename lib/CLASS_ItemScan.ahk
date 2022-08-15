@@ -48,13 +48,8 @@
 					This.Prop.HasEnchant := True
 					This.Data.Blocks.Enchant := SVal
 				}
-				Else If (SVal ~= "\(scourge\)$")
-					This.Data.Blocks.Scourge := SVal
 				Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
 					This.Data.Blocks.Influence := SVal
-				Else If (SVal ~= "^Scourged$") {
-					This.Prop.Scourged := True
-				}
 				Else If (SVal ~= "^Corrupted$")
 					This.Prop.Corrupted := True
 				Else If (SVal ~= "^Abyss$")
@@ -461,16 +456,6 @@
 				This.Prop.AbyssJewel := True
 				This.Prop.Jewel := True
 			}
-			Else If (This.Prop.ItemClass = "Sentinel")
-			{
-				If RegExMatch(This.Prop.ItemBase,"((P|A|S)\w+) Sentinel$", RxMatch) {
-					This.Prop.Item_Width := 2
-					This.Prop.Item_Height := 2
-					This.Prop.SentinelType := RxMatch1
-				}
-				This.Prop.Sentinel := True
-				This.Prop.SpecialType := "Sentinel"
-			}
 			Else If (This.Prop.ItemClass = "Jewels")
 			{
 				If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
@@ -503,16 +488,6 @@
 				This.Prop.Quiver := True
 				This.Prop.Item_Width := 2
 				This.Prop.Item_Height := 3
-			}
-			Else If (This.Prop.ItemBase ~= " Artifact$")
-			{
-				This.Prop.Expedition := True
-				This.Prop.Artifact := True
-				This.Prop.SpecialType := "Expedition Artifact"
-				If (This.Prop.ItemBase ~= "^Greater" || This.Prop.ItemBase ~= "^Grand")
-					This.Prop.Item_Height := 2
-				If (This.Prop.ItemBase ~= "^Grand")
-					This.Prop.Item_Width := 2
 			}
 			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
 				This.Prop.Expedition := True
@@ -2563,9 +2538,7 @@
 			Return -2
 		} Else If (This.Prop.Heist) {
 			Return -2
-		} Else If (This.Prop.Sentinel) {
-			Return -2
-		} Else If (This.Prop.Incubator) {
+		}Else If (This.Prop.Incubator) {
 			Return -1
 		;Affinities
 		} Else If ((This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight) {
