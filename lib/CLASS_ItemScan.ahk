@@ -68,7 +68,6 @@
 		This.MatchAffixesWithoutDoubleMods(This.Data.Blocks.Affix)
 		;This.MatchAffixes(This.Data.Blocks.Affix)
 		This.MatchAffixes(This.Data.Blocks.Enchant)
-		This.MatchAffixes(This.Data.Blocks.Scourge)
 		This.MatchAffixes(This.Data.Blocks.Implicit)
 		This.MatchAffixes(This.Data.Blocks.Influence)
 		This.MatchAffixes(This.Data.Blocks.TempleRooms)
@@ -908,11 +907,6 @@
 		{
 			This.Prop.Stack_Size := RegExReplace(RxMatch1,"[^\d]","")
 			This.Prop.Stack_Max := RegExReplace(RxMatch2,"[^\d]","")
-		}
-		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Seed Tier: "rxNum,RxMatch))
-		{
-			This.Prop.Seed_Tier := RxMatch1
-			This.Prop.IsSeed := True
 		}
 		If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
 			This.Prop.SpecialType := "Harvest Item"

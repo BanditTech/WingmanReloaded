@@ -1,4 +1,34 @@
-﻿## Version .15.0701 - Alpha version - June/13/2022
+﻿## Version .15.0702 - Alpha version - August/18/2022
+
+Improvements
+  * Include new CLF Strictness Option Inside Inventory Settings
+    * This is a test feature that Dan will start to use to help league start with more simple itens like 1 Life T2 + 1 Resist T2
+    * Can be disable and set to any value if you know how CLF work in Depending
+    * Strictness 0 (dafault and minimum value) will always be matched
+    * For any question you can @danmarzola on discord for more information about this new feature
+
+Dan AMZ CLF
+  * Update Filter to League Start
+  * Include New Strictness Configs
+  * Bug Fix to Include All +# to Gem Skills
+
+Bugfix
+  * Item Crafting Alt+Aug+Regal will not require 1 Prefix + 1 Suffix Match before using Regal
+    * This means if you are trying to hit itens with 2 Prefix using Alt+Regal is not possible.
+  * Sextant Affix Selector will not show all sextant mods at once
+  * Remove POE Account Retrive as is bugged on GGG End.
+    * You need set your Account Name in account.ini file or in the new field below POE Session
+
+CleanUP
+  * Remove Harvest(Seeds),Sentinel(All), Sentinel(All)
+  * Remove Expedition Common Currency (Non Tradable/Non Itemizable Currency)
+
+Notes
+  * Harvest: Update after league launch to detect the new Life Force Itemizable (We need parse data that is not available yet)
+  
+---
+
+## Version .15.0701 - Alpha version - June/13/2022
 Bugfix
   * Update for changed wording on Sacred Grove, Elder Guardian, Shaper Guardian, and Conqueror sextants
 
