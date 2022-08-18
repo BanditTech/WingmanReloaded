@@ -1,6 +1,6 @@
 This file is used as a solid base for further customizing with your own entries.
 
-The entries in the filter will not appear inside the GUI filter editor, but will be active when scanning items. You can add and remove your own entries like normal, and they will appear on the GUI list editable. The reason for this, is that this list is using a new format of groups which is very difficult to make a GUI for. SO for now its edited manually if you want more advanced group types.
+The entries in the filter will not appear inside the GUI filter editor, but will be active when scanning items. You can add and remove your own entries like normal, and they will appear on the GUI list editable. The reason for this, is that this list is using a new format of groups which is very difficult to make a GUI for. So for now its edited manually if you want more advanced group types.
 
 To modify the filter groups within this list, you will need to do so manually. This includes making changes to the stash tab which the items are sent. To quickly change the tab of the file, find and replace `"StashTab": "11"` with the tab you would rather use.
 
