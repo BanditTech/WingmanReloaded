@@ -286,5 +286,13 @@
     {
         "ActualTierName": "FasterESRecharge",
         "AffixWRLine": "#% faster start of Energy Shield Recharge"
+    },
+    {
+        "ActualTierName": "INCESRecharge",
+        "AffixWRLine": "#% increased Energy Shield Recharge Rate"
+    },
+    {
+        "ActualTierName": "PhysicalDmgReduction",
+        "AffixWRLine": "#% additional Physical Damage Reduction"
     }
 ]
