@@ -333,6 +333,11 @@
 				This.Prop.Incubator := True
 				This.Prop.SpecialType := "Incubator"
 			}
+			Else If (This.Prop.ItemBase ~= "Crystallised Lifeforce$")
+			{
+				This.Prop.HarvestCurrency := True
+				This.Prop.SpecialType := "Harvest Currency"
+			}
 			Else If (InStr(This.Prop.ItemBase, "Timeless Karui Splinter") 
 					|| InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
 				|| InStr(This.Prop.ItemBase, "Timeless Vaal Splinter") 
@@ -2529,6 +2534,8 @@
 		} Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap) {
 			sendstash := StashTabNinjaPrice
 		} Else If (This.Prop.Expedition) {
+			Return -2
+		} Else If (This.Prop.HarvestCurrency) {
 			Return -2
 		} Else If (This.Prop.Heist) {
 			Return -2
