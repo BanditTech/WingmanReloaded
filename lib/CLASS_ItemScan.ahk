@@ -1933,14 +1933,14 @@
 		For key, value in This.Prop
 		{
 			If( RegExMatch(key, "^Required")
-					|| RegExMatch(key, "^Rating")
+				|| RegExMatch(key, "^Rating")
 				|| RegExMatch(key, "^Sockets")
 				|| RegExMatch(key, "^Gem")
 				|| RegExMatch(key, "^Quality")
 				|| RegExMatch(key, "^Map")
 				|| RegExMatch(key, "^Heist_")
 				|| RegExMatch(key, "^Stack")
-			|| RegExMatch(key, "^Weapon"))
+				|| RegExMatch(key, "^Weapon"))
 			{
 				If indexOf(key,this.MatchedCLF)
 					statText .= "CLF⭐"
