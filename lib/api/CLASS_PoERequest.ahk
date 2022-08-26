@@ -2,7 +2,7 @@
 Class PoERequest {
   Stash(TabDigit) {
     Static Url := "https://www.pathofexile.com/character-window/get-stash-items"
-    Static Headers := { "connection":"keep-alive", "cache-control":"max-age=0", "accept-encoding":"gzip, deflate, br" }
+    Static Headers := { "connection":"keep-alive", "cache-control":"max-age=0"}
     Headers["cookie"] := PoECookie
     postdata := {}
     postdata.league := UriEncode(selectedLeague)
