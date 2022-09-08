@@ -36,6 +36,8 @@ now it will match if either of the patterns is found
 
 For anyone interested in seeing what the captures look like which I have done, copy the string from the script and paste it into the Capture GUI. You can then click on the line, and it will update the display to show what the capture looks like in abstraction.
 
+For a more in-depth tutorial about the FindText library [Check out this post on the AHK Forum](https://www.autohotkey.com/boards/viewtopic.php?f=7&p=456845)
+
 ## Making a new capture
 > The process of capturing an image sample is fairly straightforward. What you do with the sample is very much up to your discretion. There are several types of color or black and white abstraction.
 
@@ -53,6 +55,7 @@ For anyone interested in seeing what the captures look like which I have done, c
 
 ### ColorDiff Capture type
 > Using ColorDiff2Two will also generate an abstraction based on a specific color, similar to the standard Color capture. This option allows you to select the tolerance for each individual color channel. So you can allow for higher variance only with specific Red, Green, or Blue color channels.
+
 
 ## Trimming the sample
 > Once you have the type of abstraction selected, you will use the buttons on the left to trim off the excess area of the search pattern you are creating. It helps to do a few test runs of the abstraction results before making your final trim. This will allow you to see what the results are, and then reset back to the standard image.
