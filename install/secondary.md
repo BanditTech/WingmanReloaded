@@ -45,27 +45,53 @@
 
 ## Loot Vacuum
 
-The Loot Vacuum system is put in place to facilitate looting items that drop in the game.  
+The "Loot Vacuum" is a color searching tool, which finds colors in the area surrounding your mouse. When it gets a match, it clicks it! :)
 
-> This function operates with your loot pickup hotkey that is bound In-Game.  
-> To properly use the Vacuum you will need to enable the In-Game setting to only highlight loot while the key is pressed.  Once you have configured your colors, you may return the option back to default if you wish.  
+It does this by creating small squares of the color as FindText strings, and appends them all together. Since they are squares, it requires that it finds a solid area of the color.
 
-> To refer to default configuration, please find the files located in the "Files to Use" folder within your installation. There are default ZIP files which contain loot filters showing the style required to function.
+### Setting up the colors
+> Modify your in-game loot filter to remove any transparency from the background colors for items you want to pick up.
 
-> All items that you wish to sample will require a NON-TRANSPARENT background. This means ZERO alpha channel, any transparency will cause the item to change background colors.
+You will need to match with small squares of that color, and in order for that to happen, there can be NO TRANSPARENCY in the background color. Thats why it's important to use SOLID backgrounds and not transparent when making your loot filter. 
+
+You can quickly convert a basic [FilterBlade](filterblade.xyz) filter by using the style editors. To find this, you go to the `STYLE` tab and select `Background colors`. Any color which shows a slight checker pattern behind the color is transparent.
+
+You choose the transparent colors you find, click the color, and then drag the horizontal slider to the right. This will change the textbox from saying `rgba(#, #, #, #)` to `rgb(#, #, #)`
+
+> Avoid using colors such as pure black, and pure white! They will match with the environment!
+
+### Setting up the key
+
+> This function operates with your loot pickup hotkey that is bound In-Game. 
+
+You need to ensure that the loot pickup hotkey is matching in both the game and the script.
+
+> To properly use the Vacuum you will need to enable the In-Game setting to only highlight loot while the key is pressed.  
+
+Once you have configured your colors, you may return the option back to default if you wish. This is so that we can sample both the unhighlighted color AND the highlighted color. If we do not enable this option, the loot will always highlight when you mouse over the item.
+
+> If you sample only the highlighted color, then the tool will only work when you have your mouse hovering over the item. This is a common mistake.
 
 Once you have the In-Game filter configured with Items that have NO TRANSPARENCY, you can begin to make your color samples. Consider which items you want to be picked up before others, and place them in a higher position on the list of color samples.
 
-Colors for currency items are good candidates to be at the top of the list, as well as colors for specialty items that do not appear often or take up small amount of space.
+> Colors for currency items are good candidates to be at the top of the list, as well as colors for specialty items that do not appear often or take up small amount of space.
 
 Once you determine your order, begin to sample the items while they lay on the floor. Press the sample button for the color set you want to update, and then mouse over the background of the item. Press the "A" key to grab the sample.  
 The color of the background should change, and you should show one color slightly lighter than the other.
 
-Once you have gotten your background colors matching with the samples on the list, your ready to start looting items on the floor. Hold down the item highlight hotkey, and move the mouse near the item you want to loot. The mouse will snap towards the item nameplate, and click to loot it.
+### Testing your setup!
+
+Once you have gotten your background colors matching with the samples on the list, your ready to start looting items on the floor. Hold down the item highlight hotkey, and move the mouse cursor within the configured pixel range of the item you want to loot. The mouse will snap towards the item nameplate, and click to loot it.
 
 > If you are having issues with the vacuum not working, make sure that your script is not paused for calibration reasons. Messages in the script status saying anything other than wingman Active, will also pause this function.
 
-> Keep in mind that bad colors to sample are pure white and pure black, they often get matched against the background and can cause issues during combat.
+### Search Strings
+
+You are also given the ability to search for specific sample strings, in addition to the color squares. These take second precedence, and will occur if no color match is found.
+
+These two search boxes are active at different times, so they are exclusive, only one will be searched at any time. One is anytime OUTSIDE of delving, the other is only in the mines.
+
+The strings in these boxes are all appended together, so in order to modify these you will need to open a text editor to see it all at once. 
 
 ## Chaos Recipe Automation
 Chaos recipe requires the configuration of your POE cookie. This includes the sessid as well as any cloudflare data, this can be retrieved by looking for the cookie within the developer console of your browser. You will need to paste this string into PoE Cookie editbox found on the Configuration tab. 
