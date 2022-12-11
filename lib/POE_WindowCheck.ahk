@@ -13,7 +13,7 @@ PoEWindowCheck()
 			If (!GameBound || newDim )
 			{
 				GameBound := True
-				FindText.BindWindow(GamePID, 0, 1, 1)
+				FindText.BindWindow(GamePID)
 				WinGet, s, Style, ahk_class POEWindowClass
 				If (s & +0x80000000)
 					WinSet, Style, -0x80000000, ahk_class POEWindowClass
