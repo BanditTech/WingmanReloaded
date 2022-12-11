@@ -84,6 +84,7 @@ UpdateExtra:
 	IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
 	IniWrite, %AutoUpdateOff%, %A_ScriptDir%\save\Settings.ini, General, AutoUpdateOff
 	IniWrite, %YesGuiLastPosition%, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition
+	IniWrite, %YesDX12%, %A_ScriptDir%\save\Settings.ini, General, YesDX12
 	IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
 	IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
 	IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB

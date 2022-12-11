@@ -1,8 +1,16 @@
-﻿## Version .15.0703 - Alpha version - December/11/2022
+﻿## Version .15.08 - Master version - December/11/2022
+Alpha changes are being merged into master branch
+
+---
+
+## Version .15.0703 - Alpha version - December/11/2022
 Bugfix
   * Updated affix strings for map crafting
   * Other basetype affixes need updating as well
     * Working on a solution using the wiki
+  * Direct X 12 has been given its own Configuration option
+
+---
 
 ## Version .15.0702 - Alpha version - August/18/2022
 
