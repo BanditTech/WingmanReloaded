@@ -66,6 +66,7 @@ readFromFile(){
 	IniRead, EnableChatHotkeys, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys, 1
 	IniRead, YesStashKeys, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys, 1
 	IniRead, YesGuiLastPosition, %A_ScriptDir%\save\Settings.ini, General, YesGuiLastPosition, 0
+	IniRead, YesDX12, %A_ScriptDir%\save\Settings.ini, General, YesDX12, 0
 	IniRead, YesSkipMaps, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps, 11
 	IniRead, YesSkipMaps_Prep, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep, 1
 	IniRead, YesSkipMaps_eval, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval, >=
