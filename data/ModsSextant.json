@@ -52,7 +52,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "100% chance to create a copy of Beasts Captured in your Maps",
+		"Mod": "Create a copy of Beasts Captured in your Maps",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -60,7 +60,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Plants Harvested in your Maps are more likely to give less common Crafting Options | Harvest Monsters in your Maps have 100% more Life",
+		"Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -84,7 +84,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "100% chance to create a copy of Beasts Captured in your Maps",
+		"Mod": "Create a copy of Beasts Captured in your Maps",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -116,7 +116,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Plants Harvested in your Maps are more likely to give less common Crafting Options | Harvest Monsters in your Maps have 100% more Life",
+		"Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -268,7 +268,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Slaying Enemies close together in your Maps has a 8% chance to attract monsters from Beyond | Beyond Portals in your Maps have 25% chance to spawn an additional Beyond Demon",
+		"Mod": "Slaying Enemies close together Can attract monsters from beyond this realm | 25% increased beyond demon pack size in your maps",
 		"Weight": "unique_map 0 | default 250"
 	},
 	{
@@ -380,7 +380,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Plants Harvested in your Maps are more likely to give less common Crafting Options | Harvest Monsters in your Maps have 100% more Life",
+		"Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -516,7 +516,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Plants Harvested in your Maps are more likely to give less common Crafting Options | Harvest Monsters in your Maps have 100% more Life",
+		"Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -772,7 +772,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Items dropped by Corrupted Vaal Monsters in your Maps have 25% chance to be Corrupted | Your Maps contains 6 additional packs of Corrupted Vaal Monsters",
+		"Mod": "Your Maps contains 6 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 25% chance to be Corrupted",
 		"Weight": "no_monster_packs 0 | default 250"
 	},
 	{
@@ -788,7 +788,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Elevated Sextant",
 		"Level": 1,
-		"Mod": "Items dropped by Corrupted Vaal Monsters in your Maps have 30% chance to be Corrupted | Your Maps contains 8 additional packs of Corrupted Vaal Monsters",
+		"Mod": "Your Maps contains 8 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 30% chance to be Corrupted",
 		"Weight": "no_monster_packs 0 | default 250"
 	},
 	{
@@ -924,7 +924,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Plants Harvested in your Maps are more likely to give less common Crafting Options | Harvest Monsters in your Maps have 100% more Life",
+		"Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -948,7 +948,7 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Plants Harvested in your Maps are more likely to give less common Crafting Options | Harvest Monsters in your Maps have 100% more Life",
+		"Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
 		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
 	},
 	{
@@ -1092,7 +1092,15 @@
 		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
 		"Item": "Awakened Sextant",
 		"Level": 1,
-		"Mod": "Slaying Enemies close together in your Maps has a 6% chance to attract monsters from Beyond | Beyond Portals in your Maps have 25% chance to spawn an additional Beyond Demon",
+		"Mod": "Slaying Enemies close together Can attract monsters from beyond this realm | 25% increased beyond demon pack size in your maps",
+		"Weight": "unique_map 0 | default 250"
+	},
+	{
+		"web-scraper-order": "1647955939-111",
+		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+		"Item": "Awakened Sextant",
+		"Level": 1,
+		"Mod": "Items found in your Identified Maps are Identified | 20% increased Pack Size in your Unidentified Maps",
 		"Weight": "unique_map 0 | default 250"
 	}
 ]
