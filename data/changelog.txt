@@ -1,4 +1,10 @@
-﻿## Version .15.0702 - Alpha version - August/18/2022
+﻿## Version .15.0703 - Alpha version - December/11/2022
+Bugfix
+  * Updated affix strings for map crafting
+  * Other basetype affixes need updating as well
+    * Working on a solution using the wiki
+
+## Version .15.0702 - Alpha version - August/18/2022
 
 Improvements
   * Include new CLF Strictness Option Inside Inventory Settings
