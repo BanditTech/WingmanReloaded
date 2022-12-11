@@ -2,7 +2,7 @@
 Class PoERequest {
   Stash(TabDigit) {
     Static Url := "https://www.pathofexile.com/character-window/get-stash-items"
-    Static Headers := { "connection":"keep-alive", "cache-control":"max-age=0" }
+    Static Headers := { "connection":"keep-alive", "cache-control":"max-age=0"}
     Headers["cookie"] := PoECookie
     postdata := {}
     postdata.league := UriEncode(selectedLeague)
@@ -10,6 +10,7 @@ Class PoERequest {
     postdata.tabs := 0
     postdata.tabIndex := TabDigit - 1
     response := Util.HttpGet(Url,Headers,postdata)
+    ; Log("Stash API Reply ", "`n" response)
     Return This.HandleResponse(response)
   }
   Account() {
@@ -37,7 +38,7 @@ Class PoERequest {
         Return False
       }
     } Catch e {
-      Log("POERequest Error ","Invalid JSON error",response)
+      Log("POERequest Error ","Invalid JSON error" . "`n" response)
       Return False
     }
     Return obj

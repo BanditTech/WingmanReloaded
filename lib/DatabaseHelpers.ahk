@@ -74,7 +74,8 @@ CraftingBasesRequest(ShouldRun){
         Return
     }
     If (!AccountNameSTR){
-        AccountNameSTR := PoeRequest.Account()
+        Log("Crafting Bases Request","You need def your account name in save/Account.ini",Strings*)
+        Return
     }
     Object := PoERequest.Stash(StashTabCrafting)
     ClearQuantCraftingBase()

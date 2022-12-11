@@ -48,13 +48,8 @@
 					This.Prop.HasEnchant := True
 					This.Data.Blocks.Enchant := SVal
 				}
-				Else If (SVal ~= "\(scourge\)$")
-					This.Data.Blocks.Scourge := SVal
 				Else If (SVal ~= " Item$") && !(SVal ~= "\w{1,} \w{1,} \w{1,} Item$")
 					This.Data.Blocks.Influence := SVal
-				Else If (SVal ~= "^Scourged$") {
-					This.Prop.Scourged := True
-				}
 				Else If (SVal ~= "^Corrupted$")
 					This.Prop.Corrupted := True
 				Else If (SVal ~= "^Abyss$")
@@ -73,7 +68,6 @@
 		This.MatchAffixesWithoutDoubleMods(This.Data.Blocks.Affix)
 		;This.MatchAffixes(This.Data.Blocks.Affix)
 		This.MatchAffixes(This.Data.Blocks.Enchant)
-		This.MatchAffixes(This.Data.Blocks.Scourge)
 		This.MatchAffixes(This.Data.Blocks.Implicit)
 		This.MatchAffixes(This.Data.Blocks.Influence)
 		This.MatchAffixes(This.Data.Blocks.TempleRooms)
@@ -306,7 +300,7 @@
 			{
 				This.Prop.AtlasStone := True
 			}
-			If (This.Prop.ItemClass = "Misc Map Items")
+			If (This.Prop.ItemClass = "Misc Map Items" || This.Prop.ItemClass = "Memory")
 			{
 				This.Prop.MiscMapItem := True
 				This.Prop.SpecialType := "Misc Map Item"
@@ -338,6 +332,11 @@
 			{
 				This.Prop.Incubator := True
 				This.Prop.SpecialType := "Incubator"
+			}
+			Else If (This.Prop.ItemBase ~= "Crystallised Lifeforce$")
+			{
+				This.Prop.HarvestCurrency := True
+				This.Prop.SpecialType := "Harvest Currency"
 			}
 			Else If (InStr(This.Prop.ItemBase, "Timeless Karui Splinter") 
 					|| InStr(This.Prop.ItemBase, "Timeless Eternal Empire Splinter") 
@@ -461,16 +460,6 @@
 				This.Prop.AbyssJewel := True
 				This.Prop.Jewel := True
 			}
-			Else If (This.Prop.ItemClass = "Sentinel")
-			{
-				If RegExMatch(This.Prop.ItemBase,"((P|A|S)\w+) Sentinel$", RxMatch) {
-					This.Prop.Item_Width := 2
-					This.Prop.Item_Height := 2
-					This.Prop.SentinelType := RxMatch1
-				}
-				This.Prop.Sentinel := True
-				This.Prop.SpecialType := "Sentinel"
-			}
 			Else If (This.Prop.ItemClass = "Jewels")
 			{
 				If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
@@ -503,16 +492,6 @@
 				This.Prop.Quiver := True
 				This.Prop.Item_Width := 2
 				This.Prop.Item_Height := 3
-			}
-			Else If (This.Prop.ItemBase ~= " Artifact$")
-			{
-				This.Prop.Expedition := True
-				This.Prop.Artifact := True
-				This.Prop.SpecialType := "Expedition Artifact"
-				If (This.Prop.ItemBase ~= "^Greater" || This.Prop.ItemBase ~= "^Grand")
-					This.Prop.Item_Height := 2
-				If (This.Prop.ItemBase ~= "^Grand")
-					This.Prop.Item_Width := 2
 			}
 			Else if (indexOf(this.Prop.ItemBase, ["Exotic Coinage","Scrap Metal","Astragali","Burial Medallion"])) {
 				This.Prop.Expedition := True
@@ -933,11 +912,6 @@
 		{
 			This.Prop.Stack_Size := RegExReplace(RxMatch1,"[^\d]","")
 			This.Prop.Stack_Max := RegExReplace(RxMatch2,"[^\d]","")
-		}
-		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Seed Tier: "rxNum,RxMatch))
-		{
-			This.Prop.Seed_Tier := RxMatch1
-			This.Prop.IsSeed := True
 		}
 		If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
 			This.Prop.SpecialType := "Harvest Item"
@@ -1959,14 +1933,14 @@
 		For key, value in This.Prop
 		{
 			If( RegExMatch(key, "^Required")
-					|| RegExMatch(key, "^Rating")
+				|| RegExMatch(key, "^Rating")
 				|| RegExMatch(key, "^Sockets")
 				|| RegExMatch(key, "^Gem")
 				|| RegExMatch(key, "^Quality")
 				|| RegExMatch(key, "^Map")
 				|| RegExMatch(key, "^Heist_")
 				|| RegExMatch(key, "^Stack")
-			|| RegExMatch(key, "^Weapon"))
+				|| RegExMatch(key, "^Weapon"))
 			{
 				If indexOf(key,this.MatchedCLF)
 					statText .= "CLF⭐"
@@ -2561,11 +2535,11 @@
 			sendstash := StashTabNinjaPrice
 		} Else If (This.Prop.Expedition) {
 			Return -2
+		} Else If (This.Prop.HarvestCurrency) {
+			Return -2
 		} Else If (This.Prop.Heist) {
 			Return -2
-		} Else If (This.Prop.Sentinel) {
-			Return -2
-		} Else If (This.Prop.Incubator) {
+		}Else If (This.Prop.Incubator) {
 			Return -1
 		;Affinities
 		} Else If ((This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight) {

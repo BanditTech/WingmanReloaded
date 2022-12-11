@@ -188,7 +188,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	f := ""
 
 	Gui,Font, Bold s9 cBlack, Arial
-	Gui,Add,GroupBox,Section xs y+20  w350 h140                                                     , Game Setup
+	Gui,Add,GroupBox,Section xs y+20  w350 h170                                                     , Game Setup
 	Gui, Add, Text,          xs+5 yp+20                                                             , Aspect Ratio:
 	Gui,Font,Norm
 
@@ -228,6 +228,10 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Add, Text, xs+5 y+10 , PoE Cookie
 	Gui, Font,Norm
 	Gui, Add, Edit, password vPoECookie  x+5 yp-3 r1 -wrap  w240, %PoECookie%
+	Gui, Font, Bold s9 cBlack, Arial
+	Gui, Add, Text, xs+5 y+10 , PoE Account Name
+	Gui, Font,Norm
+	Gui, Add, Edit, password vAccountNameSTR  x+5 yp-3 r1 -wrap  w120, %AccountNameSTR%
 
 	Gui, Font, Bold s9 cBlack, Arial
 	Gui,Add,GroupBox,Section xs y+10  w350 h55                                                     , Script Latency
