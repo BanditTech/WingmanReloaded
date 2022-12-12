@@ -624,6 +624,7 @@ Global ShowOnStart := 0
 Global PopFlaskRespectCD := 1
 Global ResolutionScale := "Standard"
 Global YesGuiLastPosition := 1
+Global YesDX12 := 0
 Global YesSortFirst := 1
 Global FlaskList := []
 Global AreaScale := 0
