@@ -1,4 +1,9 @@
-﻿## Version .15.09 - Master version - December/11/2022
+﻿## Version .15.0901 - Alpha version - December/19/2022
+bugfix for heist contract types and level
+
+---
+
+## Version .15.09 - Master version - December/11/2022
 bugfix for missing global assignment for YesDX12 variable
 
 ---
