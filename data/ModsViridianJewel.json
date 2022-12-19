@@ -5,7 +5,11 @@
         "IconPath": "<img loading='lazy'    alt='basicdex' src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL2Jhc2ljZGV4IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/9ed22a2b94/basicdex.png\"/>",
         "ItemClassesID": "41",
         "cn": "Jewel",
+<<<<<<< HEAD
         "link_name": "<a class='whiteitem' data-hover='?t=item&n=Viridian+Jewel' href='/us/Viridian_Jewel'>Viridian Jewel</a><span data-tabname=\"Viridian Jewel Modifiers\"></span>",
+=======
+        "link_name": "<a data-hover='?t=item&n=Viridian+Jewel' class='whiteitem' href='/us/Viridian_Jewel'>Viridian Jewel</a><span data-tabname=\"Viridian Jewel Modifiers\"></span>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
         "attr": [],
         "tags": null
     },
@@ -39,84 +43,132 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Bestiary",
             "display_chance": false
         }
@@ -150,8 +202,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -179,8 +236,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -212,8 +274,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -242,8 +309,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -272,8 +344,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -301,8 +378,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -333,8 +415,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -362,8 +449,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -391,8 +483,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -417,7 +514,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -442,7 +543,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -467,7 +572,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -491,7 +600,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -519,9 +632,16 @@
                 "fire"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -549,9 +669,16 @@
                 "cold"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -579,9 +706,16 @@
                 "lightning"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -607,8 +741,14 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -632,7 +772,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -658,8 +802,14 @@
                 "chaos"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -683,7 +833,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -711,8 +865,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -740,8 +899,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -773,8 +937,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -803,8 +972,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -833,8 +1007,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -862,8 +1041,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -893,8 +1077,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -921,8 +1110,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -950,8 +1144,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -976,8 +1175,13 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1002,7 +1206,11 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1027,7 +1235,11 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1052,7 +1264,11 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1078,9 +1294,15 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1110,8 +1332,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1136,7 +1363,11 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1161,7 +1392,11 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1186,7 +1421,11 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1211,7 +1450,11 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1236,7 +1479,11 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1261,7 +1508,11 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1285,7 +1536,11 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1311,8 +1566,13 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1338,8 +1598,13 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1365,8 +1630,13 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1394,10 +1664,17 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1424,9 +1701,15 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1452,8 +1735,13 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1479,7 +1767,11 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1524,7 +1816,11 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1550,8 +1846,13 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1575,7 +1876,11 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1600,8 +1905,13 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1629,8 +1939,13 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1660,8 +1975,13 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1689,8 +2009,13 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1718,8 +2043,13 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1746,9 +2076,15 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1775,9 +2111,15 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1804,9 +2146,15 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1831,8 +2179,13 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1861,9 +2214,15 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1894,9 +2253,15 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1925,9 +2290,15 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1956,9 +2327,15 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -1987,10 +2364,18 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2019,10 +2404,18 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2051,10 +2444,18 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2081,9 +2482,16 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2110,9 +2518,15 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2139,9 +2553,15 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2168,9 +2588,15 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2198,10 +2624,17 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2229,10 +2662,17 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2260,10 +2700,17 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2288,8 +2735,13 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2314,8 +2766,13 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2382,8 +2839,13 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2407,7 +2869,11 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2548,7 +3014,11 @@
                 "curse"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2574,9 +3044,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2602,9 +3078,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2630,9 +3112,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2658,9 +3146,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2686,9 +3180,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2713,8 +3213,13 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2763,9 +3268,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2792,9 +3303,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2821,9 +3338,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2850,9 +3373,15 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2880,10 +3409,17 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2909,8 +3445,13 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2939,10 +3480,18 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -2972,11 +3521,20 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -3004,10 +3562,18 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -3032,7 +3598,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -3058,8 +3628,13 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
@@ -3085,13 +3660,22 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "17790",
+=======
+            "ID": "17788",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Atrophy",
             "Code": "JewelChaosNonAilmentDamageOverTimeMultiplier2",
             "Level": "1",
@@ -3114,13 +3698,23 @@
                 "chaos"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "17804",
+=======
+            "ID": "17802",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Gelidity",
             "Code": "JewelColdDamageOverTimeMultiplier1",
             "Level": "1",
@@ -3144,14 +3738,25 @@
                 "cold"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "17819",
+=======
+            "ID": "17817",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Zealousness",
             "Code": "JewelFireDamageOverTimeMultiplier1",
             "Level": "1",
@@ -3174,14 +3779,25 @@
                 "fire"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "17835",
+=======
+            "ID": "17833",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Exsanguinating",
             "Code": "JewelPhysicalDamageOverTimeMultiplier1",
             "Level": "1",
@@ -3203,13 +3819,23 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "17848",
+=======
+            "ID": "17846",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Acrimony",
             "Code": "JewelGlobalDamageOverTimeMultiplier1",
             "Level": "1",
@@ -3229,7 +3855,11 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         }
@@ -3238,7 +3868,11 @@
     "essence": [],
     "delve": [
         {
+<<<<<<< HEAD
             "ID": "15812",
+=======
+            "ID": "15810",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -3262,14 +3896,25 @@
                 "fire"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15822",
+=======
+            "ID": "15820",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -3293,14 +3938,25 @@
                 "cold"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15832",
+=======
+            "ID": "15830",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -3324,14 +3980,25 @@
                 "lightning"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15851",
+=======
+            "ID": "15849",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -3352,12 +4019,20 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15861",
+=======
+            "ID": "15859",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -3380,13 +4055,23 @@
                 "chaos"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15869",
+=======
+            "ID": "15867",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -3408,13 +4093,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15871",
+=======
+            "ID": "15869",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -3436,12 +4130,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15874",
+=======
+            "ID": "15872",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -3463,12 +4165,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15877",
+=======
+            "ID": "15875",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -3490,12 +4200,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15898",
+=======
+            "ID": "15896",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -3516,12 +4234,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15904",
+=======
+            "ID": "15902",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -3543,13 +4269,22 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15921",
+=======
+            "ID": "15919",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -3572,13 +4307,23 @@
                 "elemental"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15927",
+=======
+            "ID": "15925",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -3600,7 +4345,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15933",
+=======
+            "ID": "15931",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -3623,14 +4372,24 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15944",
+=======
+            "ID": "15942",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -3653,14 +4412,24 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15955",
+=======
+            "ID": "15953",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -3684,7 +4453,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15974",
+=======
+            "ID": "15972",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelMinionAttackAndCastSpeed1",
             "Level": "1",
@@ -3708,15 +4481,26 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15982",
+=======
+            "ID": "15980",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -3754,7 +4538,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15257",
+=======
+            "ID": "15255",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -3776,7 +4564,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15256",
+=======
+            "ID": "15254",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -3798,7 +4590,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15259",
+=======
+            "ID": "15257",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -3821,7 +4617,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15258",
+=======
+            "ID": "15256",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -3843,10 +4643,14 @@
     "warlord": [],
     "scourgeup": [],
     "scourgedown": [],
+<<<<<<< HEAD
     "lang": "us",
     "cached": 1,
     "segs": [
         "Mods",
         "Gen"
     ]
+=======
+    "lang": "us"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
 }

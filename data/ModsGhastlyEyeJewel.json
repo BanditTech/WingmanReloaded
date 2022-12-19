@@ -5,7 +5,11 @@
         "IconPath": "<img loading='lazy'    alt='GhastlyEye' src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL0doYXN0bHlFeWUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/ed72511412/GhastlyEye.png\"/>",
         "ItemClassesID": "50",
         "cn": "AbyssJewel",
+<<<<<<< HEAD
         "link_name": "<a class='whiteitem' data-hover='?t=item&n=Ghastly+Eye+Jewel' href='/us/Ghastly_Eye_Jewel'>Ghastly Eye Jewel</a><span data-tabname=\"Ghastly Eye Jewel Modifiers\"></span>",
+=======
+        "link_name": "<a data-hover='?t=item&n=Ghastly+Eye+Jewel' class='whiteitem' href='/us/Ghastly_Eye_Jewel'>Ghastly Eye Jewel</a><span data-tabname=\"Ghastly Eye Jewel Modifiers\"></span>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
         "attr": [],
         "tags": null
     },
@@ -37,84 +41,132 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
+=======
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
+=======
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "title": "Bestiary",
             "display_chance": false
         }
@@ -125,7 +177,11 @@
     },
     "normal": [
         {
+<<<<<<< HEAD
             "ID": "13679",
+=======
+            "ID": "13677",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Hale",
             "Code": "AbyssJewelAddedLife1",
             "Level": "1",
@@ -145,13 +201,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13680",
+=======
+            "ID": "13678",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Healthy",
             "Code": "AbyssJewelAddedLife2",
             "Level": "35",
@@ -171,13 +236,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13681",
+=======
+            "ID": "13679",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Sanguine",
             "Code": "AbyssJewelAddedLife3",
             "Level": "74",
@@ -197,13 +271,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13682",
+=======
+            "ID": "13680",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Stalwart",
             "Code": "AbyssJewelAddedLife4",
             "Level": "82",
@@ -223,13 +306,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13683",
+=======
+            "ID": "13681",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Beryl",
             "Code": "AbyssJewelAddedMana1",
             "Level": "1",
@@ -249,13 +341,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13684",
+=======
+            "ID": "13682",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Cobalt",
             "Code": "AbyssJewelAddedMana2",
             "Level": "40",
@@ -275,13 +376,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13685",
+=======
+            "ID": "13683",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Azure",
             "Code": "AbyssJewelAddedMana3",
             "Level": "75",
@@ -301,13 +411,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13686",
+=======
+            "ID": "13684",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Sapphire",
             "Code": "AbyssJewelAddedMana4",
             "Level": "83",
@@ -327,13 +446,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13689",
+=======
+            "ID": "13687",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Strength",
             "Code": "AbyssStrengthJewel1_",
             "Level": "1",
@@ -352,12 +480,20 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13690",
+=======
+            "ID": "13688",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Dexterity",
             "Code": "AbyssDexterityJewel1_",
             "Level": "1",
@@ -376,12 +512,20 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13691",
+=======
+            "ID": "13689",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Intelligence",
             "Code": "AbyssIntelligenceJewel1",
             "Level": "1",
@@ -400,12 +544,20 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13692",
+=======
+            "ID": "13690",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Athletics",
             "Code": "AbyssStrengthDexterityJewel1",
             "Level": "1",
@@ -424,12 +576,20 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13693",
+=======
+            "ID": "13691",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Spirit",
             "Code": "AbyssStrengthIntelligenceJewel1_",
             "Level": "1",
@@ -448,12 +608,20 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13694",
+=======
+            "ID": "13692",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Cunning",
             "Code": "AbyssDexterityIntelligenceJewel1",
             "Level": "1",
@@ -472,12 +640,20 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13695",
+=======
+            "ID": "13693",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Adaption",
             "Code": "AbyssAllAttributesJewel1",
             "Level": "1",
@@ -496,12 +672,20 @@
                 "attribute"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13696",
+=======
+            "ID": "13694",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Dragon",
             "Code": "AbyssFireResistanceJewel1",
             "Level": "1",
@@ -522,14 +706,24 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13697",
+=======
+            "ID": "13695",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Beast",
             "Code": "AbyssColdResistanceJewel1",
             "Level": "1",
@@ -550,14 +744,24 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13698",
+=======
+            "ID": "13696",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Grounding",
             "Code": "AbyssLightningResistanceJewel1",
             "Level": "1",
@@ -578,14 +782,24 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13699",
+=======
+            "ID": "13697",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Hearth",
             "Code": "AbyssFireColdResistanceJewel1",
             "Level": "1",
@@ -607,15 +821,26 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13700",
+=======
+            "ID": "13698",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Insulation",
             "Code": "AbyssFireLightningResistanceJewel1",
             "Level": "1",
@@ -637,15 +862,26 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13701",
+=======
+            "ID": "13699",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Shelter",
             "Code": "AbyssColdLightningResistanceJewel1",
             "Level": "1",
@@ -667,15 +903,26 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13702",
+=======
+            "ID": "13700",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Resistance",
             "Code": "AbyssAllResistancesJewel1",
             "Level": "1",
@@ -695,13 +942,22 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13703",
+=======
+            "ID": "13701",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Order",
             "Code": "AbyssChaosResistanceJewel1",
             "Level": "1",
@@ -721,13 +977,22 @@
                 "resistance"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+=======
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13705",
+=======
+            "ID": "13703",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Enchanting",
             "Code": "AbyssCastSpeedJewel1",
             "Level": "50",
@@ -749,13 +1014,22 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13714",
+=======
+            "ID": "13712",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Heated",
             "Code": "AbyssMinionAddedFireDamageJewel1",
             "Level": "1",
@@ -779,15 +1053,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13715",
+=======
+            "ID": "13713",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Flaming",
             "Code": "AbyssMinionAddedFireDamageJewel2",
             "Level": "39",
@@ -811,15 +1097,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13716",
+=======
+            "ID": "13714",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Scorching",
             "Code": "AbyssMinionAddedFireDamageJewel3",
             "Level": "48",
@@ -843,15 +1141,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13717",
+=======
+            "ID": "13715",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Incinerating",
             "Code": "AbyssMinionAddedFireDamageJewel4_",
             "Level": "58",
@@ -875,15 +1185,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13718",
+=======
+            "ID": "13716",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Blasting",
             "Code": "AbyssMinionAddedFireDamageJewel5",
             "Level": "70",
@@ -907,15 +1229,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13719",
+=======
+            "ID": "13717",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Cremating",
             "Code": "AbyssMinionAddedFireDamageJewel6_",
             "Level": "82",
@@ -939,15 +1273,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13720",
+=======
+            "ID": "13718",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Frosted",
             "Code": "AbyssMinionAddedColdDamageJewel1",
             "Level": "1",
@@ -971,15 +1317,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13721",
+=======
+            "ID": "13719",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Freezing",
             "Code": "AbyssMinionAddedColdDamageJewel2",
             "Level": "39",
@@ -1003,15 +1361,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13722",
+=======
+            "ID": "13720",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Frozen",
             "Code": "AbyssMinionAddedColdDamageJewel3",
             "Level": "48",
@@ -1035,15 +1405,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13723",
+=======
+            "ID": "13721",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Glaciated",
             "Code": "AbyssMinionAddedColdDamageJewel4",
             "Level": "58",
@@ -1067,15 +1449,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13724",
+=======
+            "ID": "13722",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Polar",
             "Code": "AbyssMinionAddedColdDamageJewel5",
             "Level": "70",
@@ -1099,15 +1493,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13725",
+=======
+            "ID": "13723",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Entombing",
             "Code": "AbyssMinionAddedColdDamageJewel6_",
             "Level": "82",
@@ -1131,15 +1537,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13726",
+=======
+            "ID": "13724",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Humming",
             "Code": "AbyssMinionAddedLightningDamageJewel1_",
             "Level": "1",
@@ -1163,15 +1581,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13727",
+=======
+            "ID": "13725",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Sparking",
             "Code": "AbyssMinionAddedLightningDamageJewel2",
             "Level": "39",
@@ -1195,15 +1625,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13728",
+=======
+            "ID": "13726",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Arcing",
             "Code": "AbyssMinionAddedLightningDamageJewel3_",
             "Level": "48",
@@ -1227,15 +1669,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13729",
+=======
+            "ID": "13727",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Shocking",
             "Code": "AbyssMinionAddedLightningDamageJewel4",
             "Level": "58",
@@ -1259,15 +1713,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13730",
+=======
+            "ID": "13728",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Discharging",
             "Code": "AbyssMinionAddedLightningDamageJewel5",
             "Level": "70",
@@ -1291,15 +1757,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13731",
+=======
+            "ID": "13729",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Electrocuting",
             "Code": "AbyssMinionAddedLightningDamageJewel6",
             "Level": "82",
@@ -1323,15 +1801,27 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13732",
+=======
+            "ID": "13730",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Glinting",
             "Code": "AbyssMinionAddedPhysicalDamageJewel1",
             "Level": "1",
@@ -1354,14 +1844,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13733",
+=======
+            "ID": "13731",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Gleaming",
             "Code": "AbyssMinionAddedPhysicalDamageJewel2",
             "Level": "42",
@@ -1384,14 +1885,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13734",
+=======
+            "ID": "13732",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Annealed",
             "Code": "AbyssMinionAddedPhysicalDamageJewel3",
             "Level": "54",
@@ -1414,14 +1926,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13735",
+=======
+            "ID": "13733",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Razor-sharp",
             "Code": "AbyssMinionAddedPhysicalDamageJewel4",
             "Level": "63",
@@ -1444,14 +1967,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13736",
+=======
+            "ID": "13734",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Tempered",
             "Code": "AbyssMinionAddedPhysicalDamageJewel5",
             "Level": "72",
@@ -1474,14 +2008,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13737",
+=======
+            "ID": "13735",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Flaring",
             "Code": "AbyssMinionAddedPhysicalDamageJewel6",
             "Level": "83",
@@ -1504,14 +2049,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13738",
+=======
+            "ID": "13736",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Tainted",
             "Code": "AbyssMinionAddedChaosDamageJewel1",
             "Level": "1",
@@ -1534,14 +2090,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13739",
+=======
+            "ID": "13737",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Clouded",
             "Code": "AbyssMinionAddedChaosDamageJewel2_",
             "Level": "42",
@@ -1564,14 +2131,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13740",
+=======
+            "ID": "13738",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Darkened",
             "Code": "AbyssMinionAddedChaosDamageJewel3",
             "Level": "54",
@@ -1594,14 +2172,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13741",
+=======
+            "ID": "13739",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Malignant",
             "Code": "AbyssMinionAddedChaosDamageJewel4",
             "Level": "65",
@@ -1624,14 +2213,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13742",
+=======
+            "ID": "13740",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Vile",
             "Code": "AbyssMinionAddedChaosDamageJewel5_",
             "Level": "75",
@@ -1654,14 +2254,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "13743",
+=======
+            "ID": "13741",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Malicious",
             "Code": "AbyssMinionAddedChaosDamageJewel6",
             "Level": "84",
@@ -1684,14 +2295,25 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14079",
+=======
+            "ID": "14077",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Fuelling",
             "Code": "AbyssFlatMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -1713,14 +2335,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14080",
+=======
+            "ID": "14078",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Lively",
             "Code": "AbyssFlatMinionLifeRegenerationJewel2",
             "Level": "30",
@@ -1742,14 +2374,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14081",
+=======
+            "ID": "14079",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Exuberant",
             "Code": "AbyssFlatMinionLifeRegenerationJewel3",
             "Level": "60",
@@ -1771,14 +2413,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14082",
+=======
+            "ID": "14080",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Captivating",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel1",
             "Level": "1",
@@ -1802,12 +2454,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14083",
+=======
+            "ID": "14081",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Beautiful",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel2",
             "Level": "30",
@@ -1831,12 +2491,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14084",
+=======
+            "ID": "14082",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Breathtaking",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel3",
             "Level": "60",
@@ -1860,12 +2528,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14085",
+=======
+            "ID": "14083",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Youthful",
             "Code": "AbyssFlatLifeRegenerationJewel1",
             "Level": "1",
@@ -1890,13 +2566,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14086",
+=======
+            "ID": "14084",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Spirited",
             "Code": "AbyssFlatLifeRegenerationJewel2",
             "Level": "40",
@@ -1921,13 +2606,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14087",
+=======
+            "ID": "14085",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Vivacious",
             "Code": "AbyssFlatLifeRegenerationJewel3_",
             "Level": "80",
@@ -1952,13 +2646,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14088",
+=======
+            "ID": "14086",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Energising",
             "Code": "AbyssFlatManaShieldRegenerationJewel1",
             "Level": "1",
@@ -1978,13 +2681,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14089",
+=======
+            "ID": "14087",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Inspirational",
             "Code": "AbyssFlatManaShieldRegenerationJewel2",
             "Level": "40",
@@ -2004,13 +2716,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14090",
+=======
+            "ID": "14088",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Resonating",
             "Code": "AbyssFlatManaShieldRegenerationJewel3",
             "Level": "75",
@@ -2030,13 +2751,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14097",
+=======
+            "ID": "14095",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel1",
             "Level": "32",
@@ -2057,13 +2787,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14098",
+=======
+            "ID": "14096",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel2",
             "Level": "65",
@@ -2084,13 +2823,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14099",
+=======
+            "ID": "14097",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel1",
             "Level": "32",
@@ -2111,13 +2859,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14100",
+=======
+            "ID": "14098",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel2_",
             "Level": "65",
@@ -2138,13 +2895,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14101",
+=======
+            "ID": "14099",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel1",
             "Level": "32",
@@ -2165,13 +2931,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14102",
+=======
+            "ID": "14100",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel2",
             "Level": "65",
@@ -2192,13 +2967,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14103",
+=======
+            "ID": "14101",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Venom",
             "Code": "AbyssMinionPoisonOnHitChanceJewel1",
             "Level": "60",
@@ -2221,15 +3005,26 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14104",
+=======
+            "ID": "14102",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Combustion",
             "Code": "AbyssMinionIgniteOnHitChanceJewel1",
             "Level": "60",
@@ -2252,15 +3047,26 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14105",
+=======
+            "ID": "14103",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Bloodletting",
             "Code": "AbyssMinionAttacksBleedOnHitChanceJewel1",
             "Level": "60",
@@ -2283,15 +3089,26 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14107",
+=======
+            "ID": "14105",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Marshalling",
             "Code": "AbyssMinionDamageVSAbyssMonstersJewel1",
             "Level": "1",
@@ -2305,20 +3122,33 @@
                 "0"
             ],
             "DropChance": "500",
+<<<<<<< HEAD
             "str": "Minions deal <span class='mod-value'>(30&ndash;40)</span>% increased Damage with Hits and Ailments against Abyssal Monsters",
+=======
+            "str": "Minions deal <span class='mod-value'>(30&ndash;40)</span>% increased Damage against Abyssal Monsters",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "master_no": [],
             "fossil_no": [
                 "damage",
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14108",
+=======
+            "ID": "14106",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Warding",
             "Code": "AbyssReducedPhysicalDamageTakenVsAbyssMonsterJewel1",
             "Level": "1",
@@ -2337,12 +3167,20 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14109",
+=======
+            "ID": "14107",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Extinguishing",
             "Code": "AbyssAvoidIgniteJewel1_",
             "Level": "50",
@@ -2363,14 +3201,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14110",
+=======
+            "ID": "14108",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Extinguishing",
             "Code": "AbyssAvoidIgniteJewel2",
             "Level": "70",
@@ -2391,14 +3239,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14111",
+=======
+            "ID": "14109",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel1",
             "Level": "50",
@@ -2419,14 +3277,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14112",
+=======
+            "ID": "14110",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel2",
             "Level": "70",
@@ -2447,14 +3315,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14113",
+=======
+            "ID": "14111",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel1",
             "Level": "50",
@@ -2475,14 +3353,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14114",
+=======
+            "ID": "14112",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel2",
             "Level": "70",
@@ -2503,14 +3391,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14115",
+=======
+            "ID": "14113",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel1__",
             "Level": "50",
@@ -2531,14 +3429,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14116",
+=======
+            "ID": "14114",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel2__",
             "Level": "70",
@@ -2559,14 +3467,24 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14117",
+=======
+            "ID": "14115",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Mending",
             "Code": "AbyssAvoidBleedingJewel1",
             "Level": "50",
@@ -2588,15 +3506,26 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14118",
+=======
+            "ID": "14116",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Mending",
             "Code": "AbyssAvoidBleedingJewel2",
             "Level": "70",
@@ -2618,15 +3547,26 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14119",
+=======
+            "ID": "14117",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Unwavering",
             "Code": "AbyssAvoidStunJewel1",
             "Level": "50",
@@ -2646,7 +3586,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14120",
+=======
+            "ID": "14118",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Unwavering",
             "Code": "AbyssAvoidStunJewel2",
             "Level": "70",
@@ -2666,7 +3610,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14126",
+=======
+            "ID": "14124",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Training",
             "Code": "AbyssMinionAttackAndCastSpeedJewel1",
             "Level": "1",
@@ -2689,15 +3637,26 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14127",
+=======
+            "ID": "14125",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Longevity",
             "Code": "AbyssMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -2719,14 +3678,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14128",
+=======
+            "ID": "14126",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Vampirism",
             "Code": "AbyssMinionLifeLeechJewel1",
             "Level": "1",
@@ -2748,14 +3717,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14129",
+=======
+            "ID": "14127",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Orchestration",
             "Code": "AbyssMinionMovementSpeedJewel1",
             "Level": "1",
@@ -2776,13 +3755,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14130",
+=======
+            "ID": "14128",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Fortitude",
             "Code": "AbyssMinionLifeJewel1_",
             "Level": "1",
@@ -2804,14 +3792,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14131",
+=======
+            "ID": "14129",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Suggestion",
             "Code": "AbyssFlatMinionAccuracy1",
             "Level": "1",
@@ -2832,13 +3830,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14132",
+=======
+            "ID": "14130",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Instruction",
             "Code": "AbyssFlatMinionAccuracy2_",
             "Level": "52",
@@ -2859,13 +3866,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14133",
+=======
+            "ID": "14131",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Command",
             "Code": "AbyssFlatMinionAccuracy3",
             "Level": "78",
@@ -2886,13 +3902,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14134",
+=======
+            "ID": "14132",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Acclimatisation",
             "Code": "AbyssMinionElementalResistancesJewel1",
             "Level": "1",
@@ -2914,14 +3939,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14135",
+=======
+            "ID": "14133",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Righteousness",
             "Code": "AbyssMinionChaosResistanceJewel1",
             "Level": "1",
@@ -2943,14 +3978,24 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14136",
+=======
+            "ID": "14134",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Lacquered",
             "Code": "AbyssFlatArmourJewel1",
             "Level": "1",
@@ -2970,12 +4015,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14137",
+=======
+            "ID": "14135",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Fortified",
             "Code": "AbyssFlatArmourJewel2",
             "Level": "40",
@@ -2995,12 +4048,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14138",
+=======
+            "ID": "14136",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Carapaced",
             "Code": "AbyssFlatArmourJewel3",
             "Level": "75",
@@ -3020,12 +4081,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14139",
+=======
+            "ID": "14137",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Encased",
             "Code": "AbyssFlatArmourJewel4__",
             "Level": "83",
@@ -3045,12 +4114,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14140",
+=======
+            "ID": "14138",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Agile",
             "Code": "AbyssFlatEvasionJewel1",
             "Level": "1",
@@ -3070,12 +4147,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14141",
+=======
+            "ID": "14139",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Fleet",
             "Code": "AbyssFlatEvasionJewel2",
             "Level": "40",
@@ -3095,12 +4180,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14142",
+=======
+            "ID": "14140",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Vaporous",
             "Code": "AbyssFlatEvasionJewel3",
             "Level": "75",
@@ -3120,12 +4213,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14143",
+=======
+            "ID": "14141",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Beclouded",
             "Code": "AbyssFlatEvasionJewel4_",
             "Level": "83",
@@ -3145,12 +4246,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14144",
+=======
+            "ID": "14142",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Shining",
             "Code": "AbyssFlatEnergyShieldJewel1",
             "Level": "1",
@@ -3170,12 +4279,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14145",
+=======
+            "ID": "14143",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Seething",
             "Code": "AbyssFlatEnergyShieldJewel2",
             "Level": "40",
@@ -3195,12 +4312,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14146",
+=======
+            "ID": "14144",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Incandescent",
             "Code": "AbyssFlatEnergyShieldJewel3",
             "Level": "75",
@@ -3220,12 +4345,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14147",
+=======
+            "ID": "14145",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Resplendent",
             "Code": "AbyssFlatEnergyShieldJewel4",
             "Level": "83",
@@ -3245,12 +4378,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14150",
+=======
+            "ID": "14148",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Facilitating",
             "Code": "AbyssCooldownRecoverySpeed1_",
             "Level": "75",
@@ -3274,7 +4415,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14151",
+=======
+            "ID": "14149",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Expediting",
             "Code": "AbyssCooldownRecoverySpeed2__",
             "Level": "86",
@@ -3298,7 +4443,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14152",
+=======
+            "ID": "14150",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Skewering",
             "Code": "AbyssImpaleEffect1_",
             "Level": "75",
@@ -3321,12 +4470,20 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14153",
+=======
+            "ID": "14151",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Lancing",
             "Code": "AbyssImpaleEffect2_",
             "Level": "86",
@@ -3349,12 +4506,20 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14154",
+=======
+            "ID": "14152",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Spurring",
             "Code": "AbyssDamageRecoupedAsMana1",
             "Level": "75",
@@ -3379,14 +4544,24 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14155",
+=======
+            "ID": "14153",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Motivating",
             "Code": "AbyssDamageRecoupedAsMana2",
             "Level": "86",
@@ -3411,14 +4586,24 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14156",
+=======
+            "ID": "14154",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Instinct",
             "Code": "AbyssSpellBlockChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -3444,7 +4629,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14157",
+=======
+            "ID": "14155",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Confidence",
             "Code": "AbyssReducedPhysicalDamageTakenIfNotHitRecentlyJewel1",
             "Level": "1",
@@ -3467,12 +4656,20 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14158",
+=======
+            "ID": "14156",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Momentum",
             "Code": "AbyssMovementSpeedIfNotDamagedRecentlyJewel1",
             "Level": "1",
@@ -3495,12 +4692,20 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14164",
+=======
+            "ID": "14162",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Retaliation",
             "Code": "AbyssCastSpeedIfMinionKilledRecentlyJewel1",
             "Level": "30",
@@ -3521,13 +4726,22 @@
                 "speed"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+=======
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14165",
+=======
+            "ID": "14163",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Authority",
             "Code": "AbyssMinionDamageIfMinionSkillUsedRecentlyJewel1",
             "Level": "1",
@@ -3548,13 +4762,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14166",
+=======
+            "ID": "14164",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Maneuvering",
             "Code": "AbyssEvasionRatingWhileMovingJewel1",
             "Level": "1",
@@ -3578,12 +4801,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14167",
+=======
+            "ID": "14165",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Praxis",
             "Code": "AbyssManaRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -3607,13 +4838,22 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14168",
+=======
+            "ID": "14166",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Vivaciousness",
             "Code": "AbyssLifeRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -3637,13 +4877,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14174",
+=======
+            "ID": "14172",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Readiness",
             "Code": "AbyssSpellDodgeAndDodgeChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -3669,7 +4918,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14176",
+=======
+            "ID": "14174",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Guarding",
             "Code": "AbyssChanceToBlockIfDamagedRecentlyJewel1_",
             "Level": "1",
@@ -3695,7 +4948,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14183",
+=======
+            "ID": "14181",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Sanctum",
             "Code": "AbyssSelfCurseEffectOnConsecratedGroundJewel1__",
             "Level": "84",
@@ -3719,13 +4976,22 @@
                 "curse"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
+=======
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14184",
+=======
+            "ID": "14182",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Escape",
             "Code": "AbyssAvoidElementalAilmentsWhileElusiveJewel1",
             "Level": "84",
@@ -3752,16 +5018,28 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14185",
+=======
+            "ID": "14183",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Enervation",
             "Code": "AbyssHinderedEnemiesLifeRegenerationRateJewel1",
             "Level": "84",
@@ -3785,13 +5063,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14186",
+=======
+            "ID": "14184",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Clouding",
             "Code": "AbyssBlindedEnemiesCriticalStrikeChanceJewel1",
             "Level": "84",
@@ -3814,12 +5101,20 @@
                 "critical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+=======
+                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14187",
+=======
+            "ID": "14185",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Languishing",
             "Code": "AbyssWitheredEnemiesAllResistanceJewel1___",
             "Level": "84",
@@ -3842,12 +5137,20 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14188",
+=======
+            "ID": "14186",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Mangling",
             "Code": "AbyssMaimedEnemiesDamageOverTimeJewel1",
             "Level": "84",
@@ -3870,12 +5173,20 @@
                 "damage"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "14189",
+=======
+            "ID": "14187",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of Daunting",
             "Code": "AbyssIntimidatedEnemiesStunDurationJewel1",
             "Level": "84",
@@ -3903,7 +5214,11 @@
     "essence": [],
     "delve": [
         {
+<<<<<<< HEAD
             "ID": "15812",
+=======
+            "ID": "15810",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -3927,14 +5242,25 @@
                 "fire"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15822",
+=======
+            "ID": "15820",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -3958,14 +5284,25 @@
                 "cold"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15832",
+=======
+            "ID": "15830",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -3989,14 +5326,25 @@
                 "lightning"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15851",
+=======
+            "ID": "15849",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -4017,12 +5365,20 @@
                 "physical"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+=======
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15861",
+=======
+            "ID": "15859",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -4045,13 +5401,23 @@
                 "chaos"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15869",
+=======
+            "ID": "15867",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -4073,13 +5439,22 @@
                 "life"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15871",
+=======
+            "ID": "15869",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -4101,12 +5476,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15874",
+=======
+            "ID": "15872",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -4128,12 +5511,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15877",
+=======
+            "ID": "15875",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -4155,12 +5546,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15898",
+=======
+            "ID": "15896",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -4181,12 +5580,20 @@
                 "defences"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+=======
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15904",
+=======
+            "ID": "15902",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -4208,13 +5615,22 @@
                 "ailment"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15921",
+=======
+            "ID": "15919",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -4237,13 +5653,23 @@
                 "elemental"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15927",
+=======
+            "ID": "15925",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -4265,7 +5691,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15933",
+=======
+            "ID": "15931",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -4288,14 +5718,24 @@
                 "attack"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15944",
+=======
+            "ID": "15942",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -4318,14 +5758,24 @@
                 "mana"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15955",
+=======
+            "ID": "15953",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -4349,7 +5799,11 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15973",
+=======
+            "ID": "15971",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "Subterranean",
             "Code": "DelveAbyssJewelMinionDamage1",
             "Level": "1",
@@ -4370,13 +5824,22 @@
                 "minion"
             ],
             "mod_no": [
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+=======
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             ],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "ID": "15982",
+=======
+            "ID": "15980",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -4414,7 +5877,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15257",
+=======
+            "ID": "15255",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -4436,7 +5903,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15256",
+=======
+            "ID": "15254",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -4458,7 +5929,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15259",
+=======
+            "ID": "15257",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -4481,7 +5956,11 @@
             "WeightList": [
                 "0"
             ],
+<<<<<<< HEAD
             "ID": "15258",
+=======
+            "ID": "15256",
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -4503,10 +5982,14 @@
     "warlord": [],
     "scourgeup": [],
     "scourgedown": [],
+<<<<<<< HEAD
     "lang": "us",
     "cached": 1,
     "segs": [
         "Mods",
         "Gen"
     ]
+=======
+    "lang": "us"
+>>>>>>> fb042f0 (Update Mods Good Bless POEDB)
 }
