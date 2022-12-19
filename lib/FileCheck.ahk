@@ -164,7 +164,7 @@ For k, v in PoeDBAPI
 	
 	IfNotExist, %A_ScriptDir%\data\Mods%content%.json
 	{
-		UrlDownloadToFile, https://poedb.tw/us/json.php/Mods/Gen?cn=%contentdownload%, %A_ScriptDir%\data\Mods%content%.json
+		UrlDownloadToFile, https://poedb.tw/us/jsonAPI/Mods/Gen?cn=%contentdownload%, %A_ScriptDir%\data\Mods%content%.json
 		if ErrorLevel {
 			Log("Error","Data download error", "Mods.json")
 			MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb

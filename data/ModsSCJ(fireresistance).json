@@ -1,1 +1,3370 @@
-{"baseitem":{"Code":"Small Cluster Jewel","ModDomainsID":"21","IconPath":"<img loading='lazy'   alt='NewGemBase1' src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL05ld0dlbUJhc2UxIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/0eb1a9d981/NewGemBase1.png\"/>","ItemClassesID":"41","cn":"Jewel","link_name":"<a data-hover='?t=item&n=Small+Cluster+Jewel' class='whiteitem' href='/us/Small_Cluster_Jewel'>Small Cluster Jewel</a><span data-tabname=\"Small Cluster Jewel Modifiers\"></span>","attr":[],"tags":"affliction_fire_resistance"},"ids":[134,33,574,619],"config":{"normal":{"show_type":"clickable","icon":"","title":"","display_tier":true,"display_chance":true},"scourgeup":{"type":"scourgeup","show_type":"clickable","title":"Scourge Beneficial","display_chance":true},"scourgedown":{"type":"scourgedown","show_type":"clickable","title":"Scourge Detrimental","display_chance":true},"shaper":{"type":"shaper","show_type":"clickable","icon":"<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>","title":"The Shaper","display_chance":true},"elder":{"type":"elder","show_type":"clickable","icon":"<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>","title":"The Elder","display_chance":true},"crusader":{"type":"crusader","show_type":"clickable","icon":"<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>","title":"The Crusader","display_chance":true},"redeemer":{"type":"redeemer","show_type":"clickable","icon":"<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>","title":"The Redeemer","display_chance":true},"hunter":{"type":"hunter","show_type":"clickable","icon":"<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>","title":"The Hunter","display_chance":true},"warlord":{"type":"warlord","show_type":"clickable","icon":"<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>","title":"The Warlord","display_chance":true},"delve":{"type":"delve","show_type":"clickable","icon":"<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">","title":"Delve","display_chance":true},"incursion":{"type":"incursion","show_type":"clickable","icon":"<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">","title":"Incursion","display_chance":false},"veiled":{"type":"veiled","show_type":"clickable","icon":"<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>","title":"Veiled","display_chance":true},"master":{"type":"master","show_type":"clickable","icon":"<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">","title":"Crafting Bench","display_chance":false},"essence":{"type":"essence","show_type":"clickable","icon":"<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">","title":"Essence","display_chance":false},"bestiary":{"type":"bestiary","show_type":"clickable","icon":"<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">","title":"Bestiary","display_chance":false}},"gen":{"1":"Prefix","2":"Suffix"},"normal":[{"ID":"21229","Name":"Notable","Code":"AfflictionNotablePrismaticHeart__","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotablePrismaticHeart","WeightList":["1500","727","505","475","1371","1371","1315","0"],"DropChance":"1315","str":"1 Added Passive Skill is Prismatic Heart","master_no":[],"fossil_no":["elemental_damage","damage","elemental","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>","<span class='badge badge-primary ' data-tag='damage'>damage</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21364","Name":"Notable","Code":"AfflictionNotablePrismaticCarapace_","Level":"75","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotablePrismaticCarapace","WeightList":["87","86","86","82","0"],"DropChance":"82","str":"1 Added Passive Skill is Prismatic Carapace","master_no":[],"fossil_no":["armour","defences","elemental","resistance"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21367","Name":"Notable","Code":"AfflictionNotableDragonHunter__","Level":"50","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotableDragonHunter","WeightList":["696","658","0"],"DropChance":"658","str":"1 Added Passive Skill is Dragon Hunter","master_no":[],"fossil_no":["armour","defences","elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21370","Name":"Notable","Code":"AfflictionNotablePrismaticDance____","Level":"75","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotablePrismaticDance","WeightList":["82","86","86","82","0"],"DropChance":"82","str":"1 Added Passive Skill is Prismatic Dance","master_no":[],"fossil_no":["evasion","defences","elemental","resistance"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21377","Name":"Notable","Code":"AfflictionNotableFlexibleSentry___","Level":"50","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotableFlexibleSentry","WeightList":["375","686","686","658","0"],"DropChance":"658","str":"1 Added Passive Skill is Flexible Sentry","master_no":[],"fossil_no":["block","ailment"],"mod_no":["<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"],"mod_fossil_item":[]},{"ID":"21388","Name":"Notable","Code":"AfflictionNotableMoltenOnesMark_","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotableMoltenOnesMark","WeightList":["247","0"],"DropChance":"247","str":"1 Added Passive Skill is Molten One's Mark","master_no":[],"fossil_no":["resource","life","elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21389","Name":"Notable","Code":"AfflictionNotableFireAttunement_","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotableFireAttunement","WeightList":["1315","0"],"DropChance":"1315","str":"1 Added Passive Skill is Fire Attunement","master_no":[],"fossil_no":["elemental","fire","ailment"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"],"mod_fossil_item":[]},{"ID":"21390","Name":"Notable","Code":"AfflictionNotablePureMight","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotablePureMight","WeightList":["247","180","180","0"],"DropChance":"247","str":"1 Added Passive Skill is Pure Might","master_no":[],"fossil_no":["resource","mana","attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>","<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21391","Name":"Notable","Code":"AfflictionNotableBlacksmith_","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotableBlacksmith","WeightList":["247","261","0"],"DropChance":"247","str":"1 Added Passive Skill is Blacksmith","master_no":[],"fossil_no":["armour","resource","life","defences","elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>","<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21392","Name":"Notable","Code":"AfflictionNotableNonFlammable","Level":"50","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionNotableNonFlammable","WeightList":["658","0"],"DropChance":"658","str":"1 Added Passive Skill is Non-Flammable","master_no":[],"fossil_no":["elemental","fire","resistance","ailment"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>","<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"],"mod_fossil_item":[]},{"ID":"21471","Name":"Hale","Code":"AfflictionJewelSmallPassivesGrantLifeSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantLife","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Maximum Life","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21472","Name":"Healthy","Code":"AfflictionJewelSmallPassivesGrantLifeSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantLife","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;7)</span> to Maximum Life","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21473","Name":"Sanguine","Code":"AfflictionJewelSmallPassivesGrantLifeSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantLife","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;10)</span> to Maximum Life","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21474","Name":"Stalwart","Code":"AfflictionJewelSmallPassivesGrantLifeSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantLife","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;13)</span> to Maximum Life","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21475","Name":"Stout","Code":"AfflictionJewelSmallPassivesGrantLifeSmall5_","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantLife","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(14&ndash;16)</span> to Maximum Life","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21476","Name":"Beryl","Code":"AfflictionJewelSmallPassivesGrantManaSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantMana","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;5)</span> to Maximum Mana","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21477","Name":"Cobalt","Code":"AfflictionJewelSmallPassivesGrantManaSmall2_","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantMana","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Maximum Mana","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21478","Name":"Azure","Code":"AfflictionJewelSmallPassivesGrantManaSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantMana","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;10)</span> to Maximum Mana","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21479","Name":"Sapphire","Code":"AfflictionJewelSmallPassivesGrantManaSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantMana","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;13)</span> to Maximum Mana","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21480","Name":"Cerulean","Code":"AfflictionJewelSmallPassivesGrantManaSmall5_","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantMana","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(14&ndash;16)</span> to Maximum Mana","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21481","Name":"Shining","Code":"AfflictionJewelSmallPassivesGrantESSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantES","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Maximum Energy Shield","master_no":[],"fossil_no":["energy_shield","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21482","Name":"Glimmering","Code":"AfflictionJewelSmallPassivesGrantESSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantES","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;9)</span> to Maximum Energy Shield","master_no":[],"fossil_no":["energy_shield","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21483","Name":"Glowing","Code":"AfflictionJewelSmallPassivesGrantESSmall3_","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantES","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;12)</span> to Maximum Energy Shield","master_no":[],"fossil_no":["energy_shield","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21484","Name":"Radiating","Code":"AfflictionJewelSmallPassivesGrantESSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantES","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(13&ndash;16)</span> to Maximum Energy Shield","master_no":[],"fossil_no":["energy_shield","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21485","Name":"Pulsing","Code":"AfflictionJewelSmallPassivesGrantESSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantES","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(17&ndash;20)</span> to Maximum Energy Shield","master_no":[],"fossil_no":["energy_shield","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21486","Name":"Lacquered","Code":"AfflictionJewelSmallPassivesGrantArmourSmall__","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantArmour","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;20)</span> to Armour","master_no":[],"fossil_no":["armour","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21487","Name":"Studded","Code":"AfflictionJewelSmallPassivesGrantArmourSmall2__","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantArmour","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(21&ndash;30)</span> to Armour","master_no":[],"fossil_no":["armour","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21488","Name":"Ribbed","Code":"AfflictionJewelSmallPassivesGrantArmourSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantArmour","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(31&ndash;40)</span> to Armour","master_no":[],"fossil_no":["armour","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21489","Name":"Fortified","Code":"AfflictionJewelSmallPassivesGrantArmourSmall4___","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantArmour","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(41&ndash;53)</span> to Armour","master_no":[],"fossil_no":["armour","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21490","Name":"Plated","Code":"AfflictionJewelSmallPassivesGrantArmourSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantArmour","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(54&ndash;66)</span> to Armour","master_no":[],"fossil_no":["armour","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21491","Name":"Agile","Code":"AfflictionJewelSmallPassivesGrantEvasionSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantEvasion","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;20)</span> to Evasion","master_no":[],"fossil_no":["evasion","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21492","Name":"Dancer's","Code":"AfflictionJewelSmallPassivesGrantEvasionSmall2_","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantEvasion","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(21&ndash;30)</span> to Evasion","master_no":[],"fossil_no":["evasion","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21493","Name":"Acrobat's","Code":"AfflictionJewelSmallPassivesGrantEvasionSmall3___","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantEvasion","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(31&ndash;40)</span> to Evasion","master_no":[],"fossil_no":["evasion","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21494","Name":"Fleet","Code":"AfflictionJewelSmallPassivesGrantEvasionSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantEvasion","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(41&ndash;53)</span> to Evasion","master_no":[],"fossil_no":["evasion","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21495","Name":"Blurred","Code":"AfflictionJewelSmallPassivesGrantEvasionSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantEvasion","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(54&ndash;66)</span> to Evasion","master_no":[],"fossil_no":["evasion","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"21496","Name":"of the Brute","Code":"AfflictionJewelSmallPassivesGrantStrSmall_","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantStr","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Strength","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21497","Name":"of the Wrestler","Code":"AfflictionJewelSmallPassivesGrantStrSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantStr","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Strength","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21498","Name":"of the Bear","Code":"AfflictionJewelSmallPassivesGrantStrSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantStr","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Strength","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21499","Name":"of the Lion","Code":"AfflictionJewelSmallPassivesGrantStrSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantStr","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;11)</span> to Strength","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21500","Name":"of the Gorilla","Code":"AfflictionJewelSmallPassivesGrantStrSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantStr","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(12&ndash;14)</span> to Strength","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21501","Name":"of the Mongoose","Code":"AfflictionJewelSmallPassivesGrantDexSmall_","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantDex","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Dexterity","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21502","Name":"of the Lynx","Code":"AfflictionJewelSmallPassivesGrantDexSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantDex","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Dexterity","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21503","Name":"of the Fox","Code":"AfflictionJewelSmallPassivesGrantDexSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantDex","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Dexterity","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21504","Name":"of the Falcon","Code":"AfflictionJewelSmallPassivesGrantDexSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantDex","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;11)</span> to Dexterity","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21505","Name":"of the Panther","Code":"AfflictionJewelSmallPassivesGrantDexSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantDex","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(12&ndash;14)</span> to Dexterity","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21506","Name":"of the Pupil","Code":"AfflictionJewelSmallPassivesGrantIntSmall_","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantInt","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Intelligence","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21507","Name":"of the Student","Code":"AfflictionJewelSmallPassivesGrantIntSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantInt","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Intelligence","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21508","Name":"of the Prodigy","Code":"AfflictionJewelSmallPassivesGrantIntSmall3______","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantInt","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Intelligence","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21509","Name":"of the Augur","Code":"AfflictionJewelSmallPassivesGrantIntSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantInt","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;11)</span> to Intelligence","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21510","Name":"of the Philosopher","Code":"AfflictionJewelSmallPassivesGrantIntSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantInt","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(12&ndash;14)</span> to Intelligence","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21511","Name":"of the Cloud","Code":"AfflictionJewelSmallPassivesGrantAttributesSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantAttributes","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+2</span> to All Attributes","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21512","Name":"of the Sky","Code":"AfflictionJewelSmallPassivesGrantAttributesSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantAttributes","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+3</span> to All Attributes","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21513","Name":"of the Meteor","Code":"AfflictionJewelSmallPassivesGrantAttributesSmall3_","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantAttributes","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+4</span> to All Attributes","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21514","Name":"of the Comet","Code":"AfflictionJewelSmallPassivesGrantAttributesSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantAttributes","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+5</span> to All Attributes","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21515","Name":"of the Heavens","Code":"AfflictionJewelSmallPassivesGrantAttributesSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantAttributes","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+6</span> to All Attributes","master_no":[],"fossil_no":["attribute"],"mod_no":["<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"],"mod_fossil_item":[]},{"ID":"21516","Name":"of Excitement","Code":"AfflictionJewelSmallPassivesGrantManaRegenSmall_","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantManaRegen","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>4</span>% increased Mana Regeneration Rate","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21517","Name":"of Joy","Code":"AfflictionJewelSmallPassivesGrantManaRegenSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantManaRegen","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>5</span>% increased Mana Regeneration Rate","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21518","Name":"of Elation","Code":"AfflictionJewelSmallPassivesGrantManaRegenSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantManaRegen","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>6</span>% increased Mana Regeneration Rate","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21519","Name":"of Bliss","Code":"AfflictionJewelSmallPassivesGrantManaRegenSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantManaRegen","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>(7&ndash;8)</span>% increased Mana Regeneration Rate","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21520","Name":"of Euphoria","Code":"AfflictionJewelSmallPassivesGrantManaRegenSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantManaRegen","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>(9&ndash;10)</span>% increased Mana Regeneration Rate","master_no":[],"fossil_no":["resource","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"21521","Name":"of the Newt","Code":"AfflictionJewelSmallPassivesGrantLifeRegenSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLifeRegen","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.1</span>% of Life per Second","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21522","Name":"of the Lizard","Code":"AfflictionJewelSmallPassivesGrantLifeRegenSmall2_","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLifeRegen","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.15</span>% of Life per Second","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21523","Name":"of the Flatworm","Code":"AfflictionJewelSmallPassivesGrantLifeRegenSmall3_","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLifeRegen","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.2</span>% of Life per Second","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21524","Name":"of the Starfish","Code":"AfflictionJewelSmallPassivesGrantLifeRegenSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLifeRegen","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.25</span>% of Life per Second","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21525","Name":"of the Hydra","Code":"AfflictionJewelSmallPassivesGrantLifeRegenSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLifeRegen","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.3</span>% of Life per Second","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"21526","Name":"of the Whelpling","Code":"AfflictionJewelSmallPassivesGrantFireResSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantFireRes","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span>% to Fire Resistance","master_no":[],"fossil_no":["elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21527","Name":"of the Salamander","Code":"AfflictionJewelSmallPassivesGrantFireResSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantFireRes","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span>% to Fire Resistance","master_no":[],"fossil_no":["elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21528","Name":"of the Drake","Code":"AfflictionJewelSmallPassivesGrantFireResSmall3_","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantFireRes","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;7)</span>% to Fire Resistance","master_no":[],"fossil_no":["elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21529","Name":"of the Kiln","Code":"AfflictionJewelSmallPassivesGrantFireResSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantFireRes","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;9)</span>% to Fire Resistance","master_no":[],"fossil_no":["elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21530","Name":"of the Furnace","Code":"AfflictionJewelSmallPassivesGrantFireResSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantFireRes","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;11)</span>% to Fire Resistance","master_no":[],"fossil_no":["elemental","fire","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21531","Name":"of the Inuit","Code":"AfflictionJewelSmallPassivesGrantColdResSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantColdRes","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span>% to Cold Resistance","master_no":[],"fossil_no":["elemental","cold","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21532","Name":"of the Seal","Code":"AfflictionJewelSmallPassivesGrantColdResSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantColdRes","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span>% to Cold Resistance","master_no":[],"fossil_no":["elemental","cold","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21533","Name":"of the Penguin","Code":"AfflictionJewelSmallPassivesGrantColdResSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantColdRes","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;7)</span>% to Cold Resistance","master_no":[],"fossil_no":["elemental","cold","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21534","Name":"of the Yeti","Code":"AfflictionJewelSmallPassivesGrantColdResSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantColdRes","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;9)</span>% to Cold Resistance","master_no":[],"fossil_no":["elemental","cold","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21535","Name":"of the Walrus","Code":"AfflictionJewelSmallPassivesGrantColdResSmall5_","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantColdRes","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;11)</span>% to Cold Resistance","master_no":[],"fossil_no":["elemental","cold","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21536","Name":"of the Cloud","Code":"AfflictionJewelSmallPassivesGrantLightningResSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLightningRes","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span>% to Lightning Resistance","master_no":[],"fossil_no":["elemental","lightning","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21537","Name":"of the Squall","Code":"AfflictionJewelSmallPassivesGrantLightningResSmall2__","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLightningRes","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span>% to Lightning Resistance","master_no":[],"fossil_no":["elemental","lightning","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21538","Name":"of the Storm","Code":"AfflictionJewelSmallPassivesGrantLightningResSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLightningRes","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;7)</span>% to Lightning Resistance","master_no":[],"fossil_no":["elemental","lightning","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21539","Name":"of the Thunderhead","Code":"AfflictionJewelSmallPassivesGrantLightningResSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLightningRes","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;9)</span>% to Lightning Resistance","master_no":[],"fossil_no":["elemental","lightning","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21540","Name":"of the Tempest","Code":"AfflictionJewelSmallPassivesGrantLightningResSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantLightningRes","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;11)</span>% to Lightning Resistance","master_no":[],"fossil_no":["elemental","lightning","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21541","Name":"of the Crystal","Code":"AfflictionJewelSmallPassivesGrantElementalResSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantElementalRes","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+2</span>% to Elemental Resistance","master_no":[],"fossil_no":["elemental","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21542","Name":"of the Prism","Code":"AfflictionJewelSmallPassivesGrantElementalResSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantElementalRes","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+3</span>% to Elemental Resistance","master_no":[],"fossil_no":["elemental","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21543","Name":"of the Kaleidoscope","Code":"AfflictionJewelSmallPassivesGrantElementalResSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantElementalRes","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+4</span>% to Elemental Resistance","master_no":[],"fossil_no":["elemental","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21544","Name":"of Variegation","Code":"AfflictionJewelSmallPassivesGrantElementalResSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantElementalRes","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+5</span>% to Elemental Resistance","master_no":[],"fossil_no":["elemental","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21545","Name":"of the Rainbow","Code":"AfflictionJewelSmallPassivesGrantElementalResSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantElementalRes","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+6</span>% to Elemental Resistance","master_no":[],"fossil_no":["elemental","resistance"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21546","Name":"of the Lost","Code":"AfflictionJewelSmallPassivesGrantChaosResSmall","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantChaosRes","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>+3</span>% to Chaos Resistance","master_no":[],"fossil_no":["chaos","resistance"],"mod_no":["<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21547","Name":"of Banishment","Code":"AfflictionJewelSmallPassivesGrantChaosResSmall2","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantChaosRes","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>+4</span>% to Chaos Resistance","master_no":[],"fossil_no":["chaos","resistance"],"mod_no":["<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21548","Name":"of Eviction","Code":"AfflictionJewelSmallPassivesGrantChaosResSmall3","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantChaosRes","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>+5</span>% to Chaos Resistance","master_no":[],"fossil_no":["chaos","resistance"],"mod_no":["<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21549","Name":"of Expulsion","Code":"AfflictionJewelSmallPassivesGrantChaosResSmall4","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantChaosRes","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>+6</span>% to Chaos Resistance","master_no":[],"fossil_no":["chaos","resistance"],"mod_no":["<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21550","Name":"of Exile","Code":"AfflictionJewelSmallPassivesGrantChaosResSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"2","CorrectGroup":"AfflictionJewelSmallPassivesGrantChaosRes","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>+(7&ndash;8)</span>% to Chaos Resistance","master_no":[],"fossil_no":["chaos","resistance"],"mod_no":["<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>","<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"],"mod_fossil_item":[]},{"ID":"21551","Name":"Harmful","Code":"AfflictionJewelSmallPassivesGrantDamageSmall_","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantDamage","WeightList":["500","0"],"DropChance":"500","str":"Added Small Passive Skills also grant: <span class='mod-value'>2</span>% increased Damage","master_no":[],"fossil_no":["damage"],"mod_no":["<span class='badge badge-primary ' data-tag='damage'>damage</span>"],"mod_fossil_item":[]},{"ID":"21552","Name":"Hazardous","Code":"AfflictionJewelSmallPassivesGrantDamageSmall2_","Level":"68","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantDamage","WeightList":["400","0"],"DropChance":"400","str":"Added Small Passive Skills also grant: <span class='mod-value'>3</span>% increased Damage","master_no":[],"fossil_no":["damage"],"mod_no":["<span class='badge badge-primary ' data-tag='damage'>damage</span>"],"mod_fossil_item":[]},{"ID":"21553","Name":"Dangerous","Code":"AfflictionJewelSmallPassivesGrantDamageSmall3_","Level":"73","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantDamage","WeightList":["300","0"],"DropChance":"300","str":"Added Small Passive Skills also grant: <span class='mod-value'>4</span>% increased Damage","master_no":[],"fossil_no":["damage"],"mod_no":["<span class='badge badge-primary ' data-tag='damage'>damage</span>"],"mod_fossil_item":[]},{"ID":"21554","Name":"Destructive","Code":"AfflictionJewelSmallPassivesGrantDamageSmall4_","Level":"78","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantDamage","WeightList":["200","0"],"DropChance":"200","str":"Added Small Passive Skills also grant: <span class='mod-value'>5</span>% increased Damage","master_no":[],"fossil_no":["damage"],"mod_no":["<span class='badge badge-primary ' data-tag='damage'>damage</span>"],"mod_fossil_item":[]},{"ID":"21555","Name":"Deadly","Code":"AfflictionJewelSmallPassivesGrantDamageSmall5","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesGrantDamage","WeightList":["100","0"],"DropChance":"100","str":"Added Small Passive Skills also grant: <span class='mod-value'>6</span>% increased Damage","master_no":[],"fossil_no":["damage"],"mod_no":["<span class='badge badge-primary ' data-tag='damage'>damage</span>"],"mod_fossil_item":[]},{"ID":"21556","Name":"Potent","Code":"AfflictionJewelSmallPassivesHaveIncreasedEffect","Level":"1","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesHaveIncreasedEffect","WeightList":["500"],"DropChance":"500","str":"Added Small Passive Skills have <span class='mod-value'>25</span>% increased Effect","master_no":[],"fossil_no":[],"mod_no":[],"mod_fossil_item":[]},{"ID":"21557","Name":"Powerful","Code":"AfflictionJewelSmallPassivesHaveIncreasedEffect2","Level":"84","ModDomainsID":"21","ModGenerationTypeID":"1","CorrectGroup":"AfflictionJewelSmallPassivesHaveIncreasedEffect","WeightList":["300"],"DropChance":"300","str":"Added Small Passive Skills have <span class='mod-value'>35</span>% increased Effect","master_no":[],"fossil_no":[],"mod_no":[],"mod_fossil_item":[]}],"master":[],"essence":[],"delve":[{"ID":"15610","Name":"Subterranean","Code":"DelveJewelFirePenetration1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"1","CorrectGroup":"FireResistancePenetration","WeightList":["1000","1000","0"],"DropChance":"1000","str":"Damage Penetrates <span class='mod-value'>1</span>% Fire Resistance","master_no":[],"fossil_no":["elemental_damage","damage","elemental","fire"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>","<span class='badge badge-primary ' data-tag='damage'>damage</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"],"mod_fossil_item":[]},{"ID":"15620","Name":"Subterranean","Code":"DelveJewelColdPenetration1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"1","CorrectGroup":"ColdResistancePenetration","WeightList":["1000","1000","0"],"DropChance":"1000","str":"Damage Penetrates <span class='mod-value'>1</span>% Cold Resistance","master_no":[],"fossil_no":["elemental_damage","damage","elemental","cold"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>","<span class='badge badge-primary ' data-tag='damage'>damage</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"],"mod_fossil_item":[]},{"ID":"15630","Name":"Subterranean","Code":"DelveJewelLightningPenetration1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"1","CorrectGroup":"LightningResistancePenetration","WeightList":["1000","1000","0"],"DropChance":"1000","str":"Damage Penetrates <span class='mod-value'>1</span>% Lightning Resistance","master_no":[],"fossil_no":["elemental_damage","damage","elemental","lightning"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>","<span class='badge badge-primary ' data-tag='damage'>damage</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>","<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"],"mod_fossil_item":[]},{"ID":"15649","Name":"Subterranean","Code":"DelveJewelPhysicalDamageOverTimeTaken1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"1","CorrectGroup":"PhysicalDamageOverTimeTaken","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>(1&ndash;2)</span>% reduced Physical Damage taken over time","master_no":[],"fossil_no":["physical"],"mod_no":["<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"],"mod_fossil_item":[]},{"ID":"15659","Name":"of the Underground","Code":"DelveJewelChaosDamage1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"IncreasedChaosDamage","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>(13&ndash;19)</span>% increased Chaos Damage","master_no":[],"fossil_no":["chaos_damage","damage","chaos"],"mod_no":["<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>","<span class='badge badge-primary ' data-tag='damage'>damage</span>","<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"],"mod_fossil_item":[]},{"ID":"15667","Name":"Subterranean","Code":"DelveJewelLifeRegeneration1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"1","CorrectGroup":"LifeRegenerationRatePercentage","WeightList":["1000","1000","0"],"DropChance":"1000","str":"Regenerate <span class='mod-value'>0.3</span>% of Life per second","master_no":[],"fossil_no":["resource","life"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"],"mod_fossil_item":[]},{"ID":"15669","Name":"of the Underground","Code":"DelveJewelArmourIfYouHitRecently1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"PhysicalDamageReductionRatingIfYouHaveHitAnEnemyRecently","WeightList":["300","300","0"],"DropChance":"300","str":"<span class='mod-value'>+(250&ndash;300)</span> to Armour if you've Hit an Enemy Recently","master_no":[],"fossil_no":["armour","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"15672","Name":"of the Underground","Code":"DelveJewelEvasionIfYouHitRecently1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"EvasionRatingIfYouHaveHitAnEnemyRecently","WeightList":["300","300","0"],"DropChance":"300","str":"<span class='mod-value'>+(250&ndash;300)</span> to Evasion Rating if Hit an Enemy Recently","master_no":[],"fossil_no":["evasion","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"15675","Name":"of the Underground","Code":"DelveJewelEnergyShieldRegenIfYouHitRecently1_","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"EnergyShieldRegenerationRatePerMinuteIfYouHaveHitAnEnemyRecently","WeightList":["300","300","0"],"DropChance":"300","str":"Regenerate <span class='mod-value'>0.3</span>% of Energy Shield per second if you've Hit an Enemy Recently","master_no":[],"fossil_no":["energy_shield","defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"15696","Name":"Subterranean","Code":"DelveJewelGlobalDefences1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"1","CorrectGroup":"AllDefences","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>(4&ndash;6)</span>% increased Global Defences","master_no":[],"fossil_no":["defences"],"mod_no":["<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"],"mod_fossil_item":[]},{"ID":"15702","Name":"of the Underground","Code":"DelveJewelAilmentDamage1__","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"AilmentDamage","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>(15&ndash;20)</span>% increased Damage with Ailments","master_no":[],"fossil_no":["damage","ailment"],"mod_no":["<span class='badge badge-primary ' data-tag='damage'>damage</span>","<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"],"mod_fossil_item":[]},{"ID":"15719","Name":"Subterranean","Code":"DelveJewelElementalPenetration1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"1","CorrectGroup":"ElementalPenetration","WeightList":["1600","1600","0"],"DropChance":"1600","str":"Damage Penetrates <span class='mod-value'>1</span>% Elemental Resistances","master_no":[],"fossil_no":["elemental_damage","damage","elemental"],"mod_no":["<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>","<span class='badge badge-primary ' data-tag='damage'>damage</span>","<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"],"mod_fossil_item":[]},{"ID":"15725","Name":"of the Underground","Code":"DelveJewelAvoidInterruptionWhileCasting1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"AvoidInterruptionWhileCasting","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>(15&ndash;20)</span>% chance to Avoid interruption from Stuns while Casting","master_no":[],"fossil_no":[],"mod_no":[],"mod_fossil_item":[]},{"ID":"15731","Name":"of the Underground","Code":"DelveJewelAttackLeech1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"LifeLeech","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>0.3</span>% of Attack Damage Leeched as Life","master_no":[],"fossil_no":["resource","life","attack"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>","<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"],"mod_fossil_item":[]},{"ID":"15742","Name":"of the Underground","Code":"DelveJewelDamageTakenGainedAsMana1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"PercentDamageGoesToMana","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>(2&ndash;3)</span>% of Damage taken Recouped as Mana","master_no":[],"fossil_no":["resource","life","mana"],"mod_no":["<span class='badge badge-primary ' data-tag='resource'>resource</span>","<span class='badge badge-primary craftinglife' data-tag='life'>life</span>","<span class='badge badge-primary ' data-tag='mana'>mana</span>"],"mod_fossil_item":[]},{"ID":"15753","Name":"of the Underground","Code":"DelveJewelChanceToGainOnslaughtOnFlaskUse1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"ChanceToGainOnslaughtOnFlaskUse","WeightList":["1000","1000","0"],"DropChance":"1000","str":"<span class='mod-value'>(5&ndash;10)</span>% chance to gain Onslaught when you use a Flask","master_no":[],"fossil_no":["flask"],"mod_no":[],"mod_fossil_item":[]},{"ID":"15772","Name":"of the Underground","Code":"DelveJewelMinionAttackAndCastSpeed1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"MinionAttackSpeedAndCastSpeed","WeightList":["0","2000","0"],"DropChance":"2000","str":"Minions have <span class='mod-value'>(4&ndash;6)</span>% increased Attack Speed<br>Minions have <span class='mod-value'>(4&ndash;6)</span>% increased Cast Speed","master_no":[],"fossil_no":["attack","caster","speed","minion"],"mod_no":["<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>","<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>","<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>","<span class='badge badge-primary ' data-tag='minion'>minion</span>"],"mod_fossil_item":[]},{"ID":"15780","Name":"of the Underground","Code":"DelveJewelVaalSoulsOnKill1","Level":"1","ModDomainsID":"16","ModGenerationTypeID":"2","CorrectGroup":"AdditionalVaalSoulOnKill","WeightList":["2000","2000","0"],"DropChance":"2000","str":"<span class='mod-value'>(3&ndash;5)</span>% chance to gain an additional Vaal Soul on Kill","master_no":[],"fossil_no":["vaal"],"mod_no":[],"mod_fossil_item":["Tangled Fossil"]}],"incursion":[],"bestiary":[{"Code":"GrantsBirdAspectCrafted","ModDomainsID":"1","CorrectGroup":"GrantedSkill","WeightList":["0"],"ID":"15061","Level":"20","Name":"of Saqawal","ModGenerationTypeID":"2","DropChance":0,"str":"Grants Level <span class='mod-value'>20</span> Aspect of the Avian Skill","master_no":[],"fossil_no":["skill"],"mod_no":[],"mod_fossil_item":[]},{"Code":"GrantsCatAspectCrafted","ModDomainsID":"1","CorrectGroup":"GrantedSkill","WeightList":["0"],"ID":"15060","Level":"20","Name":"of Farrul","ModGenerationTypeID":"2","DropChance":0,"str":"Grants Level <span class='mod-value'>20</span> Aspect of the Cat Skill","master_no":[],"fossil_no":["skill"],"mod_no":[],"mod_fossil_item":[]},{"Code":"GrantsCrabAspectCrafted","ModDomainsID":"1","CorrectGroup":"GrantedSkill","WeightList":["0"],"ID":"15063","Level":"20","Name":"of Craiceann","ModGenerationTypeID":"2","DropChance":0,"str":"Grants Level <span class='mod-value'>20</span> Aspect of the Crab Skill","master_no":[],"fossil_no":["blue_herring","skill"],"mod_no":[],"mod_fossil_item":[]},{"Code":"GrantsSpiderAspectCrafted","ModDomainsID":"1","CorrectGroup":"GrantedSkill","WeightList":["0"],"ID":"15062","Level":"20","Name":"of Fenumus","ModGenerationTypeID":"2","DropChance":0,"str":"Grants Level <span class='mod-value'>20</span> Aspect of the Spider Skill","master_no":[],"fossil_no":["skill"],"mod_no":[],"mod_fossil_item":[]}],"elder":[],"shaper":[],"crusader":[],"redeemer":[],"hunter":[],"warlord":[],"veiled":[],"scourgeup":[],"scourgedown":[],"lang":"us"}
+{
+    "baseitem": {
+        "Code": "Small Cluster Jewel",
+        "ModDomainsID": "21",
+        "IconPath": "<img loading='lazy'    alt='NewGemBase1' src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL05ld0dlbUJhc2UxIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/0eb1a9d981/NewGemBase1.png\"/>",
+        "ItemClassesID": "41",
+        "cn": "Jewel",
+        "link_name": "<a data-hover='?t=item&n=Small+Cluster+Jewel' class='whiteitem' href='/us/Small_Cluster_Jewel'>Small Cluster Jewel</a><span data-tabname=\"Small Cluster Jewel Modifiers\"></span>",
+        "attr": [],
+        "tags": "affliction_fire_resistance"
+    },
+    "ids": [
+        134,
+        33,
+        569,
+        614
+    ],
+    "config": {
+        "normal": {
+            "show_type": "clickable",
+            "icon": "",
+            "title": "",
+            "display_tier": true,
+            "display_chance": true
+        },
+        "scourgeup": {
+            "type": "scourgeup",
+            "show_type": "clickable",
+            "title": "Scourge Beneficial",
+            "display_chance": true
+        },
+        "scourgedown": {
+            "type": "scourgedown",
+            "show_type": "clickable",
+            "title": "Scourge Detrimental",
+            "display_chance": true
+        },
+        "shaper": {
+            "type": "shaper",
+            "show_type": "clickable",
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+            "title": "The Shaper",
+            "display_chance": true
+        },
+        "elder": {
+            "type": "elder",
+            "show_type": "clickable",
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+            "title": "The Elder",
+            "display_chance": true
+        },
+        "crusader": {
+            "type": "crusader",
+            "show_type": "clickable",
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+            "title": "The Crusader",
+            "display_chance": true
+        },
+        "redeemer": {
+            "type": "redeemer",
+            "show_type": "clickable",
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+            "title": "The Redeemer",
+            "display_chance": true
+        },
+        "hunter": {
+            "type": "hunter",
+            "show_type": "clickable",
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+            "title": "The Hunter",
+            "display_chance": true
+        },
+        "warlord": {
+            "type": "warlord",
+            "show_type": "clickable",
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+            "title": "The Warlord",
+            "display_chance": true
+        },
+        "delve": {
+            "type": "delve",
+            "show_type": "clickable",
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+            "title": "Delve",
+            "display_chance": true
+        },
+        "incursion": {
+            "type": "incursion",
+            "show_type": "clickable",
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+            "title": "Incursion",
+            "display_chance": false
+        },
+        "veiled": {
+            "type": "veiled",
+            "show_type": "clickable",
+            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+            "title": "Veiled",
+            "display_chance": true
+        },
+        "master": {
+            "type": "master",
+            "show_type": "clickable",
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+            "title": "Crafting Bench",
+            "display_chance": false
+        },
+        "essence": {
+            "type": "essence",
+            "show_type": "clickable",
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+            "title": "Essence",
+            "display_chance": false
+        },
+        "bestiary": {
+            "type": "bestiary",
+            "show_type": "clickable",
+            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+            "title": "Bestiary",
+            "display_chance": false
+        }
+    },
+    "gen": {
+        "1": "Prefix",
+        "2": "Suffix"
+    },
+    "normal": [
+        {
+            "ID": "21470",
+            "Name": "Notable",
+            "Code": "AfflictionNotablePrismaticHeart__",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotablePrismaticHeart"
+            ],
+            "WeightList": [
+                "1500",
+                "727",
+                "505",
+                "475",
+                "1371",
+                "1371",
+                "1315",
+                "0"
+            ],
+            "DropChance": "1315",
+            "str": "1 Added Passive Skill is Prismatic Heart",
+            "master_no": [],
+            "fossil_no": [
+                "elemental_damage",
+                "damage",
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21605",
+            "Name": "Notable",
+            "Code": "AfflictionNotablePrismaticCarapace_",
+            "Level": "75",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotablePrismaticCarapace"
+            ],
+            "WeightList": [
+                "87",
+                "86",
+                "86",
+                "82",
+                "0"
+            ],
+            "DropChance": "82",
+            "str": "1 Added Passive Skill is Prismatic Carapace",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences",
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21608",
+            "Name": "Notable",
+            "Code": "AfflictionNotableDragonHunter__",
+            "Level": "50",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotableDragonHunter"
+            ],
+            "WeightList": [
+                "696",
+                "658",
+                "0"
+            ],
+            "DropChance": "658",
+            "str": "1 Added Passive Skill is Dragon Hunter",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences",
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21611",
+            "Name": "Notable",
+            "Code": "AfflictionNotablePrismaticDance____",
+            "Level": "75",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotablePrismaticDance"
+            ],
+            "WeightList": [
+                "82",
+                "86",
+                "86",
+                "82",
+                "0"
+            ],
+            "DropChance": "82",
+            "str": "1 Added Passive Skill is Prismatic Dance",
+            "master_no": [],
+            "fossil_no": [
+                "evasion",
+                "defences",
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21618",
+            "Name": "Notable",
+            "Code": "AfflictionNotableFlexibleSentry___",
+            "Level": "50",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotableFlexibleSentry"
+            ],
+            "WeightList": [
+                "375",
+                "686",
+                "686",
+                "658",
+                "0"
+            ],
+            "DropChance": "658",
+            "str": "1 Added Passive Skill is Flexible Sentry",
+            "master_no": [],
+            "fossil_no": [
+                "block",
+                "ailment"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21629",
+            "Name": "Notable",
+            "Code": "AfflictionNotableMoltenOnesMark_",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotableMoltenOnesMark"
+            ],
+            "WeightList": [
+                "247",
+                "0"
+            ],
+            "DropChance": "247",
+            "str": "1 Added Passive Skill is Molten One's Mark",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life",
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21630",
+            "Name": "Notable",
+            "Code": "AfflictionNotableFireAttunement_",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotableFireAttunement"
+            ],
+            "WeightList": [
+                "1315",
+                "0"
+            ],
+            "DropChance": "1315",
+            "str": "1 Added Passive Skill is Fire Attunement",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "fire",
+                "ailment"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21631",
+            "Name": "Notable",
+            "Code": "AfflictionNotablePureMight",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotablePureMight"
+            ],
+            "WeightList": [
+                "247",
+                "180",
+                "180",
+                "0"
+            ],
+            "DropChance": "247",
+            "str": "1 Added Passive Skill is Pure Might",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana",
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>",
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21632",
+            "Name": "Notable",
+            "Code": "AfflictionNotableBlacksmith_",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotableBlacksmith"
+            ],
+            "WeightList": [
+                "247",
+                "261",
+                "0"
+            ],
+            "DropChance": "247",
+            "str": "1 Added Passive Skill is Blacksmith",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "resource",
+                "life",
+                "defences",
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21633",
+            "Name": "Notable",
+            "Code": "AfflictionNotableNonFlammable",
+            "Level": "50",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionNotableNonFlammable"
+            ],
+            "WeightList": [
+                "658",
+                "0"
+            ],
+            "DropChance": "658",
+            "str": "1 Added Passive Skill is Non-Flammable",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "fire",
+                "resistance",
+                "ailment"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21712",
+            "Name": "Hale",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLife"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Maximum Life",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21713",
+            "Name": "Healthy",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLife"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;7)</span> to Maximum Life",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21714",
+            "Name": "Sanguine",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLife"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;10)</span> to Maximum Life",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21715",
+            "Name": "Stalwart",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLife"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;13)</span> to Maximum Life",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21716",
+            "Name": "Stout",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeSmall5_",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLife"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(14&ndash;16)</span> to Maximum Life",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21717",
+            "Name": "Beryl",
+            "Code": "AfflictionJewelSmallPassivesGrantManaSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantMana"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;5)</span> to Maximum Mana",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21718",
+            "Name": "Cobalt",
+            "Code": "AfflictionJewelSmallPassivesGrantManaSmall2_",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantMana"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Maximum Mana",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21719",
+            "Name": "Azure",
+            "Code": "AfflictionJewelSmallPassivesGrantManaSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantMana"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;10)</span> to Maximum Mana",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21720",
+            "Name": "Sapphire",
+            "Code": "AfflictionJewelSmallPassivesGrantManaSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantMana"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;13)</span> to Maximum Mana",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21721",
+            "Name": "Cerulean",
+            "Code": "AfflictionJewelSmallPassivesGrantManaSmall5_",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantMana"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(14&ndash;16)</span> to Maximum Mana",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21722",
+            "Name": "Shining",
+            "Code": "AfflictionJewelSmallPassivesGrantESSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantES"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Maximum Energy Shield",
+            "master_no": [],
+            "fossil_no": [
+                "energy_shield",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21723",
+            "Name": "Glimmering",
+            "Code": "AfflictionJewelSmallPassivesGrantESSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantES"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;9)</span> to Maximum Energy Shield",
+            "master_no": [],
+            "fossil_no": [
+                "energy_shield",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21724",
+            "Name": "Glowing",
+            "Code": "AfflictionJewelSmallPassivesGrantESSmall3_",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantES"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;12)</span> to Maximum Energy Shield",
+            "master_no": [],
+            "fossil_no": [
+                "energy_shield",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21725",
+            "Name": "Radiating",
+            "Code": "AfflictionJewelSmallPassivesGrantESSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantES"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(13&ndash;16)</span> to Maximum Energy Shield",
+            "master_no": [],
+            "fossil_no": [
+                "energy_shield",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21726",
+            "Name": "Pulsing",
+            "Code": "AfflictionJewelSmallPassivesGrantESSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantES"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(17&ndash;20)</span> to Maximum Energy Shield",
+            "master_no": [],
+            "fossil_no": [
+                "energy_shield",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21727",
+            "Name": "Lacquered",
+            "Code": "AfflictionJewelSmallPassivesGrantArmourSmall__",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantArmour"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;20)</span> to Armour",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21728",
+            "Name": "Studded",
+            "Code": "AfflictionJewelSmallPassivesGrantArmourSmall2__",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantArmour"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(21&ndash;30)</span> to Armour",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21729",
+            "Name": "Ribbed",
+            "Code": "AfflictionJewelSmallPassivesGrantArmourSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantArmour"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(31&ndash;40)</span> to Armour",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21730",
+            "Name": "Fortified",
+            "Code": "AfflictionJewelSmallPassivesGrantArmourSmall4___",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantArmour"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(41&ndash;53)</span> to Armour",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21731",
+            "Name": "Plated",
+            "Code": "AfflictionJewelSmallPassivesGrantArmourSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantArmour"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(54&ndash;66)</span> to Armour",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21732",
+            "Name": "Agile",
+            "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantEvasion"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(11&ndash;20)</span> to Evasion",
+            "master_no": [],
+            "fossil_no": [
+                "evasion",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21733",
+            "Name": "Dancer's",
+            "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall2_",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantEvasion"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(21&ndash;30)</span> to Evasion",
+            "master_no": [],
+            "fossil_no": [
+                "evasion",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21734",
+            "Name": "Acrobat's",
+            "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall3___",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantEvasion"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(31&ndash;40)</span> to Evasion",
+            "master_no": [],
+            "fossil_no": [
+                "evasion",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21735",
+            "Name": "Fleet",
+            "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantEvasion"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(41&ndash;53)</span> to Evasion",
+            "master_no": [],
+            "fossil_no": [
+                "evasion",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21736",
+            "Name": "Blurred",
+            "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantEvasion"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(54&ndash;66)</span> to Evasion",
+            "master_no": [],
+            "fossil_no": [
+                "evasion",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21737",
+            "Name": "of the Brute",
+            "Code": "AfflictionJewelSmallPassivesGrantStrSmall_",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantStr"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Strength",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21738",
+            "Name": "of the Wrestler",
+            "Code": "AfflictionJewelSmallPassivesGrantStrSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantStr"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Strength",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21739",
+            "Name": "of the Bear",
+            "Code": "AfflictionJewelSmallPassivesGrantStrSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantStr"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Strength",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21740",
+            "Name": "of the Lion",
+            "Code": "AfflictionJewelSmallPassivesGrantStrSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantStr"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;11)</span> to Strength",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21741",
+            "Name": "of the Gorilla",
+            "Code": "AfflictionJewelSmallPassivesGrantStrSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantStr"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(12&ndash;14)</span> to Strength",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21742",
+            "Name": "of the Mongoose",
+            "Code": "AfflictionJewelSmallPassivesGrantDexSmall_",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDex"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Dexterity",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21743",
+            "Name": "of the Lynx",
+            "Code": "AfflictionJewelSmallPassivesGrantDexSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDex"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Dexterity",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21744",
+            "Name": "of the Fox",
+            "Code": "AfflictionJewelSmallPassivesGrantDexSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDex"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Dexterity",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21745",
+            "Name": "of the Falcon",
+            "Code": "AfflictionJewelSmallPassivesGrantDexSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDex"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;11)</span> to Dexterity",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21746",
+            "Name": "of the Panther",
+            "Code": "AfflictionJewelSmallPassivesGrantDexSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDex"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(12&ndash;14)</span> to Dexterity",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21747",
+            "Name": "of the Pupil",
+            "Code": "AfflictionJewelSmallPassivesGrantIntSmall_",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantInt"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span> to Intelligence",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21748",
+            "Name": "of the Student",
+            "Code": "AfflictionJewelSmallPassivesGrantIntSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantInt"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span> to Intelligence",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21749",
+            "Name": "of the Prodigy",
+            "Code": "AfflictionJewelSmallPassivesGrantIntSmall3______",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantInt"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;8)</span> to Intelligence",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21750",
+            "Name": "of the Augur",
+            "Code": "AfflictionJewelSmallPassivesGrantIntSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantInt"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(9&ndash;11)</span> to Intelligence",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21751",
+            "Name": "of the Philosopher",
+            "Code": "AfflictionJewelSmallPassivesGrantIntSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantInt"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(12&ndash;14)</span> to Intelligence",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21752",
+            "Name": "of the Cloud",
+            "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantAttributes"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+2</span> to All Attributes",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21753",
+            "Name": "of the Sky",
+            "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantAttributes"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+3</span> to All Attributes",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21754",
+            "Name": "of the Meteor",
+            "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall3_",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantAttributes"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+4</span> to All Attributes",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21755",
+            "Name": "of the Comet",
+            "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantAttributes"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+5</span> to All Attributes",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21756",
+            "Name": "of the Heavens",
+            "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantAttributes"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+6</span> to All Attributes",
+            "master_no": [],
+            "fossil_no": [
+                "attribute"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21757",
+            "Name": "of Excitement",
+            "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall_",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantManaRegen"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>4</span>% increased Mana Regeneration Rate",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21758",
+            "Name": "of Joy",
+            "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantManaRegen"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>5</span>% increased Mana Regeneration Rate",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21759",
+            "Name": "of Elation",
+            "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantManaRegen"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>6</span>% increased Mana Regeneration Rate",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21760",
+            "Name": "of Bliss",
+            "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantManaRegen"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>(7&ndash;8)</span>% increased Mana Regeneration Rate",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21761",
+            "Name": "of Euphoria",
+            "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantManaRegen"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>(9&ndash;10)</span>% increased Mana Regeneration Rate",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21762",
+            "Name": "of the Newt",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLifeRegen"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.1</span>% of Life per Second",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21763",
+            "Name": "of the Lizard",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall2_",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLifeRegen"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.15</span>% of Life per Second",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21764",
+            "Name": "of the Flatworm",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall3_",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLifeRegen"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.2</span>% of Life per Second",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21765",
+            "Name": "of the Starfish",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLifeRegen"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.25</span>% of Life per Second",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21766",
+            "Name": "of the Hydra",
+            "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLifeRegen"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: Regenerate <span class='mod-value'>0.3</span>% of Life per Second",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21767",
+            "Name": "of the Whelpling",
+            "Code": "AfflictionJewelSmallPassivesGrantFireResSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantFireRes"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span>% to Fire Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21768",
+            "Name": "of the Salamander",
+            "Code": "AfflictionJewelSmallPassivesGrantFireResSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantFireRes"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span>% to Fire Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21769",
+            "Name": "of the Drake",
+            "Code": "AfflictionJewelSmallPassivesGrantFireResSmall3_",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantFireRes"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;7)</span>% to Fire Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21770",
+            "Name": "of the Kiln",
+            "Code": "AfflictionJewelSmallPassivesGrantFireResSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantFireRes"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;9)</span>% to Fire Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21771",
+            "Name": "of the Furnace",
+            "Code": "AfflictionJewelSmallPassivesGrantFireResSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantFireRes"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;11)</span>% to Fire Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "fire",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21772",
+            "Name": "of the Inuit",
+            "Code": "AfflictionJewelSmallPassivesGrantColdResSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantColdRes"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span>% to Cold Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "cold",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21773",
+            "Name": "of the Seal",
+            "Code": "AfflictionJewelSmallPassivesGrantColdResSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantColdRes"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span>% to Cold Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "cold",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21774",
+            "Name": "of the Penguin",
+            "Code": "AfflictionJewelSmallPassivesGrantColdResSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantColdRes"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;7)</span>% to Cold Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "cold",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21775",
+            "Name": "of the Yeti",
+            "Code": "AfflictionJewelSmallPassivesGrantColdResSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantColdRes"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;9)</span>% to Cold Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "cold",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21776",
+            "Name": "of the Walrus",
+            "Code": "AfflictionJewelSmallPassivesGrantColdResSmall5_",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantColdRes"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;11)</span>% to Cold Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "cold",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21777",
+            "Name": "of the Cloud",
+            "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLightningRes"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(2&ndash;3)</span>% to Lightning Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "lightning",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21778",
+            "Name": "of the Squall",
+            "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall2__",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLightningRes"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(4&ndash;5)</span>% to Lightning Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "lightning",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21779",
+            "Name": "of the Storm",
+            "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLightningRes"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(6&ndash;7)</span>% to Lightning Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "lightning",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21780",
+            "Name": "of the Thunderhead",
+            "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLightningRes"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(8&ndash;9)</span>% to Lightning Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "lightning",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21781",
+            "Name": "of the Tempest",
+            "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantLightningRes"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(10&ndash;11)</span>% to Lightning Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "lightning",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21782",
+            "Name": "of the Crystal",
+            "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantElementalRes"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+2</span>% to all Elemental Resistances",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21783",
+            "Name": "of the Prism",
+            "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantElementalRes"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+3</span>% to all Elemental Resistances",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21784",
+            "Name": "of the Kaleidoscope",
+            "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantElementalRes"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+4</span>% to all Elemental Resistances",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21785",
+            "Name": "of Variegation",
+            "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantElementalRes"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+5</span>% to all Elemental Resistances",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21786",
+            "Name": "of the Rainbow",
+            "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantElementalRes"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+6</span>% to all Elemental Resistances",
+            "master_no": [],
+            "fossil_no": [
+                "elemental",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21787",
+            "Name": "of the Lost",
+            "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantChaosRes"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+3</span>% to Chaos Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "chaos",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21788",
+            "Name": "of Banishment",
+            "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall2",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantChaosRes"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+4</span>% to Chaos Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "chaos",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21789",
+            "Name": "of Eviction",
+            "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall3",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantChaosRes"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+5</span>% to Chaos Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "chaos",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21790",
+            "Name": "of Expulsion",
+            "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall4",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantChaosRes"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+6</span>% to Chaos Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "chaos",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21791",
+            "Name": "of Exile",
+            "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantChaosRes"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>+(7&ndash;8)</span>% to Chaos Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "chaos",
+                "resistance"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21792",
+            "Name": "Harmful",
+            "Code": "AfflictionJewelSmallPassivesGrantDamageSmall_",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDamage"
+            ],
+            "WeightList": [
+                "500",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>2</span>% increased Damage",
+            "master_no": [],
+            "fossil_no": [
+                "damage"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21793",
+            "Name": "Hazardous",
+            "Code": "AfflictionJewelSmallPassivesGrantDamageSmall2_",
+            "Level": "68",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDamage"
+            ],
+            "WeightList": [
+                "400",
+                "0"
+            ],
+            "DropChance": "400",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>3</span>% increased Damage",
+            "master_no": [],
+            "fossil_no": [
+                "damage"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21794",
+            "Name": "Dangerous",
+            "Code": "AfflictionJewelSmallPassivesGrantDamageSmall3_",
+            "Level": "73",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDamage"
+            ],
+            "WeightList": [
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>4</span>% increased Damage",
+            "master_no": [],
+            "fossil_no": [
+                "damage"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21795",
+            "Name": "Destructive",
+            "Code": "AfflictionJewelSmallPassivesGrantDamageSmall4_",
+            "Level": "78",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDamage"
+            ],
+            "WeightList": [
+                "200",
+                "0"
+            ],
+            "DropChance": "200",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>5</span>% increased Damage",
+            "master_no": [],
+            "fossil_no": [
+                "damage"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21796",
+            "Name": "Deadly",
+            "Code": "AfflictionJewelSmallPassivesGrantDamageSmall5",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesGrantDamage"
+            ],
+            "WeightList": [
+                "100",
+                "0"
+            ],
+            "DropChance": "100",
+            "str": "Added Small Passive Skills also grant: <span class='mod-value'>6</span>% increased Damage",
+            "master_no": [],
+            "fossil_no": [
+                "damage"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21797",
+            "Name": "Potent",
+            "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect",
+            "Level": "1",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesHaveIncreasedEffect"
+            ],
+            "WeightList": [
+                "500"
+            ],
+            "DropChance": "500",
+            "str": "Added Small Passive Skills have <span class='mod-value'>25</span>% increased Effect",
+            "master_no": [],
+            "fossil_no": [],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "21798",
+            "Name": "Powerful",
+            "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect2",
+            "Level": "84",
+            "ModDomainsID": "21",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AfflictionJewelSmallPassivesHaveIncreasedEffect"
+            ],
+            "WeightList": [
+                "300"
+            ],
+            "DropChance": "300",
+            "str": "Added Small Passive Skills have <span class='mod-value'>35</span>% increased Effect",
+            "master_no": [],
+            "fossil_no": [],
+            "mod_no": [],
+            "mod_fossil_item": []
+        }
+    ],
+    "master": [],
+    "essence": [],
+    "delve": [
+        {
+            "ID": "15810",
+            "Name": "Subterranean",
+            "Code": "DelveJewelFirePenetration1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "FireResistancePenetration"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "Damage Penetrates <span class='mod-value'>1</span>% Fire Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental_damage",
+                "damage",
+                "elemental",
+                "fire"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15820",
+            "Name": "Subterranean",
+            "Code": "DelveJewelColdPenetration1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "ColdResistancePenetration"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "Damage Penetrates <span class='mod-value'>1</span>% Cold Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental_damage",
+                "damage",
+                "elemental",
+                "cold"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15830",
+            "Name": "Subterranean",
+            "Code": "DelveJewelLightningPenetration1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "LightningResistancePenetration"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "Damage Penetrates <span class='mod-value'>1</span>% Lightning Resistance",
+            "master_no": [],
+            "fossil_no": [
+                "elemental_damage",
+                "damage",
+                "elemental",
+                "lightning"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15849",
+            "Name": "Subterranean",
+            "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "PhysicalDamageOverTimeTaken"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>(1&ndash;2)</span>% reduced Physical Damage taken over time",
+            "master_no": [],
+            "fossil_no": [
+                "physical"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15859",
+            "Name": "of the Underground",
+            "Code": "DelveJewelChaosDamage1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "IncreasedChaosDamage"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>(13&ndash;19)</span>% increased Chaos Damage",
+            "master_no": [],
+            "fossil_no": [
+                "chaos_damage",
+                "damage",
+                "chaos"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15867",
+            "Name": "Subterranean",
+            "Code": "DelveJewelLifeRegeneration1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "LifeRegenerationRatePercentage"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "Regenerate <span class='mod-value'>0.3</span>% of Life per second",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15869",
+            "Name": "of the Underground",
+            "Code": "DelveJewelArmourIfYouHitRecently1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "PhysicalDamageReductionRatingIfYouHaveHitAnEnemyRecently"
+            ],
+            "WeightList": [
+                "300",
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "<span class='mod-value'>+(250&ndash;300)</span> to Armour if you've Hit an Enemy Recently",
+            "master_no": [],
+            "fossil_no": [
+                "armour",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15872",
+            "Name": "of the Underground",
+            "Code": "DelveJewelEvasionIfYouHitRecently1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "EvasionRatingIfYouHaveHitAnEnemyRecently"
+            ],
+            "WeightList": [
+                "300",
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "<span class='mod-value'>+(250&ndash;300)</span> to Evasion Rating if Hit an Enemy Recently",
+            "master_no": [],
+            "fossil_no": [
+                "evasion",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15875",
+            "Name": "of the Underground",
+            "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "EnergyShieldRegenerationRatePerMinuteIfYouHaveHitAnEnemyRecently"
+            ],
+            "WeightList": [
+                "300",
+                "300",
+                "0"
+            ],
+            "DropChance": "300",
+            "str": "Regenerate <span class='mod-value'>0.3</span>% of Energy Shield per second if you've Hit an Enemy Recently",
+            "master_no": [],
+            "fossil_no": [
+                "energy_shield",
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15896",
+            "Name": "Subterranean",
+            "Code": "DelveJewelGlobalDefences1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "AllDefences"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>(4&ndash;6)</span>% increased Global Defences",
+            "master_no": [],
+            "fossil_no": [
+                "defences"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15902",
+            "Name": "of the Underground",
+            "Code": "DelveJewelAilmentDamage1__",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AilmentDamage"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>(15&ndash;20)</span>% increased Damage with Ailments",
+            "master_no": [],
+            "fossil_no": [
+                "damage",
+                "ailment"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15919",
+            "Name": "Subterranean",
+            "Code": "DelveJewelElementalPenetration1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "ElementalPenetration"
+            ],
+            "WeightList": [
+                "1600",
+                "1600",
+                "0"
+            ],
+            "DropChance": "1600",
+            "str": "Damage Penetrates <span class='mod-value'>1</span>% Elemental Resistances",
+            "master_no": [],
+            "fossil_no": [
+                "elemental_damage",
+                "damage",
+                "elemental"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
+                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15925",
+            "Name": "of the Underground",
+            "Code": "DelveJewelAvoidInterruptionWhileCasting1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AvoidInterruptionWhileCasting"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Avoid interruption from Stuns while Casting",
+            "master_no": [],
+            "fossil_no": [],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15931",
+            "Name": "of the Underground",
+            "Code": "DelveJewelAttackLeech1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "LifeLeech"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>0.3</span>% of Attack Damage Leeched as Life",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life",
+                "attack"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15942",
+            "Name": "of the Underground",
+            "Code": "DelveJewelDamageTakenGainedAsMana1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "PercentDamageGoesToMana"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>(2&ndash;3)</span>% of Damage taken Recouped as Mana",
+            "master_no": [],
+            "fossil_no": [
+                "resource",
+                "life",
+                "mana"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15953",
+            "Name": "of the Underground",
+            "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "ChanceToGainOnslaughtOnFlaskUse"
+            ],
+            "WeightList": [
+                "1000",
+                "1000",
+                "0"
+            ],
+            "DropChance": "1000",
+            "str": "<span class='mod-value'>(5&ndash;10)</span>% chance to gain Onslaught when you use a Flask",
+            "master_no": [],
+            "fossil_no": [
+                "flask"
+            ],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15972",
+            "Name": "of the Underground",
+            "Code": "DelveJewelMinionAttackAndCastSpeed1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "MinionAttackSpeedAndCastSpeed"
+            ],
+            "WeightList": [
+                "0",
+                "2000",
+                "0"
+            ],
+            "DropChance": "2000",
+            "str": "Minions have <span class='mod-value'>(4&ndash;6)</span>% increased Attack Speed<br>Minions have <span class='mod-value'>(4&ndash;6)</span>% increased Cast Speed",
+            "master_no": [],
+            "fossil_no": [
+                "attack",
+                "caster",
+                "speed",
+                "minion"
+            ],
+            "mod_no": [
+                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>",
+                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "15980",
+            "Name": "of the Underground",
+            "Code": "DelveJewelVaalSoulsOnKill1",
+            "Level": "1",
+            "ModDomainsID": "16",
+            "ModGenerationTypeID": "2",
+            "ModFamilyList": [
+                "AdditionalVaalSoulOnKill"
+            ],
+            "WeightList": [
+                "2000",
+                "2000",
+                "0"
+            ],
+            "DropChance": "2000",
+            "str": "<span class='mod-value'>(3&ndash;5)</span>% chance to gain an additional Vaal Soul on Kill",
+            "master_no": [],
+            "fossil_no": [
+                "vaal"
+            ],
+            "mod_no": [],
+            "mod_fossil_item": [
+                "Tangled Fossil"
+            ]
+        }
+    ],
+    "incursion": [],
+    "veiled": [],
+    "bestiary": [
+        {
+            "Code": "GrantsBirdAspectCrafted",
+            "ModDomainsID": "1",
+            "ModFamilyList": [
+                "GrantedSkill"
+            ],
+            "WeightList": [
+                "0"
+            ],
+            "ID": "15255",
+            "Level": "20",
+            "Name": "of Saqawal",
+            "ModGenerationTypeID": "2",
+            "DropChance": 0,
+            "str": "Grants Level <span class='mod-value'>20</span> Aspect of the Avian Skill",
+            "master_no": [],
+            "fossil_no": [
+                "skill"
+            ],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "Code": "GrantsCatAspectCrafted",
+            "ModDomainsID": "1",
+            "ModFamilyList": [
+                "GrantedSkill"
+            ],
+            "WeightList": [
+                "0"
+            ],
+            "ID": "15254",
+            "Level": "20",
+            "Name": "of Farrul",
+            "ModGenerationTypeID": "2",
+            "DropChance": 0,
+            "str": "Grants Level <span class='mod-value'>20</span> Aspect of the Cat Skill",
+            "master_no": [],
+            "fossil_no": [
+                "skill"
+            ],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "Code": "GrantsCrabAspectCrafted",
+            "ModDomainsID": "1",
+            "ModFamilyList": [
+                "GrantedSkill"
+            ],
+            "WeightList": [
+                "0"
+            ],
+            "ID": "15257",
+            "Level": "20",
+            "Name": "of Craiceann",
+            "ModGenerationTypeID": "2",
+            "DropChance": 0,
+            "str": "Grants Level <span class='mod-value'>20</span> Aspect of the Crab Skill",
+            "master_no": [],
+            "fossil_no": [
+                "blue_herring",
+                "skill"
+            ],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "Code": "GrantsSpiderAspectCrafted",
+            "ModDomainsID": "1",
+            "ModFamilyList": [
+                "GrantedSkill"
+            ],
+            "WeightList": [
+                "0"
+            ],
+            "ID": "15256",
+            "Level": "20",
+            "Name": "of Fenumus",
+            "ModGenerationTypeID": "2",
+            "DropChance": 0,
+            "str": "Grants Level <span class='mod-value'>20</span> Aspect of the Spider Skill",
+            "master_no": [],
+            "fossil_no": [
+                "skill"
+            ],
+            "mod_no": [],
+            "mod_fossil_item": []
+        }
+    ],
+    "elder": [],
+    "shaper": [],
+    "crusader": [],
+    "redeemer": [],
+    "hunter": [],
+    "warlord": [],
+    "scourgeup": [],
+    "scourgedown": [],
+    "lang": "us"
+}
