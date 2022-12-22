@@ -985,6 +985,7 @@
 		}
 	}
 	MatchCraftingItemMods() {
+		local preMatch, sufMatch, SumRNP, SumRNS, LastID, SumCombination
 		This.Prop.CraftingMatchedPrefix := 0
 		This.Prop.CraftingMatchedSuffix := 0
 		SumRNP := 0
@@ -1027,10 +1028,21 @@
 			LastID := v["ID"]
 		}
 		SumCombination := This.Prop.CraftingMatchedPrefix + This.Prop.CraftingMatchedSuffix
-		If ((This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix && This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberSuffix) || (SumCombination >= ItemCraftingNumberCombination && ItemCraftingNumberCombination > 0)){
-			Return True
-		}Else{
-			Return False
+
+		if (ItemCraftingNumberCombination > 0) {
+			return SumCombination >= ItemCraftingNumberCombination
+		} else if (ItemCraftingNumberPrefix > 0 || ItemCraftingNumberSuffix > 0) {
+			if (ItemCraftingNumberPrefix > 0) {
+				preMatch := This.Prop.CraftingMatchedPrefix >= ItemCraftingNumberPrefix
+			} else {
+				preMatch := true
+			}
+			if (ItemCraftingNumberSuffix > 0) {
+				sufMatch := This.Prop.CraftingMatchedSuffix >= ItemCraftingNumberSuffix
+			} else {
+				sufMatch := true
+			}
+			return preMatch && sufMatch
 		}
 	}
 	CreateAllActualTiers()
