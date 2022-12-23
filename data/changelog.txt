@@ -1,4 +1,11 @@
-﻿## Version .15.0901 - Alpha version - December/19/2022
+﻿## Version .15.0903 - Alpha version - December/23/2022
+crafting bugfixes
+  * fix for prefix/suffix matching
+  * fix for Regal logic
+
+---
+
+## Version .15.0901 - Alpha version - December/19/2022
 bugfix for heist contract types and level
 
 ---
