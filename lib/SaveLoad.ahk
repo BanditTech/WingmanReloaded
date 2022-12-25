@@ -1060,23 +1060,26 @@ submit(){
 
 ; Settings Save/Load
 Settings(name:="perChar",Action:="Load"){
+	local f, JSONtext, obj
 	If (Action = "Load"){
 		Try {
 			IfNotExist, %A_ScriptDir%\save\%name%.json
 				Return False
-			FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
+			f := FileOpen(A_ScriptDir "\save\" name ".json","r")
+			JSONtext := f.Read()
 			obj := JSON.Load(JSONtext)
-			For k, v in WR[name]
-				If (obj.HasKey(k))
+			For k, v in WR[name] {
+				If (obj.HasKey(k)) {
 					WR[name][k] := obj[k]
-			obj := JSONtext := ""
+				}
+			}
 		} Catch e {
 			Util.Err(e, "Setting Load failed for .\save\" name ".json")
 		}
 	}Else If (Action = "Save"){
-		FileDelete, %A_ScriptDir%\save\%name%.json
+		f := FileOpen(A_ScriptDir "\save\" name ".json", "w")
 		JSONtext := JSON.Dump(WR[name],,2)
-		FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
+		f.Write(JSONtext)
 		JSONtext := ""
 	}
 }
