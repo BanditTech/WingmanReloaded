@@ -35,10 +35,10 @@ IfNotExist, %A_ScriptDir%\save\MyCustomZoneChange.ahk
 		. "; Include executed code, any return must be true`n"
 		, %A_ScriptDir%\save\MyCustomZoneChange.ahk
 
-IfNotExist, %A_ScriptDir%\data\WR.ico
+IfNotExist, %A_ScriptDir%\data\WR.ico 
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR.ico, %A_ScriptDir%\data\WR.ico
-	if ErrorLevel
+	if ErrorLevel 
 	{
 		Log("Error","Data download error", "WR.ico")
 		MsgBox, Error ED02 : There was a problem downloading WR.ico
@@ -73,12 +73,7 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 }
 Bases := JSON.Load(FileOpen(A_ScriptDir "\data\Bases.json","r").Read())
 
-ForceUpdatePOEDB(){
-	UpdatePOEDB(True)
-}
-
-For k, v in PoeDBAPI
-{
+For k, v in PoeDBAPI {
 	content := RegExReplace(v," ","")
 	contentdownload := v
 	; Replace cluster jewel text
@@ -162,26 +157,8 @@ For k, v in PoeDBAPI
 		if ErrorLevel {
 			Log("Error","Data download error", "Mods.json")
 			MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb
-		}
-		contentdownload := RegExReplace(contentdownload,"\(STR-DEX\)","&tags=str_dex_armour")
-		contentdownload := RegExReplace(contentdownload,"\(STR-INT\)","&tags=str_int_armour")
-		contentdownload := RegExReplace(contentdownload,"\(DEX-INT\)","&tags=dex_int_armour")
-		; Map subtypes
-		contentdownload := RegExReplace(contentdownload,"\(LOW\)","&tags=low_tier_map")
-		contentdownload := RegExReplace(contentdownload,"\(MID\)","&tags=mid_tier_map")
-		contentdownload := RegExReplace(contentdownload,"\(TOP\)","&tags=top_tier_map")
-		if (contentdownload ~= "Jewel") {
-			contentdownload := "BaseItemTypes&an=" . contentdownload
-		}
-
-		if (!FileExist(A_ScriptDir "\data\Mods" content ".json") or forced)	{
-			UrlDownloadToFile, https://poedb.tw/us/jsonAPI/Mods/Gen?cn=%contentdownload%, %A_ScriptDir%\data\Mods%content%.json
-			if ErrorLevel {
-				Log("Error","Data download error", "Mods.json")
-				MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb
-			} Else if (ErrorLevel=0) {
-				Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
-			}
+		} Else if (ErrorLevel=0) {
+			Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
 		}
 	}
 }
