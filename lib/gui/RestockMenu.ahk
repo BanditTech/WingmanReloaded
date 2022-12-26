@@ -152,8 +152,7 @@
 
 	LoadRestockArray:
 		If FileExist( A_ScriptDir "\save\Restock.json") {
-			FileRead, JSONtext, %A_ScriptDir%\save\Restock.json
-			WR.Restock := JSON.Load(JSONtext)
+			WR.Restock := JSON.Load(FileOpen(A_ScriptDir "\save\Restock.json","r").Read())
 		} Else {
 			WR.Restock := {}
 			For C, GridX in InventoryGridX{

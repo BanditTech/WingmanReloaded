@@ -6,8 +6,7 @@ WR_Menu(Function:="",Var*){
 
   Log("Verbose","Load menu: " Function,Var*)
 
-  If (Function = "Inventory")
-  {
+  If (Function = "Inventory") {
     Gui, 1: Submit
     CheckGamestates:= False
     If !Built_Inventory
@@ -535,9 +534,7 @@ WR_Menu(Function:="",Var*){
 
     }
     Gui, Inventory: show , w600 h500, Inventory Settings
-  }
-  Else If (Function = "Crafting")
-  {
+  } Else If (Function = "Crafting") {
     Gui, 1: Submit
     CheckGamestates:= False
     If !Built_Crafting
@@ -797,9 +794,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Show
     }
     Gui, Crafting: show , w650 h550, Crafting Settings
-  }
-  Else If (Function = "Strings")
-  {
+  } Else If (Function = "Strings") {
     Gui, 1: Submit
     CheckGamestates:= False
     If !Built_Strings
@@ -906,9 +901,7 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: +Delimiter|
     }
     Gui, Strings: show , w640 h525, FindText Strings
-  }
-  Else If (Function = "Chat")
-  {
+  } Else If (Function = "Chat") {
     Gui, 1: Submit
     CheckGamestates:= False
     If !Built_Chat
@@ -1017,9 +1010,7 @@ WR_Menu(Function:="",Var*){
       GuiControl,Chat: Text, 2Suffix9Text, %2Suffix9Text%
     }
     Gui, Chat: show , w620 h370, Chat Hotkeys
-  }
-  Else If (Function = "Controller")
-  {
+  } Else If (Function = "Controller") {
     Gui, 1: Submit
     CheckGamestates:= False
     If !Built_Controller
@@ -1096,9 +1087,7 @@ WR_Menu(Function:="",Var*){
       Gui, Controller: Add, Button, gLaunchSite x+5 h23, Website
     }
     Gui, Controller: show , w620 h500, Controller Settings
-  }
-  Else if (Function = "Globe")
-  {
+  } Else if (Function = "Globe") {
     Gui, 1: Submit
     CheckGamestates:= False
     Element := Var[1]
@@ -1204,9 +1193,7 @@ WR_Menu(Function:="",Var*){
     }
     GlobeActive := True
     Gui, Globe: show , Center AutoSize, Globe Settings
-  }
-  Else If (Function = "Locate")
-  {
+  } Else If (Function = "Locate") {
     LocateType := Var[2]
     Gui, Hide
     Loop
@@ -1222,9 +1209,7 @@ WR_Menu(Function:="",Var*){
     GuiControl, Inventory: ,% LocateType "Y", %y%
     MsgBox % x "," y " was captured as the new location for "LocateType
     Gui, Show
-  }
-  Else If (Function = "Locate2")
-  {
+  } Else If (Function = "Locate2") {
     MsgBoxVals(Var,2)
     ; LocateType := Var[2]
     ending := StrSplit(SubStr(Var[2],-1))
@@ -1243,9 +1228,7 @@ WR_Menu(Function:="",Var*){
     GuiControl, perChar: ,% "swap" slot "Y" position, %y%
     MsgBox % x "," y " was captured as the new location for Swap "slot " "position
     Gui, Show
-  }
-  Else If (Function = "Locate3")
-  {
+  } Else If (Function = "Locate3") {
     LocateType := Var[2]
     Gui, Hide
     Loop
@@ -1261,9 +1244,7 @@ WR_Menu(Function:="",Var*){
     GuiControl, Crafting: ,% LocateType "Y", %y%
     MsgBox % x "," y " was captured as the new location for "LocateType
     Gui, Show
-  }
-  Else if (Function = "Area")
-  {
+  } Else if (Function = "Area") {
     Gui, Submit
     Grab := LetUserSelectRect()
     AreaType := Var[2]
@@ -1274,16 +1255,12 @@ WR_Menu(Function:="",Var*){
     GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
     GuiControl, Globe:, Globe_%AreaType%_Y2,% "Y2:" Grab.Y2
     Gui, Show
-  }
-  Else if (Function = "Show")
-  {
+  } Else if (Function = "Show") {
     Gui, Submit
     AreaType := Var[2]
     MouseTip(Globe[AreaType])
     Gui, Show
-  }
-  Else if (Function = "Color")
-  {
+  } Else if (Function = "Color") {
     AreaType := Var[2]
     Element := Var[1]
     Split := {}
@@ -1317,9 +1294,7 @@ WR_Menu(Function:="",Var*){
       Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
       GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
     }
-  }
-  Else If (Function = "FillMetamorph")
-  {
+  } Else If (Function = "FillMetamorph") {
     Gui, Submit
     ValueType := Var[2]
     Element := Var[1]
@@ -1356,9 +1331,7 @@ WR_Menu(Function:="",Var*){
       }
       Gui, FillMetamorph: Show
     }
-  }
-  Else If (Function = "hkStash")
-  {
+  } Else If (Function = "hkStash") {
     Static hkStashBuilt := False
     If !(hkStashBuilt)
     {
@@ -1415,29 +1388,17 @@ WR_Menu(Function:="",Var*){
 
     Gui, hkStash: Show
 
-  }
-  Else If (Function = "JSON")
-  {
+  } Else If (Function = "JSON") {
     ValueType := Var[2]
     Element := Var[1]
-    If (Element = "Save")
-    {
+    If (Element = "Save") {
       Gui, Submit
-      JSONtext := JSON.Dump(%ValueType%,,2)
-      If FileExist(A_ScriptDir "\save\" ValueType ".json")
-        FileDelete, %A_ScriptDir%\save\%ValueType%.json
-      FileAppend, %JSONtext%, %A_ScriptDir%\save\%ValueType%.json
+      FileOpen(A_ScriptDir "\save\" ValueType ".json","w").Write(JSON.Dump(%ValueType%,,2))
       Gui, Show
-    }
-    Else if (Element = "Load")
-    {
-      If FileExist(A_ScriptDir "\save\" ValueType ".json")
-      {
-        FileRead, JSONtext, %A_ScriptDir%\save\%ValueType%.json
-        %ValueType% := JSON.Load(JSONtext)
-      }
-      Else
-      {
+    } Else if (Element = "Load") {
+      If FileExist(A_ScriptDir "\save\" ValueType ".json") {
+        %ValueType% := JSON.Load(FileOpen(A_ScriptDir "\save\" ValueType ".json", "r").Read())
+      } Else {
         Notify("Error loading " ValueType " file","",3)
         Log("Error","issue with loading " ValueType " file")
       }

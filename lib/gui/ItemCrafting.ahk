@@ -149,11 +149,8 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID,Affix)
   }
 }
 
-LoadOnDemand(content)
-{
-  content := RegExReplace(content," ","")
-  FileRead, JSONtext, %A_ScriptDir%\data\Mods%content%.json
-Return JSON.Load(JSONtext)
+LoadOnDemand(content) {
+  Return JSON.Load(FileOpen(A_ScriptDir "\data\Mods" RegExReplace(content," ","") ".json","r").Read())
 }
 
 RefreshModList(type)

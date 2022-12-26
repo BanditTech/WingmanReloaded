@@ -17,8 +17,7 @@ RestockMenu("Load")
 If (YesNinjaDatabase && DaysSince()) {
   DBUpdateNinja()
 } Else {
-  FileRead, JSONtext, %A_ScriptDir%\data\Ninja.json
-  Ninja := JSON.Load(JSONtext)
+  Ninja := JSON.Load(FileOpen(A_ScriptDir "\data\Ninja.json","r").Read())
 }
 ; ActualTierCreator()
 CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart)

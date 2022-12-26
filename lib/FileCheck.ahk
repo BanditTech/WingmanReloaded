@@ -1,25 +1,22 @@
 ﻿#Include, %A_ScriptDir%\lib\GLOBALS.ahk
 
-IfNotExist, %A_ScriptDir%\data
-	FileCreateDir, %A_ScriptDir%\data
-IfNotExist, %A_ScriptDir%\save
-	FileCreateDir, %A_ScriptDir%\save
-IfNotExist, %A_ScriptDir%\save\profiles
-	FileCreateDir, %A_ScriptDir%\save\profiles
-IfNotExist, %A_ScriptDir%\save\profiles\Flask
-	FileCreateDir, %A_ScriptDir%\save\profiles\Flask
-IfNotExist, %A_ScriptDir%\save\profiles\perChar
-	FileCreateDir, %A_ScriptDir%\save\profiles\perChar
-IfNotExist, %A_ScriptDir%\save\profiles\Utility
-	FileCreateDir, %A_ScriptDir%\save\profiles\Utility
-IfNotExist, %A_ScriptDir%\temp
-	FileCreateDir, %A_ScriptDir%\temp
-IfNotExist, %A_ScriptDir%\logs
-	FileCreateDir, %A_ScriptDir%\logs
-IfNotExist, %A_ScriptDir%\backup
-	FileCreateDir, %A_ScriptDir%\backup
-IfNotExist, %A_ScriptDir%\lib
-	FileCreateDir, %A_ScriptDir%\lib
+directories := [ "\data"
+	,"\save"
+	,"\save\profiles"
+	,"\save\profiles\Flask"
+	,"\save\profiles\perChar"
+	,"\save\profiles\Utility"
+	,"\temp"
+	,"\logs"
+	,"\backup"
+	,"\lib" ]
+for k, v in directories {
+	if !FileExist(A_ScriptDir v) {
+		FileCreateDir, % A_ScriptDir v
+	}
+}
+directories := ""
+
 IfNotExist, %A_ScriptDir%\save\MyCustomAutoRun.ahk
 	FileAppend,% "; This file will be included at the end of the Auto Execute section`n"
 . "; Code must not include any return until in hotkey labels`n"
@@ -38,14 +35,14 @@ IfNotExist, %A_ScriptDir%\save\MyCustomZoneChange.ahk
 . "; Include executed code, any return must be true`n"
 , %A_ScriptDir%\save\MyCustomZoneChange.ahk
 
-IfNotExist, %A_ScriptDir%\data\WR.ico
+IfNotExist, %A_ScriptDir%\data\WR.ico 
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/WR.ico, %A_ScriptDir%\data\WR.ico
-	if ErrorLevel{
+	if ErrorLevel 
+	{
 		Log("Error","Data download error", "WR.ico")
 		MsgBox, Error ED02 : There was a problem downloading WR.ico
-	}
-	Else if (ErrorLevel=0){
+	} Else if (ErrorLevel=0) {
 		Log("Verbose","Data downloaded Correctly", "WR.ico")
 		needReload := True
 	}
@@ -55,36 +52,28 @@ For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","WR_Prop.json","WR_Pseudo.j
 	IfNotExist, %A_ScriptDir%\data\%str%
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/%str%, %A_ScriptDir%\data\%str%
-		if ErrorLevel{
+		if ErrorLevel {
 			Log("Error","Data download error", str)
 			MsgBox, Error ED02 : There was a problem downloading %str%
-		}
-		Else if (ErrorLevel=0){
+		} Else if (ErrorLevel=0) {
 			Log("Verbose","Data downloaded Correctly", str)
 		}
 	}
 }
+
 IfNotExist, %A_ScriptDir%\data\Bases.json
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
 	if ErrorLevel {
 		Log("Error","Data download error", "Bases.json")
 		MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
-	}
-	Else if (ErrorLevel=0){
+	} Else if (ErrorLevel=0){
 		Log("Verbose","Data downloaded Correctly", "Downloading Bases.json was a success")
-		FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
-		Bases := JSON.Load(JSONtext)
-		JSONtext := ""
 	}
-} Else {
-	FileRead, JSONtext, %A_ScriptDir%\data\Bases.json
-	Bases := JSON.Load(JSONtext)
-	JSONtext := ""
 }
+Bases := JSON.Load(FileOpen(A_ScriptDir "\data\Bases.json","r").Read())
 
-For k, v in PoeDBAPI
-{
+For k, v in PoeDBAPI {
 	content := RegExReplace(v," ","")
 	contentdownload := v
 	; Replace cluster jewel text
@@ -168,10 +157,8 @@ For k, v in PoeDBAPI
 		if ErrorLevel {
 			Log("Error","Data download error", "Mods.json")
 			MsgBox, Error ED02 : There was a problem downloading Mods%content%.json from poedb
-		}
-		Else if (ErrorLevel=0){
+		} Else if (ErrorLevel=0) {
 			Log("Verbose","Data downloaded Correctly", "Downloading Mods.json was a success")
-			
 		}
 	}
 }
@@ -182,40 +169,23 @@ IfNotExist, %A_ScriptDir%\data\Quest.json
 	if ErrorLevel {
 		Log("Error","Data download error", "Quest.json")
 		MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
-	}
-	Else if (ErrorLevel=0){
+	} Else if (ErrorLevel=0){
 		Log("Verbose","Data downloaded Correctly", "Downloading Quest.json was a success")
-		FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
-		QuestItems := JSON.Load(JSONtext)
-		JSONtext := ""
 	}
 }
-Else
-{
-	FileRead, JSONtext, %A_ScriptDir%\data\Quest.json
-	QuestItems := JSON.Load(JSONtext)
-	JSONtext := ""
-}
+QuestItems := JSON.Load(FileOpen(A_ScriptDir "\data\Quest.json","r").Read())
+
 IfNotExist, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
 {
 	RefreshPoeWatchPerfect()
 }
-Else
-{
-	FileRead, JSONtext, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
-	WR.Data.Perfect := JSON.Load(JSONtext,,1)
-	JSONtext := ""
-}
+WR.Data.Perfect := JSON.Load(FileOpen(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json","r").Read(),,1)
+
 IfNotExist, %A_ScriptDir%\data\Affix_Lines.json
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Affix_Lines.json, %A_ScriptDir%\data\Affix_Lines.json
-	FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
-	WR.Data.Affix := JSON.Load(JSONtext,,1)
-	JSONtext := "" 
-} Else {
-	FileRead, JSONtext, %A_ScriptDir%\data\Affix_Lines.json
-	WR.Data.Affix := JSON.Load(JSONtext,,1)
-	JSONtext := ""
 }
+WR.Data.Affix := JSON.Load(FileOpen(A_ScriptDir "\data\Affix_Lines.json","r").Read(),,1)
+
 If needReload
 	Reload

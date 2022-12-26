@@ -1,35 +1,24 @@
-LoadActualTierName()
-{
-    FileRead, JSONtext, %A_ScriptDir%\data\ActualTierName.json
-    Return JSON.Load(JSONtext)
+LoadActualTierName() {
+    Return JSON.Load(FileOpen(A_ScriptDir "\data\ActualTierName.json","r").Read())
 }
 
-ActualTierCreator()
-{
+ActualTierCreator() {
     ActualTierNameJSON := LoadActualTierName()
-    For kii , vii in PoeDBAPI
-    {
+    For kii , vii in PoeDBAPI {
         Mods := LoadOnDemand(vii)
         WR.ActualTier[vii] := []
-        For ki ,vi in ["normal"]
-        {
-            For k, v in Mods[vi]
-            {
+        For ki ,vi in ["normal"] {
+            For k, v in Mods[vi] {
                 AffixWRLine := FirstLineToWRFormat(v["str"])
-                If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ActualTierNameJSON))
-                {
-                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii],v["ModGenerationTypeID"]))
-                    {
+                If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ActualTierNameJSON)) {
+                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii],v["ModGenerationTypeID"])) {
                         WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
                         WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
-                    }
-                    Else
-                    {
+                    } Else {
                         aux := {"ActualTierName":ActualTierName,"ModGenerationTypeID":v["ModGenerationTypeID"],"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
                         WR.ActualTier[vii].Push(aux)
                     }
                 }
-
             }
         }
     }
@@ -40,27 +29,24 @@ ActualTierCreator()
     Return
 }
 
-CheckAffixWR(Line,Obj,ModGenerationTypeID){
-    for k , v in Obj
-    {
-        If(v["AffixWRLine"] == Line && ModGenerationTypeID == v["ModGenerationTypeID"]){
+CheckAffixWR(Line,Obj,ModGenerationTypeID) {
+    for k , v in Obj {
+        If (v["AffixWRLine"] == Line && ModGenerationTypeID == v["ModGenerationTypeID"]) {
             Return k
         }
     }
 }
 
-CheckAffixWRFromJson(Line,Obj){
-    for k , v in Obj
-    {
-        If(v["AffixWRLine"] == Line){
+CheckAffixWRFromJson(Line,Obj) {
+    for k , v in Obj {
+        If(v["AffixWRLine"] == Line) {
             aux:= "ActualTier" . v["ActualTierName"]
             Return aux
         }
     }
 }
 
-FirstLineToWRFormat(FullLine)
-{
+FirstLineToWRFormat(FullLine) {
     FullLine := ItemCraftingNaming(FullLine)
     ; Create WR Mod Line
     Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
@@ -69,19 +55,18 @@ FirstLineToWRFormat(FullLine)
     Return Mod
 }
 
-CraftingBasesRequest(ShouldRun){
-    If(!ShouldRun || PoECookie == ""){
+CraftingBasesRequest(ShouldRun) {
+    If (!ShouldRun || PoECookie == "") {
         Return
     }
-    If (!AccountNameSTR){
+    If (!AccountNameSTR) {
         Log("Crafting Bases Request","You need def your account name in save/Account.ini",Strings*)
         Return
     }
     Object := PoERequest.Stash(StashTabCrafting)
     ClearQuantCraftingBase()
     Strings := []
-    For k, v in Object.items
-    {
+    For k, v in Object.items {
         item := new ItemBuild(v,Object.quadLayout)
         Strings.Push("Item Base: " item["Prop"]["ItemBase"] 
         . ", Name: " item["Prop"]["ItemName"] 
@@ -92,9 +77,9 @@ CraftingBasesRequest(ShouldRun){
     Return
 }
 
-ClearQuantCraftingBase(){
+ClearQuantCraftingBase() {
     for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]{
-        for k,v in WR.CustomCraftingBases[vi]{
+        for k,v in WR.CustomCraftingBases[vi] {
             v.Quant:=0
             v.ILvL:=0
         }
