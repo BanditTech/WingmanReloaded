@@ -913,7 +913,7 @@
 			This.Prop.Stack_Size := RegExReplace(RxMatch1,"[^\d]","")
 			This.Prop.Stack_Max := RegExReplace(RxMatch2,"[^\d]","")
 		}
-		If (This.Data.Blocks.FlavorText ~= "in the Sacred Grove")
+		If (This.Data.Blocks.FlavorText ~= "[into] the Sacred Grove")
 			This.Prop.SpecialType := "Harvest Item"
 		If (This.Data.Blocks.FlavorText ~= "Ritual Altar" || This.Data.Blocks.FlavorText ~= "Ritual Vessel")
 			This.Prop.SpecialType := "Ritual Item", This.Prop.Ritual := True
