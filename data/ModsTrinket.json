@@ -29,10 +29,14 @@
             "type": "shaper",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Shaper",
             "display_chance": true
         },
@@ -40,10 +44,14 @@
             "type": "elder",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Elder",
             "display_chance": true
         },
@@ -51,10 +59,14 @@
             "type": "crusader",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Crusader",
             "display_chance": true
         },
@@ -62,10 +74,14 @@
             "type": "redeemer",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Redeemer",
             "display_chance": true
         },
@@ -73,10 +89,14 @@
             "type": "hunter",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Hunter",
             "display_chance": true
         },
@@ -84,10 +104,14 @@
             "type": "warlord",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Warlord",
             "display_chance": true
         },
@@ -95,10 +119,14 @@
             "type": "delve",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Delve",
             "display_chance": true
         },
@@ -106,10 +134,14 @@
             "type": "incursion",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Incursion",
             "display_chance": false
         },
@@ -117,10 +149,14 @@
             "type": "veiled",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Veiled",
             "display_chance": true
         },
@@ -128,10 +164,14 @@
             "type": "master",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Crafting Bench",
             "display_chance": false
         },
@@ -139,10 +179,14 @@
             "type": "essence",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Essence",
             "display_chance": false
         },
@@ -150,10 +194,14 @@
             "type": "bestiary",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Bestiary",
             "display_chance": false
         }
@@ -165,10 +213,14 @@
     "normal": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23412",
 =======
             "ID": "23410",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23412",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble1",
             "Level": "1",
@@ -189,10 +241,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23413",
 =======
             "ID": "23411",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23413",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble2",
             "Level": "50",
@@ -213,10 +269,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23414",
 =======
             "ID": "23412",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23414",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble3",
             "Level": "70",
@@ -237,10 +297,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23415",
 =======
             "ID": "23413",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23415",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble1",
             "Level": "1",
@@ -261,10 +325,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23416",
 =======
             "ID": "23414",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23416",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble2",
             "Level": "50",
@@ -285,10 +353,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23417",
 =======
             "ID": "23415",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23417",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble3_",
             "Level": "70",
@@ -309,10 +381,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23418",
 =======
             "ID": "23416",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23418",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency1_",
             "Level": "1",
@@ -333,10 +409,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23419",
 =======
             "ID": "23417",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23419",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency2",
             "Level": "50",
@@ -357,10 +437,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23420",
 =======
             "ID": "23418",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23420",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency3__",
             "Level": "70",
@@ -381,10 +465,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23421",
 =======
             "ID": "23419",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23421",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity1_",
             "Level": "1",
@@ -405,10 +493,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23422",
 =======
             "ID": "23420",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23422",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity2_",
             "Level": "50",
@@ -429,10 +521,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23423",
 =======
             "ID": "23421",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23423",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity3",
             "Level": "70",
@@ -453,10 +549,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23424",
 =======
             "ID": "23422",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23424",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity1",
             "Level": "1",
@@ -477,10 +577,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23425",
 =======
             "ID": "23423",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23425",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity2",
             "Level": "50",
@@ -501,10 +605,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23426",
 =======
             "ID": "23424",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23426",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity3___",
             "Level": "70",
@@ -525,10 +633,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23427",
 =======
             "ID": "23425",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23427",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted1",
             "Level": "1",
@@ -549,10 +661,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23428",
 =======
             "ID": "23426",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23428",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted2",
             "Level": "50",
@@ -573,10 +689,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23429",
 =======
             "ID": "23427",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23429",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted3_",
             "Level": "70",
@@ -597,10 +717,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23430",
 =======
             "ID": "23428",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23430",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified1",
             "Level": "1",
@@ -621,10 +745,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23431",
 =======
             "ID": "23429",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23431",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified2",
             "Level": "50",
@@ -645,10 +773,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23432",
 =======
             "ID": "23430",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23432",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified3",
             "Level": "70",
@@ -669,10 +801,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23433",
 =======
             "ID": "23431",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23433",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket1__",
             "Level": "1",
@@ -693,10 +829,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23434",
 =======
             "ID": "23432",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23434",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket2",
             "Level": "50",
@@ -717,10 +857,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23435",
 =======
             "ID": "23433",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23435",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket3",
             "Level": "70",
@@ -741,10 +885,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23436",
 =======
             "ID": "23434",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23436",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked1_",
             "Level": "1",
@@ -765,10 +913,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23437",
 =======
             "ID": "23435",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23437",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked2",
             "Level": "50",
@@ -789,10 +941,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23438",
 =======
             "ID": "23436",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23438",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked3",
             "Level": "70",
@@ -813,10 +969,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23439",
 =======
             "ID": "23437",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23439",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveShaperInfluence1",
             "Level": "75",
@@ -837,10 +997,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23440",
 =======
             "ID": "23438",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23440",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveElderInfluence1_",
             "Level": "75",
@@ -861,10 +1025,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23441",
 =======
             "ID": "23439",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23441",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy1_",
             "Level": "1",
@@ -885,10 +1053,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23442",
 =======
             "ID": "23440",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23442",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy2",
             "Level": "50",
@@ -909,10 +1081,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23443",
 =======
             "ID": "23441",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23443",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy3",
             "Level": "70",
@@ -933,10 +1109,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23444",
 =======
             "ID": "23442",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23444",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos1",
             "Level": "1",
@@ -957,10 +1137,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23445",
 =======
             "ID": "23443",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23445",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos2",
             "Level": "50",
@@ -981,10 +1165,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23446",
 =======
             "ID": "23444",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23446",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos3",
             "Level": "70",
@@ -1005,10 +1193,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23447",
 =======
             "ID": "23445",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23447",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy1",
             "Level": "1",
@@ -1029,10 +1221,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23448",
 =======
             "ID": "23446",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23448",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy2_",
             "Level": "50",
@@ -1053,10 +1249,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23449",
 =======
             "ID": "23447",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23449",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy3",
             "Level": "70",
@@ -1077,10 +1277,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23450",
 =======
             "ID": "23448",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23450",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos1__",
             "Level": "1",
@@ -1101,10 +1305,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23451",
 =======
             "ID": "23449",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23451",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos2",
             "Level": "50",
@@ -1125,10 +1333,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23452",
 =======
             "ID": "23450",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23452",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos3",
             "Level": "70",
@@ -1149,10 +1361,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23453",
 =======
             "ID": "23451",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23453",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsRegal1",
             "Level": "78",
@@ -1173,10 +1389,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23454",
 =======
             "ID": "23452",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23454",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy1__",
             "Level": "1",
@@ -1197,10 +1417,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23455",
 =======
             "ID": "23453",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23455",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy2",
             "Level": "50",
@@ -1221,10 +1445,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23456",
 =======
             "ID": "23454",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23456",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy3",
             "Level": "70",
@@ -1245,10 +1473,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23457",
 =======
             "ID": "23455",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23457",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos1_",
             "Level": "1",
@@ -1269,10 +1501,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23458",
 =======
             "ID": "23456",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23458",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos2",
             "Level": "50",
@@ -1293,10 +1529,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23459",
 =======
             "ID": "23457",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23459",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos3__",
             "Level": "70",
@@ -1317,10 +1557,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23460",
 =======
             "ID": "23458",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23460",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsRegal1",
             "Level": "81",
@@ -1341,10 +1585,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23461",
 =======
             "ID": "23459",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23461",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChaosDropsAsDivine1",
             "Level": "83",
@@ -1365,10 +1613,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23462",
 =======
             "ID": "23460",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23462",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChaosDropsAsExalted1_",
             "Level": "83",
@@ -1389,10 +1641,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23463",
 =======
             "ID": "23461",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23463",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine1",
             "Level": "60",
@@ -1413,10 +1669,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23464",
 =======
             "ID": "23462",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23464",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine2_",
             "Level": "75",
@@ -1437,10 +1697,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23465",
 =======
             "ID": "23463",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23465",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine3",
             "Level": "80",
@@ -1461,10 +1725,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23466",
 =======
             "ID": "23464",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23466",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted1",
             "Level": "60",
@@ -1485,10 +1753,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23467",
 =======
             "ID": "23465",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23467",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted2_",
             "Level": "75",
@@ -1509,10 +1781,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23468",
 =======
             "ID": "23466",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23468",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted3",
             "Level": "80",
@@ -1533,10 +1809,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23469",
 =======
             "ID": "23467",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23469",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret1",
             "Level": "1",
@@ -1557,10 +1837,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23470",
 =======
             "ID": "23468",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23470",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret2_",
             "Level": "50",
@@ -1581,10 +1865,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23471",
 =======
             "ID": "23469",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23471",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret3",
             "Level": "70",
@@ -1605,10 +1893,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23472",
 =======
             "ID": "23470",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23472",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsAnnulment1_",
             "Level": "82",
@@ -1629,10 +1921,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23473",
 =======
             "ID": "23471",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23473",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegretDropsAsAnnulment1",
             "Level": "77",
@@ -1653,10 +1949,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23474",
 =======
             "ID": "23472",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23474",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers1",
             "Level": "1",
@@ -1677,10 +1977,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23475",
 =======
             "ID": "23473",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23475",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers2",
             "Level": "50",
@@ -1701,10 +2005,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23476",
 =======
             "ID": "23474",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23476",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers3",
             "Level": "70",
@@ -1725,10 +2033,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23477",
 =======
             "ID": "23475",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23477",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing1",
             "Level": "1",
@@ -1749,10 +2061,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23478",
 =======
             "ID": "23476",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23478",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing2___",
             "Level": "50",
@@ -1773,10 +2089,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23479",
 =======
             "ID": "23477",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23479",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing3",
             "Level": "70",
@@ -1797,10 +2117,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23480",
 =======
             "ID": "23478",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23480",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing1",
             "Level": "1",
@@ -1821,10 +2145,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23481",
 =======
             "ID": "23479",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23481",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing2",
             "Level": "50",
@@ -1845,10 +2173,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23482",
 =======
             "ID": "23480",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23482",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing3_",
             "Level": "70",
@@ -1869,10 +2201,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23483",
 =======
             "ID": "23481",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23483",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency1",
             "Level": "1",
@@ -1893,10 +2229,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23484",
 =======
             "ID": "23482",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23484",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency2",
             "Level": "50",
@@ -1917,10 +2257,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23485",
 =======
             "ID": "23483",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23485",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency3",
             "Level": "70",
@@ -1941,10 +2285,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23489",
 =======
             "ID": "23487",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23489",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests1",
             "Level": "1",
@@ -1965,10 +2313,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23490",
 =======
             "ID": "23488",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23490",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests2",
             "Level": "50",
@@ -1989,10 +2341,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23491",
 =======
             "ID": "23489",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23491",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests3",
             "Level": "70",
@@ -2013,10 +2369,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23492",
 =======
             "ID": "23490",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23492",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests1",
             "Level": "1",
@@ -2037,10 +2397,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23493",
 =======
             "ID": "23491",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23493",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests2_",
             "Level": "50",
@@ -2061,10 +2425,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23494",
 =======
             "ID": "23492",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23494",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests3",
             "Level": "70",
@@ -2085,10 +2453,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23495",
 =======
             "ID": "23493",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23495",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests1",
             "Level": "1",
@@ -2109,10 +2481,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23496",
 =======
             "ID": "23494",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23496",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests2",
             "Level": "50",
@@ -2133,10 +2509,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23497",
 =======
             "ID": "23495",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23497",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests3",
             "Level": "70",
@@ -2157,10 +2537,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23498",
 =======
             "ID": "23496",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23498",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests1__",
             "Level": "1",
@@ -2181,10 +2565,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23499",
 =======
             "ID": "23497",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23499",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests2",
             "Level": "50",
@@ -2205,10 +2593,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23500",
 =======
             "ID": "23498",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23500",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests3",
             "Level": "70",
@@ -2229,10 +2621,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23501",
 =======
             "ID": "23499",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23501",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests1",
             "Level": "1",
@@ -2253,10 +2649,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23502",
 =======
             "ID": "23500",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23502",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests2",
             "Level": "50",
@@ -2277,10 +2677,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23503",
 =======
             "ID": "23501",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23503",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests3",
             "Level": "70",
@@ -2301,10 +2705,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23504",
 =======
             "ID": "23502",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23504",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests1",
             "Level": "1",
@@ -2325,10 +2733,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23505",
 =======
             "ID": "23503",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23505",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests2",
             "Level": "50",
@@ -2349,10 +2761,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23506",
 =======
             "ID": "23504",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23506",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests3",
             "Level": "70",
@@ -2373,10 +2789,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23507",
 =======
             "ID": "23505",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23507",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalUniquesRewardsFromRewardChests1_",
             "Level": "1",
@@ -2397,10 +2817,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23508",
 =======
             "ID": "23506",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23508",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalUniquesRewardsFromRewardChests2",
             "Level": "50",
@@ -2421,10 +2845,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23510",
 =======
             "ID": "23508",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23510",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests1",
             "Level": "1",
@@ -2445,10 +2873,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23511",
 =======
             "ID": "23509",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23511",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests2",
             "Level": "50",
@@ -2469,10 +2901,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23512",
 =======
             "ID": "23510",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23512",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests3_",
             "Level": "70",
@@ -2493,10 +2929,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23513",
 =======
             "ID": "23511",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23513",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests1",
             "Level": "40",
@@ -2517,10 +2957,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23514",
 =======
             "ID": "23512",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23514",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests2",
             "Level": "50",
@@ -2541,10 +2985,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23515",
 =======
             "ID": "23513",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23515",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests3",
             "Level": "70",
@@ -2565,10 +3013,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23516",
 =======
             "ID": "23514",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23516",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests1",
             "Level": "40",
@@ -2589,10 +3041,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23517",
 =======
             "ID": "23515",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23517",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests2",
             "Level": "50",
@@ -2613,10 +3069,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23518",
 =======
             "ID": "23516",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23518",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests3",
             "Level": "70",
@@ -2637,10 +3097,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23519",
 =======
             "ID": "23517",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23519",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalMetamorphRewardsFromRewardChests1_",
             "Level": "60",
@@ -2661,10 +3125,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23520",
 =======
             "ID": "23518",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23520",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalMetamorphRewardsFromRewardChests2",
             "Level": "80",
@@ -2685,10 +3153,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23521",
 =======
             "ID": "23519",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23521",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDeliriumRewardsFromRewardChests1",
             "Level": "60",
@@ -2709,10 +3181,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23522",
 =======
             "ID": "23520",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23522",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDeliriumRewardsFromRewardChests2_",
             "Level": "80",
@@ -2733,10 +3209,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23523",
 =======
             "ID": "23521",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23523",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests1__",
             "Level": "40",
@@ -2757,10 +3237,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23524",
 =======
             "ID": "23522",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23524",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests2",
             "Level": "50",
@@ -2781,10 +3265,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23525",
 =======
             "ID": "23523",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23525",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests3_",
             "Level": "70",
@@ -2805,10 +3293,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23526",
 =======
             "ID": "23524",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23526",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests1",
             "Level": "40",
@@ -2829,10 +3321,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23527",
 =======
             "ID": "23525",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23527",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests2",
             "Level": "50",
@@ -2853,10 +3349,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23528",
 =======
             "ID": "23526",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23528",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests3__",
             "Level": "70",
@@ -2877,10 +3377,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23529",
 =======
             "ID": "23527",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23529",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests1___",
             "Level": "40",
@@ -2901,10 +3405,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23530",
 =======
             "ID": "23528",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23530",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests2",
             "Level": "50",
@@ -2925,10 +3433,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23531",
 =======
             "ID": "23529",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23531",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests3__",
             "Level": "70",
@@ -2949,10 +3461,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23532",
 =======
             "ID": "23530",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23532",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests1",
             "Level": "40",
@@ -2973,10 +3489,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23533",
 =======
             "ID": "23531",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23533",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests2",
             "Level": "50",
@@ -2997,10 +3517,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23534",
 =======
             "ID": "23532",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "23534",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests3_",
             "Level": "70",
@@ -3035,13 +3559,19 @@
     "scourgedown": [],
     "bestiary": [],
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
     "lang": "us",
     "cached": 1,
     "segs": [
         "Mods",
         "Gen"
     ]
+<<<<<<< HEAD
 =======
     "lang": "us"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
 }

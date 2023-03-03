@@ -6,10 +6,14 @@
         "ItemClassesID": "50",
         "cn": "AbyssJewel",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "link_name": "<a class='whiteitem' data-hover='?t=item&n=Ghastly+Eye+Jewel' href='/us/Ghastly_Eye_Jewel'>Ghastly Eye Jewel</a><span data-tabname=\"Ghastly Eye Jewel Modifiers\"></span>",
 =======
         "link_name": "<a data-hover='?t=item&n=Ghastly+Eye+Jewel' class='whiteitem' href='/us/Ghastly_Eye_Jewel'>Ghastly Eye Jewel</a><span data-tabname=\"Ghastly Eye Jewel Modifiers\"></span>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+        "link_name": "<a class='whiteitem' data-hover='?t=item&n=Ghastly+Eye+Jewel' href='/us/Ghastly_Eye_Jewel'>Ghastly Eye Jewel</a><span data-tabname=\"Ghastly Eye Jewel Modifiers\"></span>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
         "attr": [],
         "tags": null
     },
@@ -42,10 +46,14 @@
             "type": "shaper",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Shaper",
             "display_chance": true
         },
@@ -53,10 +61,14 @@
             "type": "elder",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Elder",
             "display_chance": true
         },
@@ -64,10 +76,14 @@
             "type": "crusader",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Crusader",
             "display_chance": true
         },
@@ -75,10 +91,14 @@
             "type": "redeemer",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Redeemer",
             "display_chance": true
         },
@@ -86,10 +106,14 @@
             "type": "hunter",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Hunter",
             "display_chance": true
         },
@@ -97,10 +121,14 @@
             "type": "warlord",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Warlord",
             "display_chance": true
         },
@@ -108,10 +136,14 @@
             "type": "delve",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Delve",
             "display_chance": true
         },
@@ -119,10 +151,14 @@
             "type": "incursion",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Incursion",
             "display_chance": false
         },
@@ -130,10 +166,14 @@
             "type": "veiled",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
 =======
             "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Veiled",
             "display_chance": true
         },
@@ -141,10 +181,14 @@
             "type": "master",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Crafting Bench",
             "display_chance": false
         },
@@ -152,10 +196,14 @@
             "type": "essence",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Essence",
             "display_chance": false
         },
@@ -163,10 +211,14 @@
             "type": "bestiary",
             "show_type": "clickable",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
 =======
             "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Bestiary",
             "display_chance": false
         }
@@ -178,10 +230,14 @@
     "normal": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13679",
 =======
             "ID": "13677",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13679",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Hale",
             "Code": "AbyssJewelAddedLife1",
             "Level": "1",
@@ -202,21 +258,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13680",
 =======
             "ID": "13678",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13680",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Healthy",
             "Code": "AbyssJewelAddedLife2",
             "Level": "35",
@@ -237,21 +302,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13681",
 =======
             "ID": "13679",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13681",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Sanguine",
             "Code": "AbyssJewelAddedLife3",
             "Level": "74",
@@ -272,21 +346,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13682",
 =======
             "ID": "13680",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13682",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Stalwart",
             "Code": "AbyssJewelAddedLife4",
             "Level": "82",
@@ -307,21 +390,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13683",
 =======
             "ID": "13681",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13683",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Beryl",
             "Code": "AbyssJewelAddedMana1",
             "Level": "1",
@@ -342,21 +434,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13684",
 =======
             "ID": "13682",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13684",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Cobalt",
             "Code": "AbyssJewelAddedMana2",
             "Level": "40",
@@ -377,21 +478,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13685",
 =======
             "ID": "13683",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13685",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Azure",
             "Code": "AbyssJewelAddedMana3",
             "Level": "75",
@@ -412,21 +522,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13686",
 =======
             "ID": "13684",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13686",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Sapphire",
             "Code": "AbyssJewelAddedMana4",
             "Level": "83",
@@ -447,21 +566,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13689",
 =======
             "ID": "13687",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13689",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Strength",
             "Code": "AbyssStrengthJewel1_",
             "Level": "1",
@@ -481,19 +609,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13690",
 =======
             "ID": "13688",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13690",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Dexterity",
             "Code": "AbyssDexterityJewel1_",
             "Level": "1",
@@ -513,19 +649,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13691",
 =======
             "ID": "13689",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13691",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Intelligence",
             "Code": "AbyssIntelligenceJewel1",
             "Level": "1",
@@ -545,19 +689,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13692",
 =======
             "ID": "13690",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13692",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Athletics",
             "Code": "AbyssStrengthDexterityJewel1",
             "Level": "1",
@@ -577,19 +729,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13693",
 =======
             "ID": "13691",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13693",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Spirit",
             "Code": "AbyssStrengthIntelligenceJewel1_",
             "Level": "1",
@@ -609,19 +769,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13694",
 =======
             "ID": "13692",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13694",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Cunning",
             "Code": "AbyssDexterityIntelligenceJewel1",
             "Level": "1",
@@ -641,19 +809,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13695",
 =======
             "ID": "13693",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13695",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Adaption",
             "Code": "AbyssAllAttributesJewel1",
             "Level": "1",
@@ -673,19 +849,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13696",
 =======
             "ID": "13694",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13696",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Dragon",
             "Code": "AbyssFireResistanceJewel1",
             "Level": "1",
@@ -707,6 +891,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
@@ -715,15 +900,24 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13697",
 =======
             "ID": "13695",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13697",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Beast",
             "Code": "AbyssColdResistanceJewel1",
             "Level": "1",
@@ -745,6 +939,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
@@ -753,15 +948,24 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13698",
 =======
             "ID": "13696",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13698",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Grounding",
             "Code": "AbyssLightningResistanceJewel1",
             "Level": "1",
@@ -783,6 +987,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
@@ -791,15 +996,24 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13699",
 =======
             "ID": "13697",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13699",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Hearth",
             "Code": "AbyssFireColdResistanceJewel1",
             "Level": "1",
@@ -822,25 +1036,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13700",
 =======
             "ID": "13698",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13700",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Insulation",
             "Code": "AbyssFireLightningResistanceJewel1",
             "Level": "1",
@@ -863,25 +1087,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13701",
 =======
             "ID": "13699",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13701",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Shelter",
             "Code": "AbyssColdLightningResistanceJewel1",
             "Level": "1",
@@ -904,25 +1138,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13702",
 =======
             "ID": "13700",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13702",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Resistance",
             "Code": "AbyssAllResistancesJewel1",
             "Level": "1",
@@ -943,21 +1187,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13703",
 =======
             "ID": "13701",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13703",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Order",
             "Code": "AbyssChaosResistanceJewel1",
             "Level": "1",
@@ -978,21 +1231,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
 =======
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13705",
 =======
             "ID": "13703",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13705",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Enchanting",
             "Code": "AbyssCastSpeedJewel1",
             "Level": "50",
@@ -1015,21 +1277,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
 =======
                 "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13714",
 =======
             "ID": "13712",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13714",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Heated",
             "Code": "AbyssMinionAddedFireDamageJewel1",
             "Level": "1",
@@ -1054,10 +1325,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1065,15 +1340,21 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13715",
 =======
             "ID": "13713",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13715",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Flaming",
             "Code": "AbyssMinionAddedFireDamageJewel2",
             "Level": "39",
@@ -1098,10 +1379,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1109,15 +1394,21 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13716",
 =======
             "ID": "13714",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13716",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Scorching",
             "Code": "AbyssMinionAddedFireDamageJewel3",
             "Level": "48",
@@ -1142,10 +1433,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1153,15 +1448,21 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13717",
 =======
             "ID": "13715",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13717",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Incinerating",
             "Code": "AbyssMinionAddedFireDamageJewel4_",
             "Level": "58",
@@ -1186,10 +1487,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1197,15 +1502,21 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13718",
 =======
             "ID": "13716",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13718",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Blasting",
             "Code": "AbyssMinionAddedFireDamageJewel5",
             "Level": "70",
@@ -1230,10 +1541,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1241,15 +1556,21 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13719",
 =======
             "ID": "13717",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13719",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Cremating",
             "Code": "AbyssMinionAddedFireDamageJewel6_",
             "Level": "82",
@@ -1274,10 +1595,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1285,15 +1610,21 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13720",
 =======
             "ID": "13718",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13720",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Frosted",
             "Code": "AbyssMinionAddedColdDamageJewel1",
             "Level": "1",
@@ -1318,10 +1649,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1329,15 +1664,21 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13721",
 =======
             "ID": "13719",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13721",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Freezing",
             "Code": "AbyssMinionAddedColdDamageJewel2",
             "Level": "39",
@@ -1362,10 +1703,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1373,15 +1718,21 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13722",
 =======
             "ID": "13720",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13722",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Frozen",
             "Code": "AbyssMinionAddedColdDamageJewel3",
             "Level": "48",
@@ -1406,10 +1757,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1417,15 +1772,21 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13723",
 =======
             "ID": "13721",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13723",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Glaciated",
             "Code": "AbyssMinionAddedColdDamageJewel4",
             "Level": "58",
@@ -1450,10 +1811,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1461,15 +1826,21 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13724",
 =======
             "ID": "13722",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13724",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Polar",
             "Code": "AbyssMinionAddedColdDamageJewel5",
             "Level": "70",
@@ -1494,10 +1865,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1505,15 +1880,21 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13725",
 =======
             "ID": "13723",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13725",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Entombing",
             "Code": "AbyssMinionAddedColdDamageJewel6_",
             "Level": "82",
@@ -1538,10 +1919,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1549,15 +1934,21 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13726",
 =======
             "ID": "13724",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13726",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Humming",
             "Code": "AbyssMinionAddedLightningDamageJewel1_",
             "Level": "1",
@@ -1582,10 +1973,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1593,15 +1988,21 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13727",
 =======
             "ID": "13725",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13727",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Sparking",
             "Code": "AbyssMinionAddedLightningDamageJewel2",
             "Level": "39",
@@ -1626,10 +2027,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1637,15 +2042,21 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13728",
 =======
             "ID": "13726",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13728",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Arcing",
             "Code": "AbyssMinionAddedLightningDamageJewel3_",
             "Level": "48",
@@ -1670,10 +2081,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1681,15 +2096,21 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13729",
 =======
             "ID": "13727",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13729",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Shocking",
             "Code": "AbyssMinionAddedLightningDamageJewel4",
             "Level": "58",
@@ -1714,10 +2135,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1725,15 +2150,21 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13730",
 =======
             "ID": "13728",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13730",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Discharging",
             "Code": "AbyssMinionAddedLightningDamageJewel5",
             "Level": "70",
@@ -1758,10 +2189,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1769,15 +2204,21 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13731",
 =======
             "ID": "13729",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13731",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Electrocuting",
             "Code": "AbyssMinionAddedLightningDamageJewel6",
             "Level": "82",
@@ -1802,10 +2243,14 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
@@ -1813,15 +2258,21 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13732",
 =======
             "ID": "13730",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13732",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Glinting",
             "Code": "AbyssMinionAddedPhysicalDamageJewel1",
             "Level": "1",
@@ -1845,6 +2296,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -1854,15 +2306,24 @@
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13733",
 =======
             "ID": "13731",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13733",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Gleaming",
             "Code": "AbyssMinionAddedPhysicalDamageJewel2",
             "Level": "42",
@@ -1886,6 +2347,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -1895,15 +2357,24 @@
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13734",
 =======
             "ID": "13732",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13734",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Annealed",
             "Code": "AbyssMinionAddedPhysicalDamageJewel3",
             "Level": "54",
@@ -1927,6 +2398,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -1936,15 +2408,24 @@
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13735",
 =======
             "ID": "13733",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13735",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Razor-sharp",
             "Code": "AbyssMinionAddedPhysicalDamageJewel4",
             "Level": "63",
@@ -1968,6 +2449,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -1977,15 +2459,24 @@
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13736",
 =======
             "ID": "13734",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13736",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Tempered",
             "Code": "AbyssMinionAddedPhysicalDamageJewel5",
             "Level": "72",
@@ -2009,6 +2500,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2018,15 +2510,24 @@
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13737",
 =======
             "ID": "13735",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13737",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Flaring",
             "Code": "AbyssMinionAddedPhysicalDamageJewel6",
             "Level": "83",
@@ -2050,6 +2551,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2059,15 +2561,24 @@
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13738",
 =======
             "ID": "13736",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13738",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Tainted",
             "Code": "AbyssMinionAddedChaosDamageJewel1",
             "Level": "1",
@@ -2091,6 +2602,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2100,15 +2612,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13739",
 =======
             "ID": "13737",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13739",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Clouded",
             "Code": "AbyssMinionAddedChaosDamageJewel2_",
             "Level": "42",
@@ -2132,6 +2653,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2141,15 +2663,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13740",
 =======
             "ID": "13738",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13740",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Darkened",
             "Code": "AbyssMinionAddedChaosDamageJewel3",
             "Level": "54",
@@ -2173,6 +2704,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2182,15 +2714,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13741",
 =======
             "ID": "13739",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13741",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Malignant",
             "Code": "AbyssMinionAddedChaosDamageJewel4",
             "Level": "65",
@@ -2214,6 +2755,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2223,15 +2765,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13742",
 =======
             "ID": "13740",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13742",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Vile",
             "Code": "AbyssMinionAddedChaosDamageJewel5_",
             "Level": "75",
@@ -2255,6 +2806,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2264,15 +2816,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13743",
 =======
             "ID": "13741",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "13743",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Malicious",
             "Code": "AbyssMinionAddedChaosDamageJewel6",
             "Level": "84",
@@ -2296,6 +2857,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2305,15 +2867,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14079",
 =======
             "ID": "14077",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14079",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Fuelling",
             "Code": "AbyssFlatMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -2336,6 +2907,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2344,15 +2916,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14080",
 =======
             "ID": "14078",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14080",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lively",
             "Code": "AbyssFlatMinionLifeRegenerationJewel2",
             "Level": "30",
@@ -2375,6 +2956,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2383,15 +2965,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14081",
 =======
             "ID": "14079",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14081",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Exuberant",
             "Code": "AbyssFlatMinionLifeRegenerationJewel3",
             "Level": "60",
@@ -2414,6 +3005,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -2422,15 +3014,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14082",
 =======
             "ID": "14080",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14082",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Captivating",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel1",
             "Level": "1",
@@ -2455,19 +3056,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14083",
 =======
             "ID": "14081",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14083",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Beautiful",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel2",
             "Level": "30",
@@ -2492,19 +3101,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14084",
 =======
             "ID": "14082",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14084",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Breathtaking",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel3",
             "Level": "60",
@@ -2529,19 +3146,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14085",
 =======
             "ID": "14083",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14085",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Youthful",
             "Code": "AbyssFlatLifeRegenerationJewel1",
             "Level": "1",
@@ -2567,21 +3192,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14086",
 =======
             "ID": "14084",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14086",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Spirited",
             "Code": "AbyssFlatLifeRegenerationJewel2",
             "Level": "40",
@@ -2607,21 +3241,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14087",
 =======
             "ID": "14085",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14087",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Vivacious",
             "Code": "AbyssFlatLifeRegenerationJewel3_",
             "Level": "80",
@@ -2647,21 +3290,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14088",
 =======
             "ID": "14086",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14088",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Energising",
             "Code": "AbyssFlatManaShieldRegenerationJewel1",
             "Level": "1",
@@ -2682,21 +3334,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14089",
 =======
             "ID": "14087",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14089",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Inspirational",
             "Code": "AbyssFlatManaShieldRegenerationJewel2",
             "Level": "40",
@@ -2717,21 +3378,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14090",
 =======
             "ID": "14088",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14090",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Resonating",
             "Code": "AbyssFlatManaShieldRegenerationJewel3",
             "Level": "75",
@@ -2752,21 +3422,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14097",
 =======
             "ID": "14095",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14097",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel1",
             "Level": "32",
@@ -2788,21 +3467,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14098",
 =======
             "ID": "14096",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14098",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel2",
             "Level": "65",
@@ -2824,21 +3512,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14099",
 =======
             "ID": "14097",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14099",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel1",
             "Level": "32",
@@ -2860,21 +3557,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14100",
 =======
             "ID": "14098",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14100",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel2_",
             "Level": "65",
@@ -2896,21 +3602,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14101",
 =======
             "ID": "14099",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14101",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel1",
             "Level": "32",
@@ -2932,21 +3647,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14102",
 =======
             "ID": "14100",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14102",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel2",
             "Level": "65",
@@ -2968,21 +3692,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14103",
 =======
             "ID": "14101",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14103",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Venom",
             "Code": "AbyssMinionPoisonOnHitChanceJewel1",
             "Level": "60",
@@ -3006,25 +3739,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14104",
 =======
             "ID": "14102",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14104",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Combustion",
             "Code": "AbyssMinionIgniteOnHitChanceJewel1",
             "Level": "60",
@@ -3048,25 +3791,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14105",
 =======
             "ID": "14103",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14105",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Bloodletting",
             "Code": "AbyssMinionAttacksBleedOnHitChanceJewel1",
             "Level": "60",
@@ -3090,25 +3843,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14107",
 =======
             "ID": "14105",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14107",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Marshalling",
             "Code": "AbyssMinionDamageVSAbyssMonstersJewel1",
             "Level": "1",
@@ -3123,10 +3886,14 @@
             ],
             "DropChance": "500",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "str": "Minions deal <span class='mod-value'>(30&ndash;40)</span>% increased Damage with Hits and Ailments against Abyssal Monsters",
 =======
             "str": "Minions deal <span class='mod-value'>(30&ndash;40)</span>% increased Damage against Abyssal Monsters",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "str": "Minions deal <span class='mod-value'>(30&ndash;40)</span>% increased Damage with Hits and Ailments against Abyssal Monsters",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "master_no": [],
             "fossil_no": [
                 "damage",
@@ -3134,21 +3901,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14108",
 =======
             "ID": "14106",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14108",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Warding",
             "Code": "AbyssReducedPhysicalDamageTakenVsAbyssMonsterJewel1",
             "Level": "1",
@@ -3168,19 +3944,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
 =======
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14109",
 =======
             "ID": "14107",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14109",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Extinguishing",
             "Code": "AbyssAvoidIgniteJewel1_",
             "Level": "50",
@@ -3202,6 +3986,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3210,15 +3995,24 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14110",
 =======
             "ID": "14108",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14110",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Extinguishing",
             "Code": "AbyssAvoidIgniteJewel2",
             "Level": "70",
@@ -3240,6 +4034,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3248,15 +4043,24 @@
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14111",
 =======
             "ID": "14109",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14111",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel1",
             "Level": "50",
@@ -3278,6 +4082,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3286,15 +4091,24 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14112",
 =======
             "ID": "14110",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14112",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel2",
             "Level": "70",
@@ -3316,6 +4130,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3324,15 +4139,24 @@
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14113",
 =======
             "ID": "14111",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14113",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel1",
             "Level": "50",
@@ -3354,6 +4178,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3362,15 +4187,24 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14114",
 =======
             "ID": "14112",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14114",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel2",
             "Level": "70",
@@ -3392,6 +4226,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3400,15 +4235,24 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14115",
 =======
             "ID": "14113",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14115",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel1__",
             "Level": "50",
@@ -3430,6 +4274,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3438,15 +4283,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14116",
 =======
             "ID": "14114",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14116",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel2__",
             "Level": "70",
@@ -3468,6 +4322,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
@@ -3476,15 +4331,24 @@
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14117",
 =======
             "ID": "14115",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14117",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Mending",
             "Code": "AbyssAvoidBleedingJewel1",
             "Level": "50",
@@ -3507,25 +4371,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14118",
 =======
             "ID": "14116",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14118",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Mending",
             "Code": "AbyssAvoidBleedingJewel2",
             "Level": "70",
@@ -3548,25 +4422,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14119",
 =======
             "ID": "14117",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14119",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Unwavering",
             "Code": "AbyssAvoidStunJewel1",
             "Level": "50",
@@ -3587,10 +4471,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14120",
 =======
             "ID": "14118",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14120",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Unwavering",
             "Code": "AbyssAvoidStunJewel2",
             "Level": "70",
@@ -3611,10 +4499,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14126",
 =======
             "ID": "14124",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14126",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Training",
             "Code": "AbyssMinionAttackAndCastSpeedJewel1",
             "Level": "1",
@@ -3638,25 +4530,35 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14127",
 =======
             "ID": "14125",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14127",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Longevity",
             "Code": "AbyssMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -3679,6 +4581,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -3687,15 +4590,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14128",
 =======
             "ID": "14126",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14128",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Vampirism",
             "Code": "AbyssMinionLifeLeechJewel1",
             "Level": "1",
@@ -3718,6 +4630,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -3726,15 +4639,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14129",
 =======
             "ID": "14127",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14129",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Orchestration",
             "Code": "AbyssMinionMovementSpeedJewel1",
             "Level": "1",
@@ -3756,21 +4678,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14130",
 =======
             "ID": "14128",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14130",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Fortitude",
             "Code": "AbyssMinionLifeJewel1_",
             "Level": "1",
@@ -3793,6 +4724,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -3801,15 +4733,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14131",
 =======
             "ID": "14129",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14131",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Suggestion",
             "Code": "AbyssFlatMinionAccuracy1",
             "Level": "1",
@@ -3831,21 +4772,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14132",
 =======
             "ID": "14130",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14132",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Instruction",
             "Code": "AbyssFlatMinionAccuracy2_",
             "Level": "52",
@@ -3867,21 +4817,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14133",
 =======
             "ID": "14131",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14133",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Command",
             "Code": "AbyssFlatMinionAccuracy3",
             "Level": "78",
@@ -3903,21 +4862,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14134",
 =======
             "ID": "14132",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14134",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Acclimatisation",
             "Code": "AbyssMinionElementalResistancesJewel1",
             "Level": "1",
@@ -3940,6 +4908,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -3948,15 +4917,24 @@
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14135",
 =======
             "ID": "14133",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14135",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Righteousness",
             "Code": "AbyssMinionChaosResistanceJewel1",
             "Level": "1",
@@ -3979,6 +4957,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
@@ -3987,15 +4966,24 @@
                 "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14136",
 =======
             "ID": "14134",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14136",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lacquered",
             "Code": "AbyssFlatArmourJewel1",
             "Level": "1",
@@ -4016,19 +5004,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14137",
 =======
             "ID": "14135",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14137",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Fortified",
             "Code": "AbyssFlatArmourJewel2",
             "Level": "40",
@@ -4049,19 +5045,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14138",
 =======
             "ID": "14136",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14138",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Carapaced",
             "Code": "AbyssFlatArmourJewel3",
             "Level": "75",
@@ -4082,19 +5086,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14139",
 =======
             "ID": "14137",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14139",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Encased",
             "Code": "AbyssFlatArmourJewel4__",
             "Level": "83",
@@ -4115,19 +5127,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14140",
 =======
             "ID": "14138",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14140",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Agile",
             "Code": "AbyssFlatEvasionJewel1",
             "Level": "1",
@@ -4148,19 +5168,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14141",
 =======
             "ID": "14139",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14141",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Fleet",
             "Code": "AbyssFlatEvasionJewel2",
             "Level": "40",
@@ -4181,19 +5209,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14142",
 =======
             "ID": "14140",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14142",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Vaporous",
             "Code": "AbyssFlatEvasionJewel3",
             "Level": "75",
@@ -4214,19 +5250,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14143",
 =======
             "ID": "14141",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14143",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Beclouded",
             "Code": "AbyssFlatEvasionJewel4_",
             "Level": "83",
@@ -4247,19 +5291,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14144",
 =======
             "ID": "14142",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14144",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Shining",
             "Code": "AbyssFlatEnergyShieldJewel1",
             "Level": "1",
@@ -4280,19 +5332,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14145",
 =======
             "ID": "14143",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14145",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Seething",
             "Code": "AbyssFlatEnergyShieldJewel2",
             "Level": "40",
@@ -4313,19 +5373,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14146",
 =======
             "ID": "14144",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14146",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Incandescent",
             "Code": "AbyssFlatEnergyShieldJewel3",
             "Level": "75",
@@ -4346,19 +5414,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14147",
 =======
             "ID": "14145",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14147",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Resplendent",
             "Code": "AbyssFlatEnergyShieldJewel4",
             "Level": "83",
@@ -4379,19 +5455,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14150",
 =======
             "ID": "14148",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14150",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Facilitating",
             "Code": "AbyssCooldownRecoverySpeed1_",
             "Level": "75",
@@ -4416,10 +5500,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14151",
 =======
             "ID": "14149",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14151",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Expediting",
             "Code": "AbyssCooldownRecoverySpeed2__",
             "Level": "86",
@@ -4444,10 +5532,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14152",
 =======
             "ID": "14150",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14152",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Skewering",
             "Code": "AbyssImpaleEffect1_",
             "Level": "75",
@@ -4471,19 +5563,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
 =======
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14153",
 =======
             "ID": "14151",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14153",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Lancing",
             "Code": "AbyssImpaleEffect2_",
             "Level": "86",
@@ -4507,19 +5607,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
 =======
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14154",
 =======
             "ID": "14152",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14154",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Spurring",
             "Code": "AbyssDamageRecoupedAsMana1",
             "Level": "75",
@@ -4545,6 +5653,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
@@ -4553,15 +5662,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14155",
 =======
             "ID": "14153",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14155",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Motivating",
             "Code": "AbyssDamageRecoupedAsMana2",
             "Level": "86",
@@ -4587,6 +5705,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
@@ -4595,15 +5714,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14156",
 =======
             "ID": "14154",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14156",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Instinct",
             "Code": "AbyssSpellBlockChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -4630,10 +5758,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14157",
 =======
             "ID": "14155",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14157",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Confidence",
             "Code": "AbyssReducedPhysicalDamageTakenIfNotHitRecentlyJewel1",
             "Level": "1",
@@ -4657,19 +5789,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
 =======
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14158",
 =======
             "ID": "14156",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14158",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Momentum",
             "Code": "AbyssMovementSpeedIfNotDamagedRecentlyJewel1",
             "Level": "1",
@@ -4693,19 +5833,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
 =======
                 "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14164",
 =======
             "ID": "14162",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14164",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Retaliation",
             "Code": "AbyssCastSpeedIfMinionKilledRecentlyJewel1",
             "Level": "30",
@@ -4727,21 +5875,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
 =======
                 "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14165",
 =======
             "ID": "14163",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14165",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Authority",
             "Code": "AbyssMinionDamageIfMinionSkillUsedRecentlyJewel1",
             "Level": "1",
@@ -4763,21 +5920,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14166",
 =======
             "ID": "14164",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14166",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Maneuvering",
             "Code": "AbyssEvasionRatingWhileMovingJewel1",
             "Level": "1",
@@ -4802,19 +5968,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14167",
 =======
             "ID": "14165",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14167",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Praxis",
             "Code": "AbyssManaRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -4839,21 +6013,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14168",
 =======
             "ID": "14166",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14168",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Vivaciousness",
             "Code": "AbyssLifeRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -4878,21 +6061,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14174",
 =======
             "ID": "14172",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14174",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Readiness",
             "Code": "AbyssSpellDodgeAndDodgeChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -4919,10 +6111,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14176",
 =======
             "ID": "14174",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14176",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Guarding",
             "Code": "AbyssChanceToBlockIfDamagedRecentlyJewel1_",
             "Level": "1",
@@ -4949,10 +6145,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14183",
 =======
             "ID": "14181",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14183",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Sanctum",
             "Code": "AbyssSelfCurseEffectOnConsecratedGroundJewel1__",
             "Level": "84",
@@ -4977,21 +6177,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
 =======
                 "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14184",
 =======
             "ID": "14182",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14184",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Escape",
             "Code": "AbyssAvoidElementalAilmentsWhileElusiveJewel1",
             "Level": "84",
@@ -5019,11 +6228,15 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+<<<<<<< HEAD
 =======
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
@@ -5031,15 +6244,21 @@
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14185",
 =======
             "ID": "14183",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14185",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Enervation",
             "Code": "AbyssHinderedEnemiesLifeRegenerationRateJewel1",
             "Level": "84",
@@ -5064,21 +6283,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14186",
 =======
             "ID": "14184",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14186",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Clouding",
             "Code": "AbyssBlindedEnemiesCriticalStrikeChanceJewel1",
             "Level": "84",
@@ -5102,19 +6330,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
 =======
                 "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14187",
 =======
             "ID": "14185",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14187",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Languishing",
             "Code": "AbyssWitheredEnemiesAllResistanceJewel1___",
             "Level": "84",
@@ -5138,19 +6374,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14188",
 =======
             "ID": "14186",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14188",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Mangling",
             "Code": "AbyssMaimedEnemiesDamageOverTimeJewel1",
             "Level": "84",
@@ -5174,19 +6418,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14189",
 =======
             "ID": "14187",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "14189",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Daunting",
             "Code": "AbyssIntimidatedEnemiesStunDurationJewel1",
             "Level": "84",
@@ -5215,10 +6467,14 @@
     "delve": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15812",
 =======
             "ID": "15810",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15812",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -5243,6 +6499,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
@@ -5252,15 +6509,24 @@
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15822",
 =======
             "ID": "15820",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15822",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -5285,6 +6551,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
@@ -5294,15 +6561,24 @@
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15832",
 =======
             "ID": "15830",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15832",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -5327,6 +6603,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
@@ -5336,15 +6613,24 @@
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15851",
 =======
             "ID": "15849",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15851",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -5366,19 +6652,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
 =======
                 "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15861",
 =======
             "ID": "15859",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15861",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -5402,6 +6696,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
 =======
@@ -5409,15 +6704,23 @@
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15869",
 =======
             "ID": "15867",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15869",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -5440,21 +6743,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15871",
 =======
             "ID": "15869",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15871",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -5477,19 +6789,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15874",
 =======
             "ID": "15872",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15874",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -5512,19 +6832,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15877",
 =======
             "ID": "15875",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15877",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -5547,19 +6875,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15898",
 =======
             "ID": "15896",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15898",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -5581,19 +6917,27 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
 =======
                 "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15904",
 =======
             "ID": "15902",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15904",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -5616,21 +6960,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15921",
 =======
             "ID": "15919",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15921",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -5654,6 +7007,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
 =======
@@ -5661,15 +7015,23 @@
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15927",
 =======
             "ID": "15925",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15927",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -5692,10 +7054,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15933",
 =======
             "ID": "15931",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15933",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -5719,6 +7085,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
@@ -5727,15 +7094,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15944",
 =======
             "ID": "15942",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15944",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -5759,6 +7135,7 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
@@ -5767,15 +7144,24 @@
                 "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15955",
 =======
             "ID": "15953",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15955",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -5800,10 +7186,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15973",
 =======
             "ID": "15971",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15973",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "Subterranean",
             "Code": "DelveAbyssJewelMinionDamage1",
             "Level": "1",
@@ -5825,21 +7215,30 @@
             ],
             "mod_no": [
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
 =======
                 "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
                 "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15982",
 =======
             "ID": "15980",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15982",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -5878,10 +7277,14 @@
                 "0"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15257",
 =======
             "ID": "15255",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15257",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -5904,10 +7307,14 @@
                 "0"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15256",
 =======
             "ID": "15254",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15256",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -5930,10 +7337,14 @@
                 "0"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15259",
 =======
             "ID": "15257",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15259",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -5957,10 +7368,14 @@
                 "0"
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15258",
 =======
             "ID": "15256",
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+            "ID": "15258",
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -5983,13 +7398,19 @@
     "scourgeup": [],
     "scourgedown": [],
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
     "lang": "us",
     "cached": 1,
     "segs": [
         "Mods",
         "Gen"
     ]
+<<<<<<< HEAD
 =======
     "lang": "us"
 >>>>>>> fb042f0 (Update Mods Good Bless POEDB)
+=======
+>>>>>>> 7df592c (add button to update affix data from PoeDB)
 }
