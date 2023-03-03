@@ -5,7 +5,7 @@
         "IconPath": "<img loading='lazy'    alt='NewGemBase2' src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL05ld0dlbUJhc2UyIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/78f6bf8356/NewGemBase2.png\"/>",
         "ItemClassesID": "41",
         "cn": "Jewel",
-        "link_name": "<a data-hover='?t=item&n=Medium+Cluster+Jewel' class='whiteitem' href='/us/Medium_Cluster_Jewel'>Medium Cluster Jewel</a><span data-tabname=\"Medium Cluster Jewel Modifiers\"></span>",
+        "link_name": "<a class='whiteitem' data-hover='?t=item&n=Medium+Cluster+Jewel' href='/us/Medium_Cluster_Jewel'>Medium Cluster Jewel</a><span data-tabname=\"Medium Cluster Jewel Modifiers\"></span>",
         "attr": [],
         "tags": "affliction_flask_duration"
     },
@@ -38,84 +38,84 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
             "title": "Bestiary",
             "display_chance": false
         }
@@ -126,7 +126,7 @@
     },
     "normal": [
         {
-            "ID": "21409",
+            "ID": "21411",
             "Name": "Notable",
             "Code": "AfflictionNotableDistilledPerfection_",
             "Level": "1",
@@ -150,14 +150,14 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21410",
+            "ID": "21412",
             "Name": "Notable",
             "Code": "AfflictionNotableSpikedConcoction",
             "Level": "50",
@@ -181,14 +181,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21411",
+            "ID": "21413",
             "Name": "Notable",
             "Code": "AfflictionNotableFasting",
             "Level": "50",
@@ -210,12 +210,12 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21412",
+            "ID": "21414",
             "Name": "Notable",
             "Code": "AfflictionNotableMendersWellspring__",
             "Level": "68",
@@ -238,13 +238,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21413",
+            "ID": "21415",
             "Name": "Notable",
             "Code": "AfflictionNotableSpecialReserve",
             "Level": "1",
@@ -268,14 +268,14 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21414",
+            "ID": "21416",
             "Name": "Notable",
             "Code": "AfflictionNotableNumbingElixir",
             "Level": "68",
@@ -299,14 +299,14 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21519",
+            "ID": "21521",
             "Name": "Notable",
             "Code": "AfflictionNotableBrewedforPotency",
             "Level": "1",
@@ -335,15 +335,15 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>",
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21580",
+            "ID": "21582",
             "Name": "Notable",
             "Code": "AfflictionNotablePeakVigour",
             "Level": "1",
@@ -366,13 +366,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21589",
+            "ID": "21591",
             "Name": "Notable",
             "Code": "AfflictionNotableLiquidInspiration",
             "Level": "68",
@@ -396,13 +396,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21661",
+            "ID": "21663",
             "Name": "Hale",
             "Code": "AfflictionJewelSmallPassivesGrantLife_",
             "Level": "1",
@@ -424,13 +424,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21662",
+            "ID": "21664",
             "Name": "Healthy",
             "Code": "AfflictionJewelSmallPassivesGrantLife2_",
             "Level": "68",
@@ -452,13 +452,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21663",
+            "ID": "21665",
             "Name": "Sanguine",
             "Code": "AfflictionJewelSmallPassivesGrantLife3",
             "Level": "84",
@@ -480,13 +480,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21664",
+            "ID": "21666",
             "Name": "Beryl",
             "Code": "AfflictionJewelSmallPassivesGrantMana",
             "Level": "1",
@@ -508,13 +508,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21665",
+            "ID": "21667",
             "Name": "Cobalt",
             "Code": "AfflictionJewelSmallPassivesGrantMana2",
             "Level": "68",
@@ -536,13 +536,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21666",
+            "ID": "21668",
             "Name": "Azure",
             "Code": "AfflictionJewelSmallPassivesGrantMana3",
             "Level": "84",
@@ -564,13 +564,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21667",
+            "ID": "21669",
             "Name": "Shining",
             "Code": "AfflictionJewelSmallPassivesGrantES",
             "Level": "1",
@@ -592,12 +592,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21668",
+            "ID": "21670",
             "Name": "Glimmering",
             "Code": "AfflictionJewelSmallPassivesGrantES2",
             "Level": "68",
@@ -619,12 +619,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21669",
+            "ID": "21671",
             "Name": "Glowing",
             "Code": "AfflictionJewelSmallPassivesGrantES3",
             "Level": "84",
@@ -646,12 +646,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21670",
+            "ID": "21672",
             "Name": "Lacquered",
             "Code": "AfflictionJewelSmallPassivesGrantArmour",
             "Level": "1",
@@ -673,12 +673,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21671",
+            "ID": "21673",
             "Name": "Studded",
             "Code": "AfflictionJewelSmallPassivesGrantArmour2",
             "Level": "68",
@@ -700,12 +700,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21672",
+            "ID": "21674",
             "Name": "Ribbed",
             "Code": "AfflictionJewelSmallPassivesGrantArmour3_",
             "Level": "84",
@@ -727,12 +727,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21673",
+            "ID": "21675",
             "Name": "Agile",
             "Code": "AfflictionJewelSmallPassivesGrantEvasion",
             "Level": "1",
@@ -754,12 +754,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21674",
+            "ID": "21676",
             "Name": "Dancer's",
             "Code": "AfflictionJewelSmallPassivesGrantEvasion2__",
             "Level": "68",
@@ -781,12 +781,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21675",
+            "ID": "21677",
             "Name": "Acrobat's",
             "Code": "AfflictionJewelSmallPassivesGrantEvasion3",
             "Level": "84",
@@ -808,12 +808,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21676",
+            "ID": "21678",
             "Name": "of the Brute",
             "Code": "AfflictionJewelSmallPassivesGrantStr",
             "Level": "1",
@@ -834,12 +834,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21677",
+            "ID": "21679",
             "Name": "of the Wrestler",
             "Code": "AfflictionJewelSmallPassivesGrantStr2_",
             "Level": "68",
@@ -860,12 +860,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21678",
+            "ID": "21680",
             "Name": "of the Bear",
             "Code": "AfflictionJewelSmallPassivesGrantStr3_",
             "Level": "84",
@@ -886,12 +886,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21679",
+            "ID": "21681",
             "Name": "of the Mongoose",
             "Code": "AfflictionJewelSmallPassivesGrantDex_",
             "Level": "1",
@@ -912,12 +912,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21680",
+            "ID": "21682",
             "Name": "of the Lynx",
             "Code": "AfflictionJewelSmallPassivesGrantDex2",
             "Level": "68",
@@ -938,12 +938,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21681",
+            "ID": "21683",
             "Name": "of the Fox",
             "Code": "AfflictionJewelSmallPassivesGrantDex3_",
             "Level": "84",
@@ -964,12 +964,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21682",
+            "ID": "21684",
             "Name": "of the Pupil",
             "Code": "AfflictionJewelSmallPassivesGrantInt_",
             "Level": "1",
@@ -990,12 +990,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21683",
+            "ID": "21685",
             "Name": "of the Student",
             "Code": "AfflictionJewelSmallPassivesGrantInt2_",
             "Level": "68",
@@ -1016,12 +1016,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21684",
+            "ID": "21686",
             "Name": "of the Prodigy",
             "Code": "AfflictionJewelSmallPassivesGrantInt3",
             "Level": "84",
@@ -1042,12 +1042,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21685",
+            "ID": "21687",
             "Name": "of the Cloud",
             "Code": "AfflictionJewelSmallPassivesGrantAttributes",
             "Level": "1",
@@ -1068,12 +1068,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21686",
+            "ID": "21688",
             "Name": "of the Sky",
             "Code": "AfflictionJewelSmallPassivesGrantAttributes2",
             "Level": "68",
@@ -1094,12 +1094,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21687",
+            "ID": "21689",
             "Name": "of the Meteor",
             "Code": "AfflictionJewelSmallPassivesGrantAttributes3",
             "Level": "84",
@@ -1120,12 +1120,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21688",
+            "ID": "21690",
             "Name": "of Excitement",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegen",
             "Level": "1",
@@ -1147,13 +1147,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21689",
+            "ID": "21691",
             "Name": "of Joy",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegen2",
             "Level": "68",
@@ -1175,13 +1175,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21690",
+            "ID": "21692",
             "Name": "of Elation",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegen3_",
             "Level": "84",
@@ -1203,13 +1203,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21691",
+            "ID": "21693",
             "Name": "of the Newt",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegen___",
             "Level": "1",
@@ -1231,13 +1231,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21692",
+            "ID": "21694",
             "Name": "of the Lizard",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegen2_",
             "Level": "68",
@@ -1259,13 +1259,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21693",
+            "ID": "21695",
             "Name": "of the Flatworm",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegen3",
             "Level": "84",
@@ -1287,13 +1287,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21694",
+            "ID": "21696",
             "Name": "of the Whelpling",
             "Code": "AfflictionJewelSmallPassivesGrantFireRes",
             "Level": "1",
@@ -1316,14 +1316,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21695",
+            "ID": "21697",
             "Name": "of the Salamander",
             "Code": "AfflictionJewelSmallPassivesGrantFireRes2",
             "Level": "68",
@@ -1346,14 +1346,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21696",
+            "ID": "21698",
             "Name": "of the Drake",
             "Code": "AfflictionJewelSmallPassivesGrantFireRes3",
             "Level": "84",
@@ -1376,14 +1376,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21697",
+            "ID": "21699",
             "Name": "of the Inuit",
             "Code": "AfflictionJewelSmallPassivesGrantColdRes_",
             "Level": "1",
@@ -1406,14 +1406,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21698",
+            "ID": "21700",
             "Name": "of the Seal",
             "Code": "AfflictionJewelSmallPassivesGrantColdRes2",
             "Level": "68",
@@ -1436,14 +1436,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21699",
+            "ID": "21701",
             "Name": "of the Penguin",
             "Code": "AfflictionJewelSmallPassivesGrantColdRes3",
             "Level": "84",
@@ -1466,14 +1466,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21700",
+            "ID": "21702",
             "Name": "of the Cloud",
             "Code": "AfflictionJewelSmallPassivesGrantLightningRes",
             "Level": "1",
@@ -1496,14 +1496,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21701",
+            "ID": "21703",
             "Name": "of the Squall",
             "Code": "AfflictionJewelSmallPassivesGrantLightningRes2_",
             "Level": "68",
@@ -1526,14 +1526,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21702",
+            "ID": "21704",
             "Name": "of the Storm",
             "Code": "AfflictionJewelSmallPassivesGrantLightningRes3",
             "Level": "84",
@@ -1556,14 +1556,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21703",
+            "ID": "21705",
             "Name": "of the Crystal",
             "Code": "AfflictionJewelSmallPassivesGrantElementalRes",
             "Level": "1",
@@ -1585,13 +1585,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21704",
+            "ID": "21706",
             "Name": "of the Prism",
             "Code": "AfflictionJewelSmallPassivesGrantElementalRes2",
             "Level": "68",
@@ -1613,13 +1613,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21705",
+            "ID": "21707",
             "Name": "of the Kaleidoscope",
             "Code": "AfflictionJewelSmallPassivesGrantElementalRes3",
             "Level": "84",
@@ -1641,13 +1641,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21706",
+            "ID": "21708",
             "Name": "of the Lost",
             "Code": "AfflictionJewelSmallPassivesGrantChaosRes",
             "Level": "1",
@@ -1669,13 +1669,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21707",
+            "ID": "21709",
             "Name": "of Banishment",
             "Code": "AfflictionJewelSmallPassivesGrantChaosRes2",
             "Level": "68",
@@ -1697,13 +1697,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21708",
+            "ID": "21710",
             "Name": "of Eviction",
             "Code": "AfflictionJewelSmallPassivesGrantChaosRes3",
             "Level": "84",
@@ -1725,13 +1725,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21709",
+            "ID": "21711",
             "Name": "Harmful",
             "Code": "AfflictionJewelSmallPassivesGrantDamage_",
             "Level": "1",
@@ -1752,12 +1752,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21710",
+            "ID": "21712",
             "Name": "Hazardous",
             "Code": "AfflictionJewelSmallPassivesGrantDamage2_",
             "Level": "68",
@@ -1778,12 +1778,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21711",
+            "ID": "21713",
             "Name": "Dangerous",
             "Code": "AfflictionJewelSmallPassivesGrantDamage3",
             "Level": "84",
@@ -1804,12 +1804,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "21797",
+            "ID": "21799",
             "Name": "Potent",
             "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect",
             "Level": "1",
@@ -1829,7 +1829,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21798",
+            "ID": "21800",
             "Name": "Powerful",
             "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect2",
             "Level": "84",
@@ -1849,7 +1849,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21844",
+            "ID": "21846",
             "Name": "of Refilling",
             "Code": "AfflictionJewelSmallPassivesGrantFlaskChargesGained",
             "Level": "1",
@@ -1873,7 +1873,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21845",
+            "ID": "21847",
             "Name": "of Brimming",
             "Code": "AfflictionJewelSmallPassivesGrantFlaskChargesGained2_",
             "Level": "68",
@@ -1897,7 +1897,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21846",
+            "ID": "21848",
             "Name": "of Overflowing",
             "Code": "AfflictionJewelSmallPassivesGrantFlaskChargesGained3",
             "Level": "84",
@@ -1925,7 +1925,7 @@
     "essence": [],
     "delve": [
         {
-            "ID": "15810",
+            "ID": "15812",
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -1949,15 +1949,14 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15820",
+            "ID": "15822",
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -1981,15 +1980,14 @@
                 "cold"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15830",
+            "ID": "15832",
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -2013,15 +2011,14 @@
                 "lightning"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15849",
+            "ID": "15851",
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -2042,12 +2039,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15859",
+            "ID": "15861",
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -2070,14 +2067,13 @@
                 "chaos"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15867",
+            "ID": "15869",
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -2099,13 +2095,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15869",
+            "ID": "15871",
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -2127,12 +2123,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15872",
+            "ID": "15874",
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -2154,12 +2150,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15875",
+            "ID": "15877",
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -2181,12 +2177,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15896",
+            "ID": "15898",
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -2207,12 +2203,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15902",
+            "ID": "15904",
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -2234,13 +2230,13 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15919",
+            "ID": "15921",
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -2263,14 +2259,13 @@
                 "elemental"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15925",
+            "ID": "15927",
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -2292,7 +2287,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15931",
+            "ID": "15933",
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -2315,14 +2310,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15942",
+            "ID": "15944",
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -2345,14 +2340,14 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15953",
+            "ID": "15955",
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -2376,7 +2371,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15972",
+            "ID": "15974",
             "Name": "of the Underground",
             "Code": "DelveJewelMinionAttackAndCastSpeed1",
             "Level": "1",
@@ -2400,15 +2395,15 @@
                 "minion"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>",
-                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15980",
+            "ID": "15982",
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -2446,7 +2441,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15255",
+            "ID": "15257",
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -2468,7 +2463,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15254",
+            "ID": "15256",
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -2490,7 +2485,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15257",
+            "ID": "15259",
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -2513,7 +2508,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15256",
+            "ID": "15258",
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -2535,5 +2530,10 @@
     "warlord": [],
     "scourgeup": [],
     "scourgedown": [],
-    "lang": "us"
+    "lang": "us",
+    "cached": 1,
+    "segs": [
+        "Mods",
+        "Gen"
+    ]
 }

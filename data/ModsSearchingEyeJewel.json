@@ -5,7 +5,7 @@
         "IconPath": "<img loading='lazy'    alt='SearchingEye' src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL1NlYXJjaGluZ0V5ZSIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/ff2df16522/SearchingEye.png\"/>",
         "ItemClassesID": "50",
         "cn": "AbyssJewel",
-        "link_name": "<a data-hover='?t=item&n=Searching+Eye+Jewel' class='whiteitem' href='/us/Searching_Eye_Jewel'>Searching Eye Jewel</a><span data-tabname=\"Searching Eye Jewel Modifiers\"></span>",
+        "link_name": "<a class='whiteitem' data-hover='?t=item&n=Searching+Eye+Jewel' href='/us/Searching_Eye_Jewel'>Searching Eye Jewel</a><span data-tabname=\"Searching Eye Jewel Modifiers\"></span>",
         "attr": [],
         "tags": null
     },
@@ -37,84 +37,84 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
             "title": "Bestiary",
             "display_chance": false
         }
@@ -125,7 +125,7 @@
     },
     "normal": [
         {
-            "ID": "13677",
+            "ID": "13679",
             "Name": "Hale",
             "Code": "AbyssJewelAddedLife1",
             "Level": "1",
@@ -145,13 +145,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13678",
+            "ID": "13680",
             "Name": "Healthy",
             "Code": "AbyssJewelAddedLife2",
             "Level": "35",
@@ -171,13 +171,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13679",
+            "ID": "13681",
             "Name": "Sanguine",
             "Code": "AbyssJewelAddedLife3",
             "Level": "74",
@@ -197,13 +197,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13680",
+            "ID": "13682",
             "Name": "Stalwart",
             "Code": "AbyssJewelAddedLife4",
             "Level": "82",
@@ -223,13 +223,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13681",
+            "ID": "13683",
             "Name": "Beryl",
             "Code": "AbyssJewelAddedMana1",
             "Level": "1",
@@ -249,13 +249,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13682",
+            "ID": "13684",
             "Name": "Cobalt",
             "Code": "AbyssJewelAddedMana2",
             "Level": "40",
@@ -275,13 +275,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13683",
+            "ID": "13685",
             "Name": "Azure",
             "Code": "AbyssJewelAddedMana3",
             "Level": "75",
@@ -301,13 +301,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13684",
+            "ID": "13686",
             "Name": "Sapphire",
             "Code": "AbyssJewelAddedMana4",
             "Level": "83",
@@ -327,13 +327,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13685",
+            "ID": "13687",
             "Name": "of Chilling",
             "Code": "AbyssJewelChillEffect1_",
             "Level": "30",
@@ -355,14 +355,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13686",
+            "ID": "13688",
             "Name": "of Shocking",
             "Code": "AbyssJewelShockEffect1",
             "Level": "30",
@@ -384,14 +384,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13687",
+            "ID": "13689",
             "Name": "of Strength",
             "Code": "AbyssStrengthJewel1_",
             "Level": "1",
@@ -410,12 +410,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13688",
+            "ID": "13690",
             "Name": "of Dexterity",
             "Code": "AbyssDexterityJewel1_",
             "Level": "1",
@@ -434,12 +434,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13689",
+            "ID": "13691",
             "Name": "of Intelligence",
             "Code": "AbyssIntelligenceJewel1",
             "Level": "1",
@@ -458,12 +458,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13690",
+            "ID": "13692",
             "Name": "of Athletics",
             "Code": "AbyssStrengthDexterityJewel1",
             "Level": "1",
@@ -482,12 +482,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13691",
+            "ID": "13693",
             "Name": "of Spirit",
             "Code": "AbyssStrengthIntelligenceJewel1_",
             "Level": "1",
@@ -506,12 +506,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13692",
+            "ID": "13694",
             "Name": "of Cunning",
             "Code": "AbyssDexterityIntelligenceJewel1",
             "Level": "1",
@@ -530,12 +530,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13693",
+            "ID": "13695",
             "Name": "of Adaption",
             "Code": "AbyssAllAttributesJewel1",
             "Level": "1",
@@ -554,12 +554,12 @@
                 "attribute"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='attribute'>attribute</span>"
+                "<span class='badge bg-primary ' data-tag='attribute'>attribute</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13694",
+            "ID": "13696",
             "Name": "of the Dragon",
             "Code": "AbyssFireResistanceJewel1",
             "Level": "1",
@@ -580,14 +580,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13695",
+            "ID": "13697",
             "Name": "of the Beast",
             "Code": "AbyssColdResistanceJewel1",
             "Level": "1",
@@ -608,14 +608,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13696",
+            "ID": "13698",
             "Name": "of Grounding",
             "Code": "AbyssLightningResistanceJewel1",
             "Level": "1",
@@ -636,14 +636,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13697",
+            "ID": "13699",
             "Name": "of the Hearth",
             "Code": "AbyssFireColdResistanceJewel1",
             "Level": "1",
@@ -665,15 +665,15 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13698",
+            "ID": "13700",
             "Name": "of Insulation",
             "Code": "AbyssFireLightningResistanceJewel1",
             "Level": "1",
@@ -695,15 +695,15 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13699",
+            "ID": "13701",
             "Name": "of Shelter",
             "Code": "AbyssColdLightningResistanceJewel1",
             "Level": "1",
@@ -725,15 +725,15 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13700",
+            "ID": "13702",
             "Name": "of Resistance",
             "Code": "AbyssAllResistancesJewel1",
             "Level": "1",
@@ -753,13 +753,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13701",
+            "ID": "13703",
             "Name": "of Order",
             "Code": "AbyssChaosResistanceJewel1",
             "Level": "1",
@@ -779,13 +779,13 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13702",
+            "ID": "13704",
             "Name": "of Berserking",
             "Code": "AbyssAttackSpeedJewel1_",
             "Level": "50",
@@ -807,13 +807,13 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13704",
+            "ID": "13706",
             "Name": "of Menace",
             "Code": "AbyssCriticalStrikeChanceJewel1",
             "Level": "50",
@@ -833,12 +833,12 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13705",
+            "ID": "13707",
             "Name": "of Potency",
             "Code": "AbyssCriticalStrikeMultiplierJewel1",
             "Level": "50",
@@ -859,13 +859,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13706",
+            "ID": "13708",
             "Name": "Degenerative",
             "Code": "AbyssDamageOverTimeWhileDualWieldingJewel1",
             "Level": "1",
@@ -888,12 +888,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13707",
+            "ID": "13709",
             "Name": "Deleterious",
             "Code": "AbyssDamageOverTimeWhileDualWieldingJewel2",
             "Level": "60",
@@ -916,12 +916,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13708",
+            "ID": "13710",
             "Name": "Degenerative",
             "Code": "AbyssDamageOverTimeWhileWieldingTwoHandedWeaponJewel1",
             "Level": "1",
@@ -943,12 +943,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13709",
+            "ID": "13711",
             "Name": "Deleterious",
             "Code": "AbyssDamageOverTimeWhileWieldingTwoHandedWeaponJewel2",
             "Level": "60",
@@ -970,12 +970,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13710",
+            "ID": "13712",
             "Name": "Degenerative",
             "Code": "AbyssDamageOverTimeWhileHoldingAShieldJewel1_",
             "Level": "1",
@@ -998,12 +998,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13711",
+            "ID": "13713",
             "Name": "Deleterious",
             "Code": "AbyssDamageOverTimeWhileHoldingAShieldJewel2_",
             "Level": "60",
@@ -1026,12 +1026,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13857",
+            "ID": "13859",
             "Name": "Glinting",
             "Code": "AbyssAddedPhysicalDamageWithWandsJewel1_",
             "Level": "1",
@@ -1057,15 +1057,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13858",
+            "ID": "13860",
             "Name": "Gleaming",
             "Code": "AbyssAddedPhysicalDamageWithWandsJewel2",
             "Level": "42",
@@ -1091,15 +1090,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13859",
+            "ID": "13861",
             "Name": "Tempered",
             "Code": "AbyssAddedPhysicalDamageWithWandsJewel3_",
             "Level": "64",
@@ -1125,15 +1123,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13860",
+            "ID": "13862",
             "Name": "Flaring",
             "Code": "AbyssAddedPhysicalDamageWithWandsJewel4",
             "Level": "77",
@@ -1159,15 +1156,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13861",
+            "ID": "13863",
             "Name": "Acuminate",
             "Code": "AbyssAddedPhysicalDamageWithWandsJewel5",
             "Level": "85",
@@ -1193,15 +1189,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13892",
+            "ID": "13894",
             "Name": "Glinting",
             "Code": "AbyssAddedPhysicalDamageWithBowsJewel1",
             "Level": "1",
@@ -1227,15 +1222,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13893",
+            "ID": "13895",
             "Name": "Gleaming",
             "Code": "AbyssAddedPhysicalDamageWithBowsJewel2_",
             "Level": "42",
@@ -1261,15 +1255,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13894",
+            "ID": "13896",
             "Name": "Tempered",
             "Code": "AbyssAddedPhysicalDamageWithBowsJewel3",
             "Level": "64",
@@ -1295,15 +1288,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13895",
+            "ID": "13897",
             "Name": "Flaring",
             "Code": "AbyssAddedPhysicalDamageWithBowsJewel4_",
             "Level": "77",
@@ -1329,15 +1321,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13896",
+            "ID": "13898",
             "Name": "Acuminate",
             "Code": "AbyssAddedPhysicalDamageWithBowsJewel5",
             "Level": "85",
@@ -1363,15 +1354,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13897",
+            "ID": "13899",
             "Name": "Humming",
             "Code": "AbyssAddedLightningDamageWithWandsJewel1_",
             "Level": "1",
@@ -1398,16 +1388,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13898",
+            "ID": "13900",
             "Name": "Sparking",
             "Code": "AbyssAddedLightningDamageWithWandsJewel2",
             "Level": "37",
@@ -1434,16 +1423,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13899",
+            "ID": "13901",
             "Name": "Arcing",
             "Code": "AbyssAddedLightningDamageWithWandsJewel3",
             "Level": "48",
@@ -1470,16 +1458,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13900",
+            "ID": "13902",
             "Name": "Shocking",
             "Code": "AbyssAddedLightningDamageWithWandsJewel4",
             "Level": "60",
@@ -1506,16 +1493,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13901",
+            "ID": "13903",
             "Name": "Discharging",
             "Code": "AbyssAddedLightningDamageWithWandsJewel5",
             "Level": "70",
@@ -1542,16 +1528,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13902",
+            "ID": "13904",
             "Name": "Electrocuting",
             "Code": "AbyssAddedLightningDamageWithWandsJewel6",
             "Level": "82",
@@ -1578,16 +1563,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13915",
+            "ID": "13917",
             "Name": "Humming",
             "Code": "AbyssAddedLightningDamageWithBowsJewel1",
             "Level": "1",
@@ -1614,16 +1598,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13916",
+            "ID": "13918",
             "Name": "Sparking",
             "Code": "AbyssAddedLightningDamageWithBowsJewel2_",
             "Level": "37",
@@ -1650,16 +1633,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13917",
+            "ID": "13919",
             "Name": "Arcing",
             "Code": "AbyssAddedLightningDamageWithBowsJewel3",
             "Level": "48",
@@ -1686,16 +1668,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13918",
+            "ID": "13920",
             "Name": "Shocking",
             "Code": "AbyssAddedLightningDamageWithBowsJewel4",
             "Level": "60",
@@ -1722,16 +1703,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13919",
+            "ID": "13921",
             "Name": "Discharging",
             "Code": "AbyssAddedLightningDamageWithBowsJewel5",
             "Level": "70",
@@ -1758,16 +1738,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13920",
+            "ID": "13922",
             "Name": "Electrocuting",
             "Code": "AbyssAddedLightningDamageWithBowsJewel6",
             "Level": "82",
@@ -1794,16 +1773,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13945",
+            "ID": "13947",
             "Name": "Heated",
             "Code": "AbyssAddedFireDamageWithWandsJewel1",
             "Level": "1",
@@ -1830,16 +1808,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13946",
+            "ID": "13948",
             "Name": "Flaming",
             "Code": "AbyssAddedFireDamageWithWandsJewel2",
             "Level": "40",
@@ -1866,16 +1843,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13947",
+            "ID": "13949",
             "Name": "Scorching",
             "Code": "AbyssAddedFireDamageWithWandsJewel3",
             "Level": "51",
@@ -1902,16 +1878,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13948",
+            "ID": "13950",
             "Name": "Incinerating",
             "Code": "AbyssAddedFireDamageWithWandsJewel4",
             "Level": "62",
@@ -1938,16 +1913,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13949",
+            "ID": "13951",
             "Name": "Blasting",
             "Code": "AbyssAddedFireDamageWithWandsJewel5__",
             "Level": "72",
@@ -1974,16 +1948,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13950",
+            "ID": "13952",
             "Name": "Cremating",
             "Code": "AbyssAddedFireDamageWithWandsJewel6",
             "Level": "84",
@@ -2010,16 +1983,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13963",
+            "ID": "13965",
             "Name": "Heated",
             "Code": "AbyssAddedFireDamageWithBowsJewel1",
             "Level": "1",
@@ -2046,16 +2018,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13964",
+            "ID": "13966",
             "Name": "Flaming",
             "Code": "AbyssAddedFireDamageWithBowsJewel2",
             "Level": "40",
@@ -2082,16 +2053,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13965",
+            "ID": "13967",
             "Name": "Scorching",
             "Code": "AbyssAddedFireDamageWithBowsJewel3_",
             "Level": "51",
@@ -2118,16 +2088,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13966",
+            "ID": "13968",
             "Name": "Incinerating",
             "Code": "AbyssAddedFireDamageWithBowsJewel4",
             "Level": "62",
@@ -2154,16 +2123,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13967",
+            "ID": "13969",
             "Name": "Blasting",
             "Code": "AbyssAddedFireDamageWithBowsJewel5_",
             "Level": "72",
@@ -2190,16 +2158,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13968",
+            "ID": "13970",
             "Name": "Cremating",
             "Code": "AbyssAddedFireDamageWithBowsJewel6_",
             "Level": "84",
@@ -2226,16 +2193,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13993",
+            "ID": "13995",
             "Name": "Frosted",
             "Code": "AbyssAddedColdDamageWithWandsJewel1__",
             "Level": "1",
@@ -2262,16 +2228,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13994",
+            "ID": "13996",
             "Name": "Freezing",
             "Code": "AbyssAddedColdDamageWithWandsJewel2",
             "Level": "38",
@@ -2298,16 +2263,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13995",
+            "ID": "13997",
             "Name": "Frozen",
             "Code": "AbyssAddedColdDamageWithWandsJewel3_",
             "Level": "47",
@@ -2334,16 +2298,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13996",
+            "ID": "13998",
             "Name": "Glaciated",
             "Code": "AbyssAddedColdDamageWithWandsJewel4",
             "Level": "59",
@@ -2370,16 +2333,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13997",
+            "ID": "13999",
             "Name": "Polar",
             "Code": "AbyssAddedColdDamageWithWandsJewel5",
             "Level": "68",
@@ -2406,16 +2368,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "13998",
+            "ID": "14000",
             "Name": "Entombing",
             "Code": "AbyssAddedColdDamageWithWandsJewel6",
             "Level": "83",
@@ -2442,16 +2403,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14011",
+            "ID": "14013",
             "Name": "Frosted",
             "Code": "AbyssAddedColdDamageWithBowsJewel1",
             "Level": "1",
@@ -2478,16 +2438,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14012",
+            "ID": "14014",
             "Name": "Freezing",
             "Code": "AbyssAddedColdDamageWithBowsJewel2",
             "Level": "38",
@@ -2514,16 +2473,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14013",
+            "ID": "14015",
             "Name": "Frozen",
             "Code": "AbyssAddedColdDamageWithBowsJewel3_",
             "Level": "47",
@@ -2550,16 +2508,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14014",
+            "ID": "14016",
             "Name": "Glaciated",
             "Code": "AbyssAddedColdDamageWithBowsJewel4",
             "Level": "59",
@@ -2586,16 +2543,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14015",
+            "ID": "14017",
             "Name": "Polar",
             "Code": "AbyssAddedColdDamageWithBowsJewel5",
             "Level": "68",
@@ -2622,16 +2578,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14016",
+            "ID": "14018",
             "Name": "Entombing",
             "Code": "AbyssAddedColdDamageWithBowsJewel6",
             "Level": "83",
@@ -2658,16 +2613,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14046",
+            "ID": "14048",
             "Name": "Tainted",
             "Code": "AbyssAddedChaosDamageWithBowsJewel1_",
             "Level": "1",
@@ -2693,15 +2647,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14047",
+            "ID": "14049",
             "Name": "Clouded",
             "Code": "AbyssAddedChaosDamageWithBowsJewel2",
             "Level": "42",
@@ -2727,15 +2680,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14048",
+            "ID": "14050",
             "Name": "Darkened",
             "Code": "AbyssAddedChaosDamageWithBowsJewel3",
             "Level": "64",
@@ -2761,15 +2713,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14049",
+            "ID": "14051",
             "Name": "Malignant",
             "Code": "AbyssAddedChaosDamageWithBowsJewel4",
             "Level": "77",
@@ -2795,15 +2746,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14050",
+            "ID": "14052",
             "Name": "Vile",
             "Code": "AbyssAddedChaosDamageWithBowsJewel5",
             "Level": "85",
@@ -2829,15 +2779,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14056",
+            "ID": "14058",
             "Name": "of Coals",
             "Code": "AbyssAddedFireSuffixJewel1",
             "Level": "35",
@@ -2862,16 +2811,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14057",
+            "ID": "14059",
             "Name": "of Cinders",
             "Code": "AbyssAddedFireSuffixJewel2",
             "Level": "44",
@@ -2896,16 +2844,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14058",
+            "ID": "14060",
             "Name": "of Flames",
             "Code": "AbyssAddedFireSuffixJewel3",
             "Level": "52",
@@ -2930,16 +2877,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14059",
+            "ID": "14061",
             "Name": "of Immolation",
             "Code": "AbyssAddedFireSuffixJewel4_",
             "Level": "64",
@@ -2964,16 +2910,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14060",
+            "ID": "14062",
             "Name": "of Ashes",
             "Code": "AbyssAddedFireSuffixJewel5",
             "Level": "76",
@@ -2998,16 +2943,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14061",
+            "ID": "14063",
             "Name": "of Sleet",
             "Code": "AbyssAddedColdSuffixJewel1",
             "Level": "36",
@@ -3032,16 +2976,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14062",
+            "ID": "14064",
             "Name": "of Ice",
             "Code": "AbyssAddedColdSuffixJewel2_",
             "Level": "45",
@@ -3066,16 +3009,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14063",
+            "ID": "14065",
             "Name": "of Rime",
             "Code": "AbyssAddedColdSuffixJewel3",
             "Level": "53",
@@ -3100,16 +3042,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14064",
+            "ID": "14066",
             "Name": "of Floe",
             "Code": "AbyssAddedColdSuffixJewel4",
             "Level": "65",
@@ -3134,16 +3075,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14065",
+            "ID": "14067",
             "Name": "of Glaciation",
             "Code": "AbyssAddedColdSuffixJewel5_",
             "Level": "77",
@@ -3168,16 +3108,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14066",
+            "ID": "14068",
             "Name": "of Static",
             "Code": "AbyssAddedLightningSuffixJewel1",
             "Level": "35",
@@ -3202,16 +3141,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14067",
+            "ID": "14069",
             "Name": "of Electricity",
             "Code": "AbyssAddedLightningSuffixJewel2",
             "Level": "44",
@@ -3236,16 +3174,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14068",
+            "ID": "14070",
             "Name": "of Voltage",
             "Code": "AbyssAddedLightningSuffixJewel3",
             "Level": "52",
@@ -3270,16 +3207,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14069",
+            "ID": "14071",
             "Name": "of Discharge",
             "Code": "AbyssAddedLightningSuffixJewel4",
             "Level": "64",
@@ -3304,16 +3240,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14070",
+            "ID": "14072",
             "Name": "of Arcing",
             "Code": "AbyssAddedLightningSuffixJewel5",
             "Level": "76",
@@ -3338,16 +3273,15 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14071",
+            "ID": "14073",
             "Name": "of Weight",
             "Code": "AbyssAddedPhysicalSuffixJewel1",
             "Level": "34",
@@ -3371,15 +3305,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14072",
+            "ID": "14074",
             "Name": "of Impact",
             "Code": "AbyssAddedPhysicalSuffixJewel2",
             "Level": "45",
@@ -3403,15 +3336,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14073",
+            "ID": "14075",
             "Name": "of Collision",
             "Code": "AbyssAddedPhysicalSuffixJewel3",
             "Level": "61",
@@ -3435,15 +3367,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14074",
+            "ID": "14076",
             "Name": "of Malevolence",
             "Code": "AbyssAddedChaosSuffixJewel1",
             "Level": "36",
@@ -3467,15 +3398,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14075",
+            "ID": "14077",
             "Name": "of Malice",
             "Code": "AbyssAddedChaosSuffixJewel2",
             "Level": "48",
@@ -3499,15 +3429,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14076",
+            "ID": "14078",
             "Name": "of Sin",
             "Code": "AbyssAddedChaosSuffixJewel3",
             "Level": "64",
@@ -3531,15 +3460,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14080",
+            "ID": "14082",
             "Name": "Captivating",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel1",
             "Level": "1",
@@ -3563,12 +3491,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14081",
+            "ID": "14083",
             "Name": "Beautiful",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel2",
             "Level": "30",
@@ -3592,12 +3520,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14082",
+            "ID": "14084",
             "Name": "Breathtaking",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel3",
             "Level": "60",
@@ -3621,12 +3549,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14083",
+            "ID": "14085",
             "Name": "Youthful",
             "Code": "AbyssFlatLifeRegenerationJewel1",
             "Level": "1",
@@ -3651,13 +3579,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14084",
+            "ID": "14086",
             "Name": "Spirited",
             "Code": "AbyssFlatLifeRegenerationJewel2",
             "Level": "40",
@@ -3682,13 +3610,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14085",
+            "ID": "14087",
             "Name": "Vivacious",
             "Code": "AbyssFlatLifeRegenerationJewel3_",
             "Level": "80",
@@ -3713,13 +3641,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14086",
+            "ID": "14088",
             "Name": "Energising",
             "Code": "AbyssFlatManaShieldRegenerationJewel1",
             "Level": "1",
@@ -3739,13 +3667,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14087",
+            "ID": "14089",
             "Name": "Inspirational",
             "Code": "AbyssFlatManaShieldRegenerationJewel2",
             "Level": "40",
@@ -3765,13 +3693,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14088",
+            "ID": "14090",
             "Name": "Resonating",
             "Code": "AbyssFlatManaShieldRegenerationJewel3",
             "Level": "75",
@@ -3791,13 +3719,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14089",
+            "ID": "14091",
             "Name": "of Blinding",
             "Code": "AbyssAttacksBlindOnHitChanceJewel1",
             "Level": "32",
@@ -3818,12 +3746,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14090",
+            "ID": "14092",
             "Name": "of Blinding",
             "Code": "AbyssAttacksBlindOnHitChanceJewel2___",
             "Level": "65",
@@ -3844,12 +3772,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14104",
+            "ID": "14106",
             "Name": "of Banishing",
             "Code": "AbyssDamageVSAbyssMonstersJewel1",
             "Level": "1",
@@ -3863,18 +3791,18 @@
                 "500"
             ],
             "DropChance": "500",
-            "str": "<span class='mod-value'>(30&ndash;40)</span>% increased Damage against Abyssal Monsters",
+            "str": "<span class='mod-value'>(30&ndash;40)</span>% increased Damage with Hits and Ailments against Abyssal Monsters",
             "master_no": [],
             "fossil_no": [
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14106",
+            "ID": "14108",
             "Name": "of Warding",
             "Code": "AbyssReducedPhysicalDamageTakenVsAbyssMonsterJewel1",
             "Level": "1",
@@ -3893,12 +3821,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14107",
+            "ID": "14109",
             "Name": "of Extinguishing",
             "Code": "AbyssAvoidIgniteJewel1_",
             "Level": "50",
@@ -3919,14 +3847,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14108",
+            "ID": "14110",
             "Name": "of Extinguishing",
             "Code": "AbyssAvoidIgniteJewel2",
             "Level": "70",
@@ -3947,14 +3875,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14109",
+            "ID": "14111",
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel1",
             "Level": "50",
@@ -3975,14 +3903,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14110",
+            "ID": "14112",
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel2",
             "Level": "70",
@@ -4003,14 +3931,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14111",
+            "ID": "14113",
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel1",
             "Level": "50",
@@ -4031,14 +3959,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14112",
+            "ID": "14114",
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel2",
             "Level": "70",
@@ -4059,14 +3987,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14113",
+            "ID": "14115",
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel1__",
             "Level": "50",
@@ -4087,14 +4015,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14114",
+            "ID": "14116",
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel2__",
             "Level": "70",
@@ -4115,14 +4043,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14115",
+            "ID": "14117",
             "Name": "of Mending",
             "Code": "AbyssAvoidBleedingJewel1",
             "Level": "50",
@@ -4144,15 +4072,15 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14116",
+            "ID": "14118",
             "Name": "of Mending",
             "Code": "AbyssAvoidBleedingJewel2",
             "Level": "70",
@@ -4174,15 +4102,15 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14117",
+            "ID": "14119",
             "Name": "of Unwavering",
             "Code": "AbyssAvoidStunJewel1",
             "Level": "50",
@@ -4202,7 +4130,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14118",
+            "ID": "14120",
             "Name": "of Unwavering",
             "Code": "AbyssAvoidStunJewel2",
             "Level": "70",
@@ -4222,7 +4150,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14120",
+            "ID": "14122",
             "Name": "of Steadiness",
             "Code": "AbyssAccuracyRatingJewel2",
             "Level": "1",
@@ -4243,12 +4171,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14121",
+            "ID": "14123",
             "Name": "of the Marksman",
             "Code": "AbyssAccuracyRatingJewel3",
             "Level": "52",
@@ -4269,12 +4197,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14122",
+            "ID": "14124",
             "Name": "of the Ranger",
             "Code": "AbyssAccuracyRatingJewel4",
             "Level": "78",
@@ -4295,12 +4223,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14123",
+            "ID": "14125",
             "Name": "of the Deadeye",
             "Code": "AbyssAccuracyRatingJewel5",
             "Level": "85",
@@ -4321,12 +4249,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14134",
+            "ID": "14136",
             "Name": "Lacquered",
             "Code": "AbyssFlatArmourJewel1",
             "Level": "1",
@@ -4346,12 +4274,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14135",
+            "ID": "14137",
             "Name": "Fortified",
             "Code": "AbyssFlatArmourJewel2",
             "Level": "40",
@@ -4371,12 +4299,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14136",
+            "ID": "14138",
             "Name": "Carapaced",
             "Code": "AbyssFlatArmourJewel3",
             "Level": "75",
@@ -4396,12 +4324,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14137",
+            "ID": "14139",
             "Name": "Encased",
             "Code": "AbyssFlatArmourJewel4__",
             "Level": "83",
@@ -4421,12 +4349,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14138",
+            "ID": "14140",
             "Name": "Agile",
             "Code": "AbyssFlatEvasionJewel1",
             "Level": "1",
@@ -4446,12 +4374,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14139",
+            "ID": "14141",
             "Name": "Fleet",
             "Code": "AbyssFlatEvasionJewel2",
             "Level": "40",
@@ -4471,12 +4399,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14140",
+            "ID": "14142",
             "Name": "Vaporous",
             "Code": "AbyssFlatEvasionJewel3",
             "Level": "75",
@@ -4496,12 +4424,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14141",
+            "ID": "14143",
             "Name": "Beclouded",
             "Code": "AbyssFlatEvasionJewel4_",
             "Level": "83",
@@ -4521,12 +4449,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14142",
+            "ID": "14144",
             "Name": "Shining",
             "Code": "AbyssFlatEnergyShieldJewel1",
             "Level": "1",
@@ -4546,12 +4474,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14143",
+            "ID": "14145",
             "Name": "Seething",
             "Code": "AbyssFlatEnergyShieldJewel2",
             "Level": "40",
@@ -4571,12 +4499,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14144",
+            "ID": "14146",
             "Name": "Incandescent",
             "Code": "AbyssFlatEnergyShieldJewel3",
             "Level": "75",
@@ -4596,12 +4524,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14145",
+            "ID": "14147",
             "Name": "Resplendent",
             "Code": "AbyssFlatEnergyShieldJewel4",
             "Level": "83",
@@ -4621,12 +4549,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14148",
+            "ID": "14150",
             "Name": "Facilitating",
             "Code": "AbyssCooldownRecoverySpeed1_",
             "Level": "75",
@@ -4650,7 +4578,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14149",
+            "ID": "14151",
             "Name": "Expediting",
             "Code": "AbyssCooldownRecoverySpeed2__",
             "Level": "86",
@@ -4674,7 +4602,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14150",
+            "ID": "14152",
             "Name": "Skewering",
             "Code": "AbyssImpaleEffect1_",
             "Level": "75",
@@ -4697,12 +4625,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14151",
+            "ID": "14153",
             "Name": "Lancing",
             "Code": "AbyssImpaleEffect2_",
             "Level": "86",
@@ -4725,12 +4653,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14152",
+            "ID": "14154",
             "Name": "Spurring",
             "Code": "AbyssDamageRecoupedAsMana1",
             "Level": "75",
@@ -4755,14 +4683,14 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14153",
+            "ID": "14155",
             "Name": "Motivating",
             "Code": "AbyssDamageRecoupedAsMana2",
             "Level": "86",
@@ -4787,14 +4715,14 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14154",
+            "ID": "14156",
             "Name": "of Instinct",
             "Code": "AbyssSpellBlockChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -4820,7 +4748,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14155",
+            "ID": "14157",
             "Name": "of Confidence",
             "Code": "AbyssReducedPhysicalDamageTakenIfNotHitRecentlyJewel1",
             "Level": "1",
@@ -4843,12 +4771,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14156",
+            "ID": "14158",
             "Name": "of Momentum",
             "Code": "AbyssMovementSpeedIfNotDamagedRecentlyJewel1",
             "Level": "1",
@@ -4871,12 +4799,12 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14157",
+            "ID": "14159",
             "Name": "of the Slayer",
             "Code": "AbyssDamageIfEnemySlainRecentlyJewel1",
             "Level": "1",
@@ -4899,12 +4827,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14158",
+            "ID": "14160",
             "Name": "of the Assassin",
             "Code": "AbyssCriticalStrikeMultiplierIfEnemySlainRecentlyJewel1",
             "Level": "25",
@@ -4928,13 +4856,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14159",
+            "ID": "14161",
             "Name": "of the Guardian",
             "Code": "AbyssIncreasedArmourIfNoEnemySlainRecentlyJewel1__",
             "Level": "1",
@@ -4958,12 +4886,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14161",
+            "ID": "14163",
             "Name": "of the Inquisitor",
             "Code": "AbyssDamagePenetratesElementalResistancesIfNoEnemySlainRecentlyJewel1",
             "Level": "1",
@@ -4988,14 +4916,13 @@
                 "elemental"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14164",
+            "ID": "14166",
             "Name": "of Maneuvering",
             "Code": "AbyssEvasionRatingWhileMovingJewel1",
             "Level": "1",
@@ -5019,12 +4946,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14165",
+            "ID": "14167",
             "Name": "of Praxis",
             "Code": "AbyssManaRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -5048,13 +4975,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14166",
+            "ID": "14168",
             "Name": "of Vivaciousness",
             "Code": "AbyssLifeRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -5078,13 +5005,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14167",
+            "ID": "14169",
             "Name": "of the Inferno",
             "Code": "AbyssPhysicalDamageAddedAsExtraFireIfCriticalStrikeDealtRecentlyJewel1",
             "Level": "40",
@@ -5112,17 +5039,15 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14168",
+            "ID": "14170",
             "Name": "of Opportunity",
             "Code": "AbyssAttackSpeedIfCriticalStrikeDealtRecentlyJewel1",
             "Level": "25",
@@ -5146,13 +5071,13 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14169",
+            "ID": "14171",
             "Name": "of Abuse",
             "Code": "AbyssCastSpeedIfCriticalStrikeDealtRecentlyJewel1",
             "Level": "25",
@@ -5176,13 +5101,13 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14170",
+            "ID": "14172",
             "Name": "of Preparation",
             "Code": "AbyssCriticalStrikeChanceIfNoCriticalStrikeDealtRecentlyJewel1",
             "Level": "1",
@@ -5205,12 +5130,12 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14172",
+            "ID": "14174",
             "Name": "of Readiness",
             "Code": "AbyssSpellDodgeAndDodgeChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -5236,7 +5161,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14173",
+            "ID": "14175",
             "Name": "of the Raider",
             "Code": "AbyssMovementSpeedIfEnemySlainRecentlyJewel1",
             "Level": "1",
@@ -5259,12 +5184,12 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14174",
+            "ID": "14176",
             "Name": "of Guarding",
             "Code": "AbyssChanceToBlockIfDamagedRecentlyJewel1_",
             "Level": "1",
@@ -5290,7 +5215,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14177",
+            "ID": "14179",
             "Name": "of Phasing",
             "Code": "AbyssChancetoGainPhasingOnKillJewel1",
             "Level": "50",
@@ -5312,7 +5237,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14178",
+            "ID": "14180",
             "Name": "of Phasing",
             "Code": "AbyssChancetoGainPhasingOnKillJewel2",
             "Level": "80",
@@ -5334,7 +5259,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14181",
+            "ID": "14183",
             "Name": "of the Sanctum",
             "Code": "AbyssSelfCurseEffectOnConsecratedGroundJewel1__",
             "Level": "84",
@@ -5358,13 +5283,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14182",
+            "ID": "14184",
             "Name": "of Escape",
             "Code": "AbyssAvoidElementalAilmentsWhileElusiveJewel1",
             "Level": "84",
@@ -5391,16 +5316,16 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14183",
+            "ID": "14185",
             "Name": "of Enervation",
             "Code": "AbyssHinderedEnemiesLifeRegenerationRateJewel1",
             "Level": "84",
@@ -5424,13 +5349,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14184",
+            "ID": "14186",
             "Name": "of Clouding",
             "Code": "AbyssBlindedEnemiesCriticalStrikeChanceJewel1",
             "Level": "84",
@@ -5453,12 +5378,12 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14185",
+            "ID": "14187",
             "Name": "of Languishing",
             "Code": "AbyssWitheredEnemiesAllResistanceJewel1___",
             "Level": "84",
@@ -5481,12 +5406,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14186",
+            "ID": "14188",
             "Name": "of Mangling",
             "Code": "AbyssMaimedEnemiesDamageOverTimeJewel1",
             "Level": "84",
@@ -5509,12 +5434,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "14187",
+            "ID": "14189",
             "Name": "of Daunting",
             "Code": "AbyssIntimidatedEnemiesStunDurationJewel1",
             "Level": "84",
@@ -5542,7 +5467,7 @@
     "essence": [],
     "delve": [
         {
-            "ID": "15810",
+            "ID": "15812",
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -5566,15 +5491,14 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15820",
+            "ID": "15822",
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -5598,15 +5522,14 @@
                 "cold"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15830",
+            "ID": "15832",
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -5630,15 +5553,14 @@
                 "lightning"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15849",
+            "ID": "15851",
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -5659,12 +5581,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15859",
+            "ID": "15861",
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -5687,14 +5609,13 @@
                 "chaos"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15867",
+            "ID": "15869",
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -5716,13 +5637,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15869",
+            "ID": "15871",
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -5744,12 +5665,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15872",
+            "ID": "15874",
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -5771,12 +5692,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15875",
+            "ID": "15877",
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -5798,12 +5719,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15896",
+            "ID": "15898",
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -5824,12 +5745,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15902",
+            "ID": "15904",
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -5851,13 +5772,13 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15919",
+            "ID": "15921",
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -5880,14 +5801,13 @@
                 "elemental"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15925",
+            "ID": "15927",
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -5909,7 +5829,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15931",
+            "ID": "15933",
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -5932,14 +5852,14 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15942",
+            "ID": "15944",
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -5962,14 +5882,14 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15953",
+            "ID": "15955",
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -5993,7 +5913,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15971",
+            "ID": "15973",
             "Name": "Subterranean",
             "Code": "DelveAbyssJewelMinionDamage1",
             "Level": "1",
@@ -6014,13 +5934,13 @@
                 "minion"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "15980",
+            "ID": "15982",
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -6058,7 +5978,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15255",
+            "ID": "15257",
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -6080,7 +6000,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15254",
+            "ID": "15256",
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -6102,7 +6022,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15257",
+            "ID": "15259",
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -6125,7 +6045,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15256",
+            "ID": "15258",
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -6147,5 +6067,10 @@
     "warlord": [],
     "scourgeup": [],
     "scourgedown": [],
-    "lang": "us"
+    "lang": "us",
+    "cached": 1,
+    "segs": [
+        "Mods",
+        "Gen"
+    ]
 }

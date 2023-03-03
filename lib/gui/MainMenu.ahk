@@ -375,4 +375,5 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 
 	Gui, Add, Button,      gActualTierCreator     xs ys+120          h23,   Update Actual Tiers
 	Gui, Add, Button,      gDBUpdateNinja           h23,   Update Ninja Database
+	Gui, Add, Button,      gForceUpdatePOEDB           h23,   Update PoeDB Affixes
 	

@@ -28,84 +28,84 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
             "title": "Bestiary",
             "display_chance": false
         }
@@ -116,7 +116,7 @@
     },
     "normal": [
         {
-            "ID": "22179",
+            "ID": "22181",
             "Name": "Antagonist's",
             "Code": "HeistContractNemesisModOnRares",
             "Level": "1",
@@ -136,7 +136,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22180",
+            "ID": "22182",
             "Name": "Chaining",
             "Code": "HeistContractMonsterChain1_",
             "Level": "1",
@@ -156,7 +156,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22181",
+            "ID": "22183",
             "Name": "Chaining",
             "Code": "HeistContractMonsterChain2_",
             "Level": "68",
@@ -176,7 +176,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22182",
+            "ID": "22184",
             "Name": "Splitting",
             "Code": "HeistContractMonsterMultipleProjectiles",
             "Level": "1",
@@ -196,7 +196,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22183",
+            "ID": "22185",
             "Name": "Unstoppable",
             "Code": "HeistContractMonstersCantBeSlowedOrTaunted",
             "Level": "46",
@@ -215,12 +215,12 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22184",
+            "ID": "22186",
             "Name": "Conflagrating",
             "Code": "HeistContractMonstersAllDamageAlwaysIgnites_",
             "Level": "46",
@@ -241,14 +241,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22185",
+            "ID": "22187",
             "Name": "Hexproof",
             "Code": "HeistContractHexproof",
             "Level": "46",
@@ -268,13 +268,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22186",
+            "ID": "22188",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned1",
             "Level": "1",
@@ -294,13 +294,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22187",
+            "ID": "22189",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned2",
             "Level": "46",
@@ -320,13 +320,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22188",
+            "ID": "22190",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned3_",
             "Level": "68",
@@ -346,13 +346,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22189",
+            "ID": "22191",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned4_",
             "Level": "73",
@@ -372,13 +372,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22190",
+            "ID": "22192",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned5",
             "Level": "78",
@@ -398,13 +398,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22191",
+            "ID": "22193",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance1_",
             "Level": "1",
@@ -423,12 +423,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22192",
+            "ID": "22194",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance2",
             "Level": "46",
@@ -447,12 +447,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22193",
+            "ID": "22195",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance3",
             "Level": "68",
@@ -471,12 +471,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22194",
+            "ID": "22196",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance4",
             "Level": "73",
@@ -495,12 +495,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22195",
+            "ID": "22197",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance5_",
             "Level": "78",
@@ -519,12 +519,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22196",
+            "ID": "22198",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife1",
             "Level": "1",
@@ -544,13 +544,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22197",
+            "ID": "22199",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife2",
             "Level": "46",
@@ -570,13 +570,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22198",
+            "ID": "22200",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife3",
             "Level": "68",
@@ -596,13 +596,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22199",
+            "ID": "22201",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife4",
             "Level": "73",
@@ -622,13 +622,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22200",
+            "ID": "22202",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife5_",
             "Level": "78",
@@ -648,13 +648,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22201",
+            "ID": "22203",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage1",
             "Level": "1",
@@ -673,12 +673,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22202",
+            "ID": "22204",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage2_",
             "Level": "46",
@@ -697,12 +697,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22203",
+            "ID": "22205",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage3_",
             "Level": "68",
@@ -721,12 +721,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22204",
+            "ID": "22206",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage4_",
             "Level": "73",
@@ -745,12 +745,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22205",
+            "ID": "22207",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage5",
             "Level": "78",
@@ -769,12 +769,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22206",
+            "ID": "22208",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage1",
             "Level": "1",
@@ -798,17 +798,15 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22207",
+            "ID": "22209",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage2",
             "Level": "46",
@@ -832,17 +830,15 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22208",
+            "ID": "22210",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage3",
             "Level": "68",
@@ -866,17 +862,15 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22209",
+            "ID": "22211",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage4_",
             "Level": "73",
@@ -900,17 +894,15 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22210",
+            "ID": "22212",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage5",
             "Level": "78",
@@ -934,17 +926,15 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22211",
+            "ID": "22213",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage1_",
             "Level": "1",
@@ -968,17 +958,15 @@
                 "cold"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22212",
+            "ID": "22214",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage2",
             "Level": "46",
@@ -1002,17 +990,15 @@
                 "cold"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22213",
+            "ID": "22215",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage3",
             "Level": "68",
@@ -1036,17 +1022,15 @@
                 "cold"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22214",
+            "ID": "22216",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage4",
             "Level": "73",
@@ -1070,17 +1054,15 @@
                 "cold"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22215",
+            "ID": "22217",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage5",
             "Level": "78",
@@ -1104,17 +1086,15 @@
                 "cold"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22216",
+            "ID": "22218",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage1",
             "Level": "1",
@@ -1138,17 +1118,15 @@
                 "lightning"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22217",
+            "ID": "22219",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage2_",
             "Level": "46",
@@ -1172,17 +1150,15 @@
                 "lightning"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22218",
+            "ID": "22220",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage3",
             "Level": "68",
@@ -1206,17 +1182,15 @@
                 "lightning"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22219",
+            "ID": "22221",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage4",
             "Level": "73",
@@ -1240,17 +1214,15 @@
                 "lightning"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22220",
+            "ID": "22222",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage5_",
             "Level": "78",
@@ -1274,17 +1246,15 @@
                 "lightning"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='physical_damage'>physical_damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22221",
+            "ID": "22223",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast1",
             "Level": "1",
@@ -1305,14 +1275,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22222",
+            "ID": "22224",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast2___",
             "Level": "46",
@@ -1333,14 +1303,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22223",
+            "ID": "22225",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast3_",
             "Level": "68",
@@ -1361,14 +1331,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22224",
+            "ID": "22226",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast4_",
             "Level": "73",
@@ -1389,14 +1359,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22225",
+            "ID": "22227",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast5",
             "Level": "78",
@@ -1417,14 +1387,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22226",
+            "ID": "22228",
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection1_",
             "Level": "68",
@@ -1443,12 +1413,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22227",
+            "ID": "22229",
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection2_",
             "Level": "73",
@@ -1467,12 +1437,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22228",
+            "ID": "22230",
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection3",
             "Level": "78",
@@ -1491,12 +1461,12 @@
                 "physical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>"
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22229",
+            "ID": "22231",
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection1",
             "Level": "68",
@@ -1515,12 +1485,12 @@
                 "elemental"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22230",
+            "ID": "22232",
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection2",
             "Level": "73",
@@ -1539,12 +1509,12 @@
                 "elemental"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22231",
+            "ID": "22233",
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection3",
             "Level": "78",
@@ -1563,12 +1533,12 @@
                 "elemental"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22232",
+            "ID": "22234",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal1",
             "Level": "46",
@@ -1588,13 +1558,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22233",
+            "ID": "22235",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal2",
             "Level": "68",
@@ -1614,13 +1584,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22234",
+            "ID": "22236",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal3",
             "Level": "73",
@@ -1640,13 +1610,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22235",
+            "ID": "22237",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal4",
             "Level": "78",
@@ -1666,13 +1636,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22236",
+            "ID": "22238",
             "Name": "Empowered",
             "Code": "HeistContractMonstersChanceToInflictStatusAilments1_",
             "Level": "73",
@@ -1691,12 +1661,12 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22237",
+            "ID": "22239",
             "Name": "Empowered",
             "Code": "HeistContractMonstersChanceToInflictStatusAilments2",
             "Level": "78",
@@ -1715,12 +1685,12 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22238",
+            "ID": "22240",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances1",
             "Level": "1",
@@ -1741,14 +1711,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22239",
+            "ID": "22241",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances2",
             "Level": "68",
@@ -1769,14 +1739,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22240",
+            "ID": "22242",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances3_",
             "Level": "73",
@@ -1797,14 +1767,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22241",
+            "ID": "22243",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances4",
             "Level": "78",
@@ -1825,14 +1795,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22242",
+            "ID": "22244",
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind1_",
             "Level": "46",
@@ -1856,17 +1826,17 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
-                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22243",
+            "ID": "22245",
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind2",
             "Level": "73",
@@ -1890,17 +1860,17 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
-                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22244",
+            "ID": "22246",
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind3___",
             "Level": "78",
@@ -1924,17 +1894,17 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='bleed'>bleed</span>",
-                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
-                "<span class='badge badge-primary craftingphysical' data-tag='physical'>physical</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='bleed'>bleed</span>",
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22245",
+            "ID": "22247",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit1",
             "Level": "46",
@@ -1954,7 +1924,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22246",
+            "ID": "22248",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit2",
             "Level": "68",
@@ -1974,7 +1944,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22247",
+            "ID": "22249",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit3",
             "Level": "73",
@@ -1994,7 +1964,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22248",
+            "ID": "22250",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit4",
             "Level": "78",
@@ -2014,7 +1984,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22249",
+            "ID": "22251",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells1___",
             "Level": "46",
@@ -2034,7 +2004,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22250",
+            "ID": "22252",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells2",
             "Level": "68",
@@ -2054,7 +2024,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22251",
+            "ID": "22253",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells3_",
             "Level": "73",
@@ -2074,7 +2044,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22252",
+            "ID": "22254",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells4",
             "Level": "78",
@@ -2094,7 +2064,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22253",
+            "ID": "22255",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield1____",
             "Level": "1",
@@ -2114,7 +2084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22254",
+            "ID": "22256",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield2",
             "Level": "46",
@@ -2134,7 +2104,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22255",
+            "ID": "22257",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield3",
             "Level": "68",
@@ -2154,7 +2124,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22256",
+            "ID": "22258",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield4_",
             "Level": "73",
@@ -2174,7 +2144,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22257",
+            "ID": "22259",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield5__",
             "Level": "78",
@@ -2194,7 +2164,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22258",
+            "ID": "22260",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite1",
             "Level": "1",
@@ -2214,7 +2184,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22259",
+            "ID": "22261",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite2",
             "Level": "46",
@@ -2234,7 +2204,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22260",
+            "ID": "22262",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite3",
             "Level": "68",
@@ -2254,7 +2224,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22261",
+            "ID": "22263",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite4",
             "Level": "73",
@@ -2274,7 +2244,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22262",
+            "ID": "22264",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite5",
             "Level": "78",
@@ -2294,7 +2264,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22263",
+            "ID": "22265",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage1",
             "Level": "1",
@@ -2313,12 +2283,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22264",
+            "ID": "22266",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage2_",
             "Level": "46",
@@ -2337,12 +2307,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22265",
+            "ID": "22267",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage3",
             "Level": "68",
@@ -2361,12 +2331,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22266",
+            "ID": "22268",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage4",
             "Level": "73",
@@ -2385,12 +2355,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22267",
+            "ID": "22269",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage5",
             "Level": "78",
@@ -2409,12 +2379,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22268",
+            "ID": "22270",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction1",
             "Level": "1",
@@ -2434,7 +2404,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22269",
+            "ID": "22271",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction2_",
             "Level": "46",
@@ -2454,7 +2424,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22270",
+            "ID": "22272",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction3",
             "Level": "68",
@@ -2474,7 +2444,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22271",
+            "ID": "22273",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction4",
             "Level": "73",
@@ -2494,7 +2464,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22272",
+            "ID": "22274",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction5_",
             "Level": "78",
@@ -2514,7 +2484,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22273",
+            "ID": "22275",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage1",
             "Level": "1",
@@ -2533,12 +2503,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22274",
+            "ID": "22276",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage2",
             "Level": "46",
@@ -2557,12 +2527,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22275",
+            "ID": "22277",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage3",
             "Level": "68",
@@ -2581,12 +2551,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22276",
+            "ID": "22278",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage4",
             "Level": "73",
@@ -2605,12 +2575,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22277",
+            "ID": "22279",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage5",
             "Level": "78",
@@ -2629,12 +2599,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22278",
+            "ID": "22280",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction1",
             "Level": "1",
@@ -2654,7 +2624,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22279",
+            "ID": "22281",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction2",
             "Level": "46",
@@ -2674,7 +2644,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22280",
+            "ID": "22282",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction3",
             "Level": "68",
@@ -2694,7 +2664,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22281",
+            "ID": "22283",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction4_",
             "Level": "73",
@@ -2714,7 +2684,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22282",
+            "ID": "22284",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction5____",
             "Level": "78",
@@ -2734,7 +2704,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22283",
+            "ID": "22285",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage1",
             "Level": "1",
@@ -2753,12 +2723,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22284",
+            "ID": "22286",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage2",
             "Level": "46",
@@ -2777,12 +2747,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22285",
+            "ID": "22287",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage3",
             "Level": "68",
@@ -2801,12 +2771,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22286",
+            "ID": "22288",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage4",
             "Level": "73",
@@ -2825,12 +2795,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22287",
+            "ID": "22289",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage5",
             "Level": "78",
@@ -2849,12 +2819,12 @@
                 "damage"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22288",
+            "ID": "22290",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction1",
             "Level": "1",
@@ -2874,7 +2844,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22289",
+            "ID": "22291",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction2___",
             "Level": "46",
@@ -2894,7 +2864,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22290",
+            "ID": "22292",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction3",
             "Level": "68",
@@ -2914,7 +2884,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22291",
+            "ID": "22293",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction4",
             "Level": "73",
@@ -2934,7 +2904,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22292",
+            "ID": "22294",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction5",
             "Level": "78",
@@ -2954,7 +2924,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22293",
+            "ID": "22295",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed1_",
             "Level": "1",
@@ -2974,7 +2944,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22294",
+            "ID": "22296",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed2",
             "Level": "46",
@@ -2994,7 +2964,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22295",
+            "ID": "22297",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed3_",
             "Level": "68",
@@ -3014,7 +2984,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22296",
+            "ID": "22298",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed4__",
             "Level": "73",
@@ -3034,7 +3004,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22297",
+            "ID": "22299",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed5",
             "Level": "78",
@@ -3054,7 +3024,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22308",
+            "ID": "22310",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters1_",
             "Level": "1",
@@ -3074,7 +3044,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22309",
+            "ID": "22311",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters2__",
             "Level": "1",
@@ -3094,7 +3064,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22310",
+            "ID": "22312",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters3_",
             "Level": "1",
@@ -3114,7 +3084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22311",
+            "ID": "22313",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters4",
             "Level": "1",
@@ -3134,7 +3104,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22312",
+            "ID": "22314",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters5",
             "Level": "1",
@@ -3154,7 +3124,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22313",
+            "ID": "22315",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast1",
             "Level": "1",
@@ -3175,14 +3145,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22314",
+            "ID": "22316",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast2",
             "Level": "1",
@@ -3203,14 +3173,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22315",
+            "ID": "22317",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast3",
             "Level": "1",
@@ -3231,14 +3201,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22316",
+            "ID": "22318",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast4",
             "Level": "1",
@@ -3259,14 +3229,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22317",
+            "ID": "22319",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast5",
             "Level": "1",
@@ -3287,14 +3257,14 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22322",
+            "ID": "22324",
             "Name": "Instantaneous",
             "Code": "HeistContractLockdownInstant1",
             "Level": "68",
@@ -3314,7 +3284,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22323",
+            "ID": "22325",
             "Name": "of Bloodlines",
             "Code": "HeistContractBloodlinesModOnMagics_",
             "Level": "1",
@@ -3334,7 +3304,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22324",
+            "ID": "22326",
             "Name": "of Venom",
             "Code": "HeistContractPoisoning",
             "Level": "1",
@@ -3355,14 +3325,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='poison'>poison</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='poison'>poison</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22325",
+            "ID": "22327",
             "Name": "of Balance",
             "Code": "HeistContractPlayerElementalEquilibrium",
             "Level": "68",
@@ -3383,14 +3353,13 @@
                 "elemental"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22327",
+            "ID": "22329",
             "Name": "of Frenzy",
             "Code": "HeistContractMonstersFrenzyChargeOnHit1",
             "Level": "1",
@@ -3412,7 +3381,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22328",
+            "ID": "22330",
             "Name": "of Frenzy",
             "Code": "HeistContractMonstersFrenzyChargeOnHit2_",
             "Level": "68",
@@ -3434,7 +3403,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22329",
+            "ID": "22331",
             "Name": "of Endurance",
             "Code": "HeistContractMonstersEnduranceChargeOnHit1__",
             "Level": "1",
@@ -3456,7 +3425,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22330",
+            "ID": "22332",
             "Name": "of Endurance",
             "Code": "HeistContractMonstersEnduranceChargeOnHit2",
             "Level": "68",
@@ -3478,7 +3447,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22331",
+            "ID": "22333",
             "Name": "of Power",
             "Code": "HeistContractMonstersPowerChargeOnHit1",
             "Level": "1",
@@ -3500,7 +3469,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22332",
+            "ID": "22334",
             "Name": "of Power",
             "Code": "HeistContractMonstersPowerChargeOnHit2___",
             "Level": "68",
@@ -3522,7 +3491,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22333",
+            "ID": "22335",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect1_",
             "Level": "1",
@@ -3542,7 +3511,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22334",
+            "ID": "22336",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect2",
             "Level": "46",
@@ -3562,7 +3531,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22335",
+            "ID": "22337",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect3",
             "Level": "68",
@@ -3582,7 +3551,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22336",
+            "ID": "22338",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect4",
             "Level": "73",
@@ -3602,7 +3571,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22337",
+            "ID": "22339",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect5_",
             "Level": "78",
@@ -3622,7 +3591,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22338",
+            "ID": "22340",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage1_",
             "Level": "1",
@@ -3642,13 +3611,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22339",
+            "ID": "22341",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage2__",
             "Level": "46",
@@ -3668,13 +3637,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22340",
+            "ID": "22342",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage3",
             "Level": "68",
@@ -3694,13 +3663,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22341",
+            "ID": "22343",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage4",
             "Level": "73",
@@ -3720,13 +3689,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22342",
+            "ID": "22344",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage5",
             "Level": "78",
@@ -3746,13 +3715,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22343",
+            "ID": "22345",
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen1",
             "Level": "1",
@@ -3774,14 +3743,14 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22344",
+            "ID": "22346",
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen2",
             "Level": "73",
@@ -3803,14 +3772,14 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22345",
+            "ID": "22347",
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen3",
             "Level": "78",
@@ -3832,14 +3801,14 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22346",
+            "ID": "22348",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround1",
             "Level": "46",
@@ -3861,15 +3830,14 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22347",
+            "ID": "22349",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround2",
             "Level": "68",
@@ -3891,15 +3859,14 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22348",
+            "ID": "22350",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround3___",
             "Level": "73",
@@ -3921,15 +3888,14 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22349",
+            "ID": "22351",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround4",
             "Level": "78",
@@ -3951,15 +3917,14 @@
                 "fire"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental_damage'>elemental_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22350",
+            "ID": "22352",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround1",
             "Level": "46",
@@ -3980,14 +3945,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22351",
+            "ID": "22353",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround2_",
             "Level": "68",
@@ -4008,14 +3973,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22352",
+            "ID": "22354",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround3",
             "Level": "73",
@@ -4036,14 +4001,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22353",
+            "ID": "22355",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround4",
             "Level": "78",
@@ -4064,14 +4029,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22354",
+            "ID": "22356",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround1",
             "Level": "46",
@@ -4092,14 +4057,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22355",
+            "ID": "22357",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround2_",
             "Level": "68",
@@ -4120,14 +4085,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22356",
+            "ID": "22358",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround3",
             "Level": "73",
@@ -4148,14 +4113,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22357",
+            "ID": "22359",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround4_",
             "Level": "78",
@@ -4176,14 +4141,14 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22358",
+            "ID": "22360",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround1_",
             "Level": "46",
@@ -4204,14 +4169,13 @@
                 "chaos"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22359",
+            "ID": "22361",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround2",
             "Level": "68",
@@ -4232,14 +4196,13 @@
                 "chaos"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22360",
+            "ID": "22362",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround3",
             "Level": "73",
@@ -4260,14 +4223,13 @@
                 "chaos"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22361",
+            "ID": "22363",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround4",
             "Level": "78",
@@ -4288,14 +4250,13 @@
                 "chaos"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='chaos_damage'>chaos_damage</span>",
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingchaos' data-tag='chaos'>chaos</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22362",
+            "ID": "22364",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround1_",
             "Level": "46",
@@ -4315,7 +4276,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22363",
+            "ID": "22365",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround2",
             "Level": "68",
@@ -4335,7 +4296,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22364",
+            "ID": "22366",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround3___",
             "Level": "73",
@@ -4355,7 +4316,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22365",
+            "ID": "22367",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround4",
             "Level": "78",
@@ -4375,7 +4336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22366",
+            "ID": "22368",
             "Name": "of Elemental Weakness",
             "Code": "HeistContractPlayerCurseElementalWeakness1_",
             "Level": "73",
@@ -4395,13 +4356,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22367",
+            "ID": "22369",
             "Name": "of Elemental Weakness",
             "Code": "HeistContractPlayerCurseElementalWeakness2_",
             "Level": "78",
@@ -4421,13 +4382,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22368",
+            "ID": "22370",
             "Name": "of Vulnerability",
             "Code": "HeistContractPlayerCurseVulnerability1",
             "Level": "73",
@@ -4447,13 +4408,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22369",
+            "ID": "22371",
             "Name": "of Vulnerability",
             "Code": "HeistContractPlayerCurseVulnerability2",
             "Level": "78",
@@ -4473,13 +4434,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22370",
+            "ID": "22372",
             "Name": "of Enfeeblement",
             "Code": "HeistContractPlayerCurseEnfeeblement1",
             "Level": "73",
@@ -4499,13 +4460,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22371",
+            "ID": "22373",
             "Name": "of Enfeeblement",
             "Code": "HeistContractPlayerCurseEnfeeblement2",
             "Level": "78",
@@ -4525,13 +4486,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22372",
+            "ID": "22374",
             "Name": "of Temporal Chains",
             "Code": "HeistContractPlayerCurseTemporalChains1",
             "Level": "73",
@@ -4551,13 +4512,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22373",
+            "ID": "22375",
             "Name": "of Temporal Chains",
             "Code": "HeistContractPlayerCurseTemporalChains2",
             "Level": "78",
@@ -4577,13 +4538,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22374",
+            "ID": "22376",
             "Name": "of Stasis",
             "Code": "HeistContractPlayerNoLifeESRegen_",
             "Level": "73",
@@ -4606,15 +4567,15 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>",
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>",
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22375",
+            "ID": "22377",
             "Name": "of Exposure",
             "Code": "HeistContractPlayerMaxResists1__",
             "Level": "73",
@@ -4633,12 +4594,12 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22376",
+            "ID": "22378",
             "Name": "of Exposure",
             "Code": "HeistContractPlayerMaxResists2_",
             "Level": "78",
@@ -4657,12 +4618,12 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22377",
+            "ID": "22379",
             "Name": "of Congealment",
             "Code": "HeistContractMonsterLifeLeechImmunity",
             "Level": "78",
@@ -4682,7 +4643,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22378",
+            "ID": "22380",
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity1",
             "Level": "46",
@@ -4705,16 +4666,16 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22379",
+            "ID": "22381",
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity2_",
             "Level": "73",
@@ -4737,16 +4698,16 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22380",
+            "ID": "22382",
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity3",
             "Level": "78",
@@ -4769,16 +4730,16 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22381",
+            "ID": "22383",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier1",
             "Level": "1",
@@ -4798,13 +4759,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22382",
+            "ID": "22384",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier2_",
             "Level": "46",
@@ -4824,13 +4785,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22383",
+            "ID": "22385",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier3",
             "Level": "68",
@@ -4850,13 +4811,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22384",
+            "ID": "22386",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier4_",
             "Level": "73",
@@ -4876,13 +4837,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22385",
+            "ID": "22387",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier5",
             "Level": "78",
@@ -4902,13 +4863,13 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='damage'>damage</span>",
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22386",
+            "ID": "22388",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges1",
             "Level": "1",
@@ -4930,7 +4891,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22387",
+            "ID": "22389",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges2",
             "Level": "46",
@@ -4952,7 +4913,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22388",
+            "ID": "22390",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges3_",
             "Level": "68",
@@ -4974,7 +4935,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22389",
+            "ID": "22391",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges4",
             "Level": "73",
@@ -4996,7 +4957,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22390",
+            "ID": "22392",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges5",
             "Level": "78",
@@ -5018,7 +4979,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22391",
+            "ID": "22393",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour1",
             "Level": "46",
@@ -5039,12 +5000,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22392",
+            "ID": "22394",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour2",
             "Level": "68",
@@ -5065,12 +5026,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22393",
+            "ID": "22395",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour3",
             "Level": "73",
@@ -5091,12 +5052,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22394",
+            "ID": "22396",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour4",
             "Level": "78",
@@ -5117,12 +5078,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22395",
+            "ID": "22397",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge1",
             "Level": "46",
@@ -5142,12 +5103,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22396",
+            "ID": "22398",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge2",
             "Level": "68",
@@ -5167,12 +5128,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22397",
+            "ID": "22399",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge3",
             "Level": "73",
@@ -5192,12 +5153,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22398",
+            "ID": "22400",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge4",
             "Level": "78",
@@ -5217,12 +5178,12 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22399",
+            "ID": "22401",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius1",
             "Level": "1",
@@ -5242,7 +5203,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22400",
+            "ID": "22402",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius2___",
             "Level": "68",
@@ -5262,7 +5223,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22401",
+            "ID": "22403",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius3",
             "Level": "73",
@@ -5282,7 +5243,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22402",
+            "ID": "22404",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius4",
             "Level": "78",
@@ -5302,7 +5263,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22403",
+            "ID": "22405",
             "Name": "of Blinding",
             "Code": "HeistContractMonstersBlindOnHit",
             "Level": "46",
@@ -5322,7 +5283,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22404",
+            "ID": "22406",
             "Name": "of Carnage",
             "Code": "HeistContractMonstersMaimOnHit",
             "Level": "46",
@@ -5342,7 +5303,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22405",
+            "ID": "22407",
             "Name": "of Impedance",
             "Code": "HeistContractMonstersHinderOnHit_",
             "Level": "46",
@@ -5362,7 +5323,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22406",
+            "ID": "22408",
             "Name": "of Enervation",
             "Code": "HeistContractMonstersStealChargesOnHit",
             "Level": "46",
@@ -5382,7 +5343,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22407",
+            "ID": "22409",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery1__",
             "Level": "46",
@@ -5402,7 +5363,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22408",
+            "ID": "22410",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery2",
             "Level": "68",
@@ -5422,7 +5383,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22409",
+            "ID": "22411",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery3_",
             "Level": "73",
@@ -5442,7 +5403,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22410",
+            "ID": "22412",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery4",
             "Level": "78",
@@ -5462,7 +5423,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22411",
+            "ID": "22413",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster1__",
             "Level": "46",
@@ -5482,7 +5443,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22412",
+            "ID": "22414",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster2_",
             "Level": "68",
@@ -5502,7 +5463,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22413",
+            "ID": "22415",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster3",
             "Level": "73",
@@ -5522,7 +5483,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22414",
+            "ID": "22416",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster4",
             "Level": "78",
@@ -5542,7 +5503,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22415",
+            "ID": "22417",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect1_",
             "Level": "46",
@@ -5562,7 +5523,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22416",
+            "ID": "22418",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect2",
             "Level": "68",
@@ -5582,7 +5543,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22417",
+            "ID": "22419",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect3",
             "Level": "73",
@@ -5602,7 +5563,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22418",
+            "ID": "22420",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect4",
             "Level": "78",
@@ -5622,7 +5583,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22419",
+            "ID": "22421",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating1_",
             "Level": "46",
@@ -5642,7 +5603,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22420",
+            "ID": "22422",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating2",
             "Level": "68",
@@ -5662,7 +5623,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22421",
+            "ID": "22423",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating3",
             "Level": "73",
@@ -5682,7 +5643,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22422",
+            "ID": "22424",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating4_",
             "Level": "78",
@@ -5702,7 +5663,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22423",
+            "ID": "22425",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost1_",
             "Level": "1",
@@ -5722,7 +5683,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22424",
+            "ID": "22426",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost2",
             "Level": "46",
@@ -5742,7 +5703,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22425",
+            "ID": "22427",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost3_",
             "Level": "68",
@@ -5762,7 +5723,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22426",
+            "ID": "22428",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost4",
             "Level": "73",
@@ -5782,7 +5743,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22427",
+            "ID": "22429",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost5_",
             "Level": "78",
@@ -5802,7 +5763,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22438",
+            "ID": "22440",
             "Name": "of Selfishness",
             "Code": "HeistContractNoGangCut1",
             "Level": "68",
@@ -5822,7 +5783,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22439",
+            "ID": "22441",
             "Name": "of Proximity",
             "Code": "HeistContractNoTravelCost1__",
             "Level": "68",
@@ -5842,7 +5803,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22440",
+            "ID": "22442",
             "Name": "of Paranoia",
             "Code": "HeistContractGainAlertLevelPassive1",
             "Level": "68",
@@ -5862,7 +5823,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22442",
+            "ID": "22444",
             "Name": "of Unravelling",
             "Code": "HeistContractPlayerMaxResistsAlertLevel1_",
             "Level": "73",
@@ -5881,12 +5842,12 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22443",
+            "ID": "22445",
             "Name": "of Unravelling",
             "Code": "HeistContractPlayerMaxResistsAlertLevel2_",
             "Level": "78",
@@ -5905,12 +5866,12 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22444",
+            "ID": "22446",
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel1",
             "Level": "68",
@@ -5931,14 +5892,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22445",
+            "ID": "22447",
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel2",
             "Level": "73",
@@ -5959,14 +5920,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22446",
+            "ID": "22448",
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel3_",
             "Level": "78",
@@ -5987,14 +5948,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22447",
+            "ID": "22449",
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel1_",
             "Level": "68",
@@ -6015,14 +5976,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22448",
+            "ID": "22450",
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel2_",
             "Level": "73",
@@ -6043,14 +6004,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22449",
+            "ID": "22451",
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel3_",
             "Level": "78",
@@ -6071,14 +6032,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22450",
+            "ID": "22452",
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel1",
             "Level": "68",
@@ -6099,14 +6060,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22451",
+            "ID": "22453",
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel2",
             "Level": "73",
@@ -6127,14 +6088,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22452",
+            "ID": "22454",
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel3",
             "Level": "78",
@@ -6155,14 +6116,14 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22453",
+            "ID": "22455",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel1___",
             "Level": "46",
@@ -6182,12 +6143,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22454",
+            "ID": "22456",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel2_",
             "Level": "68",
@@ -6207,12 +6168,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22455",
+            "ID": "22457",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel3",
             "Level": "73",
@@ -6232,12 +6193,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22456",
+            "ID": "22458",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel4",
             "Level": "78",
@@ -6257,12 +6218,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22457",
+            "ID": "22459",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel1",
             "Level": "46",
@@ -6282,12 +6243,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22458",
+            "ID": "22460",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel2__",
             "Level": "68",
@@ -6307,12 +6268,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22459",
+            "ID": "22461",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel3",
             "Level": "73",
@@ -6332,12 +6293,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22460",
+            "ID": "22462",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel4",
             "Level": "78",
@@ -6357,12 +6318,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22461",
+            "ID": "22463",
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel1_",
             "Level": "46",
@@ -6382,12 +6343,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22462",
+            "ID": "22464",
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel2",
             "Level": "73",
@@ -6407,12 +6368,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22463",
+            "ID": "22465",
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel3__",
             "Level": "78",
@@ -6432,12 +6393,12 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22464",
+            "ID": "22466",
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel1",
             "Level": "46",
@@ -6457,13 +6418,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22465",
+            "ID": "22467",
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel2",
             "Level": "73",
@@ -6483,13 +6444,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22466",
+            "ID": "22468",
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel3___",
             "Level": "78",
@@ -6509,13 +6470,13 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22467",
+            "ID": "22469",
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel1_",
             "Level": "46",
@@ -6535,13 +6496,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22468",
+            "ID": "22470",
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel2",
             "Level": "73",
@@ -6561,13 +6522,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22469",
+            "ID": "22471",
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel3",
             "Level": "78",
@@ -6587,13 +6548,13 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "22470",
+            "ID": "22472",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel1_",
             "Level": "1",
@@ -6615,7 +6576,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22471",
+            "ID": "22473",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel2",
             "Level": "46",
@@ -6637,7 +6598,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22472",
+            "ID": "22474",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel3",
             "Level": "68",
@@ -6659,7 +6620,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22473",
+            "ID": "22475",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel4",
             "Level": "73",
@@ -6681,7 +6642,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22474",
+            "ID": "22476",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel5",
             "Level": "78",
@@ -6717,5 +6678,10 @@
     "scourgeup": [],
     "scourgedown": [],
     "bestiary": [],
-    "lang": "us"
+    "lang": "us",
+    "cached": 1,
+    "segs": [
+        "Mods",
+        "Gen"
+    ]
 }

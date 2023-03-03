@@ -28,84 +28,84 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
             "title": "Bestiary",
             "display_chance": false
         }
@@ -474,7 +474,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -502,7 +502,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -530,7 +530,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -558,7 +558,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -586,7 +586,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -614,7 +614,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -642,7 +642,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -670,7 +670,7 @@
                 "defences"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
             ],
             "mod_fossil_item": []
         },
@@ -696,7 +696,7 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -722,7 +722,7 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -748,7 +748,7 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -890,8 +890,8 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
@@ -918,8 +918,8 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
@@ -946,8 +946,8 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
@@ -974,8 +974,8 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1002,8 +1002,8 @@
                 "resistance"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1028,7 +1028,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1053,7 +1053,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1078,7 +1078,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1103,7 +1103,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1128,7 +1128,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1521,9 +1521,9 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1551,9 +1551,9 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1581,9 +1581,9 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1611,9 +1611,9 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1641,9 +1641,9 @@
                 "attack"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1672,8 +1672,8 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1702,8 +1702,8 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1732,8 +1732,8 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1762,8 +1762,8 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1792,8 +1792,8 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1820,8 +1820,8 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1848,8 +1848,8 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1876,8 +1876,8 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1904,8 +1904,8 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1932,8 +1932,8 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1960,8 +1960,8 @@
                 "speed"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1987,7 +1987,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2013,7 +2013,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2039,7 +2039,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2065,7 +2065,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2091,7 +2091,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2121,11 +2121,11 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2155,11 +2155,11 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2189,11 +2189,11 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2223,11 +2223,11 @@
                 "ailment"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
+                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
+                "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
+                "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
+                "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
+                "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
             ],
             "mod_fossil_item": []
         },
@@ -3037,7 +3037,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26267",
+            "ID": "26269",
             "Name": "of the Skunk",
             "Code": "FlaskPoisonImmunityDuringEffect",
             "Level": "16",
@@ -3060,7 +3060,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26268",
+            "ID": "26270",
             "Name": "of the Hedgehog",
             "Code": "FlaskPoisonImmunityDuringEffect2",
             "Level": "46",
@@ -3083,7 +3083,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26269",
+            "ID": "26271",
             "Name": "of the Opossum",
             "Code": "FlaskPoisonImmunityDuringEffect3",
             "Level": "76",
@@ -3106,7 +3106,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26270",
+            "ID": "26272",
             "Name": "of the Conger",
             "Code": "FlaskShockImmunityDuringEffect",
             "Level": "6",
@@ -3129,7 +3129,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26271",
+            "ID": "26273",
             "Name": "of the Moray",
             "Code": "FlaskShockImmunityDuringEffect2___",
             "Level": "40",
@@ -3152,7 +3152,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26272",
+            "ID": "26274",
             "Name": "of the Eel",
             "Code": "FlaskShockImmunityDuringEffect3",
             "Level": "74",
@@ -3175,7 +3175,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26273",
+            "ID": "26275",
             "Name": "of the Deer",
             "Code": "FlaskFreezeAndChillImmunityDuringEffect",
             "Level": "4",
@@ -3198,7 +3198,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26274",
+            "ID": "26276",
             "Name": "of the Walrus",
             "Code": "FlaskFreezeAndChillImmunityDuringEffect2",
             "Level": "38",
@@ -3221,7 +3221,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26275",
+            "ID": "26277",
             "Name": "of the Penguin",
             "Code": "FlaskFreezeAndChillImmunityDuringEffect3__",
             "Level": "72",
@@ -3244,7 +3244,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26276",
+            "ID": "26278",
             "Name": "of the Urchin",
             "Code": "FlaskIgniteImmunityDuringEffect_",
             "Level": "6",
@@ -3267,7 +3267,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26277",
+            "ID": "26279",
             "Name": "of the Mussel",
             "Code": "FlaskIgniteImmunityDuringEffect2",
             "Level": "40",
@@ -3290,7 +3290,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26278",
+            "ID": "26280",
             "Name": "of the Starfish",
             "Code": "FlaskIgniteImmunityDuringEffect3",
             "Level": "74",
@@ -3313,7 +3313,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26279",
+            "ID": "26281",
             "Name": "of the Lizard",
             "Code": "FlaskBleedingAndCorruptedBloodImmunityDuringEffect_1",
             "Level": "8",
@@ -3336,7 +3336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26280",
+            "ID": "26282",
             "Name": "of the Skink",
             "Code": "FlaskBleedingAndCorruptedBloodImmunityDuringEffect2_",
             "Level": "42",
@@ -3359,7 +3359,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26281",
+            "ID": "26283",
             "Name": "of the Iguana",
             "Code": "FlaskBleedingAndCorruptedBloodImmunityDuringEffect3___",
             "Level": "76",
@@ -3397,7 +3397,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17327",
+            "ID": "17329",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3411,8 +3411,8 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
@@ -3426,7 +3426,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17329",
+            "ID": "17331",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3450,7 +3450,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17330",
+            "ID": "17332",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3464,8 +3464,8 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
@@ -3479,7 +3479,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17331",
+            "ID": "17333",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3503,7 +3503,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17333",
+            "ID": "17335",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3517,8 +3517,8 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
@@ -3532,7 +3532,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "26285",
+            "ID": "26287",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3556,5 +3556,10 @@
     "scourgeup": [],
     "scourgedown": [],
     "bestiary": [],
-    "lang": "us"
+    "lang": "us",
+    "cached": 1,
+    "segs": [
+        "Mods",
+        "Gen"
+    ]
 }

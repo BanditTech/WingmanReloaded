@@ -28,84 +28,84 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
+            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
+            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
             "title": "Bestiary",
             "display_chance": false
         }
@@ -749,9 +749,9 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
@@ -781,9 +781,9 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
@@ -813,9 +813,9 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
@@ -845,9 +845,9 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
@@ -877,9 +877,9 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1128,9 +1128,9 @@
                 "minion"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1159,9 +1159,9 @@
                 "minion"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1190,9 +1190,9 @@
                 "minion"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1221,9 +1221,9 @@
                 "minion"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1252,9 +1252,9 @@
                 "minion"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary ' data-tag='minion'>minion</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
+                "<span class='badge bg-primary ' data-tag='minion'>minion</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1279,7 +1279,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1304,7 +1304,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1329,7 +1329,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1354,7 +1354,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1379,7 +1379,7 @@
                 "critical"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
+                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
             ],
             "mod_fossil_item": []
         },
@@ -1574,7 +1574,7 @@
                 "600"
             ],
             "DropChance": "600",
-            "str": "<span class='mod-value'>(20&ndash;25)</span>% increased Charges per use<br><span class='mod-value'>(21&ndash;26)</span>% increased Amount Recovered",
+            "str": "<span class='mod-value'>(21&ndash;26)</span>% increased Amount Recovered<br><span class='mod-value'>(20&ndash;25)</span>% increased Charges per use",
             "master_no": [],
             "fossil_no": [
                 "flask"
@@ -1597,7 +1597,7 @@
                 "600"
             ],
             "DropChance": "600",
-            "str": "<span class='mod-value'>(20&ndash;25)</span>% increased Charges per use<br><span class='mod-value'>(27&ndash;32)</span>% increased Amount Recovered",
+            "str": "<span class='mod-value'>(27&ndash;32)</span>% increased Amount Recovered<br><span class='mod-value'>(20&ndash;25)</span>% increased Charges per use",
             "master_no": [],
             "fossil_no": [
                 "flask"
@@ -1620,7 +1620,7 @@
                 "600"
             ],
             "DropChance": "600",
-            "str": "<span class='mod-value'>(20&ndash;25)</span>% increased Charges per use<br><span class='mod-value'>(33&ndash;38)</span>% increased Amount Recovered",
+            "str": "<span class='mod-value'>(33&ndash;38)</span>% increased Amount Recovered<br><span class='mod-value'>(20&ndash;25)</span>% increased Charges per use",
             "master_no": [],
             "fossil_no": [
                 "flask"
@@ -1643,7 +1643,7 @@
                 "600"
             ],
             "DropChance": "600",
-            "str": "<span class='mod-value'>(20&ndash;25)</span>% increased Charges per use<br><span class='mod-value'>(39&ndash;44)</span>% increased Amount Recovered",
+            "str": "<span class='mod-value'>(39&ndash;44)</span>% increased Amount Recovered<br><span class='mod-value'>(20&ndash;25)</span>% increased Charges per use",
             "master_no": [],
             "fossil_no": [
                 "flask"
@@ -1666,7 +1666,7 @@
                 "600"
             ],
             "DropChance": "600",
-            "str": "<span class='mod-value'>(20&ndash;25)</span>% increased Charges per use<br><span class='mod-value'>(45&ndash;50)</span>% increased Amount Recovered",
+            "str": "<span class='mod-value'>(45&ndash;50)</span>% increased Amount Recovered<br><span class='mod-value'>(20&ndash;25)</span>% increased Charges per use",
             "master_no": [],
             "fossil_no": [
                 "flask"
@@ -1697,13 +1697,13 @@
                 "curse"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary ' data-tag='curse'>curse</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
+                "<span class='badge bg-primary ' data-tag='curse'>curse</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26230",
+            "ID": "26232",
             "Name": "of Interference",
             "Code": "LocalLifeFlaskHinderNearbyEnemies1_",
             "Level": "30",
@@ -1725,12 +1725,12 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26231",
+            "ID": "26233",
             "Name": "of Obstruction",
             "Code": "LocalLifeFlaskHinderNearbyEnemies2_",
             "Level": "48",
@@ -1752,12 +1752,12 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26232",
+            "ID": "26234",
             "Name": "of Occlusion",
             "Code": "LocalLifeFlaskHinderNearbyEnemies3_",
             "Level": "66",
@@ -1779,12 +1779,12 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26233",
+            "ID": "26235",
             "Name": "of Restraint",
             "Code": "LocalLifeFlaskHinderNearbyEnemies4",
             "Level": "84",
@@ -1806,12 +1806,12 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26234",
+            "ID": "26236",
             "Name": "of Movement",
             "Code": "LocalFlaskImmuneToMaimAndHinder1",
             "Level": "16",
@@ -1833,13 +1833,13 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26235",
+            "ID": "26237",
             "Name": "of Motion",
             "Code": "LocalFlaskImmuneToMaimAndHinder2",
             "Level": "38",
@@ -1861,13 +1861,13 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26236",
+            "ID": "26238",
             "Name": "of Freedom",
             "Code": "LocalFlaskImmuneToMaimAndHinder3",
             "Level": "60",
@@ -1889,13 +1889,13 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26237",
+            "ID": "26239",
             "Name": "of Liberation",
             "Code": "LocalFlaskImmuneToMaimAndHinder4",
             "Level": "82",
@@ -1917,13 +1917,13 @@
                 "caster"
             ],
             "mod_no": [
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
+                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
+                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "26238",
+            "ID": "26240",
             "Name": "of Abundance",
             "Code": "LocalLifeFlaskAdditionalLifeRecovery1",
             "Level": "25",
@@ -1946,7 +1946,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26239",
+            "ID": "26241",
             "Name": "of Plenty",
             "Code": "LocalLifeFlaskAdditionalLifeRecovery2__",
             "Level": "39",
@@ -1969,7 +1969,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26240",
+            "ID": "26242",
             "Name": "of Bounty",
             "Code": "LocalLifeFlaskAdditionalLifeRecovery3",
             "Level": "53",
@@ -1992,7 +1992,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26241",
+            "ID": "26243",
             "Name": "of Incessance",
             "Code": "LocalLifeFlaskAdditionalLifeRecovery4",
             "Level": "67",
@@ -2015,7 +2015,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26242",
+            "ID": "26244",
             "Name": "of Perenniality",
             "Code": "LocalLifeFlaskAdditionalLifeRecovery5_",
             "Level": "81",
@@ -2038,7 +2038,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26243",
+            "ID": "26245",
             "Name": "of Sealing",
             "Code": "FlaskBleedCorruptingBloodImmunity1",
             "Level": "8",
@@ -2061,7 +2061,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26244",
+            "ID": "26246",
             "Name": "of Alleviation",
             "Code": "FlaskBleedCorruptingBloodImmunity2",
             "Level": "32",
@@ -2084,7 +2084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26245",
+            "ID": "26247",
             "Name": "of Allaying",
             "Code": "FlaskBleedCorruptingBloodImmunity3______",
             "Level": "56",
@@ -2107,7 +2107,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26246",
+            "ID": "26248",
             "Name": "of Assuaging",
             "Code": "FlaskBleedCorruptingBloodImmunity4_",
             "Level": "80",
@@ -2130,7 +2130,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26247",
+            "ID": "26249",
             "Name": "of Earthing",
             "Code": "FlaskShockImmunity1",
             "Level": "6",
@@ -2153,7 +2153,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26248",
+            "ID": "26250",
             "Name": "of Grounding",
             "Code": "FlaskShockImmunity2",
             "Level": "30",
@@ -2176,7 +2176,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26249",
+            "ID": "26251",
             "Name": "of Insulation",
             "Code": "FlaskShockImmunity3",
             "Level": "54",
@@ -2199,7 +2199,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26250",
+            "ID": "26252",
             "Name": "of the Dielectric",
             "Code": "FlaskShockImmunity4_",
             "Level": "78",
@@ -2222,7 +2222,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26251",
+            "ID": "26253",
             "Name": "of Convection",
             "Code": "FlaskChillFreezeImmunity1",
             "Level": "4",
@@ -2245,7 +2245,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26252",
+            "ID": "26254",
             "Name": "of Thermodynamics",
             "Code": "FlaskChillFreezeImmunity2",
             "Level": "28",
@@ -2268,7 +2268,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26253",
+            "ID": "26255",
             "Name": "of Entropy",
             "Code": "FlaskChillFreezeImmunity3",
             "Level": "52",
@@ -2291,7 +2291,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26254",
+            "ID": "26256",
             "Name": "of Thawing",
             "Code": "FlaskChillFreezeImmunity4",
             "Level": "76",
@@ -2314,7 +2314,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26255",
+            "ID": "26257",
             "Name": "of Damping",
             "Code": "FlaskIgniteImmunity1",
             "Level": "6",
@@ -2337,7 +2337,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26256",
+            "ID": "26258",
             "Name": "of Quashing",
             "Code": "FlaskIgniteImmunity2_",
             "Level": "30",
@@ -2360,7 +2360,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26257",
+            "ID": "26259",
             "Name": "of Quelling",
             "Code": "FlaskIgniteImmunity3_",
             "Level": "54",
@@ -2383,7 +2383,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26258",
+            "ID": "26260",
             "Name": "of Quenching",
             "Code": "FlaskIgniteImmunity4",
             "Level": "78",
@@ -2406,7 +2406,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26259",
+            "ID": "26261",
             "Name": "of the Antitoxin",
             "Code": "FlaskPoisonImmunity1__",
             "Level": "16",
@@ -2429,7 +2429,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26260",
+            "ID": "26262",
             "Name": "of the Remedy",
             "Code": "FlaskPoisonImmunity2",
             "Level": "38",
@@ -2452,7 +2452,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26261",
+            "ID": "26263",
             "Name": "of the Cure",
             "Code": "FlaskPoisonImmunity3",
             "Level": "60",
@@ -2475,7 +2475,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "26262",
+            "ID": "26264",
             "Name": "of the Antidote",
             "Code": "FlaskPoisonImmunity4",
             "Level": "82",
@@ -2513,7 +2513,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17327",
+            "ID": "17329",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -2527,8 +2527,8 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2542,7 +2542,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17329",
+            "ID": "17331",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -2566,7 +2566,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17330",
+            "ID": "17332",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -2580,8 +2580,8 @@
                 "mana"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2595,7 +2595,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17331",
+            "ID": "17333",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -2619,7 +2619,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17333",
+            "ID": "17335",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -2633,8 +2633,8 @@
                 "life"
             ],
             "mod_no": [
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
+                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
+                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
             ],
             "mod_fossil_item": []
         },
@@ -2648,7 +2648,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "26285",
+            "ID": "26287",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -2672,5 +2672,10 @@
     "scourgeup": [],
     "scourgedown": [],
     "bestiary": [],
-    "lang": "us"
+    "lang": "us",
+    "cached": 1,
+    "segs": [
+        "Mods",
+        "Gen"
+    ]
 }
