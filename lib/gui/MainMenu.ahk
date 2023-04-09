@@ -208,9 +208,8 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	{
 		UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
 	}
-	FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
 	Try {
-	LeagueIndex := JSON.Load(JSONtext)
+	LeagueIndex := JSON.Load(FileOpen(A_ScriptDir "\data\leagues.json","r").Read())
 	} Catch e {
 		MsgBox, 262144, Error loading leagues, % e
 		LeagueIndex := [{"id":"Standard"}]
@@ -376,4 +375,5 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 
 	Gui, Add, Button,      gActualTierCreator     xs ys+120          h23,   Update Actual Tiers
 	Gui, Add, Button,      gDBUpdateNinja           h23,   Update Ninja Database
+	Gui, Add, Button,      gForceUpdatePOEDB           h23,   Update PoeDB Affixes
 	

@@ -1,6 +1,7 @@
 ﻿; ScrapeNinjaData - Parse raw data from PoE-Ninja API and standardize Chaos Value || Chaos Equivalent
 ScrapeNinjaData(apiString)
 {
+  local tempLoc := A_ScriptDir "\temp\data_" apiString ".txt"
   If(RegExMatch(selectedLeague, "SSF",RxMatch))
   {
     selectedLeagueSC := RegExReplace(selectedLeague, "SSF ", "")
@@ -12,14 +13,13 @@ ScrapeNinjaData(apiString)
 
   If InStr(apiString, "Fragment")
   {
-    UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
+    UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, % tempLoc
     If ErrorLevel{
       MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid or an API change
     }
     Else If (ErrorLevel=0){
-      FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
       Try {
-        holder := JSON.Load(JSONtext)
+        holder := JSON.Load(FileOpen(tempLoc,"r").Read())
       } Catch e {
         Log("Error","Something has gone wrong downloading " apiString " Ninja API data",e)
         RetryDL := True
@@ -27,10 +27,9 @@ ScrapeNinjaData(apiString)
       If RetryDL
       {
         Sleep, 1000
-        UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
-        FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+        UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?type=%apiString%&league=%selectedLeagueSC%, % tempLoc
         Try {
-          holder := JSON.Load(JSONtext)
+          holder := JSON.Load(FileOpen(tempLoc,"r").Read())
         } Catch e {
           Log("Error","Something has gone all wrong downloading " apiString ,e)
           Return
@@ -52,20 +51,19 @@ ScrapeNinjaData(apiString)
           ,"receiveSparkLine":grabRecSparklineVal}
       }
       Ninja[apiString] := holder.lines
-      FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
+      FileDelete, % tempLoc
     }
     Return
   }
   Else If InStr(apiString, "Currency")
   {
-    UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
+    UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, % tempLoc
     if ErrorLevel{
       MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid
     }
     Else if (ErrorLevel=0){
-      FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
       Try {
-        holder := JSON.Load(JSONtext)
+        holder := JSON.Load(FileOpen(tempLoc,"r").Read())
       } Catch e {
         Log("Error","Something has gone wrong downloading " apiString " Ninja API data",e)
         RetryDL := True
@@ -73,10 +71,9 @@ ScrapeNinjaData(apiString)
       If RetryDL
       {
         Sleep, 1000
-        UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
-        FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+        UrlDownloadToFile, https://poe.ninja/api/Data/CurrencyOverview?Type=%apiString%&league=%selectedLeagueSC%, % tempLoc
         Try {
-          holder := JSON.Load(JSONtext)
+          holder := JSON.Load(FileOpen(tempLoc,"r").Read())
         } Catch e {
           Log("Error","Something has gone all wrong downloading " apiString ,e)
           Return
@@ -110,21 +107,20 @@ ScrapeNinjaData(apiString)
           ,"tradeId":grabTradeId}
       }
       Ninja["currencyDetails"] := holder.currencyDetails
-      FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
+      FileDelete, % tempLoc
     }
     Return
   }
   Else
   {
-    UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
+    UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, % tempLoc
     if ErrorLevel{
       MsgBox, Error : There was a problem downloading data_%apiString%.txt `r`nLikely because of %selectedLeagueSC% not being valid
     }
     Else if (ErrorLevel=0){
       RetryDL := False
-      FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
       Try {
-        holder := JSON.Load(JSONtext)
+        holder := JSON.Load(FileOpen(tempLoc,"r").Read())
       } Catch e {
         Log("Something has gone wrong downloading " apiString " Ninja API data",e)
         RetryDL := True
@@ -132,10 +128,9 @@ ScrapeNinjaData(apiString)
       If RetryDL
       {
         Sleep, 1000
-        UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, %A_ScriptDir%\temp\data_%apiString%.txt
-        FileRead, JSONtext, %A_ScriptDir%\temp\data_%apiString%.txt
+        UrlDownloadToFile, https://poe.ninja/api/Data/ItemOverview?Type=%apiString%&league=%selectedLeagueSC%, % tempLoc
         Try {
-          holder := JSON.Load(JSONtext)
+          holder := JSON.Load(FileOpen(tempLoc,"r").Read())
         } Catch e {
           Log("Error","Error","Something has gone all wrong downloading " apiString ,e)
           Return
@@ -178,7 +173,7 @@ ScrapeNinjaData(apiString)
       }
       Ninja[apiString] := holder.lines
     }
-    FileDelete, %A_ScriptDir%\temp\data_%apiString%.txt
+    FileDelete, % tempLoc
   }
     ;MsgBox % "Download worked for Ninja Database  -  There are " Ninja.Count() " Entries in the array
   Return

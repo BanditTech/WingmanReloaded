@@ -43,8 +43,7 @@ Return
 
 LoadIgnoreArray()
 {
-	FileRead, JSONtext, %A_ScriptDir%\save\IgnoredSlot.json
-	IgnoredSlot := JSON.Load(JSONtext)
+	IgnoredSlot := JSON.Load(FileOpen(A_ScriptDir "\save\IgnoredSlot.json","r").Read())
 	Return
 }
 

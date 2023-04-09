@@ -1,10 +1,7 @@
 ﻿RefreshStatsList(){
 	tooltip, refreshing stats
 	UrlDownloadToFile, https://www.pathofexile.com/api/trade/data/stats, %A_ScriptDir%\temp\new_Stats.json
-	FileRead, JSONtext, %A_ScriptDir%\temp\new_Stats.json
-	; JSONtext := StrReplace(JSONtext," (\u00D7#)","")
-	JSONtext := RegExReplace(JSONtext, " \(\\u00d7#\)", "")
-	result := JSON.Load(JSONtext,,1).result
+	result := JSON.Load(RegExReplace(FileOpen(A_ScriptDir "\temp\new_Stats.json","r").Read(), " \(\\u00d7#\)", ""),,1).result
 	AffixKeyList := []
 	EnchantKeyList := []
 	for Ck, Cv in result
@@ -54,16 +51,7 @@
 	; MsgBoxVals(AffixKeyList)
 	
 	tooltip,
-	JSONtext := JSON_Beautify(result," ",3)
-	FileDelete, %A_ScriptDir%\data\GGG_Stats.json
-	FileAppend, %JSONtext%, %A_ScriptDir%\data\GGG_Stats.json
-
-	JSONtext := JSON_Beautify(AffixKeyList," ",3)
-	FileDelete, %A_ScriptDir%\data\WR_Affix.json
-	FileAppend, %JSONtext%, %A_ScriptDir%\data\WR_Affix.json
-
-	JSONtext := JSON_Beautify(EnchantKeyList," ",3)
-	FileDelete, %A_ScriptDir%\data\WR_Enchant.json
-	FileAppend, %JSONtext%, %A_ScriptDir%\data\WR_Enchant.json
-	JSONtext := ""
+	FileOpen(A_ScriptDir "\data\GGG_Stats.json","w").Write(JSON_Beautify(result," ",3))
+	FileOpen(A_ScriptDir "\data\WR_Affix.json","w").Write(JSON_Beautify(AffixKeyList," ",3))
+	FileOpen(A_ScriptDir "\data\WR_Enchant.json","w").Write(JSON_Beautify(EnchantKeyList," ",3))
 }

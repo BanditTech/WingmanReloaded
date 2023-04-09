@@ -557,7 +557,9 @@ ItemCraftingRoll(Method, x, y){
 			} Else If (Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)) {
 				If !ApplyCurrency("Augmentation",x,y)
 					Return False
-			} Else If (Method ~= "Regal" && ((Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1) || ((Item.Prop.CraftingMatchedPrefix == 1 || Item.Prop.CraftingMatchedSuffix == 1) && (ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1) ))) {
+			} Else If (Method ~= "Regal" && ((Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1) 
+			|| (Item.Prop.CraftingMatchedPrefix == 1 && ItemCraftingNumberPrefix >= 1 && ItemCraftingNumberSuffix == 0)
+			|| (Item.Prop.CraftingMatchedSuffix == 1 && ItemCraftingNumberSuffix >= 1 && ItemCraftingNumberPrefix == 0))) {
 				If !ApplyCurrency("Regal",x,y)
 					Return False
 			}	Else {

@@ -2,8 +2,7 @@
 UpdateLeagues:
   Gui, Submit, nohide
   UrlDownloadToFile, http://api.pathofexile.com/leagues, %A_ScriptDir%\data\leagues.json
-  FileRead, JSONtext, %A_ScriptDir%\data\leagues.json
-  LeagueIndex := JSON.Load(JSONtext)
+  LeagueIndex := JSON.Load(FileOpen(A_ScriptDir "\data\leagues.json","r").Read())
   textList= 
   For K, V in LeagueIndex
     textList .= "|" LeagueIndex[K]["id"]

@@ -136,8 +136,7 @@ LoadArray:
 return
 
 LoadArray(){
-	FileRead, JSONtext, %A_ScriptDir%\save\LootFilter.json
-	LootFilter := JSON.Load(JSONtext)
+	LootFilter := JSON.Load(FileOpen(A_ScriptDir "\save\LootFilter.json","r").Read())
 	If !LootFilter
 		LootFilter:={}
 	Return
@@ -193,17 +192,13 @@ helpAutomationSetting:
 Return
 
 SelectClientLog:
-	If (A_GuiControl = "ClientLog")
-	{
+	If (A_GuiControl = "ClientLog") {
 		Gui, submit, NoHide
-		If FileExist(ClientLog)
-		{
+		If FileExist(ClientLog) {
 			IniWrite, %ClientLog%, %A_ScriptDir%\save\Settings.ini, Log, ClientLog
 			Monitor_GameLogs(1)
 		}
-	}
-	Else
-	{
+	} Else {
 		Gui, submit
 		FileSelectFile, SelectClientLog, 1, 0, Select the location of your Client Log file, Client.txt
 		If SelectClientLog !=
@@ -217,24 +212,17 @@ SelectClientLog:
 	}
 Return
 
-GreyOutAffinity(){
-  for key, val in ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique","Gem","Flask"]
-  {
+GreyOutAffinity() {
+  for key, val in ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique","Gem","Flask"] {
     GuiControlGet, CheckBoxState,, StashTabYes%val%
-    If (CheckBoxState == 0)
-    { 
+    If (CheckBoxState == 0) { 
       GuiControl, Disable, %val%Edit
       GuiControl, , %val%EditText, Disable Type
-    } 
-    Else If (CheckBoxState == 1)
-    {
+    } Else If (CheckBoxState == 1) {
       GuiControl, Enable, %val%Edit
       GuiControl, , %val%EditText, Assign a Tab
-    }
-    Else 
-    {
-      if(val !="Currency" )
-      {
+    } Else {
+      if(val !="Currency" ) {
         GuiControl, Disable, %val%Edit
       }
       GuiControl, , %val%EditText, Enable Affinity
@@ -244,7 +232,7 @@ GreyOutAffinity(){
 }
 
 ; GuiUpdate - Update Overlay ON OFF states
-GuiUpdate(){
+GuiUpdate() {
   GuiControl, 2:, overlayT1,% "Quit: " (WR.func.Toggle.Quit?"ON":"OFF")
   GuiControl, 2:, overlayT2,% "Flask: " (WR.func.Toggle.Flask?"ON":"OFF")
   GuiControl, 2:, overlayT3,% "Move: " (WR.func.Toggle.Move?"ON":"OFF")
@@ -257,7 +245,7 @@ GuiUpdate(){
   Return
 }
 
-ShowHideOverlay(){
+ShowHideOverlay() {
   Global overlayT1, overlayT2, overlayT3, overlayT4
   GuiControl,2: Show%YesInGameOverlay%, overlayT1
   GuiControl,2: Show%YesInGameOverlay%, overlayT2
@@ -266,108 +254,95 @@ ShowHideOverlay(){
   Return
 }
 
-mainmenuGameLogicState(refresh:=False){
+mainmenuGameLogicState(refresh:=False) {
   Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1
   , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
   Local NewOHB
-  If (OnChar != OldOnChar) || refresh
-  {
+  If (OnChar != OldOnChar) || refresh {
     OldOnChar := OnChar
     If OnChar
       CtlColors.Change(MainMenuIDOnChar, "52D165", "")
     Else
       CtlColors.Change(MainMenuIDOnChar, "Red", "")
   }
-  If ((NewOHB := (CheckOHB()?1:0)) != OldOHB) || refresh
-  {
+  If ((NewOHB := (CheckOHB()?1:0)) != OldOHB) || refresh {
     OldOHB := NewOHB
     If NewOHB
       CtlColors.Change(MainMenuIDOnOHB, "52D165", "")
     Else
       CtlColors.Change(MainMenuIDOnOHB, "Red", "")
   }
-  If (OnInventory != OldOnInventory) || refresh
-  {
+  If (OnInventory != OldOnInventory) || refresh {
     OldOnInventory := OnInventory
     If (OnInventory)
       CtlColors.Change(MainMenuIDOnInventory, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnInventory, "", "Green")
   }
-  If (OnChat != OldOnChat) || refresh
-  {
+  If (OnChat != OldOnChat) || refresh {
     OldOnChat := OnChat
     If OnChat
       CtlColors.Change(MainMenuIDOnChat, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnChat, "", "Green")
   }
-  If (OnStash != OldOnStash) || refresh
-  {
+  If (OnStash != OldOnStash) || refresh {
     OldOnStash := OnStash
     If (OnStash)
       CtlColors.Change(MainMenuIDOnStash, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnStash, "", "Green")
   }
-  If (OnDiv != OldOnDiv) || refresh
-  {
+  If (OnDiv != OldOnDiv) || refresh {
     OldOnDiv := OnDiv
     If (OnDiv)
       CtlColors.Change(MainMenuIDOnDiv, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnDiv, "", "Green")
   }
-  If (OnLeft != OldOnLeft) || refresh
-  {
+  If (OnLeft != OldOnLeft) || refresh {
     OldOnLeft := OnLeft
     If (OnLeft)
       CtlColors.Change(MainMenuIDOnLeft, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnLeft, "", "Green")
   }
-  If (OnDelveChart != OldOnDelveChart) || refresh
-  {
+  If (OnDelveChart != OldOnDelveChart) || refresh {
     OldOnDelveChart := OnDelveChart
     If (OnDelveChart)
       CtlColors.Change(MainMenuIDOnDelveChart, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnDelveChart, "", "Green")
   }
-  If (OnVendor != OldOnVendor) || refresh
-  {
+  If (OnVendor != OldOnVendor) || refresh {
     OldOnVendor := OnVendor
     If (OnVendor)
       CtlColors.Change(MainMenuIDOnVendor, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnVendor, "", "Green")
   }
-  If (OnDetonate != OldOnDetonate) || refresh
-  {
+  If (OnDetonate != OldOnDetonate) || refresh {
     OldOnDetonate := OnDetonate
     If (OnDetonate)
       CtlColors.Change(MainMenuIDOnDetonate, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnDetonate, "", "Green")
   }
-  If (OnMenu != OldOnMenu) || refresh
-  {
+  If (OnMenu != OldOnMenu) || refresh {
     OldOnMenu := OnMenu
     If (OnMenu)
       CtlColors.Change(MainMenuIDOnMenu, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnMenu, "", "Green")
   }
-  If (OnMetamorph != OldOnMetamorph) || refresh
-  {
+  If (OnMetamorph != OldOnMetamorph) || refresh {
     OldOnMetamorph := OnMetamorph
     If (OnMetamorph)
       CtlColors.Change(MainMenuIDOnMetamorph, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
   }
-  If (OnLocker != OldOnLocker) || refresh
-  {
+  If (OnLocker != OldOnLocker) || refresh {
     OldOnLocker := OnLocker
     If (OnLocker)
       CtlColors.Change(MainMenuIDOnLocker, "Red", "")
@@ -379,19 +354,17 @@ mainmenuGameLogicState(refresh:=False){
   CheckPixelGrid:
     ;Check if inventory is open
     Gui, 1: Hide
-    if(!OnInventory){
+    if (!OnInventory) {
       TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
-    }else{
+    } else {
       TT := "Grid information:" . "`n"
       FindText.ScreenShot()
-      For C, GridX in InventoryGridX  
-      {
-        For R, GridY in InventoryGridY
-        {
+      For C, GridX in InventoryGridX {
+        For R, GridY in InventoryGridY {
           PointColor := FindText.GetColor(GridX,GridY)
           if (indexOf(PointColor, varEmptyInvSlotColor)) {        
             TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
-          }else{
+          } else {
             TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Possibly occupied slot. Color: " . PointColor  .  "`n"
           }
         }
@@ -426,8 +399,7 @@ Return
 
 WarningAutomation:
   Gui, submit, nohide
-  If YesEnableAutoSellConfirmation
-  {
+  If YesEnableAutoSellConfirmation {
     Gui, submit
     MsgBox,1,% "WARNING!!!", % "Please Be Advised`n`n"
     . "Enabling this option will auto confirm vendoring items, only use this option if you have a well configured CLF to catch good items`n`n"
@@ -436,38 +408,33 @@ WarningAutomation:
     . "Come to WingmanReloaded Discord to talk with us or look for more information.`n`n"
     . "You have been warned!!! This option can be dangerous if done incorrectly!!!`n"
     . "Press OK to accept"
-    IfMsgBox, OK
+    IfMsgBox, OK 
     {
       IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
       MainMenu()
-    }
-    Else IfMsgBox, Cancel
-    {
-      YesEnableAutoSellConfirmation := 0
-      MainMenu()
-      GuiControl,Inventory:, YesEnableAutoSellConfirmation, 0
-      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
-    }
-    Else
+    } Else IfMsgBox, Cancel 
     {
       YesEnableAutoSellConfirmation := 0
       MainMenu()
       GuiControl,Inventory:, YesEnableAutoSellConfirmation, 0
       IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
+    } Else {
+      YesEnableAutoSellConfirmation := 0
+      MainMenu()
+      GuiControl,Inventory:, YesEnableAutoSellConfirmation, 0
+      IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
     }
-  }
-  Else 
+  } Else 
     IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
 Return
 
 MouseTip(x:="", y:="", w:=21, h:=21)
 {
-  if (x="")
-  {
+  if (x="") {
     VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
     x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
   }
-  If IsObject(x){
+  If IsObject(x) {
     w := Abs(x.X2-x.X1)
     h := Abs(x.Y2-x.Y1)
     y := (x.Y1<x.Y2?x.Y1:x.Y2)
@@ -487,8 +454,7 @@ MouseTip(x:="", y:="", w:=21, h:=21)
   DetectHiddenWindows, %dhw%
   ;-------------------------
   Gui, _MouseTip_: Show, NA x%x% y%y%
-  Loop, 4
-  {
+  Loop, 4 {
     Gui, _MouseTip_: Color, % A_Index & 1 ? "Red" : "Blue"
     Sleep, 500
   }

@@ -21,9 +21,7 @@ readFromFile(){
 	; Login Information
 	; IniRead, PoECookie, %A_ScriptDir%\save\Account.ini, GGG, PoECookie, %A_Space%
 	IniRead, AccountNameSTR, %A_ScriptDir%\save\Account.ini, GGG, AccountNameSTR, %A_Space%
-	FileRead, temp, %A_ScriptDir%\save\Cookie.json
-	PoECookie := JSON.Load(temp).Cookie
-	temp := ""
+	PoECookie := JSON.Load(FileOpen(A_ScriptDir "\save\Cookie.json","r").Read()).Cookie
 
 	; GUI Position
 	IniRead, WinGuiX, %A_ScriptDir%\save\Settings.ini, General, WinGuiX, 0
@@ -1060,23 +1058,26 @@ submit(){
 
 ; Settings Save/Load
 Settings(name:="perChar",Action:="Load"){
+	local f, JSONtext, obj
 	If (Action = "Load"){
 		Try {
 			IfNotExist, %A_ScriptDir%\save\%name%.json
 				Return False
-			FileRead, JSONtext, %A_ScriptDir%\save\%name%.json
+			f := FileOpen(A_ScriptDir "\save\" name ".json","r")
+			JSONtext := f.Read()
 			obj := JSON.Load(JSONtext)
-			For k, v in WR[name]
-				If (obj.HasKey(k))
+			For k, v in WR[name] {
+				If (obj.HasKey(k)) {
 					WR[name][k] := obj[k]
-			obj := JSONtext := ""
+				}
+			}
 		} Catch e {
 			Util.Err(e, "Setting Load failed for .\save\" name ".json")
 		}
 	}Else If (Action = "Save"){
-		FileDelete, %A_ScriptDir%\save\%name%.json
+		f := FileOpen(A_ScriptDir "\save\" name ".json", "w")
 		JSONtext := JSON.Dump(WR[name],,2)
-		FileAppend, %JSONtext%, %A_ScriptDir%\save\%name%.json
+		f.Write(JSONtext)
 		JSONtext := ""
 	}
 }
@@ -1111,14 +1112,11 @@ Profile(args*){
 		Return
 	}
 
-	If (Action = "Save"){
-		FileDelete, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-		JSONtext := JSON.Dump(WR[Type],,2)
-		FileAppend, %JSONtext%, %A_ScriptDir%\save\profiles\%Type%\%name%.json
+	If (Action = "Save") {
+		FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","w").Write(JSON.Dump(WR[Type],,2))
 		IniWrite, % ProfileMenu%Type%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
-	} Else If (Action = "Load"){
-		FileRead, JSONtext, %A_ScriptDir%\save\profiles\%Type%\%name%.json
-		obj := JSON.Load(JSONtext)
+	} Else If (Action = "Load") {
+		obj := JSON.Load(FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","r").Read())
 		For k, v in WR[Type]
 			If (IsObject(obj[k]))
 			For l, w in v
