@@ -1,4 +1,12 @@
-﻿## Version .15.0904 - Alpha version - December/27/2022
+## Version .15.10 - Master version - April/09/2022
+Modifications
+  * add vault key as misc map item
+  * add button to update affix data from PoeDB
+  
+
+---
+
+## Version .15.0904 - Alpha version - December/27/2022
 bugfixes
   * sacred grove items
   * File object refactor

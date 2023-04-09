@@ -1,4 +1,4 @@
-﻿Global VersionNumber := .15.0904
+Global VersionNumber := .15.10
 #Include, %A_ScriptDir%\lib\Header.ahk
 ;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
 #Include, %A_ScriptDir%\lib\RunAdmin.ahk
@@ -39,7 +39,7 @@ If (ShowOnStart)
 ; Exit Script with Win+Escape
 #Escape::ExitApp
 #IfWinActive, ahk_group POEGameGroup
-; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
-Return
+  ; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
+  Return
 
-#Include, %A_ScriptDir%\lib\Library.ahk
+  #Include, %A_ScriptDir%\lib\Library.ahk
