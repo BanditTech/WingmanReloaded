@@ -212,7 +212,7 @@
     },
     "normal": [
         {
-            "ID": "3953",
+            "ID": "3988",
             "Name": "Undiluted",
             "Code": "FlaskIncreasedRecoverySpeed1",
             "Level": "1",
@@ -235,7 +235,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3954",
+            "ID": "3989",
             "Name": "Thickened",
             "Code": "FlaskIncreasedRecoverySpeed2",
             "Level": "21",
@@ -258,7 +258,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3955",
+            "ID": "3990",
             "Name": "Viscous",
             "Code": "FlaskIncreasedRecoverySpeed3_",
             "Level": "41",
@@ -281,7 +281,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3956",
+            "ID": "3991",
             "Name": "Condensed",
             "Code": "FlaskIncreasedRecoverySpeed4",
             "Level": "61",
@@ -304,7 +304,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3957",
+            "ID": "3992",
             "Name": "Catalysed",
             "Code": "FlaskIncreasedRecoverySpeed5",
             "Level": "81",
@@ -327,7 +327,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3960",
+            "ID": "3995",
             "Name": "Substantial",
             "Code": "FlaskIncreasedRecoveryAmount1",
             "Level": "1",
@@ -350,7 +350,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3961",
+            "ID": "3996",
             "Name": "Opaque",
             "Code": "FlaskIncreasedRecoveryAmount2_",
             "Level": "21",
@@ -373,7 +373,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3962",
+            "ID": "3997",
             "Name": "Full-bodied",
             "Code": "FlaskIncreasedRecoveryAmount3",
             "Level": "41",
@@ -396,7 +396,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3963",
+            "ID": "3998",
             "Name": "Concentrated",
             "Code": "FlaskIncreasedRecoveryAmount4",
             "Level": "61",
@@ -419,7 +419,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3964",
+            "ID": "3999",
             "Name": "Saturated",
             "Code": "FlaskIncreasedRecoveryAmount5",
             "Level": "81",
@@ -442,7 +442,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3968",
+            "ID": "4003",
             "Name": "Prudent",
             "Code": "FlaskIncreasedRecoveryOnLowLife1",
             "Level": "6",
@@ -466,7 +466,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3969",
+            "ID": "4004",
             "Name": "Prepared",
             "Code": "FlaskIncreasedRecoveryOnLowLife2_",
             "Level": "25",
@@ -490,7 +490,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3970",
+            "ID": "4005",
             "Name": "Wary",
             "Code": "FlaskIncreasedRecoveryOnLowLife3",
             "Level": "44",
@@ -514,7 +514,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3971",
+            "ID": "4006",
             "Name": "Careful",
             "Code": "FlaskIncreasedRecoveryOnLowLife4",
             "Level": "63",
@@ -538,7 +538,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3972",
+            "ID": "4007",
             "Name": "Cautious",
             "Code": "FlaskIncreasedRecoveryOnLowLife5",
             "Level": "82",
@@ -562,7 +562,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3973",
+            "ID": "4008",
             "Name": "Startled",
             "Code": "FlaskInstantRecoveryOnLowLife1",
             "Level": "9",
@@ -586,7 +586,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3974",
+            "ID": "4009",
             "Name": "Frightened",
             "Code": "FlaskInstantRecoveryOnLowLife2",
             "Level": "27",
@@ -610,7 +610,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3975",
+            "ID": "4010",
             "Name": "Alarmed",
             "Code": "FlaskInstantRecoveryOnLowLife3",
             "Level": "45",
@@ -634,7 +634,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3976",
+            "ID": "4011",
             "Name": "Terrified",
             "Code": "FlaskInstantRecoveryOnLowLife4",
             "Level": "63",
@@ -658,7 +658,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3977",
+            "ID": "4012",
             "Name": "Panicked",
             "Code": "FlaskInstantRecoveryOnLowLife5__",
             "Level": "81",
@@ -682,7 +682,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3978",
+            "ID": "4013",
             "Name": "Simmering",
             "Code": "FlaskPartialInstantRecovery1",
             "Level": "3",
@@ -705,7 +705,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3979",
+            "ID": "4014",
             "Name": "Ebullient",
             "Code": "FlaskPartialInstantRecovery2",
             "Level": "22",
@@ -728,7 +728,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3980",
+            "ID": "4015",
             "Name": "Effusive",
             "Code": "FlaskPartialInstantRecovery3",
             "Level": "41",
@@ -751,7 +751,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3981",
+            "ID": "4016",
             "Name": "Effervescent",
             "Code": "FlaskPartialInstantRecovery4",
             "Level": "60",
@@ -774,7 +774,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3982",
+            "ID": "4017",
             "Name": "Bubbling",
             "Code": "FlaskPartialInstantRecovery5_",
             "Level": "79",
@@ -797,7 +797,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3983",
+            "ID": "4018",
             "Name": "Seething",
             "Code": "FlaskFullInstantRecovery1",
             "Level": "7",
@@ -820,7 +820,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4002",
+            "ID": "4037",
             "Name": "Wide",
             "Code": "FlaskExtraCharges1",
             "Level": "2",
@@ -842,7 +842,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4003",
+            "ID": "4038",
             "Name": "Plentiful",
             "Code": "FlaskExtraCharges2__",
             "Level": "22",
@@ -864,7 +864,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4004",
+            "ID": "4039",
             "Name": "Bountiful",
             "Code": "FlaskExtraCharges3_",
             "Level": "42",
@@ -886,7 +886,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4005",
+            "ID": "4040",
             "Name": "Abundant",
             "Code": "FlaskExtraCharges4__",
             "Level": "62",
@@ -908,7 +908,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4006",
+            "ID": "4041",
             "Name": "Ample",
             "Code": "FlaskExtraCharges5",
             "Level": "82",
@@ -930,7 +930,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4008",
+            "ID": "4043",
             "Name": "Constant",
             "Code": "FlaskChargesAddedIncreasePercent1",
             "Level": "3",
@@ -952,7 +952,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4009",
+            "ID": "4044",
             "Name": "Continuous",
             "Code": "FlaskChargesAddedIncreasePercent2_",
             "Level": "23",
@@ -974,7 +974,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4010",
+            "ID": "4045",
             "Name": "Endless",
             "Code": "FlaskChargesAddedIncreasePercent3_",
             "Level": "43",
@@ -996,7 +996,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4011",
+            "ID": "4046",
             "Name": "Bottomless",
             "Code": "FlaskChargesAddedIncreasePercent4_",
             "Level": "63",
@@ -1018,7 +1018,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4012",
+            "ID": "4047",
             "Name": "Perpetual",
             "Code": "FlaskChargesAddedIncreasePercent5__",
             "Level": "83",
@@ -1040,7 +1040,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4052",
+            "ID": "4087",
             "Name": "of the Novice",
             "Code": "FlaskHealsMinions1",
             "Level": "10",
@@ -1083,7 +1083,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4053",
+            "ID": "4088",
             "Name": "of the Acolyte",
             "Code": "FlaskHealsMinions2",
             "Level": "28",
@@ -1126,7 +1126,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4054",
+            "ID": "4089",
             "Name": "of the Summoner",
             "Code": "FlaskHealsMinions3",
             "Level": "46",
@@ -1169,7 +1169,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4055",
+            "ID": "4090",
             "Name": "of the Conjurer",
             "Code": "FlaskHealsMinions4____",
             "Level": "64",
@@ -1212,7 +1212,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4056",
+            "ID": "4091",
             "Name": "of the Necromancer",
             "Code": "FlaskHealsMinions5",
             "Level": "82",
@@ -1255,7 +1255,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4058",
+            "ID": "4093",
             "Name": "Medic's",
             "Code": "FlaskChanceRechargeOnCrit1",
             "Level": "8",
@@ -1288,7 +1288,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4059",
+            "ID": "4094",
             "Name": "Physician's",
             "Code": "FlaskChanceRechargeOnCrit2",
             "Level": "26",
@@ -1321,7 +1321,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4060",
+            "ID": "4095",
             "Name": "Doctor's",
             "Code": "FlaskChanceRechargeOnCrit3___",
             "Level": "44",
@@ -1354,7 +1354,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4061",
+            "ID": "4096",
             "Name": "Specialist's",
             "Code": "FlaskChanceRechargeOnCrit4",
             "Level": "62",
@@ -1387,7 +1387,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4062",
+            "ID": "4097",
             "Name": "Surgeon's",
             "Code": "FlaskChanceRechargeOnCrit5",
             "Level": "80",
@@ -1420,7 +1420,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4081",
+            "ID": "4116",
             "Name": "Apprentice's",
             "Code": "FlaskChargesUsed1",
             "Level": "14",
@@ -1442,7 +1442,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4082",
+            "ID": "4117",
             "Name": "Scholar's",
             "Code": "FlaskChargesUsed2",
             "Level": "31",
@@ -1464,7 +1464,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4083",
+            "ID": "4118",
             "Name": "Practitioner's",
             "Code": "FlaskChargesUsed3__",
             "Level": "48",
@@ -1486,7 +1486,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4084",
+            "ID": "4119",
             "Name": "Brewer's",
             "Code": "FlaskChargesUsed4__",
             "Level": "65",
@@ -1508,7 +1508,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4085",
+            "ID": "4120",
             "Name": "Chemist's",
             "Code": "FlaskChargesUsed5",
             "Level": "82",
@@ -1530,7 +1530,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4108",
+            "ID": "4143",
             "Name": "Transgressor's",
             "Code": "FlaskFullRechargeOnHit2_",
             "Level": "29",
@@ -1552,7 +1552,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4110",
+            "ID": "4145",
             "Name": "Masochist's",
             "Code": "FlaskFullRechargeOnHit4_",
             "Level": "63",
@@ -1574,7 +1574,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4111",
+            "ID": "4146",
             "Name": "Flagellant's",
             "Code": "FlaskFullRechargeOnHit5___",
             "Level": "80",
@@ -1596,7 +1596,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4112",
+            "ID": "4147",
             "Name": "Nitrate",
             "Code": "FlaskIncreasedHealingCharges1",
             "Level": "10",
@@ -1627,7 +1627,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4113",
+            "ID": "4148",
             "Name": "Dolomite",
             "Code": "FlaskIncreasedHealingCharges2",
             "Level": "28",
@@ -1658,7 +1658,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4114",
+            "ID": "4149",
             "Name": "Kieserite",
             "Code": "FlaskIncreasedHealingCharges3",
             "Level": "46",
@@ -1689,7 +1689,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4115",
+            "ID": "4150",
             "Name": "Kainite",
             "Code": "FlaskIncreasedHealingCharges4____",
             "Level": "64",
@@ -1720,7 +1720,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4116",
+            "ID": "4151",
             "Name": "Gypsum",
             "Code": "FlaskIncreasedHealingCharges5",
             "Level": "82",
@@ -1751,7 +1751,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4117",
+            "ID": "4152",
             "Name": "Foreboding",
             "Code": "FlaskManaRecoveryAtEnd1_",
             "Level": "16",
@@ -1790,7 +1790,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4118",
+            "ID": "4153",
             "Name": "Enduring",
             "Code": "FlaskEffectNotRemovedOnFullMana1",
             "Level": "16",
@@ -1829,7 +1829,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4152",
+            "ID": "4187",
             "Name": "of the Pupil",
             "Code": "FlaskBuffReducedManaCostWhileHealing1_",
             "Level": "12",
@@ -1868,7 +1868,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4153",
+            "ID": "4188",
             "Name": "of the Initiate",
             "Code": "FlaskBuffReducedManaCostWhileHealing2__",
             "Level": "29",
@@ -1907,7 +1907,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4154",
+            "ID": "4189",
             "Name": "of the Mage",
             "Code": "FlaskBuffReducedManaCostWhileHealing3",
             "Level": "46",
@@ -1946,7 +1946,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4155",
+            "ID": "4190",
             "Name": "of the Arcanist",
             "Code": "FlaskBuffReducedManaCostWhileHealing4",
             "Level": "63",
@@ -1985,7 +1985,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4156",
+            "ID": "4191",
             "Name": "of the Sorcerer",
             "Code": "FlaskBuffReducedManaCostWhileHealing5",
             "Level": "80",
@@ -2024,7 +2024,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6123",
+            "ID": "6270",
             "Name": "of Warding",
             "Code": "FlaskCurseImmunity1",
             "Level": "18",
@@ -2064,6 +2064,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26228",
 =======
             "ID": "26226",
@@ -2071,6 +2072,9 @@
 =======
             "ID": "26228",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26418",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Interference",
             "Code": "LocalManaFlaskHinderNearbyEnemies1_",
             "Level": "30",
@@ -2107,6 +2111,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26229",
 =======
             "ID": "26227",
@@ -2114,6 +2119,9 @@
 =======
             "ID": "26229",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26419",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Obstruction",
             "Code": "LocalManaFlaskHinderNearbyEnemies2",
             "Level": "48",
@@ -2150,6 +2158,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26230",
 =======
             "ID": "26228",
@@ -2157,6 +2166,9 @@
 =======
             "ID": "26230",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26420",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Occlusion",
             "Code": "LocalManaFlaskHinderNearbyEnemies3",
             "Level": "66",
@@ -2193,6 +2205,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26231",
 =======
             "ID": "26229",
@@ -2200,6 +2213,9 @@
 =======
             "ID": "26231",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26421",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Restraint",
             "Code": "LocalManaFlaskHinderNearbyEnemies4",
             "Level": "84",
@@ -2236,6 +2252,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26232",
 =======
             "ID": "26230",
@@ -2243,6 +2260,9 @@
 =======
             "ID": "26232",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26422",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Interference",
             "Code": "LocalLifeFlaskHinderNearbyEnemies1_",
             "Level": "30",
@@ -2279,6 +2299,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26233",
 =======
             "ID": "26231",
@@ -2286,6 +2307,9 @@
 =======
             "ID": "26233",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26423",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Obstruction",
             "Code": "LocalLifeFlaskHinderNearbyEnemies2_",
             "Level": "48",
@@ -2322,6 +2346,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26234",
 =======
             "ID": "26232",
@@ -2329,6 +2354,9 @@
 =======
             "ID": "26234",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26424",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Occlusion",
             "Code": "LocalLifeFlaskHinderNearbyEnemies3_",
             "Level": "66",
@@ -2365,6 +2393,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26235",
 =======
             "ID": "26233",
@@ -2372,6 +2401,9 @@
 =======
             "ID": "26235",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26425",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Restraint",
             "Code": "LocalLifeFlaskHinderNearbyEnemies4",
             "Level": "84",
@@ -2408,6 +2440,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26236",
 =======
             "ID": "26234",
@@ -2415,6 +2448,9 @@
 =======
             "ID": "26236",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26426",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Movement",
             "Code": "LocalFlaskImmuneToMaimAndHinder1",
             "Level": "16",
@@ -2454,6 +2490,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26237",
 =======
             "ID": "26235",
@@ -2461,6 +2498,9 @@
 =======
             "ID": "26237",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26427",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Motion",
             "Code": "LocalFlaskImmuneToMaimAndHinder2",
             "Level": "38",
@@ -2500,6 +2540,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26238",
 =======
             "ID": "26236",
@@ -2507,6 +2548,9 @@
 =======
             "ID": "26238",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26428",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Freedom",
             "Code": "LocalFlaskImmuneToMaimAndHinder3",
             "Level": "60",
@@ -2546,6 +2590,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26239",
 =======
             "ID": "26237",
@@ -2553,6 +2598,9 @@
 =======
             "ID": "26239",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26429",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Liberation",
             "Code": "LocalFlaskImmuneToMaimAndHinder4",
             "Level": "82",
@@ -2592,6 +2640,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26245",
 =======
             "ID": "26243",
@@ -2599,6 +2648,9 @@
 =======
             "ID": "26245",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26435",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Sealing",
             "Code": "FlaskBleedCorruptingBloodImmunity1",
             "Level": "8",
@@ -2623,6 +2675,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26246",
 =======
             "ID": "26244",
@@ -2630,6 +2683,9 @@
 =======
             "ID": "26246",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26436",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Alleviation",
             "Code": "FlaskBleedCorruptingBloodImmunity2",
             "Level": "32",
@@ -2654,6 +2710,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26247",
 =======
             "ID": "26245",
@@ -2661,6 +2718,9 @@
 =======
             "ID": "26247",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26437",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Allaying",
             "Code": "FlaskBleedCorruptingBloodImmunity3______",
             "Level": "56",
@@ -2685,6 +2745,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26248",
 =======
             "ID": "26246",
@@ -2692,6 +2753,9 @@
 =======
             "ID": "26248",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26438",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Assuaging",
             "Code": "FlaskBleedCorruptingBloodImmunity4_",
             "Level": "80",
@@ -2716,6 +2780,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26249",
 =======
             "ID": "26247",
@@ -2723,6 +2788,9 @@
 =======
             "ID": "26249",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26439",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Earthing",
             "Code": "FlaskShockImmunity1",
             "Level": "6",
@@ -2747,6 +2815,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26250",
 =======
             "ID": "26248",
@@ -2754,6 +2823,9 @@
 =======
             "ID": "26250",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26440",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Grounding",
             "Code": "FlaskShockImmunity2",
             "Level": "30",
@@ -2778,6 +2850,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26251",
 =======
             "ID": "26249",
@@ -2785,6 +2858,9 @@
 =======
             "ID": "26251",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26441",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Insulation",
             "Code": "FlaskShockImmunity3",
             "Level": "54",
@@ -2809,6 +2885,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26252",
 =======
             "ID": "26250",
@@ -2816,6 +2893,9 @@
 =======
             "ID": "26252",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26442",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Dielectric",
             "Code": "FlaskShockImmunity4_",
             "Level": "78",
@@ -2840,6 +2920,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26253",
 =======
             "ID": "26251",
@@ -2847,6 +2928,9 @@
 =======
             "ID": "26253",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26443",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Convection",
             "Code": "FlaskChillFreezeImmunity1",
             "Level": "4",
@@ -2871,6 +2955,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26254",
 =======
             "ID": "26252",
@@ -2878,6 +2963,9 @@
 =======
             "ID": "26254",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26444",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Thermodynamics",
             "Code": "FlaskChillFreezeImmunity2",
             "Level": "28",
@@ -2902,6 +2990,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26255",
 =======
             "ID": "26253",
@@ -2909,6 +2998,9 @@
 =======
             "ID": "26255",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26445",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Entropy",
             "Code": "FlaskChillFreezeImmunity3",
             "Level": "52",
@@ -2933,6 +3025,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26256",
 =======
             "ID": "26254",
@@ -2940,6 +3033,9 @@
 =======
             "ID": "26256",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26446",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Thawing",
             "Code": "FlaskChillFreezeImmunity4",
             "Level": "76",
@@ -2964,6 +3060,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26257",
 =======
             "ID": "26255",
@@ -2971,6 +3068,9 @@
 =======
             "ID": "26257",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26447",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Damping",
             "Code": "FlaskIgniteImmunity1",
             "Level": "6",
@@ -2995,6 +3095,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26258",
 =======
             "ID": "26256",
@@ -3002,6 +3103,9 @@
 =======
             "ID": "26258",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26448",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Quashing",
             "Code": "FlaskIgniteImmunity2_",
             "Level": "30",
@@ -3026,6 +3130,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26259",
 =======
             "ID": "26257",
@@ -3033,6 +3138,9 @@
 =======
             "ID": "26259",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26449",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Quelling",
             "Code": "FlaskIgniteImmunity3_",
             "Level": "54",
@@ -3057,6 +3165,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26260",
 =======
             "ID": "26258",
@@ -3064,6 +3173,9 @@
 =======
             "ID": "26260",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26450",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Quenching",
             "Code": "FlaskIgniteImmunity4",
             "Level": "78",
@@ -3088,6 +3200,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26261",
 =======
             "ID": "26259",
@@ -3095,6 +3208,9 @@
 =======
             "ID": "26261",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26451",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Antitoxin",
             "Code": "FlaskPoisonImmunity1__",
             "Level": "16",
@@ -3119,6 +3235,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26262",
 =======
             "ID": "26260",
@@ -3126,6 +3243,9 @@
 =======
             "ID": "26262",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26452",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Remedy",
             "Code": "FlaskPoisonImmunity2",
             "Level": "38",
@@ -3150,6 +3270,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26263",
 =======
             "ID": "26261",
@@ -3157,6 +3278,9 @@
 =======
             "ID": "26263",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26453",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Cure",
             "Code": "FlaskPoisonImmunity3",
             "Level": "60",
@@ -3181,6 +3305,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26264",
 =======
             "ID": "26262",
@@ -3188,6 +3313,9 @@
 =======
             "ID": "26264",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26454",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Antidote",
             "Code": "FlaskPoisonImmunity4",
             "Level": "82",
@@ -3227,6 +3355,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17329",
 =======
             "ID": "17327",
@@ -3234,6 +3363,9 @@
 =======
             "ID": "17329",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17506",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3274,6 +3406,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17331",
 =======
             "ID": "17329",
@@ -3281,6 +3414,9 @@
 =======
             "ID": "17331",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17508",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3306,6 +3442,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17332",
 =======
             "ID": "17330",
@@ -3313,6 +3450,9 @@
 =======
             "ID": "17332",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17509",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3353,6 +3493,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17333",
 =======
             "ID": "17331",
@@ -3360,6 +3501,9 @@
 =======
             "ID": "17333",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17510",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3385,6 +3529,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17335",
 =======
             "ID": "17333",
@@ -3392,6 +3537,9 @@
 =======
             "ID": "17335",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17512",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -3432,6 +3580,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "26287",
 =======
             "ID": "26285",
@@ -3439,6 +3588,9 @@
 =======
             "ID": "26287",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "26477",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",

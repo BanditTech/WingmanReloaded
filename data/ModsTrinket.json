@@ -214,6 +214,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23412",
 =======
             "ID": "23410",
@@ -221,6 +222,9 @@
 =======
             "ID": "23412",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23593",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble1",
             "Level": "1",
@@ -242,6 +246,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23413",
 =======
             "ID": "23411",
@@ -249,6 +254,9 @@
 =======
             "ID": "23413",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23594",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble2",
             "Level": "50",
@@ -270,6 +278,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23414",
 =======
             "ID": "23412",
@@ -277,6 +286,9 @@
 =======
             "ID": "23414",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23595",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble3",
             "Level": "70",
@@ -298,6 +310,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23415",
 =======
             "ID": "23413",
@@ -305,6 +318,9 @@
 =======
             "ID": "23415",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23596",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble1",
             "Level": "1",
@@ -326,6 +342,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23416",
 =======
             "ID": "23414",
@@ -333,6 +350,9 @@
 =======
             "ID": "23416",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23597",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble2",
             "Level": "50",
@@ -354,6 +374,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23417",
 =======
             "ID": "23415",
@@ -361,6 +382,9 @@
 =======
             "ID": "23417",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23598",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble3_",
             "Level": "70",
@@ -382,6 +406,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23418",
 =======
             "ID": "23416",
@@ -389,6 +414,9 @@
 =======
             "ID": "23418",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23599",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency1_",
             "Level": "1",
@@ -410,6 +438,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23419",
 =======
             "ID": "23417",
@@ -417,6 +446,9 @@
 =======
             "ID": "23419",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23600",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency2",
             "Level": "50",
@@ -438,6 +470,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23420",
 =======
             "ID": "23418",
@@ -445,6 +478,9 @@
 =======
             "ID": "23420",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23601",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency3__",
             "Level": "70",
@@ -466,6 +502,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23421",
 =======
             "ID": "23419",
@@ -473,6 +510,9 @@
 =======
             "ID": "23421",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23602",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity1_",
             "Level": "1",
@@ -494,6 +534,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23422",
 =======
             "ID": "23420",
@@ -501,6 +542,9 @@
 =======
             "ID": "23422",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23603",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity2_",
             "Level": "50",
@@ -522,6 +566,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23423",
 =======
             "ID": "23421",
@@ -529,6 +574,9 @@
 =======
             "ID": "23423",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23604",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity3",
             "Level": "70",
@@ -550,6 +598,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23424",
 =======
             "ID": "23422",
@@ -557,6 +606,9 @@
 =======
             "ID": "23424",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23605",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity1",
             "Level": "1",
@@ -578,6 +630,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23425",
 =======
             "ID": "23423",
@@ -585,6 +638,9 @@
 =======
             "ID": "23425",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23606",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity2",
             "Level": "50",
@@ -606,6 +662,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23426",
 =======
             "ID": "23424",
@@ -613,6 +670,9 @@
 =======
             "ID": "23426",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23607",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity3___",
             "Level": "70",
@@ -634,6 +694,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23427",
 =======
             "ID": "23425",
@@ -641,6 +702,9 @@
 =======
             "ID": "23427",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23608",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted1",
             "Level": "1",
@@ -662,6 +726,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23428",
 =======
             "ID": "23426",
@@ -669,6 +734,9 @@
 =======
             "ID": "23428",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23609",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted2",
             "Level": "50",
@@ -690,6 +758,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23429",
 =======
             "ID": "23427",
@@ -697,6 +766,9 @@
 =======
             "ID": "23429",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23610",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted3_",
             "Level": "70",
@@ -718,6 +790,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23430",
 =======
             "ID": "23428",
@@ -725,6 +798,9 @@
 =======
             "ID": "23430",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23611",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified1",
             "Level": "1",
@@ -746,6 +822,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23431",
 =======
             "ID": "23429",
@@ -753,6 +830,9 @@
 =======
             "ID": "23431",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23612",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified2",
             "Level": "50",
@@ -774,6 +854,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23432",
 =======
             "ID": "23430",
@@ -781,6 +862,9 @@
 =======
             "ID": "23432",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23613",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified3",
             "Level": "70",
@@ -802,6 +886,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23433",
 =======
             "ID": "23431",
@@ -809,6 +894,9 @@
 =======
             "ID": "23433",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23614",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket1__",
             "Level": "1",
@@ -830,6 +918,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23434",
 =======
             "ID": "23432",
@@ -837,6 +926,9 @@
 =======
             "ID": "23434",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23615",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket2",
             "Level": "50",
@@ -858,6 +950,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23435",
 =======
             "ID": "23433",
@@ -865,6 +958,9 @@
 =======
             "ID": "23435",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23616",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket3",
             "Level": "70",
@@ -886,6 +982,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23436",
 =======
             "ID": "23434",
@@ -893,6 +990,9 @@
 =======
             "ID": "23436",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23617",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked1_",
             "Level": "1",
@@ -914,6 +1014,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23437",
 =======
             "ID": "23435",
@@ -921,6 +1022,9 @@
 =======
             "ID": "23437",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23618",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked2",
             "Level": "50",
@@ -942,6 +1046,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23438",
 =======
             "ID": "23436",
@@ -949,6 +1054,9 @@
 =======
             "ID": "23438",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23619",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked3",
             "Level": "70",
@@ -970,6 +1078,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23439",
 =======
             "ID": "23437",
@@ -977,6 +1086,9 @@
 =======
             "ID": "23439",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23620",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveShaperInfluence1",
             "Level": "75",
@@ -998,6 +1110,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23440",
 =======
             "ID": "23438",
@@ -1005,6 +1118,9 @@
 =======
             "ID": "23440",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23621",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveElderInfluence1_",
             "Level": "75",
@@ -1026,6 +1142,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23441",
 =======
             "ID": "23439",
@@ -1033,6 +1150,9 @@
 =======
             "ID": "23441",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23622",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy1_",
             "Level": "1",
@@ -1054,6 +1174,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23442",
 =======
             "ID": "23440",
@@ -1061,6 +1182,9 @@
 =======
             "ID": "23442",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23623",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy2",
             "Level": "50",
@@ -1082,6 +1206,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23443",
 =======
             "ID": "23441",
@@ -1089,6 +1214,9 @@
 =======
             "ID": "23443",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23624",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy3",
             "Level": "70",
@@ -1110,6 +1238,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23444",
 =======
             "ID": "23442",
@@ -1117,6 +1246,9 @@
 =======
             "ID": "23444",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23625",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos1",
             "Level": "1",
@@ -1138,6 +1270,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23445",
 =======
             "ID": "23443",
@@ -1145,6 +1278,9 @@
 =======
             "ID": "23445",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23626",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos2",
             "Level": "50",
@@ -1166,6 +1302,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23446",
 =======
             "ID": "23444",
@@ -1173,6 +1310,9 @@
 =======
             "ID": "23446",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23627",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos3",
             "Level": "70",
@@ -1194,6 +1334,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23447",
 =======
             "ID": "23445",
@@ -1201,6 +1342,9 @@
 =======
             "ID": "23447",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23628",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy1",
             "Level": "1",
@@ -1222,6 +1366,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23448",
 =======
             "ID": "23446",
@@ -1229,6 +1374,9 @@
 =======
             "ID": "23448",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23629",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy2_",
             "Level": "50",
@@ -1250,6 +1398,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23449",
 =======
             "ID": "23447",
@@ -1257,6 +1406,9 @@
 =======
             "ID": "23449",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23630",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy3",
             "Level": "70",
@@ -1278,6 +1430,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23450",
 =======
             "ID": "23448",
@@ -1285,6 +1438,9 @@
 =======
             "ID": "23450",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23631",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos1__",
             "Level": "1",
@@ -1306,6 +1462,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23451",
 =======
             "ID": "23449",
@@ -1313,6 +1470,9 @@
 =======
             "ID": "23451",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23632",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos2",
             "Level": "50",
@@ -1334,6 +1494,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23452",
 =======
             "ID": "23450",
@@ -1341,6 +1502,9 @@
 =======
             "ID": "23452",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23633",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos3",
             "Level": "70",
@@ -1362,6 +1526,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23453",
 =======
             "ID": "23451",
@@ -1369,6 +1534,9 @@
 =======
             "ID": "23453",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23634",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsRegal1",
             "Level": "78",
@@ -1390,6 +1558,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23454",
 =======
             "ID": "23452",
@@ -1397,6 +1566,9 @@
 =======
             "ID": "23454",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23635",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy1__",
             "Level": "1",
@@ -1418,6 +1590,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23455",
 =======
             "ID": "23453",
@@ -1425,6 +1598,9 @@
 =======
             "ID": "23455",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23636",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy2",
             "Level": "50",
@@ -1446,6 +1622,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23456",
 =======
             "ID": "23454",
@@ -1453,6 +1630,9 @@
 =======
             "ID": "23456",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23637",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy3",
             "Level": "70",
@@ -1474,6 +1654,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23457",
 =======
             "ID": "23455",
@@ -1481,6 +1662,9 @@
 =======
             "ID": "23457",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23638",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos1_",
             "Level": "1",
@@ -1502,6 +1686,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23458",
 =======
             "ID": "23456",
@@ -1509,6 +1694,9 @@
 =======
             "ID": "23458",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23639",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos2",
             "Level": "50",
@@ -1530,6 +1718,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23459",
 =======
             "ID": "23457",
@@ -1537,6 +1726,9 @@
 =======
             "ID": "23459",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23640",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos3__",
             "Level": "70",
@@ -1558,6 +1750,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23460",
 =======
             "ID": "23458",
@@ -1565,6 +1758,9 @@
 =======
             "ID": "23460",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23641",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsRegal1",
             "Level": "81",
@@ -1586,6 +1782,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23461",
 =======
             "ID": "23459",
@@ -1593,6 +1790,9 @@
 =======
             "ID": "23461",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23642",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChaosDropsAsDivine1",
             "Level": "83",
@@ -1614,6 +1814,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23462",
 =======
             "ID": "23460",
@@ -1621,6 +1822,9 @@
 =======
             "ID": "23462",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23643",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChaosDropsAsExalted1_",
             "Level": "83",
@@ -1642,6 +1846,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23463",
 =======
             "ID": "23461",
@@ -1649,6 +1854,9 @@
 =======
             "ID": "23463",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23644",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine1",
             "Level": "60",
@@ -1670,6 +1878,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23464",
 =======
             "ID": "23462",
@@ -1677,6 +1886,9 @@
 =======
             "ID": "23464",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23645",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine2_",
             "Level": "75",
@@ -1698,6 +1910,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23465",
 =======
             "ID": "23463",
@@ -1705,6 +1918,9 @@
 =======
             "ID": "23465",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23646",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine3",
             "Level": "80",
@@ -1726,6 +1942,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23466",
 =======
             "ID": "23464",
@@ -1733,6 +1950,9 @@
 =======
             "ID": "23466",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23647",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted1",
             "Level": "60",
@@ -1754,6 +1974,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23467",
 =======
             "ID": "23465",
@@ -1761,6 +1982,9 @@
 =======
             "ID": "23467",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23648",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted2_",
             "Level": "75",
@@ -1782,6 +2006,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23468",
 =======
             "ID": "23466",
@@ -1789,6 +2014,9 @@
 =======
             "ID": "23468",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23649",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted3",
             "Level": "80",
@@ -1810,6 +2038,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23469",
 =======
             "ID": "23467",
@@ -1817,6 +2046,9 @@
 =======
             "ID": "23469",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23650",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret1",
             "Level": "1",
@@ -1838,6 +2070,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23470",
 =======
             "ID": "23468",
@@ -1845,6 +2078,9 @@
 =======
             "ID": "23470",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23651",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret2_",
             "Level": "50",
@@ -1866,6 +2102,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23471",
 =======
             "ID": "23469",
@@ -1873,6 +2110,9 @@
 =======
             "ID": "23471",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23652",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret3",
             "Level": "70",
@@ -1894,6 +2134,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23472",
 =======
             "ID": "23470",
@@ -1901,6 +2142,9 @@
 =======
             "ID": "23472",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23653",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsAnnulment1_",
             "Level": "82",
@@ -1922,6 +2166,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23473",
 =======
             "ID": "23471",
@@ -1929,6 +2174,9 @@
 =======
             "ID": "23473",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23654",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegretDropsAsAnnulment1",
             "Level": "77",
@@ -1950,6 +2198,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23474",
 =======
             "ID": "23472",
@@ -1957,6 +2206,9 @@
 =======
             "ID": "23474",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23655",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers1",
             "Level": "1",
@@ -1978,6 +2230,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23475",
 =======
             "ID": "23473",
@@ -1985,6 +2238,9 @@
 =======
             "ID": "23475",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23656",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers2",
             "Level": "50",
@@ -2006,6 +2262,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23476",
 =======
             "ID": "23474",
@@ -2013,6 +2270,9 @@
 =======
             "ID": "23476",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23657",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers3",
             "Level": "70",
@@ -2034,6 +2294,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23477",
 =======
             "ID": "23475",
@@ -2041,6 +2302,9 @@
 =======
             "ID": "23477",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23658",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing1",
             "Level": "1",
@@ -2062,6 +2326,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23478",
 =======
             "ID": "23476",
@@ -2069,6 +2334,9 @@
 =======
             "ID": "23478",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23659",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing2___",
             "Level": "50",
@@ -2090,6 +2358,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23479",
 =======
             "ID": "23477",
@@ -2097,6 +2366,9 @@
 =======
             "ID": "23479",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23660",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing3",
             "Level": "70",
@@ -2118,6 +2390,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23480",
 =======
             "ID": "23478",
@@ -2125,6 +2398,9 @@
 =======
             "ID": "23480",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23661",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing1",
             "Level": "1",
@@ -2146,6 +2422,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23481",
 =======
             "ID": "23479",
@@ -2153,6 +2430,9 @@
 =======
             "ID": "23481",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23662",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing2",
             "Level": "50",
@@ -2174,6 +2454,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23482",
 =======
             "ID": "23480",
@@ -2181,6 +2462,9 @@
 =======
             "ID": "23482",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23663",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing3_",
             "Level": "70",
@@ -2202,6 +2486,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23483",
 =======
             "ID": "23481",
@@ -2209,6 +2494,9 @@
 =======
             "ID": "23483",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23664",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency1",
             "Level": "1",
@@ -2230,6 +2518,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23484",
 =======
             "ID": "23482",
@@ -2237,6 +2526,9 @@
 =======
             "ID": "23484",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23665",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency2",
             "Level": "50",
@@ -2258,6 +2550,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23485",
 =======
             "ID": "23483",
@@ -2265,6 +2558,9 @@
 =======
             "ID": "23485",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23666",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency3",
             "Level": "70",
@@ -2286,6 +2582,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23489",
 =======
             "ID": "23487",
@@ -2293,6 +2590,9 @@
 =======
             "ID": "23489",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23670",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests1",
             "Level": "1",
@@ -2314,6 +2614,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23490",
 =======
             "ID": "23488",
@@ -2321,6 +2622,9 @@
 =======
             "ID": "23490",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23671",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests2",
             "Level": "50",
@@ -2342,6 +2646,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23491",
 =======
             "ID": "23489",
@@ -2349,6 +2654,9 @@
 =======
             "ID": "23491",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23672",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests3",
             "Level": "70",
@@ -2370,6 +2678,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23492",
 =======
             "ID": "23490",
@@ -2377,6 +2686,9 @@
 =======
             "ID": "23492",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23673",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests1",
             "Level": "1",
@@ -2398,6 +2710,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23493",
 =======
             "ID": "23491",
@@ -2405,6 +2718,9 @@
 =======
             "ID": "23493",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23674",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests2_",
             "Level": "50",
@@ -2426,6 +2742,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23494",
 =======
             "ID": "23492",
@@ -2433,6 +2750,9 @@
 =======
             "ID": "23494",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23675",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests3",
             "Level": "70",
@@ -2454,6 +2774,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23495",
 =======
             "ID": "23493",
@@ -2461,6 +2782,9 @@
 =======
             "ID": "23495",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23676",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests1",
             "Level": "1",
@@ -2482,6 +2806,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23496",
 =======
             "ID": "23494",
@@ -2489,6 +2814,9 @@
 =======
             "ID": "23496",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23677",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests2",
             "Level": "50",
@@ -2510,6 +2838,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23497",
 =======
             "ID": "23495",
@@ -2517,6 +2846,9 @@
 =======
             "ID": "23497",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23678",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests3",
             "Level": "70",
@@ -2538,6 +2870,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23498",
 =======
             "ID": "23496",
@@ -2545,6 +2878,9 @@
 =======
             "ID": "23498",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23679",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests1__",
             "Level": "1",
@@ -2566,6 +2902,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23499",
 =======
             "ID": "23497",
@@ -2573,6 +2910,9 @@
 =======
             "ID": "23499",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23680",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests2",
             "Level": "50",
@@ -2594,6 +2934,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23500",
 =======
             "ID": "23498",
@@ -2601,6 +2942,9 @@
 =======
             "ID": "23500",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23681",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests3",
             "Level": "70",
@@ -2622,6 +2966,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23501",
 =======
             "ID": "23499",
@@ -2629,6 +2974,9 @@
 =======
             "ID": "23501",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23682",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests1",
             "Level": "1",
@@ -2650,6 +2998,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23502",
 =======
             "ID": "23500",
@@ -2657,6 +3006,9 @@
 =======
             "ID": "23502",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23683",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests2",
             "Level": "50",
@@ -2678,6 +3030,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23503",
 =======
             "ID": "23501",
@@ -2685,6 +3038,9 @@
 =======
             "ID": "23503",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23684",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests3",
             "Level": "70",
@@ -2706,6 +3062,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23504",
 =======
             "ID": "23502",
@@ -2713,6 +3070,9 @@
 =======
             "ID": "23504",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23685",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests1",
             "Level": "1",
@@ -2734,6 +3094,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23505",
 =======
             "ID": "23503",
@@ -2741,6 +3102,9 @@
 =======
             "ID": "23505",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23686",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests2",
             "Level": "50",
@@ -2762,6 +3126,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23506",
 =======
             "ID": "23504",
@@ -2769,6 +3134,9 @@
 =======
             "ID": "23506",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23687",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests3",
             "Level": "70",
@@ -2790,6 +3158,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23507",
 =======
             "ID": "23505",
@@ -2797,6 +3166,9 @@
 =======
             "ID": "23507",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23688",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalUniquesRewardsFromRewardChests1_",
             "Level": "1",
@@ -2818,6 +3190,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23508",
 =======
             "ID": "23506",
@@ -2825,6 +3198,9 @@
 =======
             "ID": "23508",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23689",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalUniquesRewardsFromRewardChests2",
             "Level": "50",
@@ -2846,6 +3222,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23510",
 =======
             "ID": "23508",
@@ -2853,6 +3230,9 @@
 =======
             "ID": "23510",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23691",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests1",
             "Level": "1",
@@ -2874,6 +3254,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23511",
 =======
             "ID": "23509",
@@ -2881,6 +3262,9 @@
 =======
             "ID": "23511",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23692",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests2",
             "Level": "50",
@@ -2902,6 +3286,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23512",
 =======
             "ID": "23510",
@@ -2909,6 +3294,9 @@
 =======
             "ID": "23512",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23693",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests3_",
             "Level": "70",
@@ -2930,6 +3318,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23513",
 =======
             "ID": "23511",
@@ -2937,6 +3326,9 @@
 =======
             "ID": "23513",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23694",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests1",
             "Level": "40",
@@ -2958,6 +3350,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23514",
 =======
             "ID": "23512",
@@ -2965,6 +3358,9 @@
 =======
             "ID": "23514",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23695",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests2",
             "Level": "50",
@@ -2986,6 +3382,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23515",
 =======
             "ID": "23513",
@@ -2993,6 +3390,9 @@
 =======
             "ID": "23515",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23696",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests3",
             "Level": "70",
@@ -3014,6 +3414,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23516",
 =======
             "ID": "23514",
@@ -3021,6 +3422,9 @@
 =======
             "ID": "23516",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23697",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests1",
             "Level": "40",
@@ -3042,6 +3446,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23517",
 =======
             "ID": "23515",
@@ -3049,6 +3454,9 @@
 =======
             "ID": "23517",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23698",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests2",
             "Level": "50",
@@ -3070,6 +3478,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23518",
 =======
             "ID": "23516",
@@ -3077,6 +3486,9 @@
 =======
             "ID": "23518",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23699",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests3",
             "Level": "70",
@@ -3098,6 +3510,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23519",
 =======
             "ID": "23517",
@@ -3105,6 +3518,9 @@
 =======
             "ID": "23519",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23700",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalMetamorphRewardsFromRewardChests1_",
             "Level": "60",
@@ -3126,6 +3542,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23520",
 =======
             "ID": "23518",
@@ -3133,6 +3550,9 @@
 =======
             "ID": "23520",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23701",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalMetamorphRewardsFromRewardChests2",
             "Level": "80",
@@ -3154,6 +3574,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23521",
 =======
             "ID": "23519",
@@ -3161,6 +3582,9 @@
 =======
             "ID": "23521",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23702",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDeliriumRewardsFromRewardChests1",
             "Level": "60",
@@ -3182,6 +3606,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23522",
 =======
             "ID": "23520",
@@ -3189,6 +3614,9 @@
 =======
             "ID": "23522",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23703",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDeliriumRewardsFromRewardChests2_",
             "Level": "80",
@@ -3210,6 +3638,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23523",
 =======
             "ID": "23521",
@@ -3217,6 +3646,9 @@
 =======
             "ID": "23523",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23704",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests1__",
             "Level": "40",
@@ -3238,6 +3670,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23524",
 =======
             "ID": "23522",
@@ -3245,6 +3678,9 @@
 =======
             "ID": "23524",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23705",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests2",
             "Level": "50",
@@ -3266,6 +3702,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23525",
 =======
             "ID": "23523",
@@ -3273,6 +3710,9 @@
 =======
             "ID": "23525",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23706",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests3_",
             "Level": "70",
@@ -3294,6 +3734,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23526",
 =======
             "ID": "23524",
@@ -3301,6 +3742,9 @@
 =======
             "ID": "23526",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23707",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests1",
             "Level": "40",
@@ -3322,6 +3766,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23527",
 =======
             "ID": "23525",
@@ -3329,6 +3774,9 @@
 =======
             "ID": "23527",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23708",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests2",
             "Level": "50",
@@ -3350,6 +3798,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23528",
 =======
             "ID": "23526",
@@ -3357,6 +3806,9 @@
 =======
             "ID": "23528",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23709",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests3__",
             "Level": "70",
@@ -3378,6 +3830,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23529",
 =======
             "ID": "23527",
@@ -3385,6 +3838,9 @@
 =======
             "ID": "23529",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23710",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests1___",
             "Level": "40",
@@ -3406,6 +3862,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23530",
 =======
             "ID": "23528",
@@ -3413,6 +3870,9 @@
 =======
             "ID": "23530",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23711",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests2",
             "Level": "50",
@@ -3434,6 +3894,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23531",
 =======
             "ID": "23529",
@@ -3441,6 +3902,9 @@
 =======
             "ID": "23531",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23712",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests3__",
             "Level": "70",
@@ -3462,6 +3926,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23532",
 =======
             "ID": "23530",
@@ -3469,6 +3934,9 @@
 =======
             "ID": "23532",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23713",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests1",
             "Level": "40",
@@ -3490,6 +3958,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23533",
 =======
             "ID": "23531",
@@ -3497,6 +3966,9 @@
 =======
             "ID": "23533",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23714",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests2",
             "Level": "50",
@@ -3518,6 +3990,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "23534",
 =======
             "ID": "23532",
@@ -3525,6 +3998,9 @@
 =======
             "ID": "23534",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "23715",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests3_",
             "Level": "70",

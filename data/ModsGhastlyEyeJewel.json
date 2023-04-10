@@ -231,6 +231,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13679",
 =======
             "ID": "13677",
@@ -238,6 +239,9 @@
 =======
             "ID": "13679",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13841",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hale",
             "Code": "AbyssJewelAddedLife1",
             "Level": "1",
@@ -275,6 +279,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13680",
 =======
             "ID": "13678",
@@ -282,6 +287,9 @@
 =======
             "ID": "13680",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13842",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Healthy",
             "Code": "AbyssJewelAddedLife2",
             "Level": "35",
@@ -319,6 +327,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13681",
 =======
             "ID": "13679",
@@ -326,6 +335,9 @@
 =======
             "ID": "13681",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13843",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Sanguine",
             "Code": "AbyssJewelAddedLife3",
             "Level": "74",
@@ -363,6 +375,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13682",
 =======
             "ID": "13680",
@@ -370,6 +383,9 @@
 =======
             "ID": "13682",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13844",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stalwart",
             "Code": "AbyssJewelAddedLife4",
             "Level": "82",
@@ -407,6 +423,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13683",
 =======
             "ID": "13681",
@@ -414,6 +431,9 @@
 =======
             "ID": "13683",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13845",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Beryl",
             "Code": "AbyssJewelAddedMana1",
             "Level": "1",
@@ -451,6 +471,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13684",
 =======
             "ID": "13682",
@@ -458,6 +479,9 @@
 =======
             "ID": "13684",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13846",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Cobalt",
             "Code": "AbyssJewelAddedMana2",
             "Level": "40",
@@ -495,6 +519,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13685",
 =======
             "ID": "13683",
@@ -502,6 +527,9 @@
 =======
             "ID": "13685",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13847",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Azure",
             "Code": "AbyssJewelAddedMana3",
             "Level": "75",
@@ -539,6 +567,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13686",
 =======
             "ID": "13684",
@@ -546,6 +575,9 @@
 =======
             "ID": "13686",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13848",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Sapphire",
             "Code": "AbyssJewelAddedMana4",
             "Level": "83",
@@ -583,6 +615,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13689",
 =======
             "ID": "13687",
@@ -590,6 +623,9 @@
 =======
             "ID": "13689",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13851",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Strength",
             "Code": "AbyssStrengthJewel1_",
             "Level": "1",
@@ -623,6 +659,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13690",
 =======
             "ID": "13688",
@@ -630,6 +667,9 @@
 =======
             "ID": "13690",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13852",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Dexterity",
             "Code": "AbyssDexterityJewel1_",
             "Level": "1",
@@ -663,6 +703,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13691",
 =======
             "ID": "13689",
@@ -670,6 +711,9 @@
 =======
             "ID": "13691",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13853",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Intelligence",
             "Code": "AbyssIntelligenceJewel1",
             "Level": "1",
@@ -703,6 +747,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13692",
 =======
             "ID": "13690",
@@ -710,6 +755,9 @@
 =======
             "ID": "13692",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13854",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Athletics",
             "Code": "AbyssStrengthDexterityJewel1",
             "Level": "1",
@@ -743,6 +791,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13693",
 =======
             "ID": "13691",
@@ -750,6 +799,9 @@
 =======
             "ID": "13693",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13855",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Spirit",
             "Code": "AbyssStrengthIntelligenceJewel1_",
             "Level": "1",
@@ -783,6 +835,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13694",
 =======
             "ID": "13692",
@@ -790,6 +843,9 @@
 =======
             "ID": "13694",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13856",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Cunning",
             "Code": "AbyssDexterityIntelligenceJewel1",
             "Level": "1",
@@ -823,6 +879,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13695",
 =======
             "ID": "13693",
@@ -830,6 +887,9 @@
 =======
             "ID": "13695",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13857",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Adaption",
             "Code": "AbyssAllAttributesJewel1",
             "Level": "1",
@@ -863,6 +923,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13696",
 =======
             "ID": "13694",
@@ -870,6 +931,9 @@
 =======
             "ID": "13696",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13858",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Dragon",
             "Code": "AbyssFireResistanceJewel1",
             "Level": "1",
@@ -911,6 +975,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13697",
 =======
             "ID": "13695",
@@ -918,6 +983,9 @@
 =======
             "ID": "13697",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13859",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Beast",
             "Code": "AbyssColdResistanceJewel1",
             "Level": "1",
@@ -959,6 +1027,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13698",
 =======
             "ID": "13696",
@@ -966,6 +1035,9 @@
 =======
             "ID": "13698",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13860",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Grounding",
             "Code": "AbyssLightningResistanceJewel1",
             "Level": "1",
@@ -1007,6 +1079,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13699",
 =======
             "ID": "13697",
@@ -1014,6 +1087,9 @@
 =======
             "ID": "13699",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13861",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hearth",
             "Code": "AbyssFireColdResistanceJewel1",
             "Level": "1",
@@ -1058,6 +1134,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13700",
 =======
             "ID": "13698",
@@ -1065,6 +1142,9 @@
 =======
             "ID": "13700",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13862",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Insulation",
             "Code": "AbyssFireLightningResistanceJewel1",
             "Level": "1",
@@ -1109,6 +1189,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13701",
 =======
             "ID": "13699",
@@ -1116,6 +1197,9 @@
 =======
             "ID": "13701",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13863",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shelter",
             "Code": "AbyssColdLightningResistanceJewel1",
             "Level": "1",
@@ -1160,6 +1244,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13702",
 =======
             "ID": "13700",
@@ -1167,6 +1252,9 @@
 =======
             "ID": "13702",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13864",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Resistance",
             "Code": "AbyssAllResistancesJewel1",
             "Level": "1",
@@ -1204,6 +1292,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13703",
 =======
             "ID": "13701",
@@ -1211,6 +1300,9 @@
 =======
             "ID": "13703",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13865",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Order",
             "Code": "AbyssChaosResistanceJewel1",
             "Level": "1",
@@ -1248,6 +1340,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13705",
 =======
             "ID": "13703",
@@ -1255,6 +1348,9 @@
 =======
             "ID": "13705",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13867",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Enchanting",
             "Code": "AbyssCastSpeedJewel1",
             "Level": "50",
@@ -1294,6 +1390,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13714",
 =======
             "ID": "13712",
@@ -1301,6 +1398,9 @@
 =======
             "ID": "13714",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13876",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Heated",
             "Code": "AbyssMinionAddedFireDamageJewel1",
             "Level": "1",
@@ -1348,6 +1448,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13715",
 =======
             "ID": "13713",
@@ -1355,6 +1456,9 @@
 =======
             "ID": "13715",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13877",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Flaming",
             "Code": "AbyssMinionAddedFireDamageJewel2",
             "Level": "39",
@@ -1402,6 +1506,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13716",
 =======
             "ID": "13714",
@@ -1409,6 +1514,9 @@
 =======
             "ID": "13716",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13878",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Scorching",
             "Code": "AbyssMinionAddedFireDamageJewel3",
             "Level": "48",
@@ -1456,6 +1564,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13717",
 =======
             "ID": "13715",
@@ -1463,6 +1572,9 @@
 =======
             "ID": "13717",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13879",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Incinerating",
             "Code": "AbyssMinionAddedFireDamageJewel4_",
             "Level": "58",
@@ -1510,6 +1622,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13718",
 =======
             "ID": "13716",
@@ -1517,6 +1630,9 @@
 =======
             "ID": "13718",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13880",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Blasting",
             "Code": "AbyssMinionAddedFireDamageJewel5",
             "Level": "70",
@@ -1564,6 +1680,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13719",
 =======
             "ID": "13717",
@@ -1571,6 +1688,9 @@
 =======
             "ID": "13719",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13881",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Cremating",
             "Code": "AbyssMinionAddedFireDamageJewel6_",
             "Level": "82",
@@ -1618,6 +1738,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13720",
 =======
             "ID": "13718",
@@ -1625,6 +1746,9 @@
 =======
             "ID": "13720",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13882",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Frosted",
             "Code": "AbyssMinionAddedColdDamageJewel1",
             "Level": "1",
@@ -1672,6 +1796,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13721",
 =======
             "ID": "13719",
@@ -1679,6 +1804,9 @@
 =======
             "ID": "13721",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13883",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Freezing",
             "Code": "AbyssMinionAddedColdDamageJewel2",
             "Level": "39",
@@ -1726,6 +1854,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13722",
 =======
             "ID": "13720",
@@ -1733,6 +1862,9 @@
 =======
             "ID": "13722",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13884",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Frozen",
             "Code": "AbyssMinionAddedColdDamageJewel3",
             "Level": "48",
@@ -1780,6 +1912,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13723",
 =======
             "ID": "13721",
@@ -1787,6 +1920,9 @@
 =======
             "ID": "13723",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13885",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Glaciated",
             "Code": "AbyssMinionAddedColdDamageJewel4",
             "Level": "58",
@@ -1834,6 +1970,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13724",
 =======
             "ID": "13722",
@@ -1841,6 +1978,9 @@
 =======
             "ID": "13724",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13886",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Polar",
             "Code": "AbyssMinionAddedColdDamageJewel5",
             "Level": "70",
@@ -1888,6 +2028,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13725",
 =======
             "ID": "13723",
@@ -1895,6 +2036,9 @@
 =======
             "ID": "13725",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13887",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Entombing",
             "Code": "AbyssMinionAddedColdDamageJewel6_",
             "Level": "82",
@@ -1942,6 +2086,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13726",
 =======
             "ID": "13724",
@@ -1949,6 +2094,9 @@
 =======
             "ID": "13726",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13888",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Humming",
             "Code": "AbyssMinionAddedLightningDamageJewel1_",
             "Level": "1",
@@ -1996,6 +2144,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13727",
 =======
             "ID": "13725",
@@ -2003,6 +2152,9 @@
 =======
             "ID": "13727",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13889",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Sparking",
             "Code": "AbyssMinionAddedLightningDamageJewel2",
             "Level": "39",
@@ -2050,6 +2202,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13728",
 =======
             "ID": "13726",
@@ -2057,6 +2210,9 @@
 =======
             "ID": "13728",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13890",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Arcing",
             "Code": "AbyssMinionAddedLightningDamageJewel3_",
             "Level": "48",
@@ -2104,6 +2260,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13729",
 =======
             "ID": "13727",
@@ -2111,6 +2268,9 @@
 =======
             "ID": "13729",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13891",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shocking",
             "Code": "AbyssMinionAddedLightningDamageJewel4",
             "Level": "58",
@@ -2158,6 +2318,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13730",
 =======
             "ID": "13728",
@@ -2165,6 +2326,9 @@
 =======
             "ID": "13730",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13892",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Discharging",
             "Code": "AbyssMinionAddedLightningDamageJewel5",
             "Level": "70",
@@ -2212,6 +2376,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13731",
 =======
             "ID": "13729",
@@ -2219,6 +2384,9 @@
 =======
             "ID": "13731",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13893",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Electrocuting",
             "Code": "AbyssMinionAddedLightningDamageJewel6",
             "Level": "82",
@@ -2266,6 +2434,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13732",
 =======
             "ID": "13730",
@@ -2273,6 +2442,9 @@
 =======
             "ID": "13732",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13894",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Glinting",
             "Code": "AbyssMinionAddedPhysicalDamageJewel1",
             "Level": "1",
@@ -2317,6 +2489,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13733",
 =======
             "ID": "13731",
@@ -2324,6 +2497,9 @@
 =======
             "ID": "13733",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13895",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Gleaming",
             "Code": "AbyssMinionAddedPhysicalDamageJewel2",
             "Level": "42",
@@ -2368,6 +2544,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13734",
 =======
             "ID": "13732",
@@ -2375,6 +2552,9 @@
 =======
             "ID": "13734",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13896",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Annealed",
             "Code": "AbyssMinionAddedPhysicalDamageJewel3",
             "Level": "54",
@@ -2419,6 +2599,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13735",
 =======
             "ID": "13733",
@@ -2426,6 +2607,9 @@
 =======
             "ID": "13735",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13897",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Razor-sharp",
             "Code": "AbyssMinionAddedPhysicalDamageJewel4",
             "Level": "63",
@@ -2470,6 +2654,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13736",
 =======
             "ID": "13734",
@@ -2477,6 +2662,9 @@
 =======
             "ID": "13736",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13898",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Tempered",
             "Code": "AbyssMinionAddedPhysicalDamageJewel5",
             "Level": "72",
@@ -2521,6 +2709,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13737",
 =======
             "ID": "13735",
@@ -2528,6 +2717,9 @@
 =======
             "ID": "13737",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13899",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Flaring",
             "Code": "AbyssMinionAddedPhysicalDamageJewel6",
             "Level": "83",
@@ -2572,6 +2764,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13738",
 =======
             "ID": "13736",
@@ -2579,6 +2772,9 @@
 =======
             "ID": "13738",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13900",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Tainted",
             "Code": "AbyssMinionAddedChaosDamageJewel1",
             "Level": "1",
@@ -2623,6 +2819,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13739",
 =======
             "ID": "13737",
@@ -2630,6 +2827,9 @@
 =======
             "ID": "13739",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13901",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Clouded",
             "Code": "AbyssMinionAddedChaosDamageJewel2_",
             "Level": "42",
@@ -2674,6 +2874,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13740",
 =======
             "ID": "13738",
@@ -2681,6 +2882,9 @@
 =======
             "ID": "13740",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13902",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Darkened",
             "Code": "AbyssMinionAddedChaosDamageJewel3",
             "Level": "54",
@@ -2725,6 +2929,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13741",
 =======
             "ID": "13739",
@@ -2732,6 +2937,9 @@
 =======
             "ID": "13741",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13903",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Malignant",
             "Code": "AbyssMinionAddedChaosDamageJewel4",
             "Level": "65",
@@ -2776,6 +2984,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13742",
 =======
             "ID": "13740",
@@ -2783,6 +2992,9 @@
 =======
             "ID": "13742",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13904",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Vile",
             "Code": "AbyssMinionAddedChaosDamageJewel5_",
             "Level": "75",
@@ -2827,6 +3039,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "13743",
 =======
             "ID": "13741",
@@ -2834,6 +3047,9 @@
 =======
             "ID": "13743",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "13905",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Malicious",
             "Code": "AbyssMinionAddedChaosDamageJewel6",
             "Level": "84",
@@ -2878,6 +3094,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14079",
 =======
             "ID": "14077",
@@ -2885,6 +3102,9 @@
 =======
             "ID": "14079",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14241",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fuelling",
             "Code": "AbyssFlatMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -2927,6 +3147,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14080",
 =======
             "ID": "14078",
@@ -2934,6 +3155,9 @@
 =======
             "ID": "14080",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14242",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lively",
             "Code": "AbyssFlatMinionLifeRegenerationJewel2",
             "Level": "30",
@@ -2976,6 +3200,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14081",
 =======
             "ID": "14079",
@@ -2983,6 +3208,9 @@
 =======
             "ID": "14081",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14243",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Exuberant",
             "Code": "AbyssFlatMinionLifeRegenerationJewel3",
             "Level": "60",
@@ -3025,6 +3253,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14082",
 =======
             "ID": "14080",
@@ -3032,6 +3261,9 @@
 =======
             "ID": "14082",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14244",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Captivating",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel1",
             "Level": "1",
@@ -3070,6 +3302,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14083",
 =======
             "ID": "14081",
@@ -3077,6 +3310,9 @@
 =======
             "ID": "14083",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14245",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Beautiful",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel2",
             "Level": "30",
@@ -3115,6 +3351,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14084",
 =======
             "ID": "14082",
@@ -3122,6 +3359,9 @@
 =======
             "ID": "14084",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14246",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Breathtaking",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel3",
             "Level": "60",
@@ -3160,6 +3400,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14085",
 =======
             "ID": "14083",
@@ -3167,6 +3408,9 @@
 =======
             "ID": "14085",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14247",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Youthful",
             "Code": "AbyssFlatLifeRegenerationJewel1",
             "Level": "1",
@@ -3209,6 +3453,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14086",
 =======
             "ID": "14084",
@@ -3216,6 +3461,9 @@
 =======
             "ID": "14086",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14248",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Spirited",
             "Code": "AbyssFlatLifeRegenerationJewel2",
             "Level": "40",
@@ -3258,6 +3506,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14087",
 =======
             "ID": "14085",
@@ -3265,6 +3514,9 @@
 =======
             "ID": "14087",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14249",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Vivacious",
             "Code": "AbyssFlatLifeRegenerationJewel3_",
             "Level": "80",
@@ -3307,6 +3559,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14088",
 =======
             "ID": "14086",
@@ -3314,6 +3567,9 @@
 =======
             "ID": "14088",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14250",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Energising",
             "Code": "AbyssFlatManaShieldRegenerationJewel1",
             "Level": "1",
@@ -3351,6 +3607,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14089",
 =======
             "ID": "14087",
@@ -3358,6 +3615,9 @@
 =======
             "ID": "14089",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14251",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Inspirational",
             "Code": "AbyssFlatManaShieldRegenerationJewel2",
             "Level": "40",
@@ -3395,6 +3655,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14090",
 =======
             "ID": "14088",
@@ -3402,6 +3663,9 @@
 =======
             "ID": "14090",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14252",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Resonating",
             "Code": "AbyssFlatManaShieldRegenerationJewel3",
             "Level": "75",
@@ -3439,6 +3703,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14097",
 =======
             "ID": "14095",
@@ -3446,6 +3711,9 @@
 =======
             "ID": "14097",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14259",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel1",
             "Level": "32",
@@ -3484,6 +3752,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14098",
 =======
             "ID": "14096",
@@ -3491,6 +3760,9 @@
 =======
             "ID": "14098",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14260",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel2",
             "Level": "65",
@@ -3529,6 +3801,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14099",
 =======
             "ID": "14097",
@@ -3536,6 +3809,9 @@
 =======
             "ID": "14099",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14261",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel1",
             "Level": "32",
@@ -3574,6 +3850,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14100",
 =======
             "ID": "14098",
@@ -3581,6 +3858,9 @@
 =======
             "ID": "14100",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14262",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel2_",
             "Level": "65",
@@ -3619,6 +3899,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14101",
 =======
             "ID": "14099",
@@ -3626,6 +3907,9 @@
 =======
             "ID": "14101",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14263",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel1",
             "Level": "32",
@@ -3664,6 +3948,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14102",
 =======
             "ID": "14100",
@@ -3671,6 +3956,9 @@
 =======
             "ID": "14102",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14264",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel2",
             "Level": "65",
@@ -3709,6 +3997,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14103",
 =======
             "ID": "14101",
@@ -3716,6 +4005,9 @@
 =======
             "ID": "14103",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14265",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Venom",
             "Code": "AbyssMinionPoisonOnHitChanceJewel1",
             "Level": "60",
@@ -3761,6 +4053,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14104",
 =======
             "ID": "14102",
@@ -3768,6 +4061,9 @@
 =======
             "ID": "14104",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14266",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Combustion",
             "Code": "AbyssMinionIgniteOnHitChanceJewel1",
             "Level": "60",
@@ -3813,6 +4109,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14105",
 =======
             "ID": "14103",
@@ -3820,6 +4117,9 @@
 =======
             "ID": "14105",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14267",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Bloodletting",
             "Code": "AbyssMinionAttacksBleedOnHitChanceJewel1",
             "Level": "60",
@@ -3865,6 +4165,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14107",
 =======
             "ID": "14105",
@@ -3872,6 +4173,9 @@
 =======
             "ID": "14107",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14269",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Marshalling",
             "Code": "AbyssMinionDamageVSAbyssMonstersJewel1",
             "Level": "1",
@@ -3918,6 +4222,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14108",
 =======
             "ID": "14106",
@@ -3925,6 +4230,9 @@
 =======
             "ID": "14108",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14270",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Warding",
             "Code": "AbyssReducedPhysicalDamageTakenVsAbyssMonsterJewel1",
             "Level": "1",
@@ -3958,6 +4266,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14109",
 =======
             "ID": "14107",
@@ -3966,6 +4275,10 @@
             "ID": "14109",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Extinguishing",
+=======
+            "ID": "14271",
+            "Name": "of Nonflammability",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidIgniteJewel1_",
             "Level": "50",
             "ModDomainsID": "13",
@@ -4006,6 +4319,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14110",
 =======
             "ID": "14108",
@@ -4014,6 +4328,10 @@
             "ID": "14110",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Extinguishing",
+=======
+            "ID": "14272",
+            "Name": "of Fireproofing",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidIgniteJewel2",
             "Level": "70",
             "ModDomainsID": "13",
@@ -4054,6 +4372,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14111",
 =======
             "ID": "14109",
@@ -4061,6 +4380,9 @@
 =======
             "ID": "14111",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14273",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel1",
             "Level": "50",
@@ -4102,6 +4424,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14112",
 =======
             "ID": "14110",
@@ -4110,6 +4433,10 @@
             "ID": "14112",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Warming",
+=======
+            "ID": "14274",
+            "Name": "of Heating",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidFreezeAndChillJewel2",
             "Level": "70",
             "ModDomainsID": "13",
@@ -4150,6 +4477,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14113",
 =======
             "ID": "14111",
@@ -4157,6 +4485,9 @@
 =======
             "ID": "14113",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14275",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel1",
             "Level": "50",
@@ -4198,6 +4529,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14114",
 =======
             "ID": "14112",
@@ -4206,6 +4538,10 @@
             "ID": "14114",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Insulating",
+=======
+            "ID": "14276",
+            "Name": "of the Lightning Rod",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidShockJewel2",
             "Level": "70",
             "ModDomainsID": "13",
@@ -4246,6 +4582,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14115",
 =======
             "ID": "14113",
@@ -4253,6 +4590,9 @@
 =======
             "ID": "14115",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14277",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel1__",
             "Level": "50",
@@ -4294,6 +4634,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14116",
 =======
             "ID": "14114",
@@ -4302,6 +4643,10 @@
             "ID": "14116",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Tolerance",
+=======
+            "ID": "14278",
+            "Name": "of Immunity",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidPoisonJewel2__",
             "Level": "70",
             "ModDomainsID": "13",
@@ -4342,6 +4687,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14117",
 =======
             "ID": "14115",
@@ -4350,6 +4696,10 @@
             "ID": "14117",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Mending",
+=======
+            "ID": "14279",
+            "Name": "of Stemming",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidBleedingJewel1",
             "Level": "50",
             "ModDomainsID": "13",
@@ -4393,6 +4743,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14118",
 =======
             "ID": "14116",
@@ -4401,6 +4752,10 @@
             "ID": "14118",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Mending",
+=======
+            "ID": "14280",
+            "Name": "of the Tourniquet",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidBleedingJewel2",
             "Level": "70",
             "ModDomainsID": "13",
@@ -4444,6 +4799,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14119",
 =======
             "ID": "14117",
@@ -4452,6 +4808,10 @@
             "ID": "14119",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Unwavering",
+=======
+            "ID": "14281",
+            "Name": "of Balance",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidStunJewel1",
             "Level": "50",
             "ModDomainsID": "13",
@@ -4472,6 +4832,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14120",
 =======
             "ID": "14118",
@@ -4480,6 +4841,10 @@
             "ID": "14120",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
             "Name": "of Unwavering",
+=======
+            "ID": "14282",
+            "Name": "of Poise",
+>>>>>>> 92f2640 (Update Data)
             "Code": "AbyssAvoidStunJewel2",
             "Level": "70",
             "ModDomainsID": "13",
@@ -4500,6 +4865,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14126",
 =======
             "ID": "14124",
@@ -4507,6 +4873,9 @@
 =======
             "ID": "14126",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14288",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Training",
             "Code": "AbyssMinionAttackAndCastSpeedJewel1",
             "Level": "1",
@@ -4552,6 +4921,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14127",
 =======
             "ID": "14125",
@@ -4559,6 +4929,9 @@
 =======
             "ID": "14127",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14289",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Longevity",
             "Code": "AbyssMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -4601,6 +4974,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14128",
 =======
             "ID": "14126",
@@ -4608,6 +4982,9 @@
 =======
             "ID": "14128",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14290",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Vampirism",
             "Code": "AbyssMinionLifeLeechJewel1",
             "Level": "1",
@@ -4650,6 +5027,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14129",
 =======
             "ID": "14127",
@@ -4657,6 +5035,9 @@
 =======
             "ID": "14129",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14291",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Orchestration",
             "Code": "AbyssMinionMovementSpeedJewel1",
             "Level": "1",
@@ -4695,6 +5076,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14130",
 =======
             "ID": "14128",
@@ -4702,6 +5084,9 @@
 =======
             "ID": "14130",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14292",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Fortitude",
             "Code": "AbyssMinionLifeJewel1_",
             "Level": "1",
@@ -4744,6 +5129,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14131",
 =======
             "ID": "14129",
@@ -4751,6 +5137,9 @@
 =======
             "ID": "14131",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14293",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Suggestion",
             "Code": "AbyssFlatMinionAccuracy1",
             "Level": "1",
@@ -4789,6 +5178,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14132",
 =======
             "ID": "14130",
@@ -4796,6 +5186,9 @@
 =======
             "ID": "14132",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14294",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Instruction",
             "Code": "AbyssFlatMinionAccuracy2_",
             "Level": "52",
@@ -4834,6 +5227,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14133",
 =======
             "ID": "14131",
@@ -4841,6 +5235,9 @@
 =======
             "ID": "14133",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14295",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Command",
             "Code": "AbyssFlatMinionAccuracy3",
             "Level": "78",
@@ -4879,6 +5276,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14134",
 =======
             "ID": "14132",
@@ -4886,6 +5284,9 @@
 =======
             "ID": "14134",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14296",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Acclimatisation",
             "Code": "AbyssMinionElementalResistancesJewel1",
             "Level": "1",
@@ -4928,6 +5329,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14135",
 =======
             "ID": "14133",
@@ -4935,6 +5337,9 @@
 =======
             "ID": "14135",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14297",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Righteousness",
             "Code": "AbyssMinionChaosResistanceJewel1",
             "Level": "1",
@@ -4977,6 +5382,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14136",
 =======
             "ID": "14134",
@@ -4984,6 +5390,9 @@
 =======
             "ID": "14136",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14298",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lacquered",
             "Code": "AbyssFlatArmourJewel1",
             "Level": "1",
@@ -5018,6 +5427,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14137",
 =======
             "ID": "14135",
@@ -5025,6 +5435,9 @@
 =======
             "ID": "14137",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14299",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fortified",
             "Code": "AbyssFlatArmourJewel2",
             "Level": "40",
@@ -5059,6 +5472,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14138",
 =======
             "ID": "14136",
@@ -5066,6 +5480,9 @@
 =======
             "ID": "14138",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14300",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Carapaced",
             "Code": "AbyssFlatArmourJewel3",
             "Level": "75",
@@ -5100,6 +5517,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14139",
 =======
             "ID": "14137",
@@ -5107,6 +5525,9 @@
 =======
             "ID": "14139",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14301",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Encased",
             "Code": "AbyssFlatArmourJewel4__",
             "Level": "83",
@@ -5141,6 +5562,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14140",
 =======
             "ID": "14138",
@@ -5148,6 +5570,9 @@
 =======
             "ID": "14140",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14302",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Agile",
             "Code": "AbyssFlatEvasionJewel1",
             "Level": "1",
@@ -5182,6 +5607,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14141",
 =======
             "ID": "14139",
@@ -5189,6 +5615,9 @@
 =======
             "ID": "14141",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14303",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fleet",
             "Code": "AbyssFlatEvasionJewel2",
             "Level": "40",
@@ -5223,6 +5652,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14142",
 =======
             "ID": "14140",
@@ -5230,6 +5660,9 @@
 =======
             "ID": "14142",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14304",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Vaporous",
             "Code": "AbyssFlatEvasionJewel3",
             "Level": "75",
@@ -5264,6 +5697,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14143",
 =======
             "ID": "14141",
@@ -5271,6 +5705,9 @@
 =======
             "ID": "14143",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14305",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Beclouded",
             "Code": "AbyssFlatEvasionJewel4_",
             "Level": "83",
@@ -5305,6 +5742,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14144",
 =======
             "ID": "14142",
@@ -5312,6 +5750,9 @@
 =======
             "ID": "14144",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14306",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shining",
             "Code": "AbyssFlatEnergyShieldJewel1",
             "Level": "1",
@@ -5346,6 +5787,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14145",
 =======
             "ID": "14143",
@@ -5353,6 +5795,9 @@
 =======
             "ID": "14145",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14307",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Seething",
             "Code": "AbyssFlatEnergyShieldJewel2",
             "Level": "40",
@@ -5387,6 +5832,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14146",
 =======
             "ID": "14144",
@@ -5394,6 +5840,9 @@
 =======
             "ID": "14146",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14308",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Incandescent",
             "Code": "AbyssFlatEnergyShieldJewel3",
             "Level": "75",
@@ -5428,6 +5877,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14147",
 =======
             "ID": "14145",
@@ -5435,6 +5885,9 @@
 =======
             "ID": "14147",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14309",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Resplendent",
             "Code": "AbyssFlatEnergyShieldJewel4",
             "Level": "83",
@@ -5469,6 +5922,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14150",
 =======
             "ID": "14148",
@@ -5476,6 +5930,9 @@
 =======
             "ID": "14150",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14312",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Facilitating",
             "Code": "AbyssCooldownRecoverySpeed1_",
             "Level": "75",
@@ -5501,6 +5958,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14151",
 =======
             "ID": "14149",
@@ -5508,6 +5966,9 @@
 =======
             "ID": "14151",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14313",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Expediting",
             "Code": "AbyssCooldownRecoverySpeed2__",
             "Level": "86",
@@ -5533,6 +5994,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14152",
 =======
             "ID": "14150",
@@ -5540,6 +6002,9 @@
 =======
             "ID": "14152",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14314",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Skewering",
             "Code": "AbyssImpaleEffect1_",
             "Level": "75",
@@ -5577,6 +6042,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14153",
 =======
             "ID": "14151",
@@ -5584,6 +6050,9 @@
 =======
             "ID": "14153",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14315",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lancing",
             "Code": "AbyssImpaleEffect2_",
             "Level": "86",
@@ -5621,6 +6090,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14154",
 =======
             "ID": "14152",
@@ -5628,6 +6098,9 @@
 =======
             "ID": "14154",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14316",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Spurring",
             "Code": "AbyssDamageRecoupedAsMana1",
             "Level": "75",
@@ -5673,6 +6146,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14155",
 =======
             "ID": "14153",
@@ -5680,6 +6154,9 @@
 =======
             "ID": "14155",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14317",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Motivating",
             "Code": "AbyssDamageRecoupedAsMana2",
             "Level": "86",
@@ -5725,6 +6202,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14156",
 =======
             "ID": "14154",
@@ -5732,6 +6210,9 @@
 =======
             "ID": "14156",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14318",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Instinct",
             "Code": "AbyssSpellBlockChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -5759,6 +6240,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14157",
 =======
             "ID": "14155",
@@ -5766,6 +6248,9 @@
 =======
             "ID": "14157",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14319",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Confidence",
             "Code": "AbyssReducedPhysicalDamageTakenIfNotHitRecentlyJewel1",
             "Level": "1",
@@ -5803,6 +6288,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14158",
 =======
             "ID": "14156",
@@ -5810,6 +6296,9 @@
 =======
             "ID": "14158",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14320",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Momentum",
             "Code": "AbyssMovementSpeedIfNotDamagedRecentlyJewel1",
             "Level": "1",
@@ -5847,6 +6336,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14164",
 =======
             "ID": "14162",
@@ -5854,6 +6344,9 @@
 =======
             "ID": "14164",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14326",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Retaliation",
             "Code": "AbyssCastSpeedIfMinionKilledRecentlyJewel1",
             "Level": "30",
@@ -5892,6 +6385,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14165",
 =======
             "ID": "14163",
@@ -5899,6 +6393,9 @@
 =======
             "ID": "14165",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14327",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Authority",
             "Code": "AbyssMinionDamageIfMinionSkillUsedRecentlyJewel1",
             "Level": "1",
@@ -5937,6 +6434,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14166",
 =======
             "ID": "14164",
@@ -5944,6 +6442,9 @@
 =======
             "ID": "14166",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14328",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Maneuvering",
             "Code": "AbyssEvasionRatingWhileMovingJewel1",
             "Level": "1",
@@ -5982,6 +6483,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14167",
 =======
             "ID": "14165",
@@ -5989,6 +6491,9 @@
 =======
             "ID": "14167",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14329",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Praxis",
             "Code": "AbyssManaRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -6030,6 +6535,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14168",
 =======
             "ID": "14166",
@@ -6037,6 +6543,9 @@
 =======
             "ID": "14168",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14330",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Vivaciousness",
             "Code": "AbyssLifeRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -6078,6 +6587,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14174",
 =======
             "ID": "14172",
@@ -6085,6 +6595,9 @@
 =======
             "ID": "14174",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14336",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Readiness",
             "Code": "AbyssSpellDodgeAndDodgeChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -6112,6 +6625,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14176",
 =======
             "ID": "14174",
@@ -6119,6 +6633,9 @@
 =======
             "ID": "14176",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14338",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Guarding",
             "Code": "AbyssChanceToBlockIfDamagedRecentlyJewel1_",
             "Level": "1",
@@ -6146,6 +6663,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14183",
 =======
             "ID": "14181",
@@ -6153,6 +6671,9 @@
 =======
             "ID": "14183",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14345",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Sanctum",
             "Code": "AbyssSelfCurseEffectOnConsecratedGroundJewel1__",
             "Level": "84",
@@ -6194,6 +6715,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14184",
 =======
             "ID": "14182",
@@ -6201,6 +6723,9 @@
 =======
             "ID": "14184",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14346",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Escape",
             "Code": "AbyssAvoidElementalAilmentsWhileElusiveJewel1",
             "Level": "84",
@@ -6252,6 +6777,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14185",
 =======
             "ID": "14183",
@@ -6259,6 +6785,9 @@
 =======
             "ID": "14185",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14347",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Enervation",
             "Code": "AbyssHinderedEnemiesLifeRegenerationRateJewel1",
             "Level": "84",
@@ -6300,6 +6829,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14186",
 =======
             "ID": "14184",
@@ -6307,6 +6837,9 @@
 =======
             "ID": "14186",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14348",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Clouding",
             "Code": "AbyssBlindedEnemiesCriticalStrikeChanceJewel1",
             "Level": "84",
@@ -6344,6 +6877,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14187",
 =======
             "ID": "14185",
@@ -6351,6 +6885,9 @@
 =======
             "ID": "14187",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14349",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Languishing",
             "Code": "AbyssWitheredEnemiesAllResistanceJewel1___",
             "Level": "84",
@@ -6388,6 +6925,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14188",
 =======
             "ID": "14186",
@@ -6395,6 +6933,9 @@
 =======
             "ID": "14188",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14350",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Mangling",
             "Code": "AbyssMaimedEnemiesDamageOverTimeJewel1",
             "Level": "84",
@@ -6432,6 +6973,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14189",
 =======
             "ID": "14187",
@@ -6439,6 +6981,9 @@
 =======
             "ID": "14189",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14351",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Daunting",
             "Code": "AbyssIntimidatedEnemiesStunDurationJewel1",
             "Level": "84",
@@ -6468,6 +7013,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15812",
 =======
             "ID": "15810",
@@ -6475,6 +7021,9 @@
 =======
             "ID": "15812",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15987",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -6520,6 +7069,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15822",
 =======
             "ID": "15820",
@@ -6527,6 +7077,9 @@
 =======
             "ID": "15822",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15997",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -6572,6 +7125,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15832",
 =======
             "ID": "15830",
@@ -6579,6 +7133,9 @@
 =======
             "ID": "15832",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16007",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -6624,6 +7181,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15851",
 =======
             "ID": "15849",
@@ -6631,6 +7189,9 @@
 =======
             "ID": "15851",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16026",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -6666,6 +7227,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15861",
 =======
             "ID": "15859",
@@ -6673,6 +7235,9 @@
 =======
             "ID": "15861",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16036",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -6714,6 +7279,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15869",
 =======
             "ID": "15867",
@@ -6721,6 +7287,9 @@
 =======
             "ID": "15869",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16044",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -6760,6 +7329,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15871",
 =======
             "ID": "15869",
@@ -6767,6 +7337,9 @@
 =======
             "ID": "15871",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16046",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -6803,6 +7376,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15874",
 =======
             "ID": "15872",
@@ -6810,6 +7384,9 @@
 =======
             "ID": "15874",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16049",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -6846,6 +7423,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15877",
 =======
             "ID": "15875",
@@ -6853,6 +7431,9 @@
 =======
             "ID": "15877",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16052",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -6889,6 +7470,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15898",
 =======
             "ID": "15896",
@@ -6896,6 +7478,9 @@
 =======
             "ID": "15898",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16073",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -6931,6 +7516,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15904",
 =======
             "ID": "15902",
@@ -6938,6 +7524,9 @@
 =======
             "ID": "15904",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16079",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -6977,6 +7566,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15921",
 =======
             "ID": "15919",
@@ -6984,6 +7574,9 @@
 =======
             "ID": "15921",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16096",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -7025,6 +7618,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15927",
 =======
             "ID": "15925",
@@ -7032,6 +7626,9 @@
 =======
             "ID": "15927",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16102",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -7046,13 +7643,14 @@
                 "0"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Avoid interruption from Stuns while Casting",
+            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Ignore Stuns while Casting",
             "master_no": [],
             "fossil_no": [],
             "mod_no": [],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             "ID": "15933",
@@ -7062,6 +7660,9 @@
 =======
             "ID": "15933",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16108",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -7105,6 +7706,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15944",
 =======
             "ID": "15942",
@@ -7112,6 +7714,9 @@
 =======
             "ID": "15944",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16119",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -7155,6 +7760,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15955",
 =======
             "ID": "15953",
@@ -7162,6 +7768,9 @@
 =======
             "ID": "15955",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16130",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -7187,6 +7796,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15973",
 =======
             "ID": "15971",
@@ -7194,6 +7804,9 @@
 =======
             "ID": "15973",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16148",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveAbyssJewelMinionDamage1",
             "Level": "1",
@@ -7232,6 +7845,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15982",
 =======
             "ID": "15980",
@@ -7239,6 +7853,9 @@
 =======
             "ID": "15982",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16157",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -7278,6 +7895,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15257",
 =======
             "ID": "15255",
@@ -7285,6 +7903,9 @@
 =======
             "ID": "15257",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15432",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -7308,6 +7929,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15256",
 =======
             "ID": "15254",
@@ -7315,6 +7937,9 @@
 =======
             "ID": "15256",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15431",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -7338,6 +7963,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15259",
 =======
             "ID": "15257",
@@ -7345,6 +7971,9 @@
 =======
             "ID": "15259",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15434",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -7369,6 +7998,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15258",
 =======
             "ID": "15256",
@@ -7376,6 +8006,9 @@
 =======
             "ID": "15258",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15433",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",

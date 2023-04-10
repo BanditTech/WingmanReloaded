@@ -641,7 +641,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "290",
+            "ID": "296",
             "Name": "Hale",
             "Code": "IncreasedLife0",
             "Level": "1",
@@ -679,7 +679,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "291",
+            "ID": "297",
             "Name": "Healthy",
             "Code": "IncreasedLife1",
             "Level": "5",
@@ -717,7 +717,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "292",
+            "ID": "298",
             "Name": "Sanguine",
             "Code": "IncreasedLife2",
             "Level": "11",
@@ -755,7 +755,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "293",
+            "ID": "299",
             "Name": "Stalwart",
             "Code": "IncreasedLife3",
             "Level": "18",
@@ -793,7 +793,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "294",
+            "ID": "300",
             "Name": "Stout",
             "Code": "IncreasedLife4",
             "Level": "24",
@@ -831,7 +831,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "295",
+            "ID": "301",
             "Name": "Robust",
             "Code": "IncreasedLife5",
             "Level": "30",
@@ -869,7 +869,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "296",
+            "ID": "302",
             "Name": "Rotund",
             "Code": "IncreasedLife6",
             "Level": "36",
@@ -907,7 +907,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "297",
+            "ID": "303",
             "Name": "Virile",
             "Code": "IncreasedLife7",
             "Level": "44",
@@ -945,7 +945,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "298",
+            "ID": "304",
             "Name": "Athlete's",
             "Code": "IncreasedLife8",
             "Level": "54",
@@ -984,7 +984,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "299",
+            "ID": "305",
             "Name": "Fecund",
             "Code": "IncreasedLife9",
             "Level": "64",
@@ -1026,7 +1026,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "516",
+            "ID": "524",
             "Name": "Beryl",
             "Code": "IncreasedMana1",
             "Level": "1",
@@ -1069,7 +1069,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "517",
+            "ID": "525",
             "Name": "Cobalt",
             "Code": "IncreasedMana2",
             "Level": "11",
@@ -1112,7 +1112,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "518",
+            "ID": "526",
             "Name": "Azure",
             "Code": "IncreasedMana3",
             "Level": "17",
@@ -1155,7 +1155,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "519",
+            "ID": "527",
             "Name": "Sapphire",
             "Code": "IncreasedMana4",
             "Level": "23",
@@ -1198,7 +1198,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "520",
+            "ID": "528",
             "Name": "Cerulean",
             "Code": "IncreasedMana5",
             "Level": "29",
@@ -1241,7 +1241,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "521",
+            "ID": "529",
             "Name": "Aqua",
             "Code": "IncreasedMana6",
             "Level": "35",
@@ -1284,7 +1284,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "522",
+            "ID": "530",
             "Name": "Opalescent",
             "Code": "IncreasedMana7",
             "Level": "42",
@@ -1327,7 +1327,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "523",
+            "ID": "531",
             "Name": "Gentian",
             "Code": "IncreasedMana8",
             "Level": "51",
@@ -1370,7 +1370,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "524",
+            "ID": "532",
             "Name": "Chalybeous",
             "Code": "IncreasedMana9",
             "Level": "60",
@@ -1413,7 +1413,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "525",
+            "ID": "533",
             "Name": "Mazarine",
             "Code": "IncreasedMana10",
             "Level": "69",
@@ -1456,7 +1456,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "526",
+            "ID": "534",
             "Name": "Blue",
             "Code": "IncreasedMana11",
             "Level": "75",
@@ -1499,7 +1499,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "623",
+            "ID": "634",
             "Name": "Shining",
             "Code": "IncreasedEnergyShield1",
             "Level": "3",
@@ -1535,7 +1535,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "624",
+            "ID": "635",
             "Name": "Glimmering",
             "Code": "IncreasedEnergyShield2",
             "Level": "11",
@@ -1571,7 +1571,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "625",
+            "ID": "636",
             "Name": "Glittering",
             "Code": "IncreasedEnergyShield3",
             "Level": "17",
@@ -1607,7 +1607,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "626",
+            "ID": "637",
             "Name": "Glowing",
             "Code": "IncreasedEnergyShield4",
             "Level": "23",
@@ -1643,7 +1643,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "627",
+            "ID": "638",
             "Name": "Radiating",
             "Code": "IncreasedEnergyShield5",
             "Level": "29",
@@ -1679,7 +1679,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "628",
+            "ID": "639",
             "Name": "Pulsing",
             "Code": "IncreasedEnergyShield6",
             "Level": "35",
@@ -1715,7 +1715,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "629",
+            "ID": "640",
             "Name": "Seething",
             "Code": "IncreasedEnergyShield7",
             "Level": "42",
@@ -1751,7 +1751,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "630",
+            "ID": "641",
             "Name": "Blazing",
             "Code": "IncreasedEnergyShield8",
             "Level": "50",
@@ -1787,7 +1787,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "631",
+            "ID": "642",
             "Name": "Scintillating",
             "Code": "IncreasedEnergyShield9",
             "Level": "59",
@@ -1823,7 +1823,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "632",
+            "ID": "643",
             "Name": "Incandescent",
             "Code": "IncreasedEnergyShield10",
             "Level": "68",
@@ -1859,7 +1859,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "633",
+            "ID": "644",
             "Name": "Resplendent",
             "Code": "IncreasedEnergyShield11",
             "Level": "74",
@@ -1895,7 +1895,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "634",
+            "ID": "645",
             "Name": "Dazzling",
             "Code": "IncreasedEnergyShield12",
             "Level": "80",
@@ -1931,7 +1931,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2023",
+            "ID": "2043",
             "Name": "Lacquered",
             "Code": "IncreasedPhysicalDamageReductionRating1",
             "Level": "1",
@@ -1965,7 +1965,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2024",
+            "ID": "2044",
             "Name": "Studded",
             "Code": "IncreasedPhysicalDamageReductionRating2",
             "Level": "18",
@@ -1999,7 +1999,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2025",
+            "ID": "2045",
             "Name": "Ribbed",
             "Code": "IncreasedPhysicalDamageReductionRating3",
             "Level": "30",
@@ -2033,7 +2033,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2026",
+            "ID": "2046",
             "Name": "Fortified",
             "Code": "IncreasedPhysicalDamageReductionRating4",
             "Level": "44",
@@ -2067,7 +2067,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2027",
+            "ID": "2047",
             "Name": "Plated",
             "Code": "IncreasedPhysicalDamageReductionRating5",
             "Level": "57",
@@ -2101,7 +2101,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2028",
+            "ID": "2048",
             "Name": "Carapaced",
             "Code": "IncreasedPhysicalDamageReductionRating6",
             "Level": "71",
@@ -2135,7 +2135,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2029",
+            "ID": "2049",
             "Name": "Encased",
             "Code": "IncreasedPhysicalDamageReductionRating7",
             "Level": "83",
@@ -2169,7 +2169,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2030",
+            "ID": "2050",
             "Name": "Enveloped",
             "Code": "IncreasedPhysicalDamageReductionRating8_",
             "Level": "86",
@@ -2203,7 +2203,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2417",
+            "ID": "2439",
             "Name": "Catalysing",
             "Code": "WeaponElementalDamage1",
             "Level": "4",
@@ -2248,7 +2248,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2418",
+            "ID": "2440",
             "Name": "Infusing",
             "Code": "WeaponElementalDamage2",
             "Level": "15",
@@ -2293,7 +2293,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2419",
+            "ID": "2441",
             "Name": "Empowering",
             "Code": "WeaponElementalDamage3",
             "Level": "30",
@@ -2338,7 +2338,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2420",
+            "ID": "2442",
             "Name": "Unleashed",
             "Code": "WeaponElementalDamage4",
             "Level": "60",
@@ -2383,7 +2383,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2421",
+            "ID": "2443",
             "Name": "Overpowering",
             "Code": "WeaponElementalDamage5",
             "Level": "81",
@@ -2428,7 +2428,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2422",
+            "ID": "2444",
             "Name": "Devastating",
             "Code": "WeaponElementalDamage6_",
             "Level": "86",
@@ -2472,7 +2472,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2846",
+            "ID": "2871",
             "Name": "of the Newt",
             "Code": "LifeRegeneration1",
             "Level": "1",
@@ -2512,7 +2512,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2847",
+            "ID": "2872",
             "Name": "of the Lizard",
             "Code": "LifeRegeneration2",
             "Level": "7",
@@ -2552,7 +2552,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2848",
+            "ID": "2873",
             "Name": "of the Flatworm",
             "Code": "LifeRegeneration3",
             "Level": "19",
@@ -2592,7 +2592,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2849",
+            "ID": "2874",
             "Name": "of the Starfish",
             "Code": "LifeRegeneration4",
             "Level": "31",
@@ -2632,7 +2632,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2850",
+            "ID": "2875",
             "Name": "of the Hydra",
             "Code": "LifeRegeneration5",
             "Level": "44",
@@ -2672,7 +2672,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2851",
+            "ID": "2876",
             "Name": "of the Troll",
             "Code": "LifeRegeneration6",
             "Level": "55",
@@ -2712,7 +2712,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2852",
+            "ID": "2877",
             "Name": "of Ryslatha",
             "Code": "LifeRegeneration7",
             "Level": "68",
@@ -2752,7 +2752,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2853",
+            "ID": "2878",
             "Name": "of the Phoenix",
             "Code": "LifeRegeneration8_",
             "Level": "74",
@@ -2793,7 +2793,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2854",
+            "ID": "2879",
             "Name": "of Recuperation",
             "Code": "LifeRegeneration9",
             "Level": "78",
@@ -2837,7 +2837,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2929",
+            "ID": "2955",
             "Name": "of the Pugilist",
             "Code": "StunThresholdReduction1",
             "Level": "5",
@@ -2863,7 +2863,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2930",
+            "ID": "2956",
             "Name": "of the Brawler",
             "Code": "StunThresholdReduction2",
             "Level": "20",
@@ -2889,7 +2889,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2931",
+            "ID": "2957",
             "Name": "of the Boxer",
             "Code": "StunThresholdReduction3",
             "Level": "30",
@@ -2915,7 +2915,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2932",
+            "ID": "2958",
             "Name": "of the Combatant",
             "Code": "StunThresholdReduction4",
             "Level": "44",
@@ -2941,7 +2941,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2933",
+            "ID": "2959",
             "Name": "of the Gladiator",
             "Code": "StunThresholdReduction5",
             "Level": "58",
@@ -2967,7 +2967,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3037",
+            "ID": "3064",
             "Name": "of the Whelpling",
             "Code": "FireResist1",
             "Level": "1",
@@ -3013,7 +3013,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3038",
+            "ID": "3065",
             "Name": "of the Salamander",
             "Code": "FireResist2",
             "Level": "12",
@@ -3059,7 +3059,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3039",
+            "ID": "3066",
             "Name": "of the Drake",
             "Code": "FireResist3",
             "Level": "24",
@@ -3105,7 +3105,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3040",
+            "ID": "3067",
             "Name": "of the Kiln",
             "Code": "FireResist4",
             "Level": "36",
@@ -3151,7 +3151,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3041",
+            "ID": "3068",
             "Name": "of the Furnace",
             "Code": "FireResist5",
             "Level": "48",
@@ -3197,7 +3197,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3042",
+            "ID": "3069",
             "Name": "of the Volcano",
             "Code": "FireResist6",
             "Level": "60",
@@ -3243,7 +3243,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3043",
+            "ID": "3070",
             "Name": "of the Magma",
             "Code": "FireResist7",
             "Level": "72",
@@ -3289,7 +3289,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3044",
+            "ID": "3071",
             "Name": "of Tzteosh",
             "Code": "FireResist8",
             "Level": "84",
@@ -3335,7 +3335,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3108",
+            "ID": "3135",
             "Name": "of the Inuit",
             "Code": "ColdResist1",
             "Level": "1",
@@ -3381,7 +3381,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3109",
+            "ID": "3136",
             "Name": "of the Seal",
             "Code": "ColdResist2",
             "Level": "14",
@@ -3427,7 +3427,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3110",
+            "ID": "3137",
             "Name": "of the Penguin",
             "Code": "ColdResist3",
             "Level": "26",
@@ -3473,7 +3473,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3111",
+            "ID": "3138",
             "Name": "of the Yeti",
             "Code": "ColdResist4",
             "Level": "38",
@@ -3519,7 +3519,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3112",
+            "ID": "3139",
             "Name": "of the Walrus",
             "Code": "ColdResist5",
             "Level": "50",
@@ -3565,7 +3565,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3113",
+            "ID": "3140",
             "Name": "of the Polar Bear",
             "Code": "ColdResist6",
             "Level": "60",
@@ -3611,7 +3611,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3114",
+            "ID": "3141",
             "Name": "of the Ice",
             "Code": "ColdResist7",
             "Level": "72",
@@ -3657,7 +3657,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3115",
+            "ID": "3142",
             "Name": "of Haast",
             "Code": "ColdResist8",
             "Level": "84",
@@ -3703,7 +3703,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3192",
+            "ID": "3219",
             "Name": "of the Cloud",
             "Code": "LightningResist1",
             "Level": "1",
@@ -3749,7 +3749,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3193",
+            "ID": "3220",
             "Name": "of the Squall",
             "Code": "LightningResist2",
             "Level": "13",
@@ -3795,7 +3795,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3194",
+            "ID": "3221",
             "Name": "of the Storm",
             "Code": "LightningResist3",
             "Level": "25",
@@ -3841,7 +3841,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3195",
+            "ID": "3222",
             "Name": "of the Thunderhead",
             "Code": "LightningResist4",
             "Level": "37",
@@ -3887,7 +3887,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3196",
+            "ID": "3223",
             "Name": "of the Tempest",
             "Code": "LightningResist5",
             "Level": "49",
@@ -3933,7 +3933,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3197",
+            "ID": "3224",
             "Name": "of the Maelstrom",
             "Code": "LightningResist6",
             "Level": "60",
@@ -3979,7 +3979,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3198",
+            "ID": "3225",
             "Name": "of the Lightning",
             "Code": "LightningResist7",
             "Level": "72",
@@ -4025,7 +4025,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3199",
+            "ID": "3226",
             "Name": "of Ephij",
             "Code": "LightningResist8",
             "Level": "84",
@@ -4071,7 +4071,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3261",
+            "ID": "3288",
             "Name": "of the Lost",
             "Code": "ChaosResist1",
             "Level": "16",
@@ -4113,7 +4113,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3262",
+            "ID": "3289",
             "Name": "of Banishment",
             "Code": "ChaosResist2",
             "Level": "30",
@@ -4155,7 +4155,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3263",
+            "ID": "3290",
             "Name": "of Eviction",
             "Code": "ChaosResist3",
             "Level": "44",
@@ -4197,7 +4197,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3264",
+            "ID": "3291",
             "Name": "of Expulsion",
             "Code": "ChaosResist4",
             "Level": "56",
@@ -4239,7 +4239,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3265",
+            "ID": "3292",
             "Name": "of Exile",
             "Code": "ChaosResist5",
             "Level": "65",
@@ -4281,7 +4281,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3266",
+            "ID": "3293",
             "Name": "of Bameth",
             "Code": "ChaosResist6",
             "Level": "81",
@@ -4323,7 +4323,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3446",
+            "ID": "3475",
             "Name": "of Thick Skin",
             "Code": "StunRecovery1",
             "Level": "1",
@@ -4346,7 +4346,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3447",
+            "ID": "3476",
             "Name": "of Stone Skin",
             "Code": "StunRecovery2",
             "Level": "17",
@@ -4369,7 +4369,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3448",
+            "ID": "3477",
             "Name": "of Iron Skin",
             "Code": "StunRecovery3",
             "Level": "28",
@@ -4392,7 +4392,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3449",
+            "ID": "3478",
             "Name": "of Steel Skin",
             "Code": "StunRecovery4",
             "Level": "42",
@@ -4415,7 +4415,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3450",
+            "ID": "3479",
             "Name": "of Adamantite Skin",
             "Code": "StunRecovery5",
             "Level": "56",
@@ -4438,7 +4438,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3451",
+            "ID": "3480",
             "Name": "of Corundum Skin",
             "Code": "StunRecovery6",
             "Level": "79",
@@ -4461,7 +4461,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3468",
+            "ID": "3499",
             "Name": "of Impact",
             "Code": "StunDuration1",
             "Level": "5",
@@ -4484,7 +4484,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3469",
+            "ID": "3500",
             "Name": "of Dazing",
             "Code": "StunDuration2",
             "Level": "18",
@@ -4507,7 +4507,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3470",
+            "ID": "3501",
             "Name": "of Stunning",
             "Code": "StunDuration3",
             "Level": "30",
@@ -4530,7 +4530,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3471",
+            "ID": "3502",
             "Name": "of Slamming",
             "Code": "StunDuration4",
             "Level": "44",
@@ -4553,7 +4553,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3472",
+            "ID": "3503",
             "Name": "of Staggering",
             "Code": "StunDuration5",
             "Level": "58",
@@ -4576,7 +4576,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4586",
+            "ID": "4623",
             "Name": "of Refilling",
             "Code": "BeltIncreasedFlaskChargesGained1",
             "Level": "2",
@@ -4599,7 +4599,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4587",
+            "ID": "4624",
             "Name": "of Restocking",
             "Code": "BeltIncreasedFlaskChargesGained2",
             "Level": "16",
@@ -4622,7 +4622,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4588",
+            "ID": "4625",
             "Name": "of Replenishing",
             "Code": "BeltIncreasedFlaskChargesGained3_____",
             "Level": "32",
@@ -4645,7 +4645,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4589",
+            "ID": "4626",
             "Name": "of Pouring",
             "Code": "BeltIncreasedFlaskChargesGained4",
             "Level": "48",
@@ -4668,7 +4668,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4590",
+            "ID": "4627",
             "Name": "of Brimming",
             "Code": "BeltIncreasedFlaskChargesGained5_",
             "Level": "70",
@@ -4691,7 +4691,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4591",
+            "ID": "4628",
             "Name": "of Overflowing",
             "Code": "BeltIncreasedFlaskChargesGained6",
             "Level": "84",
@@ -4714,7 +4714,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4592",
+            "ID": "4629",
             "Name": "Distilling",
             "Code": "BeltIncreasedFlaskEffect1_",
             "Level": "45",
@@ -4737,7 +4737,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4593",
+            "ID": "4630",
             "Name": "Condensing",
             "Code": "BeltIncreasedFlaskEffect2",
             "Level": "65",
@@ -4760,7 +4760,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4594",
+            "ID": "4631",
             "Name": "Magnifying",
             "Code": "BeltIncreasedFlaskEffect3",
             "Level": "85",
@@ -4783,7 +4783,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4597",
+            "ID": "4634",
             "Name": "of Sipping",
             "Code": "BeltReducedFlaskChargesUsed1",
             "Level": "3",
@@ -4806,7 +4806,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4599",
+            "ID": "4637",
             "Name": "of Sipping",
             "Code": "BeltIncreasedFlaskDuration1",
             "Level": "8",
@@ -4829,7 +4829,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4600",
+            "ID": "4638",
             "Name": "of Tasting",
             "Code": "BeltIncreasedFlaskDuration2",
             "Level": "34",
@@ -4852,7 +4852,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4601",
+            "ID": "4639",
             "Name": "of Savouring",
             "Code": "BeltIncreasedFlaskDuration3",
             "Level": "50",
@@ -4875,7 +4875,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4602",
+            "ID": "4640",
             "Name": "of Relishing",
             "Code": "BeltIncreasedFlaskDuration4",
             "Level": "66",
@@ -4898,7 +4898,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4603",
+            "ID": "4641",
             "Name": "of Reveling",
             "Code": "BeltIncreasedFlaskDuration5_",
             "Level": "82",
@@ -4921,7 +4921,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4609",
+            "ID": "4647",
             "Name": "Restoring",
             "Code": "BeltFlaskLifeRecoveryRate1",
             "Level": "5",
@@ -4959,7 +4959,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4610",
+            "ID": "4648",
             "Name": "Recovering",
             "Code": "BeltFlaskLifeRecoveryRate2",
             "Level": "21",
@@ -4997,7 +4997,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4611",
+            "ID": "4649",
             "Name": "Renewing",
             "Code": "BeltFlaskLifeRecoveryRate3_",
             "Level": "35",
@@ -5035,7 +5035,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4612",
+            "ID": "4650",
             "Name": "Refreshing",
             "Code": "BeltFlaskLifeRecoveryRate4",
             "Level": "49",
@@ -5073,7 +5073,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4613",
+            "ID": "4651",
             "Name": "Rejuvenating",
             "Code": "BeltFlaskLifeRecoveryRate5",
             "Level": "63",
@@ -5111,7 +5111,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4614",
+            "ID": "4652",
             "Name": "Regenerating",
             "Code": "BeltFlaskLifeRecoveryRate6",
             "Level": "77",
@@ -5149,7 +5149,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4626",
+            "ID": "4664",
             "Name": "Affecting",
             "Code": "BeltFlaskManaRecoveryRate1_",
             "Level": "5",
@@ -5187,7 +5187,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4627",
+            "ID": "4665",
             "Name": "Stirring",
             "Code": "BeltFlaskManaRecoveryRate2",
             "Level": "21",
@@ -5225,7 +5225,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4628",
+            "ID": "4666",
             "Name": "Heartening",
             "Code": "BeltFlaskManaRecoveryRate3_",
             "Level": "35",
@@ -5263,7 +5263,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4629",
+            "ID": "4667",
             "Name": "Exciting",
             "Code": "BeltFlaskManaRecoveryRate4__",
             "Level": "49",
@@ -5301,7 +5301,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4630",
+            "ID": "4668",
             "Name": "Galvanizing",
             "Code": "BeltFlaskManaRecoveryRate5",
             "Level": "63",
@@ -5339,7 +5339,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4631",
+            "ID": "4669",
             "Name": "Inspiring",
             "Code": "BeltFlaskManaRecoveryRate6",
             "Level": "77",
@@ -5377,7 +5377,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4694",
+            "ID": "4732",
             "Name": "Thorny",
             "Code": "AttackerTakesDamage1",
             "Level": "1",
@@ -5419,7 +5419,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4695",
+            "ID": "4733",
             "Name": "Spiny",
             "Code": "AttackerTakesDamage2",
             "Level": "10",
@@ -5467,6 +5467,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17402",
 =======
             "ID": "17400",
@@ -5474,6 +5475,9 @@
 =======
             "ID": "17402",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17579",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "15",
             "ModFamilyList": [
@@ -5509,6 +5513,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17403",
 =======
             "ID": "17401",
@@ -5516,6 +5521,9 @@
 =======
             "ID": "17403",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17580",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5551,6 +5559,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17404",
 =======
             "ID": "17402",
@@ -5558,6 +5567,9 @@
 =======
             "ID": "17404",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17581",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -5593,6 +5605,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17412",
 =======
             "ID": "17410",
@@ -5600,6 +5613,9 @@
 =======
             "ID": "17412",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17589",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -5635,6 +5651,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17413",
 =======
             "ID": "17411",
@@ -5642,6 +5659,9 @@
 =======
             "ID": "17413",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17590",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5677,6 +5697,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17414",
 =======
             "ID": "17412",
@@ -5684,6 +5705,9 @@
 =======
             "ID": "17414",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17591",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5719,6 +5743,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17439",
 =======
             "ID": "17437",
@@ -5726,6 +5751,9 @@
 =======
             "ID": "17439",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17616",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -5767,6 +5795,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17440",
 =======
             "ID": "17438",
@@ -5774,6 +5803,9 @@
 =======
             "ID": "17440",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17617",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -5815,6 +5847,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16418",
 =======
             "ID": "16416",
@@ -5822,6 +5855,9 @@
 =======
             "ID": "16418",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16595",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5857,6 +5893,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16419",
 =======
             "ID": "16417",
@@ -5864,6 +5901,9 @@
 =======
             "ID": "16419",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16596",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5899,6 +5939,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16420",
 =======
             "ID": "16418",
@@ -5906,6 +5947,9 @@
 =======
             "ID": "16420",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16597",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5941,6 +5985,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16421",
 =======
             "ID": "16419",
@@ -5948,6 +5993,9 @@
 =======
             "ID": "16421",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16598",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5983,6 +6031,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16422",
 =======
             "ID": "16420",
@@ -5990,6 +6039,9 @@
 =======
             "ID": "16422",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16599",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -6025,6 +6077,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16423",
 =======
             "ID": "16421",
@@ -6032,6 +6085,9 @@
 =======
             "ID": "16423",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16600",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -6067,6 +6123,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16424",
 =======
             "ID": "16422",
@@ -6074,6 +6131,9 @@
 =======
             "ID": "16424",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16601",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -6109,6 +6169,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16425",
 =======
             "ID": "16423",
@@ -6116,6 +6177,9 @@
 =======
             "ID": "16425",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16602",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -6151,6 +6215,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16426",
 =======
             "ID": "16424",
@@ -6158,6 +6223,9 @@
 =======
             "ID": "16426",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16603",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -6189,6 +6257,7 @@
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
             "Code": "JunMaster2ChanceToNotConsumeFlaskCharges1",
             "NPCMasterID": "5",
 <<<<<<< HEAD
@@ -6258,6 +6327,11 @@
 =======
             "ID": "16432",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "Code": "JunMaster2FlaskEffectAndFlaskChargesGained1",
+            "NPCMasterID": "5",
+            "ID": "16609",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -6280,6 +6354,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16433",
 =======
             "ID": "16431",
@@ -6287,6 +6362,9 @@
 =======
             "ID": "16433",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16610",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -6309,6 +6387,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16494",
 =======
             "ID": "16492",
@@ -6316,6 +6395,9 @@
 =======
             "ID": "16494",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16671",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -6356,6 +6438,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16495",
 =======
             "ID": "16493",
@@ -6363,6 +6446,9 @@
 =======
             "ID": "16495",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16672",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -6403,6 +6489,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16496",
 =======
             "ID": "16494",
@@ -6410,6 +6497,9 @@
 =======
             "ID": "16496",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16673",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -6450,6 +6540,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16497",
 =======
             "ID": "16495",
@@ -6457,6 +6548,9 @@
 =======
             "ID": "16497",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16674",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -6497,6 +6591,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16498",
 =======
             "ID": "16496",
@@ -6504,6 +6599,9 @@
 =======
             "ID": "16498",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16675",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -6544,6 +6642,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16499",
 =======
             "ID": "16497",
@@ -6551,6 +6650,9 @@
 =======
             "ID": "16499",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16676",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -6591,6 +6693,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16559",
 =======
             "ID": "16557",
@@ -6598,6 +6701,9 @@
 =======
             "ID": "16559",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16736",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -6630,6 +6736,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16560",
 =======
             "ID": "16558",
@@ -6637,6 +6744,9 @@
 =======
             "ID": "16560",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16737",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -6667,7 +6777,7 @@
         {
             "Code": "DexMasterItemGenerationCannotChangeSuffixes",
             "NPCMasterID": "0",
-            "ID": "8522",
+            "ID": "8673",
             "ModGenerationTypeID": "1",
             "Level": "1",
             "ModFamilyList": [
@@ -6687,6 +6797,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17366",
 =======
             "ID": "17364",
@@ -6694,6 +6805,9 @@
 =======
             "ID": "17366",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17543",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -6733,6 +6847,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17369",
 =======
             "ID": "17367",
@@ -6740,6 +6855,9 @@
 =======
             "ID": "17369",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17546",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -6779,6 +6897,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17372",
 =======
             "ID": "17370",
@@ -6786,6 +6905,9 @@
 =======
             "ID": "17372",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17549",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -6825,6 +6947,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17388",
 =======
             "ID": "17386",
@@ -6832,6 +6955,9 @@
 =======
             "ID": "17388",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17565",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -6863,6 +6989,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17367",
 =======
             "ID": "17365",
@@ -6870,6 +6997,9 @@
 =======
             "ID": "17367",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17544",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -6909,6 +7039,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17368",
 =======
             "ID": "17366",
@@ -6916,6 +7047,9 @@
 =======
             "ID": "17368",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17545",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -6955,6 +7089,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17370",
 =======
             "ID": "17368",
@@ -6962,6 +7097,9 @@
 =======
             "ID": "17370",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17547",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -7001,6 +7139,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17371",
 =======
             "ID": "17369",
@@ -7008,6 +7147,9 @@
 =======
             "ID": "17371",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17548",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -7047,6 +7189,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17373",
 =======
             "ID": "17371",
@@ -7054,6 +7197,9 @@
 =======
             "ID": "17373",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17550",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -7093,6 +7239,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17374",
 =======
             "ID": "17372",
@@ -7100,6 +7247,9 @@
 =======
             "ID": "17374",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17551",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -7139,6 +7289,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17375",
 =======
             "ID": "17373",
@@ -7146,6 +7297,9 @@
 =======
             "ID": "17375",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17552",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -7188,6 +7342,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17376",
 =======
             "ID": "17374",
@@ -7195,6 +7350,9 @@
 =======
             "ID": "17376",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17553",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -7237,6 +7395,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17377",
 =======
             "ID": "17375",
@@ -7244,6 +7403,9 @@
 =======
             "ID": "17377",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17554",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -7286,6 +7448,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17378",
 =======
             "ID": "17376",
@@ -7293,6 +7456,9 @@
 =======
             "ID": "17378",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17555",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -7335,6 +7501,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17379",
 =======
             "ID": "17377",
@@ -7342,6 +7509,9 @@
 =======
             "ID": "17379",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17556",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -7384,6 +7554,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17380",
 =======
             "ID": "17378",
@@ -7391,6 +7562,9 @@
 =======
             "ID": "17380",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17557",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -7433,6 +7607,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17381",
 =======
             "ID": "17379",
@@ -7440,6 +7615,9 @@
 =======
             "ID": "17381",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17558",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -7482,6 +7660,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17382",
 =======
             "ID": "17380",
@@ -7489,6 +7668,9 @@
 =======
             "ID": "17382",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17559",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -7531,6 +7713,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17383",
 =======
             "ID": "17381",
@@ -7538,6 +7721,9 @@
 =======
             "ID": "17383",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17560",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -7580,6 +7766,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17389",
 =======
             "ID": "17387",
@@ -7587,6 +7774,9 @@
 =======
             "ID": "17389",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17566",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -7618,6 +7808,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17390",
 =======
             "ID": "17388",
@@ -7625,6 +7816,9 @@
 =======
             "ID": "17390",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17567",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -7656,6 +7850,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17596",
 =======
             "ID": "17594",
@@ -7663,6 +7858,9 @@
 =======
             "ID": "17596",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17773",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -7684,6 +7882,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17597",
 =======
             "ID": "17595",
@@ -7691,6 +7890,9 @@
 =======
             "ID": "17597",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17774",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "68",
             "ModFamilyList": [
@@ -7712,6 +7914,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22178",
 =======
             "ID": "22176",
@@ -7719,6 +7922,9 @@
 =======
             "ID": "22178",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22357",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -7738,6 +7944,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17653",
 =======
             "ID": "17651",
@@ -7745,6 +7952,9 @@
 =======
             "ID": "17653",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17830",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -7780,6 +7990,7 @@
             "NPCMasterID": "3",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17654",
 =======
             "ID": "17652",
@@ -7787,6 +7998,9 @@
 =======
             "ID": "17654",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17831",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7822,6 +8036,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16385",
 =======
             "ID": "16383",
@@ -7829,6 +8044,9 @@
 =======
             "ID": "16385",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16562",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7862,6 +8080,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16386",
 =======
             "ID": "16384",
@@ -7869,6 +8088,9 @@
 =======
             "ID": "16386",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16563",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7902,6 +8124,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16387",
 =======
             "ID": "16385",
@@ -7909,6 +8132,9 @@
 =======
             "ID": "16387",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16564",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7942,6 +8168,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16388",
 =======
             "ID": "16386",
@@ -7949,6 +8176,9 @@
 =======
             "ID": "16388",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16565",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7982,6 +8212,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16389",
 =======
             "ID": "16387",
@@ -7989,6 +8220,9 @@
 =======
             "ID": "16389",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16566",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8022,6 +8256,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16390",
 =======
             "ID": "16388",
@@ -8029,6 +8264,9 @@
 =======
             "ID": "16390",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16567",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -8062,6 +8300,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16391",
 =======
             "ID": "16389",
@@ -8069,6 +8308,9 @@
 =======
             "ID": "16391",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16568",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -8102,6 +8344,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16392",
 =======
             "ID": "16390",
@@ -8109,6 +8352,9 @@
 =======
             "ID": "16392",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16569",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8142,6 +8388,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16393",
 =======
             "ID": "16391",
@@ -8149,6 +8396,9 @@
 =======
             "ID": "16393",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16570",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -8182,6 +8432,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16436",
 =======
             "ID": "16434",
@@ -8189,6 +8440,9 @@
 =======
             "ID": "16436",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16613",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -8210,6 +8464,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16437",
 =======
             "ID": "16435",
@@ -8217,6 +8472,9 @@
 =======
             "ID": "16437",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16614",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -8238,6 +8496,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16479",
 =======
             "ID": "16477",
@@ -8245,6 +8504,9 @@
 =======
             "ID": "16479",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16656",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -8278,6 +8540,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16480",
 =======
             "ID": "16478",
@@ -8285,6 +8548,9 @@
 =======
             "ID": "16480",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16657",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8318,6 +8584,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16481",
 =======
             "ID": "16479",
@@ -8325,6 +8592,9 @@
 =======
             "ID": "16481",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16658",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -8358,6 +8628,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16521",
 =======
             "ID": "16519",
@@ -8365,6 +8636,9 @@
 =======
             "ID": "16521",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16698",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8397,6 +8671,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16668",
 =======
             "ID": "16666",
@@ -8404,6 +8679,9 @@
 =======
             "ID": "16668",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16845",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -8447,6 +8725,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16669",
 =======
             "ID": "16667",
@@ -8454,6 +8733,9 @@
 =======
             "ID": "16669",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16846",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8497,6 +8779,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16670",
 =======
             "ID": "16668",
@@ -8504,6 +8787,9 @@
 =======
             "ID": "16670",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16847",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -8547,6 +8833,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16671",
 =======
             "ID": "16669",
@@ -8554,6 +8841,9 @@
 =======
             "ID": "16671",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16848",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -8597,6 +8887,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16672",
 =======
             "ID": "16670",
@@ -8604,6 +8895,9 @@
 =======
             "ID": "16672",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16849",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8647,6 +8941,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16673",
 =======
             "ID": "16671",
@@ -8654,6 +8949,9 @@
 =======
             "ID": "16673",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16850",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -8697,6 +8995,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16674",
 =======
             "ID": "16672",
@@ -8704,6 +9003,9 @@
 =======
             "ID": "16674",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16851",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -8747,6 +9049,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16675",
 =======
             "ID": "16673",
@@ -8754,6 +9057,9 @@
 =======
             "ID": "16675",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16852",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8797,6 +9103,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16676",
 =======
             "ID": "16674",
@@ -8804,6 +9111,9 @@
 =======
             "ID": "16676",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16853",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -8847,6 +9157,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16503",
 =======
             "ID": "16501",
@@ -8854,6 +9165,9 @@
 =======
             "ID": "16503",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16680",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -8886,6 +9200,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16504",
 =======
             "ID": "16502",
@@ -8893,6 +9208,9 @@
 =======
             "ID": "16504",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16681",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -8925,6 +9243,7 @@
             "NPCMasterID": "5",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "16505",
 =======
             "ID": "16503",
@@ -8932,6 +9251,9 @@
 =======
             "ID": "16505",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16682",
+>>>>>>> 92f2640 (Update Data)
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -8962,7 +9284,7 @@
         {
             "Code": "StrMasterItemGenerationCannotChangePrefixes",
             "NPCMasterID": "0",
-            "ID": "8521",
+            "ID": "8672",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -8980,7 +9302,7 @@
         {
             "Code": "StrIntMasterItemGenerationCanHaveMultipleCraftedMods",
             "NPCMasterID": "0",
-            "ID": "8525",
+            "ID": "8676",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -8998,7 +9320,7 @@
         {
             "Code": "IntMasterItemGenerationCannotRollAttackAffixes",
             "NPCMasterID": "0",
-            "ID": "8523",
+            "ID": "8674",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -9016,7 +9338,7 @@
         {
             "Code": "StrDexMasterItemGenerationCannotRollCasterAffixes",
             "NPCMasterID": "0",
-            "ID": "8524",
+            "ID": "8675",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -9036,8 +9358,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "74",
-            "BeltModsID": "3108",
-            "ID": "3108",
+            "BeltModsID": "3135",
+            "ID": "3135",
             "Name": "of the Inuit",
             "Code": "ColdResist1",
             "Level": "1",
@@ -9077,8 +9399,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "75",
-            "BeltModsID": "3109",
-            "ID": "3109",
+            "BeltModsID": "3136",
+            "ID": "3136",
             "Name": "of the Seal",
             "Code": "ColdResist2",
             "Level": "14",
@@ -9118,8 +9440,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "76",
-            "BeltModsID": "3110",
-            "ID": "3110",
+            "BeltModsID": "3137",
+            "ID": "3137",
             "Name": "of the Penguin",
             "Code": "ColdResist3",
             "Level": "26",
@@ -9159,8 +9481,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "77",
-            "BeltModsID": "3111",
-            "ID": "3111",
+            "BeltModsID": "3138",
+            "ID": "3138",
             "Name": "of the Yeti",
             "Code": "ColdResist4",
             "Level": "38",
@@ -9200,8 +9522,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "78",
-            "BeltModsID": "3113",
-            "ID": "3113",
+            "BeltModsID": "3140",
+            "ID": "3140",
             "Name": "of the Polar Bear",
             "Code": "ColdResist6",
             "Level": "60",
@@ -9241,8 +9563,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "79",
-            "BeltModsID": "3114",
-            "ID": "3114",
+            "BeltModsID": "3141",
+            "ID": "3141",
             "Name": "of the Ice",
             "Code": "ColdResist7",
             "Level": "72",
@@ -9282,8 +9604,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "80",
-            "BeltModsID": "3115",
-            "ID": "3115",
+            "BeltModsID": "3142",
+            "ID": "3142",
             "Name": "of Haast",
             "Code": "ColdResist8",
             "Level": "84",
@@ -9323,8 +9645,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "81",
-            "BeltModsID": "623",
-            "ID": "623",
+            "BeltModsID": "634",
+            "ID": "634",
             "Name": "Shining",
             "Code": "IncreasedEnergyShield1",
             "Level": "3",
@@ -9357,8 +9679,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "82",
-            "BeltModsID": "624",
-            "ID": "624",
+            "BeltModsID": "635",
+            "ID": "635",
             "Name": "Glimmering",
             "Code": "IncreasedEnergyShield2",
             "Level": "11",
@@ -9391,8 +9713,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "83",
-            "BeltModsID": "627",
-            "ID": "627",
+            "BeltModsID": "638",
+            "ID": "638",
             "Name": "Radiating",
             "Code": "IncreasedEnergyShield5",
             "Level": "29",
@@ -9425,8 +9747,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "84",
-            "BeltModsID": "629",
-            "ID": "629",
+            "BeltModsID": "640",
+            "ID": "640",
             "Name": "Seething",
             "Code": "IncreasedEnergyShield7",
             "Level": "42",
@@ -9459,8 +9781,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "85",
-            "BeltModsID": "630",
-            "ID": "630",
+            "BeltModsID": "641",
+            "ID": "641",
             "Name": "Blazing",
             "Code": "IncreasedEnergyShield8",
             "Level": "50",
@@ -9493,8 +9815,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "86",
-            "BeltModsID": "631",
-            "ID": "631",
+            "BeltModsID": "642",
+            "ID": "642",
             "Name": "Scintillating",
             "Code": "IncreasedEnergyShield9",
             "Level": "59",
@@ -9527,8 +9849,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "87",
-            "BeltModsID": "632",
-            "ID": "632",
+            "BeltModsID": "643",
+            "ID": "643",
             "Name": "Incandescent",
             "Code": "IncreasedEnergyShield10",
             "Level": "68",
@@ -9561,8 +9883,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "88",
-            "BeltModsID": "4615",
-            "ID": "4615",
+            "BeltModsID": "4653",
+            "ID": "4653",
             "Name": "Essences",
             "Code": "BeltFlaskLifeRecoveryRateEssence1",
             "Level": "1",
@@ -9599,8 +9921,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "89",
-            "BeltModsID": "4616",
-            "ID": "4616",
+            "BeltModsID": "4654",
+            "ID": "4654",
             "Name": "Essences",
             "Code": "BeltFlaskLifeRecoveryRateEssence2",
             "Level": "10",
@@ -9637,8 +9959,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "90",
-            "BeltModsID": "4617",
-            "ID": "4617",
+            "BeltModsID": "4655",
+            "ID": "4655",
             "Name": "Essences",
             "Code": "BeltFlaskLifeRecoveryRateEssence3",
             "Level": "26",
@@ -9675,8 +9997,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "91",
-            "BeltModsID": "4618",
-            "ID": "4618",
+            "BeltModsID": "4656",
+            "ID": "4656",
             "Name": "Essences",
             "Code": "BeltFlaskLifeRecoveryRateEssence4",
             "Level": "42",
@@ -9713,8 +10035,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "92",
-            "BeltModsID": "4619",
-            "ID": "4619",
+            "BeltModsID": "4657",
+            "ID": "4657",
             "Name": "Essences",
             "Code": "BeltFlaskLifeRecoveryRateEssence5",
             "Level": "58",
@@ -9751,8 +10073,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "93",
-            "BeltModsID": "4620",
-            "ID": "4620",
+            "BeltModsID": "4658",
+            "ID": "4658",
             "Name": "Essences",
             "Code": "BeltFlaskLifeRecoveryRateEssence6",
             "Level": "74",
@@ -9789,8 +10111,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "94",
-            "BeltModsID": "4621",
-            "ID": "4621",
+            "BeltModsID": "4659",
+            "ID": "4659",
             "Name": "Essences",
             "Code": "BeltFlaskLifeRecoveryRateEssence7",
             "Level": "82",
@@ -9827,8 +10149,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "95",
-            "BeltModsID": "4694",
-            "ID": "4694",
+            "BeltModsID": "4732",
+            "ID": "4732",
             "Name": "Thorny",
             "Code": "AttackerTakesDamage1",
             "Level": "1",
@@ -9866,8 +10188,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "96",
-            "BeltModsID": "4695",
-            "ID": "4695",
+            "BeltModsID": "4733",
+            "ID": "4733",
             "Name": "Spiny",
             "Code": "AttackerTakesDamage2",
             "Level": "10",
@@ -9905,8 +10227,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "97",
-            "BeltModsID": "4696",
-            "ID": "4696",
+            "BeltModsID": "4734",
+            "ID": "4734",
             "Name": "Barbed",
             "Code": "AttackerTakesDamage3",
             "Level": "20",
@@ -9944,8 +10266,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "98",
-            "BeltModsID": "4697",
-            "ID": "4697",
+            "BeltModsID": "4735",
+            "ID": "4735",
             "Name": "Jagged",
             "Code": "AttackerTakesDamage4",
             "Level": "35",
@@ -9983,8 +10305,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "99",
-            "BeltModsID": "4698",
-            "ID": "4698",
+            "BeltModsID": "4736",
+            "ID": "4736",
             "Name": "Essences",
             "Code": "AttackerTakesDamageEssence5",
             "Level": "58",
@@ -10022,8 +10344,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "100",
-            "BeltModsID": "4699",
-            "ID": "4699",
+            "BeltModsID": "4737",
+            "ID": "4737",
             "Name": "Essences",
             "Code": "AttackerTakesDamageEssence6",
             "Level": "74",
@@ -10061,8 +10383,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "101",
-            "BeltModsID": "4700",
-            "ID": "4700",
+            "BeltModsID": "4738",
+            "ID": "4738",
             "Name": "Essences",
             "Code": "AttackerTakesDamageEssence7",
             "Level": "82",
@@ -10100,8 +10422,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "102",
-            "BeltModsID": "80",
-            "ID": "80",
+            "BeltModsID": "82",
+            "ID": "82",
             "Name": "of the Lynx",
             "Code": "Dexterity2",
             "Level": "11",
@@ -10133,8 +10455,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "103",
-            "BeltModsID": "81",
-            "ID": "81",
+            "BeltModsID": "83",
+            "ID": "83",
             "Name": "of the Fox",
             "Code": "Dexterity3",
             "Level": "22",
@@ -10166,8 +10488,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "104",
-            "BeltModsID": "83",
-            "ID": "83",
+            "BeltModsID": "85",
+            "ID": "85",
             "Name": "of the Panther",
             "Code": "Dexterity5",
             "Level": "44",
@@ -10199,8 +10521,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "105",
-            "BeltModsID": "84",
-            "ID": "84",
+            "BeltModsID": "86",
+            "ID": "86",
             "Name": "of the Leopard",
             "Code": "Dexterity6",
             "Level": "55",
@@ -10232,8 +10554,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "106",
-            "BeltModsID": "86",
-            "ID": "86",
+            "BeltModsID": "88",
+            "ID": "88",
             "Name": "of the Phantom",
             "Code": "Dexterity8",
             "Level": "74",
@@ -10265,8 +10587,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "107",
-            "BeltModsID": "89",
-            "ID": "89",
+            "BeltModsID": "91",
+            "ID": "91",
             "Name": "of the Essence",
             "Code": "DexterityEssence7",
             "Level": "82",
@@ -10298,8 +10620,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "108",
-            "BeltModsID": "3038",
-            "ID": "3038",
+            "BeltModsID": "3065",
+            "ID": "3065",
             "Name": "of the Salamander",
             "Code": "FireResist2",
             "Level": "12",
@@ -10339,8 +10661,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "109",
-            "BeltModsID": "3039",
-            "ID": "3039",
+            "BeltModsID": "3066",
+            "ID": "3066",
             "Name": "of the Drake",
             "Code": "FireResist3",
             "Level": "24",
@@ -10380,8 +10702,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "110",
-            "BeltModsID": "3040",
-            "ID": "3040",
+            "BeltModsID": "3067",
+            "ID": "3067",
             "Name": "of the Kiln",
             "Code": "FireResist4",
             "Level": "36",
@@ -10421,8 +10743,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "111",
-            "BeltModsID": "3042",
-            "ID": "3042",
+            "BeltModsID": "3069",
+            "ID": "3069",
             "Name": "of the Volcano",
             "Code": "FireResist6",
             "Level": "60",
@@ -10462,8 +10784,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "112",
-            "BeltModsID": "3043",
-            "ID": "3043",
+            "BeltModsID": "3070",
+            "ID": "3070",
             "Name": "of the Magma",
             "Code": "FireResist7",
             "Level": "72",
@@ -10503,8 +10825,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "113",
-            "BeltModsID": "3044",
-            "ID": "3044",
+            "BeltModsID": "3071",
+            "ID": "3071",
             "Name": "of Tzteosh",
             "Code": "FireResist8",
             "Level": "84",
@@ -10544,8 +10866,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "114",
-            "BeltModsID": "4688",
-            "ID": "4688",
+            "BeltModsID": "4726",
+            "ID": "4726",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidShockEssence2_",
             "Level": "10",
@@ -10585,8 +10907,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "115",
-            "BeltModsID": "4689",
-            "ID": "4689",
+            "BeltModsID": "4727",
+            "ID": "4727",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidShockEssence3",
             "Level": "26",
@@ -10626,8 +10948,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "116",
-            "BeltModsID": "4690",
-            "ID": "4690",
+            "BeltModsID": "4728",
+            "ID": "4728",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidShockEssence4",
             "Level": "42",
@@ -10667,8 +10989,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "117",
-            "BeltModsID": "4691",
-            "ID": "4691",
+            "BeltModsID": "4729",
+            "ID": "4729",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidShockEssence5",
             "Level": "58",
@@ -10708,8 +11030,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "118",
-            "BeltModsID": "4692",
-            "ID": "4692",
+            "BeltModsID": "4730",
+            "ID": "4730",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidShockEssence6",
             "Level": "74",
@@ -10749,8 +11071,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "119",
-            "BeltModsID": "4693",
-            "ID": "4693",
+            "BeltModsID": "4731",
+            "ID": "4731",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidShockEssence7",
             "Level": "82",
@@ -10790,8 +11112,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "120",
-            "BeltModsID": "4517",
-            "ID": "4517",
+            "BeltModsID": "4554",
+            "ID": "4554",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence2",
             "Level": "10",
@@ -10831,8 +11153,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "121",
-            "BeltModsID": "4518",
-            "ID": "4518",
+            "BeltModsID": "4555",
+            "ID": "4555",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence3_",
             "Level": "26",
@@ -10872,8 +11194,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "122",
-            "BeltModsID": "4519",
-            "ID": "4519",
+            "BeltModsID": "4556",
+            "ID": "4556",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence4",
             "Level": "42",
@@ -10913,8 +11235,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "123",
-            "BeltModsID": "4520",
-            "ID": "4520",
+            "BeltModsID": "4557",
+            "ID": "4557",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence5",
             "Level": "58",
@@ -10954,8 +11276,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "124",
-            "BeltModsID": "4521",
-            "ID": "4521",
+            "BeltModsID": "4558",
+            "ID": "4558",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence6",
             "Level": "74",
@@ -10995,8 +11317,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "125",
-            "BeltModsID": "4522",
-            "ID": "4522",
+            "BeltModsID": "4559",
+            "ID": "4559",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence7",
             "Level": "82",
@@ -11036,8 +11358,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "126",
-            "BeltModsID": "4734",
-            "ID": "4734",
+            "BeltModsID": "4773",
+            "ID": "4773",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFreezeEssence3",
             "Level": "1",
@@ -11077,8 +11399,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "127",
-            "BeltModsID": "4735",
-            "ID": "4735",
+            "BeltModsID": "4774",
+            "ID": "4774",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFreezeEssence4",
             "Level": "1",
@@ -11118,8 +11440,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "128",
-            "BeltModsID": "4736",
-            "ID": "4736",
+            "BeltModsID": "4775",
+            "ID": "4775",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFreezeEssence5",
             "Level": "1",
@@ -11159,8 +11481,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "129",
-            "BeltModsID": "4737",
-            "ID": "4737",
+            "BeltModsID": "4776",
+            "ID": "4776",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFreezeEssence6",
             "Level": "1",
@@ -11200,8 +11522,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "130",
-            "BeltModsID": "4738",
-            "ID": "4738",
+            "BeltModsID": "4777",
+            "ID": "4777",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFreezeEssence7",
             "Level": "1",
@@ -11406,8 +11728,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "136",
-            "BeltModsID": "3194",
-            "ID": "3194",
+            "BeltModsID": "3221",
+            "ID": "3221",
             "Name": "of the Storm",
             "Code": "LightningResist3",
             "Level": "25",
@@ -11447,8 +11769,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "137",
-            "BeltModsID": "3195",
-            "ID": "3195",
+            "BeltModsID": "3222",
+            "ID": "3222",
             "Name": "of the Thunderhead",
             "Code": "LightningResist4",
             "Level": "37",
@@ -11488,8 +11810,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "138",
-            "BeltModsID": "3197",
-            "ID": "3197",
+            "BeltModsID": "3224",
+            "ID": "3224",
             "Name": "of the Maelstrom",
             "Code": "LightningResist6",
             "Level": "60",
@@ -11529,8 +11851,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "139",
-            "BeltModsID": "3198",
-            "ID": "3198",
+            "BeltModsID": "3225",
+            "ID": "3225",
             "Name": "of the Lightning",
             "Code": "LightningResist7",
             "Level": "72",
@@ -11570,8 +11892,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "140",
-            "BeltModsID": "3199",
-            "ID": "3199",
+            "BeltModsID": "3226",
+            "ID": "3226",
             "Name": "of Ephij",
             "Code": "LightningResist8",
             "Level": "84",
@@ -11611,8 +11933,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "141",
-            "BeltModsID": "1976",
-            "ID": "1976",
+            "BeltModsID": "1996",
+            "ID": "1996",
             "Name": "Acrobat's",
             "Code": "IncreasedEvasionRating3",
             "Level": "29",
@@ -11645,8 +11967,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "142",
-            "BeltModsID": "1977",
-            "ID": "1977",
+            "BeltModsID": "1997",
+            "ID": "1997",
             "Name": "Fleet",
             "Code": "IncreasedEvasionRating4",
             "Level": "42",
@@ -11679,8 +12001,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "143",
-            "BeltModsID": "1978",
-            "ID": "1978",
+            "BeltModsID": "1998",
+            "ID": "1998",
             "Name": "Blurred",
             "Code": "IncreasedEvasionRating5",
             "Level": "58",
@@ -11713,8 +12035,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "144",
-            "BeltModsID": "1979",
-            "ID": "1979",
+            "BeltModsID": "1999",
+            "ID": "1999",
             "Name": "Phased",
             "Code": "IncreasedEvasionRating6",
             "Level": "72",
@@ -11747,8 +12069,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "145",
-            "BeltModsID": "1981",
-            "ID": "1981",
+            "BeltModsID": "2001",
+            "ID": "2001",
             "Name": "Essences",
             "Code": "IncreasedEvasionRatingEssence7",
             "Level": "82",
@@ -11781,8 +12103,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "146",
-            "BeltModsID": "6050",
-            "ID": "6050",
+            "BeltModsID": "6197",
+            "ID": "6197",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidIgniteEssence4",
             "Level": "42",
@@ -11822,8 +12144,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "147",
-            "BeltModsID": "6051",
-            "ID": "6051",
+            "BeltModsID": "6198",
+            "ID": "6198",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidIgniteEssence5",
             "Level": "58",
@@ -11863,8 +12185,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "148",
-            "BeltModsID": "6052",
-            "ID": "6052",
+            "BeltModsID": "6199",
+            "ID": "6199",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidIgniteEssence6",
             "Level": "74",
@@ -11904,8 +12226,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "149",
-            "BeltModsID": "6053",
-            "ID": "6053",
+            "BeltModsID": "6200",
+            "ID": "6200",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidIgniteEssence7_",
             "Level": "82",
@@ -11945,8 +12267,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "150",
-            "BeltModsID": "3470",
-            "ID": "3470",
+            "BeltModsID": "3501",
+            "ID": "3501",
             "Name": "of Stunning",
             "Code": "StunDuration3",
             "Level": "30",
@@ -11966,8 +12288,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "151",
-            "BeltModsID": "3471",
-            "ID": "3471",
+            "BeltModsID": "3502",
+            "ID": "3502",
             "Name": "of Slamming",
             "Code": "StunDuration4",
             "Level": "44",
@@ -11987,8 +12309,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "152",
-            "BeltModsID": "3472",
-            "ID": "3472",
+            "BeltModsID": "3503",
+            "ID": "3503",
             "Name": "of Staggering",
             "Code": "StunDuration5",
             "Level": "58",
@@ -12008,8 +12330,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "153",
-            "BeltModsID": "3473",
-            "ID": "3473",
+            "BeltModsID": "3504",
+            "ID": "3504",
             "Name": "of the Essence",
             "Code": "StunDurationEssence7",
             "Level": "82",
@@ -12029,8 +12351,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "154",
-            "BeltModsID": "166",
-            "ID": "166",
+            "BeltModsID": "171",
+            "ID": "171",
             "Name": "of the Philosopher",
             "Code": "Intelligence5",
             "Level": "44",
@@ -12062,8 +12384,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "155",
-            "BeltModsID": "167",
-            "ID": "167",
+            "BeltModsID": "172",
+            "ID": "172",
             "Name": "of the Sage",
             "Code": "Intelligence6",
             "Level": "55",
@@ -12095,8 +12417,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "156",
-            "BeltModsID": "169",
-            "ID": "169",
+            "BeltModsID": "174",
+            "ID": "174",
             "Name": "of the Virtuoso",
             "Code": "Intelligence8",
             "Level": "74",
@@ -12128,8 +12450,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "157",
-            "BeltModsID": "172",
-            "ID": "172",
+            "BeltModsID": "177",
+            "ID": "177",
             "Name": "of the Essence",
             "Code": "IntelligenceEssence7",
             "Level": "82",
@@ -12163,6 +12485,7 @@
             "BaseItemTypesID": "158",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "BeltModsID": "19971",
             "ID": "19971",
 =======
@@ -12173,6 +12496,10 @@
             "BeltModsID": "19971",
             "ID": "19971",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "BeltModsID": "20148",
+            "ID": "20148",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Essence",
             "Code": "TrapAndMineThrowSpeedEssence1",
             "Level": "42",
@@ -12206,6 +12533,7 @@
             "BaseItemTypesID": "159",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "BeltModsID": "19972",
             "ID": "19972",
 =======
@@ -12216,6 +12544,10 @@
             "BeltModsID": "19972",
             "ID": "19972",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "BeltModsID": "20149",
+            "ID": "20149",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Essence",
             "Code": "TrapAndMineThrowSpeedEssence2_",
             "Level": "58",
@@ -12249,6 +12581,7 @@
             "BaseItemTypesID": "160",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "BeltModsID": "19973",
             "ID": "19973",
 =======
@@ -12259,6 +12592,10 @@
             "BeltModsID": "19973",
             "ID": "19973",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "BeltModsID": "20150",
+            "ID": "20150",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Essence",
             "Code": "TrapAndMineThrowSpeedEssence3_",
             "Level": "74",
@@ -12292,6 +12629,7 @@
             "BaseItemTypesID": "161",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "BeltModsID": "19974",
             "ID": "19974",
 =======
@@ -12302,6 +12640,10 @@
             "BeltModsID": "19974",
             "ID": "19974",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "BeltModsID": "20151",
+            "ID": "20151",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Essence",
             "Code": "TrapAndMineThrowSpeedEssence4",
             "Level": "82",
@@ -12333,8 +12675,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "162",
-            "BeltModsID": "4632",
-            "ID": "4632",
+            "BeltModsID": "4670",
+            "ID": "4670",
             "Name": "Essences",
             "Code": "BeltFlaskManaRecoveryRateEssence1",
             "Level": "58",
@@ -12371,8 +12713,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "163",
-            "BeltModsID": "4633",
-            "ID": "4633",
+            "BeltModsID": "4671",
+            "ID": "4671",
             "Name": "Essences",
             "Code": "BeltFlaskManaRecoveryRateEssence2",
             "Level": "74",
@@ -12409,8 +12751,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "164",
-            "BeltModsID": "4634",
-            "ID": "4634",
+            "BeltModsID": "4672",
+            "ID": "4672",
             "Name": "Essences",
             "Code": "BeltFlaskManaRecoveryRateEssence3",
             "Level": "82",
@@ -12447,8 +12789,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "165",
-            "BeltModsID": "2028",
-            "ID": "2028",
+            "BeltModsID": "2048",
+            "ID": "2048",
             "Name": "Carapaced",
             "Code": "IncreasedPhysicalDamageReductionRating6",
             "Level": "71",
@@ -12481,8 +12823,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "166",
-            "BeltModsID": "2029",
-            "ID": "2029",
+            "BeltModsID": "2049",
+            "ID": "2049",
             "Name": "Encased",
             "Code": "IncreasedPhysicalDamageReductionRating7",
             "Level": "83",
@@ -12515,8 +12857,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "167",
-            "BeltModsID": "2031",
-            "ID": "2031",
+            "BeltModsID": "2051",
+            "ID": "2051",
             "Name": "Essences",
             "Code": "IncreasedPhysicalDamageReductionRatingEssence7",
             "Level": "82",
@@ -12549,8 +12891,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "168",
-            "BeltModsID": "2932",
-            "ID": "2932",
+            "BeltModsID": "2958",
+            "ID": "2958",
             "Name": "of the Combatant",
             "Code": "StunThresholdReduction4",
             "Level": "44",
@@ -12570,8 +12912,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "169",
-            "BeltModsID": "2933",
-            "ID": "2933",
+            "BeltModsID": "2959",
+            "ID": "2959",
             "Name": "of the Gladiator",
             "Code": "StunThresholdReduction5",
             "Level": "58",
@@ -12591,8 +12933,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "170",
-            "BeltModsID": "2934",
-            "ID": "2934",
+            "BeltModsID": "2960",
+            "ID": "2960",
             "Name": "of the Essence",
             "Code": "StunThresholdReductionEssence7",
             "Level": "82",
@@ -12612,8 +12954,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "171",
-            "BeltModsID": "3264",
-            "ID": "3264",
+            "BeltModsID": "3291",
+            "ID": "3291",
             "Name": "of Expulsion",
             "Code": "ChaosResist4",
             "Level": "56",
@@ -12649,8 +12991,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "172",
-            "BeltModsID": "3265",
-            "ID": "3265",
+            "BeltModsID": "3292",
+            "ID": "3292",
             "Name": "of Exile",
             "Code": "ChaosResist5",
             "Level": "65",
@@ -12686,8 +13028,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "173",
-            "BeltModsID": "3266",
-            "ID": "3266",
+            "BeltModsID": "3293",
+            "ID": "3293",
             "Name": "of Bameth",
             "Code": "ChaosResist6",
             "Level": "81",
@@ -12723,8 +13065,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "174",
-            "BeltModsID": "12346",
-            "ID": "12346",
+            "BeltModsID": "12505",
+            "ID": "12505",
             "Name": "of the Essence",
             "Code": "ElementalPenetrationDuringFlaskEffectEssence1",
             "Level": "63",
@@ -12763,8 +13105,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "175",
-            "BeltModsID": "12321",
-            "ID": "12321",
+            "BeltModsID": "12480",
+            "ID": "12480",
             "Name": "of the Essence",
             "Code": "MovementVelocityDuringFlaskEffectEssence1",
             "Level": "63",
@@ -12797,8 +13139,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "176",
-            "BeltModsID": "12355",
-            "ID": "12355",
+            "BeltModsID": "12514",
+            "ID": "12514",
             "Name": "of the Essence",
             "Code": "AlchemistsGeniusOnFlaskEssence1_",
             "Level": "63",
@@ -12820,8 +13162,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "177",
-            "BeltModsID": "7096",
-            "ID": "7096",
+            "BeltModsID": "7246",
+            "ID": "7246",
             "Name": "of the Essence",
             "Code": "ChaosResistanceWhileUsingFlaskEssence1",
             "Level": "63",
@@ -12860,6 +13202,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15819",
 =======
             "ID": "15817",
@@ -12867,6 +13210,9 @@
 =======
             "ID": "15819",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15994",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelryFireDamage1",
             "Level": "1",
@@ -12914,6 +13260,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15829",
 =======
             "ID": "15827",
@@ -12921,6 +13268,9 @@
 =======
             "ID": "15829",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16004",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelryColdDamage1",
             "Level": "1",
@@ -12968,6 +13318,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15839",
 =======
             "ID": "15837",
@@ -12975,6 +13326,9 @@
 =======
             "ID": "15839",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16014",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelryLightningDamage1",
             "Level": "1",
@@ -13022,6 +13376,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15850",
 =======
             "ID": "15848",
@@ -13029,6 +13384,9 @@
 =======
             "ID": "15850",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16025",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelryPhysicalDamage1",
             "Level": "1",
@@ -13072,6 +13430,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15860",
 =======
             "ID": "15858",
@@ -13079,6 +13438,9 @@
 =======
             "ID": "15860",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16035",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelryChaosDamage1",
             "Level": "1",
@@ -13122,6 +13484,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15867",
 =======
             "ID": "15865",
@@ -13129,6 +13492,9 @@
 =======
             "ID": "15867",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16042",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelryFlaskLifeRecovery1",
             "Level": "1",
@@ -13172,6 +13538,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15895",
 =======
             "ID": "15893",
@@ -13179,6 +13546,9 @@
 =======
             "ID": "15895",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16070",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelryIncreasedEnergyShieldFromBodyArmour1",
             "Level": "1",
@@ -13196,7 +13566,7 @@
                 "0"
             ],
             "DropChance": "1600",
-            "str": "<span class='mod-value'>(20&ndash;30)</span>% increased Energy Shield from Body Armour",
+            "str": "<span class='mod-value'>(20&ndash;30)</span>% increased Energy Shield from Equipped Body Armour",
             "master_no": [],
             "fossil_no": [
                 "energy_shield",
@@ -13218,6 +13588,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15896",
 =======
             "ID": "15894",
@@ -13225,6 +13596,9 @@
 =======
             "ID": "15896",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16071",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelryChanceWhenHitForArmourToBeDoubled1",
             "Level": "1",
@@ -13264,6 +13638,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15897",
 =======
             "ID": "15895",
@@ -13271,6 +13646,9 @@
 =======
             "ID": "15897",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16072",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelryChanceToEvade",
             "Level": "1",
@@ -13311,6 +13689,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15903",
 =======
             "ID": "15901",
@@ -13318,6 +13697,9 @@
 =======
             "ID": "15903",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16078",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelryAilmentDamage1_",
             "Level": "1",
@@ -13361,6 +13743,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15920",
 =======
             "ID": "15918",
@@ -13368,6 +13751,9 @@
 =======
             "ID": "15920",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16095",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveRingElementalDamage1",
             "Level": "1",
@@ -13411,6 +13797,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15941",
 =======
             "ID": "15939",
@@ -13418,6 +13805,9 @@
 =======
             "ID": "15941",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16116",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveAmuletBeltManaRecoveryRate1",
             "Level": "1",
@@ -13459,6 +13849,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15952",
 =======
             "ID": "15950",
@@ -13466,6 +13857,9 @@
 =======
             "ID": "15952",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16127",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveBeltChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -13492,6 +13886,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15968",
 =======
             "ID": "15966",
@@ -13499,6 +13894,9 @@
 =======
             "ID": "15968",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16143",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveArmourMinionLife1",
             "Level": "74",
@@ -13545,6 +13943,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15985",
 =======
             "ID": "15983",
@@ -13552,6 +13951,9 @@
 =======
             "ID": "15985",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16160",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelryVaalSkillDamage1",
             "Level": "1",
@@ -13594,6 +13996,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17990",
 =======
             "ID": "17988",
@@ -13601,6 +14004,9 @@
 =======
             "ID": "17990",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "18167",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Guatelitzi's",
             "Code": "IncreasedEnergyShieldEnhancedLevel50ModES_",
             "Level": "50",
@@ -13635,6 +14041,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17991",
 =======
             "ID": "17989",
@@ -13642,6 +14049,9 @@
 =======
             "ID": "17991",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "18168",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Guatelitzi's",
             "Code": "IncreasedEnergyShieldEnhancedLevel50ModRegen",
             "Level": "50",
@@ -13674,7 +14084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "637",
+            "ID": "648",
             "Name": "Guatelitzi's",
             "Code": "IncreasedEnergyShieldEnhancedModES",
             "Level": "1",
@@ -13709,6 +14119,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17982",
 =======
             "ID": "17980",
@@ -13716,6 +14127,9 @@
 =======
             "ID": "17982",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "18159",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Guatelitzi's",
             "Code": "IncreasedLifeEnhancedLevel50Mod_",
             "Level": "50",
@@ -13751,7 +14165,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "313",
+            "ID": "319",
             "Name": "Guatelitzi's",
             "Code": "IncreasedLifeEnhancedMod",
             "Level": "1",
@@ -13789,6 +14203,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "18043",
 =======
             "ID": "18041",
@@ -13796,6 +14211,9 @@
 =======
             "ID": "18043",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "18220",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Guatelitzi",
             "Code": "LifeRegenerationEnhancedLevel50Mod",
             "Level": "50",
@@ -13831,7 +14249,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2862",
+            "ID": "2887",
             "Name": "of Guatelitzi",
             "Code": "LifeRegenerationEnhancedMod",
             "Level": "1",
@@ -13889,6 +14307,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17218",
 =======
             "ID": "17216",
@@ -13896,6 +14315,9 @@
 =======
             "ID": "17218",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17395",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -13940,6 +14362,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17219",
 =======
             "ID": "17217",
@@ -13947,6 +14370,9 @@
 =======
             "ID": "17219",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17396",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -13991,6 +14417,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17220",
 =======
             "ID": "17218",
@@ -13998,6 +14425,9 @@
 =======
             "ID": "17220",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17397",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14035,6 +14465,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17231",
 =======
             "ID": "17229",
@@ -14042,6 +14473,9 @@
 =======
             "ID": "17231",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17408",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -14080,6 +14514,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17232",
 =======
             "ID": "17230",
@@ -14087,6 +14522,9 @@
 =======
             "ID": "17232",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17409",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -14126,6 +14564,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17233",
 =======
             "ID": "17231",
@@ -14133,6 +14572,9 @@
 =======
             "ID": "17233",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17410",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -14158,6 +14600,7 @@
             ],
             "mod_fossil_item": []
         },
+<<<<<<< HEAD
         "82": {
             "Code": "JunMasterVeiledChanceToNotConsumeFlaskCharges",
             "ModDomainsID": "28",
@@ -14190,6 +14633,8 @@
             "mod_no": [],
             "mod_fossil_item": []
         },
+=======
+>>>>>>> 92f2640 (Update Data)
         "83": {
             "Code": "JunMasterVeiledFlaskEffectAndFlaskChargesGained",
             "ModDomainsID": "28",
@@ -14202,6 +14647,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17236",
 =======
             "ID": "17234",
@@ -14209,6 +14655,9 @@
 =======
             "ID": "17236",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17413",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -14234,6 +14683,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17238",
 =======
             "ID": "17236",
@@ -14241,6 +14691,9 @@
 =======
             "ID": "17238",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17415",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14266,6 +14719,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17264",
 =======
             "ID": "17262",
@@ -14273,6 +14727,9 @@
 =======
             "ID": "17264",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17441",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14315,6 +14772,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17269",
 =======
             "ID": "17267",
@@ -14322,6 +14780,9 @@
 =======
             "ID": "17269",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17446",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -14371,6 +14832,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17270",
 =======
             "ID": "17268",
@@ -14378,6 +14840,9 @@
 =======
             "ID": "17270",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17447",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -14422,6 +14887,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17272",
 =======
             "ID": "17270",
@@ -14429,6 +14895,9 @@
 =======
             "ID": "17272",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17449",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14464,6 +14933,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17281",
 =======
             "ID": "17279",
@@ -14471,6 +14941,9 @@
 =======
             "ID": "17281",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17458",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14507,6 +14980,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17300",
 =======
             "ID": "17298",
@@ -14514,6 +14988,9 @@
 =======
             "ID": "17300",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17477",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "Leo's",
             "ModGenerationTypeID": "1",
@@ -14557,6 +15034,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17349",
 =======
             "ID": "17347",
@@ -14564,6 +15042,9 @@
 =======
             "ID": "17349",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17526",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14618,6 +15099,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17350",
 =======
             "ID": "17348",
@@ -14625,6 +15107,9 @@
 =======
             "ID": "17350",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17527",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14679,6 +15164,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17351",
 =======
             "ID": "17349",
@@ -14686,6 +15172,9 @@
 =======
             "ID": "17351",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17528",
+>>>>>>> 92f2640 (Update Data)
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -14733,6 +15222,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15257",
 =======
             "ID": "15255",
@@ -14740,6 +15230,9 @@
 =======
             "ID": "15257",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15432",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -14763,6 +15256,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15256",
 =======
             "ID": "15254",
@@ -14770,6 +15264,9 @@
 =======
             "ID": "15256",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15431",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -14793,6 +15290,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15259",
 =======
             "ID": "15257",
@@ -14800,6 +15298,9 @@
 =======
             "ID": "15259",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15434",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -14824,6 +15325,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15258",
 =======
             "ID": "15256",
@@ -14831,6 +15333,9 @@
 =======
             "ID": "15258",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15433",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -14848,6 +15353,7 @@
         "1888": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14478",
 =======
             "ID": "14476",
@@ -14855,6 +15361,9 @@
 =======
             "ID": "14478",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14642",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "PercentageAllAttributesUberElder1",
             "Level": "68",
@@ -14890,6 +15399,7 @@
         "1889": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14479",
 =======
             "ID": "14477",
@@ -14897,6 +15407,9 @@
 =======
             "ID": "14479",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14643",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "PercentageAllAttributesUberElder2",
             "Level": "75",
@@ -14932,6 +15445,7 @@
         "1986": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14576",
 =======
             "ID": "14574",
@@ -14939,6 +15453,9 @@
 =======
             "ID": "14576",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14740",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "MaximumLifeIncreasePercentBeltUber1",
             "Level": "68",
@@ -14978,6 +15495,7 @@
         "1987": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14577",
 =======
             "ID": "14575",
@@ -14985,6 +15503,9 @@
 =======
             "ID": "14577",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14741",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "MaximumLifeIncreasePercentBeltUber2",
             "Level": "75",
@@ -15024,6 +15545,7 @@
         "1992": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14582",
 =======
             "ID": "14580",
@@ -15031,6 +15553,9 @@
 =======
             "ID": "14582",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14746",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "AllResistancesBeltUber1",
             "Level": "68",
@@ -15070,6 +15595,7 @@
         "1993": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14583",
 =======
             "ID": "14581",
@@ -15077,6 +15603,9 @@
 =======
             "ID": "14583",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14747",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "AllResistancesBeltUber2",
             "Level": "75",
@@ -15116,6 +15645,7 @@
         "1996": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14586",
 =======
             "ID": "14584",
@@ -15123,6 +15653,9 @@
 =======
             "ID": "14586",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14750",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "LifeRecoveryRateUber1",
             "Level": "68",
@@ -15162,6 +15695,7 @@
         "1997": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14587",
 =======
             "ID": "14585",
@@ -15169,6 +15703,9 @@
 =======
             "ID": "14587",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14751",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "LifeRecoveryRateUber2_",
             "Level": "75",
@@ -15205,6 +15742,7 @@
             ],
             "mod_fossil_item": []
         },
+<<<<<<< HEAD
         "2002": {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -15247,6 +15785,10 @@
 =======
             "ID": "14593",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+        "2003": {
+            "ID": "14757",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "ChaosResistanceWhileUsingFlaskUber1",
             "Level": "68",
@@ -15287,6 +15829,7 @@
         "2004": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14594",
 =======
             "ID": "14592",
@@ -15294,6 +15837,9 @@
 =======
             "ID": "14594",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14758",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "ChaosResistanceWhileUsingFlaskUber2_",
             "Level": "75",
@@ -15334,6 +15880,7 @@
         "2006": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14596",
 =======
             "ID": "14594",
@@ -15341,6 +15888,9 @@
 =======
             "ID": "14596",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14760",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "FortifyOnMeleeStunUber1",
             "Level": "68",
@@ -15364,6 +15914,7 @@
         "2007": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14597",
 =======
             "ID": "14595",
@@ -15371,6 +15922,9 @@
 =======
             "ID": "14597",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14761",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "GrantsEnduringCrySkillUber1",
             "Level": "68",
@@ -15396,6 +15950,7 @@
         "2008": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14598",
 =======
             "ID": "14596",
@@ -15403,6 +15958,9 @@
 =======
             "ID": "14598",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14762",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "GrantsRallyingCrySkillUber1",
             "Level": "68",
@@ -15428,6 +15986,7 @@
         "2010": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14600",
 =======
             "ID": "14598",
@@ -15435,6 +15994,9 @@
 =======
             "ID": "14600",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14764",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "RemoveIgniteOnFlaskUseUber1",
             "Level": "75",
@@ -15479,6 +16041,7 @@
         "2013": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14603",
 =======
             "ID": "14601",
@@ -15486,6 +16049,9 @@
 =======
             "ID": "14603",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14767",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "AttackSpeedDuringFlaskEffectUber1",
             "Level": "68",
@@ -15526,6 +16092,7 @@
         "2015": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14605",
 =======
             "ID": "14603",
@@ -15533,6 +16100,9 @@
 =======
             "ID": "14605",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14769",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "MeleeDamageDuringFlaskEffectUber1",
             "Level": "68",
@@ -15573,6 +16143,7 @@
         "2016": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14606",
 =======
             "ID": "14604",
@@ -15580,6 +16151,9 @@
 =======
             "ID": "14606",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14770",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "MeleeDamageDuringFlaskEffectUber2_",
             "Level": "75",
@@ -15620,6 +16194,7 @@
         "2017": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14607",
 =======
             "ID": "14605",
@@ -15627,6 +16202,9 @@
 =======
             "ID": "14607",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14771",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "MeleeDamageDuringFlaskEffectUber3",
             "Level": "80",
@@ -15667,6 +16245,7 @@
         "2018": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14608",
 =======
             "ID": "14606",
@@ -15674,6 +16253,9 @@
 =======
             "ID": "14608",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14772",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "ProjectileAttackDamageDuringFlaskEffectUber1_",
             "Level": "68",
@@ -15714,6 +16296,7 @@
         "2019": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14609",
 =======
             "ID": "14607",
@@ -15721,6 +16304,9 @@
 =======
             "ID": "14609",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14773",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "ProjectileAttackDamageDuringFlaskEffectUber2_",
             "Level": "75",
@@ -15761,6 +16347,7 @@
         "2020": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14610",
 =======
             "ID": "14608",
@@ -15768,6 +16355,9 @@
 =======
             "ID": "14610",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14774",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Elder",
             "Code": "ProjectileAttackDamageDuringFlaskEffectUber3",
             "Level": "80",
@@ -15808,6 +16398,7 @@
         "2024": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14614",
 =======
             "ID": "14612",
@@ -15815,6 +16406,9 @@
 =======
             "ID": "14614",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14778",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "PhysicalDamageBeltUber1",
             "Level": "68",
@@ -15856,6 +16450,7 @@
         "2025": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14615",
 =======
             "ID": "14613",
@@ -15863,6 +16458,9 @@
 =======
             "ID": "14615",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14779",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "PhysicalDamageBeltUber2",
             "Level": "75",
@@ -15904,6 +16502,7 @@
         "2026": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14616",
 =======
             "ID": "14614",
@@ -15911,6 +16510,9 @@
 =======
             "ID": "14616",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14780",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "PhysicalDamageBeltUber3___",
             "Level": "80",
@@ -15952,6 +16554,7 @@
         "2030": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14620",
 =======
             "ID": "14618",
@@ -15959,6 +16562,9 @@
 =======
             "ID": "14620",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14784",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "ArmourDoubleArmourEffectUber1",
             "Level": "75",
@@ -15995,6 +16601,7 @@
         "2031": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14621",
 =======
             "ID": "14619",
@@ -16002,6 +16609,9 @@
 =======
             "ID": "14621",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14785",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Elder's",
             "Code": "ArmourDoubleArmourEffectUber2",
             "Level": "80",
@@ -16040,6 +16650,7 @@
         "1982": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14572",
 =======
             "ID": "14570",
@@ -16047,6 +16658,9 @@
 =======
             "ID": "14572",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14736",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "PhysicalAttackDamageTakenUber1_",
             "Level": "68",
@@ -16086,6 +16700,7 @@
         "1983": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14573",
 =======
             "ID": "14571",
@@ -16093,6 +16708,9 @@
 =======
             "ID": "14573",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14737",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "PhysicalAttackDamageTakenUber2",
             "Level": "75",
@@ -16132,6 +16750,7 @@
         "1984": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14574",
 =======
             "ID": "14572",
@@ -16139,6 +16758,9 @@
 =======
             "ID": "14574",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14738",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "IncreasedCooldownRecoveryUber1",
             "Level": "75",
@@ -16162,6 +16784,7 @@
         "1985": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14575",
 =======
             "ID": "14573",
@@ -16169,6 +16792,9 @@
 =======
             "ID": "14575",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14739",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "IncreasedCooldownRecoveryUber2_",
             "Level": "84",
@@ -16192,6 +16818,7 @@
         "1998": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14588",
 =======
             "ID": "14586",
@@ -16199,6 +16826,9 @@
 =======
             "ID": "14588",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14752",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "EnergyShieldRecoveryRateUber1",
             "Level": "68",
@@ -16235,6 +16865,7 @@
         "1999": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14589",
 =======
             "ID": "14587",
@@ -16242,6 +16873,9 @@
 =======
             "ID": "14589",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14753",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "EnergyShieldRecoveryRateUber2",
             "Level": "75",
@@ -16278,6 +16912,7 @@
         "2000": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14590",
 =======
             "ID": "14588",
@@ -16285,6 +16920,9 @@
 =======
             "ID": "14590",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14754",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "ManaRecoveryRateUber1_",
             "Level": "68",
@@ -16324,6 +16962,7 @@
         "2001": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14591",
 =======
             "ID": "14589",
@@ -16331,6 +16970,9 @@
 =======
             "ID": "14591",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14755",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "ManaRecoveryRateUber2",
             "Level": "75",
@@ -16370,6 +17012,7 @@
         "2005": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14595",
 =======
             "ID": "14593",
@@ -16377,6 +17020,9 @@
 =======
             "ID": "14595",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14759",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "MovementSpeedDuringFlaskEffectUber1",
             "Level": "81",
@@ -16413,6 +17059,7 @@
         "2009": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14599",
 =======
             "ID": "14597",
@@ -16420,6 +17067,9 @@
 =======
             "ID": "14599",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14763",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Shaper's",
             "Code": "GrantsAbyssalCrySkillUber1",
             "Level": "68",
@@ -16445,6 +17095,7 @@
         "2011": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14601",
 =======
             "ID": "14599",
@@ -16452,6 +17103,9 @@
 =======
             "ID": "14601",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14765",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "RemoveFreezeOnFlaskUseUber1_",
             "Level": "75",
@@ -16496,6 +17150,7 @@
         "2012": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14602",
 =======
             "ID": "14600",
@@ -16503,6 +17158,9 @@
 =======
             "ID": "14602",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14766",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "RemoveShockOnFlaskUseUber1_",
             "Level": "75",
@@ -16547,6 +17205,7 @@
         "2014": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14604",
 =======
             "ID": "14602",
@@ -16554,6 +17213,9 @@
 =======
             "ID": "14604",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14768",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "CastSpeedDuringFlaskEffectUber1",
             "Level": "68",
@@ -16594,6 +17256,7 @@
         "2021": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14611",
 =======
             "ID": "14609",
@@ -16601,6 +17264,9 @@
 =======
             "ID": "14611",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14775",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "SpellDamageDuringFlaskEffectUber1",
             "Level": "68",
@@ -16642,6 +17308,7 @@
         "2022": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14612",
 =======
             "ID": "14610",
@@ -16649,6 +17316,9 @@
 =======
             "ID": "14612",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14776",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "SpellDamageDuringFlaskEffectUber2",
             "Level": "75",
@@ -16690,6 +17360,7 @@
         "2023": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14613",
 =======
             "ID": "14611",
@@ -16697,6 +17368,9 @@
 =======
             "ID": "14613",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14777",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Shaping",
             "Code": "SpellDamageDuringFlaskEffectUber3_",
             "Level": "80",
@@ -16738,6 +17412,7 @@
         "2027": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14617",
 =======
             "ID": "14615",
@@ -16745,6 +17420,9 @@
 =======
             "ID": "14617",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14781",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Shaper's",
             "Code": "ElementalDamageBeltUber1",
             "Level": "68",
@@ -16786,6 +17464,7 @@
         "2028": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14618",
 =======
             "ID": "14616",
@@ -16793,6 +17472,9 @@
 =======
             "ID": "14618",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14782",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Shaper's",
             "Code": "ElementalDamageBeltUber2",
             "Level": "75",
@@ -16834,6 +17516,7 @@
         "2029": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14619",
 =======
             "ID": "14617",
@@ -16841,6 +17524,9 @@
 =======
             "ID": "14619",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14783",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Shaper's",
             "Code": "ElementalDamageBeltUber3",
             "Level": "80",
@@ -16882,6 +17568,7 @@
         "2032": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14622",
 =======
             "ID": "14620",
@@ -16889,6 +17576,9 @@
 =======
             "ID": "14622",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14786",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Shaper's",
             "Code": "IncreasedEnergyShieldFromBodyArmourUber1_",
             "Level": "75",
@@ -16901,9 +17591,9 @@
                 "400",
                 "0"
             ],
-            "StatsStr": "(21&ndash;25)% increased Energy Shield from Body Armour",
+            "StatsStr": "(21&ndash;25)% increased Energy Shield from Equipped Body Armour",
             "DropChance": "400",
-            "str": "<span class='mod-value'>(21&ndash;25)</span>% increased Energy Shield from Body Armour",
+            "str": "<span class='mod-value'>(21&ndash;25)</span>% increased Energy Shield from Equipped Body Armour",
             "master_no": [],
             "fossil_no": [
                 "energy_shield",
@@ -16925,6 +17615,7 @@
         "2033": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "14623",
 =======
             "ID": "14621",
@@ -16932,6 +17623,9 @@
 =======
             "ID": "14623",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "14787",
+>>>>>>> 92f2640 (Update Data)
             "Name": "The Shaper's",
             "Code": "IncreasedEnergyShieldFromBodyArmourUber2",
             "Level": "80",
@@ -16944,9 +17638,9 @@
                 "400",
                 "0"
             ],
-            "StatsStr": "(26&ndash;30)% increased Energy Shield from Body Armour",
+            "StatsStr": "(26&ndash;30)% increased Energy Shield from Equipped Body Armour",
             "DropChance": "400",
-            "str": "<span class='mod-value'>(26&ndash;30)</span>% increased Energy Shield from Body Armour",
+            "str": "<span class='mod-value'>(26&ndash;30)</span>% increased Energy Shield from Equipped Body Armour",
             "master_no": [],
             "fossil_no": [
                 "energy_shield",
@@ -16970,6 +17664,7 @@
         "3098": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20639",
 =======
             "ID": "20637",
@@ -16977,6 +17672,9 @@
 =======
             "ID": "20639",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20816",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "GlobalEnergyShieldPercentInfluence1",
             "Level": "68",
@@ -17014,6 +17712,7 @@
         "3099": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20640",
 =======
             "ID": "20638",
@@ -17021,6 +17720,9 @@
 =======
             "ID": "20640",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20817",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "GlobalEnergyShieldPercentInfluence2",
             "Level": "78",
@@ -17058,6 +17760,7 @@
         "3100": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20641",
 =======
             "ID": "20639",
@@ -17065,6 +17768,9 @@
 =======
             "ID": "20641",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20818",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "GlobalEnergyShieldPercentInfluence3",
             "Level": "82",
@@ -17102,6 +17808,7 @@
         "3101": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20642",
 =======
             "ID": "20640",
@@ -17109,6 +17816,9 @@
 =======
             "ID": "20642",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20819",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "CriticalStrikeChanceShockedEnemiesInfluence1",
             "Level": "68",
@@ -17144,6 +17854,7 @@
         "3102": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20643",
 =======
             "ID": "20641",
@@ -17151,6 +17862,9 @@
 =======
             "ID": "20643",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20820",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "CriticalStrikeChanceShockedEnemiesInfluence2",
             "Level": "75",
@@ -17186,6 +17900,7 @@
         "3103": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20644",
 =======
             "ID": "20642",
@@ -17193,6 +17908,9 @@
 =======
             "ID": "20644",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20821",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "CriticalStrikeChanceShockedEnemiesInfluence3__",
             "Level": "80",
@@ -17228,6 +17946,7 @@
         "3104": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20645",
 =======
             "ID": "20643",
@@ -17235,6 +17954,9 @@
 =======
             "ID": "20645",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20822",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "LightningDamageInfluence1__",
             "Level": "68",
@@ -17280,6 +18002,7 @@
         "3105": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20646",
 =======
             "ID": "20644",
@@ -17287,6 +18010,9 @@
 =======
             "ID": "20646",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20823",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "LightningDamageInfluence2",
             "Level": "75",
@@ -17332,6 +18058,7 @@
         "3106": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20647",
 =======
             "ID": "20645",
@@ -17339,6 +18066,9 @@
 =======
             "ID": "20647",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20824",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "LightningDamageInfluence3_",
             "Level": "80",
@@ -17384,6 +18114,7 @@
         "3107": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20648",
 =======
             "ID": "20646",
@@ -17391,6 +18122,9 @@
 =======
             "ID": "20648",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20825",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Crusader's",
             "Code": "FortifyOnMeleeStunInfluence1",
             "Level": "68",
@@ -17414,6 +18148,7 @@
         "3108": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20649",
 =======
             "ID": "20647",
@@ -17421,6 +18156,9 @@
 =======
             "ID": "20649",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20826",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "CooldownRecoveryHighInfluence1",
             "Level": "75",
@@ -17444,6 +18182,7 @@
         "3109": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20650",
 =======
             "ID": "20648",
@@ -17451,6 +18190,9 @@
 =======
             "ID": "20650",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20827",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "CooldownRecoveryHighInfluence2",
             "Level": "84",
@@ -17474,6 +18216,7 @@
         "3110": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20651",
 =======
             "ID": "20649",
@@ -17481,6 +18224,9 @@
 =======
             "ID": "20651",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20828",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "SpellDamageDuringFlaskEffectInfluence1__",
             "Level": "68",
@@ -17522,6 +18268,7 @@
         "3111": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20652",
 =======
             "ID": "20650",
@@ -17529,6 +18276,9 @@
 =======
             "ID": "20652",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20829",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "SpellDamageDuringFlaskEffectInfluence2",
             "Level": "75",
@@ -17570,6 +18320,7 @@
         "3112": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20653",
 =======
             "ID": "20651",
@@ -17577,6 +18328,9 @@
 =======
             "ID": "20653",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20830",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "SpellDamageDuringFlaskEffectInfluence3",
             "Level": "80",
@@ -17618,6 +18372,7 @@
         "3113": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20654",
 =======
             "ID": "20652",
@@ -17625,6 +18380,9 @@
 =======
             "ID": "20654",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20831",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "EnergyShieldRecoveryRateInfluence1",
             "Level": "68",
@@ -17661,6 +18419,7 @@
         "3114": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20655",
 =======
             "ID": "20653",
@@ -17668,6 +18427,9 @@
 =======
             "ID": "20655",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20832",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "EnergyShieldRecoveryRateInfluence2",
             "Level": "75",
@@ -17704,6 +18466,7 @@
         "3115": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20656",
 =======
             "ID": "20654",
@@ -17711,6 +18474,9 @@
 =======
             "ID": "20656",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20833",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crusade",
             "Code": "RemoveShockOnFlaskUseInfluence1",
             "Level": "75",
@@ -17757,6 +18523,7 @@
         "3136": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20677",
 =======
             "ID": "20675",
@@ -17764,6 +18531,9 @@
 =======
             "ID": "20677",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20854",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "GlobalEvasionPercentInfluence1",
             "Level": "68",
@@ -17801,6 +18571,7 @@
         "3137": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20678",
 =======
             "ID": "20676",
@@ -17808,6 +18579,9 @@
 =======
             "ID": "20678",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20855",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "GlobalEvasionPercentInfluence2",
             "Level": "78",
@@ -17845,6 +18619,7 @@
         "3138": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20679",
 =======
             "ID": "20677",
@@ -17852,6 +18627,9 @@
 =======
             "ID": "20679",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20856",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "GlobalEvasionPercentInfluence3_",
             "Level": "82",
@@ -17889,6 +18667,7 @@
         "3139": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20680",
 =======
             "ID": "20678",
@@ -17896,6 +18675,9 @@
 =======
             "ID": "20680",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20857",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "DamageChilledEnemiesInfluence1",
             "Level": "68",
@@ -17931,6 +18713,7 @@
         "3140": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20681",
 =======
             "ID": "20679",
@@ -17938,6 +18721,9 @@
 =======
             "ID": "20681",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20858",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "DamageChilledEnemiesInfluence2",
             "Level": "75",
@@ -17973,6 +18759,7 @@
         "3141": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20682",
 =======
             "ID": "20680",
@@ -17980,6 +18767,9 @@
 =======
             "ID": "20682",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20859",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "DamageChilledEnemiesInfluence3",
             "Level": "80",
@@ -18015,6 +18805,7 @@
         "3144": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20685",
 =======
             "ID": "20683",
@@ -18022,6 +18813,9 @@
 =======
             "ID": "20685",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20862",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "ColdDamageInfluence1",
             "Level": "68",
@@ -18067,6 +18861,7 @@
         "3145": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20686",
 =======
             "ID": "20684",
@@ -18074,6 +18869,9 @@
 =======
             "ID": "20686",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20863",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "ColdDamageInfluence2",
             "Level": "75",
@@ -18119,6 +18917,7 @@
         "3146": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20687",
 =======
             "ID": "20685",
@@ -18126,6 +18925,9 @@
 =======
             "ID": "20687",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20864",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Redeemer's",
             "Code": "ColdDamageInfluence3",
             "Level": "80",
@@ -18171,6 +18973,7 @@
         "3147": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20688",
 =======
             "ID": "20686",
@@ -18178,6 +18981,9 @@
 =======
             "ID": "20688",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20865",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Redemption",
             "Code": "AttackSpeedDuringFlaskEffectInfluence1",
             "Level": "68",
@@ -18218,6 +19024,7 @@
         "3148": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20689",
 =======
             "ID": "20687",
@@ -18225,6 +19032,9 @@
 =======
             "ID": "20689",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20866",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Redemption",
             "Code": "ProjectileAttackDamageDuringFlaskEffectInfluence1__",
             "Level": "68",
@@ -18265,6 +19075,7 @@
         "3149": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20690",
 =======
             "ID": "20688",
@@ -18272,6 +19083,9 @@
 =======
             "ID": "20690",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20867",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Redemption",
             "Code": "ProjectileAttackDamageDuringFlaskEffectInfluence2_",
             "Level": "75",
@@ -18312,6 +19126,7 @@
         "3150": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20691",
 =======
             "ID": "20689",
@@ -18319,6 +19134,9 @@
 =======
             "ID": "20691",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20868",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Redemption",
             "Code": "ProjectileAttackDamageDuringFlaskEffectInfluence3",
             "Level": "80",
@@ -18359,6 +19177,7 @@
         "3151": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20692",
 =======
             "ID": "20690",
@@ -18366,6 +19185,9 @@
 =======
             "ID": "20692",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20869",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Redemption",
             "Code": "ManaRecoveryRateInfluence1",
             "Level": "68",
@@ -18405,6 +19227,7 @@
         "3152": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20693",
 =======
             "ID": "20691",
@@ -18412,6 +19235,9 @@
 =======
             "ID": "20693",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20870",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Redemption",
             "Code": "ManaRecoveryRateInfluence2__",
             "Level": "75",
@@ -18451,6 +19277,7 @@
         "3153": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20694",
 =======
             "ID": "20692",
@@ -18458,6 +19285,9 @@
 =======
             "ID": "20694",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20871",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Redemption",
             "Code": "RemoveFreezeOnFlaskUseInfluence1",
             "Level": "75",
@@ -18504,6 +19334,7 @@
         "3063": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20604",
 =======
             "ID": "20602",
@@ -18511,6 +19342,9 @@
 =======
             "ID": "20604",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20781",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hunter's",
             "Code": "MaximumLifeInfluence1",
             "Level": "68",
@@ -18551,6 +19385,7 @@
         "3064": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20605",
 =======
             "ID": "20603",
@@ -18558,6 +19393,9 @@
 =======
             "ID": "20605",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20782",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hunter's",
             "Code": "MaximumLifeInfluence2",
             "Level": "84",
@@ -18595,6 +19433,7 @@
             ],
             "mod_fossil_item": []
         },
+<<<<<<< HEAD
         "3154": {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -18637,6 +19476,10 @@
 =======
             "ID": "20696",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+        "3155": {
+            "ID": "20873",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hunter's",
             "Code": "FlaskChargeOnCritInfluence1",
             "Level": "75",
@@ -18673,6 +19516,7 @@
         "3156": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20697",
 =======
             "ID": "20695",
@@ -18680,6 +19524,9 @@
 =======
             "ID": "20697",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20874",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hunter's",
             "Code": "ChaosDamageInfluence1",
             "Level": "68",
@@ -18721,6 +19568,7 @@
         "3157": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20698",
 =======
             "ID": "20696",
@@ -18728,6 +19576,9 @@
 =======
             "ID": "20698",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20875",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hunter's",
             "Code": "ChaosDamageInfluence2_",
             "Level": "75",
@@ -18769,6 +19620,7 @@
         "3158": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20699",
 =======
             "ID": "20697",
@@ -18776,6 +19628,9 @@
 =======
             "ID": "20699",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20876",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hunter's",
             "Code": "ChaosDamageInfluence3",
             "Level": "80",
@@ -18817,6 +19672,7 @@
         "3159": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20700",
 =======
             "ID": "20698",
@@ -18824,6 +19680,9 @@
 =======
             "ID": "20700",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20877",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "PercentageAllAttributesInfluence1",
             "Level": "68",
@@ -18859,6 +19718,7 @@
         "3160": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20701",
 =======
             "ID": "20699",
@@ -18866,6 +19726,9 @@
 =======
             "ID": "20701",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20878",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "PercentageAllAttributesInfluence2",
             "Level": "75",
@@ -18901,6 +19764,7 @@
         "3161": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20702",
 =======
             "ID": "20700",
@@ -18908,6 +19772,9 @@
 =======
             "ID": "20702",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20879",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "CastSpeedDuringFlaskEffectInfluence1",
             "Level": "68",
@@ -18948,6 +19815,7 @@
         "3162": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20703",
 =======
             "ID": "20701",
@@ -18955,6 +19823,9 @@
 =======
             "ID": "20703",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20880",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "ArmourPenetrationInfluence1",
             "Level": "68",
@@ -18996,6 +19867,7 @@
         "3163": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20704",
 =======
             "ID": "20702",
@@ -19003,6 +19875,9 @@
 =======
             "ID": "20704",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20881",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "ArmourPenetrationInfluence2",
             "Level": "75",
@@ -19044,6 +19919,7 @@
         "3164": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20705",
 =======
             "ID": "20703",
@@ -19051,6 +19927,9 @@
 =======
             "ID": "20705",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20882",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "MovementSpeedDuringFlaskEffectInfluence1",
             "Level": "81",
@@ -19087,6 +19966,7 @@
         "3165": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20706",
 =======
             "ID": "20704",
@@ -19094,6 +19974,9 @@
 =======
             "ID": "20706",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20883",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "PhysicalAttackDamageTakenInfluence1_",
             "Level": "68",
@@ -19133,6 +20016,7 @@
         "3166": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20707",
 =======
             "ID": "20705",
@@ -19140,6 +20024,9 @@
 =======
             "ID": "20707",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20884",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hunt",
             "Code": "PhysicalAttackDamageTakenInfluence2",
             "Level": "75",
@@ -19181,6 +20068,7 @@
         "2970": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20511",
 =======
             "ID": "20509",
@@ -19188,6 +20076,9 @@
 =======
             "ID": "20511",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20688",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "AllResistancesInfluence1",
             "Level": "68",
@@ -19228,6 +20119,7 @@
         "2971": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20512",
 =======
             "ID": "20510",
@@ -19235,6 +20127,9 @@
 =======
             "ID": "20512",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20689",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "AllResistancesInfluence2_",
             "Level": "70",
@@ -19275,6 +20170,7 @@
         "2972": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20513",
 =======
             "ID": "20511",
@@ -19282,6 +20178,9 @@
 =======
             "ID": "20513",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20690",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "AllResistancesInfluence3_",
             "Level": "75",
@@ -19322,6 +20221,7 @@
         "3116": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20657",
 =======
             "ID": "20655",
@@ -19329,6 +20229,9 @@
 =======
             "ID": "20657",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20834",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "GlobalArmourPercentInfluence1",
             "Level": "68",
@@ -19366,6 +20269,7 @@
         "3117": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20658",
 =======
             "ID": "20656",
@@ -19373,6 +20277,9 @@
 =======
             "ID": "20658",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20835",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "GlobalArmourPercentInfluence2___",
             "Level": "78",
@@ -19410,6 +20317,7 @@
         "3118": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20659",
 =======
             "ID": "20657",
@@ -19417,6 +20325,9 @@
 =======
             "ID": "20659",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20836",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "GlobalArmourPercentInfluence3",
             "Level": "82",
@@ -19454,6 +20365,7 @@
         "3119": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20660",
 =======
             "ID": "20658",
@@ -19461,6 +20373,9 @@
 =======
             "ID": "20660",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20837",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "FireDamageBurningEnemiesInfluence1",
             "Level": "68",
@@ -19506,6 +20421,7 @@
         "3120": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20661",
 =======
             "ID": "20659",
@@ -19513,6 +20429,9 @@
 =======
             "ID": "20661",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20838",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "FireDamageBurningEnemiesInfluence2",
             "Level": "75",
@@ -19558,6 +20477,7 @@
         "3121": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20662",
 =======
             "ID": "20660",
@@ -19565,6 +20485,9 @@
 =======
             "ID": "20662",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20839",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "FireDamageBurningEnemiesInfluence3",
             "Level": "80",
@@ -19610,6 +20533,7 @@
         "3122": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20663",
 =======
             "ID": "20661",
@@ -19617,6 +20541,9 @@
 =======
             "ID": "20663",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20840",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "FireDamageInfluence1_",
             "Level": "68",
@@ -19662,6 +20589,7 @@
         "3123": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20664",
 =======
             "ID": "20662",
@@ -19669,6 +20597,9 @@
 =======
             "ID": "20664",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20841",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "FireDamageInfluence2",
             "Level": "75",
@@ -19714,6 +20645,7 @@
         "3124": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20665",
 =======
             "ID": "20663",
@@ -19721,6 +20653,9 @@
 =======
             "ID": "20665",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20842",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "FireDamageInfluence3",
             "Level": "80",
@@ -19766,6 +20701,7 @@
         "3127": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20668",
 =======
             "ID": "20666",
@@ -19773,6 +20709,9 @@
 =======
             "ID": "20668",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20845",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "AllDamageInfluence1",
             "Level": "75",
@@ -19808,6 +20747,7 @@
         "3128": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20669",
 =======
             "ID": "20667",
@@ -19815,6 +20755,9 @@
 =======
             "ID": "20669",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20846",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "AllDamageInfluence2___",
             "Level": "80",
@@ -19850,6 +20793,7 @@
         "3129": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20670",
 =======
             "ID": "20668",
@@ -19857,6 +20801,9 @@
 =======
             "ID": "20670",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20847",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Warlord's",
             "Code": "AllDamageInfluence3",
             "Level": "85",
@@ -19892,6 +20839,7 @@
         "3130": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20671",
 =======
             "ID": "20669",
@@ -19899,6 +20847,9 @@
 =======
             "ID": "20671",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20848",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "MeleeDamageDuringFlaskEffectInfluence1",
             "Level": "68",
@@ -19939,6 +20890,7 @@
         "3131": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20672",
 =======
             "ID": "20670",
@@ -19946,6 +20898,9 @@
 =======
             "ID": "20672",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20849",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "MeleeDamageDuringFlaskEffectInfluence2",
             "Level": "75",
@@ -19986,6 +20941,7 @@
         "3132": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20673",
 =======
             "ID": "20671",
@@ -19993,6 +20949,9 @@
 =======
             "ID": "20673",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20850",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "MeleeDamageDuringFlaskEffectInfluence3",
             "Level": "80",
@@ -20033,6 +20992,7 @@
         "3133": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20674",
 =======
             "ID": "20672",
@@ -20040,6 +21000,9 @@
 =======
             "ID": "20674",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20851",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "LifeRecoveryRateInfluence1",
             "Level": "68",
@@ -20079,6 +21042,7 @@
         "3134": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20675",
 =======
             "ID": "20673",
@@ -20086,6 +21050,9 @@
 =======
             "ID": "20675",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20852",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "LifeRecoveryRateInfluence2",
             "Level": "75",
@@ -20125,6 +21092,7 @@
         "3135": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "20676",
 =======
             "ID": "20674",
@@ -20132,6 +21100,9 @@
 =======
             "ID": "20676",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "20853",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Conquest",
             "Code": "RemoveIgniteOnFlaskUseInfluence1",
             "Level": "75",

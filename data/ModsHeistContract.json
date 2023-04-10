@@ -214,6 +214,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22181",
 =======
             "ID": "22179",
@@ -221,6 +222,9 @@
 =======
             "ID": "22181",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22360",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Antagonist's",
             "Code": "HeistContractNemesisModOnRares",
             "Level": "1",
@@ -242,6 +246,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22182",
 =======
             "ID": "22180",
@@ -249,6 +254,9 @@
 =======
             "ID": "22182",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22361",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Chaining",
             "Code": "HeistContractMonsterChain1_",
             "Level": "1",
@@ -270,6 +278,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22183",
 =======
             "ID": "22181",
@@ -277,6 +286,9 @@
 =======
             "ID": "22183",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22362",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Chaining",
             "Code": "HeistContractMonsterChain2_",
             "Level": "68",
@@ -298,6 +310,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22184",
 =======
             "ID": "22182",
@@ -305,6 +318,9 @@
 =======
             "ID": "22184",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22363",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Splitting",
             "Code": "HeistContractMonsterMultipleProjectiles",
             "Level": "1",
@@ -326,6 +342,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22185",
 =======
             "ID": "22183",
@@ -333,6 +350,9 @@
 =======
             "ID": "22185",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22364",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Unstoppable",
             "Code": "HeistContractMonstersCantBeSlowedOrTaunted",
             "Level": "46",
@@ -366,6 +386,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22186",
 =======
             "ID": "22184",
@@ -373,6 +394,9 @@
 =======
             "ID": "22186",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22365",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Conflagrating",
             "Code": "HeistContractMonstersAllDamageAlwaysIgnites_",
             "Level": "46",
@@ -414,6 +438,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22187",
 =======
             "ID": "22185",
@@ -421,6 +446,9 @@
 =======
             "ID": "22187",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22366",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hexproof",
             "Code": "HeistContractHexproof",
             "Level": "46",
@@ -458,6 +486,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22188",
 =======
             "ID": "22186",
@@ -465,6 +494,9 @@
 =======
             "ID": "22188",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22367",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned1",
             "Level": "1",
@@ -502,6 +534,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22189",
 =======
             "ID": "22187",
@@ -509,6 +542,9 @@
 =======
             "ID": "22189",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22368",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned2",
             "Level": "46",
@@ -546,6 +582,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22190",
 =======
             "ID": "22188",
@@ -553,6 +590,9 @@
 =======
             "ID": "22190",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22369",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned3_",
             "Level": "68",
@@ -590,6 +630,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22191",
 =======
             "ID": "22189",
@@ -597,6 +638,9 @@
 =======
             "ID": "22191",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22370",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned4_",
             "Level": "73",
@@ -634,6 +678,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22192",
 =======
             "ID": "22190",
@@ -641,6 +686,9 @@
 =======
             "ID": "22192",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22371",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned5",
             "Level": "78",
@@ -678,6 +726,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22193",
 =======
             "ID": "22191",
@@ -685,6 +734,9 @@
 =======
             "ID": "22193",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22372",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance1_",
             "Level": "1",
@@ -718,6 +770,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22194",
 =======
             "ID": "22192",
@@ -725,6 +778,9 @@
 =======
             "ID": "22194",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22373",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance2",
             "Level": "46",
@@ -758,6 +814,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22195",
 =======
             "ID": "22193",
@@ -765,6 +822,9 @@
 =======
             "ID": "22195",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22374",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance3",
             "Level": "68",
@@ -798,6 +858,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22196",
 =======
             "ID": "22194",
@@ -805,6 +866,9 @@
 =======
             "ID": "22196",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22375",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance4",
             "Level": "73",
@@ -838,6 +902,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22197",
 =======
             "ID": "22195",
@@ -845,6 +910,9 @@
 =======
             "ID": "22197",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22376",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance5_",
             "Level": "78",
@@ -878,6 +946,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22198",
 =======
             "ID": "22196",
@@ -885,6 +954,9 @@
 =======
             "ID": "22198",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22377",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife1",
             "Level": "1",
@@ -922,6 +994,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22199",
 =======
             "ID": "22197",
@@ -929,6 +1002,9 @@
 =======
             "ID": "22199",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22378",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife2",
             "Level": "46",
@@ -966,6 +1042,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22200",
 =======
             "ID": "22198",
@@ -973,6 +1050,9 @@
 =======
             "ID": "22200",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22379",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife3",
             "Level": "68",
@@ -1010,6 +1090,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22201",
 =======
             "ID": "22199",
@@ -1017,6 +1098,9 @@
 =======
             "ID": "22201",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22380",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife4",
             "Level": "73",
@@ -1054,6 +1138,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22202",
 =======
             "ID": "22200",
@@ -1061,6 +1146,9 @@
 =======
             "ID": "22202",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22381",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife5_",
             "Level": "78",
@@ -1098,6 +1186,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22203",
 =======
             "ID": "22201",
@@ -1105,6 +1194,9 @@
 =======
             "ID": "22203",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22382",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage1",
             "Level": "1",
@@ -1138,6 +1230,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22204",
 =======
             "ID": "22202",
@@ -1145,6 +1238,9 @@
 =======
             "ID": "22204",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22383",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage2_",
             "Level": "46",
@@ -1178,6 +1274,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22205",
 =======
             "ID": "22203",
@@ -1185,6 +1282,9 @@
 =======
             "ID": "22205",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22384",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage3_",
             "Level": "68",
@@ -1218,6 +1318,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22206",
 =======
             "ID": "22204",
@@ -1225,6 +1326,9 @@
 =======
             "ID": "22206",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22385",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage4_",
             "Level": "73",
@@ -1258,6 +1362,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22207",
 =======
             "ID": "22205",
@@ -1265,6 +1370,9 @@
 =======
             "ID": "22207",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22386",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage5",
             "Level": "78",
@@ -1298,6 +1406,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22208",
 =======
             "ID": "22206",
@@ -1305,6 +1414,9 @@
 =======
             "ID": "22208",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22387",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage1",
             "Level": "1",
@@ -1353,6 +1465,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22209",
 =======
             "ID": "22207",
@@ -1360,6 +1473,9 @@
 =======
             "ID": "22209",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22388",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage2",
             "Level": "46",
@@ -1408,6 +1524,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22210",
 =======
             "ID": "22208",
@@ -1415,6 +1532,9 @@
 =======
             "ID": "22210",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22389",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage3",
             "Level": "68",
@@ -1463,6 +1583,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22211",
 =======
             "ID": "22209",
@@ -1470,6 +1591,9 @@
 =======
             "ID": "22211",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22390",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage4_",
             "Level": "73",
@@ -1518,6 +1642,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22212",
 =======
             "ID": "22210",
@@ -1525,6 +1650,9 @@
 =======
             "ID": "22212",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22391",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage5",
             "Level": "78",
@@ -1573,6 +1701,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22213",
 =======
             "ID": "22211",
@@ -1580,6 +1709,9 @@
 =======
             "ID": "22213",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22392",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage1_",
             "Level": "1",
@@ -1628,6 +1760,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22214",
 =======
             "ID": "22212",
@@ -1635,6 +1768,9 @@
 =======
             "ID": "22214",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22393",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage2",
             "Level": "46",
@@ -1683,6 +1819,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22215",
 =======
             "ID": "22213",
@@ -1690,6 +1827,9 @@
 =======
             "ID": "22215",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22394",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage3",
             "Level": "68",
@@ -1738,6 +1878,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22216",
 =======
             "ID": "22214",
@@ -1745,6 +1886,9 @@
 =======
             "ID": "22216",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22395",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage4",
             "Level": "73",
@@ -1793,6 +1937,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22217",
 =======
             "ID": "22215",
@@ -1800,6 +1945,9 @@
 =======
             "ID": "22217",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22396",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage5",
             "Level": "78",
@@ -1848,6 +1996,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22218",
 =======
             "ID": "22216",
@@ -1855,6 +2004,9 @@
 =======
             "ID": "22218",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22397",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage1",
             "Level": "1",
@@ -1903,6 +2055,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22219",
 =======
             "ID": "22217",
@@ -1910,6 +2063,9 @@
 =======
             "ID": "22219",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22398",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage2_",
             "Level": "46",
@@ -1958,6 +2114,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22220",
 =======
             "ID": "22218",
@@ -1965,6 +2122,9 @@
 =======
             "ID": "22220",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22399",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage3",
             "Level": "68",
@@ -2013,6 +2173,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22221",
 =======
             "ID": "22219",
@@ -2020,6 +2181,9 @@
 =======
             "ID": "22221",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22400",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage4",
             "Level": "73",
@@ -2068,6 +2232,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22222",
 =======
             "ID": "22220",
@@ -2075,6 +2240,9 @@
 =======
             "ID": "22222",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22401",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage5_",
             "Level": "78",
@@ -2123,6 +2291,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22223",
 =======
             "ID": "22221",
@@ -2130,6 +2299,49 @@
 =======
             "ID": "22223",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22402",
+            "Name": "Profane",
+            "Code": "HeistContractMonsterChaosDamage1",
+            "Level": "73",
+            "ModDomainsID": "22",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "MapMonsterChaosDamage"
+            ],
+            "WeightList": [
+                "500"
+            ],
+            "DropChance": "500",
+            "str": "Monsters deal <span class='mod-value'>(21&ndash;25)</span>% extra Physical Damage as Chaos<br>Monsters Inflict Withered for 2 seconds on Hit<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [9]</span>",
+            "master_no": [],
+            "fossil_no": [],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "22403",
+            "Name": "Profane",
+            "Code": "HeistContractMonsterChaosDamage2",
+            "Level": "78",
+            "ModDomainsID": "22",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "MapMonsterChaosDamage"
+            ],
+            "WeightList": [
+                "500"
+            ],
+            "DropChance": "500",
+            "str": "Monsters deal <span class='mod-value'>(31&ndash;35)</span>% extra Physical Damage as Chaos<br>Monsters Inflict Withered for 2 seconds on Hit<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [9]</span>",
+            "master_no": [],
+            "fossil_no": [],
+            "mod_no": [],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "22404",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast1",
             "Level": "1",
@@ -2171,6 +2383,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22224",
 =======
             "ID": "22222",
@@ -2178,6 +2391,9 @@
 =======
             "ID": "22224",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22405",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast2___",
             "Level": "46",
@@ -2219,6 +2435,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22225",
 =======
             "ID": "22223",
@@ -2226,6 +2443,9 @@
 =======
             "ID": "22225",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22406",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast3_",
             "Level": "68",
@@ -2267,6 +2487,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22226",
 =======
             "ID": "22224",
@@ -2274,6 +2495,9 @@
 =======
             "ID": "22226",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22407",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast4_",
             "Level": "73",
@@ -2315,6 +2539,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22227",
 =======
             "ID": "22225",
@@ -2322,6 +2547,9 @@
 =======
             "ID": "22227",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22408",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast5",
             "Level": "78",
@@ -2363,6 +2591,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22228",
 =======
             "ID": "22226",
@@ -2370,6 +2599,9 @@
 =======
             "ID": "22228",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22409",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection1_",
             "Level": "68",
@@ -2403,6 +2635,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22229",
 =======
             "ID": "22227",
@@ -2410,6 +2643,9 @@
 =======
             "ID": "22229",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22410",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection2_",
             "Level": "73",
@@ -2443,6 +2679,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22230",
 =======
             "ID": "22228",
@@ -2450,6 +2687,9 @@
 =======
             "ID": "22230",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22411",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection3",
             "Level": "78",
@@ -2483,6 +2723,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22231",
 =======
             "ID": "22229",
@@ -2490,6 +2731,9 @@
 =======
             "ID": "22231",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22412",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection1",
             "Level": "68",
@@ -2523,6 +2767,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22232",
 =======
             "ID": "22230",
@@ -2530,6 +2775,9 @@
 =======
             "ID": "22232",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22413",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection2",
             "Level": "73",
@@ -2563,6 +2811,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22233",
 =======
             "ID": "22231",
@@ -2570,6 +2819,9 @@
 =======
             "ID": "22233",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22414",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection3",
             "Level": "78",
@@ -2603,6 +2855,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22234",
 =======
             "ID": "22232",
@@ -2610,6 +2863,9 @@
 =======
             "ID": "22234",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22415",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal1",
             "Level": "46",
@@ -2647,6 +2903,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22235",
 =======
             "ID": "22233",
@@ -2654,6 +2911,9 @@
 =======
             "ID": "22235",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22416",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal2",
             "Level": "68",
@@ -2691,6 +2951,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22236",
 =======
             "ID": "22234",
@@ -2698,6 +2959,9 @@
 =======
             "ID": "22236",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22417",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal3",
             "Level": "73",
@@ -2735,6 +2999,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22237",
 =======
             "ID": "22235",
@@ -2742,6 +3007,9 @@
 =======
             "ID": "22237",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22418",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal4",
             "Level": "78",
@@ -2779,6 +3047,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22238",
 =======
             "ID": "22236",
@@ -2786,6 +3055,9 @@
 =======
             "ID": "22238",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22419",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Empowered",
             "Code": "HeistContractMonstersChanceToInflictStatusAilments1_",
             "Level": "73",
@@ -2819,6 +3091,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22239",
 =======
             "ID": "22237",
@@ -2826,6 +3099,9 @@
 =======
             "ID": "22239",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22420",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Empowered",
             "Code": "HeistContractMonstersChanceToInflictStatusAilments2",
             "Level": "78",
@@ -2859,6 +3135,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22240",
 =======
             "ID": "22238",
@@ -2866,6 +3143,9 @@
 =======
             "ID": "22240",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22421",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances1",
             "Level": "1",
@@ -2907,6 +3187,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22241",
 =======
             "ID": "22239",
@@ -2914,6 +3195,9 @@
 =======
             "ID": "22241",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22422",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances2",
             "Level": "68",
@@ -2955,6 +3239,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22242",
 =======
             "ID": "22240",
@@ -2962,6 +3247,9 @@
 =======
             "ID": "22242",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22423",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances3_",
             "Level": "73",
@@ -3003,6 +3291,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22243",
 =======
             "ID": "22241",
@@ -3010,6 +3299,9 @@
 =======
             "ID": "22243",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22424",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances4",
             "Level": "78",
@@ -3051,6 +3343,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22244",
 =======
             "ID": "22242",
@@ -3058,6 +3351,9 @@
 =======
             "ID": "22244",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22425",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind1_",
             "Level": "46",
@@ -3108,6 +3404,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22245",
 =======
             "ID": "22243",
@@ -3115,6 +3412,9 @@
 =======
             "ID": "22245",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22426",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind2",
             "Level": "73",
@@ -3165,6 +3465,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22246",
 =======
             "ID": "22244",
@@ -3172,6 +3473,9 @@
 =======
             "ID": "22246",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22427",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind3___",
             "Level": "78",
@@ -3222,6 +3526,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22247",
 =======
             "ID": "22245",
@@ -3229,6 +3534,9 @@
 =======
             "ID": "22247",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22428",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit1",
             "Level": "46",
@@ -3250,6 +3558,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22248",
 =======
             "ID": "22246",
@@ -3257,6 +3566,9 @@
 =======
             "ID": "22248",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22429",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit2",
             "Level": "68",
@@ -3278,6 +3590,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22249",
 =======
             "ID": "22247",
@@ -3285,6 +3598,9 @@
 =======
             "ID": "22249",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22430",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit3",
             "Level": "73",
@@ -3306,6 +3622,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22250",
 =======
             "ID": "22248",
@@ -3313,6 +3630,9 @@
 =======
             "ID": "22250",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22431",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit4",
             "Level": "78",
@@ -3334,6 +3654,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22251",
 =======
             "ID": "22249",
@@ -3341,6 +3662,9 @@
 =======
             "ID": "22251",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22432",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells1___",
             "Level": "46",
@@ -3362,6 +3686,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22252",
 =======
             "ID": "22250",
@@ -3369,6 +3694,9 @@
 =======
             "ID": "22252",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22433",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells2",
             "Level": "68",
@@ -3390,6 +3718,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22253",
 =======
             "ID": "22251",
@@ -3397,6 +3726,9 @@
 =======
             "ID": "22253",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22434",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells3_",
             "Level": "73",
@@ -3418,6 +3750,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22254",
 =======
             "ID": "22252",
@@ -3425,6 +3758,9 @@
 =======
             "ID": "22254",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22435",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells4",
             "Level": "78",
@@ -3446,6 +3782,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22255",
 =======
             "ID": "22253",
@@ -3453,6 +3790,9 @@
 =======
             "ID": "22255",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22436",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield1____",
             "Level": "1",
@@ -3474,6 +3814,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22256",
 =======
             "ID": "22254",
@@ -3481,6 +3822,9 @@
 =======
             "ID": "22256",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22437",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield2",
             "Level": "46",
@@ -3502,6 +3846,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22257",
 =======
             "ID": "22255",
@@ -3509,6 +3854,9 @@
 =======
             "ID": "22257",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22438",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield3",
             "Level": "68",
@@ -3530,6 +3878,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22258",
 =======
             "ID": "22256",
@@ -3537,6 +3886,9 @@
 =======
             "ID": "22258",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22439",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield4_",
             "Level": "73",
@@ -3558,6 +3910,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22259",
 =======
             "ID": "22257",
@@ -3565,6 +3918,9 @@
 =======
             "ID": "22259",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22440",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield5__",
             "Level": "78",
@@ -3586,6 +3942,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22260",
 =======
             "ID": "22258",
@@ -3593,6 +3950,9 @@
 =======
             "ID": "22260",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22441",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite1",
             "Level": "1",
@@ -3614,6 +3974,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22261",
 =======
             "ID": "22259",
@@ -3621,6 +3982,9 @@
 =======
             "ID": "22261",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22442",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite2",
             "Level": "46",
@@ -3642,6 +4006,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22262",
 =======
             "ID": "22260",
@@ -3649,6 +4014,9 @@
 =======
             "ID": "22262",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22443",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite3",
             "Level": "68",
@@ -3670,6 +4038,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22263",
 =======
             "ID": "22261",
@@ -3677,6 +4046,9 @@
 =======
             "ID": "22263",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22444",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite4",
             "Level": "73",
@@ -3698,6 +4070,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22264",
 =======
             "ID": "22262",
@@ -3705,6 +4078,9 @@
 =======
             "ID": "22264",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22445",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite5",
             "Level": "78",
@@ -3726,6 +4102,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22265",
 =======
             "ID": "22263",
@@ -3733,6 +4110,9 @@
 =======
             "ID": "22265",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22446",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage1",
             "Level": "1",
@@ -3766,6 +4146,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22266",
 =======
             "ID": "22264",
@@ -3773,6 +4154,9 @@
 =======
             "ID": "22266",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22447",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage2_",
             "Level": "46",
@@ -3806,6 +4190,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22267",
 =======
             "ID": "22265",
@@ -3813,6 +4198,9 @@
 =======
             "ID": "22267",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22448",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage3",
             "Level": "68",
@@ -3846,6 +4234,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22268",
 =======
             "ID": "22266",
@@ -3853,6 +4242,9 @@
 =======
             "ID": "22268",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22449",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage4",
             "Level": "73",
@@ -3886,6 +4278,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22269",
 =======
             "ID": "22267",
@@ -3893,6 +4286,9 @@
 =======
             "ID": "22269",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22450",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage5",
             "Level": "78",
@@ -3926,6 +4322,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22270",
 =======
             "ID": "22268",
@@ -3933,6 +4330,9 @@
 =======
             "ID": "22270",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22451",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction1",
             "Level": "1",
@@ -3954,6 +4354,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22271",
 =======
             "ID": "22269",
@@ -3961,6 +4362,9 @@
 =======
             "ID": "22271",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22452",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction2_",
             "Level": "46",
@@ -3982,6 +4386,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22272",
 =======
             "ID": "22270",
@@ -3989,6 +4394,9 @@
 =======
             "ID": "22272",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22453",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction3",
             "Level": "68",
@@ -4010,6 +4418,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22273",
 =======
             "ID": "22271",
@@ -4017,6 +4426,9 @@
 =======
             "ID": "22273",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22454",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction4",
             "Level": "73",
@@ -4038,6 +4450,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22274",
 =======
             "ID": "22272",
@@ -4045,6 +4458,9 @@
 =======
             "ID": "22274",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22455",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction5_",
             "Level": "78",
@@ -4066,6 +4482,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22275",
 =======
             "ID": "22273",
@@ -4073,6 +4490,9 @@
 =======
             "ID": "22275",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22456",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage1",
             "Level": "1",
@@ -4106,6 +4526,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22276",
 =======
             "ID": "22274",
@@ -4113,6 +4534,9 @@
 =======
             "ID": "22276",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22457",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage2",
             "Level": "46",
@@ -4146,6 +4570,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22277",
 =======
             "ID": "22275",
@@ -4153,6 +4578,9 @@
 =======
             "ID": "22277",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22458",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage3",
             "Level": "68",
@@ -4186,6 +4614,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22278",
 =======
             "ID": "22276",
@@ -4193,6 +4622,9 @@
 =======
             "ID": "22278",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22459",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage4",
             "Level": "73",
@@ -4226,6 +4658,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22279",
 =======
             "ID": "22277",
@@ -4233,6 +4666,9 @@
 =======
             "ID": "22279",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22460",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage5",
             "Level": "78",
@@ -4266,6 +4702,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22280",
 =======
             "ID": "22278",
@@ -4273,6 +4710,9 @@
 =======
             "ID": "22280",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22461",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction1",
             "Level": "1",
@@ -4294,6 +4734,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22281",
 =======
             "ID": "22279",
@@ -4301,6 +4742,9 @@
 =======
             "ID": "22281",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22462",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction2",
             "Level": "46",
@@ -4322,6 +4766,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22282",
 =======
             "ID": "22280",
@@ -4329,6 +4774,9 @@
 =======
             "ID": "22282",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22463",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction3",
             "Level": "68",
@@ -4350,6 +4798,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22283",
 =======
             "ID": "22281",
@@ -4357,6 +4806,9 @@
 =======
             "ID": "22283",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22464",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction4_",
             "Level": "73",
@@ -4378,6 +4830,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22284",
 =======
             "ID": "22282",
@@ -4385,6 +4838,9 @@
 =======
             "ID": "22284",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22465",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction5____",
             "Level": "78",
@@ -4406,6 +4862,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22285",
 =======
             "ID": "22283",
@@ -4413,6 +4870,9 @@
 =======
             "ID": "22285",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22466",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage1",
             "Level": "1",
@@ -4446,6 +4906,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22286",
 =======
             "ID": "22284",
@@ -4453,6 +4914,9 @@
 =======
             "ID": "22286",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22467",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage2",
             "Level": "46",
@@ -4486,6 +4950,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22287",
 =======
             "ID": "22285",
@@ -4493,6 +4958,9 @@
 =======
             "ID": "22287",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22468",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage3",
             "Level": "68",
@@ -4526,6 +4994,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22288",
 =======
             "ID": "22286",
@@ -4533,6 +5002,9 @@
 =======
             "ID": "22288",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22469",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage4",
             "Level": "73",
@@ -4566,6 +5038,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22289",
 =======
             "ID": "22287",
@@ -4573,6 +5046,9 @@
 =======
             "ID": "22289",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22470",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage5",
             "Level": "78",
@@ -4606,6 +5082,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22290",
 =======
             "ID": "22288",
@@ -4613,6 +5090,9 @@
 =======
             "ID": "22290",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22471",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction1",
             "Level": "1",
@@ -4634,6 +5114,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22291",
 =======
             "ID": "22289",
@@ -4641,6 +5122,9 @@
 =======
             "ID": "22291",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22472",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction2___",
             "Level": "46",
@@ -4662,6 +5146,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22292",
 =======
             "ID": "22290",
@@ -4669,6 +5154,9 @@
 =======
             "ID": "22292",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22473",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction3",
             "Level": "68",
@@ -4690,6 +5178,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22293",
 =======
             "ID": "22291",
@@ -4697,6 +5186,9 @@
 =======
             "ID": "22293",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22474",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction4",
             "Level": "73",
@@ -4718,6 +5210,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22294",
 =======
             "ID": "22292",
@@ -4725,6 +5218,9 @@
 =======
             "ID": "22294",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22475",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction5",
             "Level": "78",
@@ -4746,6 +5242,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22295",
 =======
             "ID": "22293",
@@ -4753,6 +5250,9 @@
 =======
             "ID": "22295",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22476",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed1_",
             "Level": "1",
@@ -4774,6 +5274,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22296",
 =======
             "ID": "22294",
@@ -4781,6 +5282,9 @@
 =======
             "ID": "22296",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22477",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed2",
             "Level": "46",
@@ -4802,6 +5306,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22297",
 =======
             "ID": "22295",
@@ -4809,6 +5314,9 @@
 =======
             "ID": "22297",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22478",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed3_",
             "Level": "68",
@@ -4830,6 +5338,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22298",
 =======
             "ID": "22296",
@@ -4837,6 +5346,9 @@
 =======
             "ID": "22298",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22479",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed4__",
             "Level": "73",
@@ -4858,6 +5370,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22299",
 =======
             "ID": "22297",
@@ -4865,6 +5378,9 @@
 =======
             "ID": "22299",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22480",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed5",
             "Level": "78",
@@ -4886,6 +5402,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22310",
 =======
             "ID": "22308",
@@ -4893,6 +5410,9 @@
 =======
             "ID": "22310",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22491",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters1_",
             "Level": "1",
@@ -4914,6 +5434,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22311",
 =======
             "ID": "22309",
@@ -4921,6 +5442,9 @@
 =======
             "ID": "22311",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22492",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters2__",
             "Level": "1",
@@ -4942,6 +5466,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22312",
 =======
             "ID": "22310",
@@ -4949,6 +5474,9 @@
 =======
             "ID": "22312",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22493",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters3_",
             "Level": "1",
@@ -4970,6 +5498,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22313",
 =======
             "ID": "22311",
@@ -4977,6 +5506,9 @@
 =======
             "ID": "22313",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22494",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters4",
             "Level": "1",
@@ -4998,6 +5530,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22314",
 =======
             "ID": "22312",
@@ -5005,6 +5538,9 @@
 =======
             "ID": "22314",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22495",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters5",
             "Level": "1",
@@ -5026,6 +5562,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22315",
 =======
             "ID": "22313",
@@ -5033,6 +5570,9 @@
 =======
             "ID": "22315",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22496",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast1",
             "Level": "1",
@@ -5074,6 +5614,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22316",
 =======
             "ID": "22314",
@@ -5081,6 +5622,9 @@
 =======
             "ID": "22316",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22497",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast2",
             "Level": "1",
@@ -5122,6 +5666,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22317",
 =======
             "ID": "22315",
@@ -5129,6 +5674,9 @@
 =======
             "ID": "22317",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22498",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast3",
             "Level": "1",
@@ -5170,6 +5718,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22318",
 =======
             "ID": "22316",
@@ -5177,6 +5726,9 @@
 =======
             "ID": "22318",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22499",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast4",
             "Level": "1",
@@ -5218,6 +5770,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22319",
 =======
             "ID": "22317",
@@ -5225,6 +5778,9 @@
 =======
             "ID": "22319",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22500",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast5",
             "Level": "1",
@@ -5266,6 +5822,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22324",
 =======
             "ID": "22322",
@@ -5273,6 +5830,9 @@
 =======
             "ID": "22324",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22505",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Instantaneous",
             "Code": "HeistContractLockdownInstant1",
             "Level": "68",
@@ -5294,6 +5854,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22325",
 =======
             "ID": "22323",
@@ -5301,6 +5862,9 @@
 =======
             "ID": "22325",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22506",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Bloodlines",
             "Code": "HeistContractBloodlinesModOnMagics_",
             "Level": "1",
@@ -5322,6 +5886,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22326",
 =======
             "ID": "22324",
@@ -5329,6 +5894,9 @@
 =======
             "ID": "22326",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22507",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Venom",
             "Code": "HeistContractPoisoning",
             "Level": "1",
@@ -5370,6 +5938,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22327",
 =======
             "ID": "22325",
@@ -5377,6 +5946,9 @@
 =======
             "ID": "22327",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22508",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Balance",
             "Code": "HeistContractPlayerElementalEquilibrium",
             "Level": "68",
@@ -5416,6 +5988,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22329",
 =======
             "ID": "22327",
@@ -5423,6 +5996,9 @@
 =======
             "ID": "22329",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22510",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Frenzy",
             "Code": "HeistContractMonstersFrenzyChargeOnHit1",
             "Level": "1",
@@ -5446,6 +6022,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22330",
 =======
             "ID": "22328",
@@ -5453,6 +6030,9 @@
 =======
             "ID": "22330",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22511",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Frenzy",
             "Code": "HeistContractMonstersFrenzyChargeOnHit2_",
             "Level": "68",
@@ -5476,6 +6056,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22331",
 =======
             "ID": "22329",
@@ -5483,6 +6064,9 @@
 =======
             "ID": "22331",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22512",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Endurance",
             "Code": "HeistContractMonstersEnduranceChargeOnHit1__",
             "Level": "1",
@@ -5506,6 +6090,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22332",
 =======
             "ID": "22330",
@@ -5513,6 +6098,9 @@
 =======
             "ID": "22332",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22513",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Endurance",
             "Code": "HeistContractMonstersEnduranceChargeOnHit2",
             "Level": "68",
@@ -5536,6 +6124,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22333",
 =======
             "ID": "22331",
@@ -5543,6 +6132,9 @@
 =======
             "ID": "22333",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22514",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Power",
             "Code": "HeistContractMonstersPowerChargeOnHit1",
             "Level": "1",
@@ -5566,6 +6158,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22334",
 =======
             "ID": "22332",
@@ -5573,6 +6166,9 @@
 =======
             "ID": "22334",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22515",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Power",
             "Code": "HeistContractMonstersPowerChargeOnHit2___",
             "Level": "68",
@@ -5596,6 +6192,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22335",
 =======
             "ID": "22333",
@@ -5603,6 +6200,9 @@
 =======
             "ID": "22335",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22516",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect1_",
             "Level": "1",
@@ -5624,6 +6224,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22336",
 =======
             "ID": "22334",
@@ -5631,6 +6232,9 @@
 =======
             "ID": "22336",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22517",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect2",
             "Level": "46",
@@ -5652,6 +6256,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22337",
 =======
             "ID": "22335",
@@ -5659,6 +6264,9 @@
 =======
             "ID": "22337",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22518",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect3",
             "Level": "68",
@@ -5680,6 +6288,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22338",
 =======
             "ID": "22336",
@@ -5687,6 +6296,9 @@
 =======
             "ID": "22338",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22519",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect4",
             "Level": "73",
@@ -5708,6 +6320,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22339",
 =======
             "ID": "22337",
@@ -5715,6 +6328,9 @@
 =======
             "ID": "22339",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22520",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect5_",
             "Level": "78",
@@ -5736,6 +6352,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22340",
 =======
             "ID": "22338",
@@ -5743,6 +6360,9 @@
 =======
             "ID": "22340",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22521",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage1_",
             "Level": "1",
@@ -5780,6 +6400,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22341",
 =======
             "ID": "22339",
@@ -5787,6 +6408,9 @@
 =======
             "ID": "22341",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22522",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage2__",
             "Level": "46",
@@ -5824,6 +6448,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22342",
 =======
             "ID": "22340",
@@ -5831,6 +6456,9 @@
 =======
             "ID": "22342",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22523",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage3",
             "Level": "68",
@@ -5868,6 +6496,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22343",
 =======
             "ID": "22341",
@@ -5875,6 +6504,9 @@
 =======
             "ID": "22343",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22524",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage4",
             "Level": "73",
@@ -5912,6 +6544,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22344",
 =======
             "ID": "22342",
@@ -5919,6 +6552,9 @@
 =======
             "ID": "22344",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22525",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage5",
             "Level": "78",
@@ -5956,6 +6592,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22345",
 =======
             "ID": "22343",
@@ -5963,6 +6600,9 @@
 =======
             "ID": "22345",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22526",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen1",
             "Level": "1",
@@ -6005,6 +6645,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22346",
 =======
             "ID": "22344",
@@ -6012,6 +6653,9 @@
 =======
             "ID": "22346",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22527",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen2",
             "Level": "73",
@@ -6054,6 +6698,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22347",
 =======
             "ID": "22345",
@@ -6061,6 +6706,9 @@
 =======
             "ID": "22347",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22528",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen3",
             "Level": "78",
@@ -6103,6 +6751,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22348",
 =======
             "ID": "22346",
@@ -6110,6 +6759,9 @@
 =======
             "ID": "22348",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22529",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Flames",
             "Code": "HeistContractBurningGround1",
             "Level": "46",
@@ -6153,6 +6805,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22349",
 =======
             "ID": "22347",
@@ -6160,6 +6813,9 @@
 =======
             "ID": "22349",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22530",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Flames",
             "Code": "HeistContractBurningGround2",
             "Level": "68",
@@ -6203,6 +6859,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22350",
 =======
             "ID": "22348",
@@ -6210,6 +6867,9 @@
 =======
             "ID": "22350",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22531",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Flames",
             "Code": "HeistContractBurningGround3___",
             "Level": "73",
@@ -6253,6 +6913,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22351",
 =======
             "ID": "22349",
@@ -6260,6 +6921,9 @@
 =======
             "ID": "22351",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22532",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Flames",
             "Code": "HeistContractBurningGround4",
             "Level": "78",
@@ -6303,6 +6967,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22352",
 =======
             "ID": "22350",
@@ -6310,6 +6975,9 @@
 =======
             "ID": "22352",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22533",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Ice",
             "Code": "HeistContractChilledGround1",
             "Level": "46",
@@ -6351,6 +7019,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22353",
 =======
             "ID": "22351",
@@ -6358,6 +7027,9 @@
 =======
             "ID": "22353",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22534",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Ice",
             "Code": "HeistContractChilledGround2_",
             "Level": "68",
@@ -6399,6 +7071,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22354",
 =======
             "ID": "22352",
@@ -6406,6 +7079,9 @@
 =======
             "ID": "22354",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22535",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Ice",
             "Code": "HeistContractChilledGround3",
             "Level": "73",
@@ -6447,6 +7123,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22355",
 =======
             "ID": "22353",
@@ -6454,6 +7131,9 @@
 =======
             "ID": "22355",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22536",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Ice",
             "Code": "HeistContractChilledGround4",
             "Level": "78",
@@ -6495,6 +7175,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22356",
 =======
             "ID": "22354",
@@ -6502,6 +7183,9 @@
 =======
             "ID": "22356",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22537",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround1",
             "Level": "46",
@@ -6543,6 +7227,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22357",
 =======
             "ID": "22355",
@@ -6550,6 +7235,9 @@
 =======
             "ID": "22357",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22538",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround2_",
             "Level": "68",
@@ -6591,6 +7279,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22358",
 =======
             "ID": "22356",
@@ -6598,6 +7287,9 @@
 =======
             "ID": "22358",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22539",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround3",
             "Level": "73",
@@ -6639,6 +7331,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22359",
 =======
             "ID": "22357",
@@ -6646,6 +7339,9 @@
 =======
             "ID": "22359",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22540",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround4_",
             "Level": "78",
@@ -6687,6 +7383,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22360",
 =======
             "ID": "22358",
@@ -6694,6 +7391,9 @@
 =======
             "ID": "22360",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22541",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround1_",
             "Level": "46",
@@ -6733,6 +7433,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22361",
 =======
             "ID": "22359",
@@ -6740,6 +7441,9 @@
 =======
             "ID": "22361",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22542",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround2",
             "Level": "68",
@@ -6779,6 +7483,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22362",
 =======
             "ID": "22360",
@@ -6786,6 +7491,9 @@
 =======
             "ID": "22362",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22543",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround3",
             "Level": "73",
@@ -6825,6 +7533,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22363",
 =======
             "ID": "22361",
@@ -6832,6 +7541,9 @@
 =======
             "ID": "22363",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22544",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround4",
             "Level": "78",
@@ -6871,6 +7583,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22364",
 =======
             "ID": "22362",
@@ -6878,6 +7591,9 @@
 =======
             "ID": "22364",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22545",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround1_",
             "Level": "46",
@@ -6899,6 +7615,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22365",
 =======
             "ID": "22363",
@@ -6906,6 +7623,9 @@
 =======
             "ID": "22365",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22546",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround2",
             "Level": "68",
@@ -6927,6 +7647,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22366",
 =======
             "ID": "22364",
@@ -6934,6 +7655,9 @@
 =======
             "ID": "22366",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22547",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround3___",
             "Level": "73",
@@ -6955,6 +7679,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22367",
 =======
             "ID": "22365",
@@ -6962,6 +7687,9 @@
 =======
             "ID": "22367",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22548",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround4",
             "Level": "78",
@@ -6983,6 +7711,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22368",
 =======
             "ID": "22366",
@@ -6990,6 +7719,9 @@
 =======
             "ID": "22368",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22549",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Elemental Weakness",
             "Code": "HeistContractPlayerCurseElementalWeakness1_",
             "Level": "73",
@@ -7027,6 +7759,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22369",
 =======
             "ID": "22367",
@@ -7034,6 +7767,9 @@
 =======
             "ID": "22369",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22550",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Elemental Weakness",
             "Code": "HeistContractPlayerCurseElementalWeakness2_",
             "Level": "78",
@@ -7071,6 +7807,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22370",
 =======
             "ID": "22368",
@@ -7078,6 +7815,9 @@
 =======
             "ID": "22370",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22551",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Vulnerability",
             "Code": "HeistContractPlayerCurseVulnerability1",
             "Level": "73",
@@ -7115,6 +7855,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22371",
 =======
             "ID": "22369",
@@ -7122,6 +7863,9 @@
 =======
             "ID": "22371",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22552",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Vulnerability",
             "Code": "HeistContractPlayerCurseVulnerability2",
             "Level": "78",
@@ -7159,6 +7903,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22372",
 =======
             "ID": "22370",
@@ -7166,6 +7911,9 @@
 =======
             "ID": "22372",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22553",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Enfeeblement",
             "Code": "HeistContractPlayerCurseEnfeeblement1",
             "Level": "73",
@@ -7203,6 +7951,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22373",
 =======
             "ID": "22371",
@@ -7210,6 +7959,9 @@
 =======
             "ID": "22373",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22554",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Enfeeblement",
             "Code": "HeistContractPlayerCurseEnfeeblement2",
             "Level": "78",
@@ -7247,6 +7999,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22374",
 =======
             "ID": "22372",
@@ -7254,6 +8007,9 @@
 =======
             "ID": "22374",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22555",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Temporal Chains",
             "Code": "HeistContractPlayerCurseTemporalChains1",
             "Level": "73",
@@ -7291,6 +8047,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22375",
 =======
             "ID": "22373",
@@ -7298,6 +8055,9 @@
 =======
             "ID": "22375",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22556",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Temporal Chains",
             "Code": "HeistContractPlayerCurseTemporalChains2",
             "Level": "78",
@@ -7335,6 +8095,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22376",
 =======
             "ID": "22374",
@@ -7342,6 +8103,9 @@
 =======
             "ID": "22376",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22557",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Stasis",
             "Code": "HeistContractPlayerNoLifeESRegen_",
             "Level": "73",
@@ -7387,6 +8151,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22377",
 =======
             "ID": "22375",
@@ -7394,6 +8159,9 @@
 =======
             "ID": "22377",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22558",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Exposure",
             "Code": "HeistContractPlayerMaxResists1__",
             "Level": "73",
@@ -7427,6 +8195,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22378",
 =======
             "ID": "22376",
@@ -7434,6 +8203,9 @@
 =======
             "ID": "22378",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22559",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Exposure",
             "Code": "HeistContractPlayerMaxResists2_",
             "Level": "78",
@@ -7467,6 +8239,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22379",
 =======
             "ID": "22377",
@@ -7474,6 +8247,9 @@
 =======
             "ID": "22379",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22560",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Congealment",
             "Code": "HeistContractMonsterLifeLeechImmunity",
             "Level": "78",
@@ -7495,6 +8271,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22380",
 =======
             "ID": "22378",
@@ -7502,6 +8279,9 @@
 =======
             "ID": "22380",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22561",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity1",
             "Level": "46",
@@ -7549,6 +8329,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22381",
 =======
             "ID": "22379",
@@ -7556,6 +8337,9 @@
 =======
             "ID": "22381",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22562",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity2_",
             "Level": "73",
@@ -7603,6 +8387,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22382",
 =======
             "ID": "22380",
@@ -7610,6 +8395,9 @@
 =======
             "ID": "22382",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22563",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity3",
             "Level": "78",
@@ -7657,6 +8445,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22383",
 =======
             "ID": "22381",
@@ -7664,6 +8453,9 @@
 =======
             "ID": "22383",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22564",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier1",
             "Level": "1",
@@ -7701,6 +8493,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22384",
 =======
             "ID": "22382",
@@ -7708,6 +8501,9 @@
 =======
             "ID": "22384",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22565",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier2_",
             "Level": "46",
@@ -7745,6 +8541,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22385",
 =======
             "ID": "22383",
@@ -7752,6 +8549,9 @@
 =======
             "ID": "22385",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22566",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier3",
             "Level": "68",
@@ -7789,6 +8589,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22386",
 =======
             "ID": "22384",
@@ -7796,6 +8597,9 @@
 =======
             "ID": "22386",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22567",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier4_",
             "Level": "73",
@@ -7833,6 +8637,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22387",
 =======
             "ID": "22385",
@@ -7840,6 +8645,9 @@
 =======
             "ID": "22387",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22568",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier5",
             "Level": "78",
@@ -7877,6 +8685,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22388",
 =======
             "ID": "22386",
@@ -7884,6 +8693,9 @@
 =======
             "ID": "22388",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22569",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges1",
             "Level": "1",
@@ -7907,6 +8719,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22389",
 =======
             "ID": "22387",
@@ -7914,6 +8727,9 @@
 =======
             "ID": "22389",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22570",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges2",
             "Level": "46",
@@ -7937,6 +8753,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22390",
 =======
             "ID": "22388",
@@ -7944,6 +8761,9 @@
 =======
             "ID": "22390",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22571",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges3_",
             "Level": "68",
@@ -7967,6 +8787,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22391",
 =======
             "ID": "22389",
@@ -7974,6 +8795,9 @@
 =======
             "ID": "22391",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22572",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges4",
             "Level": "73",
@@ -7997,6 +8821,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22392",
 =======
             "ID": "22390",
@@ -8004,6 +8829,9 @@
 =======
             "ID": "22392",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22573",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges5",
             "Level": "78",
@@ -8027,6 +8855,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22393",
 =======
             "ID": "22391",
@@ -8034,6 +8863,9 @@
 =======
             "ID": "22393",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22574",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour1",
             "Level": "46",
@@ -8069,6 +8901,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22394",
 =======
             "ID": "22392",
@@ -8076,6 +8909,9 @@
 =======
             "ID": "22394",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22575",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour2",
             "Level": "68",
@@ -8111,6 +8947,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22395",
 =======
             "ID": "22393",
@@ -8118,6 +8955,9 @@
 =======
             "ID": "22395",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22576",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour3",
             "Level": "73",
@@ -8153,6 +8993,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22396",
 =======
             "ID": "22394",
@@ -8160,6 +9001,9 @@
 =======
             "ID": "22396",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22577",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour4",
             "Level": "78",
@@ -8195,6 +9039,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22397",
 =======
             "ID": "22395",
@@ -8202,6 +9047,9 @@
 =======
             "ID": "22397",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22578",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge1",
             "Level": "46",
@@ -8236,6 +9084,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22398",
 =======
             "ID": "22396",
@@ -8243,6 +9092,9 @@
 =======
             "ID": "22398",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22579",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge2",
             "Level": "68",
@@ -8277,6 +9129,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22399",
 =======
             "ID": "22397",
@@ -8284,6 +9137,9 @@
 =======
             "ID": "22399",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22580",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge3",
             "Level": "73",
@@ -8318,6 +9174,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22400",
 =======
             "ID": "22398",
@@ -8325,6 +9182,9 @@
 =======
             "ID": "22400",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22581",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge4",
             "Level": "78",
@@ -8359,6 +9219,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22401",
 =======
             "ID": "22399",
@@ -8366,6 +9227,9 @@
 =======
             "ID": "22401",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22582",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius1",
             "Level": "1",
@@ -8387,6 +9251,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22402",
 =======
             "ID": "22400",
@@ -8394,6 +9259,9 @@
 =======
             "ID": "22402",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22583",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius2___",
             "Level": "68",
@@ -8415,6 +9283,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22403",
 =======
             "ID": "22401",
@@ -8422,6 +9291,9 @@
 =======
             "ID": "22403",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22584",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius3",
             "Level": "73",
@@ -8443,6 +9315,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22404",
 =======
             "ID": "22402",
@@ -8450,6 +9323,9 @@
 =======
             "ID": "22404",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22585",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius4",
             "Level": "78",
@@ -8471,6 +9347,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22405",
 =======
             "ID": "22403",
@@ -8478,6 +9355,9 @@
 =======
             "ID": "22405",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22586",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Blinding",
             "Code": "HeistContractMonstersBlindOnHit",
             "Level": "46",
@@ -8499,6 +9379,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22406",
 =======
             "ID": "22404",
@@ -8506,6 +9387,9 @@
 =======
             "ID": "22406",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22587",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Carnage",
             "Code": "HeistContractMonstersMaimOnHit",
             "Level": "46",
@@ -8527,6 +9411,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22407",
 =======
             "ID": "22405",
@@ -8534,6 +9419,9 @@
 =======
             "ID": "22407",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22588",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Impedance",
             "Code": "HeistContractMonstersHinderOnHit_",
             "Level": "46",
@@ -8555,6 +9443,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22408",
 =======
             "ID": "22406",
@@ -8562,6 +9451,9 @@
 =======
             "ID": "22408",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22589",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Enervation",
             "Code": "HeistContractMonstersStealChargesOnHit",
             "Level": "46",
@@ -8583,6 +9475,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22409",
 =======
             "ID": "22407",
@@ -8590,6 +9483,9 @@
 =======
             "ID": "22409",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22590",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery1__",
             "Level": "46",
@@ -8611,6 +9507,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22410",
 =======
             "ID": "22408",
@@ -8618,6 +9515,9 @@
 =======
             "ID": "22410",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22591",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery2",
             "Level": "68",
@@ -8639,6 +9539,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22411",
 =======
             "ID": "22409",
@@ -8646,6 +9547,9 @@
 =======
             "ID": "22411",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22592",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery3_",
             "Level": "73",
@@ -8667,6 +9571,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22412",
 =======
             "ID": "22410",
@@ -8674,6 +9579,9 @@
 =======
             "ID": "22412",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22593",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery4",
             "Level": "78",
@@ -8695,6 +9603,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22413",
 =======
             "ID": "22411",
@@ -8702,6 +9611,9 @@
 =======
             "ID": "22413",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22594",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster1__",
             "Level": "46",
@@ -8723,6 +9635,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22414",
 =======
             "ID": "22412",
@@ -8730,6 +9643,9 @@
 =======
             "ID": "22414",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22595",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster2_",
             "Level": "68",
@@ -8751,6 +9667,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22415",
 =======
             "ID": "22413",
@@ -8758,6 +9675,9 @@
 =======
             "ID": "22415",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22596",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster3",
             "Level": "73",
@@ -8779,6 +9699,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22416",
 =======
             "ID": "22414",
@@ -8786,6 +9707,9 @@
 =======
             "ID": "22416",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22597",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster4",
             "Level": "78",
@@ -8807,6 +9731,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22417",
 =======
             "ID": "22415",
@@ -8814,6 +9739,9 @@
 =======
             "ID": "22417",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22598",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect1_",
             "Level": "46",
@@ -8835,6 +9763,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22418",
 =======
             "ID": "22416",
@@ -8842,6 +9771,9 @@
 =======
             "ID": "22418",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22599",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect2",
             "Level": "68",
@@ -8863,6 +9795,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22419",
 =======
             "ID": "22417",
@@ -8870,6 +9803,9 @@
 =======
             "ID": "22419",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22600",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect3",
             "Level": "73",
@@ -8891,6 +9827,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22420",
 =======
             "ID": "22418",
@@ -8898,6 +9835,9 @@
 =======
             "ID": "22420",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22601",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect4",
             "Level": "78",
@@ -8919,6 +9859,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22421",
 =======
             "ID": "22419",
@@ -8926,6 +9867,9 @@
 =======
             "ID": "22421",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22602",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating1_",
             "Level": "46",
@@ -8947,6 +9891,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22422",
 =======
             "ID": "22420",
@@ -8954,6 +9899,9 @@
 =======
             "ID": "22422",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22603",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating2",
             "Level": "68",
@@ -8975,6 +9923,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22423",
 =======
             "ID": "22421",
@@ -8982,6 +9931,9 @@
 =======
             "ID": "22423",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22604",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating3",
             "Level": "73",
@@ -9003,6 +9955,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22424",
 =======
             "ID": "22422",
@@ -9010,6 +9963,9 @@
 =======
             "ID": "22424",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22605",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating4_",
             "Level": "78",
@@ -9031,6 +9987,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22425",
 =======
             "ID": "22423",
@@ -9038,6 +9995,9 @@
 =======
             "ID": "22425",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22606",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Expense",
             "Code": "HeistContractTotalCost1_",
             "Level": "1",
@@ -9059,6 +10019,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22426",
 =======
             "ID": "22424",
@@ -9066,6 +10027,9 @@
 =======
             "ID": "22426",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22607",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Expense",
             "Code": "HeistContractTotalCost2",
             "Level": "46",
@@ -9087,6 +10051,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22427",
 =======
             "ID": "22425",
@@ -9094,6 +10059,9 @@
 =======
             "ID": "22427",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22608",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Expense",
             "Code": "HeistContractTotalCost3_",
             "Level": "68",
@@ -9115,6 +10083,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22428",
 =======
             "ID": "22426",
@@ -9122,6 +10091,9 @@
 =======
             "ID": "22428",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22609",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Expense",
             "Code": "HeistContractTotalCost4",
             "Level": "73",
@@ -9143,6 +10115,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22429",
 =======
             "ID": "22427",
@@ -9150,6 +10123,9 @@
 =======
             "ID": "22429",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22610",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Expense",
             "Code": "HeistContractTotalCost5_",
             "Level": "78",
@@ -9171,6 +10147,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22440",
 =======
             "ID": "22438",
@@ -9178,6 +10155,9 @@
 =======
             "ID": "22440",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22621",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Selfishness",
             "Code": "HeistContractNoGangCut1",
             "Level": "68",
@@ -9199,6 +10179,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22441",
 =======
             "ID": "22439",
@@ -9206,6 +10187,9 @@
 =======
             "ID": "22441",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22622",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Proximity",
             "Code": "HeistContractNoTravelCost1__",
             "Level": "68",
@@ -9227,6 +10211,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22442",
 =======
             "ID": "22440",
@@ -9234,6 +10219,9 @@
 =======
             "ID": "22442",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22623",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Paranoia",
             "Code": "HeistContractGainAlertLevelPassive1",
             "Level": "68",
@@ -9255,6 +10243,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22444",
 =======
             "ID": "22442",
@@ -9262,6 +10251,9 @@
 =======
             "ID": "22444",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22625",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Unravelling",
             "Code": "HeistContractPlayerMaxResistsAlertLevel1_",
             "Level": "73",
@@ -9295,6 +10287,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22445",
 =======
             "ID": "22443",
@@ -9302,6 +10295,9 @@
 =======
             "ID": "22445",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22626",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Unravelling",
             "Code": "HeistContractPlayerMaxResistsAlertLevel2_",
             "Level": "78",
@@ -9335,6 +10331,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22446",
 =======
             "ID": "22444",
@@ -9342,6 +10339,9 @@
 =======
             "ID": "22446",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22627",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel1",
             "Level": "68",
@@ -9383,6 +10383,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22447",
 =======
             "ID": "22445",
@@ -9390,6 +10391,9 @@
 =======
             "ID": "22447",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22628",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel2",
             "Level": "73",
@@ -9431,6 +10435,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22448",
 =======
             "ID": "22446",
@@ -9438,6 +10443,9 @@
 =======
             "ID": "22448",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22629",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel3_",
             "Level": "78",
@@ -9479,6 +10487,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22449",
 =======
             "ID": "22447",
@@ -9486,6 +10495,9 @@
 =======
             "ID": "22449",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22630",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel1_",
             "Level": "68",
@@ -9527,6 +10539,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22450",
 =======
             "ID": "22448",
@@ -9534,6 +10547,9 @@
 =======
             "ID": "22450",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22631",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel2_",
             "Level": "73",
@@ -9575,6 +10591,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22451",
 =======
             "ID": "22449",
@@ -9582,6 +10599,9 @@
 =======
             "ID": "22451",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22632",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel3_",
             "Level": "78",
@@ -9623,6 +10643,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22452",
 =======
             "ID": "22450",
@@ -9630,6 +10651,9 @@
 =======
             "ID": "22452",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22633",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel1",
             "Level": "68",
@@ -9671,6 +10695,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22453",
 =======
             "ID": "22451",
@@ -9678,6 +10703,9 @@
 =======
             "ID": "22453",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22634",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel2",
             "Level": "73",
@@ -9719,6 +10747,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22454",
 =======
             "ID": "22452",
@@ -9726,6 +10755,9 @@
 =======
             "ID": "22454",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22635",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel3",
             "Level": "78",
@@ -9767,6 +10799,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22455",
 =======
             "ID": "22453",
@@ -9774,6 +10807,9 @@
 =======
             "ID": "22455",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22636",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel1___",
             "Level": "46",
@@ -9808,6 +10844,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22456",
 =======
             "ID": "22454",
@@ -9815,6 +10852,9 @@
 =======
             "ID": "22456",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22637",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel2_",
             "Level": "68",
@@ -9849,6 +10889,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22457",
 =======
             "ID": "22455",
@@ -9856,6 +10897,9 @@
 =======
             "ID": "22457",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22638",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel3",
             "Level": "73",
@@ -9890,6 +10934,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22458",
 =======
             "ID": "22456",
@@ -9897,6 +10942,9 @@
 =======
             "ID": "22458",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22639",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel4",
             "Level": "78",
@@ -9931,6 +10979,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22459",
 =======
             "ID": "22457",
@@ -9938,6 +10987,9 @@
 =======
             "ID": "22459",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22640",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel1",
             "Level": "46",
@@ -9972,6 +11024,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22460",
 =======
             "ID": "22458",
@@ -9979,6 +11032,9 @@
 =======
             "ID": "22460",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22641",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel2__",
             "Level": "68",
@@ -10013,6 +11069,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22461",
 =======
             "ID": "22459",
@@ -10020,6 +11077,9 @@
 =======
             "ID": "22461",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22642",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel3",
             "Level": "73",
@@ -10054,6 +11114,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22462",
 =======
             "ID": "22460",
@@ -10061,6 +11122,9 @@
 =======
             "ID": "22462",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22643",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel4",
             "Level": "78",
@@ -10095,6 +11159,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22463",
 =======
             "ID": "22461",
@@ -10102,6 +11167,9 @@
 =======
             "ID": "22463",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22644",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel1_",
             "Level": "46",
@@ -10136,6 +11204,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22464",
 =======
             "ID": "22462",
@@ -10143,6 +11212,9 @@
 =======
             "ID": "22464",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22645",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel2",
             "Level": "73",
@@ -10177,6 +11249,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22465",
 =======
             "ID": "22463",
@@ -10184,6 +11257,9 @@
 =======
             "ID": "22465",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22646",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel3__",
             "Level": "78",
@@ -10218,6 +11294,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22466",
 =======
             "ID": "22464",
@@ -10225,6 +11302,9 @@
 =======
             "ID": "22466",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22647",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel1",
             "Level": "46",
@@ -10262,6 +11342,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22467",
 =======
             "ID": "22465",
@@ -10269,6 +11350,9 @@
 =======
             "ID": "22467",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22648",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel2",
             "Level": "73",
@@ -10306,6 +11390,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22468",
 =======
             "ID": "22466",
@@ -10313,6 +11398,9 @@
 =======
             "ID": "22468",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22649",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel3___",
             "Level": "78",
@@ -10350,6 +11438,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22469",
 =======
             "ID": "22467",
@@ -10357,6 +11446,9 @@
 =======
             "ID": "22469",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22650",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel1_",
             "Level": "46",
@@ -10394,6 +11486,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22470",
 =======
             "ID": "22468",
@@ -10401,6 +11494,9 @@
 =======
             "ID": "22470",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22651",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel2",
             "Level": "73",
@@ -10438,6 +11534,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22471",
 =======
             "ID": "22469",
@@ -10445,6 +11542,9 @@
 =======
             "ID": "22471",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22652",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel3",
             "Level": "78",
@@ -10482,6 +11582,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22472",
 =======
             "ID": "22470",
@@ -10489,6 +11590,9 @@
 =======
             "ID": "22472",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22653",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel1_",
             "Level": "1",
@@ -10512,6 +11616,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22473",
 =======
             "ID": "22471",
@@ -10519,6 +11624,9 @@
 =======
             "ID": "22473",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22654",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel2",
             "Level": "46",
@@ -10542,6 +11650,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22474",
 =======
             "ID": "22472",
@@ -10549,6 +11658,9 @@
 =======
             "ID": "22474",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22655",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel3",
             "Level": "68",
@@ -10572,6 +11684,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22475",
 =======
             "ID": "22473",
@@ -10579,6 +11692,9 @@
 =======
             "ID": "22475",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22656",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel4",
             "Level": "73",
@@ -10602,6 +11718,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "22476",
 =======
             "ID": "22474",
@@ -10609,6 +11726,9 @@
 =======
             "ID": "22476",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "22657",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel5",
             "Level": "78",

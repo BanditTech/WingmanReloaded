@@ -96,7 +96,7 @@ readFromFile(){
 
 	; CLF Options
 	IniRead, YesCLFStrictness, %A_ScriptDir%\save\Settings.ini, General, YesCLFStrictness, 0
-	IniRead, CLFStrictnessNumber, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber, 1
+	IniRead, CLFStrictnessNumber, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber, 0
 
 	; Basic Crafting Settings
 	IniRead, BasicCraftChanceMethod, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceMethod, 1

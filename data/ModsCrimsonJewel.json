@@ -231,7 +231,7 @@
     },
     "normal": [
         {
-            "ID": "8996",
+            "ID": "9148",
             "Name": "Brutal",
             "Code": "MaceDamageJewel",
             "Level": "1",
@@ -270,7 +270,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "8997",
+            "ID": "9149",
             "Name": "Sinister",
             "Code": "AxeDamageJewel",
             "Level": "1",
@@ -309,7 +309,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "8998",
+            "ID": "9150",
             "Name": "Vicious",
             "Code": "SwordDamageJewel",
             "Level": "1",
@@ -348,7 +348,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9003",
+            "ID": "9155",
             "Name": "Judging",
             "Code": "StaffDamageJewel",
             "Level": "1",
@@ -390,7 +390,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9005",
+            "ID": "9157",
             "Name": "Soldier's",
             "Code": "OneHandedMeleeDamageJewel",
             "Level": "1",
@@ -429,7 +429,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9006",
+            "ID": "9158",
             "Name": "Champion's",
             "Code": "TwoHandedMeleeDamageJewel",
             "Level": "1",
@@ -471,7 +471,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9007",
+            "ID": "9159",
             "Name": "Gladiator's",
             "Code": "DualWieldingMeleeDamageJewel",
             "Level": "1",
@@ -510,7 +510,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9009",
+            "ID": "9161",
             "Name": "of Combat",
             "Code": "MeleeDamageJewel_",
             "Level": "1",
@@ -549,7 +549,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9010",
+            "ID": "9162",
             "Name": "of Archery",
             "Code": "ProjectileDamageJewel",
             "Level": "1",
@@ -582,7 +582,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9018",
+            "ID": "9170",
             "Name": "of Wounding",
             "Code": "DamageJewel",
             "Level": "1",
@@ -614,7 +614,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9020",
+            "ID": "9172",
             "Name": "Flaming",
             "Code": "FireDamageJewel",
             "Level": "1",
@@ -657,7 +657,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9021",
+            "ID": "9173",
             "Name": "Chilling",
             "Code": "ColdDamageJewel",
             "Level": "1",
@@ -700,7 +700,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9022",
+            "ID": "9174",
             "Name": "Humming",
             "Code": "LightningDamageJewel",
             "Level": "1",
@@ -743,7 +743,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9023",
+            "ID": "9175",
             "Name": "Sharpened",
             "Code": "PhysicalDamageJewel",
             "Level": "1",
@@ -781,7 +781,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9025",
+            "ID": "9177",
             "Name": "of Entropy",
             "Code": "DamageOverTimeJewel",
             "Level": "1",
@@ -813,7 +813,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9027",
+            "ID": "9179",
             "Name": "Chaotic",
             "Code": "ChaosDamageJewel",
             "Level": "1",
@@ -851,7 +851,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9028",
+            "ID": "9180",
             "Name": "of Blasting",
             "Code": "AreaDamageJewel",
             "Level": "1",
@@ -883,7 +883,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9029",
+            "ID": "9181",
             "Name": "Beating",
             "Code": "MaceAttackSpeedJewel",
             "Level": "1",
@@ -922,7 +922,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9030",
+            "ID": "9182",
             "Name": "Cleaving",
             "Code": "AxeAttackSpeedJewel",
             "Level": "1",
@@ -961,7 +961,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9031",
+            "ID": "9183",
             "Name": "Fencing",
             "Code": "SwordAttackSpeedJewel",
             "Level": "1",
@@ -1000,7 +1000,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9036",
+            "ID": "9188",
             "Name": "Blunt",
             "Code": "StaffAttackSpeedJewel",
             "Level": "1",
@@ -1042,7 +1042,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9037",
+            "ID": "9189",
             "Name": "Bandit's",
             "Code": "OneHandedMeleeAttackSpeedJewel",
             "Level": "1",
@@ -1081,7 +1081,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9038",
+            "ID": "9190",
             "Name": "Warrior's",
             "Code": "TwoHandedMeleeAttackSpeedJewel",
             "Level": "1",
@@ -1122,7 +1122,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9039",
+            "ID": "9191",
             "Name": "Harmonic",
             "Code": "DualWieldingAttackSpeedJewel",
             "Level": "1",
@@ -1160,7 +1160,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9041",
+            "ID": "9193",
             "Name": "Charging",
             "Code": "ShieldAttackSpeedJewel",
             "Level": "1",
@@ -1199,7 +1199,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9045",
+            "ID": "9197",
             "Name": "of Berserking",
             "Code": "AttackSpeedJewel",
             "Level": "1",
@@ -1235,7 +1235,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9046",
+            "ID": "9198",
             "Name": "of Soaring",
             "Code": "ProjectileSpeedJewel",
             "Level": "1",
@@ -1268,7 +1268,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9050",
+            "ID": "9202",
             "Name": "of Zeal",
             "Code": "AttackAndCastSpeedJewel",
             "Level": "1",
@@ -1308,7 +1308,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9067",
+            "ID": "9219",
             "Name": "Flanking",
             "Code": "PhysicalDamageWhileHoldingAShield",
             "Level": "1",
@@ -1349,7 +1349,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9073",
+            "ID": "9225",
             "Name": "of Strength",
             "Code": "StrengthJewel",
             "Level": "1",
@@ -1382,7 +1382,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9074",
+            "ID": "9226",
             "Name": "of Dexterity",
             "Code": "DexterityJewel",
             "Level": "1",
@@ -1415,7 +1415,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9075",
+            "ID": "9227",
             "Name": "of Intelligence",
             "Code": "IntelligenceJewel",
             "Level": "1",
@@ -1448,7 +1448,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9076",
+            "ID": "9228",
             "Name": "of Athletics",
             "Code": "StrengthDexterityJewel",
             "Level": "1",
@@ -1481,7 +1481,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9077",
+            "ID": "9229",
             "Name": "of Spirit",
             "Code": "StrengthIntelligenceJewel",
             "Level": "1",
@@ -1514,7 +1514,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9078",
+            "ID": "9230",
             "Name": "of Cunning",
             "Code": "DexterityIntelligenceJewel",
             "Level": "1",
@@ -1547,7 +1547,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9079",
+            "ID": "9231",
             "Name": "of Adaption",
             "Code": "AllAttributesJewel",
             "Level": "1",
@@ -1579,7 +1579,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9081",
+            "ID": "9233",
             "Name": "Vivid",
             "Code": "PercentIncreasedLifeJewel",
             "Level": "1",
@@ -1616,7 +1616,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9083",
+            "ID": "9235",
             "Name": "Enlightened",
             "Code": "PercentIncreasedManaJewel",
             "Level": "1",
@@ -1653,7 +1653,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9084",
+            "ID": "9236",
             "Name": "Energetic",
             "Code": "IncreasedManaRegenJewel",
             "Level": "1",
@@ -1690,7 +1690,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9092",
+            "ID": "9244",
             "Name": "Hungering",
             "Code": "LifeLeechPermyriadJewel",
             "Level": "1",
@@ -1734,7 +1734,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9099",
+            "ID": "9251",
             "Name": "of Rejuvenation",
             "Code": "LifeOnHitJewel",
             "Level": "1",
@@ -1775,7 +1775,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9102",
+            "ID": "9254",
             "Name": "of Infusion",
             "Code": "LifeRecoupJewel",
             "Level": "1",
@@ -1812,7 +1812,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9103",
+            "ID": "9255",
             "Name": "Armoured",
             "Code": "IncreasedArmourJewel",
             "Level": "1",
@@ -1846,7 +1846,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9109",
+            "ID": "9261",
             "Name": "of Raiding",
             "Code": "ItemRarityJewel",
             "Level": "1",
@@ -1866,7 +1866,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9114",
+            "ID": "9266",
             "Name": "of Menace",
             "Code": "CriticalStrikeChanceJewel",
             "Level": "1",
@@ -1898,7 +1898,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9115",
+            "ID": "9267",
             "Name": "of Potency",
             "Code": "CriticalStrikeMultiplierJewel",
             "Level": "1",
@@ -1934,7 +1934,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9132",
+            "ID": "9284",
             "Name": "Harming",
             "Code": "OneHandedCritChanceJewel",
             "Level": "1",
@@ -1973,7 +1973,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9133",
+            "ID": "9285",
             "Name": "Sundering",
             "Code": "TwoHandedCritChanceJewel",
             "Level": "1",
@@ -2014,7 +2014,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9134",
+            "ID": "9286",
             "Name": "Technical",
             "Code": "DualWieldingCritChanceJewel",
             "Level": "1",
@@ -2053,7 +2053,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9136",
+            "ID": "9288",
             "Name": "of Weight",
             "Code": "MeleeCritChanceJewel",
             "Level": "1",
@@ -2092,7 +2092,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9141",
+            "ID": "9293",
             "Name": "Incinerating",
             "Code": "FireCritChanceJewel",
             "Level": "1",
@@ -2133,7 +2133,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9142",
+            "ID": "9294",
             "Name": "Avalanching",
             "Code": "ColdCritChanceJewel",
             "Level": "1",
@@ -2174,7 +2174,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9143",
+            "ID": "9295",
             "Name": "Thundering",
             "Code": "LightningCritChanceJewel",
             "Level": "1",
@@ -2215,7 +2215,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9144",
+            "ID": "9296",
             "Name": "of the Apocalypse",
             "Code": "ElementalCritChanceJewel",
             "Level": "1",
@@ -2251,7 +2251,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9146",
+            "ID": "9298",
             "Name": "Piercing",
             "Code": "OneHandCritMultiplierJewel_",
             "Level": "1",
@@ -2294,7 +2294,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9147",
+            "ID": "9299",
             "Name": "Rupturing",
             "Code": "TwoHandCritMultiplierJewel",
             "Level": "1",
@@ -2339,7 +2339,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9148",
+            "ID": "9300",
             "Name": "Puncturing",
             "Code": "DualWieldingCritMultiplierJewel",
             "Level": "1",
@@ -2382,7 +2382,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9150",
+            "ID": "9302",
             "Name": "of Demolishing",
             "Code": "MeleeCritMultiplier",
             "Level": "1",
@@ -2425,7 +2425,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9154",
+            "ID": "9306",
             "Name": "Infernal",
             "Code": "FireCritMultiplier",
             "Level": "1",
@@ -2471,7 +2471,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9155",
+            "ID": "9307",
             "Name": "Arctic",
             "Code": "ColdCritMultiplier",
             "Level": "1",
@@ -2517,7 +2517,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9156",
+            "ID": "9308",
             "Name": "Surging",
             "Code": "LightningCritMultiplier",
             "Level": "1",
@@ -2563,7 +2563,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9157",
+            "ID": "9309",
             "Name": "of the Elements",
             "Code": "ElementalCritMultiplier",
             "Level": "1",
@@ -2605,7 +2605,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9159",
+            "ID": "9311",
             "Name": "of the Dragon",
             "Code": "FireResistanceJewel",
             "Level": "1",
@@ -2646,7 +2646,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9160",
+            "ID": "9312",
             "Name": "of the Beast",
             "Code": "ColdResistanceJewel",
             "Level": "1",
@@ -2687,7 +2687,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9161",
+            "ID": "9313",
             "Name": "of Grounding",
             "Code": "LightningResistanceJewel",
             "Level": "1",
@@ -2728,7 +2728,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9162",
+            "ID": "9314",
             "Name": "of the Hearth",
             "Code": "FireColdResistanceJewel",
             "Level": "1",
@@ -2772,7 +2772,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9163",
+            "ID": "9315",
             "Name": "of Insulation",
             "Code": "FireLightningResistanceJewel",
             "Level": "1",
@@ -2816,7 +2816,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9164",
+            "ID": "9316",
             "Name": "of Shelter",
             "Code": "ColdLightningResistanceJewel",
             "Level": "1",
@@ -2860,7 +2860,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9165",
+            "ID": "9317",
             "Name": "of Resistance",
             "Code": "AllResistancesJewel",
             "Level": "1",
@@ -2896,7 +2896,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9166",
+            "ID": "9318",
             "Name": "of Order",
             "Code": "ChaosResistanceJewel",
             "Level": "1",
@@ -2932,7 +2932,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9167",
+            "ID": "9319",
             "Name": "of Stunning",
             "Code": "StunDurationJewel",
             "Level": "1",
@@ -2953,7 +2953,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9168",
+            "ID": "9320",
             "Name": "of Recovery",
             "Code": "StunRecoveryJewel",
             "Level": "1",
@@ -2974,7 +2974,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9169",
+            "ID": "9321",
             "Name": "of Efficiency",
             "Code": "ManaCostReductionJewel",
             "Level": "1",
@@ -3010,7 +3010,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9172",
+            "ID": "9324",
             "Name": "Decrepifying",
             "Code": "FasterAilmentDamageJewel",
             "Level": "1",
@@ -3042,7 +3042,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9186",
+            "ID": "9338",
             "Name": "of Fending",
             "Code": "KnockbackChanceJewel_",
             "Level": "1",
@@ -3062,7 +3062,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9188",
+            "ID": "9340",
             "Name": "Parrying",
             "Code": "BlockDualWieldingJewel",
             "Level": "1",
@@ -3087,7 +3087,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9189",
+            "ID": "9341",
             "Name": "Shielding",
             "Code": "BlockShieldJewel",
             "Level": "1",
@@ -3111,7 +3111,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9190",
+            "ID": "9342",
             "Name": "Deflecting",
             "Code": "BlockStaffJewel",
             "Level": "1",
@@ -3139,7 +3139,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9191",
+            "ID": "9343",
             "Name": "Dissipating",
             "Code": "DualWieldingSpellBlockForJewel",
             "Level": "1",
@@ -3163,7 +3163,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9192",
+            "ID": "9344",
             "Name": "Thwarting",
             "Code": "ShieldSpellBlockJewel",
             "Level": "1",
@@ -3187,7 +3187,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9193",
+            "ID": "9345",
             "Name": "Halting",
             "Code": "StaffSpellBlockJewel",
             "Level": "1",
@@ -3215,7 +3215,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9198",
+            "ID": "9350",
             "Name": "of Hexwarding",
             "Code": "CurseEffectOnYouJewel",
             "Level": "1",
@@ -3247,7 +3247,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9199",
+            "ID": "9351",
             "Name": "of the Flameruler",
             "Code": "IgniteDurationOnYouJewel",
             "Level": "1",
@@ -3287,7 +3287,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9200",
+            "ID": "9352",
             "Name": "of the Snowbreather",
             "Code": "ChillEffectOnYouJewel",
             "Level": "1",
@@ -3327,7 +3327,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9201",
+            "ID": "9353",
             "Name": "of the Stormdweller",
             "Code": "ShockEffectOnYouJewel",
             "Level": "1",
@@ -3367,7 +3367,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9202",
+            "ID": "9354",
             "Name": "of Neutralisation",
             "Code": "PoisonDurationOnYouJewel",
             "Level": "1",
@@ -3407,7 +3407,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9203",
+            "ID": "9355",
             "Name": "of Stemming",
             "Code": "BleedDurationOnYouJewel",
             "Level": "1",
@@ -3447,7 +3447,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9204",
+            "ID": "9356",
             "Name": "Cerebral",
             "Code": "ManaReservationEfficiencyJewel",
             "Level": "1",
@@ -3483,7 +3483,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9205",
+            "ID": "9357",
             "Name": "Prolonging",
             "Code": "FlaskDurationJewel",
             "Level": "1",
@@ -3505,7 +3505,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9206",
+            "ID": "9358",
             "Name": "of Freezing",
             "Code": "FreezeChanceAndDurationJewel",
             "Level": "1",
@@ -3546,7 +3546,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9207",
+            "ID": "9359",
             "Name": "of Shocking",
             "Code": "ShockChanceAndDurationJewel",
             "Level": "1",
@@ -3587,7 +3587,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9208",
+            "ID": "9360",
             "Name": "of Burning",
             "Code": "IgniteChanceAndDurationJewel",
             "Level": "1",
@@ -3628,7 +3628,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9209",
+            "ID": "9361",
             "Name": "of Poisoning",
             "Code": "PoisonChanceAndDurationForJewel",
             "Level": "1",
@@ -3669,7 +3669,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9210",
+            "ID": "9362",
             "Name": "of Bleeding",
             "Code": "BleedChanceAndDurationForJewel__",
             "Level": "1",
@@ -3713,7 +3713,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9211",
+            "ID": "9363",
             "Name": "of Impaling",
             "Code": "ImpaleChanceForJewel_",
             "Level": "1",
@@ -3750,7 +3750,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9212",
+            "ID": "9364",
             "Name": "of Venom",
             "Code": "PoisonDamageForJewel",
             "Level": "1",
@@ -3796,7 +3796,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9213",
+            "ID": "9365",
             "Name": "of Haemophilia",
             "Code": "BleedDamageForJewel",
             "Level": "1",
@@ -3845,7 +3845,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9214",
+            "ID": "9366",
             "Name": "of Combusting",
             "Code": "BurningDamageForJewel",
             "Level": "1",
@@ -3890,7 +3890,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9222",
+            "ID": "9374",
             "Name": "Shaman's",
             "Code": "TotemDamageJewel",
             "Level": "1",
@@ -3923,7 +3923,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9225",
+            "ID": "9377",
             "Name": "Carved",
             "Code": "TotemLifeJewel",
             "Level": "1",
@@ -3960,7 +3960,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9226",
+            "ID": "9378",
             "Name": "of Runes",
             "Code": "TotemElementalResistancesJewel",
             "Level": "1",
@@ -3999,6 +3999,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17819",
 =======
             "ID": "17817",
@@ -4006,6 +4007,9 @@
 =======
             "ID": "17819",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "17996",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Zealousness",
             "Code": "JewelFireDamageOverTimeMultiplier1",
             "Level": "1",
@@ -4050,6 +4054,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17835",
 =======
             "ID": "17833",
@@ -4057,6 +4062,9 @@
 =======
             "ID": "17835",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "18012",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Exsanguinating",
             "Code": "JewelPhysicalDamageOverTimeMultiplier1",
             "Level": "1",
@@ -4097,6 +4105,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "17848",
 =======
             "ID": "17846",
@@ -4104,6 +4113,9 @@
 =======
             "ID": "17848",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "18025",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Acrimony",
             "Code": "JewelGlobalDamageOverTimeMultiplier1",
             "Level": "1",
@@ -4142,6 +4154,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15812",
 =======
             "ID": "15810",
@@ -4149,6 +4162,9 @@
 =======
             "ID": "15812",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15987",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -4194,6 +4210,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15822",
 =======
             "ID": "15820",
@@ -4201,6 +4218,9 @@
 =======
             "ID": "15822",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15997",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -4246,6 +4266,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15832",
 =======
             "ID": "15830",
@@ -4253,6 +4274,9 @@
 =======
             "ID": "15832",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16007",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -4298,6 +4322,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15851",
 =======
             "ID": "15849",
@@ -4305,6 +4330,9 @@
 =======
             "ID": "15851",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16026",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -4340,6 +4368,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15861",
 =======
             "ID": "15859",
@@ -4347,6 +4376,9 @@
 =======
             "ID": "15861",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16036",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -4388,6 +4420,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15869",
 =======
             "ID": "15867",
@@ -4395,6 +4428,9 @@
 =======
             "ID": "15869",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16044",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -4434,6 +4470,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15871",
 =======
             "ID": "15869",
@@ -4441,6 +4478,9 @@
 =======
             "ID": "15871",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16046",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -4477,6 +4517,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15874",
 =======
             "ID": "15872",
@@ -4484,6 +4525,9 @@
 =======
             "ID": "15874",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16049",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -4520,6 +4564,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15877",
 =======
             "ID": "15875",
@@ -4527,6 +4572,9 @@
 =======
             "ID": "15877",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16052",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -4563,6 +4611,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15898",
 =======
             "ID": "15896",
@@ -4570,6 +4619,9 @@
 =======
             "ID": "15898",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16073",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -4605,6 +4657,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15904",
 =======
             "ID": "15902",
@@ -4612,6 +4665,9 @@
 =======
             "ID": "15904",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16079",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -4651,6 +4707,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15921",
 =======
             "ID": "15919",
@@ -4658,6 +4715,9 @@
 =======
             "ID": "15921",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16096",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -4699,6 +4759,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15927",
 =======
             "ID": "15925",
@@ -4706,6 +4767,9 @@
 =======
             "ID": "15927",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16102",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -4720,13 +4784,14 @@
                 "0"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Avoid interruption from Stuns while Casting",
+            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Ignore Stuns while Casting",
             "master_no": [],
             "fossil_no": [],
             "mod_no": [],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             "ID": "15933",
@@ -4736,6 +4801,9 @@
 =======
             "ID": "15933",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16108",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -4779,6 +4847,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15944",
 =======
             "ID": "15942",
@@ -4786,6 +4855,9 @@
 =======
             "ID": "15944",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16119",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -4829,6 +4901,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15955",
 =======
             "ID": "15953",
@@ -4836,6 +4909,9 @@
 =======
             "ID": "15955",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16130",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -4861,6 +4937,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15974",
 =======
             "ID": "15972",
@@ -4868,6 +4945,9 @@
 =======
             "ID": "15974",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16149",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelMinionAttackAndCastSpeed1",
             "Level": "1",
@@ -4914,6 +4994,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15982",
 =======
             "ID": "15980",
@@ -4921,6 +5002,9 @@
 =======
             "ID": "15982",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16157",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -4960,6 +5044,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15257",
 =======
             "ID": "15255",
@@ -4967,6 +5052,9 @@
 =======
             "ID": "15257",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15432",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -4990,6 +5078,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15256",
 =======
             "ID": "15254",
@@ -4997,6 +5086,9 @@
 =======
             "ID": "15256",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15431",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -5020,6 +5112,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15259",
 =======
             "ID": "15257",
@@ -5027,6 +5120,9 @@
 =======
             "ID": "15259",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15434",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -5051,6 +5147,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15258",
 =======
             "ID": "15256",
@@ -5058,6 +5155,9 @@
 =======
             "ID": "15258",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15433",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",

@@ -232,6 +232,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21446",
 =======
             "ID": "21444",
@@ -239,6 +240,9 @@
 =======
             "ID": "21446",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21624",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Notable",
             "Code": "AfflictionNotableHitandRun",
             "Level": "1",
@@ -278,6 +282,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21615",
 =======
             "ID": "21613",
@@ -285,6 +290,9 @@
 =======
             "ID": "21615",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21793",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Notable",
             "Code": "AfflictionNotableUntouchable",
             "Level": "1",
@@ -321,6 +329,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21627",
 =======
             "ID": "21625",
@@ -328,6 +337,9 @@
 =======
             "ID": "21627",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21805",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Notable",
             "Code": "AfflictionNotableAerialist",
             "Level": "75",
@@ -362,6 +374,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21628",
 =======
             "ID": "21626",
@@ -369,6 +382,9 @@
 =======
             "ID": "21628",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21806",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Notable",
             "Code": "AfflictionNotableElegantForm",
             "Level": "1",
@@ -403,6 +419,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21629",
 =======
             "ID": "21627",
@@ -410,6 +427,9 @@
 =======
             "ID": "21629",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21807",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Notable",
             "Code": "AfflictionNotableDartingMovements",
             "Level": "1",
@@ -444,6 +464,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21714",
 =======
             "ID": "21712",
@@ -451,6 +472,9 @@
 =======
             "ID": "21714",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21892",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hale",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall",
             "Level": "1",
@@ -489,6 +513,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21715",
 =======
             "ID": "21713",
@@ -496,6 +521,9 @@
 =======
             "ID": "21715",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21893",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Healthy",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall2",
             "Level": "68",
@@ -534,6 +562,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21716",
 =======
             "ID": "21714",
@@ -541,6 +570,9 @@
 =======
             "ID": "21716",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21894",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Sanguine",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall3",
             "Level": "73",
@@ -579,6 +611,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21717",
 =======
             "ID": "21715",
@@ -586,6 +619,9 @@
 =======
             "ID": "21717",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21895",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stalwart",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall4",
             "Level": "78",
@@ -624,6 +660,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21718",
 =======
             "ID": "21716",
@@ -631,6 +668,9 @@
 =======
             "ID": "21718",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21896",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Stout",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall5_",
             "Level": "84",
@@ -669,6 +709,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21719",
 =======
             "ID": "21717",
@@ -676,6 +717,9 @@
 =======
             "ID": "21719",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21897",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Beryl",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall",
             "Level": "1",
@@ -714,6 +758,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21720",
 =======
             "ID": "21718",
@@ -721,6 +766,9 @@
 =======
             "ID": "21720",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21898",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Cobalt",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall2_",
             "Level": "68",
@@ -759,6 +807,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21721",
 =======
             "ID": "21719",
@@ -766,6 +815,9 @@
 =======
             "ID": "21721",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21899",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Azure",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall3",
             "Level": "73",
@@ -804,6 +856,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21722",
 =======
             "ID": "21720",
@@ -811,6 +864,9 @@
 =======
             "ID": "21722",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21900",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Sapphire",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall4_",
             "Level": "78",
@@ -849,6 +905,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21723",
 =======
             "ID": "21721",
@@ -856,6 +913,9 @@
 =======
             "ID": "21723",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21901",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Cerulean",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall5_",
             "Level": "84",
@@ -894,6 +954,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21724",
 =======
             "ID": "21722",
@@ -901,6 +962,9 @@
 =======
             "ID": "21724",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21902",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Shining",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall",
             "Level": "1",
@@ -936,6 +1000,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21725",
 =======
             "ID": "21723",
@@ -943,6 +1008,9 @@
 =======
             "ID": "21725",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21903",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Glimmering",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall2",
             "Level": "68",
@@ -978,6 +1046,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21726",
 =======
             "ID": "21724",
@@ -985,6 +1054,9 @@
 =======
             "ID": "21726",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21904",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Glowing",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall3_",
             "Level": "73",
@@ -1020,6 +1092,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21727",
 =======
             "ID": "21725",
@@ -1027,6 +1100,9 @@
 =======
             "ID": "21727",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21905",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Radiating",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall4",
             "Level": "78",
@@ -1062,6 +1138,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21728",
 =======
             "ID": "21726",
@@ -1069,6 +1146,9 @@
 =======
             "ID": "21728",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21906",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Pulsing",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall5",
             "Level": "84",
@@ -1104,6 +1184,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21729",
 =======
             "ID": "21727",
@@ -1111,6 +1192,9 @@
 =======
             "ID": "21729",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21907",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Lacquered",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall__",
             "Level": "1",
@@ -1146,6 +1230,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21730",
 =======
             "ID": "21728",
@@ -1153,6 +1238,9 @@
 =======
             "ID": "21730",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21908",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Studded",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall2__",
             "Level": "68",
@@ -1188,6 +1276,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21731",
 =======
             "ID": "21729",
@@ -1195,6 +1284,9 @@
 =======
             "ID": "21731",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21909",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Ribbed",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall3",
             "Level": "73",
@@ -1230,6 +1322,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21732",
 =======
             "ID": "21730",
@@ -1237,6 +1330,9 @@
 =======
             "ID": "21732",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21910",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fortified",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall4___",
             "Level": "78",
@@ -1272,6 +1368,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21733",
 =======
             "ID": "21731",
@@ -1279,6 +1376,9 @@
 =======
             "ID": "21733",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21911",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Plated",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall5",
             "Level": "84",
@@ -1314,6 +1414,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21734",
 =======
             "ID": "21732",
@@ -1321,6 +1422,9 @@
 =======
             "ID": "21734",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21912",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Agile",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall",
             "Level": "1",
@@ -1356,6 +1460,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21735",
 =======
             "ID": "21733",
@@ -1363,6 +1468,9 @@
 =======
             "ID": "21735",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21913",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Dancer's",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall2_",
             "Level": "68",
@@ -1398,6 +1506,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21736",
 =======
             "ID": "21734",
@@ -1405,6 +1514,9 @@
 =======
             "ID": "21736",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21914",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Acrobat's",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall3___",
             "Level": "73",
@@ -1440,6 +1552,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21737",
 =======
             "ID": "21735",
@@ -1447,6 +1560,9 @@
 =======
             "ID": "21737",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21915",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Fleet",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall4_",
             "Level": "78",
@@ -1482,6 +1598,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21738",
 =======
             "ID": "21736",
@@ -1489,6 +1606,9 @@
 =======
             "ID": "21738",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21916",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Blurred",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall5",
             "Level": "84",
@@ -1524,6 +1644,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21739",
 =======
             "ID": "21737",
@@ -1531,6 +1652,9 @@
 =======
             "ID": "21739",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21917",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Brute",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall_",
             "Level": "1",
@@ -1565,6 +1689,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21740",
 =======
             "ID": "21738",
@@ -1572,6 +1697,9 @@
 =======
             "ID": "21740",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21918",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Wrestler",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall2",
             "Level": "68",
@@ -1606,6 +1734,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21741",
 =======
             "ID": "21739",
@@ -1613,6 +1742,9 @@
 =======
             "ID": "21741",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21919",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Bear",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall3",
             "Level": "73",
@@ -1647,6 +1779,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21742",
 =======
             "ID": "21740",
@@ -1654,6 +1787,9 @@
 =======
             "ID": "21742",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21920",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Lion",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall4_",
             "Level": "78",
@@ -1688,6 +1824,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21743",
 =======
             "ID": "21741",
@@ -1695,6 +1832,9 @@
 =======
             "ID": "21743",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21921",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Gorilla",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall5",
             "Level": "84",
@@ -1729,6 +1869,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21744",
 =======
             "ID": "21742",
@@ -1736,6 +1877,9 @@
 =======
             "ID": "21744",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21922",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Mongoose",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall_",
             "Level": "1",
@@ -1770,6 +1914,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21745",
 =======
             "ID": "21743",
@@ -1777,6 +1922,9 @@
 =======
             "ID": "21745",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21923",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Lynx",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall2",
             "Level": "68",
@@ -1811,6 +1959,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21746",
 =======
             "ID": "21744",
@@ -1818,6 +1967,9 @@
 =======
             "ID": "21746",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21924",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Fox",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall3",
             "Level": "73",
@@ -1852,6 +2004,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21747",
 =======
             "ID": "21745",
@@ -1859,6 +2012,9 @@
 =======
             "ID": "21747",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21925",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Falcon",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall4_",
             "Level": "78",
@@ -1893,6 +2049,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21748",
 =======
             "ID": "21746",
@@ -1900,6 +2057,9 @@
 =======
             "ID": "21748",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21926",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Panther",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall5",
             "Level": "84",
@@ -1934,6 +2094,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21749",
 =======
             "ID": "21747",
@@ -1941,6 +2102,9 @@
 =======
             "ID": "21749",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21927",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Pupil",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall_",
             "Level": "1",
@@ -1975,6 +2139,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21750",
 =======
             "ID": "21748",
@@ -1982,6 +2147,9 @@
 =======
             "ID": "21750",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21928",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Student",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall2",
             "Level": "68",
@@ -2016,6 +2184,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21751",
 =======
             "ID": "21749",
@@ -2023,6 +2192,9 @@
 =======
             "ID": "21751",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21929",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Prodigy",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall3______",
             "Level": "73",
@@ -2057,6 +2229,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21752",
 =======
             "ID": "21750",
@@ -2064,6 +2237,9 @@
 =======
             "ID": "21752",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21930",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Augur",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall4_",
             "Level": "78",
@@ -2098,6 +2274,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21753",
 =======
             "ID": "21751",
@@ -2105,6 +2282,9 @@
 =======
             "ID": "21753",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21931",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Philosopher",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall5",
             "Level": "84",
@@ -2139,6 +2319,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21754",
 =======
             "ID": "21752",
@@ -2146,6 +2327,9 @@
 =======
             "ID": "21754",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21932",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Cloud",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall",
             "Level": "1",
@@ -2180,6 +2364,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21755",
 =======
             "ID": "21753",
@@ -2187,6 +2372,9 @@
 =======
             "ID": "21755",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21933",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Sky",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall2",
             "Level": "68",
@@ -2221,6 +2409,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21756",
 =======
             "ID": "21754",
@@ -2228,6 +2417,9 @@
 =======
             "ID": "21756",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21934",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Meteor",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall3_",
             "Level": "73",
@@ -2262,6 +2454,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21757",
 =======
             "ID": "21755",
@@ -2269,6 +2462,9 @@
 =======
             "ID": "21757",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21935",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Comet",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall4",
             "Level": "78",
@@ -2303,6 +2499,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21758",
 =======
             "ID": "21756",
@@ -2310,6 +2507,9 @@
 =======
             "ID": "21758",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21936",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Heavens",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall5",
             "Level": "84",
@@ -2344,6 +2544,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21759",
 =======
             "ID": "21757",
@@ -2351,6 +2552,9 @@
 =======
             "ID": "21759",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21937",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Excitement",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall_",
             "Level": "1",
@@ -2389,6 +2593,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21760",
 =======
             "ID": "21758",
@@ -2396,6 +2601,9 @@
 =======
             "ID": "21760",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21938",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Joy",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall2",
             "Level": "68",
@@ -2434,6 +2642,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21761",
 =======
             "ID": "21759",
@@ -2441,6 +2650,9 @@
 =======
             "ID": "21761",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21939",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Elation",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall3",
             "Level": "73",
@@ -2479,6 +2691,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21762",
 =======
             "ID": "21760",
@@ -2486,6 +2699,9 @@
 =======
             "ID": "21762",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21940",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Bliss",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall4",
             "Level": "78",
@@ -2524,6 +2740,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21763",
 =======
             "ID": "21761",
@@ -2531,6 +2748,9 @@
 =======
             "ID": "21763",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21941",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Euphoria",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall5",
             "Level": "84",
@@ -2569,6 +2789,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21764",
 =======
             "ID": "21762",
@@ -2576,6 +2797,9 @@
 =======
             "ID": "21764",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21942",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Newt",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall",
             "Level": "1",
@@ -2614,6 +2838,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21765",
 =======
             "ID": "21763",
@@ -2621,6 +2846,9 @@
 =======
             "ID": "21765",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21943",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Lizard",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall2_",
             "Level": "68",
@@ -2659,6 +2887,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21766",
 =======
             "ID": "21764",
@@ -2666,6 +2895,9 @@
 =======
             "ID": "21766",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21944",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Flatworm",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall3_",
             "Level": "73",
@@ -2704,6 +2936,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21767",
 =======
             "ID": "21765",
@@ -2711,6 +2944,9 @@
 =======
             "ID": "21767",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21945",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Starfish",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall4_",
             "Level": "78",
@@ -2749,6 +2985,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21768",
 =======
             "ID": "21766",
@@ -2756,6 +2993,9 @@
 =======
             "ID": "21768",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21946",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Hydra",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall5",
             "Level": "84",
@@ -2794,6 +3034,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21769",
 =======
             "ID": "21767",
@@ -2801,6 +3042,9 @@
 =======
             "ID": "21769",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21947",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Whelpling",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall",
             "Level": "1",
@@ -2843,6 +3087,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21770",
 =======
             "ID": "21768",
@@ -2850,6 +3095,9 @@
 =======
             "ID": "21770",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21948",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Salamander",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall2",
             "Level": "68",
@@ -2892,6 +3140,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21771",
 =======
             "ID": "21769",
@@ -2899,6 +3148,9 @@
 =======
             "ID": "21771",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21949",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Drake",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall3_",
             "Level": "73",
@@ -2941,6 +3193,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21772",
 =======
             "ID": "21770",
@@ -2948,6 +3201,9 @@
 =======
             "ID": "21772",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21950",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Kiln",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall4",
             "Level": "78",
@@ -2990,6 +3246,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21773",
 =======
             "ID": "21771",
@@ -2997,6 +3254,9 @@
 =======
             "ID": "21773",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21951",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Furnace",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall5",
             "Level": "84",
@@ -3039,6 +3299,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21774",
 =======
             "ID": "21772",
@@ -3046,6 +3307,9 @@
 =======
             "ID": "21774",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21952",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Inuit",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall",
             "Level": "1",
@@ -3088,6 +3352,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21775",
 =======
             "ID": "21773",
@@ -3095,6 +3360,9 @@
 =======
             "ID": "21775",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21953",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Seal",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall2",
             "Level": "68",
@@ -3137,6 +3405,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21776",
 =======
             "ID": "21774",
@@ -3144,6 +3413,9 @@
 =======
             "ID": "21776",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21954",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Penguin",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall3",
             "Level": "73",
@@ -3186,6 +3458,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21777",
 =======
             "ID": "21775",
@@ -3193,6 +3466,9 @@
 =======
             "ID": "21777",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21955",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Yeti",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall4",
             "Level": "78",
@@ -3235,6 +3511,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21778",
 =======
             "ID": "21776",
@@ -3242,6 +3519,9 @@
 =======
             "ID": "21778",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21956",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Walrus",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall5_",
             "Level": "84",
@@ -3284,6 +3564,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21779",
 =======
             "ID": "21777",
@@ -3291,6 +3572,9 @@
 =======
             "ID": "21779",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21957",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Cloud",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall",
             "Level": "1",
@@ -3333,6 +3617,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21780",
 =======
             "ID": "21778",
@@ -3340,6 +3625,9 @@
 =======
             "ID": "21780",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21958",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Squall",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall2__",
             "Level": "68",
@@ -3382,6 +3670,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21781",
 =======
             "ID": "21779",
@@ -3389,6 +3678,9 @@
 =======
             "ID": "21781",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21959",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Storm",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall3",
             "Level": "73",
@@ -3431,6 +3723,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21782",
 =======
             "ID": "21780",
@@ -3438,6 +3731,9 @@
 =======
             "ID": "21782",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21960",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Thunderhead",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall4_",
             "Level": "78",
@@ -3480,6 +3776,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21783",
 =======
             "ID": "21781",
@@ -3487,6 +3784,9 @@
 =======
             "ID": "21783",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21961",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Tempest",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall5",
             "Level": "84",
@@ -3529,6 +3829,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21784",
 =======
             "ID": "21782",
@@ -3536,6 +3837,9 @@
 =======
             "ID": "21784",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21962",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Crystal",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall",
             "Level": "1",
@@ -3574,6 +3878,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21785",
 =======
             "ID": "21783",
@@ -3581,6 +3886,9 @@
 =======
             "ID": "21785",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21963",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Prism",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall2",
             "Level": "68",
@@ -3619,6 +3927,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21786",
 =======
             "ID": "21784",
@@ -3626,6 +3935,9 @@
 =======
             "ID": "21786",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21964",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Kaleidoscope",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall3",
             "Level": "73",
@@ -3664,6 +3976,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21787",
 =======
             "ID": "21785",
@@ -3671,6 +3984,9 @@
 =======
             "ID": "21787",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21965",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Variegation",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall4",
             "Level": "78",
@@ -3709,6 +4025,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21788",
 =======
             "ID": "21786",
@@ -3716,6 +4033,9 @@
 =======
             "ID": "21788",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21966",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Rainbow",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall5",
             "Level": "84",
@@ -3754,6 +4074,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21789",
 =======
             "ID": "21787",
@@ -3761,6 +4082,9 @@
 =======
             "ID": "21789",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21967",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Lost",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall",
             "Level": "1",
@@ -3799,6 +4123,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21790",
 =======
             "ID": "21788",
@@ -3806,6 +4131,9 @@
 =======
             "ID": "21790",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21968",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Banishment",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall2",
             "Level": "68",
@@ -3844,6 +4172,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21791",
 =======
             "ID": "21789",
@@ -3851,6 +4180,9 @@
 =======
             "ID": "21791",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21969",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Eviction",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall3",
             "Level": "73",
@@ -3889,6 +4221,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21792",
 =======
             "ID": "21790",
@@ -3896,6 +4229,9 @@
 =======
             "ID": "21792",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21970",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Expulsion",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall4",
             "Level": "78",
@@ -3934,6 +4270,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21793",
 =======
             "ID": "21791",
@@ -3941,6 +4278,9 @@
 =======
             "ID": "21793",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21971",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of Exile",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall5",
             "Level": "84",
@@ -3979,6 +4319,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21794",
 =======
             "ID": "21792",
@@ -3986,6 +4327,9 @@
 =======
             "ID": "21794",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21972",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Harmful",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall_",
             "Level": "1",
@@ -4020,6 +4364,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21795",
 =======
             "ID": "21793",
@@ -4027,6 +4372,9 @@
 =======
             "ID": "21795",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21973",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Hazardous",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall2_",
             "Level": "68",
@@ -4061,6 +4409,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21796",
 =======
             "ID": "21794",
@@ -4068,6 +4417,9 @@
 =======
             "ID": "21796",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21974",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Dangerous",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall3_",
             "Level": "73",
@@ -4102,6 +4454,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21797",
 =======
             "ID": "21795",
@@ -4109,6 +4462,9 @@
 =======
             "ID": "21797",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21975",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Destructive",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall4_",
             "Level": "78",
@@ -4143,6 +4499,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21798",
 =======
             "ID": "21796",
@@ -4150,6 +4507,9 @@
 =======
             "ID": "21798",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21976",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Deadly",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall5",
             "Level": "84",
@@ -4184,6 +4544,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21799",
 =======
             "ID": "21797",
@@ -4191,6 +4552,9 @@
 =======
             "ID": "21799",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21977",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Potent",
             "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect",
             "Level": "1",
@@ -4212,6 +4576,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "21800",
 =======
             "ID": "21798",
@@ -4219,6 +4584,9 @@
 =======
             "ID": "21800",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "21978",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Powerful",
             "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect2",
             "Level": "84",
@@ -4244,6 +4612,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15812",
 =======
             "ID": "15810",
@@ -4251,6 +4620,9 @@
 =======
             "ID": "15812",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15987",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -4296,6 +4668,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15822",
 =======
             "ID": "15820",
@@ -4303,6 +4676,9 @@
 =======
             "ID": "15822",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15997",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -4348,6 +4724,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15832",
 =======
             "ID": "15830",
@@ -4355,6 +4732,9 @@
 =======
             "ID": "15832",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16007",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -4400,6 +4780,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15851",
 =======
             "ID": "15849",
@@ -4407,6 +4788,9 @@
 =======
             "ID": "15851",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16026",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -4442,6 +4826,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15861",
 =======
             "ID": "15859",
@@ -4449,6 +4834,9 @@
 =======
             "ID": "15861",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16036",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -4490,6 +4878,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15869",
 =======
             "ID": "15867",
@@ -4497,6 +4886,9 @@
 =======
             "ID": "15869",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16044",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -4536,6 +4928,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15871",
 =======
             "ID": "15869",
@@ -4543,6 +4936,9 @@
 =======
             "ID": "15871",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16046",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -4579,6 +4975,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15874",
 =======
             "ID": "15872",
@@ -4586,6 +4983,9 @@
 =======
             "ID": "15874",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16049",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -4622,6 +5022,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15877",
 =======
             "ID": "15875",
@@ -4629,6 +5030,9 @@
 =======
             "ID": "15877",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16052",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -4665,6 +5069,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15898",
 =======
             "ID": "15896",
@@ -4672,6 +5077,9 @@
 =======
             "ID": "15898",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16073",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -4707,6 +5115,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15904",
 =======
             "ID": "15902",
@@ -4714,6 +5123,9 @@
 =======
             "ID": "15904",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16079",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -4753,6 +5165,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15921",
 =======
             "ID": "15919",
@@ -4760,6 +5173,9 @@
 =======
             "ID": "15921",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16096",
+>>>>>>> 92f2640 (Update Data)
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -4801,6 +5217,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15927",
 =======
             "ID": "15925",
@@ -4808,6 +5225,9 @@
 =======
             "ID": "15927",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16102",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -4822,13 +5242,14 @@
                 "0"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Avoid interruption from Stuns while Casting",
+            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Ignore Stuns while Casting",
             "master_no": [],
             "fossil_no": [],
             "mod_no": [],
             "mod_fossil_item": []
         },
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             "ID": "15933",
@@ -4838,6 +5259,9 @@
 =======
             "ID": "15933",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16108",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -4881,6 +5305,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15944",
 =======
             "ID": "15942",
@@ -4888,6 +5313,9 @@
 =======
             "ID": "15944",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16119",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -4931,6 +5359,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15955",
 =======
             "ID": "15953",
@@ -4938,6 +5367,9 @@
 =======
             "ID": "15955",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16130",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -4963,6 +5395,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15974",
 =======
             "ID": "15972",
@@ -4970,6 +5403,9 @@
 =======
             "ID": "15974",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16149",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelMinionAttackAndCastSpeed1",
             "Level": "1",
@@ -5016,6 +5452,7 @@
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15982",
 =======
             "ID": "15980",
@@ -5023,6 +5460,9 @@
 =======
             "ID": "15982",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "16157",
+>>>>>>> 92f2640 (Update Data)
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -5062,6 +5502,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15257",
 =======
             "ID": "15255",
@@ -5069,6 +5510,9 @@
 =======
             "ID": "15257",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15432",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -5092,6 +5536,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15256",
 =======
             "ID": "15254",
@@ -5099,6 +5544,9 @@
 =======
             "ID": "15256",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15431",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -5122,6 +5570,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15259",
 =======
             "ID": "15257",
@@ -5129,6 +5578,9 @@
 =======
             "ID": "15259",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15434",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -5153,6 +5605,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "ID": "15258",
 =======
             "ID": "15256",
@@ -5160,6 +5613,9 @@
 =======
             "ID": "15258",
 >>>>>>> 7df592c (add button to update affix data from PoeDB)
+=======
+            "ID": "15433",
+>>>>>>> 92f2640 (Update Data)
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",

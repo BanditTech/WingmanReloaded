@@ -680,7 +680,7 @@ Global YesIncludeFandSItem := True
 
 ; CLF Options
 Global YesCLFStrictness := False
-Global CLFStrictnessNumber := 1
+Global CLFStrictnessNumber := 0
 
 
 ; Item Crafting
