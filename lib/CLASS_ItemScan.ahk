@@ -1095,6 +1095,10 @@
 						If (This.HasAffix(vi)){
 							value := k-ki+1
 							This.Prop[Name] := value
+							if(AffixWRLine[1] == This.Prop.FracturedModKey){
+								Name := "Fractured" . Name
+								This.Prop[Name] := value
+							}
 							break
 						}
 					}
