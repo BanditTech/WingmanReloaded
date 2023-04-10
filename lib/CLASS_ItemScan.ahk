@@ -2668,12 +2668,14 @@
 		{
 			If (Groups.GroupType) {
 				AuxStrictness := (Groups["Strictness"]?Groups["Strictness"]:0)
-				If (val := This.MatchGroup(Groups) && (!YesCLFStrictness || (YesCLFStrictness && CLFStrictnessNumber >= AuxStrictness))){
-					this.Prop.CLF_Tab := Groups["StashTab"]
-					this.Prop.CLF_Group := (Groups["GroupName"]?Groups["GroupName"]:GKey)
-					this.Prop.CLF_Strictness := AuxStrictness
-					This.MatchedCLF := val
-					Return this.Prop.CLF_Tab
+				If (val := This.MatchGroup(Groups)){
+					If(!YesCLFStrictness || (YesCLFStrictness && CLFStrictnessNumber >= AuxStrictness)){
+						this.Prop.CLF_Tab := Groups["StashTab"]
+						this.Prop.CLF_Group := (Groups["GroupName"]?Groups["GroupName"]:GKey)
+						this.Prop.CLF_Strictness := AuxStrictness
+						This.MatchedCLF := val
+						Return this.Prop.CLF_Tab
+					}
 				}
 			} Else {
 				this.MatchedCLF := []

@@ -125,7 +125,7 @@
     },
     "normal": [
         {
-            "ID": "5022",
+            "ID": "5061",
             "Name": "Ceremonial",
             "Code": "MapTotemsMapWorlds",
             "Level": "1",
@@ -149,7 +149,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5025",
+            "ID": "5064",
             "Name": "Antagonist's",
             "Code": "MapNemesisModOnRaresMapWorlds",
             "Level": "1",
@@ -173,7 +173,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5027",
+            "ID": "5066",
             "Name": "of Bloodlines",
             "Code": "MapBloodlinesModOnMagicsMapWorlds",
             "Level": "1",
@@ -197,7 +197,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5029",
+            "ID": "5068",
             "Name": "Anarchic",
             "Code": "MapMultipleExilesMapWorlds",
             "Level": "1",
@@ -221,7 +221,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5032",
+            "ID": "5071",
             "Name": "Skeletal",
             "Code": "MapMonsterPacksSkeletonsMapWorlds_",
             "Level": "1",
@@ -246,7 +246,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5035",
+            "ID": "5074",
             "Name": "Capricious",
             "Code": "MapMonsterPacksGoatmenMapWorlds",
             "Level": "1",
@@ -271,7 +271,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5038",
+            "ID": "5077",
             "Name": "Slithering",
             "Code": "MapMonsterPacksSpawnsSeaWitchesMapWorlds",
             "Level": "1",
@@ -296,7 +296,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5041",
+            "ID": "5080",
             "Name": "Undead",
             "Code": "MapMonsterPacksUndeadMapWorlds_",
             "Level": "1",
@@ -321,7 +321,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5043",
+            "ID": "5082",
             "Name": "Emanant",
             "Code": "MapMonsterPacksRangedMapWorlds",
             "Level": "1",
@@ -346,7 +346,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5045",
+            "ID": "5084",
             "Name": "Feral",
             "Code": "MapMonsterPacksAnimalsMapWorlds",
             "Level": "1",
@@ -371,7 +371,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5047",
+            "ID": "5086",
             "Name": "Demonic",
             "Code": "MapMonsterPacksDemonsMapWorlds",
             "Level": "1",
@@ -396,7 +396,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5049",
+            "ID": "5088",
             "Name": "Bipedal",
             "Code": "MapMonsterPacksHumanoidsMapWorlds",
             "Level": "1",
@@ -421,7 +421,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5054",
+            "ID": "5093",
             "Name": "Solar",
             "Code": "MapMonsterPacksSolarisMapWorlds_",
             "Level": "1",
@@ -446,7 +446,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5056",
+            "ID": "5095",
             "Name": "Lunar",
             "Code": "MapMonsterPacksLunarisMapWorlds_",
             "Level": "1",
@@ -471,7 +471,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5058",
+            "ID": "5097",
             "Name": "Haunting",
             "Code": "MapMonsterPacksGhostsMapWorlds",
             "Level": "1",
@@ -496,7 +496,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5059",
+            "ID": "5098",
             "Name": "Feasting",
             "Code": "MapMonsterPacksKitavaMapWorlds_",
             "Level": "1",
@@ -521,7 +521,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5062",
+            "ID": "5101",
             "Name": "Multifarious",
             "Code": "MapMoreMonsterPackVarietyMapWorlds_",
             "Level": "1",
@@ -546,7 +546,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5064",
+            "ID": "5103",
             "Name": "Chaining",
             "Code": "MapMonsterChainMapWorlds",
             "Level": "1",
@@ -570,7 +570,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5075",
+            "ID": "5114",
             "Name": "of Venom",
             "Code": "MapPoisoningMapWorlds",
             "Level": "1",
@@ -602,7 +602,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5080",
+            "ID": "5119",
             "Name": "Otherworldly",
             "Code": "MapBeyondLeagueRolledMapWorlds",
             "Level": "1",
@@ -626,7 +626,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5083",
+            "ID": "5122",
             "Name": "of Balance",
             "Code": "MapPlayerElementalEquilibriumMapWorlds",
             "Level": "1",
@@ -657,7 +657,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5087",
+            "ID": "5126",
             "Name": "Twinned",
             "Code": "MapTwoBossesMapWorlds",
             "Level": "1",
@@ -682,7 +682,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5095",
+            "ID": "5134",
             "Name": "Unwavering",
             "Code": "MapMonsterCannotBeStunned2MapWorlds",
             "Level": "1",
@@ -711,7 +711,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5107",
+            "ID": "5146",
             "Name": "Splitting",
             "Code": "MapMonsterMultipleProjectilesWorlds",
             "Level": "1",
@@ -735,7 +735,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5116",
+            "ID": "5155",
             "Name": "of Giants",
             "Code": "MapMonsterAreaOfEffect2MapWorlds",
             "Level": "1",
@@ -758,7 +758,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5130",
+            "ID": "5169",
             "Name": "of Deadliness",
             "Code": "MapMonsterCriticalStrikesAndDamage2MapWorlds",
             "Level": "1",
@@ -787,7 +787,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5165",
+            "ID": "5204",
             "Name": "Armoured",
             "Code": "MapMonsterPhysicalResistance2MapWorlds",
             "Level": "1",
@@ -814,7 +814,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5179",
+            "ID": "5218",
             "Name": "Fecund",
             "Code": "MapMonsterLife2MapWorlds",
             "Level": "1",
@@ -843,7 +843,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5203",
+            "ID": "5242",
             "Name": "Savage",
             "Code": "MapMonsterDamage2MapWorlds",
             "Level": "1",
@@ -870,7 +870,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5229",
+            "ID": "5268",
             "Name": "Burning",
             "Code": "MapMonsterFireDamage2MapWorlds",
             "Level": "1",
@@ -905,7 +905,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5243",
+            "ID": "5282",
             "Name": "Freezing",
             "Code": "MapMonsterColdDamage2MapWorlds",
             "Level": "1",
@@ -940,7 +940,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5257",
+            "ID": "5296",
             "Name": "Shocking",
             "Code": "MapMonsterLightningDamage2MapWorlds__",
             "Level": "1",
@@ -975,7 +975,40 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5272",
+            "ID": "5305",
+            "Name": "Profane",
+            "Code": "MapMonsterChaosDamage2MapWorlds",
+            "Level": "1",
+            "ModDomainsID": "5",
+            "ModGenerationTypeID": "1",
+            "ModFamilyList": [
+                "MapMonsterChaosDamage"
+            ],
+            "WeightList": [
+                "500",
+                "0",
+                "0",
+                "0"
+            ],
+            "DropChance": "500",
+            "str": "Monsters deal <span class='mod-value'>(21&ndash;25)</span>% extra Physical Damage as Chaos<br>Monsters Inflict Withered for 2 seconds on Hit<br><span class='mod-value'>16</span>% increased Quantity of Items found in this Area<br><span class='mod-value'>9</span>% increased Rarity of Items found in this Area<br><span class='mod-value'>6</span>% increased Pack size",
+            "master_no": [],
+            "fossil_no": [
+                "physical_damage",
+                "chaos_damage",
+                "damage",
+                "physical",
+                "chaos"
+            ],
+            "mod_no": [
+                "<span class='badge bg-primary ' data-tag='damage'>damage</span>",
+                "<span class='badge bg-primary craftingphysical' data-tag='physical'>physical</span>",
+                "<span class='badge bg-primary craftingchaos' data-tag='chaos'>chaos</span>"
+            ],
+            "mod_fossil_item": []
+        },
+        {
+            "ID": "5316",
             "Name": "Fleet",
             "Code": "MapMonsterFast2MapWorlds",
             "Level": "1",
@@ -1006,7 +1039,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5302",
+            "ID": "5346",
             "Name": "Punishing",
             "Code": "MapMonsterPhysicalReflection2MapWorlds",
             "Level": "1",
@@ -1036,7 +1069,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5312",
+            "ID": "5356",
             "Name": "Mirrored",
             "Code": "MapMonsterElementalReflection2MapWorlds",
             "Level": "1",
@@ -1066,7 +1099,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5323",
+            "ID": "5367",
             "Name": "of Smothering",
             "Code": "MapPlayerReducedRegen2MapWorlds_",
             "Level": "1",
@@ -1098,7 +1131,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5338",
+            "ID": "5382",
             "Name": "of Flames",
             "Code": "MapBurningGround2MapWorlds",
             "Level": "1",
@@ -1130,7 +1163,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5349",
+            "ID": "5393",
             "Name": "of Ice",
             "Code": "MapChilledGroundSuffix2MapWorlds",
             "Level": "1",
@@ -1153,7 +1186,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5360",
+            "ID": "5404",
             "Name": "of Lightning",
             "Code": "MapShockedGround2MapWorlds",
             "Level": "1",
@@ -1176,7 +1209,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5371",
+            "ID": "5415",
             "Name": "of Desecration",
             "Code": "MapDesecratedGround2MapWorlds__",
             "Level": "1",
@@ -1206,7 +1239,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5381",
+            "ID": "5425",
             "Name": "of Elemental Weakness",
             "Code": "MapPlayerCurseElementalWeakness1MapWorlds",
             "Level": "1",
@@ -1235,7 +1268,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5392",
+            "ID": "5436",
             "Name": "of Vulnerability",
             "Code": "MapPlayerCurseVulnerability1MapWorlds",
             "Level": "1",
@@ -1264,7 +1297,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5404",
+            "ID": "5448",
             "Name": "of Enfeeblement",
             "Code": "MapPlayerCurseEnfeeblement1MapWorlds",
             "Level": "1",
@@ -1293,7 +1326,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5415",
+            "ID": "5459",
             "Name": "of Temporal Chains",
             "Code": "MapPlayerCurseTemporalChains1MapWorlds",
             "Level": "1",
@@ -1322,7 +1355,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5425",
+            "ID": "5469",
             "Name": "of Stasis",
             "Code": "MapPlayerNoLifeESRegenMapWorlds",
             "Level": "1",
@@ -1357,7 +1390,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5430",
+            "ID": "5474",
             "Name": "of Exposure",
             "Code": "MapPlayerMaxResists1MapWorlds",
             "Level": "1",
@@ -1386,7 +1419,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5444",
+            "ID": "5488",
             "Name": "Overlord's",
             "Code": "MapDangerousBoss2MapWorlds",
             "Level": "1",
@@ -1418,7 +1451,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5451",
+            "ID": "5495",
             "Name": "Titan's",
             "Code": "MapMassiveBoss2MapWorlds",
             "Level": "1",
@@ -1448,7 +1481,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5463",
+            "ID": "5507",
             "Name": "of Insulation",
             "Code": "MapMonsterStatusAilmentAvoidance2MapWorlds",
             "Level": "1",
@@ -1483,7 +1516,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5481",
+            "ID": "5525",
             "Name": "of Toughness",
             "Code": "MapMonstersBaseSelfCriticalMultiplier2MapWorlds",
             "Level": "1",
@@ -1512,7 +1545,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5493",
+            "ID": "5537",
             "Name": "of Drought",
             "Code": "MapPlayersGainReducedFlaskCharges2MapWorlds_",
             "Level": "1",
@@ -1535,7 +1568,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5504",
+            "ID": "5548",
             "Name": "Hexwarded",
             "Code": "MapMonstersCurseEffectOnSelfFinal2MapWorlds",
             "Level": "1",
@@ -1564,7 +1597,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5513",
+            "ID": "5557",
             "Name": "Empowered",
             "Code": "MapMonstersChanceToInflictStatusAilmentsMapWorlds",
             "Level": "1",
@@ -1599,7 +1632,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5520",
+            "ID": "5564",
             "Name": "Abhorrent",
             "Code": "MapMonsterPacksAbominationMapWorlds",
             "Level": "1",
@@ -1624,7 +1657,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5523",
+            "ID": "5567",
             "Name": "Unstoppable",
             "Code": "MapMonstersCantBeSlowedOrTauntedMapWorlds_",
             "Level": "1",
@@ -1653,7 +1686,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5528",
+            "ID": "5572",
             "Name": "Conflagrating",
             "Code": "MapMonstersAllDamageAlwaysIgnitesMapWorlds_",
             "Level": "1",
@@ -1686,7 +1719,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5537",
+            "ID": "5581",
             "Name": "Resistant",
             "Code": "MapMonstersAllResistances2MapWorlds",
             "Level": "1",
@@ -1717,7 +1750,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5549",
+            "ID": "5593",
             "Name": "Impervious",
             "Code": "MapMonstersAvoidPoisonBleedBlind2MapWorlds",
             "Level": "1",
@@ -1754,7 +1787,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5566",
+            "ID": "5610",
             "Name": "of Rust",
             "Code": "MapPlayersBlockAndArmour2MapWorlds",
             "Level": "1",
@@ -1783,7 +1816,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5578",
+            "ID": "5622",
             "Name": "of Miring",
             "Code": "MapPlayersEvasionAndUnluckyDodge2MapWorlds",
             "Level": "1",
@@ -1810,7 +1843,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5590",
+            "ID": "5634",
             "Name": "of Impotence",
             "Code": "MapPlayersLessAoERadius2MapWorlds",
             "Level": "1",
@@ -1833,7 +1866,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5595",
+            "ID": "5639",
             "Name": "of Frenzy",
             "Code": "MapMonstersFrenzyChargeOnHitMapWorlds",
             "Level": "1",
@@ -1860,7 +1893,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5598",
+            "ID": "5642",
             "Name": "of Endurance",
             "Code": "MapMonstersEnduranceChargeOnHitMapWorlds",
             "Level": "1",
@@ -1887,7 +1920,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5602",
+            "ID": "5646",
             "Name": "of Power",
             "Code": "MapMonstersPowerChargeOnHitMapWorlds",
             "Level": "1",
@@ -1914,7 +1947,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5607",
+            "ID": "5651",
             "Name": "Impaling",
             "Code": "MapMonstersImpaleOnHit2MapWorlds",
             "Level": "1",
@@ -1936,7 +1969,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5615",
+            "ID": "5659",
             "Name": "Oppressive",
             "Code": "MapMonstersChanceToSuppressSpells2MapWorlds",
             "Level": "1",
@@ -1958,7 +1991,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5623",
+            "ID": "5667",
             "Name": "Buffered",
             "Code": "MapMonstersMaximumLifeAddedEnergyShield2MapWorlds_____",
             "Level": "1",
@@ -1980,7 +2013,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5630",
+            "ID": "5674",
             "Name": "Enthralled",
             "Code": "MapBossPossessedMapWorlds",
             "Level": "1",
@@ -2005,7 +2038,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5631",
+            "ID": "5675",
             "Name": "of Blinding",
             "Code": "MapMonstersBlindOnHitMapWorlds",
             "Level": "1",
@@ -2028,7 +2061,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5634",
+            "ID": "5678",
             "Name": "of Carnage",
             "Code": "MapMonstersMaimOnHitMapWorlds",
             "Level": "1",
@@ -2051,7 +2084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5637",
+            "ID": "5681",
             "Name": "of Impedance",
             "Code": "MapMonstersHinderOnHitMapWorlds",
             "Level": "1",
@@ -2074,7 +2107,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5640",
+            "ID": "5684",
             "Name": "of Enervation",
             "Code": "MapMonstersStealChargesOnHitMapWorlds",
             "Level": "1",
@@ -2097,7 +2130,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5644",
+            "ID": "5688",
             "Name": "of Consecration",
             "Code": "MapConsecratedGround2MapWorlds",
             "Level": "1",
@@ -2119,7 +2152,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5652",
+            "ID": "5696",
             "Name": "of Fatigue",
             "Code": "MapPlayersLessCooldownRecovery2MapWorlds",
             "Level": "1",
@@ -2141,7 +2174,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5660",
+            "ID": "5704",
             "Name": "of Transience",
             "Code": "MapPlayersBuffsExpireFaster2MapWorlds___",
             "Level": "1",
@@ -2163,7 +2196,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5668",
+            "ID": "5712",
             "Name": "of Doubt",
             "Code": "MapPlayersReducedAuraEffect2MapWorlds",
             "Level": "1",
@@ -2185,7 +2218,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "5676",
+            "ID": "5720",
             "Name": "of Imprecision",
             "Code": "MapPlayersAccuracyRating2MapWorlds",
             "Level": "1",
@@ -2211,7 +2244,7 @@
         {
             "Code": "MapTotemsMap2Tier",
             "NPCMasterID": "6",
-            "ID": "5021",
+            "ID": "5060",
             "ModGenerationTypeID": "1",
             "Level": "1",
             "ModFamilyList": [
@@ -2229,7 +2262,7 @@
         {
             "Code": "MapMultipleExilesMap2Tier",
             "NPCMasterID": "6",
-            "ID": "5028",
+            "ID": "5067",
             "ModGenerationTypeID": "1",
             "Level": "1",
             "ModFamilyList": [
@@ -2247,7 +2280,7 @@
         {
             "Code": "MapBeyondLeagueRolledMap2Tier",
             "NPCMasterID": "6",
-            "ID": "5079",
+            "ID": "5118",
             "ModGenerationTypeID": "1",
             "Level": "1",
             "ModFamilyList": [
@@ -2265,7 +2298,7 @@
         {
             "Code": "MapTwoBossesMap2Tier_",
             "NPCMasterID": "6",
-            "ID": "5086",
+            "ID": "5125",
             "ModGenerationTypeID": "1",
             "Level": "1",
             "ModFamilyList": [
@@ -2284,7 +2317,7 @@
     "essence": [],
     "delve": [
         {
-            "ID": "15986",
+            "ID": "16161",
             "Name": "Subterranean",
             "Code": "DelveMapMonsterPacksVaalMapWorlds1",
             "Level": "1",

@@ -126,7 +126,7 @@
     },
     "normal": [
         {
-            "ID": "21472",
+            "ID": "21650",
             "Name": "Notable",
             "Code": "AfflictionNotablePrismaticHeart__",
             "Level": "1",
@@ -162,7 +162,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21607",
+            "ID": "21785",
             "Name": "Notable",
             "Code": "AfflictionNotablePrismaticCarapace_",
             "Level": "75",
@@ -195,7 +195,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21613",
+            "ID": "21791",
             "Name": "Notable",
             "Code": "AfflictionNotablePrismaticDance____",
             "Level": "75",
@@ -228,7 +228,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21620",
+            "ID": "21798",
             "Name": "Notable",
             "Code": "AfflictionNotableFlexibleSentry___",
             "Level": "50",
@@ -257,7 +257,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21641",
+            "ID": "21819",
             "Name": "Notable",
             "Code": "AfflictionNotableWizardry_",
             "Level": "68",
@@ -291,7 +291,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21642",
+            "ID": "21820",
             "Name": "Notable",
             "Code": "AfflictionNotableCapacitor____",
             "Level": "50",
@@ -320,7 +320,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21643",
+            "ID": "21821",
             "Name": "Notable",
             "Code": "AfflictionNotablePureAptitude",
             "Level": "68",
@@ -354,7 +354,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21644",
+            "ID": "21822",
             "Name": "Notable",
             "Code": "AfflictionNotableSage_",
             "Level": "1",
@@ -391,7 +391,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21645",
+            "ID": "21823",
             "Name": "Notable",
             "Code": "AfflictionNotableInsulated",
             "Level": "50",
@@ -422,7 +422,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21714",
+            "ID": "21892",
             "Name": "Hale",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall",
             "Level": "1",
@@ -449,7 +449,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21715",
+            "ID": "21893",
             "Name": "Healthy",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall2",
             "Level": "68",
@@ -476,7 +476,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21716",
+            "ID": "21894",
             "Name": "Sanguine",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall3",
             "Level": "73",
@@ -503,7 +503,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21717",
+            "ID": "21895",
             "Name": "Stalwart",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall4",
             "Level": "78",
@@ -530,7 +530,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21718",
+            "ID": "21896",
             "Name": "Stout",
             "Code": "AfflictionJewelSmallPassivesGrantLifeSmall5_",
             "Level": "84",
@@ -557,7 +557,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21719",
+            "ID": "21897",
             "Name": "Beryl",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall",
             "Level": "1",
@@ -584,7 +584,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21720",
+            "ID": "21898",
             "Name": "Cobalt",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall2_",
             "Level": "68",
@@ -611,7 +611,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21721",
+            "ID": "21899",
             "Name": "Azure",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall3",
             "Level": "73",
@@ -638,7 +638,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21722",
+            "ID": "21900",
             "Name": "Sapphire",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall4_",
             "Level": "78",
@@ -665,7 +665,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21723",
+            "ID": "21901",
             "Name": "Cerulean",
             "Code": "AfflictionJewelSmallPassivesGrantManaSmall5_",
             "Level": "84",
@@ -692,7 +692,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21724",
+            "ID": "21902",
             "Name": "Shining",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall",
             "Level": "1",
@@ -718,7 +718,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21725",
+            "ID": "21903",
             "Name": "Glimmering",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall2",
             "Level": "68",
@@ -744,7 +744,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21726",
+            "ID": "21904",
             "Name": "Glowing",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall3_",
             "Level": "73",
@@ -770,7 +770,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21727",
+            "ID": "21905",
             "Name": "Radiating",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall4",
             "Level": "78",
@@ -796,7 +796,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21728",
+            "ID": "21906",
             "Name": "Pulsing",
             "Code": "AfflictionJewelSmallPassivesGrantESSmall5",
             "Level": "84",
@@ -822,7 +822,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21729",
+            "ID": "21907",
             "Name": "Lacquered",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall__",
             "Level": "1",
@@ -848,7 +848,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21730",
+            "ID": "21908",
             "Name": "Studded",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall2__",
             "Level": "68",
@@ -874,7 +874,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21731",
+            "ID": "21909",
             "Name": "Ribbed",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall3",
             "Level": "73",
@@ -900,7 +900,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21732",
+            "ID": "21910",
             "Name": "Fortified",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall4___",
             "Level": "78",
@@ -926,7 +926,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21733",
+            "ID": "21911",
             "Name": "Plated",
             "Code": "AfflictionJewelSmallPassivesGrantArmourSmall5",
             "Level": "84",
@@ -952,7 +952,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21734",
+            "ID": "21912",
             "Name": "Agile",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall",
             "Level": "1",
@@ -978,7 +978,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21735",
+            "ID": "21913",
             "Name": "Dancer's",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall2_",
             "Level": "68",
@@ -1004,7 +1004,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21736",
+            "ID": "21914",
             "Name": "Acrobat's",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall3___",
             "Level": "73",
@@ -1030,7 +1030,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21737",
+            "ID": "21915",
             "Name": "Fleet",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall4_",
             "Level": "78",
@@ -1056,7 +1056,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21738",
+            "ID": "21916",
             "Name": "Blurred",
             "Code": "AfflictionJewelSmallPassivesGrantEvasionSmall5",
             "Level": "84",
@@ -1082,7 +1082,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21739",
+            "ID": "21917",
             "Name": "of the Brute",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall_",
             "Level": "1",
@@ -1107,7 +1107,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21740",
+            "ID": "21918",
             "Name": "of the Wrestler",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall2",
             "Level": "68",
@@ -1132,7 +1132,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21741",
+            "ID": "21919",
             "Name": "of the Bear",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall3",
             "Level": "73",
@@ -1157,7 +1157,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21742",
+            "ID": "21920",
             "Name": "of the Lion",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall4_",
             "Level": "78",
@@ -1182,7 +1182,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21743",
+            "ID": "21921",
             "Name": "of the Gorilla",
             "Code": "AfflictionJewelSmallPassivesGrantStrSmall5",
             "Level": "84",
@@ -1207,7 +1207,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21744",
+            "ID": "21922",
             "Name": "of the Mongoose",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall_",
             "Level": "1",
@@ -1232,7 +1232,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21745",
+            "ID": "21923",
             "Name": "of the Lynx",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall2",
             "Level": "68",
@@ -1257,7 +1257,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21746",
+            "ID": "21924",
             "Name": "of the Fox",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall3",
             "Level": "73",
@@ -1282,7 +1282,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21747",
+            "ID": "21925",
             "Name": "of the Falcon",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall4_",
             "Level": "78",
@@ -1307,7 +1307,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21748",
+            "ID": "21926",
             "Name": "of the Panther",
             "Code": "AfflictionJewelSmallPassivesGrantDexSmall5",
             "Level": "84",
@@ -1332,7 +1332,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21749",
+            "ID": "21927",
             "Name": "of the Pupil",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall_",
             "Level": "1",
@@ -1357,7 +1357,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21750",
+            "ID": "21928",
             "Name": "of the Student",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall2",
             "Level": "68",
@@ -1382,7 +1382,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21751",
+            "ID": "21929",
             "Name": "of the Prodigy",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall3______",
             "Level": "73",
@@ -1407,7 +1407,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21752",
+            "ID": "21930",
             "Name": "of the Augur",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall4_",
             "Level": "78",
@@ -1432,7 +1432,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21753",
+            "ID": "21931",
             "Name": "of the Philosopher",
             "Code": "AfflictionJewelSmallPassivesGrantIntSmall5",
             "Level": "84",
@@ -1457,7 +1457,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21754",
+            "ID": "21932",
             "Name": "of the Cloud",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall",
             "Level": "1",
@@ -1482,7 +1482,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21755",
+            "ID": "21933",
             "Name": "of the Sky",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall2",
             "Level": "68",
@@ -1507,7 +1507,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21756",
+            "ID": "21934",
             "Name": "of the Meteor",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall3_",
             "Level": "73",
@@ -1532,7 +1532,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21757",
+            "ID": "21935",
             "Name": "of the Comet",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall4",
             "Level": "78",
@@ -1557,7 +1557,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21758",
+            "ID": "21936",
             "Name": "of the Heavens",
             "Code": "AfflictionJewelSmallPassivesGrantAttributesSmall5",
             "Level": "84",
@@ -1582,7 +1582,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21759",
+            "ID": "21937",
             "Name": "of Excitement",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall_",
             "Level": "1",
@@ -1609,7 +1609,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21760",
+            "ID": "21938",
             "Name": "of Joy",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall2",
             "Level": "68",
@@ -1636,7 +1636,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21761",
+            "ID": "21939",
             "Name": "of Elation",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall3",
             "Level": "73",
@@ -1663,7 +1663,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21762",
+            "ID": "21940",
             "Name": "of Bliss",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall4",
             "Level": "78",
@@ -1690,7 +1690,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21763",
+            "ID": "21941",
             "Name": "of Euphoria",
             "Code": "AfflictionJewelSmallPassivesGrantManaRegenSmall5",
             "Level": "84",
@@ -1717,7 +1717,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21764",
+            "ID": "21942",
             "Name": "of the Newt",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall",
             "Level": "1",
@@ -1744,7 +1744,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21765",
+            "ID": "21943",
             "Name": "of the Lizard",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall2_",
             "Level": "68",
@@ -1771,7 +1771,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21766",
+            "ID": "21944",
             "Name": "of the Flatworm",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall3_",
             "Level": "73",
@@ -1798,7 +1798,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21767",
+            "ID": "21945",
             "Name": "of the Starfish",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall4_",
             "Level": "78",
@@ -1825,7 +1825,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21768",
+            "ID": "21946",
             "Name": "of the Hydra",
             "Code": "AfflictionJewelSmallPassivesGrantLifeRegenSmall5",
             "Level": "84",
@@ -1852,7 +1852,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21769",
+            "ID": "21947",
             "Name": "of the Whelpling",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall",
             "Level": "1",
@@ -1881,7 +1881,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21770",
+            "ID": "21948",
             "Name": "of the Salamander",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall2",
             "Level": "68",
@@ -1910,7 +1910,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21771",
+            "ID": "21949",
             "Name": "of the Drake",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall3_",
             "Level": "73",
@@ -1939,7 +1939,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21772",
+            "ID": "21950",
             "Name": "of the Kiln",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall4",
             "Level": "78",
@@ -1968,7 +1968,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21773",
+            "ID": "21951",
             "Name": "of the Furnace",
             "Code": "AfflictionJewelSmallPassivesGrantFireResSmall5",
             "Level": "84",
@@ -1997,7 +1997,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21774",
+            "ID": "21952",
             "Name": "of the Inuit",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall",
             "Level": "1",
@@ -2026,7 +2026,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21775",
+            "ID": "21953",
             "Name": "of the Seal",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall2",
             "Level": "68",
@@ -2055,7 +2055,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21776",
+            "ID": "21954",
             "Name": "of the Penguin",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall3",
             "Level": "73",
@@ -2084,7 +2084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21777",
+            "ID": "21955",
             "Name": "of the Yeti",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall4",
             "Level": "78",
@@ -2113,7 +2113,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21778",
+            "ID": "21956",
             "Name": "of the Walrus",
             "Code": "AfflictionJewelSmallPassivesGrantColdResSmall5_",
             "Level": "84",
@@ -2142,7 +2142,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21779",
+            "ID": "21957",
             "Name": "of the Cloud",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall",
             "Level": "1",
@@ -2171,7 +2171,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21780",
+            "ID": "21958",
             "Name": "of the Squall",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall2__",
             "Level": "68",
@@ -2200,7 +2200,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21781",
+            "ID": "21959",
             "Name": "of the Storm",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall3",
             "Level": "73",
@@ -2229,7 +2229,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21782",
+            "ID": "21960",
             "Name": "of the Thunderhead",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall4_",
             "Level": "78",
@@ -2258,7 +2258,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21783",
+            "ID": "21961",
             "Name": "of the Tempest",
             "Code": "AfflictionJewelSmallPassivesGrantLightningResSmall5",
             "Level": "84",
@@ -2287,7 +2287,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21784",
+            "ID": "21962",
             "Name": "of the Crystal",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall",
             "Level": "1",
@@ -2314,7 +2314,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21785",
+            "ID": "21963",
             "Name": "of the Prism",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall2",
             "Level": "68",
@@ -2341,7 +2341,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21786",
+            "ID": "21964",
             "Name": "of the Kaleidoscope",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall3",
             "Level": "73",
@@ -2368,7 +2368,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21787",
+            "ID": "21965",
             "Name": "of Variegation",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall4",
             "Level": "78",
@@ -2395,7 +2395,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21788",
+            "ID": "21966",
             "Name": "of the Rainbow",
             "Code": "AfflictionJewelSmallPassivesGrantElementalResSmall5",
             "Level": "84",
@@ -2422,7 +2422,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21789",
+            "ID": "21967",
             "Name": "of the Lost",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall",
             "Level": "1",
@@ -2449,7 +2449,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21790",
+            "ID": "21968",
             "Name": "of Banishment",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall2",
             "Level": "68",
@@ -2476,7 +2476,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21791",
+            "ID": "21969",
             "Name": "of Eviction",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall3",
             "Level": "73",
@@ -2503,7 +2503,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21792",
+            "ID": "21970",
             "Name": "of Expulsion",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall4",
             "Level": "78",
@@ -2530,7 +2530,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21793",
+            "ID": "21971",
             "Name": "of Exile",
             "Code": "AfflictionJewelSmallPassivesGrantChaosResSmall5",
             "Level": "84",
@@ -2557,7 +2557,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21794",
+            "ID": "21972",
             "Name": "Harmful",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall_",
             "Level": "1",
@@ -2582,7 +2582,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21795",
+            "ID": "21973",
             "Name": "Hazardous",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall2_",
             "Level": "68",
@@ -2607,7 +2607,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21796",
+            "ID": "21974",
             "Name": "Dangerous",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall3_",
             "Level": "73",
@@ -2632,7 +2632,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21797",
+            "ID": "21975",
             "Name": "Destructive",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall4_",
             "Level": "78",
@@ -2657,7 +2657,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21798",
+            "ID": "21976",
             "Name": "Deadly",
             "Code": "AfflictionJewelSmallPassivesGrantDamageSmall5",
             "Level": "84",
@@ -2682,7 +2682,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21799",
+            "ID": "21977",
             "Name": "Potent",
             "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect",
             "Level": "1",
@@ -2702,7 +2702,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "21800",
+            "ID": "21978",
             "Name": "Powerful",
             "Code": "AfflictionJewelSmallPassivesHaveIncreasedEffect2",
             "Level": "84",
@@ -2726,7 +2726,7 @@
     "essence": [],
     "delve": [
         {
-            "ID": "15812",
+            "ID": "15987",
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -2757,7 +2757,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15822",
+            "ID": "15997",
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -2788,7 +2788,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15832",
+            "ID": "16007",
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -2819,7 +2819,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15851",
+            "ID": "16026",
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -2845,7 +2845,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15861",
+            "ID": "16036",
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -2874,7 +2874,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15869",
+            "ID": "16044",
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -2902,7 +2902,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15871",
+            "ID": "16046",
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -2929,7 +2929,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15874",
+            "ID": "16049",
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -2956,7 +2956,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15877",
+            "ID": "16052",
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -2983,7 +2983,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15898",
+            "ID": "16073",
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -3009,7 +3009,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15904",
+            "ID": "16079",
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -3037,7 +3037,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15921",
+            "ID": "16096",
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -3066,7 +3066,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15927",
+            "ID": "16102",
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -3081,14 +3081,14 @@
                 "0"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Avoid interruption from Stuns while Casting",
+            "str": "<span class='mod-value'>(15&ndash;20)</span>% chance to Ignore Stuns while Casting",
             "master_no": [],
             "fossil_no": [],
             "mod_no": [],
             "mod_fossil_item": []
         },
         {
-            "ID": "15933",
+            "ID": "16108",
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -3118,7 +3118,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15944",
+            "ID": "16119",
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -3148,7 +3148,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15955",
+            "ID": "16130",
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -3172,7 +3172,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15974",
+            "ID": "16149",
             "Name": "of the Underground",
             "Code": "DelveJewelMinionAttackAndCastSpeed1",
             "Level": "1",
@@ -3204,7 +3204,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15982",
+            "ID": "16157",
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -3242,7 +3242,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15257",
+            "ID": "15432",
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -3264,7 +3264,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15256",
+            "ID": "15431",
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -3286,7 +3286,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15259",
+            "ID": "15434",
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -3309,7 +3309,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15258",
+            "ID": "15433",
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",

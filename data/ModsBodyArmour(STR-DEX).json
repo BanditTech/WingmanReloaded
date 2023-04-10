@@ -452,7 +452,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "79",
+            "ID": "81",
             "Name": "of the Mongoose",
             "Code": "Dexterity1",
             "Level": "1",
@@ -489,7 +489,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "80",
+            "ID": "82",
             "Name": "of the Lynx",
             "Code": "Dexterity2",
             "Level": "11",
@@ -526,7 +526,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "81",
+            "ID": "83",
             "Name": "of the Fox",
             "Code": "Dexterity3",
             "Level": "22",
@@ -563,7 +563,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "82",
+            "ID": "84",
             "Name": "of the Falcon",
             "Code": "Dexterity4",
             "Level": "33",
@@ -600,7 +600,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "83",
+            "ID": "85",
             "Name": "of the Panther",
             "Code": "Dexterity5",
             "Level": "44",
@@ -637,7 +637,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "84",
+            "ID": "86",
             "Name": "of the Leopard",
             "Code": "Dexterity6",
             "Level": "55",
@@ -674,7 +674,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "85",
+            "ID": "87",
             "Name": "of the Jaguar",
             "Code": "Dexterity7",
             "Level": "66",
@@ -711,7 +711,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "86",
+            "ID": "88",
             "Name": "of the Phantom",
             "Code": "Dexterity8",
             "Level": "74",
@@ -748,7 +748,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "87",
+            "ID": "89",
             "Name": "of the Wind",
             "Code": "Dexterity9",
             "Level": "82",
@@ -785,7 +785,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "290",
+            "ID": "296",
             "Name": "Hale",
             "Code": "IncreasedLife0",
             "Level": "1",
@@ -813,7 +813,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "291",
+            "ID": "297",
             "Name": "Healthy",
             "Code": "IncreasedLife1",
             "Level": "5",
@@ -841,7 +841,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "292",
+            "ID": "298",
             "Name": "Sanguine",
             "Code": "IncreasedLife2",
             "Level": "11",
@@ -869,7 +869,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "293",
+            "ID": "299",
             "Name": "Stalwart",
             "Code": "IncreasedLife3",
             "Level": "18",
@@ -897,7 +897,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "294",
+            "ID": "300",
             "Name": "Stout",
             "Code": "IncreasedLife4",
             "Level": "24",
@@ -925,7 +925,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "295",
+            "ID": "301",
             "Name": "Robust",
             "Code": "IncreasedLife5",
             "Level": "30",
@@ -953,7 +953,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "296",
+            "ID": "302",
             "Name": "Rotund",
             "Code": "IncreasedLife6",
             "Level": "36",
@@ -981,7 +981,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "297",
+            "ID": "303",
             "Name": "Virile",
             "Code": "IncreasedLife7",
             "Level": "44",
@@ -1009,7 +1009,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "298",
+            "ID": "304",
             "Name": "Athlete's",
             "Code": "IncreasedLife8",
             "Level": "54",
@@ -1038,7 +1038,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "299",
+            "ID": "305",
             "Name": "Fecund",
             "Code": "IncreasedLife9",
             "Level": "64",
@@ -1070,7 +1070,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "300",
+            "ID": "306",
             "Name": "Vigorous",
             "Code": "IncreasedLife10",
             "Level": "73",
@@ -1098,7 +1098,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "301",
+            "ID": "307",
             "Name": "Rapturous",
             "Code": "IncreasedLife11",
             "Level": "81",
@@ -1125,7 +1125,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "302",
+            "ID": "308",
             "Name": "Prime",
             "Code": "IncreasedLife12",
             "Level": "86",
@@ -1152,7 +1152,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1621",
+            "ID": "1639",
             "Name": "Scrapper's",
             "Code": "LocalIncreasedArmourAndEvasion1",
             "Level": "3",
@@ -1179,7 +1179,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1622",
+            "ID": "1640",
             "Name": "Brawler's",
             "Code": "LocalIncreasedArmourAndEvasion2",
             "Level": "19",
@@ -1206,7 +1206,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1623",
+            "ID": "1641",
             "Name": "Fencer's",
             "Code": "LocalIncreasedArmourAndEvasion3",
             "Level": "30",
@@ -1233,7 +1233,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1624",
+            "ID": "1642",
             "Name": "Gladiator's",
             "Code": "LocalIncreasedArmourAndEvasion4",
             "Level": "44",
@@ -1260,7 +1260,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1625",
+            "ID": "1643",
             "Name": "Duelist's",
             "Code": "LocalIncreasedArmourAndEvasion5",
             "Level": "60",
@@ -1287,7 +1287,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1626",
+            "ID": "1644",
             "Name": "Hero's",
             "Code": "LocalIncreasedArmourAndEvasion6",
             "Level": "72",
@@ -1314,7 +1314,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1627",
+            "ID": "1645",
             "Name": "Legend's",
             "Code": "LocalIncreasedArmourAndEvasion7",
             "Level": "84",
@@ -1341,7 +1341,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1628",
+            "ID": "1646",
             "Name": "Victor's",
             "Code": "LocalIncreasedArmourAndEvasion8",
             "Level": "86",
@@ -1375,7 +1375,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1762",
+            "ID": "1782",
             "Name": "Beetle's",
             "Code": "LocalIncreasedArmourAndEvasionAndStunRecovery1",
             "Level": "2",
@@ -1402,7 +1402,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1763",
+            "ID": "1783",
             "Name": "Crab's",
             "Code": "LocalIncreasedArmourAndEvasionAndStunRecovery2",
             "Level": "19",
@@ -1429,7 +1429,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1764",
+            "ID": "1784",
             "Name": "Armadillo's",
             "Code": "LocalIncreasedArmourAndEvasionAndStunRecovery3",
             "Level": "30",
@@ -1456,7 +1456,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1765",
+            "ID": "1785",
             "Name": "Rhino's",
             "Code": "LocalIncreasedArmourAndEvasionAndStunRecovery4",
             "Level": "44",
@@ -1483,7 +1483,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1766",
+            "ID": "1786",
             "Name": "Elephant's",
             "Code": "LocalIncreasedArmourAndEvasionAndStunRecovery5",
             "Level": "60",
@@ -1510,7 +1510,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1767",
+            "ID": "1787",
             "Name": "Mammoth's",
             "Code": "LocalIncreasedArmourAndEvasionAndStunRecovery6",
             "Level": "78",
@@ -1537,7 +1537,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2068",
+            "ID": "2088",
             "Name": "Supple",
             "Code": "LocalBaseArmourAndEvasionRating1",
             "Level": "1",
@@ -1565,7 +1565,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2069",
+            "ID": "2089",
             "Name": "Pliant",
             "Code": "LocalBaseArmourAndEvasionRating2",
             "Level": "18",
@@ -1593,7 +1593,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2070",
+            "ID": "2090",
             "Name": "Flexible",
             "Code": "LocalBaseArmourAndEvasionRating3",
             "Level": "30",
@@ -1621,7 +1621,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2071",
+            "ID": "2091",
             "Name": "Durable",
             "Code": "LocalBaseArmourAndEvasionRating4",
             "Level": "38",
@@ -1649,7 +1649,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2072",
+            "ID": "2092",
             "Name": "Sturdy",
             "Code": "LocalBaseArmourAndEvasionRating5",
             "Level": "46",
@@ -1679,7 +1679,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2073",
+            "ID": "2093",
             "Name": "Resilient",
             "Code": "LocalBaseArmourAndEvasionRating6_",
             "Level": "58",
@@ -1710,7 +1710,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2074",
+            "ID": "2094",
             "Name": "Adaptable",
             "Code": "LocalBaseArmourAndEvasionRating7",
             "Level": "69",
@@ -1741,7 +1741,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2075",
+            "ID": "2095",
             "Name": "Versatile",
             "Code": "LocalBaseArmourAndEvasionRating8",
             "Level": "79",
@@ -1773,7 +1773,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2104",
+            "ID": "2124",
             "Name": "Oyster's",
             "Code": "LocalBaseArmourAndLife1",
             "Level": "30",
@@ -1806,7 +1806,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2105",
+            "ID": "2125",
             "Name": "Urchin's",
             "Code": "LocalBaseArmourAndLife2",
             "Level": "46",
@@ -1839,7 +1839,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2106",
+            "ID": "2126",
             "Name": "Nautilus's",
             "Code": "LocalBaseArmourAndLife3",
             "Level": "62",
@@ -1874,7 +1874,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2107",
+            "ID": "2127",
             "Name": "Crocodile's",
             "Code": "LocalBaseArmourAndLife4",
             "Level": "78",
@@ -1911,7 +1911,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2108",
+            "ID": "2128",
             "Name": "Flea's",
             "Code": "LocalBaseEvasionRatingAndLife1",
             "Level": "30",
@@ -1944,7 +1944,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2109",
+            "ID": "2129",
             "Name": "Fawn's",
             "Code": "LocalBaseEvasionRatingAndLife2",
             "Level": "46",
@@ -1977,7 +1977,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2110",
+            "ID": "2130",
             "Name": "Ram's",
             "Code": "LocalBaseEvasionRatingAndLife3",
             "Level": "62",
@@ -2012,7 +2012,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2111",
+            "ID": "2131",
             "Name": "Ibex's",
             "Code": "LocalBaseEvasionRatingAndLife4",
             "Level": "78",
@@ -2049,7 +2049,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2846",
+            "ID": "2871",
             "Name": "of the Newt",
             "Code": "LifeRegeneration1",
             "Level": "1",
@@ -2079,7 +2079,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2847",
+            "ID": "2872",
             "Name": "of the Lizard",
             "Code": "LifeRegeneration2",
             "Level": "7",
@@ -2109,7 +2109,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2848",
+            "ID": "2873",
             "Name": "of the Flatworm",
             "Code": "LifeRegeneration3",
             "Level": "19",
@@ -2139,7 +2139,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2849",
+            "ID": "2874",
             "Name": "of the Starfish",
             "Code": "LifeRegeneration4",
             "Level": "31",
@@ -2169,7 +2169,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2850",
+            "ID": "2875",
             "Name": "of the Hydra",
             "Code": "LifeRegeneration5",
             "Level": "44",
@@ -2199,7 +2199,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2851",
+            "ID": "2876",
             "Name": "of the Troll",
             "Code": "LifeRegeneration6",
             "Level": "55",
@@ -2229,7 +2229,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2852",
+            "ID": "2877",
             "Name": "of Ryslatha",
             "Code": "LifeRegeneration7",
             "Level": "68",
@@ -2259,7 +2259,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2853",
+            "ID": "2878",
             "Name": "of the Phoenix",
             "Code": "LifeRegeneration8_",
             "Level": "74",
@@ -2290,7 +2290,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2854",
+            "ID": "2879",
             "Name": "of Recuperation",
             "Code": "LifeRegeneration9",
             "Level": "78",
@@ -2324,7 +2324,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2855",
+            "ID": "2880",
             "Name": "of Life-giving",
             "Code": "LifeRegeneration10__",
             "Level": "83",
@@ -2353,7 +2353,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2856",
+            "ID": "2881",
             "Name": "of Convalescence",
             "Code": "LifeRegeneration11____",
             "Level": "86",
@@ -2381,7 +2381,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3037",
+            "ID": "3064",
             "Name": "of the Whelpling",
             "Code": "FireResist1",
             "Level": "1",
@@ -2415,7 +2415,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3038",
+            "ID": "3065",
             "Name": "of the Salamander",
             "Code": "FireResist2",
             "Level": "12",
@@ -2449,7 +2449,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3039",
+            "ID": "3066",
             "Name": "of the Drake",
             "Code": "FireResist3",
             "Level": "24",
@@ -2483,7 +2483,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3040",
+            "ID": "3067",
             "Name": "of the Kiln",
             "Code": "FireResist4",
             "Level": "36",
@@ -2517,7 +2517,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3041",
+            "ID": "3068",
             "Name": "of the Furnace",
             "Code": "FireResist5",
             "Level": "48",
@@ -2551,7 +2551,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3042",
+            "ID": "3069",
             "Name": "of the Volcano",
             "Code": "FireResist6",
             "Level": "60",
@@ -2585,7 +2585,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3043",
+            "ID": "3070",
             "Name": "of the Magma",
             "Code": "FireResist7",
             "Level": "72",
@@ -2619,7 +2619,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3044",
+            "ID": "3071",
             "Name": "of Tzteosh",
             "Code": "FireResist8",
             "Level": "84",
@@ -2653,7 +2653,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3108",
+            "ID": "3135",
             "Name": "of the Inuit",
             "Code": "ColdResist1",
             "Level": "1",
@@ -2687,7 +2687,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3109",
+            "ID": "3136",
             "Name": "of the Seal",
             "Code": "ColdResist2",
             "Level": "14",
@@ -2721,7 +2721,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3110",
+            "ID": "3137",
             "Name": "of the Penguin",
             "Code": "ColdResist3",
             "Level": "26",
@@ -2755,7 +2755,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3111",
+            "ID": "3138",
             "Name": "of the Yeti",
             "Code": "ColdResist4",
             "Level": "38",
@@ -2789,7 +2789,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3112",
+            "ID": "3139",
             "Name": "of the Walrus",
             "Code": "ColdResist5",
             "Level": "50",
@@ -2823,7 +2823,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3113",
+            "ID": "3140",
             "Name": "of the Polar Bear",
             "Code": "ColdResist6",
             "Level": "60",
@@ -2857,7 +2857,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3114",
+            "ID": "3141",
             "Name": "of the Ice",
             "Code": "ColdResist7",
             "Level": "72",
@@ -2891,7 +2891,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3115",
+            "ID": "3142",
             "Name": "of Haast",
             "Code": "ColdResist8",
             "Level": "84",
@@ -2925,7 +2925,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3192",
+            "ID": "3219",
             "Name": "of the Cloud",
             "Code": "LightningResist1",
             "Level": "1",
@@ -2959,7 +2959,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3193",
+            "ID": "3220",
             "Name": "of the Squall",
             "Code": "LightningResist2",
             "Level": "13",
@@ -2993,7 +2993,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3194",
+            "ID": "3221",
             "Name": "of the Storm",
             "Code": "LightningResist3",
             "Level": "25",
@@ -3027,7 +3027,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3195",
+            "ID": "3222",
             "Name": "of the Thunderhead",
             "Code": "LightningResist4",
             "Level": "37",
@@ -3061,7 +3061,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3196",
+            "ID": "3223",
             "Name": "of the Tempest",
             "Code": "LightningResist5",
             "Level": "49",
@@ -3095,7 +3095,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3197",
+            "ID": "3224",
             "Name": "of the Maelstrom",
             "Code": "LightningResist6",
             "Level": "60",
@@ -3129,7 +3129,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3198",
+            "ID": "3225",
             "Name": "of the Lightning",
             "Code": "LightningResist7",
             "Level": "72",
@@ -3163,7 +3163,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3199",
+            "ID": "3226",
             "Name": "of Ephij",
             "Code": "LightningResist8",
             "Level": "84",
@@ -3197,7 +3197,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3261",
+            "ID": "3288",
             "Name": "of the Lost",
             "Code": "ChaosResist1",
             "Level": "16",
@@ -3229,7 +3229,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3262",
+            "ID": "3289",
             "Name": "of Banishment",
             "Code": "ChaosResist2",
             "Level": "30",
@@ -3261,7 +3261,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3263",
+            "ID": "3290",
             "Name": "of Eviction",
             "Code": "ChaosResist3",
             "Level": "44",
@@ -3293,7 +3293,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3264",
+            "ID": "3291",
             "Name": "of Expulsion",
             "Code": "ChaosResist4",
             "Level": "56",
@@ -3325,7 +3325,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3265",
+            "ID": "3292",
             "Name": "of Exile",
             "Code": "ChaosResist5",
             "Level": "65",
@@ -3357,7 +3357,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3266",
+            "ID": "3293",
             "Name": "of Bameth",
             "Code": "ChaosResist6",
             "Level": "81",
@@ -3389,7 +3389,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3446",
+            "ID": "3475",
             "Name": "of Thick Skin",
             "Code": "StunRecovery1",
             "Level": "1",
@@ -3412,7 +3412,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3447",
+            "ID": "3476",
             "Name": "of Stone Skin",
             "Code": "StunRecovery2",
             "Level": "17",
@@ -3435,7 +3435,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3448",
+            "ID": "3477",
             "Name": "of Iron Skin",
             "Code": "StunRecovery3",
             "Level": "28",
@@ -3458,7 +3458,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3449",
+            "ID": "3478",
             "Name": "of Steel Skin",
             "Code": "StunRecovery4",
             "Level": "42",
@@ -3481,7 +3481,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3450",
+            "ID": "3479",
             "Name": "of Adamantite Skin",
             "Code": "StunRecovery5",
             "Level": "56",
@@ -3504,7 +3504,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3451",
+            "ID": "3480",
             "Name": "of Corundum Skin",
             "Code": "StunRecovery6",
             "Level": "79",
@@ -3527,7 +3527,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4694",
+            "ID": "4732",
             "Name": "Thorny",
             "Code": "AttackerTakesDamage1",
             "Level": "1",
@@ -3558,7 +3558,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4695",
+            "ID": "4733",
             "Name": "Spiny",
             "Code": "AttackerTakesDamage2",
             "Level": "10",
@@ -3589,7 +3589,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4696",
+            "ID": "4734",
             "Name": "Barbed",
             "Code": "AttackerTakesDamage3",
             "Level": "20",
@@ -3618,7 +3618,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4697",
+            "ID": "4735",
             "Name": "Jagged",
             "Code": "AttackerTakesDamage4",
             "Level": "35",
@@ -3647,7 +3647,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6328",
+            "ID": "6475",
             "Name": "of the Worthy",
             "Code": "ReducedLocalAttributeRequirements1",
             "Level": "36",
@@ -3673,7 +3673,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6329",
+            "ID": "6476",
             "Name": "of the Apt",
             "Code": "ReducedLocalAttributeRequirements2",
             "Level": "60",
@@ -3699,7 +3699,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13275",
+            "ID": "13435",
             "Name": "of the Watchman",
             "Code": "AdditionalPhysicalDamageReduction1",
             "Level": "45",
@@ -3735,7 +3735,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13276",
+            "ID": "13436",
             "Name": "of the Sentry",
             "Code": "AdditionalPhysicalDamageReduction2",
             "Level": "58",
@@ -3771,7 +3771,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13277",
+            "ID": "13437",
             "Name": "of the Keeper",
             "Code": "AdditionalPhysicalDamageReduction3",
             "Level": "67",
@@ -3807,7 +3807,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13278",
+            "ID": "13438",
             "Name": "of the Protector",
             "Code": "AdditionalPhysicalDamageReduction4",
             "Level": "77",
@@ -3843,7 +3843,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13279",
+            "ID": "13439",
             "Name": "of the Conservator",
             "Code": "AdditionalPhysicalDamageReduction5_",
             "Level": "86",
@@ -3879,7 +3879,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13285",
+            "ID": "13445",
             "Name": "of Rebuttal",
             "Code": "ChanceToSuppressSpellsHigh1__",
             "Level": "45",
@@ -3911,7 +3911,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13286",
+            "ID": "13446",
             "Name": "of Snuffing",
             "Code": "ChanceToSuppressSpellsHigh2__",
             "Level": "58",
@@ -3943,7 +3943,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13287",
+            "ID": "13447",
             "Name": "of Revoking",
             "Code": "ChanceToSuppressSpellsHigh3",
             "Level": "67",
@@ -3975,7 +3975,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13288",
+            "ID": "13448",
             "Name": "of Abjuration",
             "Code": "ChanceToSuppressSpellsHigh4_",
             "Level": "77",
@@ -4007,7 +4007,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13289",
+            "ID": "13449",
             "Name": "of Nullification",
             "Code": "ChanceToSuppressSpellsHigh5___",
             "Level": "86",
@@ -4043,7 +4043,7 @@
         {
             "Code": "HelenaMasterIncreasedLife1",
             "NPCMasterID": "3",
-            "ID": "17402",
+            "ID": "17579",
             "ModGenerationTypeID": "1",
             "Level": "15",
             "ModFamilyList": [
@@ -4067,7 +4067,7 @@
         {
             "Code": "EinharMasterIncreasedLife2",
             "NPCMasterID": "3",
-            "ID": "17403",
+            "ID": "17580",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -4091,7 +4091,7 @@
         {
             "Code": "EinharMasterIncreasedLife3",
             "NPCMasterID": "3",
-            "ID": "17404",
+            "ID": "17581",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -4115,7 +4115,7 @@
         {
             "Code": "EinharMasterIncreasedLife4",
             "NPCMasterID": "3",
-            "ID": "17405",
+            "ID": "17582",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -4139,7 +4139,7 @@
         {
             "Code": "EinharMasterIncreasedLife5_",
             "NPCMasterID": "3",
-            "ID": "17406",
+            "ID": "17583",
             "ModGenerationTypeID": "1",
             "Level": "80",
             "ModFamilyList": [
@@ -4163,7 +4163,7 @@
         {
             "Code": "EinharMasterIncreasedMana1",
             "NPCMasterID": "3",
-            "ID": "17412",
+            "ID": "17589",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -4187,7 +4187,7 @@
         {
             "Code": "EinharMasterIncreasedMana2",
             "NPCMasterID": "3",
-            "ID": "17413",
+            "ID": "17590",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -4211,7 +4211,7 @@
         {
             "Code": "EinharMasterIncreasedMana3",
             "NPCMasterID": "3",
-            "ID": "17414",
+            "ID": "17591",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -4235,7 +4235,7 @@
         {
             "Code": "EinharMasterArmourPercent1_",
             "NPCMasterID": "3",
-            "ID": "17495",
+            "ID": "17672",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4258,7 +4258,7 @@
         {
             "Code": "EinharMasterArmourPercent2",
             "NPCMasterID": "3",
-            "ID": "17496",
+            "ID": "17673",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4281,7 +4281,7 @@
         {
             "Code": "EinharMasterArmourPercent3_",
             "NPCMasterID": "3",
-            "ID": "17497",
+            "ID": "17674",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -4304,7 +4304,7 @@
         {
             "Code": "EinharMasterFlatArmour1",
             "NPCMasterID": "3",
-            "ID": "17498",
+            "ID": "17675",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4327,7 +4327,7 @@
         {
             "Code": "EinharMasterFlatArmour2_",
             "NPCMasterID": "3",
-            "ID": "17499",
+            "ID": "17676",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4350,7 +4350,7 @@
         {
             "Code": "EinharMasterFlatArmour3",
             "NPCMasterID": "3",
-            "ID": "17500",
+            "ID": "17677",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -4373,7 +4373,7 @@
         {
             "Code": "EinharMasterEvasionPercent1",
             "NPCMasterID": "3",
-            "ID": "17501",
+            "ID": "17678",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4396,7 +4396,7 @@
         {
             "Code": "EinharMasterEvasionPercent2",
             "NPCMasterID": "3",
-            "ID": "17502",
+            "ID": "17679",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4419,7 +4419,7 @@
         {
             "Code": "EinharMasterEvasionPercent3",
             "NPCMasterID": "3",
-            "ID": "17503",
+            "ID": "17680",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -4442,7 +4442,7 @@
         {
             "Code": "EinharMasterFlatEvasion1",
             "NPCMasterID": "3",
-            "ID": "17504",
+            "ID": "17681",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4465,7 +4465,7 @@
         {
             "Code": "EinharMasterFlatEvasion2",
             "NPCMasterID": "3",
-            "ID": "17505",
+            "ID": "17682",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4488,7 +4488,7 @@
         {
             "Code": "EinharMasterFlatEvasion3",
             "NPCMasterID": "3",
-            "ID": "17506",
+            "ID": "17683",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -4511,7 +4511,7 @@
         {
             "Code": "EinharMasterEnergyShieldPercent1",
             "NPCMasterID": "3",
-            "ID": "17507",
+            "ID": "17684",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4534,7 +4534,7 @@
         {
             "Code": "EinharMasterEnergyShieldPercent2",
             "NPCMasterID": "3",
-            "ID": "17508",
+            "ID": "17685",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4557,7 +4557,7 @@
         {
             "Code": "EinharMasterEnergyShieldPercent3_",
             "NPCMasterID": "3",
-            "ID": "17509",
+            "ID": "17686",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -4580,7 +4580,7 @@
         {
             "Code": "EinharMasterFlatEnergyShield1",
             "NPCMasterID": "3",
-            "ID": "17510",
+            "ID": "17687",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4603,7 +4603,7 @@
         {
             "Code": "EinharMasterFlatEnergyShield2",
             "NPCMasterID": "3",
-            "ID": "17511",
+            "ID": "17688",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4626,7 +4626,7 @@
         {
             "Code": "EinharMasterFlatEnergyShield3",
             "NPCMasterID": "3",
-            "ID": "17512",
+            "ID": "17689",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -4649,7 +4649,7 @@
         {
             "Code": "EinharMasterArmourAndEvasionPercent1_",
             "NPCMasterID": "3",
-            "ID": "17517",
+            "ID": "17694",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4673,7 +4673,7 @@
         {
             "Code": "EinharMasterArmourAndEvasionPercent2",
             "NPCMasterID": "3",
-            "ID": "17518",
+            "ID": "17695",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4697,7 +4697,7 @@
         {
             "Code": "EinharMasterArmourAndEvasionPercent3",
             "NPCMasterID": "3",
-            "ID": "17519",
+            "ID": "17696",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -4721,7 +4721,7 @@
         {
             "Code": "EinharMasterArmourAndEnergyShieldPercent1",
             "NPCMasterID": "3",
-            "ID": "17520",
+            "ID": "17697",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4745,7 +4745,7 @@
         {
             "Code": "EinharMasterArmourAndEnergyShieldPercent2",
             "NPCMasterID": "3",
-            "ID": "17521",
+            "ID": "17698",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4769,7 +4769,7 @@
         {
             "Code": "EinharMasterArmourAndEnergyShieldPercent3_",
             "NPCMasterID": "3",
-            "ID": "17522",
+            "ID": "17699",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -4793,7 +4793,7 @@
         {
             "Code": "EinharMasterEvasionAndEnergyShieldPercent1",
             "NPCMasterID": "3",
-            "ID": "17523",
+            "ID": "17700",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -4817,7 +4817,7 @@
         {
             "Code": "EinharMasterEvasionAndEnergyShieldPercent2",
             "NPCMasterID": "3",
-            "ID": "17524",
+            "ID": "17701",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -4841,7 +4841,7 @@
         {
             "Code": "EinharMasterEvasionAndEnergyShieldPercent3",
             "NPCMasterID": "3",
-            "ID": "17525",
+            "ID": "17702",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -4865,7 +4865,7 @@
         {
             "Code": "EinharMasterItemDropsOnGuardianDeath1",
             "NPCMasterID": "3",
-            "ID": "17623",
+            "ID": "17800",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -4883,7 +4883,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndEvasionAndLifeHigh1",
             "NPCMasterID": "5",
-            "ID": "16364",
+            "ID": "16541",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -4912,7 +4912,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndEvasionAndLifeHigh2",
             "NPCMasterID": "5",
-            "ID": "16365",
+            "ID": "16542",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -4941,7 +4941,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndEvasionAndLifeHigh3",
             "NPCMasterID": "5",
-            "ID": "16366",
+            "ID": "16543",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -4970,7 +4970,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndEnergyShieldAndLifeHigh1",
             "NPCMasterID": "5",
-            "ID": "16367",
+            "ID": "16544",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -4999,7 +4999,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndEnergyShieldAndLifeHigh2",
             "NPCMasterID": "5",
-            "ID": "16368",
+            "ID": "16545",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5028,7 +5028,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndEnergyShieldAndLifeHigh3",
             "NPCMasterID": "5",
-            "ID": "16369",
+            "ID": "16546",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5057,7 +5057,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEvasionAndEnergyShieldAndLifeHigh1",
             "NPCMasterID": "5",
-            "ID": "16370",
+            "ID": "16547",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5086,7 +5086,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEvasionAndEnergyShieldAndLifeHigh2",
             "NPCMasterID": "5",
-            "ID": "16371",
+            "ID": "16548",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5115,7 +5115,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEvasionAndEnergyShieldAndLifeHigh3",
             "NPCMasterID": "5",
-            "ID": "16372",
+            "ID": "16549",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5144,7 +5144,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndLifeHigh1",
             "NPCMasterID": "5",
-            "ID": "16373",
+            "ID": "16550",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5172,7 +5172,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndLifeHigh2",
             "NPCMasterID": "5",
-            "ID": "16374",
+            "ID": "16551",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5200,7 +5200,7 @@
         {
             "Code": "JunMaster2LocalIncreasedArmourAndLifeHigh3",
             "NPCMasterID": "5",
-            "ID": "16375",
+            "ID": "16552",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5228,7 +5228,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEvasionAndLifeHigh1",
             "NPCMasterID": "5",
-            "ID": "16376",
+            "ID": "16553",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5256,7 +5256,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEvasionAndLifeHigh2",
             "NPCMasterID": "5",
-            "ID": "16377",
+            "ID": "16554",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5284,7 +5284,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEvasionAndLifeHigh3",
             "NPCMasterID": "5",
-            "ID": "16378",
+            "ID": "16555",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5312,7 +5312,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEnergyShieldAndLifeHigh1_",
             "NPCMasterID": "5",
-            "ID": "16379",
+            "ID": "16556",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5340,7 +5340,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEnergyShieldAndLifeHigh2",
             "NPCMasterID": "5",
-            "ID": "16380",
+            "ID": "16557",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5368,7 +5368,7 @@
         {
             "Code": "JunMaster2LocalIncreasedEnergyShieldAndLifeHigh3_",
             "NPCMasterID": "5",
-            "ID": "16381",
+            "ID": "16558",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5396,7 +5396,7 @@
         {
             "Code": "JunMaster2LocalIncreasedDefencesAndLifeHigh1",
             "NPCMasterID": "5",
-            "ID": "16382",
+            "ID": "16559",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5426,7 +5426,7 @@
         {
             "Code": "JunMaster2LocalIncreasedDefencesAndLifeHigh2",
             "NPCMasterID": "5",
-            "ID": "16383",
+            "ID": "16560",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5456,7 +5456,7 @@
         {
             "Code": "JunMaster2LocalIncreasedDefencesAndLifeHigh3_",
             "NPCMasterID": "5",
-            "ID": "16384",
+            "ID": "16561",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5486,7 +5486,7 @@
         {
             "Code": "JunMaster2PhysicalDamageReductionRatingDuringSoulGainPrevention1_",
             "NPCMasterID": "5",
-            "ID": "16457",
+            "ID": "16634",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5509,7 +5509,7 @@
         {
             "Code": "JunMaster2PhysicalDamageReductionRatingDuringSoulGainPrevention2",
             "NPCMasterID": "5",
-            "ID": "16458",
+            "ID": "16635",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5532,7 +5532,7 @@
         {
             "Code": "JunMaster2PhysicalDamageReductionRatingDuringSoulGainPrevention3___",
             "NPCMasterID": "5",
-            "ID": "16459",
+            "ID": "16636",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5555,7 +5555,7 @@
         {
             "Code": "JunMaster2PhysicalDamageTakenAsFireAndLightningPercent1",
             "NPCMasterID": "5",
-            "ID": "16621",
+            "ID": "16798",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -5584,7 +5584,7 @@
         {
             "Code": "JunMaster2PhysicalDamageTakenAsFireAndLightningPercent2",
             "NPCMasterID": "5",
-            "ID": "16622",
+            "ID": "16799",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -5613,7 +5613,7 @@
         {
             "Code": "JunMaster2PercentageLifeAndMana1",
             "NPCMasterID": "5",
-            "ID": "16698",
+            "ID": "16875",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5641,7 +5641,7 @@
         {
             "Code": "JunMaster2BlockPercent1",
             "NPCMasterID": "5",
-            "ID": "16699",
+            "ID": "16876",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5662,7 +5662,7 @@
         {
             "Code": "JunMaster2SpellBlockPercent1_",
             "NPCMasterID": "5",
-            "ID": "16700",
+            "ID": "16877",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5682,7 +5682,7 @@
         {
             "Code": "JunMaster2AvoidStunAndElementalStatusAilments1__",
             "NPCMasterID": "5",
-            "ID": "16702",
+            "ID": "16879",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5713,7 +5713,7 @@
         {
             "Code": "DexMasterItemGenerationCannotChangeSuffixes",
             "NPCMasterID": "0",
-            "ID": "8522",
+            "ID": "8673",
             "ModGenerationTypeID": "1",
             "Level": "1",
             "ModFamilyList": [
@@ -5731,7 +5731,7 @@
         {
             "Code": "HelenaMasterFireResist1",
             "NPCMasterID": "3",
-            "ID": "17366",
+            "ID": "17543",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -5757,7 +5757,7 @@
         {
             "Code": "HelenaMasterColdResist1_",
             "NPCMasterID": "3",
-            "ID": "17369",
+            "ID": "17546",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -5783,7 +5783,7 @@
         {
             "Code": "HelenaMasterLightningResist1",
             "NPCMasterID": "3",
-            "ID": "17372",
+            "ID": "17549",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -5809,7 +5809,7 @@
         {
             "Code": "HelenaMasterStrength1",
             "NPCMasterID": "3",
-            "ID": "17388",
+            "ID": "17565",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -5831,7 +5831,7 @@
         {
             "Code": "HelenaMasterDexterity1",
             "NPCMasterID": "3",
-            "ID": "17391",
+            "ID": "17568",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -5853,7 +5853,7 @@
         {
             "Code": "HelenaMasterIntelligence1",
             "NPCMasterID": "3",
-            "ID": "17394",
+            "ID": "17571",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -5875,7 +5875,7 @@
         {
             "Code": "EinharMasterFireResist2",
             "NPCMasterID": "3",
-            "ID": "17367",
+            "ID": "17544",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -5901,7 +5901,7 @@
         {
             "Code": "EinharMasterFireResist3_",
             "NPCMasterID": "3",
-            "ID": "17368",
+            "ID": "17545",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -5927,7 +5927,7 @@
         {
             "Code": "EinharMasterColdResist2",
             "NPCMasterID": "3",
-            "ID": "17370",
+            "ID": "17547",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -5953,7 +5953,7 @@
         {
             "Code": "EinharMasterColdResist3__",
             "NPCMasterID": "3",
-            "ID": "17371",
+            "ID": "17548",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -5979,7 +5979,7 @@
         {
             "Code": "EinharMasterLightningResist2",
             "NPCMasterID": "3",
-            "ID": "17373",
+            "ID": "17550",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -6005,7 +6005,7 @@
         {
             "Code": "EinharMasterLightningResist3_",
             "NPCMasterID": "3",
-            "ID": "17374",
+            "ID": "17551",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -6031,7 +6031,7 @@
         {
             "Code": "EinharMasterFireAndColdResist1",
             "NPCMasterID": "3",
-            "ID": "17375",
+            "ID": "17552",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -6059,7 +6059,7 @@
         {
             "Code": "EinharMasterFireAndColdResist2",
             "NPCMasterID": "3",
-            "ID": "17376",
+            "ID": "17553",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -6087,7 +6087,7 @@
         {
             "Code": "EinharMasterFireAndColdResist3",
             "NPCMasterID": "3",
-            "ID": "17377",
+            "ID": "17554",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -6115,7 +6115,7 @@
         {
             "Code": "EinharMasterColdAndLightningResist1_",
             "NPCMasterID": "3",
-            "ID": "17378",
+            "ID": "17555",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -6143,7 +6143,7 @@
         {
             "Code": "EinharMasterColdAndLightningResist2",
             "NPCMasterID": "3",
-            "ID": "17379",
+            "ID": "17556",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -6171,7 +6171,7 @@
         {
             "Code": "EinharMasterColdAndLightningResist3_",
             "NPCMasterID": "3",
-            "ID": "17380",
+            "ID": "17557",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -6199,7 +6199,7 @@
         {
             "Code": "EinharMasterFireAndLightningResist1",
             "NPCMasterID": "3",
-            "ID": "17381",
+            "ID": "17558",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -6227,7 +6227,7 @@
         {
             "Code": "EinharMasterFireAndLightningResist2",
             "NPCMasterID": "3",
-            "ID": "17382",
+            "ID": "17559",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -6255,7 +6255,7 @@
         {
             "Code": "EinharMasterFireAndLightningResist3_",
             "NPCMasterID": "3",
-            "ID": "17383",
+            "ID": "17560",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -6283,7 +6283,7 @@
         {
             "Code": "EinharMasterStrength2",
             "NPCMasterID": "3",
-            "ID": "17389",
+            "ID": "17566",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -6305,7 +6305,7 @@
         {
             "Code": "EinharMasterStrength3",
             "NPCMasterID": "3",
-            "ID": "17390",
+            "ID": "17567",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -6327,7 +6327,7 @@
         {
             "Code": "EinharMasterDexterity2",
             "NPCMasterID": "3",
-            "ID": "17392",
+            "ID": "17569",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -6349,7 +6349,7 @@
         {
             "Code": "EinharMasterDexterity3",
             "NPCMasterID": "3",
-            "ID": "17393",
+            "ID": "17570",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -6371,7 +6371,7 @@
         {
             "Code": "EinharMasterIntelligence2__",
             "NPCMasterID": "3",
-            "ID": "17395",
+            "ID": "17572",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -6393,7 +6393,7 @@
         {
             "Code": "EinharMasterIntelligence3",
             "NPCMasterID": "3",
-            "ID": "17396",
+            "ID": "17573",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -6415,7 +6415,7 @@
         {
             "Code": "EinharMasterAllAttributes1",
             "NPCMasterID": "3",
-            "ID": "17397",
+            "ID": "17574",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -6437,7 +6437,7 @@
         {
             "Code": "EinharMasterAllAttributes2",
             "NPCMasterID": "3",
-            "ID": "17398",
+            "ID": "17575",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -6459,7 +6459,7 @@
         {
             "Code": "EinharMasterReducedPhysicalDamageTaken1",
             "NPCMasterID": "3",
-            "ID": "17610",
+            "ID": "17787",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -6481,7 +6481,7 @@
         {
             "Code": "EinharMasterReducedPhysicalDamageTaken2___",
             "NPCMasterID": "3",
-            "ID": "17611",
+            "ID": "17788",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6503,7 +6503,7 @@
         {
             "Code": "EinharMasterChanceToSuppressSpellsHigh1",
             "NPCMasterID": "3",
-            "ID": "17614",
+            "ID": "17791",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -6521,7 +6521,7 @@
         {
             "Code": "EinharMasterChanceToSuppressSpellsHigh2",
             "NPCMasterID": "3",
-            "ID": "17615",
+            "ID": "17792",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6539,7 +6539,7 @@
         {
             "Code": "EinharMasterEnergyShieldDelay1_",
             "NPCMasterID": "3",
-            "ID": "17618",
+            "ID": "17795",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -6562,7 +6562,7 @@
         {
             "Code": "EinharMasterEnergyShieldDelay2",
             "NPCMasterID": "3",
-            "ID": "17619",
+            "ID": "17796",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6585,7 +6585,7 @@
         {
             "Code": "JunMaster2StrengthAndDexterity1__",
             "NPCMasterID": "5",
-            "ID": "16385",
+            "ID": "16562",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6609,7 +6609,7 @@
         {
             "Code": "JunMaster2StrengthAndDexterity2",
             "NPCMasterID": "5",
-            "ID": "16386",
+            "ID": "16563",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -6633,7 +6633,7 @@
         {
             "Code": "JunMaster2StrengthAndDexterity3_",
             "NPCMasterID": "5",
-            "ID": "16387",
+            "ID": "16564",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -6657,7 +6657,7 @@
         {
             "Code": "JunMaster2DexterityAndIntelligence1_",
             "NPCMasterID": "5",
-            "ID": "16388",
+            "ID": "16565",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6681,7 +6681,7 @@
         {
             "Code": "JunMaster2DexterityAndIntelligence2",
             "NPCMasterID": "5",
-            "ID": "16389",
+            "ID": "16566",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -6705,7 +6705,7 @@
         {
             "Code": "JunMaster2DexterityAndIntelligence3__",
             "NPCMasterID": "5",
-            "ID": "16390",
+            "ID": "16567",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -6729,7 +6729,7 @@
         {
             "Code": "JunMaster2StrengthAndIntelligence1",
             "NPCMasterID": "5",
-            "ID": "16391",
+            "ID": "16568",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6753,7 +6753,7 @@
         {
             "Code": "JunMaster2StrengthAndIntelligence2",
             "NPCMasterID": "5",
-            "ID": "16392",
+            "ID": "16569",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -6777,7 +6777,7 @@
         {
             "Code": "JunMaster2StrengthAndIntelligence3",
             "NPCMasterID": "5",
-            "ID": "16393",
+            "ID": "16570",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -6801,7 +6801,7 @@
         {
             "Code": "JunMaster2AvoidElementalDamageChanceDuringSoulGainPrevention1",
             "NPCMasterID": "5",
-            "ID": "16455",
+            "ID": "16632",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6824,7 +6824,7 @@
         {
             "Code": "JunMaster2AvoidElementalDamageChanceDuringSoulGainPrevention2",
             "NPCMasterID": "5",
-            "ID": "16456",
+            "ID": "16633",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -6847,7 +6847,7 @@
         {
             "Code": "JunMaster2EnergyShieldRegenerationRatePerMinuteIfRareOrUniqueEnemyNearby1",
             "NPCMasterID": "5",
-            "ID": "16479",
+            "ID": "16656",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6871,7 +6871,7 @@
         {
             "Code": "JunMaster2EnergyShieldRegenerationRatePerMinuteIfRareOrUniqueEnemyNearby2_",
             "NPCMasterID": "5",
-            "ID": "16480",
+            "ID": "16657",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -6895,7 +6895,7 @@
         {
             "Code": "JunMaster2EnergyShieldRegenerationRatePerMinuteIfRareOrUniqueEnemyNearby3_",
             "NPCMasterID": "5",
-            "ID": "16481",
+            "ID": "16658",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -6919,7 +6919,7 @@
         {
             "Code": "JunMaster2LifeRegenerationPerEvasionDuringFocus1",
             "NPCMasterID": "5",
-            "ID": "16531",
+            "ID": "16708",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6944,7 +6944,7 @@
         {
             "Code": "JunMaster2RestoreManaAndEnergyShieldOnFocus1",
             "NPCMasterID": "5",
-            "ID": "16532",
+            "ID": "16709",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -6972,7 +6972,7 @@
         {
             "Code": "JunMaster2RestoreManaAndEnergyShieldOnFocus2",
             "NPCMasterID": "5",
-            "ID": "16533",
+            "ID": "16710",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7000,7 +7000,7 @@
         {
             "Code": "JunMaster2RestoreManaAndEnergyShieldOnFocus3",
             "NPCMasterID": "5",
-            "ID": "16534",
+            "ID": "16711",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7028,7 +7028,7 @@
         {
             "Code": "JunMaster2FortifyEffectWhileFocused1_",
             "NPCMasterID": "5",
-            "ID": "16550",
+            "ID": "16727",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7048,7 +7048,7 @@
         {
             "Code": "JunMaster2FortifyEffectWhileFocused2",
             "NPCMasterID": "5",
-            "ID": "16551",
+            "ID": "16728",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7068,7 +7068,7 @@
         {
             "Code": "JunMaster2FortifyEffectWhileFocused3",
             "NPCMasterID": "5",
-            "ID": "16552",
+            "ID": "16729",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7088,7 +7088,7 @@
         {
             "Code": "JunMaster2DamageRemovedFromManaBeforeLifeWhileFocused1_",
             "NPCMasterID": "5",
-            "ID": "16554",
+            "ID": "16731",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7115,7 +7115,7 @@
         {
             "Code": "JunMaster2PercentageAllAttributes2",
             "NPCMasterID": "5",
-            "ID": "16616",
+            "ID": "16793",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7138,7 +7138,7 @@
         {
             "Code": "JunMaster2PercentageAllAttributes3",
             "NPCMasterID": "5",
-            "ID": "16617",
+            "ID": "16794",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7161,7 +7161,7 @@
         {
             "Code": "JunMaster2FireAndChaosDamageResistance1_",
             "NPCMasterID": "5",
-            "ID": "16668",
+            "ID": "16845",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7190,7 +7190,7 @@
         {
             "Code": "JunMaster2FireAndChaosDamageResistance2_",
             "NPCMasterID": "5",
-            "ID": "16669",
+            "ID": "16846",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7219,7 +7219,7 @@
         {
             "Code": "JunMaster2FireAndChaosDamageResistance3",
             "NPCMasterID": "5",
-            "ID": "16670",
+            "ID": "16847",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7248,7 +7248,7 @@
         {
             "Code": "JunMaster2LightningAndChaosDamageResistance1",
             "NPCMasterID": "5",
-            "ID": "16671",
+            "ID": "16848",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7277,7 +7277,7 @@
         {
             "Code": "JunMaster2LightningAndChaosDamageResistance2_",
             "NPCMasterID": "5",
-            "ID": "16672",
+            "ID": "16849",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7306,7 +7306,7 @@
         {
             "Code": "JunMaster2LightningAndChaosDamageResistance3",
             "NPCMasterID": "5",
-            "ID": "16673",
+            "ID": "16850",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7335,7 +7335,7 @@
         {
             "Code": "JunMaster2ColdAndChaosDamageResistance1_",
             "NPCMasterID": "5",
-            "ID": "16674",
+            "ID": "16851",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7364,7 +7364,7 @@
         {
             "Code": "JunMaster2ColdAndChaosDamageResistance2_",
             "NPCMasterID": "5",
-            "ID": "16675",
+            "ID": "16852",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7393,7 +7393,7 @@
         {
             "Code": "JunMaster2ColdAndChaosDamageResistance3",
             "NPCMasterID": "5",
-            "ID": "16676",
+            "ID": "16853",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7422,7 +7422,7 @@
         {
             "Code": "JunMaster2StrengthAndAvoidIgnite1",
             "NPCMasterID": "5",
-            "ID": "16686",
+            "ID": "16863",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7445,7 +7445,7 @@
         {
             "Code": "JunMaster2StrengthAndAvoidIgnite2_",
             "NPCMasterID": "5",
-            "ID": "16687",
+            "ID": "16864",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7468,7 +7468,7 @@
         {
             "Code": "JunMaster2StrengthAndAvoidIgnite3_",
             "NPCMasterID": "5",
-            "ID": "16688",
+            "ID": "16865",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7491,7 +7491,7 @@
         {
             "Code": "JunMaster2DexterityAndAvoidFreeze1",
             "NPCMasterID": "5",
-            "ID": "16689",
+            "ID": "16866",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7514,7 +7514,7 @@
         {
             "Code": "JunMaster2DexterityAndAvoidFreeze2___",
             "NPCMasterID": "5",
-            "ID": "16690",
+            "ID": "16867",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7537,7 +7537,7 @@
         {
             "Code": "JunMaster2DexterityAndAvoidFreeze3",
             "NPCMasterID": "5",
-            "ID": "16691",
+            "ID": "16868",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7560,7 +7560,7 @@
         {
             "Code": "JunMaster2IntelligenceAndAvoidShock1",
             "NPCMasterID": "5",
-            "ID": "16692",
+            "ID": "16869",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -7583,7 +7583,7 @@
         {
             "Code": "JunMaster2IntelligenceAndAvoidShock2",
             "NPCMasterID": "5",
-            "ID": "16693",
+            "ID": "16870",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -7606,7 +7606,7 @@
         {
             "Code": "JunMaster2IntelligenceAndAvoidShock3____",
             "NPCMasterID": "5",
-            "ID": "16694",
+            "ID": "16871",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -7629,7 +7629,7 @@
         {
             "Code": "StrMasterItemGenerationCannotChangePrefixes",
             "NPCMasterID": "0",
-            "ID": "8521",
+            "ID": "8672",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -7647,7 +7647,7 @@
         {
             "Code": "StrIntMasterItemGenerationCanHaveMultipleCraftedMods",
             "NPCMasterID": "0",
-            "ID": "8525",
+            "ID": "8676",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -7665,7 +7665,7 @@
         {
             "Code": "IntMasterItemGenerationCannotRollAttackAffixes",
             "NPCMasterID": "0",
-            "ID": "8523",
+            "ID": "8674",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -7683,7 +7683,7 @@
         {
             "Code": "StrDexMasterItemGenerationCannotRollCasterAffixes",
             "NPCMasterID": "0",
-            "ID": "8524",
+            "ID": "8675",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -7703,8 +7703,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "74",
-            "BodyArmourModsID": "3108",
-            "ID": "3108",
+            "BodyArmourModsID": "3135",
+            "ID": "3135",
             "Name": "of the Inuit",
             "Code": "ColdResist1",
             "Level": "1",
@@ -7732,8 +7732,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "75",
-            "BodyArmourModsID": "3109",
-            "ID": "3109",
+            "BodyArmourModsID": "3136",
+            "ID": "3136",
             "Name": "of the Seal",
             "Code": "ColdResist2",
             "Level": "14",
@@ -7761,8 +7761,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "76",
-            "BodyArmourModsID": "3110",
-            "ID": "3110",
+            "BodyArmourModsID": "3137",
+            "ID": "3137",
             "Name": "of the Penguin",
             "Code": "ColdResist3",
             "Level": "26",
@@ -7790,8 +7790,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "77",
-            "BodyArmourModsID": "3111",
-            "ID": "3111",
+            "BodyArmourModsID": "3138",
+            "ID": "3138",
             "Name": "of the Yeti",
             "Code": "ColdResist4",
             "Level": "38",
@@ -7819,8 +7819,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "78",
-            "BodyArmourModsID": "3113",
-            "ID": "3113",
+            "BodyArmourModsID": "3140",
+            "ID": "3140",
             "Name": "of the Polar Bear",
             "Code": "ColdResist6",
             "Level": "60",
@@ -7848,8 +7848,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "79",
-            "BodyArmourModsID": "3114",
-            "ID": "3114",
+            "BodyArmourModsID": "3141",
+            "ID": "3141",
             "Name": "of the Ice",
             "Code": "ColdResist7",
             "Level": "72",
@@ -7877,8 +7877,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "80",
-            "BodyArmourModsID": "3115",
-            "ID": "3115",
+            "BodyArmourModsID": "3142",
+            "ID": "3142",
             "Name": "of Haast",
             "Code": "ColdResist8",
             "Level": "84",
@@ -7906,8 +7906,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "81",
-            "BodyArmourModsID": "705",
-            "ID": "705",
+            "BodyArmourModsID": "717",
+            "ID": "717",
             "Name": "Shining",
             "Code": "LocalIncreasedEnergyShield1",
             "Level": "3",
@@ -7932,8 +7932,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "82",
-            "BodyArmourModsID": "706",
-            "ID": "706",
+            "BodyArmourModsID": "718",
+            "ID": "718",
             "Name": "Glimmering",
             "Code": "LocalIncreasedEnergyShield2",
             "Level": "11",
@@ -7958,8 +7958,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "83",
-            "BodyArmourModsID": "708",
-            "ID": "708",
+            "BodyArmourModsID": "720",
+            "ID": "720",
             "Name": "Glowing",
             "Code": "LocalIncreasedEnergyShield4",
             "Level": "23",
@@ -7984,8 +7984,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "84",
-            "BodyArmourModsID": "710",
-            "ID": "710",
+            "BodyArmourModsID": "722",
+            "ID": "722",
             "Name": "Pulsing",
             "Code": "LocalIncreasedEnergyShield6",
             "Level": "35",
@@ -8010,8 +8010,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "85",
-            "BodyArmourModsID": "712",
-            "ID": "712",
+            "BodyArmourModsID": "724",
+            "ID": "724",
             "Name": "Blazing",
             "Code": "LocalIncreasedEnergyShield8",
             "Level": "51",
@@ -8036,8 +8036,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "86",
-            "BodyArmourModsID": "714",
-            "ID": "714",
+            "BodyArmourModsID": "726",
+            "ID": "726",
             "Name": "Incandescent",
             "Code": "LocalIncreasedEnergyShield10",
             "Level": "69",
@@ -8062,8 +8062,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "87",
-            "BodyArmourModsID": "718",
-            "ID": "718",
+            "BodyArmourModsID": "730",
+            "ID": "730",
             "Name": "Essences",
             "Code": "LocalIncreasedEnergyShieldEssenceChest7__",
             "Level": "82",
@@ -8088,8 +8088,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "88",
-            "BodyArmourModsID": "303",
-            "ID": "303",
+            "BodyArmourModsID": "309",
+            "ID": "309",
             "Name": "Essences",
             "Code": "IncreasedLifeEssence1_",
             "Level": "3",
@@ -8115,8 +8115,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "89",
-            "BodyArmourModsID": "304",
-            "ID": "304",
+            "BodyArmourModsID": "310",
+            "ID": "310",
             "Name": "Essences",
             "Code": "IncreasedLifeEssence2",
             "Level": "10",
@@ -8142,8 +8142,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "90",
-            "BodyArmourModsID": "305",
-            "ID": "305",
+            "BodyArmourModsID": "311",
+            "ID": "311",
             "Name": "Essences",
             "Code": "IncreasedLifeEssence3",
             "Level": "26",
@@ -8169,8 +8169,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "91",
-            "BodyArmourModsID": "297",
-            "ID": "297",
+            "BodyArmourModsID": "303",
+            "ID": "303",
             "Name": "Virile",
             "Code": "IncreasedLife7",
             "Level": "44",
@@ -8196,8 +8196,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "92",
-            "BodyArmourModsID": "299",
-            "ID": "299",
+            "BodyArmourModsID": "305",
+            "ID": "305",
             "Name": "Fecund",
             "Code": "IncreasedLife9",
             "Level": "64",
@@ -8223,8 +8223,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "93",
-            "BodyArmourModsID": "301",
-            "ID": "301",
+            "BodyArmourModsID": "307",
+            "ID": "307",
             "Name": "Rapturous",
             "Code": "IncreasedLife11",
             "Level": "81",
@@ -8250,8 +8250,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "94",
-            "BodyArmourModsID": "306",
-            "ID": "306",
+            "BodyArmourModsID": "312",
+            "ID": "312",
             "Name": "Essences",
             "Code": "IncreasedLifeEssenceChest1",
             "Level": "82",
@@ -8277,8 +8277,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "95",
-            "BodyArmourModsID": "4694",
-            "ID": "4694",
+            "BodyArmourModsID": "4732",
+            "ID": "4732",
             "Name": "Thorny",
             "Code": "AttackerTakesDamage1",
             "Level": "1",
@@ -8305,8 +8305,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "96",
-            "BodyArmourModsID": "4695",
-            "ID": "4695",
+            "BodyArmourModsID": "4733",
+            "ID": "4733",
             "Name": "Spiny",
             "Code": "AttackerTakesDamage2",
             "Level": "10",
@@ -8333,8 +8333,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "97",
-            "BodyArmourModsID": "4696",
-            "ID": "4696",
+            "BodyArmourModsID": "4734",
+            "ID": "4734",
             "Name": "Barbed",
             "Code": "AttackerTakesDamage3",
             "Level": "20",
@@ -8361,8 +8361,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "98",
-            "BodyArmourModsID": "4697",
-            "ID": "4697",
+            "BodyArmourModsID": "4735",
+            "ID": "4735",
             "Name": "Jagged",
             "Code": "AttackerTakesDamage4",
             "Level": "35",
@@ -8389,8 +8389,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "99",
-            "BodyArmourModsID": "4698",
-            "ID": "4698",
+            "BodyArmourModsID": "4736",
+            "ID": "4736",
             "Name": "Essences",
             "Code": "AttackerTakesDamageEssence5",
             "Level": "58",
@@ -8417,8 +8417,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "100",
-            "BodyArmourModsID": "4699",
-            "ID": "4699",
+            "BodyArmourModsID": "4737",
+            "ID": "4737",
             "Name": "Essences",
             "Code": "AttackerTakesDamageEssence6",
             "Level": "74",
@@ -8445,8 +8445,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "101",
-            "BodyArmourModsID": "4700",
-            "ID": "4700",
+            "BodyArmourModsID": "4738",
+            "ID": "4738",
             "Name": "Essences",
             "Code": "AttackerTakesDamageEssence7",
             "Level": "82",
@@ -8473,8 +8473,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "102",
-            "BodyArmourModsID": "80",
-            "ID": "80",
+            "BodyArmourModsID": "82",
+            "ID": "82",
             "Name": "of the Lynx",
             "Code": "Dexterity2",
             "Level": "11",
@@ -8498,8 +8498,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "103",
-            "BodyArmourModsID": "81",
-            "ID": "81",
+            "BodyArmourModsID": "83",
+            "ID": "83",
             "Name": "of the Fox",
             "Code": "Dexterity3",
             "Level": "22",
@@ -8523,8 +8523,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "104",
-            "BodyArmourModsID": "83",
-            "ID": "83",
+            "BodyArmourModsID": "85",
+            "ID": "85",
             "Name": "of the Panther",
             "Code": "Dexterity5",
             "Level": "44",
@@ -8548,8 +8548,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "105",
-            "BodyArmourModsID": "84",
-            "ID": "84",
+            "BodyArmourModsID": "86",
+            "ID": "86",
             "Name": "of the Leopard",
             "Code": "Dexterity6",
             "Level": "55",
@@ -8573,8 +8573,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "106",
-            "BodyArmourModsID": "86",
-            "ID": "86",
+            "BodyArmourModsID": "88",
+            "ID": "88",
             "Name": "of the Phantom",
             "Code": "Dexterity8",
             "Level": "74",
@@ -8598,8 +8598,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "107",
-            "BodyArmourModsID": "89",
-            "ID": "89",
+            "BodyArmourModsID": "91",
+            "ID": "91",
             "Name": "of the Essence",
             "Code": "DexterityEssence7",
             "Level": "82",
@@ -8623,8 +8623,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "108",
-            "BodyArmourModsID": "3038",
-            "ID": "3038",
+            "BodyArmourModsID": "3065",
+            "ID": "3065",
             "Name": "of the Salamander",
             "Code": "FireResist2",
             "Level": "12",
@@ -8652,8 +8652,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "109",
-            "BodyArmourModsID": "3039",
-            "ID": "3039",
+            "BodyArmourModsID": "3066",
+            "ID": "3066",
             "Name": "of the Drake",
             "Code": "FireResist3",
             "Level": "24",
@@ -8681,8 +8681,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "110",
-            "BodyArmourModsID": "3040",
-            "ID": "3040",
+            "BodyArmourModsID": "3067",
+            "ID": "3067",
             "Name": "of the Kiln",
             "Code": "FireResist4",
             "Level": "36",
@@ -8710,8 +8710,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "111",
-            "BodyArmourModsID": "3042",
-            "ID": "3042",
+            "BodyArmourModsID": "3069",
+            "ID": "3069",
             "Name": "of the Volcano",
             "Code": "FireResist6",
             "Level": "60",
@@ -8739,8 +8739,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "112",
-            "BodyArmourModsID": "3043",
-            "ID": "3043",
+            "BodyArmourModsID": "3070",
+            "ID": "3070",
             "Name": "of the Magma",
             "Code": "FireResist7",
             "Level": "72",
@@ -8768,8 +8768,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "113",
-            "BodyArmourModsID": "3044",
-            "ID": "3044",
+            "BodyArmourModsID": "3071",
+            "ID": "3071",
             "Name": "of Tzteosh",
             "Code": "FireResist8",
             "Level": "84",
@@ -8797,8 +8797,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "114",
-            "BodyArmourModsID": "11801",
-            "ID": "11801",
+            "BodyArmourModsID": "11959",
+            "ID": "11959",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidLightningDamageEssence2",
             "Level": "10",
@@ -8824,8 +8824,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "115",
-            "BodyArmourModsID": "11802",
-            "ID": "11802",
+            "BodyArmourModsID": "11960",
+            "ID": "11960",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidLightningDamageEssence3",
             "Level": "26",
@@ -8851,8 +8851,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "116",
-            "BodyArmourModsID": "11803",
-            "ID": "11803",
+            "BodyArmourModsID": "11961",
+            "ID": "11961",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidLightningDamageEssence4",
             "Level": "42",
@@ -8878,8 +8878,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "117",
-            "BodyArmourModsID": "11804",
-            "ID": "11804",
+            "BodyArmourModsID": "11962",
+            "ID": "11962",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidLightningDamageEssence5",
             "Level": "58",
@@ -8905,8 +8905,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "118",
-            "BodyArmourModsID": "11805",
-            "ID": "11805",
+            "BodyArmourModsID": "11963",
+            "ID": "11963",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidLightningDamageEssence6",
             "Level": "74",
@@ -8932,8 +8932,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "119",
-            "BodyArmourModsID": "11806",
-            "ID": "11806",
+            "BodyArmourModsID": "11964",
+            "ID": "11964",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidLightningDamageEssence7",
             "Level": "82",
@@ -8959,8 +8959,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "120",
-            "BodyArmourModsID": "4517",
-            "ID": "4517",
+            "BodyArmourModsID": "4554",
+            "ID": "4554",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence2",
             "Level": "10",
@@ -8988,8 +8988,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "121",
-            "BodyArmourModsID": "4518",
-            "ID": "4518",
+            "BodyArmourModsID": "4555",
+            "ID": "4555",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence3_",
             "Level": "26",
@@ -9017,8 +9017,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "122",
-            "BodyArmourModsID": "4519",
-            "ID": "4519",
+            "BodyArmourModsID": "4556",
+            "ID": "4556",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence4",
             "Level": "42",
@@ -9046,8 +9046,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "123",
-            "BodyArmourModsID": "4520",
-            "ID": "4520",
+            "BodyArmourModsID": "4557",
+            "ID": "4557",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence5",
             "Level": "58",
@@ -9075,8 +9075,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "124",
-            "BodyArmourModsID": "4521",
-            "ID": "4521",
+            "BodyArmourModsID": "4558",
+            "ID": "4558",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence6",
             "Level": "74",
@@ -9104,8 +9104,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "125",
-            "BodyArmourModsID": "4522",
-            "ID": "4522",
+            "BodyArmourModsID": "4559",
+            "ID": "4559",
             "Name": "of the Essence",
             "Code": "MinionLifeEssence7",
             "Level": "82",
@@ -9133,8 +9133,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "126",
-            "BodyArmourModsID": "11796",
-            "ID": "11796",
+            "BodyArmourModsID": "11954",
+            "ID": "11954",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidColdDamageEssence3",
             "Level": "26",
@@ -9160,8 +9160,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "127",
-            "BodyArmourModsID": "11797",
-            "ID": "11797",
+            "BodyArmourModsID": "11955",
+            "ID": "11955",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidColdDamageEssence4",
             "Level": "42",
@@ -9187,8 +9187,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "128",
-            "BodyArmourModsID": "11798",
-            "ID": "11798",
+            "BodyArmourModsID": "11956",
+            "ID": "11956",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidColdDamageEssence5",
             "Level": "58",
@@ -9214,8 +9214,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "129",
-            "BodyArmourModsID": "11799",
-            "ID": "11799",
+            "BodyArmourModsID": "11957",
+            "ID": "11957",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidColdDamageEssence6",
             "Level": "74",
@@ -9241,8 +9241,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "130",
-            "BodyArmourModsID": "11800",
-            "ID": "11800",
+            "BodyArmourModsID": "11958",
+            "ID": "11958",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidColdDamageEssence7",
             "Level": "82",
@@ -9393,8 +9393,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "136",
-            "BodyArmourModsID": "3194",
-            "ID": "3194",
+            "BodyArmourModsID": "3221",
+            "ID": "3221",
             "Name": "of the Storm",
             "Code": "LightningResist3",
             "Level": "25",
@@ -9422,8 +9422,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "137",
-            "BodyArmourModsID": "3195",
-            "ID": "3195",
+            "BodyArmourModsID": "3222",
+            "ID": "3222",
             "Name": "of the Thunderhead",
             "Code": "LightningResist4",
             "Level": "37",
@@ -9451,8 +9451,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "138",
-            "BodyArmourModsID": "3197",
-            "ID": "3197",
+            "BodyArmourModsID": "3224",
+            "ID": "3224",
             "Name": "of the Maelstrom",
             "Code": "LightningResist6",
             "Level": "60",
@@ -9480,8 +9480,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "139",
-            "BodyArmourModsID": "3198",
-            "ID": "3198",
+            "BodyArmourModsID": "3225",
+            "ID": "3225",
             "Name": "of the Lightning",
             "Code": "LightningResist7",
             "Level": "72",
@@ -9509,8 +9509,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "140",
-            "BodyArmourModsID": "3199",
-            "ID": "3199",
+            "BodyArmourModsID": "3226",
+            "ID": "3226",
             "Name": "of Ephij",
             "Code": "LightningResist8",
             "Level": "84",
@@ -9538,8 +9538,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "141",
-            "BodyArmourModsID": "1999",
-            "ID": "1999",
+            "BodyArmourModsID": "2019",
+            "ID": "2019",
             "Name": "Fleet",
             "Code": "LocalIncreasedEvasionRating4",
             "Level": "23",
@@ -9564,8 +9564,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "142",
-            "BodyArmourModsID": "2001",
-            "ID": "2001",
+            "BodyArmourModsID": "2021",
+            "ID": "2021",
             "Name": "Phased",
             "Code": "LocalIncreasedEvasionRating6",
             "Level": "35",
@@ -9590,8 +9590,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "143",
-            "BodyArmourModsID": "2003",
-            "ID": "2003",
+            "BodyArmourModsID": "2023",
+            "ID": "2023",
             "Name": "Elusory",
             "Code": "LocalIncreasedEvasionRating8",
             "Level": "51",
@@ -9616,8 +9616,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "144",
-            "BodyArmourModsID": "2005",
-            "ID": "2005",
+            "BodyArmourModsID": "2025",
+            "ID": "2025",
             "Name": "Lissome",
             "Code": "LocalIncreasedEvasionRating10",
             "Level": "69",
@@ -9642,8 +9642,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "145",
-            "BodyArmourModsID": "2007",
-            "ID": "2007",
+            "BodyArmourModsID": "2027",
+            "ID": "2027",
             "Name": "Essences",
             "Code": "LocalIncreasedEvasionRatingEssence7",
             "Level": "82",
@@ -9668,8 +9668,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "146",
-            "BodyArmourModsID": "11792",
-            "ID": "11792",
+            "BodyArmourModsID": "11950",
+            "ID": "11950",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFireDamageEssence4",
             "Level": "42",
@@ -9695,8 +9695,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "147",
-            "BodyArmourModsID": "11793",
-            "ID": "11793",
+            "BodyArmourModsID": "11951",
+            "ID": "11951",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFireDamageEssence5",
             "Level": "58",
@@ -9722,8 +9722,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "148",
-            "BodyArmourModsID": "11794",
-            "ID": "11794",
+            "BodyArmourModsID": "11952",
+            "ID": "11952",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFireDamageEssence6",
             "Level": "74",
@@ -9749,8 +9749,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "149",
-            "BodyArmourModsID": "11795",
-            "ID": "11795",
+            "BodyArmourModsID": "11953",
+            "ID": "11953",
             "Name": "of the Essence",
             "Code": "ChanceToAvoidFireDamageEssence7",
             "Level": "82",
@@ -9776,8 +9776,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "150",
-            "BodyArmourModsID": "6264",
-            "ID": "6264",
+            "BodyArmourModsID": "6411",
+            "ID": "6411",
             "Name": "of the Essence",
             "Code": "ManaReservationEfficiencyEssence4",
             "Level": "42",
@@ -9803,8 +9803,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "151",
-            "BodyArmourModsID": "6265",
-            "ID": "6265",
+            "BodyArmourModsID": "6412",
+            "ID": "6412",
             "Name": "of the Essence",
             "Code": "ManaReservationEfficiencyEssence5__",
             "Level": "58",
@@ -9830,8 +9830,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "152",
-            "BodyArmourModsID": "6266",
-            "ID": "6266",
+            "BodyArmourModsID": "6413",
+            "ID": "6413",
             "Name": "of the Essence",
             "Code": "ManaReservationEfficiencyEssence6_",
             "Level": "74",
@@ -9857,8 +9857,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "153",
-            "BodyArmourModsID": "6267",
-            "ID": "6267",
+            "BodyArmourModsID": "6414",
+            "ID": "6414",
             "Name": "of the Essence",
             "Code": "ManaReservationEfficiencyEssence7",
             "Level": "82",
@@ -9884,8 +9884,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "154",
-            "BodyArmourModsID": "166",
-            "ID": "166",
+            "BodyArmourModsID": "171",
+            "ID": "171",
             "Name": "of the Philosopher",
             "Code": "Intelligence5",
             "Level": "44",
@@ -9909,8 +9909,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "155",
-            "BodyArmourModsID": "167",
-            "ID": "167",
+            "BodyArmourModsID": "172",
+            "ID": "172",
             "Name": "of the Sage",
             "Code": "Intelligence6",
             "Level": "55",
@@ -9934,8 +9934,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "156",
-            "BodyArmourModsID": "169",
-            "ID": "169",
+            "BodyArmourModsID": "174",
+            "ID": "174",
             "Name": "of the Virtuoso",
             "Code": "Intelligence8",
             "Level": "74",
@@ -9959,8 +9959,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "157",
-            "BodyArmourModsID": "172",
-            "ID": "172",
+            "BodyArmourModsID": "177",
+            "ID": "177",
             "Name": "of the Essence",
             "Code": "IntelligenceEssence7",
             "Level": "82",
@@ -9984,8 +9984,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "158",
-            "BodyArmourModsID": "9458",
-            "ID": "9458",
+            "BodyArmourModsID": "9610",
+            "ID": "9610",
             "Name": "of the Essence",
             "Code": "SummonTotemCastSpeedEssence1",
             "Level": "42",
@@ -10009,8 +10009,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "159",
-            "BodyArmourModsID": "9459",
-            "ID": "9459",
+            "BodyArmourModsID": "9611",
+            "ID": "9611",
             "Name": "of the Essence",
             "Code": "SummonTotemCastSpeedEssence2",
             "Level": "58",
@@ -10034,8 +10034,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "160",
-            "BodyArmourModsID": "9460",
-            "ID": "9460",
+            "BodyArmourModsID": "9612",
+            "ID": "9612",
             "Name": "of the Essence",
             "Code": "SummonTotemCastSpeedEssence3",
             "Level": "74",
@@ -10059,8 +10059,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "161",
-            "BodyArmourModsID": "9461",
-            "ID": "9461",
+            "BodyArmourModsID": "9613",
+            "ID": "9613",
             "Name": "of the Essence",
             "Code": "SummonTotemCastSpeedEssence4",
             "Level": "82",
@@ -10084,8 +10084,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "162",
-            "BodyArmourModsID": "524",
-            "ID": "524",
+            "BodyArmourModsID": "532",
+            "ID": "532",
             "Name": "Chalybeous",
             "Code": "IncreasedMana9",
             "Level": "60",
@@ -10111,8 +10111,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "163",
-            "BodyArmourModsID": "526",
-            "ID": "526",
+            "BodyArmourModsID": "534",
+            "ID": "534",
             "Name": "Blue",
             "Code": "IncreasedMana11",
             "Level": "75",
@@ -10138,8 +10138,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "164",
-            "BodyArmourModsID": "529",
-            "ID": "529",
+            "BodyArmourModsID": "537",
+            "ID": "537",
             "Name": "Essences",
             "Code": "IncreasedManaEssence7",
             "Level": "82",
@@ -10165,8 +10165,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "165",
-            "BodyArmourModsID": "2054",
-            "ID": "2054",
+            "BodyArmourModsID": "2074",
+            "ID": "2074",
             "Name": "Enveloped",
             "Code": "LocalIncreasedPhysicalDamageReductionRating8",
             "Level": "51",
@@ -10191,8 +10191,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "166",
-            "BodyArmourModsID": "2056",
-            "ID": "2056",
+            "BodyArmourModsID": "2076",
+            "ID": "2076",
             "Name": "Unmoving",
             "Code": "LocalIncreasedPhysicalDamageReductionRating10",
             "Level": "69",
@@ -10217,8 +10217,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "167",
-            "BodyArmourModsID": "2058",
-            "ID": "2058",
+            "BodyArmourModsID": "2078",
+            "ID": "2078",
             "Name": "Essences",
             "Code": "LocalIncreasedPhysicalDamageReductionRatingEssence7",
             "Level": "82",
@@ -10243,8 +10243,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "168",
-            "BodyArmourModsID": "9478",
-            "ID": "9478",
+            "BodyArmourModsID": "9630",
+            "ID": "9630",
             "Name": "of the Essence",
             "Code": "IncreasedStunThresholdEssence5",
             "Level": "58",
@@ -10264,8 +10264,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "169",
-            "BodyArmourModsID": "9479",
-            "ID": "9479",
+            "BodyArmourModsID": "9631",
+            "ID": "9631",
             "Name": "of the Essence",
             "Code": "IncreasedStunThresholdEssence6",
             "Level": "74",
@@ -10285,8 +10285,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "170",
-            "BodyArmourModsID": "9480",
-            "ID": "9480",
+            "BodyArmourModsID": "9632",
+            "ID": "9632",
             "Name": "of the Essence",
             "Code": "IncreasedStunThresholdEssence7",
             "Level": "82",
@@ -10306,8 +10306,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "171",
-            "BodyArmourModsID": "3264",
-            "ID": "3264",
+            "BodyArmourModsID": "3291",
+            "ID": "3291",
             "Name": "of Expulsion",
             "Code": "ChaosResist4",
             "Level": "56",
@@ -10333,8 +10333,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "172",
-            "BodyArmourModsID": "3265",
-            "ID": "3265",
+            "BodyArmourModsID": "3292",
+            "ID": "3292",
             "Name": "of Exile",
             "Code": "ChaosResist5",
             "Level": "65",
@@ -10360,8 +10360,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "173",
-            "BodyArmourModsID": "3266",
-            "ID": "3266",
+            "BodyArmourModsID": "3293",
+            "ID": "3293",
             "Name": "of Bameth",
             "Code": "ChaosResist6",
             "Level": "81",
@@ -10387,8 +10387,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "174",
-            "BodyArmourModsID": "12374",
-            "ID": "12374",
+            "BodyArmourModsID": "12533",
+            "ID": "12533",
             "Name": "of the Essence",
             "Code": "AreaOfEffectEssence1",
             "Level": "63",
@@ -10408,8 +10408,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "175",
-            "BodyArmourModsID": "12376",
-            "ID": "12376",
+            "BodyArmourModsID": "12535",
+            "ID": "12535",
             "Name": "of the Essence",
             "Code": "OnslaughtWhenHitNewEssence1",
             "Level": "63",
@@ -10429,8 +10429,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "176",
-            "BodyArmourModsID": "12308",
-            "ID": "12308",
+            "BodyArmourModsID": "12467",
+            "ID": "12467",
             "Name": "Essences",
             "Code": "PhysicalDamageTakenAsColdEssence1",
             "Level": "63",
@@ -10458,8 +10458,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "177",
-            "BodyArmourModsID": "12317",
-            "ID": "12317",
+            "BodyArmourModsID": "12476",
+            "ID": "12476",
             "Name": "of the Essence",
             "Code": "ChaosDamageOverTimeTakenEssence1",
             "Level": "63",
@@ -10483,7 +10483,7 @@
     ],
     "delve": [
         {
-            "ID": "15814",
+            "ID": "15989",
             "Name": "Subterranean",
             "Code": "DelveBodyArmourAvoidFire1_",
             "Level": "1",
@@ -10514,7 +10514,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15824",
+            "ID": "15999",
             "Name": "Subterranean",
             "Code": "DelveBodyArmourAvoidCold1",
             "Level": "1",
@@ -10545,7 +10545,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15834",
+            "ID": "16009",
             "Name": "Subterranean",
             "Code": "DelveBodyArmourAvoidLightning1",
             "Level": "1",
@@ -10576,7 +10576,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15842",
+            "ID": "16017",
             "Name": "of the Underground",
             "Code": "DelveArmourPhysDamageTakenv2_1",
             "Level": "1",
@@ -10603,7 +10603,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15843",
+            "ID": "16018",
             "Name": "of the Underground",
             "Code": "DelveArmourPhysDamageTakenv2_2",
             "Level": "30",
@@ -10630,7 +10630,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15844",
+            "ID": "16019",
             "Name": "of the Underground",
             "Code": "DelveArmourPhysDamageTakenv2_3",
             "Level": "60",
@@ -10657,7 +10657,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15855",
+            "ID": "16030",
             "Name": "of the Underground",
             "Code": "DelveBodyArmourChaosDegenResist1",
             "Level": "1",
@@ -10688,7 +10688,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15866",
+            "ID": "16041",
             "Name": "of the Underground",
             "Code": "DelveArmourLifeRegen1",
             "Level": "1",
@@ -10722,7 +10722,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15885",
+            "ID": "16060",
             "Name": "of the Underground",
             "Code": "DelveArmourQuality",
             "Level": "1",
@@ -10746,7 +10746,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15901",
+            "ID": "16076",
             "Name": "of the Underground",
             "Code": "DelveArmourAvoidPoison1",
             "Level": "1",
@@ -10780,7 +10780,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15902",
+            "ID": "16077",
             "Name": "of the Underground",
             "Code": "DelveArmourAvoidBleeding1",
             "Level": "1",
@@ -10816,7 +10816,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15918",
+            "ID": "16093",
             "Name": "of the Underground",
             "Code": "DelveArmourElementalAilmentDuration1___",
             "Level": "1",
@@ -10849,7 +10849,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15924",
+            "ID": "16099",
             "Name": "of the Underground",
             "Code": "DelveBodyArmourSocketedSkillsSupportedByArcaneSurge1_",
             "Level": "1",
@@ -10877,7 +10877,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15932",
+            "ID": "16107",
             "Name": "of the Underground",
             "Code": "DelveArmourLocalDisplaySocketedAttacksManaCost1_",
             "Level": "1",
@@ -10915,7 +10915,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15937",
+            "ID": "16112",
             "Name": "Subterranean",
             "Code": "DelveBodyDamageRemovedFromManaBeforeLifeNew1",
             "Level": "1",
@@ -10946,7 +10946,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15947",
+            "ID": "16122",
             "Name": "of the Underground",
             "Code": "DelveBodyFrenzyChargeWhenHit1",
             "Level": "1",
@@ -10971,7 +10971,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15968",
+            "ID": "16143",
             "Name": "of the Underground",
             "Code": "DelveArmourMinionLife1",
             "Level": "74",
@@ -11004,7 +11004,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15970",
+            "ID": "16145",
             "Name": "of the Underground",
             "Code": "DelveBodyArmourAuraEffect1_",
             "Level": "1",
@@ -11031,7 +11031,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15975",
+            "ID": "16150",
             "Name": "of the Underground",
             "Code": "DelveStrengthGemLevel1",
             "Level": "1",
@@ -11079,7 +11079,7 @@
             ]
         },
         {
-            "ID": "15976",
+            "ID": "16151",
             "Name": "of the Underground",
             "Code": "DelveDexterityGemLevel1",
             "Level": "1",
@@ -11127,7 +11127,7 @@
             ]
         },
         {
-            "ID": "15977",
+            "ID": "16152",
             "Name": "of the Underground",
             "Code": "DelveIntelligenceGemLevel1",
             "Level": "1",
@@ -11175,7 +11175,7 @@
             ]
         },
         {
-            "ID": "15978",
+            "ID": "16153",
             "Name": "of the Underground",
             "Code": "DelveAbyssJewelSocket1",
             "Level": "1",
@@ -11204,7 +11204,7 @@
             ]
         },
         {
-            "ID": "15981",
+            "ID": "16156",
             "Name": "of the Underground",
             "Code": "DelveArmourVaalSoulsOnKill1_",
             "Level": "1",
@@ -11234,7 +11234,7 @@
             ]
         },
         {
-            "ID": "15781",
+            "ID": "15956",
             "Name": "Subterranean",
             "Code": "AdditionalCurseOnEnemiesDelve",
             "Level": "60",
@@ -11259,7 +11259,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15773",
+            "ID": "15948",
             "Name": "Subterranean",
             "Code": "ChaosDamageTakenDelve",
             "Level": "60",
@@ -11282,7 +11282,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15755",
+            "ID": "15930",
             "Name": "Subterranean",
             "Code": "ColdDamageTakenDelve",
             "Level": "60",
@@ -11307,7 +11307,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15880",
+            "ID": "16055",
             "Name": "of the Underground",
             "Code": "DelveArmourEnergyShield1",
             "Level": "1",
@@ -11334,7 +11334,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15841",
+            "ID": "16016",
             "Name": "of the Underground",
             "Code": "DelveArmourPhysDamageTaken1",
             "Level": "1",
@@ -11360,7 +11360,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15936",
+            "ID": "16111",
             "Name": "of the Underground",
             "Code": "DelveBodyDamageRemovedFromManaBeforeLife1_",
             "Level": "1",
@@ -11390,7 +11390,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15764",
+            "ID": "15939",
             "Name": "Subterranean",
             "Code": "LightningDamageTakenDelve",
             "Level": "60",
@@ -11415,7 +11415,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15732",
+            "ID": "15907",
             "Name": "Subterranean",
             "Code": "MaximumMinionCountAmuletSkeletonDelve__",
             "Level": "60",
@@ -11438,7 +11438,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15731",
+            "ID": "15906",
             "Name": "Subterranean",
             "Code": "MaximumMinionCountAmuletZombieDelve",
             "Level": "60",
@@ -11461,7 +11461,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15728",
+            "ID": "15903",
             "Name": "Subterranean",
             "Code": "MaximumMinionCountSkeletonDelve",
             "Level": "60",
@@ -11484,7 +11484,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15729",
+            "ID": "15904",
             "Name": "Subterranean",
             "Code": "MaximumMinionCountSpectreDelve",
             "Level": "60",
@@ -11507,7 +11507,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15727",
+            "ID": "15902",
             "Name": "Subterranean",
             "Code": "MaximumMinionCountZombieDelve",
             "Level": "60",
@@ -11532,7 +11532,7 @@
     ],
     "incursion": [
         {
-            "ID": "18053",
+            "ID": "18230",
             "Name": "of Tacati",
             "Code": "ChaosResistEnhancedLevel50Mod",
             "Level": "50",
@@ -11558,7 +11558,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3267",
+            "ID": "3294",
             "Name": "of Tacati",
             "Code": "ChaosResistEnhancedMod_",
             "Level": "1",
@@ -11584,7 +11584,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "17983",
+            "ID": "18160",
             "Name": "Guatelitzi's",
             "Code": "IncreasedLifeEnhancedLevel50BodyMod",
             "Level": "50",
@@ -11625,7 +11625,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17211",
+            "ID": "17388",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -11666,7 +11666,7 @@
                 "600",
                 "0"
             ],
-            "ID": "17218",
+            "ID": "17395",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11701,7 +11701,7 @@
                 "600",
                 "0"
             ],
-            "ID": "17219",
+            "ID": "17396",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11736,7 +11736,7 @@
                 "600",
                 "0"
             ],
-            "ID": "17220",
+            "ID": "17397",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11763,7 +11763,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17253",
+            "ID": "17430",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11790,7 +11790,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17254",
+            "ID": "17431",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -11817,7 +11817,7 @@
                 "1500",
                 "0"
             ],
-            "ID": "17264",
+            "ID": "17441",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11844,7 +11844,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17285",
+            "ID": "17462",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11872,7 +11872,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17286",
+            "ID": "17463",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11903,7 +11903,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17294",
+            "ID": "17471",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11926,7 +11926,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17296",
+            "ID": "17473",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -11956,7 +11956,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17320",
+            "ID": "17497",
             "Level": "60",
             "Name": "of Hillock",
             "ModGenerationTypeID": "2",
@@ -11982,7 +11982,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17322",
+            "ID": "17499",
             "Level": "60",
             "Name": "Gravicius'",
             "ModGenerationTypeID": "1",
@@ -12022,7 +12022,7 @@
                 "600",
                 "0"
             ],
-            "ID": "17349",
+            "ID": "17526",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -12062,7 +12062,7 @@
                 "600",
                 "0"
             ],
-            "ID": "17350",
+            "ID": "17527",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -12102,7 +12102,7 @@
                 "600",
                 "0"
             ],
-            "ID": "17351",
+            "ID": "17528",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -12136,7 +12136,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17355",
+            "ID": "17532",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -12164,7 +12164,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17356",
+            "ID": "17533",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -12192,7 +12192,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17357",
+            "ID": "17534",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -12219,7 +12219,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17359",
+            "ID": "17536",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -12249,7 +12249,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17360",
+            "ID": "17537",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -12273,7 +12273,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17361",
+            "ID": "17538",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -12297,7 +12297,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17363",
+            "ID": "17540",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -12332,7 +12332,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15257",
+            "ID": "15432",
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -12354,7 +12354,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15256",
+            "ID": "15431",
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -12376,7 +12376,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15259",
+            "ID": "15434",
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -12399,7 +12399,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15258",
+            "ID": "15433",
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -12415,7 +12415,7 @@
     ],
     "elder": {
         "1830": {
-            "ID": "14420",
+            "ID": "14584",
             "Name": "The Elder's",
             "Code": "LocalIncreaseSocketedSupportGemLevelUber1",
             "Level": "80",
@@ -12441,7 +12441,7 @@
             "mod_fossil_item": []
         },
         "1831": {
-            "ID": "14421",
+            "ID": "14585",
             "Name": "The Elder's",
             "Code": "PhysicalDamageTakenAsFirePercentUber1",
             "Level": "68",
@@ -12471,7 +12471,7 @@
             "mod_fossil_item": []
         },
         "1832": {
-            "ID": "14422",
+            "ID": "14586",
             "Name": "The Elder's",
             "Code": "PhysicalDamageTakenAsFirePercentUber2",
             "Level": "84",
@@ -12501,7 +12501,7 @@
             "mod_fossil_item": []
         },
         "1839": {
-            "ID": "14429",
+            "ID": "14593",
             "Name": "The Elder's",
             "Code": "ReducedPhysicalReflectTakenUber1",
             "Level": "68",
@@ -12527,7 +12527,7 @@
             "mod_fossil_item": []
         },
         "1841": {
-            "ID": "14431",
+            "ID": "14595",
             "Name": "The Elder's",
             "Code": "MaximumLifeUber1",
             "Level": "68",
@@ -12555,7 +12555,7 @@
             "mod_fossil_item": []
         },
         "1842": {
-            "ID": "14432",
+            "ID": "14596",
             "Name": "The Elder's",
             "Code": "MaximumLifeUber2",
             "Level": "85",
@@ -12583,7 +12583,7 @@
             "mod_fossil_item": []
         },
         "1846": {
-            "ID": "14436",
+            "ID": "14600",
             "Name": "of the Elder",
             "Code": "MaximumLifeOnKillPercentUber1",
             "Level": "68",
@@ -12611,7 +12611,7 @@
             "mod_fossil_item": []
         },
         "1847": {
-            "ID": "14437",
+            "ID": "14601",
             "Name": "of the Elder",
             "Code": "MaximumLifeOnKillPercentUber2__",
             "Level": "75",
@@ -12639,7 +12639,7 @@
             "mod_fossil_item": []
         },
         "1852": {
-            "ID": "14442",
+            "ID": "14606",
             "Name": "of the Elder",
             "Code": "PercentageStrengthUber1_",
             "Level": "68",
@@ -12665,7 +12665,7 @@
             "mod_fossil_item": []
         },
         "1853": {
-            "ID": "14443",
+            "ID": "14607",
             "Name": "of the Elder",
             "Code": "PercentageStrengthUber2__",
             "Level": "83",
@@ -12691,7 +12691,7 @@
             "mod_fossil_item": []
         },
         "1854": {
-            "ID": "14444",
+            "ID": "14608",
             "Name": "of the Elder",
             "Code": "PercentageDexterityUber1",
             "Level": "68",
@@ -12717,7 +12717,7 @@
             "mod_fossil_item": []
         },
         "1855": {
-            "ID": "14445",
+            "ID": "14609",
             "Name": "of the Elder",
             "Code": "PercentageDexterityUber2",
             "Level": "83",
@@ -12743,7 +12743,7 @@
             "mod_fossil_item": []
         },
         "1862": {
-            "ID": "14452",
+            "ID": "14616",
             "Name": "of the Elder",
             "Code": "AdditionalCriticalStrikeChanceWithAttacksUber1",
             "Level": "68",
@@ -12771,7 +12771,7 @@
             "mod_fossil_item": []
         },
         "1863": {
-            "ID": "14453",
+            "ID": "14617",
             "Name": "of the Elder",
             "Code": "AdditionalCriticalStrikeChanceWithAttacksUber2",
             "Level": "84",
@@ -12799,7 +12799,7 @@
             "mod_fossil_item": []
         },
         "4138": {
-            "ID": "24266",
+            "ID": "24447",
             "Name": "Elevated Elder's",
             "Code": "LocalIncreaseSocketedSupportGemLevelUberMaven___",
             "Level": "90",
@@ -12826,7 +12826,7 @@
             "mod_fossil_item": []
         },
         "4139": {
-            "ID": "24267",
+            "ID": "24448",
             "Name": "Elevated Elder's",
             "Code": "PhysicalDamageTakenAsFirePercentUberMaven",
             "Level": "94",
@@ -12861,7 +12861,7 @@
             "mod_fossil_item": []
         },
         "4140": {
-            "ID": "24271",
+            "ID": "24452",
             "Name": "Elevated Elder's",
             "Code": "ReducedPhysicalReflectTakenUberMaven",
             "Level": "85",
@@ -12888,7 +12888,7 @@
             "mod_fossil_item": []
         },
         "4141": {
-            "ID": "24272",
+            "ID": "24453",
             "Name": "Elevated Elder's",
             "Code": "MaximumLifeUberMaven",
             "Level": "95",
@@ -12917,7 +12917,7 @@
             "mod_fossil_item": []
         },
         "4142": {
-            "ID": "24275",
+            "ID": "24456",
             "Name": "of the Elevated Elder",
             "Code": "MaximumLifeOnKillPercentUberMaven__",
             "Level": "85",
@@ -12946,7 +12946,7 @@
             "mod_fossil_item": []
         },
         "4143": {
-            "ID": "24278",
+            "ID": "24459",
             "Name": "of the Elevated Elder",
             "Code": "PercentageStrengthUberMaven__",
             "Level": "93",
@@ -12975,7 +12975,7 @@
             "mod_fossil_item": []
         },
         "4144": {
-            "ID": "24279",
+            "ID": "24460",
             "Name": "of the Elevated Elder",
             "Code": "PercentageDexterityUberMaven",
             "Level": "93",
@@ -13004,7 +13004,7 @@
             "mod_fossil_item": []
         },
         "4145": {
-            "ID": "24283",
+            "ID": "24464",
             "Name": "of the Elevated Elder",
             "Code": "AdditionalCriticalStrikeChanceWithAttacksUberMaven",
             "Level": "94",
@@ -13035,7 +13035,7 @@
     },
     "shaper": {
         "1829": {
-            "ID": "14419",
+            "ID": "14583",
             "Name": "The Shaper's",
             "Code": "LocalIncreaseSocketedActiveGemLevelUber1",
             "Level": "80",
@@ -13061,7 +13061,7 @@
             "mod_fossil_item": []
         },
         "1833": {
-            "ID": "14423",
+            "ID": "14587",
             "Name": "The Shaper's",
             "Code": "PhysicalDamageTakenAsColdPercentUber1",
             "Level": "68",
@@ -13091,7 +13091,7 @@
             "mod_fossil_item": []
         },
         "1834": {
-            "ID": "14424",
+            "ID": "14588",
             "Name": "The Shaper's",
             "Code": "PhysicalDamageTakenAsColdPercentUber2",
             "Level": "83",
@@ -13121,7 +13121,7 @@
             "mod_fossil_item": []
         },
         "1835": {
-            "ID": "14425",
+            "ID": "14589",
             "Name": "The Shaper's",
             "Code": "PhysicalDamageTakenAsLightningPercentUber1",
             "Level": "68",
@@ -13151,7 +13151,7 @@
             "mod_fossil_item": []
         },
         "1836": {
-            "ID": "14426",
+            "ID": "14590",
             "Name": "The Shaper's",
             "Code": "PhysicalDamageTakenAsLightningPercentUber2___",
             "Level": "82",
@@ -13181,7 +13181,7 @@
             "mod_fossil_item": []
         },
         "1837": {
-            "ID": "14427",
+            "ID": "14591",
             "Name": "The Shaper's",
             "Code": "ReducedElementalReflectTakenUber1",
             "Level": "68",
@@ -13207,7 +13207,7 @@
             "mod_fossil_item": []
         },
         "1843": {
-            "ID": "14433",
+            "ID": "14597",
             "Name": "The Shaper's",
             "Code": "MaximumManaBodyUber1",
             "Level": "68",
@@ -13235,7 +13235,7 @@
             "mod_fossil_item": []
         },
         "1844": {
-            "ID": "14434",
+            "ID": "14598",
             "Name": "The Shaper's",
             "Code": "MaximumManaBodyUber2",
             "Level": "75",
@@ -13263,7 +13263,7 @@
             "mod_fossil_item": []
         },
         "1848": {
-            "ID": "14438",
+            "ID": "14602",
             "Name": "of Shaping",
             "Code": "MaximumManaOnKillPercentUber1",
             "Level": "68",
@@ -13291,7 +13291,7 @@
             "mod_fossil_item": []
         },
         "1849": {
-            "ID": "14439",
+            "ID": "14603",
             "Name": "of Shaping",
             "Code": "MaximumManaOnKillPercentUber2",
             "Level": "75",
@@ -13319,7 +13319,7 @@
             "mod_fossil_item": []
         },
         "1850": {
-            "ID": "14440",
+            "ID": "14604",
             "Name": "of Shaping",
             "Code": "MaximumEnergyShieldOnKillPercentUber1",
             "Level": "68",
@@ -13346,7 +13346,7 @@
             "mod_fossil_item": []
         },
         "1851": {
-            "ID": "14441",
+            "ID": "14605",
             "Name": "of Shaping",
             "Code": "MaximumEnergyShieldOnKillPercentUber2",
             "Level": "75",
@@ -13373,7 +13373,7 @@
             "mod_fossil_item": []
         },
         "1856": {
-            "ID": "14446",
+            "ID": "14610",
             "Name": "of Shaping",
             "Code": "PercentageIntelligenceUber1",
             "Level": "68",
@@ -13399,7 +13399,7 @@
             "mod_fossil_item": []
         },
         "1857": {
-            "ID": "14447",
+            "ID": "14611",
             "Name": "of Shaping",
             "Code": "PercentageIntelligenceUber2",
             "Level": "83",
@@ -13425,7 +13425,7 @@
             "mod_fossil_item": []
         },
         "1860": {
-            "ID": "14450",
+            "ID": "14614",
             "Name": "of Shaping",
             "Code": "SupportedByItemRarityUber1",
             "Level": "68",
@@ -13452,7 +13452,7 @@
             "mod_fossil_item": []
         },
         "1861": {
-            "ID": "14451",
+            "ID": "14615",
             "Name": "of Shaping",
             "Code": "SupportedByItemRarityUber2",
             "Level": "85",
@@ -13479,7 +13479,7 @@
             "mod_fossil_item": []
         },
         "1864": {
-            "ID": "14454",
+            "ID": "14618",
             "Name": "of Shaping",
             "Code": "AdditionalCriticalStrikeChanceWithSpellsUber1_",
             "Level": "68",
@@ -13507,7 +13507,7 @@
             "mod_fossil_item": []
         },
         "1865": {
-            "ID": "14455",
+            "ID": "14619",
             "Name": "of Shaping",
             "Code": "AdditionalCriticalStrikeChanceWithSpellsUber2_",
             "Level": "84",
@@ -13535,7 +13535,7 @@
             "mod_fossil_item": []
         },
         "4138": {
-            "ID": "24265",
+            "ID": "24446",
             "Name": "Elevated Shaper's",
             "Code": "LocalIncreaseSocketedActiveGemLevelUberMaven",
             "Level": "90",
@@ -13548,10 +13548,10 @@
                 "0",
                 "0"
             ],
-            "StatsStr": "+1 to Level of Socketed Active Skill Gems+(5&ndash;10)% to Quality of Socketed Active Skill Gems",
+            "StatsStr": "+(5&ndash;10)% to Quality of Socketed Active Skill Gems+1 to Level of Socketed Active Skill Gems",
             "DropChance": 0,
             "Elevated": 1,
-            "str": "<span class='mod-value'>+1</span> to Level of Socketed Active Skill Gems<br><span class='mod-value'>+(5&ndash;10)</span>% to Quality of Socketed Active Skill Gems",
+            "str": "<span class='mod-value'>+(5&ndash;10)</span>% to Quality of Socketed Active Skill Gems<br><span class='mod-value'>+1</span> to Level of Socketed Active Skill Gems",
             "master_no": [],
             "fossil_no": [
                 "gem"
@@ -13562,7 +13562,7 @@
             "mod_fossil_item": []
         },
         "4139": {
-            "ID": "24268",
+            "ID": "24449",
             "Name": "Elevated Shaper's",
             "Code": "PhysicalDamageTakenAsColdPercentUberMaven",
             "Level": "93",
@@ -13597,7 +13597,7 @@
             "mod_fossil_item": []
         },
         "4140": {
-            "ID": "24270",
+            "ID": "24451",
             "Name": "Elevated Shaper's",
             "Code": "ReducedElementalReflectTakenUberMaven_",
             "Level": "85",
@@ -13624,7 +13624,7 @@
             "mod_fossil_item": []
         },
         "4141": {
-            "ID": "24273",
+            "ID": "24454",
             "Name": "Elevated Shaper's",
             "Code": "MaximumManaBodyUberMaven__",
             "Level": "85",
@@ -13653,7 +13653,7 @@
             "mod_fossil_item": []
         },
         "4142": {
-            "ID": "24276",
+            "ID": "24457",
             "Name": "of Elevated Shaping",
             "Code": "MaximumManaOnKillPercentUberMaven_",
             "Level": "85",
@@ -13682,7 +13682,7 @@
             "mod_fossil_item": []
         },
         "4143": {
-            "ID": "24277",
+            "ID": "24458",
             "Name": "of Elevated Shaping",
             "Code": "MaximumEnergyShieldOnKillPercentUberMaven",
             "Level": "85",
@@ -13710,7 +13710,7 @@
             "mod_fossil_item": []
         },
         "4144": {
-            "ID": "24280",
+            "ID": "24461",
             "Name": "of Elevated Shaping",
             "Code": "PercentageIntelligenceUberMaven__",
             "Level": "93",
@@ -13739,7 +13739,7 @@
             "mod_fossil_item": []
         },
         "4145": {
-            "ID": "24282",
+            "ID": "24463",
             "Name": "of Elevated Shaping",
             "Code": "SupportedByItemRarityUberMaven__",
             "Level": "95",
@@ -13767,7 +13767,7 @@
             "mod_fossil_item": []
         },
         "4146": {
-            "ID": "24284",
+            "ID": "24465",
             "Name": "of Elevated Shaping",
             "Code": "AdditionalCriticalStrikeChanceWithSpellsUberMaven",
             "Level": "94",
@@ -13798,7 +13798,7 @@
     },
     "crusader": {
         "2877": {
-            "ID": "20418",
+            "ID": "20595",
             "Name": "Crusader's",
             "Code": "MaximumManaInfluence1",
             "Level": "68",
@@ -13827,7 +13827,7 @@
             "mod_fossil_item": []
         },
         "2878": {
-            "ID": "20419",
+            "ID": "20596",
             "Name": "Crusader's",
             "Code": "MaximumManaInfluence2_",
             "Level": "80",
@@ -13856,7 +13856,7 @@
             "mod_fossil_item": []
         },
         "2953": {
-            "ID": "20494",
+            "ID": "20671",
             "Name": "Crusader's",
             "Code": "PhysTakenAsLightningInfluence1",
             "Level": "68",
@@ -13886,7 +13886,7 @@
             "mod_fossil_item": []
         },
         "2954": {
-            "ID": "20495",
+            "ID": "20672",
             "Name": "Crusader's",
             "Code": "PhysTakenAsLightningInfluence2",
             "Level": "83",
@@ -13916,7 +13916,7 @@
             "mod_fossil_item": []
         },
         "2955": {
-            "ID": "20496",
+            "ID": "20673",
             "Name": "Crusader's",
             "Code": "ConsecratedGroundStationaryInfluence1_",
             "Level": "75",
@@ -13938,7 +13938,7 @@
             "mod_fossil_item": []
         },
         "2957": {
-            "ID": "20498",
+            "ID": "20675",
             "Name": "Crusader's",
             "Code": "HolyPhysicalExplosionChanceInfluence1",
             "Level": "75",
@@ -13967,7 +13967,7 @@
             "mod_fossil_item": []
         },
         "2958": {
-            "ID": "20499",
+            "ID": "20676",
             "Name": "Crusader's",
             "Code": "HolyPhysicalExplosionChanceInfluence2_",
             "Level": "85",
@@ -13996,7 +13996,7 @@
             "mod_fossil_item": []
         },
         "2959": {
-            "ID": "20500",
+            "ID": "20677",
             "Name": "of the Crusade",
             "Code": "PercentageIntelligenceBodyInfluence1",
             "Level": "68",
@@ -14023,7 +14023,7 @@
             "mod_fossil_item": []
         },
         "2960": {
-            "ID": "20501",
+            "ID": "20678",
             "Name": "of the Crusade",
             "Code": "PercentageIntelligenceBodyInfluence2___",
             "Level": "75",
@@ -14050,7 +14050,7 @@
             "mod_fossil_item": []
         },
         "2961": {
-            "ID": "20502",
+            "ID": "20679",
             "Name": "of the Crusade",
             "Code": "AddPowerChargeOnCritInfluence1",
             "Level": "80",
@@ -14077,7 +14077,7 @@
             "mod_fossil_item": []
         },
         "2962": {
-            "ID": "20503",
+            "ID": "20680",
             "Name": "of the Crusade",
             "Code": "EnergyShieldOnKillPercentInfluence1_",
             "Level": "68",
@@ -14104,7 +14104,7 @@
             "mod_fossil_item": []
         },
         "2963": {
-            "ID": "20504",
+            "ID": "20681",
             "Name": "of the Crusade",
             "Code": "EnergyShieldOnKillPercentInfluence2_",
             "Level": "80",
@@ -14131,7 +14131,7 @@
             "mod_fossil_item": []
         },
         "2964": {
-            "ID": "20505",
+            "ID": "20682",
             "Name": "of the Crusade",
             "Code": "EnergyShieldRecoveryRateBodyInfluence1",
             "Level": "68",
@@ -14158,7 +14158,7 @@
             "mod_fossil_item": []
         },
         "2965": {
-            "ID": "20506",
+            "ID": "20683",
             "Name": "of the Crusade",
             "Code": "EnergyShieldRecoveryRateBodyInfluence2",
             "Level": "80",
@@ -14185,7 +14185,7 @@
             "mod_fossil_item": []
         },
         "4138": {
-            "ID": "24285",
+            "ID": "24466",
             "Name": "Elevated Crusader's",
             "Code": "MaximumManaInfluenceMaven",
             "Level": "90",
@@ -14215,7 +14215,7 @@
             "mod_fossil_item": []
         },
         "4139": {
-            "ID": "24286",
+            "ID": "24467",
             "Name": "Elevated Crusader's",
             "Code": "PhysTakenAsLightningInfluenceMaven",
             "Level": "93",
@@ -14250,7 +14250,7 @@
             "mod_fossil_item": []
         },
         "4140": {
-            "ID": "24287",
+            "ID": "24468",
             "Name": "Elevated Crusader's",
             "Code": "ConsecratedGroundStationaryInfluenceMaven",
             "Level": "85",
@@ -14273,7 +14273,7 @@
             "mod_fossil_item": []
         },
         "4141": {
-            "ID": "24289",
+            "ID": "24470",
             "Name": "Elevated Crusader's",
             "Code": "HolyPhysicalExplosionChanceInfluenceMaven",
             "Level": "95",
@@ -14303,7 +14303,7 @@
             "mod_fossil_item": []
         },
         "4142": {
-            "ID": "24290",
+            "ID": "24471",
             "Name": "of the Elevated Crusade",
             "Code": "PercentageIntelligenceBodyInfluenceMaven",
             "Level": "85",
@@ -14333,7 +14333,7 @@
             "mod_fossil_item": []
         },
         "4143": {
-            "ID": "24291",
+            "ID": "24472",
             "Name": "of the Elevated Crusade",
             "Code": "AddPowerChargeOnCritInfluenceMaven",
             "Level": "90",
@@ -14361,7 +14361,7 @@
             "mod_fossil_item": []
         },
         "4144": {
-            "ID": "24292",
+            "ID": "24473",
             "Name": "of the Elevated Crusade",
             "Code": "EnergyShieldOnKillPercentInfluenceMaven",
             "Level": "90",
@@ -14389,7 +14389,7 @@
             "mod_fossil_item": []
         },
         "4145": {
-            "ID": "24293",
+            "ID": "24474",
             "Name": "of the Elevated Crusade",
             "Code": "EnergyShieldRecoveryRateBodyInfluenceMaven",
             "Level": "90",
@@ -14419,7 +14419,7 @@
     },
     "redeemer": {
         "2981": {
-            "ID": "20522",
+            "ID": "20699",
             "Name": "Redeemer's",
             "Code": "PhysTakenAsColdInfluence1",
             "Level": "68",
@@ -14449,7 +14449,7 @@
             "mod_fossil_item": []
         },
         "2982": {
-            "ID": "20523",
+            "ID": "20700",
             "Name": "Redeemer's",
             "Code": "PhysTakenAsColdInfluence2",
             "Level": "83",
@@ -14479,7 +14479,7 @@
             "mod_fossil_item": []
         },
         "2983": {
-            "ID": "20524",
+            "ID": "20701",
             "Name": "Redeemer's",
             "Code": "SocketedSupportGemLevelInfluence1",
             "Level": "80",
@@ -14505,7 +14505,7 @@
             "mod_fossil_item": []
         },
         "2984": {
-            "ID": "20525",
+            "ID": "20702",
             "Name": "Redeemer's",
             "Code": "ReflectedElementalDamageInfluence1",
             "Level": "75",
@@ -14531,7 +14531,7 @@
             "mod_fossil_item": []
         },
         "2985": {
-            "ID": "20526",
+            "ID": "20703",
             "Name": "Redeemer's",
             "Code": "NearbyEnemiesAreBlindedInfluence1_",
             "Level": "75",
@@ -14553,7 +14553,7 @@
             "mod_fossil_item": []
         },
         "2986": {
-            "ID": "20527",
+            "ID": "20704",
             "Name": "of Redemption",
             "Code": "PercentageDexterityBodyInfluence1",
             "Level": "68",
@@ -14580,7 +14580,7 @@
             "mod_fossil_item": []
         },
         "2987": {
-            "ID": "20528",
+            "ID": "20705",
             "Name": "of Redemption",
             "Code": "PercentageDexterityBodyInfluence2",
             "Level": "75",
@@ -14607,7 +14607,7 @@
             "mod_fossil_item": []
         },
         "2988": {
-            "ID": "20529",
+            "ID": "20706",
             "Name": "of Redemption",
             "Code": "FrenzyChargeOnHitChanceInfluence1",
             "Level": "80",
@@ -14631,7 +14631,7 @@
             "mod_fossil_item": []
         },
         "2989": {
-            "ID": "20530",
+            "ID": "20707",
             "Name": "of Redemption",
             "Code": "ManaOnKillPercentInfluence1",
             "Level": "68",
@@ -14659,7 +14659,7 @@
             "mod_fossil_item": []
         },
         "2990": {
-            "ID": "20531",
+            "ID": "20708",
             "Name": "of Redemption",
             "Code": "ManaOnKillPercentInfluence2",
             "Level": "80",
@@ -14687,7 +14687,7 @@
             "mod_fossil_item": []
         },
         "2991": {
-            "ID": "20532",
+            "ID": "20709",
             "Name": "of Redemption",
             "Code": "ManaRecoveryRateBodyInfluence1_",
             "Level": "68",
@@ -14715,7 +14715,7 @@
             "mod_fossil_item": []
         },
         "2992": {
-            "ID": "20533",
+            "ID": "20710",
             "Name": "of Redemption",
             "Code": "ManaRecoveryRateBodyInfluence2",
             "Level": "80",
@@ -14743,7 +14743,7 @@
             "mod_fossil_item": []
         },
         "2993": {
-            "ID": "20534",
+            "ID": "20711",
             "Name": "of Redemption",
             "Code": "AuraEffectBodyInfluence1",
             "Level": "75",
@@ -14769,7 +14769,7 @@
             "mod_fossil_item": []
         },
         "2994": {
-            "ID": "20535",
+            "ID": "20712",
             "Name": "of Redemption",
             "Code": "AuraEffectBodyInfluence2",
             "Level": "80",
@@ -14795,7 +14795,7 @@
             "mod_fossil_item": []
         },
         "4138": {
-            "ID": "24303",
+            "ID": "24484",
             "Name": "Elevated Redeemer's",
             "Code": "PhysTakenAsColdInfluenceMaven",
             "Level": "93",
@@ -14830,7 +14830,7 @@
             "mod_fossil_item": []
         },
         "4139": {
-            "ID": "24304",
+            "ID": "24485",
             "Name": "Elevated Redeemer's",
             "Code": "SocketedSupportGemLevelInfluenceMaven",
             "Level": "90",
@@ -14857,7 +14857,7 @@
             "mod_fossil_item": []
         },
         "4140": {
-            "ID": "24305",
+            "ID": "24486",
             "Name": "Elevated Redeemer's",
             "Code": "ReflectedElementalDamageInfluenceMaven",
             "Level": "85",
@@ -14884,7 +14884,7 @@
             "mod_fossil_item": []
         },
         "4141": {
-            "ID": "24306",
+            "ID": "24487",
             "Name": "Elevated Redeemer's",
             "Code": "NearbyEnemiesAreBlindedInfluenceMaven",
             "Level": "85",
@@ -14907,7 +14907,7 @@
             "mod_fossil_item": []
         },
         "4142": {
-            "ID": "24307",
+            "ID": "24488",
             "Name": "of Elevated Redemption",
             "Code": "PercentageDexterityBodyInfluenceMaven_",
             "Level": "85",
@@ -14937,7 +14937,7 @@
             "mod_fossil_item": []
         },
         "4143": {
-            "ID": "24308",
+            "ID": "24489",
             "Name": "of Elevated Redemption",
             "Code": "FrenzyChargeOnHitChanceInfluenceMaven",
             "Level": "90",
@@ -14965,7 +14965,7 @@
             "mod_fossil_item": []
         },
         "4144": {
-            "ID": "24309",
+            "ID": "24490",
             "Name": "of Elevated Redemption",
             "Code": "ManaOnKillPercentInfluenceMaven",
             "Level": "90",
@@ -14994,7 +14994,7 @@
             "mod_fossil_item": []
         },
         "4145": {
-            "ID": "24310",
+            "ID": "24491",
             "Name": "of Elevated Redemption",
             "Code": "ManaRecoveryRateBodyInfluenceMaven",
             "Level": "90",
@@ -15024,7 +15024,7 @@
             "mod_fossil_item": []
         },
         "4146": {
-            "ID": "24311",
+            "ID": "24492",
             "Name": "of Elevated Redemption",
             "Code": "AuraEffectBodyInfluenceMaven",
             "Level": "90",
@@ -15053,7 +15053,7 @@
     },
     "hunter": {
         "2995": {
-            "ID": "20536",
+            "ID": "20713",
             "Name": "Hunter's",
             "Code": "MaximumLifeBodyInfluence1",
             "Level": "68",
@@ -15081,7 +15081,7 @@
             "mod_fossil_item": []
         },
         "2996": {
-            "ID": "20537",
+            "ID": "20714",
             "Name": "Hunter's",
             "Code": "MaximumLifeBodyInfluence2_",
             "Level": "85",
@@ -15109,7 +15109,7 @@
             "mod_fossil_item": []
         },
         "2997": {
-            "ID": "20538",
+            "ID": "20715",
             "Name": "Hunter's",
             "Code": "PhysTakenAsChaosInfluence1_",
             "Level": "75",
@@ -15137,7 +15137,7 @@
             "mod_fossil_item": []
         },
         "2998": {
-            "ID": "20539",
+            "ID": "20716",
             "Name": "Hunter's",
             "Code": "PhysTakenAsChaosInfluence2",
             "Level": "83",
@@ -15165,7 +15165,7 @@
             "mod_fossil_item": []
         },
         "2999": {
-            "ID": "20540",
+            "ID": "20717",
             "Name": "Hunter's",
             "Code": "AdditionalCurseOnEnemiesInfluence1",
             "Level": "82",
@@ -15193,7 +15193,7 @@
             "mod_fossil_item": []
         },
         "3000": {
-            "ID": "20541",
+            "ID": "20718",
             "Name": "Hunter's",
             "Code": "RegenerateLifeOver1SecondInfluence1",
             "Level": "80",
@@ -15221,7 +15221,7 @@
             "mod_fossil_item": []
         },
         "3001": {
-            "ID": "20542",
+            "ID": "20719",
             "Name": "of the Hunt",
             "Code": "OfferingEffectInfluence1_",
             "Level": "68",
@@ -15243,7 +15243,7 @@
             "mod_fossil_item": []
         },
         "3002": {
-            "ID": "20543",
+            "ID": "20720",
             "Name": "of the Hunt",
             "Code": "OfferingEffectInfluence2",
             "Level": "80",
@@ -15265,7 +15265,7 @@
             "mod_fossil_item": []
         },
         "3003": {
-            "ID": "20544",
+            "ID": "20721",
             "Name": "of the Hunt",
             "Code": "AdditionalCritWithAttacksInfluence1_",
             "Level": "68",
@@ -15293,7 +15293,7 @@
             "mod_fossil_item": []
         },
         "3004": {
-            "ID": "20545",
+            "ID": "20722",
             "Name": "of the Hunt",
             "Code": "AdditionalCritWithAttacksInfluence2_",
             "Level": "84",
@@ -15321,7 +15321,7 @@
             "mod_fossil_item": []
         },
         "3005": {
-            "ID": "20546",
+            "ID": "20723",
             "Name": "of the Hunt",
             "Code": "AdditionalCritWithSpellsInfluence1",
             "Level": "68",
@@ -15349,7 +15349,7 @@
             "mod_fossil_item": []
         },
         "3006": {
-            "ID": "20547",
+            "ID": "20724",
             "Name": "of the Hunt",
             "Code": "AdditionalCritWithSpellsInfluence2",
             "Level": "84",
@@ -15377,7 +15377,7 @@
             "mod_fossil_item": []
         },
         "4138": {
-            "ID": "24312",
+            "ID": "24493",
             "Name": "Elevated Hunter's",
             "Code": "MaximumLifeBodyInfluenceMaven__",
             "Level": "95",
@@ -15406,7 +15406,7 @@
             "mod_fossil_item": []
         },
         "4139": {
-            "ID": "24313",
+            "ID": "24494",
             "Name": "Elevated Hunter's",
             "Code": "PhysTakenAsChaosInfluenceMaven__",
             "Level": "93",
@@ -15437,7 +15437,7 @@
             "mod_fossil_item": []
         },
         "4140": {
-            "ID": "24315",
+            "ID": "24496",
             "Name": "Elevated Hunter's",
             "Code": "AdditionalCurseOnEnemiesInfluenceMavenV2___",
             "Level": "92",
@@ -15472,7 +15472,7 @@
             "mod_fossil_item": []
         },
         "4141": {
-            "ID": "24316",
+            "ID": "24497",
             "Name": "Elevated Hunter's",
             "Code": "RegenerateLifeOverMaven",
             "Level": "90",
@@ -15501,7 +15501,7 @@
             "mod_fossil_item": []
         },
         "4142": {
-            "ID": "24317",
+            "ID": "24498",
             "Name": "of the Elevated Hunt",
             "Code": "OfferingEffectInfluenceMaven",
             "Level": "90",
@@ -15524,7 +15524,7 @@
             "mod_fossil_item": []
         },
         "4143": {
-            "ID": "24318",
+            "ID": "24499",
             "Name": "of the Elevated Hunt",
             "Code": "AdditionalCritWithAttacksInfluenceMaven",
             "Level": "94",
@@ -15553,7 +15553,7 @@
             "mod_fossil_item": []
         },
         "4144": {
-            "ID": "24319",
+            "ID": "24500",
             "Name": "of the Elevated Hunt",
             "Code": "AdditionalCritWithSpellsInfluenceMaven",
             "Level": "94",
@@ -15584,7 +15584,7 @@
     },
     "warlord": {
         "2966": {
-            "ID": "20507",
+            "ID": "20684",
             "Name": "Warlord's",
             "Code": "PhysTakenAsFireInfluence1",
             "Level": "68",
@@ -15614,7 +15614,7 @@
             "mod_fossil_item": []
         },
         "2967": {
-            "ID": "20508",
+            "ID": "20685",
             "Name": "Warlord's",
             "Code": "PhysTakenAsFireInfluence2",
             "Level": "83",
@@ -15644,7 +15644,7 @@
             "mod_fossil_item": []
         },
         "2968": {
-            "ID": "20509",
+            "ID": "20686",
             "Name": "Warlord's",
             "Code": "SocketedActiveGemLevelInfluence1",
             "Level": "80",
@@ -15670,7 +15670,7 @@
             "mod_fossil_item": []
         },
         "2969": {
-            "ID": "20510",
+            "ID": "20687",
             "Name": "Warlord's",
             "Code": "ReflectedPhysicalDamageInfluence1__",
             "Level": "75",
@@ -15696,7 +15696,7 @@
             "mod_fossil_item": []
         },
         "2970": {
-            "ID": "20511",
+            "ID": "20688",
             "Name": "of the Conquest",
             "Code": "AllResistancesInfluence1",
             "Level": "68",
@@ -15725,7 +15725,7 @@
             "mod_fossil_item": []
         },
         "2971": {
-            "ID": "20512",
+            "ID": "20689",
             "Name": "of the Conquest",
             "Code": "AllResistancesInfluence2_",
             "Level": "70",
@@ -15754,7 +15754,7 @@
             "mod_fossil_item": []
         },
         "2972": {
-            "ID": "20513",
+            "ID": "20690",
             "Name": "of the Conquest",
             "Code": "AllResistancesInfluence3_",
             "Level": "75",
@@ -15783,7 +15783,7 @@
             "mod_fossil_item": []
         },
         "2973": {
-            "ID": "20514",
+            "ID": "20691",
             "Name": "of the Conquest",
             "Code": "PercentageStrengthBodyInfluence1",
             "Level": "68",
@@ -15810,7 +15810,7 @@
             "mod_fossil_item": []
         },
         "2974": {
-            "ID": "20515",
+            "ID": "20692",
             "Name": "of the Conquest",
             "Code": "PercentageStrengthBodyInfluence2_",
             "Level": "75",
@@ -15837,7 +15837,7 @@
             "mod_fossil_item": []
         },
         "2975": {
-            "ID": "20516",
+            "ID": "20693",
             "Name": "of the Conquest",
             "Code": "EnduranceChargeIfHitRecentlyInfluence1",
             "Level": "80",
@@ -15861,7 +15861,7 @@
             "mod_fossil_item": []
         },
         "2976": {
-            "ID": "20517",
+            "ID": "20694",
             "Name": "of the Conquest",
             "Code": "LifeOnKillPercentInfluence1_",
             "Level": "68",
@@ -15889,7 +15889,7 @@
             "mod_fossil_item": []
         },
         "2977": {
-            "ID": "20518",
+            "ID": "20695",
             "Name": "of the Conquest",
             "Code": "LifeOnKillPercentInfluence2",
             "Level": "80",
@@ -15917,7 +15917,7 @@
             "mod_fossil_item": []
         },
         "2978": {
-            "ID": "20519",
+            "ID": "20696",
             "Name": "of the Conquest",
             "Code": "LifeRecoveryRateBodyInfluence1",
             "Level": "68",
@@ -15945,7 +15945,7 @@
             "mod_fossil_item": []
         },
         "2979": {
-            "ID": "20520",
+            "ID": "20697",
             "Name": "of the Conquest",
             "Code": "LifeRecoveryRateBodyInfluence2",
             "Level": "80",
@@ -15973,7 +15973,7 @@
             "mod_fossil_item": []
         },
         "2980": {
-            "ID": "20521",
+            "ID": "20698",
             "Name": "of the Conquest",
             "Code": "SocketedAttacksManaCostInfluence1",
             "Level": "85",
@@ -16006,7 +16006,7 @@
             "mod_fossil_item": []
         },
         "4138": {
-            "ID": "24294",
+            "ID": "24475",
             "Name": "Elevated Warlord's",
             "Code": "PhysTakenAsFireInfluenceMaven",
             "Level": "93",
@@ -16041,7 +16041,7 @@
             "mod_fossil_item": []
         },
         "4139": {
-            "ID": "24295",
+            "ID": "24476",
             "Name": "Elevated Warlord's",
             "Code": "SocketedActiveGemLevelInfluenceMaven",
             "Level": "80",
@@ -16054,10 +16054,10 @@
                 "0",
                 "0"
             ],
-            "StatsStr": "+1 to Level of Socketed Active Skill Gems+(5&ndash;10)% to Quality of Socketed Active Skill Gems",
+            "StatsStr": "+(5&ndash;10)% to Quality of Socketed Active Skill Gems+1 to Level of Socketed Active Skill Gems",
             "DropChance": 0,
             "Elevated": 1,
-            "str": "<span class='mod-value'>+1</span> to Level of Socketed Active Skill Gems<br><span class='mod-value'>+(5&ndash;10)</span>% to Quality of Socketed Active Skill Gems",
+            "str": "<span class='mod-value'>+(5&ndash;10)</span>% to Quality of Socketed Active Skill Gems<br><span class='mod-value'>+1</span> to Level of Socketed Active Skill Gems",
             "master_no": [],
             "fossil_no": [
                 "gem"
@@ -16068,7 +16068,7 @@
             "mod_fossil_item": []
         },
         "4140": {
-            "ID": "24296",
+            "ID": "24477",
             "Name": "Elevated Warlord's",
             "Code": "ReflectedPhysicalDamageInfluenceMaven",
             "Level": "85",
@@ -16095,7 +16095,7 @@
             "mod_fossil_item": []
         },
         "4141": {
-            "ID": "24297",
+            "ID": "24478",
             "Name": "of the Elevated Conquest",
             "Code": "AllResistancesInfluenceMaven____",
             "Level": "85",
@@ -16125,7 +16125,7 @@
             "mod_fossil_item": []
         },
         "4142": {
-            "ID": "24298",
+            "ID": "24479",
             "Name": "of the Elevated Conquest",
             "Code": "PercentageStrengthBodyInfluenceMaven_",
             "Level": "85",
@@ -16155,7 +16155,7 @@
             "mod_fossil_item": []
         },
         "4143": {
-            "ID": "24299",
+            "ID": "24480",
             "Name": "of the Elevated Conquest",
             "Code": "EnduranceChargeIfHitRecentlyInfluenceMaven",
             "Level": "90",
@@ -16180,7 +16180,7 @@
             "mod_fossil_item": []
         },
         "4144": {
-            "ID": "24300",
+            "ID": "24481",
             "Name": "of the Elevated Conquest",
             "Code": "LifeOnKillPercentInfluenceMaven",
             "Level": "90",
@@ -16209,7 +16209,7 @@
             "mod_fossil_item": []
         },
         "4145": {
-            "ID": "24301",
+            "ID": "24482",
             "Name": "of the Elevated Conquest",
             "Code": "LifeRecoveryRateBodyInfluenceMaven",
             "Level": "90",
@@ -16239,7 +16239,7 @@
             "mod_fossil_item": []
         },
         "4146": {
-            "ID": "24302",
+            "ID": "24483",
             "Name": "of the Elevated Conquest",
             "Code": "SocketedAttacksManaCostInfluenceMaven",
             "Level": "95",
@@ -16252,10 +16252,10 @@
                 "0",
                 "0"
             ],
-            "StatsStr": "Avoid Interruption from Stuns while using Socketed Attack SkillsSocketed Attacks have -20 to Total Mana Cost",
+            "StatsStr": "Socketed Attacks have -20 to Total Mana CostIgnore Stuns while using Socketed Attack Skills",
             "DropChance": 0,
             "Elevated": 1,
-            "str": "Avoid Interruption from Stuns while using Socketed Attack Skills<br>Socketed Attacks have <span class='mod-value'>-20</span> to Total Mana Cost",
+            "str": "Socketed Attacks have <span class='mod-value'>-20</span> to Total Mana Cost<br>Ignore Stuns while using Socketed Attack Skills",
             "master_no": [],
             "fossil_no": [
                 "skill",
