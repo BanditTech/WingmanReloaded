@@ -294,5 +294,20 @@
     {
         "ActualTierName": "PhysicalDmgReduction",
         "AffixWRLine": "#% additional Physical Damage Reduction"
+    },
+    {
+        "ActualTierName": "AddFireSpellDamage",
+        "AffixWRLine": "Adds # to # Fire Damage to Spells"
+    },
+    {
+        "ActualTierName": "AddColdSpellDamage",
+        "AffixWRLine": "Adds # to # Cold Damage to Spells"
+    },
+    {
+        "ActualTierName": "AddLightningSpellDamage",
+        "AffixWRLine": "Adds # to # Lightning Damage to Spells"
     }
+    
+    
+    
 ]
