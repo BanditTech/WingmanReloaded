@@ -1,3 +1,16 @@
+## Version .15.11 - Alpha Version - April/11/2022
+Modifications
+  * Include new ActualTier Affix
+  * Actual Tiers will now have a special Prop for Fractured Mods
+    * In Debug Tab you will find some buttons to update it
+  * Update Dan CLF
+    * Increased Strictness from White and Yellow Resist Gear
+    * Add a new section for fractured mods (life, es, defenses, generic flat dmg, generic inc dmg, crit and more possible valuable fracture mods)
+  
+  
+
+---
+
 ## Version .15.10 - Master version - April/09/2022
 Modifications
   * add vault key as misc map item
