@@ -256,7 +256,7 @@
         "AffixWRLine": "Adds # to # Physical Damage to Attacks"
     },
     {
-        "ActualTierName": "IncPhysicalDamage",
+        "ActualTierName": "INCPhysicalDamage",
         "AffixWRLine": "#% increased Physical Damage"
     },
     {
@@ -296,16 +296,19 @@
         "AffixWRLine": "#% additional Physical Damage Reduction"
     },
     {
-        "ActualTierName": "AddFireSpellDamage",
-        "AffixWRLine": "Adds # to # Fire Damage to Spells"
+        "ActualTierName": "AddFireSpellDamagePrefix",
+        "AffixWRLine": "Adds # to # Fire Damage to Spells",
+        "ModGenerationTypeID": 1
     },
     {
-        "ActualTierName": "AddColdSpellDamage",
-        "AffixWRLine": "Adds # to # Cold Damage to Spells"
+        "ActualTierName": "AddColdSpellDamagePrefix",
+        "AffixWRLine": "Adds # to # Cold Damage to Spells",
+        "ModGenerationTypeID": 1
     },
     {
-        "ActualTierName": "AddLightningSpellDamage",
-        "AffixWRLine": "Adds # to # Lightning Damage to Spells"
+        "ActualTierName": "AddLightningSpellDamagePrefix",
+        "AffixWRLine": "Adds # to # Lightning Damage to Spells",
+        "ModGenerationTypeID": 1
     }
     
     
