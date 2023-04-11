@@ -10,7 +10,8 @@ ActualTierCreator() {
         For ki ,vi in ["normal"] {
             For k, v in Mods[vi] {
                 AffixWRLine := FirstLineToWRFormat(v["str"])
-                If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ActualTierNameJSON)) {
+                ModGenerationTypeID := v["ModGenerationTypeID"]
+                If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationTypeID,ActualTierNameJSON)) {
                     If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii],v["ModGenerationTypeID"])) {
                         WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
                         WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
@@ -37,9 +38,9 @@ CheckAffixWR(Line,Obj,ModGenerationTypeID) {
     }
 }
 
-CheckAffixWRFromJson(Line,Obj) {
+CheckAffixWRFromJson(Line,ModGenerationTypeID,Obj) {
     for k , v in Obj {
-        If(v["AffixWRLine"] == Line) {
+        If(v["AffixWRLine"] == Line and (v["ModGenerationTypeID"] == ModGenerationTypeID || ModGenerationTypeID == 0)) {
             aux:= "ActualTier" . v["ActualTierName"]
             Return aux
         }
@@ -60,7 +61,7 @@ CraftingBasesRequest(ShouldRun) {
         Return
     }
     If (!AccountNameSTR) {
-        Log("Crafting Bases Request","You need def your account name in save/Account.ini",Strings*)
+        Log("Crafting Bases Request","You need define your account name in save/Account.ini",Strings*)
         Return
     }
     Object := PoERequest.Stash(StashTabCrafting)

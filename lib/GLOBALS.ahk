@@ -146,7 +146,10 @@ Global HybridModsFirstLine := ["# to maximum Energy Shield"
 , "#% increased Armour and Evasion"
 , "#% increased Evasion and Energy Shield"
 , "#% increased Armour and Energy Shield"
-, "#% increased Armour, Evasion and Energy Shield" ]
+, "#% increased Armour, Evasion and Energy Shield" 
+;;Damage Hybrid
+, "#% increased Physical Damage"
+, "#% increased Spell Damage"]
 ; List available database endpoints
 Global apiList := ["Currency"
 , "Fragment"
