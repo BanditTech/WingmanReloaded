@@ -309,6 +309,16 @@
         "ActualTierName": "AddLightningSpellDamagePrefix",
         "AffixWRLine": "Adds # to # Lightning Damage to Spells",
         "ModGenerationTypeID": 1
+    },
+    {
+        "ActualTierName": "HybridPhysicalAccuracyPrefix",
+        "AffixWRLine": "#% increased Physical Damage | # to Accuracy Rating",
+        "ModGenerationTypeID": 1
+    },
+    {
+        "ActualTierName": "HybridSpellDamageManaPrefix",
+        "AffixWRLine": "#% increased Spell Damage | # to maximum Mana",
+        "ModGenerationTypeID": 1
     }
     
     
