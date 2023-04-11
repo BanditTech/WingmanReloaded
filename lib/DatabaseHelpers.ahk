@@ -40,7 +40,7 @@ CheckAffixWR(Line,Obj,ModGenerationTypeID) {
 
 CheckAffixWRFromJson(Line,ModGenerationTypeID,Obj) {
     for k , v in Obj {
-        If(v["AffixWRLine"] == Line and (v["ModGenerationTypeID"] == ModGenerationTypeID || ModGenerationTypeID == 0)) {
+        If(v["AffixWRLine"] == Line and (v["ModGenerationTypeID"] == ModGenerationTypeID || !v["ModGenerationTypeID"])) {
             aux:= "ActualTier" . v["ActualTierName"]
             Return aux
         }
