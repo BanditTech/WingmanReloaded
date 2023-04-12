@@ -38,7 +38,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesOpenStackedDeck Checked%YesOpenStackedDeck% y+8 , Open Stacked Decks?
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesVendorDumpItems Checked%YesVendorDumpItems% y+8 , Vendor Dump Tab Items?
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesCLFStrictness y+8 Checked%YesCLFStrictness%, Enable CLF Strictness?
-      Gui, Inventory: Add, DropDownList, gSaveGeneral vCLFStrictnessNumber x+1 yp-4 w30 Choose%CLFStrictnessNumber%, 0|1|2|3|4|5|6|7|8|9
+      Gui, Inventory: Add, DropDownList, gSaveGeneral vCLFStrictnessNumber x+1 yp-4 w30 Choose%CLFStrictnessNumber%, 1|2|3
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, Section w370 h100 xm+180 ym+25, Scroll, Gem and Currency Locations
