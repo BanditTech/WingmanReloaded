@@ -95,7 +95,6 @@ readFromFile(){
 	IniRead, EnableRestock, %A_ScriptDir%\save\Settings.ini, General, EnableRestock, 1
 
 	; CLF Options
-	IniRead, YesCLFStrictness, %A_ScriptDir%\save\Settings.ini, General, YesCLFStrictness, 0
 	IniRead, CLFStrictnessNumber, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber, 0
 
 	; Basic Crafting Settings
@@ -782,7 +781,6 @@ submit(){
 		IniWrite, %EnableRestock%, %A_ScriptDir%\save\Settings.ini, General, EnableRestock
 
 		; CLF Options
-		IniWrite, %YesCLFStrictness%, %A_ScriptDir%\save\Settings.ini, General, YesCLFStrictness
 		IniWrite, %CLFStrictnessNumber%, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber
 
 		; Overhead Health Bar

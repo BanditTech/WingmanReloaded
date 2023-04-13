@@ -682,7 +682,6 @@ Global MoveMapsToArea:=True
 Global YesIncludeFandSItem := True
 
 ; CLF Options
-Global YesCLFStrictness := False
 Global CLFStrictnessNumber := 0
 
 
