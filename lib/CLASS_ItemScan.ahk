@@ -366,7 +366,7 @@
 				This.Prop.DeliriumOrb := True
 				This.Prop.SpecialType := "Delirium"
 			}
-			Else If (InStr(This.Prop.ItemBase, "Splinter of") && This.Prop.ItemClass ~= "Fragments")
+			Else If (InStr(This.Prop.ItemBase, "Splinter of") && This.Prop.ItemClass ~= "Stackable Currency")
 			{
 				This.Prop.BreachSplinter := True
 				This.Prop.SpecialType := "Breach Splinter"
@@ -376,7 +376,7 @@
 				This.Prop.ConquererFragment := True
 				This.Prop.SpecialType := "Conquerer Fragment"
 			}
-			Else If (InStr(This.Prop.ItemBase, "Breachstone") && This.Prop.ItemClass ~= "Fragments")
+			Else If (InStr(This.Prop.ItemBase, "Breachstone") && This.Prop.ItemClass ~= "Breachstones")
 			{
 				This.Prop.BreachSplinter := True
 				This.Prop.SpecialType := "Breachstone"
