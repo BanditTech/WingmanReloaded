@@ -300,7 +300,7 @@
 			{
 				This.Prop.AtlasStone := True
 			}
-			If (This.Prop.ItemClass = "Misc Map Items" || This.Prop.ItemClass = "Memory" || This.Prop.ItemClass = "Vault Key")
+			If (This.Prop.ItemClass = "Misc Map Items" || This.Prop.ItemClass = "Memories" || This.Prop.ItemClass = "Vault Key")
 			{
 				This.Prop.MiscMapItem := True
 				This.Prop.SpecialType := "Misc Map Item"
