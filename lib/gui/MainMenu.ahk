@@ -220,7 +220,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Font, Bold s9 cBlack, Arial
 	Gui, Add, Text, xs+5 y+10, League:
 	Gui, Font,Norm
-	Gui, Add, DropDownList, vselectedLeague x+5 yp-3 w150, %textList%
+	Gui, Add, ComboBox, vselectedLeague x+5 yp-3 w150, %textList%
 	GuiControl, ChooseString, selectedLeague, %selectedLeague%
 	Gui, Add, Button, gUpdateLeagues vUpdateLeaguesBtn x+5 yp-1 , Refresh
 
