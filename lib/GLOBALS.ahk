@@ -459,7 +459,7 @@ ft_ToolTip_Text_Part3=
 	hotkeySecondaryAttack = Bind the Secondary Attack for this Character
 	YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
 	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
-	CLFStrictnessNumber = Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) is Full Strict (Including CLF Groups Without Strictness Defined)
+	CLFStrictnessNumber = Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) All Filters Strictness Will Be Matched`rLevel 5 (Higher Strictness) Only Main Filters Will be Matched`rAny Filter Without Strictness Defined Will Be Always Matched
 
 )
 
