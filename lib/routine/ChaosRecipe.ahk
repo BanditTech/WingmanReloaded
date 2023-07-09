@@ -592,14 +592,16 @@ VendorRoutineChaos(){
  ; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
-		If !RunningToggle || RecipeComplete ; The user signaled the loop to stop by pressing Hotkey again.
-			Break
+    If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
+      Sleep, 75
+      Break
+    }
 		For R, GridY in InventoryGridY
 		{
       If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
         RecipeComplete := True
 			If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
-				Sleep, 45
+				Sleep, 75
         Break
       }
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
@@ -652,7 +654,7 @@ VendorRoutineChaos(){
 		{
 			RandomSleep(180,210)
 			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
-			RandomSleep(90,180)
+			RandomSleep(180,210)
 			ContinueFlag := True
 		}
 		Else If (FirstAutomationSetting=="Search Vendor")
