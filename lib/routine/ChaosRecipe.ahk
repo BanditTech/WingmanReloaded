@@ -2,7 +2,7 @@
 ChaosRecipe(endAtRefresh := 0){
   If (!AccountNameSTR){
     Log("Chaos Recipe","You need def your account name in save/Account.ini",Strings*)
-        Return
+    Return
   }
   Global RecipeArray := {}
 
@@ -34,7 +34,7 @@ ChaosRecipe(endAtRefresh := 0){
     Else
       ItemTypes := False
   }
-  
+
   If endAtRefresh
   {
     If (ItemTypes)
@@ -56,7 +56,7 @@ ChaosRecipeSort(Object,Merge:=False){
       %TypeName%[SlotName] := {}
       u%TypeName%[SlotName] := {}
     }
-  } 
+  }
 
   For i, content in Object.items
   {
@@ -93,14 +93,19 @@ ChaosRecipeSort(Object,Merge:=False){
   Return RecipeArray
 }
 confirmOneOfEach(Object,id:=True){
+  hasChaos := false
   ; Confirm we have at least one of each armour slot and 2 rings
   for k, kind in ["Amulet","Ring","Belt","Body","Boots","Gloves","Helmet"]
   {
     If ChaosRecipeTypeHybrid
     {
-      result := getCount(Object[id?"Chaos":"uChaos"][kind]) + getCount(Object[id?"Regal":"uRegal"][kind])
+      chaosCount := getCount(Object[id?"Chaos":"uChaos"][kind])
+      regalCount := getCount(Object[id?"Regal":"uRegal"][kind])
+      result := chaosCount + regalCount
       If (!result || (kind = "Ring" && result < 2))
         Return False
+      if (chaosCount >= 1)
+        hasChaos := true
     }
     Else If ChaosRecipeTypePure
     {
@@ -119,11 +124,16 @@ confirmOneOfEach(Object,id:=True){
   ; now lets confirm we have a valid combination of weapons
   If ChaosRecipeTypeHybrid
   {
-    2hresult := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"]) + getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
-    1hresult := getCount(Object[id?"Chaos":"uChaos"]["One Hand"]) + getCount(Object[id?"Regal":"uRegal"]["One Hand"])
-    1hresult += getCount(Object[id?"Chaos":"uChaos"]["Shield"]) + getCount(Object[id?"Regal":"uRegal"]["Shield"])
+    2hchaos := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"])
+    2hregal := getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
+    2hresult := 2hchaos + 2hregal
+    1hchaos := getCount(Object[id?"Chaos":"uChaos"]["One Hand"]) + getCount(Object[id?"Chaos":"uChaos"]["Shield"])
+    1hregal := getCount(Object[id?"Regal":"uRegal"]["One Hand"]) + getCount(Object[id?"Regal":"uRegal"]["Shield"])
+    1hresult := 1hchaos + 1hregal
     If (!2hresult && 1hresult < 2)
       Return False
+    if (1hchaos >= 1 || 2hchaos >= 1 )
+      hasChaos := true
   }
   Else If ChaosRecipeTypePure
   {
@@ -142,6 +152,8 @@ confirmOneOfEach(Object,id:=True){
       Return False
   }
 
+  if (ChaosRecipeTypeHybrid && !hasChaos)
+    Return False
   ; If we make it this far, all checks have passed
   Return True
 }
@@ -173,7 +185,7 @@ ChaosRecipeReturn(Object){
           Set.Push(Object.Chaos["One Hand"].RemoveAt(1))
           Set.Push(Object.Chaos["One Hand"].RemoveAt(1))
         }
-        Else 
+        Else
           Break
         Set.Push(Object.Chaos.Amulet.RemoveAt(1))
         Set.Push(Object.Chaos.Ring.RemoveAt(1))
@@ -207,7 +219,7 @@ ChaosRecipeReturn(Object){
           Set.Push(Object.uChaos["One Hand"].RemoveAt(1))
           Set.Push(Object.uChaos["One Hand"].RemoveAt(1))
         }
-        Else 
+        Else
           Break
         Set.Push(Object.uChaos.Amulet.RemoveAt(1))
         Set.Push(Object.uChaos.Ring.RemoveAt(1))
@@ -229,7 +241,7 @@ ChaosRecipeReturn(Object){
       {
         Set := {}
         ChaosPresent := False
-        If ( ( (IsObject(Object.Chaos.Shield.1) || IsObject(Object.Regal.Shield.1) ) && ( IsObject(Object.Chaos.Shield.2) || IsObject(Object.Regal.Shield.2) ) ) 
+        If ( ( (IsObject(Object.Chaos.Shield.1) || IsObject(Object.Regal.Shield.1) ) && ( IsObject(Object.Chaos.Shield.2) || IsObject(Object.Regal.Shield.2) ) )
         || ( IsObject(Object.Chaos.Shield.1) && IsObject(Object.Regal.Shield.1) ) )
         {
           If (!ChaosPresent && !IsObject(Object.Chaos.Shield.1)) && IsObject(Object.Regal.Shield.1)
@@ -269,7 +281,7 @@ ChaosRecipeReturn(Object){
           Else If (IsObject(Object.Chaos["Two Hand"].1))
             Set.Push(Object.Chaos["Two Hand"].RemoveAt(1)), ChaosPresent := True
         }
-        Else If ((IsObject(Object.Chaos["One Hand"].1) || IsObject(Object.Regal["One Hand"].1)) && (IsObject(Object.Chaos["One Hand"].2) || IsObject(Object.Regal["One Hand"].2))) 
+        Else If ((IsObject(Object.Chaos["One Hand"].1) || IsObject(Object.Regal["One Hand"].1)) && (IsObject(Object.Chaos["One Hand"].2) || IsObject(Object.Regal["One Hand"].2)))
         || (IsObject(Object.Chaos["One Hand"].1) && IsObject(Object.Regal["One Hand"].1))
         {
           If (!ChaosPresent && !IsObject(Object.Chaos["One Hand"].1)) && IsObject(Object.Regal["One Hand"].1)
@@ -286,7 +298,7 @@ ChaosRecipeReturn(Object){
           Else If (IsObject(Object.Chaos["One Hand"].1))
             Set.Push(Object.Chaos["One Hand"].RemoveAt(1)), ChaosPresent := True
         }
-        Else 
+        Else
           Break
 
         If (!ChaosPresent && !IsObject(Object.Chaos.Body.1)) && IsObject(Object.Regal.Body.1)
@@ -351,7 +363,7 @@ ChaosRecipeReturn(Object){
       {
         Set := {}
         ChaosPresent := False
-        If ((IsObject(Object.uChaos.Shield.1) || IsObject(Object.uRegal.Shield.1)) && (IsObject(Object.uChaos.Shield.2) || IsObject(Object.uRegal.Shield.2))) 
+        If ((IsObject(Object.uChaos.Shield.1) || IsObject(Object.uRegal.Shield.1)) && (IsObject(Object.uChaos.Shield.2) || IsObject(Object.uRegal.Shield.2)))
         || (IsObject(Object.uChaos.Shield.1) && IsObject(Object.uRegal.Shield.1))
         {
           If (!ChaosPresent && !IsObject(Object.uChaos.Shield.1)) && IsObject(Object.uRegal.Shield.1)
@@ -391,7 +403,7 @@ ChaosRecipeReturn(Object){
           Else If (IsObject(Object.uChaos["Two Hand"].1))
             Set.Push(Object.uChaos["Two Hand"].RemoveAt(1)), ChaosPresent := True
         }
-        Else If ((IsObject(Object.uChaos["One Hand"].1) || IsObject(Object.uRegal["One Hand"].1)) && (IsObject(Object.uChaos["One Hand"].2) || IsObject(Object.uRegal["One Hand"].2))) 
+        Else If ((IsObject(Object.uChaos["One Hand"].1) || IsObject(Object.uRegal["One Hand"].1)) && (IsObject(Object.uChaos["One Hand"].2) || IsObject(Object.uRegal["One Hand"].2)))
         || (IsObject(Object.uChaos["One Hand"].1) && IsObject(Object.uRegal["One Hand"].1))
         {
           If (!ChaosPresent && !IsObject(Object.uChaos["One Hand"].1)) && IsObject(Object.uRegal["One Hand"].1)
@@ -408,7 +420,7 @@ ChaosRecipeReturn(Object){
           Else If (IsObject(Object.uChaos["One Hand"].1))
             Set.Push(Object.uChaos["One Hand"].RemoveAt(1)), ChaosPresent := True
         }
-        Else 
+        Else
           Break
 
         If (!ChaosPresent && !IsObject(Object.uChaos.Amulet.1)) && IsObject(Object.uRegal.Amulet.1)
@@ -497,7 +509,7 @@ ChaosRecipeReturn(Object){
           Set.Push(Object.Regal["One Hand"].RemoveAt(1))
           Set.Push(Object.Regal["One Hand"].RemoveAt(1))
         }
-        Else 
+        Else
           Break
         Set.Push(Object.Regal.Amulet.RemoveAt(1))
         Set.Push(Object.Regal.Ring.RemoveAt(1))
@@ -531,7 +543,7 @@ ChaosRecipeReturn(Object){
           Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
           Set.Push(Object.uRegal["One Hand"].RemoveAt(1))
         }
-        Else 
+        Else
           Break
         Set.Push(Object.uRegal.Amulet.RemoveAt(1))
         Set.Push(Object.uRegal.Ring.RemoveAt(1))
@@ -563,13 +575,13 @@ getCount(Object,full:=False){
   Return c
 }
 retCount(obj){
-  Return (obj.Count()>=0?obj.Count():0) 
+  Return (obj.Count()>=0?obj.Count():0)
 }
 ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
 VendorRoutineChaos(){
 	CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
 	BlackList := Array_DeepClone(BlackList_Default)
-	; Move mouse out of the way to grab screenshot
+ ; Move mouse out of the way to grab screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	If !OnVendor
 	{
@@ -577,7 +589,7 @@ VendorRoutineChaos(){
 		Return
 	}
 
-	; Main loop through inventory
+ ; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
 		If !RunningToggle || RecipeComplete ; The user signaled the loop to stop by pressing Hotkey again.
@@ -594,9 +606,9 @@ VendorRoutineChaos(){
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText.GetColor(GridX,GridY)
-			
+
 			If indexOf(PointColor, varEmptyInvSlotColor) {
-				;Seems to be an empty slot, no need to clip item info
+    ;Seems to be an empty slot, no need to clip item info
 				Continue
 			}
 			ClipItem(Grid.X,Grid.Y)
@@ -630,7 +642,7 @@ VendorRoutineChaos(){
 			}
 		}
 	}
-	; Auto Confirm Vendoring Option
+ ; Auto Confirm Vendoring Option
 	If (OnVendor && RunningToggle && YesEnableAutomation)
 	{
 		ContinueFlag := False
@@ -661,7 +673,7 @@ VendorRoutineChaos(){
 				}
 			}
 		}
-		; Search Stash and StashRoutine
+  ; Search Stash and StashRoutine
 		If (YesEnableNextAutomation && ContinueFlag)
 		{
 			RandomSleep(90,180)
@@ -678,30 +690,30 @@ VendorRoutineChaos(){
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
 				Sleep, 800
-				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+     ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town = "Oriath Docks")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
 				Sleep, 800
-				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+     ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town = "The Sarn Encampment")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
 				Sleep, 800
-				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
+     ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			GuiStatus()
 			SearchStash()
-			; StashRoutine()
+    ; StashRoutine()
 		}
 	}
 	Return True
 }
 ; Takes a list of Recipe Sets to the vendor
 VendorChaosRecipe(){
-	; Ensure we only run one instance, second press of hotkey should stop function
+ ; Ensure we only run one instance, second press of hotkey should stop function
 	CheckRunning()
 	Global InvGrid, CurrentTab
 	CurrentTab := 0
@@ -715,9 +727,9 @@ VendorChaosRecipe(){
 	}
 	IfWinActive, ahk_group POEGameGroup
 	{
-		; Refresh our screenshot
+  ; Refresh our screenshot
 		GuiStatus()
-		; Check OnStash / Search for stash
+  ; Check OnStash / Search for stash
 		If (!OnStash)
 		{
 			If !SearchStash()
@@ -732,26 +744,26 @@ VendorChaosRecipe(){
   Object.1 := AHK.SortBy(Object.1,Func("fn_sortByTab"))
 	For k, v in Object.1
 	{
-		; Move to Tab
+  ; Move to Tab
 		MoveStash(v.Prop.StashTab)
 		Sleep, 30
-		; Ctrl+Click to inventory
+  ; Ctrl+Click to inventory
 		CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
 		, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
 		Sleep, 30
 	}
 
-	; Remove set from Object array
+ ; Remove set from Object array
 	Backup := Object.RemoveAt(1)
 
-	; Close Stash panel
+ ; Close Stash panel
 	SendHotkey(hotkeyCloseAllUI)
 	GuiStatus()
-	; Search for Vendor
+ ; Search for Vendor
 	If SearchVendor()
 	{
 		Sleep, 45
-		; Vendor set
+  ; Vendor set
 		If !VendorRoutineChaos() {
 				Notify("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
 				sleep, 180
@@ -764,22 +776,22 @@ VendorChaosRecipe(){
 				If OnStash {
 					For k, v in Backup
 					{
-						; Move to Tab
+      ; Move to Tab
 						MoveStash(v.Prop.StashTab)
 						Sleep, 45
-						; Ctrl+Click to inventory
+      ; Ctrl+Click to inventory
 						CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
 						, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
 						Sleep, 45
 					}
-					; Close Stash panel
+     ; Close Stash panel
 					SendHotkey(hotkeyCloseAllUI)
 					GuiStatus()
-					; Search for Vendor
+     ; Search for Vendor
 					If SearchVendor()
 					{
 						Sleep, 45
-						; Vendor set
+      ; Vendor set
 						If !VendorRoutineChaos() {
 							Notify("Recipe Set INCOMPLETE","Second Time failing",2)
 							MouseMove, xx, yy, 0
@@ -802,7 +814,7 @@ VendorChaosRecipe(){
 		If ChaosRecipeUnloadAll
 			SetTimer VendorChaosRecipe, -500
 	}
-	; Reset in preparation for the next press of this hotkey.
+ ; Reset in preparation for the next press of this hotkey.
 	Sleep, 90*Latency
 	CheckRunning("Off")
 	Return True
