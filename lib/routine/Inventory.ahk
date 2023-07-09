@@ -785,9 +785,9 @@ MoveStash(Tab,CheckStatus:=0)
 	}
 	If (CurrentTab==Tab)
 		return
-	If (CurrentTab!=Tab) 
+	If (CurrentTab!=Tab)
 	{
-		Sleep, 60*Latency
+		Sleep, 90*Latency
 		Dif:=(CurrentTab-Tab)
 		If (CurrentTab = 0)
 		{
@@ -796,34 +796,24 @@ MoveStash(Tab,CheckStatus:=0)
 				Send {Escape}
 				Sleep, 15
 			}
-			Loop 99
-				send {Left}
-			Loop % Tab - 1
-				send {Right}
+			send {Left 99}
+			val := Tab - 1
+			send {Right %val%}
 			CurrentTab:=Tab
-			Sleep, 210*Latency
 		}
 		Else
 		{
-			Loop % Abs(Dif)
-			{
-				If (Dif > 0)
-					SendInput {Left}
-				Else
-					SendInput {Right}
-			}
+			val := Abs(Dif)
+			If (Dif > 0)
+				SendInput {Left %val%}
+			Else
+				SendInput {Right %val%}
 			CurrentTab:=Tab
-			Sleep, 210*Latency
 		}
+		Sleep, 210*Latency
 	}
-	If (Tab == StashTabMap)
-	{
+	If (Tab == StashTabMap || Tab == StashTabUnique)
 		Sleep, 500*Latency
-	}
-	Else If (Tab == StashTabUnique)
-	{
-		Sleep, 500*Latency
-	}
 	return
 }
 ; RunRestock - Restock currency Items in inventory
