@@ -1358,6 +1358,7 @@
 						}
 					}
 				}
+				This.Prop.HasRange := True
 			}
 		}
 		If This.Percent.Count() {
@@ -2611,7 +2612,7 @@
 			Else
 				sendstash := StashTabGem
 		} Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && !This.Prop.IsOrgan
-			&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) ) {
+			&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.HasRange && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) ) {
 			If (StashTabYesUnique = 2)
 				Return -2
 			Else if (StashTabYesUnique)
