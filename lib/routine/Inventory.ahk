@@ -99,7 +99,6 @@ SearchStash()
 ; ShooMouse - Move mouse out of the inventory area
 ShooMouse()
 {
-	Sleep, 60*Latency
 	Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
 	Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
 	MouseMove, RX, RY, 0
