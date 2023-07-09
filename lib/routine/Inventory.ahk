@@ -103,7 +103,7 @@ ShooMouse()
 	Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
 	Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
 	MouseMove, RX, RY, 0
-	Sleep, 90*Latency
+	Sleep, 60*Latency
 }
 ; ClearNotifications - Get rid of overlay messages if any are present
 ClearNotifications()
@@ -114,13 +114,9 @@ ClearNotifications()
 		Log("Verbose","Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
 			LeftClick(v.x,v.y)
-		Sleep, 195*Latency
+		Sleep, 300*Latency
 		GuiStatus()
-		ClearNotifications()
-		Return
 	}
-	Else
-		Return
 }
 ; Make a more uniform method of checking for identification
 CheckToIdentify(){
