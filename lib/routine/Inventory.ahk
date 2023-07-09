@@ -1,4 +1,4 @@
-; ItemSortCommand - Sort inventory and determine action
+﻿; ItemSortCommand - Sort inventory and determine action
 ItemSortCommand(){
 	; Thread, NoTimers, True
 	CheckRunning()
@@ -7,14 +7,14 @@ ItemSortCommand(){
 	{
 		CheckRunning("On")
 		GuiStatus()
-		If (!OnChar) 
-		{ ;Need to be on Character 
+		If (!OnChar)
+		{ ;Need to be on Character
 			Notify("You do not appear to be in game.","Likely need to calibrate Character Active",1)
 			CheckRunning("Off")
 			Return
 		}
 		Else If (!OnInventory&&OnChar) ; Click Stash or open Inventory
-		{ 
+		{
 			; First Automation Entry
 			If (FirstAutomationSetting == "Search Vendor" && YesEnableAutomation && (OnTown || OnHideout || OnMines))
 			{
@@ -65,15 +65,15 @@ CheckRunning(ret:=false){
 	Global RunningToggle
 	If (RunningToggle && !ret) ; This means an underlying thread is already running the loop below.
 	{
-		RunningToggle := False  ; Signal that thread's loop to stop.
+		RunningToggle := False ; Signal that thread's loop to stop.
 		ResetMainTimer("On")
 		Notify("Aborting Current Process","",2)
-		exit  ; End this thread so that the one underneath will resume and see the change made by the line above.
+		exit ; End this thread so that the one underneath will resume and see the change made by the line above.
 	} Else If (ret=="On") {
 		RunningToggle := True
 		ResetMainTimer("Off")
 	} Else If (ret) {
-		RunningToggle := False  ; Reset in preparation for the next press of this hotkey.
+		RunningToggle := False ; Reset in preparation for the next press of this hotkey.
 		ResetMainTimer("On")
 		Return
 	}
@@ -128,18 +128,18 @@ CheckToIdentify(){
 	{
 		If (Item.Prop.IsInfluenceItem && YesInfluencedUnid && Item.Prop.RarityRare)
 			Return False
-		Else If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId  && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) 
-		&& Item.Prop.ItemLevel < ChaosRecipeLimitUnId && Item.StashChaosRecipe(false))
+		Else If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe)
+			&& Item.Prop.ItemLevel < ChaosRecipeLimitUnId && Item.StashChaosRecipe(false))
 			Return False
 		Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
 			Return True
-		Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) ) 
+		Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) )
 			Return True
 		Else If ( Item.Prop.Jeweller && ( Item.Prop.Sockets_Link >= 5 || Item.Prop.RarityRare || Item.Prop.RarityUnique) )
 			Return True
 		Else If (!Item.Prop.Chromatic && !Item.Prop.Jeweller && !Item.Prop.IsMap)
 			Return True
-	} 
+	}
 	Return False
 }
 ; VendorRoutine - Does vendor functions
@@ -159,23 +159,23 @@ VendorRoutine()
 	If StashTabYesPredictive
 	{
 		If !PPServerStatus()
-		Notify("PoEPrice.info Offline","",2)
+			Notify("PoEPrice.info Offline","",2)
 	}
 	VendoredItems := False
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
-		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
 		For R, GridY in InventoryGridY
 		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText.GetColor(GridX,GridY)
-			
+
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
 				Continue
@@ -201,8 +201,8 @@ VendorRoutine()
 					If !YesBatchVendorBauble
 						Continue
 					If (Item.Prop.Quality >= 20)
-						Q := 40 
-					Else 
+						Q := 40
+					Else
 						Q := Item.Prop.Quality
 					tQ += Q
 					SortFlask.Push({"C":C,"R":R,"Q":Q})
@@ -213,15 +213,15 @@ VendorRoutine()
 					If !YesBatchVendorGCP
 						Continue
 					If (Item.Prop.Quality >= 20)
-						Continue 
+						Continue
 					Q := Item.Prop.Quality
 					tGQ += Q
 					SortGem.Push({"C":C,"R":R,"Q":Q})
 					Continue
 				}
 				If ((Item.Prop.StashReturnVal && !Item.Prop.DumpTabItem)
-				|| (Item.Prop.StashReturnVal && (!YesVendorDumpItems && Item.Prop.DumpTabItem)))
-				&& !(Item.Prop.Vendorable)
+					|| (Item.Prop.StashReturnVal && (!YesVendorDumpItems && Item.Prop.DumpTabItem)))
+					&& !(Item.Prop.Vendorable)
 					Continue
 				If ( Item.Prop.SpecialType="" || Item.Prop.Vendorable )
 				{
@@ -239,11 +239,11 @@ VendorRoutine()
 		Grouped := New SortByNum(SortFlask)
 		For k, v in Grouped
 		{
-			If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+			If (!RunningToggle) ; The user signaled the loop to stop by pressing Hotkey again.
 				exit
 			For kk, vv in v
 			{
-				If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+				If (!RunningToggle) ; The user signaled the loop to stop by pressing Hotkey again.
 					exit
 				Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
 				CtrlClick(Grid.X,Grid.Y)
@@ -257,11 +257,11 @@ VendorRoutine()
 		Grouped := New SortByNum(SortGem)
 		For k, v in Grouped
 		{
-			If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+			If (!RunningToggle) ; The user signaled the loop to stop by pressing Hotkey again.
 				exit
 			For kk, vv in v
 			{
-				If (!RunningToggle)  ; The user signaled the loop to stop by pressing Hotkey again.
+				If (!RunningToggle) ; The user signaled the loop to stop by pressing Hotkey again.
 					exit
 				Grid := RandClick(InventoryGridX[vv.C], InventoryGridY[vv.R])
 				CtrlClick(Grid.X,Grid.Y)
@@ -332,7 +332,7 @@ VendorRoutine()
 			}
 			GuiStatus()
 			If SearchStash()
-			StashRoutine()
+				StashRoutine()
 		}
 	}
 	Return
@@ -384,7 +384,7 @@ StashRoutine()
 	If StashTabYesPredictive
 	{
 		If !PPServerStatus()
-		Notify("PoEPrice.info Offline","",2)
+			Notify("PoEPrice.info Offline","",2)
 	}
 	CurrentTab:=0
 	SortFirst := {}
@@ -399,11 +399,11 @@ StashRoutine()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
-		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
 		For R, GridY in InventoryGridY
 		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
@@ -413,7 +413,7 @@ StashRoutine()
 				;Seems to be an empty slot, no need to clip item info
 				Continue
 			}
-			
+
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
 			If CheckToIdentify()
@@ -426,7 +426,7 @@ StashRoutine()
 				ShooMouse(),GuiStatus(),Continue
 			}
 
-			If (OnStash && YesStash) 
+			If (OnStash && YesStash)
 			{
 				If (Item.Prop.SpecialType = "Quest Item" || Item.Prop.ItemClass = "Quest Items")
 					Continue
@@ -435,17 +435,17 @@ StashRoutine()
 				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep && InMapArea(C) )
 					Continue
 				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && InMapArea(C)
-				&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal) 
-					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
-					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
+					&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal)
+					|| (Item.Prop.RarityMagic && YesSkipMaps_magic)
+					|| (Item.Prop.RarityRare && YesSkipMaps_rare)
 					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) ) )
 					Continue
 				Else If ( Item.Prop.IsMap && !Item.Prop.IsBrickedMap && YesSkipMaps && InMapArea(C)
-				&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal) 
-					|| (Item.Prop.RarityMagic && YesSkipMaps_magic) 
-					|| (Item.Prop.RarityRare && YesSkipMaps_rare) 
-					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) ) 
-				&& (Item.Prop.Map_Tier >= YesSkipMaps_tier) )
+					&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal)
+					|| (Item.Prop.RarityMagic && YesSkipMaps_magic)
+					|| (Item.Prop.RarityRare && YesSkipMaps_rare)
+					|| (Item.Prop.RarityUnique && YesSkipMaps_unique) )
+					&& (Item.Prop.Map_Tier >= YesSkipMaps_tier) )
 					Continue
 				Else If (sendstash:=Item.MatchStashManagement(True)){
 					;Skip
@@ -481,10 +481,10 @@ StashRoutine()
 						CtrlShiftClick(Grid.X,Grid.Y)
 						; Check if we need to send to alternate stash for uniques
 						If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
-						&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
+							&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
 						{
-							If (StashTabYesUniqueRing && Item.Prop.Ring 
-							&& sendstash != StashTabUniqueRing)
+							If (StashTabYesUniqueRing && Item.Prop.Ring
+								&& sendstash != StashTabUniqueRing)
 							{
 								Sleep, 200*Latency
 								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
@@ -518,11 +518,11 @@ StashRoutine()
 			For Tab, Tv in SortFirst
 			{
 				If !RunningToggle
-				Break
+					Break
 				For Items, Iv in Tv
 				{
 					If !RunningToggle
-					Break
+						Break
 					MoveStash(Tab)
 					C := SortFirst[Tab][Items]["C"]
 					R := SortFirst[Tab][Items]["R"]
@@ -535,10 +535,10 @@ StashRoutine()
 					Sleep, 45*Latency
 					; Check for unique items
 					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
-					&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
+						&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
 					{
-						If (StashTabYesUniqueRing && Item.Prop.Ring 
-						&& Tab != StashTabUniqueRing)
+						If (StashTabYesUniqueRing && Item.Prop.Ring
+							&& Tab != StashTabUniqueRing)
 						{
 							Sleep, 200*Latency
 							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
@@ -690,26 +690,26 @@ DivRoutine()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
-		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
 		For R, GridY in InventoryGridY
 		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText.GetColor(GridX,GridY)
-			
+
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
 				Continue
 			}
-			
+
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
 			; Trade full div stacks
-			If (OnDiv && YesDiv) 
+			If (OnDiv && YesDiv)
 			{
 				If (Item.Prop.RarityDivination && (Item.Prop.Stack = Item.Prop.StackMax)){
 					CtrlClick(Grid.X,Grid.Y)
@@ -733,22 +733,22 @@ IdentifyRoutine()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
-		If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 			Break
 		For R, GridY in InventoryGridY
 		{
-			If not RunningToggle  ; The user signaled the loop to stop by pressing Hotkey again.
+			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText.GetColor(GridX,GridY)
-			
+
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
 				Continue
 			}
-			
+
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
 			; id if necessary
@@ -764,11 +764,11 @@ IdentifyRoutine()
 ; ItemInfo - Display information about item under cursor
 ItemInfo(){
 	ItemInfoCommand:
-	ItemParseActive := True
-	MouseGetPos, Mx, My
-	ClipItem(Mx, My)
-	Item.ItemInfo()
-	ItemParseActive := False
+		ItemParseActive := True
+		MouseGetPos, Mx, My
+		ClipItem(Mx, My)
+		Item.ItemInfo()
+		ItemParseActive := False
 	Return
 }
 ; MoveStash - Input any digit and it will move to that Stash tab
@@ -891,19 +891,19 @@ RunRestock(){
 	return
 }
 addToBlacklist(C, R){
-  Loop % Item.Prop.Item_Height
-  {
-    addNum := A_Index - 1
-    addR := R + addNum
-    addC := C + 1
-    If !IsObject(BlackList[C])
-      BlackList[C] := []
-    BlackList[C][addR] := True
-    If Item.Prop.Item_Width = 2
-    {
-      If !IsObject(BlackList[addC])
-        BlackList[addC] := []
-      BlackList[addC][addR] := True
-    }
-  }
+	Loop % Item.Prop.Item_Height
+	{
+		addNum := A_Index - 1
+		addR := R + addNum
+		addC := C + 1
+		If !IsObject(BlackList[C])
+			BlackList[C] := []
+		BlackList[C][addR] := True
+		If Item.Prop.Item_Width = 2
+		{
+			If !IsObject(BlackList[addC])
+				BlackList[addC] := []
+			BlackList[addC][addR] := True
+		}
+	}
 }
