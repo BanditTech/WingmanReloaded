@@ -2556,7 +2556,7 @@
 			Return -2
 		} Else If (This.Prop.Heist) {
 			Return -2
-		}Else If (This.Prop.Incubator) {
+		} Else If (This.Prop.Incubator) {
 			Return -1
 			;Affinities
 		} Else If ((This.Prop.IsBlightedMap || This.Prop.Oil) && StashTabYesBlight) {

@@ -2,7 +2,7 @@
 WR_Menu(Function:="",Var*){
   Global
   Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_Locate_GrabCompass, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
-  , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
+    , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
 
   Log("Verbose","Load menu: " Function,Var*)
 
@@ -40,7 +40,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 y+8
       Gui, Inventory: Add, UpDown,Range0-5 gSaveGeneral vCLFStrictnessNumber x+0 yp hp , %CLFStrictnessNumber%, CLF Strictness Level
       Gui, Inventory: Add, Text, x+5 yp+4, CLF Strictness Level
-
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, Section w370 h100 xm+180 ym+25, Scroll, Gem and Currency Locations
@@ -98,8 +97,6 @@ WR_Menu(Function:="",Var*){
 
       Gui, Inventory: Tab, Stash Tabs
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      ;You can test with Stash Tab management as a groupbox, but i dont like it
-      ;Gui, Inventory: Add, GroupBox,       Section    w352 h437    xm   ym+25,Stash Tab Management
       Gui, Inventory: Add, Text, Section xm+5 ym+25,Stash Tab Management
       Gui, Inventory: Font,
 
@@ -206,11 +203,12 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w185 h40 section xs y+10, Ninja Priced Tab
+      Gui, Inventory: Add, GroupBox, w185 h65 section xs y+10, Ninja Priced Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
       Gui, Inventory: Add, Edit, x+5 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
+      Gui, Inventory: Add, Button, xs+5 y+3 w175 , Included Item Types
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w185 h135 section xs y+10, Map/Contract Options
@@ -598,7 +596,6 @@ WR_Menu(Function:="",Var*){
       GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-
 
       ;MapMods GroupBox
       Gui, Crafting: Add,GroupBox,Section w285 h85 xs, Map Mods:
@@ -1251,7 +1248,7 @@ WR_Menu(Function:="",Var*){
     Grab := LetUserSelectRect()
     AreaType := Var[2]
     Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
-    , Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
+      , Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
     GuiControl, Globe:, Globe_%AreaType%_X1,% "X1:" Grab.X1
     GuiControl, Globe:, Globe_%AreaType%_Y1,% "Y1:" Grab.Y1
     GuiControl, Globe:, Globe_%AreaType%_X2,% "X2:" Grab.X2
@@ -1323,7 +1320,7 @@ WR_Menu(Function:="",Var*){
           FillMetamorph := {"X1":Obj.X1
             ,"Y1":Obj.Y1
             ,"X2":Obj.X2
-          ,"Y2":Obj.Y2}
+            ,"Y2":Obj.Y2}
           GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 " Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 " Y2: " FillMetamorph.Y2
         }
       }
