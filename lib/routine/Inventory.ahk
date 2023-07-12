@@ -805,10 +805,10 @@ MoveStash(Tab,CheckStatus:=0)
 				SendInput {Right %val%}
 			CurrentTab:=Tab
 		}
-		Sleep, 210*Latency
+		Sleep, 180*Latency
 	}
 	If (Tab == StashTabMap || Tab == StashTabUnique)
-		Sleep, 500*Latency
+		Sleep, 300*Latency
 	return
 }
 ; RunRestock - Restock currency Items in inventory
