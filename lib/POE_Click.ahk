@@ -34,9 +34,9 @@ LeftClick(x, y){
 	Log("Verbose","LeftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	Send {Click}
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -45,9 +45,9 @@ RightClick(x, y){
 	Log("Verbose","RightClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	Send {Click, Right}
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -56,9 +56,9 @@ ShiftClick(x, y){
 	Log("Verbose","ShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	Send +{Click}
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -67,9 +67,9 @@ CtrlClick(x, y){
 	Log("Verbose","CtrlClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	Send ^{Click}
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -78,9 +78,9 @@ CtrlShiftClick(x, y){
 	Log("Verbose","CtrlShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	Send +^{Click}
-	Sleep, 75+(ClickLatency*15)
+	Sleep, 90+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }

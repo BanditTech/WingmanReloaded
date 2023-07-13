@@ -525,9 +525,7 @@ StashRoutine()
 					GridX := InventoryGridX[C]
 					GridY := InventoryGridY[R]
 					Grid := RandClick(GridX, GridY)
-					Sleep, 15*Latency
 					CtrlShiftClick(Grid.X,Grid.Y)
-					Sleep, 45*Latency
 					; Check for unique items
 					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
 						&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
@@ -536,23 +534,27 @@ StashRoutine()
 							&& Tab != StashTabUniqueRing)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+							ShooMouse()
+							GuiStatus()
+							ClearNotifications()
+							Pitem := FindText.GetColor(GridX,GridY)
 							; Check if the item is gone, if it is we can move on
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueRing)
-							RandomSleep(20,40)
 							CtrlShiftClick(Grid.X,Grid.Y)
 						}
 						If (StashTabYesUniqueDump)
 						{
 							Sleep, 200*Latency
-							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+							ShooMouse()
+							GuiStatus()
+							ClearNotifications()
+							Pitem := FindText.GetColor(GridX,GridY)
 							; Check if the item is gone, if it is we can move on
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							MoveStash(StashTabUniqueDump)
-							RandomSleep(20,40)
 							CtrlShiftClick(Grid.X,Grid.Y)
 						}
 					}
@@ -805,7 +807,7 @@ MoveStash(Tab,CheckStatus:=0)
 				SendInput {Right %val%}
 			CurrentTab:=Tab
 		}
-		Sleep, 180*Latency
+		Sleep, 210*Latency
 	}
 	If (Tab == StashTabMap || Tab == StashTabUnique)
 		Sleep, 300*Latency
