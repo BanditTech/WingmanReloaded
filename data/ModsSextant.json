@@ -1,1106 +1,1106 @@
 [
-	{
-		"web-scraper-order": "1647955939-106",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses are accompanied by a mysterious Harbinger | Map Bosses drop additional Currency Shards | Harbingers in your Maps drop additional Currency Shards",
-		"Weight": "no_boss 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-90",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Cost of Building and Upgrading Blight Towers in your Maps is doubled | Oils found in your Maps have 100% chance to be 1 tier higher",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-18",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 14% increased Physical Damage | Your Maps contain 8 additional packs of Monsters that deal Physical Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-93",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Delirium Reward Bars fill 100% faster in your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-79",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Maps found in your Maps are Corrupted with 8 Modifiers",
-		"Weight": "default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-48",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 35 additional Clusters of Mysterious Barrels",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-82",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Create a copy of Beasts Captured in your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-95",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-104",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Rerolling Favours at Ritual Altars in your Maps has no Cost the first 1 time",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-86",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Legion Monsters in your Maps have 100% more Life | Splinters and Emblems dropped by Legion Monsters in your Maps are duplicated",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-81",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Create a copy of Beasts Captured in your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-37",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses of your Corrupted Maps drop 2 additional Vaal Items | Items found in your Maps have 5% chance to be Corrupted",
-		"Weight": "default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-25",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps are Alluring",
-		"Weight": "default 10"
-	},
-	{
-		"web-scraper-order": "1647955939-77",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption | Your Maps contain an additional Essence",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-98",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-14",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 14% increased Cold Damage | Your Maps contain 8 additional packs of Monsters that deal Cold Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-29",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Alva",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-39",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "30% increased Magic Pack Size",
-		"Weight": "no_monster_packs 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-74",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain an additional Gloom Shrine | Your Maps contain an additional Shrine | 50% increased Duration of Shrine Effects on Players in your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-43",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players and their Minions cannot take Reflected Damage | Your Maps contain 4 additional Packs with Mirrored Rare Monsters",
-		"Weight": "default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-59",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps can contain Breaches | Your Maps contain an additional Breach",
-		"Weight": "unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-24",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses have 20% increased Life | Quality bonus of your Maps also applies to Rarity of Items found",
-		"Weight": "default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-16",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 14% increased Lightning Damage | Your Maps contain 8 additional packs of Monsters that deal Lightning Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-130",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain a mirror of Delirium",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
-	},
-	{
-		"web-scraper-order": "1647955939-2",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Final Map Boss in each Map drops an additional Shaper Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
-		"Weight": "no_boss 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-36",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses of your Corrupted Maps drop 2 additional Vaal Items | Items found in your Maps have 5% chance to be Corrupted",
-		"Weight": "default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-88",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Catalysts dropped by Metamorphs in your Maps are Duplicated | Metamorphs in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-87",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Catalysts dropped by Metamorphs in your Maps are Duplicated | Metamorphs in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-128",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain a Blight Encounter",
-		"Weight": "no_monster_packs 0 | unique_map 0 | map_has_blight_encounter 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-94",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Delirium Reward Bars fill 100% faster in your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-91",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "100% increased Intelligence gained from Immortal Syndicate targets encountered in your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-107",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players gain an additional Vaal Soul on Kill | Your Maps contains 6 additional packs of Corrupted Vaal Monsters",
-		"Weight": "no_monster_packs 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-63",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Tul | Breaches in your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-112",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Slaying Enemies close together Can attract monsters from beyond this realm | 25% increased beyond demon pack size in your maps",
-		"Weight": "unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-70",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Chayula | Breaches in Your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-134",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Area contains a Smuggler's Cache",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-124",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain an additional Legion Encounter",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-8",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "20% increased Pack Size in your Unidentified Maps",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-68",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Uul-Netol | Breaches in your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-28",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Alva",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-19",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 12% increased Chaos Damage | Your Maps contain 6 additional packs of Monsters that deal Chaos Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-33",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Jun",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-105",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses are accompanied by a mysterious Harbinger | Map Bosses drop additional Currency Shards | Harbingers in your Maps drop additional Currency Shards",
-		"Weight": "no_boss 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-13",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 12% increased Cold Damage | Your Maps contain 6 additional packs of Monsters that deal Cold Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-120",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps hava 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Your Maps hava 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | Your Maps contains 6 additional packs of Corrupted Vaal Monsters",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-125",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain an additional Legion Encounter",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-65",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Esh | Breaches in Your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-99",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-6",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Final Map Boss in each Map drops an additional Conqueror Map | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
-		"Weight": "no_boss 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-50",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Strongbox Monsters are Enraged | Strongbox Monsters have 600% increased Item Quantity | Your Maps contain an additional Strongbox",
-		"Weight": "hall_of_grandmasters 0 | no_strongboxes 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-131",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain a mirror of Delirium",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
-	},
-	{
-		"web-scraper-order": "1647955939-17",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 12% increased Physical Damage | Your Maps contain 6 additional packs of Monsters that deal Physical Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-101",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Non-Unique Heist Contracts found in your Maps have an additional Implicit Modifier",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-85",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Legion Monsters in your Maps have 100% more Life | Splinters and Emblems dropped by Legion Monsters in your Maps are duplicated",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-1",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses drop 1 additional Unique Item",
-		"Weight": "no_boss 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-123",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players' Vaal Skills do not apply Soul Gain Prevention | Your Maps contains 8 additional packs of Corrupted Vaal Monsters",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-57",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses are accompanied by Bodyguards | An additional Map drops on Completing your Maps",
-		"Weight": "no_boss 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-26",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Einhar",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-89",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Cost of Building and Upgrading Blight Towers in your Maps is doubled | Oils found in your Maps have 100% chance to be 1 tier higher",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-83",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 100% increased number of Runic Monster Markers",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-21",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Unique Monsters drop Corrupted Items",
-		"Weight": "vaults_of_atziri 0 | hall_of_grandmasters 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-60",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps can contain Breaches | Your Maps contain 2 additional Breaches",
-		"Weight": "unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-132",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain The Sacred Grove",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
-	},
-	{
-		"web-scraper-order": "1647955939-73",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain an additional Gloom Shrine | 50% increased Duration of Shrine Effects on Players in Your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-100",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-7",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Final Map Boss in each Map drops an additional Conqueror Map | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
-		"Weight": "no_boss 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-45",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
-		"Weight": "default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-71",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain an additional Abyss | Your Maps can contain Abysses",
-		"Weight": "unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-31",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Niko",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-35",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 3 additional Strongboxes | Strongboxes in your Maps are Corrupted | Strongboxes in your Maps are at least Rare",
-		"Weight": "no_strongboxes 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-72",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 2 additional Abysses | Your Maps can contain Abysses",
-		"Weight": "unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-58",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses are accompanied by Bodyguards | 2 additional Maps drop on Completing your Maps",
-		"Weight": "no_boss 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-119",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "The First 3 Possessed Monsters drop an additional Unique Item | Your Maps contain an additional Tormented Graverobber",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-53",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 6 additional packs of Monsters that Convert when Killed",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-80",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Maps found in your Maps are Corrupted with 8 Modifiers",
-		"Weight": "default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-3",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Final Map Boss in each Map drops an additional Shaper Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
-		"Weight": "no_boss 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-78",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption | Your Maps contain 2 additional Essences",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-122",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players' Vaal Skills do not apply Soul Gain Prevention | Your Maps contains 6 additional packs of Corrupted Vaal Monsters",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-102",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Non-Unique Heist Contracts found in your Maps have an additional Implicit Modifier",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-129",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain a Blight Encounter",
-		"Weight": "no_monster_packs 0 | unique_map 0 | map_has_blight_encounter 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-30",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Niko",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-23",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Map Bosses deal 20% increased Damage | Your Maps have 20% Quality",
-		"Weight": "default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-135",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Area contains a Smuggler's Cache",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-108",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players gain an additional Vaal Soul on Kill | Your Maps contains 8 additional packs of Corrupted Vaal Monsters",
-		"Weight": "no_monster_packs 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-126",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Area contains Metamorph Monsters",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-42",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Magic Maps contain 5 additional packs of Magic Monsters | Your Normal Maps contain 5 additional packs of Normal Monsters | Your Rare Maps contain 5 additional Rare Monster packs",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-10",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps are inhabited by an additional Invasion Boss",
-		"Weight": "hall_of_grandmasters 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-127",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Area contains Metamorph Monsters",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-118",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "The First 3 Possessed Monsters drop an additional Map | Your Maps contain an additional Tormented Heretic",
-		"Weight": "default 250"		
-	},
-	{
-		"web-scraper-order": "1647955939-56",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Player's Life and Mana Recovery from Flasks are instant | Your Maps contain 8 additional packs of Monsters that Heal",
-		"Weight": "default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-121",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps hava 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Your Maps hava 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | Your Maps contains 8 additional packs of Corrupted Vaal Monsters",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-137",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Ritual Altars",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
-	},
-	{
-		"web-scraper-order": "1647955939-20",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 14% increased Chaos Damage | Your Maps contain 8 additional packs of Monsters that deal Chaos Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-51",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain hunted traitors",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-15",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 12% increased Lightning Damage | Your Maps contain 6 additional packs of Monsters that deal Lightning Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-47",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-109",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contains 6 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 25% chance to be Corrupted",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-32",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Jun",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-110",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contains 8 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 30% chance to be Corrupted",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-62",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Xoph | Breaches in Your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-9",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "25% increased Pack Size in your Unidentified Maps",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-52",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain hunted traitors",
-		"Weight": "no_monster_packs 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-55",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Player's Life and Mana Recovery from Flasks are instant | Your Maps contain 6 additional packs of Monsters that Heal",
-		"Weight": "default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-12",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 14% increased Fire Damage | Your Maps contain 8 additional packs of Monsters that deal Fire Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-76",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain an additional Resonating Shrine | Your Maps contain an additional Shrine | 50% increased Duration of Shrine Effects on Players in Areas",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-27",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Einhar",
-		"Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
-	},
-	{
-		"web-scraper-order": "1647955939-136",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain Ritual Altars",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
-	},
-	{
-		"web-scraper-order": "1647955939-113",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "The First 3 Possessed Monsters drop an additional Rusted Scarab | Your Maps contain an additional Tormented Betrayer",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-38",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "25% increased Magic Pack Size",
-		"Weight": "no_monster_packs 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-4",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Final Map Boss in each Map drops an additional Elder Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
-		"Weight": "no_boss 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-117",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "The First 3 Possessed Monsters drop an additional Map | Your Maps contain an additional Tormented Heretic",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-34",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 2 additional Strongboxes | Strongboxes in your Maps are Corrupted | Strongboxes in your Maps are at least Rare",
-		"Weight": "no_strongboxes 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-75",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain an additional Resonating Shrine | 50% increased Duration of Shrine Effects on Players in Areas",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-133",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain The Sacred Grove",
-		"Weight": "no_monster_packs 0 | unique_map 0 | default 100"
-	},
-	{
-		"web-scraper-order": "1647955939-69",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Chayula | Breaches in Your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-97",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-61",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Xoph | Breaches in Your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-22",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Unique Monsters drop Corrupted Items",
-		"Weight": "vaults_of_atziri 0 | hall_of_grandmasters 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-96",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-5",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Final Map Boss in each Map drops an additional Elder Guardian Map (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
-		"Weight": "no_boss 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-40",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Rogue Exiles deal 20% increased Damage | Rogue Exiles drop 2 additional Jewels | Rogue Exiles in your Maps have 20% increased Maximum Life | Your Maps are inhabited by 2 additional Rogue Exiles",
-		"Weight": "no_monster_packs 0 | default 500"
-	},
-	{
-		"web-scraper-order": "1647955939-66",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Esh | Breaches in Your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-115",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "The First 3 Possessed Monsters drop an additional Gilded Scarab | Your Maps contain an additional Tormented Betrayer",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-54",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 8 additional packs of Monsters that Convert when Killed",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-103",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Rerolling Favours at Ritual Altars in your Maps has no Cost the first 1 time",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-11",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Players and Monsters take 12% increased Fire Damage | Your Maps contain 6 additional packs of Monsters that deal Fire Damage",
-		"Weight": "no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-44",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Players and their Minions cannot take Reflected Damage | Your Maps contain 5 additional Packs with Mirrored Rare Monsters",
-		"Weight": "default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-64",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Tul | Breaches in your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-49",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Strongbox Monsters are Enraged | Strongbox Monsters have 500% increased Item Quantity | Your Maps contain an additional Strongbox",
-		"Weight": "hall_of_grandmasters 0 | no_strongboxes 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-114",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "The First 3 Possessed Monsters drop an additional Polished Scarab | Your Maps contain an additional Tormented Betrayer",
-		"Weight": "default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-41",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Your Magic Maps contain 4 additional packs of Magic Monsters | Your Normal Maps contain 4 additional packs of Normal Monsters | Your Rare Maps contain 4 additional Rare Monster packs",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
-	},
-	{
-		"web-scraper-order": "1647955939-46",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 35 additional Clusters of Mysterious Barrels",
-		"Weight": "default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-84",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "Your Maps contain 100% increased number of Runic Monster Markers",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-116",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "The First 3 Possessed Monsters drop an additional Winged Scarab | Your Maps contain an additional Tormented Betrayer",
-		"Weight": "default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-67",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Breaches in your Maps belong to Uul-Netol | Breaches in your Maps contain 3 additional Clasped Hands",
-		"Weight": "unique_map 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-92",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Elevated Sextant",
-		"Level": 1,
-		"Mod": "100% increased Intelligence gained from Immortal Syndicate targets encountered in your Maps",
-		"Weight": "unique_map 0 | no_monster_packs 0 | default 50"
-	},
-	{
-		"web-scraper-order": "1647955939-111",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Slaying Enemies close together Can attract monsters from beyond this realm | 25% increased beyond demon pack size in your maps",
-		"Weight": "unique_map 0 | default 250"
-	},
-	{
-		"web-scraper-order": "1647955939-111",
-		"web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
-		"Item": "Awakened Sextant",
-		"Level": 1,
-		"Mod": "Items found in your Identified Maps are Identified | 20% increased Pack Size in your Unidentified Maps",
-		"Weight": "unique_map 0 | default 250"
-	}
+  {
+    "web-scraper-order": "1647955939-106",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses are accompanied by a mysterious Harbinger | Map Bosses drop additional Currency Shards | Harbingers in your Maps drop additional Currency Shards",
+    "Weight": "no_boss 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-90",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Cost of Building and Upgrading Blight Towers in your Maps is doubled | Oils found in your Maps have 100% chance to be 1 tier higher",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-18",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 14% increased Physical Damage | Your Maps contain 8 additional packs of Monsters that deal Physical Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-93",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Delirium Reward Bars fill 100% faster in your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-79",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Maps found in your Maps are Corrupted with 8 Modifiers",
+    "Weight": "default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-48",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 35 additional Clusters of Mysterious Barrels",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-82",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Create a copy of Beasts Captured in your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-95",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-104",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Rerolling Favours at Ritual Altars in your Maps has no Cost the first 1 time",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-86",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Legion Monsters in your Maps have 100% more Life | Splinters and Emblems dropped by Legion Monsters in your Maps are duplicated",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-81",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Create a copy of Beasts Captured in your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-37",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses of your Corrupted Maps drop 2 additional Vaal Items | Items found in your Maps have 5% chance to be Corrupted",
+    "Weight": "default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-25",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps are Alluring",
+    "Weight": "default 10"
+  },
+  {
+    "web-scraper-order": "1647955939-77",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption | Your Maps contain an additional Essence",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-98",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Harvests in your Maps contain at least one Crop of Blue Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-14",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 14% increased Cold Damage | Your Maps contain 8 additional packs of Monsters that deal Cold Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-29",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Alva",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-39",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "30% increased Magic Pack Size",
+    "Weight": "no_monster_packs 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-74",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain an additional Gloom Shrine | Your Maps contain an additional Shrine | 50% increased Duration of Shrine Effects on Players in your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-43",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players and their Minions cannot take Reflected Damage | Your Maps contain 4 additional Packs with Mirrored Rare Monsters",
+    "Weight": "default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-59",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps can contain Breaches | Your Maps contain an additional Breach",
+    "Weight": "unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-24",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses have 20% increased Life | Quality bonus of your Maps also applies to Rarity of Items found",
+    "Weight": "default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-16",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 14% increased Lightning Damage | Your Maps contain 8 additional packs of Monsters that deal Lightning Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-130",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain a mirror of Delirium",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 100"
+  },
+  {
+    "web-scraper-order": "1647955939-2",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "An additional Shaper Guardian Map drops on Completing your Maps (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+    "Weight": "no_boss 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-36",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses of your Corrupted Maps drop 2 additional Vaal Items | Items found in your Maps have 5% chance to be Corrupted",
+    "Weight": "default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-88",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Catalysts dropped by Metamorphs in your Maps are Duplicated | Metamorphs in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-87",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Catalysts dropped by Metamorphs in your Maps are Duplicated | Metamorphs in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-128",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain a Blight Encounter",
+    "Weight": "no_monster_packs 0 | unique_map 0 | map_has_blight_encounter 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-94",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Delirium Reward Bars fill 100% faster in your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-91",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "100% increased Intelligence gained from Immortal Syndicate targets encountered in your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-107",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players gain an additional Vaal Soul on Kill | Your Maps contains 6 additional packs of Corrupted Vaal Monsters",
+    "Weight": "no_monster_packs 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-63",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Tul | Breaches in your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-112",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Slaying Enemies close together Can attract monsters from beyond this realm | 25% increased beyond demon pack size in your maps",
+    "Weight": "unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-70",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Chayula | Breaches in Your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-134",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Area contains a Smuggler's Cache",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-124",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain an additional Legion Encounter",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-8",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "20% increased Pack Size in your Unidentified Maps",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-68",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Uul-Netol | Breaches in your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-28",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Alva",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-19",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 12% increased Chaos Damage | Your Maps contain 6 additional packs of Monsters that deal Chaos Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-33",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Jun",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-105",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses are accompanied by a mysterious Harbinger | Map Bosses drop additional Currency Shards | Harbingers in your Maps drop additional Currency Shards",
+    "Weight": "no_boss 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-13",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 12% increased Cold Damage | Your Maps contain 6 additional packs of Monsters that deal Cold Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-120",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps hava 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Your Maps hava 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | Your Maps contains 6 additional packs of Corrupted Vaal Monsters",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-125",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain an additional Legion Encounter",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-65",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Esh | Breaches in Your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-99",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-6",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "An additional Conqueror Map drops on Completing your Maps (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+    "Weight": "no_boss 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-50",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Strongbox Monsters are Enraged | Strongbox Monsters have 600% increased Item Quantity | Your Maps contain an additional Strongbox",
+    "Weight": "hall_of_grandmasters 0 | no_strongboxes 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-131",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain a mirror of Delirium",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 100"
+  },
+  {
+    "web-scraper-order": "1647955939-17",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 12% increased Physical Damage | Your Maps contain 6 additional packs of Monsters that deal Physical Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-101",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Non-Unique Heist Contracts found in your Maps have an additional Implicit Modifier",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-85",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Legion Monsters in your Maps have 100% more Life | Splinters and Emblems dropped by Legion Monsters in your Maps are duplicated",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-1",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses drop 1 additional Unique Item",
+    "Weight": "no_boss 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-123",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players' Vaal Skills do not apply Soul Gain Prevention | Your Maps contains 8 additional packs of Corrupted Vaal Monsters",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-57",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses are accompanied by Bodyguards | An additional Map drops on Completing your Maps",
+    "Weight": "no_boss 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-26",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Einhar",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-89",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Cost of Building and Upgrading Blight Towers in your Maps is doubled | Oils found in your Maps have 100% chance to be 1 tier higher",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-83",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 100% increased number of Runic Monster Markers",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-21",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Unique Monsters drop Corrupted Items",
+    "Weight": "vaults_of_atziri 0 | hall_of_grandmasters 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-60",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps can contain Breaches | Your Maps contain 2 additional Breaches",
+    "Weight": "unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-132",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain The Sacred Grove",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 100"
+  },
+  {
+    "web-scraper-order": "1647955939-73",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain an additional Gloom Shrine | 50% increased Duration of Shrine Effects on Players in Your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-100",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-7",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "An additional Conqueror Map drops on Completing your Maps (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+    "Weight": "no_boss 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-45",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
+    "Weight": "default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-71",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain an additional Abyss | Your Maps can contain Abysses",
+    "Weight": "unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-31",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Niko",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-35",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 3 additional Strongboxes | Strongboxes in your Maps are Corrupted | Strongboxes in your Maps are at least Rare",
+    "Weight": "no_strongboxes 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-72",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 2 additional Abysses | Your Maps can contain Abysses",
+    "Weight": "unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-58",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses are accompanied by Bodyguards | 2 additional Maps drop on Completing your Maps",
+    "Weight": "no_boss 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-119",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "The First 3 Possessed Monsters drop an additional Unique Item | Your Maps contain an additional Tormented Graverobber",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-53",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 6 additional packs of Monsters that Convert when Killed",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-80",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Maps found in your Maps are Corrupted with 8 Modifiers",
+    "Weight": "default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-3",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "An additional Shaper Guardian Map drops on Completing your Maps (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+    "Weight": "no_boss 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-78",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption | Your Maps contain 2 additional Essences",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-122",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players' Vaal Skills do not apply Soul Gain Prevention | Your Maps contains 6 additional packs of Corrupted Vaal Monsters",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-102",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Non-Unique Heist Contracts found in your Maps have an additional Implicit Modifier",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-129",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain a Blight Encounter",
+    "Weight": "no_monster_packs 0 | unique_map 0 | map_has_blight_encounter 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-30",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Niko",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-23",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Map Bosses deal 20% increased Damage | Your Maps have 20% Quality",
+    "Weight": "default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-135",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Area contains a Smuggler's Cache",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-108",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players gain an additional Vaal Soul on Kill | Your Maps contains 8 additional packs of Corrupted Vaal Monsters",
+    "Weight": "no_monster_packs 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-126",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Area contains Metamorph Monsters",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-42",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Magic Maps contain 5 additional packs of Magic Monsters | Your Normal Maps contain 5 additional packs of Normal Monsters | Your Rare Maps contain 5 additional Rare Monster packs",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-10",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps are inhabited by an additional Invasion Boss",
+    "Weight": "hall_of_grandmasters 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-127",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Area contains Metamorph Monsters",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-118",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "The First 3 Possessed Monsters drop an additional Map | Your Maps contain an additional Tormented Heretic",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-56",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Player's Life and Mana Recovery from Flasks are instant | Your Maps contain 8 additional packs of Monsters that Heal",
+    "Weight": "default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-121",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps hava 50% chance to contain Gifts of the Red Queen per Mortal Fragment used | Your Maps hava 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | Your Maps contains 8 additional packs of Corrupted Vaal Monsters",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-137",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Ritual Altars",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 100"
+  },
+  {
+    "web-scraper-order": "1647955939-20",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 14% increased Chaos Damage | Your Maps contain 8 additional packs of Monsters that deal Chaos Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-51",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain hunted traitors",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-15",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 12% increased Lightning Damage | Your Maps contain 6 additional packs of Monsters that deal Lightning Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-47",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-109",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contains 6 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 25% chance to be Corrupted",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-32",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Jun",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-110",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contains 8 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 30% chance to be Corrupted",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-62",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Xoph | Breaches in Your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-9",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "25% increased Pack Size in your Unidentified Maps",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-52",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain hunted traitors",
+    "Weight": "no_monster_packs 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-55",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Player's Life and Mana Recovery from Flasks are instant | Your Maps contain 6 additional packs of Monsters that Heal",
+    "Weight": "default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-12",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 14% increased Fire Damage | Your Maps contain 8 additional packs of Monsters that deal Fire Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-76",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain an additional Resonating Shrine | Your Maps contain an additional Shrine | 50% increased Duration of Shrine Effects on Players in Areas",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-27",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Einhar",
+    "Weight": "unique_map 0 | elder_occupied_map 0 | has_atlas_mission 0 | default 125"
+  },
+  {
+    "web-scraper-order": "1647955939-136",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain Ritual Altars",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 100"
+  },
+  {
+    "web-scraper-order": "1647955939-113",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "The First 3 Possessed Monsters drop an additional Rusted Scarab | Your Maps contain an additional Tormented Betrayer",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-38",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "25% increased Magic Pack Size",
+    "Weight": "no_monster_packs 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-4",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "An additional Elder Guardian Map drops on Completing your Maps (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+    "Weight": "no_boss 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-117",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "The First 3 Possessed Monsters drop an additional Map | Your Maps contain an additional Tormented Heretic",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-34",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 2 additional Strongboxes | Strongboxes in your Maps are Corrupted | Strongboxes in your Maps are at least Rare",
+    "Weight": "no_strongboxes 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-75",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain an additional Resonating Shrine | 50% increased Duration of Shrine Effects on Players in Areas",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-133",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain The Sacred Grove",
+    "Weight": "no_monster_packs 0 | unique_map 0 | default 100"
+  },
+  {
+    "web-scraper-order": "1647955939-69",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Chayula | Breaches in Your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-97",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Harvests in your Maps contain at least one Crop of Yellow Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-61",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Xoph | Breaches in Your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-22",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Unique Monsters drop Corrupted Items",
+    "Weight": "vaults_of_atziri 0 | hall_of_grandmasters 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-96",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Harvests in your Maps contain at least one Crop of Purple Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-5",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "An additional Elder Guardian Map drops on Completing your Maps (Tier 14+) | Map Bosses deal 100% more Damage | Map Bosses have 200% more Life",
+    "Weight": "no_boss 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-40",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Rogue Exiles deal 20% increased Damage | Rogue Exiles drop 2 additional Jewels | Rogue Exiles in your Maps have 20% increased Maximum Life | Your Maps are inhabited by 2 additional Rogue Exiles",
+    "Weight": "no_monster_packs 0 | default 500"
+  },
+  {
+    "web-scraper-order": "1647955939-66",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Esh | Breaches in Your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-115",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "The First 3 Possessed Monsters drop an additional Gilded Scarab | Your Maps contain an additional Tormented Betrayer",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-54",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 8 additional packs of Monsters that Convert when Killed",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-103",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Rerolling Favours at Ritual Altars in your Maps has no Cost the first 1 time",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-11",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Players and Monsters take 12% increased Fire Damage | Your Maps contain 6 additional packs of Monsters that deal Fire Damage",
+    "Weight": "no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-44",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Players and their Minions cannot take Reflected Damage | Your Maps contain 5 additional Packs with Mirrored Rare Monsters",
+    "Weight": "default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-64",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Tul | Breaches in your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-49",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Strongbox Monsters are Enraged | Strongbox Monsters have 500% increased Item Quantity | Your Maps contain an additional Strongbox",
+    "Weight": "hall_of_grandmasters 0 | no_strongboxes 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-114",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "The First 3 Possessed Monsters drop an additional Polished Scarab | Your Maps contain an additional Tormented Betrayer",
+    "Weight": "default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-41",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Your Magic Maps contain 4 additional packs of Magic Monsters | Your Normal Maps contain 4 additional packs of Normal Monsters | Your Rare Maps contain 4 additional Rare Monster packs",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 1000"
+  },
+  {
+    "web-scraper-order": "1647955939-46",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 35 additional Clusters of Mysterious Barrels",
+    "Weight": "default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-84",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "Your Maps contain 100% increased number of Runic Monster Markers",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-116",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "The First 3 Possessed Monsters drop an additional Winged Scarab | Your Maps contain an additional Tormented Betrayer",
+    "Weight": "default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-67",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Breaches in your Maps belong to Uul-Netol | Breaches in your Maps contain 3 additional Clasped Hands",
+    "Weight": "unique_map 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-92",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Elevated Sextant",
+    "Level": 1,
+    "Mod": "100% increased Intelligence gained from Immortal Syndicate targets encountered in your Maps",
+    "Weight": "unique_map 0 | no_monster_packs 0 | default 50"
+  },
+  {
+    "web-scraper-order": "1647955939-111",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Slaying Enemies close together Can attract monsters from beyond this realm | 25% increased beyond demon pack size in your maps",
+    "Weight": "unique_map 0 | default 250"
+  },
+  {
+    "web-scraper-order": "1647955939-111",
+    "web-scraper-start-url": "https://poedb.tw/us/mod.php?type=Sextant",
+    "Item": "Awakened Sextant",
+    "Level": 1,
+    "Mod": "Items found in your Identified Maps are Identified | 20% increased Pack Size in your Unidentified Maps",
+    "Weight": "unique_map 0 | default 250"
+  }
 ]
