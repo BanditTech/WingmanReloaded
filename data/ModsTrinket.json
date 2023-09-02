@@ -116,7 +116,7 @@
     },
     "normal": [
         {
-            "ID": "23593",
+            "ID": "23680",
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble1",
             "Level": "1",
@@ -136,7 +136,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23594",
+            "ID": "23681",
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble2",
             "Level": "50",
@@ -156,7 +156,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23595",
+            "ID": "23682",
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsDroppedByMonstersDouble3",
             "Level": "70",
@@ -176,7 +176,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23596",
+            "ID": "23683",
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble1",
             "Level": "1",
@@ -196,7 +196,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23597",
+            "ID": "23684",
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble2",
             "Level": "50",
@@ -216,7 +216,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23598",
+            "ID": "23685",
             "Name": "Lucky",
             "Code": "HeistTrinketCoinsFromWorldChestsDouble3_",
             "Level": "70",
@@ -236,7 +236,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23599",
+            "ID": "23686",
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency1_",
             "Level": "1",
@@ -256,7 +256,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23600",
+            "ID": "23687",
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency2",
             "Level": "50",
@@ -276,7 +276,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23601",
+            "ID": "23688",
             "Name": "Lucky",
             "Code": "HeistTrinketDropsDoubleCurrency3__",
             "Level": "70",
@@ -296,7 +296,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23602",
+            "ID": "23689",
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity1_",
             "Level": "1",
@@ -316,7 +316,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23603",
+            "ID": "23690",
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity2_",
             "Level": "50",
@@ -336,7 +336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23604",
+            "ID": "23691",
             "Name": "Lucky",
             "Code": "HeistTrinketItemRarity3",
             "Level": "70",
@@ -356,7 +356,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23605",
+            "ID": "23692",
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity1",
             "Level": "1",
@@ -376,7 +376,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23606",
+            "ID": "23693",
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity2",
             "Level": "50",
@@ -396,7 +396,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23607",
+            "ID": "23694",
             "Name": "Lucky",
             "Code": "HeistTrinketItemQuantity3___",
             "Level": "70",
@@ -416,7 +416,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23608",
+            "ID": "23695",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted1",
             "Level": "1",
@@ -436,7 +436,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23609",
+            "ID": "23696",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted2",
             "Level": "50",
@@ -456,7 +456,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23610",
+            "ID": "23697",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropCorrupted3_",
             "Level": "70",
@@ -476,7 +476,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23611",
+            "ID": "23698",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified1",
             "Level": "1",
@@ -496,7 +496,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23612",
+            "ID": "23699",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified2",
             "Level": "50",
@@ -516,7 +516,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23613",
+            "ID": "23700",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsDropIdentified3",
             "Level": "70",
@@ -536,7 +536,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23614",
+            "ID": "23701",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket1__",
             "Level": "1",
@@ -556,7 +556,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23615",
+            "ID": "23702",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket2",
             "Level": "50",
@@ -576,7 +576,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23616",
+            "ID": "23703",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveOneAdditionalSocket3",
             "Level": "70",
@@ -596,7 +596,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23617",
+            "ID": "23704",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked1_",
             "Level": "1",
@@ -616,7 +616,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23618",
+            "ID": "23705",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked2",
             "Level": "50",
@@ -636,7 +636,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23619",
+            "ID": "23706",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsAreFullyLinked3",
             "Level": "70",
@@ -656,7 +656,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23620",
+            "ID": "23707",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveShaperInfluence1",
             "Level": "75",
@@ -676,7 +676,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23621",
+            "ID": "23708",
             "Name": "Lucky",
             "Code": "HeistTrinketItemsHaveElderInfluence1_",
             "Level": "75",
@@ -696,7 +696,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23622",
+            "ID": "23709",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy1_",
             "Level": "1",
@@ -716,7 +716,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23623",
+            "ID": "23710",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy2",
             "Level": "50",
@@ -736,7 +736,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23624",
+            "ID": "23711",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsAlchemy3",
             "Level": "70",
@@ -756,7 +756,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23625",
+            "ID": "23712",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos1",
             "Level": "1",
@@ -776,7 +776,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23626",
+            "ID": "23713",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos2",
             "Level": "50",
@@ -796,7 +796,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23627",
+            "ID": "23714",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyTransmutationDropsAsChaos3",
             "Level": "70",
@@ -816,7 +816,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23628",
+            "ID": "23715",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy1",
             "Level": "1",
@@ -836,7 +836,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23629",
+            "ID": "23716",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy2_",
             "Level": "50",
@@ -856,7 +856,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23630",
+            "ID": "23717",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsAlchemy3",
             "Level": "70",
@@ -876,7 +876,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23631",
+            "ID": "23718",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos1__",
             "Level": "1",
@@ -896,7 +896,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23632",
+            "ID": "23719",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos2",
             "Level": "50",
@@ -916,7 +916,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23633",
+            "ID": "23720",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsChaos3",
             "Level": "70",
@@ -936,7 +936,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23634",
+            "ID": "23721",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAlterationDropsAsRegal1",
             "Level": "78",
@@ -956,7 +956,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23635",
+            "ID": "23722",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy1__",
             "Level": "1",
@@ -976,7 +976,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23636",
+            "ID": "23723",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy2",
             "Level": "50",
@@ -996,7 +996,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23637",
+            "ID": "23724",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsAlchemy3",
             "Level": "70",
@@ -1016,7 +1016,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23638",
+            "ID": "23725",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos1_",
             "Level": "1",
@@ -1036,7 +1036,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23639",
+            "ID": "23726",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos2",
             "Level": "50",
@@ -1056,7 +1056,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23640",
+            "ID": "23727",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsChaos3__",
             "Level": "70",
@@ -1076,7 +1076,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23641",
+            "ID": "23728",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyAugmentationDropsAsRegal1",
             "Level": "81",
@@ -1096,7 +1096,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23642",
+            "ID": "23729",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChaosDropsAsDivine1",
             "Level": "83",
@@ -1116,7 +1116,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23643",
+            "ID": "23730",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChaosDropsAsExalted1_",
             "Level": "83",
@@ -1136,7 +1136,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23644",
+            "ID": "23731",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine1",
             "Level": "60",
@@ -1156,7 +1156,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23645",
+            "ID": "23732",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine2_",
             "Level": "75",
@@ -1176,7 +1176,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23646",
+            "ID": "23733",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsDivine3",
             "Level": "80",
@@ -1196,7 +1196,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23647",
+            "ID": "23734",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted1",
             "Level": "60",
@@ -1216,7 +1216,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23648",
+            "ID": "23735",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted2_",
             "Level": "75",
@@ -1236,7 +1236,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23649",
+            "ID": "23736",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegalDropsAsExalted3",
             "Level": "80",
@@ -1256,7 +1256,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23650",
+            "ID": "23737",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret1",
             "Level": "1",
@@ -1276,7 +1276,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23651",
+            "ID": "23738",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret2_",
             "Level": "50",
@@ -1296,7 +1296,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23652",
+            "ID": "23739",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsRegret3",
             "Level": "70",
@@ -1316,7 +1316,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23653",
+            "ID": "23740",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyScouringDropsAsAnnulment1_",
             "Level": "82",
@@ -1336,7 +1336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23654",
+            "ID": "23741",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyRegretDropsAsAnnulment1",
             "Level": "77",
@@ -1356,7 +1356,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23655",
+            "ID": "23742",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers1",
             "Level": "1",
@@ -1376,7 +1376,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23656",
+            "ID": "23743",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers2",
             "Level": "50",
@@ -1396,7 +1396,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23657",
+            "ID": "23744",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsJewellers3",
             "Level": "70",
@@ -1416,7 +1416,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23658",
+            "ID": "23745",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing1",
             "Level": "1",
@@ -1436,7 +1436,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23659",
+            "ID": "23746",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing2___",
             "Level": "50",
@@ -1456,7 +1456,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23660",
+            "ID": "23747",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyChromaticDropsAsFusing3",
             "Level": "70",
@@ -1476,7 +1476,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23661",
+            "ID": "23748",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing1",
             "Level": "1",
@@ -1496,7 +1496,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23662",
+            "ID": "23749",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing2",
             "Level": "50",
@@ -1516,7 +1516,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23663",
+            "ID": "23750",
             "Name": "Lucky",
             "Code": "HeistTrinketCurrencyJewellersDropsAsFusing3_",
             "Level": "70",
@@ -1536,7 +1536,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23664",
+            "ID": "23751",
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency1",
             "Level": "1",
@@ -1556,7 +1556,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23665",
+            "ID": "23752",
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency2",
             "Level": "50",
@@ -1576,7 +1576,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23666",
+            "ID": "23753",
             "Name": "of Superstition",
             "Code": "HeistTrinketChestsDoubleCurrency3",
             "Level": "70",
@@ -1596,7 +1596,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23670",
+            "ID": "23757",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests1",
             "Level": "1",
@@ -1616,7 +1616,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23671",
+            "ID": "23758",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests2",
             "Level": "50",
@@ -1636,7 +1636,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23672",
+            "ID": "23759",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalArmourRewardsFromRewardChests3",
             "Level": "70",
@@ -1656,7 +1656,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23673",
+            "ID": "23760",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests1",
             "Level": "1",
@@ -1676,7 +1676,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23674",
+            "ID": "23761",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests2_",
             "Level": "50",
@@ -1696,7 +1696,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23675",
+            "ID": "23762",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalWeaponsRewardsFromRewardChests3",
             "Level": "70",
@@ -1716,7 +1716,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23676",
+            "ID": "23763",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests1",
             "Level": "1",
@@ -1736,7 +1736,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23677",
+            "ID": "23764",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests2",
             "Level": "50",
@@ -1756,7 +1756,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23678",
+            "ID": "23765",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalJewelleryRewardsFromRewardChests3",
             "Level": "70",
@@ -1776,7 +1776,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23679",
+            "ID": "23766",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests1__",
             "Level": "1",
@@ -1796,7 +1796,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23680",
+            "ID": "23767",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests2",
             "Level": "50",
@@ -1816,7 +1816,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23681",
+            "ID": "23768",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalGemsRewardsFromRewardChests3",
             "Level": "70",
@@ -1836,7 +1836,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23682",
+            "ID": "23769",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests1",
             "Level": "1",
@@ -1856,7 +1856,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23683",
+            "ID": "23770",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests2",
             "Level": "50",
@@ -1876,7 +1876,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23684",
+            "ID": "23771",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalEssencesRewardsFromRewardChests3",
             "Level": "70",
@@ -1896,7 +1896,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23685",
+            "ID": "23772",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests1",
             "Level": "1",
@@ -1916,7 +1916,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23686",
+            "ID": "23773",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests2",
             "Level": "50",
@@ -1936,7 +1936,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23687",
+            "ID": "23774",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDivinationRewardsFromRewardChests3",
             "Level": "70",
@@ -1956,7 +1956,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23688",
+            "ID": "23775",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalUniquesRewardsFromRewardChests1_",
             "Level": "1",
@@ -1976,7 +1976,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23689",
+            "ID": "23776",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalUniquesRewardsFromRewardChests2",
             "Level": "50",
@@ -1996,7 +1996,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23691",
+            "ID": "23778",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests1",
             "Level": "1",
@@ -2016,7 +2016,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23692",
+            "ID": "23779",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests2",
             "Level": "50",
@@ -2036,7 +2036,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23693",
+            "ID": "23780",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalTalismanRewardsFromRewardChests3_",
             "Level": "70",
@@ -2056,7 +2056,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23694",
+            "ID": "23781",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests1",
             "Level": "40",
@@ -2076,7 +2076,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23695",
+            "ID": "23782",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests2",
             "Level": "50",
@@ -2096,7 +2096,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23696",
+            "ID": "23783",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalAbyssRewardsFromRewardChests3",
             "Level": "70",
@@ -2116,7 +2116,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23697",
+            "ID": "23784",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests1",
             "Level": "40",
@@ -2136,7 +2136,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23698",
+            "ID": "23785",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests2",
             "Level": "50",
@@ -2156,7 +2156,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23699",
+            "ID": "23786",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBreachRewardsFromRewardChests3",
             "Level": "70",
@@ -2176,7 +2176,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23700",
+            "ID": "23787",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalMetamorphRewardsFromRewardChests1_",
             "Level": "60",
@@ -2196,7 +2196,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23701",
+            "ID": "23788",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalMetamorphRewardsFromRewardChests2",
             "Level": "80",
@@ -2216,7 +2216,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23702",
+            "ID": "23789",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDeliriumRewardsFromRewardChests1",
             "Level": "60",
@@ -2236,7 +2236,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23703",
+            "ID": "23790",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDeliriumRewardsFromRewardChests2_",
             "Level": "80",
@@ -2256,7 +2256,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23704",
+            "ID": "23791",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests1__",
             "Level": "40",
@@ -2276,7 +2276,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23705",
+            "ID": "23792",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests2",
             "Level": "50",
@@ -2296,7 +2296,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23706",
+            "ID": "23793",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalLegionRewardsFromRewardChests3_",
             "Level": "70",
@@ -2316,7 +2316,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23707",
+            "ID": "23794",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests1",
             "Level": "40",
@@ -2336,7 +2336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23708",
+            "ID": "23795",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests2",
             "Level": "50",
@@ -2356,7 +2356,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23709",
+            "ID": "23796",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalBlightRewardsFromRewardChests3__",
             "Level": "70",
@@ -2376,7 +2376,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23710",
+            "ID": "23797",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests1___",
             "Level": "40",
@@ -2396,7 +2396,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23711",
+            "ID": "23798",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests2",
             "Level": "50",
@@ -2416,7 +2416,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23712",
+            "ID": "23799",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalHarbingerRewardsFromRewardChests3__",
             "Level": "70",
@@ -2436,7 +2436,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23713",
+            "ID": "23800",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests1",
             "Level": "40",
@@ -2456,7 +2456,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23714",
+            "ID": "23801",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests2",
             "Level": "50",
@@ -2476,7 +2476,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "23715",
+            "ID": "23802",
             "Name": "of Superstition",
             "Code": "HeistTrinketAdditionalDelveRewardsFromRewardChests3_",
             "Level": "70",

@@ -440,7 +440,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1146",
+            "ID": "1155",
             "Name": "Squire's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating1",
             "Level": "1",
@@ -470,7 +470,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1147",
+            "ID": "1156",
             "Name": "Journeyman's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating2",
             "Level": "11",
@@ -500,7 +500,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1148",
+            "ID": "1157",
             "Name": "Reaver's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating3",
             "Level": "23",
@@ -530,7 +530,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1149",
+            "ID": "1158",
             "Name": "Mercenary's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating4",
             "Level": "35",
@@ -560,7 +560,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1150",
+            "ID": "1159",
             "Name": "Champion's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating5",
             "Level": "46",
@@ -590,7 +590,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1151",
+            "ID": "1160",
             "Name": "Conqueror's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating6",
             "Level": "60",
@@ -620,7 +620,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1152",
+            "ID": "1161",
             "Name": "Emperor's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating7",
             "Level": "73",
@@ -650,7 +650,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1153",
+            "ID": "1162",
             "Name": "Dictator's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAccuracyRating8",
             "Level": "83",
@@ -680,7 +680,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1154",
+            "ID": "1163",
             "Name": "Heavy",
             "Code": "LocalIncreasedPhysicalDamagePercent1",
             "Level": "1",
@@ -710,7 +710,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1155",
+            "ID": "1164",
             "Name": "Serrated",
             "Code": "LocalIncreasedPhysicalDamagePercent2",
             "Level": "11",
@@ -740,7 +740,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1156",
+            "ID": "1165",
             "Name": "Wicked",
             "Code": "LocalIncreasedPhysicalDamagePercent3",
             "Level": "23",
@@ -770,7 +770,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1157",
+            "ID": "1166",
             "Name": "Vicious",
             "Code": "LocalIncreasedPhysicalDamagePercent4",
             "Level": "35",
@@ -800,7 +800,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1158",
+            "ID": "1167",
             "Name": "Bloodthirsty",
             "Code": "LocalIncreasedPhysicalDamagePercent5",
             "Level": "46",
@@ -830,7 +830,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1159",
+            "ID": "1168",
             "Name": "Cruel",
             "Code": "LocalIncreasedPhysicalDamagePercent6",
             "Level": "60",
@@ -860,7 +860,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1160",
+            "ID": "1169",
             "Name": "Tyrannical",
             "Code": "LocalIncreasedPhysicalDamagePercent7",
             "Level": "73",
@@ -890,7 +890,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1161",
+            "ID": "1170",
             "Name": "Merciless",
             "Code": "LocalIncreasedPhysicalDamagePercent8",
             "Level": "83",
@@ -920,7 +920,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1338",
+            "ID": "1347",
             "Name": "Glinting",
             "Code": "LocalAddedPhysicalDamageTwoHand1",
             "Level": "2",
@@ -950,7 +950,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1339",
+            "ID": "1348",
             "Name": "Burnished",
             "Code": "LocalAddedPhysicalDamageTwoHand2",
             "Level": "13",
@@ -980,7 +980,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1340",
+            "ID": "1349",
             "Name": "Polished",
             "Code": "LocalAddedPhysicalDamageTwoHand3",
             "Level": "21",
@@ -1010,7 +1010,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1341",
+            "ID": "1350",
             "Name": "Honed",
             "Code": "LocalAddedPhysicalDamageTwoHand4",
             "Level": "29",
@@ -1040,7 +1040,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1342",
+            "ID": "1351",
             "Name": "Gleaming",
             "Code": "LocalAddedPhysicalDamageTwoHand5",
             "Level": "36",
@@ -1070,7 +1070,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1343",
+            "ID": "1352",
             "Name": "Annealed",
             "Code": "LocalAddedPhysicalDamageTwoHand6",
             "Level": "46",
@@ -1100,7 +1100,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1344",
+            "ID": "1353",
             "Name": "Razor-sharp",
             "Code": "LocalAddedPhysicalDamageTwoHand7",
             "Level": "54",
@@ -1130,7 +1130,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1345",
+            "ID": "1354",
             "Name": "Tempered",
             "Code": "LocalAddedPhysicalDamageTwoHand8",
             "Level": "65",
@@ -1160,7 +1160,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1346",
+            "ID": "1355",
             "Name": "Flaring",
             "Code": "LocalAddedPhysicalDamageTwoHand9",
             "Level": "77",
@@ -1190,7 +1190,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1812",
+            "ID": "1824",
             "Name": "Heated",
             "Code": "LocalAddedFireDamageTwoHand1",
             "Level": "1",
@@ -1227,7 +1227,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1813",
+            "ID": "1825",
             "Name": "Smouldering",
             "Code": "LocalAddedFireDamageTwoHand2",
             "Level": "11",
@@ -1264,7 +1264,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1814",
+            "ID": "1826",
             "Name": "Smoking",
             "Code": "LocalAddedFireDamageTwoHand3",
             "Level": "18",
@@ -1301,7 +1301,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1815",
+            "ID": "1827",
             "Name": "Burning",
             "Code": "LocalAddedFireDamageTwoHand4",
             "Level": "26",
@@ -1338,7 +1338,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1816",
+            "ID": "1828",
             "Name": "Flaming",
             "Code": "LocalAddedFireDamageTwoHand5",
             "Level": "33",
@@ -1375,7 +1375,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1817",
+            "ID": "1829",
             "Name": "Scorching",
             "Code": "LocalAddedFireDamageTwoHand6",
             "Level": "42",
@@ -1412,7 +1412,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1818",
+            "ID": "1830",
             "Name": "Incinerating",
             "Code": "LocalAddedFireDamageTwoHand7",
             "Level": "51",
@@ -1449,7 +1449,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1819",
+            "ID": "1831",
             "Name": "Blasting",
             "Code": "LocalAddedFireDamageTwoHand8_",
             "Level": "62",
@@ -1486,7 +1486,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1820",
+            "ID": "1832",
             "Name": "Cremating",
             "Code": "LocalAddedFireDamageTwoHand9",
             "Level": "74",
@@ -1523,7 +1523,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1821",
+            "ID": "1833",
             "Name": "Carbonising",
             "Code": "LocalAddedFireDamageTwoHand10",
             "Level": "82",
@@ -1560,7 +1560,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1866",
+            "ID": "1878",
             "Name": "Frosted",
             "Code": "LocalAddedColdDamageTwoHand1",
             "Level": "2",
@@ -1597,7 +1597,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1867",
+            "ID": "1879",
             "Name": "Chilled",
             "Code": "LocalAddedColdDamageTwoHand2",
             "Level": "12",
@@ -1634,7 +1634,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1868",
+            "ID": "1880",
             "Name": "Icy",
             "Code": "LocalAddedColdDamageTwoHand3",
             "Level": "19",
@@ -1671,7 +1671,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1869",
+            "ID": "1881",
             "Name": "Frigid",
             "Code": "LocalAddedColdDamageTwoHand4",
             "Level": "27",
@@ -1708,7 +1708,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1870",
+            "ID": "1882",
             "Name": "Freezing",
             "Code": "LocalAddedColdDamageTwoHand5",
             "Level": "34",
@@ -1745,7 +1745,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1871",
+            "ID": "1883",
             "Name": "Frozen",
             "Code": "LocalAddedColdDamageTwoHand6",
             "Level": "43",
@@ -1782,7 +1782,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1872",
+            "ID": "1884",
             "Name": "Glaciated",
             "Code": "LocalAddedColdDamageTwoHand7",
             "Level": "52",
@@ -1819,7 +1819,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1873",
+            "ID": "1885",
             "Name": "Polar",
             "Code": "LocalAddedColdDamageTwoHand8",
             "Level": "63",
@@ -1856,7 +1856,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1874",
+            "ID": "1886",
             "Name": "Entombing",
             "Code": "LocalAddedColdDamageTwoHand9",
             "Level": "75",
@@ -1893,7 +1893,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1875",
+            "ID": "1887",
             "Name": "Crystalising",
             "Code": "LocalAddedColdDamageTwoHand10",
             "Level": "82",
@@ -1930,7 +1930,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1917",
+            "ID": "1930",
             "Name": "Humming",
             "Code": "LocalAddedLightningDamageTwoHand1_",
             "Level": "3",
@@ -1967,7 +1967,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1918",
+            "ID": "1931",
             "Name": "Buzzing",
             "Code": "LocalAddedLightningDamageTwoHand2",
             "Level": "13",
@@ -2004,7 +2004,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1919",
+            "ID": "1932",
             "Name": "Snapping",
             "Code": "LocalAddedLightningDamageTwoHand3",
             "Level": "19",
@@ -2041,7 +2041,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1920",
+            "ID": "1933",
             "Name": "Crackling",
             "Code": "LocalAddedLightningDamageTwoHand4",
             "Level": "31",
@@ -2078,7 +2078,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1921",
+            "ID": "1934",
             "Name": "Sparking",
             "Code": "LocalAddedLightningDamageTwoHand5",
             "Level": "34",
@@ -2115,7 +2115,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1922",
+            "ID": "1935",
             "Name": "Arcing",
             "Code": "LocalAddedLightningDamageTwoHand6",
             "Level": "42",
@@ -2152,7 +2152,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1923",
+            "ID": "1936",
             "Name": "Shocking",
             "Code": "LocalAddedLightningDamageTwoHand7",
             "Level": "51",
@@ -2189,7 +2189,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1924",
+            "ID": "1937",
             "Name": "Discharging",
             "Code": "LocalAddedLightningDamageTwoHand8",
             "Level": "63",
@@ -2226,7 +2226,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1925",
+            "ID": "1938",
             "Name": "Electrocuting",
             "Code": "LocalAddedLightningDamageTwoHand9",
             "Level": "74",
@@ -2263,7 +2263,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1926",
+            "ID": "1939",
             "Name": "Vapourising",
             "Code": "LocalAddedLightningDamageTwoHand10",
             "Level": "82",
@@ -2300,7 +2300,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2458",
+            "ID": "2475",
             "Name": "Catalysing",
             "Code": "WeaponElementalDamageOnTwohandWeapon1",
             "Level": "4",
@@ -2330,7 +2330,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2459",
+            "ID": "2476",
             "Name": "Infusing",
             "Code": "WeaponElementalDamageOnTwohandWeapon2____",
             "Level": "15",
@@ -2360,7 +2360,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2460",
+            "ID": "2477",
             "Name": "Empowering",
             "Code": "WeaponElementalDamageOnTwohandWeapon3",
             "Level": "30",
@@ -2390,7 +2390,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2461",
+            "ID": "2478",
             "Name": "Unleashed",
             "Code": "WeaponElementalDamageOnTwohandWeapon4",
             "Level": "60",
@@ -2420,7 +2420,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2462",
+            "ID": "2479",
             "Name": "Overpowering",
             "Code": "WeaponElementalDamageOnTwohandWeapon5",
             "Level": "81",
@@ -2450,7 +2450,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2463",
+            "ID": "2480",
             "Name": "Devastating",
             "Code": "WeaponElementalDamageOnTwohandWeapon6",
             "Level": "86",
@@ -2480,7 +2480,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2653",
+            "ID": "2670",
             "Name": "of Skill",
             "Code": "LocalIncreasedAttackSpeed1",
             "Level": "1",
@@ -2507,7 +2507,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2654",
+            "ID": "2671",
             "Name": "of Ease",
             "Code": "LocalIncreasedAttackSpeed2",
             "Level": "11",
@@ -2534,7 +2534,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2656",
+            "ID": "2673",
             "Name": "of Mastery",
             "Code": "LocalIncreasedAttackSpeed3",
             "Level": "22",
@@ -2561,7 +2561,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2657",
+            "ID": "2674",
             "Name": "of Renown",
             "Code": "LocalIncreasedAttackSpeed4",
             "Level": "30",
@@ -2589,7 +2589,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2658",
+            "ID": "2675",
             "Name": "of Acclaim",
             "Code": "LocalIncreasedAttackSpeed5",
             "Level": "37",
@@ -2617,7 +2617,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2659",
+            "ID": "2676",
             "Name": "of Fame",
             "Code": "LocalIncreasedAttackSpeed6",
             "Level": "45",
@@ -2645,7 +2645,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2660",
+            "ID": "2677",
             "Name": "of Infamy",
             "Code": "LocalIncreasedAttackSpeed7",
             "Level": "60",
@@ -2673,7 +2673,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2661",
+            "ID": "2678",
             "Name": "of Celebration",
             "Code": "LocalIncreasedAttackSpeed8",
             "Level": "77",
@@ -2701,7 +2701,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2955",
+            "ID": "2974",
             "Name": "of the Pugilist",
             "Code": "StunThresholdReduction1",
             "Level": "5",
@@ -2727,7 +2727,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2956",
+            "ID": "2975",
             "Name": "of the Brawler",
             "Code": "StunThresholdReduction2",
             "Level": "20",
@@ -2753,7 +2753,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2957",
+            "ID": "2976",
             "Name": "of the Boxer",
             "Code": "StunThresholdReduction3",
             "Level": "30",
@@ -2779,7 +2779,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2958",
+            "ID": "2977",
             "Name": "of the Combatant",
             "Code": "StunThresholdReduction4",
             "Level": "44",
@@ -2805,7 +2805,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "2959",
+            "ID": "2978",
             "Name": "of the Gladiator",
             "Code": "StunThresholdReduction5",
             "Level": "58",
@@ -2831,7 +2831,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3064",
+            "ID": "3084",
             "Name": "of the Whelpling",
             "Code": "FireResist1",
             "Level": "1",
@@ -2865,7 +2865,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3065",
+            "ID": "3085",
             "Name": "of the Salamander",
             "Code": "FireResist2",
             "Level": "12",
@@ -2899,7 +2899,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3066",
+            "ID": "3086",
             "Name": "of the Drake",
             "Code": "FireResist3",
             "Level": "24",
@@ -2933,7 +2933,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3067",
+            "ID": "3087",
             "Name": "of the Kiln",
             "Code": "FireResist4",
             "Level": "36",
@@ -2967,7 +2967,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3068",
+            "ID": "3088",
             "Name": "of the Furnace",
             "Code": "FireResist5",
             "Level": "48",
@@ -3001,7 +3001,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3069",
+            "ID": "3089",
             "Name": "of the Volcano",
             "Code": "FireResist6",
             "Level": "60",
@@ -3035,7 +3035,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3070",
+            "ID": "3090",
             "Name": "of the Magma",
             "Code": "FireResist7",
             "Level": "72",
@@ -3069,7 +3069,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3071",
+            "ID": "3091",
             "Name": "of Tzteosh",
             "Code": "FireResist8",
             "Level": "84",
@@ -3103,7 +3103,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3135",
+            "ID": "3156",
             "Name": "of the Inuit",
             "Code": "ColdResist1",
             "Level": "1",
@@ -3137,7 +3137,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3136",
+            "ID": "3157",
             "Name": "of the Seal",
             "Code": "ColdResist2",
             "Level": "14",
@@ -3171,7 +3171,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3137",
+            "ID": "3158",
             "Name": "of the Penguin",
             "Code": "ColdResist3",
             "Level": "26",
@@ -3205,7 +3205,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3138",
+            "ID": "3159",
             "Name": "of the Yeti",
             "Code": "ColdResist4",
             "Level": "38",
@@ -3239,7 +3239,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3139",
+            "ID": "3160",
             "Name": "of the Walrus",
             "Code": "ColdResist5",
             "Level": "50",
@@ -3273,7 +3273,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3140",
+            "ID": "3161",
             "Name": "of the Polar Bear",
             "Code": "ColdResist6",
             "Level": "60",
@@ -3307,7 +3307,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3141",
+            "ID": "3162",
             "Name": "of the Ice",
             "Code": "ColdResist7",
             "Level": "72",
@@ -3341,7 +3341,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3142",
+            "ID": "3163",
             "Name": "of Haast",
             "Code": "ColdResist8",
             "Level": "84",
@@ -3375,7 +3375,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3219",
+            "ID": "3242",
             "Name": "of the Cloud",
             "Code": "LightningResist1",
             "Level": "1",
@@ -3409,7 +3409,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3220",
+            "ID": "3243",
             "Name": "of the Squall",
             "Code": "LightningResist2",
             "Level": "13",
@@ -3443,7 +3443,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3221",
+            "ID": "3244",
             "Name": "of the Storm",
             "Code": "LightningResist3",
             "Level": "25",
@@ -3477,7 +3477,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3222",
+            "ID": "3245",
             "Name": "of the Thunderhead",
             "Code": "LightningResist4",
             "Level": "37",
@@ -3511,7 +3511,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3223",
+            "ID": "3246",
             "Name": "of the Tempest",
             "Code": "LightningResist5",
             "Level": "49",
@@ -3545,7 +3545,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3224",
+            "ID": "3247",
             "Name": "of the Maelstrom",
             "Code": "LightningResist6",
             "Level": "60",
@@ -3579,7 +3579,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3225",
+            "ID": "3248",
             "Name": "of the Lightning",
             "Code": "LightningResist7",
             "Level": "72",
@@ -3613,7 +3613,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3226",
+            "ID": "3249",
             "Name": "of Ephij",
             "Code": "LightningResist8",
             "Level": "84",
@@ -3647,7 +3647,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3288",
+            "ID": "3312",
             "Name": "of the Lost",
             "Code": "ChaosResist1",
             "Level": "16",
@@ -3679,7 +3679,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3289",
+            "ID": "3313",
             "Name": "of Banishment",
             "Code": "ChaosResist2",
             "Level": "30",
@@ -3711,7 +3711,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3290",
+            "ID": "3314",
             "Name": "of Eviction",
             "Code": "ChaosResist3",
             "Level": "44",
@@ -3743,7 +3743,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3291",
+            "ID": "3315",
             "Name": "of Expulsion",
             "Code": "ChaosResist4",
             "Level": "56",
@@ -3775,7 +3775,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3292",
+            "ID": "3316",
             "Name": "of Exile",
             "Code": "ChaosResist5",
             "Level": "65",
@@ -3807,7 +3807,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3293",
+            "ID": "3317",
             "Name": "of Bameth",
             "Code": "ChaosResist6",
             "Level": "81",
@@ -3839,7 +3839,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3499",
+            "ID": "3526",
             "Name": "of Impact",
             "Code": "StunDuration1",
             "Level": "5",
@@ -3862,7 +3862,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3500",
+            "ID": "3527",
             "Name": "of Dazing",
             "Code": "StunDuration2",
             "Level": "18",
@@ -3885,7 +3885,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3501",
+            "ID": "3528",
             "Name": "of Stunning",
             "Code": "StunDuration3",
             "Level": "30",
@@ -3908,7 +3908,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3502",
+            "ID": "3529",
             "Name": "of Slamming",
             "Code": "StunDuration4",
             "Level": "44",
@@ -3931,7 +3931,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3503",
+            "ID": "3530",
             "Name": "of Staggering",
             "Code": "StunDuration5",
             "Level": "58",
@@ -3954,7 +3954,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3562",
+            "ID": "3589",
             "Name": "of Rejuvenation",
             "Code": "LifeGainPerTargetLocal1",
             "Level": "8",
@@ -3983,7 +3983,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3563",
+            "ID": "3590",
             "Name": "of Restoration",
             "Code": "LifeGainPerTargetLocal2",
             "Level": "20",
@@ -4012,7 +4012,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3564",
+            "ID": "3591",
             "Name": "of Regrowth",
             "Code": "LifeGainPerTargetLocal3",
             "Level": "30",
@@ -4041,7 +4041,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3565",
+            "ID": "3592",
             "Name": "of Nourishment",
             "Code": "LifeGainPerTargetLocal4",
             "Level": "40",
@@ -4070,7 +4070,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3691",
+            "ID": "3718",
             "Name": "of Success",
             "Code": "LifeGainedFromEnemyDeath1",
             "Level": "1",
@@ -4101,7 +4101,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3692",
+            "ID": "3719",
             "Name": "of Victory",
             "Code": "LifeGainedFromEnemyDeath2",
             "Level": "23",
@@ -4132,7 +4132,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3693",
+            "ID": "3720",
             "Name": "of Triumph",
             "Code": "LifeGainedFromEnemyDeath3",
             "Level": "40",
@@ -4163,7 +4163,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3709",
+            "ID": "3736",
             "Name": "of Absorption",
             "Code": "ManaGainedFromEnemyDeath1",
             "Level": "1",
@@ -4194,7 +4194,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3710",
+            "ID": "3737",
             "Name": "of Osmosis",
             "Code": "ManaGainedFromEnemyDeath2",
             "Level": "24",
@@ -4225,7 +4225,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3711",
+            "ID": "3738",
             "Name": "of Consumption",
             "Code": "ManaGainedFromEnemyDeath3",
             "Level": "40",
@@ -4256,7 +4256,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3940",
+            "ID": "3967",
             "Name": "of Needling",
             "Code": "LocalCriticalStrikeChance1",
             "Level": "1",
@@ -4283,7 +4283,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3941",
+            "ID": "3968",
             "Name": "of Stinging",
             "Code": "LocalCriticalStrikeChance2",
             "Level": "20",
@@ -4310,7 +4310,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3942",
+            "ID": "3969",
             "Name": "of Piercing",
             "Code": "LocalCriticalStrikeChance3",
             "Level": "30",
@@ -4337,7 +4337,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3943",
+            "ID": "3970",
             "Name": "of Puncturing",
             "Code": "LocalCriticalStrikeChance4",
             "Level": "44",
@@ -4364,7 +4364,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3944",
+            "ID": "3971",
             "Name": "of Penetrating",
             "Code": "LocalCriticalStrikeChance5",
             "Level": "59",
@@ -4391,7 +4391,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3945",
+            "ID": "3972",
             "Name": "of Incision",
             "Code": "LocalCriticalStrikeChance6",
             "Level": "73",
@@ -4418,7 +4418,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3955",
+            "ID": "3982",
             "Name": "of Ire",
             "Code": "LocalCriticalMultiplier1",
             "Level": "8",
@@ -4445,7 +4445,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3956",
+            "ID": "3983",
             "Name": "of Anger",
             "Code": "LocalCriticalMultiplier2",
             "Level": "21",
@@ -4472,7 +4472,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3957",
+            "ID": "3984",
             "Name": "of Rage",
             "Code": "LocalCriticalMultiplier3",
             "Level": "30",
@@ -4499,7 +4499,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3958",
+            "ID": "3985",
             "Name": "of Fury",
             "Code": "LocalCriticalMultiplier4",
             "Level": "44",
@@ -4526,7 +4526,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3959",
+            "ID": "3986",
             "Name": "of Ferocity",
             "Code": "LocalCriticalMultiplier5",
             "Level": "59",
@@ -4553,7 +4553,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "3960",
+            "ID": "3987",
             "Name": "of Destruction",
             "Code": "LocalCriticalMultiplier6",
             "Level": "73",
@@ -4580,7 +4580,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4228",
+            "ID": "4255",
             "Name": "Paragon's",
             "Code": "LocalIncreaseSocketedGemLevel1",
             "Level": "50",
@@ -4611,7 +4611,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4267",
+            "ID": "4294",
             "Name": "Combatant's",
             "Code": "LocalIncreaseSocketedMeleeGemLevel1",
             "Level": "8",
@@ -4642,7 +4642,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4268",
+            "ID": "4295",
             "Name": "Weaponmaster's",
             "Code": "LocalIncreaseSocketedMeleeGemLevel",
             "Level": "63",
@@ -4673,7 +4673,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4340",
+            "ID": "4368",
             "Name": "of Steadiness",
             "Code": "LocalIncreasedAccuracyNew1",
             "Level": "1",
@@ -4698,7 +4698,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4341",
+            "ID": "4369",
             "Name": "of Precision",
             "Code": "LocalIncreasedAccuracyNew2",
             "Level": "20",
@@ -4723,7 +4723,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4342",
+            "ID": "4370",
             "Name": "of the Sniper",
             "Code": "LocalIncreasedAccuracyNew3",
             "Level": "40",
@@ -4748,7 +4748,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4343",
+            "ID": "4371",
             "Name": "of the Marksman",
             "Code": "LocalIncreasedAccuracyNew4",
             "Level": "60",
@@ -4773,7 +4773,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4344",
+            "ID": "4372",
             "Name": "of the Ranger",
             "Code": "LocalIncreasedAccuracyNew5",
             "Level": "75",
@@ -4798,7 +4798,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6475",
+            "ID": "6535",
             "Name": "of the Worthy",
             "Code": "ReducedLocalAttributeRequirements1",
             "Level": "36",
@@ -4824,7 +4824,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6476",
+            "ID": "6536",
             "Name": "of the Apt",
             "Code": "ReducedLocalAttributeRequirements2",
             "Level": "60",
@@ -4850,7 +4850,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6486",
+            "ID": "6546",
             "Name": "of Radiance",
             "Code": "LocalLightRadiusAndAccuracy3",
             "Level": "30",
@@ -4875,7 +4875,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6487",
+            "ID": "6547",
             "Name": "of Shining",
             "Code": "LocalLightRadiusAndAccuracyNew1_",
             "Level": "8",
@@ -4900,7 +4900,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "6488",
+            "ID": "6548",
             "Name": "of Light",
             "Code": "LocalLightRadiusAndAccuracyNew2",
             "Level": "15",
@@ -4925,7 +4925,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9407",
+            "ID": "9471",
             "Name": "Remora's",
             "Code": "LifeLeechPermyriadLocal1",
             "Level": "50",
@@ -4956,7 +4956,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9408",
+            "ID": "9472",
             "Name": "Lamprey's",
             "Code": "LifeLeechPermyriadLocal2",
             "Level": "60",
@@ -4988,7 +4988,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9409",
+            "ID": "9473",
             "Name": "Vampire's",
             "Code": "LifeLeechPermyriadLocal3",
             "Level": "70",
@@ -5020,7 +5020,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9420",
+            "ID": "9484",
             "Name": "Thirsty",
             "Code": "ManaLeechPermyriadLocal1",
             "Level": "50",
@@ -5051,7 +5051,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "9733",
+            "ID": "9798",
             "Name": "Malicious",
             "Code": "LocalAddedChaosDamageTwoHand1",
             "Level": "83",
@@ -5086,7 +5086,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13327",
+            "ID": "13393",
             "Name": "of Bloodletting",
             "Code": "BleedDamage1_",
             "Level": "20",
@@ -5123,7 +5123,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13328",
+            "ID": "13394",
             "Name": "of Haemophilia",
             "Code": "BleedDamage2",
             "Level": "40",
@@ -5160,7 +5160,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13329",
+            "ID": "13395",
             "Name": "of Exsanguination",
             "Code": "BleedDamage3",
             "Level": "60",
@@ -5197,7 +5197,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18018",
+            "ID": "18102",
             "Name": "of Acrimony",
             "Code": "GlobalDamageOverTimeMultiplier2h1__",
             "Level": "44",
@@ -5224,7 +5224,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18019",
+            "ID": "18103",
             "Name": "of Dispersion",
             "Code": "GlobalDamageOverTimeMultiplier2h2",
             "Level": "55",
@@ -5251,7 +5251,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18020",
+            "ID": "18104",
             "Name": "of Liquefaction",
             "Code": "GlobalDamageOverTimeMultiplier2h3___",
             "Level": "68",
@@ -5278,7 +5278,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18021",
+            "ID": "18105",
             "Name": "of Melting",
             "Code": "GlobalDamageOverTimeMultiplier2h4_",
             "Level": "76",
@@ -5305,7 +5305,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18022",
+            "ID": "18106",
             "Name": "of Dissolution",
             "Code": "GlobalDamageOverTimeMultiplier2h5____",
             "Level": "82",
@@ -5336,7 +5336,7 @@
         {
             "Code": "EinharMasterIncreasedManaTwoHandWeapon1___",
             "NPCMasterID": "3",
-            "ID": "17596",
+            "ID": "17680",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -5360,7 +5360,7 @@
         {
             "Code": "EinharMasterIncreasedManaTwoHandWeapon2_",
             "NPCMasterID": "3",
-            "ID": "17597",
+            "ID": "17681",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5384,7 +5384,7 @@
         {
             "Code": "EinharMasterIncreasedManaTwoHandWeapon3_",
             "NPCMasterID": "3",
-            "ID": "17598",
+            "ID": "17682",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5408,7 +5408,7 @@
         {
             "Code": "EinharMasterIncreasedManaTwoHandWeapon4",
             "NPCMasterID": "3",
-            "ID": "17599",
+            "ID": "17683",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -5432,7 +5432,7 @@
         {
             "Code": "EinharMasterLocalIncreasedPhysicalDamage1",
             "NPCMasterID": "3",
-            "ID": "17602",
+            "ID": "17686",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -5459,7 +5459,7 @@
         {
             "Code": "EinharMasterLocalIncreasedPhysicalDamage2_",
             "NPCMasterID": "3",
-            "ID": "17603",
+            "ID": "17687",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5486,7 +5486,7 @@
         {
             "Code": "EinharMasterLocalIncreasedPhysicalDamage3",
             "NPCMasterID": "3",
-            "ID": "17604",
+            "ID": "17688",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5513,7 +5513,7 @@
         {
             "Code": "EinharMasterLocalIncreasedPhysicalDamage4___",
             "NPCMasterID": "3",
-            "ID": "17605",
+            "ID": "17689",
             "ModGenerationTypeID": "1",
             "Level": "80",
             "ModFamilyList": [
@@ -5540,7 +5540,7 @@
         {
             "Code": "EinharMasterSpellDamageOnTwoHandWeapon1",
             "NPCMasterID": "3",
-            "ID": "17610",
+            "ID": "17694",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -5565,7 +5565,7 @@
         {
             "Code": "EinharMasterSpellDamageOnTwoHandWeapon2",
             "NPCMasterID": "3",
-            "ID": "17611",
+            "ID": "17695",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5590,7 +5590,7 @@
         {
             "Code": "EinharMasterSpellDamageOnTwoHandWeapon3",
             "NPCMasterID": "3",
-            "ID": "17612",
+            "ID": "17696",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -5615,7 +5615,7 @@
         {
             "Code": "EinharMasterSpellDamageOnTwoHandWeapon4_",
             "NPCMasterID": "3",
-            "ID": "17613",
+            "ID": "17697",
             "ModGenerationTypeID": "1",
             "Level": "80",
             "ModFamilyList": [
@@ -5640,7 +5640,7 @@
         {
             "Code": "EinharMasterDegenerationDamage1_",
             "NPCMasterID": "3",
-            "ID": "17614",
+            "ID": "17698",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -5662,7 +5662,7 @@
         {
             "Code": "EinharMasterDegenerationDamage2",
             "NPCMasterID": "3",
-            "ID": "17615",
+            "ID": "17699",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -5684,7 +5684,7 @@
         {
             "Code": "EinharMasterWeaponElementalDamage1_",
             "NPCMasterID": "3",
-            "ID": "17616",
+            "ID": "17700",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -5711,7 +5711,7 @@
         {
             "Code": "EinharMasterWeaponElementalDamage2",
             "NPCMasterID": "3",
-            "ID": "17617",
+            "ID": "17701",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -5738,7 +5738,7 @@
         {
             "Code": "EinharMasterFireDamageTwoHandPrefix1",
             "NPCMasterID": "3",
-            "ID": "17635",
+            "ID": "17719",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -5765,7 +5765,7 @@
         {
             "Code": "EinharMasterFireDamageTwoHandPrefix2",
             "NPCMasterID": "3",
-            "ID": "17636",
+            "ID": "17720",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5792,7 +5792,7 @@
         {
             "Code": "EinharMasterFireDamageTwoHandPrefix3",
             "NPCMasterID": "3",
-            "ID": "17637",
+            "ID": "17721",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -5819,7 +5819,7 @@
         {
             "Code": "EinharMasterColdDamageTwoHandPrefix1",
             "NPCMasterID": "3",
-            "ID": "17643",
+            "ID": "17727",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -5846,7 +5846,7 @@
         {
             "Code": "EinharMasterColdDamageTwoHandPrefix2",
             "NPCMasterID": "3",
-            "ID": "17644",
+            "ID": "17728",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5873,7 +5873,7 @@
         {
             "Code": "EinharMasterColdDamageTwoHandPrefix3",
             "NPCMasterID": "3",
-            "ID": "17645",
+            "ID": "17729",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -5900,7 +5900,7 @@
         {
             "Code": "EinharMasterLightningDamageTwoHandPrefix1",
             "NPCMasterID": "3",
-            "ID": "17651",
+            "ID": "17735",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -5927,7 +5927,7 @@
         {
             "Code": "EinharMasterLightningDamageTwoHandPrefix2",
             "NPCMasterID": "3",
-            "ID": "17652",
+            "ID": "17736",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -5954,7 +5954,7 @@
         {
             "Code": "EinharMasterLightningDamageTwoHandPrefix3",
             "NPCMasterID": "3",
-            "ID": "17653",
+            "ID": "17737",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -5981,7 +5981,7 @@
         {
             "Code": "EinharMasterChaosDamageTwoHandPrefix1",
             "NPCMasterID": "3",
-            "ID": "17659",
+            "ID": "17743",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -6006,7 +6006,7 @@
         {
             "Code": "EinharMasterChaosDamageTwoHandPrefix2",
             "NPCMasterID": "3",
-            "ID": "17660",
+            "ID": "17744",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -6031,7 +6031,7 @@
         {
             "Code": "EinharMasterChaosDamageTwoHandPrefix3_",
             "NPCMasterID": "3",
-            "ID": "17661",
+            "ID": "17745",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6056,7 +6056,7 @@
         {
             "Code": "EinharMasterLocalFireDamageTwoHand1",
             "NPCMasterID": "3",
-            "ID": "17706",
+            "ID": "17790",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -6085,7 +6085,7 @@
         {
             "Code": "EinharMasterLocalFireDamageTwoHand2",
             "NPCMasterID": "3",
-            "ID": "17707",
+            "ID": "17791",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -6114,7 +6114,7 @@
         {
             "Code": "EinharMasterLocalFireDamageTwoHand3",
             "NPCMasterID": "3",
-            "ID": "17708",
+            "ID": "17792",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6143,7 +6143,7 @@
         {
             "Code": "EinharMasterLocalColdDamageTwoHand1",
             "NPCMasterID": "3",
-            "ID": "17716",
+            "ID": "17800",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -6172,7 +6172,7 @@
         {
             "Code": "EinharMasterLocalColdDamageTwoHand2",
             "NPCMasterID": "3",
-            "ID": "17717",
+            "ID": "17801",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -6201,7 +6201,7 @@
         {
             "Code": "EinharMasterLocalColdDamageTwoHand3",
             "NPCMasterID": "3",
-            "ID": "17718",
+            "ID": "17802",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6230,7 +6230,7 @@
         {
             "Code": "EinharMasterLocalLightningDamageTwoHand1_",
             "NPCMasterID": "3",
-            "ID": "17726",
+            "ID": "17810",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -6259,7 +6259,7 @@
         {
             "Code": "EinharMasterLocalLightningDamageTwoHand2",
             "NPCMasterID": "3",
-            "ID": "17727",
+            "ID": "17811",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -6288,7 +6288,7 @@
         {
             "Code": "EinharMasterLocalLightningDamageTwoHand3",
             "NPCMasterID": "3",
-            "ID": "17728",
+            "ID": "17812",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6317,7 +6317,7 @@
         {
             "Code": "EinharMasterLocalPhysicalDamageTwoHand1",
             "NPCMasterID": "3",
-            "ID": "17736",
+            "ID": "17820",
             "ModGenerationTypeID": "1",
             "Level": "20",
             "ModFamilyList": [
@@ -6344,7 +6344,7 @@
         {
             "Code": "EinharMasterLocalPhysicalDamageTwoHand2",
             "NPCMasterID": "3",
-            "ID": "17737",
+            "ID": "17821",
             "ModGenerationTypeID": "1",
             "Level": "40",
             "ModFamilyList": [
@@ -6371,7 +6371,7 @@
         {
             "Code": "EinharMasterLocalPhysicalDamageTwoHand3",
             "NPCMasterID": "3",
-            "ID": "17738",
+            "ID": "17822",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6398,7 +6398,7 @@
         {
             "Code": "EinharMasterSpellAddedFireDamageTwoHand1",
             "NPCMasterID": "3",
-            "ID": "17746",
+            "ID": "17830",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -6428,7 +6428,7 @@
         {
             "Code": "EinharMasterSpellAddedFireDamageTwoHand2",
             "NPCMasterID": "3",
-            "ID": "17747",
+            "ID": "17831",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -6458,7 +6458,7 @@
         {
             "Code": "EinharMasterSpellAddedFireDamageTwoHand3",
             "NPCMasterID": "3",
-            "ID": "17748",
+            "ID": "17832",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6488,7 +6488,7 @@
         {
             "Code": "EinharMasterSpellAddedColdDamageTwoHand1",
             "NPCMasterID": "3",
-            "ID": "17752",
+            "ID": "17836",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -6518,7 +6518,7 @@
         {
             "Code": "EinharMasterSpellAddedColdDamageTwoHand2_",
             "NPCMasterID": "3",
-            "ID": "17753",
+            "ID": "17837",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -6548,7 +6548,7 @@
         {
             "Code": "EinharMasterSpellAddedColdDamageTwoHand3",
             "NPCMasterID": "3",
-            "ID": "17754",
+            "ID": "17838",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6578,7 +6578,7 @@
         {
             "Code": "EinharMasterSpellAddedLightningDamageTwoHand1",
             "NPCMasterID": "3",
-            "ID": "17758",
+            "ID": "17842",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -6608,7 +6608,7 @@
         {
             "Code": "EinharMasterSpellAddedLightningDamageTwoHand2",
             "NPCMasterID": "3",
-            "ID": "17759",
+            "ID": "17843",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -6638,7 +6638,7 @@
         {
             "Code": "EinharMasterSpellAddedLightningDamageTwoHand3",
             "NPCMasterID": "3",
-            "ID": "17760",
+            "ID": "17844",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6668,7 +6668,7 @@
         {
             "Code": "EinharMasterMinionDamageOnWeapon2h1_",
             "NPCMasterID": "3",
-            "ID": "17810",
+            "ID": "17894",
             "ModGenerationTypeID": "1",
             "Level": "30",
             "ModFamilyList": [
@@ -6692,7 +6692,7 @@
         {
             "Code": "EinharMasterMinionDamageOnWeapon2h2",
             "NPCMasterID": "3",
-            "ID": "17811",
+            "ID": "17895",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -6716,7 +6716,7 @@
         {
             "Code": "EinharMasterMinionDamageOnWeapon2h3",
             "NPCMasterID": "3",
-            "ID": "17812",
+            "ID": "17896",
             "ModGenerationTypeID": "1",
             "Level": "75",
             "ModFamilyList": [
@@ -6740,7 +6740,7 @@
         {
             "Code": "EinharMasterTrapDamageOnWeapon2h1",
             "NPCMasterID": "3",
-            "ID": "17815",
+            "ID": "17899",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -6762,7 +6762,7 @@
         {
             "Code": "EinharMasterTrapDamageOnWeapon2h2",
             "NPCMasterID": "3",
-            "ID": "17816",
+            "ID": "17900",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6784,7 +6784,7 @@
         {
             "Code": "EinharMasterMineDamageOnWeapon2h1",
             "NPCMasterID": "3",
-            "ID": "17819",
+            "ID": "17903",
             "ModGenerationTypeID": "1",
             "Level": "50",
             "ModFamilyList": [
@@ -6806,7 +6806,7 @@
         {
             "Code": "EinharMasterMineDamageOnWeapon2h2",
             "NPCMasterID": "3",
-            "ID": "17820",
+            "ID": "17904",
             "ModGenerationTypeID": "1",
             "Level": "68",
             "ModFamilyList": [
@@ -6828,7 +6828,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndImpaleCrafted1",
             "NPCMasterID": "5",
-            "ID": "16372",
+            "ID": "16456",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -6856,7 +6856,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndImpaleCrafted2",
             "NPCMasterID": "5",
-            "ID": "16373",
+            "ID": "16457",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -6884,7 +6884,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndImpaleCrafted3",
             "NPCMasterID": "5",
-            "ID": "16374",
+            "ID": "16458",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -6912,7 +6912,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndBleedChanceCrafted1",
             "NPCMasterID": "5",
-            "ID": "16375",
+            "ID": "16459",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -6944,7 +6944,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndBleedChanceCrafted2",
             "NPCMasterID": "5",
-            "ID": "16376",
+            "ID": "16460",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -6976,7 +6976,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndBleedChanceCrafted3",
             "NPCMasterID": "5",
-            "ID": "16377",
+            "ID": "16461",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7008,7 +7008,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndBlindChanceCrafted1_",
             "NPCMasterID": "5",
-            "ID": "16378",
+            "ID": "16462",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7036,7 +7036,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndBlindChanceCrafted2",
             "NPCMasterID": "5",
-            "ID": "16379",
+            "ID": "16463",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7064,7 +7064,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndBlindChanceCrafted3",
             "NPCMasterID": "5",
-            "ID": "16380",
+            "ID": "16464",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7092,7 +7092,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndPoisonChanceCrafted1",
             "NPCMasterID": "5",
-            "ID": "16381",
+            "ID": "16465",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7129,7 +7129,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndPoisonChanceCrafted2_",
             "NPCMasterID": "5",
-            "ID": "16382",
+            "ID": "16466",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7166,7 +7166,7 @@
         {
             "Code": "JunMaster2LocalIncreasedPhysicalDamageAndPoisonChanceCrafted3",
             "NPCMasterID": "5",
-            "ID": "16383",
+            "ID": "16467",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7203,7 +7203,7 @@
         {
             "Code": "JunMaster2FireDamageAndChanceToIgnite2h1",
             "NPCMasterID": "5",
-            "ID": "16406",
+            "ID": "16490",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7233,7 +7233,7 @@
         {
             "Code": "JunMaster2FireDamageAndChanceToIgnite2h2",
             "NPCMasterID": "5",
-            "ID": "16407",
+            "ID": "16491",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7263,7 +7263,7 @@
         {
             "Code": "JunMaster2FireDamageAndChanceToIgnite2h3",
             "NPCMasterID": "5",
-            "ID": "16408",
+            "ID": "16492",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7293,7 +7293,7 @@
         {
             "Code": "JunMaster2ColdDamageAndBaseChanceToFreeze2h1",
             "NPCMasterID": "5",
-            "ID": "16412",
+            "ID": "16496",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7323,7 +7323,7 @@
         {
             "Code": "JunMaster2ColdDamageAndBaseChanceToFreeze2h2",
             "NPCMasterID": "5",
-            "ID": "16413",
+            "ID": "16497",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7353,7 +7353,7 @@
         {
             "Code": "JunMaster2ColdDamageAndBaseChanceToFreeze2h3_",
             "NPCMasterID": "5",
-            "ID": "16414",
+            "ID": "16498",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7383,7 +7383,7 @@
         {
             "Code": "JunMaster2LightningDamageAndChanceToShock2h1",
             "NPCMasterID": "5",
-            "ID": "16418",
+            "ID": "16502",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7413,7 +7413,7 @@
         {
             "Code": "JunMaster2LightningDamageAndChanceToShock2h2",
             "NPCMasterID": "5",
-            "ID": "16419",
+            "ID": "16503",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7443,7 +7443,7 @@
         {
             "Code": "JunMaster2LightningDamageAndChanceToShock2h3",
             "NPCMasterID": "5",
-            "ID": "16420",
+            "ID": "16504",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7473,7 +7473,7 @@
         {
             "Code": "JunMaster2ChaosDamageAndChaosSkillDuration2h1",
             "NPCMasterID": "5",
-            "ID": "16424",
+            "ID": "16508",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7499,7 +7499,7 @@
         {
             "Code": "JunMaster2ChaosDamageAndChaosSkillDuration2h2",
             "NPCMasterID": "5",
-            "ID": "16425",
+            "ID": "16509",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7525,7 +7525,7 @@
         {
             "Code": "JunMaster2ChaosDamageAndChaosSkillDuration2h3_",
             "NPCMasterID": "5",
-            "ID": "16426",
+            "ID": "16510",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7551,7 +7551,7 @@
         {
             "Code": "JunMaster2SpellDamageAndManaRegenerationRate2h1_",
             "NPCMasterID": "5",
-            "ID": "16430",
+            "ID": "16514",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7581,7 +7581,7 @@
         {
             "Code": "JunMaster2SpellDamageAndManaRegenerationRate2h2_",
             "NPCMasterID": "5",
-            "ID": "16431",
+            "ID": "16515",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7611,7 +7611,7 @@
         {
             "Code": "JunMaster2SpellDamageAndManaRegenerationRate2h3_",
             "NPCMasterID": "5",
-            "ID": "16432",
+            "ID": "16516",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7641,7 +7641,7 @@
         {
             "Code": "JunMaster2SpellDamageAndNonChaosDamageToAddAsChaosDamage2h1",
             "NPCMasterID": "5",
-            "ID": "16436",
+            "ID": "16520",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7670,7 +7670,7 @@
         {
             "Code": "JunMaster2SpellDamageAndNonChaosDamageToAddAsChaosDamage2h2",
             "NPCMasterID": "5",
-            "ID": "16437",
+            "ID": "16521",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7699,7 +7699,7 @@
         {
             "Code": "JunMaster2SpellDamageAndNonChaosDamageToAddAsChaosDamage2h3",
             "NPCMasterID": "5",
-            "ID": "16438",
+            "ID": "16522",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7728,7 +7728,7 @@
         {
             "Code": "JunMaster2MinionDamageAndMinionMaximumLife2h1",
             "NPCMasterID": "5",
-            "ID": "16442",
+            "ID": "16526",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7757,7 +7757,7 @@
         {
             "Code": "JunMaster2MinionDamageAndMinionMaximumLife2h2_",
             "NPCMasterID": "5",
-            "ID": "16443",
+            "ID": "16527",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7786,7 +7786,7 @@
         {
             "Code": "JunMaster2MinionDamageAndMinionMaximumLife2h3",
             "NPCMasterID": "5",
-            "ID": "16444",
+            "ID": "16528",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7815,7 +7815,7 @@
         {
             "Code": "JunMaster2ElementalPenetrationWithAttacks1",
             "NPCMasterID": "5",
-            "ID": "16384",
+            "ID": "16468",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7843,7 +7843,7 @@
         {
             "Code": "JunMaster2ElementalPenetrationWithAttacks2",
             "NPCMasterID": "5",
-            "ID": "16385",
+            "ID": "16469",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7871,7 +7871,7 @@
         {
             "Code": "JunMaster2ElementalPenetrationWithAttacks3",
             "NPCMasterID": "5",
-            "ID": "16386",
+            "ID": "16470",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7899,7 +7899,7 @@
         {
             "Code": "JunMaster2ChaosPenetrationWithAttacks1",
             "NPCMasterID": "5",
-            "ID": "16387",
+            "ID": "16471",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -7927,7 +7927,7 @@
         {
             "Code": "JunMaster2ChaosPenetrationWithAttacks2",
             "NPCMasterID": "5",
-            "ID": "16388",
+            "ID": "16472",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -7955,7 +7955,7 @@
         {
             "Code": "JunMaster2ChaosPenetrationWithAttacks3_",
             "NPCMasterID": "5",
-            "ID": "16389",
+            "ID": "16473",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -7983,7 +7983,7 @@
         {
             "Code": "JunMaster2LocalIncreaseSocketedSupportGemLevel1",
             "NPCMasterID": "5",
-            "ID": "16738",
+            "ID": "16822",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -8006,7 +8006,7 @@
         {
             "Code": "JunMaster2LocalIncreaseSocketedSupportGemLevel2",
             "NPCMasterID": "5",
-            "ID": "16739",
+            "ID": "16823",
             "ModGenerationTypeID": "1",
             "Level": "80",
             "ModFamilyList": [
@@ -8029,7 +8029,7 @@
         {
             "Code": "JunMaster2SocketedGemQuality2",
             "NPCMasterID": "5",
-            "ID": "16753",
+            "ID": "16837",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -8052,7 +8052,7 @@
         {
             "Code": "JunMaster2SocketedGemQuality3",
             "NPCMasterID": "5",
-            "ID": "16754",
+            "ID": "16838",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -8075,7 +8075,7 @@
         {
             "Code": "JunMaster2BleedOnHitGained2h2",
             "NPCMasterID": "5",
-            "ID": "16759",
+            "ID": "16843",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -8107,7 +8107,7 @@
         {
             "Code": "JunMaster2BleedOnHitGained2h3_",
             "NPCMasterID": "5",
-            "ID": "16760",
+            "ID": "16844",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -8139,7 +8139,7 @@
         {
             "Code": "JunMaster2AlwaysHits1",
             "NPCMasterID": "5",
-            "ID": "16761",
+            "ID": "16845",
             "ModGenerationTypeID": "1",
             "Level": "60",
             "ModFamilyList": [
@@ -8162,7 +8162,7 @@
         {
             "Code": "JunMaster2FireAddedAsChaos2h2",
             "NPCMasterID": "5",
-            "ID": "16781",
+            "ID": "16865",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -8193,7 +8193,7 @@
         {
             "Code": "JunMaster2FireAddedAsChaos2h3_",
             "NPCMasterID": "5",
-            "ID": "16782",
+            "ID": "16866",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -8224,7 +8224,7 @@
         {
             "Code": "JunMaster2ColdAddedAsChaos2h2",
             "NPCMasterID": "5",
-            "ID": "16784",
+            "ID": "16868",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -8255,7 +8255,7 @@
         {
             "Code": "JunMaster2ColdAddedAsChaos2h3",
             "NPCMasterID": "5",
-            "ID": "16785",
+            "ID": "16869",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -8286,7 +8286,7 @@
         {
             "Code": "JunMaster2LightningAddedAsChaos2h2",
             "NPCMasterID": "5",
-            "ID": "16787",
+            "ID": "16871",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -8317,7 +8317,7 @@
         {
             "Code": "JunMaster2LightningAddedAsChaos2h3___",
             "NPCMasterID": "5",
-            "ID": "16788",
+            "ID": "16872",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -8348,7 +8348,7 @@
         {
             "Code": "JunMaster2PhysicalAddedAsChaos2h2",
             "NPCMasterID": "5",
-            "ID": "16790",
+            "ID": "16874",
             "ModGenerationTypeID": "1",
             "Level": "72",
             "ModFamilyList": [
@@ -8377,7 +8377,7 @@
         {
             "Code": "JunMaster2PhysicalAddedAsChaos2h3",
             "NPCMasterID": "5",
-            "ID": "16791",
+            "ID": "16875",
             "ModGenerationTypeID": "1",
             "Level": "81",
             "ModFamilyList": [
@@ -8406,7 +8406,7 @@
         {
             "Code": "DexMasterItemGenerationCannotChangeSuffixes",
             "NPCMasterID": "0",
-            "ID": "8673",
+            "ID": "8737",
             "ModGenerationTypeID": "1",
             "Level": "1",
             "ModFamilyList": [
@@ -8424,7 +8424,7 @@
         {
             "Code": "HelenaMasterFireResist1",
             "NPCMasterID": "3",
-            "ID": "17543",
+            "ID": "17627",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -8450,7 +8450,7 @@
         {
             "Code": "HelenaMasterColdResist1_",
             "NPCMasterID": "3",
-            "ID": "17546",
+            "ID": "17630",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -8476,7 +8476,7 @@
         {
             "Code": "HelenaMasterLightningResist1",
             "NPCMasterID": "3",
-            "ID": "17549",
+            "ID": "17633",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -8502,7 +8502,7 @@
         {
             "Code": "HelenaMasterStrength1",
             "NPCMasterID": "3",
-            "ID": "17565",
+            "ID": "17649",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -8524,7 +8524,7 @@
         {
             "Code": "HelenaMasterDexterity1",
             "NPCMasterID": "3",
-            "ID": "17568",
+            "ID": "17652",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -8546,7 +8546,7 @@
         {
             "Code": "HelenaMasterIntelligence1",
             "NPCMasterID": "3",
-            "ID": "17571",
+            "ID": "17655",
             "ModGenerationTypeID": "2",
             "Level": "15",
             "ModFamilyList": [
@@ -8568,7 +8568,7 @@
         {
             "Code": "EinharMasterFireResist2",
             "NPCMasterID": "3",
-            "ID": "17544",
+            "ID": "17628",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -8594,7 +8594,7 @@
         {
             "Code": "EinharMasterFireResist3_",
             "NPCMasterID": "3",
-            "ID": "17545",
+            "ID": "17629",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -8620,7 +8620,7 @@
         {
             "Code": "EinharMasterColdResist2",
             "NPCMasterID": "3",
-            "ID": "17547",
+            "ID": "17631",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -8646,7 +8646,7 @@
         {
             "Code": "EinharMasterColdResist3__",
             "NPCMasterID": "3",
-            "ID": "17548",
+            "ID": "17632",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -8672,7 +8672,7 @@
         {
             "Code": "EinharMasterLightningResist2",
             "NPCMasterID": "3",
-            "ID": "17550",
+            "ID": "17634",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -8698,7 +8698,7 @@
         {
             "Code": "EinharMasterLightningResist3_",
             "NPCMasterID": "3",
-            "ID": "17551",
+            "ID": "17635",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -8724,7 +8724,7 @@
         {
             "Code": "EinharMasterFireAndColdResist1",
             "NPCMasterID": "3",
-            "ID": "17552",
+            "ID": "17636",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -8752,7 +8752,7 @@
         {
             "Code": "EinharMasterFireAndColdResist2",
             "NPCMasterID": "3",
-            "ID": "17553",
+            "ID": "17637",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -8780,7 +8780,7 @@
         {
             "Code": "EinharMasterFireAndColdResist3",
             "NPCMasterID": "3",
-            "ID": "17554",
+            "ID": "17638",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -8808,7 +8808,7 @@
         {
             "Code": "EinharMasterColdAndLightningResist1_",
             "NPCMasterID": "3",
-            "ID": "17555",
+            "ID": "17639",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -8836,7 +8836,7 @@
         {
             "Code": "EinharMasterColdAndLightningResist2",
             "NPCMasterID": "3",
-            "ID": "17556",
+            "ID": "17640",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -8864,7 +8864,7 @@
         {
             "Code": "EinharMasterColdAndLightningResist3_",
             "NPCMasterID": "3",
-            "ID": "17557",
+            "ID": "17641",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -8892,7 +8892,7 @@
         {
             "Code": "EinharMasterFireAndLightningResist1",
             "NPCMasterID": "3",
-            "ID": "17558",
+            "ID": "17642",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -8920,7 +8920,7 @@
         {
             "Code": "EinharMasterFireAndLightningResist2",
             "NPCMasterID": "3",
-            "ID": "17559",
+            "ID": "17643",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -8948,7 +8948,7 @@
         {
             "Code": "EinharMasterFireAndLightningResist3_",
             "NPCMasterID": "3",
-            "ID": "17560",
+            "ID": "17644",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -8976,7 +8976,7 @@
         {
             "Code": "EinharMasterStrength2",
             "NPCMasterID": "3",
-            "ID": "17566",
+            "ID": "17650",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -8998,7 +8998,7 @@
         {
             "Code": "EinharMasterStrength3",
             "NPCMasterID": "3",
-            "ID": "17567",
+            "ID": "17651",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9020,7 +9020,7 @@
         {
             "Code": "EinharMasterDexterity2",
             "NPCMasterID": "3",
-            "ID": "17569",
+            "ID": "17653",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -9042,7 +9042,7 @@
         {
             "Code": "EinharMasterDexterity3",
             "NPCMasterID": "3",
-            "ID": "17570",
+            "ID": "17654",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9064,7 +9064,7 @@
         {
             "Code": "EinharMasterIntelligence2__",
             "NPCMasterID": "3",
-            "ID": "17572",
+            "ID": "17656",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -9086,7 +9086,7 @@
         {
             "Code": "EinharMasterIntelligence3",
             "NPCMasterID": "3",
-            "ID": "17573",
+            "ID": "17657",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9108,7 +9108,7 @@
         {
             "Code": "EinharMasterAllAttributes1",
             "NPCMasterID": "3",
-            "ID": "17574",
+            "ID": "17658",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -9130,7 +9130,7 @@
         {
             "Code": "EinharMasterAllAttributes2",
             "NPCMasterID": "3",
-            "ID": "17575",
+            "ID": "17659",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9152,7 +9152,7 @@
         {
             "Code": "EinharMasterLocalLifeLeechPermyriad1__",
             "NPCMasterID": "3",
-            "ID": "17586",
+            "ID": "17670",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -9180,7 +9180,7 @@
         {
             "Code": "EinharMasterLocalLifeLeechPermyriad2",
             "NPCMasterID": "3",
-            "ID": "17587",
+            "ID": "17671",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9208,7 +9208,7 @@
         {
             "Code": "EinharMasterLocalManaLeechPermyriad1",
             "NPCMasterID": "3",
-            "ID": "17588",
+            "ID": "17672",
             "ModGenerationTypeID": "2",
             "Level": "70",
             "ModFamilyList": [
@@ -9236,7 +9236,7 @@
         {
             "Code": "EinharMasterManaRegeneration1",
             "NPCMasterID": "3",
-            "ID": "17600",
+            "ID": "17684",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -9260,7 +9260,7 @@
         {
             "Code": "EinharMasterManaRegeneration2",
             "NPCMasterID": "3",
-            "ID": "17601",
+            "ID": "17685",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9284,7 +9284,7 @@
         {
             "Code": "EinharMasterLocalIncreasedAttackSpeed1__",
             "NPCMasterID": "3",
-            "ID": "17618",
+            "ID": "17702",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -9308,7 +9308,7 @@
         {
             "Code": "EinharMasterLocalIncreasedAttackSpeed2_",
             "NPCMasterID": "3",
-            "ID": "17619",
+            "ID": "17703",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9332,7 +9332,7 @@
         {
             "Code": "EinharMasterLocalIncreasedAttackSpeed3",
             "NPCMasterID": "3",
-            "ID": "17620",
+            "ID": "17704",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -9356,7 +9356,7 @@
         {
             "Code": "EinharMasterIncreasedCastSpeedTwoHand1",
             "NPCMasterID": "3",
-            "ID": "17628",
+            "ID": "17712",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -9380,7 +9380,7 @@
         {
             "Code": "EinharMasterIncreasedCastSpeedTwoHand2",
             "NPCMasterID": "3",
-            "ID": "17629",
+            "ID": "17713",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9404,7 +9404,7 @@
         {
             "Code": "EinharMasterIncreasedCastSpeedTwoHand3_",
             "NPCMasterID": "3",
-            "ID": "17630",
+            "ID": "17714",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -9428,7 +9428,7 @@
         {
             "Code": "EinharMasterFireDamage1",
             "NPCMasterID": "3",
-            "ID": "17638",
+            "ID": "17722",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -9455,7 +9455,7 @@
         {
             "Code": "EinharMasterFireDamage2_",
             "NPCMasterID": "3",
-            "ID": "17639",
+            "ID": "17723",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9482,7 +9482,7 @@
         {
             "Code": "EinharMasterColdDamage1_",
             "NPCMasterID": "3",
-            "ID": "17646",
+            "ID": "17730",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -9509,7 +9509,7 @@
         {
             "Code": "EinharMasterColdDamage2",
             "NPCMasterID": "3",
-            "ID": "17647",
+            "ID": "17731",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9536,7 +9536,7 @@
         {
             "Code": "EinharMasterLightningDamage1",
             "NPCMasterID": "3",
-            "ID": "17654",
+            "ID": "17738",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -9563,7 +9563,7 @@
         {
             "Code": "EinharMasterLightningDamage2_",
             "NPCMasterID": "3",
-            "ID": "17655",
+            "ID": "17739",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9590,7 +9590,7 @@
         {
             "Code": "EinharMasterChaosDamage1",
             "NPCMasterID": "3",
-            "ID": "17662",
+            "ID": "17746",
             "ModGenerationTypeID": "2",
             "Level": "30",
             "ModFamilyList": [
@@ -9615,7 +9615,7 @@
         {
             "Code": "EinharMasterChaosDamage2",
             "NPCMasterID": "3",
-            "ID": "17663",
+            "ID": "17747",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9640,7 +9640,7 @@
         {
             "Code": "EinharMasterLocalAccuracyRating1",
             "NPCMasterID": "3",
-            "ID": "17664",
+            "ID": "17748",
             "ModGenerationTypeID": "2",
             "Level": "20",
             "ModFamilyList": [
@@ -9662,7 +9662,7 @@
         {
             "Code": "EinharMasterLocalAccuracyRating2",
             "NPCMasterID": "3",
-            "ID": "17665",
+            "ID": "17749",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9684,7 +9684,7 @@
         {
             "Code": "EinharMasterLocalAccuracyRating3",
             "NPCMasterID": "3",
-            "ID": "17666",
+            "ID": "17750",
             "ModGenerationTypeID": "2",
             "Level": "68",
             "ModFamilyList": [
@@ -9706,7 +9706,7 @@
         {
             "Code": "EinharMasterLocalCriticalStrikeChance1_",
             "NPCMasterID": "3",
-            "ID": "17761",
+            "ID": "17845",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9730,7 +9730,7 @@
         {
             "Code": "EinharMasterLocalCriticalStrikeChance2",
             "NPCMasterID": "3",
-            "ID": "17762",
+            "ID": "17846",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -9754,7 +9754,7 @@
         {
             "Code": "EinharMasterLocalCriticalStrikeChance3_",
             "NPCMasterID": "3",
-            "ID": "17763",
+            "ID": "17847",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -9778,7 +9778,7 @@
         {
             "Code": "EinharMasterCriticalStrikeMultiplier1",
             "NPCMasterID": "3",
-            "ID": "17764",
+            "ID": "17848",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9802,7 +9802,7 @@
         {
             "Code": "EinharMasterCriticalStrikeMultiplier2",
             "NPCMasterID": "3",
-            "ID": "17765",
+            "ID": "17849",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -9826,7 +9826,7 @@
         {
             "Code": "EinharMasterCriticalStrikeMultiplier3",
             "NPCMasterID": "3",
-            "ID": "17766",
+            "ID": "17850",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -9850,7 +9850,7 @@
         {
             "Code": "EinharMasterCriticalStrikeChanceSpells2h1",
             "NPCMasterID": "3",
-            "ID": "17769",
+            "ID": "17853",
             "ModGenerationTypeID": "2",
             "Level": "40",
             "ModFamilyList": [
@@ -9874,7 +9874,7 @@
         {
             "Code": "EinharMasterCriticalStrikeChanceSpells2h2_",
             "NPCMasterID": "3",
-            "ID": "17770",
+            "ID": "17854",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -9898,7 +9898,7 @@
         {
             "Code": "EinharMasterTrapThrowingSpeed2h1",
             "NPCMasterID": "3",
-            "ID": "17823",
+            "ID": "17907",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9920,7 +9920,7 @@
         {
             "Code": "EinharMasterTrapThrowingSpeed2h2_",
             "NPCMasterID": "3",
-            "ID": "17824",
+            "ID": "17908",
             "ModGenerationTypeID": "2",
             "Level": "68",
             "ModFamilyList": [
@@ -9942,7 +9942,7 @@
         {
             "Code": "EinharMasterMineLayingSpeed2h1",
             "NPCMasterID": "3",
-            "ID": "17827",
+            "ID": "17911",
             "ModGenerationTypeID": "2",
             "Level": "50",
             "ModFamilyList": [
@@ -9964,7 +9964,7 @@
         {
             "Code": "EinharMasterMineLayingSpeed2h2_",
             "NPCMasterID": "3",
-            "ID": "17828",
+            "ID": "17912",
             "ModGenerationTypeID": "2",
             "Level": "68",
             "ModFamilyList": [
@@ -9986,7 +9986,7 @@
         {
             "Code": "JunMaster2MinionAttackAndCastSpeedOnWeapon2h1_",
             "NPCMasterID": "5",
-            "ID": "16448",
+            "ID": "16532",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10015,7 +10015,7 @@
         {
             "Code": "JunMaster2MinionAttackAndCastSpeedOnWeapon2h2",
             "NPCMasterID": "5",
-            "ID": "16449",
+            "ID": "16533",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10044,7 +10044,7 @@
         {
             "Code": "JunMaster2MinionAttackAndCastSpeedOnWeapon2h3_",
             "NPCMasterID": "5",
-            "ID": "16450",
+            "ID": "16534",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10073,7 +10073,7 @@
         {
             "Code": "JunMaster2ChaosDamageOverTimeMultiplierTwoHand1",
             "NPCMasterID": "5",
-            "ID": "16475",
+            "ID": "16559",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10100,7 +10100,7 @@
         {
             "Code": "JunMaster2ChaosDamageOverTimeMultiplierTwoHand2_",
             "NPCMasterID": "5",
-            "ID": "16476",
+            "ID": "16560",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10127,7 +10127,7 @@
         {
             "Code": "JunMaster2ChaosDamageOverTimeMultiplierTwoHand3",
             "NPCMasterID": "5",
-            "ID": "16477",
+            "ID": "16561",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10154,7 +10154,7 @@
         {
             "Code": "JunMaster2PhysicalDamageOverTimeMultiplierTwoHand1",
             "NPCMasterID": "5",
-            "ID": "16481",
+            "ID": "16565",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10181,7 +10181,7 @@
         {
             "Code": "JunMaster2PhysicalDamageOverTimeMultiplierTwoHand2",
             "NPCMasterID": "5",
-            "ID": "16482",
+            "ID": "16566",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10208,7 +10208,7 @@
         {
             "Code": "JunMaster2PhysicalDamageOverTimeMultiplierTwoHand3",
             "NPCMasterID": "5",
-            "ID": "16483",
+            "ID": "16567",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10235,7 +10235,7 @@
         {
             "Code": "JunMaster2ColdDamageOverTimeMultiplierTwoHand1",
             "NPCMasterID": "5",
-            "ID": "16487",
+            "ID": "16571",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10264,7 +10264,7 @@
         {
             "Code": "JunMaster2ColdDamageOverTimeMultiplierTwoHand2",
             "NPCMasterID": "5",
-            "ID": "16488",
+            "ID": "16572",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10293,7 +10293,7 @@
         {
             "Code": "JunMaster2ColdDamageOverTimeMultiplierTwoHand3",
             "NPCMasterID": "5",
-            "ID": "16489",
+            "ID": "16573",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10322,7 +10322,7 @@
         {
             "Code": "JunMaster2FireDamageOverTimeMultiplierTwoHand1_",
             "NPCMasterID": "5",
-            "ID": "16493",
+            "ID": "16577",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10351,7 +10351,7 @@
         {
             "Code": "JunMaster2FireDamageOverTimeMultiplierTwoHand2",
             "NPCMasterID": "5",
-            "ID": "16494",
+            "ID": "16578",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10380,7 +10380,7 @@
         {
             "Code": "JunMaster2FireDamageOverTimeMultiplierTwoHand3",
             "NPCMasterID": "5",
-            "ID": "16495",
+            "ID": "16579",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10409,7 +10409,7 @@
         {
             "Code": "JunMaster2DoubleDamageChance2h1",
             "NPCMasterID": "5",
-            "ID": "16390",
+            "ID": "16474",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10432,7 +10432,7 @@
         {
             "Code": "JunMaster2DoubleDamageChance2h2",
             "NPCMasterID": "5",
-            "ID": "16391",
+            "ID": "16475",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10455,7 +10455,7 @@
         {
             "Code": "JunMaster2DamagePerEnduranceCharge2h1",
             "NPCMasterID": "5",
-            "ID": "16616",
+            "ID": "16700",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10478,7 +10478,7 @@
         {
             "Code": "JunMaster2DamagePerFrenzyCharge2h1",
             "NPCMasterID": "5",
-            "ID": "16618",
+            "ID": "16702",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10501,7 +10501,7 @@
         {
             "Code": "JunMaster2DamagePerPowerCharge2h1__",
             "NPCMasterID": "5",
-            "ID": "16620",
+            "ID": "16704",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10524,7 +10524,7 @@
         {
             "Code": "JunMaster2CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby2h1_",
             "NPCMasterID": "5",
-            "ID": "16647",
+            "ID": "16731",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10549,7 +10549,7 @@
         {
             "Code": "JunMaster2CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby2h2",
             "NPCMasterID": "5",
-            "ID": "16648",
+            "ID": "16732",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10574,7 +10574,7 @@
         {
             "Code": "JunMaster2CriticalStrikeMultiplierIfRareOrUniqueEnemyNearby2h3",
             "NPCMasterID": "5",
-            "ID": "16649",
+            "ID": "16733",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10599,7 +10599,7 @@
         {
             "Code": "JunMaster2AttackSpeedPercentIfRareOrUniqueEnemyNearby2h1",
             "NPCMasterID": "5",
-            "ID": "16653",
+            "ID": "16737",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10624,7 +10624,7 @@
         {
             "Code": "JunMaster2AttackSpeedPercentIfRareOrUniqueEnemyNearby2h2_",
             "NPCMasterID": "5",
-            "ID": "16654",
+            "ID": "16738",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10649,7 +10649,7 @@
         {
             "Code": "JunMaster2AttackSpeedPercentIfRareOrUniqueEnemyNearby2h3",
             "NPCMasterID": "5",
-            "ID": "16655",
+            "ID": "16739",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10674,7 +10674,7 @@
         {
             "Code": "JunMaster2ChanceToDealDoubleDamageWhileFocused2h1_",
             "NPCMasterID": "5",
-            "ID": "16712",
+            "ID": "16796",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10697,7 +10697,7 @@
         {
             "Code": "JunMaster2ChanceToDealDoubleDamageWhileFocused2h2",
             "NPCMasterID": "5",
-            "ID": "16713",
+            "ID": "16797",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -10720,7 +10720,7 @@
         {
             "Code": "JunMaster2ChanceToDealDoubleDamageWhileFocused2h3",
             "NPCMasterID": "5",
-            "ID": "16714",
+            "ID": "16798",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -10743,7 +10743,7 @@
         {
             "Code": "JunMaster2LocalAttackSpeedDexterityIntelligence1____",
             "NPCMasterID": "5",
-            "ID": "16830",
+            "ID": "16914",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10771,7 +10771,7 @@
         {
             "Code": "JunMaster2LocalAttackSpeedDexterityIntelligence2",
             "NPCMasterID": "5",
-            "ID": "16831",
+            "ID": "16915",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -10799,7 +10799,7 @@
         {
             "Code": "JunMaster2LocalCriticalStrikeChanceStrengthIntelligence1",
             "NPCMasterID": "5",
-            "ID": "16832",
+            "ID": "16916",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10827,7 +10827,7 @@
         {
             "Code": "JunMaster2LocalCriticalStrikeChanceStrengthIntelligence2___",
             "NPCMasterID": "5",
-            "ID": "16833",
+            "ID": "16917",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -10855,7 +10855,7 @@
         {
             "Code": "JunMaster2LocalAccuracyRatingStrengthDexterity1",
             "NPCMasterID": "5",
-            "ID": "16834",
+            "ID": "16918",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10881,7 +10881,7 @@
         {
             "Code": "JunMaster2LocalAccuracyRatingStrengthDexterity2",
             "NPCMasterID": "5",
-            "ID": "16835",
+            "ID": "16919",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -10907,7 +10907,7 @@
         {
             "Code": "JunMaster2LocalAttackSpeedAndLocalDisplayTriggerLevel1BloodRageOnKillChance1_",
             "NPCMasterID": "5",
-            "ID": "16836",
+            "ID": "16920",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10932,7 +10932,7 @@
         {
             "Code": "JunMaster2LocalAttackSpeedAndLocalDisplayTriggerLevel1BloodRageOnKillChance2",
             "NPCMasterID": "5",
-            "ID": "16837",
+            "ID": "16921",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -10957,7 +10957,7 @@
         {
             "Code": "JunMaster2CastSpeedAndGainArcaneSurgeOnKillChance2h1_",
             "NPCMasterID": "5",
-            "ID": "16841",
+            "ID": "16925",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -10982,7 +10982,7 @@
         {
             "Code": "JunMaster2CastSpeedAndGainArcaneSurgeOnKillChance2h2_",
             "NPCMasterID": "5",
-            "ID": "16842",
+            "ID": "16926",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -11007,7 +11007,7 @@
         {
             "Code": "JunMaster2CastSpeedAndGainArcaneSurgeOnKillChance2h3",
             "NPCMasterID": "5",
-            "ID": "16843",
+            "ID": "16927",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -11032,7 +11032,7 @@
         {
             "Code": "JunMaster2TriggerSocketedSpellOnSkillUse1",
             "NPCMasterID": "5",
-            "ID": "16844",
+            "ID": "16928",
             "ModGenerationTypeID": "2",
             "Level": "75",
             "ModFamilyList": [
@@ -11058,7 +11058,7 @@
         {
             "Code": "JunMaster2FireAndChaosDamageResistance1_",
             "NPCMasterID": "5",
-            "ID": "16845",
+            "ID": "16929",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -11087,7 +11087,7 @@
         {
             "Code": "JunMaster2FireAndChaosDamageResistance2_",
             "NPCMasterID": "5",
-            "ID": "16846",
+            "ID": "16930",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -11116,7 +11116,7 @@
         {
             "Code": "JunMaster2FireAndChaosDamageResistance3",
             "NPCMasterID": "5",
-            "ID": "16847",
+            "ID": "16931",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -11145,7 +11145,7 @@
         {
             "Code": "JunMaster2LightningAndChaosDamageResistance1",
             "NPCMasterID": "5",
-            "ID": "16848",
+            "ID": "16932",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -11174,7 +11174,7 @@
         {
             "Code": "JunMaster2LightningAndChaosDamageResistance2_",
             "NPCMasterID": "5",
-            "ID": "16849",
+            "ID": "16933",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -11203,7 +11203,7 @@
         {
             "Code": "JunMaster2LightningAndChaosDamageResistance3",
             "NPCMasterID": "5",
-            "ID": "16850",
+            "ID": "16934",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -11232,7 +11232,7 @@
         {
             "Code": "JunMaster2ColdAndChaosDamageResistance1_",
             "NPCMasterID": "5",
-            "ID": "16851",
+            "ID": "16935",
             "ModGenerationTypeID": "2",
             "Level": "60",
             "ModFamilyList": [
@@ -11261,7 +11261,7 @@
         {
             "Code": "JunMaster2ColdAndChaosDamageResistance2_",
             "NPCMasterID": "5",
-            "ID": "16852",
+            "ID": "16936",
             "ModGenerationTypeID": "2",
             "Level": "72",
             "ModFamilyList": [
@@ -11290,7 +11290,7 @@
         {
             "Code": "JunMaster2ColdAndChaosDamageResistance3",
             "NPCMasterID": "5",
-            "ID": "16853",
+            "ID": "16937",
             "ModGenerationTypeID": "2",
             "Level": "81",
             "ModFamilyList": [
@@ -11319,7 +11319,7 @@
         {
             "Code": "StrMasterItemGenerationCannotChangePrefixes",
             "NPCMasterID": "0",
-            "ID": "8672",
+            "ID": "8736",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -11337,7 +11337,7 @@
         {
             "Code": "StrIntMasterItemGenerationCanHaveMultipleCraftedMods",
             "NPCMasterID": "0",
-            "ID": "8676",
+            "ID": "8740",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -11355,7 +11355,7 @@
         {
             "Code": "IntMasterItemGenerationCannotRollAttackAffixes",
             "NPCMasterID": "0",
-            "ID": "8674",
+            "ID": "8738",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -11373,7 +11373,7 @@
         {
             "Code": "StrDexMasterItemGenerationCannotRollCasterAffixes",
             "NPCMasterID": "0",
-            "ID": "8675",
+            "ID": "8739",
             "ModGenerationTypeID": "2",
             "Level": "1",
             "ModFamilyList": [
@@ -11393,8 +11393,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "74",
-            "TwoHandMaceModsID": "1866",
-            "ID": "1866",
+            "TwoHandMaceModsID": "1878",
+            "ID": "1878",
             "Name": "Frosted",
             "Code": "LocalAddedColdDamageTwoHand1",
             "Level": "2",
@@ -11425,8 +11425,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "75",
-            "TwoHandMaceModsID": "1867",
-            "ID": "1867",
+            "TwoHandMaceModsID": "1879",
+            "ID": "1879",
             "Name": "Chilled",
             "Code": "LocalAddedColdDamageTwoHand2",
             "Level": "12",
@@ -11457,8 +11457,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "76",
-            "TwoHandMaceModsID": "1869",
-            "ID": "1869",
+            "TwoHandMaceModsID": "1881",
+            "ID": "1881",
             "Name": "Frigid",
             "Code": "LocalAddedColdDamageTwoHand4",
             "Level": "27",
@@ -11489,8 +11489,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "77",
-            "TwoHandMaceModsID": "1871",
-            "ID": "1871",
+            "TwoHandMaceModsID": "1883",
+            "ID": "1883",
             "Name": "Frozen",
             "Code": "LocalAddedColdDamageTwoHand6",
             "Level": "43",
@@ -11521,8 +11521,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "78",
-            "TwoHandMaceModsID": "1873",
-            "ID": "1873",
+            "TwoHandMaceModsID": "1885",
+            "ID": "1885",
             "Name": "Polar",
             "Code": "LocalAddedColdDamageTwoHand8",
             "Level": "63",
@@ -11553,8 +11553,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "79",
-            "TwoHandMaceModsID": "1874",
-            "ID": "1874",
+            "TwoHandMaceModsID": "1886",
+            "ID": "1886",
             "Name": "Entombing",
             "Code": "LocalAddedColdDamageTwoHand9",
             "Level": "75",
@@ -11585,8 +11585,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "80",
-            "TwoHandMaceModsID": "1886",
-            "ID": "1886",
+            "TwoHandMaceModsID": "1898",
+            "ID": "1898",
             "Name": "Essences",
             "Code": "LocalAddedColdDamageTwoHandEssence7",
             "Level": "82",
@@ -11617,8 +11617,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "81",
-            "TwoHandMaceModsID": "2324",
-            "ID": "2324",
+            "TwoHandMaceModsID": "2341",
+            "ID": "2341",
             "Name": "Apprentice's",
             "Code": "SpellDamageOnTwoHandWeapon1",
             "Level": "2",
@@ -11645,8 +11645,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "82",
-            "TwoHandMaceModsID": "2325",
-            "ID": "2325",
+            "TwoHandMaceModsID": "2342",
+            "ID": "2342",
             "Name": "Adept's",
             "Code": "SpellDamageOnTwoHandWeapon2",
             "Level": "11",
@@ -11673,8 +11673,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "83",
-            "TwoHandMaceModsID": "2326",
-            "ID": "2326",
+            "TwoHandMaceModsID": "2343",
+            "ID": "2343",
             "Name": "Scholar's",
             "Code": "SpellDamageOnTwoHandWeapon3",
             "Level": "23",
@@ -11701,8 +11701,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "84",
-            "TwoHandMaceModsID": "2327",
-            "ID": "2327",
+            "TwoHandMaceModsID": "2344",
+            "ID": "2344",
             "Name": "Professor's",
             "Code": "SpellDamageOnTwoHandWeapon4",
             "Level": "35",
@@ -11729,8 +11729,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "85",
-            "TwoHandMaceModsID": "2332",
-            "ID": "2332",
+            "TwoHandMaceModsID": "2349",
+            "ID": "2349",
             "Name": "Essences",
             "Code": "SpellDamageOnTwoHandWeaponEssence5",
             "Level": "58",
@@ -11757,8 +11757,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "86",
-            "TwoHandMaceModsID": "2333",
-            "ID": "2333",
+            "TwoHandMaceModsID": "2350",
+            "ID": "2350",
             "Name": "Essences",
             "Code": "SpellDamageOnTwoHandWeaponEssence6",
             "Level": "74",
@@ -11785,8 +11785,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "87",
-            "TwoHandMaceModsID": "2334",
-            "ID": "2334",
+            "TwoHandMaceModsID": "2351",
+            "ID": "2351",
             "Name": "Essences",
             "Code": "SpellDamageOnTwoHandWeaponEssence7",
             "Level": "82",
@@ -11813,8 +11813,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "88",
-            "TwoHandMaceModsID": "9410",
-            "ID": "9410",
+            "TwoHandMaceModsID": "9474",
+            "ID": "9474",
             "Name": "Essences",
             "Code": "LifeLeechPermyriadLocalEssence1",
             "Level": "1",
@@ -11844,8 +11844,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "89",
-            "TwoHandMaceModsID": "9411",
-            "ID": "9411",
+            "TwoHandMaceModsID": "9475",
+            "ID": "9475",
             "Name": "Essences",
             "Code": "LifeLeechPermyriadLocalEssence2",
             "Level": "10",
@@ -11875,8 +11875,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "90",
-            "TwoHandMaceModsID": "9412",
-            "ID": "9412",
+            "TwoHandMaceModsID": "9476",
+            "ID": "9476",
             "Name": "Essences",
             "Code": "LifeLeechPermyriadLocalEssence3",
             "Level": "26",
@@ -11906,8 +11906,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "91",
-            "TwoHandMaceModsID": "9413",
-            "ID": "9413",
+            "TwoHandMaceModsID": "9477",
+            "ID": "9477",
             "Name": "Essences",
             "Code": "LifeLeechPermyriadLocalEssence4",
             "Level": "42",
@@ -11937,8 +11937,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "92",
-            "TwoHandMaceModsID": "9414",
-            "ID": "9414",
+            "TwoHandMaceModsID": "9478",
+            "ID": "9478",
             "Name": "Essences",
             "Code": "LifeLeechPermyriadLocalEssence5",
             "Level": "58",
@@ -11968,8 +11968,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "93",
-            "TwoHandMaceModsID": "9415",
-            "ID": "9415",
+            "TwoHandMaceModsID": "9479",
+            "ID": "9479",
             "Name": "Essences",
             "Code": "LifeLeechPermyriadLocalEssence6",
             "Level": "74",
@@ -11999,8 +11999,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "94",
-            "TwoHandMaceModsID": "9416",
-            "ID": "9416",
+            "TwoHandMaceModsID": "9480",
+            "ID": "9480",
             "Name": "Essences",
             "Code": "LifeLeechPermyriadLocalEssence7",
             "Level": "82",
@@ -12030,8 +12030,8 @@
         {
             "Tier": "1",
             "BaseItemTypesID": "95",
-            "TwoHandMaceModsID": "1338",
-            "ID": "1338",
+            "TwoHandMaceModsID": "1347",
+            "ID": "1347",
             "Name": "Glinting",
             "Code": "LocalAddedPhysicalDamageTwoHand1",
             "Level": "2",
@@ -12060,8 +12060,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "96",
-            "TwoHandMaceModsID": "1339",
-            "ID": "1339",
+            "TwoHandMaceModsID": "1348",
+            "ID": "1348",
             "Name": "Burnished",
             "Code": "LocalAddedPhysicalDamageTwoHand2",
             "Level": "13",
@@ -12090,8 +12090,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "97",
-            "TwoHandMaceModsID": "1340",
-            "ID": "1340",
+            "TwoHandMaceModsID": "1349",
+            "ID": "1349",
             "Name": "Polished",
             "Code": "LocalAddedPhysicalDamageTwoHand3",
             "Level": "21",
@@ -12120,8 +12120,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "98",
-            "TwoHandMaceModsID": "1341",
-            "ID": "1341",
+            "TwoHandMaceModsID": "1350",
+            "ID": "1350",
             "Name": "Honed",
             "Code": "LocalAddedPhysicalDamageTwoHand4",
             "Level": "29",
@@ -12150,8 +12150,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "99",
-            "TwoHandMaceModsID": "1343",
-            "ID": "1343",
+            "TwoHandMaceModsID": "1352",
+            "ID": "1352",
             "Name": "Annealed",
             "Code": "LocalAddedPhysicalDamageTwoHand6",
             "Level": "46",
@@ -12180,8 +12180,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "100",
-            "TwoHandMaceModsID": "1344",
-            "ID": "1344",
+            "TwoHandMaceModsID": "1353",
+            "ID": "1353",
             "Name": "Razor-sharp",
             "Code": "LocalAddedPhysicalDamageTwoHand7",
             "Level": "54",
@@ -12210,8 +12210,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "101",
-            "TwoHandMaceModsID": "1348",
-            "ID": "1348",
+            "TwoHandMaceModsID": "1357",
+            "ID": "1357",
             "Name": "Essences",
             "Code": "LocalAddedPhysicalDamageTwoHandEssenceNew7__",
             "Level": "82",
@@ -12240,8 +12240,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "102",
-            "TwoHandMaceModsID": "8719",
-            "ID": "8719",
+            "TwoHandMaceModsID": "8783",
+            "ID": "8783",
             "Name": "Essences",
             "Code": "ColdResistancePenetrationTwoHandEssence1",
             "Level": "10",
@@ -12270,8 +12270,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "103",
-            "TwoHandMaceModsID": "8720",
-            "ID": "8720",
+            "TwoHandMaceModsID": "8784",
+            "ID": "8784",
             "Name": "Essences",
             "Code": "ColdResistancePenetrationTwoHandEssence2",
             "Level": "26",
@@ -12300,8 +12300,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "104",
-            "TwoHandMaceModsID": "8721",
-            "ID": "8721",
+            "TwoHandMaceModsID": "8785",
+            "ID": "8785",
             "Name": "Essences",
             "Code": "ColdResistancePenetrationTwoHandEssence3",
             "Level": "42",
@@ -12330,8 +12330,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "105",
-            "TwoHandMaceModsID": "8722",
-            "ID": "8722",
+            "TwoHandMaceModsID": "8786",
+            "ID": "8786",
             "Name": "Essences",
             "Code": "ColdResistancePenetrationTwoHandEssence4",
             "Level": "58",
@@ -12360,8 +12360,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "106",
-            "TwoHandMaceModsID": "8723",
-            "ID": "8723",
+            "TwoHandMaceModsID": "8787",
+            "ID": "8787",
             "Name": "Essences",
             "Code": "ColdResistancePenetrationTwoHandEssence5",
             "Level": "74",
@@ -12390,8 +12390,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "107",
-            "TwoHandMaceModsID": "8724",
-            "ID": "8724",
+            "TwoHandMaceModsID": "8788",
+            "ID": "8788",
             "Name": "Essences",
             "Code": "ColdResistancePenetrationTwoHandEssence6__",
             "Level": "82",
@@ -12420,8 +12420,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "108",
-            "TwoHandMaceModsID": "1813",
-            "ID": "1813",
+            "TwoHandMaceModsID": "1825",
+            "ID": "1825",
             "Name": "Smouldering",
             "Code": "LocalAddedFireDamageTwoHand2",
             "Level": "11",
@@ -12452,8 +12452,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "109",
-            "TwoHandMaceModsID": "1815",
-            "ID": "1815",
+            "TwoHandMaceModsID": "1827",
+            "ID": "1827",
             "Name": "Burning",
             "Code": "LocalAddedFireDamageTwoHand4",
             "Level": "26",
@@ -12484,8 +12484,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "110",
-            "TwoHandMaceModsID": "1817",
-            "ID": "1817",
+            "TwoHandMaceModsID": "1829",
+            "ID": "1829",
             "Name": "Scorching",
             "Code": "LocalAddedFireDamageTwoHand6",
             "Level": "42",
@@ -12516,8 +12516,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "111",
-            "TwoHandMaceModsID": "1819",
-            "ID": "1819",
+            "TwoHandMaceModsID": "1831",
+            "ID": "1831",
             "Name": "Blasting",
             "Code": "LocalAddedFireDamageTwoHand8_",
             "Level": "62",
@@ -12548,8 +12548,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "112",
-            "TwoHandMaceModsID": "1820",
-            "ID": "1820",
+            "TwoHandMaceModsID": "1832",
+            "ID": "1832",
             "Name": "Cremating",
             "Code": "LocalAddedFireDamageTwoHand9",
             "Level": "74",
@@ -12580,8 +12580,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "113",
-            "TwoHandMaceModsID": "1832",
-            "ID": "1832",
+            "TwoHandMaceModsID": "1844",
+            "ID": "1844",
             "Name": "Essences",
             "Code": "LocalAddedFireDamageTwoHandEssence7",
             "Level": "82",
@@ -12612,8 +12612,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "114",
-            "TwoHandMaceModsID": "9712",
-            "ID": "9712",
+            "TwoHandMaceModsID": "9777",
+            "ID": "9777",
             "Name": "Buzzing",
             "Code": "SpellAddedLightningDamageTwoHand2",
             "Level": "11",
@@ -12645,8 +12645,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "115",
-            "TwoHandMaceModsID": "9714",
-            "ID": "9714",
+            "TwoHandMaceModsID": "9779",
+            "ID": "9779",
             "Name": "Crackling",
             "Code": "SpellAddedLightningDamageTwoHand4",
             "Level": "26",
@@ -12678,8 +12678,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "116",
-            "TwoHandMaceModsID": "9716",
-            "ID": "9716",
+            "TwoHandMaceModsID": "9781",
+            "ID": "9781",
             "Name": "Arcing",
             "Code": "SpellAddedLightningDamageTwoHand6",
             "Level": "42",
@@ -12711,8 +12711,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "117",
-            "TwoHandMaceModsID": "9717",
-            "ID": "9717",
+            "TwoHandMaceModsID": "9782",
+            "ID": "9782",
             "Name": "Shocking",
             "Code": "SpellAddedLightningDamageTwoHand7",
             "Level": "51",
@@ -12744,8 +12744,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "118",
-            "TwoHandMaceModsID": "9718",
-            "ID": "9718",
+            "TwoHandMaceModsID": "9783",
+            "ID": "9783",
             "Name": "Discharging",
             "Code": "SpellAddedLightningDamageTwoHand8",
             "Level": "62",
@@ -12777,8 +12777,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "119",
-            "TwoHandMaceModsID": "9719",
-            "ID": "9719",
+            "TwoHandMaceModsID": "9784",
+            "ID": "9784",
             "Name": "Electrocuting",
             "Code": "SpellAddedLightningDamageTwoHand9_",
             "Level": "74",
@@ -12810,8 +12810,8 @@
         {
             "Tier": "2",
             "BaseItemTypesID": "120",
-            "TwoHandMaceModsID": "20081",
-            "ID": "20081",
+            "TwoHandMaceModsID": "20167",
+            "ID": "20167",
             "Name": "Marchioness's",
             "Code": "MinionDamageOnTwoHandWeapon2",
             "Level": "11",
@@ -12837,8 +12837,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "121",
-            "TwoHandMaceModsID": "20082",
-            "ID": "20082",
+            "TwoHandMaceModsID": "20168",
+            "ID": "20168",
             "Name": "Duchess's",
             "Code": "MinionDamageOnTwoHandWeapon3",
             "Level": "23",
@@ -12864,8 +12864,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "122",
-            "TwoHandMaceModsID": "20083",
-            "ID": "20083",
+            "TwoHandMaceModsID": "20169",
+            "ID": "20169",
             "Name": "Queen's",
             "Code": "MinionDamageOnTwoHandWeapon4",
             "Level": "35",
@@ -12891,8 +12891,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "123",
-            "TwoHandMaceModsID": "20084",
-            "ID": "20084",
+            "TwoHandMaceModsID": "20170",
+            "ID": "20170",
             "Name": "Essences",
             "Code": "MinionDamageOnTwoHandWeaponEssence5",
             "Level": "58",
@@ -12918,8 +12918,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "124",
-            "TwoHandMaceModsID": "20085",
-            "ID": "20085",
+            "TwoHandMaceModsID": "20171",
+            "ID": "20171",
             "Name": "Essences",
             "Code": "MinionDamageOnTwoHandWeaponEssence6",
             "Level": "74",
@@ -12945,8 +12945,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "125",
-            "TwoHandMaceModsID": "20086",
-            "ID": "20086",
+            "TwoHandMaceModsID": "20172",
+            "ID": "20172",
             "Name": "Essences",
             "Code": "MinionDamageOnTwoHandWeaponEssence7",
             "Level": "82",
@@ -12972,8 +12972,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "126",
-            "TwoHandMaceModsID": "9704",
-            "ID": "9704",
+            "TwoHandMaceModsID": "9769",
+            "ID": "9769",
             "Name": "Frigid",
             "Code": "SpellAddedColdDamageTwoHand4",
             "Level": "26",
@@ -13005,8 +13005,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "127",
-            "TwoHandMaceModsID": "9706",
-            "ID": "9706",
+            "TwoHandMaceModsID": "9771",
+            "ID": "9771",
             "Name": "Frozen",
             "Code": "SpellAddedColdDamageTwoHand6",
             "Level": "42",
@@ -13038,8 +13038,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "128",
-            "TwoHandMaceModsID": "9707",
-            "ID": "9707",
+            "TwoHandMaceModsID": "9772",
+            "ID": "9772",
             "Name": "Glaciated",
             "Code": "SpellAddedColdDamageTwoHand7",
             "Level": "51",
@@ -13071,8 +13071,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "129",
-            "TwoHandMaceModsID": "9708",
-            "ID": "9708",
+            "TwoHandMaceModsID": "9773",
+            "ID": "9773",
             "Name": "Polar",
             "Code": "SpellAddedColdDamageTwoHand8",
             "Level": "62",
@@ -13104,8 +13104,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "130",
-            "TwoHandMaceModsID": "9709",
-            "ID": "9709",
+            "TwoHandMaceModsID": "9774",
+            "ID": "9774",
             "Name": "Entombing",
             "Code": "SpellAddedColdDamageTwoHand9",
             "Level": "74",
@@ -13137,8 +13137,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "131",
-            "TwoHandMaceModsID": "8707",
-            "ID": "8707",
+            "TwoHandMaceModsID": "8771",
+            "ID": "8771",
             "Name": "Essences",
             "Code": "FireResistancePenetrationTwoHandEssence1",
             "Level": "26",
@@ -13167,8 +13167,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "132",
-            "TwoHandMaceModsID": "8708",
-            "ID": "8708",
+            "TwoHandMaceModsID": "8772",
+            "ID": "8772",
             "Name": "Essences",
             "Code": "FireResistancePenetrationTwoHandEssence2_",
             "Level": "42",
@@ -13197,8 +13197,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "133",
-            "TwoHandMaceModsID": "8709",
-            "ID": "8709",
+            "TwoHandMaceModsID": "8773",
+            "ID": "8773",
             "Name": "Essences",
             "Code": "FireResistancePenetrationTwoHandEssence3",
             "Level": "58",
@@ -13227,8 +13227,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "134",
-            "TwoHandMaceModsID": "8710",
-            "ID": "8710",
+            "TwoHandMaceModsID": "8774",
+            "ID": "8774",
             "Name": "Essences",
             "Code": "FireResistancePenetrationTwoHandEssence4",
             "Level": "74",
@@ -13257,8 +13257,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "135",
-            "TwoHandMaceModsID": "8711",
-            "ID": "8711",
+            "TwoHandMaceModsID": "8775",
+            "ID": "8775",
             "Name": "Essences",
             "Code": "FireResistancePenetrationTwoHandEssence5",
             "Level": "82",
@@ -13287,8 +13287,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "136",
-            "TwoHandMaceModsID": "1920",
-            "ID": "1920",
+            "TwoHandMaceModsID": "1933",
+            "ID": "1933",
             "Name": "Crackling",
             "Code": "LocalAddedLightningDamageTwoHand4",
             "Level": "31",
@@ -13319,8 +13319,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "137",
-            "TwoHandMaceModsID": "1922",
-            "ID": "1922",
+            "TwoHandMaceModsID": "1935",
+            "ID": "1935",
             "Name": "Arcing",
             "Code": "LocalAddedLightningDamageTwoHand6",
             "Level": "42",
@@ -13351,8 +13351,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "138",
-            "TwoHandMaceModsID": "1924",
-            "ID": "1924",
+            "TwoHandMaceModsID": "1937",
+            "ID": "1937",
             "Name": "Discharging",
             "Code": "LocalAddedLightningDamageTwoHand8",
             "Level": "63",
@@ -13383,8 +13383,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "139",
-            "TwoHandMaceModsID": "1925",
-            "ID": "1925",
+            "TwoHandMaceModsID": "1938",
+            "ID": "1938",
             "Name": "Electrocuting",
             "Code": "LocalAddedLightningDamageTwoHand9",
             "Level": "74",
@@ -13415,8 +13415,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "140",
-            "TwoHandMaceModsID": "1937",
-            "ID": "1937",
+            "TwoHandMaceModsID": "1950",
+            "ID": "1950",
             "Name": "Essences",
             "Code": "LocalAddedLightningDamageTwoHandEssence7",
             "Level": "82",
@@ -13447,8 +13447,8 @@
         {
             "Tier": "3",
             "BaseItemTypesID": "141",
-            "TwoHandMaceModsID": "4341",
-            "ID": "4341",
+            "TwoHandMaceModsID": "4369",
+            "ID": "4369",
             "Name": "of Precision",
             "Code": "LocalIncreasedAccuracyNew2",
             "Level": "20",
@@ -13472,8 +13472,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "142",
-            "TwoHandMaceModsID": "4342",
-            "ID": "4342",
+            "TwoHandMaceModsID": "4370",
+            "ID": "4370",
             "Name": "of the Sniper",
             "Code": "LocalIncreasedAccuracyNew3",
             "Level": "40",
@@ -13497,8 +13497,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "143",
-            "TwoHandMaceModsID": "4343",
-            "ID": "4343",
+            "TwoHandMaceModsID": "4371",
+            "ID": "4371",
             "Name": "of the Marksman",
             "Code": "LocalIncreasedAccuracyNew4",
             "Level": "60",
@@ -13522,8 +13522,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "144",
-            "TwoHandMaceModsID": "4344",
-            "ID": "4344",
+            "TwoHandMaceModsID": "4372",
+            "ID": "4372",
             "Name": "of the Ranger",
             "Code": "LocalIncreasedAccuracyNew5",
             "Level": "75",
@@ -13547,8 +13547,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "145",
-            "TwoHandMaceModsID": "4345",
-            "ID": "4345",
+            "TwoHandMaceModsID": "4373",
+            "ID": "4373",
             "Name": "of Lioneye",
             "Code": "LocalIncreasedAccuracyNew6",
             "Level": "85",
@@ -13572,8 +13572,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "146",
-            "TwoHandMaceModsID": "9696",
-            "ID": "9696",
+            "TwoHandMaceModsID": "9761",
+            "ID": "9761",
             "Name": "Scorching",
             "Code": "SpellAddedFireDamageTwoHand6_",
             "Level": "42",
@@ -13605,8 +13605,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "147",
-            "TwoHandMaceModsID": "9697",
-            "ID": "9697",
+            "TwoHandMaceModsID": "9762",
+            "ID": "9762",
             "Name": "Incinerating",
             "Code": "SpellAddedFireDamageTwoHand7",
             "Level": "51",
@@ -13638,8 +13638,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "148",
-            "TwoHandMaceModsID": "9698",
-            "ID": "9698",
+            "TwoHandMaceModsID": "9763",
+            "ID": "9763",
             "Name": "Blasting",
             "Code": "SpellAddedFireDamageTwoHand8",
             "Level": "62",
@@ -13671,8 +13671,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "149",
-            "TwoHandMaceModsID": "9699",
-            "ID": "9699",
+            "TwoHandMaceModsID": "9764",
+            "ID": "9764",
             "Name": "Cremating",
             "Code": "SpellAddedFireDamageTwoHand9",
             "Level": "74",
@@ -13704,8 +13704,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "150",
-            "TwoHandMaceModsID": "3942",
-            "ID": "3942",
+            "TwoHandMaceModsID": "3969",
+            "ID": "3969",
             "Name": "of Piercing",
             "Code": "LocalCriticalStrikeChance3",
             "Level": "30",
@@ -13731,8 +13731,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "151",
-            "TwoHandMaceModsID": "3943",
-            "ID": "3943",
+            "TwoHandMaceModsID": "3970",
+            "ID": "3970",
             "Name": "of Puncturing",
             "Code": "LocalCriticalStrikeChance4",
             "Level": "44",
@@ -13758,8 +13758,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "152",
-            "TwoHandMaceModsID": "3944",
-            "ID": "3944",
+            "TwoHandMaceModsID": "3971",
+            "ID": "3971",
             "Name": "of Penetrating",
             "Code": "LocalCriticalStrikeChance5",
             "Level": "59",
@@ -13785,8 +13785,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "153",
-            "TwoHandMaceModsID": "3945",
-            "ID": "3945",
+            "TwoHandMaceModsID": "3972",
+            "ID": "3972",
             "Name": "of Incision",
             "Code": "LocalCriticalStrikeChance6",
             "Level": "73",
@@ -13812,8 +13812,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "154",
-            "TwoHandMaceModsID": "8697",
-            "ID": "8697",
+            "TwoHandMaceModsID": "8761",
+            "ID": "8761",
             "Name": "Essences",
             "Code": "LightningResistancePenetrationTwoHandEssence1_",
             "Level": "42",
@@ -13842,8 +13842,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "155",
-            "TwoHandMaceModsID": "8698",
-            "ID": "8698",
+            "TwoHandMaceModsID": "8762",
+            "ID": "8762",
             "Name": "Essences",
             "Code": "LightningResistancePenetrationTwoHandEssence2",
             "Level": "58",
@@ -13872,8 +13872,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "156",
-            "TwoHandMaceModsID": "8699",
-            "ID": "8699",
+            "TwoHandMaceModsID": "8763",
+            "ID": "8763",
             "Name": "Essences",
             "Code": "LightningResistancePenetrationTwoHandEssence3_",
             "Level": "74",
@@ -13902,8 +13902,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "157",
-            "TwoHandMaceModsID": "8700",
-            "ID": "8700",
+            "TwoHandMaceModsID": "8764",
+            "ID": "8764",
             "Name": "Essences",
             "Code": "LightningResistancePenetrationTwoHandEssence4",
             "Level": "82",
@@ -13932,8 +13932,8 @@
         {
             "Tier": "4",
             "BaseItemTypesID": "158",
-            "TwoHandMaceModsID": "2659",
-            "ID": "2659",
+            "TwoHandMaceModsID": "2676",
+            "ID": "2676",
             "Name": "of Fame",
             "Code": "LocalIncreasedAttackSpeed6",
             "Level": "45",
@@ -13959,8 +13959,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "159",
-            "TwoHandMaceModsID": "2660",
-            "ID": "2660",
+            "TwoHandMaceModsID": "2677",
+            "ID": "2677",
             "Name": "of Infamy",
             "Code": "LocalIncreasedAttackSpeed7",
             "Level": "60",
@@ -13986,8 +13986,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "160",
-            "TwoHandMaceModsID": "2661",
-            "ID": "2661",
+            "TwoHandMaceModsID": "2678",
+            "ID": "2678",
             "Name": "of Celebration",
             "Code": "LocalIncreasedAttackSpeed8",
             "Level": "77",
@@ -14013,8 +14013,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "161",
-            "TwoHandMaceModsID": "2662",
-            "ID": "2662",
+            "TwoHandMaceModsID": "2679",
+            "ID": "2679",
             "Name": "of the Essence",
             "Code": "LocalIncreasedAttackSpeedEssence7",
             "Level": "82",
@@ -14040,8 +14040,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "162",
-            "TwoHandMaceModsID": "2587",
-            "ID": "2587",
+            "TwoHandMaceModsID": "2604",
+            "ID": "2604",
             "Name": "of Prestidigitation",
             "Code": "IncreasedCastSpeedTwoHand5",
             "Level": "55",
@@ -14067,8 +14067,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "163",
-            "TwoHandMaceModsID": "2588",
-            "ID": "2588",
+            "TwoHandMaceModsID": "2605",
+            "ID": "2605",
             "Name": "of Sortilege",
             "Code": "IncreasedCastSpeedTwoHand6",
             "Level": "72",
@@ -14094,8 +14094,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "164",
-            "TwoHandMaceModsID": "2589",
-            "ID": "2589",
+            "TwoHandMaceModsID": "2606",
+            "ID": "2606",
             "Name": "of Finesse",
             "Code": "IncreasedCastSpeedTwoHand7",
             "Level": "83",
@@ -14121,8 +14121,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "165",
-            "TwoHandMaceModsID": "23518",
-            "ID": "23518",
+            "TwoHandMaceModsID": "23605",
+            "ID": "23605",
             "Name": "of the Essence",
             "Code": "ImpaleEffectTwoHandEssence1",
             "Level": "58",
@@ -14146,8 +14146,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "166",
-            "TwoHandMaceModsID": "23519",
-            "ID": "23519",
+            "TwoHandMaceModsID": "23606",
+            "ID": "23606",
             "Name": "of the Essence",
             "Code": "ImpaleEffectTwoHandEssence2_",
             "Level": "74",
@@ -14171,8 +14171,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "167",
-            "TwoHandMaceModsID": "23520",
-            "ID": "23520",
+            "TwoHandMaceModsID": "23607",
+            "ID": "23607",
             "Name": "of the Essence",
             "Code": "ImpaleEffectTwoHandEssence3_",
             "Level": "82",
@@ -14196,8 +14196,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "168",
-            "TwoHandMaceModsID": "3523",
-            "ID": "3523",
+            "TwoHandMaceModsID": "3550",
+            "ID": "3550",
             "Name": "of Ruin",
             "Code": "SpellCriticalStrikeChance5",
             "Level": "59",
@@ -14223,8 +14223,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "169",
-            "TwoHandMaceModsID": "3524",
-            "ID": "3524",
+            "TwoHandMaceModsID": "3551",
+            "ID": "3551",
             "Name": "of Unmaking",
             "Code": "SpellCriticalStrikeChance6_",
             "Level": "76",
@@ -14250,8 +14250,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "170",
-            "TwoHandMaceModsID": "3525",
-            "ID": "3525",
+            "TwoHandMaceModsID": "3552",
+            "ID": "3552",
             "Name": "of the Essence",
             "Code": "SpellCriticalStrikeChanceEssence7",
             "Level": "82",
@@ -14277,8 +14277,8 @@
         {
             "Tier": "5",
             "BaseItemTypesID": "171",
-            "TwoHandMaceModsID": "9734",
-            "ID": "9734",
+            "TwoHandMaceModsID": "9799",
+            "ID": "9799",
             "Name": "Essences",
             "Code": "LocalAddedChaosDamageTwoHandEssence1",
             "Level": "62",
@@ -14307,8 +14307,8 @@
         {
             "Tier": "6",
             "BaseItemTypesID": "172",
-            "TwoHandMaceModsID": "9735",
-            "ID": "9735",
+            "TwoHandMaceModsID": "9800",
+            "ID": "9800",
             "Name": "Essences",
             "Code": "LocalAddedChaosDamageTwoHandEssence2",
             "Level": "74",
@@ -14337,8 +14337,8 @@
         {
             "Tier": "7",
             "BaseItemTypesID": "173",
-            "TwoHandMaceModsID": "9736",
-            "ID": "9736",
+            "TwoHandMaceModsID": "9801",
+            "ID": "9801",
             "Name": "Essences",
             "Code": "LocalAddedChaosDamageTwoHandEssence3",
             "Level": "82",
@@ -14367,8 +14367,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "174",
-            "TwoHandMaceModsID": "12524",
-            "ID": "12524",
+            "TwoHandMaceModsID": "12590",
+            "ID": "12590",
             "Name": "of the Essence",
             "Code": "FireBurstOnHitEssence1",
             "Level": "63",
@@ -14393,8 +14393,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "175",
-            "TwoHandMaceModsID": "12531",
-            "ID": "12531",
+            "TwoHandMaceModsID": "12597",
+            "ID": "12597",
             "Name": "of the Essence",
             "Code": "SpiritMinionEssence1",
             "Level": "63",
@@ -14418,8 +14418,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "176",
-            "TwoHandMaceModsID": "12520",
-            "ID": "12520",
+            "TwoHandMaceModsID": "12586",
+            "ID": "12586",
             "Name": "of the Essence",
             "Code": "PowerFrenzyOrEnduranceChargeOnKillEssence1",
             "Level": "63",
@@ -14443,8 +14443,8 @@
         {
             "Tier": "8",
             "BaseItemTypesID": "177",
-            "TwoHandMaceModsID": "12541",
-            "ID": "12541",
+            "TwoHandMaceModsID": "12607",
+            "ID": "12607",
             "Name": "of the Essence",
             "Code": "DecayOnHitEssence1",
             "Level": "63",
@@ -14471,7 +14471,7 @@
     ],
     "delve": [
         {
-            "ID": "15986",
+            "ID": "16070",
             "Name": "Subterranean",
             "Code": "DelveWeaponFirePenetration2h1",
             "Level": "1",
@@ -14503,7 +14503,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15996",
+            "ID": "16080",
             "Name": "Subterranean",
             "Code": "DelveWeaponColdPenetration2h1",
             "Level": "1",
@@ -14535,7 +14535,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16006",
+            "ID": "16090",
             "Name": "Subterranean",
             "Code": "DelveWeaponLightningPenetration2h1",
             "Level": "1",
@@ -14567,7 +14567,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16015",
+            "ID": "16099",
             "Name": "of the Underground",
             "Code": "DelveWeaponIntimidateOnHit1",
             "Level": "1",
@@ -14594,7 +14594,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16028",
+            "ID": "16112",
             "Name": "of the Underground",
             "Code": "DelveWeaponDespairOnHit2h1",
             "Level": "1",
@@ -14623,7 +14623,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16037",
+            "ID": "16121",
             "Name": "of the Underground",
             "Code": "DelveWeaponDamageOnFullLife1h1__",
             "Level": "1",
@@ -14650,7 +14650,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16038",
+            "ID": "16122",
             "Name": "of the Underground",
             "Code": "DelveWeaponDamageOnFullLife2h1",
             "Level": "1",
@@ -14677,7 +14677,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16045",
+            "ID": "16129",
             "Name": "of the Underground",
             "Code": "DelveWeaponArmourIfYouHitRecently2h1",
             "Level": "1",
@@ -14700,8 +14700,8 @@
             "str": "<span class='mod-value'>+1000</span> to Armour if you've Hit an Enemy Recently",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -14709,7 +14709,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16074",
+            "ID": "16158",
             "Name": "Subterranean",
             "Code": "DelveWeaponLocalChanceForPoisonDamage100FinalInflictedWithThisWeapon1",
             "Level": "1",
@@ -14745,7 +14745,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16075",
+            "ID": "16159",
             "Name": "Subterranean",
             "Code": "DelveWeaponLocalChanceForBleedingDamage100FinalInflictedWithThisWeapon1",
             "Level": "1",
@@ -14781,7 +14781,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16082",
+            "ID": "16166",
             "Name": "Subterranean",
             "Code": "DelveWeaponLocalAttackReduceEnemyElementalResistance1h1",
             "Level": "1",
@@ -14813,7 +14813,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16089",
+            "ID": "16173",
             "Name": "Subterranean",
             "Code": "DelveWeaponElementalDamagev2_2h1",
             "Level": "1",
@@ -14843,7 +14843,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16090",
+            "ID": "16174",
             "Name": "Subterranean",
             "Code": "DelveWeaponElementalDamagev2_2h2__",
             "Level": "25",
@@ -14873,7 +14873,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16091",
+            "ID": "16175",
             "Name": "Subterranean",
             "Code": "DelveWeaponElementalDamagev2_2h3",
             "Level": "50",
@@ -14903,7 +14903,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16092",
+            "ID": "16176",
             "Name": "Subterranean",
             "Code": "DelveWeaponElementalDamagev2_2h4_",
             "Level": "75",
@@ -14933,7 +14933,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16098",
+            "ID": "16182",
             "Name": "Subterranean",
             "Code": "DelveWeaponSocketedSpellsDamageFinal2h1",
             "Level": "1",
@@ -14966,7 +14966,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16104",
+            "ID": "16188",
             "Name": "Subterranean",
             "Code": "DelveWeaponSocketedAttacksDamageFinal2h1_",
             "Level": "1",
@@ -14999,7 +14999,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16110",
+            "ID": "16194",
             "Name": "of the Underground",
             "Code": "DelveWeaponManaRegeneratedIfYouveHitRecently2h1_",
             "Level": "1",
@@ -15028,7 +15028,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16121",
+            "ID": "16205",
             "Name": "of the Underground",
             "Code": "DelveWeaponChanceToGainOnslaughtOnKill2h1",
             "Level": "1",
@@ -15051,7 +15051,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16132",
+            "ID": "16216",
             "Name": "of the Underground",
             "Code": "DelveWeaponIncreasedDamageFromAuras2h1",
             "Level": "1",
@@ -15081,7 +15081,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16137",
+            "ID": "16221",
             "Name": "Subterranean",
             "Code": "DelveWeaponMinionDamage2h1",
             "Level": "1",
@@ -15110,7 +15110,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16138",
+            "ID": "16222",
             "Name": "Subterranean",
             "Code": "DelveWeaponMinionDamage2h2",
             "Level": "25",
@@ -15139,7 +15139,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16139",
+            "ID": "16223",
             "Name": "Subterranean",
             "Code": "DelveWeaponMinionDamage2h3_",
             "Level": "50",
@@ -15168,7 +15168,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16140",
+            "ID": "16224",
             "Name": "Subterranean",
             "Code": "DelveWeaponMinionDamage2h4",
             "Level": "75",
@@ -15197,7 +15197,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16150",
+            "ID": "16234",
             "Name": "of the Underground",
             "Code": "DelveStrengthGemLevel1",
             "Level": "1",
@@ -15245,7 +15245,7 @@
             ]
         },
         {
-            "ID": "16151",
+            "ID": "16235",
             "Name": "of the Underground",
             "Code": "DelveDexterityGemLevel1",
             "Level": "1",
@@ -15293,7 +15293,7 @@
             ]
         },
         {
-            "ID": "16152",
+            "ID": "16236",
             "Name": "of the Underground",
             "Code": "DelveIntelligenceGemLevel1",
             "Level": "1",
@@ -15341,7 +15341,7 @@
             ]
         },
         {
-            "ID": "16153",
+            "ID": "16237",
             "Name": "of the Underground",
             "Code": "DelveAbyssJewelSocket1",
             "Level": "1",
@@ -15370,7 +15370,7 @@
             ]
         },
         {
-            "ID": "16155",
+            "ID": "16239",
             "Name": "of the Underground",
             "Code": "DelveWeaponVaalSoulCost2h1",
             "Level": "1",
@@ -15397,7 +15397,7 @@
             ]
         },
         {
-            "ID": "16027",
+            "ID": "16111",
             "Name": "of the Underground",
             "Code": "DelveWeaponDespairOnHit1h1",
             "Level": "1",
@@ -15425,7 +15425,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15913",
+            "ID": "15997",
             "Name": "of the Underground",
             "Code": "DoubleDamageChanceDelve",
             "Level": "60",
@@ -15448,7 +15448,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15932",
+            "ID": "16016",
             "Name": "Subterranean",
             "Code": "LocalColdDamageHybridTwoHandDelve",
             "Level": "60",
@@ -15478,7 +15478,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15923",
+            "ID": "16007",
             "Name": "Subterranean",
             "Code": "LocalFireDamageHybridTwoHandDelve",
             "Level": "60",
@@ -15510,7 +15510,7 @@
     ],
     "incursion": [
         {
-            "ID": "18176",
+            "ID": "18260",
             "Name": "Topotante's",
             "Code": "LocalAddedColdDamageEnhancedLevel50TwoHandMod",
             "Level": "50",
@@ -15541,7 +15541,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18174",
+            "ID": "18258",
             "Name": "Topotante's",
             "Code": "LocalAddedFireDamageEnhancedLevel50TwoHandMod",
             "Level": "50",
@@ -15572,7 +15572,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18178",
+            "ID": "18262",
             "Name": "Topotante's",
             "Code": "LocalAddedLightningDamageEnhancedLevel50TwoHandMod",
             "Level": "50",
@@ -15603,7 +15603,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18218",
+            "ID": "18302",
             "Name": "of Tacati",
             "Code": "LocalIncreasedAttackSpeedEnhancedLevel50Mod",
             "Level": "50",
@@ -15634,7 +15634,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "18172",
+            "ID": "18256",
             "Name": "Tacati's",
             "Code": "LocalIncreasedPhysicalDamageEnhancedLevel50Mod",
             "Level": "50",
@@ -15666,7 +15666,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "1162",
+            "ID": "1171",
             "Name": "Tacati's",
             "Code": "LocalIncreasedPhysicalDamageEnhancedMod",
             "Level": "1",
@@ -15712,7 +15712,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17331",
+            "ID": "17415",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -15746,7 +15746,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17332",
+            "ID": "17416",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -15784,7 +15784,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17333",
+            "ID": "17417",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -15818,7 +15818,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17334",
+            "ID": "17418",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -15860,7 +15860,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17335",
+            "ID": "17419",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -15893,7 +15893,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17336",
+            "ID": "17420",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -15924,7 +15924,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17337",
+            "ID": "17421",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -15953,7 +15953,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17343",
+            "ID": "17427",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -15989,7 +15989,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17345",
+            "ID": "17429",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -16025,7 +16025,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17347",
+            "ID": "17431",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -16061,7 +16061,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17349",
+            "ID": "17433",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -16092,7 +16092,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17351",
+            "ID": "17435",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -16127,7 +16127,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17353",
+            "ID": "17437",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -16161,7 +16161,7 @@
                 "400",
                 "0"
             ],
-            "ID": "17355",
+            "ID": "17439",
             "Level": "60",
             "Name": "Chosen",
             "ModGenerationTypeID": "1",
@@ -16195,7 +16195,7 @@
                 "400",
                 "0"
             ],
-            "ID": "17357",
+            "ID": "17441",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16230,7 +16230,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17366",
+            "ID": "17450",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16263,7 +16263,7 @@
                 "400",
                 "0"
             ],
-            "ID": "17368",
+            "ID": "17452",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16295,7 +16295,7 @@
                 "400",
                 "0"
             ],
-            "ID": "17370",
+            "ID": "17454",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16329,7 +16329,7 @@
                 "400",
                 "0"
             ],
-            "ID": "17372",
+            "ID": "17456",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16361,7 +16361,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17417",
+            "ID": "17501",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16387,7 +16387,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17419",
+            "ID": "17503",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16413,7 +16413,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17421",
+            "ID": "17505",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16439,7 +16439,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17438",
+            "ID": "17522",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16467,7 +16467,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17440",
+            "ID": "17524",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16495,7 +16495,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17464",
+            "ID": "17548",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16522,7 +16522,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17478",
+            "ID": "17562",
             "Level": "60",
             "Name": "Catarina's",
             "ModGenerationTypeID": "1",
@@ -16549,7 +16549,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17483",
+            "ID": "17567",
             "Level": "60",
             "Name": "Haku's",
             "ModGenerationTypeID": "1",
@@ -16575,7 +16575,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17485",
+            "ID": "17569",
             "Level": "60",
             "Name": "Tora's",
             "ModGenerationTypeID": "1",
@@ -16612,7 +16612,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17486",
+            "ID": "17570",
             "Level": "60",
             "Name": "Vagan's",
             "ModGenerationTypeID": "1",
@@ -16638,7 +16638,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17493",
+            "ID": "17577",
             "Level": "60",
             "Name": "It's",
             "ModGenerationTypeID": "1",
@@ -16672,7 +16672,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17494",
+            "ID": "17578",
             "Level": "60",
             "Name": "It's",
             "ModGenerationTypeID": "1",
@@ -16706,7 +16706,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17495",
+            "ID": "17579",
             "Level": "60",
             "Name": "It's",
             "ModGenerationTypeID": "1",
@@ -16740,7 +16740,7 @@
                 "2000",
                 "0"
             ],
-            "ID": "17496",
+            "ID": "17580",
             "Level": "60",
             "Name": "It's",
             "ModGenerationTypeID": "1",
@@ -16775,7 +16775,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17517",
+            "ID": "17601",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16807,7 +16807,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17519",
+            "ID": "17603",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16839,7 +16839,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17520",
+            "ID": "17604",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16868,7 +16868,7 @@
                 "1000",
                 "0"
             ],
-            "ID": "17521",
+            "ID": "17605",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16897,7 +16897,7 @@
                 "100",
                 "0"
             ],
-            "ID": "17524",
+            "ID": "17608",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16925,7 +16925,7 @@
                 "1500",
                 "0"
             ],
-            "ID": "17525",
+            "ID": "17609",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -16955,7 +16955,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15432",
+            "ID": "15516",
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -16977,7 +16977,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15431",
+            "ID": "15515",
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -16999,7 +16999,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15434",
+            "ID": "15518",
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -17022,7 +17022,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15433",
+            "ID": "15517",
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",
@@ -17038,7 +17038,7 @@
     ],
     "elder": {
         "1682": {
-            "ID": "14436",
+            "ID": "14520",
             "Name": "The Elder's",
             "Code": "ChanceToGainEnduranceChargeOnKillUber1",
             "Level": "68",
@@ -17067,7 +17067,7 @@
             "mod_fossil_item": []
         },
         "1683": {
-            "ID": "14437",
+            "ID": "14521",
             "Name": "The Elder's",
             "Code": "ChanceToGainEnduranceChargeOnKillUber2",
             "Level": "83",
@@ -17096,7 +17096,7 @@
             "mod_fossil_item": []
         },
         "2085": {
-            "ID": "14844",
+            "ID": "14928",
             "Name": "The Elder's",
             "Code": "SupportedByEnduranceChargeOnStunWeaponUber1",
             "Level": "68",
@@ -17128,7 +17128,7 @@
             "mod_fossil_item": []
         },
         "2088": {
-            "ID": "14847",
+            "ID": "14931",
             "Name": "The Elder's",
             "Code": "SupportedByFortifyWeaponUber1",
             "Level": "68",
@@ -17160,7 +17160,7 @@
             "mod_fossil_item": []
         },
         "2140": {
-            "ID": "14899",
+            "ID": "14983",
             "Name": "of the Elder",
             "Code": "LocalIncreasedAttackSpeedTwoHandedKilledRecentlyUber1",
             "Level": "68",
@@ -17192,7 +17192,7 @@
             "mod_fossil_item": []
         },
         "2141": {
-            "ID": "14900",
+            "ID": "14984",
             "Name": "of the Elder",
             "Code": "LocalIncreasedAttackSpeedTwoHandedKilledRecentlyUber2",
             "Level": "75",
@@ -17224,7 +17224,7 @@
             "mod_fossil_item": []
         },
         "2150": {
-            "ID": "14909",
+            "ID": "14993",
             "Name": "of the Elder",
             "Code": "CriticalStrikeChanceTwoHandedCritMultiRecentlyUber1_",
             "Level": "68",
@@ -17259,7 +17259,7 @@
             "mod_fossil_item": []
         },
         "2151": {
-            "ID": "14910",
+            "ID": "14994",
             "Name": "of the Elder",
             "Code": "CriticalStrikeChanceTwoHandedCritMultiRecentlyUber2",
             "Level": "75",
@@ -17294,7 +17294,7 @@
             "mod_fossil_item": []
         },
         "2206": {
-            "ID": "14965",
+            "ID": "15049",
             "Name": "The Elder's",
             "Code": "LocalBleedDamageOverTimeMultiplierUber1___",
             "Level": "68",
@@ -17339,7 +17339,7 @@
             "mod_fossil_item": []
         },
         "2207": {
-            "ID": "14966",
+            "ID": "15050",
             "Name": "The Elder's",
             "Code": "LocalBleedDamageOverTimeMultiplierUber2",
             "Level": "75",
@@ -17384,7 +17384,7 @@
             "mod_fossil_item": []
         },
         "2208": {
-            "ID": "14967",
+            "ID": "15051",
             "Name": "The Elder's",
             "Code": "LocalBleedDamageOverTimeMultiplierUber3",
             "Level": "83",
@@ -17429,7 +17429,7 @@
             "mod_fossil_item": []
         },
         "2209": {
-            "ID": "14968",
+            "ID": "15052",
             "Name": "The Elder's",
             "Code": "LocalPoisonDamageOverTimeMultiplierUber1__",
             "Level": "68",
@@ -17474,7 +17474,7 @@
             "mod_fossil_item": []
         },
         "2210": {
-            "ID": "14969",
+            "ID": "15053",
             "Name": "The Elder's",
             "Code": "LocalPoisonDamageOverTimeMultiplierUber2__",
             "Level": "75",
@@ -17519,7 +17519,7 @@
             "mod_fossil_item": []
         },
         "2211": {
-            "ID": "14970",
+            "ID": "15054",
             "Name": "The Elder's",
             "Code": "LocalPoisonDamageOverTimeMultiplierUber3",
             "Level": "83",
@@ -17564,7 +17564,7 @@
             "mod_fossil_item": []
         },
         "2212": {
-            "ID": "14971",
+            "ID": "15055",
             "Name": "of the Elder",
             "Code": "PhysicalDamageConvertedToChaosUber1",
             "Level": "68",
@@ -17609,7 +17609,7 @@
             "mod_fossil_item": []
         },
         "2213": {
-            "ID": "14972",
+            "ID": "15056",
             "Name": "of the Elder",
             "Code": "PhysicalDamageConvertedToChaosUber2",
             "Level": "75",
@@ -17654,7 +17654,7 @@
             "mod_fossil_item": []
         },
         "2214": {
-            "ID": "14973",
+            "ID": "15057",
             "Name": "of the Elder",
             "Code": "PhysicalDamageConvertedToChaosUber3",
             "Level": "85",
@@ -17699,7 +17699,7 @@
             "mod_fossil_item": []
         },
         "2227": {
-            "ID": "14986",
+            "ID": "15070",
             "Name": "of the Elder",
             "Code": "CullingStrikeUber1",
             "Level": "68",
@@ -17726,7 +17726,7 @@
             "mod_fossil_item": []
         },
         "2228": {
-            "ID": "14987",
+            "ID": "15071",
             "Name": "of the Elder",
             "Code": "MeleeWeaponRangeUber1",
             "Level": "75",
@@ -17756,7 +17756,7 @@
             "mod_fossil_item": []
         },
         "2229": {
-            "ID": "14988",
+            "ID": "15072",
             "Name": "of the Elder",
             "Code": "MeleeWeaponRangeUber2",
             "Level": "85",
@@ -17786,7 +17786,7 @@
             "mod_fossil_item": []
         },
         "2230": {
-            "ID": "14989",
+            "ID": "15073",
             "Name": "of the Elder",
             "Code": "AreaOfEffectTwoHandedWeaponUber1",
             "Level": "68",
@@ -17813,7 +17813,7 @@
             "mod_fossil_item": []
         },
         "2231": {
-            "ID": "14990",
+            "ID": "15074",
             "Name": "of the Elder",
             "Code": "AreaOfEffectTwoHandedWeaponUber2",
             "Level": "75",
@@ -17840,7 +17840,7 @@
             "mod_fossil_item": []
         },
         "2232": {
-            "ID": "14991",
+            "ID": "15075",
             "Name": "of the Elder",
             "Code": "AreaOfEffectTwoHandedWeaponUber3",
             "Level": "82",
@@ -17867,7 +17867,7 @@
             "mod_fossil_item": []
         },
         "2348": {
-            "ID": "15107",
+            "ID": "15191",
             "Name": "of the Elder",
             "Code": "AreaOfEffectIfStunnedEnemyRecentlyUber1___",
             "Level": "68",
@@ -17890,7 +17890,7 @@
             "mod_fossil_item": []
         },
         "2353": {
-            "ID": "15112",
+            "ID": "15196",
             "Name": "of the Elder",
             "Code": "AreaOfEffectPerEnduranceChargeUber1",
             "Level": "68",
@@ -17914,7 +17914,7 @@
     },
     "shaper": {
         "2138": {
-            "ID": "14897",
+            "ID": "14981",
             "Name": "of Shaping",
             "Code": "LocalIncreasedAttackSpeedTwoHandedDoubleDamageUber1",
             "Level": "68",
@@ -17948,7 +17948,7 @@
             "mod_fossil_item": []
         },
         "2139": {
-            "ID": "14898",
+            "ID": "14982",
             "Name": "of Shaping",
             "Code": "LocalIncreasedAttackSpeedTwoHandedDoubleDamageUber2",
             "Level": "75",
@@ -17982,7 +17982,7 @@
             "mod_fossil_item": []
         },
         "2148": {
-            "ID": "14907",
+            "ID": "14991",
             "Name": "of Shaping",
             "Code": "CriticalStrikeChanceTwoHandedCritChanceRecentlyUber1_",
             "Level": "68",
@@ -18015,7 +18015,7 @@
             "mod_fossil_item": []
         },
         "2149": {
-            "ID": "14908",
+            "ID": "14992",
             "Name": "of Shaping",
             "Code": "CriticalStrikeChanceTwoHandedCritChanceRecentlyUber2",
             "Level": "75",
@@ -18048,7 +18048,7 @@
             "mod_fossil_item": []
         },
         "2197": {
-            "ID": "14956",
+            "ID": "15040",
             "Name": "The Shaper's",
             "Code": "ElementalPenetrationTwoWeaponNewUber1",
             "Level": "68",
@@ -18082,7 +18082,7 @@
             "mod_fossil_item": []
         },
         "2198": {
-            "ID": "14957",
+            "ID": "15041",
             "Name": "The Shaper's",
             "Code": "ElementalPenetrationTwoWeaponNewUber2",
             "Level": "75",
@@ -18116,7 +18116,7 @@
             "mod_fossil_item": []
         },
         "2199": {
-            "ID": "14958",
+            "ID": "15042",
             "Name": "The Shaper's",
             "Code": "ElementalPenetrationTwoWeaponNewUber3",
             "Level": "83",
@@ -18150,7 +18150,7 @@
             "mod_fossil_item": []
         },
         "2201": {
-            "ID": "14960",
+            "ID": "15044",
             "Name": "The Shaper's",
             "Code": "WeaponSocketedAttacksDamageFinalTwoHandUber1",
             "Level": "83",
@@ -18186,7 +18186,7 @@
             "mod_fossil_item": []
         },
         "2216": {
-            "ID": "14975",
+            "ID": "15059",
             "Name": "The Shaper's",
             "Code": "AddedFireDamagePerStrengthTwoHandedUber1",
             "Level": "68",
@@ -18223,7 +18223,7 @@
             "mod_fossil_item": []
         },
         "2223": {
-            "ID": "14982",
+            "ID": "15066",
             "Name": "The Shaper's",
             "Code": "SupportedByCastOnMeleeKillUber1",
             "Level": "68",
@@ -18255,7 +18255,7 @@
             "mod_fossil_item": []
         },
         "2224": {
-            "ID": "14983",
+            "ID": "15067",
             "Name": "The Shaper's",
             "Code": "SupportedByCastOnMeleeKillUber2",
             "Level": "75",
@@ -18287,7 +18287,7 @@
             "mod_fossil_item": []
         },
         "2233": {
-            "ID": "14992",
+            "ID": "15076",
             "Name": "of Shaping",
             "Code": "MovementVelocityTwoHandedWeaponUber1",
             "Level": "75",
@@ -18318,7 +18318,7 @@
             "mod_fossil_item": []
         },
         "2234": {
-            "ID": "14993",
+            "ID": "15077",
             "Name": "of Shaping",
             "Code": "MovementVelocityTwoHandedWeaponUber2",
             "Level": "84",
@@ -18349,7 +18349,7 @@
             "mod_fossil_item": []
         },
         "2319": {
-            "ID": "15078",
+            "ID": "15162",
             "Name": "of Shaping",
             "Code": "MaximumEnduranceChargeUber1",
             "Level": "84",
@@ -18377,7 +18377,7 @@
             "mod_fossil_item": []
         },
         "2345": {
-            "ID": "15104",
+            "ID": "15188",
             "Name": "of Shaping",
             "Code": "EnemiesExplodeOnDeathDealingFireUber1",
             "Level": "68",
@@ -18409,7 +18409,7 @@
             "mod_fossil_item": []
         },
         "2354": {
-            "ID": "15113",
+            "ID": "15197",
             "Name": "of Shaping",
             "Code": "StunDurationAndThresholdUber1",
             "Level": "68",
@@ -18433,7 +18433,7 @@
     },
     "crusader": {
         "3023": {
-            "ID": "20741",
+            "ID": "20827",
             "Name": "of the Crusade",
             "Code": "WarcryBuffEffectInfluence1",
             "Level": "68",
@@ -18458,7 +18458,7 @@
             "mod_fossil_item": []
         },
         "3024": {
-            "ID": "20742",
+            "ID": "20828",
             "Name": "of the Crusade",
             "Code": "WarcryBuffEffectInfluence2",
             "Level": "75",
@@ -18483,7 +18483,7 @@
             "mod_fossil_item": []
         },
         "3336": {
-            "ID": "21054",
+            "ID": "21140",
             "Name": "Crusader's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndStunInfluence1__",
             "Level": "68",
@@ -18518,7 +18518,7 @@
             "mod_fossil_item": []
         },
         "3337": {
-            "ID": "21055",
+            "ID": "21141",
             "Name": "Crusader's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndStunInfluence2",
             "Level": "71",
@@ -18553,7 +18553,7 @@
             "mod_fossil_item": []
         },
         "3338": {
-            "ID": "21056",
+            "ID": "21142",
             "Name": "Crusader's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndStunInfluence3",
             "Level": "74",
@@ -18588,7 +18588,7 @@
             "mod_fossil_item": []
         },
         "3339": {
-            "ID": "21057",
+            "ID": "21143",
             "Name": "Crusader's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndStunInfluence4",
             "Level": "77",
@@ -18623,7 +18623,7 @@
             "mod_fossil_item": []
         },
         "3340": {
-            "ID": "21058",
+            "ID": "21144",
             "Name": "Crusader's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndStunInfluence5",
             "Level": "80",
@@ -18658,7 +18658,7 @@
             "mod_fossil_item": []
         },
         "3381": {
-            "ID": "21099",
+            "ID": "21185",
             "Name": "Crusader's",
             "Code": "LocalAddedLightningDamageAndPenetrationTwoHandInfluence1_",
             "Level": "68",
@@ -18695,7 +18695,7 @@
             "mod_fossil_item": []
         },
         "3382": {
-            "ID": "21100",
+            "ID": "21186",
             "Name": "Crusader's",
             "Code": "LocalAddedLightningDamageAndPenetrationTwoHandInfluence2",
             "Level": "71",
@@ -18732,7 +18732,7 @@
             "mod_fossil_item": []
         },
         "3383": {
-            "ID": "21101",
+            "ID": "21187",
             "Name": "Crusader's",
             "Code": "LocalAddedLightningDamageAndPenetrationTwoHandInfluence3",
             "Level": "74",
@@ -18769,7 +18769,7 @@
             "mod_fossil_item": []
         },
         "3384": {
-            "ID": "21102",
+            "ID": "21188",
             "Name": "Crusader's",
             "Code": "LocalAddedLightningDamageAndPenetrationTwoHandInfluence4",
             "Level": "77",
@@ -18806,7 +18806,7 @@
             "mod_fossil_item": []
         },
         "3385": {
-            "ID": "21103",
+            "ID": "21189",
             "Name": "Crusader's",
             "Code": "LocalAddedLightningDamageAndPenetrationTwoHandInfluence5",
             "Level": "80",
@@ -18843,7 +18843,7 @@
             "mod_fossil_item": []
         },
         "3432": {
-            "ID": "21150",
+            "ID": "21236",
             "Name": "Crusader's",
             "Code": "LocalWeaponLightningPenetrationInfluence1",
             "Level": "68",
@@ -18889,7 +18889,7 @@
             "mod_fossil_item": []
         },
         "3433": {
-            "ID": "21151",
+            "ID": "21237",
             "Name": "Crusader's",
             "Code": "LocalWeaponLightningPenetrationInfluence2_",
             "Level": "73",
@@ -18935,7 +18935,7 @@
             "mod_fossil_item": []
         },
         "3434": {
-            "ID": "21152",
+            "ID": "21238",
             "Name": "Crusader's",
             "Code": "LocalWeaponLightningPenetrationInfluence3",
             "Level": "78",
@@ -18981,7 +18981,7 @@
             "mod_fossil_item": []
         },
         "3533": {
-            "ID": "21251",
+            "ID": "21337",
             "Name": "of the Crusade",
             "Code": "ImpaleEffectTwoHandWeaponInfluence1",
             "Level": "68",
@@ -19010,7 +19010,7 @@
             "mod_fossil_item": []
         },
         "3534": {
-            "ID": "21252",
+            "ID": "21338",
             "Name": "of the Crusade",
             "Code": "ImpaleEffectTwoHandWeaponInfluence2",
             "Level": "71",
@@ -19039,7 +19039,7 @@
             "mod_fossil_item": []
         },
         "3535": {
-            "ID": "21253",
+            "ID": "21339",
             "Name": "of the Crusade",
             "Code": "ImpaleEffectTwoHandWeaponInfluence3",
             "Level": "75",
@@ -19068,7 +19068,7 @@
             "mod_fossil_item": []
         },
         "3536": {
-            "ID": "21254",
+            "ID": "21340",
             "Name": "of the Crusade",
             "Code": "ConvertPhysicalToFireInfluenceWeapon1",
             "Level": "68",
@@ -19110,7 +19110,7 @@
             "mod_fossil_item": []
         },
         "3537": {
-            "ID": "21255",
+            "ID": "21341",
             "Name": "of the Crusade",
             "Code": "ConvertPhysicalToFireInfluenceWeapon2_",
             "Level": "71",
@@ -19152,7 +19152,7 @@
             "mod_fossil_item": []
         },
         "3664": {
-            "ID": "21382",
+            "ID": "21468",
             "Name": "of the Crusade",
             "Code": "StunDurationAndThresholdTwoHandInfluence1",
             "Level": "68",
@@ -19174,7 +19174,7 @@
             "mod_fossil_item": []
         },
         "3665": {
-            "ID": "21383",
+            "ID": "21469",
             "Name": "of the Crusade",
             "Code": "StunDurationAndThresholdTwoHandInfluence2",
             "Level": "73",
@@ -19196,7 +19196,7 @@
             "mod_fossil_item": []
         },
         "3668": {
-            "ID": "21386",
+            "ID": "21472",
             "Name": "of the Crusade",
             "Code": "AreaOfEffectIfStunnedRecentlyTwoHandInfluence1_",
             "Level": "68",
@@ -19218,7 +19218,7 @@
             "mod_fossil_item": []
         },
         "3669": {
-            "ID": "21387",
+            "ID": "21473",
             "Name": "of the Crusade",
             "Code": "AreaOfEffectIfStunnedRecentlyTwoHandInfluence2_",
             "Level": "73",
@@ -19242,7 +19242,7 @@
     },
     "redeemer": {
         "2772": {
-            "ID": "20489",
+            "ID": "20575",
             "Name": "Redeemer's",
             "Code": "EnduranceChargeOnKillInfluence1",
             "Level": "68",
@@ -19275,7 +19275,7 @@
             "mod_fossil_item": []
         },
         "2773": {
-            "ID": "20490",
+            "ID": "20576",
             "Name": "Redeemer's",
             "Code": "EnduranceChargeOnKillInfluence2",
             "Level": "80",
@@ -19308,7 +19308,7 @@
             "mod_fossil_item": []
         },
         "3371": {
-            "ID": "21089",
+            "ID": "21175",
             "Name": "Redeemer's",
             "Code": "LocalAddedColdDamageAndPenetrationTwoHandInfluence1",
             "Level": "68",
@@ -19345,7 +19345,7 @@
             "mod_fossil_item": []
         },
         "3372": {
-            "ID": "21090",
+            "ID": "21176",
             "Name": "Redeemer's",
             "Code": "LocalAddedColdDamageAndPenetrationTwoHandInfluence2_",
             "Level": "71",
@@ -19382,7 +19382,7 @@
             "mod_fossil_item": []
         },
         "3373": {
-            "ID": "21091",
+            "ID": "21177",
             "Name": "Redeemer's",
             "Code": "LocalAddedColdDamageAndPenetrationTwoHandInfluence3_",
             "Level": "74",
@@ -19419,7 +19419,7 @@
             "mod_fossil_item": []
         },
         "3374": {
-            "ID": "21092",
+            "ID": "21178",
             "Name": "Redeemer's",
             "Code": "LocalAddedColdDamageAndPenetrationTwoHandInfluence4",
             "Level": "77",
@@ -19456,7 +19456,7 @@
             "mod_fossil_item": []
         },
         "3375": {
-            "ID": "21093",
+            "ID": "21179",
             "Name": "Redeemer's",
             "Code": "LocalAddedColdDamageAndPenetrationTwoHandInfluence5_",
             "Level": "80",
@@ -19493,7 +19493,7 @@
             "mod_fossil_item": []
         },
         "3429": {
-            "ID": "21147",
+            "ID": "21233",
             "Name": "Redeemer's",
             "Code": "LocalWeaponColdPenetrationInfluence1",
             "Level": "68",
@@ -19539,7 +19539,7 @@
             "mod_fossil_item": []
         },
         "3430": {
-            "ID": "21148",
+            "ID": "21234",
             "Name": "Redeemer's",
             "Code": "LocalWeaponColdPenetrationInfluence2_",
             "Level": "73",
@@ -19585,7 +19585,7 @@
             "mod_fossil_item": []
         },
         "3431": {
-            "ID": "21149",
+            "ID": "21235",
             "Name": "Redeemer's",
             "Code": "LocalWeaponColdPenetrationInfluence3",
             "Level": "78",
@@ -19631,7 +19631,7 @@
             "mod_fossil_item": []
         },
         "3563": {
-            "ID": "21281",
+            "ID": "21367",
             "Name": "of Redemption",
             "Code": "DamageFromAurasTwoHandWeaponInfluence1",
             "Level": "82",
@@ -19664,7 +19664,7 @@
             "mod_fossil_item": []
         },
         "3587": {
-            "ID": "21305",
+            "ID": "21391",
             "Name": "of Redemption",
             "Code": "MovementVelocityWeaponInfluence1",
             "Level": "68",
@@ -19695,7 +19695,7 @@
             "mod_fossil_item": []
         },
         "3588": {
-            "ID": "21306",
+            "ID": "21392",
             "Name": "of Redemption",
             "Code": "MovementVelocityWeaponInfluence2",
             "Level": "73",
@@ -19726,7 +19726,7 @@
             "mod_fossil_item": []
         },
         "3670": {
-            "ID": "21388",
+            "ID": "21474",
             "Name": "of Redemption",
             "Code": "EnemiesExplodeOnDeathDealingFireInfluence1_",
             "Level": "78",
@@ -19758,7 +19758,7 @@
             "mod_fossil_item": []
         },
         "3673": {
-            "ID": "21391",
+            "ID": "21477",
             "Name": "of Redemption",
             "Code": "ChanceForDoubleStunDurationTwoHandInfluence1",
             "Level": "68",
@@ -19780,7 +19780,7 @@
             "mod_fossil_item": []
         },
         "3674": {
-            "ID": "21392",
+            "ID": "21478",
             "Name": "of Redemption",
             "Code": "ChanceForDoubleStunDurationTwoHandInfluence2_",
             "Level": "73",
@@ -19802,7 +19802,7 @@
             "mod_fossil_item": []
         },
         "3677": {
-            "ID": "21395",
+            "ID": "21481",
             "Name": "of Redemption",
             "Code": "MovementSpeedIfHitRecentlyTwoHandInfluence1",
             "Level": "68",
@@ -19828,7 +19828,7 @@
             "mod_fossil_item": []
         },
         "3678": {
-            "ID": "21396",
+            "ID": "21482",
             "Name": "of Redemption",
             "Code": "MovementSpeedIfHitRecentlyTwoHandInfluence2",
             "Level": "73",
@@ -19856,7 +19856,7 @@
     },
     "hunter": {
         "3391": {
-            "ID": "21109",
+            "ID": "21195",
             "Name": "Hunter's",
             "Code": "LocalAddedChaosDamageAndPenetrationTwoHandInfluence1__",
             "Level": "68",
@@ -19891,7 +19891,7 @@
             "mod_fossil_item": []
         },
         "3392": {
-            "ID": "21110",
+            "ID": "21196",
             "Name": "Hunter's",
             "Code": "LocalAddedChaosDamageAndPenetrationTwoHandInfluence2",
             "Level": "71",
@@ -19926,7 +19926,7 @@
             "mod_fossil_item": []
         },
         "3393": {
-            "ID": "21111",
+            "ID": "21197",
             "Name": "Hunter's",
             "Code": "LocalAddedChaosDamageAndPenetrationTwoHandInfluence3",
             "Level": "74",
@@ -19961,7 +19961,7 @@
             "mod_fossil_item": []
         },
         "3394": {
-            "ID": "21112",
+            "ID": "21198",
             "Name": "Hunter's",
             "Code": "LocalAddedChaosDamageAndPenetrationTwoHandInfluence4",
             "Level": "77",
@@ -19996,7 +19996,7 @@
             "mod_fossil_item": []
         },
         "3395": {
-            "ID": "21113",
+            "ID": "21199",
             "Name": "Hunter's",
             "Code": "LocalAddedChaosDamageAndPenetrationTwoHandInfluence5",
             "Level": "80",
@@ -20031,7 +20031,7 @@
             "mod_fossil_item": []
         },
         "3435": {
-            "ID": "21153",
+            "ID": "21239",
             "Name": "Hunter's",
             "Code": "LocalWeaponChaosPenetrationInfluence1",
             "Level": "68",
@@ -20075,7 +20075,7 @@
             "mod_fossil_item": []
         },
         "3436": {
-            "ID": "21154",
+            "ID": "21240",
             "Name": "Hunter's",
             "Code": "LocalWeaponChaosPenetrationInfluence2",
             "Level": "73",
@@ -20119,7 +20119,7 @@
             "mod_fossil_item": []
         },
         "3437": {
-            "ID": "21155",
+            "ID": "21241",
             "Name": "Hunter's",
             "Code": "LocalWeaponChaosPenetrationInfluence3",
             "Level": "78",
@@ -20163,7 +20163,7 @@
             "mod_fossil_item": []
         },
         "3438": {
-            "ID": "21156",
+            "ID": "21242",
             "Name": "Hunter's",
             "Code": "LocalWeaponElementalPenetrationInfluence1_",
             "Level": "68",
@@ -20207,7 +20207,7 @@
             "mod_fossil_item": []
         },
         "3439": {
-            "ID": "21157",
+            "ID": "21243",
             "Name": "Hunter's",
             "Code": "LocalWeaponElementalPenetrationInfluence2",
             "Level": "73",
@@ -20251,7 +20251,7 @@
             "mod_fossil_item": []
         },
         "3440": {
-            "ID": "21158",
+            "ID": "21244",
             "Name": "Hunter's",
             "Code": "LocalWeaponElementalPenetrationInfluence3_",
             "Level": "78",
@@ -20295,7 +20295,7 @@
             "mod_fossil_item": []
         },
         "3484": {
-            "ID": "21202",
+            "ID": "21288",
             "Name": "Hunter's",
             "Code": "AddedFireDamagePerStrengthTwoHandInfluence1",
             "Level": "68",
@@ -20332,7 +20332,7 @@
             "mod_fossil_item": []
         },
         "3524": {
-            "ID": "21242",
+            "ID": "21328",
             "Name": "of the Hunt",
             "Code": "FasterBleedDamageTwoHandInfluence1",
             "Level": "68",
@@ -20370,7 +20370,7 @@
             "mod_fossil_item": []
         },
         "3525": {
-            "ID": "21243",
+            "ID": "21329",
             "Name": "of the Hunt",
             "Code": "FasterBleedDamageTwoHandInfluence2",
             "Level": "73",
@@ -20408,7 +20408,7 @@
             "mod_fossil_item": []
         },
         "3542": {
-            "ID": "21260",
+            "ID": "21346",
             "Name": "of the Hunt",
             "Code": "ConvertPhysicalToChaosInfluenceWeapon1",
             "Level": "68",
@@ -20453,7 +20453,7 @@
             "mod_fossil_item": []
         },
         "3543": {
-            "ID": "21261",
+            "ID": "21347",
             "Name": "of the Hunt",
             "Code": "ConvertPhysicalToChaosInfluenceWeapon2",
             "Level": "71",
@@ -20498,7 +20498,7 @@
             "mod_fossil_item": []
         },
         "3546": {
-            "ID": "21264",
+            "ID": "21350",
             "Name": "of the Hunt",
             "Code": "ArmourPenetrationTwoHandWeaponInfluence1_",
             "Level": "68",
@@ -20534,7 +20534,7 @@
             "mod_fossil_item": []
         },
         "3547": {
-            "ID": "21265",
+            "ID": "21351",
             "Name": "of the Hunt",
             "Code": "ArmourPenetrationTwoHandWeaponInfluence2_",
             "Level": "71",
@@ -20570,7 +20570,7 @@
             "mod_fossil_item": []
         },
         "3560": {
-            "ID": "21278",
+            "ID": "21364",
             "Name": "of the Hunt",
             "Code": "ChanceToIntimidateOnHitWeaponInfluence1",
             "Level": "78",
@@ -20609,7 +20609,7 @@
             "mod_fossil_item": []
         },
         "3561": {
-            "ID": "21279",
+            "ID": "21365",
             "Name": "of the Hunt",
             "Code": "ChanceToIntimidateOnHitWeaponInfluence2",
             "Level": "81",
@@ -20648,7 +20648,7 @@
             "mod_fossil_item": []
         },
         "3652": {
-            "ID": "21370",
+            "ID": "21456",
             "Name": "of the Hunt",
             "Code": "WarcryCooldownSpeedTwoHandInfluence1",
             "Level": "68",
@@ -20673,7 +20673,7 @@
             "mod_fossil_item": []
         },
         "3653": {
-            "ID": "21371",
+            "ID": "21457",
             "Name": "of the Hunt",
             "Code": "WarcryCooldownSpeedTwoHandInfluence2",
             "Level": "73",
@@ -20698,7 +20698,7 @@
             "mod_fossil_item": []
         },
         "3681": {
-            "ID": "21399",
+            "ID": "21485",
             "Name": "of the Hunt",
             "Code": "AreaOfEffectIfKilledRecentlyTwoHandInfluence1",
             "Level": "68",
@@ -20720,7 +20720,7 @@
             "mod_fossil_item": []
         },
         "3682": {
-            "ID": "21400",
+            "ID": "21486",
             "Name": "of the Hunt",
             "Code": "AreaOfEffectIfKilledRecentlyTwoHandInfluence2",
             "Level": "73",
@@ -20744,7 +20744,7 @@
     },
     "warlord": {
         "2837": {
-            "ID": "20554",
+            "ID": "20640",
             "Name": "of the Conquest",
             "Code": "CullingStrikeInfluence1",
             "Level": "73",
@@ -20772,7 +20772,7 @@
             "mod_fossil_item": []
         },
         "3341": {
-            "ID": "21059",
+            "ID": "21145",
             "Name": "Warlord's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAreaInfluence1_",
             "Level": "68",
@@ -20807,7 +20807,7 @@
             "mod_fossil_item": []
         },
         "3342": {
-            "ID": "21060",
+            "ID": "21146",
             "Name": "Warlord's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAreaInfluence2_",
             "Level": "71",
@@ -20842,7 +20842,7 @@
             "mod_fossil_item": []
         },
         "3343": {
-            "ID": "21061",
+            "ID": "21147",
             "Name": "Warlord's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAreaInfluence3_",
             "Level": "74",
@@ -20877,7 +20877,7 @@
             "mod_fossil_item": []
         },
         "3344": {
-            "ID": "21062",
+            "ID": "21148",
             "Name": "Warlord's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAreaInfluence4",
             "Level": "77",
@@ -20912,7 +20912,7 @@
             "mod_fossil_item": []
         },
         "3345": {
-            "ID": "21063",
+            "ID": "21149",
             "Name": "Warlord's",
             "Code": "LocalIncreasedPhysicalDamagePercentAndAreaInfluence5",
             "Level": "80",
@@ -20947,7 +20947,7 @@
             "mod_fossil_item": []
         },
         "3361": {
-            "ID": "21079",
+            "ID": "21165",
             "Name": "Warlord's",
             "Code": "LocalAddedFireDamageAndPenetrationTwoHandInfluence1",
             "Level": "68",
@@ -20984,7 +20984,7 @@
             "mod_fossil_item": []
         },
         "3362": {
-            "ID": "21080",
+            "ID": "21166",
             "Name": "Warlord's",
             "Code": "LocalAddedFireDamageAndPenetrationTwoHandInfluence2",
             "Level": "71",
@@ -21021,7 +21021,7 @@
             "mod_fossil_item": []
         },
         "3363": {
-            "ID": "21081",
+            "ID": "21167",
             "Name": "Warlord's",
             "Code": "LocalAddedFireDamageAndPenetrationTwoHandInfluence3",
             "Level": "74",
@@ -21058,7 +21058,7 @@
             "mod_fossil_item": []
         },
         "3364": {
-            "ID": "21082",
+            "ID": "21168",
             "Name": "Warlord's",
             "Code": "LocalAddedFireDamageAndPenetrationTwoHandInfluence4",
             "Level": "77",
@@ -21095,7 +21095,7 @@
             "mod_fossil_item": []
         },
         "3365": {
-            "ID": "21083",
+            "ID": "21169",
             "Name": "Warlord's",
             "Code": "LocalAddedFireDamageAndPenetrationTwoHandInfluence5",
             "Level": "80",
@@ -21132,7 +21132,7 @@
             "mod_fossil_item": []
         },
         "3426": {
-            "ID": "21144",
+            "ID": "21230",
             "Name": "Warlord's",
             "Code": "LocalWeaponFirePenetrationInfluence1",
             "Level": "68",
@@ -21178,7 +21178,7 @@
             "mod_fossil_item": []
         },
         "3427": {
-            "ID": "21145",
+            "ID": "21231",
             "Name": "Warlord's",
             "Code": "LocalWeaponFirePenetrationInfluence2",
             "Level": "73",
@@ -21224,7 +21224,7 @@
             "mod_fossil_item": []
         },
         "3428": {
-            "ID": "21146",
+            "ID": "21232",
             "Name": "Warlord's",
             "Code": "LocalWeaponFirePenetrationInfluence3",
             "Level": "78",
@@ -21270,7 +21270,7 @@
             "mod_fossil_item": []
         },
         "3468": {
-            "ID": "21186",
+            "ID": "21272",
             "Name": "Warlord's",
             "Code": "PhysicalAddedAsExtraFireTwoHandWeaponInfluence1__",
             "Level": "68",
@@ -21308,7 +21308,7 @@
             "mod_fossil_item": []
         },
         "3469": {
-            "ID": "21187",
+            "ID": "21273",
             "Name": "Warlord's",
             "Code": "PhysicalAddedAsExtraFireTwoHandWeaponInfluence2__",
             "Level": "73",
@@ -21346,7 +21346,7 @@
             "mod_fossil_item": []
         },
         "3470": {
-            "ID": "21188",
+            "ID": "21274",
             "Name": "Warlord's",
             "Code": "PhysicalAddedAsExtraFireTwoHandWeaponInfluence3",
             "Level": "78",
@@ -21384,7 +21384,7 @@
             "mod_fossil_item": []
         },
         "3506": {
-            "ID": "21224",
+            "ID": "21310",
             "Name": "Warlord's",
             "Code": "BleedingDamagePrefixTwoHandInfluence1",
             "Level": "68",
@@ -21419,7 +21419,7 @@
             "mod_fossil_item": []
         },
         "3507": {
-            "ID": "21225",
+            "ID": "21311",
             "Name": "Warlord's",
             "Code": "BleedingDamagePrefixTwoHandInfluence2",
             "Level": "71",
@@ -21454,7 +21454,7 @@
             "mod_fossil_item": []
         },
         "3508": {
-            "ID": "21226",
+            "ID": "21312",
             "Name": "Warlord's",
             "Code": "BleedingDamagePrefixTwoHandInfluence3",
             "Level": "75",
@@ -21489,7 +21489,7 @@
             "mod_fossil_item": []
         },
         "3509": {
-            "ID": "21227",
+            "ID": "21313",
             "Name": "Warlord's",
             "Code": "BleedingDamagePrefixTwoHandInfluence4",
             "Level": "78",
@@ -21524,7 +21524,7 @@
             "mod_fossil_item": []
         },
         "3564": {
-            "ID": "21282",
+            "ID": "21368",
             "Name": "of the Conquest",
             "Code": "LocalChanceToMaimPhysicalDamageInfluence1",
             "Level": "68",
@@ -21562,7 +21562,7 @@
             "mod_fossil_item": []
         },
         "3565": {
-            "ID": "21283",
+            "ID": "21369",
             "Name": "of the Conquest",
             "Code": "LocalChanceToMaimPhysicalDamageInfluence2",
             "Level": "70",
@@ -21600,7 +21600,7 @@
             "mod_fossil_item": []
         },
         "3566": {
-            "ID": "21284",
+            "ID": "21370",
             "Name": "of the Conquest",
             "Code": "LocalChanceToMaimPhysicalDamageInfluence3",
             "Level": "73",
@@ -21638,7 +21638,7 @@
             "mod_fossil_item": []
         },
         "3585": {
-            "ID": "21303",
+            "ID": "21389",
             "Name": "of the Conquest",
             "Code": "LocalMeleeWeaponRangeInfluence1",
             "Level": "68",
@@ -21668,7 +21668,7 @@
             "mod_fossil_item": []
         },
         "3586": {
-            "ID": "21304",
+            "ID": "21390",
             "Name": "of the Conquest",
             "Code": "LocalMeleeWeaponRangeInfluence2_",
             "Level": "73",

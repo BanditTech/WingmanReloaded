@@ -2,7 +2,7 @@
     "baseitem": {
         "Code": "Ghastly Eye Jewel",
         "ModDomainsID": "13",
-        "IconPath": "<img loading='lazy'    alt='GhastlyEye' src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL0doYXN0bHlFeWUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/ed72511412/GhastlyEye.png\"/>",
+        "IconPath": "<img loading='lazy'     src=\"https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL0doYXN0bHlFeWUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/ed72511412/GhastlyEye.png\"/>",
         "ItemClassesID": "50",
         "cn": "AbyssJewel",
         "link_name": "<a class='whiteitem' data-hover='?t=item&n=Ghastly+Eye+Jewel' href='/us/Ghastly_Eye_Jewel'>Ghastly Eye Jewel</a><span data-tabname=\"Ghastly Eye Jewel Modifiers\"></span>",
@@ -125,7 +125,7 @@
     },
     "normal": [
         {
-            "ID": "13841",
+            "ID": "13925",
             "Name": "Hale",
             "Code": "AbyssJewelAddedLife1",
             "Level": "1",
@@ -151,7 +151,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13842",
+            "ID": "13926",
             "Name": "Healthy",
             "Code": "AbyssJewelAddedLife2",
             "Level": "35",
@@ -177,7 +177,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13843",
+            "ID": "13927",
             "Name": "Sanguine",
             "Code": "AbyssJewelAddedLife3",
             "Level": "74",
@@ -203,7 +203,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13844",
+            "ID": "13928",
             "Name": "Stalwart",
             "Code": "AbyssJewelAddedLife4",
             "Level": "82",
@@ -229,7 +229,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13845",
+            "ID": "13929",
             "Name": "Beryl",
             "Code": "AbyssJewelAddedMana1",
             "Level": "1",
@@ -255,7 +255,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13846",
+            "ID": "13930",
             "Name": "Cobalt",
             "Code": "AbyssJewelAddedMana2",
             "Level": "40",
@@ -281,7 +281,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13847",
+            "ID": "13931",
             "Name": "Azure",
             "Code": "AbyssJewelAddedMana3",
             "Level": "75",
@@ -307,7 +307,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13848",
+            "ID": "13932",
             "Name": "Sapphire",
             "Code": "AbyssJewelAddedMana4",
             "Level": "83",
@@ -333,7 +333,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13851",
+            "ID": "13935",
             "Name": "of Strength",
             "Code": "AbyssStrengthJewel1_",
             "Level": "1",
@@ -357,7 +357,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13852",
+            "ID": "13936",
             "Name": "of Dexterity",
             "Code": "AbyssDexterityJewel1_",
             "Level": "1",
@@ -381,7 +381,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13853",
+            "ID": "13937",
             "Name": "of Intelligence",
             "Code": "AbyssIntelligenceJewel1",
             "Level": "1",
@@ -405,7 +405,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13854",
+            "ID": "13938",
             "Name": "of Athletics",
             "Code": "AbyssStrengthDexterityJewel1",
             "Level": "1",
@@ -429,7 +429,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13855",
+            "ID": "13939",
             "Name": "of Spirit",
             "Code": "AbyssStrengthIntelligenceJewel1_",
             "Level": "1",
@@ -453,7 +453,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13856",
+            "ID": "13940",
             "Name": "of Cunning",
             "Code": "AbyssDexterityIntelligenceJewel1",
             "Level": "1",
@@ -477,7 +477,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13857",
+            "ID": "13941",
             "Name": "of Adaption",
             "Code": "AbyssAllAttributesJewel1",
             "Level": "1",
@@ -501,7 +501,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13858",
+            "ID": "13942",
             "Name": "of the Dragon",
             "Code": "AbyssFireResistanceJewel1",
             "Level": "1",
@@ -529,7 +529,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13859",
+            "ID": "13943",
             "Name": "of the Beast",
             "Code": "AbyssColdResistanceJewel1",
             "Level": "1",
@@ -557,7 +557,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13860",
+            "ID": "13944",
             "Name": "of Grounding",
             "Code": "AbyssLightningResistanceJewel1",
             "Level": "1",
@@ -585,7 +585,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13861",
+            "ID": "13945",
             "Name": "of the Hearth",
             "Code": "AbyssFireColdResistanceJewel1",
             "Level": "1",
@@ -615,7 +615,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13862",
+            "ID": "13946",
             "Name": "of Insulation",
             "Code": "AbyssFireLightningResistanceJewel1",
             "Level": "1",
@@ -645,7 +645,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13863",
+            "ID": "13947",
             "Name": "of Shelter",
             "Code": "AbyssColdLightningResistanceJewel1",
             "Level": "1",
@@ -675,7 +675,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13864",
+            "ID": "13948",
             "Name": "of Resistance",
             "Code": "AbyssAllResistancesJewel1",
             "Level": "1",
@@ -701,7 +701,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13865",
+            "ID": "13949",
             "Name": "of Order",
             "Code": "AbyssChaosResistanceJewel1",
             "Level": "1",
@@ -727,7 +727,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13867",
+            "ID": "13951",
             "Name": "of Enchanting",
             "Code": "AbyssCastSpeedJewel1",
             "Level": "50",
@@ -755,7 +755,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13876",
+            "ID": "13960",
             "Name": "Heated",
             "Code": "AbyssMinionAddedFireDamageJewel1",
             "Level": "1",
@@ -787,7 +787,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13877",
+            "ID": "13961",
             "Name": "Flaming",
             "Code": "AbyssMinionAddedFireDamageJewel2",
             "Level": "39",
@@ -819,7 +819,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13878",
+            "ID": "13962",
             "Name": "Scorching",
             "Code": "AbyssMinionAddedFireDamageJewel3",
             "Level": "48",
@@ -851,7 +851,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13879",
+            "ID": "13963",
             "Name": "Incinerating",
             "Code": "AbyssMinionAddedFireDamageJewel4_",
             "Level": "58",
@@ -883,7 +883,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13880",
+            "ID": "13964",
             "Name": "Blasting",
             "Code": "AbyssMinionAddedFireDamageJewel5",
             "Level": "70",
@@ -915,7 +915,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13881",
+            "ID": "13965",
             "Name": "Cremating",
             "Code": "AbyssMinionAddedFireDamageJewel6_",
             "Level": "82",
@@ -947,7 +947,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13882",
+            "ID": "13966",
             "Name": "Frosted",
             "Code": "AbyssMinionAddedColdDamageJewel1",
             "Level": "1",
@@ -979,7 +979,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13883",
+            "ID": "13967",
             "Name": "Freezing",
             "Code": "AbyssMinionAddedColdDamageJewel2",
             "Level": "39",
@@ -1011,7 +1011,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13884",
+            "ID": "13968",
             "Name": "Frozen",
             "Code": "AbyssMinionAddedColdDamageJewel3",
             "Level": "48",
@@ -1043,7 +1043,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13885",
+            "ID": "13969",
             "Name": "Glaciated",
             "Code": "AbyssMinionAddedColdDamageJewel4",
             "Level": "58",
@@ -1075,7 +1075,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13886",
+            "ID": "13970",
             "Name": "Polar",
             "Code": "AbyssMinionAddedColdDamageJewel5",
             "Level": "70",
@@ -1107,7 +1107,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13887",
+            "ID": "13971",
             "Name": "Entombing",
             "Code": "AbyssMinionAddedColdDamageJewel6_",
             "Level": "82",
@@ -1139,7 +1139,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13888",
+            "ID": "13972",
             "Name": "Humming",
             "Code": "AbyssMinionAddedLightningDamageJewel1_",
             "Level": "1",
@@ -1171,7 +1171,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13889",
+            "ID": "13973",
             "Name": "Sparking",
             "Code": "AbyssMinionAddedLightningDamageJewel2",
             "Level": "39",
@@ -1203,7 +1203,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13890",
+            "ID": "13974",
             "Name": "Arcing",
             "Code": "AbyssMinionAddedLightningDamageJewel3_",
             "Level": "48",
@@ -1235,7 +1235,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13891",
+            "ID": "13975",
             "Name": "Shocking",
             "Code": "AbyssMinionAddedLightningDamageJewel4",
             "Level": "58",
@@ -1267,7 +1267,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13892",
+            "ID": "13976",
             "Name": "Discharging",
             "Code": "AbyssMinionAddedLightningDamageJewel5",
             "Level": "70",
@@ -1299,7 +1299,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13893",
+            "ID": "13977",
             "Name": "Electrocuting",
             "Code": "AbyssMinionAddedLightningDamageJewel6",
             "Level": "82",
@@ -1331,7 +1331,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13894",
+            "ID": "13978",
             "Name": "Glinting",
             "Code": "AbyssMinionAddedPhysicalDamageJewel1",
             "Level": "1",
@@ -1361,7 +1361,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13895",
+            "ID": "13979",
             "Name": "Gleaming",
             "Code": "AbyssMinionAddedPhysicalDamageJewel2",
             "Level": "42",
@@ -1391,7 +1391,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13896",
+            "ID": "13980",
             "Name": "Annealed",
             "Code": "AbyssMinionAddedPhysicalDamageJewel3",
             "Level": "54",
@@ -1421,7 +1421,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13897",
+            "ID": "13981",
             "Name": "Razor-sharp",
             "Code": "AbyssMinionAddedPhysicalDamageJewel4",
             "Level": "63",
@@ -1451,7 +1451,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13898",
+            "ID": "13982",
             "Name": "Tempered",
             "Code": "AbyssMinionAddedPhysicalDamageJewel5",
             "Level": "72",
@@ -1481,7 +1481,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13899",
+            "ID": "13983",
             "Name": "Flaring",
             "Code": "AbyssMinionAddedPhysicalDamageJewel6",
             "Level": "83",
@@ -1511,7 +1511,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13900",
+            "ID": "13984",
             "Name": "Tainted",
             "Code": "AbyssMinionAddedChaosDamageJewel1",
             "Level": "1",
@@ -1541,7 +1541,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13901",
+            "ID": "13985",
             "Name": "Clouded",
             "Code": "AbyssMinionAddedChaosDamageJewel2_",
             "Level": "42",
@@ -1571,7 +1571,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13902",
+            "ID": "13986",
             "Name": "Darkened",
             "Code": "AbyssMinionAddedChaosDamageJewel3",
             "Level": "54",
@@ -1601,7 +1601,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13903",
+            "ID": "13987",
             "Name": "Malignant",
             "Code": "AbyssMinionAddedChaosDamageJewel4",
             "Level": "65",
@@ -1631,7 +1631,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13904",
+            "ID": "13988",
             "Name": "Vile",
             "Code": "AbyssMinionAddedChaosDamageJewel5_",
             "Level": "75",
@@ -1661,7 +1661,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "13905",
+            "ID": "13989",
             "Name": "Malicious",
             "Code": "AbyssMinionAddedChaosDamageJewel6",
             "Level": "84",
@@ -1691,7 +1691,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14241",
+            "ID": "14325",
             "Name": "Fuelling",
             "Code": "AbyssFlatMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -1720,7 +1720,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14242",
+            "ID": "14326",
             "Name": "Lively",
             "Code": "AbyssFlatMinionLifeRegenerationJewel2",
             "Level": "30",
@@ -1749,7 +1749,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14243",
+            "ID": "14327",
             "Name": "Exuberant",
             "Code": "AbyssFlatMinionLifeRegenerationJewel3",
             "Level": "60",
@@ -1778,7 +1778,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14244",
+            "ID": "14328",
             "Name": "Captivating",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel1",
             "Level": "1",
@@ -1798,8 +1798,8 @@
             "str": "Regenerate <span class='mod-value'>(9&ndash;12)</span> Energy Shield per second",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -1807,7 +1807,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14245",
+            "ID": "14329",
             "Name": "Beautiful",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel2",
             "Level": "30",
@@ -1827,8 +1827,8 @@
             "str": "Regenerate <span class='mod-value'>(13&ndash;16)</span> Energy Shield per second",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -1836,7 +1836,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14246",
+            "ID": "14330",
             "Name": "Breathtaking",
             "Code": "AbyssFlatEnergyShieldRegenerationJewel3",
             "Level": "60",
@@ -1856,8 +1856,8 @@
             "str": "Regenerate <span class='mod-value'>(17&ndash;20)</span> Energy Shield per second",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -1865,7 +1865,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14247",
+            "ID": "14331",
             "Name": "Youthful",
             "Code": "AbyssFlatLifeRegenerationJewel1",
             "Level": "1",
@@ -1896,7 +1896,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14248",
+            "ID": "14332",
             "Name": "Spirited",
             "Code": "AbyssFlatLifeRegenerationJewel2",
             "Level": "40",
@@ -1927,7 +1927,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14249",
+            "ID": "14333",
             "Name": "Vivacious",
             "Code": "AbyssFlatLifeRegenerationJewel3_",
             "Level": "80",
@@ -1958,7 +1958,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14250",
+            "ID": "14334",
             "Name": "Energising",
             "Code": "AbyssFlatManaShieldRegenerationJewel1",
             "Level": "1",
@@ -1984,7 +1984,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14251",
+            "ID": "14335",
             "Name": "Inspirational",
             "Code": "AbyssFlatManaShieldRegenerationJewel2",
             "Level": "40",
@@ -2010,7 +2010,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14252",
+            "ID": "14336",
             "Name": "Resonating",
             "Code": "AbyssFlatManaShieldRegenerationJewel3",
             "Level": "75",
@@ -2036,7 +2036,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14259",
+            "ID": "14343",
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel1",
             "Level": "32",
@@ -2063,7 +2063,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14260",
+            "ID": "14344",
             "Name": "of Stifling",
             "Code": "AbyssMinionAttacksBlindOnHitChanceJewel2",
             "Level": "65",
@@ -2090,7 +2090,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14261",
+            "ID": "14345",
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel1",
             "Level": "32",
@@ -2117,7 +2117,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14262",
+            "ID": "14346",
             "Name": "of Distraction",
             "Code": "AbyssMinionAttacksTauntOnHitChanceJewel2_",
             "Level": "65",
@@ -2144,7 +2144,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14263",
+            "ID": "14347",
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel1",
             "Level": "32",
@@ -2171,7 +2171,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14264",
+            "ID": "14348",
             "Name": "of Delaying",
             "Code": "AbyssMinionSpellsHinderOnHitChanceJewel2",
             "Level": "65",
@@ -2198,7 +2198,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14265",
+            "ID": "14349",
             "Name": "of Venom",
             "Code": "AbyssMinionPoisonOnHitChanceJewel1",
             "Level": "60",
@@ -2229,7 +2229,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14266",
+            "ID": "14350",
             "Name": "of Combustion",
             "Code": "AbyssMinionIgniteOnHitChanceJewel1",
             "Level": "60",
@@ -2260,7 +2260,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14267",
+            "ID": "14351",
             "Name": "of Bloodletting",
             "Code": "AbyssMinionAttacksBleedOnHitChanceJewel1",
             "Level": "60",
@@ -2291,7 +2291,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14269",
+            "ID": "14353",
             "Name": "of Marshalling",
             "Code": "AbyssMinionDamageVSAbyssMonstersJewel1",
             "Level": "1",
@@ -2318,7 +2318,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14270",
+            "ID": "14354",
             "Name": "of Warding",
             "Code": "AbyssReducedPhysicalDamageTakenVsAbyssMonsterJewel1",
             "Level": "1",
@@ -2342,7 +2342,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14271",
+            "ID": "14355",
             "Name": "of Nonflammability",
             "Code": "AbyssAvoidIgniteJewel1_",
             "Level": "50",
@@ -2370,7 +2370,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14272",
+            "ID": "14356",
             "Name": "of Fireproofing",
             "Code": "AbyssAvoidIgniteJewel2",
             "Level": "70",
@@ -2398,7 +2398,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14273",
+            "ID": "14357",
             "Name": "of Warming",
             "Code": "AbyssAvoidFreezeAndChillJewel1",
             "Level": "50",
@@ -2426,7 +2426,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14274",
+            "ID": "14358",
             "Name": "of Heating",
             "Code": "AbyssAvoidFreezeAndChillJewel2",
             "Level": "70",
@@ -2454,7 +2454,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14275",
+            "ID": "14359",
             "Name": "of Insulating",
             "Code": "AbyssAvoidShockJewel1",
             "Level": "50",
@@ -2482,7 +2482,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14276",
+            "ID": "14360",
             "Name": "of the Lightning Rod",
             "Code": "AbyssAvoidShockJewel2",
             "Level": "70",
@@ -2510,7 +2510,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14277",
+            "ID": "14361",
             "Name": "of Tolerance",
             "Code": "AbyssAvoidPoisonJewel1__",
             "Level": "50",
@@ -2538,7 +2538,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14278",
+            "ID": "14362",
             "Name": "of Immunity",
             "Code": "AbyssAvoidPoisonJewel2__",
             "Level": "70",
@@ -2566,7 +2566,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14279",
+            "ID": "14363",
             "Name": "of Stemming",
             "Code": "AbyssAvoidBleedingJewel1",
             "Level": "50",
@@ -2596,7 +2596,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14280",
+            "ID": "14364",
             "Name": "of the Tourniquet",
             "Code": "AbyssAvoidBleedingJewel2",
             "Level": "70",
@@ -2626,7 +2626,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14281",
+            "ID": "14365",
             "Name": "of Balance",
             "Code": "AbyssAvoidStunJewel1",
             "Level": "50",
@@ -2646,7 +2646,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14282",
+            "ID": "14366",
             "Name": "of Poise",
             "Code": "AbyssAvoidStunJewel2",
             "Level": "70",
@@ -2666,7 +2666,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14288",
+            "ID": "14372",
             "Name": "of Training",
             "Code": "AbyssMinionAttackAndCastSpeedJewel1",
             "Level": "1",
@@ -2697,7 +2697,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14289",
+            "ID": "14373",
             "Name": "of Longevity",
             "Code": "AbyssMinionLifeRegenerationJewel1",
             "Level": "1",
@@ -2726,7 +2726,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14290",
+            "ID": "14374",
             "Name": "of Vampirism",
             "Code": "AbyssMinionLifeLeechJewel1",
             "Level": "1",
@@ -2755,7 +2755,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14291",
+            "ID": "14375",
             "Name": "of Orchestration",
             "Code": "AbyssMinionMovementSpeedJewel1",
             "Level": "1",
@@ -2782,7 +2782,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14292",
+            "ID": "14376",
             "Name": "of Fortitude",
             "Code": "AbyssMinionLifeJewel1_",
             "Level": "1",
@@ -2811,7 +2811,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14293",
+            "ID": "14377",
             "Name": "of Suggestion",
             "Code": "AbyssFlatMinionAccuracy1",
             "Level": "1",
@@ -2838,7 +2838,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14294",
+            "ID": "14378",
             "Name": "of Instruction",
             "Code": "AbyssFlatMinionAccuracy2_",
             "Level": "52",
@@ -2865,7 +2865,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14295",
+            "ID": "14379",
             "Name": "of Command",
             "Code": "AbyssFlatMinionAccuracy3",
             "Level": "78",
@@ -2892,7 +2892,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14296",
+            "ID": "14380",
             "Name": "of Acclimatisation",
             "Code": "AbyssMinionElementalResistancesJewel1",
             "Level": "1",
@@ -2921,7 +2921,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14297",
+            "ID": "14381",
             "Name": "of Righteousness",
             "Code": "AbyssMinionChaosResistanceJewel1",
             "Level": "1",
@@ -2950,7 +2950,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14298",
+            "ID": "14382",
             "Name": "Lacquered",
             "Code": "AbyssFlatArmourJewel1",
             "Level": "1",
@@ -2966,8 +2966,8 @@
             "str": "<span class='mod-value'>+(36&ndash;60)</span> to Armour",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -2975,7 +2975,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14299",
+            "ID": "14383",
             "Name": "Fortified",
             "Code": "AbyssFlatArmourJewel2",
             "Level": "40",
@@ -2991,8 +2991,8 @@
             "str": "<span class='mod-value'>+(61&ndash;100)</span> to Armour",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3000,7 +3000,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14300",
+            "ID": "14384",
             "Name": "Carapaced",
             "Code": "AbyssFlatArmourJewel3",
             "Level": "75",
@@ -3016,8 +3016,8 @@
             "str": "<span class='mod-value'>+(101&ndash;180)</span> to Armour",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3025,7 +3025,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14301",
+            "ID": "14385",
             "Name": "Encased",
             "Code": "AbyssFlatArmourJewel4__",
             "Level": "83",
@@ -3041,8 +3041,8 @@
             "str": "<span class='mod-value'>+(181&ndash;250)</span> to Armour",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3050,7 +3050,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14302",
+            "ID": "14386",
             "Name": "Agile",
             "Code": "AbyssFlatEvasionJewel1",
             "Level": "1",
@@ -3066,8 +3066,8 @@
             "str": "<span class='mod-value'>+(36&ndash;60)</span> to Evasion Rating",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3075,7 +3075,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14303",
+            "ID": "14387",
             "Name": "Fleet",
             "Code": "AbyssFlatEvasionJewel2",
             "Level": "40",
@@ -3091,8 +3091,8 @@
             "str": "<span class='mod-value'>+(61&ndash;100)</span> to Evasion Rating",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3100,7 +3100,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14304",
+            "ID": "14388",
             "Name": "Vaporous",
             "Code": "AbyssFlatEvasionJewel3",
             "Level": "75",
@@ -3116,8 +3116,8 @@
             "str": "<span class='mod-value'>+(101&ndash;180)</span> to Evasion Rating",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3125,7 +3125,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14305",
+            "ID": "14389",
             "Name": "Beclouded",
             "Code": "AbyssFlatEvasionJewel4_",
             "Level": "83",
@@ -3141,8 +3141,8 @@
             "str": "<span class='mod-value'>+(181&ndash;250)</span> to Evasion Rating",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3150,7 +3150,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14306",
+            "ID": "14390",
             "Name": "Shining",
             "Code": "AbyssFlatEnergyShieldJewel1",
             "Level": "1",
@@ -3166,8 +3166,8 @@
             "str": "<span class='mod-value'>+(21&ndash;25)</span> to maximum Energy Shield",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3175,7 +3175,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14307",
+            "ID": "14391",
             "Name": "Seething",
             "Code": "AbyssFlatEnergyShieldJewel2",
             "Level": "40",
@@ -3191,8 +3191,8 @@
             "str": "<span class='mod-value'>+(26&ndash;30)</span> to maximum Energy Shield",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3200,7 +3200,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14308",
+            "ID": "14392",
             "Name": "Incandescent",
             "Code": "AbyssFlatEnergyShieldJewel3",
             "Level": "75",
@@ -3216,8 +3216,8 @@
             "str": "<span class='mod-value'>+(31&ndash;35)</span> to maximum Energy Shield",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3225,7 +3225,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14309",
+            "ID": "14393",
             "Name": "Resplendent",
             "Code": "AbyssFlatEnergyShieldJewel4",
             "Level": "83",
@@ -3241,8 +3241,8 @@
             "str": "<span class='mod-value'>+(36&ndash;40)</span> to maximum Energy Shield",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3250,7 +3250,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14312",
+            "ID": "14396",
             "Name": "Facilitating",
             "Code": "AbyssCooldownRecoverySpeed1_",
             "Level": "75",
@@ -3274,7 +3274,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14313",
+            "ID": "14397",
             "Name": "Expediting",
             "Code": "AbyssCooldownRecoverySpeed2__",
             "Level": "86",
@@ -3298,7 +3298,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14314",
+            "ID": "14398",
             "Name": "Skewering",
             "Code": "AbyssImpaleEffect1_",
             "Level": "75",
@@ -3326,7 +3326,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14315",
+            "ID": "14399",
             "Name": "Lancing",
             "Code": "AbyssImpaleEffect2_",
             "Level": "86",
@@ -3354,7 +3354,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14316",
+            "ID": "14400",
             "Name": "Spurring",
             "Code": "AbyssDamageRecoupedAsMana1",
             "Level": "75",
@@ -3386,7 +3386,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14317",
+            "ID": "14401",
             "Name": "Motivating",
             "Code": "AbyssDamageRecoupedAsMana2",
             "Level": "86",
@@ -3418,7 +3418,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14318",
+            "ID": "14402",
             "Name": "of Instinct",
             "Code": "AbyssSpellBlockChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -3444,7 +3444,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14319",
+            "ID": "14403",
             "Name": "of Confidence",
             "Code": "AbyssReducedPhysicalDamageTakenIfNotHitRecentlyJewel1",
             "Level": "1",
@@ -3472,7 +3472,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14320",
+            "ID": "14404",
             "Name": "of Momentum",
             "Code": "AbyssMovementSpeedIfNotDamagedRecentlyJewel1",
             "Level": "1",
@@ -3500,7 +3500,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14326",
+            "ID": "14410",
             "Name": "of Retaliation",
             "Code": "AbyssCastSpeedIfMinionKilledRecentlyJewel1",
             "Level": "30",
@@ -3527,7 +3527,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14327",
+            "ID": "14411",
             "Name": "of Authority",
             "Code": "AbyssMinionDamageIfMinionSkillUsedRecentlyJewel1",
             "Level": "1",
@@ -3554,7 +3554,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14328",
+            "ID": "14412",
             "Name": "of Maneuvering",
             "Code": "AbyssEvasionRatingWhileMovingJewel1",
             "Level": "1",
@@ -3574,8 +3574,8 @@
             "str": "<span class='mod-value'>(25&ndash;35)</span>% increased Evasion Rating while moving",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -3583,7 +3583,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14329",
+            "ID": "14413",
             "Name": "of Praxis",
             "Code": "AbyssManaRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -3613,7 +3613,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14330",
+            "ID": "14414",
             "Name": "of Vivaciousness",
             "Code": "AbyssLifeRegenerationRateWhileMovingJewel1",
             "Level": "1",
@@ -3643,7 +3643,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14336",
+            "ID": "14420",
             "Name": "of Readiness",
             "Code": "AbyssSpellDodgeAndDodgeChanceIfHitRecentlyJewel1",
             "Level": "1",
@@ -3669,7 +3669,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14338",
+            "ID": "14422",
             "Name": "of Guarding",
             "Code": "AbyssChanceToBlockIfDamagedRecentlyJewel1_",
             "Level": "1",
@@ -3695,7 +3695,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14345",
+            "ID": "14429",
             "Name": "of the Sanctum",
             "Code": "AbyssSelfCurseEffectOnConsecratedGroundJewel1__",
             "Level": "84",
@@ -3725,7 +3725,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14346",
+            "ID": "14430",
             "Name": "of Escape",
             "Code": "AbyssAvoidElementalAilmentsWhileElusiveJewel1",
             "Level": "84",
@@ -3761,7 +3761,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14347",
+            "ID": "14431",
             "Name": "of Enervation",
             "Code": "AbyssHinderedEnemiesLifeRegenerationRateJewel1",
             "Level": "84",
@@ -3791,7 +3791,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14348",
+            "ID": "14432",
             "Name": "of Clouding",
             "Code": "AbyssBlindedEnemiesCriticalStrikeChanceJewel1",
             "Level": "84",
@@ -3819,7 +3819,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14349",
+            "ID": "14433",
             "Name": "of Languishing",
             "Code": "AbyssWitheredEnemiesAllResistanceJewel1___",
             "Level": "84",
@@ -3847,7 +3847,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14350",
+            "ID": "14434",
             "Name": "of Mangling",
             "Code": "AbyssMaimedEnemiesDamageOverTimeJewel1",
             "Level": "84",
@@ -3875,7 +3875,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "14351",
+            "ID": "14435",
             "Name": "of Daunting",
             "Code": "AbyssIntimidatedEnemiesStunDurationJewel1",
             "Level": "84",
@@ -3903,7 +3903,7 @@
     "essence": [],
     "delve": [
         {
-            "ID": "15987",
+            "ID": "16071",
             "Name": "Subterranean",
             "Code": "DelveJewelFirePenetration1",
             "Level": "1",
@@ -3934,7 +3934,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "15997",
+            "ID": "16081",
             "Name": "Subterranean",
             "Code": "DelveJewelColdPenetration1",
             "Level": "1",
@@ -3965,7 +3965,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16007",
+            "ID": "16091",
             "Name": "Subterranean",
             "Code": "DelveJewelLightningPenetration1",
             "Level": "1",
@@ -3996,7 +3996,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16026",
+            "ID": "16110",
             "Name": "Subterranean",
             "Code": "DelveJewelPhysicalDamageOverTimeTaken1",
             "Level": "1",
@@ -4022,7 +4022,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16036",
+            "ID": "16120",
             "Name": "of the Underground",
             "Code": "DelveJewelChaosDamage1",
             "Level": "1",
@@ -4051,7 +4051,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16044",
+            "ID": "16128",
             "Name": "Subterranean",
             "Code": "DelveJewelLifeRegeneration1",
             "Level": "1",
@@ -4079,7 +4079,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16046",
+            "ID": "16130",
             "Name": "of the Underground",
             "Code": "DelveJewelArmourIfYouHitRecently1",
             "Level": "1",
@@ -4097,8 +4097,8 @@
             "str": "<span class='mod-value'>+(250&ndash;300)</span> to Armour if you've Hit an Enemy Recently",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -4106,7 +4106,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16049",
+            "ID": "16133",
             "Name": "of the Underground",
             "Code": "DelveJewelEvasionIfYouHitRecently1",
             "Level": "1",
@@ -4124,8 +4124,8 @@
             "str": "<span class='mod-value'>+(250&ndash;300)</span> to Evasion Rating if Hit an Enemy Recently",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -4133,7 +4133,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16052",
+            "ID": "16136",
             "Name": "of the Underground",
             "Code": "DelveJewelEnergyShieldRegenIfYouHitRecently1_",
             "Level": "1",
@@ -4151,8 +4151,8 @@
             "str": "Regenerate <span class='mod-value'>0.3</span>% of Energy Shield per second if you've Hit an Enemy Recently",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -4160,7 +4160,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16073",
+            "ID": "16157",
             "Name": "Subterranean",
             "Code": "DelveJewelGlobalDefences1",
             "Level": "1",
@@ -4186,7 +4186,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16079",
+            "ID": "16163",
             "Name": "of the Underground",
             "Code": "DelveJewelAilmentDamage1__",
             "Level": "1",
@@ -4214,7 +4214,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16096",
+            "ID": "16180",
             "Name": "Subterranean",
             "Code": "DelveJewelElementalPenetration1",
             "Level": "1",
@@ -4243,7 +4243,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16102",
+            "ID": "16186",
             "Name": "of the Underground",
             "Code": "DelveJewelAvoidInterruptionWhileCasting1",
             "Level": "1",
@@ -4265,7 +4265,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16108",
+            "ID": "16192",
             "Name": "of the Underground",
             "Code": "DelveJewelAttackLeech1",
             "Level": "1",
@@ -4295,7 +4295,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16119",
+            "ID": "16203",
             "Name": "of the Underground",
             "Code": "DelveJewelDamageTakenGainedAsMana1",
             "Level": "1",
@@ -4325,7 +4325,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16130",
+            "ID": "16214",
             "Name": "of the Underground",
             "Code": "DelveJewelChanceToGainOnslaughtOnFlaskUse1",
             "Level": "1",
@@ -4349,7 +4349,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16148",
+            "ID": "16232",
             "Name": "Subterranean",
             "Code": "DelveAbyssJewelMinionDamage1",
             "Level": "1",
@@ -4376,7 +4376,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "16157",
+            "ID": "16241",
             "Name": "of the Underground",
             "Code": "DelveJewelVaalSoulsOnKill1",
             "Level": "1",
@@ -4414,7 +4414,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15432",
+            "ID": "15516",
             "Level": "20",
             "Name": "of Saqawal",
             "ModGenerationTypeID": "2",
@@ -4436,7 +4436,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15431",
+            "ID": "15515",
             "Level": "20",
             "Name": "of Farrul",
             "ModGenerationTypeID": "2",
@@ -4458,7 +4458,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15434",
+            "ID": "15518",
             "Level": "20",
             "Name": "of Craiceann",
             "ModGenerationTypeID": "2",
@@ -4481,7 +4481,7 @@
             "WeightList": [
                 "0"
             ],
-            "ID": "15433",
+            "ID": "15517",
             "Level": "20",
             "Name": "of Fenumus",
             "ModGenerationTypeID": "2",

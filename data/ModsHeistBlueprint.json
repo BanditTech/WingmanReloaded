@@ -116,7 +116,7 @@
     },
     "normal": [
         {
-            "ID": "22360",
+            "ID": "22447",
             "Name": "Antagonist's",
             "Code": "HeistContractNemesisModOnRares",
             "Level": "1",
@@ -136,7 +136,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22361",
+            "ID": "22448",
             "Name": "Chaining",
             "Code": "HeistContractMonsterChain1_",
             "Level": "1",
@@ -156,7 +156,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22362",
+            "ID": "22449",
             "Name": "Chaining",
             "Code": "HeistContractMonsterChain2_",
             "Level": "68",
@@ -176,7 +176,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22363",
+            "ID": "22450",
             "Name": "Splitting",
             "Code": "HeistContractMonsterMultipleProjectiles",
             "Level": "1",
@@ -196,7 +196,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22364",
+            "ID": "22451",
             "Name": "Unstoppable",
             "Code": "HeistContractMonstersCantBeSlowedOrTaunted",
             "Level": "46",
@@ -220,7 +220,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22365",
+            "ID": "22452",
             "Name": "Conflagrating",
             "Code": "HeistContractMonstersAllDamageAlwaysIgnites_",
             "Level": "46",
@@ -248,7 +248,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22366",
+            "ID": "22453",
             "Name": "Hexproof",
             "Code": "HeistContractHexproof",
             "Level": "46",
@@ -274,7 +274,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22367",
+            "ID": "22454",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned1",
             "Level": "1",
@@ -287,7 +287,7 @@
                 "1000"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(5&ndash;9)</span>% more Monster Life<br>Monsters cannot be Stunned<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
+            "str": "Monsters cannot be Stunned<br><span class='mod-value'>(5&ndash;9)</span>% more Monster Life<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
                 "resource",
@@ -300,7 +300,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22368",
+            "ID": "22455",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned2",
             "Level": "46",
@@ -313,7 +313,7 @@
                 "1000"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(10&ndash;14)</span>% more Monster Life<br>Monsters cannot be Stunned<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
+            "str": "Monsters cannot be Stunned<br><span class='mod-value'>(10&ndash;14)</span>% more Monster Life<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
                 "resource",
@@ -326,7 +326,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22369",
+            "ID": "22456",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned3_",
             "Level": "68",
@@ -339,7 +339,7 @@
                 "1000"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(15&ndash;19)</span>% more Monster Life<br>Monsters cannot be Stunned<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
+            "str": "Monsters cannot be Stunned<br><span class='mod-value'>(15&ndash;19)</span>% more Monster Life<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
                 "resource",
@@ -352,7 +352,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22370",
+            "ID": "22457",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned4_",
             "Level": "73",
@@ -365,7 +365,7 @@
                 "1000"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(20&ndash;24)</span>% more Monster Life<br>Monsters cannot be Stunned<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
+            "str": "Monsters cannot be Stunned<br><span class='mod-value'>(20&ndash;24)</span>% more Monster Life<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
                 "resource",
@@ -378,7 +378,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22371",
+            "ID": "22458",
             "Name": "Unwavering",
             "Code": "HeistContractMonsterCannotBeStunned5",
             "Level": "78",
@@ -391,7 +391,7 @@
                 "1000"
             ],
             "DropChance": "1000",
-            "str": "<span class='mod-value'>(25&ndash;30)</span>% more Monster Life<br>Monsters cannot be Stunned<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
+            "str": "Monsters cannot be Stunned<br><span class='mod-value'>(25&ndash;30)</span>% more Monster Life<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
                 "resource",
@@ -404,7 +404,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22372",
+            "ID": "22459",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance1_",
             "Level": "1",
@@ -428,7 +428,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22373",
+            "ID": "22460",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance2",
             "Level": "46",
@@ -452,7 +452,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22374",
+            "ID": "22461",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance3",
             "Level": "68",
@@ -476,7 +476,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22375",
+            "ID": "22462",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance4",
             "Level": "73",
@@ -500,7 +500,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22376",
+            "ID": "22463",
             "Name": "Armoured",
             "Code": "HeistContractMonsterPhysicalResistance5_",
             "Level": "78",
@@ -524,7 +524,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22377",
+            "ID": "22464",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife1",
             "Level": "1",
@@ -550,7 +550,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22378",
+            "ID": "22465",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife2",
             "Level": "46",
@@ -576,7 +576,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22379",
+            "ID": "22466",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife3",
             "Level": "68",
@@ -602,7 +602,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22380",
+            "ID": "22467",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife4",
             "Level": "73",
@@ -628,7 +628,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22381",
+            "ID": "22468",
             "Name": "Fecund",
             "Code": "HeistContractMonsterLife5_",
             "Level": "78",
@@ -654,7 +654,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22382",
+            "ID": "22469",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage1",
             "Level": "1",
@@ -678,7 +678,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22383",
+            "ID": "22470",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage2_",
             "Level": "46",
@@ -702,7 +702,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22384",
+            "ID": "22471",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage3_",
             "Level": "68",
@@ -726,7 +726,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22385",
+            "ID": "22472",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage4_",
             "Level": "73",
@@ -750,7 +750,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22386",
+            "ID": "22473",
             "Name": "Savage",
             "Code": "HeistContractMonsterDamage5",
             "Level": "78",
@@ -774,7 +774,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22387",
+            "ID": "22474",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage1",
             "Level": "1",
@@ -806,7 +806,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22388",
+            "ID": "22475",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage2",
             "Level": "46",
@@ -838,7 +838,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22389",
+            "ID": "22476",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage3",
             "Level": "68",
@@ -870,7 +870,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22390",
+            "ID": "22477",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage4_",
             "Level": "73",
@@ -902,7 +902,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22391",
+            "ID": "22478",
             "Name": "Burning",
             "Code": "HeistContractMonsterFireDamage5",
             "Level": "78",
@@ -934,7 +934,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22392",
+            "ID": "22479",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage1_",
             "Level": "1",
@@ -966,7 +966,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22393",
+            "ID": "22480",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage2",
             "Level": "46",
@@ -998,7 +998,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22394",
+            "ID": "22481",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage3",
             "Level": "68",
@@ -1030,7 +1030,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22395",
+            "ID": "22482",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage4",
             "Level": "73",
@@ -1062,7 +1062,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22396",
+            "ID": "22483",
             "Name": "Freezing",
             "Code": "HeistContractMonsterColdDamage5",
             "Level": "78",
@@ -1094,7 +1094,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22397",
+            "ID": "22484",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage1",
             "Level": "1",
@@ -1126,7 +1126,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22398",
+            "ID": "22485",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage2_",
             "Level": "46",
@@ -1158,7 +1158,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22399",
+            "ID": "22486",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage3",
             "Level": "68",
@@ -1190,7 +1190,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22400",
+            "ID": "22487",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage4",
             "Level": "73",
@@ -1222,7 +1222,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22401",
+            "ID": "22488",
             "Name": "Shocking",
             "Code": "HeistContractMonsterLightningDamage5_",
             "Level": "78",
@@ -1254,7 +1254,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22402",
+            "ID": "22489",
             "Name": "Profane",
             "Code": "HeistContractMonsterChaosDamage1",
             "Level": "73",
@@ -1274,7 +1274,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22403",
+            "ID": "22490",
             "Name": "Profane",
             "Code": "HeistContractMonsterChaosDamage2",
             "Level": "78",
@@ -1294,7 +1294,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22404",
+            "ID": "22491",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast1",
             "Level": "1",
@@ -1322,7 +1322,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22405",
+            "ID": "22492",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast2___",
             "Level": "46",
@@ -1350,7 +1350,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22406",
+            "ID": "22493",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast3_",
             "Level": "68",
@@ -1378,7 +1378,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22407",
+            "ID": "22494",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast4_",
             "Level": "73",
@@ -1406,7 +1406,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22408",
+            "ID": "22495",
             "Name": "Fleet",
             "Code": "HeistContractMonsterFast5",
             "Level": "78",
@@ -1434,7 +1434,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22409",
+            "ID": "22496",
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection1_",
             "Level": "68",
@@ -1458,7 +1458,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22410",
+            "ID": "22497",
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection2_",
             "Level": "73",
@@ -1482,7 +1482,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22411",
+            "ID": "22498",
             "Name": "Punishing",
             "Code": "HeistContractMonsterPhysicalReflection3",
             "Level": "78",
@@ -1506,7 +1506,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22412",
+            "ID": "22499",
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection1",
             "Level": "68",
@@ -1530,7 +1530,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22413",
+            "ID": "22500",
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection2",
             "Level": "73",
@@ -1554,7 +1554,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22414",
+            "ID": "22501",
             "Name": "Mirrored",
             "Code": "HeistContractMonsterElementalReflection3",
             "Level": "78",
@@ -1578,7 +1578,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22415",
+            "ID": "22502",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal1",
             "Level": "46",
@@ -1604,7 +1604,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22416",
+            "ID": "22503",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal2",
             "Level": "68",
@@ -1630,7 +1630,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22417",
+            "ID": "22504",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal3",
             "Level": "73",
@@ -1656,7 +1656,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22418",
+            "ID": "22505",
             "Name": "Hexwarded",
             "Code": "HeistContractMonstersCurseEffectOnSelfFinal4",
             "Level": "78",
@@ -1682,7 +1682,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22419",
+            "ID": "22506",
             "Name": "Empowered",
             "Code": "HeistContractMonstersChanceToInflictStatusAilments1_",
             "Level": "73",
@@ -1706,7 +1706,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22420",
+            "ID": "22507",
             "Name": "Empowered",
             "Code": "HeistContractMonstersChanceToInflictStatusAilments2",
             "Level": "78",
@@ -1730,7 +1730,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22421",
+            "ID": "22508",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances1",
             "Level": "1",
@@ -1758,7 +1758,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22422",
+            "ID": "22509",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances2",
             "Level": "68",
@@ -1786,7 +1786,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22423",
+            "ID": "22510",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances3_",
             "Level": "73",
@@ -1814,7 +1814,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22424",
+            "ID": "22511",
             "Name": "Resistant",
             "Code": "HeistContractMonstersAllResistances4",
             "Level": "78",
@@ -1842,7 +1842,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22425",
+            "ID": "22512",
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind1_",
             "Level": "46",
@@ -1876,7 +1876,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22426",
+            "ID": "22513",
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind2",
             "Level": "73",
@@ -1910,7 +1910,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22427",
+            "ID": "22514",
             "Name": "Impervious",
             "Code": "HeistContractMonstersAvoidPoisonBleedBlind3___",
             "Level": "78",
@@ -1944,7 +1944,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22428",
+            "ID": "22515",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit1",
             "Level": "46",
@@ -1964,7 +1964,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22429",
+            "ID": "22516",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit2",
             "Level": "68",
@@ -1984,7 +1984,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22430",
+            "ID": "22517",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit3",
             "Level": "73",
@@ -2004,7 +2004,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22431",
+            "ID": "22518",
             "Name": "Impaling",
             "Code": "HeistContractMonstersImpaleOnHit4",
             "Level": "78",
@@ -2024,7 +2024,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22432",
+            "ID": "22519",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells1___",
             "Level": "46",
@@ -2044,7 +2044,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22433",
+            "ID": "22520",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells2",
             "Level": "68",
@@ -2064,7 +2064,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22434",
+            "ID": "22521",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells3_",
             "Level": "73",
@@ -2084,7 +2084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22435",
+            "ID": "22522",
             "Name": "Oppressive",
             "Code": "HeistContractMonstersChanceToSuppressSpells4",
             "Level": "78",
@@ -2104,7 +2104,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22436",
+            "ID": "22523",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield1____",
             "Level": "1",
@@ -2124,7 +2124,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22437",
+            "ID": "22524",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield2",
             "Level": "46",
@@ -2144,7 +2144,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22438",
+            "ID": "22525",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield3",
             "Level": "68",
@@ -2164,7 +2164,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22439",
+            "ID": "22526",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield4_",
             "Level": "73",
@@ -2184,7 +2184,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22440",
+            "ID": "22527",
             "Name": "Buffered",
             "Code": "HeistContractMonstersMaximumLifeAddedEnergyShield5__",
             "Level": "78",
@@ -2204,7 +2204,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22441",
+            "ID": "22528",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite1",
             "Level": "1",
@@ -2224,7 +2224,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22442",
+            "ID": "22529",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite2",
             "Level": "46",
@@ -2244,7 +2244,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22443",
+            "ID": "22530",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite3",
             "Level": "68",
@@ -2264,7 +2264,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22444",
+            "ID": "22531",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite4",
             "Level": "73",
@@ -2284,7 +2284,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22445",
+            "ID": "22532",
             "Name": "Elite",
             "Code": "HeistContractMonsterPatrolAdditionalElite5",
             "Level": "78",
@@ -2304,7 +2304,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22446",
+            "ID": "22533",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage1",
             "Level": "1",
@@ -2328,7 +2328,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22447",
+            "ID": "22534",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage2_",
             "Level": "46",
@@ -2352,7 +2352,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22448",
+            "ID": "22535",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage3",
             "Level": "68",
@@ -2376,7 +2376,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22449",
+            "ID": "22536",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage4",
             "Level": "73",
@@ -2400,7 +2400,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22450",
+            "ID": "22537",
             "Name": "Secure",
             "Code": "HeistContractMonsterPatrolDamage5",
             "Level": "78",
@@ -2424,7 +2424,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22451",
+            "ID": "22538",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction1",
             "Level": "1",
@@ -2444,7 +2444,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22452",
+            "ID": "22539",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction2_",
             "Level": "46",
@@ -2464,7 +2464,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22453",
+            "ID": "22540",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction3",
             "Level": "68",
@@ -2484,7 +2484,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22454",
+            "ID": "22541",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction4",
             "Level": "73",
@@ -2504,7 +2504,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22455",
+            "ID": "22542",
             "Name": "Dutiful",
             "Code": "HeistContractMonsterPatrolDamageReduction5_",
             "Level": "78",
@@ -2524,7 +2524,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22456",
+            "ID": "22543",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage1",
             "Level": "1",
@@ -2548,7 +2548,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22457",
+            "ID": "22544",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage2",
             "Level": "46",
@@ -2572,7 +2572,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22458",
+            "ID": "22545",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage3",
             "Level": "68",
@@ -2596,7 +2596,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22459",
+            "ID": "22546",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage4",
             "Level": "73",
@@ -2620,7 +2620,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22460",
+            "ID": "22547",
             "Name": "Tempting",
             "Code": "HeistContractMonsterSideAreaDamage5",
             "Level": "78",
@@ -2644,7 +2644,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22461",
+            "ID": "22548",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction1",
             "Level": "1",
@@ -2664,7 +2664,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22462",
+            "ID": "22549",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction2",
             "Level": "46",
@@ -2684,7 +2684,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22463",
+            "ID": "22550",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction3",
             "Level": "68",
@@ -2704,7 +2704,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22464",
+            "ID": "22551",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction4_",
             "Level": "73",
@@ -2724,7 +2724,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22465",
+            "ID": "22552",
             "Name": "Inimicable",
             "Code": "HeistContractMonsterSideAreaDamageReduction5____",
             "Level": "78",
@@ -2744,7 +2744,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22466",
+            "ID": "22553",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage1",
             "Level": "1",
@@ -2768,7 +2768,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22467",
+            "ID": "22554",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage2",
             "Level": "46",
@@ -2792,7 +2792,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22468",
+            "ID": "22555",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage3",
             "Level": "68",
@@ -2816,7 +2816,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22469",
+            "ID": "22556",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage4",
             "Level": "73",
@@ -2840,7 +2840,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22470",
+            "ID": "22557",
             "Name": "Indifferent",
             "Code": "HeistContractMonsterGuardingDamage5",
             "Level": "78",
@@ -2864,7 +2864,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22471",
+            "ID": "22558",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction1",
             "Level": "1",
@@ -2884,7 +2884,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22472",
+            "ID": "22559",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction2___",
             "Level": "46",
@@ -2904,7 +2904,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22473",
+            "ID": "22560",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction3",
             "Level": "68",
@@ -2924,7 +2924,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22474",
+            "ID": "22561",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction4",
             "Level": "73",
@@ -2944,7 +2944,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22475",
+            "ID": "22562",
             "Name": "Stoic",
             "Code": "HeistContractMonsterGuardingDamageReduction5",
             "Level": "78",
@@ -2964,7 +2964,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22476",
+            "ID": "22563",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed1_",
             "Level": "1",
@@ -2984,7 +2984,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22477",
+            "ID": "22564",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed2",
             "Level": "46",
@@ -3004,7 +3004,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22478",
+            "ID": "22565",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed3_",
             "Level": "68",
@@ -3024,7 +3024,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22479",
+            "ID": "22566",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed4__",
             "Level": "73",
@@ -3044,7 +3044,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22480",
+            "ID": "22567",
             "Name": "Impeding",
             "Code": "HeistContractObjectiveSpeed5",
             "Level": "78",
@@ -3064,7 +3064,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22491",
+            "ID": "22578",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters1_",
             "Level": "1",
@@ -3084,7 +3084,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22492",
+            "ID": "22579",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters2__",
             "Level": "1",
@@ -3104,7 +3104,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22493",
+            "ID": "22580",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters3_",
             "Level": "1",
@@ -3124,7 +3124,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22494",
+            "ID": "22581",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters4",
             "Level": "1",
@@ -3144,7 +3144,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22495",
+            "ID": "22582",
             "Name": "Deployed",
             "Code": "HeistContractSideAreaIncreasedMonsters5",
             "Level": "1",
@@ -3164,7 +3164,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22496",
+            "ID": "22583",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast1",
             "Level": "1",
@@ -3192,7 +3192,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22497",
+            "ID": "22584",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast2",
             "Level": "1",
@@ -3220,7 +3220,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22498",
+            "ID": "22585",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast3",
             "Level": "1",
@@ -3248,7 +3248,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22499",
+            "ID": "22586",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast4",
             "Level": "1",
@@ -3276,7 +3276,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22500",
+            "ID": "22587",
             "Name": "Supplemented",
             "Code": "HeistContractReinforcementsFast5",
             "Level": "1",
@@ -3304,7 +3304,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22505",
+            "ID": "22592",
             "Name": "Instantaneous",
             "Code": "HeistContractLockdownInstant1",
             "Level": "68",
@@ -3324,7 +3324,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22506",
+            "ID": "22593",
             "Name": "of Bloodlines",
             "Code": "HeistContractBloodlinesModOnMagics_",
             "Level": "1",
@@ -3344,7 +3344,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22507",
+            "ID": "22594",
             "Name": "of Venom",
             "Code": "HeistContractPoisoning",
             "Level": "1",
@@ -3372,7 +3372,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22508",
+            "ID": "22595",
             "Name": "of Balance",
             "Code": "HeistContractPlayerElementalEquilibrium",
             "Level": "68",
@@ -3399,7 +3399,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22510",
+            "ID": "22597",
             "Name": "of Frenzy",
             "Code": "HeistContractMonstersFrenzyChargeOnHit1",
             "Level": "1",
@@ -3421,7 +3421,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22511",
+            "ID": "22598",
             "Name": "of Frenzy",
             "Code": "HeistContractMonstersFrenzyChargeOnHit2_",
             "Level": "68",
@@ -3443,7 +3443,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22512",
+            "ID": "22599",
             "Name": "of Endurance",
             "Code": "HeistContractMonstersEnduranceChargeOnHit1__",
             "Level": "1",
@@ -3465,7 +3465,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22513",
+            "ID": "22600",
             "Name": "of Endurance",
             "Code": "HeistContractMonstersEnduranceChargeOnHit2",
             "Level": "68",
@@ -3487,7 +3487,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22514",
+            "ID": "22601",
             "Name": "of Power",
             "Code": "HeistContractMonstersPowerChargeOnHit1",
             "Level": "1",
@@ -3509,7 +3509,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22515",
+            "ID": "22602",
             "Name": "of Power",
             "Code": "HeistContractMonstersPowerChargeOnHit2___",
             "Level": "68",
@@ -3531,7 +3531,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22516",
+            "ID": "22603",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect1_",
             "Level": "1",
@@ -3551,7 +3551,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22517",
+            "ID": "22604",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect2",
             "Level": "46",
@@ -3571,7 +3571,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22518",
+            "ID": "22605",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect3",
             "Level": "68",
@@ -3591,7 +3591,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22519",
+            "ID": "22606",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect4",
             "Level": "73",
@@ -3611,7 +3611,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22520",
+            "ID": "22607",
             "Name": "of Giants",
             "Code": "HeistContractMonsterAreaOfEffect5_",
             "Level": "78",
@@ -3631,7 +3631,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22521",
+            "ID": "22608",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage1_",
             "Level": "1",
@@ -3657,7 +3657,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22522",
+            "ID": "22609",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage2__",
             "Level": "46",
@@ -3683,7 +3683,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22523",
+            "ID": "22610",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage3",
             "Level": "68",
@@ -3709,7 +3709,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22524",
+            "ID": "22611",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage4",
             "Level": "73",
@@ -3735,7 +3735,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22525",
+            "ID": "22612",
             "Name": "of Deadliness",
             "Code": "HeistContractMonsterCriticalStrikesAndDamage5",
             "Level": "78",
@@ -3761,7 +3761,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22526",
+            "ID": "22613",
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen1",
             "Level": "1",
@@ -3777,10 +3777,10 @@
             "str": "Players have <span class='mod-value'>20</span>% less Recovery Rate of Life and Energy Shield<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [0]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [9]</span>",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "resource",
                 "life",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
@@ -3790,7 +3790,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22527",
+            "ID": "22614",
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen2",
             "Level": "73",
@@ -3806,10 +3806,10 @@
             "str": "Players have <span class='mod-value'>40</span>% less Recovery Rate of Life and Energy Shield<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [0]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [9]</span>",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "resource",
                 "life",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
@@ -3819,7 +3819,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22528",
+            "ID": "22615",
             "Name": "of Smothering",
             "Code": "HeistContractPlayerReducedRegen3",
             "Level": "78",
@@ -3835,10 +3835,10 @@
             "str": "Players have <span class='mod-value'>60</span>% less Recovery Rate of Life and Energy Shield<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [0]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [9]</span>",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "resource",
                 "life",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
@@ -3848,7 +3848,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22529",
+            "ID": "22616",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround1",
             "Level": "46",
@@ -3877,7 +3877,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22530",
+            "ID": "22617",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround2",
             "Level": "68",
@@ -3906,7 +3906,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22531",
+            "ID": "22618",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround3___",
             "Level": "73",
@@ -3935,7 +3935,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22532",
+            "ID": "22619",
             "Name": "of Flames",
             "Code": "HeistContractBurningGround4",
             "Level": "78",
@@ -3964,7 +3964,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22533",
+            "ID": "22620",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround1",
             "Level": "46",
@@ -3992,7 +3992,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22534",
+            "ID": "22621",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround2_",
             "Level": "68",
@@ -4020,7 +4020,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22535",
+            "ID": "22622",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround3",
             "Level": "73",
@@ -4048,7 +4048,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22536",
+            "ID": "22623",
             "Name": "of Ice",
             "Code": "HeistContractChilledGround4",
             "Level": "78",
@@ -4076,7 +4076,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22537",
+            "ID": "22624",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround1",
             "Level": "46",
@@ -4104,7 +4104,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22538",
+            "ID": "22625",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround2_",
             "Level": "68",
@@ -4132,7 +4132,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22539",
+            "ID": "22626",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround3",
             "Level": "73",
@@ -4160,7 +4160,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22540",
+            "ID": "22627",
             "Name": "of Lightning",
             "Code": "HeistContractShockedGround4_",
             "Level": "78",
@@ -4188,7 +4188,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22541",
+            "ID": "22628",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround1_",
             "Level": "46",
@@ -4215,7 +4215,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22542",
+            "ID": "22629",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround2",
             "Level": "68",
@@ -4242,7 +4242,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22543",
+            "ID": "22630",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround3",
             "Level": "73",
@@ -4269,7 +4269,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22544",
+            "ID": "22631",
             "Name": "of Desecration",
             "Code": "HeistContractDesecratedGround4",
             "Level": "78",
@@ -4296,7 +4296,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22545",
+            "ID": "22632",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround1_",
             "Level": "46",
@@ -4316,7 +4316,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22546",
+            "ID": "22633",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround2",
             "Level": "68",
@@ -4336,7 +4336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22547",
+            "ID": "22634",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround3___",
             "Level": "73",
@@ -4356,7 +4356,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22548",
+            "ID": "22635",
             "Name": "of Consecration",
             "Code": "HeistContractConsecratedGround4",
             "Level": "78",
@@ -4376,7 +4376,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22549",
+            "ID": "22636",
             "Name": "of Elemental Weakness",
             "Code": "HeistContractPlayerCurseElementalWeakness1_",
             "Level": "73",
@@ -4402,7 +4402,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22550",
+            "ID": "22637",
             "Name": "of Elemental Weakness",
             "Code": "HeistContractPlayerCurseElementalWeakness2_",
             "Level": "78",
@@ -4428,7 +4428,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22551",
+            "ID": "22638",
             "Name": "of Vulnerability",
             "Code": "HeistContractPlayerCurseVulnerability1",
             "Level": "73",
@@ -4454,7 +4454,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22552",
+            "ID": "22639",
             "Name": "of Vulnerability",
             "Code": "HeistContractPlayerCurseVulnerability2",
             "Level": "78",
@@ -4480,7 +4480,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22553",
+            "ID": "22640",
             "Name": "of Enfeeblement",
             "Code": "HeistContractPlayerCurseEnfeeblement1",
             "Level": "73",
@@ -4506,7 +4506,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22554",
+            "ID": "22641",
             "Name": "of Enfeeblement",
             "Code": "HeistContractPlayerCurseEnfeeblement2",
             "Level": "78",
@@ -4532,7 +4532,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22555",
+            "ID": "22642",
             "Name": "of Temporal Chains",
             "Code": "HeistContractPlayerCurseTemporalChains1",
             "Level": "73",
@@ -4558,7 +4558,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22556",
+            "ID": "22643",
             "Name": "of Temporal Chains",
             "Code": "HeistContractPlayerCurseTemporalChains2",
             "Level": "78",
@@ -4584,7 +4584,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22557",
+            "ID": "22644",
             "Name": "of Stasis",
             "Code": "HeistContractPlayerNoLifeESRegen_",
             "Level": "73",
@@ -4600,11 +4600,11 @@
             "str": "Players cannot Regenerate Life, Mana or Energy Shield<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [0]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [9]</span>",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "resource",
                 "life",
                 "mana",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
@@ -4615,7 +4615,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22558",
+            "ID": "22645",
             "Name": "of Exposure",
             "Code": "HeistContractPlayerMaxResists1__",
             "Level": "73",
@@ -4639,7 +4639,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22559",
+            "ID": "22646",
             "Name": "of Exposure",
             "Code": "HeistContractPlayerMaxResists2_",
             "Level": "78",
@@ -4663,7 +4663,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22560",
+            "ID": "22647",
             "Name": "of Congealment",
             "Code": "HeistContractMonsterLifeLeechImmunity",
             "Level": "78",
@@ -4683,7 +4683,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22561",
+            "ID": "22648",
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity1",
             "Level": "46",
@@ -4715,7 +4715,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22562",
+            "ID": "22649",
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity2_",
             "Level": "73",
@@ -4747,7 +4747,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22563",
+            "ID": "22650",
             "Name": "of Insulation",
             "Code": "HeistContractMonsterStatusAilmentImmunity3",
             "Level": "78",
@@ -4779,7 +4779,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22564",
+            "ID": "22651",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier1",
             "Level": "1",
@@ -4805,7 +4805,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22565",
+            "ID": "22652",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier2_",
             "Level": "46",
@@ -4831,7 +4831,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22566",
+            "ID": "22653",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier3",
             "Level": "68",
@@ -4857,7 +4857,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22567",
+            "ID": "22654",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier4_",
             "Level": "73",
@@ -4883,7 +4883,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22568",
+            "ID": "22655",
             "Name": "of Toughness",
             "Code": "HeistContractMonstersBaseSelfCriticalMultiplier5",
             "Level": "78",
@@ -4909,7 +4909,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22569",
+            "ID": "22656",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges1",
             "Level": "1",
@@ -4931,7 +4931,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22570",
+            "ID": "22657",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges2",
             "Level": "46",
@@ -4953,7 +4953,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22571",
+            "ID": "22658",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges3_",
             "Level": "68",
@@ -4975,7 +4975,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22572",
+            "ID": "22659",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges4",
             "Level": "73",
@@ -4997,7 +4997,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22573",
+            "ID": "22660",
             "Name": "of Drought",
             "Code": "HeistContractPlayersGainReducedFlaskCharges5",
             "Level": "78",
@@ -5019,7 +5019,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22574",
+            "ID": "22661",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour1",
             "Level": "46",
@@ -5035,9 +5035,9 @@
             "str": "Players have <span class='mod-value'>15</span>% less Armour<br>Players have <span class='mod-value'>10</span>% reduced Chance to Block<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "block",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -5045,7 +5045,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22575",
+            "ID": "22662",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour2",
             "Level": "68",
@@ -5061,9 +5061,9 @@
             "str": "Players have <span class='mod-value'>20</span>% less Armour<br>Players have <span class='mod-value'>20</span>% reduced Chance to Block<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "block",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -5071,7 +5071,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22576",
+            "ID": "22663",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour3",
             "Level": "73",
@@ -5087,9 +5087,9 @@
             "str": "Players have <span class='mod-value'>25</span>% less Armour<br>Players have <span class='mod-value'>30</span>% reduced Chance to Block<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "block",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -5097,7 +5097,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22577",
+            "ID": "22664",
             "Name": "of Rust",
             "Code": "HeistContractPlayersBlockAndArmour4",
             "Level": "78",
@@ -5113,9 +5113,9 @@
             "str": "Players have <span class='mod-value'>30</span>% less Armour<br>Players have <span class='mod-value'>40</span>% reduced Chance to Block<br><span class='secondary'>heist contract alert level +% final [0]</span><br><span class='secondary'>heist contract lockdown timer +% [5]</span><br><span class='secondary'>heist monster spawner alive limit +% [5]</span><br><span class='secondary'>map item drop quantity +% [13]</span><br><span class='secondary'>map item drop rarity +% [8]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "block",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -5123,7 +5123,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22578",
+            "ID": "22665",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge1",
             "Level": "46",
@@ -5148,7 +5148,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22579",
+            "ID": "22666",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge2",
             "Level": "68",
@@ -5173,7 +5173,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22580",
+            "ID": "22667",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge3",
             "Level": "73",
@@ -5198,7 +5198,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22581",
+            "ID": "22668",
             "Name": "of Miring",
             "Code": "HeistContractMonsterAccuracyPlayersUnlockyDodge4",
             "Level": "78",
@@ -5223,7 +5223,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22582",
+            "ID": "22669",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius1",
             "Level": "1",
@@ -5243,7 +5243,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22583",
+            "ID": "22670",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius2___",
             "Level": "68",
@@ -5263,7 +5263,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22584",
+            "ID": "22671",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius3",
             "Level": "73",
@@ -5283,7 +5283,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22585",
+            "ID": "22672",
             "Name": "of Impotence",
             "Code": "HeistContractPlayersAoERadius4",
             "Level": "78",
@@ -5303,7 +5303,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22586",
+            "ID": "22673",
             "Name": "of Blinding",
             "Code": "HeistContractMonstersBlindOnHit",
             "Level": "46",
@@ -5323,7 +5323,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22587",
+            "ID": "22674",
             "Name": "of Carnage",
             "Code": "HeistContractMonstersMaimOnHit",
             "Level": "46",
@@ -5343,7 +5343,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22588",
+            "ID": "22675",
             "Name": "of Impedance",
             "Code": "HeistContractMonstersHinderOnHit_",
             "Level": "46",
@@ -5363,7 +5363,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22589",
+            "ID": "22676",
             "Name": "of Enervation",
             "Code": "HeistContractMonstersStealChargesOnHit",
             "Level": "46",
@@ -5383,7 +5383,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22590",
+            "ID": "22677",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery1__",
             "Level": "46",
@@ -5403,7 +5403,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22591",
+            "ID": "22678",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery2",
             "Level": "68",
@@ -5423,7 +5423,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22592",
+            "ID": "22679",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery3_",
             "Level": "73",
@@ -5443,7 +5443,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22593",
+            "ID": "22680",
             "Name": "of Fatigue",
             "Code": "HeistContractPlayersCooldownRecovery4",
             "Level": "78",
@@ -5463,7 +5463,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22594",
+            "ID": "22681",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster1__",
             "Level": "46",
@@ -5483,7 +5483,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22595",
+            "ID": "22682",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster2_",
             "Level": "68",
@@ -5503,7 +5503,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22596",
+            "ID": "22683",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster3",
             "Level": "73",
@@ -5523,7 +5523,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22597",
+            "ID": "22684",
             "Name": "of Transience",
             "Code": "HeistContractPlayersBuffsExpireFaster4",
             "Level": "78",
@@ -5543,7 +5543,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22598",
+            "ID": "22685",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect1_",
             "Level": "46",
@@ -5563,7 +5563,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22599",
+            "ID": "22686",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect2",
             "Level": "68",
@@ -5583,7 +5583,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22600",
+            "ID": "22687",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect3",
             "Level": "73",
@@ -5603,7 +5603,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22601",
+            "ID": "22688",
             "Name": "of Doubt",
             "Code": "HeistContractPlayersAuraEffect4",
             "Level": "78",
@@ -5623,7 +5623,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22602",
+            "ID": "22689",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating1_",
             "Level": "46",
@@ -5643,7 +5643,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22603",
+            "ID": "22690",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating2",
             "Level": "68",
@@ -5663,7 +5663,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22604",
+            "ID": "22691",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating3",
             "Level": "73",
@@ -5683,7 +5683,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22605",
+            "ID": "22692",
             "Name": "of Imprecision",
             "Code": "HeistContractPlayersAccuracyRating4_",
             "Level": "78",
@@ -5703,7 +5703,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22606",
+            "ID": "22693",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost1_",
             "Level": "1",
@@ -5723,7 +5723,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22607",
+            "ID": "22694",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost2",
             "Level": "46",
@@ -5743,7 +5743,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22608",
+            "ID": "22695",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost3_",
             "Level": "68",
@@ -5763,7 +5763,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22609",
+            "ID": "22696",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost4",
             "Level": "73",
@@ -5783,7 +5783,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22610",
+            "ID": "22697",
             "Name": "of Expense",
             "Code": "HeistContractTotalCost5_",
             "Level": "78",
@@ -5803,7 +5803,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22621",
+            "ID": "22708",
             "Name": "of Selfishness",
             "Code": "HeistContractNoGangCut1",
             "Level": "68",
@@ -5823,7 +5823,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22622",
+            "ID": "22709",
             "Name": "of Proximity",
             "Code": "HeistContractNoTravelCost1__",
             "Level": "68",
@@ -5843,7 +5843,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22623",
+            "ID": "22710",
             "Name": "of Paranoia",
             "Code": "HeistContractGainAlertLevelPassive1",
             "Level": "68",
@@ -5863,7 +5863,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22625",
+            "ID": "22712",
             "Name": "of Unravelling",
             "Code": "HeistContractPlayerMaxResistsAlertLevel1_",
             "Level": "73",
@@ -5887,7 +5887,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22626",
+            "ID": "22713",
             "Name": "of Unravelling",
             "Code": "HeistContractPlayerMaxResistsAlertLevel2_",
             "Level": "78",
@@ -5911,7 +5911,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22627",
+            "ID": "22714",
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel1",
             "Level": "68",
@@ -5939,7 +5939,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22628",
+            "ID": "22715",
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel2",
             "Level": "73",
@@ -5967,7 +5967,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22629",
+            "ID": "22716",
             "Name": "of Over-Heating",
             "Code": "HeistContractPlayerFireResistAlertLevel3_",
             "Level": "78",
@@ -5995,7 +5995,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22630",
+            "ID": "22717",
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel1_",
             "Level": "68",
@@ -6023,7 +6023,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22631",
+            "ID": "22718",
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel2_",
             "Level": "73",
@@ -6051,7 +6051,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22632",
+            "ID": "22719",
             "Name": "of Spine-Chilling",
             "Code": "HeistContractPlayerColdResistAlertLevel3_",
             "Level": "78",
@@ -6079,7 +6079,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22633",
+            "ID": "22720",
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel1",
             "Level": "68",
@@ -6107,7 +6107,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22634",
+            "ID": "22721",
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel2",
             "Level": "73",
@@ -6135,7 +6135,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22635",
+            "ID": "22722",
             "Name": "of Hair-Raising",
             "Code": "HeistContractPlayerLightningResistAlertLevel3",
             "Level": "78",
@@ -6163,7 +6163,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22636",
+            "ID": "22723",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel1___",
             "Level": "46",
@@ -6179,8 +6179,8 @@
             "str": "Players have <span class='mod-value'>5</span>% less Armour per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6188,7 +6188,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22637",
+            "ID": "22724",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel2_",
             "Level": "68",
@@ -6204,8 +6204,8 @@
             "str": "Players have <span class='mod-value'>6</span>% less Armour per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6213,7 +6213,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22638",
+            "ID": "22725",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel3",
             "Level": "73",
@@ -6229,8 +6229,8 @@
             "str": "Players have <span class='mod-value'>7</span>% less Armour per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6238,7 +6238,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22639",
+            "ID": "22726",
             "Name": "of Distress",
             "Code": "HeistContractPlayerArmourAlertLevel4",
             "Level": "78",
@@ -6254,8 +6254,8 @@
             "str": "Players have <span class='mod-value'>8</span>% less Armour per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "armour",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6263,7 +6263,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22640",
+            "ID": "22727",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel1",
             "Level": "46",
@@ -6279,8 +6279,8 @@
             "str": "Players have <span class='mod-value'>5</span>% less Evasion per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6288,7 +6288,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22641",
+            "ID": "22728",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel2__",
             "Level": "68",
@@ -6304,8 +6304,8 @@
             "str": "Players have <span class='mod-value'>6</span>% less Evasion per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6313,7 +6313,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22642",
+            "ID": "22729",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel3",
             "Level": "73",
@@ -6329,8 +6329,8 @@
             "str": "Players have <span class='mod-value'>7</span>% less Evasion per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6338,7 +6338,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22643",
+            "ID": "22730",
             "Name": "of Apprehension",
             "Code": "HeistContractPlayerEvasionAlertLevel4",
             "Level": "78",
@@ -6354,8 +6354,8 @@
             "str": "Players have <span class='mod-value'>8</span>% less Evasion per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "evasion",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6363,7 +6363,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22644",
+            "ID": "22731",
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel1_",
             "Level": "46",
@@ -6379,8 +6379,8 @@
             "str": "Players have <span class='mod-value'>6</span>% less Energy Shield Recovery Rate per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6388,7 +6388,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22645",
+            "ID": "22732",
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel2",
             "Level": "73",
@@ -6404,8 +6404,8 @@
             "str": "Players have <span class='mod-value'>12</span>% less Energy Shield Recovery Rate per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6413,7 +6413,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22646",
+            "ID": "22733",
             "Name": "of Wavering Will",
             "Code": "HeistContractPlayerEnergyShieldReducedRegenAlertLevel3__",
             "Level": "78",
@@ -6429,8 +6429,8 @@
             "str": "Players have <span class='mod-value'>16</span>% less Energy Shield Recovery Rate per 25% Alert Level<br><span class='secondary'>heist contract alert level +% final [-6]</span><br><span class='secondary'>heist contract lockdown timer +% [6]</span><br><span class='secondary'>heist monster spawner alive limit +% [6]</span><br><span class='secondary'>map item drop quantity +% [16]</span><br><span class='secondary'>map item drop rarity +% [0]</span>",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
-                "defences"
+                "defences",
+                "energy_shield"
             ],
             "mod_no": [
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
@@ -6438,7 +6438,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22647",
+            "ID": "22734",
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel1",
             "Level": "46",
@@ -6464,7 +6464,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22648",
+            "ID": "22735",
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel2",
             "Level": "73",
@@ -6490,7 +6490,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22649",
+            "ID": "22736",
             "Name": "of Anxiety",
             "Code": "HeistContractPlayerLifeReducedRegenAlertLevel3___",
             "Level": "78",
@@ -6516,7 +6516,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22650",
+            "ID": "22737",
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel1_",
             "Level": "46",
@@ -6542,7 +6542,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22651",
+            "ID": "22738",
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel2",
             "Level": "73",
@@ -6568,7 +6568,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22652",
+            "ID": "22739",
             "Name": "of Clouded Judgement",
             "Code": "HeistContractPlayerManaReducedRegenAlertLevel3",
             "Level": "78",
@@ -6594,7 +6594,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22653",
+            "ID": "22740",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel1_",
             "Level": "1",
@@ -6616,7 +6616,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22654",
+            "ID": "22741",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel2",
             "Level": "46",
@@ -6638,7 +6638,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22655",
+            "ID": "22742",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel3",
             "Level": "68",
@@ -6660,7 +6660,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22656",
+            "ID": "22743",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel4",
             "Level": "73",
@@ -6682,7 +6682,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "22657",
+            "ID": "22744",
             "Name": "of Dehydration",
             "Code": "HeistContractPlayersGainReducedFlaskChargesAlertLevel5",
             "Level": "78",
