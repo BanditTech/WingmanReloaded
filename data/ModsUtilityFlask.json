@@ -28,180 +28,84 @@
         "shaper": {
             "type": "shaper",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
-=======
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/shaper-symbol.png?1569220365594'/>",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/shaper-symbol.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Shaper",
             "display_chance": true
         },
         "elder": {
             "type": "elder",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
-=======
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/elder-symbol.png?1569220365590'/>",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/elder-symbol.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Elder",
             "display_chance": true
         },
         "crusader": {
             "type": "crusader",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
-=======
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/crusader-symbol.png'/>",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/crusader-symbol.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Crusader",
             "display_chance": true
         },
         "redeemer": {
             "type": "redeemer",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
-=======
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/redeemer-symbol.png'/>",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/redeemer-symbol.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Redeemer",
             "display_chance": true
         },
         "hunter": {
             "type": "hunter",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
-=======
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/hunter-symbol.png'/>",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/hunter-symbol.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Hunter",
             "display_chance": true
         },
         "warlord": {
             "type": "warlord",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
-=======
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/warlord-symbol.png'/>",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/warlord-symbol.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "The Warlord",
             "display_chance": true
         },
         "delve": {
             "type": "delve",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
-=======
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -117px; background-position-y: -117px;\">",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/DelveMineralVein.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Delve",
             "display_chance": true
         },
         "incursion": {
             "type": "incursion",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
-=======
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -78px;\">",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/IncursionCraftingBench.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Incursion",
             "display_chance": false
         },
         "veiled": {
             "type": "veiled",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
-=======
-            "icon": "<img loading='lazy' src='https://web.poecdn.com/image/item/popup/veiled-symbol.png?1614133674855'/>",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img loading='lazy' src='https://cdn.poedb.tw/image/item/popup/veiled-symbol.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Veiled",
             "display_chance": true
         },
         "master": {
             "type": "master",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
-=======
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"background-position-x: -273px; background-position-y: -429px;\">",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/CraftingUnlockObject.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Crafting Bench",
             "display_chance": false
         },
         "essence": {
             "type": "essence",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
-=======
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -507px; background-position-y: -39px;\">",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/Essence.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Essence",
             "display_chance": false
         },
         "bestiary": {
             "type": "bestiary",
             "show_type": "clickable",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
-=======
-            "icon": "<img loading=\"lazy\" class=\"minimap_icon_39 minimap_39\" style=\"display: inline !important; background-position-x: -234px; background-position-y: -78px;\">",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "icon": "<img width='39' loading='lazy' src='https://cdn.poedb.tw/image/Art/2DArt/minimap/player/BestiaryRareMonster.webp'/>",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             "title": "Bestiary",
             "display_chance": false
         }
@@ -212,7 +116,7 @@
     },
     "normal": [
         {
-            "ID": "4037",
+            "ID": "4064",
             "Name": "Wide",
             "Code": "FlaskExtraCharges1",
             "Level": "2",
@@ -234,7 +138,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4038",
+            "ID": "4065",
             "Name": "Plentiful",
             "Code": "FlaskExtraCharges2__",
             "Level": "22",
@@ -256,7 +160,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4039",
+            "ID": "4066",
             "Name": "Bountiful",
             "Code": "FlaskExtraCharges3_",
             "Level": "42",
@@ -278,7 +182,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4040",
+            "ID": "4067",
             "Name": "Abundant",
             "Code": "FlaskExtraCharges4__",
             "Level": "62",
@@ -300,7 +204,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4041",
+            "ID": "4068",
             "Name": "Ample",
             "Code": "FlaskExtraCharges5",
             "Level": "82",
@@ -322,7 +226,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4043",
+            "ID": "4070",
             "Name": "Constant",
             "Code": "FlaskChargesAddedIncreasePercent1",
             "Level": "3",
@@ -344,7 +248,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4044",
+            "ID": "4071",
             "Name": "Continuous",
             "Code": "FlaskChargesAddedIncreasePercent2_",
             "Level": "23",
@@ -366,7 +270,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4045",
+            "ID": "4072",
             "Name": "Endless",
             "Code": "FlaskChargesAddedIncreasePercent3_",
             "Level": "43",
@@ -388,7 +292,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4046",
+            "ID": "4073",
             "Name": "Bottomless",
             "Code": "FlaskChargesAddedIncreasePercent4_",
             "Level": "63",
@@ -410,7 +314,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4047",
+            "ID": "4074",
             "Name": "Perpetual",
             "Code": "FlaskChargesAddedIncreasePercent5__",
             "Level": "83",
@@ -432,7 +336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4048",
+            "ID": "4075",
             "Name": "Doled",
             "Code": "FlaskIncreasedRecoveryReducedEffect1_",
             "Level": "20",
@@ -455,7 +359,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4049",
+            "ID": "4076",
             "Name": "Provisioned",
             "Code": "FlaskIncreasedRecoveryReducedEffect2_",
             "Level": "36",
@@ -478,7 +382,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4050",
+            "ID": "4077",
             "Name": "Measured",
             "Code": "FlaskIncreasedRecoveryReducedEffect3____",
             "Level": "52",
@@ -501,7 +405,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4051",
+            "ID": "4078",
             "Name": "Allocated",
             "Code": "FlaskIncreasedRecoveryReducedEffect4_",
             "Level": "68",
@@ -524,7 +428,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4052",
+            "ID": "4079",
             "Name": "Rationed",
             "Code": "FlaskIncreasedRecoveryReducedEffect5",
             "Level": "84",
@@ -547,7 +451,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4056",
+            "ID": "4083",
             "Name": "of the Abalone",
             "Code": "FlaskBuffArmourWhileHealing1",
             "Level": "6",
@@ -565,25 +469,17 @@
             "str": "<span class='mod-value'>(41&ndash;45)</span>% increased Armour during Effect",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "flask",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4057",
+            "ID": "4084",
             "Name": "of the Tortoise",
             "Code": "FlaskBuffArmourWhileHealing2",
             "Level": "32",
@@ -601,25 +497,17 @@
             "str": "<span class='mod-value'>(46&ndash;50)</span>% increased Armour during Effect",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "flask",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4058",
+            "ID": "4085",
             "Name": "of the Pangolin",
             "Code": "FlaskBuffArmourWhileHealing3",
             "Level": "58",
@@ -637,25 +525,17 @@
             "str": "<span class='mod-value'>(51&ndash;55)</span>% increased Armour during Effect",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "flask",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4059",
+            "ID": "4086",
             "Name": "of the Armadillo",
             "Code": "FlaskBuffArmourWhileHealing4",
             "Level": "84",
@@ -673,25 +553,17 @@
             "str": "<span class='mod-value'>(56&ndash;60)</span>% increased Armour during Effect",
             "master_no": [],
             "fossil_no": [
-                "armour",
                 "flask",
-                "defences"
+                "defences",
+                "armour"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4060",
+            "ID": "4087",
             "Name": "of the Gazelle",
             "Code": "FlaskBuffEvasionWhileHealing",
             "Level": "6",
@@ -709,25 +581,17 @@
             "str": "<span class='mod-value'>(41&ndash;45)</span>% increased Evasion Rating during Effect",
             "master_no": [],
             "fossil_no": [
-                "evasion",
                 "flask",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4061",
+            "ID": "4088",
             "Name": "of the Antelope",
             "Code": "FlaskBuffEvasionWhileHealing2",
             "Level": "32",
@@ -745,25 +609,17 @@
             "str": "<span class='mod-value'>(46&ndash;50)</span>% increased Evasion Rating during Effect",
             "master_no": [],
             "fossil_no": [
-                "evasion",
                 "flask",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4062",
+            "ID": "4089",
             "Name": "of the Ibex",
             "Code": "FlaskBuffEvasionWhileHealing3_",
             "Level": "58",
@@ -781,25 +637,17 @@
             "str": "<span class='mod-value'>(51&ndash;55)</span>% increased Evasion Rating during Effect",
             "master_no": [],
             "fossil_no": [
-                "evasion",
                 "flask",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4063",
+            "ID": "4090",
             "Name": "of the Impala",
             "Code": "FlaskBuffEvasionWhileHealing4",
             "Level": "84",
@@ -817,25 +665,17 @@
             "str": "<span class='mod-value'>(56&ndash;60)</span>% increased Evasion Rating during Effect",
             "master_no": [],
             "fossil_no": [
-                "evasion",
                 "flask",
-                "defences"
+                "defences",
+                "evasion"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4064",
+            "ID": "4091",
             "Name": "of the Hare",
             "Code": "FlaskBuffMovementSpeedWhileHealing",
             "Level": "5",
@@ -856,20 +696,12 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4065",
+            "ID": "4092",
             "Name": "of the Lynx",
             "Code": "FlaskBuffMovementSpeedWhileHealing2",
             "Level": "65",
@@ -890,20 +722,12 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4066",
+            "ID": "4093",
             "Name": "of the Cheetah",
             "Code": "FlaskBuffMovementSpeedWhileHealing3",
             "Level": "85",
@@ -924,20 +748,12 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4068",
+            "ID": "4095",
             "Name": "of Stiffness",
             "Code": "FlaskBuffStunRecoveryWhileHealing",
             "Level": "1",
@@ -960,7 +776,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4069",
+            "ID": "4096",
             "Name": "of Bracing",
             "Code": "FlaskBuffStunRecoveryWhileHealing2",
             "Level": "19",
@@ -983,7 +799,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4070",
+            "ID": "4097",
             "Name": "of Ballast",
             "Code": "FlaskBuffStunRecoveryWhileHealing3",
             "Level": "37",
@@ -1006,7 +822,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4071",
+            "ID": "4098",
             "Name": "of Counterpoise",
             "Code": "FlaskBuffStunRecoveryWhileHealing4",
             "Level": "55",
@@ -1029,7 +845,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4072",
+            "ID": "4099",
             "Name": "of Stabilisation",
             "Code": "FlaskBuffStunRecoveryWhileHealing5",
             "Level": "73",
@@ -1052,7 +868,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4073",
+            "ID": "4100",
             "Name": "of the Crystal",
             "Code": "FlaskBuffResistancesWhileHealing",
             "Level": "1",
@@ -1074,23 +890,13 @@
                 "resistance"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4074",
+            "ID": "4101",
             "Name": "of the Prism",
             "Code": "FlaskBuffResistancesWhileHealing2",
             "Level": "21",
@@ -1112,23 +918,13 @@
                 "resistance"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4075",
+            "ID": "4102",
             "Name": "of the Kaleidoscope",
             "Code": "FlaskBuffResistancesWhileHealing3",
             "Level": "41",
@@ -1150,23 +946,13 @@
                 "resistance"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4076",
+            "ID": "4103",
             "Name": "of Variegation",
             "Code": "FlaskBuffResistancesWhileHealing4",
             "Level": "61",
@@ -1188,23 +974,13 @@
                 "resistance"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4077",
+            "ID": "4104",
             "Name": "of the Rainbow",
             "Code": "FlaskBuffResistancesWhileHealing5_",
             "Level": "81",
@@ -1226,23 +1002,13 @@
                 "resistance"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge bg-primary ' data-tag='resistance'>resistance</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4093",
+            "ID": "4120",
             "Name": "Medic's",
             "Code": "FlaskChanceRechargeOnCrit1",
             "Level": "8",
@@ -1262,20 +1028,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4094",
+            "ID": "4121",
             "Name": "Physician's",
             "Code": "FlaskChanceRechargeOnCrit2",
             "Level": "26",
@@ -1295,20 +1053,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4095",
+            "ID": "4122",
             "Name": "Doctor's",
             "Code": "FlaskChanceRechargeOnCrit3___",
             "Level": "44",
@@ -1328,20 +1078,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4096",
+            "ID": "4123",
             "Name": "Specialist's",
             "Code": "FlaskChanceRechargeOnCrit4",
             "Level": "62",
@@ -1361,20 +1103,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4097",
+            "ID": "4124",
             "Name": "Surgeon's",
             "Code": "FlaskChanceRechargeOnCrit5",
             "Level": "80",
@@ -1394,20 +1128,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4101",
+            "ID": "4128",
             "Name": "Abecedarian's",
             "Code": "FlaskEffectReducedDuration1",
             "Level": "20",
@@ -1430,7 +1156,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4102",
+            "ID": "4129",
             "Name": "Dabbler's",
             "Code": "FlaskEffectReducedDuration2",
             "Level": "50",
@@ -1453,7 +1179,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4103",
+            "ID": "4130",
             "Name": "Alchemist's",
             "Code": "FlaskEffectReducedDuration3",
             "Level": "80",
@@ -1476,7 +1202,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4116",
+            "ID": "4143",
             "Name": "Apprentice's",
             "Code": "FlaskChargesUsed1",
             "Level": "14",
@@ -1498,7 +1224,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4117",
+            "ID": "4144",
             "Name": "Scholar's",
             "Code": "FlaskChargesUsed2",
             "Level": "31",
@@ -1520,7 +1246,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4118",
+            "ID": "4145",
             "Name": "Practitioner's",
             "Code": "FlaskChargesUsed3__",
             "Level": "48",
@@ -1542,7 +1268,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4119",
+            "ID": "4146",
             "Name": "Brewer's",
             "Code": "FlaskChargesUsed4__",
             "Level": "65",
@@ -1564,7 +1290,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4120",
+            "ID": "4147",
             "Name": "Chemist's",
             "Code": "FlaskChargesUsed5",
             "Level": "82",
@@ -1586,7 +1312,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4134",
+            "ID": "4161",
             "Name": "Investigator's",
             "Code": "FlaskIncreasedDuration2",
             "Level": "20",
@@ -1610,7 +1336,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4135",
+            "ID": "4162",
             "Name": "Analyst's",
             "Code": "FlaskIncreasedDuration3_",
             "Level": "36",
@@ -1634,7 +1360,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4136",
+            "ID": "4163",
             "Name": "Examiner's",
             "Code": "FlaskIncreasedDuration4",
             "Level": "52",
@@ -1658,7 +1384,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4137",
+            "ID": "4164",
             "Name": "Clinician's",
             "Code": "FlaskIncreasedDuration5__",
             "Level": "68",
@@ -1682,7 +1408,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4138",
+            "ID": "4165",
             "Name": "Experimenter's",
             "Code": "FlaskIncreasedDuration6",
             "Level": "84",
@@ -1706,7 +1432,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4143",
+            "ID": "4170",
             "Name": "Transgressor's",
             "Code": "FlaskFullRechargeOnHit2_",
             "Level": "29",
@@ -1728,7 +1454,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4145",
+            "ID": "4172",
             "Name": "Masochist's",
             "Code": "FlaskFullRechargeOnHit4_",
             "Level": "63",
@@ -1750,7 +1476,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4146",
+            "ID": "4173",
             "Name": "Flagellant's",
             "Code": "FlaskFullRechargeOnHit5___",
             "Level": "80",
@@ -1772,7 +1498,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4154",
+            "ID": "4181",
             "Name": "of Bloodshed",
             "Code": "FlaskBuffAttackLifeLeechWhileHealing1",
             "Level": "10",
@@ -1795,26 +1521,14 @@
                 "attack"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4155",
+            "ID": "4182",
             "Name": "of Gore",
             "Code": "FlaskBuffAttackLifeLeechWhileHealing2",
             "Level": "20",
@@ -1837,26 +1551,14 @@
                 "attack"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4156",
+            "ID": "4183",
             "Name": "of Carnage",
             "Code": "FlaskBuffAttackLifeLeechWhileHealing3",
             "Level": "40",
@@ -1879,26 +1581,14 @@
                 "attack"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4157",
+            "ID": "4184",
             "Name": "of Butchery",
             "Code": "FlaskBuffAttackLifeLeechWhileHealing4",
             "Level": "60",
@@ -1921,26 +1611,14 @@
                 "attack"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4158",
+            "ID": "4185",
             "Name": "of Bloodletting",
             "Code": "FlaskBuffAttackLifeLeechWhileHealing5",
             "Level": "80",
@@ -1963,26 +1641,14 @@
                 "attack"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>",
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4159",
+            "ID": "4186",
             "Name": "of Diverting",
             "Code": "FlaskBuffSpellEnergyShieldLeechWhileHealing1",
             "Level": "10",
@@ -2000,29 +1666,19 @@
             "str": "<span class='mod-value'>0.4</span>% of Spell Damage Leeched as Energy Shield during Effect",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "flask",
                 "defences",
+                "energy_shield",
                 "caster"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4160",
+            "ID": "4187",
             "Name": "of Depletion",
             "Code": "FlaskBuffSpellEnergyShieldLeechWhileHealing2_",
             "Level": "20",
@@ -2040,29 +1696,19 @@
             "str": "<span class='mod-value'>0.5</span>% of Spell Damage Leeched as Energy Shield during Effect",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "flask",
                 "defences",
+                "energy_shield",
                 "caster"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4161",
+            "ID": "4188",
             "Name": "of Tapping",
             "Code": "FlaskBuffSpellEnergyShieldLeechWhileHealing3_____",
             "Level": "40",
@@ -2080,29 +1726,19 @@
             "str": "<span class='mod-value'>0.6</span>% of Spell Damage Leeched as Energy Shield during Effect",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "flask",
                 "defences",
+                "energy_shield",
                 "caster"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4162",
+            "ID": "4189",
             "Name": "of Siphoning",
             "Code": "FlaskBuffSpellEnergyShieldLeechWhileHealing4",
             "Level": "60",
@@ -2120,29 +1756,19 @@
             "str": "<span class='mod-value'>0.7</span>% of Spell Damage Leeched as Energy Shield during Effect",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "flask",
                 "defences",
+                "energy_shield",
                 "caster"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4163",
+            "ID": "4190",
             "Name": "of Draining",
             "Code": "FlaskBuffSpellEnergyShieldLeechWhileHealing5",
             "Level": "80",
@@ -2160,29 +1786,19 @@
             "str": "<span class='mod-value'>0.8</span>% of Spell Damage Leeched as Energy Shield during Effect",
             "master_no": [],
             "fossil_no": [
-                "energy_shield",
                 "flask",
                 "defences",
+                "energy_shield",
                 "caster"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
-=======
-                "<span class='badge badge-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingdefences' data-tag='defences'>defences</span>",
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4164",
+            "ID": "4191",
             "Name": "of the Falcon",
             "Code": "FlaskBuffAttackSpeedWhileHealing1",
             "Level": "12",
@@ -2204,23 +1820,13 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4165",
+            "ID": "4192",
             "Name": "of the Eagle",
             "Code": "FlaskBuffAttackSpeedWhileHealing2_____",
             "Level": "62",
@@ -2242,23 +1848,13 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4166",
+            "ID": "4193",
             "Name": "of the Dove",
             "Code": "FlaskBuffAttackSpeedWhileHealing3_",
             "Level": "82",
@@ -2280,23 +1876,13 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingattack' data-tag='attack'>attack</span>",
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4167",
+            "ID": "4194",
             "Name": "of the Albatross",
             "Code": "FlaskBuffCastSpeedWhileHealing1",
             "Level": "12",
@@ -2318,23 +1904,13 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4168",
+            "ID": "4195",
             "Name": "of the Hummingbird",
             "Code": "FlaskBuffCastSpeedWhileHealing2",
             "Level": "62",
@@ -2356,23 +1932,13 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4169",
+            "ID": "4196",
             "Name": "of the Horsefly",
             "Code": "FlaskBuffCastSpeedWhileHealing3",
             "Level": "82",
@@ -2394,23 +1960,13 @@
                 "speed"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
                 "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
-=======
-                "<span class='badge badge-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge badge-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcaster' data-tag='caster'>caster</span>",
-                "<span class='badge bg-primary craftingspeed' data-tag='speed'>speed</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4173",
+            "ID": "4200",
             "Name": "of Stinging",
             "Code": "FlaskBuffCriticalChanceWhileHealing1_",
             "Level": "18",
@@ -2431,20 +1987,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4174",
+            "ID": "4201",
             "Name": "of Piercing",
             "Code": "FlaskBuffCriticalChanceWhileHealing2_",
             "Level": "34",
@@ -2465,20 +2013,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4175",
+            "ID": "4202",
             "Name": "of Rupturing",
             "Code": "FlaskBuffCriticalChanceWhileHealing3",
             "Level": "50",
@@ -2499,20 +2039,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4176",
+            "ID": "4203",
             "Name": "of Penetrating",
             "Code": "FlaskBuffCriticalChanceWhileHealing4__",
             "Level": "66",
@@ -2533,20 +2065,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4177",
+            "ID": "4204",
             "Name": "of Incision",
             "Code": "FlaskBuffCriticalChanceWhileHealing5",
             "Level": "82",
@@ -2567,20 +2091,12 @@
                 "critical"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
-=======
-                "<span class='badge badge-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary craftingcrit' data-tag='critical'>critical</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4178",
+            "ID": "4205",
             "Name": "of Foisting",
             "Code": "FlaskBuffFreezeShockIgniteChanceWhileHealing1_",
             "Level": "12",
@@ -2605,30 +2121,16 @@
                 "ailment"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
-<<<<<<< HEAD
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4179",
+            "ID": "4206",
             "Name": "of Imposing",
             "Code": "FlaskBuffFreezeShockIgniteChanceWhileHealing2____",
             "Level": "32",
@@ -2653,30 +2155,16 @@
                 "ailment"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
-<<<<<<< HEAD
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4180",
+            "ID": "4207",
             "Name": "of Wreaking",
             "Code": "FlaskBuffFreezeShockIgniteChanceWhileHealing3",
             "Level": "52",
@@ -2701,30 +2189,16 @@
                 "ailment"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
-<<<<<<< HEAD
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4181",
+            "ID": "4208",
             "Name": "of Infliction",
             "Code": "FlaskBuffFreezeShockIgniteChanceWhileHealing4_",
             "Level": "72",
@@ -2749,30 +2223,16 @@
                 "ailment"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
                 "<span class='badge bg-primary ' data-tag='elemental'>elemental</span>",
                 "<span class='badge bg-primary craftingfire' data-tag='fire'>fire</span>",
                 "<span class='badge bg-primary craftingcold' data-tag='cold'>cold</span>",
                 "<span class='badge bg-primary craftinglightning' data-tag='lightning'>lightning</span>",
                 "<span class='badge bg-primary ' data-tag='ailment'>ailment</span>"
-<<<<<<< HEAD
-=======
-                "<span class='badge badge-primary ' data-tag='elemental'>elemental</span>",
-                "<span class='badge badge-primary craftingfire' data-tag='fire'>fire</span>",
-                "<span class='badge badge-primary craftingcold' data-tag='cold'>cold</span>",
-                "<span class='badge badge-primary craftinglightning' data-tag='lightning'>lightning</span>",
-                "<span class='badge badge-primary ' data-tag='ailment'>ailment</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
         {
-            "ID": "4182",
+            "ID": "4209",
             "Name": "of Composure",
             "Code": "FlaskBuffAvoidStunWhileHealing1_",
             "Level": "12",
@@ -2795,7 +2255,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4183",
+            "ID": "4210",
             "Name": "of Surefootedness",
             "Code": "FlaskBuffAvoidStunWhileHealing2",
             "Level": "29",
@@ -2818,7 +2278,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4184",
+            "ID": "4211",
             "Name": "of Persistence",
             "Code": "FlaskBuffAvoidStunWhileHealing3",
             "Level": "46",
@@ -2841,7 +2301,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4185",
+            "ID": "4212",
             "Name": "of Relentlessness",
             "Code": "FlaskBuffAvoidStunWhileHealing4",
             "Level": "63",
@@ -2864,7 +2324,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4186",
+            "ID": "4213",
             "Name": "of Tenaciousness",
             "Code": "FlaskBuffAvoidStunWhileHealing5",
             "Level": "80",
@@ -2887,7 +2347,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4195",
+            "ID": "4222",
             "Name": "of the Rabbit",
             "Code": "FlaskBuffChillFreezeDuration1",
             "Level": "4",
@@ -2910,7 +2370,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4196",
+            "ID": "4223",
             "Name": "of the Cat",
             "Code": "FlaskBuffChillFreezeDuration2_",
             "Level": "23",
@@ -2933,7 +2393,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4197",
+            "ID": "4224",
             "Name": "of the Fox",
             "Code": "FlaskBuffChillFreezeDuration3_",
             "Level": "42",
@@ -2956,7 +2416,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4198",
+            "ID": "4225",
             "Name": "of the Sable",
             "Code": "FlaskBuffChillFreezeDuration4",
             "Level": "61",
@@ -2979,7 +2439,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4199",
+            "ID": "4226",
             "Name": "of the Bear",
             "Code": "FlaskBuffChillFreezeDuration5",
             "Level": "80",
@@ -3002,7 +2462,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4200",
+            "ID": "4227",
             "Name": "of the Plover",
             "Code": "FlaskBuffShockEffect1",
             "Level": "6",
@@ -3025,7 +2485,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4201",
+            "ID": "4228",
             "Name": "of the Sandpiper",
             "Code": "FlaskBuffShockEffect2",
             "Level": "25",
@@ -3048,7 +2508,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4202",
+            "ID": "4229",
             "Name": "of the Cormorant",
             "Code": "FlaskBuffShockEffect3___",
             "Level": "44",
@@ -3071,7 +2531,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4203",
+            "ID": "4230",
             "Name": "of the Sanderling",
             "Code": "FlaskBuffShockEffect4",
             "Level": "63",
@@ -3094,7 +2554,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4204",
+            "ID": "4231",
             "Name": "of the Heron",
             "Code": "FlaskBuffShockEffect5",
             "Level": "82",
@@ -3117,7 +2577,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4205",
+            "ID": "4232",
             "Name": "of the Petrel",
             "Code": "FlaskBuffCurseEffect1",
             "Level": "8",
@@ -3140,7 +2600,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4206",
+            "ID": "4233",
             "Name": "of the Mockingbird",
             "Code": "FlaskBuffCurseEffect2",
             "Level": "27",
@@ -3163,7 +2623,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4207",
+            "ID": "4234",
             "Name": "of the Curlew",
             "Code": "FlaskBuffCurseEffect3_",
             "Level": "46",
@@ -3186,7 +2646,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4208",
+            "ID": "4235",
             "Name": "of the Kakapo",
             "Code": "FlaskBuffCurseEffect4",
             "Level": "65",
@@ -3209,7 +2669,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4209",
+            "ID": "4236",
             "Name": "of the Owl",
             "Code": "FlaskBuffCurseEffect5",
             "Level": "84",
@@ -3232,7 +2692,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4213",
+            "ID": "4240",
             "Name": "of the Orca",
             "Code": "FlaskBuffAvoidChillFreeze1_",
             "Level": "4",
@@ -3255,7 +2715,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4214",
+            "ID": "4241",
             "Name": "of the Sea Lion",
             "Code": "FlaskBuffAvoidChillFreeze2",
             "Level": "23",
@@ -3278,7 +2738,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4215",
+            "ID": "4242",
             "Name": "of the Narwhal",
             "Code": "FlaskBuffAvoidChillFreeze3",
             "Level": "42",
@@ -3301,7 +2761,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4216",
+            "ID": "4243",
             "Name": "of the Beluga",
             "Code": "FlaskBuffAvoidChillFreeze4",
             "Level": "61",
@@ -3324,7 +2784,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4217",
+            "ID": "4244",
             "Name": "of the Seal",
             "Code": "FlaskBuffAvoidChillFreeze5",
             "Level": "80",
@@ -3347,7 +2807,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4218",
+            "ID": "4245",
             "Name": "of the Guppy",
             "Code": "FlaskBuffAvoidIgnite1",
             "Level": "6",
@@ -3370,7 +2830,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4219",
+            "ID": "4246",
             "Name": "of the Goldfish",
             "Code": "FlaskBuffAvoidIgnite2",
             "Level": "25",
@@ -3393,7 +2853,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4220",
+            "ID": "4247",
             "Name": "of the Carp",
             "Code": "FlaskBuffAvoidIgnite3",
             "Level": "44",
@@ -3416,7 +2876,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4221",
+            "ID": "4248",
             "Name": "of the Catfish",
             "Code": "FlaskBuffAvoidIgnite4___",
             "Level": "63",
@@ -3439,7 +2899,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4222",
+            "ID": "4249",
             "Name": "of the Sunfish",
             "Code": "FlaskBuffAvoidIgnite5_",
             "Level": "82",
@@ -3462,7 +2922,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4223",
+            "ID": "4250",
             "Name": "of Tree Moss",
             "Code": "FlaskBuffAvoidShock1",
             "Level": "6",
@@ -3485,7 +2945,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4224",
+            "ID": "4251",
             "Name": "of Turf Moss",
             "Code": "FlaskBuffAvoidShock2_",
             "Level": "25",
@@ -3508,7 +2968,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4225",
+            "ID": "4252",
             "Name": "of Tooth Moss",
             "Code": "FlaskBuffAvoidShock3",
             "Level": "44",
@@ -3531,7 +2991,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4226",
+            "ID": "4253",
             "Name": "of Plume Moss",
             "Code": "FlaskBuffAvoidShock4_____",
             "Level": "63",
@@ -3554,7 +3014,7 @@
             "mod_fossil_item": []
         },
         {
-            "ID": "4227",
+            "ID": "4254",
             "Name": "of Bog Moss",
             "Code": "FlaskBuffAvoidShock5",
             "Level": "82",
@@ -3577,19 +3037,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26269",
-=======
-            "ID": "26267",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26269",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26459",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26546",
             "Name": "of the Skunk",
             "Code": "FlaskPoisonImmunityDuringEffect",
             "Level": "16",
@@ -3612,19 +3060,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26270",
-=======
-            "ID": "26268",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26270",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26460",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26547",
             "Name": "of the Hedgehog",
             "Code": "FlaskPoisonImmunityDuringEffect2",
             "Level": "46",
@@ -3647,19 +3083,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26271",
-=======
-            "ID": "26269",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26271",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26461",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26548",
             "Name": "of the Opossum",
             "Code": "FlaskPoisonImmunityDuringEffect3",
             "Level": "76",
@@ -3682,19 +3106,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26272",
-=======
-            "ID": "26270",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26272",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26462",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26549",
             "Name": "of the Conger",
             "Code": "FlaskShockImmunityDuringEffect",
             "Level": "6",
@@ -3717,19 +3129,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26273",
-=======
-            "ID": "26271",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26273",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26463",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26550",
             "Name": "of the Moray",
             "Code": "FlaskShockImmunityDuringEffect2___",
             "Level": "40",
@@ -3752,19 +3152,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26274",
-=======
-            "ID": "26272",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26274",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26464",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26551",
             "Name": "of the Eel",
             "Code": "FlaskShockImmunityDuringEffect3",
             "Level": "74",
@@ -3787,19 +3175,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26275",
-=======
-            "ID": "26273",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26275",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26465",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26552",
             "Name": "of the Deer",
             "Code": "FlaskFreezeAndChillImmunityDuringEffect",
             "Level": "4",
@@ -3822,19 +3198,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26276",
-=======
-            "ID": "26274",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26276",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26466",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26553",
             "Name": "of the Walrus",
             "Code": "FlaskFreezeAndChillImmunityDuringEffect2",
             "Level": "38",
@@ -3857,19 +3221,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26277",
-=======
-            "ID": "26275",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26277",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26467",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26554",
             "Name": "of the Penguin",
             "Code": "FlaskFreezeAndChillImmunityDuringEffect3__",
             "Level": "72",
@@ -3892,19 +3244,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26278",
-=======
-            "ID": "26276",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26278",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26468",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26555",
             "Name": "of the Urchin",
             "Code": "FlaskIgniteImmunityDuringEffect_",
             "Level": "6",
@@ -3927,19 +3267,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26279",
-=======
-            "ID": "26277",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26279",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26469",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26556",
             "Name": "of the Mussel",
             "Code": "FlaskIgniteImmunityDuringEffect2",
             "Level": "40",
@@ -3962,19 +3290,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26280",
-=======
-            "ID": "26278",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26280",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26470",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26557",
             "Name": "of the Starfish",
             "Code": "FlaskIgniteImmunityDuringEffect3",
             "Level": "74",
@@ -3997,19 +3313,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26281",
-=======
-            "ID": "26279",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26281",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26471",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26558",
             "Name": "of the Lizard",
             "Code": "FlaskBleedingAndCorruptedBloodImmunityDuringEffect_1",
             "Level": "8",
@@ -4032,19 +3336,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26282",
-=======
-            "ID": "26280",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26282",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26472",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26559",
             "Name": "of the Skink",
             "Code": "FlaskBleedingAndCorruptedBloodImmunityDuringEffect2_",
             "Level": "42",
@@ -4067,19 +3359,7 @@
             "mod_fossil_item": []
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26283",
-=======
-            "ID": "26281",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26283",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26473",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26560",
             "Name": "of the Iguana",
             "Code": "FlaskBleedingAndCorruptedBloodImmunityDuringEffect3___",
             "Level": "76",
@@ -4117,19 +3397,7 @@
                 "1000",
                 "0"
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "17329",
-=======
-            "ID": "17327",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "17329",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "17506",
->>>>>>> 92f2640 (Update Data)
+            "ID": "17590",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -4143,18 +3411,8 @@
                 "life"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
@@ -4168,19 +3426,7 @@
                 "1000",
                 "0"
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "17331",
-=======
-            "ID": "17329",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "17331",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "17508",
->>>>>>> 92f2640 (Update Data)
+            "ID": "17592",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -4204,19 +3450,7 @@
                 "1000",
                 "0"
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "17332",
-=======
-            "ID": "17330",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "17332",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "17509",
->>>>>>> 92f2640 (Update Data)
+            "ID": "17593",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -4230,18 +3464,8 @@
                 "mana"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary ' data-tag='mana'>mana</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary ' data-tag='mana'>mana</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
@@ -4255,19 +3479,7 @@
                 "1000",
                 "0"
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "17333",
-=======
-            "ID": "17331",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "17333",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "17510",
->>>>>>> 92f2640 (Update Data)
+            "ID": "17594",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -4291,19 +3503,7 @@
                 "1000",
                 "0"
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "17335",
-=======
-            "ID": "17333",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "17335",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "17512",
->>>>>>> 92f2640 (Update Data)
+            "ID": "17596",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -4317,18 +3517,8 @@
                 "life"
             ],
             "mod_no": [
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
                 "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
-=======
-                "<span class='badge badge-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge badge-primary craftinglife' data-tag='life'>life</span>"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-                "<span class='badge bg-primary ' data-tag='resource'>resource</span>",
-                "<span class='badge bg-primary craftinglife' data-tag='life'>life</span>"
->>>>>>> 7df592c (add button to update affix data from PoeDB)
             ],
             "mod_fossil_item": []
         },
@@ -4342,19 +3532,7 @@
                 "1000",
                 "0"
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "ID": "26287",
-=======
-            "ID": "26285",
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
-            "ID": "26287",
->>>>>>> 7df592c (add button to update affix data from PoeDB)
-=======
-            "ID": "26477",
->>>>>>> 92f2640 (Update Data)
+            "ID": "26564",
             "Level": "60",
             "Name": "of the Order",
             "ModGenerationTypeID": "2",
@@ -4378,20 +3556,10 @@
     "scourgeup": [],
     "scourgedown": [],
     "bestiary": [],
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
     "lang": "us",
     "cached": 1,
     "segs": [
         "Mods",
         "Gen"
     ]
-<<<<<<< HEAD
-=======
-    "lang": "us"
->>>>>>> fb042f0 (Update Mods Good Bless POEDB)
-=======
->>>>>>> 7df592c (add button to update affix data from PoeDB)
 }
