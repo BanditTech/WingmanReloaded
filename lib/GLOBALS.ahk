@@ -208,8 +208,8 @@ Global BlackList
 Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
 Global StackSizes := {"Wisdom":40,"Portal":40,"Scouring":30,"Perandus":5000
 	,"Alteration":20,"Transmutation":40,"Augment":30,"Chance":20
-	,"Alchemy":10,"Binding":20,"Vaal":10,"Chisel":20
-	,"Harbinger":20,"Horizon":20,"Chaos":10,"Engineer":20,"Regal":10
+	,"Alchemy":20,"Binding":20,"Vaal":20,"Chisel":20
+	,"Harbinger":20,"Horizon":20,"Chaos":20,"Engineer":20,"Regal":10
 	,"Simple":10,"Prime":10,"Awakened":10,"Exalted":10,"Veiled":10}
 Global YesClickPortal := True
 Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
@@ -468,7 +468,7 @@ ft_ToolTip_Text_Part3=
 	hotkeySecondaryAttack = Bind the Secondary Attack for this Character
 	YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
 	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
-	CLFStrictnessNumber = Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) is Full Strict (Including CLF Groups Without Strictness Defined)
+	CLFStrictnessNumber = Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) All Filters Strictness Will Be Matched`rLevel 5 (Higher Strictness) Only Main Filters Will be Matched`rAny Filter Without Strictness Defined Will Be Always Matched
 
 )
 
