@@ -139,6 +139,16 @@ UpdatePOEDB(forced:=False){
 		contentdownload := RegExReplace(contentdownload,"\(chance to dodge attacks\)","&tags=affliction_chance_to_dodge_attacks")
 		contentdownload := RegExReplace(contentdownload,"\(reservation efficiency\)","&tags=affliction_reservation_efficiency_small")
 		contentdownload := RegExReplace(contentdownload,"\(curse effect\)","&tags=affliction_curse_effect_small")
+		; Special Itens
+		contentdownload := RegExReplace(contentdownload,"Unset Ring","BaseItemTypes&an=UnsetRing")
+		contentdownload := RegExReplace(contentdownload,"Iron Flask","BaseItemTypes&an=IronFlask")
+		contentdownload := RegExReplace(contentdownload,"Bone Ring","BaseItemTypes&an=BoneRing")
+		contentdownload := RegExReplace(contentdownload,"Convoking Wand","BaseItemTypes&an=ConvokingWand")
+		contentdownload := RegExReplace(contentdownload,"Bone Spirit Shield","BaseItemTypes&an=BoneSpiritShield")
+		contentdownload := RegExReplace(contentdownload,"Runic Crown","BaseItemTypes&an=RunicCrown")
+		contentdownload := RegExReplace(contentdownload,"Runic Sabatons","BaseItemTypes&an=RunicSabatons")
+		contentdownload := RegExReplace(contentdownload,"Runic Gauntlets","BaseItemTypes&an=RunicGauntlets")
+		contentdownload := RegExReplace(contentdownload,"Silver Flask","BaseItemTypes&an=SilverFlask")
 		; replace space with URI code
 		contentdownload := RegExReplace(contentdownload," ","%20")
 		; Armour subtypes

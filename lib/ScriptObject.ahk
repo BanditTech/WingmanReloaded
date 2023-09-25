@@ -17,7 +17,7 @@ for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "Di
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
 	WR.loc.pixel[v] := {"X":0,"Y":0}
 
-for k, v in ["Armours","Flasks","Jewellery","Jewels","Large Cluster","Medium Cluster","Small Cluster","Weapons","Sextant"] {
+for k, v in ["Armours","Flasks","Special Itens","Jewellery","Jewels","Large Cluster","Medium Cluster","Small Cluster","Weapons","Sextant"] {
 	WR.MenuDDLselect[v] := ""
 }
 for k, v in []

@@ -694,7 +694,7 @@ WR_Menu(Function:="",Var*){
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
-      For k, v in ["Weapons","Armours","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster","Sextant"] {
+      For k, v in ["Weapons","Armours","Special Itens","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster","Sextant"] {
         WR.MenuDDLstr[v] := ""
       }
       for k, v in PoeDBAPI{
@@ -710,6 +710,8 @@ WR_Menu(Function:="",Var*){
           category := "Jewels"
         } Else If (v ~= "Flask$") {
           category := "Flasks"
+        } Else If (v ~= "Unset Ring|Iron Flask|Bone Ring|Convoking Wand|Bone Spirit Shield|Runic Crown|Runic Sabatons|Runic Gauntlets|Silver Flask") {
+          category := "Special Itens"
         } Else If (v ~= "Amulet|Ring|Belt|Trinket") {
           category := "Jewellery"
         } Else If (v ~= "^(Gloves|Boots|Body Armour|Helmet|Shield|Quiver)") {
@@ -727,7 +729,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, Section w292 h80 xm ym+25 , Item Type
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+15 yp+25 w60, Category:
-      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit xs+70 yp-4 w210, Weapons|Armours|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
+      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit xs+70 yp-4 w210, Weapons|Armours|Special Itens|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
       GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
       Gui, Crafting: Add, Text, xs+15 y+5 w60, Class:
       Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort xs+70 yp-4 w210, % WR.MenuDDLstr[ItemCraftingcategorySelector]
