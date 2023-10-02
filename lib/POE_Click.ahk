@@ -36,7 +36,7 @@ LeftClick(x, y){
 	MouseMove, x, y
 	Sleep, 90+(ClickLatency*15)
 	Send {Click}
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -47,7 +47,7 @@ RightClick(x, y){
 	MouseMove, x, y
 	Sleep, 90+(ClickLatency*15)
 	Send {Click, Right}
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -58,7 +58,7 @@ ShiftClick(x, y){
 	MouseMove, x, y
 	Sleep, 90+(ClickLatency*15)
 	Send +{Click}
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -69,7 +69,7 @@ CtrlClick(x, y){
 	MouseMove, x, y
 	Sleep, 90+(ClickLatency*15)
 	Send ^{Click}
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -80,7 +80,7 @@ CtrlShiftClick(x, y){
 	MouseMove, x, y
 	Sleep, 90+(ClickLatency*15)
 	Send +^{Click}
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -100,7 +100,7 @@ ClipItem(x, y){
 	Clipboard := ""
 	Item := ""
 	MouseMove, x, y
-	Sleep, 90+(ClipLatency*15)
+	Sleep, 105+(ClipLatency*15)
 	Send ^!c
 	ClipWait, 0.1
 	If ErrorLevel
