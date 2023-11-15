@@ -30,6 +30,18 @@
 		Gui, perChar: Add, Slider, NoTicks vquitBelow Thick20 TickInterval10 ToolTip h21 w160 xs+5 y+3       , % WR.perChar.Setting.quitBelow
 		Gui, perChar: Add, Checkbox,  %   "vquitLogBackIn Checked" WR.perChar.Setting.quitLogBackIn  " x+5 yp+7" ,   Log back in
 
+		; Auto Quit for Animate guardian
+		Gui, perChar: Font
+        Gui, perChar: Font, Bold s9 cBlack, Arial
+        Gui, perChar: Add, GroupBox,     Section  w265 h66        xs   y+10 ,                 Auto-Quit Settings for AG
+        Gui, perChar: Font,
+        Gui, perChar: Add, Text,                     xs+10   yp+22,         Quit via:
+        Gui, perChar: Add, Radio, % "Group vquitAGDC        Checked" WR.perChar.Setting.quitDC     " x+8 y+-13",   Disconnect
+        Gui, perChar: Add, Radio,     %   "vquitAGPortal    Checked" WR.perChar.Setting.quitPortal " x+8 yp"   ,   Portal
+        Gui, perChar: Add, Radio,     %   "vquitAGExit      Checked" WR.perChar.Setting.quitExit   " x+8 yp"   ,   /exit
+        Gui, perChar: Add, Slider, NoTicks vquitAGBelow Thick20 TickInterval10 ToolTip h21 w160 xs+5 y+3       , % WR.perChar.Setting.quitAGBelow
+        Gui, perChar: Add, Checkbox,  %   "vquitAGLogBackIn Checked" WR.perChar.Setting.quitLogBackIn  " x+5 yp+7" ,   Log back in
+
 		Gui, perChar: Font, Bold s9 cBlack, Arial
 		Gui, perChar: Add, GroupBox,     Section  w265 h85        xs   y+10 ,         Movement Settings
 		Gui, perChar: Font,
@@ -156,6 +168,7 @@
 	perCharSaveValues:
 		for k, kind in ["typeLife", "typeHybrid", "typeES", "typeEldritch"
 		, "quitDC", "quitPortal", "quitExit", "quitBelow", "quitLogBackIn"
+		, "quitAGDC", "quitAGPortal", "quitAGExit", "quitAGBelow", "quitAGLogBackIn"
 		, "movementDelay", "movementMainAttack", "movementSecondaryAttack"
 		, "channelrepressEnable", "channelrepressIcon", "channelrepressStack", "channelrepressKey", "channelrepressOffsetX1", "channelrepressOffsetY1", "channelrepressOffsetX2", "channelrepressOffsetY2"
 		, "autominesEnable", "autominesBoomDelay", "autominesPauseDoubleTapSpeed", "autominesPauseSingleTap", "autominesSmokeDashEnable", "autominesSmokeDashKey"

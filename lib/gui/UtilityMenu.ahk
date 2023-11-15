@@ -29,7 +29,7 @@
 		Gui, Utility%slot%: Add, Edit,  center     vUtility%slot%GroupCD  xs+10   yp+20  w80  h17, %  WR.Utility[slot].GroupCD
 
 		Gui, Utility%slot%: Add, GroupBox, Section center xs+120 ys w360 h40, Trigger with Debuff
-		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Curse  xs+15 w54 yp+20 Checked"  WR.Utility[slot].Curse , Curse
+		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Curse  xs+12 w56 yp+20 Checked"  WR.Utility[slot].Curse , Curse
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Shock    xp+55 wp    yp Checked" WR.Utility[slot].Shock , Shock
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Bleed    xp+55 wp    yp Checked" WR.Utility[slot].Bleed , Bleed
 		Gui, Utility%slot%: Add, Checkbox, % "vUtility" slot "Freeze   xp+55 wp    yp Checked" WR.Utility[slot].Freeze, Freeze

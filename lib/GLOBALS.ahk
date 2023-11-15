@@ -783,11 +783,22 @@ Globe.Mana.Color := OrderedArray()
 Globe.Mana.Color.hex := Format("0x{1:06X}",0x1B2A5E)
 Globe.Mana.Color.variance := 4
 Globe.Mana.Color.Str := Hex2FindText(Globe.Mana.Color.hex,Globe.Mana.Color.variance,0,"Mana",1,1)
+; Amimate Guardian Life
+Globe.AGLife := OrderedArray("X1",22,"Y1",72,"X2",59,"Y2",85)
+Globe.AGLife.Width := Globe.AGLife.X2 - Globe.AGLife.X1
+Globe.AGLife.Height := Globe.AGLife.Y2 - Globe.AGLife.Y1
+Globe.AGLife.Color := OrderedArray()
+Globe.AGLife.Color.hex := Format("0x{1:06X}",0x851815)
+Globe.AGLife.Color.variance := 2
+Globe.AGLife.Color.Str := Hex2FindText(Globe.AGLife.Color.hex,Globe.AGLife.Color.variance,2,"AGLife",1,1)
 Global Base := OrderedArray()
 Base.Globe := Array_DeepClone(Globe)
 ; Player
 Global Player := OrderedArray()
 Player.Percent := {"Life":100, "ES":100, "Mana":100}
+; Animate Guardian
+Global AG := OrderedArray()
+AG.Percent := {"AGLife":100}
 
 ;Stash Tabs Management
 Global StashTabLinked := 1

@@ -1,7 +1,7 @@
 ﻿; WR_Menu - New menu handling method
 WR_Menu(Function:="",Var*){
   Global
-  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_Locate_GrabCompass, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_Locate_GrabCompass, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Edit_Color_AGLife, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
     , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
 
   Log("Verbose","Load menu: " Function,Var*)
@@ -1185,12 +1185,33 @@ WR_Menu(Function:="",Var*){
       Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_EB h18 xs+115 ys+15, Choose Area
       Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_EB wp hp xp y+5, Show Area
 
+      Gui, Globe: Font, Bold s9 c777777
+      Gui, Globe: Add, GroupBox, xm y+60 w205 h100 Section, Animate Guardian's Life Scan Area
+      Gui, Globe: Font, Bold c777777
+      Gui, Globe: Add, Text, vGlobe_AGLife_X1 xs+10 yp+20 , % "X1:" Globe.AGLife.X1
+      Gui, Globe: Add, Text, vGlobe_AGLife_Y1 x+5 yp , % "Y1:" Globe.AGLife.Y1
+      Gui, Globe: Add, Text, vGlobe_AGLife_X2 xs+10 y+8 , % "X2:" Globe.AGLife.X2
+      Gui, Globe: Add, Text, vGlobe_AGLife_Y2 x+5 yp , % "Y2:" Globe.AGLife.Y2
+      Gui, Globe: Add, Text, xs+10 y+8, Color:
+      Gui, Globe: Font
+      Gui, Globe: Add, Edit, gWR_Update vWR_Edit_Color_AGLife x+2 yp-2 hp+4 w60, % Format("0x{1:06X}",Globe.AGLife.Color.Hex)
+      Gui, Globe: Font, Bold c777777
+      Gui, Globe: Add, Text, x+5 yp+2, Variance:
+      Gui, Globe: Add, Text, x+2 yp w35, % Globe.AGLife.Color.Variance
+      Gui, Globe: Add, UpDown, gWR_Update vWR_UpDown_Color_AGLife x+1 yp hp, % Globe.AGLife.Color.Variance
+      TempC := Format("0x{1:06X}",Globe.AGLife.Color.Hex)
+      Gui, Globe: Add, Text, gColorLabel_AGLife xs+10 y+6 hp w185,
+      Gui, Globe: Add, Progress, vWR_Progress_Color_AGLife xs+10 yp hp wp c%TempC% BackgroundBlack, 100
+      Gui, Globe: Add, Button, gWR_Update vWR_Btn_Area_AGLife h18 xs+115 ys+15, Choose Area
+      Gui, Globe: Add, Button, gWR_Update vWR_Btn_Show_AGLife wp hp xp y+5, Show Area
+
       Gui, Globe: Add, Button, gWR_Update vWR_Save_JSON_Globe ys+110 xm+25, Save Values to JSON file
       Gui, Globe: Add, Button, gWR_Update vWR_Reset_Globe ys+110 xm+240 wp, Reset to Initial Values
-      Gui, Globe: Font, s25 Bold c777777
-      Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
-      Gui, Globe: Add, Text, w220 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
-      Gui, Globe: Add, Text, w220 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
+      Gui, Globe: Font, s16 Bold c777777
+      Gui, Globe: Add, Text, w175 Center vGlobe_Percent_Life xm y+15 c78211A, % "Life " Player.Percent.Life "`%"
+      Gui, Globe: Add, Text, w175 Center vGlobe_Percent_ES x+0 yp c51DEFF, % "ES " Player.Percent.ES "`%"
+      Gui, Globe: Add, Text, w175 Center vGlobe_Percent_Mana x+0 yp c1460A6, % "Mana " Player.Percent.Mana "`%"
+      Gui, Globe: Add, Text, w175 Center vGlobe_Percent_AGLife x+0 yp c78211A, % "AGLife " AG.Percent.AGLife "`%"
     }
     GlobeActive := True
     Gui, Globe: show , Center AutoSize, Globe Settings
@@ -1429,7 +1450,10 @@ WR_Menu(Function:="",Var*){
   ColorLabel_EB:
     Picker.SetColor(Globe.EB.Color.hex)
   Return
-
+  ; AG ColorLabel
+  ColorLabel_AGLife:
+  Picker.SetColor(Globe.AGLife.Color.hex)
+  Return
   FillMetamorphGuiClose:
   FillMetamorphGuiEscape:
     Gui, Submit

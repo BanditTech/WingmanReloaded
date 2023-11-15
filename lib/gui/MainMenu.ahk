@@ -47,7 +47,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Add, GroupBox,        Section    w265 h105 xs y+14  , Utility Settings
 	Gui, Font
 	Loop 10
-	Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp") , Utility %A_Index%
+	Gui, Add, Button, % "gUtilityMenu W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp") , Util %A_Index%
 	
 	l := [], s := ""
 	Loop, Files, %A_ScriptDir%\save\profiles\Utility\*.json

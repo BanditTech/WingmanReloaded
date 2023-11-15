@@ -16,7 +16,7 @@ PoEWindowCheck()
 				if YesDX12 {
 					FindText.BindWindow(GamePID,4)
 				} else {
-					FindText.BindWindow(GamePID)
+					FindText.BindWindow()
 				}
 				WinGet, s, Style, ahk_class POEWindowClass
 				If (s & +0x80000000)

@@ -92,12 +92,17 @@ CheckXButton(retObj:=0)
 ; ScanGlobe - Determine the percentage of Life, ES and Mana
 ScanGlobe(SS:=0)
 {
-  Global Globe, Player, GlobeActive
-  Static OldLife := 111, OldES := 111, OldMana := 111
+  Global Globe, Player, AG, GlobeActive
+  Static OldLife := 111, OldES := 111, OldMana := 111, OldAGLife := 111
   If (Life := FindText(Globe.Life.X1, Globe.Life.Y1, Globe.Life.X2, Globe.Life.Y2, 0,0,Globe.Life.Color.Str,SS,1))
     Player.Percent.Life := Round(((Globe.Life.Y2 - Life.1.2) / Globe.Life.Height) * 100)
   Else
     Player.Percent.Life := -1
+  ; Animate Guardian
+  If (AGLife := FindText(Globe.AGLife.X1, Globe.AGLife.Y1, Globe.AGLife.X2, Globe.AGLife.Y2, 0,0,Globe.AGLife.Color.Str,SS,1))
+    AG.Percent.AGLife := Round((1-((Globe.AGLife.X2 - AGLife.1.1) / Globe.AGLife.Width)) * 100)
+  Else
+    AG.Percent.AGLife := -1
   If (WR.perChar.Setting.typeEldritch)
   {
     If (EB := FindText(Globe.EB.X1, Globe.EB.Y1, Globe.EB.X2, Globe.EB.Y2, 0,0,Globe.EB.Color.Str,SS,1))
@@ -116,7 +121,7 @@ ScanGlobe(SS:=0)
     Player.Percent.Mana := Round(((Globe.Mana.Y2 - Mana.1.2) / Globe.Mana.Height) * 100)
   Else
     Player.Percent.Mana := -1
-  If (Player.Percent.Life != OldLife) ||  (Player.Percent.ES != OldES) || (Player.Percent.Mana != OldMana)
+  If (Player.Percent.Life != OldLife) ||  (Player.Percent.ES != OldES) || (Player.Percent.Mana != OldMana) || (AG.Percent.AGLife != OldAGLife) 
   {
     If (Player.Percent.Life != OldLife)
     {
@@ -136,7 +141,13 @@ ScanGlobe(SS:=0)
       If GlobeActive
       GuiControl,Globe: , Globe_Percent_Mana, % "Mana " Player.Percent.Mana "`%"
     }
-    SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
+    If (AG.Percent.AGLife != OldAGLife)
+      {
+        OldAGLife := AG.Percent.AGLife
+        If GlobeActive
+        GuiControl,Globe:, Globe_Percent_AGLife, % "AGLife " AG.Percent.AGLife "`%"
+      }
+    SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`% AGLife " AG.Percent.AGLife "`%",3)
   }
   Return
 }
