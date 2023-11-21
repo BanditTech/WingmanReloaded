@@ -253,7 +253,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 ; #Hotkey Tab
 	Gui, Tab, Hotkeys
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h180               xm+5   ym+25,         Main Script Keybinds:
+	Gui Add, GroupBox,    center w190 h180               xm+5   ym+25,         Main Script Keybinds:
 	Gui, Font
 	Gui,Add,Edit, section xp+5 yp+20        w60 h19   vhotkeyOptions           ,%hotkeyOptions%
 	Gui Add, Text,                     hp x+5   yp+3,         Open this GUI
@@ -269,7 +269,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Text,                     hp x+5   yp+3,         Pause Detonate
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h100               xm+5   y+5,       Trigger Keybinds: 
+	Gui Add, GroupBox,    center w190 h100               xm+5   y+5,       Trigger Keybinds: 
 	Gui, Font
 
 	Gui Add, Edit, xp+5 yp+20   w60 h19   vhotkeyTriggerMovement   ,%hotkeyTriggerMovement%
@@ -280,7 +280,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Text,                     hp x+5   yp+3,         Secondary Attack
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h155               xm+5   y+5,       Ingame Assigned Keys: 
+	Gui Add, GroupBox,    center w190 h155               xm+5   y+5,       Ingame Assigned Keys: 
 	Gui, Font
 
 	Gui,Add,Edit, xp+5 yp+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
@@ -295,7 +295,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Text, hp x+5   yp+3,         Detonate Mines
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h450               xs+175   ym+25,       Tool Keybinds: 
+	Gui Add, GroupBox,    center w185 h450               xs+195   ym+25,       Tool Keybinds: 
 	Gui, Font
 
 	Gui,Add,Edit, section xp+5 yp+20   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
@@ -359,7 +359,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 
 
 	;Save Setting
-	Gui, Add, Button, default gupdateEverything    x380 y470  w150 h23,   Save Configuration
+	Gui, Add, Button, default gupdateEverything    x410 y470  w150 h23,   Save Configuration
 	Gui, Add, Button,      gLaunchSite     x+5           h23,   Website
 
 	Gui, +LastFound +AlwaysOnTop
