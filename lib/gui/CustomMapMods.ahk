@@ -61,17 +61,9 @@ ItemCraftingNamingMaping(Content)
     AffixName:= ""
     Mods := LoadOnDemand("Sextant")
     aux := ItemCraftingBaseSelector . " Sextant"
-    For k, v in Mods
+    For k, v in Mods[aux]
     {
-      If(v["Item"] == aux)
-      {
-        If(RegExMatch(v["Weight"], "`am)default (\d+)",RxMatch)){
-          LV_Add("",v["Item"],FirstLineToWRFormat(v["Mod"]),RxMatch1,"Good")
-        }Else{
-          LV_Add("",v["Item"],FirstLineToWRFormat(v["Mod"]),"0","Good")
-        }
-      }
-
+      LV_Add("",aux,FirstLineToWRFormat(v["text"]),v["weight"],"Good")
     }
     Mods := []
     ;;Check Box
@@ -81,7 +73,7 @@ ItemCraftingNamingMaping(Content)
       LV_GetText(OutputVar, A_Index , 2)
       For k, v in WR.CustomSextantMods.SextantMods
       {
-        If (v["Sextant Enchant"] == OutputVar){
+        If (v["Sextant Enchant"] == OutputVar && v["Sextant Type"] == aux){
           LV_Modify(Index,"Check",,,,v["Mod Type"])
         }
       }
