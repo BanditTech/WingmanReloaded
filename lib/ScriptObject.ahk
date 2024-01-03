@@ -1,6 +1,6 @@
 ﻿; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{},"MenuDDLstr":{},"MenuDDLselect":{}
+Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{},"MenuDDLItemCrafting":{}
 ,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
 ,"CustomCraftingBases":{},"CustomMapMods":{},"CustomSextantMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
@@ -17,9 +17,6 @@ for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "Di
 , "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
 	WR.loc.pixel[v] := {"X":0,"Y":0}
 
-for k, v in ["Armours","Flasks","Special Itens","Jewellery","Jewels","Large Cluster","Medium Cluster","Small Cluster","Weapons","Sextant"] {
-	WR.MenuDDLselect[v] := ""
-}
 for k, v in []
 	WR.loc.area[v] := {"X1":0,"Y1":0,"X2":0,"Y2":0}
 WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
@@ -101,10 +98,16 @@ for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_ar
 }
 
 
-for k,v in PoeDBAPI
+for k,v in POEData
 {
-	WR.ItemCrafting[v] := []
-	WR.ActualTier[v] := []
+	WR.ItemCrafting[v] := {}
+	WR.ActualTier[v] := {}
+	WR.MenuDDLItemCrafting[v] := []
+	for ki,vi in v{
+		WR.ItemCrafting[v][vi] := []
+		WR.ActualTier[v][vi] := []
+		WR.MenuDDLItemCrafting[v].push(vi)
+	}
 }
 	
 

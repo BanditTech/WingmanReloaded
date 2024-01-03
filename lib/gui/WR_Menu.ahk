@@ -694,10 +694,7 @@ WR_Menu(Function:="",Var*){
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
       ;Load DDL Content from API
-      For k, v in ["Weapons","Armours","Special Itens","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster","Sextant"] {
-        WR.MenuDDLstr[v] := ""
-      }
-      for k, v in PoeDBAPI{
+      for k, v in POEData{
         If (v ~= "Map(.+)" || v ~= "Sextant" || v ~= "Heist")
           Continue
         If (v ~= "^SCJ") {
@@ -719,9 +716,8 @@ WR_Menu(Function:="",Var*){
         } Else {
           category := "Weapons"
         }
-        WR.MenuDDLstr[category] .= v "|"
+        WR.MenuDDLItemCrafting[category] .= v "|"
       }
-      WR.MenuDDLstr["Sextant"] .= "Awakened|Elevated"
       category := ""
 
       ; Item Type
@@ -729,13 +725,17 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, GroupBox, Section w292 h80 xm ym+25 , Item Type
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+15 yp+25 w60, Category:
-      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit xs+70 yp-4 w210, Weapons|Armours|Special Itens|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
-      GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
-      Gui, Crafting: Add, Text, xs+15 y+5 w60, Class:
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort xs+70 yp-4 w210, % WR.MenuDDLstr[ItemCraftingcategorySelector]
-      GuiControl, ChooseString, ItemCraftingBaseSelector, % WR.MenuDDLselect[ItemCraftingcategorySelector]
+      aux := ""
+      for a,b in POEData{
+        aux .= a "|"
+      }
+      Gui, Crafting: Add, DropDownList, vItemCraftingCategorySelector gItemCraftingSubmit xs+70 yp-4 w210, %aux%
+      GuiControl, ChooseString, ItemCraftingCategorySelector, %ItemCraftingCategorySelector%
+      Gui, Crafting: Add, Text, xs+15 y+5 w60, SubCategory:
+      Gui, Crafting: Add, DropDownList, vItemCraftingSubCategorySelector gItemCraftingSubmit Sort xs+70 yp-4 w210
+      GuiControl, ChooseString, ItemCraftingSubCategorySelector, %ItemCraftingSubCategorySelector%
 
-      ; Affix Rules
+      ; Affix Rules394148
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, w292 h165 xs yp+40 , Affix Rules
       Gui, Crafting: Font,

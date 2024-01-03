@@ -1,0 +1,1042 @@
+{
+  "AfflictionJewelSmallPassivesGrantElementalAilmentDuration2": {
+    "generation_type": "suffix",
+    "name": "of Turbulence",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: 4% increased Duration of Elemental Ailments on Enemies",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantElementalAilmentDuration3": {
+    "generation_type": "suffix",
+    "name": "of Disturbance",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: 5% increased Duration of Elemental Ailments on Enemies",
+    "weight": 250
+  },
+  "AfflictionJewelSmallPassivesGrantElementalAilmentDuration_": {
+    "generation_type": "suffix",
+    "name": "of Tumult",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: 3% increased Duration of Elemental Ailments on Enemies",
+    "weight": 350
+  },
+  "AfflictionNotableAstonishingAffliction": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Astonishing Affliction",
+    "weight": 1627
+  },
+  "AfflictionNotableBlastFreeze_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Blast-Freeze",
+    "weight": 178
+  },
+  "AfflictionNotableChillingPresence": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 75,
+    "text": "1 Added Passive Skill is Chilling Presence",
+    "weight": 59
+  },
+  "AfflictionNotableColdConduction__": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Cold Conduction",
+    "weight": 305
+  },
+  "AfflictionNotableDeepChill": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Deep Chill",
+    "weight": 950
+  },
+  "AfflictionNotableEyeoftheStorm": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Eye of the Storm",
+    "weight": 457
+  },
+  "AfflictionNotableInspiredOppression": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 75,
+    "text": "1 Added Passive Skill is Inspired Oppression",
+    "weight": 102
+  },
+  "AfflictionNotableOvershock": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Overshock",
+    "weight": 814
+  },
+  "AfflictionNotableStormrider": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Stormrider",
+    "weight": 305
+  },
+  "AfflictionJewelSmallPassivesGrantArmour": {
+    "generation_type": "Prefix",
+    "name": "Lacquered",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(11-20) to Armour",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantArmour2": {
+    "generation_type": "Prefix",
+    "name": "Studded",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(21-30) to Armour",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantArmour3_": {
+    "generation_type": "Prefix",
+    "name": "Ribbed",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(31-40) to Armour",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantDamage2_": {
+    "generation_type": "Prefix",
+    "name": "Hazardous",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: 3% increased Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantDamage3": {
+    "generation_type": "Prefix",
+    "name": "Dangerous",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: 4% increased Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantDamage_": {
+    "generation_type": "Prefix",
+    "name": "Harmful",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: 2% increased Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantES": {
+    "generation_type": "Prefix",
+    "name": "Shining",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(4-5) to Maximum Energy Shield",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantES2": {
+    "generation_type": "Prefix",
+    "name": "Glimmering",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(6-9) to Maximum Energy Shield",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantES3": {
+    "generation_type": "Prefix",
+    "name": "Glowing",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(10-12) to Maximum Energy Shield",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantEvasion": {
+    "generation_type": "Prefix",
+    "name": "Agile",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(11-20) to Evasion",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantEvasion2__": {
+    "generation_type": "Prefix",
+    "name": "Dancer's",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(21-30) to Evasion",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantEvasion3": {
+    "generation_type": "Prefix",
+    "name": "Acrobat's",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(31-40) to Evasion",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLife2_": {
+    "generation_type": "Prefix",
+    "name": "Healthy",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(4-7) to Maximum Life",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLife3": {
+    "generation_type": "Prefix",
+    "name": "Sanguine",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(8-10) to Maximum Life",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLife_": {
+    "generation_type": "Prefix",
+    "name": "Hale",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-3) to Maximum Life",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantMana": {
+    "generation_type": "Prefix",
+    "name": "Beryl",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-5) to Maximum Mana",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantMana2": {
+    "generation_type": "Prefix",
+    "name": "Cobalt",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(6-8) to Maximum Mana",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantMana3": {
+    "generation_type": "Prefix",
+    "name": "Azure",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(9-10) to Maximum Mana",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesHaveIncreasedEffect": {
+    "generation_type": "Prefix",
+    "name": "Potent",
+    "required_level": 1,
+    "text": "Added Small Passive Skills have 25% increased Effect",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesHaveIncreasedEffect2": {
+    "generation_type": "Prefix",
+    "name": "Powerful",
+    "required_level": 84,
+    "text": "Added Small Passive Skills have 35% increased Effect",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantAttributes": {
+    "generation_type": "Suffix",
+    "name": "of the Cloud",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +2 to All Attributes",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantAttributes2": {
+    "generation_type": "Suffix",
+    "name": "of the Sky",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +3 to All Attributes",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantAttributes3": {
+    "generation_type": "Suffix",
+    "name": "of the Meteor",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +4 to All Attributes",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantChaosRes": {
+    "generation_type": "Suffix",
+    "name": "of the Lost",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +3% to Chaos Resistance",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantChaosRes2": {
+    "generation_type": "Suffix",
+    "name": "of Banishment",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +4% to Chaos Resistance",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantChaosRes3": {
+    "generation_type": "Suffix",
+    "name": "of Eviction",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +5% to Chaos Resistance",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantColdRes2": {
+    "generation_type": "Suffix",
+    "name": "of the Seal",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(4-5)% to Cold Resistance",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantColdRes3": {
+    "generation_type": "Suffix",
+    "name": "of the Penguin",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(6-7)% to Cold Resistance",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantColdRes_": {
+    "generation_type": "Suffix",
+    "name": "of the Inuit",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-3)% to Cold Resistance",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantDex2": {
+    "generation_type": "Suffix",
+    "name": "of the Lynx",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(4-5) to Dexterity",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantDex3_": {
+    "generation_type": "Suffix",
+    "name": "of the Fox",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(6-8) to Dexterity",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantDex_": {
+    "generation_type": "Suffix",
+    "name": "of the Mongoose",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-3) to Dexterity",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantElementalRes": {
+    "generation_type": "Suffix",
+    "name": "of the Crystal",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +2% to all Elemental Resistances",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantElementalRes2": {
+    "generation_type": "Suffix",
+    "name": "of the Prism",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +3% to all Elemental Resistances",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantElementalRes3": {
+    "generation_type": "Suffix",
+    "name": "of the Kaleidoscope",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +4% to all Elemental Resistances",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantFireRes": {
+    "generation_type": "Suffix",
+    "name": "of the Whelpling",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-3)% to Fire Resistance",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantFireRes2": {
+    "generation_type": "Suffix",
+    "name": "of the Salamander",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(4-5)% to Fire Resistance",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantFireRes3": {
+    "generation_type": "Suffix",
+    "name": "of the Drake",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(6-7)% to Fire Resistance",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantInt2_": {
+    "generation_type": "Suffix",
+    "name": "of the Student",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(4-5) to Intelligence",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantInt3": {
+    "generation_type": "Suffix",
+    "name": "of the Prodigy",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(6-8) to Intelligence",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantInt_": {
+    "generation_type": "Suffix",
+    "name": "of the Pupil",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-3) to Intelligence",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLifeRegen2_": {
+    "generation_type": "Suffix",
+    "name": "of the Lizard",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: Regenerate 0.15% of Life per Second",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLifeRegen3": {
+    "generation_type": "Suffix",
+    "name": "of the Flatworm",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: Regenerate 0.2% of Life per Second",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLifeRegen___": {
+    "generation_type": "Suffix",
+    "name": "of the Newt",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: Regenerate 0.1% of Life per Second",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLightningRes": {
+    "generation_type": "Suffix",
+    "name": "of the Cloud",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-3)% to Lightning Resistance",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLightningRes2_": {
+    "generation_type": "Suffix",
+    "name": "of the Squall",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(4-5)% to Lightning Resistance",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantLightningRes3": {
+    "generation_type": "Suffix",
+    "name": "of the Storm",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(6-7)% to Lightning Resistance",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantManaRegen": {
+    "generation_type": "Suffix",
+    "name": "of Excitement",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: 4% increased Mana Regeneration Rate",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantManaRegen2": {
+    "generation_type": "Suffix",
+    "name": "of Joy",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: 5% increased Mana Regeneration Rate",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantManaRegen3_": {
+    "generation_type": "Suffix",
+    "name": "of Elation",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: 6% increased Mana Regeneration Rate",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantStr": {
+    "generation_type": "Suffix",
+    "name": "of the Brute",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +(2-3) to Strength",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantStr2_": {
+    "generation_type": "Suffix",
+    "name": "of the Wrestler",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +(4-5) to Strength",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantStr3_": {
+    "generation_type": "Suffix",
+    "name": "of the Bear",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +(6-8) to Strength",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AfflictionJewelSmallPassivesGrantAreaOfEffect2": {
+    "generation_type": "suffix",
+    "name": "of Range",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: 2% increased Area of Effect",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantAreaOfEffect3": {
+    "generation_type": "suffix",
+    "name": "of Horizons",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: 3% increased Area of Effect",
+    "weight": 250
+  },
+  "AfflictionJewelSmallPassivesGrantAreaOfEffect_": {
+    "generation_type": "suffix",
+    "name": "of Reach",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: 1% increased Area of Effect",
+    "weight": 350
+  },
+  "AfflictionNotableAssertDominance": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Assert Dominance",
+    "weight": 367
+  },
+  "AfflictionNotableExpansiveMight": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Expansive Might",
+    "weight": 367
+  },
+  "AfflictionNotableMagnifier": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Magnifier",
+    "weight": 1959
+  },
+  "AfflictionNotablePowerfulAssault_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Powerful Assault",
+    "weight": 980
+  },
+  "AfflictionNotableTitanicSwings_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Titanic Swings",
+    "weight": 980
+  },
+  "AfflictionNotableToweringThreat": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Towering Threat",
+    "weight": 367
+  },
+  "AfflictionNotableVastPower": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Vast Power",
+    "weight": 980
+  },
+  "AfflictionJewelSmallPassivesGrantBrandAttachmentRange2": {
+    "generation_type": "suffix",
+    "name": "of Grasping",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: 2% increased Brand Attachment range",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantBrandAttachmentRange3____": {
+    "generation_type": "suffix",
+    "name": "of Latching",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: 3% increased Brand Attachment range",
+    "weight": 250
+  },
+  "AfflictionJewelSmallPassivesGrantBrandAttachmentRange_": {
+    "generation_type": "suffix",
+    "name": "of Gripping",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: 1% increased Brand Attachment range",
+    "weight": 350
+  },
+  "AfflictionNotableBrandLoyalty": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Brand Loyalty",
+    "weight": 2341
+  },
+  "AfflictionNotableChipAway": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Chip Away",
+    "weight": 1171
+  },
+  "AfflictionNotableGrandDesign_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Grand Design",
+    "weight": 439
+  },
+  "AfflictionNotableHolyConquest": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Holy Conquest",
+    "weight": 1171
+  },
+  "AfflictionNotableRemarkable": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Remarkable",
+    "weight": 439
+  },
+  "AfflictionNotableSeekerRunes": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Seeker Runes",
+    "weight": 439
+  },
+  "AfflictionJewelSmallPassivesGrantChannelledAttackAndCastSpeed": {
+    "generation_type": "suffix",
+    "name": "of Attention",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: Channelling Skills have 1% increased Attack and Cast Speed",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantChannelledAttackAndCastSpeed2": {
+    "generation_type": "suffix",
+    "name": "of Concentration",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: Channelling Skills have 2% increased Attack and Cast Speed",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantChannelledAttackAndCastSpeed3": {
+    "generation_type": "suffix",
+    "name": "of Forethought",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: Channelling Skills have 3% increased Attack and Cast Speed",
+    "weight": 250
+  },
+  "AfflictionNotableEnduringFocus": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 75,
+    "text": "1 Added Passive Skill is Enduring Focus",
+    "weight": 113
+  },
+  "AfflictionNotableHexBreaker": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 75,
+    "text": "1 Added Passive Skill is Hex Breaker",
+    "weight": 113
+  },
+  "AfflictionNotablePreciseFocus": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Precise Focus",
+    "weight": 906
+  },
+  "AfflictionNotableRapidInfusion_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Rapid Infusion",
+    "weight": 340
+  },
+  "AfflictionNotableStoicFocus": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Stoic Focus",
+    "weight": 1811
+  },
+  "AfflictionNotableUnwaveringFocus": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Unwavering Focus",
+    "weight": 906
+  },
+  "AfflictionNotableVitalFocus": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Vital Focus",
+    "weight": 1811
+  },
+  "AfflictionJewelSmallPassivesGrantCriticalStrikeMultiplier": {
+    "generation_type": "suffix",
+    "name": "of Ire",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: +1% to Critical Strike Multiplier",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantCriticalStrikeMultiplier2_": {
+    "generation_type": "suffix",
+    "name": "of Anger",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: +2% to Critical Strike Multiplier",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantCriticalStrikeMultiplier3": {
+    "generation_type": "suffix",
+    "name": "of Rage",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: +3% to Critical Strike Multiplier",
+    "weight": 250
+  },
+  "AfflictionNotableBasicsofPain": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Basics of Pain",
+    "weight": 914
+  },
+  "AfflictionNotableHaemorrhage": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Haemorrhage",
+    "weight": 457
+  },
+  "AfflictionNotableOverwhelmingMalice": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Overwhelming Malice",
+    "weight": 171
+  },
+  "AfflictionNotablePreciseRetaliation_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Precise Retaliation",
+    "weight": 457
+  },
+  "AfflictionNotablePressurePoints__": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Pressure Points",
+    "weight": 457
+  },
+  "AfflictionNotableProvocateur": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Provocateur",
+    "weight": 457
+  },
+  "AfflictionNotableQuickGetaway": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Quick Getaway",
+    "weight": 914
+  },
+  "AfflictionNotableSavageResponse": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Savage Response",
+    "weight": 457
+  },
+  "AfflictionNotableSkullbreaker": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Skullbreaker",
+    "weight": 171
+  },
+  "AfflictionJewelSmallPassivesGrantDamageOverTime": {
+    "generation_type": "suffix",
+    "name": "of Decline",
+    "required_level": 1,
+    "text": "Added Small Passive Skills also grant: 1% increased Damage over Time",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantDamageOverTime2": {
+    "generation_type": "suffix",
+    "name": "of Degeneration",
+    "required_level": 68,
+    "text": "Added Small Passive Skills also grant: 2% increased Damage over Time",
+    "weight": 350
+  },
+  "AfflictionJewelSmallPassivesGrantDamageOverTime3": {
+    "generation_type": "suffix",
+    "name": "of Disintegration",
+    "required_level": 84,
+    "text": "Added Small Passive Skills also grant: 3% increased Damage over Time",
+    "weight": 250
+  },
+  "AfflictionNotableBlowback": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Blowback",
+    "weight": 366
+  },
+  "AfflictionNotableBrewedforPotency": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Brewed for Potency",
+    "weight": 733
+  },
+  "AfflictionNotableBrushwithDeath": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Brush with Death",
+    "weight": 137
+  },
+  "AfflictionNotableBurningBright": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Burning Bright",
+    "weight": 366
+  },
+  "AfflictionNotableCirclingOblivion": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Circling Oblivion",
+    "weight": 733
+  },
+  "AfflictionNotableCookedAlive": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Cooked Alive",
+    "weight": 137
+  },
+  "AfflictionNotableCremator": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Cremator",
+    "weight": 366
+  },
+  "AfflictionNotableExposureTherapy_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Exposure Therapy",
+    "weight": 733
+  },
+  "AfflictionNotableFantheFlames_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Fan the Flames",
+    "weight": 137
+  },
+  "AfflictionNotableFlowofLife_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Flow of Life",
+    "weight": 137
+  },
+  "AfflictionNotableMasterofFire": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 75,
+    "text": "1 Added Passive Skill is Master of Fire",
+    "weight": 46
+  },
+  "AfflictionNotableSmokingRemains": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Smoking Remains",
+    "weight": 366
+  },
+  "AfflictionNotableStudentofDecay": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Student of Decay",
+    "weight": 366
+  },
+  "AfflictionNotableVileReinvigoration_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Vile Reinvigoration",
+    "weight": 366
+  },
+  "AfflictionNotableWastingAffliction": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Wasting Affliction",
+    "weight": 137
+  },
+  "AfflictionNotableWrappedinFlame_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Wrapped in Flame",
+    "weight": 137
+  },
+  "AfflictionNotableDarkIdeation": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Dark Ideation",
+    "weight": 130
+  },
+  "AfflictionNotableEldritchInspiration": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Eldritch Inspiration",
+    "weight": 348
+  },
+  "AfflictionNotableEternalSuffering": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Eternal Suffering",
+    "weight": 348
+  },
+  "AfflictionNotableLowTolerance": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Low Tolerance",
+    "weight": 130
+  },
+  "AfflictionNotableSepticSpells": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Septic Spells",
+    "weight": 348
+  },
+  "AfflictionNotableSteadyTorment": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 68,
+    "text": "1 Added Passive Skill is Steady Torment",
+    "weight": 130
+  },
+  "AfflictionNotableUnwaveringlyEvil": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Unwaveringly Evil",
+    "weight": 696
+  },
+  "AfflictionNotableWickedPall_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Wicked Pall",
+    "weight": 348
+  },
+  "AfflictionNotableBloodArtist": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 75,
+    "text": "1 Added Passive Skill is Blood Artist",
+    "weight": 129
+  },
+  "AfflictionNotableCompoundInjury": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Compound Injury",
+    "weight": 343
+  },
+  "AfflictionNotableDisorientingWounds": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Disorienting Wounds",
+    "weight": 686
+  },
+  "AfflictionNotablePhlebotomist": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Phlebotomist",
+    "weight": 343
+  },
+  "AfflictionNotableRend": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Rend",
+    "weight": 343
+  },
+  "AfflictionNotableVividHues": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Vivid Hues",
+    "weight": 343
+  },
+  "AfflictionNotableWoundAggravation____": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 1,
+    "text": "1 Added Passive Skill is Wound Aggravation",
+    "weight": 686
+  },
+  "AfflictionNotableColdBloodedKiller_": {
+    "generation_type": "prefix",
+    "name": "Notable",
+    "required_level": 50,
+    "text": "1 Added Passive Skill is Cold-Blooded Killer",
+    "weight": 390
+  }
+}

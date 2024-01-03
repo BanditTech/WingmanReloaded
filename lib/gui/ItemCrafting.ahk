@@ -1,7 +1,7 @@
 ﻿; Main UI
 
 ModsUI:
-  If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
+  If (ItemCraftingCategorySelector ~= "Sextant") {
     GoTo, CustomSextantModsUI
   }
   Gui, ModsUI1: New
@@ -11,10 +11,10 @@ ModsUI:
   Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVP, Influence|Affix Name|ILvL|Detail|Mod Weight|Code
   Gui, ModsUI1: Add, Text,, Suffix List
   Gui, ModsUI1: Add, ListView , w1200 h350 -wrap -Multi Grid Checked vLVS, Influence|Affix Name|ILvL|Detail|Mod Weight|Code
-  RefreshModList(ItemCraftingBaseSelector)
+  RefreshModList(ItemCraftingCategorySelector,ItemCraftingSubCategorySelector)
   Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
   Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
-  Gui, ModsUI1: Show, , %ItemCraftingBaseSelector% Affix List 
+  Gui, ModsUI1: Show, , %ItemCraftingSubCategorySelector% Affix List
 Return
 
 ResetItemCrafting:
@@ -24,13 +24,13 @@ ResetItemCrafting:
   Gui, ListView, LVS
   Loop % LV_GetCount()
     LV_Modify(A_Index,"-Check")
-  WR.ItemCrafting[ItemCraftingBaseSelector] := []
+  WR.ItemCrafting[ItemCraftingSubCategorySelector] := []
   Settings("ItemCrafting","Save")
 Return
 
 SaveItemCrafting:
   TrueIndex:=0
-  WR.ItemCrafting[ItemCraftingBaseSelector] := []
+  WR.ItemCrafting[ItemCraftingSubCategorySelector] := []
 
   RowNumber := 0
   Gui, ListView, LVP
@@ -42,21 +42,21 @@ SaveItemCrafting:
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     LV_GetText(Affix, RowNumber,2)
-    MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   RowNumber := 0
   Gui, ListView, LVS
   Loop
   {
-    
+
     RowNumber := LV_GetNext(RowNumber,"C")
     If not RowNumber
       Break
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     LV_GetText(Affix, RowNumber,2)
-    MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingBaseSelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   Settings("ItemCrafting","Save")
@@ -66,14 +66,19 @@ SaveItemCraftingMenu:
 Return
 
 ItemCraftingSubmit:
-  SaveINI("Item Crafting Settings")
-  If (A_GuiControl ~= "categorySelector") {
-    GuiControl, , ItemCraftingBaseSelector, % "|" WR.MenuDDLstr[ItemCraftingcategorySelector]
-    GuiControl, ChooseString, ItemCraftingBaseSelector,% WR.MenuDDLselect[ItemCraftingcategorySelector]
+  If (A_GuiControl ~= "ItemCraftingCategorySelector") {
+    SaveINI("Item Crafting Settings")
+    aux := ""
+    for a,b in POEData[ItemCraftingCategorySelector]
+    {
+      aux .= b "|"
+    }
+    GuiControl, , ItemCraftingSubCategorySelector, |%aux%
+    ;SaveINI("Item Crafting Settings")
   }
-  If (A_GuiControl ~= "BaseSelector") {
-    WR.MenuDDLselect[ItemCraftingcategorySelector] := ItemCraftingBaseSelector
-    Settings("MenuDDLselect","Save")
+  If (A_GuiControl ~= "ItemCraftingSubCategorySelector") {
+    SaveINI("Item Crafting Settings")
+    ;GuiControl, ChooseString, ItemCraftingSubCategorySelector, %ItemCraftingSubCategorySelector%
   }
 Return
 
@@ -123,11 +128,11 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID,Affix)
     If(HighValue.Count() == 2 && LowValue.Count() == 2){
       FinalValueLow := (Format("{1:0.3g}",(LowValue[1] + LowValue[2]) / 2))
       FinalValueHigh := (Format("{1:0.3g}", (HighValue[1] + HighValue[2]) / 2))
-    ;; Match # to (#-#) ODD Mod from Lower Tiers
+      ;; Match # to (#-#) ODD Mod from Lower Tiers
     }Else If(RegExMatch(FullLine,"O)" rxNum " to \(" rxNum "-" rxNum "\)", RxMatch)){
       FinalValueLow := (Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))
       FinalValueHigh := (Format("{1:0.3g}", (RxMatch[1] + RxMatch[3]) / 2))
-    ;; Match (#-#)
+      ;; Match (#-#)
     }Else If(HighValue.Count() == 1){
       FinalValueLow := LowValue[1]
       FinalValueHigh := HighValue[1]
@@ -145,34 +150,26 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID,Affix)
       Mod := "(Hybrid) " . Mod
     }
     aux := {"Mod":OriginalFullLine,"Affix":Affix,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormatLow":FinalValueLow,"ValueWRFormatHigh":FinalValueHigh,"RNMod":Repeat,"ID":MyID}
-    ObjectToPush.push(aux) 
+    ObjectToPush.push(aux)
   }
 }
 
-LoadOnDemand(content) {
-  Return JSON.Load(FileOpen(A_ScriptDir "\data\Mods" RegExReplace(content," ","") ".json","r").Read())
+LoadOnDemand(a,b) {
+  Return JSON.Load(FileOpen(A_ScriptDir "\data\PoE Data\" . a . "(" . b . ").json","r").Read())
 }
 
-RefreshModList(type)
+RefreshModList(a,b)
 {
-  Mods := LoadOnDemand(type)
-  For ki ,vi in ["normal","elder","shaper","crusader","redeemer","hunter","warlord"]
+  Mods := LoadOnDemand(a,b)
+  For k, v in Mods
   {
-    For k, v in Mods[vi]
+    If (v["generation_type"] == "Prefix")
     {
-      if(v["DropChance"] != 0)
-      {
-        If (v["ModGenerationTypeID"] == 1)
-        {
-          Gui, ListView, LVP
-          StringUpper, vi, vi, T
-          LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["DropChance"],v["Code"])
-        }else {
-          Gui, ListView, LVS
-          StringUpper, vi, vi, T
-          LV_Add("",vi,v["Name"],v["Level"],ItemCraftingNaming(v["str"]),v["DropChance"],v["Code"])
-        }
-      }
+      Gui, ListView, LVP
+      LV_Add("",v["influence"],v["name"],v["required_level"],ItemCraftingNaming(v["text"]),v["weight"],k)
+    }else {
+      Gui, ListView, LVS
+      LV_Add("",v["influence"],v["name"],v["required_level"],ItemCraftingNaming(v["text"]),v["weight"],k)
     }
   }
   Mods := []
@@ -182,7 +179,7 @@ RefreshModList(type)
   {
     Index := A_Index
     LV_GetText(OutputVar, A_Index , 4)
-    For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
+    For k, v in WR.ItemCrafting[ItemCraftingSubCategorySelector]
     {
       If (v.Mod == OutputVar)
         LV_Modify(Index,"Check")
@@ -193,7 +190,7 @@ RefreshModList(type)
   {
     Index := A_Index
     LV_GetText(OutputVar, A_Index , 4)
-    For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
+    For k, v in WR.ItemCrafting[ItemCraftingSubCategorySelector]
     {
       If (v.Mod == OutputVar)
         LV_Modify(Index,"Check")
@@ -206,10 +203,10 @@ RefreshModList(type)
   Gui, ListView, LVS
   Loop % LV_GetCount("Column")
     LV_ModifyCol(A_Index,"AutoHdr")
-Return
+  Return
 }
 
-ItemCraftingNaming(Content) 
+ItemCraftingNaming(Content)
 {
   Content := RegExReplace(Content,"\<br\/?\>"," | ")
   Content := RegExReplace(Content,"\<.*?\>","")

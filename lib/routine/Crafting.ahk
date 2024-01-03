@@ -110,9 +110,9 @@ CraftingItem(){
 		Return
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
-	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
+	If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated") {
 		CurrencyList := []
-		CurrencyList.Push(ItemCraftingBaseSelector)
+		CurrencyList.Push(ItemCraftingSubCategorySelector)
 	} Else {
 		CurrencyList := []
 		If (ItemCraftingMethod ~= "Alteration")
@@ -135,41 +135,41 @@ CraftingItem(){
 	Log("[Start] Item Crafting ","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
 
-	If (!ItemCraftingBaseComparator(ItemCraftingBaseSelector,Item.Prop.ItemClass)) {
+	If (!ItemCraftingBaseComparator(ItemCraftingSubCategorySelector,Item.Prop.ItemClass)) {
 		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
 		Return
 	}
-	If !(ItemCraftingBaseSelector ~= "Awakened|Elevated")
-	&& (WR.ItemCrafting[ItemCraftingBaseSelector].Count() == 0) {
+	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
+	&& (WR.ItemCrafting[ItemCraftingSubCategorySelector].Count() == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
-	} Else If (ItemCraftingBaseSelector ~= "Awakened|Elevated")
+	} Else If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
 	&& (WR.CustomSextantMods.SextantMods.Count() <= 0) {
 		Notify("Sextant Mod Selector Empty","You Need Select at Least 1 Affix on Sextant Mod Selector",4)
 		Log("[End]Item Crafting - Sextant Crafting Error","You Need Select at Least 1 Affix on Sextant Mod Selector")
 		Return
 	}
-	If !(ItemCraftingBaseSelector ~= "Awakened|Elevated")
+	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
 	&& (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
 		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
-	If !(ItemCraftingBaseSelector ~= "Awakened|Elevated")
+	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
 	&& (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
 		Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
 		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 		Return
 	}
-	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") && (GrabCompassX <= 0) or (GrabCompassY <=0) {
+	If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated") && (GrabCompassX <= 0) or (GrabCompassY <=0) {
 		Notify("Missing Surveyor's Compass Location","You must setup the co-ordinates in your currency tab before you can craft with sextants")
 		Log("Missing Surveyor's Compass Location","You must setup the co-ordinates in your currency tab before you can craft with sextants")
 		Return
 	}
-	If (ItemCraftingBaseSelector ~= "Awakened|Elevated") {
-		SextantCraftingRoll(ItemCraftingBaseSelector,xx,yy)
+	If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated") {
+		SextantCraftingRoll(ItemCraftingSubCategorySelector,xx,yy)
 	}Else If(ItemCraftingMethod == "Alteration Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
 			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",4)

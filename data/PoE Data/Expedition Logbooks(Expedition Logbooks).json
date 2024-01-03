@@ -1,0 +1,1298 @@
+{
+  "MapMonsterCannotBeStunned1MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Unwavering",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters cannot be Stunned | (15-19)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterCannotBeStunned2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Unwavering",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters cannot be Stunned | (20-24)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterCannotBeStunned3MapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Unwavering",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters cannot be Stunned | (25-30)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterCannotBeStunnedMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Unwavering",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters cannot be Stunned | (10-14)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterChainMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Chaining",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' skills Chain 2 additional times",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterChaosDamage2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Profane",
+    "required_level": 73,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (21-25)% extra Physical Damage as Chaos | Monsters Inflict Withered for 2 seconds on Hit",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MapMonsterChaosDamage3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Profane",
+    "required_level": 78,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (31-35)% extra Physical Damage as Chaos | Monsters Inflict Withered for 2 seconds on Hit",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MapMonsterColdDamage2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Freezing",
+    "required_level": 73,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Cold",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterColdDamage3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Freezing",
+    "required_level": 78,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (90-110)% extra Physical Damage as Cold",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterColdDamage1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Freezing",
+    "required_level": 68,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (50-69)% extra Physical Damage as Cold",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterColdDamageMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Freezing",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (30-49)% extra Physical Damage as Cold",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterDamage1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Savage",
+    "required_level": 68,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (14-17)% increased Monster Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterDamage2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Savage",
+    "required_level": 73,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (18-21)% increased Monster Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterDamage3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Savage",
+    "required_level": 78,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (22-25)% increased Monster Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterDamageMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Savage",
+    "required_level": 1,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (10-13)% increased Monster Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterElementalReflection1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Mirrored",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 13% of Elemental Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "MapMonsterElementalReflection2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Mirrored",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 15% of Elemental Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "MapMonsterElementalReflection3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Mirrored",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 18% of Elemental Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "MapMonsterFast1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 68,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (15-20)% increased Monster Movement Speed | (20-25)% increased Monster Attack Speed | (20-25)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFast2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 73,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (20-25)% increased Monster Movement Speed | (25-35)% increased Monster Attack Speed | (25-35)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFast3MapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 78,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (25-30)% increased Monster Movement Speed | (35-45)% increased Monster Attack Speed | (35-45)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFastMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 1,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (10-15)% increased Monster Movement Speed | (15-20)% increased Monster Attack Speed | (15-20)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFireDamage2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Burning",
+    "required_level": 73,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Fire",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFireDamage3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Burning",
+    "required_level": 78,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (90-110)% extra Physical Damage as Fire",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFireDamage1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Burning",
+    "required_level": 68,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (50-69)% extra Physical Damage as Fire",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFireDamageMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Burning",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (30-49)% extra Physical Damage as Fire",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLife1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (20-29)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLife2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (30-39)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLife3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (40-49)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLifeMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (10-19)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLightningDamage2MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Shocking",
+    "required_level": 73,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Lightning",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLightningDamage3MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Shocking",
+    "required_level": 78,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (90-110)% extra Physical Damage as Lightning",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLightningDamage1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Shocking",
+    "required_level": 68,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (50-69)% extra Physical Damage as Lightning",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLightningDamageMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Shocking",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (30-49)% extra Physical Damage as Lightning",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterMultipleProjectilesWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Splitting",
+    "required_level": 1,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | Monsters fire 2 additional Projectiles",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalReflection1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 13% of Physical Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalReflection2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 15% of Physical Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalReflection3MapWorldsExpedition___": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 18% of Physical Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalResistance1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Armoured",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +20% Monster Physical Damage Reduction",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalResistance2MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Armoured",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +30% Monster Physical Damage Reduction",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalResistance3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Armoured",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +40% Monster Physical Damage Reduction",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalResistanceMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Armoured",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +10% Monster Physical Damage Reduction",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAllResistances1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +15% Monster Chaos Resistance | +20% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAllResistances2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +20% Monster Chaos Resistance | +30% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAllResistances3MapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +25% Monster Chaos Resistance | +40% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAllResistancesMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +10% Monster Chaos Resistance | +10% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAvoidPoisonBleedBlind1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Impervious",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters have a 20% chance to avoid Poison, Impale, and Bleeding",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAvoidPoisonBleedBlind2MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Impervious",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters have a 35% chance to avoid Poison, Impale, and Bleeding",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAvoidPoisonBleedBlind3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Impervious",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters have a 50% chance to avoid Poison, Impale, and Bleeding",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersAvoidPoisonBleedBlindMapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Impervious",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters have a 10% chance to avoid Poison, Impale, and Bleeding",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersCantBeSlowedOrTauntedMapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Unstoppable",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters' Action Speed cannot be modified to below base value | Monsters cannot be Taunted",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToInflictStatusAilments1MapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Empowered",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 15% chance to cause Elemental Ailments on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToInflictStatusAilments2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Empowered",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 20% chance to cause Elemental Ailments on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToInflictStatusAilmentsMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Empowered",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 10% chance to cause Elemental Ailments on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToSuppressSpells1MapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have +30% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToSuppressSpells2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have +45% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToSuppressSpells3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have +60% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToSuppressSpellsMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have +20% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersCurseEffectOnSelfFinal1MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | 25% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersCurseEffectOnSelfFinal2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | 40% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersCurseEffectOnSelfFinal3MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | 60% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersCurseEffectOnSelfFinalMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | 10% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersImpaleOnHit1MapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 68,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 25% chance to Impale with Attacks",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersImpaleOnHit2MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 73,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 40% chance to Impale with Attacks",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersImpaleOnHit3MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 78,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 60% chance to Impale with Attacks",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersImpaleOnHitMapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 15% chance to Impale with Attacks",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersMaximumLifeAddedEnergyShield1MapWorldsExpedition_": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain (20-29)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonstersMaximumLifeAddedEnergyShield2MapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain (30-39)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonstersMaximumLifeAddedEnergyShield3MapWorldsExpedition__": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain (40-49)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonstersMaximumLifeAddedEnergyShieldMapWorldsExpedition": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain (10-19)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapBurningGround1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapBurningGround2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapBurningGround3MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapBurningGroundMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapChilledGroundSuffix1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapChilledGroundSuffix2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapChilledGroundSuffix3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapChilledGroundSuffixMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapConsecratedGround1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapConsecratedGround2MapWorldsExpedition_______": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapConsecratedGround3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapConsecratedGroundMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapDesecratedGround1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapDesecratedGround2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapDesecratedGround3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapDesecratedGroundMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapPlayersEvasionAndUnluckyDodge1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Miring",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have -10% to amount of Suppressed Spell Damage Prevented | Monsters have 30% increased Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersEvasionAndUnluckyDodge2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Miring",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have -15% to amount of Suppressed Spell Damage Prevented | Monsters have 40% increased Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersEvasionAndUnluckyDodge3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Miring",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have -20% to amount of Suppressed Spell Damage Prevented | Monsters have 50% increased Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersEvasionAndUnluckyDodgeMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Miring",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have -10% to amount of Suppressed Spell Damage Prevented | Monsters have 20% increased Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterAreaOfEffect1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Giants",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have 45% increased Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterAreaOfEffect2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Giants",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have 70% increased Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterAreaOfEffect3MapWorldsExpedition__": {
+    "generation_type": "Suffix",
+    "name": "of Giants",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have 100% increased Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterAreaOfEffectMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Giants",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have 25% increased Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterCriticalStrikesAndDamage1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Deadliness",
+    "required_level": 68,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have (160-200)% increased Critical Strike Chance | +(30-35)% to Monster Critical Strike Multiplier",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterCriticalStrikesAndDamage2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Deadliness",
+    "required_level": 73,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have (260-300)% increased Critical Strike Chance | +(36-40)% to Monster Critical Strike Multiplier",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterCriticalStrikesAndDamage3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Deadliness",
+    "required_level": 78,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have (360-400)% increased Critical Strike Chance | +(41-45)% to Monster Critical Strike Multiplier",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterCriticalStrikesAndDamageMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Deadliness",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have (60-100)% increased Critical Strike Chance | +(25-29)% to Monster Critical Strike Multiplier",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersBaseSelfCriticalMultiplier1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Toughness",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters take (25-30)% reduced Extra Damage from Critical Strikes",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersBaseSelfCriticalMultiplier2MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Toughness",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters take (31-35)% reduced Extra Damage from Critical Strikes",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersBaseSelfCriticalMultiplier3MapWorldsExpedition___": {
+    "generation_type": "Suffix",
+    "name": "of Toughness",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters take (36-40)% reduced Extra Damage from Critical Strikes",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersBaseSelfCriticalMultiplierMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Toughness",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters take (20-24)% reduced Extra Damage from Critical Strikes",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersBlindOnHitMapWorldsExpedition__": {
+    "generation_type": "Suffix",
+    "name": "of Blinding",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Blind on Hit",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapMonstersEnduranceChargeOnHitMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Endurance",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain an Endurance Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersFrenzyChargeOnHitMapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Frenzy",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain a Frenzy Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersHinderOnHitMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Impedance",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Hinder on Hit with Spells",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MapMonstersMaimOnHitMapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Carnage",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Maim on Hit with Attacks",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MapMonstersPowerChargeOnHitMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Power",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain a Power Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersStealChargesOnHitMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Enervation",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters steal Power, Frenzy and Endurance charges on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseElementalWeakness2MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Elemental Weakness",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Elemental Weakness",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseElementalWeakness1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Elemental Weakness",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Elemental Weakness",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseElementalWeaknessMapWorldsExpedition__": {
+    "generation_type": "Suffix",
+    "name": "of Elemental Weakness",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Elemental Weakness",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseEnfeeblement2MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Enfeeblement",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Enfeeble",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseEnfeeblement1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Enfeeblement",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Enfeeble",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseEnfeeblementMapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Enfeeblement",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Enfeeble",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseTemporalChains2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Temporal Chains",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Temporal Chains",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseTemporalChains1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Temporal Chains",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Temporal Chains",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseTemporalChainsMapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Temporal Chains",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Temporal Chains",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseVulnerability2MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Vulnerability",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Vulnerability",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseVulnerability1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Vulnerability",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Vulnerability",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseVulnerabilityMapWorldsExpedition__": {
+    "generation_type": "Suffix",
+    "name": "of Vulnerability",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Vulnerability",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerElementalEquilibriumMapWorldsExpedition__": {
+    "generation_type": "Suffix",
+    "name": "of Balance",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Players cannot inflict Exposure",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerMaxResists1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Exposure",
+    "required_level": 1,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | -(8-5)% maximum Player Resistances",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerMaxResists2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Exposure",
+    "required_level": 73,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | -(12-9)% maximum Player Resistances",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapPlayerNoLifeESRegenMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Stasis",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players cannot Regenerate Life, Mana or Energy Shield",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MapPlayerReducedRegen1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 68,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players have 20% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "MapPlayerReducedRegen2MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 73,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players have 40% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "MapPlayerReducedRegen3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 78,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players have 60% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "MapPlayerReducedRegenMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players have 10% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "MapPlayersAccuracyRating1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 15% less Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersAccuracyRating2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% less Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersAccuracyRating3MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 25% less Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersAccuracyRatingMapWorldsExpedition__": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 10% less Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersLessAoERadius1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 15% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersLessAoERadius2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersLessAoERadius3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 25% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersLessAoERadiusMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 10% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersBlockAndArmour1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Rust",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% reduced Chance to Block | Players have 20% less Armour",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersBlockAndArmour2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Rust",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 30% reduced Chance to Block | Players have 25% less Armour",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersBlockAndArmour3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Rust",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 40% reduced Chance to Block | Players have 30% less Armour",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersBlockAndArmourMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Rust",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 10% reduced Chance to Block | Players have 15% less Armour",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersBuffsExpireFaster1MapWorldsExpedition___": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Buffs on Players expire 30% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersBuffsExpireFaster2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Buffs on Players expire 50% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersBuffsExpireFaster3MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Buffs on Players expire 70% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersBuffsExpireFasterMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Buffs on Players expire 20% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersGainReducedFlaskCharges1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Drought",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players gain 30% reduced Flask Charges",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersGainReducedFlaskCharges2MapWorldsExpedition___": {
+    "generation_type": "Suffix",
+    "name": "of Drought",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players gain 40% reduced Flask Charges",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersGainReducedFlaskCharges3MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Drought",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players gain 50% reduced Flask Charges",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersGainReducedFlaskChargesMapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Drought",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players gain 20% reduced Flask Charges",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersLessCooldownRecovery1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersLessCooldownRecovery2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 30% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersLessCooldownRecovery3MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 40% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersLessCooldownRecoveryMapWorldsExpedition__": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 15% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersReducedAuraEffect1MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 68,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 25% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersReducedAuraEffect2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 73,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 40% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersReducedAuraEffect3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 78,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 60% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersReducedAuraEffectMapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 15% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPoisoningMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Venom",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters Poison on Hit",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapShockedGround1MapWorldsExpedition_": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 68,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Shocked Ground which increase Damage taken by 20%",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapShockedGround2MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 73,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Shocked Ground which increase Damage taken by 35%",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapShockedGround3MapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 78,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Shocked Ground which increase Damage taken by 50%",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MapShockedGroundMapWorldsExpedition": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Shocked Ground which increase Damage taken by 10%",
+    "weight": 250,
+    "influence": "Normal"
+  }
+}

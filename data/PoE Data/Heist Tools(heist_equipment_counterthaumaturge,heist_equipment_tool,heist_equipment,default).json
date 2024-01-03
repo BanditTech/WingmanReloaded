@@ -1,0 +1,474 @@
+{
+  "HeistNPCAllDamage1": {
+    "generation_type": "Prefix",
+    "name": "Harmful",
+    "required_level": 1,
+    "text": "(30-34)% increased Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage2": {
+    "generation_type": "Prefix",
+    "name": "Hazardous",
+    "required_level": 45,
+    "text": "(35-39)% increased Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage3": {
+    "generation_type": "Prefix",
+    "name": "Dangerous",
+    "required_level": 75,
+    "text": "(40-44)% increased Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage4": {
+    "generation_type": "Prefix",
+    "name": "Destructive",
+    "required_level": 81,
+    "text": "(45-50)% increased Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain1_": {
+    "generation_type": "Prefix",
+    "name": "Footpad's",
+    "required_level": 1,
+    "text": "(3-4)% increased Job Experience gain",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain2": {
+    "generation_type": "Prefix",
+    "name": "Crook's",
+    "required_level": 45,
+    "text": "(5-6)% increased Job Experience gain",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain3_": {
+    "generation_type": "Prefix",
+    "name": "Criminal's",
+    "required_level": 75,
+    "text": "(7-8)% increased Job Experience gain",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain4_": {
+    "generation_type": "Prefix",
+    "name": "Mastermind's",
+    "required_level": 81,
+    "text": "(9-10)% increased Job Experience gain",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel1_": {
+    "generation_type": "Prefix",
+    "name": "Capable",
+    "required_level": 1,
+    "text": "+1 to Character Level",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel2": {
+    "generation_type": "Prefix",
+    "name": "Experienced",
+    "required_level": 45,
+    "text": "+2 to Character Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel3": {
+    "generation_type": "Prefix",
+    "name": "Accomplished",
+    "required_level": 75,
+    "text": "+3 to Character Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel4": {
+    "generation_type": "Prefix",
+    "name": "Veteran",
+    "required_level": 83,
+    "text": "+4 to Character Level",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistCounterThaumaturgyExperienceGain1_": {
+    "generation_type": "Prefix",
+    "name": "Simple",
+    "required_level": 1,
+    "text": "(3-4)% increased Counter-Thaumaturgy Experience gained",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistCounterThaumaturgyExperienceGain2": {
+    "generation_type": "Prefix",
+    "name": "Complicated",
+    "required_level": 45,
+    "text": "(5-6)% increased Counter-Thaumaturgy Experience gained",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistCounterThaumaturgyExperienceGain3": {
+    "generation_type": "Prefix",
+    "name": "Complex",
+    "required_level": 75,
+    "text": "(7-8)% increased Counter-Thaumaturgy Experience gained",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistCounterThaumaturgyExperienceGain4_": {
+    "generation_type": "Prefix",
+    "name": "Specialised",
+    "required_level": 82,
+    "text": "(9-10)% increased Counter-Thaumaturgy Experience gained",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistCounterThaumaturgyLevel1": {
+    "generation_type": "Prefix",
+    "name": "Mental",
+    "required_level": 83,
+    "text": "+1 to Counter-Thaumaturgy Level for Heists",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "HeistNPCAllJobLevel1": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 82,
+    "text": "+1 to Level of all Jobs for Heists",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgySpeed1__": {
+    "generation_type": "Prefix",
+    "name": "Novice's",
+    "required_level": 1,
+    "text": "(9-11)% increased Counter-Thaumaturgy speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgySpeed2": {
+    "generation_type": "Prefix",
+    "name": "Apprentice's",
+    "required_level": 45,
+    "text": "(12-14)% increased Counter-Thaumaturgy speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgySpeed3_": {
+    "generation_type": "Prefix",
+    "name": "Expert's",
+    "required_level": 75,
+    "text": "(15-17)% increased Counter-Thaumaturgy speed",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgySpeed4": {
+    "generation_type": "Prefix",
+    "name": "Master's",
+    "required_level": 83,
+    "text": "(18-20)% increased Counter-Thaumaturgy speed",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCFlatLockdownTime1": {
+    "generation_type": "Prefix",
+    "name": "Hampering",
+    "required_level": 1,
+    "text": "+8 seconds to Lockdown Timer",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCFlatLockdownTime2": {
+    "generation_type": "Prefix",
+    "name": "Hindering",
+    "required_level": 45,
+    "text": "+12 seconds to Lockdown Timer",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCFlatLockdownTime3": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "+16 seconds to Lockdown Timer",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCFlatLockdownTime4_": {
+    "generation_type": "Prefix",
+    "name": "Stalling",
+    "required_level": 83,
+    "text": "+20 seconds to Lockdown Timer",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer1": {
+    "generation_type": "Prefix",
+    "name": "Slowing",
+    "required_level": 1,
+    "text": "(4-5)% increased time before Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer2": {
+    "generation_type": "Prefix",
+    "name": "Stalling",
+    "required_level": 45,
+    "text": "(6-7)% increased time before Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer3_": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "(7-8)% increased time before Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer4_": {
+    "generation_type": "Prefix",
+    "name": "Interrupting",
+    "required_level": 81,
+    "text": "(9-10)% increased time before Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed1___": {
+    "generation_type": "Prefix",
+    "name": "Practiced",
+    "required_level": 1,
+    "text": "(9-11)% increased Job speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed2": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 45,
+    "text": "(12-14)% increased Job speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed3": {
+    "generation_type": "Prefix",
+    "name": "Professional",
+    "required_level": 75,
+    "text": "(15-17)% increased Job speed",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed4__": {
+    "generation_type": "Prefix",
+    "name": "Masterful",
+    "required_level": 81,
+    "text": "(18-20)% increased Job speed",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut1": {
+    "generation_type": "Suffix",
+    "name": "of Bartering",
+    "required_level": 1,
+    "text": "The Ring's Cut reduced by (7-6)%",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut2_": {
+    "generation_type": "Suffix",
+    "name": "of Negotiating",
+    "required_level": 45,
+    "text": "The Ring's Cut reduced by (9-8)%",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut3": {
+    "generation_type": "Suffix",
+    "name": "of Selfishness",
+    "required_level": 75,
+    "text": "The Ring's Cut reduced by (12-10)%",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut4": {
+    "generation_type": "Suffix",
+    "name": "of Greed",
+    "required_level": 81,
+    "text": "The Ring's Cut reduced by (15-13)%",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost1": {
+    "generation_type": "Suffix",
+    "name": "of Personality",
+    "required_level": 1,
+    "text": "(7-6)% reduced Hiring Fee",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost2": {
+    "generation_type": "Suffix",
+    "name": "of Presence",
+    "required_level": 45,
+    "text": "(9-8)% reduced Hiring Fee",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost3": {
+    "generation_type": "Suffix",
+    "name": "of Charm",
+    "required_level": 75,
+    "text": "(12-10)% reduced Hiring Fee",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost4": {
+    "generation_type": "Suffix",
+    "name": "of Charisma",
+    "required_level": 81,
+    "text": "(15-13)% reduced Hiring Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost1_": {
+    "generation_type": "Suffix",
+    "name": "of Efficiency",
+    "required_level": 1,
+    "text": "(7-6)% reduced Travel Fee",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost2__": {
+    "generation_type": "Suffix",
+    "name": "of Shortcuts",
+    "required_level": 45,
+    "text": "(9-8)% reduced Travel Fee",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost3": {
+    "generation_type": "Suffix",
+    "name": "of Bypasses",
+    "required_level": 75,
+    "text": "(12-10)% reduced Travel Fee",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost4": {
+    "generation_type": "Suffix",
+    "name": "of Passage",
+    "required_level": 81,
+    "text": "(15-13)% reduced Travel Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCAdditionalIntelligenceChance1_": {
+    "generation_type": "Suffix",
+    "name": "of Gossip",
+    "required_level": 1,
+    "text": "(7-8)% chance on completing a Heist to generate an additional Reveal with Whakano",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCAdditionalIntelligenceChance2": {
+    "generation_type": "Suffix",
+    "name": "of Disclosure",
+    "required_level": 45,
+    "text": "(9-10)% chance on completing a Heist to generate an additional Reveal with Whakano",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCAdditionalIntelligenceChance3_": {
+    "generation_type": "Suffix",
+    "name": "of Discovery",
+    "required_level": 75,
+    "text": "(11-12)% chance on completing a Heist to generate an additional Reveal with Whakano",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCAdditionalIntelligenceChance4__": {
+    "generation_type": "Suffix",
+    "name": "of Revelation",
+    "required_level": 83,
+    "text": "(13-15)% chance on completing a Heist to generate an additional Reveal with Whakano",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyChestAvoidAlert1_": {
+    "generation_type": "Suffix",
+    "name": "of Gentleness",
+    "required_level": 1,
+    "text": "(3-4)% chance to not generate Alert Level on opening a Chest using Counter-Thaumaturgy",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyChestAvoidAlert2__": {
+    "generation_type": "Suffix",
+    "name": "of Subtlety",
+    "required_level": 45,
+    "text": "(5-6)% chance to not generate Alert Level on opening a Chest using Counter-Thaumaturgy",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyChestAvoidAlert3": {
+    "generation_type": "Suffix",
+    "name": "of Cunning",
+    "required_level": 75,
+    "text": "(7-8)% chance to not generate Alert Level on opening a Chest using Counter-Thaumaturgy",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyChestAvoidAlert4": {
+    "generation_type": "Suffix",
+    "name": "of Ingenuity",
+    "required_level": 83,
+    "text": "(9-10)% chance to not generate Alert Level on opening a Chest using Counter-Thaumaturgy",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyCost1": {
+    "generation_type": "Suffix",
+    "name": "of Discount",
+    "required_level": 1,
+    "text": "(7-6)% reduced Hiring Fee for Counter-Thaumaturgy Jobs",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyCost2_": {
+    "generation_type": "Suffix",
+    "name": "of Reduction",
+    "required_level": 45,
+    "text": "(9-8)% reduced Hiring Fee for Counter-Thaumaturgy Jobs",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyCost3": {
+    "generation_type": "Suffix",
+    "name": "of Concession",
+    "required_level": 75,
+    "text": "(12-10)% reduced Hiring Fee for Counter-Thaumaturgy Jobs",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyCost4": {
+    "generation_type": "Suffix",
+    "name": "of Markdown",
+    "required_level": 82,
+    "text": "(15-13)% reduced Hiring Fee for Counter-Thaumaturgy Jobs",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCCounterThaumaturgyNoAlertMultiplier1": {
+    "generation_type": "Suffix",
+    "name": "of Aplomb",
+    "required_level": 81,
+    "text": "Performing Counter-Thaumaturgy during Lockdown doesn't take additional time",
+    "weight": 200,
+    "influence": "Normal"
+  }
+}

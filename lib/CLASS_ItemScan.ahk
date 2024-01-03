@@ -991,7 +991,7 @@
 		SumRNP := 0
 		SumRNS := 0
 		LastID :=0
-		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
+		For k, v in WR.ItemCrafting[ItemCraftingSubCategorySelector]
 		{
 			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"] && This.Affix[v["Affix"]])
 			{

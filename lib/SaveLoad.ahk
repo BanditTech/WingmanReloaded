@@ -13,7 +13,7 @@ readFromFile(){
 	Settings("CustomSextantMods","Load")
 	Settings("ItemCrafting","Load")
 	Settings("ActualTier","Load")
-	Settings("MenuDDLselect","Load")
+	;Settings("MenuDDLselect","Load")
 
 	For k, name in ["perChar","Flask","Utility"]
 		IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -122,8 +122,8 @@ readFromFile(){
 
 	;Item Crafting Options
 
-	IniRead, ItemCraftingBaseSelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector, Amulet
-	IniRead, ItemCraftingcategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingcategorySelector, Weapons
+	IniRead, ItemCraftingSubCategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingSubCategorySelector, Amulet
+	IniRead, ItemCraftingCategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCategorySelector, Weapons
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
@@ -850,8 +850,8 @@ submit(){
 
 		;Item Crafting Options
 
-		IniWrite, %ItemCraftingBaseSelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingBaseSelector
-		IniWrite, %ItemCraftingcategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingcategorySelector
+		IniWrite, %ItemCraftingSubCategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingSubCategorySelector
+		IniWrite, %ItemCraftingCategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCategorySelector
 		IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
 		IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
 		IniWrite, %ItemCraftingNumberCombination%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination
