@@ -14,7 +14,7 @@ ModsUI:
   RefreshModList(ItemCraftingCategorySelector,ItemCraftingSubCategorySelector)
   Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
   Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
-  Gui, ModsUI1: Show, , %ItemCraftingSubCategorySelector% Affix List
+  Gui, ModsUI1: Show, , Category %ItemCraftingCategorySelector% SubCategory %ItemCraftingSubCategorySelector% Affix List
 Return
 
 ResetItemCrafting:

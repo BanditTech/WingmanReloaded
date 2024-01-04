@@ -13,7 +13,6 @@ readFromFile(){
 	Settings("CustomSextantMods","Load")
 	Settings("ItemCrafting","Load")
 	Settings("ActualTier","Load")
-	;Settings("MenuDDLselect","Load")
 
 	For k, name in ["perChar","Flask","Utility"]
 		IniRead, ProfileMenu%name%, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %name%, % A_Space
@@ -122,8 +121,8 @@ readFromFile(){
 
 	;Item Crafting Options
 
-	IniRead, ItemCraftingSubCategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingSubCategorySelector, Amulet
-	IniRead, ItemCraftingCategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCategorySelector, Weapons
+	IniRead, ItemCraftingSubCategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingSubCategorySelector, Abyss Jewels
+	IniRead, ItemCraftingCategorySelector, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCategorySelector, Ghastly Eye Jewel
 	IniRead, ItemCraftingNumberPrefix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix, 1
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0

@@ -709,7 +709,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, Section w292 h80 xm ym+25 , Item Type
       Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+15 yp+25 w60, Category:
+      Gui, Crafting: Add, Text, xs+5 yp+25 w60, Category:
       aux := ""
       for a,b in POEData{
         if(a ~= "Maps|Contracts|Expedition Logbooks|Blueprints"){
@@ -719,11 +719,11 @@ WR_Menu(Function:="",Var*){
       }
       Gui, Crafting: Add, DropDownList, vItemCraftingCategorySelector gItemCraftingSubmit xs+70 yp-4 w210, %aux%
       GuiControl, ChooseString, ItemCraftingCategorySelector, %ItemCraftingCategorySelector%
-      Gui, Crafting: Add, Text, xs+15 y+5 w60, SubCategory:
+      Gui, Crafting: Add, Text, xs+5 y+5 w60, SubCategory:
       Gui, Crafting: Add, DropDownList, vItemCraftingSubCategorySelector gItemCraftingSubmit Sort xs+70 yp-4 w210
       GuiControl, ChooseString, ItemCraftingSubCategorySelector, %ItemCraftingSubCategorySelector%
 
-      ; Affix Rules394148
+      ; Affix Rules
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, w292 h165 xs yp+40 , Affix Rules
       Gui, Crafting: Font,
