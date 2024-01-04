@@ -24,13 +24,13 @@ ResetItemCrafting:
   Gui, ListView, LVS
   Loop % LV_GetCount()
     LV_Modify(A_Index,"-Check")
-  WR.ItemCrafting[ItemCraftingSubCategorySelector] := []
+  WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector] := []
   Settings("ItemCrafting","Save")
 Return
 
 SaveItemCrafting:
   TrueIndex:=0
-  WR.ItemCrafting[ItemCraftingSubCategorySelector] := []
+  WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector] := []
 
   RowNumber := 0
   Gui, ListView, LVP
@@ -42,7 +42,7 @@ SaveItemCrafting:
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     LV_GetText(Affix, RowNumber,2)
-    MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingSubCategorySelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   RowNumber := 0
@@ -56,7 +56,7 @@ SaveItemCrafting:
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     LV_GetText(Affix, RowNumber,2)
-    MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingSubCategorySelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   Settings("ItemCrafting","Save")
@@ -74,11 +74,9 @@ ItemCraftingSubmit:
       aux .= b "|"
     }
     GuiControl, , ItemCraftingSubCategorySelector, |%aux%
-    ;SaveINI("Item Crafting Settings")
   }
   If (A_GuiControl ~= "ItemCraftingSubCategorySelector") {
     SaveINI("Item Crafting Settings")
-    ;GuiControl, ChooseString, ItemCraftingSubCategorySelector, %ItemCraftingSubCategorySelector%
   }
 Return
 
@@ -179,7 +177,7 @@ RefreshModList(a,b)
   {
     Index := A_Index
     LV_GetText(OutputVar, A_Index , 4)
-    For k, v in WR.ItemCrafting[ItemCraftingSubCategorySelector]
+    For k, v in WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector]
     {
       If (v.Mod == OutputVar)
         LV_Modify(Index,"Check")
@@ -190,7 +188,7 @@ RefreshModList(a,b)
   {
     Index := A_Index
     LV_GetText(OutputVar, A_Index , 4)
-    For k, v in WR.ItemCrafting[ItemCraftingSubCategorySelector]
+    For k, v in WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector]
     {
       If (v.Mod == OutputVar)
         LV_Modify(Index,"Check")

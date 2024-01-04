@@ -50,7 +50,7 @@ RefreshSextantList()
   Mods := LoadOnDemand(ItemCraftingCategorySelector,ItemCraftingSubCategorySelector)
   For k, v in Mods
   {
-    LV_Add("",aux,FirstLineToWRFormat(v["text"]),v["weight"],"Good")
+    LV_Add("",ItemCraftingSubCategorySelector,FirstLineToWRFormat(v["text"]),v["weight"],"Good")
   }
   Mods := []
   ;;Check Box

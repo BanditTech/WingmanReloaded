@@ -87,179 +87,179 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalBaseEvasionRatingAndLife1": {
+  "LocalBaseArmourAndLife1": {
     "generation_type": "Prefix",
-    "name": "Flea's",
+    "name": "Oyster's",
     "required_level": 30,
-    "text": "+(14-20) to Evasion Rating | +(18-23) to maximum Life",
-    "weight": 500,
+    "text": "+(20-32) to Armour | +(18-23) to maximum Life",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "LocalBaseEvasionRatingAndLife2": {
+  "LocalBaseArmourAndLife2": {
     "generation_type": "Prefix",
-    "name": "Fawn's",
+    "name": "Urchin's",
     "required_level": 46,
-    "text": "+(21-42) to Evasion Rating | +(24-28) to maximum Life",
-    "weight": 500,
+    "text": "+(33-48) to Armour | +(24-28) to maximum Life",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRating1": {
+  "LocalIncreasedPhysicalDamageReductionRating1": {
     "generation_type": "Prefix",
-    "name": "Agile",
+    "name": "Lacquered",
     "required_level": 1,
-    "text": "+(6-12) to Evasion Rating",
+    "text": "+(6-12) to Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRating2": {
+  "LocalIncreasedPhysicalDamageReductionRating2": {
     "generation_type": "Prefix",
-    "name": "Dancer's",
+    "name": "Studded",
     "required_level": 11,
-    "text": "+(13-35) to Evasion Rating",
+    "text": "+(13-35) to Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRating3": {
+  "LocalIncreasedPhysicalDamageReductionRating3": {
     "generation_type": "Prefix",
-    "name": "Acrobat's",
+    "name": "Ribbed",
     "required_level": 17,
-    "text": "+(36-63) to Evasion Rating",
+    "text": "+(36-63) to Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRating4": {
+  "LocalIncreasedPhysicalDamageReductionRating4": {
     "generation_type": "Prefix",
-    "name": "Fleet",
+    "name": "Fortified",
     "required_level": 23,
-    "text": "+(64-82) to Evasion Rating",
+    "text": "+(64-82) to Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRating5": {
+  "LocalIncreasedPhysicalDamageReductionRating5": {
     "generation_type": "Prefix",
-    "name": "Blurred",
+    "name": "Plated",
     "required_level": 29,
-    "text": "+(83-101) to Evasion Rating",
+    "text": "+(83-101) to Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRating6": {
+  "LocalIncreasedPhysicalDamageReductionRating6": {
     "generation_type": "Prefix",
-    "name": "Phased",
+    "name": "Carapaced",
     "required_level": 35,
-    "text": "+(102-120) to Evasion Rating",
+    "text": "+(102-120) to Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRating7_": {
+  "LocalIncreasedPhysicalDamageReductionRating7__": {
     "generation_type": "Prefix",
-    "name": "Vaporous",
+    "name": "Encased",
     "required_level": 43,
-    "text": "+(121-150) to Evasion Rating",
+    "text": "+(121-150) to Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercentAndStunRecovery1": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery1": {
     "generation_type": "Prefix",
-    "name": "Mosquito's",
-    "required_level": 2,
-    "text": "(6-13)% increased Evasion Rating | (6-7)% increased Stun and Block Recovery",
+    "name": "Beetle's",
+    "required_level": 1,
+    "text": "(6-13)% increased Armour | (6-7)% increased Stun and Block Recovery",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercentAndStunRecovery2": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery2": {
     "generation_type": "Prefix",
-    "name": "Moth's",
-    "required_level": 19,
-    "text": "(14-20)% increased Evasion Rating | (8-9)% increased Stun and Block Recovery",
+    "name": "Crab's",
+    "required_level": 17,
+    "text": "(14-20)% increased Armour | (8-9)% increased Stun and Block Recovery",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercentAndStunRecovery3": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery3": {
     "generation_type": "Prefix",
-    "name": "Butterfly's",
-    "required_level": 30,
-    "text": "(21-26)% increased Evasion Rating | (10-11)% increased Stun and Block Recovery",
+    "name": "Armadillo's",
+    "required_level": 29,
+    "text": "(21-26)% increased Armour | (10-11)% increased Stun and Block Recovery",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercentAndStunRecovery4": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery4": {
     "generation_type": "Prefix",
-    "name": "Wasp's",
-    "required_level": 44,
-    "text": "(27-32)% increased Evasion Rating | (12-13)% increased Stun and Block Recovery",
+    "name": "Rhino's",
+    "required_level": 42,
+    "text": "(27-32)% increased Armour | (12-13)% increased Stun and Block Recovery",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercentAndStunRecovery5": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery5": {
     "generation_type": "Prefix",
-    "name": "Dragonfly's",
+    "name": "Elephant's",
     "required_level": 60,
-    "text": "(33-38)% increased Evasion Rating | (14-15)% increased Stun and Block Recovery",
+    "text": "(33-38)% increased Armour | (14-15)% increased Stun and Block Recovery",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercentAndStunRecovery6": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery6": {
     "generation_type": "Prefix",
-    "name": "Hummingbird's",
+    "name": "Mammoth's",
     "required_level": 78,
-    "text": "(39-42)% increased Evasion Rating | (16-17)% increased Stun and Block Recovery",
+    "text": "(39-42)% increased Armour | (16-17)% increased Stun and Block Recovery",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercent1": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercent1": {
     "generation_type": "Prefix",
-    "name": "Shade's",
+    "name": "Reinforced",
     "required_level": 3,
-    "text": "(15-26)% increased Evasion Rating",
+    "text": "(15-26)% increased Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercent2": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercent2": {
     "generation_type": "Prefix",
-    "name": "Ghost's",
-    "required_level": 19,
-    "text": "(27-42)% increased Evasion Rating",
+    "name": "Layered",
+    "required_level": 17,
+    "text": "(27-42)% increased Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercent3": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercent3": {
     "generation_type": "Prefix",
-    "name": "Spectre's",
-    "required_level": 30,
-    "text": "(43-55)% increased Evasion Rating",
+    "name": "Lobstered",
+    "required_level": 29,
+    "text": "(43-55)% increased Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercent4": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercent4": {
     "generation_type": "Prefix",
-    "name": "Wraith's",
-    "required_level": 44,
-    "text": "(56-67)% increased Evasion Rating",
+    "name": "Buttressed",
+    "required_level": 42,
+    "text": "(56-67)% increased Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercent5": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercent5": {
     "generation_type": "Prefix",
-    "name": "Phantasm's",
+    "name": "Thickened",
     "required_level": 60,
-    "text": "(68-79)% increased Evasion Rating",
+    "text": "(68-79)% increased Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercent6": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercent6": {
     "generation_type": "Prefix",
-    "name": "Nightmare's",
+    "name": "Girded",
     "required_level": 72,
-    "text": "(80-91)% increased Evasion Rating",
+    "text": "(80-91)% increased Armour",
     "weight": 1000,
     "influence": "Normal"
   },
-  "LocalIncreasedEvasionRatingPercent7": {
+  "LocalIncreasedPhysicalDamageReductionRatingPercent7": {
     "generation_type": "Prefix",
-    "name": "Mirage's",
+    "name": "Impregnable",
     "required_level": 84,
-    "text": "(92-100)% increased Evasion Rating",
+    "text": "(92-100)% increased Armour",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -543,46 +543,6 @@
     "weight": 800,
     "influence": "Shaper"
   },
-  "ChanceToSuppressSpells1_": {
-    "generation_type": "Suffix",
-    "name": "of Rebuttal",
-    "required_level": 46,
-    "text": "+(5-6)% chance to Suppress Spell Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceToSuppressSpells2": {
-    "generation_type": "Suffix",
-    "name": "of Snuffing",
-    "required_level": 57,
-    "text": "+(7-8)% chance to Suppress Spell Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceToSuppressSpells3": {
-    "generation_type": "Suffix",
-    "name": "of Revoking",
-    "required_level": 68,
-    "text": "+(9-10)% chance to Suppress Spell Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceToSuppressSpells4": {
-    "generation_type": "Suffix",
-    "name": "of Abjuration",
-    "required_level": 76,
-    "text": "+(11-12)% chance to Suppress Spell Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceToSuppressSpells5__": {
-    "generation_type": "Suffix",
-    "name": "of Nullification",
-    "required_level": 85,
-    "text": "+(13-14)% chance to Suppress Spell Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
   "ChaosResist1": {
     "generation_type": "Suffix",
     "name": "of the Lost",
@@ -692,78 +652,6 @@
     "name": "of Haast",
     "required_level": 84,
     "text": "+(46-48)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity1": {
-    "generation_type": "Suffix",
-    "name": "of the Mongoose",
-    "required_level": 1,
-    "text": "+(8-12) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity2": {
-    "generation_type": "Suffix",
-    "name": "of the Lynx",
-    "required_level": 11,
-    "text": "+(13-17) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity3": {
-    "generation_type": "Suffix",
-    "name": "of the Fox",
-    "required_level": 22,
-    "text": "+(18-22) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity4": {
-    "generation_type": "Suffix",
-    "name": "of the Falcon",
-    "required_level": 33,
-    "text": "+(23-27) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity5": {
-    "generation_type": "Suffix",
-    "name": "of the Panther",
-    "required_level": 44,
-    "text": "+(28-32) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity6": {
-    "generation_type": "Suffix",
-    "name": "of the Leopard",
-    "required_level": 55,
-    "text": "+(33-37) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity7": {
-    "generation_type": "Suffix",
-    "name": "of the Jaguar",
-    "required_level": 66,
-    "text": "+(38-42) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity8": {
-    "generation_type": "Suffix",
-    "name": "of the Phantom",
-    "required_level": 74,
-    "text": "+(43-50) to Dexterity",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Dexterity9": {
-    "generation_type": "Suffix",
-    "name": "of the Wind",
-    "required_level": 82,
-    "text": "+(51-55) to Dexterity",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -911,6 +799,46 @@
     "weight": 1000,
     "influence": "Normal"
   },
+  "LifeRegenerationRate1": {
+    "generation_type": "Suffix",
+    "name": "of Esprit",
+    "required_level": 46,
+    "text": "(9-11)% increased Life Regeneration rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LifeRegenerationRate2": {
+    "generation_type": "Suffix",
+    "name": "of Perpetuity",
+    "required_level": 57,
+    "text": "(12-14)% increased Life Regeneration rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LifeRegenerationRate3": {
+    "generation_type": "Suffix",
+    "name": "of Vivification",
+    "required_level": 68,
+    "text": "(15-17)% increased Life Regeneration rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LifeRegenerationRate4": {
+    "generation_type": "Suffix",
+    "name": "of Youth",
+    "required_level": 76,
+    "text": "(18-19)% increased Life Regeneration rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LifeRegenerationRate5": {
+    "generation_type": "Suffix",
+    "name": "of Everlasting",
+    "required_level": 85,
+    "text": "(20-21)% increased Life Regeneration rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
   "LightningResist1": {
     "generation_type": "Suffix",
     "name": "of the Cloud",
@@ -989,6 +917,78 @@
     "required_level": 60,
     "text": "32% reduced Attribute Requirements",
     "weight": 550,
+    "influence": "Normal"
+  },
+  "Strength1": {
+    "generation_type": "Suffix",
+    "name": "of the Brute",
+    "required_level": 1,
+    "text": "+(8-12) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength2": {
+    "generation_type": "Suffix",
+    "name": "of the Wrestler",
+    "required_level": 11,
+    "text": "+(13-17) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength3": {
+    "generation_type": "Suffix",
+    "name": "of the Bear",
+    "required_level": 22,
+    "text": "+(18-22) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength4": {
+    "generation_type": "Suffix",
+    "name": "of the Lion",
+    "required_level": 33,
+    "text": "+(23-27) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength5": {
+    "generation_type": "Suffix",
+    "name": "of the Gorilla",
+    "required_level": 44,
+    "text": "+(28-32) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength6": {
+    "generation_type": "Suffix",
+    "name": "of the Goliath",
+    "required_level": 55,
+    "text": "+(33-37) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength7": {
+    "generation_type": "Suffix",
+    "name": "of the Leviathan",
+    "required_level": 66,
+    "text": "+(38-42) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength8": {
+    "generation_type": "Suffix",
+    "name": "of the Titan",
+    "required_level": 74,
+    "text": "+(43-50) to Strength",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "Strength9": {
+    "generation_type": "Suffix",
+    "name": "of the Gods",
+    "required_level": 82,
+    "text": "+(51-55) to Strength",
+    "weight": 1000,
     "influence": "Normal"
   },
   "StunRecovery1": {
@@ -1438,1317 +1438,5 @@
     "text": "(17-20)% increased Totem Placement speed | Socketed Gems are Supported by Level 22 Ballista Totem",
     "weight": 250,
     "influence": "Shaper"
-  },
-  "IncreasedMana1": {
-    "generation_type": "Prefix",
-    "name": "Beryl",
-    "required_level": 1,
-    "text": "+(15-19) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana10": {
-    "generation_type": "Prefix",
-    "name": "Mazarine",
-    "required_level": 69,
-    "text": "+(60-64) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana11": {
-    "generation_type": "Prefix",
-    "name": "Blue",
-    "required_level": 75,
-    "text": "+(65-68) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana12": {
-    "generation_type": "Prefix",
-    "name": "Zaffre",
-    "required_level": 81,
-    "text": "+(69-73) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana2": {
-    "generation_type": "Prefix",
-    "name": "Cobalt",
-    "required_level": 11,
-    "text": "+(20-24) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana3": {
-    "generation_type": "Prefix",
-    "name": "Azure",
-    "required_level": 17,
-    "text": "+(25-29) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana4": {
-    "generation_type": "Prefix",
-    "name": "Sapphire",
-    "required_level": 23,
-    "text": "+(30-34) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana5": {
-    "generation_type": "Prefix",
-    "name": "Cerulean",
-    "required_level": 29,
-    "text": "+(35-39) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana6": {
-    "generation_type": "Prefix",
-    "name": "Aqua",
-    "required_level": 35,
-    "text": "+(40-44) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana7": {
-    "generation_type": "Prefix",
-    "name": "Opalescent",
-    "required_level": 42,
-    "text": "+(45-49) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana8": {
-    "generation_type": "Prefix",
-    "name": "Gentian",
-    "required_level": 51,
-    "text": "+(50-54) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana9": {
-    "generation_type": "Prefix",
-    "name": "Chalybeous",
-    "required_level": 60,
-    "text": "+(55-59) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndLife1": {
-    "generation_type": "Prefix",
-    "name": "Monk's",
-    "required_level": 30,
-    "text": "+(8-10) to maximum Energy Shield | +(18-23) to maximum Life",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndLife2": {
-    "generation_type": "Prefix",
-    "name": "Prior's",
-    "required_level": 46,
-    "text": "+(11-15) to maximum Energy Shield | +(24-28) to maximum Life",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndMana1": {
-    "generation_type": "Prefix",
-    "name": "Acolyte's",
-    "required_level": 30,
-    "text": "+(8-10) to maximum Energy Shield | +(11-15) to maximum Mana",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndMana2": {
-    "generation_type": "Prefix",
-    "name": "Deacon's",
-    "required_level": 46,
-    "text": "+(11-15) to maximum Energy Shield | +(16-19) to maximum Mana",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LocalBaseEvasionRatingAndEnergyShield1": {
-    "generation_type": "Prefix",
-    "name": "Will-o-wisp's",
-    "required_level": 1,
-    "text": "+(5-9) to Evasion Rating | +(3-4) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEvasionRatingAndEnergyShield2": {
-    "generation_type": "Prefix",
-    "name": "Nymph's",
-    "required_level": 18,
-    "text": "+(10-27) to Evasion Rating | +(5-12) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEvasionRatingAndEnergyShield3": {
-    "generation_type": "Prefix",
-    "name": "Sylph's",
-    "required_level": 30,
-    "text": "+(28-48) to Evasion Rating | +(13-22) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEvasionRatingAndEnergyShield4": {
-    "generation_type": "Prefix",
-    "name": "Cherub's",
-    "required_level": 38,
-    "text": "+(49-85) to Evasion Rating | +(23-28) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShield1": {
-    "generation_type": "Prefix",
-    "name": "Shadowy",
-    "required_level": 3,
-    "text": "(15-26)% increased Evasion and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShield2": {
-    "generation_type": "Prefix",
-    "name": "Ethereal",
-    "required_level": 19,
-    "text": "(27-42)% increased Evasion and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShield3": {
-    "generation_type": "Prefix",
-    "name": "Unworldly",
-    "required_level": 30,
-    "text": "(43-55)% increased Evasion and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShield4": {
-    "generation_type": "Prefix",
-    "name": "Ephemeral",
-    "required_level": 44,
-    "text": "(56-67)% increased Evasion and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShield5_": {
-    "generation_type": "Prefix",
-    "name": "Evanescent",
-    "required_level": 60,
-    "text": "(68-79)% increased Evasion and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShield6": {
-    "generation_type": "Prefix",
-    "name": "Unreal",
-    "required_level": 72,
-    "text": "(80-91)% increased Evasion and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShield7": {
-    "generation_type": "Prefix",
-    "name": "Illusory",
-    "required_level": 84,
-    "text": "(92-100)% increased Evasion and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShieldAndStunRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Mosquito's",
-    "required_level": 2,
-    "text": "(6-13)% increased Evasion and Energy Shield | (6-7)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShieldAndStunRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Moth's",
-    "required_level": 19,
-    "text": "(14-20)% increased Evasion and Energy Shield | (8-9)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShieldAndStunRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Butterfly's",
-    "required_level": 30,
-    "text": "(21-26)% increased Evasion and Energy Shield | (10-11)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShieldAndStunRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Wasp's",
-    "required_level": 44,
-    "text": "(27-32)% increased Evasion and Energy Shield | (12-13)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShieldAndStunRecovery5": {
-    "generation_type": "Prefix",
-    "name": "Dragonfly's",
-    "required_level": 60,
-    "text": "(33-38)% increased Evasion and Energy Shield | (14-15)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEvasionAndEnergyShieldAndStunRecovery6": {
-    "generation_type": "Prefix",
-    "name": "Hummingbird's",
-    "required_level": 78,
-    "text": "(39-42)% increased Evasion and Energy Shield | (16-17)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "EnergyShieldRechargeRate1": {
-    "generation_type": "Suffix",
-    "name": "of Allaying",
-    "required_level": 46,
-    "text": "(24-26)% increased Energy Shield Recharge Rate",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRechargeRate2": {
-    "generation_type": "Suffix",
-    "name": "of Diffusion",
-    "required_level": 57,
-    "text": "(27-29)% increased Energy Shield Recharge Rate",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRechargeRate3": {
-    "generation_type": "Suffix",
-    "name": "of Dispersal",
-    "required_level": 68,
-    "text": "(30-32)% increased Energy Shield Recharge Rate",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRechargeRate4": {
-    "generation_type": "Suffix",
-    "name": "of Buffering",
-    "required_level": 76,
-    "text": "(33-35)% increased Energy Shield Recharge Rate",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRechargeRate5______": {
-    "generation_type": "Suffix",
-    "name": "of Ardour",
-    "required_level": 85,
-    "text": "(36-38)% increased Energy Shield Recharge Rate",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "Intelligence1": {
-    "generation_type": "Suffix",
-    "name": "of the Pupil",
-    "required_level": 1,
-    "text": "+(8-12) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence2": {
-    "generation_type": "Suffix",
-    "name": "of the Student",
-    "required_level": 11,
-    "text": "+(13-17) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence3": {
-    "generation_type": "Suffix",
-    "name": "of the Prodigy",
-    "required_level": 22,
-    "text": "+(18-22) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence4": {
-    "generation_type": "Suffix",
-    "name": "of the Augur",
-    "required_level": 33,
-    "text": "+(23-27) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence5": {
-    "generation_type": "Suffix",
-    "name": "of the Philosopher",
-    "required_level": 44,
-    "text": "+(28-32) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence6": {
-    "generation_type": "Suffix",
-    "name": "of the Sage",
-    "required_level": 55,
-    "text": "+(33-37) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence7": {
-    "generation_type": "Suffix",
-    "name": "of the Savant",
-    "required_level": 66,
-    "text": "+(38-42) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence8": {
-    "generation_type": "Suffix",
-    "name": "of the Virtuoso",
-    "required_level": 74,
-    "text": "+(43-50) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Intelligence9": {
-    "generation_type": "Suffix",
-    "name": "of the Genius",
-    "required_level": 82,
-    "text": "+(51-55) to Intelligence",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield1": {
-    "generation_type": "Prefix",
-    "name": "Shining",
-    "required_level": 3,
-    "text": "+(3-5) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield2": {
-    "generation_type": "Prefix",
-    "name": "Glimmering",
-    "required_level": 11,
-    "text": "+(6-11) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield3": {
-    "generation_type": "Prefix",
-    "name": "Glittering",
-    "required_level": 17,
-    "text": "+(12-16) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield4": {
-    "generation_type": "Prefix",
-    "name": "Glowing",
-    "required_level": 23,
-    "text": "+(17-23) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield5": {
-    "generation_type": "Prefix",
-    "name": "Radiating",
-    "required_level": 29,
-    "text": "+(24-30) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield6": {
-    "generation_type": "Prefix",
-    "name": "Pulsing",
-    "required_level": 35,
-    "text": "+(31-38) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield7": {
-    "generation_type": "Prefix",
-    "name": "Seething",
-    "required_level": 43,
-    "text": "+(39-49) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Pixie's",
-    "required_level": 3,
-    "text": "(6-13)% increased Energy Shield | (6-7)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Gremlin's",
-    "required_level": 18,
-    "text": "(14-20)% increased Energy Shield | (8-9)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Boggart's",
-    "required_level": 30,
-    "text": "(21-26)% increased Energy Shield | (10-11)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Naga's",
-    "required_level": 44,
-    "text": "(27-32)% increased Energy Shield | (12-13)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery5": {
-    "generation_type": "Prefix",
-    "name": "Djinn's",
-    "required_level": 60,
-    "text": "(33-38)% increased Energy Shield | (14-15)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery6": {
-    "generation_type": "Prefix",
-    "name": "Seraphim's",
-    "required_level": 78,
-    "text": "(39-42)% increased Energy Shield | (16-17)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent1": {
-    "generation_type": "Prefix",
-    "name": "Protective",
-    "required_level": 3,
-    "text": "(11-28)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent2": {
-    "generation_type": "Prefix",
-    "name": "Strong-Willed",
-    "required_level": 18,
-    "text": "(27-42)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent3": {
-    "generation_type": "Prefix",
-    "name": "Resolute",
-    "required_level": 30,
-    "text": "(43-55)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent4": {
-    "generation_type": "Prefix",
-    "name": "Fearless",
-    "required_level": 44,
-    "text": "(56-67)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent5": {
-    "generation_type": "Prefix",
-    "name": "Dauntless",
-    "required_level": 60,
-    "text": "(68-79)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent6": {
-    "generation_type": "Prefix",
-    "name": "Indomitable",
-    "required_level": 72,
-    "text": "(80-91)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent7_": {
-    "generation_type": "Prefix",
-    "name": "Unassailable",
-    "required_level": 84,
-    "text": "(92-100)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasion1": {
-    "generation_type": "Prefix",
-    "name": "Scrapper's",
-    "required_level": 3,
-    "text": "(15-26)% increased Armour and Evasion",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasion2": {
-    "generation_type": "Prefix",
-    "name": "Brawler's",
-    "required_level": 19,
-    "text": "(27-42)% increased Armour and Evasion",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasion3": {
-    "generation_type": "Prefix",
-    "name": "Fencer's",
-    "required_level": 30,
-    "text": "(43-55)% increased Armour and Evasion",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasion4": {
-    "generation_type": "Prefix",
-    "name": "Gladiator's",
-    "required_level": 44,
-    "text": "(56-67)% increased Armour and Evasion",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasion5": {
-    "generation_type": "Prefix",
-    "name": "Duelist's",
-    "required_level": 60,
-    "text": "(68-79)% increased Armour and Evasion",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasion6": {
-    "generation_type": "Prefix",
-    "name": "Hero's",
-    "required_level": 72,
-    "text": "(80-91)% increased Armour and Evasion",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasion7": {
-    "generation_type": "Prefix",
-    "name": "Legend's",
-    "required_level": 84,
-    "text": "(92-100)% increased Armour and Evasion",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasionAndStunRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Beetle's",
-    "required_level": 2,
-    "text": "(6-13)% increased Armour and Evasion | (6-7)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasionAndStunRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Crab's",
-    "required_level": 19,
-    "text": "(14-20)% increased Armour and Evasion | (8-9)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasionAndStunRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Armadillo's",
-    "required_level": 30,
-    "text": "(21-26)% increased Armour and Evasion | (10-11)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasionAndStunRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Rhino's",
-    "required_level": 44,
-    "text": "(27-32)% increased Armour and Evasion | (12-13)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasionAndStunRecovery5": {
-    "generation_type": "Prefix",
-    "name": "Elephant's",
-    "required_level": 60,
-    "text": "(33-38)% increased Armour and Evasion | (14-15)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEvasionAndStunRecovery6": {
-    "generation_type": "Prefix",
-    "name": "Mammoth's",
-    "required_level": 78,
-    "text": "(39-42)% increased Armour and Evasion | (16-17)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEvasionRating1": {
-    "generation_type": "Prefix",
-    "name": "Supple",
-    "required_level": 1,
-    "text": "+(5-9) to Armour | +(5-9) to Evasion Rating",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEvasionRating2": {
-    "generation_type": "Prefix",
-    "name": "Pliant",
-    "required_level": 18,
-    "text": "+(10-27) to Armour | +(10-27) to Evasion Rating",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEvasionRating3": {
-    "generation_type": "Prefix",
-    "name": "Flexible",
-    "required_level": 30,
-    "text": "+(28-48) to Armour | +(28-48) to Evasion Rating",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEvasionRating4": {
-    "generation_type": "Prefix",
-    "name": "Durable",
-    "required_level": 38,
-    "text": "+(49-85) to Armour | +(49-85) to Evasion Rating",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndLife1": {
-    "generation_type": "Prefix",
-    "name": "Oyster's",
-    "required_level": 30,
-    "text": "+(20-32) to Armour | +(18-23) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndLife2": {
-    "generation_type": "Prefix",
-    "name": "Urchin's",
-    "required_level": 46,
-    "text": "+(33-48) to Armour | +(24-28) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRate1": {
-    "generation_type": "Suffix",
-    "name": "of Esprit",
-    "required_level": 46,
-    "text": "(9-11)% increased Life Regeneration rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRate2": {
-    "generation_type": "Suffix",
-    "name": "of Perpetuity",
-    "required_level": 57,
-    "text": "(12-14)% increased Life Regeneration rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRate3": {
-    "generation_type": "Suffix",
-    "name": "of Vivification",
-    "required_level": 68,
-    "text": "(15-17)% increased Life Regeneration rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRate4": {
-    "generation_type": "Suffix",
-    "name": "of Youth",
-    "required_level": 76,
-    "text": "(18-19)% increased Life Regeneration rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRate5": {
-    "generation_type": "Suffix",
-    "name": "of Everlasting",
-    "required_level": 85,
-    "text": "(20-21)% increased Life Regeneration rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength1": {
-    "generation_type": "Suffix",
-    "name": "of the Brute",
-    "required_level": 1,
-    "text": "+(8-12) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength2": {
-    "generation_type": "Suffix",
-    "name": "of the Wrestler",
-    "required_level": 11,
-    "text": "+(13-17) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength3": {
-    "generation_type": "Suffix",
-    "name": "of the Bear",
-    "required_level": 22,
-    "text": "+(18-22) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength4": {
-    "generation_type": "Suffix",
-    "name": "of the Lion",
-    "required_level": 33,
-    "text": "+(23-27) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength5": {
-    "generation_type": "Suffix",
-    "name": "of the Gorilla",
-    "required_level": 44,
-    "text": "+(28-32) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength6": {
-    "generation_type": "Suffix",
-    "name": "of the Goliath",
-    "required_level": 55,
-    "text": "+(33-37) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength7": {
-    "generation_type": "Suffix",
-    "name": "of the Leviathan",
-    "required_level": 66,
-    "text": "+(38-42) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength8": {
-    "generation_type": "Suffix",
-    "name": "of the Titan",
-    "required_level": 74,
-    "text": "+(43-50) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "Strength9": {
-    "generation_type": "Suffix",
-    "name": "of the Gods",
-    "required_level": 82,
-    "text": "+(51-55) to Strength",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShield1": {
-    "generation_type": "Prefix",
-    "name": "Infixed",
-    "required_level": 3,
-    "text": "(15-26)% increased Armour and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShield2": {
-    "generation_type": "Prefix",
-    "name": "Ingrained",
-    "required_level": 19,
-    "text": "(27-42)% increased Armour and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShield3": {
-    "generation_type": "Prefix",
-    "name": "Instilled",
-    "required_level": 30,
-    "text": "(43-55)% increased Armour and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShield4": {
-    "generation_type": "Prefix",
-    "name": "Infused",
-    "required_level": 44,
-    "text": "(56-67)% increased Armour and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShield5": {
-    "generation_type": "Prefix",
-    "name": "Inculcated",
-    "required_level": 60,
-    "text": "(68-79)% increased Armour and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShield6": {
-    "generation_type": "Prefix",
-    "name": "Interpolated",
-    "required_level": 72,
-    "text": "(80-91)% increased Armour and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShield7": {
-    "generation_type": "Prefix",
-    "name": "Inspired",
-    "required_level": 84,
-    "text": "(92-100)% increased Armour and Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShieldAndStunRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Pixie's",
-    "required_level": 2,
-    "text": "(6-13)% increased Armour and Energy Shield | (6-7)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShieldAndStunRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Gremlin's",
-    "required_level": 19,
-    "text": "(14-20)% increased Armour and Energy Shield | (8-9)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShieldAndStunRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Boggart's",
-    "required_level": 30,
-    "text": "(21-26)% increased Armour and Energy Shield | (10-11)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShieldAndStunRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Naga's",
-    "required_level": 44,
-    "text": "(27-32)% increased Armour and Energy Shield | (12-13)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShieldAndStunRecovery5": {
-    "generation_type": "Prefix",
-    "name": "Djinn's",
-    "required_level": 60,
-    "text": "(33-38)% increased Armour and Energy Shield | (14-15)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedArmourAndEnergyShieldAndStunRecovery6": {
-    "generation_type": "Prefix",
-    "name": "Seraphim's",
-    "required_level": 78,
-    "text": "(39-42)% increased Armour and Energy Shield | (16-17)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEnergyShield1": {
-    "generation_type": "Prefix",
-    "name": "Blessed",
-    "required_level": 1,
-    "text": "+(5-9) to Armour | +(3-4) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEnergyShield2_": {
-    "generation_type": "Prefix",
-    "name": "Anointed",
-    "required_level": 18,
-    "text": "+(10-27) to Armour | +(5-12) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEnergyShield3": {
-    "generation_type": "Prefix",
-    "name": "Sanctified",
-    "required_level": 30,
-    "text": "+(28-48) to Armour | +(13-22) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseArmourAndEnergyShield4": {
-    "generation_type": "Prefix",
-    "name": "Hallowed",
-    "required_level": 38,
-    "text": "+(49-85) to Armour | +(23-28) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseWardAndLife1__": {
-    "generation_type": "Prefix",
-    "name": "Annest's",
-    "required_level": 30,
-    "text": "+(15-20) to Ward | +(18-23) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseWardAndLife2": {
-    "generation_type": "Prefix",
-    "name": "Owen's",
-    "required_level": 46,
-    "text": "+(21-30) to Ward | +(24-28) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWard1": {
-    "generation_type": "Prefix",
-    "name": "Farrier's",
-    "required_level": 3,
-    "text": "+(5-9) to Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWard2": {
-    "generation_type": "Prefix",
-    "name": "Brownsmith's",
-    "required_level": 11,
-    "text": "+(10-15) to Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWard3_": {
-    "generation_type": "Prefix",
-    "name": "Coppersmith's",
-    "required_level": 17,
-    "text": "+(16-23) to Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWard4": {
-    "generation_type": "Prefix",
-    "name": "Blacksmith's",
-    "required_level": 23,
-    "text": "+(24-35) to Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWard5___": {
-    "generation_type": "Prefix",
-    "name": "Silversmith's",
-    "required_level": 29,
-    "text": "+(36-52) to Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWard6_": {
-    "generation_type": "Prefix",
-    "name": "Goldsmith's",
-    "required_level": 35,
-    "text": "+(52-69) to Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWard7": {
-    "generation_type": "Prefix",
-    "name": "Whitesmith's",
-    "required_level": 43,
-    "text": "+(70-84) to Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercentAndStunRecovery1______": {
-    "generation_type": "Prefix",
-    "name": "Improved",
-    "required_level": 3,
-    "text": "(6-13)% increased Ward | (6-7)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercentAndStunRecovery2_": {
-    "generation_type": "Prefix",
-    "name": "Enhanced",
-    "required_level": 18,
-    "text": "(14-20)% increased Ward | (8-9)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercentAndStunRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Bolstered",
-    "required_level": 30,
-    "text": "(21-26)% increased Ward | (10-11)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercentAndStunRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Elegant",
-    "required_level": 44,
-    "text": "(27-32)% increased Ward | (12-13)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercentAndStunRecovery5": {
-    "generation_type": "Prefix",
-    "name": "Exquisite",
-    "required_level": 60,
-    "text": "(33-38)% increased Ward | (14-15)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercentAndStunRecovery6_": {
-    "generation_type": "Prefix",
-    "name": "Masterwork",
-    "required_level": 78,
-    "text": "(39-42)% increased Ward | (16-17)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercent1": {
-    "generation_type": "Prefix",
-    "name": "Chiseled",
-    "required_level": 3,
-    "text": "(11-28)% increased Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercent2": {
-    "generation_type": "Prefix",
-    "name": "Etched",
-    "required_level": 18,
-    "text": "(27-42)% increased Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercent3": {
-    "generation_type": "Prefix",
-    "name": "Engraved",
-    "required_level": 30,
-    "text": "(43-55)% increased Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercent4": {
-    "generation_type": "Prefix",
-    "name": "Embedded",
-    "required_level": 44,
-    "text": "(56-67)% increased Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercent5": {
-    "generation_type": "Prefix",
-    "name": "Inscribed",
-    "required_level": 60,
-    "text": "(68-79)% increased Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercent6": {
-    "generation_type": "Prefix",
-    "name": "Lettered",
-    "required_level": 72,
-    "text": "(80-91)% increased Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedWardPercent7": {
-    "generation_type": "Prefix",
-    "name": "Runed",
-    "required_level": 84,
-    "text": "(92-100)% increased Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartOfWardRecharge1": {
-    "generation_type": "Suffix",
-    "name": "of Artifice",
-    "required_level": 46,
-    "text": "(33-37)% faster Restoration of Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartOfWardRecharge2": {
-    "generation_type": "Suffix",
-    "name": "of Etching",
-    "required_level": 57,
-    "text": "(38-42)% faster Restoration of Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartOfWardRecharge3": {
-    "generation_type": "Suffix",
-    "name": "of Engraving",
-    "required_level": 68,
-    "text": "(43-47)% faster Restoration of Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartOfWardRecharge4": {
-    "generation_type": "Suffix",
-    "name": "of Inscription",
-    "required_level": 76,
-    "text": "(48-52)% faster Restoration of Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartOfWardRecharge5": {
-    "generation_type": "Suffix",
-    "name": "of Runes",
-    "required_level": 85,
-    "text": "(53-58)% faster Restoration of Ward",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRating1": {
-    "generation_type": "Prefix",
-    "name": "Lacquered",
-    "required_level": 1,
-    "text": "+(6-12) to Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRating2": {
-    "generation_type": "Prefix",
-    "name": "Studded",
-    "required_level": 11,
-    "text": "+(13-35) to Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRating3": {
-    "generation_type": "Prefix",
-    "name": "Ribbed",
-    "required_level": 17,
-    "text": "+(36-63) to Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRating4": {
-    "generation_type": "Prefix",
-    "name": "Fortified",
-    "required_level": 23,
-    "text": "+(64-82) to Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRating5": {
-    "generation_type": "Prefix",
-    "name": "Plated",
-    "required_level": 29,
-    "text": "+(83-101) to Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRating6": {
-    "generation_type": "Prefix",
-    "name": "Carapaced",
-    "required_level": 35,
-    "text": "+(102-120) to Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRating7__": {
-    "generation_type": "Prefix",
-    "name": "Encased",
-    "required_level": 43,
-    "text": "+(121-150) to Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Beetle's",
-    "required_level": 1,
-    "text": "(6-13)% increased Armour | (6-7)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Crab's",
-    "required_level": 17,
-    "text": "(14-20)% increased Armour | (8-9)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Armadillo's",
-    "required_level": 29,
-    "text": "(21-26)% increased Armour | (10-11)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Rhino's",
-    "required_level": 42,
-    "text": "(27-32)% increased Armour | (12-13)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery5": {
-    "generation_type": "Prefix",
-    "name": "Elephant's",
-    "required_level": 60,
-    "text": "(33-38)% increased Armour | (14-15)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercentAndStunRecovery6": {
-    "generation_type": "Prefix",
-    "name": "Mammoth's",
-    "required_level": 78,
-    "text": "(39-42)% increased Armour | (16-17)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercent1": {
-    "generation_type": "Prefix",
-    "name": "Reinforced",
-    "required_level": 3,
-    "text": "(15-26)% increased Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercent2": {
-    "generation_type": "Prefix",
-    "name": "Layered",
-    "required_level": 17,
-    "text": "(27-42)% increased Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercent3": {
-    "generation_type": "Prefix",
-    "name": "Lobstered",
-    "required_level": 29,
-    "text": "(43-55)% increased Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercent4": {
-    "generation_type": "Prefix",
-    "name": "Buttressed",
-    "required_level": 42,
-    "text": "(56-67)% increased Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercent5": {
-    "generation_type": "Prefix",
-    "name": "Thickened",
-    "required_level": 60,
-    "text": "(68-79)% increased Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercent6": {
-    "generation_type": "Prefix",
-    "name": "Girded",
-    "required_level": 72,
-    "text": "(80-91)% increased Armour",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedPhysicalDamageReductionRatingPercent7": {
-    "generation_type": "Prefix",
-    "name": "Impregnable",
-    "required_level": 84,
-    "text": "(92-100)% increased Armour",
-    "weight": 1000,
-    "influence": "Normal"
   }
 }

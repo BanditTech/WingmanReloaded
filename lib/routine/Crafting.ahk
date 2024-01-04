@@ -141,7 +141,7 @@ CraftingItem(){
 		Return
 	}
 	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-	&& (WR.ItemCrafting[ItemCraftingSubCategorySelector].Count() == 0) {
+	&& (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return

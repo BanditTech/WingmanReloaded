@@ -100,9 +100,9 @@ for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_ar
 
 for k,v in POEData
 {
-	WR.ItemCrafting[v] := {}
-	WR.ActualTier[v] := {}
-	WR.MenuDDLItemCrafting[v] := []
+	WR.ItemCrafting[v]
+	WR.ActualTier[v]
+	WR.MenuDDLItemCrafting[k] := []
 	for ki,vi in v{
 		WR.ItemCrafting[v][vi] := []
 		WR.ActualTier[v][vi] := []
