@@ -608,6 +608,17 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
+      ;HeistMods GroupBox
+      Gui, Crafting: Add,GroupBox,Section w285 h85 xs, Heist Mods:
+      Gui, Crafting: Font,
+      Gui, Crafting: Font,s7
+      Gui, Crafting: Add, Button, xs+40 ys+20 w200 gCustomHeistModsUI, Custom Heist Mods
+      ;Gui, Crafting: Add, Text, xs+35 y+15 center w100, Minimum Weight:
+      ;Gui, Crafting: Add, Edit, x+5 yp-4 w50,
+      ;Gui, Crafting: Add, UpDown, Range-100-200 vMMapWeight, %MMapWeight%
+      ;Gui, Crafting: Font,
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add,GroupBox,Section w200 h150 x320 y50, Minimum Map Qualities:
       Gui, Crafting: Font,
@@ -701,6 +712,9 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, xs+15 yp+25 w60, Category:
       aux := ""
       for a,b in POEData{
+        if(a ~= "Maps|Contracts|Expedition Logbooks|Blueprints"){
+          Continue
+        }
         aux .= a "|"
       }
       Gui, Crafting: Add, DropDownList, vItemCraftingCategorySelector gItemCraftingSubmit xs+70 yp-4 w210, %aux%

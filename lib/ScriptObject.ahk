@@ -90,6 +90,7 @@ WR.String.h1080.General:={"OHB":"|<1080 Overhead Health Bar>0x201614@0.99$106.Tz
 
 
 WR.CustomMapMods.MapMods := []
+WR.CustomMapMods.HeistMods := []
 WR.CustomSextantMods.SextantMods := []
 
 for k,v in POEData
