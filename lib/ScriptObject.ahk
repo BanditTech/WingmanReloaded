@@ -100,10 +100,11 @@ for k,v in POEData
 	WR.CustomCraftingBases[k] := {}
 	for ki,vi in v{
 		WR.ItemCrafting[k][vi] := {}
-		WR.ActualTier[k][vi] := {}
 		WR.CustomCraftingBases[k][vi] := {}
 	}
 }
+
+ActualTierCreator()
 	
 
 WR.Data.Map_Affixes := RegexReplace(ArrayToString(Util.Load("Affix_List_Map")),"\%","`%")

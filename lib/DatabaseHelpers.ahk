@@ -5,44 +5,43 @@ LoadActualTierName() {
 ActualTierCreator() {
     ActualTierNameJSON := LoadActualTierName()
     For kii , vii in POEData{
+        WR.ActualTier[kii] := []
         for kiii, viii in vii{
-            Mods := LoadOnDemand(vii,viii)
-            WR.ActualTier[vii][viii] := []
-            For ki ,vi in ["normal"] {
-                For k, v in Mods[vi] {
-                    AffixWRLine := FirstLineToWRFormat(v["str"])
-                    ModGenerationTypeID := v["ModGenerationTypeID"]
-                    If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationTypeID,ActualTierNameJSON)) {
-                        If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii],v["ModGenerationTypeID"])) {
-                            WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
-                            WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
+            Mods := LoadOnDemand(kii,viii)
+            For k, v in Mods
+            {
+                if(v["influence"] == "Normal"){
+                    AffixWRLine := FirstLineToWRFormat(v["text"])
+                    ModGenerationType := v["generation_type"]
+                    If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationType,ActualTierNameJSON)) {
+                        If(index := CheckAffixWR(AffixWRLine,v["generation_type"],WR.ActualTier[kii])) {
+                            WR.ActualTier[kii][index]["AffixLine"].Push(v["name"])
+                            WR.ActualTier[kii][index]["ILvL"].Push(v["required_level"])
                         } Else {
-                            aux := {"ActualTierName":ActualTierName,"ModGenerationTypeID":v["ModGenerationTypeID"],"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
-                            WR.ActualTier[vii].Push(aux)
+                            aux := {"ActualTierName":ActualTierName,"ModGenerationType":v["generation_type"],"AffixWRLine":FirstLineToWRFormat(v["text"]),"AffixLine":[v["name"]],"ILvL":[v["required_level"]]}
+                            WR.ActualTier[kii].Push(aux)
                         }
                     }
                 }
             }
         }
     }
-    ;Free at End
-    Mods := []
     ;Save Json
     Settings("ActualTier","Save")
     Return
 }
 
-CheckAffixWR(Line,Obj,ModGenerationTypeID) {
+CheckAffixWR(Line,ModGenerationType,Obj) {
     for k , v in Obj {
-        If (v["AffixWRLine"] == Line && ModGenerationTypeID == v["ModGenerationTypeID"]) {
+        If (v["AffixWRLine"] == Line && ModGenerationType == v["ModGenerationType"]) {
             Return k
         }
     }
 }
 
-CheckAffixWRFromJson(Line,ModGenerationTypeID,Obj) {
+CheckAffixWRFromJson(Line,ModGenerationType,Obj) {
     for k , v in Obj {
-        If(v["AffixWRLine"] == Line and (v["ModGenerationTypeID"] == ModGenerationTypeID || !v["ModGenerationTypeID"])) {
+        If(v["AffixWRLine"] == Line and (v["ModGenerationType"] == ModGenerationType)) {
             aux:= "ActualTier" . v["ActualTierName"]
             Return aux
         }

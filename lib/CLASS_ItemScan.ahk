@@ -1047,33 +1047,7 @@
 	}
 	CreateAllActualTiers()
 	{
-		Base := This.Prop.ItemClass
-		CheckBaseType:= ""
-		If(This.Prop.Rating_Armour > 0)
-		{
-			CheckBaseType .= "-STR-"
-		}
-		If(This.Prop.Rating_Evasion > 0)
-		{
-			CheckBaseType .= "-DEX-"
-		}
-		If(This.Prop.Rating_EnergyShield > 0)
-		{
-			CheckBaseType .= "-INT-"
-		}
-		CheckBaseType:= RegExReplace(CheckBaseType,"^-|-$", "")
-		CheckBaseType:= RegExReplace(CheckBaseType,"--", "-")
-		If(CheckBaseType != "")
-		{
-			CheckBaseType:= "(" . CheckBaseType . ")"
-		}
-		Base := RegExReplace(Base,"s$", "")
-		Base := RegExReplace(Base,"Boot", "Boots")
-		Base := RegExReplace(Base,"Glove", "Gloves")
-		Base := RegExReplace(Base,"^Warstaff", "Warstaves")
-		Base := RegExReplace(Base,"^Staff", "Staves")
-		Base := Base . CheckBaseType
-		for a , b in WR.ActualTier[Base]
+		for a , b in WR.ActualTier[This.Prop.ItemClass]
 		{
 			ILvLList := b["ILvL"]
 			AffixList := b["AffixLine"]
@@ -1087,7 +1061,7 @@
 				Continue
 			}
 			for k,v in ILvLList
-			{
+			{	
 				if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 				{
 					for ki,vi in AffixList
