@@ -15,8 +15,17 @@ ActualTierCreator() {
                     ModGenerationType := v["generation_type"]
                     If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationType,ActualTierNameJSON)) {
                         If(index := CheckAffixWR(AffixWRLine,v["generation_type"],WR.ActualTier[kii])) {
-                            WR.ActualTier[kii][index]["AffixLine"].Push(v["name"])
-                            WR.ActualTier[kii][index]["ILvL"].Push(v["required_level"])
+                            aux := False
+                            for a, b in WR.ActualTier[kii][index]["ILvL"]{
+                                if (b == v["required_level"]){
+                                    aux := true
+                                }
+                            }
+                            if(!aux){
+                                WR.ActualTier[kii][index]["AffixLine"].Push(v["name"])
+                                WR.ActualTier[kii][index]["ILvL"].Push(v["required_level"])
+                            }
+                            
                         } Else {
                             aux := {"ActualTierName":ActualTierName,"ModGenerationType":v["generation_type"],"AffixWRLine":FirstLineToWRFormat(v["text"]),"AffixLine":[v["name"]],"ILvL":[v["required_level"]]}
                             WR.ActualTier[kii].Push(aux)
