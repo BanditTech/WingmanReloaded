@@ -1,80 +1,91 @@
 {
   "AfflictionJewelSmallPassivesGrantMinionAttackAndCastSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Pillaging",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: Minions have 1% increased Attack and Cast Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantMinionAttackAndCastSpeed2": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Ravaging",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: Minions have 2% increased Attack and Cast Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantMinionAttackAndCastSpeed3": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Razing",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: Minions have 3% increased Attack and Cast Speed",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableCalltotheSlaughter": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 1,
     "text": "1 Added Passive Skill is Call to the Slaughter",
-    "weight": 1000
+    "weight": 1000,
+    "influence": "Normal"
   },
   "AfflictionNotableFeastingFiends": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Feasting Fiends",
-    "weight": 1000
+    "weight": 1000,
+    "influence": "Normal"
   },
   "AfflictionNotablePrimordialBond": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 68,
     "text": "1 Added Passive Skill is Primordial Bond",
-    "weight": 188
+    "weight": 188,
+    "influence": "Normal"
   },
   "AfflictionNotableRazeandPillage_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Raze and Pillage",
-    "weight": 188
+    "weight": 188,
+    "influence": "Normal"
   },
   "AfflictionNotableRenewal": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Renewal",
-    "weight": 500
+    "weight": 500,
+    "influence": "Normal"
   },
   "AfflictionNotableRottenClaws": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Rotten Claws",
-    "weight": 500
+    "weight": 500,
+    "influence": "Normal"
   },
   "AfflictionNotableSkeletalAtrophy": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Skeletal Atrophy",
-    "weight": 188
+    "weight": 188,
+    "influence": "Normal"
   },
   "AfflictionNotableViciousBite": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 75,
     "text": "1 Added Passive Skill is Vicious Bite",
-    "weight": 63
+    "weight": 63,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantArmour": {
     "generation_type": "Prefix",
@@ -501,766 +512,875 @@
     "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantAttackSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Skill",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Attack Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantAttackSpeed2_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Ease",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Attack Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantAttackSpeed3__": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Mastery",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Attack Speed",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableAggressiveDefence": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Aggressive Defence",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableBloodscent": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Bloodscent",
-    "weight": 47
+    "weight": 47,
+    "influence": "Normal"
   },
   "AfflictionNotableCalamitous": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Calamitous",
-    "weight": 375
+    "weight": 375,
+    "influence": "Normal"
   },
   "AfflictionNotableDevastator": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Devastator",
-    "weight": 47
+    "weight": 47,
+    "influence": "Normal"
   },
   "AfflictionNotableDrivetheDestruction__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Drive the Destruction",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableFeedtheFury": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Feed the Fury",
-    "weight": 375
+    "weight": 375,
+    "influence": "Normal"
   },
   "AfflictionNotableFueltheFight": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Fuel the Fight",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableHeavyHitter": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 50,
     "text": "1 Added Passive Skill is Heavy Hitter",
-    "weight": 375
+    "weight": 375,
+    "influence": "Normal"
   },
   "AfflictionNotableMartialProwess": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 1,
     "text": "1 Added Passive Skill is Martial Prowess",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableRunThrough": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Run Through",
-    "weight": 141
+    "weight": 141,
+    "influence": "Normal"
   },
   "AfflictionNotableSmitetheWeak": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 1,
     "text": "1 Added Passive Skill is Smite the Weak",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableViciousSkewering": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Vicious Skewering",
-    "weight": 141
+    "weight": 141,
+    "influence": "Normal"
   },
   "AfflictionNotableWoundAggravation____": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Wound Aggravation",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableExpansiveMight": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Expansive Might",
-    "weight": 141
+    "weight": 141,
+    "influence": "Normal"
   },
   "AfflictionNotableOverlord": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Overlord",
-    "weight": 47
+    "weight": 47,
+    "influence": "Normal"
   },
   "AfflictionNotableWeightAdvantage_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Weight Advantage",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableDiseaseVector": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Disease Vector",
-    "weight": 404
+    "weight": 404,
+    "influence": "Normal"
   },
   "AfflictionNotableFanofBlades_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Fan of Blades",
-    "weight": 51
+    "weight": 51,
+    "influence": "Normal"
   },
   "AfflictionNotableWindup_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Wind-up",
-    "weight": 151
+    "weight": 151,
+    "influence": "Normal"
   },
   "AfflictionNotableArcingShot__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Arcing Shot",
-    "weight": 387
+    "weight": 387,
+    "influence": "Normal"
   },
   "AfflictionNotableBroadside_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Broadside",
-    "weight": 774
+    "weight": 774,
+    "influence": "Normal"
   },
   "AfflictionNotableTemperedArrowheads": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Tempered Arrowheads",
-    "weight": 387
+    "weight": 387,
+    "influence": "Normal"
   },
   "AfflictionNotableExplosiveForce": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Explosive Force",
-    "weight": 151
+    "weight": 151,
+    "influence": "Normal"
   },
   "AfflictionNotableOpportunisticFusilade_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Opportunistic Fusilade",
-    "weight": 807
+    "weight": 807,
+    "influence": "Normal"
   },
   "AfflictionNotableStormsHand": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Storm's Hand",
-    "weight": 403
+    "weight": 403,
+    "influence": "Normal"
   },
   "AfflictionNotableBattlefieldDominator": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Battlefield Dominator",
-    "weight": 604
+    "weight": 604,
+    "influence": "Normal"
   },
   "AfflictionNotableBrutalInfamy": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Brutal Infamy",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   },
   "AfflictionNotableFearsomeWarrior": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Fearsome Warrior",
-    "weight": 113
+    "weight": 113,
+    "influence": "Normal"
   },
   "AfflictionNotableGracefulExecution_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Graceful Execution",
-    "weight": 604
+    "weight": 604,
+    "influence": "Normal"
   },
   "AfflictionNotableMartialMastery": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Martial Mastery",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   },
   "AfflictionNotableSurefootedStriker_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Surefooted Striker",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   },
   "AfflictionNotableTitanicSwings_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Titanic Swings",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   },
   "AfflictionNotableCombatRhythm": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Combat Rhythm",
-    "weight": 312
+    "weight": 312,
+    "influence": "Normal"
   },
   "AfflictionNotableDeadlyRepartee": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Deadly Repartee",
-    "weight": 623
+    "weight": 623,
+    "influence": "Normal"
   },
   "AfflictionNotableHitandRun": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Hit and Run",
-    "weight": 623
+    "weight": 623,
+    "influence": "Normal"
   },
   "AfflictionNotableInsatiableKiller_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Insatiable Killer",
-    "weight": 312
+    "weight": 312,
+    "influence": "Normal"
   },
   "AfflictionNotableMageBane__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Mage Bane",
-    "weight": 117
+    "weight": 117,
+    "influence": "Normal"
   },
   "AfflictionNotableMartialMomentum": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Martial Momentum",
-    "weight": 312
+    "weight": 312,
+    "influence": "Normal"
   },
   "AfflictionNotableQuickandDeadly_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Quick and Deadly",
-    "weight": 117
+    "weight": 117,
+    "influence": "Normal"
   },
   "AfflictionNotableAdvanceGuard": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Advance Guard",
-    "weight": 300
+    "weight": 300,
+    "influence": "Normal"
   },
   "AfflictionNotableGladiatorsFortitude": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Gladiator's Fortitude",
-    "weight": 113
+    "weight": 113,
+    "influence": "Normal"
   },
   "AfflictionNotablePreciseRetaliation_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Precise Retaliation",
-    "weight": 300
+    "weight": 300,
+    "influence": "Normal"
   },
   "AfflictionNotableProdigiousDefense__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Prodigious Defence",
-    "weight": 600
+    "weight": 600,
+    "influence": "Normal"
   },
   "AfflictionNotableRiotQueller": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Riot Queller",
-    "weight": 38
+    "weight": 38,
+    "influence": "Normal"
   },
   "AfflictionNotableStrikeLeader_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Strike Leader",
-    "weight": 600
+    "weight": 600,
+    "influence": "Normal"
   },
   "AfflictionNotableVeteranDefender": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Veteran Defender",
-    "weight": 600
+    "weight": 600,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantCastSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Talent",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Cast Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantCastSpeed2": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Nimbleness",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Cast Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantCastSpeed3_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Expertise",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Cast Speed",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableAncestralInspiration__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Ancestral Inspiration",
-    "weight": 281
+    "weight": 281,
+    "influence": "Normal"
   },
   "AfflictionNotableArcaneAdept_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Arcane Adept",
-    "weight": 281
+    "weight": 281,
+    "influence": "Normal"
   },
   "AfflictionNotableArcaneHeroism_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Arcane Heroism",
-    "weight": 281
+    "weight": 281,
+    "influence": "Normal"
   },
   "AfflictionNotableBurdenProjection": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Burden Projection",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableConjuredWall": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Conjured Wall",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableEssenceRush": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 50,
     "text": "1 Added Passive Skill is Essence Rush",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableMageHunter___": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Mage Hunter",
-    "weight": 281
+    "weight": 281,
+    "influence": "Normal"
   },
   "AfflictionNotablePracticedCaster": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Practiced Caster",
-    "weight": 1500
+    "weight": 1500,
+    "influence": "Normal"
   },
   "AfflictionNotableSapPsyche": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 68,
     "text": "1 Added Passive Skill is Sap Psyche",
-    "weight": 281
+    "weight": 281,
+    "influence": "Normal"
   },
   "AfflictionNotableSealMender": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Seal Mender",
-    "weight": 94
+    "weight": 94,
+    "influence": "Normal"
   },
   "AfflictionNotableThaumophage": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 50,
     "text": "1 Added Passive Skill is Thaumophage",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantChaosSkillAttackAndCastSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Dusk",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Attack and Cast Speed with Chaos Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantChaosSkillAttackAndCastSpeed2____": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Midnight",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Attack and Cast Speed with Chaos Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantChaosSkillAttackAndCastSpeed3": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of the Eclipse",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Attack and Cast Speed with Chaos Skills",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableDarkIdeation": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Dark Ideation",
-    "weight": 97
+    "weight": 97,
+    "influence": "Normal"
   },
   "AfflictionNotableGrimOath": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 68,
     "text": "1 Added Passive Skill is Grim Oath",
-    "weight": 97
+    "weight": 97,
+    "influence": "Normal"
   },
   "AfflictionNotableOverwhelmingMalice": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Overwhelming Malice",
-    "weight": 97
+    "weight": 97,
+    "influence": "Normal"
   },
   "AfflictionNotableTouchofCruelty_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Touch of Cruelty",
-    "weight": 519
+    "weight": 519,
+    "influence": "Normal"
   },
   "AfflictionNotableUnholyGrace_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 1,
     "text": "1 Added Passive Skill is Unholy Grace",
-    "weight": 519
+    "weight": 519,
+    "influence": "Normal"
   },
   "AfflictionNotableUnspeakableGifts": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 75,
     "text": "1 Added Passive Skill is Unspeakable Gifts",
-    "weight": 32
+    "weight": 32,
+    "influence": "Normal"
   },
   "AfflictionNotableUnwaveringlyEvil": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Unwaveringly Evil",
-    "weight": 519
+    "weight": 519,
+    "influence": "Normal"
   },
   "AfflictionNotableWickedPall_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Wicked Pall",
-    "weight": 259
+    "weight": 259,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantColdSkillAttackAndCastSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Cooling",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Attack and Cast Speed with Cold Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantColdSkillAttackAndCastSpeed2_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Frigidity",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Attack and Cast Speed with Cold Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantColdSkillAttackAndCastSpeed3": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of the Avalanche",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Attack and Cast Speed with Cold Skills",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableBlanketedSnow_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Blanketed Snow",
-    "weight": 95
+    "weight": 95,
+    "influence": "Normal"
   },
   "AfflictionNotableBlastFreeze_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Blast-Freeze",
-    "weight": 95
+    "weight": 95,
+    "influence": "Normal"
   },
   "AfflictionNotableColdBloodedKiller_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Cold-Blooded Killer",
-    "weight": 253
+    "weight": 253,
+    "influence": "Normal"
   },
   "AfflictionNotableColdtotheCore": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Cold to the Core",
-    "weight": 95
+    "weight": 95,
+    "influence": "Normal"
   },
   "AfflictionNotableCorrosiveElements": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Corrosive Elements",
-    "weight": 32
+    "weight": 32,
+    "influence": "Normal"
   },
   "AfflictionNotableDeepChill": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Deep Chill",
-    "weight": 505
+    "weight": 505,
+    "influence": "Normal"
   },
   "AfflictionNotableDisorientingDisplay____": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 50,
     "text": "1 Added Passive Skill is Disorienting Display",
-    "weight": 253
+    "weight": 253,
+    "influence": "Normal"
   },
   "AfflictionNotableDoryanisLesson_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 68,
     "text": "1 Added Passive Skill is Doryani's Lesson",
-    "weight": 95
+    "weight": 95,
+    "influence": "Normal"
   },
   "AfflictionNotableInspiredOppression": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Inspired Oppression",
-    "weight": 32
+    "weight": 32,
+    "influence": "Normal"
   },
   "AfflictionNotablePrismaticHeart__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Prismatic Heart",
-    "weight": 505
+    "weight": 505,
+    "influence": "Normal"
   },
   "AfflictionNotableSadist_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Sadist",
-    "weight": 95
+    "weight": 95,
+    "influence": "Normal"
   },
   "AfflictionNotableSnowstorm": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Snowstorm",
-    "weight": 253
+    "weight": 253,
+    "influence": "Normal"
   },
   "AfflictionNotableStormrider": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Stormrider",
-    "weight": 95
+    "weight": 95,
+    "influence": "Normal"
   },
   "AfflictionNotableWidespreadDestruction": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 1,
     "text": "1 Added Passive Skill is Widespread Destruction",
-    "weight": 505
+    "weight": 505,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantElementalSkillAttackAndCastSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Coaxing",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Attack and Cast Speed with Elemental Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantElementalSkillAttackAndCastSpeed2_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Evoking",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Attack and Cast Speed with Elemental Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantElementalSkillAttackAndCastSpeed3_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Manifesting",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Attack and Cast Speed with Elemental Skills",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantFireSkillAttackAndCastSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Kindling",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Attack and Cast Speed with Fire Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantFireSkillAttackAndCastSpeed2": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Smoke",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Attack and Cast Speed with Fire Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantFireSkillAttackAndCastSpeed3_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Flashfires",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Attack and Cast Speed with Fire Skills",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableBurningBright": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Burning Bright",
-    "weight": 238
+    "weight": 238,
+    "influence": "Normal"
   },
   "AfflictionNotableCremator": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Cremator",
-    "weight": 238
+    "weight": 238,
+    "influence": "Normal"
   },
   "AfflictionNotableMasterofFire": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Master of Fire",
-    "weight": 30
+    "weight": 30,
+    "influence": "Normal"
   },
   "AfflictionNotableSmokingRemains": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Smoking Remains",
-    "weight": 238
+    "weight": 238,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantLightningSkillAttackAndCastSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Gathering Clouds",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Attack and Cast Speed with Lightning Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantLightningSkillAttackAndCastSpeed2": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Sudden Storms",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Attack and Cast Speed with Lightning Skills",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantLightningSkillAttackAndCastSpeed3": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of the Strike",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Attack and Cast Speed with Lightning Skills",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableOvershock": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Overshock",
-    "weight": 364
+    "weight": 364,
+    "influence": "Normal"
   },
   "AfflictionNotableParalysis": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Paralysis",
-    "weight": 364
+    "weight": 364,
+    "influence": "Normal"
   },
   "AfflictionNotableScintillatingIdea_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Scintillating Idea",
-    "weight": 364
+    "weight": 364,
+    "influence": "Normal"
   },
   "AfflictionNotableStormDrinker___": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Storm Drinker",
-    "weight": 727
+    "weight": 727,
+    "influence": "Normal"
   },
   "AfflictionNotableThunderstruck": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Thunderstruck",
-    "weight": 364
+    "weight": 364,
+    "influence": "Normal"
   }
 }

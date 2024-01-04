@@ -1,73 +1,83 @@
 {
   "AfflictionJewelSmallPassivesGrantAreaOfEffect2": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Range",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Area of Effect",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantAreaOfEffect3": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Horizons",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Area of Effect",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantAreaOfEffect_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Reach",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Area of Effect",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionNotableAssertDominance": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Assert Dominance",
-    "weight": 367
+    "weight": 367,
+    "influence": "Normal"
   },
   "AfflictionNotableExpansiveMight": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Expansive Might",
-    "weight": 367
+    "weight": 367,
+    "influence": "Normal"
   },
   "AfflictionNotableMagnifier": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Magnifier",
-    "weight": 1959
+    "weight": 1959,
+    "influence": "Normal"
   },
   "AfflictionNotablePowerfulAssault_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Powerful Assault",
-    "weight": 980
+    "weight": 980,
+    "influence": "Normal"
   },
   "AfflictionNotableTitanicSwings_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Titanic Swings",
-    "weight": 980
+    "weight": 980,
+    "influence": "Normal"
   },
   "AfflictionNotableToweringThreat": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Towering Threat",
-    "weight": 367
+    "weight": 367,
+    "influence": "Normal"
   },
   "AfflictionNotableVastPower": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Vast Power",
-    "weight": 980
+    "weight": 980,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantArmour": {
     "generation_type": "Prefix",

@@ -717,7 +717,7 @@
     "required_level": 68,
     "text": "Adds (8-10) to (15-18) Fire Damage | Attacks with this Weapon Penetrate (5-7)% Fire Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalAddedFireDamageAndPenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -725,7 +725,7 @@
     "required_level": 71,
     "text": "Adds (12-16) to (24-28) Fire Damage | Attacks with this Weapon Penetrate (5-7)% Fire Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalAddedFireDamageAndPenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -733,7 +733,7 @@
     "required_level": 74,
     "text": "Adds (17-22) to (33-39) Fire Damage | Attacks with this Weapon Penetrate (5-7)% Fire Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalAddedFireDamageAndPenetrationInfluence4": {
     "generation_type": "Prefix",
@@ -741,7 +741,7 @@
     "required_level": 77,
     "text": "Adds (21-28) to (42-49) Fire Damage | Attacks with this Weapon Penetrate (5-7)% Fire Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalAddedFireDamageAndPenetrationInfluence5": {
     "generation_type": "Prefix",
@@ -749,7 +749,7 @@
     "required_level": 80,
     "text": "Adds (26-35) to (53-61) Fire Damage | Attacks with this Weapon Penetrate (5-7)% Fire Resistance",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalWeaponFirePenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -757,7 +757,7 @@
     "required_level": 68,
     "text": "Attacks with this Weapon Penetrate (9-10)% Fire Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalWeaponFirePenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -765,7 +765,7 @@
     "required_level": 73,
     "text": "Attacks with this Weapon Penetrate (11-12)% Fire Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalWeaponFirePenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -773,7 +773,7 @@
     "required_level": 78,
     "text": "Attacks with this Weapon Penetrate (13-15)% Fire Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritMultiInfluence1": {
     "generation_type": "Prefix",
@@ -781,7 +781,7 @@
     "required_level": 68,
     "text": "(25-34)% increased Physical Damage | +(10-15)% to Global Critical Strike Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritMultiInfluence2": {
     "generation_type": "Prefix",
@@ -789,7 +789,7 @@
     "required_level": 71,
     "text": "(35-44)% increased Physical Damage | +(10-15)% to Global Critical Strike Multiplier",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritMultiInfluence3_": {
     "generation_type": "Prefix",
@@ -797,7 +797,7 @@
     "required_level": 74,
     "text": "(45-54)% increased Physical Damage | +(10-15)% to Global Critical Strike Multiplier",
     "weight": 150,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritMultiInfluence4": {
     "generation_type": "Prefix",
@@ -805,7 +805,7 @@
     "required_level": 77,
     "text": "(55-64)% increased Physical Damage | +(10-15)% to Global Critical Strike Multiplier",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritMultiInfluence5": {
     "generation_type": "Prefix",
@@ -813,7 +813,7 @@
     "required_level": 80,
     "text": "(65-69)% increased Physical Damage | +(10-15)% to Global Critical Strike Multiplier",
     "weight": 50,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AddedColdDamagePerDexterityInfluence1": {
     "generation_type": "Prefix",
@@ -821,7 +821,7 @@
     "required_level": 68,
     "text": "Adds (1-2) to (3-4) Cold Damage to Attacks with this Weapon per 10 Dexterity",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AddedLightningDamagePerIntelligenceInfluence1": {
     "generation_type": "Prefix",
@@ -829,7 +829,7 @@
     "required_level": 68,
     "text": "Adds 1 to (5-6) Lightning Damage to Attacks with this Weapon per 10 Intelligence",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonDamagePrefixInfluence1__": {
     "generation_type": "Prefix",
@@ -837,7 +837,7 @@
     "required_level": 68,
     "text": "(60-69)% increased Chaos Damage over Time",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonDamagePrefixInfluence2__": {
     "generation_type": "Prefix",
@@ -845,7 +845,7 @@
     "required_level": 71,
     "text": "(70-79)% increased Chaos Damage over Time",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonDamagePrefixInfluence3": {
     "generation_type": "Prefix",
@@ -853,7 +853,7 @@
     "required_level": 75,
     "text": "(80-89)% increased Chaos Damage over Time",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonDamagePrefixInfluence4": {
     "generation_type": "Prefix",
@@ -861,7 +861,7 @@
     "required_level": 78,
     "text": "(90-94)% increased Chaos Damage over Time",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalAddedChaosDamageAndPenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -869,7 +869,7 @@
     "required_level": 68,
     "text": "Adds (5-7) to (11-13) Chaos Damage | Attacks with this Weapon Penetrate (4-6)% Chaos Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalAddedChaosDamageAndPenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -877,7 +877,7 @@
     "required_level": 71,
     "text": "Adds (9-11) to (17-20) Chaos Damage | Attacks with this Weapon Penetrate (4-6)% Chaos Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalAddedChaosDamageAndPenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -885,7 +885,7 @@
     "required_level": 74,
     "text": "Adds (12-16) to (24-28) Chaos Damage | Attacks with this Weapon Penetrate (4-6)% Chaos Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalAddedChaosDamageAndPenetrationInfluence4": {
     "generation_type": "Prefix",
@@ -893,7 +893,7 @@
     "required_level": 77,
     "text": "Adds (15-20) to (30-35) Chaos Damage | Attacks with this Weapon Penetrate (4-6)% Chaos Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalAddedChaosDamageAndPenetrationInfluence5": {
     "generation_type": "Prefix",
@@ -901,7 +901,7 @@
     "required_level": 80,
     "text": "Adds (18-25) to (38-44) Chaos Damage | Attacks with this Weapon Penetrate (4-6)% Chaos Resistance",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalWeaponChaosPenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -909,7 +909,7 @@
     "required_level": 68,
     "text": "Attacks with this Weapon Penetrate (6-7)% Chaos Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalWeaponChaosPenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -917,7 +917,7 @@
     "required_level": 73,
     "text": "Attacks with this Weapon Penetrate (8-9)% Chaos Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalWeaponChaosPenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -925,7 +925,7 @@
     "required_level": 78,
     "text": "Attacks with this Weapon Penetrate (10-12)% Chaos Resistance",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalWeaponElementalPenetrationInfluence1_": {
     "generation_type": "Prefix",
@@ -933,7 +933,7 @@
     "required_level": 68,
     "text": "Attacks with this Weapon Penetrate (6-7)% Elemental Resistances",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalWeaponElementalPenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -941,7 +941,7 @@
     "required_level": 73,
     "text": "Attacks with this Weapon Penetrate (8-9)% Elemental Resistances",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalWeaponElementalPenetrationInfluence3_": {
     "generation_type": "Prefix",
@@ -949,7 +949,7 @@
     "required_level": 78,
     "text": "Attacks with this Weapon Penetrate (10-12)% Elemental Resistances",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritChanceInfluence1_": {
     "generation_type": "Prefix",
@@ -957,7 +957,7 @@
     "required_level": 68,
     "text": "(25-34)% increased Physical Damage | (8-10)% increased Critical Strike Chance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritChanceInfluence2": {
     "generation_type": "Prefix",
@@ -965,7 +965,7 @@
     "required_level": 71,
     "text": "(35-44)% increased Physical Damage | (8-10)% increased Critical Strike Chance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritChanceInfluence3_": {
     "generation_type": "Prefix",
@@ -973,7 +973,7 @@
     "required_level": 74,
     "text": "(45-54)% increased Physical Damage | (8-10)% increased Critical Strike Chance",
     "weight": 150,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritChanceInfluence4": {
     "generation_type": "Prefix",
@@ -981,7 +981,7 @@
     "required_level": 77,
     "text": "(55-64)% increased Physical Damage | (8-10)% increased Critical Strike Chance",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalIncreasedPhysicalDamagePercentAndCritChanceInfluence5": {
     "generation_type": "Prefix",
@@ -989,7 +989,7 @@
     "required_level": 80,
     "text": "(65-69)% increased Physical Damage | (8-10)% increased Critical Strike Chance",
     "weight": 50,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalAddedLightningDamageAndPenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -997,7 +997,7 @@
     "required_level": 68,
     "text": "Adds 2 to (25-29) Lightning Damage | Attacks with this Weapon Penetrate (5-7)% Lightning Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalAddedLightningDamageAndPenetrationInfluence2_": {
     "generation_type": "Prefix",
@@ -1005,7 +1005,7 @@
     "required_level": 71,
     "text": "Adds (1-4) to (40-45) Lightning Damage | Attacks with this Weapon Penetrate (5-7)% Lightning Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalAddedLightningDamageAndPenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -1013,7 +1013,7 @@
     "required_level": 74,
     "text": "Adds (2-5) to (55-63) Lightning Damage | Attacks with this Weapon Penetrate (5-7)% Lightning Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalAddedLightningDamageAndPenetrationInfluence4": {
     "generation_type": "Prefix",
@@ -1021,7 +1021,7 @@
     "required_level": 77,
     "text": "Adds (2-6) to (70-79) Lightning Damage | Attacks with this Weapon Penetrate (5-7)% Lightning Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalAddedLightningDamageAndPenetrationInfluence5": {
     "generation_type": "Prefix",
@@ -1029,7 +1029,7 @@
     "required_level": 80,
     "text": "Adds (3-8) to (89-99) Lightning Damage | Attacks with this Weapon Penetrate (5-7)% Lightning Resistance",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalWeaponLightningPenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -1037,7 +1037,7 @@
     "required_level": 68,
     "text": "Attacks with this Weapon Penetrate (9-10)% Lightning Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalWeaponLightningPenetrationInfluence2_": {
     "generation_type": "Prefix",
@@ -1045,7 +1045,7 @@
     "required_level": 73,
     "text": "Attacks with this Weapon Penetrate (11-12)% Lightning Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalWeaponLightningPenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -1053,7 +1053,7 @@
     "required_level": 78,
     "text": "Attacks with this Weapon Penetrate (13-15)% Lightning Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningWeaponInfluence1_": {
     "generation_type": "Prefix",
@@ -1061,7 +1061,7 @@
     "required_level": 68,
     "text": "Gain (7-12)% of Physical Damage as Extra Lightning Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningWeaponInfluence2": {
     "generation_type": "Prefix",
@@ -1069,7 +1069,7 @@
     "required_level": 73,
     "text": "Gain (13-17)% of Physical Damage as Extra Lightning Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningWeaponInfluence3_": {
     "generation_type": "Prefix",
@@ -1077,7 +1077,7 @@
     "required_level": 78,
     "text": "Gain (18-20)% of Physical Damage as Extra Lightning Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalBleedDamageOverTimeMultiplierUber1___": {
     "generation_type": "Prefix",
@@ -1085,7 +1085,7 @@
     "required_level": 68,
     "text": "+(37-42)% to Damage over Time Multiplier for Bleeding from Hits with this Weapon",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalBleedDamageOverTimeMultiplierUber2": {
     "generation_type": "Prefix",
@@ -1093,7 +1093,7 @@
     "required_level": 75,
     "text": "+(43-50)% to Damage over Time Multiplier for Bleeding from Hits with this Weapon",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalBleedDamageOverTimeMultiplierUber3": {
     "generation_type": "Prefix",
@@ -1101,23 +1101,7 @@
     "required_level": 83,
     "text": "+(51-59)% to Damage over Time Multiplier for Bleeding from Hits with this Weapon",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceForBleedDamageFinalInflictedWithThisWeaponUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 83,
-    "text": "60% chance for Bleeding inflicted with this Weapon to deal 100% more Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceForPoisonDamageFinalInflictedWithThisWeaponUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 83,
-    "text": "60% chance for Poisons inflicted with this Weapon to deal 100% more Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentBrutalityUber1": {
     "generation_type": "Prefix",
@@ -1125,7 +1109,7 @@
     "required_level": 68,
     "text": "(101-115)% increased Physical Damage | Socketed Gems are Supported by Level 16 Brutality",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentBrutalityUber2_": {
     "generation_type": "Prefix",
@@ -1133,7 +1117,7 @@
     "required_level": 75,
     "text": "(116-126)% increased Physical Damage | Socketed Gems are Supported by Level 18 Brutality",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentBrutalityUber3": {
     "generation_type": "Prefix",
@@ -1141,7 +1125,7 @@
     "required_level": 80,
     "text": "(127-134)% increased Physical Damage | Socketed Gems are Supported by Level 20 Brutality",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentMeleePhysicalUber1": {
     "generation_type": "Prefix",
@@ -1149,7 +1133,7 @@
     "required_level": 68,
     "text": "(101-115)% increased Physical Damage | Socketed Gems are Supported by Level 16 Melee Physical Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentMeleePhysicalUber2": {
     "generation_type": "Prefix",
@@ -1157,7 +1141,7 @@
     "required_level": 75,
     "text": "(116-126)% increased Physical Damage | Socketed Gems are Supported by Level 18 Melee Physical Damage",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentMeleePhysicalUber3": {
     "generation_type": "Prefix",
@@ -1165,7 +1149,7 @@
     "required_level": 80,
     "text": "(127-134)% increased Physical Damage | Socketed Gems are Supported by Level 20 Melee Physical Damage",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentRuthlessUber1": {
     "generation_type": "Prefix",
@@ -1173,7 +1157,7 @@
     "required_level": 68,
     "text": "(101-115)% increased Physical Damage | Socketed Gems are Supported by Level 16 Ruthless",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentRuthlessUber2__": {
     "generation_type": "Prefix",
@@ -1181,7 +1165,7 @@
     "required_level": 75,
     "text": "(116-126)% increased Physical Damage | Socketed Gems are Supported by Level 18 Ruthless",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedPhysicalDamagePercentRuthlessUber3": {
     "generation_type": "Prefix",
@@ -1189,7 +1173,7 @@
     "required_level": 80,
     "text": "(127-134)% increased Physical Damage | Socketed Gems are Supported by Level 20 Ruthless",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalPoisonDamageOverTimeMultiplierUber1__": {
     "generation_type": "Prefix",
@@ -1197,7 +1181,7 @@
     "required_level": 68,
     "text": "+(37-42)% to Damage over Time Multiplier for Poison inflicted with this Weapon",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalPoisonDamageOverTimeMultiplierUber2__": {
     "generation_type": "Prefix",
@@ -1205,7 +1189,7 @@
     "required_level": 75,
     "text": "+(43-50)% to Damage over Time Multiplier for Poison inflicted with this Weapon",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalPoisonDamageOverTimeMultiplierUber3": {
     "generation_type": "Prefix",
@@ -1213,7 +1197,7 @@
     "required_level": 83,
     "text": "+(51-59)% to Damage over Time Multiplier for Poison inflicted with this Weapon",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "FrenzyChargeOnKillInfluence1": {
     "generation_type": "Prefix",
@@ -1221,7 +1205,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain a Frenzy Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "FrenzyChargeOnKillInfluence2": {
     "generation_type": "Prefix",
@@ -1229,15 +1213,7 @@
     "required_level": 80,
     "text": "(7-10)% chance to gain a Frenzy Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "FrenzyChargeOnKillInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "(7-10)% chance to gain a Frenzy Charge on Kill | 50% increased Frenzy Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalAddedColdDamageAndPenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -1245,7 +1221,7 @@
     "required_level": 68,
     "text": "Adds (7-9) to (14-16) Cold Damage | Attacks with this Weapon Penetrate (5-7)% Cold Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalAddedColdDamageAndPenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -1253,7 +1229,7 @@
     "required_level": 71,
     "text": "Adds (11-14) to (22-25) Cold Damage | Attacks with this Weapon Penetrate (5-7)% Cold Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalAddedColdDamageAndPenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -1261,7 +1237,7 @@
     "required_level": 74,
     "text": "Adds (15-20) to (30-35) Cold Damage | Attacks with this Weapon Penetrate (5-7)% Cold Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalAddedColdDamageAndPenetrationInfluence4": {
     "generation_type": "Prefix",
@@ -1269,7 +1245,7 @@
     "required_level": 77,
     "text": "Adds (19-25) to (38-44) Cold Damage | Attacks with this Weapon Penetrate (5-7)% Cold Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalAddedColdDamageAndPenetrationInfluence5": {
     "generation_type": "Prefix",
@@ -1277,7 +1253,7 @@
     "required_level": 80,
     "text": "Adds (23-32) to (48-55) Cold Damage | Attacks with this Weapon Penetrate (5-7)% Cold Resistance",
     "weight": 200,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalWeaponColdPenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -1285,7 +1261,7 @@
     "required_level": 68,
     "text": "Attacks with this Weapon Penetrate (9-10)% Cold Resistance",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalWeaponColdPenetrationInfluence2_": {
     "generation_type": "Prefix",
@@ -1293,7 +1269,7 @@
     "required_level": 73,
     "text": "Attacks with this Weapon Penetrate (11-12)% Cold Resistance",
     "weight": 400,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalWeaponColdPenetrationInfluence3": {
     "generation_type": "Prefix",
@@ -1301,7 +1277,7 @@
     "required_level": 78,
     "text": "Attacks with this Weapon Penetrate (13-15)% Cold Resistance",
     "weight": 300,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdWeaponInfluence1_": {
     "generation_type": "Prefix",
@@ -1309,7 +1285,7 @@
     "required_level": 68,
     "text": "Gain (7-12)% of Physical Damage as Extra Cold Damage",
     "weight": 400,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdWeaponInfluence2": {
     "generation_type": "Prefix",
@@ -1317,7 +1293,7 @@
     "required_level": 73,
     "text": "Gain (13-17)% of Physical Damage as Extra Cold Damage",
     "weight": 400,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdWeaponInfluence3": {
     "generation_type": "Prefix",
@@ -1325,7 +1301,7 @@
     "required_level": 78,
     "text": "Gain (18-20)% of Physical Damage as Extra Cold Damage",
     "weight": 400,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PowerChargeOnKillInfluence1": {
     "generation_type": "Prefix",
@@ -1333,7 +1309,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain a Power Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PowerChargeOnKillInfluence2": {
     "generation_type": "Prefix",
@@ -1341,15 +1317,7 @@
     "required_level": 80,
     "text": "(7-10)% chance to gain a Power Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "PowerChargeOnKillInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "(11-15)% chance to gain a Power Charge on Kill | 50% increased Power Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedColdDamagePerDexterityUber1": {
     "generation_type": "Prefix",
@@ -1357,7 +1325,7 @@
     "required_level": 68,
     "text": "Adds (1-2) to (3-4) Cold Damage to Attacks with this Weapon per 10 Dexterity",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AddedLightningDamagePerIntelligenceUber1": {
     "generation_type": "Prefix",
@@ -1365,7 +1333,7 @@
     "required_level": 68,
     "text": "Adds 1 to (5-6) Lightning Damage to Attacks with this Weapon per 10 Intelligence",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalDamagePercentAddedAsChaosUber1": {
     "generation_type": "Prefix",
@@ -1373,7 +1341,7 @@
     "required_level": 75,
     "text": "Gain (5-6)% of Elemental Damage as Extra Chaos Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalDamagePercentAddedAsChaosUber2": {
     "generation_type": "Prefix",
@@ -1381,7 +1349,7 @@
     "required_level": 85,
     "text": "Gain (7-8)% of Elemental Damage as Extra Chaos Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalPenetrationWeaponNewUber1": {
     "generation_type": "Prefix",
@@ -1389,7 +1357,7 @@
     "required_level": 68,
     "text": "Damage Penetrates 4% Elemental Resistances",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalPenetrationWeaponNewUber2": {
     "generation_type": "Prefix",
@@ -1397,7 +1365,7 @@
     "required_level": 75,
     "text": "Damage Penetrates 5% Elemental Resistances",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalPenetrationWeaponNewUber3": {
     "generation_type": "Prefix",
@@ -1405,7 +1373,7 @@
     "required_level": 83,
     "text": "Damage Penetrates 6% Elemental Resistances",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "WeaponElementalDamageSupportedUber1": {
     "generation_type": "Prefix",
@@ -1413,7 +1381,7 @@
     "required_level": 68,
     "text": "(28-32)% increased Elemental Damage with Attack Skills | Socketed Gems are supported by Level 18 Elemental Damage with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "WeaponElementalDamageSupportedUber2": {
     "generation_type": "Prefix",
@@ -1421,7 +1389,7 @@
     "required_level": 75,
     "text": "(33-37)% increased Elemental Damage with Attack Skills | Socketed Gems are supported by Level 20 Elemental Damage with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LocalIncreasedPhysicalDamagePercentAddedFireUber1": {
     "generation_type": "Prefix",
@@ -1429,7 +1397,7 @@
     "required_level": 68,
     "text": "(101-115)% increased Physical Damage | Socketed Gems are Supported by Level 16 Added Fire Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LocalIncreasedPhysicalDamagePercentAddedFireUber2": {
     "generation_type": "Prefix",
@@ -1437,7 +1405,7 @@
     "required_level": 75,
     "text": "(116-126)% increased Physical Damage | Socketed Gems are Supported by Level 18 Added Fire Damage",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LocalIncreasedPhysicalDamagePercentAddedFireUber3_": {
     "generation_type": "Prefix",
@@ -1445,7 +1413,7 @@
     "required_level": 80,
     "text": "(127-134)% increased Physical Damage | Socketed Gems are Supported by Level 20 Added Fire Damage",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsColdUber1": {
     "generation_type": "Prefix",
@@ -1453,7 +1421,7 @@
     "required_level": 68,
     "text": "Gain (7-12)% of Physical Damage as Extra Cold Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsColdUber2": {
     "generation_type": "Prefix",
@@ -1461,7 +1429,7 @@
     "required_level": 75,
     "text": "Gain (13-17)% of Physical Damage as Extra Cold Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsColdUber3": {
     "generation_type": "Prefix",
@@ -1469,7 +1437,7 @@
     "required_level": 80,
     "text": "Gain (18-20)% of Physical Damage as Extra Cold Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsLightningUber1": {
     "generation_type": "Prefix",
@@ -1477,7 +1445,7 @@
     "required_level": 68,
     "text": "Gain (7-12)% of Physical Damage as Extra Lightning Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsLightningUber2": {
     "generation_type": "Prefix",
@@ -1485,7 +1453,7 @@
     "required_level": 75,
     "text": "Gain (13-17)% of Physical Damage as Extra Lightning Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsLightningUber3": {
     "generation_type": "Prefix",
@@ -1493,7 +1461,7 @@
     "required_level": 80,
     "text": "Gain (18-20)% of Physical Damage as Extra Lightning Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "WeaponSocketedAttacksDamageFinalUber1_": {
     "generation_type": "Prefix",
@@ -1501,7 +1469,7 @@
     "required_level": 83,
     "text": "Socketed Skills deal 40% more Attack Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChaosDamageOverTimeMultiplier1_": {
     "generation_type": "Suffix",
@@ -2413,7 +2381,7 @@
     "required_level": 68,
     "text": "+(41-50)% to Critical Strike Multiplier against Enemies that are on Full Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierAgainstFullLifeInfluence2": {
     "generation_type": "Suffix",
@@ -2421,7 +2389,7 @@
     "required_level": 73,
     "text": "+(51-60)% to Critical Strike Multiplier against Enemies that are on Full Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierIfKilledRecentlyInfluence1": {
     "generation_type": "Suffix",
@@ -2429,7 +2397,7 @@
     "required_level": 68,
     "text": "+(26-30)% to Critical Strike Multiplier if you've Killed Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierIfKilledRecentlyInfluence2_": {
     "generation_type": "Suffix",
@@ -2437,7 +2405,7 @@
     "required_level": 73,
     "text": "+(31-35)% to Critical Strike Multiplier if you've Killed Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalDamageWhileDualWieldingInfluence1__": {
     "generation_type": "Suffix",
@@ -2445,7 +2413,7 @@
     "required_level": 68,
     "text": "(23-27)% increased Physical Attack Damage while Dual Wielding",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalDamageWhileDualWieldingInfluence2_": {
     "generation_type": "Suffix",
@@ -2453,7 +2421,7 @@
     "required_level": 70,
     "text": "(28-32)% increased Physical Attack Damage while Dual Wielding",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalDamageWhileDualWieldingInfluence3": {
     "generation_type": "Suffix",
@@ -2461,7 +2429,7 @@
     "required_level": 73,
     "text": "(33-37)% increased Physical Attack Damage while Dual Wielding",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FasterPoisonDamageInfluence1": {
     "generation_type": "Suffix",
@@ -2469,7 +2437,7 @@
     "required_level": 68,
     "text": "Poisons you inflict deal Damage (8-12)% faster",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FasterPoisonDamageInfluence2": {
     "generation_type": "Suffix",
@@ -2477,7 +2445,7 @@
     "required_level": 73,
     "text": "Poisons you inflict deal Damage (13-15)% faster",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ArmourPenetrationWeaponInfluence1": {
     "generation_type": "Suffix",
@@ -2485,7 +2453,7 @@
     "required_level": 68,
     "text": "Hits with this Weapon Overwhelm (13-16)% Physical Damage Reduction",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ArmourPenetrationWeaponInfluence2": {
     "generation_type": "Suffix",
@@ -2493,7 +2461,7 @@
     "required_level": 71,
     "text": "Hits with this Weapon Overwhelm (17-20)% Physical Damage Reduction",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChanceToIntimidateOnHitWeaponInfluence1": {
     "generation_type": "Suffix",
@@ -2501,7 +2469,7 @@
     "required_level": 78,
     "text": "(7-11)% chance to Intimidate Enemies for 4 seconds on Hit",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChanceToIntimidateOnHitWeaponInfluence2": {
     "generation_type": "Suffix",
@@ -2509,7 +2477,7 @@
     "required_level": 81,
     "text": "(12-15)% chance to Intimidate Enemies for 4 seconds on Hit",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ConvertPhysicalToChaosInfluenceWeapon1": {
     "generation_type": "Suffix",
@@ -2517,7 +2485,7 @@
     "required_level": 68,
     "text": "(16-20)% of Physical Damage Converted to Chaos Damage",
     "weight": 350,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ConvertPhysicalToChaosInfluenceWeapon2": {
     "generation_type": "Suffix",
@@ -2525,7 +2493,7 @@
     "required_level": 71,
     "text": "(21-25)% of Physical Damage Converted to Chaos Damage",
     "weight": 350,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ConvertPhysicalToColdInfluenceWeapon1": {
     "generation_type": "Suffix",
@@ -2533,7 +2501,7 @@
     "required_level": 68,
     "text": "(23-26)% of Physical Damage Converted to Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToColdInfluenceWeapon2_": {
     "generation_type": "Suffix",
@@ -2541,7 +2509,7 @@
     "required_level": 71,
     "text": "(27-30)% of Physical Damage Converted to Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToLightningInfluenceWeapon1": {
     "generation_type": "Suffix",
@@ -2549,7 +2517,7 @@
     "required_level": 68,
     "text": "(23-26)% of Physical Damage Converted to Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToLightningInfluenceWeapon2_": {
     "generation_type": "Suffix",
@@ -2557,7 +2525,7 @@
     "required_level": 71,
     "text": "(27-30)% of Physical Damage Converted to Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CriticalStrikeChanceIfKilledRecentlyInfluence1": {
     "generation_type": "Suffix",
@@ -2565,7 +2533,7 @@
     "required_level": 68,
     "text": "(31-40)% increased Critical Strike Chance if you have Killed Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CriticalStrikeChanceIfKilledRecentlyInfluence2": {
     "generation_type": "Suffix",
@@ -2573,7 +2541,7 @@
     "required_level": 73,
     "text": "(41-50)% increased Critical Strike Chance if you have Killed Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ImpaleEffectWeaponInfluence1__": {
     "generation_type": "Suffix",
@@ -2581,7 +2549,7 @@
     "required_level": 68,
     "text": "(12-16)% increased Impale Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ImpaleEffectWeaponInfluence2_": {
     "generation_type": "Suffix",
@@ -2589,7 +2557,7 @@
     "required_level": 71,
     "text": "(17-21)% increased Impale Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ImpaleEffectWeaponInfluence3": {
     "generation_type": "Suffix",
@@ -2597,7 +2565,7 @@
     "required_level": 75,
     "text": "(22-25)% increased Impale Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToBleedUber1": {
     "generation_type": "Suffix",
@@ -2605,7 +2573,7 @@
     "required_level": 68,
     "text": "10% chance to cause Bleeding on Hit | Socketed Gems are Supported by Level 18 Chance To Bleed",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChanceToBleedUber2": {
     "generation_type": "Suffix",
@@ -2613,7 +2581,7 @@
     "required_level": 75,
     "text": "15% chance to cause Bleeding on Hit | Socketed Gems are Supported by Level 20 Chance To Bleed",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "CriticalStrikeChanceAgainstPoisonedEnemiesUber1": {
     "generation_type": "Suffix",
@@ -2621,7 +2589,7 @@
     "required_level": 68,
     "text": "(80-100)% increased Critical Strike Chance against Poisoned Enemies",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "CriticalMultiplierSupportedUber1": {
     "generation_type": "Suffix",
@@ -2629,7 +2597,7 @@
     "required_level": 68,
     "text": "+(22-25)% to Global Critical Strike Multiplier | Socketed Gems are supported by Level 18 Increased Critical Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "CriticalMultiplierSupportedUber2": {
     "generation_type": "Suffix",
@@ -2637,7 +2605,7 @@
     "required_level": 75,
     "text": "+(26-29)% to Global Critical Strike Multiplier | Socketed Gems are supported by Level 20 Increased Critical Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedAttackSpeedMultistrikeUber1_": {
     "generation_type": "Suffix",
@@ -2645,7 +2613,7 @@
     "required_level": 68,
     "text": "(17-19)% increased Attack Speed | Socketed Gems are supported by Level 18 Multistrike",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LocalIncreasedAttackSpeedMultistrikeUber2": {
     "generation_type": "Suffix",
@@ -2653,7 +2621,7 @@
     "required_level": 75,
     "text": "(20-21)% increased Attack Speed | Socketed Gems are supported by Level 20 Multistrike",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageConvertedToChaosUber1": {
     "generation_type": "Suffix",
@@ -2661,7 +2629,7 @@
     "required_level": 68,
     "text": "(10-15)% of Physical Damage Converted to Chaos Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageConvertedToChaosUber2": {
     "generation_type": "Suffix",
@@ -2669,7 +2637,7 @@
     "required_level": 75,
     "text": "(16-20)% of Physical Damage Converted to Chaos Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageConvertedToChaosUber3": {
     "generation_type": "Suffix",
@@ -2677,7 +2645,7 @@
     "required_level": 85,
     "text": "(21-25)% of Physical Damage Converted to Chaos Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PoisonDurationWeaponSupportedUber1_": {
     "generation_type": "Suffix",
@@ -2685,7 +2653,7 @@
     "required_level": 68,
     "text": "(6-9)% increased Poison Duration | Socketed Gems are Supported by Level 18 Critical Strike Affliction",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PoisonDurationWeaponSupportedUber2": {
     "generation_type": "Suffix",
@@ -2693,7 +2661,7 @@
     "required_level": 75,
     "text": "(10-14)% increased Poison Duration | Socketed Gems are Supported by Level 20 Critical Strike Affliction",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedByIncreasedAreaOfEffectDamageUber1_": {
     "generation_type": "Suffix",
@@ -2701,7 +2669,7 @@
     "required_level": 68,
     "text": "(23-27)% increased Area Damage | Socketed Gems are Supported by Level 16 Increased Area of Effect",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedByIncreasedAreaOfEffectDamageUber2": {
     "generation_type": "Suffix",
@@ -2709,7 +2677,7 @@
     "required_level": 75,
     "text": "(28-32)% increased Area Damage | Socketed Gems are Supported by Level 18 Increased Area of Effect",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedByIncreasedAreaOfEffectDamageUber3_": {
     "generation_type": "Suffix",
@@ -2717,7 +2685,7 @@
     "required_level": 80,
     "text": "(33-37)% increased Area Damage | Socketed Gems are Supported by Level 20 Increased Area of Effect",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedBySpiritStrikeAreaUber1_": {
     "generation_type": "Suffix",
@@ -2725,7 +2693,7 @@
     "required_level": 68,
     "text": "Socketed Gems are Supported by Level 16 Ancestral Call | (5-8)% increased Area of Effect",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedBySpiritStrikeAreaUber2": {
     "generation_type": "Suffix",
@@ -2733,7 +2701,7 @@
     "required_level": 75,
     "text": "Socketed Gems are Supported by Level 18 Ancestral Call | (9-12)% increased Area of Effect",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedBySpiritStrikeAreaUber3": {
     "generation_type": "Suffix",
@@ -2741,7 +2709,7 @@
     "required_level": 80,
     "text": "Socketed Gems are Supported by Level 20 Ancestral Call | (13-15)% increased Area of Effect",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "BlindOnHitWeaponInfluence1": {
     "generation_type": "Suffix",
@@ -2749,7 +2717,7 @@
     "required_level": 68,
     "text": "(15-18)% chance to Blind Enemies on Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "BlindOnHitWeaponInfluence2": {
     "generation_type": "Suffix",
@@ -2757,7 +2725,7 @@
     "required_level": 70,
     "text": "(19-22)% chance to Blind Enemies on Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "BlindOnHitWeaponInfluence3": {
     "generation_type": "Suffix",
@@ -2765,7 +2733,7 @@
     "required_level": 73,
     "text": "(23-25)% chance to Blind Enemies on Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "BlockWhileDualWieldingInfluence1__": {
     "generation_type": "Suffix",
@@ -2773,7 +2741,7 @@
     "required_level": 68,
     "text": "+(2-4)% Chance to Block Attack Damage while Dual Wielding",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "BlockWhileDualWieldingInfluence2": {
     "generation_type": "Suffix",
@@ -2781,7 +2749,7 @@
     "required_level": 70,
     "text": "+(5-7)% Chance to Block Attack Damage while Dual Wielding",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "BlockWhileDualWieldingInfluence3": {
     "generation_type": "Suffix",
@@ -2789,7 +2757,7 @@
     "required_level": 73,
     "text": "+(8-9)% Chance to Block Attack Damage while Dual Wielding",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DamageFromAurasWeaponInfluence1": {
     "generation_type": "Suffix",
@@ -2797,7 +2765,7 @@
     "required_level": 82,
     "text": "Auras from your Skills grant 2% increased Damage to you and Allies",
     "weight": 400,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "OnslaugtOnKillWeaponInfluence1": {
     "generation_type": "Suffix",
@@ -2805,7 +2773,7 @@
     "required_level": 68,
     "text": "(15-18)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "OnslaugtOnKillWeaponInfluence2": {
     "generation_type": "Suffix",
@@ -2813,7 +2781,7 @@
     "required_level": 70,
     "text": "(19-22)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "OnslaugtOnKillWeaponInfluence3": {
     "generation_type": "Suffix",
@@ -2821,7 +2789,7 @@
     "required_level": 73,
     "text": "(23-25)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ChanceToMaimUber1": {
     "generation_type": "Suffix",
@@ -2829,7 +2797,7 @@
     "required_level": 68,
     "text": "15% chance to Maim on Hit | Socketed Gems are Supported by Level 18 Maim",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToMaimUber2": {
     "generation_type": "Suffix",
@@ -2837,7 +2805,7 @@
     "required_level": 75,
     "text": "20% chance to Maim on Hit | Socketed Gems are Supported by Level 20 Maim",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "CriticalStrikeChanceSupportedUber1": {
     "generation_type": "Suffix",
@@ -2845,7 +2813,7 @@
     "required_level": 68,
     "text": "(22-25)% increased Critical Strike Chance | Socketed Gems are Supported by Level 18 Increased Critical Strikes",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "CriticalStrikeChanceSupportedUber2": {
     "generation_type": "Suffix",
@@ -2853,7 +2821,7 @@
     "required_level": 75,
     "text": "(26-29)% increased Critical Strike Chance | Socketed Gems are Supported by Level 20 Increased Critical Strikes",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "CriticalStrikeMultiplierAgainstEnemiesOnFullLifeUber1": {
     "generation_type": "Suffix",
@@ -2861,31 +2829,7 @@
     "required_level": 68,
     "text": "+(50-60)% to Critical Strike Multiplier against Enemies that are on Full Life",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "ElementalPenetrationWeaponUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "Damage Penetrates (5-6)% Elemental Resistances",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ElementalPenetrationWeaponUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "Damage Penetrates (7-8)% Elemental Resistances",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ElementalPenetrationWeaponUber3": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 83,
-    "text": "Damage Penetrates (9-10)% Elemental Resistances",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LocalIncreasedAttackSpeedFasterAttacksUber1": {
     "generation_type": "Suffix",
@@ -2893,7 +2837,7 @@
     "required_level": 68,
     "text": "(17-19)% increased Attack Speed | Socketed Gems are Supported by Level 18 Faster Attacks",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LocalIncreasedAttackSpeedFasterAttacksUber2": {
     "generation_type": "Suffix",
@@ -2901,7 +2845,7 @@
     "required_level": 75,
     "text": "(20-21)% increased Attack Speed | Socketed Gems are Supported by Level 20 Faster Attacks",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PoisonDamageWeaponSupportedUber1": {
     "generation_type": "Suffix",
@@ -2909,7 +2853,7 @@
     "required_level": 68,
     "text": "(19-23)% increased Damage with Poison | Socketed Gems are Supported by Level 18 Chance to Poison",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PoisonDamageWeaponSupportedUber2": {
     "generation_type": "Suffix",
@@ -2917,7 +2861,7 @@
     "required_level": 75,
     "text": "(24-26)% increased Damage with Poison | Socketed Gems are Supported by Level 20 Chance to Poison",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SupportedByMeleeSplashDamageUber1": {
     "generation_type": "Suffix",
@@ -2925,7 +2869,7 @@
     "required_level": 68,
     "text": "Socketed Gems are supported by Level 16 Melee Splash | (23-27)% increased Area Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SupportedByMeleeSplashDamageUber2": {
     "generation_type": "Suffix",
@@ -2933,7 +2877,7 @@
     "required_level": 75,
     "text": "Socketed Gems are supported by Level 18 Melee Splash | (28-32)% increased Area Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SupportedByMeleeSplashDamageUber3": {
     "generation_type": "Suffix",
@@ -2941,6 +2885,6 @@
     "required_level": 80,
     "text": "Socketed Gems are supported by Level 20 Melee Splash | (33-37)% increased Area Damage",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   }
 }

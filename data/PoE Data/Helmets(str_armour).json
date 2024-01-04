@@ -333,7 +333,7 @@
     "required_level": 68,
     "text": "(12-14)% increased Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ElementalDamageInfluence2": {
     "generation_type": "Prefix",
@@ -341,7 +341,7 @@
     "required_level": 70,
     "text": "(15-18)% increased Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ElementalDamageInfluence3": {
     "generation_type": "Prefix",
@@ -349,15 +349,7 @@
     "required_level": 75,
     "text": "(19-22)% increased Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ElementalDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 85,
-    "text": "(19-22)% increased Elemental Damage | Damage Penetrates (2-3)% of Enemy Elemental Resistances",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MaximumPowerChargeInfluence1": {
     "generation_type": "Prefix",
@@ -365,15 +357,7 @@
     "required_level": 75,
     "text": "+1 to Maximum Power Charges",
     "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumPowerChargeInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 85,
-    "text": "+1 to Maximum Power Charges | 10% chance that if you would gain Power Charges, you instead gain up to | your maximum number of Power Charges",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysTakenAsFireHelmetInfluence1": {
     "generation_type": "Prefix",
@@ -381,7 +365,7 @@
     "required_level": 68,
     "text": "(4-6)% of Physical Damage from Hits taken as Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysTakenAsFireHelmetInfluence2": {
     "generation_type": "Prefix",
@@ -389,15 +373,7 @@
     "required_level": 83,
     "text": "(7-10)% of Physical Damage from Hits taken as Fire Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysTakenAsFireHelmetInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 93,
-    "text": "(11-13)% of Physical Damage from Hits taken as Fire Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "WarcryAreaOfEffectInfluence1_": {
     "generation_type": "Prefix",
@@ -405,7 +381,7 @@
     "required_level": 68,
     "text": "Warcry Skills have (21-25)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "WarcryAreaOfEffectInfluence2": {
     "generation_type": "Prefix",
@@ -413,15 +389,7 @@
     "required_level": 75,
     "text": "Warcry Skills have (26-30)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "WarcryAreaOfEffectInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 85,
-    "text": "Warcry Skills have (26-30)% increased Area of Effect | 15% increased Warcry Buff Effect",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "SpellAddedChaosDamageInfluence1": {
     "generation_type": "Prefix",
@@ -429,7 +397,7 @@
     "required_level": 68,
     "text": "Adds (14-18) to (27-32) Chaos Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedChaosDamageInfluence2": {
     "generation_type": "Prefix",
@@ -437,7 +405,7 @@
     "required_level": 70,
     "text": "Adds (17-23) to (34-40) Chaos Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedChaosDamageInfluence3": {
     "generation_type": "Prefix",
@@ -445,15 +413,7 @@
     "required_level": 75,
     "text": "Adds (21-28) to (41-48) Chaos Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellAddedChaosDamageInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 85,
-    "text": "Adds (29-39) to (49-61) Chaos Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedColdDamageInfluence1_": {
     "generation_type": "Prefix",
@@ -461,7 +421,7 @@
     "required_level": 68,
     "text": "Adds (14-18) to (27-32) Cold Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedColdDamageInfluence2": {
     "generation_type": "Prefix",
@@ -469,7 +429,7 @@
     "required_level": 70,
     "text": "Adds (17-23) to (34-40) Cold Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedColdDamageInfluence3_": {
     "generation_type": "Prefix",
@@ -477,15 +437,7 @@
     "required_level": 75,
     "text": "Adds (21-28) to (41-48) Cold Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellAddedColdDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 85,
-    "text": "Adds (29-39) to (49-61) Cold Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedFireDamageInfluence1_": {
     "generation_type": "Prefix",
@@ -493,7 +445,7 @@
     "required_level": 68,
     "text": "Adds (17-22) to (33-39) Fire Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedFireDamageInfluence2_": {
     "generation_type": "Prefix",
@@ -501,7 +453,7 @@
     "required_level": 70,
     "text": "Adds (21-28) to (42-49) Fire Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedFireDamageInfluence3_": {
     "generation_type": "Prefix",
@@ -509,15 +461,7 @@
     "required_level": 75,
     "text": "Adds (25-34) to (51-59) Fire Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellAddedFireDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 85,
-    "text": "Adds (35-49) to (60-73) Fire Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedLightningDamageInfluence1": {
     "generation_type": "Prefix",
@@ -525,7 +469,7 @@
     "required_level": 68,
     "text": "Adds (2-5) to (58-61) Lightning Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedLightningDamageInfluence2": {
     "generation_type": "Prefix",
@@ -533,7 +477,7 @@
     "required_level": 70,
     "text": "Adds (2-6) to (73-77) Lightning Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedLightningDamageInfluence3": {
     "generation_type": "Prefix",
@@ -541,15 +485,7 @@
     "required_level": 75,
     "text": "Adds (2-7) to (88-93) Lightning Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellAddedLightningDamageInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 85,
-    "text": "Adds (2-8) to (101-121) Lightning Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedPhysicalDamageInfluence1__": {
     "generation_type": "Prefix",
@@ -557,7 +493,7 @@
     "required_level": 68,
     "text": "Adds (17-22) to (33-39) Physical Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedPhysicalDamageInfluence2": {
     "generation_type": "Prefix",
@@ -565,7 +501,7 @@
     "required_level": 70,
     "text": "Adds (21-28) to (42-49) Physical Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SpellAddedPhysicalDamageInfluence3": {
     "generation_type": "Prefix",
@@ -573,39 +509,7 @@
     "required_level": 75,
     "text": "Adds (25-34) to (51-59) Physical Damage to Spells",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellAddedPhysicalDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 85,
-    "text": "Adds (35-49) to (60-73) Physical Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumLightningResistanceInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 75,
-    "text": "+1% to maximum Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumLightningResistanceInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 85,
-    "text": "+2% to maximum Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumLightningResistanceInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 95,
-    "text": "+3% to maximum Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MaximumManaInfluence1": {
     "generation_type": "Prefix",
@@ -613,7 +517,7 @@
     "required_level": 68,
     "text": "(9-11)% increased maximum Mana",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumManaInfluence2_": {
     "generation_type": "Prefix",
@@ -621,15 +525,7 @@
     "required_level": 80,
     "text": "(12-15)% increased maximum Mana",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MaximumManaInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 90,
-    "text": "(16-18)% increased maximum Mana",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysTakenAsLightningHelmInfluence1": {
     "generation_type": "Prefix",
@@ -637,7 +533,7 @@
     "required_level": 68,
     "text": "(4-6)% of Physical Damage from Hits taken as Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysTakenAsLightningHelmInfluence2": {
     "generation_type": "Prefix",
@@ -645,15 +541,7 @@
     "required_level": 83,
     "text": "(7-10)% of Physical Damage from Hits taken as Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysTakenAsLightningHelmInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 93,
-    "text": "(11-13)% of Physical Damage from Hits taken as Lightning Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AreaDamageSupportedUber1": {
     "generation_type": "Prefix",
@@ -661,7 +549,7 @@
     "required_level": 68,
     "text": "(15-18)% increased Area Damage | Socketed Gems are Supported by Level 16 Concentrated Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaDamageSupportedUber2_": {
     "generation_type": "Prefix",
@@ -669,7 +557,7 @@
     "required_level": 75,
     "text": "(19-22)% increased Area Damage | Socketed Gems are Supported by Level 18 Concentrated Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaDamageSupportedUber3": {
     "generation_type": "Prefix",
@@ -677,15 +565,7 @@
     "required_level": 82,
     "text": "(23-25)% increased Area Damage | Socketed Gems are Supported by Level 20 Concentrated Effect",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "AreaDamageSupportedUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 92,
-    "text": "(23-25)% increased Area Damage | Socketed Gems are Supported by Level 25 Concentrated Effect",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumManaUber1": {
     "generation_type": "Prefix",
@@ -693,7 +573,7 @@
     "required_level": 68,
     "text": "(9-11)% increased maximum Mana",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumManaUber2_": {
     "generation_type": "Prefix",
@@ -701,15 +581,7 @@
     "required_level": 75,
     "text": "(12-15)% increased maximum Mana",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MaximumManaUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 85,
-    "text": "(12-15)% increased maximum Mana | Transfiguration of Mind",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MinionDamageSupportedUber1": {
     "generation_type": "Prefix",
@@ -717,7 +589,7 @@
     "required_level": 68,
     "text": "Minions deal (15-18)% increased Damage | Socketed Gems are Supported by Level 16 Minion Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MinionDamageSupportedUber2": {
     "generation_type": "Prefix",
@@ -725,7 +597,7 @@
     "required_level": 75,
     "text": "Minions deal (19-22)% increased Damage | Socketed Gems are Supported by Level 18 Minion Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MinionDamageSupportedUber3": {
     "generation_type": "Prefix",
@@ -733,15 +605,7 @@
     "required_level": 83,
     "text": "Minions deal (23-25)% increased Damage | Socketed Gems are Supported by Level 20 Minion Damage",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MinionDamageSupportedUberMaven___": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 93,
-    "text": "Minions deal (23-25)% increased Damage | Socketed Gems are Supported by Level 25 Minion Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MinionLifeSupportedUber1": {
     "generation_type": "Prefix",
@@ -749,7 +613,7 @@
     "required_level": 68,
     "text": "Minions have (15-18)% increased maximum Life | Socketed Gems are Supported by Level 16 Minion Life",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MinionLifeSupportedUber2": {
     "generation_type": "Prefix",
@@ -757,7 +621,7 @@
     "required_level": 75,
     "text": "Minions have (19-22)% increased maximum Life | Socketed Gems are Supported by Level 18 Minion Life",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MinionLifeSupportedUber3": {
     "generation_type": "Prefix",
@@ -765,15 +629,7 @@
     "required_level": 80,
     "text": "Minions have (23-25)% increased maximum Life | Socketed Gems are Supported by Level 20 Minion Life",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MinionLifeSupportedUberMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 90,
-    "text": "Minions have (23-25)% increased maximum Life | Socketed Gems are Supported by Level 25 Minion Life",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedChaosDamageUber1": {
     "generation_type": "Prefix",
@@ -781,7 +637,7 @@
     "required_level": 68,
     "text": "Adds (14-18) to (27-32) Chaos Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedChaosDamageUber2": {
     "generation_type": "Prefix",
@@ -789,7 +645,7 @@
     "required_level": 75,
     "text": "Adds (17-23) to (34-40) Chaos Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedChaosDamageUber3": {
     "generation_type": "Prefix",
@@ -797,15 +653,7 @@
     "required_level": 85,
     "text": "Adds (21-28) to (41-48) Chaos Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SpellAddedChaosDamageUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 95,
-    "text": "Adds (29-39) to (49-61) Chaos Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedFireDamageUber1": {
     "generation_type": "Prefix",
@@ -813,7 +661,7 @@
     "required_level": 68,
     "text": "Adds (17-22) to (33-39) Fire Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedFireDamageUber2": {
     "generation_type": "Prefix",
@@ -821,7 +669,7 @@
     "required_level": 75,
     "text": "Adds (21-28) to (42-49) Fire Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedFireDamageUber3": {
     "generation_type": "Prefix",
@@ -829,15 +677,7 @@
     "required_level": 82,
     "text": "Adds (25-34) to (51-59) Fire Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SpellAddedFireDamageUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 92,
-    "text": "Adds (35-49) to (60-73) Fire Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedPhysicalDamageUber1": {
     "generation_type": "Prefix",
@@ -845,7 +685,7 @@
     "required_level": 68,
     "text": "Adds (17-22) to (33-39) Physical Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedPhysicalDamageUber2": {
     "generation_type": "Prefix",
@@ -853,7 +693,7 @@
     "required_level": 75,
     "text": "Adds (21-28) to (42-49) Physical Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SpellAddedPhysicalDamageUber3": {
     "generation_type": "Prefix",
@@ -861,15 +701,7 @@
     "required_level": 85,
     "text": "Adds (25-34) to (51-59) Physical Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SpellAddedPhysicalDamageUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 95,
-    "text": "Adds (35-49) to (60-73) Physical Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedByLessDurationUber1": {
     "generation_type": "Prefix",
@@ -877,15 +709,7 @@
     "required_level": 68,
     "text": "Socketed Gems are Supported by Level 20 Less Duration",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "SupportedByLessDurationUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 78,
-    "text": "Socketed Gems are Supported by Level 25 Less Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysTakenAsColdHelmetInfluence1__": {
     "generation_type": "Prefix",
@@ -893,7 +717,7 @@
     "required_level": 68,
     "text": "(4-6)% of Physical Damage from Hits taken as Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysTakenAsColdHelmetInfluence2": {
     "generation_type": "Prefix",
@@ -901,15 +725,7 @@
     "required_level": 83,
     "text": "(7-10)% of Physical Damage from Hits taken as Cold Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysTakenAsColdHelmetInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 93,
-    "text": "(11-13)% of Physical Damage from Hits taken as Cold Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PowerChargeOnKillInfluence1": {
     "generation_type": "Prefix",
@@ -917,7 +733,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain a Power Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PowerChargeOnKillInfluence2": {
     "generation_type": "Prefix",
@@ -925,15 +741,7 @@
     "required_level": 80,
     "text": "(7-10)% chance to gain a Power Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "PowerChargeOnKillInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "(11-15)% chance to gain a Power Charge on Kill | 50% increased Power Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "SpellsAdditionalUnleashSealInfluence1": {
     "generation_type": "Prefix",
@@ -941,15 +749,7 @@
     "required_level": 80,
     "text": "Skills supported by Unleash have +1 to maximum number of Seals",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "SpellsAdditionalUnleashSealInfluenceMaven___": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "Skills supported by Unleash have +1 to maximum number of Seals | (50-75)% increased Critical Strike Chance with Spells which remove the maximum number of Seals",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AreaOfEffectSupportedUber1_": {
     "generation_type": "Prefix",
@@ -957,7 +757,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect | Socketed Gems are Supported by Level 16 Increased Area of Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AreaOfEffectSupportedUber2": {
     "generation_type": "Prefix",
@@ -965,7 +765,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect | Socketed Gems are Supported by Level 18 Increased Area of Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AreaOfEffectSupportedUber3": {
     "generation_type": "Prefix",
@@ -973,15 +773,7 @@
     "required_level": 83,
     "text": "(13-15)% increased Area of Effect | Socketed Gems are Supported by Level 20 Increased Area of Effect",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "AreaOfEffectSupportedUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 93,
-    "text": "(13-15)% increased Area of Effect | Socketed Gems are Supported by Level 25 Increased Area of Effect",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToGainPowerChargeOnKillUber1": {
     "generation_type": "Prefix",
@@ -989,7 +781,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain a Power Charge on Kill",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToGainPowerChargeOnKillUber2": {
     "generation_type": "Prefix",
@@ -997,15 +789,7 @@
     "required_level": 84,
     "text": "(7-10)% chance to gain a Power Charge on Kill",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "ChanceToGainPowerChargeOnKillUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 94,
-    "text": "(11-15)% chance to gain a Power Charge on Kill | 50% increased Power Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellAddedColdDamageUber1": {
     "generation_type": "Prefix",
@@ -1013,7 +797,7 @@
     "required_level": 68,
     "text": "Adds (14-18) to (27-32) Cold Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellAddedColdDamageUber2": {
     "generation_type": "Prefix",
@@ -1021,7 +805,7 @@
     "required_level": 75,
     "text": "Adds (17-23) to (34-40) Cold Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellAddedColdDamageUber3": {
     "generation_type": "Prefix",
@@ -1029,15 +813,7 @@
     "required_level": 83,
     "text": "Adds (21-28) to (41-48) Cold Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SpellAddedColdDamageUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 93,
-    "text": "Adds (29-39) to (49-61) Cold Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellAddedLightningDamageUber1": {
     "generation_type": "Prefix",
@@ -1045,7 +821,7 @@
     "required_level": 68,
     "text": "Adds (2-5) to (58-61) Lightning Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellAddedLightningDamageUber2": {
     "generation_type": "Prefix",
@@ -1053,7 +829,7 @@
     "required_level": 75,
     "text": "Adds (2-6) to (73-77) Lightning Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellAddedLightningDamageUber3": {
     "generation_type": "Prefix",
@@ -1061,15 +837,7 @@
     "required_level": 84,
     "text": "Adds (2-7) to (88-93) Lightning Damage to Spells",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SpellAddedLightningDamageUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 94,
-    "text": "Adds (2-8) to (101-121) Lightning Damage to Spells",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToSuppressSpells1_": {
     "generation_type": "Suffix",
@@ -1749,7 +1517,7 @@
     "required_level": 68,
     "text": "+(11-13)% to Global Critical Strike Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierInfluence2": {
     "generation_type": "Suffix",
@@ -1757,7 +1525,7 @@
     "required_level": 70,
     "text": "+(14-16)% to Global Critical Strike Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierInfluence3": {
     "generation_type": "Suffix",
@@ -1765,15 +1533,7 @@
     "required_level": 75,
     "text": "+(17-20)% to Global Critical Strike Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "CriticalStrikeMultiplierInfluenceMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "+(21-24)% to Global Critical Strike Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "GainAccuracyEqualToStrengthInfluence1": {
     "generation_type": "Suffix",
@@ -1781,39 +1541,7 @@
     "required_level": 75,
     "text": "Gain Accuracy Rating equal to your Strength",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GainAccuracyEqualToStrengthInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "Gain Accuracy Rating equal to your Strength | 1% increased Critical Strike Chance per 10 Strength",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 68,
-    "text": "Regenerate (0.8-1.2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 73,
-    "text": "Regenerate (1.3-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 83,
-    "text": "Regenerate (1.6-2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ManaRegenerationInfluence1__": {
     "generation_type": "Suffix",
@@ -1821,7 +1549,7 @@
     "required_level": 68,
     "text": "(41-55)% increased Mana Regeneration Rate",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ManaRegenerationInfluence2": {
     "generation_type": "Suffix",
@@ -1829,15 +1557,7 @@
     "required_level": 75,
     "text": "(56-70)% increased Mana Regeneration Rate",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ManaRegenerationInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "(56-70)% increased Mana Regeneration Rate | 20% increased Mana Regeneration Rate while stationary",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MinionLifeInfluence1_": {
     "generation_type": "Suffix",
@@ -1845,7 +1565,7 @@
     "required_level": 68,
     "text": "Minions have (21-26)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MinionLifeInfluence2": {
     "generation_type": "Suffix",
@@ -1853,7 +1573,7 @@
     "required_level": 70,
     "text": "Minions have (27-30)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MinionLifeInfluence3": {
     "generation_type": "Suffix",
@@ -1861,15 +1581,7 @@
     "required_level": 75,
     "text": "Minions have (31-35)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MinionLifeInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "Minions have (36-40)% increased maximum Life | Minions Regenerate (1-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "EnemyFireResistanceAuraInfluence1": {
     "generation_type": "Suffix",
@@ -1877,31 +1589,7 @@
     "required_level": 85,
     "text": "Nearby Enemies have -9% to Fire Resistance | -9% to Fire Resistance",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "EnemyFireResistanceAuraInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 95,
-    "text": "Nearby Enemies have -12% to Fire Resistance | -12% to Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChillingConfluxInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "You have Chilling Conflux for 3 seconds every 8 seconds | (20-30)% increased Chill Duration on Enemies",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "IgnitingConfluxInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "You have Igniting Conflux for 3 seconds every 8 seconds | (20-30)% increased Ignite Duration on Enemies",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "EnemyChaosResistanceAuraInfluence1_": {
     "generation_type": "Suffix",
@@ -1909,15 +1597,7 @@
     "required_level": 85,
     "text": "Nearby Enemies have -9% to Chaos Resistance | -9% to Chaos Resistance",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "EnemyChaosResistanceAuraInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 95,
-    "text": "Nearby Enemies have -12% to Chaos Resistance | -12% to Chaos Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageIntelligenceInfluence1_": {
     "generation_type": "Suffix",
@@ -1925,7 +1605,7 @@
     "required_level": 68,
     "text": "(6-8)% increased Intelligence",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageIntelligenceInfluence2": {
     "generation_type": "Suffix",
@@ -1933,23 +1613,7 @@
     "required_level": 75,
     "text": "(9-10)% increased Intelligence",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageIntelligenceInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 85,
-    "text": "(11-12)% increased Intelligence",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ShockingConfluxInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "You have Shocking Conflux for 3 seconds every 8 seconds | (20-30)% increased Shock Duration on Enemies",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChillingConfluxInfluence1__": {
     "generation_type": "Suffix",
@@ -1957,7 +1621,7 @@
     "required_level": 80,
     "text": "You have Chilling Conflux for 3 seconds every 8 seconds",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "IgnitingConfluxInfluence1": {
     "generation_type": "Suffix",
@@ -1965,7 +1629,7 @@
     "required_level": 80,
     "text": "You have Igniting Conflux for 3 seconds every 8 seconds",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ShockingConfluxInfluence1_": {
     "generation_type": "Suffix",
@@ -1973,47 +1637,7 @@
     "required_level": 80,
     "text": "You have Shocking Conflux for 3 seconds every 8 seconds",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRegenInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "Regenerate (1-1.5)% of Energy Shield per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "EnergyShieldRegenInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "Regenerate (1-1.5)% of Energy Shield per second | (15-25)% increased Energy Shield Recharge Rate",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "FortifyEffectInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "+(3-4) to maximum Fortification",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "FortifyEffectInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 80,
-    "text": "+(4.2-5) to maximum Fortification",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "FortifyEffectInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 90,
-    "text": "+(4.2-5) to maximum Fortification | +500 to Armour while Fortified",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MaximumLightningResistanceInfluence1New_": {
     "generation_type": "Suffix",
@@ -2021,7 +1645,7 @@
     "required_level": 75,
     "text": "+1% to maximum Lightning Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumLightningResistanceInfluence2New_": {
     "generation_type": "Suffix",
@@ -2029,15 +1653,7 @@
     "required_level": 85,
     "text": "+2% to maximum Lightning Resistance",
     "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumLightningResistanceInfluenceMavenNew": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 95,
-    "text": "+3% to maximum Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "EnemyLightningResistanceAuraInfluence1_": {
     "generation_type": "Suffix",
@@ -2045,31 +1661,7 @@
     "required_level": 85,
     "text": "Nearby Enemies have -9% to Lightning Resistance | -9% to Lightning Resistance",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "EnemyLightningResistanceAuraInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 95,
-    "text": "Nearby Enemies have -12% to Lightning Resistance | -12% to Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedIgniteDurationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% reduced Ignite Duration on you",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedIgniteDurationInfluence2_": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% reduced Ignite Duration on you",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ReducedIgniteDurationInfluence3__": {
     "generation_type": "Suffix",
@@ -2077,31 +1669,7 @@
     "required_level": 75,
     "text": "(51-60)% reduced Ignite Duration on you",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "ReducedIgniteDurationInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(51-60)% reduced Ignite Duration on you | (36-50)% increased Damage if you've been Ignited Recently",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedFreezeDurationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% reduced Freeze Duration on you",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedFreezeDurationInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% reduced Freeze Duration on you",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ReducedFreezeDurationInfluence3": {
     "generation_type": "Suffix",
@@ -2109,31 +1677,7 @@
     "required_level": 75,
     "text": "(51-60)% reduced Freeze Duration on you",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "ReducedFreezeDurationInfluenceMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(51-60)% reduced Freeze Duration on you | (7-4)% reduced Damage taken if you've been Frozen Recently",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedShockEffectInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(35-31)% reduced Effect of Shock on you",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedShockEffectInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(40-36)% reduced Effect of Shock on you",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ReducedShockEffectInfluence3_": {
     "generation_type": "Suffix",
@@ -2141,15 +1685,7 @@
     "required_level": 75,
     "text": "(60-51)% reduced Effect of Shock on you",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "ReducedShockEffectInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(60-51)% reduced Effect of Shock on you | (45-75)% increased Critical Strike Chance if you've been Shocked Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellBlockPercentInfluence1": {
     "generation_type": "Suffix",
@@ -2157,7 +1693,7 @@
     "required_level": 68,
     "text": "(3-4)% Chance to Block Spell Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellBlockPercentInfluence2": {
     "generation_type": "Suffix",
@@ -2165,15 +1701,7 @@
     "required_level": 80,
     "text": "(5-6)% Chance to Block Spell Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellBlockPercentInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 90,
-    "text": "(5-6)% Chance to Block Spell Damage | +1% to maximum Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "IncreasedBurningDamageSupportedUber1": {
     "generation_type": "Suffix",
@@ -2181,7 +1709,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Burning Damage | Socketed Gems are Supported by Level 16 Burning Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedBurningDamageSupportedUber2": {
     "generation_type": "Suffix",
@@ -2189,7 +1717,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Burning Damage | Socketed Gems are Supported by Level 18 Burning Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedBurningDamageSupportedUber3": {
     "generation_type": "Suffix",
@@ -2197,15 +1725,7 @@
     "required_level": 82,
     "text": "(31-35)% increased Burning Damage | Socketed Gems are Supported by Level 20 Burning Damage",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedBurningDamageSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 92,
-    "text": "(31-35)% increased Burning Damage | Socketed Gems are Supported by Level 25 Burning Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IgniteDurationSupportedUber1": {
     "generation_type": "Suffix",
@@ -2213,7 +1733,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Ignite Duration on Enemies | Socketed Gems are Supported by Level 16 Immolate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IgniteDurationSupportedUber2": {
     "generation_type": "Suffix",
@@ -2221,7 +1741,7 @@
     "required_level": 75,
     "text": "(13-16)% increased Ignite Duration on Enemies | Socketed Gems are Supported by Level 18 Immolate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IgniteDurationSupportedUber3": {
     "generation_type": "Suffix",
@@ -2229,15 +1749,7 @@
     "required_level": 80,
     "text": "(17-20)% increased Ignite Duration on Enemies | Socketed Gems are Supported by Level 20 Immolate",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IgniteDurationSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(17-20)% increased Ignite Duration on Enemies | Socketed Gems are Supported by Level 25 Immolate",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "EnemyPhysicalDamageTakenAuraUber1_": {
     "generation_type": "Suffix",
@@ -2245,15 +1757,7 @@
     "required_level": 85,
     "text": "Nearby Enemies take 9% increased Physical Damage | 9% increased Physical Damage taken",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "EnemyPhysicalDamageTakenAuraUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 95,
-    "text": "Nearby Enemies take 12% increased Physical Damage | 12% increased Physical Damage taken",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SocketedAttackCriticalStrikeChanceUber1__": {
     "generation_type": "Suffix",
@@ -2261,7 +1765,7 @@
     "required_level": 68,
     "text": "Socketed Attacks have +1% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SocketedAttackCriticalStrikeChanceUber2": {
     "generation_type": "Suffix",
@@ -2269,7 +1773,7 @@
     "required_level": 75,
     "text": "Socketed Attacks have +2% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SocketedAttackCriticalStrikeChanceUber3": {
     "generation_type": "Suffix",
@@ -2277,15 +1781,7 @@
     "required_level": 83,
     "text": "Socketed Attacks have +3% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SocketedAttackCriticalStrikeChanceUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 93,
-    "text": "Socketed Attacks have +4% to Critical Strike Chance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AdditionalSpellBlockChanceUber1": {
     "generation_type": "Suffix",
@@ -2293,7 +1789,7 @@
     "required_level": 68,
     "text": "(3-4)% Chance to Block Spell Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AdditionalSpellBlockChanceUber2": {
     "generation_type": "Suffix",
@@ -2301,15 +1797,7 @@
     "required_level": 80,
     "text": "(5-6)% Chance to Block Spell Damage",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "AdditionalSpellBlockChanceUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(5-6)% Chance to Block Spell Damage | +1% to maximum Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AddedManaRegenerationInfluence1": {
     "generation_type": "Suffix",
@@ -2317,7 +1805,7 @@
     "required_level": 68,
     "text": "Regenerate (3-5) Mana per second",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedManaRegenerationInfluence2__": {
     "generation_type": "Suffix",
@@ -2325,15 +1813,7 @@
     "required_level": 75,
     "text": "Regenerate (6-8) Mana per second",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AddedManaRegenerationInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "Regenerate (6-8) Mana per second | Mana Flasks gain 1 Charge every 3 seconds",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "FreezeChanceAndDurationInfluence1____": {
     "generation_type": "Suffix",
@@ -2341,7 +1821,7 @@
     "required_level": 68,
     "text": "(6-8)% chance to Freeze | (8-12)% increased Freeze Duration on Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "FreezeChanceAndDurationInfluence2_": {
     "generation_type": "Suffix",
@@ -2349,15 +1829,7 @@
     "required_level": 75,
     "text": "(6-8)% chance to Freeze | (13-15)% increased Freeze Duration on Enemies",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FreezeChanceAndDurationInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(10-15)% chance to Freeze | Freeze Enemies as though dealing (30-50)% more Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IgniteChanceAndDamageInfluence1__": {
     "generation_type": "Suffix",
@@ -2365,7 +1837,7 @@
     "required_level": 68,
     "text": "(6-8)% chance to Ignite | (15-17)% increased Burning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IgniteChanceAndDamageInfluence2_": {
     "generation_type": "Suffix",
@@ -2373,15 +1845,7 @@
     "required_level": 75,
     "text": "(6-8)% chance to Ignite | (18-20)% increased Burning Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "IgniteChanceAndDamageInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(10-15)% chance to Ignite | Ignites you inflict deal Damage (10-15)% faster",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaReservationEfficiencyInfluence1___": {
     "generation_type": "Suffix",
@@ -2389,7 +1853,7 @@
     "required_level": 68,
     "text": "(4-6)% increased Mana Reservation Efficiency of Skills",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaReservationEfficiencyInfluence2": {
     "generation_type": "Suffix",
@@ -2397,15 +1861,7 @@
     "required_level": 75,
     "text": "(7-10)% increased Mana Reservation Efficiency of Skills",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ManaReservationEfficiencyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(11-14)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "EnemyColdResistanceAuraInfluence1__": {
     "generation_type": "Suffix",
@@ -2413,39 +1869,7 @@
     "required_level": 85,
     "text": "Nearby Enemies have -9% to Cold Resistance | -9% to Cold Resistance",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "EnemyColdResistanceAuraInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 95,
-    "text": "Nearby Enemies have -12% to Cold Resistance | -12% to Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedManaReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 68,
-    "text": "(6-4)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedManaReservationInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "(10-8)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedManaReservationInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(14-12)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ShockChanceAndEffectInfluence1": {
     "generation_type": "Suffix",
@@ -2453,7 +1877,7 @@
     "required_level": 68,
     "text": "(6-8)% chance to Shock | (8-12)% increased Effect of Lightning Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ShockChanceAndEffectInfluence2": {
     "generation_type": "Suffix",
@@ -2461,15 +1885,7 @@
     "required_level": 75,
     "text": "(6-8)% chance to Shock | (13-15)% increased Effect of Lightning Ailments",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ShockChanceAndEffectInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(10-15)% chance to Shock | Shock Enemies as though dealing (30-50)% more Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedManaRegenerationUber1": {
     "generation_type": "Suffix",
@@ -2477,7 +1893,7 @@
     "required_level": 68,
     "text": "Regenerate (3-5) Mana per second",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AddedManaRegenerationUber2": {
     "generation_type": "Suffix",
@@ -2485,47 +1901,7 @@
     "required_level": 80,
     "text": "Regenerate (6-8) Mana per second",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "AddedManaRegenerationUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "Regenerate (6-8) Mana per second | Mana Flasks gain 1 Charge every 3 seconds",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalMinesPlacedSupportedUber1_": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "Throw an additional Mine | Socketed Gems are Supported by Level 18 Blastchain Mine",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalMinesPlacedSupportedUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "Throw an additional Mine | Socketed Gems are Supported by Level 20 Blastchain Mine",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalMinesPlacedSupportedUber3": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 85,
-    "text": "Throw an additional Mine | Socketed Gems are Supported by Level 22 Blastchain Mine",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalMinesPlacedSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 95,
-    "text": "Throw an additional Mine | Socketed Gems are Supported by Level 25 Blastchain Mine",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedChillEffectSupportedUber1": {
     "generation_type": "Suffix",
@@ -2533,7 +1909,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Effect of Cold Ailments | Socketed Gems are Supported by Level 16 Hypothermia",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedChillEffectSupportedUber2": {
     "generation_type": "Suffix",
@@ -2541,7 +1917,7 @@
     "required_level": 75,
     "text": "(13-16)% increased Effect of Cold Ailments | Socketed Gems are Supported by Level 18 Hypothermia",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedChillEffectSupportedUber3": {
     "generation_type": "Suffix",
@@ -2549,15 +1925,7 @@
     "required_level": 80,
     "text": "(17-20)% increased Effect of Cold Ailments | Socketed Gems are Supported by Level 20 Hypothermia",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedChillEffectSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(17-20)% increased Effect of Cold Ailments | Socketed Gems are Supported by Level 25 Hypothermia",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ManaRegenerationUber1": {
     "generation_type": "Suffix",
@@ -2565,7 +1933,7 @@
     "required_level": 68,
     "text": "(41-55)% increased Mana Regeneration Rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ManaRegenerationUber2": {
     "generation_type": "Suffix",
@@ -2573,15 +1941,7 @@
     "required_level": 75,
     "text": "(56-70)% increased Mana Regeneration Rate",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ManaRegenerationUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 85,
-    "text": "(56-70)% increased Mana Regeneration Rate | 20% increased Mana Regeneration Rate while stationary",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MineDamageUber1": {
     "generation_type": "Suffix",
@@ -2589,7 +1949,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Mine Damage | Socketed Gems are Supported by Level 18 Blastchain Mine",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MineDamageUber2": {
     "generation_type": "Suffix",
@@ -2597,7 +1957,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Mine Damage | Socketed Gems are Supported by Level 20 Blastchain Mine",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MineDamageUber3": {
     "generation_type": "Suffix",
@@ -2605,15 +1965,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Mine Damage | Socketed Gems are Supported by Level 22 Blastchain Mine",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "MineDamageUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(31-35)% increased Mine Damage | Socketed Gems are Supported by Level 25 Blastchain Mine",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MineDamageTrapUber1": {
     "generation_type": "Suffix",
@@ -2621,7 +1973,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Mine Damage | Socketed Gems are Supported by Level 16 Trap And Mine Damage",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MineDamageTrapUber2": {
     "generation_type": "Suffix",
@@ -2629,7 +1981,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Mine Damage | Socketed Gems are Supported by Level 18 Trap And Mine Damage",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MineDamageTrapUber3": {
     "generation_type": "Suffix",
@@ -2637,15 +1989,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Mine Damage | Socketed Gems are Supported by Level 20 Trap And Mine Damage",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "MineDamageTrapUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(31-35)% increased Mine Damage | Socketed Gems are Supported by Level 25 Trap And Mine Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "EnemyElementalDamageTakenAuraUber1": {
     "generation_type": "Suffix",
@@ -2653,15 +1997,7 @@
     "required_level": 85,
     "text": "Nearby Enemies take 6% increased Elemental Damage | 6% increased Elemental Damage taken",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "EnemyElementalDamageTakenAuraUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 95,
-    "text": "Nearby Enemies take 9% increased Elemental Damage | 9% increased Elemental Damage taken",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedShockEffectSupportedUber1": {
     "generation_type": "Suffix",
@@ -2669,7 +2005,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Effect of Lightning Ailments | Socketed Gems are Supported by Level 16 Innervate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedShockEffectSupportedUber2___": {
     "generation_type": "Suffix",
@@ -2677,7 +2013,7 @@
     "required_level": 75,
     "text": "(13-16)% increased Effect of Lightning Ailments | Socketed Gems are Supported by Level 18 Innervate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedShockEffectSupportedUber3_": {
     "generation_type": "Suffix",
@@ -2685,15 +2021,7 @@
     "required_level": 80,
     "text": "(17-20)% increased Effect of Lightning Ailments | Socketed Gems are Supported by Level 20 Innervate",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedShockEffectSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(17-20)% increased Effect of Lightning Ailments | Socketed Gems are Supported by Level 25 Innervate",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SocketedSpellCriticalStrikeChanceUber1_": {
     "generation_type": "Suffix",
@@ -2701,7 +2029,7 @@
     "required_level": 68,
     "text": "Socketed Spells have +1% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SocketedSpellCriticalStrikeChanceUber2": {
     "generation_type": "Suffix",
@@ -2709,7 +2037,7 @@
     "required_level": 75,
     "text": "Socketed Spells have +2% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SocketedSpellCriticalStrikeChanceUber3": {
     "generation_type": "Suffix",
@@ -2717,15 +2045,7 @@
     "required_level": 84,
     "text": "Socketed Spells have +3% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SocketedSpellCriticalStrikeChanceUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 94,
-    "text": "Socketed Spells have +4% to Critical Strike Chance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedMana1": {
     "generation_type": "Prefix",

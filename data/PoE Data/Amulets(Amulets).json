@@ -941,7 +941,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence2": {
     "generation_type": "Prefix",
@@ -949,7 +949,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence3": {
     "generation_type": "Prefix",
@@ -957,7 +957,7 @@
     "required_level": 80,
     "text": "(13-15)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "DamagePer15StrengthInfluence1": {
     "generation_type": "Prefix",
@@ -965,7 +965,7 @@
     "required_level": 80,
     "text": "1% increased Damage per 15 Strength",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "DamagePerEnduranceChargeInfluence1__": {
     "generation_type": "Prefix",
@@ -973,7 +973,7 @@
     "required_level": 68,
     "text": "(3-4)% increased Damage per Endurance Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "DamagePerEnduranceChargeInfluence2": {
     "generation_type": "Prefix",
@@ -981,7 +981,7 @@
     "required_level": 80,
     "text": "(5-6)% increased Damage per Endurance Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FireDamageESLeechInfluence1": {
     "generation_type": "Prefix",
@@ -989,7 +989,7 @@
     "required_level": 68,
     "text": "(0.2-0.4)% of Fire Damage Leeched as Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FireDamageLifeLeechInfluence1": {
     "generation_type": "Prefix",
@@ -997,7 +997,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Fire Damage Leeched as Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FirePenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -1005,7 +1005,7 @@
     "required_level": 68,
     "text": "Damage Penetrates (4-7)% Fire Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FirePenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -1013,23 +1013,7 @@
     "required_level": 82,
     "text": "Damage Penetrates (8-10)% Fire Resistance",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "GlobalFireGemLevelInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 82,
-    "text": "+1 to Level of all Fire Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "GlobalPhysicalGemLevelInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 82,
-    "text": "+1 to Level of all Physical Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalAddedAsExtraFireInfluence1_": {
     "generation_type": "Prefix",
@@ -1037,7 +1021,7 @@
     "required_level": 68,
     "text": "Gain (5-10)% of Physical Damage as Extra Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalAddedAsExtraFireInfluence2_____": {
     "generation_type": "Prefix",
@@ -1045,7 +1029,7 @@
     "required_level": 75,
     "text": "Gain (11-15)% of Physical Damage as Extra Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AdditionalPierceInfluence1": {
     "generation_type": "Prefix",
@@ -1053,7 +1037,7 @@
     "required_level": 75,
     "text": "Projectiles Pierce an additional Target",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChaosDamageLifeLeechInfluence1_": {
     "generation_type": "Prefix",
@@ -1061,7 +1045,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Chaos Damage Leeched as Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ElementalPenetrationInfluence1": {
     "generation_type": "Prefix",
@@ -1069,7 +1053,7 @@
     "required_level": 68,
     "text": "Damage Penetrates (3-4)% Elemental Resistances",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ElementalPenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -1077,39 +1061,7 @@
     "required_level": 82,
     "text": "Damage Penetrates (5-6)% Elemental Resistances",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "GlobalChaosGemLevelInfluence1__": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 82,
-    "text": "+1 to Level of all Chaos Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "GlobalDexterityGemLevelInfluence1_": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 82,
-    "text": "+1 to Level of all Dexterity Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "GlobalIntelligenceGemLevelInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 82,
-    "text": "+1 to Level of all Intelligence Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "GlobalStrengthGemLevelInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 82,
-    "text": "+1 to Level of all Strength Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MovementVelocityExtraInfluence1": {
     "generation_type": "Prefix",
@@ -1117,7 +1069,7 @@
     "required_level": 75,
     "text": "(3-6)% increased Movement Speed",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MovementVelocityExtraInfluence2__": {
     "generation_type": "Prefix",
@@ -1125,7 +1077,7 @@
     "required_level": 80,
     "text": "(7-10)% increased Movement Speed",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalDamageLifeLeechInfluence1": {
     "generation_type": "Prefix",
@@ -1133,7 +1085,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Physical Damage Leeched as Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "DamagePer15IntelligenceInfluence1": {
     "generation_type": "Prefix",
@@ -1141,15 +1093,7 @@
     "required_level": 80,
     "text": "1% increased Damage per 15 Intelligence",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GlobalLightningGemLevelInfluence1_": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 82,
-    "text": "+1 to Level of all Lightning Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "DamagePerPowerChargeInfluence1": {
     "generation_type": "Prefix",
@@ -1157,7 +1101,7 @@
     "required_level": 68,
     "text": "(3-4)% increased Damage per Power Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "DamagePerPowerChargeInfluence2": {
     "generation_type": "Prefix",
@@ -1165,7 +1109,7 @@
     "required_level": 80,
     "text": "(5-6)% increased Damage per Power Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LightningDamageESLeechInfluence1_": {
     "generation_type": "Prefix",
@@ -1173,7 +1117,7 @@
     "required_level": 68,
     "text": "(0.2-0.4)% of Lightning Damage Leeched as Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LightningDamageLifeLeechInfluence1": {
     "generation_type": "Prefix",
@@ -1181,7 +1125,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Lightning Damage Leeched as Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LightningPenetrationInfluence1__": {
     "generation_type": "Prefix",
@@ -1189,7 +1133,7 @@
     "required_level": 68,
     "text": "Damage Penetrates (4-7)% Lightning Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LightningPenetrationInfluence2__": {
     "generation_type": "Prefix",
@@ -1197,7 +1141,7 @@
     "required_level": 82,
     "text": "Damage Penetrates (8-10)% Lightning Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumEnergyShieldLeechRateHighInfluence1": {
     "generation_type": "Prefix",
@@ -1205,7 +1149,7 @@
     "required_level": 68,
     "text": "(15-25)% increased Maximum total Energy Shield Recovery per second from Leech",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumLifeLeechRateHighInfluence1": {
     "generation_type": "Prefix",
@@ -1213,7 +1157,7 @@
     "required_level": 68,
     "text": "(15-25)% increased Maximum total Life Recovery per second from Leech",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningInfluence1": {
     "generation_type": "Prefix",
@@ -1221,7 +1165,7 @@
     "required_level": 68,
     "text": "Gain (5-10)% of Physical Damage as Extra Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningInfluence2": {
     "generation_type": "Prefix",
@@ -1229,7 +1173,7 @@
     "required_level": 75,
     "text": "Gain (11-15)% of Physical Damage as Extra Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AdditionalPierceUber1": {
     "generation_type": "Prefix",
@@ -1237,7 +1181,7 @@
     "required_level": 68,
     "text": "Projectiles Pierce an additional Target",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber1_": {
     "generation_type": "Prefix",
@@ -1245,7 +1189,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber2": {
     "generation_type": "Prefix",
@@ -1253,7 +1197,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect",
     "weight": 600,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber3_": {
     "generation_type": "Prefix",
@@ -1261,7 +1205,7 @@
     "required_level": 82,
     "text": "(13-15)% increased Area of Effect",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "DamagePer15StrengthUber1": {
     "generation_type": "Prefix",
@@ -1269,7 +1213,7 @@
     "required_level": 80,
     "text": "1% increased Damage per 15 Strength",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "FireDamageLifeLeechUber1": {
     "generation_type": "Prefix",
@@ -1277,7 +1221,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Fire Damage Leeched as Life",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeLeechRateUpdatedUber1": {
     "generation_type": "Prefix",
@@ -1285,15 +1229,7 @@
     "required_level": 68,
     "text": "(15-25)% increased Maximum total Life Recovery per second from Leech",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MaximumLifeLeechRateUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 68,
-    "text": "(15-25)% increased Maximum total Life Recovery per second from Leech",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumSkeletonsUber1": {
     "generation_type": "Prefix",
@@ -1301,7 +1237,7 @@
     "required_level": 68,
     "text": "+1 to maximum number of Skeletons",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumZombiesUber1": {
     "generation_type": "Prefix",
@@ -1309,7 +1245,7 @@
     "required_level": 68,
     "text": "+1 to maximum number of Raised Zombies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "NonChaosAddedAsChaosUber1": {
     "generation_type": "Prefix",
@@ -1317,7 +1253,7 @@
     "required_level": 81,
     "text": "Gain (3-5)% of Non-Chaos Damage as extra Chaos Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalAddedAsFireAmuletUber1": {
     "generation_type": "Prefix",
@@ -1325,7 +1261,7 @@
     "required_level": 68,
     "text": "Gain (8-11)% of Physical Damage as Extra Fire Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalAddedAsFireAmuletUber2": {
     "generation_type": "Prefix",
@@ -1333,7 +1269,7 @@
     "required_level": 75,
     "text": "Gain (12-15)% of Physical Damage as Extra Fire Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageLifeLeechUber1": {
     "generation_type": "Prefix",
@@ -1341,7 +1277,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Physical Damage Leeched as Life",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ColdDamageESLeechInfluence1__": {
     "generation_type": "Prefix",
@@ -1349,7 +1285,7 @@
     "required_level": 68,
     "text": "(0.2-0.4)% of Cold Damage Leeched as Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ColdDamageLifeLeechInfluence1": {
     "generation_type": "Prefix",
@@ -1357,7 +1293,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Cold Damage Leeched as Life",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ColdPenetrationInfluence1_": {
     "generation_type": "Prefix",
@@ -1365,7 +1301,7 @@
     "required_level": 68,
     "text": "Damage Penetrates (4-7)% Cold Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ColdPenetrationInfluence2": {
     "generation_type": "Prefix",
@@ -1373,7 +1309,7 @@
     "required_level": 82,
     "text": "Damage Penetrates (8-10)% Cold Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DamagePer15DexterityInfluence1": {
     "generation_type": "Prefix",
@@ -1381,7 +1317,7 @@
     "required_level": 80,
     "text": "1% increased Damage per 15 Dexterity",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DamagePerFrenzyChargeInfluence1": {
     "generation_type": "Prefix",
@@ -1389,7 +1325,7 @@
     "required_level": 68,
     "text": "(3-4)% increased Damage per Frenzy Charge",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DamagePerFrenzyChargeInfluence2_": {
     "generation_type": "Prefix",
@@ -1397,15 +1333,7 @@
     "required_level": 80,
     "text": "(5-6)% increased Damage per Frenzy Charge",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GlobalColdGemLevelInfluence1__": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 82,
-    "text": "+1 to Level of all Cold Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdInfluence1_": {
     "generation_type": "Prefix",
@@ -1413,7 +1341,7 @@
     "required_level": 68,
     "text": "Gain (5-10)% of Physical Damage as Extra Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdInfluence2": {
     "generation_type": "Prefix",
@@ -1421,7 +1349,7 @@
     "required_level": 75,
     "text": "Gain (11-15)% of Physical Damage as Extra Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ColdDamageLifeLeechUber1_": {
     "generation_type": "Prefix",
@@ -1429,7 +1357,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Cold Damage Leeched as Life",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "DamagePer15DexterityUber1": {
     "generation_type": "Prefix",
@@ -1437,7 +1365,7 @@
     "required_level": 80,
     "text": "1% increased Damage per 15 Dexterity",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "DamagePer15IntelligenceUber1": {
     "generation_type": "Prefix",
@@ -1445,7 +1373,7 @@
     "required_level": 80,
     "text": "1% increased Damage per 15 Intelligence",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalPenetrationUber1": {
     "generation_type": "Prefix",
@@ -1453,15 +1381,7 @@
     "required_level": 68,
     "text": "Damage Penetrates (4-7)% Elemental Resistances",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ElementalPenetrationUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 82,
-    "text": "Damage Penetrates (8-10)% Elemental Resistances",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LightningDamageLifeLeechUber1": {
     "generation_type": "Prefix",
@@ -1469,7 +1389,7 @@
     "required_level": 68,
     "text": "(0.3-0.5)% of Lightning Damage Leeched as Life",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MovementVelocityAmuletUber1": {
     "generation_type": "Prefix",
@@ -1477,7 +1397,7 @@
     "required_level": 68,
     "text": "(4-6)% increased Movement Speed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MovementVelocityAmuletUber2": {
     "generation_type": "Prefix",
@@ -1485,7 +1405,7 @@
     "required_level": 84,
     "text": "(7-8)% increased Movement Speed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsColdAmuletUber1": {
     "generation_type": "Prefix",
@@ -1493,7 +1413,7 @@
     "required_level": 68,
     "text": "Gain (8-11)% of Physical Damage as Extra Cold Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsColdAmuletUber2": {
     "generation_type": "Prefix",
@@ -1501,7 +1421,7 @@
     "required_level": 75,
     "text": "Gain (12-15)% of Physical Damage as Extra Cold Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsLightningAmuletUber1": {
     "generation_type": "Prefix",
@@ -1509,7 +1429,7 @@
     "required_level": 68,
     "text": "Gain (8-11)% of Physical Damage as Extra Lightning Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsLightningAmuletUber2_": {
     "generation_type": "Prefix",
@@ -1517,7 +1437,7 @@
     "required_level": 75,
     "text": "Gain (12-15)% of Physical Damage as Extra Lightning Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AllAttributes1": {
     "generation_type": "Suffix",
@@ -2647,29 +2567,13 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "AngerReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "Anger has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
-  },
   "AngerReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
     "name": "of the Conquest",
     "required_level": 75,
     "text": "Anger has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "DeterminationReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "Determination has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "DeterminationReservationEfficiencyInfluence1_": {
     "generation_type": "Suffix",
@@ -2677,7 +2581,7 @@
     "required_level": 75,
     "text": "Determination has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MaximumAttackBlockChanceInfluence1": {
     "generation_type": "Suffix",
@@ -2685,7 +2589,7 @@
     "required_level": 68,
     "text": "+2% to maximum Chance to Block Attack Damage",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PercentageStrengthBodyInfluence1": {
     "generation_type": "Suffix",
@@ -2693,7 +2597,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Strength",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PercentageStrengthBodyInfluence2_": {
     "generation_type": "Suffix",
@@ -2701,23 +2605,7 @@
     "required_level": 75,
     "text": "(9-12)% increased Strength",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageStrengthBodyInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "(9-12)% increased Strength | +1 to Level of Socketed Strength Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "PrideReducedReservationInfluence1__": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "Pride has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PrideReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
@@ -2725,15 +2613,7 @@
     "required_level": 75,
     "text": "Pride has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PurityOfFireReducedReservationInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "Purity of Fire has (60-50)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PurityOfFireReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
@@ -2741,15 +2621,7 @@
     "required_level": 75,
     "text": "Purity of Fire has (50-60)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AdditionalPhysicalDamageReductionHighInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "(3-5)% additional Physical Damage Reduction",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChaosDamageOverTimeMultiplierInfluence1": {
     "generation_type": "Suffix",
@@ -2757,7 +2629,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Chaos Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChaosDamageOverTimeMultiplierInfluence2": {
     "generation_type": "Suffix",
@@ -2765,15 +2637,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Chaos Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ChaosDamageOverTimeMultiplierInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Chaos Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ColdDamageOverTimeMultiplierInfluence1": {
     "generation_type": "Suffix",
@@ -2781,7 +2645,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Cold Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ColdDamageOverTimeMultiplierInfluence2__": {
     "generation_type": "Suffix",
@@ -2789,15 +2653,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Cold Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ColdDamageOverTimeMultiplierInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Cold Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FireDamageOverTimeMultiplierInfluence1_": {
     "generation_type": "Suffix",
@@ -2805,7 +2661,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Fire Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FireDamageOverTimeMultiplierInfluence2": {
     "generation_type": "Suffix",
@@ -2813,15 +2669,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Fire Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FireDamageOverTimeMultiplierInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Fire Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ReducedAttributeRequirementsInfluence1": {
     "generation_type": "Suffix",
@@ -2829,7 +2677,7 @@
     "required_level": 68,
     "text": "Items and Gems have (10-5)% reduced Attribute Requirements",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ReducedAttributeRequirementsInfluence2": {
     "generation_type": "Suffix",
@@ -2837,31 +2685,7 @@
     "required_level": 75,
     "text": "Items and Gems have (15-11)% reduced Attribute Requirements",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentHighInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 68,
-    "text": "Regenerate (1.1-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentHighInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 80,
-    "text": "Regenerate (1.6-2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MalevolenceReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 75,
-    "text": "Malevolence has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MalevolenceReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
@@ -2869,7 +2693,7 @@
     "required_level": 75,
     "text": "Malevolence has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalDamageOverTimeMultiplierInfluence1": {
     "generation_type": "Suffix",
@@ -2877,7 +2701,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Physical Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalDamageOverTimeMultiplierInfluence2": {
     "generation_type": "Suffix",
@@ -2885,15 +2709,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Physical Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysicalDamageOverTimeMultiplierInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Physical Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "RandomChargeOnKillInfluence1___": {
     "generation_type": "Suffix",
@@ -2901,7 +2717,7 @@
     "required_level": 68,
     "text": "(3-6)% chance to gain a Power, Frenzy or Endurance Charge on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "RandomChargeOnKillInfluence2": {
     "generation_type": "Suffix",
@@ -2909,15 +2725,7 @@
     "required_level": 75,
     "text": "(7-10)% chance to gain a Power, Frenzy or Endurance Charge on Kill",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "DisciplineReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "Discipline has (60-50)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "DisciplineReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
@@ -2925,15 +2733,7 @@
     "required_level": 75,
     "text": "Discipline has (50-60)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRegenHighInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "Regenerate (1.5-2.5)% of Energy Shield per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumSpellBlockChanceInfluence1": {
     "generation_type": "Suffix",
@@ -2941,7 +2741,7 @@
     "required_level": 68,
     "text": "+2% to maximum Chance to Block Spell Damage",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PercentageIntelligenceBodyInfluence1": {
     "generation_type": "Suffix",
@@ -2949,7 +2749,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Intelligence",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PercentageIntelligenceBodyInfluence2___": {
     "generation_type": "Suffix",
@@ -2957,23 +2757,7 @@
     "required_level": 75,
     "text": "(9-12)% increased Intelligence",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageIntelligenceBodyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(9-12)% increased Intelligence | +1 to Level of Socketed Intelligence Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "PurityOfLightningReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "Purity of Lightning has (60-50)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PurityOfLightningReservationEfficiencyInfluence1__": {
     "generation_type": "Suffix",
@@ -2981,7 +2765,7 @@
     "required_level": 75,
     "text": "Purity of Lightning has (50-60)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellBlockAmuletInfluence1": {
     "generation_type": "Suffix",
@@ -2989,7 +2773,7 @@
     "required_level": 68,
     "text": "(4-5)% Chance to Block Spell Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellBlockAmuletInfluence2": {
     "generation_type": "Suffix",
@@ -2997,15 +2781,7 @@
     "required_level": 80,
     "text": "(6-7)% Chance to Block Spell Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "WrathReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "Wrath has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "WrathReservationEfficiencyInfluence1________": {
     "generation_type": "Suffix",
@@ -3013,15 +2789,7 @@
     "required_level": 75,
     "text": "Wrath has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ZealotryReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "Zealotry has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ZealotryReservationEfficiencyInfluence1__": {
     "generation_type": "Suffix",
@@ -3029,7 +2797,7 @@
     "required_level": 75,
     "text": "Zealotry has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GrantsAngerAuraUber1": {
     "generation_type": "Suffix",
@@ -3037,7 +2805,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Anger Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChaosNonAilmentDamageOverTimeMultiplierUber1": {
     "generation_type": "Suffix",
@@ -3045,7 +2813,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Chaos Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChaosNonAilmentDamageOverTimeMultiplierUber2": {
     "generation_type": "Suffix",
@@ -3053,15 +2821,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Chaos Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "ChaosNonAilmentDamageOverTimeMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "+(17-24)% to Chaos Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GrantsEnvyAuraUber1": {
     "generation_type": "Suffix",
@@ -3069,7 +2829,7 @@
     "required_level": 85,
     "text": "Grants Level 15 Envy Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GrantsHatredAuraUber1__": {
     "generation_type": "Suffix",
@@ -3077,7 +2837,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Hatred Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAttackSpeedAmuletUber1": {
     "generation_type": "Suffix",
@@ -3085,31 +2845,7 @@
     "required_level": 82,
     "text": "(7-13)% increased Attack Speed",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRatePercentUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "Regenerate (1-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRatePercentUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "Regenerate (1.6-2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRatePercentUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 85,
-    "text": "Regenerate (2.1-3)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageOverTimeMultiplierUber1": {
     "generation_type": "Suffix",
@@ -3117,7 +2853,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Physical Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageOverTimeMultiplierUber2__": {
     "generation_type": "Suffix",
@@ -3125,23 +2861,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Physical Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "PhysicalDamageOverTimeMultiplierUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "+(17-24)% to Physical Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedPhysicalDamageTakenUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 83,
-    "text": "(3-5)% additional Physical Damage Reduction",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GrantsWrathAuraUber1": {
     "generation_type": "Suffix",
@@ -3149,15 +2869,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Wrath Skill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "AdditionalChanceToEvadeHighInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "+(3-5)% chance to Evade Attack Hits",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "DoubleDamageStunnedRecentlyInfluence1": {
     "generation_type": "Suffix",
@@ -3165,7 +2877,7 @@
     "required_level": 75,
     "text": "(5-7)% chance to deal Double Damage if you have Stunned an Enemy Recently",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DoubleDamageStunnedRecentlyInfluence2": {
     "generation_type": "Suffix",
@@ -3173,15 +2885,7 @@
     "required_level": 83,
     "text": "(8-10)% chance to deal Double Damage if you have Stunned an Enemy Recently",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GraceReducedReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "Grace has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GraceReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
@@ -3189,15 +2893,7 @@
     "required_level": 75,
     "text": "Grace has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "HatredReducedReservationInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "Hatred has (50-40)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "HatredReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
@@ -3205,7 +2901,7 @@
     "required_level": 75,
     "text": "Hatred has (40-50)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence1": {
     "generation_type": "Suffix",
@@ -3213,7 +2909,7 @@
     "required_level": 68,
     "text": "(15-20)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence2_": {
     "generation_type": "Suffix",
@@ -3221,7 +2917,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaReservationEfficiencyInfluence1___": {
     "generation_type": "Suffix",
@@ -3229,7 +2925,7 @@
     "required_level": 68,
     "text": "(4-6)% increased Mana Reservation Efficiency of Skills",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaReservationEfficiencyInfluence2": {
     "generation_type": "Suffix",
@@ -3237,15 +2933,7 @@
     "required_level": 75,
     "text": "(7-10)% increased Mana Reservation Efficiency of Skills",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ManaReservationEfficiencyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(11-14)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PercentageDexterityBodyInfluence1": {
     "generation_type": "Suffix",
@@ -3253,7 +2941,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Dexterity",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PercentageDexterityBodyInfluence2": {
     "generation_type": "Suffix",
@@ -3261,23 +2949,7 @@
     "required_level": 75,
     "text": "(9-12)% increased Dexterity",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageDexterityBodyInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(9-12)% increased Dexterity | +1 to Level of Socketed Dexterity Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "PurityOfIceReducedReservationInfluence1__": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "Purity of Ice has (60-50)% increased Mana Reservation Efficiency",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PurityOfIceReservationEfficiencyInfluence1": {
     "generation_type": "Suffix",
@@ -3285,47 +2957,7 @@
     "required_level": 75,
     "text": "Purity of Ice has (50-60)% increased Mana Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ReducedManaReservationInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 68,
-    "text": "(6-4)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedManaReservationInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "(10-8)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedManaReservationInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(14-12)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumAttackDodgeChanceInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 68,
-    "text": "Prevent +2% of Suppressed Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumSpellDodgeChanceInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 68,
-    "text": "Prevent +2% of Suppressed Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "SpellDamageSuppressedInfluence1": {
     "generation_type": "Suffix",
@@ -3333,7 +2965,7 @@
     "required_level": 68,
     "text": "Prevent +2% of Suppressed Spell Damage",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "WarcrySpeedInfluence1": {
     "generation_type": "Suffix",
@@ -3341,7 +2973,7 @@
     "required_level": 68,
     "text": "(21-25)% increased Warcry Speed",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "WarcrySpeedInfluence2_": {
     "generation_type": "Suffix",
@@ -3349,7 +2981,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Warcry Speed",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "WarcrySpeedInfluence3": {
     "generation_type": "Suffix",
@@ -3357,23 +2989,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Warcry Speed",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "BlockAppliesToSpellsUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "(7.5-10.5)% Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "BlockAppliesToSpellsUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "(10.8-12)% Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GrantsClarityAuraUber1": {
     "generation_type": "Suffix",
@@ -3381,7 +2997,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Clarity Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ColdDamageOverTimeMultiplierUber1": {
     "generation_type": "Suffix",
@@ -3389,7 +3005,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Cold Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ColdDamageOverTimeMultiplierUber2_": {
     "generation_type": "Suffix",
@@ -3397,15 +3013,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Cold Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "ColdDamageOverTimeMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "+(17-24)% to Cold Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsDeterminationAuraUber1_": {
     "generation_type": "Suffix",
@@ -3413,7 +3021,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Determination Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsDisciplineAuraUber1": {
     "generation_type": "Suffix",
@@ -3421,7 +3029,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Discipline Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "FireDamageOverTimeMultiplierUber1___": {
     "generation_type": "Suffix",
@@ -3429,7 +3037,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Fire Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "FireDamageOverTimeMultiplierUber2": {
     "generation_type": "Suffix",
@@ -3437,15 +3045,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Fire Damage over Time Multiplier",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "FireDamageOverTimeMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "+(17-24)% to Fire Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ReducedAttributeRequirementsUber1": {
     "generation_type": "Suffix",
@@ -3453,7 +3053,7 @@
     "required_level": 68,
     "text": "Items and Gems have (10-5)% reduced Attribute Requirements",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ReducedAttributeRequirementsUber2": {
     "generation_type": "Suffix",
@@ -3461,7 +3061,7 @@
     "required_level": 75,
     "text": "Items and Gems have (15-11)% reduced Attribute Requirements",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsGraceAuraUber1": {
     "generation_type": "Suffix",
@@ -3469,7 +3069,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Grace Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsHasteAuraUber1": {
     "generation_type": "Suffix",
@@ -3477,7 +3077,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Haste Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ItemFoundQuantityIncreaseUber1": {
     "generation_type": "Suffix",
@@ -3485,7 +3085,7 @@
     "required_level": 75,
     "text": "(4-7)% increased Quantity of Items found",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ItemFoundQuantityIncreaseUber2": {
     "generation_type": "Suffix",
@@ -3493,7 +3093,7 @@
     "required_level": 85,
     "text": "(8-10)% increased Quantity of Items found",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ManaReservationEfficiencyUber1": {
     "generation_type": "Suffix",
@@ -3501,7 +3101,7 @@
     "required_level": 82,
     "text": "(6-10)% increased Mana Reservation Efficiency of Skills",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaximumBlockChanceUber1": {
     "generation_type": "Suffix",
@@ -3509,7 +3109,7 @@
     "required_level": 68,
     "text": "+2% to maximum Chance to Block Attack Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PercentageAllAttributesUberShaper1": {
     "generation_type": "Suffix",
@@ -3517,15 +3117,7 @@
     "required_level": 68,
     "text": "(6-9)% increased Attributes",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "PercentageAllAttributesUberShaper2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "(10-12)% increased Attributes",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PowerFrenzyOrEnduranceChargeOnKillUber1_": {
     "generation_type": "Suffix",
@@ -3533,7 +3125,7 @@
     "required_level": 68,
     "text": "(3-6)% chance to gain a Power, Frenzy or Endurance Charge on Kill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PowerFrenzyOrEnduranceChargeOnKillUber2": {
     "generation_type": "Suffix",
@@ -3541,15 +3133,7 @@
     "required_level": 75,
     "text": "(7-10)% chance to gain a Power, Frenzy or Endurance Charge on Kill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ReducedManaReservedUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 82,
-    "text": "(10-6)% increased Mana Reservation Efficiency of Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellBlockAmuletUber1_": {
     "generation_type": "Suffix",
@@ -3557,7 +3141,7 @@
     "required_level": 68,
     "text": "(4-5)% Chance to Block Spell Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellBlockAmuletUber2_": {
     "generation_type": "Suffix",
@@ -3565,7 +3149,7 @@
     "required_level": 75,
     "text": "(6-7)% Chance to Block Spell Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsVitalityAuraUber1": {
     "generation_type": "Suffix",
@@ -3573,6 +3157,6 @@
     "required_level": 68,
     "text": "Grants Level 22 Vitality Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   }
 }

@@ -1,136 +1,155 @@
 {
   "AfflictionJewelSmallPassivesGrantAttackSpeed": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Skill",
     "required_level": 1,
     "text": "Added Small Passive Skills also grant: 1% increased Attack Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantAttackSpeed2_": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Ease",
     "required_level": 68,
     "text": "Added Small Passive Skills also grant: 2% increased Attack Speed",
-    "weight": 350
+    "weight": 350,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantAttackSpeed3__": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Mastery",
     "required_level": 84,
     "text": "Added Small Passive Skills also grant: 3% increased Attack Speed",
-    "weight": 250
+    "weight": 250,
+    "influence": "Normal"
   },
   "AfflictionNotableCalamitous": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Calamitous",
-    "weight": 375
+    "weight": 375,
+    "influence": "Normal"
   },
   "AfflictionNotableCombatRhythm": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Combat Rhythm",
-    "weight": 312
+    "weight": 312,
+    "influence": "Normal"
   },
   "AfflictionNotableDeadlyRepartee": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Deadly Repartee",
-    "weight": 623
+    "weight": 623,
+    "influence": "Normal"
   },
   "AfflictionNotableDevastator": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Devastator",
-    "weight": 47
+    "weight": 47,
+    "influence": "Normal"
   },
   "AfflictionNotableDrivetheDestruction__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Drive the Destruction",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableFeedtheFury": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Feed the Fury",
-    "weight": 375
+    "weight": 375,
+    "influence": "Normal"
   },
   "AfflictionNotableFueltheFight": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Fuel the Fight",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableHeavyHitter": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 50,
     "text": "1 Added Passive Skill is Heavy Hitter",
-    "weight": 375
+    "weight": 375,
+    "influence": "Normal"
   },
   "AfflictionNotableHitandRun": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Hit and Run",
-    "weight": 623
+    "weight": 623,
+    "influence": "Normal"
   },
   "AfflictionNotableInsatiableKiller_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Insatiable Killer",
-    "weight": 312
+    "weight": 312,
+    "influence": "Normal"
   },
   "AfflictionNotableMageBane__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Mage Bane",
-    "weight": 117
+    "weight": 117,
+    "influence": "Normal"
   },
   "AfflictionNotableMartialMomentum": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Martial Momentum",
-    "weight": 312
+    "weight": 312,
+    "influence": "Normal"
   },
   "AfflictionNotableMartialProwess": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 1,
     "text": "1 Added Passive Skill is Martial Prowess",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableQuickandDeadly_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Quick and Deadly",
-    "weight": 117
+    "weight": 117,
+    "influence": "Normal"
   },
   "AfflictionNotableSmitetheWeak": {
-    "generation_type": "suffix",
+    "generation_type": "Suffix",
     "name": "of Significance",
     "required_level": 1,
     "text": "1 Added Passive Skill is Smite the Weak",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableViciousSkewering": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Vicious Skewering",
-    "weight": 141
+    "weight": 141,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantArmour": {
     "generation_type": "Prefix",
@@ -557,164 +576,187 @@
     "influence": "Normal"
   },
   "AfflictionNotableAggressiveDefence": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Aggressive Defence",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableBloodscent": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Bloodscent",
-    "weight": 47
+    "weight": 47,
+    "influence": "Normal"
   },
   "AfflictionNotableRunThrough": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Run Through",
-    "weight": 141
+    "weight": 141,
+    "influence": "Normal"
   },
   "AfflictionNotableWoundAggravation____": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Wound Aggravation",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableExpansiveMight": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Expansive Might",
-    "weight": 141
+    "weight": 141,
+    "influence": "Normal"
   },
   "AfflictionNotableOverlord": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Overlord",
-    "weight": 47
+    "weight": 47,
+    "influence": "Normal"
   },
   "AfflictionNotableWeightAdvantage_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Weight Advantage",
-    "weight": 750
+    "weight": 750,
+    "influence": "Normal"
   },
   "AfflictionNotableDiseaseVector": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Disease Vector",
-    "weight": 404
+    "weight": 404,
+    "influence": "Normal"
   },
   "AfflictionNotableFanofBlades_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Fan of Blades",
-    "weight": 51
+    "weight": 51,
+    "influence": "Normal"
   },
   "AfflictionNotableWindup_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Wind-up",
-    "weight": 151
+    "weight": 151,
+    "influence": "Normal"
   },
   "AfflictionNotableArcingShot__": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Arcing Shot",
-    "weight": 387
+    "weight": 387,
+    "influence": "Normal"
   },
   "AfflictionNotableBroadside_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Broadside",
-    "weight": 774
+    "weight": 774,
+    "influence": "Normal"
   },
   "AfflictionNotableTemperedArrowheads": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Tempered Arrowheads",
-    "weight": 387
+    "weight": 387,
+    "influence": "Normal"
   },
   "AfflictionNotableExplosiveForce": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Explosive Force",
-    "weight": 151
+    "weight": 151,
+    "influence": "Normal"
   },
   "AfflictionNotableOpportunisticFusilade_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Opportunistic Fusilade",
-    "weight": 807
+    "weight": 807,
+    "influence": "Normal"
   },
   "AfflictionNotableStormsHand": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Storm's Hand",
-    "weight": 403
+    "weight": 403,
+    "influence": "Normal"
   },
   "AfflictionNotableBattlefieldDominator": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Battlefield Dominator",
-    "weight": 604
+    "weight": 604,
+    "influence": "Normal"
   },
   "AfflictionNotableBrutalInfamy": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Brutal Infamy",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   },
   "AfflictionNotableFearsomeWarrior": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Fearsome Warrior",
-    "weight": 113
+    "weight": 113,
+    "influence": "Normal"
   },
   "AfflictionNotableGracefulExecution_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Graceful Execution",
-    "weight": 604
+    "weight": 604,
+    "influence": "Normal"
   },
   "AfflictionNotableMartialMastery": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Martial Mastery",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   },
   "AfflictionNotableSurefootedStriker_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Surefooted Striker",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   },
   "AfflictionNotableTitanicSwings_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Titanic Swings",
-    "weight": 302
+    "weight": 302,
+    "influence": "Normal"
   }
 }

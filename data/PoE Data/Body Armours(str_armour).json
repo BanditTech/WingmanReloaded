@@ -373,15 +373,7 @@
     "required_level": 80,
     "text": "+1 to Level of Socketed Skill Gems",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "SocketedActiveGemLevelInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 80,
-    "text": "+1 to Level of Socketed Skill Gems | +(5-10)% to Quality of Socketed Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysTakenAsFireInfluence1": {
     "generation_type": "Prefix",
@@ -389,7 +381,7 @@
     "required_level": 68,
     "text": "(5-10)% of Physical Damage from Hits taken as Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysTakenAsFireInfluence2": {
     "generation_type": "Prefix",
@@ -397,15 +389,7 @@
     "required_level": 83,
     "text": "(11-15)% of Physical Damage from Hits taken as Fire Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysTakenAsFireInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 93,
-    "text": "(16-18)% of Physical Damage from Hits taken as Fire Damage | (7-10)% of Fire Damage taken Recouped as Life",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ReflectedPhysicalDamageInfluence1__": {
     "generation_type": "Prefix",
@@ -413,15 +397,7 @@
     "required_level": 75,
     "text": "You and your Minions take 100% reduced Reflected Physical Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ReflectedPhysicalDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 85,
-    "text": "You and your Minions take 100% reduced Reflected Physical Damage | (5-3)% reduced Physical Damage taken",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AdditionalCurseOnEnemiesInfluence1": {
     "generation_type": "Prefix",
@@ -429,15 +405,7 @@
     "required_level": 82,
     "text": "You can apply an additional Curse",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "AdditionalCurseOnEnemiesInfluenceMavenV2___": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 92,
-    "text": "You can apply an additional Curse | 20% increased Mana Reservation Efficiency of Curse Aura Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MaximumLifeBodyInfluence1": {
     "generation_type": "Prefix",
@@ -445,7 +413,7 @@
     "required_level": 68,
     "text": "(5-8)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MaximumLifeBodyInfluence2_": {
     "generation_type": "Prefix",
@@ -453,23 +421,7 @@
     "required_level": 85,
     "text": "(9-12)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MaximumLifeBodyInfluenceMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 95,
-    "text": "(13-15)% increased maximum Life",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalCurseOnEnemiesInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 92,
-    "text": "You can apply an additional Curse | 20% increased Mana Reservation Efficiency of Curse Aura Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysTakenAsChaosInfluence1_": {
     "generation_type": "Prefix",
@@ -477,7 +429,7 @@
     "required_level": 75,
     "text": "(5-10)% of Physical Damage from Hits taken as Chaos Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysTakenAsChaosInfluence2": {
     "generation_type": "Prefix",
@@ -485,15 +437,7 @@
     "required_level": 83,
     "text": "(11-15)% of Physical Damage from Hits taken as Chaos Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysTakenAsChaosInfluenceMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 93,
-    "text": "(16-18)% of Physical Damage from Hits taken as Chaos Damage | +1% to maximum Chaos Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "RegenerateLifeOver1SecondInfluence1": {
     "generation_type": "Prefix",
@@ -501,15 +445,7 @@
     "required_level": 80,
     "text": "Every 4 seconds, Regenerate 15% of Life over one second",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "RegenerateLifeOverMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 90,
-    "text": "Every 4 seconds, Regenerate 25% of Life over one second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ConsecratedGroundStationaryInfluence1_": {
     "generation_type": "Prefix",
@@ -517,23 +453,7 @@
     "required_level": 75,
     "text": "You have Consecrated Ground around you while stationary",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ConsecratedGroundStationaryInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 85,
-    "text": "You have Consecrated Ground around you while stationary | Effects of Consecrated Ground you create Linger for 1 second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "HolyPhysicalExplosionInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 85,
-    "text": "Enemies you Kill Explode, dealing 3% of their Life as Physical Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "HolyPhysicalExplosionChanceInfluence1": {
     "generation_type": "Prefix",
@@ -541,7 +461,7 @@
     "required_level": 75,
     "text": "Enemies you Kill have a (11-20)% chance to Explode, dealing a tenth of their maximum Life as Physical Damage",
     "weight": 100,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "HolyPhysicalExplosionChanceInfluence2_": {
     "generation_type": "Prefix",
@@ -549,23 +469,7 @@
     "required_level": 85,
     "text": "Enemies you Kill have a (21-30)% chance to Explode, dealing a tenth of their maximum Life as Physical Damage",
     "weight": 25,
-    "influence": "Normal"
-  },
-  "HolyPhysicalExplosionChanceInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 95,
-    "text": "Enemies you Kill have a (31-35)% chance to Explode, dealing a tenth of their maximum Life as Physical Damage | (8-12)% increased Area of Effect",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "HolyPhysicalExplosionInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 95,
-    "text": "Enemies you Kill Explode, dealing 5% of their Life as Physical Damage | (8-12)% increased Area of Effect",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumManaInfluence1": {
     "generation_type": "Prefix",
@@ -573,7 +477,7 @@
     "required_level": 68,
     "text": "(9-11)% increased maximum Mana",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumManaInfluence2_": {
     "generation_type": "Prefix",
@@ -581,15 +485,7 @@
     "required_level": 80,
     "text": "(12-15)% increased maximum Mana",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MaximumManaInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 90,
-    "text": "(16-18)% increased maximum Mana",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysTakenAsLightningInfluence1": {
     "generation_type": "Prefix",
@@ -597,7 +493,7 @@
     "required_level": 68,
     "text": "(5-10)% of Physical Damage from Hits taken as Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysTakenAsLightningInfluence2": {
     "generation_type": "Prefix",
@@ -605,15 +501,7 @@
     "required_level": 83,
     "text": "(11-15)% of Physical Damage from Hits taken as Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysTakenAsLightningInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 93,
-    "text": "(16-18)% of Physical Damage from Hits taken as Lightning Damage | (7-10)% of Lightning Damage taken Recouped as Life",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LocalIncreaseSocketedSupportGemLevelUber1": {
     "generation_type": "Prefix",
@@ -621,15 +509,7 @@
     "required_level": 80,
     "text": "+1 to Level of Socketed Support Gems",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "LocalIncreaseSocketedSupportGemLevelUberMaven___": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 90,
-    "text": "+1 to Level of Socketed Support Gems | +(5-10)% to Quality of Socketed Support Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeUber1": {
     "generation_type": "Prefix",
@@ -637,7 +517,7 @@
     "required_level": 68,
     "text": "(5-8)% increased maximum Life",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeUber2": {
     "generation_type": "Prefix",
@@ -645,15 +525,7 @@
     "required_level": 85,
     "text": "(9-12)% increased maximum Life",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "MaximumLifeUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 95,
-    "text": "(13-15)% increased maximum Life",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageTakenAsFirePercentUber1": {
     "generation_type": "Prefix",
@@ -661,7 +533,7 @@
     "required_level": 68,
     "text": "(5-10)% of Physical Damage from Hits taken as Fire Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageTakenAsFirePercentUber2": {
     "generation_type": "Prefix",
@@ -669,15 +541,7 @@
     "required_level": 84,
     "text": "(11-15)% of Physical Damage from Hits taken as Fire Damage",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "PhysicalDamageTakenAsFirePercentUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 94,
-    "text": "(16-18)% of Physical Damage from Hits taken as Fire Damage | (7-10)% of Fire Damage taken Recouped as Life",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ReducedPhysicalReflectTakenUber1": {
     "generation_type": "Prefix",
@@ -685,23 +549,7 @@
     "required_level": 68,
     "text": "You and your Minions take 100% reduced Reflected Physical Damage",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "ReducedPhysicalReflectTakenUber2": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 75,
-    "text": "You and your Minions take 100% reduced Reflected Physical Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedPhysicalReflectTakenUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 85,
-    "text": "You and your Minions take 100% reduced Reflected Physical Damage | (5-3)% reduced Physical Damage taken",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SocketedSupportGemLevelInfluence1": {
     "generation_type": "Prefix",
@@ -709,15 +557,7 @@
     "required_level": 80,
     "text": "+1 to Level of Socketed Support Gems",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "SocketedSupportGemLevelInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "+1 to Level of Socketed Support Gems | +(5-10)% to Quality of Socketed Support Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "NearbyEnemiesAreBlindedInfluence1_": {
     "generation_type": "Prefix",
@@ -725,15 +565,7 @@
     "required_level": 75,
     "text": "Nearby Enemies are Blinded",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "NearbyEnemiesAreBlindedInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 85,
-    "text": "Nearby Enemies are Blinded | Cannot be Blinded",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysTakenAsColdInfluence1": {
     "generation_type": "Prefix",
@@ -741,7 +573,7 @@
     "required_level": 68,
     "text": "(5-10)% of Physical Damage from Hits taken as Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysTakenAsColdInfluence2": {
     "generation_type": "Prefix",
@@ -749,15 +581,7 @@
     "required_level": 83,
     "text": "(11-15)% of Physical Damage from Hits taken as Cold Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysTakenAsColdInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 93,
-    "text": "(16-18)% of Physical Damage from Hits taken as Cold Damage | (7-10)% of Cold Damage taken Recouped as Life",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ReflectedElementalDamageInfluence1": {
     "generation_type": "Prefix",
@@ -765,31 +589,7 @@
     "required_level": 75,
     "text": "You and your Minions take 100% reduced Reflected Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ReflectedElementalDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 85,
-    "text": "You and your Minions take 100% reduced Reflected Elemental Damage | (5-3)% reduced Elemental Damage taken",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "DamageTakenFromManaBeforeLifeUber1_": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 80,
-    "text": "(5-10)% of Damage is taken from Mana before Life",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "DamageTakenFromManaBeforeLifeUberMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 90,
-    "text": "(11-15)% of Damage is taken from Mana before Life",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "LocalIncreaseSocketedActiveGemLevelUber1": {
     "generation_type": "Prefix",
@@ -797,15 +597,7 @@
     "required_level": 80,
     "text": "+1 to Level of Socketed Skill Gems",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "LocalIncreaseSocketedActiveGemLevelUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 90,
-    "text": "+1 to Level of Socketed Skill Gems | +(5-10)% to Quality of Socketed Skill Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaximumManaBodyUber1": {
     "generation_type": "Prefix",
@@ -813,7 +605,7 @@
     "required_level": 68,
     "text": "(9-11)% increased maximum Mana",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaximumManaBodyUber2": {
     "generation_type": "Prefix",
@@ -821,15 +613,7 @@
     "required_level": 75,
     "text": "(12-15)% increased maximum Mana",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "MaximumManaBodyUberMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 85,
-    "text": "(16-18)% increased maximum Mana",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalDamageTakenAsColdPercentUber1": {
     "generation_type": "Prefix",
@@ -837,7 +621,7 @@
     "required_level": 68,
     "text": "(5-10)% of Physical Damage from Hits taken as Cold Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalDamageTakenAsColdPercentUber2": {
     "generation_type": "Prefix",
@@ -845,15 +629,7 @@
     "required_level": 83,
     "text": "(11-15)% of Physical Damage from Hits taken as Cold Damage",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "PhysicalDamageTakenAsColdPercentUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 93,
-    "text": "(16-18)% of Physical Damage from Hits taken as Cold Damage | (7-10)% of Cold Damage taken Recouped as Life",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalDamageTakenAsLightningPercentUber1": {
     "generation_type": "Prefix",
@@ -861,7 +637,7 @@
     "required_level": 68,
     "text": "(5-10)% of Physical Damage from Hits taken as Lightning Damage",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalDamageTakenAsLightningPercentUber2___": {
     "generation_type": "Prefix",
@@ -869,15 +645,7 @@
     "required_level": 82,
     "text": "(11-15)% of Physical Damage from Hits taken as Lightning Damage",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "PhysicalDamageTakenAsLightningPercentUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 92,
-    "text": "(16-18)% of Physical Damage from Hits taken as Lightning Damage | (7-10)% of Lightning Damage taken Recouped as Life",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ReducedElementalReflectTakenUber1": {
     "generation_type": "Prefix",
@@ -885,23 +653,7 @@
     "required_level": 68,
     "text": "You and your Minions take 100% reduced Reflected Elemental Damage",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "ReducedElementalReflectTakenUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 75,
-    "text": "You and your Minions take 100% reduced Reflected Elemental Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedElementalReflectTakenUberMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 85,
-    "text": "You and your Minions take 100% reduced Reflected Elemental Damage | (5-3)% reduced Elemental Damage taken",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToSuppressSpellsHigh1__": {
     "generation_type": "Suffix",
@@ -1413,7 +1165,7 @@
     "required_level": 68,
     "text": "+(10-12)% to all Elemental Resistances",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AllResistancesInfluence2_": {
     "generation_type": "Suffix",
@@ -1421,7 +1173,7 @@
     "required_level": 70,
     "text": "+(13-15)% to all Elemental Resistances",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AllResistancesInfluence3_": {
     "generation_type": "Suffix",
@@ -1429,15 +1181,7 @@
     "required_level": 75,
     "text": "+(16-18)% to all Elemental Resistances",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AllResistancesInfluenceMaven____": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "+(19-22)% to all Elemental Resistances | +1% to all maximum Elemental Resistances",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "EnduranceChargeIfHitRecentlyInfluence1": {
     "generation_type": "Suffix",
@@ -1445,15 +1189,7 @@
     "required_level": 80,
     "text": "Gain 1 Endurance Charge every second if you've been Hit Recently",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "EnduranceChargeIfHitRecentlyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "Gain 1 Endurance Charge every second if you've been Hit Recently | 3% increased Area of Effect per Endurance Charge",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LifeRecoveryRateBodyInfluence1": {
     "generation_type": "Suffix",
@@ -1461,7 +1197,7 @@
     "required_level": 68,
     "text": "(8-11)% increased Life Recovery rate",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LifeRecoveryRateBodyInfluence2": {
     "generation_type": "Suffix",
@@ -1469,15 +1205,7 @@
     "required_level": 80,
     "text": "(12-15)% increased Life Recovery rate",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "LifeRecoveryRateBodyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(12-15)% increased Life Recovery rate | Life Flasks gain 1 Charge every 3 seconds",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LifeOnKillPercentInfluence1_": {
     "generation_type": "Suffix",
@@ -1485,7 +1213,7 @@
     "required_level": 68,
     "text": "Recover (3-4)% of Life on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LifeOnKillPercentInfluence2": {
     "generation_type": "Suffix",
@@ -1493,15 +1221,7 @@
     "required_level": 80,
     "text": "Recover (5-6)% of Life on Kill",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "LifeOnKillPercentInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "Recover (5-6)% of Life on Kill | (5-10)% increased Life Recovery Rate if you haven't Killed Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PercentageStrengthBodyInfluence1": {
     "generation_type": "Suffix",
@@ -1509,7 +1229,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Strength",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PercentageStrengthBodyInfluence2_": {
     "generation_type": "Suffix",
@@ -1517,15 +1237,7 @@
     "required_level": 75,
     "text": "(9-12)% increased Strength",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageStrengthBodyInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "(9-12)% increased Strength | +1 to Level of Socketed Strength Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "SocketedAttacksManaCostInfluence1": {
     "generation_type": "Suffix",
@@ -1533,15 +1245,7 @@
     "required_level": 85,
     "text": "Socketed Attacks have -15 to Total Mana Cost",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "SocketedAttacksManaCostInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 95,
-    "text": "Socketed Attacks have -20 to Total Mana Cost | Ignore Stuns while using Socketed Attack Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AdditionalCritWithAttacksInfluence1_": {
     "generation_type": "Suffix",
@@ -1549,7 +1253,7 @@
     "required_level": 68,
     "text": "Attacks have +(0.5-1)% to Critical Strike Chance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AdditionalCritWithAttacksInfluence2_": {
     "generation_type": "Suffix",
@@ -1557,15 +1261,7 @@
     "required_level": 84,
     "text": "Attacks have +(1.1-1.5)% to Critical Strike Chance",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "AdditionalCritWithAttacksInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 94,
-    "text": "Attacks have +(1.6-2)% to Critical Strike Chance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AdditionalCritWithSpellsInfluence1": {
     "generation_type": "Suffix",
@@ -1573,7 +1269,7 @@
     "required_level": 68,
     "text": "+(0.5-1)% to Spell Critical Strike Chance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AdditionalCritWithSpellsInfluence2": {
     "generation_type": "Suffix",
@@ -1581,39 +1277,7 @@
     "required_level": 84,
     "text": "+(1.1-1.5)% to Spell Critical Strike Chance",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "AdditionalCritWithSpellsInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 94,
-    "text": "+(1.6-2)% to Spell Critical Strike Chance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentBodyInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 68,
-    "text": "Regenerate (1-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentBodyInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 75,
-    "text": "Regenerate (1.6-2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentBodyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 85,
-    "text": "Regenerate (2.1-3)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "OfferingEffectInfluence1_": {
     "generation_type": "Suffix",
@@ -1621,7 +1285,7 @@
     "required_level": 68,
     "text": "(16-20)% increased effect of Offerings",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "OfferingEffectInfluence2": {
     "generation_type": "Suffix",
@@ -1629,15 +1293,7 @@
     "required_level": 80,
     "text": "(21-25)% increased effect of Offerings",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "OfferingEffectInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "(26-35)% increased effect of Offerings",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "EnergyShieldRecoveryRateBodyInfluence1": {
     "generation_type": "Suffix",
@@ -1645,7 +1301,7 @@
     "required_level": 68,
     "text": "(8-11)% increased Energy Shield Recovery rate",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "EnergyShieldRecoveryRateBodyInfluence2": {
     "generation_type": "Suffix",
@@ -1653,15 +1309,7 @@
     "required_level": 80,
     "text": "(12-15)% increased Energy Shield Recovery rate",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRecoveryRateBodyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 90,
-    "text": "(12-15)% increased Energy Shield Recovery rate | Regenerate (50-100) Energy Shield per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "EnergyShieldOnKillPercentInfluence1_": {
     "generation_type": "Suffix",
@@ -1669,7 +1317,7 @@
     "required_level": 68,
     "text": "Recover (3-4)% of Energy Shield on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "EnergyShieldOnKillPercentInfluence2_": {
     "generation_type": "Suffix",
@@ -1677,15 +1325,7 @@
     "required_level": 80,
     "text": "Recover (5-6)% of Energy Shield on Kill",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldOnKillPercentInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 90,
-    "text": "Recover (5-6)% of Energy Shield on Kill | (5-10)% increased Energy Shield Recovery Rate if you haven't Killed Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PercentageIntelligenceBodyInfluence1": {
     "generation_type": "Suffix",
@@ -1693,7 +1333,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Intelligence",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PercentageIntelligenceBodyInfluence2___": {
     "generation_type": "Suffix",
@@ -1701,15 +1341,7 @@
     "required_level": 75,
     "text": "(9-12)% increased Intelligence",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageIntelligenceBodyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(9-12)% increased Intelligence | +1 to Level of Socketed Intelligence Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AddPowerChargeOnCritInfluence1": {
     "generation_type": "Suffix",
@@ -1717,15 +1349,7 @@
     "required_level": 80,
     "text": "15% chance to gain a Power Charge on Critical Strike",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "AddPowerChargeOnCritInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 90,
-    "text": "15% chance to gain a Power Charge on Critical Strike | 3% increased Damage per Power Charge",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AdditionalCriticalStrikeChanceWithAttacksUber1": {
     "generation_type": "Suffix",
@@ -1733,7 +1357,7 @@
     "required_level": 68,
     "text": "Attacks have +(0.5-1)% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AdditionalCriticalStrikeChanceWithAttacksUber2": {
     "generation_type": "Suffix",
@@ -1741,39 +1365,7 @@
     "required_level": 84,
     "text": "Attacks have +(1.1-1.5)% to Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "AdditionalCriticalStrikeChanceWithAttacksUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 94,
-    "text": "Attacks have +(1.6-2)% to Critical Strike Chance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRatePercentUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "Regenerate (1-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRatePercentUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "Regenerate (1.6-2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationRatePercentUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 85,
-    "text": "Regenerate (2.1-3)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeOnKillPercentUber1": {
     "generation_type": "Suffix",
@@ -1781,7 +1373,7 @@
     "required_level": 68,
     "text": "Recover (3-4)% of Life on Kill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeOnKillPercentUber2__": {
     "generation_type": "Suffix",
@@ -1789,15 +1381,7 @@
     "required_level": 75,
     "text": "Recover (5-6)% of Life on Kill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MaximumLifeOnKillPercentUberMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 85,
-    "text": "Recover (5-6)% of Life on Kill | (5-10)% increased Life Recovery Rate if you haven't Killed Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PercentageDexterityUber1": {
     "generation_type": "Suffix",
@@ -1805,7 +1389,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Dexterity",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PercentageDexterityUber2": {
     "generation_type": "Suffix",
@@ -1813,15 +1397,7 @@
     "required_level": 83,
     "text": "(9-12)% increased Dexterity",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "PercentageDexterityUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 93,
-    "text": "(9-12)% increased Dexterity | +1 to Level of Socketed Dexterity Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PercentageStrengthUber1_": {
     "generation_type": "Suffix",
@@ -1829,7 +1405,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Strength",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PercentageStrengthUber2__": {
     "generation_type": "Suffix",
@@ -1837,15 +1413,7 @@
     "required_level": 83,
     "text": "(9-12)% increased Strength",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "PercentageStrengthUberMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 93,
-    "text": "(9-12)% increased Strength | +1 to Level of Socketed Strength Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AuraEffectBodyInfluence1": {
     "generation_type": "Suffix",
@@ -1853,7 +1421,7 @@
     "required_level": 75,
     "text": "(15-20)% increased effect of Non-Curse Auras from your Skills",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AuraEffectBodyInfluence2": {
     "generation_type": "Suffix",
@@ -1861,15 +1429,7 @@
     "required_level": 80,
     "text": "(21-25)% increased effect of Non-Curse Auras from your Skills",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "AuraEffectBodyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(26-30)% increased effect of Non-Curse Auras from your Skills",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "FrenzyChargeOnHitChanceInfluence1": {
     "generation_type": "Suffix",
@@ -1877,15 +1437,7 @@
     "required_level": 80,
     "text": "10% chance to gain a Frenzy Charge on Hit",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "FrenzyChargeOnHitChanceInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "10% chance to gain a Frenzy Charge on Hit | 1% increased Movement Speed per Frenzy Charge",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaRecoveryRateBodyInfluence1_": {
     "generation_type": "Suffix",
@@ -1893,7 +1445,7 @@
     "required_level": 68,
     "text": "(8-11)% increased Mana Recovery rate",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaRecoveryRateBodyInfluence2": {
     "generation_type": "Suffix",
@@ -1901,15 +1453,7 @@
     "required_level": 80,
     "text": "(12-15)% increased Mana Recovery rate",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ManaRecoveryRateBodyInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(12-15)% increased Mana Recovery rate | (20-35)% increased Mana Recovery from Flasks",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaOnKillPercentInfluence1": {
     "generation_type": "Suffix",
@@ -1917,7 +1461,7 @@
     "required_level": 68,
     "text": "Recover (3-4)% of Mana on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaOnKillPercentInfluence2": {
     "generation_type": "Suffix",
@@ -1925,15 +1469,7 @@
     "required_level": 80,
     "text": "Recover (5-6)% of Mana on Kill",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ManaOnKillPercentInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "Recover (5-6)% of Mana on Kill | (5-10)% increased Mana Recovery Rate if you haven't Killed Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PercentageDexterityBodyInfluence1": {
     "generation_type": "Suffix",
@@ -1941,7 +1477,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Dexterity",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PercentageDexterityBodyInfluence2": {
     "generation_type": "Suffix",
@@ -1949,15 +1485,7 @@
     "required_level": 75,
     "text": "(9-12)% increased Dexterity",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageDexterityBodyInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "(9-12)% increased Dexterity | +1 to Level of Socketed Dexterity Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AdditionalCriticalStrikeChanceWithSpellsUber1_": {
     "generation_type": "Suffix",
@@ -1965,7 +1493,7 @@
     "required_level": 68,
     "text": "+(0.5-1)% to Spell Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AdditionalCriticalStrikeChanceWithSpellsUber2_": {
     "generation_type": "Suffix",
@@ -1973,15 +1501,7 @@
     "required_level": 84,
     "text": "+(1.1-1.5)% to Spell Critical Strike Chance",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "AdditionalCriticalStrikeChanceWithSpellsUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 94,
-    "text": "+(1.6-2)% to Spell Critical Strike Chance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaximumEnergyShieldOnKillPercentUber1": {
     "generation_type": "Suffix",
@@ -1989,7 +1509,7 @@
     "required_level": 68,
     "text": "Recover (3-4)% of Energy Shield on Kill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaximumEnergyShieldOnKillPercentUber2": {
     "generation_type": "Suffix",
@@ -1997,15 +1517,7 @@
     "required_level": 75,
     "text": "Recover (5-6)% of Energy Shield on Kill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MaximumEnergyShieldOnKillPercentUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 85,
-    "text": "Recover (5-6)% of Energy Shield on Kill | (5-10)% increased Energy Shield Recovery Rate if you haven't Killed Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaximumManaOnKillPercentUber1": {
     "generation_type": "Suffix",
@@ -2013,7 +1525,7 @@
     "required_level": 68,
     "text": "Recover (3-4)% of Mana on Kill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaximumManaOnKillPercentUber2": {
     "generation_type": "Suffix",
@@ -2021,15 +1533,7 @@
     "required_level": 75,
     "text": "Recover (5-6)% of Mana on Kill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MaximumManaOnKillPercentUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 85,
-    "text": "Recover (5-6)% of Mana on Kill | (5-10)% increased Mana Recovery Rate if you haven't Killed Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PercentageIntelligenceUber1": {
     "generation_type": "Suffix",
@@ -2037,7 +1541,7 @@
     "required_level": 68,
     "text": "(5-8)% increased Intelligence",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PercentageIntelligenceUber2": {
     "generation_type": "Suffix",
@@ -2045,15 +1549,7 @@
     "required_level": 83,
     "text": "(9-12)% increased Intelligence",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "PercentageIntelligenceUberMaven__": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 93,
-    "text": "(9-12)% increased Intelligence | +1 to Level of Socketed Intelligence Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SupportedByItemRarityUber1": {
     "generation_type": "Suffix",
@@ -2061,7 +1557,7 @@
     "required_level": 68,
     "text": "Socketed Gems are Supported by Level 10 Item Rarity | (8-12)% increased Rarity of Items found from Slain Unique Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SupportedByItemRarityUber2": {
     "generation_type": "Suffix",
@@ -2069,15 +1565,7 @@
     "required_level": 85,
     "text": "Socketed Gems are Supported by Level 15 Item Rarity | (13-18)% increased Rarity of Items found from Slain Unique Enemies",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "SupportedByItemRarityUberMaven__": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 95,
-    "text": "Socketed Gems are Supported by Level 20 Item Rarity | (19-25)% increased Rarity of Items found from Slain Unique Enemies",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedMana1": {
     "generation_type": "Prefix",

@@ -461,7 +461,7 @@
     "required_level": 68,
     "text": "(18-22)% increased Damage over Time",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "DamageOverTimeInfluence2_": {
     "generation_type": "Prefix",
@@ -469,7 +469,7 @@
     "required_level": 70,
     "text": "(23-26)% increased Damage over Time",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "DamageOverTimeInfluence3": {
     "generation_type": "Prefix",
@@ -477,15 +477,7 @@
     "required_level": 73,
     "text": "(27-30)% increased Damage over Time",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "DamageOverTimeInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 83,
-    "text": "(31-38)% increased Damage over Time",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MaximumFrenzyChargeInfluence1": {
     "generation_type": "Prefix",
@@ -493,15 +485,7 @@
     "required_level": 75,
     "text": "+1 to Maximum Frenzy Charges",
     "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumFrenzyChargeInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 85,
-    "text": "+1 to Maximum Frenzy Charges | 10% chance that if you would gain Frenzy Charges, you instead gain up to your maximum number of Frenzy Charges",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageInfluence1": {
     "generation_type": "Prefix",
@@ -509,7 +493,7 @@
     "required_level": 68,
     "text": "(18-22)% increased Melee Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageInfluence2_": {
     "generation_type": "Prefix",
@@ -517,7 +501,7 @@
     "required_level": 70,
     "text": "(23-26)% increased Melee Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageInfluence3": {
     "generation_type": "Prefix",
@@ -525,15 +509,7 @@
     "required_level": 73,
     "text": "(27-30)% increased Melee Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MeleeDamageInfluenceMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 83,
-    "text": "(31-38)% increased Melee Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ProjectileAttackDamageInfluence1_": {
     "generation_type": "Prefix",
@@ -541,7 +517,7 @@
     "required_level": 68,
     "text": "(18-22)% increased Projectile Attack Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ProjectileAttackDamageInfluence2": {
     "generation_type": "Prefix",
@@ -549,7 +525,7 @@
     "required_level": 70,
     "text": "(23-26)% increased Projectile Attack Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ProjectileAttackDamageInfluence3": {
     "generation_type": "Prefix",
@@ -557,15 +533,7 @@
     "required_level": 73,
     "text": "(27-30)% increased Projectile Attack Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ProjectileAttackDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 83,
-    "text": "(31-38)% increased Projectile Attack Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "SpellDamageInfluence1": {
     "generation_type": "Prefix",
@@ -573,7 +541,7 @@
     "required_level": 68,
     "text": "(18-22)% increased Spell Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "SpellDamageInfluence2": {
     "generation_type": "Prefix",
@@ -581,7 +549,7 @@
     "required_level": 70,
     "text": "(23-26)% increased Spell Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "SpellDamageInfluence3": {
     "generation_type": "Prefix",
@@ -589,15 +557,7 @@
     "required_level": 73,
     "text": "(27-30)% increased Spell Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 83,
-    "text": "(31-38)% increased Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChanceToImpaleInfluence1": {
     "generation_type": "Prefix",
@@ -605,7 +565,7 @@
     "required_level": 68,
     "text": "(13-16)% chance to Impale Enemies on Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChanceToImpaleInfluence2": {
     "generation_type": "Prefix",
@@ -613,15 +573,7 @@
     "required_level": 80,
     "text": "(17-20)% chance to Impale Enemies on Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceToImpaleInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 90,
-    "text": "(21-25)% chance to Impale Enemies on Hit with Attacks | Adds (1-2) to (3-5) Physical Damage for each Impale on Enemy",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChanceToIntimidateOnHitInfluence1": {
     "generation_type": "Prefix",
@@ -629,15 +581,7 @@
     "required_level": 85,
     "text": "(7-10)% chance to Intimidate Enemies for 4 seconds on Hit",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "ChanceToIntimidateOnHitInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 95,
-    "text": "Intimidate Enemies for 4 seconds on Hit",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChanceToUnnerveOnHitInfluence1___": {
     "generation_type": "Prefix",
@@ -645,15 +589,7 @@
     "required_level": 85,
     "text": "(7-10)% chance to Unnerve Enemies for 4 seconds on Hit",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "ChanceToUnnerveOnHitInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 95,
-    "text": "Unnerve Enemies for 4 seconds on Hit",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AilmentDurationInfluence1_": {
     "generation_type": "Prefix",
@@ -661,7 +597,7 @@
     "required_level": 68,
     "text": "(10-12)% increased Duration of Ailments on Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AilmentDurationInfluence2": {
     "generation_type": "Prefix",
@@ -669,15 +605,7 @@
     "required_level": 80,
     "text": "(13-15)% increased Duration of Ailments on Enemies",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AilmentDurationInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 90,
-    "text": "(13-15)% increased Duration of Ailments on Enemies | (13-15)% increased Effect of Non-Damaging Ailments",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "StrikeSkillsAdditionalTargetInfluence1": {
     "generation_type": "Prefix",
@@ -685,15 +613,7 @@
     "required_level": 80,
     "text": "Non-Vaal Strike Skills target 1 additional nearby Enemy",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "StrikeSkillsAdditionalTargetInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 90,
-    "text": "Non-Vaal Strike Skills target 2 additional nearby Enemies",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ConvertPhysicalToColdInfluence1_": {
     "generation_type": "Prefix",
@@ -701,7 +621,7 @@
     "required_level": 68,
     "text": "(18-21)% of Physical Damage Converted to Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToColdInfluence2": {
     "generation_type": "Prefix",
@@ -709,15 +629,7 @@
     "required_level": 71,
     "text": "(22-25)% of Physical Damage Converted to Cold Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ConvertPhysicalToColdInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 81,
-    "text": "(22-25)% of Physical Damage Converted to Cold Damage | Gain (3-5)% of Physical Damage as Extra Cold Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToFireInfluence1": {
     "generation_type": "Prefix",
@@ -725,7 +637,7 @@
     "required_level": 68,
     "text": "(18-21)% of Physical Damage Converted to Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToFireInfluence2": {
     "generation_type": "Prefix",
@@ -733,15 +645,7 @@
     "required_level": 71,
     "text": "(22-25)% of Physical Damage Converted to Fire Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ConvertPhysicalToFireInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 81,
-    "text": "(22-25)% of Physical Damage Converted to Fire Damage | Gain (3-5)% of Physical Damage as Extra Fire Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToLightningInfluence1": {
     "generation_type": "Prefix",
@@ -749,7 +653,7 @@
     "required_level": 68,
     "text": "(18-21)% of Physical Damage Converted to Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToLightningInfluence2": {
     "generation_type": "Prefix",
@@ -757,39 +661,7 @@
     "required_level": 71,
     "text": "(22-25)% of Physical Damage Converted to Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ConvertPhysicalToLightningInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 81,
-    "text": "(22-25)% of Physical Damage Converted to Lightning Damage | Gain (3-5)% of Physical Damage as Extra Lightning Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumColdResistanceInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 75,
-    "text": "+1% to maximum Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumColdResistanceInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 85,
-    "text": "+2% to maximum Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumColdResistanceInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 95,
-    "text": "+3% to maximum Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumEnergyShieldLeechRateInfluence1": {
     "generation_type": "Prefix",
@@ -797,15 +669,7 @@
     "required_level": 75,
     "text": "15% increased Maximum total Energy Shield Recovery per second from Leech",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumEnergyShieldLeechRateInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 85,
-    "text": "30% increased Maximum total Energy Shield Recovery per second from Leech",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumLifeLeechRateInfluence1": {
     "generation_type": "Prefix",
@@ -813,15 +677,7 @@
     "required_level": 75,
     "text": "10% increased Maximum total Life Recovery per second from Leech",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumLifeLeechRateInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 85,
-    "text": "20% increased Maximum total Life Recovery per second from Leech",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToGainFrenzyChargeOnKillUberElder1": {
     "generation_type": "Prefix",
@@ -829,7 +685,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain a Frenzy Charge on Kill",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChanceToGainFrenzyChargeOnKillUberElder2_": {
     "generation_type": "Prefix",
@@ -837,15 +693,7 @@
     "required_level": 84,
     "text": "(7-10)% chance to gain a Frenzy Charge on Kill",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "ChanceToGainFrenzyChargeOnKillUberElderMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 94,
-    "text": "(7-10)% chance to gain a Frenzy Charge on Kill | 50% increased Frenzy Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ProjectileSpeedUber1": {
     "generation_type": "Prefix",
@@ -853,7 +701,7 @@
     "required_level": 68,
     "text": "(15-20)% increased Projectile Speed | Socketed Gems are supported by Level 16 Faster Projectiles",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ProjectileSpeedUber2": {
     "generation_type": "Prefix",
@@ -861,7 +709,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Projectile Speed | Socketed Gems are supported by Level 18 Faster Projectiles",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ProjectileSpeedUber3_": {
     "generation_type": "Prefix",
@@ -869,15 +717,7 @@
     "required_level": 82,
     "text": "(26-30)% increased Projectile Speed | Socketed Gems are supported by Level 20 Faster Projectiles",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ProjectileSpeedUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 92,
-    "text": "(26-30)% increased Projectile Speed | Socketed Gems are supported by Level 25 Faster Projectiles",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AddedColdDamageCritRecentlyInfluence1": {
     "generation_type": "Prefix",
@@ -885,7 +725,7 @@
     "required_level": 68,
     "text": "Adds (16-20) to (22-25) Cold Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedColdDamageCritRecentlyInfluence2": {
     "generation_type": "Prefix",
@@ -893,15 +733,7 @@
     "required_level": 73,
     "text": "Adds (20-25) to (26-35) Cold Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AddedColdDamageCritRecentlyInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 83,
-    "text": "Adds (26-30) to (36-45) Cold Damage if you've dealt a Critical Strike Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedFireDamageCritRecentlyInfluence1": {
     "generation_type": "Prefix",
@@ -909,7 +741,7 @@
     "required_level": 68,
     "text": "Adds (16-20) to (22-25) Fire Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedFireDamageCritRecentlyInfluence2": {
     "generation_type": "Prefix",
@@ -917,15 +749,7 @@
     "required_level": 73,
     "text": "Adds (20-25) to (26-35) Fire Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AddedFireDamageCritRecentlyInfluenceMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 83,
-    "text": "Adds (26-30) to (36-45) Fire Damage if you've dealt a Critical Strike Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedLightningDamageCritRecentlyInfluence1_": {
     "generation_type": "Prefix",
@@ -933,7 +757,7 @@
     "required_level": 68,
     "text": "Adds 1 to (41-47) Lightning Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedLightningDamageCritRecentlyInfluence2": {
     "generation_type": "Prefix",
@@ -941,15 +765,7 @@
     "required_level": 73,
     "text": "Adds 1 to (48-60) Lightning Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AddedLightningDamageCritRecentlyInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 83,
-    "text": "Adds 1 to (61-90) Lightning Damage if you've dealt a Critical Strike Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedPhysicalDamageCritRecentlyInfluence1": {
     "generation_type": "Prefix",
@@ -957,7 +773,7 @@
     "required_level": 68,
     "text": "Adds (4-5) to (6-8) Physical Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedPhysicalDamageCritRecentlyInfluence2": {
     "generation_type": "Prefix",
@@ -965,15 +781,7 @@
     "required_level": 73,
     "text": "Adds (6-8) to (9-11) Physical Damage if you've dealt a Critical Strike Recently",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AddedPhysicalDamageCritRecentlyInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 83,
-    "text": "Adds (9-12) to (13-16) Physical Damage if you've dealt a Critical Strike Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "FrenzyChargeOnKillInfluence1": {
     "generation_type": "Prefix",
@@ -981,7 +789,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain a Frenzy Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "FrenzyChargeOnKillInfluence2": {
     "generation_type": "Prefix",
@@ -989,15 +797,7 @@
     "required_level": 80,
     "text": "(7-10)% chance to gain a Frenzy Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "FrenzyChargeOnKillInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "(7-10)% chance to gain a Frenzy Charge on Kill | 50% increased Frenzy Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinionDamageInfluence1": {
     "generation_type": "Prefix",
@@ -1005,7 +805,7 @@
     "required_level": 68,
     "text": "Minions deal (18-22)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinionDamageInfluence2": {
     "generation_type": "Prefix",
@@ -1013,7 +813,7 @@
     "required_level": 70,
     "text": "Minions deal (23-26)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinionDamageInfluence3_": {
     "generation_type": "Prefix",
@@ -1021,15 +821,7 @@
     "required_level": 73,
     "text": "Minions deal (27-30)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MinionDamageInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 83,
-    "text": "Minions deal (31-45)% increased Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "SupportedByManaLeechUber1": {
     "generation_type": "Prefix",
@@ -1037,15 +829,7 @@
     "required_level": 68,
     "text": "Socketed Gems are Supported by Level 15 Mana Leech",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "SupportedByManaLeechUberMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 78,
-    "text": "Socketed Gems are Supported by Level 20 Mana Leech | (20-30)% increased Maximum total Mana Recovery per second from Leech",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ProjectileDamageUber1": {
     "generation_type": "Prefix",
@@ -1053,7 +837,7 @@
     "required_level": 68,
     "text": "(15-18)% increased Projectile Damage | Socketed Gems are Supported by Level 16 Slower Projectiles",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ProjectileDamageUber2": {
     "generation_type": "Prefix",
@@ -1061,7 +845,7 @@
     "required_level": 75,
     "text": "(19-22)% increased Projectile Damage | Socketed Gems are Supported by Level 18 Slower Projectiles",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ProjectileDamageUber3": {
     "generation_type": "Prefix",
@@ -1069,15 +853,7 @@
     "required_level": 83,
     "text": "(23-25)% increased Projectile Damage | Socketed Gems are Supported by Level 20 Slower Projectiles",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ProjectileDamageUberMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 93,
-    "text": "(23-25)% increased Projectile Damage | Socketed Gems are Supported by Level 25 Slower Projectiles",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToSuppressSpells1_": {
     "generation_type": "Suffix",
@@ -1687,37 +1463,13 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "AvoidStunInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 68,
-    "text": "(16-20)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidStunInfluence2_": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 70,
-    "text": "(21-25)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
   "AvoidStunInfluence3": {
     "generation_type": "Suffix",
     "name": "of the Conquest",
     "required_level": 75,
     "text": "(31-35)% chance to Avoid being Stunned",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidStunInfluenceMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "(36-50)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "BlockPercentInfluence1_": {
     "generation_type": "Suffix",
@@ -1725,7 +1477,7 @@
     "required_level": 68,
     "text": "(2-3)% Chance to Block Attack Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "BlockPercentInfluence2": {
     "generation_type": "Suffix",
@@ -1733,15 +1485,7 @@
     "required_level": 80,
     "text": "(4-5)% Chance to Block Attack Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "BlockPercentInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(4-5)% Chance to Block Attack Damage | +1% to maximum Chance to Block Attack Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CullingStrikeInfluence1": {
     "generation_type": "Suffix",
@@ -1749,15 +1493,7 @@
     "required_level": 73,
     "text": "Culling Strike",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "CullingStrikeInfluenceMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 83,
-    "text": "Culling Strike | (15-25)% increased Area of Effect if you've dealt a Culling Strike Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeWeaponRangeInfluence1": {
     "generation_type": "Suffix",
@@ -1765,15 +1501,7 @@
     "required_level": 82,
     "text": "+0.2 metres to Melee Strike Range",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MeleeWeaponRangeInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 92,
-    "text": "+(0.3-0.4) metres to Melee Strike Range",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChaosDamageOverTimeMultiplierInfluence1": {
     "generation_type": "Suffix",
@@ -1781,7 +1509,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Chaos Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChaosDamageOverTimeMultiplierInfluence2": {
     "generation_type": "Suffix",
@@ -1789,15 +1517,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Chaos Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ChaosDamageOverTimeMultiplierInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Chaos Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ColdDamageOverTimeMultiplierInfluence1": {
     "generation_type": "Suffix",
@@ -1805,7 +1525,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Cold Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ColdDamageOverTimeMultiplierInfluence2__": {
     "generation_type": "Suffix",
@@ -1813,15 +1533,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Cold Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ColdDamageOverTimeMultiplierInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Cold Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FireDamageOverTimeMultiplierInfluence1_": {
     "generation_type": "Suffix",
@@ -1829,7 +1541,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Fire Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FireDamageOverTimeMultiplierInfluence2": {
     "generation_type": "Suffix",
@@ -1837,15 +1549,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Fire Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FireDamageOverTimeMultiplierInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Fire Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ManaGainPerTargetInfluence1": {
     "generation_type": "Suffix",
@@ -1853,15 +1557,7 @@
     "required_level": 68,
     "text": "Gain (3-5) Mana per Enemy Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ManaGainPerTargetInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 78,
-    "text": "Gain (3-5) Mana per Enemy Hit with Attacks | (10-20)% increased Attack Speed while not on Low Mana",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageDexterityInfluence1_": {
     "generation_type": "Suffix",
@@ -1869,7 +1565,7 @@
     "required_level": 68,
     "text": "(6-8)% increased Dexterity",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageDexterityInfluence2": {
     "generation_type": "Suffix",
@@ -1877,15 +1573,7 @@
     "required_level": 75,
     "text": "(9-10)% increased Dexterity",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageDexterityInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 85,
-    "text": "(11-12)% increased Dexterity",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalDamageOverTimeMultiplierInfluence1": {
     "generation_type": "Suffix",
@@ -1893,7 +1581,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Physical Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalDamageOverTimeMultiplierInfluence2": {
     "generation_type": "Suffix",
@@ -1901,15 +1589,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Physical Damage over Time Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysicalDamageOverTimeMultiplierInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 90,
-    "text": "+(21-25)% to Physical Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AvoidInterruptionWhileCastingInfluence1_": {
     "generation_type": "Suffix",
@@ -1917,7 +1597,7 @@
     "required_level": 68,
     "text": "(21-25)% chance to Ignore Stuns while Casting",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AvoidInterruptionWhileCastingInfluence2": {
     "generation_type": "Suffix",
@@ -1925,7 +1605,7 @@
     "required_level": 70,
     "text": "(26-30)% chance to Ignore Stuns while Casting",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AvoidInterruptionWhileCastingInfluence3": {
     "generation_type": "Suffix",
@@ -1933,15 +1613,7 @@
     "required_level": 75,
     "text": "(31-35)% chance to Ignore Stuns while Casting",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidInterruptionWhileCastingInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(31-60)% chance to Ignore Stuns while Casting",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalCriticalStrikeChanceInfluence1": {
     "generation_type": "Suffix",
@@ -1949,7 +1621,7 @@
     "required_level": 68,
     "text": "(16-20)% increased Global Critical Strike Chance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalCriticalStrikeChanceInfluence2": {
     "generation_type": "Suffix",
@@ -1957,7 +1629,7 @@
     "required_level": 70,
     "text": "(21-25)% increased Global Critical Strike Chance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalCriticalStrikeChanceInfluence3": {
     "generation_type": "Suffix",
@@ -1965,15 +1637,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Global Critical Strike Chance",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GlobalCriticalStrikeChanceInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(31-60)% increased Global Critical Strike Chance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumColdResistanceInfluence1New": {
     "generation_type": "Suffix",
@@ -1981,7 +1645,7 @@
     "required_level": 75,
     "text": "+1% to maximum Cold Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumColdResistanceInfluence2New": {
     "generation_type": "Suffix",
@@ -1989,15 +1653,7 @@
     "required_level": 85,
     "text": "+2% to maximum Cold Resistance",
     "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumColdResistanceInfluenceMavenNew": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 95,
-    "text": "+3% to maximum Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "BleedingDamageUber1": {
     "generation_type": "Suffix",
@@ -2005,7 +1661,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Damage with Bleeding | Socketed Gems are Supported by Level 16 Chance To Bleed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "BleedingDamageUber2": {
     "generation_type": "Suffix",
@@ -2013,7 +1669,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Damage with Bleeding | Socketed Gems are Supported by Level 18 Chance To Bleed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "BleedingDamageUber3": {
     "generation_type": "Suffix",
@@ -2021,15 +1677,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Damage with Bleeding | Socketed Gems are Supported by Level 20 Chance To Bleed",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "BleedingDamageUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(31-35)% increased Damage with Bleeding | Socketed Gems are Supported by Level 25 Chance To Bleed",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AdditionalBlockChanceUber1": {
     "generation_type": "Suffix",
@@ -2037,7 +1685,7 @@
     "required_level": 68,
     "text": "(2-3)% Chance to Block Attack Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AdditionalBlockChanceUber2": {
     "generation_type": "Suffix",
@@ -2045,15 +1693,7 @@
     "required_level": 80,
     "text": "(4-5)% Chance to Block Attack Damage",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChanceUberMaven___": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(4-5)% Chance to Block Attack Damage | +1% to maximum Chance to Block Attack Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChaosNonAilmentDamageOverTimeMultiplierUber1": {
     "generation_type": "Suffix",
@@ -2061,7 +1701,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Chaos Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChaosNonAilmentDamageOverTimeMultiplierUber2": {
     "generation_type": "Suffix",
@@ -2069,15 +1709,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Chaos Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "ChaosNonAilmentDamageOverTimeMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "+(17-24)% to Chaos Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAccuracySupportedUber1": {
     "generation_type": "Suffix",
@@ -2085,7 +1717,7 @@
     "required_level": 68,
     "text": "(6-10)% increased Global Accuracy Rating | Socketed Gems are supported by Level 16 Additional Accuracy",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAccuracySupportedUber2": {
     "generation_type": "Suffix",
@@ -2093,7 +1725,7 @@
     "required_level": 75,
     "text": "(11-15)% increased Global Accuracy Rating | Socketed Gems are supported by Level 18 Additional Accuracy",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAccuracySupportedUber3": {
     "generation_type": "Suffix",
@@ -2101,15 +1733,7 @@
     "required_level": 83,
     "text": "(16-20)% increased Global Accuracy Rating | Socketed Gems are supported by Level 20 Additional Accuracy",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedAccuracySupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 93,
-    "text": "(16-20)% increased Global Accuracy Rating | Socketed Gems are supported by Level 25 Additional Accuracy",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAttackAndCastSpeedUber1_": {
     "generation_type": "Suffix",
@@ -2117,7 +1741,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Attack and Cast Speed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAttackAndCastSpeedUber2": {
     "generation_type": "Suffix",
@@ -2125,7 +1749,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Attack and Cast Speed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAttackAndCastSpeedUber3_": {
     "generation_type": "Suffix",
@@ -2133,15 +1757,7 @@
     "required_level": 85,
     "text": "(13-14)% increased Attack and Cast Speed",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedAttackAndCastSpeedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 95,
-    "text": "(13-14)% increased Attack and Cast Speed | (5-10)% chance to gain Onslaught for 4 seconds on Kill",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAttackSpeedUber1": {
     "generation_type": "Suffix",
@@ -2149,7 +1765,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Attack Speed | Socketed Gems are Supported by Level 16 Faster Attacks",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAttackSpeedUber2_": {
     "generation_type": "Suffix",
@@ -2157,7 +1773,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Attack Speed | Socketed Gems are Supported by Level 18 Faster Attacks",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAttackSpeedUber3": {
     "generation_type": "Suffix",
@@ -2165,15 +1781,7 @@
     "required_level": 82,
     "text": "(13-14)% increased Attack Speed | Socketed Gems are Supported by Level 20 Faster Attacks",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedAttackSpeedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 92,
-    "text": "(13-14)% increased Attack Speed | Socketed Gems are Supported by Level 25 Faster Attacks",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedMeleeWeaponRangeAndMeleeDamageUber1": {
     "generation_type": "Suffix",
@@ -2181,31 +1789,7 @@
     "required_level": 80,
     "text": "(13-16)% increased Melee Damage | +0.2 metres to Melee Strike Range",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedMeleeWeaponRangeAndMeleeDamageUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 95,
-    "text": "(13-16)% increased Melee Damage | +(0.3-0.4) metres to Melee Strike Range",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "IncreasedMeleeWeaponRangeUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 85,
-    "text": "+0.2 metres to Melee Strike Range",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "IncreasedMeleeWeaponRangeUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 95,
-    "text": "+(0.3-0.4) metres to Melee Strike Range",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageOverTimeMultiplierUber1": {
     "generation_type": "Suffix",
@@ -2213,7 +1797,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Physical Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageOverTimeMultiplierUber2__": {
     "generation_type": "Suffix",
@@ -2221,15 +1805,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Physical Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "PhysicalDamageOverTimeMultiplierUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "+(17-24)% to Physical Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PoisonDamageSupportedUber1_": {
     "generation_type": "Suffix",
@@ -2237,7 +1813,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Damage with Poison | Socketed Gems are Supported by Level 16 Chance to Poison",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PoisonDamageSupportedUber2": {
     "generation_type": "Suffix",
@@ -2245,7 +1821,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Damage with Poison | Socketed Gems are Supported by Level 18 Chance to Poison",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PoisonDamageSupportedUber3": {
     "generation_type": "Suffix",
@@ -2253,47 +1829,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Damage with Poison | Socketed Gems are Supported by Level 20 Chance to Poison",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "PoisonDamageSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(31-35)% increased Damage with Poison | Socketed Gems are Supported by Level 25 Chance to Poison",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "PoisonDurationSupportedUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "(8-12)% increased Poison Duration | Socketed Gems are Supported by Level 16 Chance to Poison",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "PoisonDurationSupportedUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "(13-16)% increased Poison Duration | Socketed Gems are Supported by Level 18 Chance to Poison",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "PoisonDurationSupportedUber3": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 80,
-    "text": "(17-20)% increased Poison Duration | Socketed Gems are Supported by Level 20 Chance to Poison",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "PoisonDurationSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(17-20)% increased Poison Duration | Socketed Gems are Supported by Level 25 Chance to Poison",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SocketedAttackCriticalMultiplierUber1_": {
     "generation_type": "Suffix",
@@ -2301,7 +1837,7 @@
     "required_level": 68,
     "text": "Socketed Attacks have +30% to Critical Strike Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SocketedAttackCriticalMultiplierUber2": {
     "generation_type": "Suffix",
@@ -2309,7 +1845,7 @@
     "required_level": 75,
     "text": "Socketed Attacks have +50% to Critical Strike Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SocketedAttackCriticalMultiplierUber3": {
     "generation_type": "Suffix",
@@ -2317,31 +1853,7 @@
     "required_level": 84,
     "text": "Socketed Attacks have +70% to Critical Strike Multiplier",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SocketedAttackCriticalMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 94,
-    "text": "Socketed Attacks have +90% to Critical Strike Multiplier",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalChanceToEvadeInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "+(2-4)% chance to Evade Attack Hits",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalChanceToEvadeInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 85,
-    "text": "+(2-4)% chance to Evade Attack Hits | (7-12)% increased Attack and Cast Speed if you haven't been Hit Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GlobalChanceToBlindOnHitInfluence1__": {
     "generation_type": "Suffix",
@@ -2349,7 +1861,7 @@
     "required_level": 68,
     "text": "(8-11)% Global chance to Blind Enemies on hit",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalChanceToBlindOnHitInfluence2_": {
     "generation_type": "Suffix",
@@ -2357,15 +1869,7 @@
     "required_level": 80,
     "text": "(12-15)% Global chance to Blind Enemies on hit",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GlobalChanceToBlindOnHitInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(12-15)% Global chance to Blind Enemies on hit | (20-30)% increased Damage with Hits and Ailments against Blinded Enemies",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAccuracyPercentInfluence1": {
     "generation_type": "Suffix",
@@ -2373,7 +1877,7 @@
     "required_level": 68,
     "text": "(12-15)% increased Global Accuracy Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAccuracyPercentInfluence2": {
     "generation_type": "Suffix",
@@ -2381,47 +1885,7 @@
     "required_level": 80,
     "text": "(16-20)% increased Global Accuracy Rating",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "IncreasedAccuracyPercentInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(21-30)% increased Global Accuracy Rating",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalTrapsThrownSupportedUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "Skills which Throw Traps throw up to 1 additional Trap | Socketed Gems are Supported by Level 18 Trap",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalTrapsThrownSupportedUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "Skills which Throw Traps throw up to 1 additional Trap | Socketed Gems are Supported by Level 20 Trap",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalTrapsThrownSupportedUber3": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 84,
-    "text": "Skills which Throw Traps throw up to 1 additional Trap | Socketed Gems are Supported by Level 22 Trap",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalTrapsThrownSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 94,
-    "text": "Skills which Throw Traps throw up to 1 additional Trap | Socketed Gems are Supported by Level 25 Trap",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ChanceToAvoidInterruptionWhileCastingUber1_": {
     "generation_type": "Suffix",
@@ -2429,7 +1893,7 @@
     "required_level": 68,
     "text": "(15-20)% chance to Ignore Stuns while Casting",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToAvoidInterruptionWhileCastingUber2": {
     "generation_type": "Suffix",
@@ -2437,7 +1901,7 @@
     "required_level": 75,
     "text": "(21-25)% chance to Ignore Stuns while Casting",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToAvoidInterruptionWhileCastingUber3": {
     "generation_type": "Suffix",
@@ -2445,15 +1909,7 @@
     "required_level": 80,
     "text": "(26-30)% chance to Ignore Stuns while Casting",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidInterruptionWhileCastingUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(31-60)% chance to Ignore Stuns while Casting",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "BlindOnHitSupportedUber1": {
     "generation_type": "Suffix",
@@ -2461,7 +1917,7 @@
     "required_level": 68,
     "text": "(5-6)% Global chance to Blind Enemies on hit | Socketed Gems are supported by Level 16 Blind",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "BlindOnHitSupportedUber2": {
     "generation_type": "Suffix",
@@ -2469,7 +1925,7 @@
     "required_level": 75,
     "text": "(7-8)% Global chance to Blind Enemies on hit | Socketed Gems are supported by Level 18 Blind",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "BlindOnHitSupportedUber3": {
     "generation_type": "Suffix",
@@ -2477,15 +1933,7 @@
     "required_level": 80,
     "text": "(9-10)% Global chance to Blind Enemies on hit | Socketed Gems are supported by Level 20 Blind",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "BlindOnHitSupportedUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(9-10)% Global chance to Blind Enemies on hit | Socketed Gems are supported by Level 25 Blind",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ColdDamageOverTimeMultiplierUber1": {
     "generation_type": "Suffix",
@@ -2493,7 +1941,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Cold Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ColdDamageOverTimeMultiplierUber2_": {
     "generation_type": "Suffix",
@@ -2501,15 +1949,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Cold Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "ColdDamageOverTimeMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "+(17-24)% to Cold Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "FireDamageOverTimeMultiplierUber1___": {
     "generation_type": "Suffix",
@@ -2517,7 +1957,7 @@
     "required_level": 68,
     "text": "+(11-15)% to Fire Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "FireDamageOverTimeMultiplierUber2": {
     "generation_type": "Suffix",
@@ -2525,15 +1965,7 @@
     "required_level": 80,
     "text": "+(16-20)% to Fire Damage over Time Multiplier",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "FireDamageOverTimeMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "+(17-24)% to Fire Damage over Time Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedCastSpeedUber1": {
     "generation_type": "Suffix",
@@ -2541,7 +1973,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Cast Speed | Socketed Gems are Supported by Level 16 Faster Casting",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedCastSpeedUber2": {
     "generation_type": "Suffix",
@@ -2549,7 +1981,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Cast Speed | Socketed Gems are Supported by Level 18 Faster Casting",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedCastSpeedUber3": {
     "generation_type": "Suffix",
@@ -2557,15 +1989,7 @@
     "required_level": 84,
     "text": "(13-14)% increased Cast Speed | Socketed Gems are Supported by Level 20 Faster Casting",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedCastSpeedUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 94,
-    "text": "(13-14)% increased Cast Speed | Socketed Gems are Supported by Level 25 Faster Casting",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SocketedSpellCriticalMultiplierUber1": {
     "generation_type": "Suffix",
@@ -2573,7 +1997,7 @@
     "required_level": 68,
     "text": "Socketed Spells have +30% to Critical Strike Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SocketedSpellCriticalMultiplierUber2": {
     "generation_type": "Suffix",
@@ -2581,7 +2005,7 @@
     "required_level": 75,
     "text": "Socketed Spells have +50% to Critical Strike Multiplier",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SocketedSpellCriticalMultiplierUber3": {
     "generation_type": "Suffix",
@@ -2589,15 +2013,7 @@
     "required_level": 83,
     "text": "Socketed Spells have +70% to Critical Strike Multiplier",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "SocketedSpellCriticalMultiplierUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 93,
-    "text": "Socketed Spells have +90% to Critical Strike Multiplier",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageCooldownUber1_": {
     "generation_type": "Suffix",
@@ -2605,7 +2021,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Trap Damage | Socketed Gems are Supported by Level 16 Advanced Traps",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageCooldownUber2": {
     "generation_type": "Suffix",
@@ -2613,7 +2029,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Trap Damage | Socketed Gems are Supported by Level 18 Advanced Traps",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageCooldownUber3_": {
     "generation_type": "Suffix",
@@ -2621,15 +2037,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Trap Damage | Socketed Gems are Supported by Level 20 Advanced Traps",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TrapDamageCooldownUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(31-35)% increased Trap Damage | Socketed Gems are Supported by Level 25 Advanced Traps",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageMineUber1": {
     "generation_type": "Suffix",
@@ -2637,7 +2045,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Trap Damage | Socketed Gems are Supported by Level 16 Trap And Mine Damage",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageMineUber2_": {
     "generation_type": "Suffix",
@@ -2645,7 +2053,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Trap Damage | Socketed Gems are Supported by Level 18 Trap And Mine Damage",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageMineUber3": {
     "generation_type": "Suffix",
@@ -2653,15 +2061,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Trap Damage | Socketed Gems are Supported by Level 20 Trap And Mine Damage",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TrapDamageMineUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(31-35)% increased Trap Damage | Socketed Gems are Supported by Level 25 Trap And Mine Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageUber1": {
     "generation_type": "Suffix",
@@ -2669,7 +2069,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Trap Damage | Socketed Gems are Supported by Level 18 Trap",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageUber2": {
     "generation_type": "Suffix",
@@ -2677,7 +2077,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Trap Damage | Socketed Gems are Supported by Level 20 Trap",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapDamageUber3": {
     "generation_type": "Suffix",
@@ -2685,15 +2085,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Trap Damage | Socketed Gems are Supported by Level 22 Trap",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TrapDamageUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(31-35)% increased Trap Damage | Socketed Gems are Supported by Level 25 Trap",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapSpeedCooldownUber1": {
     "generation_type": "Suffix",
@@ -2701,7 +2093,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Trap Throwing Speed | Socketed Gems are Supported by Level 16 Advanced Traps",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapSpeedCooldownUber2": {
     "generation_type": "Suffix",
@@ -2709,7 +2101,7 @@
     "required_level": 75,
     "text": "(13-16)% increased Trap Throwing Speed | Socketed Gems are Supported by Level 18 Advanced Traps",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TrapSpeedCooldownUber3": {
     "generation_type": "Suffix",
@@ -2717,15 +2109,7 @@
     "required_level": 80,
     "text": "(17-20)% increased Trap Throwing Speed | Socketed Gems are Supported by Level 20 Advanced Traps",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TrapSpeedCooldownUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(17-20)% increased Trap Throwing Speed | Socketed Gems are Supported by Level 25 Advanced Traps",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedMana1": {
     "generation_type": "Prefix",

@@ -1,143 +1,163 @@
 {
   "AfflictionNotableAdrenaline_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Adrenaline",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableBlessed": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Blessed",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableBrushwithDeath": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Brush with Death",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableCarefulHandling": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Careful Handling",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableFeastofFlesh": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Feast of Flesh",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableFettle": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Fettle",
-    "weight": 49
+    "weight": 49,
+    "influence": "Normal"
   },
   "AfflictionNotableFlowofLife_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Flow of Life",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableGladiatorsFortitude": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Gladiator's Fortitude",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableHeartofIron": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Heart of Iron",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableHolisticHealth": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Holistic Health",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableNaturalVigour_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Natural Vigour",
-    "weight": 390
+    "weight": 390,
+    "influence": "Normal"
   },
   "AfflictionNotablePeaceAmidstChaos": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Peace Amidst Chaos",
-    "weight": 390
+    "weight": 390,
+    "influence": "Normal"
   },
   "AfflictionNotablePeakVigour": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Peak Vigour",
-    "weight": 780
+    "weight": 780,
+    "influence": "Normal"
   },
   "AfflictionNotableRoteReinforcement": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Rote Reinforcement",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableSage_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Sage",
-    "weight": 780
+    "weight": 780,
+    "influence": "Normal"
   },
   "AfflictionNotableSublimeSensation_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 50,
     "text": "1 Added Passive Skill is Sublime Sensation",
-    "weight": 390
+    "weight": 390,
+    "influence": "Normal"
   },
   "AfflictionNotableSurgingVitality": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Surging Vitality",
-    "weight": 780
+    "weight": 780,
+    "influence": "Normal"
   },
   "AfflictionNotableToweringThreat": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 68,
     "text": "1 Added Passive Skill is Towering Threat",
-    "weight": 146
+    "weight": 146,
+    "influence": "Normal"
   },
   "AfflictionNotableViciousGuard_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 1,
     "text": "1 Added Passive Skill is Vicious Guard",
-    "weight": 780
+    "weight": 780,
+    "influence": "Normal"
   },
   "AfflictionNotableWallofMuscle_": {
-    "generation_type": "prefix",
+    "generation_type": "Prefix",
     "name": "Notable",
     "required_level": 75,
     "text": "1 Added Passive Skill is Wall of Muscle",
-    "weight": 49
+    "weight": 49,
+    "influence": "Normal"
   },
   "AfflictionJewelSmallPassivesGrantArmourSmall2__": {
     "generation_type": "Prefix",

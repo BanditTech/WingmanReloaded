@@ -357,7 +357,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence2": {
     "generation_type": "Prefix",
@@ -365,7 +365,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence3": {
     "generation_type": "Prefix",
@@ -373,7 +373,7 @@
     "required_level": 80,
     "text": "(13-15)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MaximumLifeInfluence1": {
     "generation_type": "Prefix",
@@ -381,7 +381,7 @@
     "required_level": 68,
     "text": "(3-6)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MaximumLifeInfluence2": {
     "generation_type": "Prefix",
@@ -389,23 +389,7 @@
     "required_level": 84,
     "text": "(7-10)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "MaximumResistancesInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 80,
-    "text": "+1% to all maximum Resistances",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumResistancesInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 85,
-    "text": "+2% to all maximum Resistances",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "DamagePerBlockChanceInfluence1": {
     "generation_type": "Prefix",
@@ -413,7 +397,7 @@
     "required_level": 68,
     "text": "1% increased Damage per 1% Chance to Block Attack Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AreaOfEffectUber1_": {
     "generation_type": "Prefix",
@@ -421,7 +405,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber2": {
     "generation_type": "Prefix",
@@ -429,7 +413,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect",
     "weight": 600,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber3_": {
     "generation_type": "Prefix",
@@ -437,7 +421,7 @@
     "required_level": 82,
     "text": "(13-15)% increased Area of Effect",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "DamagePerBlockChanceUber1_": {
     "generation_type": "Prefix",
@@ -445,7 +429,7 @@
     "required_level": 68,
     "text": "1% increased Damage per 1% Chance to Block Attack Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GainArmourIfBlockedRecentlyUber1": {
     "generation_type": "Prefix",
@@ -453,7 +437,7 @@
     "required_level": 68,
     "text": "+(500-650) Armour if you've Blocked Recently",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GainArmourIfBlockedRecentlyUber2": {
     "generation_type": "Prefix",
@@ -461,31 +445,7 @@
     "required_level": 75,
     "text": "+(651-800) Armour if you've Blocked Recently",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MaximumFireResistanceUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 75,
-    "text": "+1% to maximum Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumFireResistanceUber2": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 80,
-    "text": "+2% to maximum Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumFireResistanceUber3_": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 86,
-    "text": "+3% to maximum Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeIncreasePercentShieldUber1": {
     "generation_type": "Prefix",
@@ -493,7 +453,7 @@
     "required_level": 68,
     "text": "(3-6)% increased maximum Life",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeIncreasePercentShieldUber2": {
     "generation_type": "Prefix",
@@ -501,31 +461,7 @@
     "required_level": 84,
     "text": "(7-10)% increased maximum Life",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "EnergyShieldDelayHighInfluence1__": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 68,
-    "text": "(16-20)% faster start of Energy Shield Recharge",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "EnergyShieldDelayHighInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 75,
-    "text": "(21-25)% faster start of Energy Shield Recharge",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "EnergyShieldDelayHighInfluence3": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 80,
-    "text": "(26-30)% faster start of Energy Shield Recharge",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "WeaponElementalDamageInfluence1__": {
     "generation_type": "Prefix",
@@ -533,7 +469,7 @@
     "required_level": 68,
     "text": "(26-30)% increased Elemental Damage with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "WeaponElementalDamageInfluence2_": {
     "generation_type": "Prefix",
@@ -541,7 +477,7 @@
     "required_level": 75,
     "text": "(31-35)% increased Elemental Damage with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "WeaponElementalDamageInfluence3_": {
     "generation_type": "Prefix",
@@ -549,7 +485,7 @@
     "required_level": 80,
     "text": "(36-40)% increased Elemental Damage with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MaximumTotemUber1": {
     "generation_type": "Prefix",
@@ -557,71 +493,7 @@
     "required_level": 70,
     "text": "+1 to maximum number of Summoned Totems",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MaximumColdResistanceUber1": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 75,
-    "text": "+1% to maximum Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumColdResistanceUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 80,
-    "text": "+2% to maximum Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumColdResistanceUber3": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 86,
-    "text": "+3% to maximum Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumLightningResistanceUber1": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 75,
-    "text": "+1% to maximum Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumLightningResistanceUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 80,
-    "text": "+2% to maximum Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumLightningResistanceUber3": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 86,
-    "text": "+3% to maximum Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumAllResistanceUber1": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 80,
-    "text": "+1% to all maximum Resistances",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumAllResistanceUber2__": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 85,
-    "text": "+2% to all maximum Resistances",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AllResistances1": {
     "generation_type": "Suffix",
@@ -1453,7 +1325,7 @@
     "required_level": 68,
     "text": "+(5-6)% Chance to Block Attack Damage if you have Blocked Attack Damage Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AttackBlockIfBlockedAttacksInfluence2": {
     "generation_type": "Suffix",
@@ -1461,7 +1333,7 @@
     "required_level": 75,
     "text": "+(7-8)% Chance to Block Attack Damage if you have Blocked Attack Damage Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidColdDamageInfluence1_": {
     "generation_type": "Suffix",
@@ -1469,7 +1341,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Cold Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidColdDamageInfluence2": {
     "generation_type": "Suffix",
@@ -1477,15 +1349,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Cold Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidColdDamageInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(8-10)% chance to Avoid Cold Damage from Hits | +(20-30)% to Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidFireDamageInfluence1": {
     "generation_type": "Suffix",
@@ -1493,7 +1357,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Fire Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidFireDamageInfluence2__": {
     "generation_type": "Suffix",
@@ -1501,15 +1365,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Fire Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidFireDamageInfluenceMaven_____": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(8-10)% chance to Avoid Fire Damage from Hits | +(20-30)% to Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidLightningDamageInfluence1": {
     "generation_type": "Suffix",
@@ -1517,7 +1373,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Lightning Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidLightningDamageInfluence2": {
     "generation_type": "Suffix",
@@ -1525,15 +1381,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Lightning Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidLightningDamageInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(8-10)% chance to Avoid Lightning Damage from Hits | +(20-30)% to Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MinimumEnduranceChargeInfluence1": {
     "generation_type": "Suffix",
@@ -1541,7 +1389,7 @@
     "required_level": 68,
     "text": "+1 to Minimum Endurance Charges",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MinimumEnduranceChargeInfluence2": {
     "generation_type": "Suffix",
@@ -1549,7 +1397,7 @@
     "required_level": 80,
     "text": "+2 to Minimum Endurance Charges",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "RecoverLifePercentOnBlockInfluence1__": {
     "generation_type": "Suffix",
@@ -1557,15 +1405,7 @@
     "required_level": 68,
     "text": "Recover (3-5)% of Life when you Block",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "AdditionalPhysicalDamageReductionHighInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "(3-5)% additional Physical Damage Reduction",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "DegenDamageTakenInfluence1_": {
     "generation_type": "Suffix",
@@ -1573,7 +1413,7 @@
     "required_level": 68,
     "text": "(6-4)% reduced Damage taken from Damage Over Time",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "DegenDamageTakenInfluence2": {
     "generation_type": "Suffix",
@@ -1581,7 +1421,7 @@
     "required_level": 80,
     "text": "(10-7)% reduced Damage taken from Damage Over Time",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SocketedGemsReducedReservationInfluence1": {
     "generation_type": "Suffix",
@@ -1589,7 +1429,7 @@
     "required_level": 68,
     "text": "Socketed Gems have 20% increased Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SocketedGemsReducedReservationInfluence2": {
     "generation_type": "Suffix",
@@ -1597,7 +1437,7 @@
     "required_level": 80,
     "text": "Socketed Gems have 30% increased Reservation Efficiency",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "GainRandomChargeOnBlockInfluence1": {
     "generation_type": "Suffix",
@@ -1605,31 +1445,7 @@
     "required_level": 68,
     "text": "Gain an Endurance, Frenzy or Power charge when you Block",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentHighInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 68,
-    "text": "Regenerate (1.1-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentHighInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 80,
-    "text": "Regenerate (1.6-2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "NoExtraDamageFromBleedMovingInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 75,
-    "text": "Moving while Bleeding doesn't cause you to take extra Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "WarcryCooldownSpeedTwoHandInfluence1": {
     "generation_type": "Suffix",
@@ -1637,7 +1453,7 @@
     "required_level": 68,
     "text": "(35-40)% increased Warcry Cooldown Recovery Rate",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "WarcryCooldownSpeedTwoHandInfluence2": {
     "generation_type": "Suffix",
@@ -1645,7 +1461,7 @@
     "required_level": 73,
     "text": "(41-45)% increased Warcry Cooldown Recovery Rate",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChanceToChillAttackersOnBlockInfluence1": {
     "generation_type": "Suffix",
@@ -1653,7 +1469,7 @@
     "required_level": 68,
     "text": "(25-40)% chance to Chill Attackers for 4 seconds on Block",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToChillAttackersOnBlockInfluence2": {
     "generation_type": "Suffix",
@@ -1661,7 +1477,7 @@
     "required_level": 75,
     "text": "(41-50)% chance to Chill Attackers for 4 seconds on Block",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToShockAttackersOnBlockInfluence1_": {
     "generation_type": "Suffix",
@@ -1669,7 +1485,7 @@
     "required_level": 68,
     "text": "(25-40)% chance to Shock Attackers for 4 seconds on Block",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToShockAttackersOnBlockInfluence2": {
     "generation_type": "Suffix",
@@ -1677,15 +1493,7 @@
     "required_level": 75,
     "text": "(41-50)% chance to Shock Attackers for 4 seconds on Block",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRegenHighInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 75,
-    "text": "Regenerate (1.5-2.5)% of Energy Shield per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MinimumPowerChargeInfluence1": {
     "generation_type": "Suffix",
@@ -1693,7 +1501,7 @@
     "required_level": 68,
     "text": "+1 to Minimum Power Charges",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MinimumPowerChargeInfluence2": {
     "generation_type": "Suffix",
@@ -1701,7 +1509,7 @@
     "required_level": 80,
     "text": "+2 to Minimum Power Charges",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "RecoverEnergyShieldPercentOnBlockInfluence1": {
     "generation_type": "Suffix",
@@ -1709,7 +1517,7 @@
     "required_level": 68,
     "text": "Recover (3-5)% of Energy Shield when you Block",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellBlockIfBlockedSpellsInfluence1_": {
     "generation_type": "Suffix",
@@ -1717,7 +1525,7 @@
     "required_level": 68,
     "text": "+(7-9)% Chance to Block Spell Damage if you have Blocked Spell Damage Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellBlockIfBlockedSpellsInfluence2": {
     "generation_type": "Suffix",
@@ -1725,7 +1533,7 @@
     "required_level": 75,
     "text": "+(10-12)% Chance to Block Spell Damage if you have Blocked Spell Damage Recently",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "WarcryBuffEffectInfluence1": {
     "generation_type": "Suffix",
@@ -1733,7 +1541,7 @@
     "required_level": 68,
     "text": "(18-21)% increased Warcry Buff Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "WarcryBuffEffectInfluence2": {
     "generation_type": "Suffix",
@@ -1741,7 +1549,7 @@
     "required_level": 75,
     "text": "(22-25)% increased Warcry Buff Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AdditionalBlockWith5NearbyEnemiesUber1": {
     "generation_type": "Suffix",
@@ -1749,7 +1557,7 @@
     "required_level": 68,
     "text": "+(2-3)% Chance to Block Attack Damage if there are at least 5 nearby Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AdditionalBlockWith5NearbyEnemiesUber2": {
     "generation_type": "Suffix",
@@ -1757,15 +1565,7 @@
     "required_level": 75,
     "text": "+(4-5)% Chance to Block Attack Damage if there are at least 5 nearby Enemies",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ReducedPhysicalDamageTakenUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 83,
-    "text": "(3-5)% additional Physical Damage Reduction",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedByCastOnDamageTakenUber1": {
     "generation_type": "Suffix",
@@ -1773,15 +1573,7 @@
     "required_level": 68,
     "text": "Socketed Gems are Supported by Level 5 Cast when Damage Taken",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "AdditionalChanceToEvadeHighInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 75,
-    "text": "+(3-5)% chance to Evade Attack Hits",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AuraEffectInfluence1_": {
     "generation_type": "Suffix",
@@ -1789,7 +1581,7 @@
     "required_level": 73,
     "text": "(5-7)% increased effect of Non-Curse Auras from your Skills",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AuraEffectInfluence2": {
     "generation_type": "Suffix",
@@ -1797,15 +1589,7 @@
     "required_level": 80,
     "text": "(8-10)% increased effect of Non-Curse Auras from your Skills",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "CurseEffectivenessInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 73,
-    "text": "(8-11)% increased Effect of your Curses",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "CurseEffectivenessInfluence2": {
     "generation_type": "Suffix",
@@ -1813,7 +1597,7 @@
     "required_level": 80,
     "text": "(8-12)% increased Effect of your Curses",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence1": {
     "generation_type": "Suffix",
@@ -1821,7 +1605,7 @@
     "required_level": 68,
     "text": "(15-20)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence2_": {
     "generation_type": "Suffix",
@@ -1829,7 +1613,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinimumFrenzyChargeInfluence1": {
     "generation_type": "Suffix",
@@ -1837,7 +1621,7 @@
     "required_level": 68,
     "text": "+1 to Minimum Frenzy Charges",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinimumFrenzyChargeInfluence2": {
     "generation_type": "Suffix",
@@ -1845,7 +1629,7 @@
     "required_level": 80,
     "text": "+2 to Minimum Frenzy Charges",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AvoidPhysicalDamageInfluence1": {
     "generation_type": "Suffix",
@@ -1853,7 +1637,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Physical Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AvoidPhysicalDamageInfluence2": {
     "generation_type": "Suffix",
@@ -1861,7 +1645,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Physical Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "RecoverManaPercentOnBlockInfluence1_": {
     "generation_type": "Suffix",
@@ -1869,23 +1653,7 @@
     "required_level": 68,
     "text": "Recover (3-5)% of your maximum Mana when you Block",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "BlockAppliesToSpellsShieldUber1_": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "(9-12)% Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "BlockAppliesToSpellsShieldUber2_": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "(12.3-15)% Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ChanceToChillAttackersOnBlockUber1": {
     "generation_type": "Suffix",
@@ -1893,7 +1661,7 @@
     "required_level": 68,
     "text": "(25-40)% chance to Chill Attackers for 4 seconds on Block",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToChillAttackersOnBlockUber2": {
     "generation_type": "Suffix",
@@ -1901,7 +1669,7 @@
     "required_level": 75,
     "text": "(41-50)% chance to Chill Attackers for 4 seconds on Block",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToShockAttackersOnBlockUber1": {
     "generation_type": "Suffix",
@@ -1909,7 +1677,7 @@
     "required_level": 68,
     "text": "(25-40)% chance to Shock Attackers for 4 seconds on Block",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToShockAttackersOnBlockUber2": {
     "generation_type": "Suffix",
@@ -1917,15 +1685,7 @@
     "required_level": 75,
     "text": "(41-50)% chance to Shock Attackers for 4 seconds on Block",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeIfBlockedRecentlyUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "+(4.5-7.5)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "DisplaySocketedGemsGetReducedReservationUber1": {
     "generation_type": "Suffix",
@@ -1933,7 +1693,7 @@
     "required_level": 68,
     "text": "Socketed Gems have 20% increased Reservation Efficiency",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "DisplaySocketedGemsGetReducedReservationUber2": {
     "generation_type": "Suffix",
@@ -1941,7 +1701,7 @@
     "required_level": 80,
     "text": "Socketed Gems have 30% increased Reservation Efficiency",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GainRandomChargeOnBlockUber1__": {
     "generation_type": "Suffix",
@@ -1949,7 +1709,7 @@
     "required_level": 68,
     "text": "Gain an Endurance, Frenzy or Power charge when you Block",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "RecoverEnergyShieldPercentOnBlockUber1": {
     "generation_type": "Suffix",
@@ -1957,7 +1717,7 @@
     "required_level": 68,
     "text": "Recover (3-5)% of Energy Shield when you Block",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "RecoverLifePercentOnBlockUber1_": {
     "generation_type": "Suffix",
@@ -1965,7 +1725,7 @@
     "required_level": 68,
     "text": "Recover (3-5)% of Life when you Block",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "RecoverManaPercentOnBlockUber1": {
     "generation_type": "Suffix",
@@ -1973,23 +1733,7 @@
     "required_level": 68,
     "text": "Recover (3-5)% of your maximum Mana when you Block",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "SpellBlockOnShieldUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "(7-9)% Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "SpellBlockOnShieldUber2_": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "(10-12)% Chance to Block Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedMana1": {
     "generation_type": "Prefix",

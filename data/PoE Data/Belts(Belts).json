@@ -517,7 +517,7 @@
     "required_level": 68,
     "text": "(22-27) to (41-46) added Fire Damage against Burning Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FireDamageBurningEnemiesInfluence2": {
     "generation_type": "Prefix",
@@ -525,7 +525,7 @@
     "required_level": 75,
     "text": "(28-32) to (47-51) added Fire Damage against Burning Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FireDamageBurningEnemiesInfluence3": {
     "generation_type": "Prefix",
@@ -533,7 +533,7 @@
     "required_level": 80,
     "text": "(33-39) to (52-55) added Fire Damage against Burning Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AllDamageInfluence1": {
     "generation_type": "Prefix",
@@ -541,7 +541,7 @@
     "required_level": 75,
     "text": "(11-15)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AllDamageInfluence2___": {
     "generation_type": "Prefix",
@@ -549,7 +549,7 @@
     "required_level": 80,
     "text": "(16-20)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AllDamageInfluence3": {
     "generation_type": "Prefix",
@@ -557,7 +557,7 @@
     "required_level": 85,
     "text": "(21-25)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FireDamageInfluence1_": {
     "generation_type": "Prefix",
@@ -565,7 +565,7 @@
     "required_level": 68,
     "text": "(16-20)% increased Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FireDamageInfluence2": {
     "generation_type": "Prefix",
@@ -573,7 +573,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FireDamageInfluence3": {
     "generation_type": "Prefix",
@@ -581,7 +581,7 @@
     "required_level": 80,
     "text": "(26-30)% increased Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "GlobalArmourPercentInfluence1": {
     "generation_type": "Prefix",
@@ -589,7 +589,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Armour",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "GlobalArmourPercentInfluence2___": {
     "generation_type": "Prefix",
@@ -597,7 +597,7 @@
     "required_level": 78,
     "text": "(10-12)% increased Armour",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "GlobalArmourPercentInfluence3": {
     "generation_type": "Prefix",
@@ -605,31 +605,7 @@
     "required_level": 82,
     "text": "(13-15)% increased Armour",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ReducedCriticalStrikeDamageTakenInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 68,
-    "text": "You take (15-20)% reduced Extra Damage from Critical Strikes",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedCriticalStrikeDamageTakenInfluence2_": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 75,
-    "text": "You take (21-30)% reduced Extra Damage from Critical Strikes",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "FlaskChanceToNotConsumeChargesInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 80,
-    "text": "(6-10)% chance for Flasks you use to not consume Charges",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "FlaskChargeOnCritInfluence1": {
     "generation_type": "Prefix",
@@ -637,7 +613,7 @@
     "required_level": 75,
     "text": "Gain a Flask Charge when you deal a Critical Strike",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChaosDamageInfluence1": {
     "generation_type": "Prefix",
@@ -645,7 +621,7 @@
     "required_level": 68,
     "text": "(16-20)% increased Chaos Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChaosDamageInfluence2_": {
     "generation_type": "Prefix",
@@ -653,7 +629,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Chaos Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChaosDamageInfluence3": {
     "generation_type": "Prefix",
@@ -661,7 +637,7 @@
     "required_level": 80,
     "text": "(26-30)% increased Chaos Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MaximumLifeInfluence1": {
     "generation_type": "Prefix",
@@ -669,7 +645,7 @@
     "required_level": 68,
     "text": "(3-6)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MaximumLifeInfluence2": {
     "generation_type": "Prefix",
@@ -677,7 +653,7 @@
     "required_level": 84,
     "text": "(7-10)% increased maximum Life",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "CriticalStrikeChanceShockedEnemiesInfluence1": {
     "generation_type": "Prefix",
@@ -685,7 +661,7 @@
     "required_level": 68,
     "text": "(30-34)% increased Critical Strike Chance against Shocked Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CriticalStrikeChanceShockedEnemiesInfluence2": {
     "generation_type": "Prefix",
@@ -693,7 +669,7 @@
     "required_level": 75,
     "text": "(35-39)% increased Critical Strike Chance against Shocked Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CriticalStrikeChanceShockedEnemiesInfluence3__": {
     "generation_type": "Prefix",
@@ -701,7 +677,7 @@
     "required_level": 80,
     "text": "(40-45)% increased Critical Strike Chance against Shocked Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "FortifyOnMeleeStunInfluence1": {
     "generation_type": "Prefix",
@@ -709,7 +685,7 @@
     "required_level": 68,
     "text": "Melee Hits which Stun have (8-12)% chance to Fortify",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalEnergyShieldPercentInfluence1": {
     "generation_type": "Prefix",
@@ -717,7 +693,7 @@
     "required_level": 68,
     "text": "(7-9)% increased maximum Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalEnergyShieldPercentInfluence2": {
     "generation_type": "Prefix",
@@ -725,7 +701,7 @@
     "required_level": 78,
     "text": "(10-12)% increased maximum Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalEnergyShieldPercentInfluence3": {
     "generation_type": "Prefix",
@@ -733,7 +709,7 @@
     "required_level": 82,
     "text": "(13-15)% increased maximum Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LightningDamageInfluence1__": {
     "generation_type": "Prefix",
@@ -741,7 +717,7 @@
     "required_level": 68,
     "text": "(16-20)% increased Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LightningDamageInfluence2": {
     "generation_type": "Prefix",
@@ -749,7 +725,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LightningDamageInfluence3_": {
     "generation_type": "Prefix",
@@ -757,7 +733,7 @@
     "required_level": 80,
     "text": "(26-30)% increased Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ArmourDoubleArmourEffectUber1": {
     "generation_type": "Prefix",
@@ -765,7 +741,7 @@
     "required_level": 75,
     "text": "(11-20)% chance to Defend with 200% of Armour",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ArmourDoubleArmourEffectUber2": {
     "generation_type": "Prefix",
@@ -773,7 +749,7 @@
     "required_level": 80,
     "text": "(21-30)% chance to Defend with 200% of Armour",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GrantsEnduringCrySkillUber1": {
     "generation_type": "Prefix",
@@ -781,31 +757,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Enduring Cry Skill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "FlaskChanceToNotConsumeChargesUber1_": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 82,
-    "text": "(6-10)% chance for Flasks you use to not consume Charges",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "FlaskEffectUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 75,
-    "text": "Flasks applied to you have (4-7)% increased Effect",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "FlaskEffectUber2": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 81,
-    "text": "Flasks applied to you have (8-10)% increased Effect",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "FortifyOnMeleeStunUber1": {
     "generation_type": "Prefix",
@@ -813,7 +765,7 @@
     "required_level": 68,
     "text": "Melee Hits which Stun have (8-12)% chance to Fortify",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeIncreasePercentBeltUber1": {
     "generation_type": "Prefix",
@@ -821,7 +773,7 @@
     "required_level": 68,
     "text": "(4-7)% increased maximum Life",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MaximumLifeIncreasePercentBeltUber2": {
     "generation_type": "Prefix",
@@ -829,7 +781,7 @@
     "required_level": 75,
     "text": "(8-10)% increased maximum Life",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageBeltUber1": {
     "generation_type": "Prefix",
@@ -837,7 +789,7 @@
     "required_level": 68,
     "text": "(16-20)% increased Global Physical Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageBeltUber2": {
     "generation_type": "Prefix",
@@ -845,7 +797,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Global Physical Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PhysicalDamageBeltUber3___": {
     "generation_type": "Prefix",
@@ -853,7 +805,7 @@
     "required_level": 80,
     "text": "(26-30)% increased Global Physical Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GrantsRallyingCrySkillUber1": {
     "generation_type": "Prefix",
@@ -861,7 +813,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Rallying Cry Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ColdDamageInfluence1": {
     "generation_type": "Prefix",
@@ -869,7 +821,7 @@
     "required_level": 68,
     "text": "(16-20)% increased Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ColdDamageInfluence2": {
     "generation_type": "Prefix",
@@ -877,7 +829,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ColdDamageInfluence3": {
     "generation_type": "Prefix",
@@ -885,7 +837,7 @@
     "required_level": 80,
     "text": "(26-30)% increased Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DamageChilledEnemiesInfluence1": {
     "generation_type": "Prefix",
@@ -893,7 +845,7 @@
     "required_level": 68,
     "text": "(26-30)% increased Damage with Hits against Chilled Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DamageChilledEnemiesInfluence2": {
     "generation_type": "Prefix",
@@ -901,7 +853,7 @@
     "required_level": 75,
     "text": "(31-35)% increased Damage with Hits against Chilled Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "DamageChilledEnemiesInfluence3": {
     "generation_type": "Prefix",
@@ -909,23 +861,7 @@
     "required_level": 80,
     "text": "(36-40)% increased Damage with Hits against Chilled Enemies",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FlaskEffectInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 75,
-    "text": "Flasks applied to you have (4-7)% increased Effect",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "FlaskEffectInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 81,
-    "text": "Flasks applied to you have (8-10)% increased Effect",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalEvasionPercentInfluence1": {
     "generation_type": "Prefix",
@@ -933,7 +869,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Evasion Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalEvasionPercentInfluence2": {
     "generation_type": "Prefix",
@@ -941,7 +877,7 @@
     "required_level": 78,
     "text": "(10-12)% increased Evasion Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalEvasionPercentInfluence3_": {
     "generation_type": "Prefix",
@@ -949,7 +885,7 @@
     "required_level": 82,
     "text": "(13-15)% increased Evasion Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GrantsAbyssalCrySkillUber1": {
     "generation_type": "Prefix",
@@ -957,7 +893,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Intimidating Cry Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalDamageBeltUber1": {
     "generation_type": "Prefix",
@@ -965,7 +901,7 @@
     "required_level": 68,
     "text": "(11-15)% increased Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalDamageBeltUber2": {
     "generation_type": "Prefix",
@@ -973,7 +909,7 @@
     "required_level": 75,
     "text": "(16-20)% increased Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ElementalDamageBeltUber3": {
     "generation_type": "Prefix",
@@ -981,23 +917,7 @@
     "required_level": 80,
     "text": "(21-25)% increased Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GlobalEnergyShieldPercentBeltUber1": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 68,
-    "text": "(4-7)% increased maximum Energy Shield",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "GlobalEnergyShieldPercentBeltUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 75,
-    "text": "(8-10)% increased maximum Energy Shield",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedEnergyShieldFromBodyArmourUber1_": {
     "generation_type": "Prefix",
@@ -1005,7 +925,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Energy Shield from Equipped Body Armour",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedEnergyShieldFromBodyArmourUber2": {
     "generation_type": "Prefix",
@@ -1013,23 +933,7 @@
     "required_level": 80,
     "text": "(26-30)% increased Energy Shield from Equipped Body Armour",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "ReducedCriticalStrikeDamageTakenUber1": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 68,
-    "text": "You take (15-20)% reduced Extra Damage from Critical Strikes",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ReducedCriticalStrikeDamageTakenUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 75,
-    "text": "You take (21-30)% reduced Extra Damage from Critical Strikes",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "BeltIncreasedFlaskChargesGained1": {
     "generation_type": "Suffix",
@@ -1653,7 +1557,7 @@
     "required_level": 68,
     "text": "+(10-12)% to all Elemental Resistances",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AllResistancesInfluence2_": {
     "generation_type": "Suffix",
@@ -1661,7 +1565,7 @@
     "required_level": 70,
     "text": "+(13-15)% to all Elemental Resistances",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AllResistancesInfluence3_": {
     "generation_type": "Suffix",
@@ -1669,15 +1573,7 @@
     "required_level": 75,
     "text": "+(16-18)% to all Elemental Resistances",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AllResistancesInfluenceMaven____": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "+(19-22)% to all Elemental Resistances | +1% to all maximum Elemental Resistances",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LifeRecoveryRateInfluence1": {
     "generation_type": "Suffix",
@@ -1685,7 +1581,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Life Recovery rate",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "LifeRecoveryRateInfluence2": {
     "generation_type": "Suffix",
@@ -1693,7 +1589,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Life Recovery rate",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageDuringFlaskEffectInfluence1": {
     "generation_type": "Suffix",
@@ -1701,7 +1597,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Melee Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageDuringFlaskEffectInfluence2": {
     "generation_type": "Suffix",
@@ -1709,7 +1605,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Melee Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageDuringFlaskEffectInfluence3": {
     "generation_type": "Suffix",
@@ -1717,7 +1613,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Melee Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "RemoveIgniteOnFlaskUseInfluence1": {
     "generation_type": "Suffix",
@@ -1725,7 +1621,7 @@
     "required_level": 75,
     "text": "Remove Ignite and Burning when you use a Flask",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ArmourPenetrationInfluence1": {
     "generation_type": "Suffix",
@@ -1733,7 +1629,7 @@
     "required_level": 68,
     "text": "Overwhelm (8-11)% Physical Damage Reduction",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ArmourPenetrationInfluence2": {
     "generation_type": "Suffix",
@@ -1741,7 +1637,7 @@
     "required_level": 75,
     "text": "Overwhelm (12-15)% Physical Damage Reduction",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "CastSpeedDuringFlaskEffectInfluence1": {
     "generation_type": "Suffix",
@@ -1749,7 +1645,7 @@
     "required_level": 68,
     "text": "(8-14)% increased Cast Speed during any Flask Effect",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MovementSpeedDuringFlaskEffectInfluence1": {
     "generation_type": "Suffix",
@@ -1757,7 +1653,7 @@
     "required_level": 81,
     "text": "(6-10)% increased Movement Speed during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageAllAttributesInfluence1": {
     "generation_type": "Suffix",
@@ -1765,7 +1661,7 @@
     "required_level": 68,
     "text": "(6-9)% increased Attributes",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageAllAttributesInfluence2": {
     "generation_type": "Suffix",
@@ -1773,7 +1669,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Attributes",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalAttackDamageTakenInfluence1_": {
     "generation_type": "Suffix",
@@ -1781,7 +1677,7 @@
     "required_level": 68,
     "text": "-(35-25) Physical Damage taken from Attack Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalAttackDamageTakenInfluence2": {
     "generation_type": "Suffix",
@@ -1789,7 +1685,7 @@
     "required_level": 75,
     "text": "-(45-36) Physical Damage taken from Attack Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "EnergyShieldRecoveryRateInfluence1": {
     "generation_type": "Suffix",
@@ -1797,7 +1693,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Energy Shield Recovery rate",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "EnergyShieldRecoveryRateInfluence2": {
     "generation_type": "Suffix",
@@ -1805,7 +1701,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Energy Shield Recovery rate",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CooldownRecoveryHighInfluence1": {
     "generation_type": "Suffix",
@@ -1813,7 +1709,7 @@
     "required_level": 75,
     "text": "(10-15)% increased Cooldown Recovery Rate",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CooldownRecoveryHighInfluence2": {
     "generation_type": "Suffix",
@@ -1821,7 +1717,7 @@
     "required_level": 84,
     "text": "(16-20)% increased Cooldown Recovery Rate",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "RemoveShockOnFlaskUseInfluence1": {
     "generation_type": "Suffix",
@@ -1829,7 +1725,7 @@
     "required_level": 75,
     "text": "Remove Shock when you use a Flask",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellDamageDuringFlaskEffectInfluence1__": {
     "generation_type": "Suffix",
@@ -1837,7 +1733,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Spell Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellDamageDuringFlaskEffectInfluence2": {
     "generation_type": "Suffix",
@@ -1845,7 +1741,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Spell Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellDamageDuringFlaskEffectInfluence3": {
     "generation_type": "Suffix",
@@ -1853,7 +1749,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Spell Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AllResistancesBeltUber1": {
     "generation_type": "Suffix",
@@ -1861,7 +1757,7 @@
     "required_level": 68,
     "text": "+(13-15)% to all Elemental Resistances",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AllResistancesBeltUber2": {
     "generation_type": "Suffix",
@@ -1869,7 +1765,7 @@
     "required_level": 75,
     "text": "+(16-18)% to all Elemental Resistances",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AttackSpeedDuringFlaskEffectUber1": {
     "generation_type": "Suffix",
@@ -1877,7 +1773,7 @@
     "required_level": 68,
     "text": "(8-14)% increased Attack Speed during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChaosResistanceWhileUsingFlaskUber1": {
     "generation_type": "Suffix",
@@ -1885,7 +1781,7 @@
     "required_level": 68,
     "text": "+(20-25)% to Chaos Resistance during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChaosResistanceWhileUsingFlaskUber2_": {
     "generation_type": "Suffix",
@@ -1893,7 +1789,7 @@
     "required_level": 75,
     "text": "+(26-30)% to Chaos Resistance during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LifeRecoveryRateUber1": {
     "generation_type": "Suffix",
@@ -1901,7 +1797,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Life Recovery rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LifeRecoveryRateUber2_": {
     "generation_type": "Suffix",
@@ -1909,7 +1805,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Life Recovery rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MeleeDamageDuringFlaskEffectUber1": {
     "generation_type": "Suffix",
@@ -1917,7 +1813,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Melee Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MeleeDamageDuringFlaskEffectUber2_": {
     "generation_type": "Suffix",
@@ -1925,7 +1821,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Melee Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "MeleeDamageDuringFlaskEffectUber3": {
     "generation_type": "Suffix",
@@ -1933,7 +1829,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Melee Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PercentageAllAttributesUberElder1": {
     "generation_type": "Suffix",
@@ -1941,7 +1837,7 @@
     "required_level": 68,
     "text": "(6-9)% increased Attributes",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PercentageAllAttributesUberElder2": {
     "generation_type": "Suffix",
@@ -1949,7 +1845,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Attributes",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ProjectileAttackDamageDuringFlaskEffectUber1_": {
     "generation_type": "Suffix",
@@ -1957,7 +1853,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Projectile Attack Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ProjectileAttackDamageDuringFlaskEffectUber2_": {
     "generation_type": "Suffix",
@@ -1965,7 +1861,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Projectile Attack Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ProjectileAttackDamageDuringFlaskEffectUber3": {
     "generation_type": "Suffix",
@@ -1973,7 +1869,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Projectile Attack Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "RemoveIgniteOnFlaskUseUber1": {
     "generation_type": "Suffix",
@@ -1981,7 +1877,7 @@
     "required_level": 75,
     "text": "Remove Ignite and Burning when you use a Flask",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AttackSpeedDuringFlaskEffectInfluence1": {
     "generation_type": "Suffix",
@@ -1989,7 +1885,7 @@
     "required_level": 68,
     "text": "(8-14)% increased Attack Speed during any Flask Effect",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaRecoveryRateInfluence1": {
     "generation_type": "Suffix",
@@ -1997,7 +1893,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Mana Recovery rate",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaRecoveryRateInfluence2__": {
     "generation_type": "Suffix",
@@ -2005,7 +1901,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Mana Recovery rate",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ProjectileAttackDamageDuringFlaskEffectInfluence1__": {
     "generation_type": "Suffix",
@@ -2013,7 +1909,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Projectile Attack Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ProjectileAttackDamageDuringFlaskEffectInfluence2_": {
     "generation_type": "Suffix",
@@ -2021,7 +1917,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Projectile Attack Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ProjectileAttackDamageDuringFlaskEffectInfluence3": {
     "generation_type": "Suffix",
@@ -2029,7 +1925,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Projectile Attack Damage during any Flask Effect",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "RemoveFreezeOnFlaskUseInfluence1": {
     "generation_type": "Suffix",
@@ -2037,7 +1933,7 @@
     "required_level": 75,
     "text": "Remove Chill and Freeze when you use a Flask",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "CastSpeedDuringFlaskEffectUber1": {
     "generation_type": "Suffix",
@@ -2045,7 +1941,7 @@
     "required_level": 68,
     "text": "(8-14)% increased Cast Speed during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "EnergyShieldRecoveryRateUber1": {
     "generation_type": "Suffix",
@@ -2053,7 +1949,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Energy Shield Recovery rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "EnergyShieldRecoveryRateUber2": {
     "generation_type": "Suffix",
@@ -2061,7 +1957,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Energy Shield Recovery rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedCooldownRecoveryUber1": {
     "generation_type": "Suffix",
@@ -2069,7 +1965,7 @@
     "required_level": 75,
     "text": "(10-15)% increased Cooldown Recovery Rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedCooldownRecoveryUber2_": {
     "generation_type": "Suffix",
@@ -2077,7 +1973,7 @@
     "required_level": 84,
     "text": "(16-20)% increased Cooldown Recovery Rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ManaRecoveryRateUber1_": {
     "generation_type": "Suffix",
@@ -2085,7 +1981,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Mana Recovery rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ManaRecoveryRateUber2": {
     "generation_type": "Suffix",
@@ -2093,7 +1989,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Mana Recovery rate",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MovementSpeedDuringFlaskEffectUber1": {
     "generation_type": "Suffix",
@@ -2101,7 +1997,7 @@
     "required_level": 81,
     "text": "(6-10)% increased Movement Speed during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAttackDamageTakenUber1_": {
     "generation_type": "Suffix",
@@ -2109,7 +2005,7 @@
     "required_level": 68,
     "text": "-(35-25) Physical Damage taken from Attack Hits",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAttackDamageTakenUber2": {
     "generation_type": "Suffix",
@@ -2117,7 +2013,7 @@
     "required_level": 75,
     "text": "-(45-36) Physical Damage taken from Attack Hits",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "RemoveFreezeOnFlaskUseUber1_": {
     "generation_type": "Suffix",
@@ -2125,7 +2021,7 @@
     "required_level": 75,
     "text": "Remove Chill and Freeze when you use a Flask",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "RemoveShockOnFlaskUseUber1_": {
     "generation_type": "Suffix",
@@ -2133,7 +2029,7 @@
     "required_level": 75,
     "text": "Remove Shock when you use a Flask",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellDamageDuringFlaskEffectUber1": {
     "generation_type": "Suffix",
@@ -2141,7 +2037,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Spell Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellDamageDuringFlaskEffectUber2": {
     "generation_type": "Suffix",
@@ -2149,7 +2045,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Spell Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SpellDamageDuringFlaskEffectUber3_": {
     "generation_type": "Suffix",
@@ -2157,6 +2053,6 @@
     "required_level": 80,
     "text": "(31-35)% increased Spell Damage during any Flask Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   }
 }

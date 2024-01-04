@@ -439,21 +439,13 @@
     "weight": 500,
     "influence": "Normal"
   },
-  "AdditionalArrowInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 80,
-    "text": "Bow Attacks fire an additional Arrow",
-    "weight": 0,
-    "influence": "Normal"
-  },
   "AreaOfEffectInfluence1": {
     "generation_type": "Prefix",
     "name": "Warlord's",
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence2": {
     "generation_type": "Prefix",
@@ -461,7 +453,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence3": {
     "generation_type": "Prefix",
@@ -469,7 +461,7 @@
     "required_level": 80,
     "text": "(13-15)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalAddedAsExtraFireInfluence1_": {
     "generation_type": "Prefix",
@@ -477,7 +469,7 @@
     "required_level": 68,
     "text": "Gain (5-10)% of Physical Damage as Extra Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalAddedAsExtraFireInfluence2_____": {
     "generation_type": "Prefix",
@@ -485,7 +477,7 @@
     "required_level": 75,
     "text": "Gain (11-15)% of Physical Damage as Extra Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AdditionalPierceInfluence1": {
     "generation_type": "Prefix",
@@ -493,7 +485,7 @@
     "required_level": 75,
     "text": "Projectiles Pierce an additional Target",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MovementVelocityExtraInfluence1": {
     "generation_type": "Prefix",
@@ -501,7 +493,7 @@
     "required_level": 75,
     "text": "(3-6)% increased Movement Speed",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "MovementVelocityExtraInfluence2__": {
     "generation_type": "Prefix",
@@ -509,7 +501,7 @@
     "required_level": 80,
     "text": "(7-10)% increased Movement Speed",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ConvertPhysicalToColdInfluence1_": {
     "generation_type": "Prefix",
@@ -517,7 +509,7 @@
     "required_level": 68,
     "text": "(18-21)% of Physical Damage Converted to Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToColdInfluence2": {
     "generation_type": "Prefix",
@@ -525,15 +517,7 @@
     "required_level": 71,
     "text": "(22-25)% of Physical Damage Converted to Cold Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ConvertPhysicalToColdInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 81,
-    "text": "(22-25)% of Physical Damage Converted to Cold Damage | Gain (3-5)% of Physical Damage as Extra Cold Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToFireInfluence1": {
     "generation_type": "Prefix",
@@ -541,7 +525,7 @@
     "required_level": 68,
     "text": "(18-21)% of Physical Damage Converted to Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToFireInfluence2": {
     "generation_type": "Prefix",
@@ -549,15 +533,7 @@
     "required_level": 71,
     "text": "(22-25)% of Physical Damage Converted to Fire Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ConvertPhysicalToFireInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 81,
-    "text": "(22-25)% of Physical Damage Converted to Fire Damage | Gain (3-5)% of Physical Damage as Extra Fire Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToLightningInfluence1": {
     "generation_type": "Prefix",
@@ -565,7 +541,7 @@
     "required_level": 68,
     "text": "(18-21)% of Physical Damage Converted to Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ConvertPhysicalToLightningInfluence2": {
     "generation_type": "Prefix",
@@ -573,15 +549,7 @@
     "required_level": 71,
     "text": "(22-25)% of Physical Damage Converted to Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ConvertPhysicalToLightningInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 81,
-    "text": "(22-25)% of Physical Damage Converted to Lightning Damage | Gain (3-5)% of Physical Damage as Extra Lightning Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningInfluence1": {
     "generation_type": "Prefix",
@@ -589,7 +557,7 @@
     "required_level": 68,
     "text": "Gain (5-10)% of Physical Damage as Extra Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningInfluence2": {
     "generation_type": "Prefix",
@@ -597,7 +565,7 @@
     "required_level": 75,
     "text": "Gain (11-15)% of Physical Damage as Extra Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AddedColdDamagePerFrenzyChargeUber1": {
     "generation_type": "Prefix",
@@ -605,7 +573,7 @@
     "required_level": 80,
     "text": "8 to 12 Added Cold Damage per Frenzy Charge",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AdditionalPierceUber1": {
     "generation_type": "Prefix",
@@ -613,7 +581,7 @@
     "required_level": 68,
     "text": "Projectiles Pierce an additional Target",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber1_": {
     "generation_type": "Prefix",
@@ -621,7 +589,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber2": {
     "generation_type": "Prefix",
@@ -629,7 +597,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect",
     "weight": 600,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AreaOfEffectUber3_": {
     "generation_type": "Prefix",
@@ -637,7 +605,7 @@
     "required_level": 82,
     "text": "(13-15)% increased Area of Effect",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "FrenzyChargeOnKillInfluence1": {
     "generation_type": "Prefix",
@@ -645,7 +613,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain a Frenzy Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "FrenzyChargeOnKillInfluence2": {
     "generation_type": "Prefix",
@@ -653,15 +621,7 @@
     "required_level": 80,
     "text": "(7-10)% chance to gain a Frenzy Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "FrenzyChargeOnKillInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "(7-10)% chance to gain a Frenzy Charge on Kill | 50% increased Frenzy Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdInfluence1_": {
     "generation_type": "Prefix",
@@ -669,7 +629,7 @@
     "required_level": 68,
     "text": "Gain (5-10)% of Physical Damage as Extra Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdInfluence2": {
     "generation_type": "Prefix",
@@ -677,15 +637,7 @@
     "required_level": 75,
     "text": "Gain (11-15)% of Physical Damage as Extra Cold Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AdditionalArrowUber1__": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 80,
-    "text": "Bow Attacks fire an additional Arrow",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ManaGainPerTargetUberShaper1": {
     "generation_type": "Prefix",
@@ -693,7 +645,7 @@
     "required_level": 68,
     "text": "Gain (2-3) Mana per Enemy Hit with Attacks",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MovementVelocityQuiverUber1": {
     "generation_type": "Prefix",
@@ -701,7 +653,7 @@
     "required_level": 75,
     "text": "(3-6)% increased Movement Speed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MovementVelocityQuiverUber2": {
     "generation_type": "Prefix",
@@ -709,7 +661,7 @@
     "required_level": 80,
     "text": "(7-10)% increased Movement Speed",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsColdQuiverUber1": {
     "generation_type": "Prefix",
@@ -717,7 +669,7 @@
     "required_level": 68,
     "text": "Gain (5-10)% of Physical Damage as Extra Cold Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "PhysicalAddedAsColdQuiverUber2": {
     "generation_type": "Prefix",
@@ -725,7 +677,7 @@
     "required_level": 75,
     "text": "Gain (11-15)% of Physical Damage as Extra Cold Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AdditionalArrowQuiver1_": {
     "generation_type": "Suffix",
@@ -1415,37 +1367,13 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "AvoidStunInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 68,
-    "text": "(16-20)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidStunInfluence2_": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 70,
-    "text": "(21-25)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
   "AvoidStunInfluence3": {
     "generation_type": "Suffix",
     "name": "of the Conquest",
     "required_level": 75,
     "text": "(31-35)% chance to Avoid being Stunned",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidStunInfluenceMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "(36-50)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "BleedOnHitDamageInfluence1_": {
     "generation_type": "Suffix",
@@ -1453,7 +1381,7 @@
     "required_level": 68,
     "text": "Attacks have 10% chance to cause Bleeding | (15-25)% increased Damage with Bleeding",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "BleedOnHitDamageInfluence2_": {
     "generation_type": "Suffix",
@@ -1461,7 +1389,7 @@
     "required_level": 75,
     "text": "Attacks have 15% chance to cause Bleeding | (26-30)% increased Damage with Bleeding",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChancetoGainPhasingOnKillInfluence1_": {
     "generation_type": "Suffix",
@@ -1469,7 +1397,7 @@
     "required_level": 68,
     "text": "(5-6)% chance to gain Phasing for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChancetoGainPhasingOnKillInfluence2": {
     "generation_type": "Suffix",
@@ -1477,7 +1405,7 @@
     "required_level": 70,
     "text": "(7-8)% chance to gain Phasing for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChancetoGainPhasingOnKillInfluence3": {
     "generation_type": "Suffix",
@@ -1485,7 +1413,7 @@
     "required_level": 73,
     "text": "(9-10)% chance to gain Phasing for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MaimOnHitInfluence1": {
     "generation_type": "Suffix",
@@ -1493,7 +1421,7 @@
     "required_level": 68,
     "text": "Attacks have 15% chance to Maim on Hit",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MaimOnHitInfluence2___": {
     "generation_type": "Suffix",
@@ -1501,7 +1429,7 @@
     "required_level": 75,
     "text": "Attacks have 20% chance to Maim on Hit",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChaosDamageOverTimeMultiplierQuiverInfluence1__": {
     "generation_type": "Suffix",
@@ -1509,7 +1437,7 @@
     "required_level": 68,
     "text": "+(16-20)% to Chaos Damage over Time Multiplier with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChaosDamageOverTimeMultiplierQuiverInfluence2": {
     "generation_type": "Suffix",
@@ -1517,7 +1445,7 @@
     "required_level": 80,
     "text": "+(21-25)% to Chaos Damage over Time Multiplier with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FireDamageOverTimeMultiplierQuiverInfluence1": {
     "generation_type": "Suffix",
@@ -1525,7 +1453,7 @@
     "required_level": 68,
     "text": "+(16-20)% to Fire Damage over Time Multiplier with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FireDamageOverTimeMultiplierQuiverInfluence2": {
     "generation_type": "Suffix",
@@ -1533,7 +1461,7 @@
     "required_level": 80,
     "text": "+(21-25)% to Fire Damage over Time Multiplier with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ManaGainPerTargetInfluence1": {
     "generation_type": "Suffix",
@@ -1541,15 +1469,7 @@
     "required_level": 68,
     "text": "Gain (3-5) Mana per Enemy Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ManaGainPerTargetInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 78,
-    "text": "Gain (3-5) Mana per Enemy Hit with Attacks | (10-20)% increased Attack Speed while not on Low Mana",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalDamageOverTimeMultiplierQuiverInfluence1__": {
     "generation_type": "Suffix",
@@ -1557,7 +1477,7 @@
     "required_level": 68,
     "text": "+(16-20)% to Physical Damage over Time Multiplier with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PhysicalDamageOverTimeMultiplierQuiverInfluence2": {
     "generation_type": "Suffix",
@@ -1565,7 +1485,7 @@
     "required_level": 80,
     "text": "+(21-25)% to Physical Damage over Time Multiplier with Attack Skills",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonOnHitDamageInfluence1_": {
     "generation_type": "Suffix",
@@ -1573,7 +1493,7 @@
     "required_level": 68,
     "text": "15% chance to Poison on Hit | (15-25)% increased Damage with Poison",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonOnHitDamageInfluence2": {
     "generation_type": "Suffix",
@@ -1581,23 +1501,7 @@
     "required_level": 75,
     "text": "20% chance to Poison on Hit | (26-30)% increased Damage with Poison",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidFreezeInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% chance to Avoid being Frozen",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidFreezeInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% chance to Avoid being Frozen",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AvoidFreezeInfluence3": {
     "generation_type": "Suffix",
@@ -1605,31 +1509,7 @@
     "required_level": 75,
     "text": "(51-60)% chance to Avoid being Frozen",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidFreezeInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(71-80)% chance to Avoid being Frozen",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidIgniteInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% chance to Avoid being Ignited",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidIgniteInfluence2_": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% chance to Avoid being Ignited",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AvoidIgniteInfluence3": {
     "generation_type": "Suffix",
@@ -1637,31 +1517,7 @@
     "required_level": 75,
     "text": "(51-60)% chance to Avoid being Ignited",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidIgniteInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(71-80)% chance to Avoid being Ignited",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidShockInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% chance to Avoid being Shocked",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidShockInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% chance to Avoid being Shocked",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AvoidShockInfluence3": {
     "generation_type": "Suffix",
@@ -1669,31 +1525,7 @@
     "required_level": 75,
     "text": "(51-60)% chance to Avoid being Shocked",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidShockInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(71-80)% chance to Avoid being Shocked",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidStunUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "(15-22)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidStunUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "(23-30)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToAvoidStunUber3": {
     "generation_type": "Suffix",
@@ -1701,15 +1533,7 @@
     "required_level": 82,
     "text": "(31-35)% chance to Avoid being Stunned",
     "weight": 1600,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidStunUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 92,
-    "text": "(36-50)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "BleedOnHitQuiverUber1": {
     "generation_type": "Suffix",
@@ -1717,7 +1541,7 @@
     "required_level": 68,
     "text": "Attacks have 10% chance to cause Bleeding | (15-25)% increased Damage with Bleeding",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "BleedOnHitQuiverUber2_": {
     "generation_type": "Suffix",
@@ -1725,7 +1549,7 @@
     "required_level": 75,
     "text": "Attacks have 15% chance to cause Bleeding | (26-30)% increased Damage with Bleeding",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChancetoGainPhasingOnKillUber1": {
     "generation_type": "Suffix",
@@ -1733,7 +1557,7 @@
     "required_level": 68,
     "text": "(5-6)% chance to gain Phasing for 4 seconds on Kill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChancetoGainPhasingOnKillUber2_": {
     "generation_type": "Suffix",
@@ -1741,7 +1565,7 @@
     "required_level": 75,
     "text": "(7-8)% chance to gain Phasing for 4 seconds on Kill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChancetoGainPhasingOnKillUber3_": {
     "generation_type": "Suffix",
@@ -1749,7 +1573,7 @@
     "required_level": 80,
     "text": "(9-10)% chance to gain Phasing for 4 seconds on Kill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "FrenzyChargeOnHittingRareOrUniqueUber1": {
     "generation_type": "Suffix",
@@ -1757,7 +1581,7 @@
     "required_level": 75,
     "text": "(3-5)% chance to gain a Frenzy Charge when you Hit a Rare or Unique Enemy",
     "weight": 400,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PoisonOnHitQuiverUber1_": {
     "generation_type": "Suffix",
@@ -1765,7 +1589,7 @@
     "required_level": 68,
     "text": "15% chance to Poison on Hit | (15-25)% increased Damage with Poison",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "PoisonOnHitQuiverUber2": {
     "generation_type": "Suffix",
@@ -1773,7 +1597,7 @@
     "required_level": 75,
     "text": "20% chance to Poison on Hit | (26-30)% increased Damage with Poison",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "OnslaughtOnKillInfluence1": {
     "generation_type": "Suffix",
@@ -1781,7 +1605,7 @@
     "required_level": 75,
     "text": "(5-7)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "OnslaughtOnKillInfluence2_": {
     "generation_type": "Suffix",
@@ -1789,15 +1613,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "OnslaughtOnKillInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(8-10)% chance to gain Onslaught for 4 seconds on Kill | (3-10)% increased Attack, Cast and Movement Speed while you have Onslaught",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalChanceToBlindOnHitInfluence1__": {
     "generation_type": "Suffix",
@@ -1805,7 +1621,7 @@
     "required_level": 68,
     "text": "(8-11)% Global chance to Blind Enemies on hit",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalChanceToBlindOnHitInfluence2_": {
     "generation_type": "Suffix",
@@ -1813,15 +1629,7 @@
     "required_level": 80,
     "text": "(12-15)% Global chance to Blind Enemies on hit",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "GlobalChanceToBlindOnHitInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(12-15)% Global chance to Blind Enemies on hit | (20-30)% increased Damage with Hits and Ailments against Blinded Enemies",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAccuracyPercentInfluence1": {
     "generation_type": "Suffix",
@@ -1829,7 +1637,7 @@
     "required_level": 68,
     "text": "(12-15)% increased Global Accuracy Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAccuracyPercentInfluence2": {
     "generation_type": "Suffix",
@@ -1837,15 +1645,7 @@
     "required_level": 80,
     "text": "(16-20)% increased Global Accuracy Rating",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "IncreasedAccuracyPercentInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(21-30)% increased Global Accuracy Rating",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence1": {
     "generation_type": "Suffix",
@@ -1853,7 +1653,7 @@
     "required_level": 68,
     "text": "(15-20)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence2_": {
     "generation_type": "Suffix",
@@ -1861,7 +1661,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AvoidPhysicalDamageInfluence1": {
     "generation_type": "Suffix",
@@ -1869,7 +1669,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Physical Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AvoidPhysicalDamageInfluence2": {
     "generation_type": "Suffix",
@@ -1877,7 +1677,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Physical Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "BlindOnHitShaperUber1": {
     "generation_type": "Suffix",
@@ -1885,7 +1685,7 @@
     "required_level": 68,
     "text": "(5-6)% chance to Blind Enemies on Hit with Attacks",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "BlindOnHitShaperUber2": {
     "generation_type": "Suffix",
@@ -1893,7 +1693,7 @@
     "required_level": 75,
     "text": "(7-8)% chance to Blind Enemies on Hit with Attacks",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "BlindOnHitShaperUber3": {
     "generation_type": "Suffix",
@@ -1901,7 +1701,7 @@
     "required_level": 81,
     "text": "(9-10)% chance to Blind Enemies on Hit with Attacks",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaimOnHitQuiverUber1": {
     "generation_type": "Suffix",
@@ -1909,7 +1709,7 @@
     "required_level": 68,
     "text": "Attacks have 15% chance to Maim on Hit",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "MaimOnHitQuiverUber2": {
     "generation_type": "Suffix",
@@ -1917,7 +1717,7 @@
     "required_level": 75,
     "text": "Attacks have 20% chance to Maim on Hit",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "OnslaugtOnKillUber1": {
     "generation_type": "Suffix",
@@ -1925,7 +1725,7 @@
     "required_level": 68,
     "text": "(5-6)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "OnslaugtOnKillUber2": {
     "generation_type": "Suffix",
@@ -1933,7 +1733,7 @@
     "required_level": 75,
     "text": "(7-8)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "OnslaugtOnKillUber3": {
     "generation_type": "Suffix",
@@ -1941,6 +1741,6 @@
     "required_level": 83,
     "text": "(9-10)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 1000,
-    "influence": "Normal"
+    "influence": "Shaper"
   }
 }

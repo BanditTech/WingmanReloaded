@@ -693,7 +693,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence2": {
     "generation_type": "Prefix",
@@ -701,7 +701,7 @@
     "required_level": 75,
     "text": "(10-12)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AreaOfEffectInfluence3": {
     "generation_type": "Prefix",
@@ -709,7 +709,7 @@
     "required_level": 80,
     "text": "(13-15)% increased Area of Effect",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChanceToIgniteAddedDamageInfluence1": {
     "generation_type": "Prefix",
@@ -717,7 +717,7 @@
     "required_level": 68,
     "text": "Adds (19-26) to (38-46) Fire Damage against Ignited Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ChanceToIgniteAddedDamageInfluence2": {
     "generation_type": "Prefix",
@@ -725,7 +725,7 @@
     "required_level": 75,
     "text": "Adds (23-30) to (47-54) Fire Damage against Ignited Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AddedFireDamagePerEnduranceChargeInfluence1": {
     "generation_type": "Prefix",
@@ -733,7 +733,7 @@
     "required_level": 75,
     "text": "(2-3) to (4-5) Fire Damage per Endurance Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AddedFireDamagePerEnduranceChargeInfluence2__": {
     "generation_type": "Prefix",
@@ -741,7 +741,7 @@
     "required_level": 80,
     "text": "(3-4) to (6-7) Fire Damage per Endurance Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "GlobalArmourPercentInfluence1": {
     "generation_type": "Prefix",
@@ -749,7 +749,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Armour",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "GlobalArmourPercentInfluence2___": {
     "generation_type": "Prefix",
@@ -757,7 +757,7 @@
     "required_level": 78,
     "text": "(10-12)% increased Armour",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "GlobalArmourPercentInfluence3": {
     "generation_type": "Prefix",
@@ -765,7 +765,7 @@
     "required_level": 82,
     "text": "(13-15)% increased Armour",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageRingInfluence1": {
     "generation_type": "Prefix",
@@ -773,7 +773,7 @@
     "required_level": 68,
     "text": "(15-17)% increased Melee Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageRingInfluence2": {
     "generation_type": "Prefix",
@@ -781,7 +781,7 @@
     "required_level": 75,
     "text": "(18-21)% increased Melee Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MeleeDamageRingInfluence3": {
     "generation_type": "Prefix",
@@ -789,23 +789,7 @@
     "required_level": 80,
     "text": "(22-25)% increased Melee Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldDelayInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 68,
-    "text": "(15-20)% faster start of Energy Shield Recharge",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "EnergyShieldDelayInfluence2_": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 75,
-    "text": "(20-24)% faster start of Energy Shield Recharge",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "ExertedAttackDamageInfluence1": {
     "generation_type": "Prefix",
@@ -813,7 +797,7 @@
     "required_level": 68,
     "text": "Exerted Attacks deal (25-27)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ExertedAttackDamageInfluence2__": {
     "generation_type": "Prefix",
@@ -821,7 +805,7 @@
     "required_level": 75,
     "text": "Exerted Attacks deal (28-31)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ExertedAttackDamageInfluence3": {
     "generation_type": "Prefix",
@@ -829,7 +813,7 @@
     "required_level": 80,
     "text": "Exerted Attacks deal (32-35)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "IncreasedExperienceGainInfluence1": {
     "generation_type": "Prefix",
@@ -837,7 +821,7 @@
     "required_level": 85,
     "text": "(2-3)% increased Experience gain",
     "weight": 50,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LifeGainPerTargetInfluence1": {
     "generation_type": "Prefix",
@@ -845,7 +829,7 @@
     "required_level": 68,
     "text": "Gain (10-15) Life per Enemy Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "LifeGainPerTargetInfluence2__": {
     "generation_type": "Prefix",
@@ -853,7 +837,7 @@
     "required_level": 75,
     "text": "Gain (16-20) Life per Enemy Hit with Attacks",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ReflectedElementalDamageRingInfluence1": {
     "generation_type": "Prefix",
@@ -861,7 +845,7 @@
     "required_level": 68,
     "text": "You and your Minions take (45-31)% reduced Reflected Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ReflectedElementalDamageRingInfluence2": {
     "generation_type": "Prefix",
@@ -869,7 +853,7 @@
     "required_level": 75,
     "text": "You and your Minions take (55-46)% reduced Reflected Elemental Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ReflectedPhysicalDamageRingInfluence1": {
     "generation_type": "Prefix",
@@ -877,7 +861,7 @@
     "required_level": 68,
     "text": "You and your Minions take (45-31)% reduced Reflected Physical Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ReflectedPhysicalDamageRingInfluence2_": {
     "generation_type": "Prefix",
@@ -885,7 +869,7 @@
     "required_level": 75,
     "text": "You and your Minions take (55-46)% reduced Reflected Physical Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "ChanceToShockAddedDamageInfluence1": {
     "generation_type": "Prefix",
@@ -893,7 +877,7 @@
     "required_level": 68,
     "text": "Adds (3-7) to (68-73) Lightning Damage against Shocked Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToShockAddedDamageInfluence2": {
     "generation_type": "Prefix",
@@ -901,7 +885,7 @@
     "required_level": 75,
     "text": "Adds (4-8) to (82-86) Lightning Damage against Shocked Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AddedLightningDamagePerPowerChargeInfluence1__": {
     "generation_type": "Prefix",
@@ -909,7 +893,7 @@
     "required_level": 75,
     "text": "1 to (6-8) Lightning Damage per Power Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AddedLightningDamagePerPowerChargeInfluence2": {
     "generation_type": "Prefix",
@@ -917,7 +901,7 @@
     "required_level": 80,
     "text": "(1-2) to (9-11) Lightning Damage per Power Charge",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalEnergyShieldPercentInfluence1": {
     "generation_type": "Prefix",
@@ -925,7 +909,7 @@
     "required_level": 68,
     "text": "(7-9)% increased maximum Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalEnergyShieldPercentInfluence2": {
     "generation_type": "Prefix",
@@ -933,7 +917,7 @@
     "required_level": 78,
     "text": "(10-12)% increased maximum Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalEnergyShieldPercentInfluence3": {
     "generation_type": "Prefix",
@@ -941,7 +925,7 @@
     "required_level": 82,
     "text": "(13-15)% increased maximum Energy Shield",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "IncreasedLifeLeechRateInfluence1": {
     "generation_type": "Prefix",
@@ -949,7 +933,7 @@
     "required_level": 68,
     "text": "(35-40)% increased total Recovery per second from Life Leech",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "IncreasedLifeLeechRateInfluence2": {
     "generation_type": "Prefix",
@@ -957,7 +941,7 @@
     "required_level": 75,
     "text": "(41-45)% increased total Recovery per second from Life Leech",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "IncreasedLifeLeechRateInfluence3": {
     "generation_type": "Prefix",
@@ -965,7 +949,7 @@
     "required_level": 80,
     "text": "(46-50)% increased total Recovery per second from Life Leech",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LifeGainedOnSpellHitInfluence1": {
     "generation_type": "Prefix",
@@ -973,7 +957,7 @@
     "required_level": 68,
     "text": "Gain (8-12) Life per Enemy Hit with Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "LifeGainedOnSpellHitInfluence2": {
     "generation_type": "Prefix",
@@ -981,7 +965,7 @@
     "required_level": 75,
     "text": "Gain (13-15) Life per Enemy Hit with Spells",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellDamageRingInfluence1_": {
     "generation_type": "Prefix",
@@ -989,7 +973,7 @@
     "required_level": 68,
     "text": "(15-17)% increased Spell Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellDamageRingInfluence2_": {
     "generation_type": "Prefix",
@@ -997,7 +981,7 @@
     "required_level": 75,
     "text": "(18-21)% increased Spell Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "SpellDamageRingInfluence3__": {
     "generation_type": "Prefix",
@@ -1005,23 +989,7 @@
     "required_level": 80,
     "text": "(22-25)% increased Spell Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AddedFireDamageToSpellsAndAttacksUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 68,
-    "text": "Adds (17-20) to (38-42) Fire Damage to Spells and Attacks",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AddedFireDamageToSpellsAndAttacksUber2": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 75,
-    "text": "Adds (21-24) to (43-48) Fire Damage to Spells and Attacks",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToIgniteAddedDamageUber1": {
     "generation_type": "Prefix",
@@ -1029,7 +997,7 @@
     "required_level": 68,
     "text": "Adds (19-26) to (38-46) Fire Damage against Ignited Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChanceToIgniteAddedDamageUber2__": {
     "generation_type": "Prefix",
@@ -1037,7 +1005,7 @@
     "required_level": 75,
     "text": "Adds (23-30) to (47-54) Fire Damage against Ignited Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LifeGainPerTargetUber1": {
     "generation_type": "Prefix",
@@ -1045,7 +1013,7 @@
     "required_level": 68,
     "text": "Gain (10-15) Life per Enemy Hit with Attacks",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "LifeGainPerTargetUber2": {
     "generation_type": "Prefix",
@@ -1053,7 +1021,7 @@
     "required_level": 75,
     "text": "Gain (16-20) Life per Enemy Hit with Attacks",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ManaGainPerTargetUberElder1": {
     "generation_type": "Prefix",
@@ -1061,7 +1029,7 @@
     "required_level": 68,
     "text": "Gain (2-3) Mana per Enemy Hit with Attacks",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ReducedPhysicalReflectTakenRingUber1": {
     "generation_type": "Prefix",
@@ -1069,7 +1037,7 @@
     "required_level": 68,
     "text": "You and your Minions take (45-31)% reduced Reflected Physical Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ReducedPhysicalReflectTakenRingUber2": {
     "generation_type": "Prefix",
@@ -1077,7 +1045,7 @@
     "required_level": 75,
     "text": "You and your Minions take (55-46)% reduced Reflected Physical Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AddedColdDamagePerFrenzyChargeInfluence1": {
     "generation_type": "Prefix",
@@ -1085,7 +1053,7 @@
     "required_level": 75,
     "text": "(2-3) to (4-5) Added Cold Damage per Frenzy Charge",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AddedColdDamagePerFrenzyChargeInfluence2__": {
     "generation_type": "Prefix",
@@ -1093,7 +1061,7 @@
     "required_level": 80,
     "text": "(3-4) to (6-7) Added Cold Damage per Frenzy Charge",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ChanceToFreezeAddedDamageInfluence1_": {
     "generation_type": "Prefix",
@@ -1101,7 +1069,7 @@
     "required_level": 68,
     "text": "Adds (17-23) to (35-41) Cold Damage against Chilled or Frozen Enemies",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ChanceToFreezeAddedDamageInfluence2": {
     "generation_type": "Prefix",
@@ -1109,23 +1077,7 @@
     "required_level": 75,
     "text": "Adds (20-26) to (41-48) Cold Damage against Chilled or Frozen Enemies",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "EnergyShieldRechargeDelayInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 68,
-    "text": "(15-20)% faster start of Energy Shield Recharge",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "EnergyShieldRechargeDelayInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 75,
-    "text": "(20-24)% faster start of Energy Shield Recharge",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalEvasionPercentInfluence1": {
     "generation_type": "Prefix",
@@ -1133,7 +1085,7 @@
     "required_level": 68,
     "text": "(7-9)% increased Evasion Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalEvasionPercentInfluence2": {
     "generation_type": "Prefix",
@@ -1141,7 +1093,7 @@
     "required_level": 78,
     "text": "(10-12)% increased Evasion Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "GlobalEvasionPercentInfluence3_": {
     "generation_type": "Prefix",
@@ -1149,7 +1101,7 @@
     "required_level": 82,
     "text": "(13-15)% increased Evasion Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinionDamageRingInfluence1": {
     "generation_type": "Prefix",
@@ -1157,7 +1109,7 @@
     "required_level": 68,
     "text": "Minions deal (15-17)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinionDamageRingInfluence2_": {
     "generation_type": "Prefix",
@@ -1165,7 +1117,7 @@
     "required_level": 75,
     "text": "Minions deal (18-21)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "MinionDamageRingInfluence3": {
     "generation_type": "Prefix",
@@ -1173,7 +1125,7 @@
     "required_level": 80,
     "text": "Minions deal (22-25)% increased Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ProjectileAttackDamageRingInfluence1": {
     "generation_type": "Prefix",
@@ -1181,7 +1133,7 @@
     "required_level": 68,
     "text": "(15-17)% increased Projectile Attack Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ProjectileAttackDamageRingInfluence2___": {
     "generation_type": "Prefix",
@@ -1189,7 +1141,7 @@
     "required_level": 75,
     "text": "(18-21)% increased Projectile Attack Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ProjectileAttackDamageRingInfluence3": {
     "generation_type": "Prefix",
@@ -1197,39 +1149,7 @@
     "required_level": 80,
     "text": "(22-25)% increased Projectile Attack Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AddedColdDamageToSpellsAndAttacksUber1__": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 68,
-    "text": "Adds (17-20) to (38-42) Cold Damage to Spells and Attacks",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AddedColdDamageToSpellsAndAttacksUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 75,
-    "text": "Adds (21-24) to (43-48) Cold Damage to Spells and Attacks",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AddedLightningDamageToSpellsAndAttacksUber1": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 68,
-    "text": "Adds (9-12) to (48-52) Lightning Damage to Spells and Attacks",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AddedLightningDamageToSpellsAndAttacksUber2": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 75,
-    "text": "Adds (13-16) to (56-60) Lightning Damage to Spells and Attacks",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ChanceToFreezeAddedDamageUber1": {
     "generation_type": "Prefix",
@@ -1237,7 +1157,7 @@
     "required_level": 68,
     "text": "Adds (17-23) to (35-41) Cold Damage against Chilled or Frozen Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToFreezeAddedDamageUber2": {
     "generation_type": "Prefix",
@@ -1245,7 +1165,7 @@
     "required_level": 75,
     "text": "Adds (20-26) to (41-48) Cold Damage against Chilled or Frozen Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToShockAddedDamageUber1": {
     "generation_type": "Prefix",
@@ -1253,7 +1173,7 @@
     "required_level": 68,
     "text": "Adds (3-7) to (68-73) Lightning Damage against Shocked Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToShockAddedDamageUber2": {
     "generation_type": "Prefix",
@@ -1261,7 +1181,7 @@
     "required_level": 75,
     "text": "Adds (4-8) to (82-86) Lightning Damage against Shocked Enemies",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedExperienceGainUber1": {
     "generation_type": "Prefix",
@@ -1269,7 +1189,7 @@
     "required_level": 85,
     "text": "(2-3)% increased Experience gain",
     "weight": 50,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LifeGainedOnSpellHitUber1": {
     "generation_type": "Prefix",
@@ -1277,7 +1197,7 @@
     "required_level": 68,
     "text": "Gain (8-12) Life per Enemy Hit with Spells",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "LifeGainedOnSpellHitUber2": {
     "generation_type": "Prefix",
@@ -1285,7 +1205,7 @@
     "required_level": 75,
     "text": "Gain (13-15) Life per Enemy Hit with Spells",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ManaGainedOnSpellHitUber1_": {
     "generation_type": "Prefix",
@@ -1293,7 +1213,7 @@
     "required_level": 68,
     "text": "Gain (2-3) Mana per Enemy Hit with Spells",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ReducedElementalReflectTakenRingUber1": {
     "generation_type": "Prefix",
@@ -1301,7 +1221,7 @@
     "required_level": 68,
     "text": "You and your Minions take (45-31)% reduced Reflected Elemental Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ReducedElementalReflectTakenRingUber2": {
     "generation_type": "Prefix",
@@ -1309,7 +1229,7 @@
     "required_level": 75,
     "text": "You and your Minions take (55-46)% reduced Reflected Elemental Damage",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "AllAttributes1": {
     "generation_type": "Suffix",
@@ -2261,7 +2181,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Damage with Bleeding | (5-6)% increased Bleeding Duration",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "BleedDamageAndDurationInfluence2_": {
     "generation_type": "Suffix",
@@ -2269,7 +2189,7 @@
     "required_level": 75,
     "text": "(13-17)% increased Damage with Bleeding | (7-8)% increased Bleeding Duration",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "BleedDamageAndDurationInfluence3": {
     "generation_type": "Suffix",
@@ -2277,7 +2197,7 @@
     "required_level": 80,
     "text": "(18-22)% increased Damage with Bleeding | (9-10)% increased Bleeding Duration",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierRingInfluence1": {
     "generation_type": "Suffix",
@@ -2285,7 +2205,7 @@
     "required_level": 68,
     "text": "+(14-16)% to Global Critical Strike Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierRingInfluence2_": {
     "generation_type": "Suffix",
@@ -2293,7 +2213,7 @@
     "required_level": 75,
     "text": "+(17-19)% to Global Critical Strike Multiplier",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CriticalStrikeMultiplierRingInfluence3_": {
     "generation_type": "Suffix",
@@ -2301,15 +2221,7 @@
     "required_level": 80,
     "text": "+(20-22)% to Global Critical Strike Multiplier",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "CurseOnHitVulnerabilityInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "Curse Enemies with Vulnerability on Hit",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CurseOnHitVulnerabilityInfluence2": {
     "generation_type": "Suffix",
@@ -2317,7 +2229,7 @@
     "required_level": 80,
     "text": "Curse Enemies with Vulnerability on Hit",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CurseOnHitFlammabilityInfluence1": {
     "generation_type": "Suffix",
@@ -2325,7 +2237,7 @@
     "required_level": 75,
     "text": "Curse Enemies with Flammability on Hit",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CurseOnHitFlammabilityInfluence2": {
     "generation_type": "Suffix",
@@ -2333,15 +2245,7 @@
     "required_level": 80,
     "text": "Curse Enemies with Flammability on Hit",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "CurseOnHitDespairInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 75,
-    "text": "Curse Enemies with Despair on Hit",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "CurseOnHitDespairInfluence2": {
     "generation_type": "Suffix",
@@ -2349,15 +2253,7 @@
     "required_level": 80,
     "text": "Curse Enemies with Despair on Hit",
     "weight": 200,
-    "influence": "Normal"
-  },
-  "CurseOnHitElementalWeaknessInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 75,
-    "text": "Curse Enemies with Elemental Weakness on Hit",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "CurseOnHitElementalWeaknessInfluence2": {
     "generation_type": "Suffix",
@@ -2365,7 +2261,7 @@
     "required_level": 80,
     "text": "Curse Enemies with Elemental Weakness on Hit",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonDamageAndDurationInfluence1_": {
     "generation_type": "Suffix",
@@ -2373,7 +2269,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Damage with Poison | (5-6)% increased Poison Duration",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonDamageAndDurationInfluence2": {
     "generation_type": "Suffix",
@@ -2381,7 +2277,7 @@
     "required_level": 75,
     "text": "(13-17)% increased Damage with Poison | (7-8)% increased Poison Duration",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PoisonDamageAndDurationInfluence3__": {
     "generation_type": "Suffix",
@@ -2389,7 +2285,7 @@
     "required_level": 80,
     "text": "(18-22)% increased Damage with Poison | (9-10)% increased Poison Duration",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "CurseOnHitConductivityInfluence1": {
     "generation_type": "Suffix",
@@ -2397,7 +2293,7 @@
     "required_level": 75,
     "text": "Curse Enemies with Conductivity on Hit",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CurseOnHitConductivityInfluence2___": {
     "generation_type": "Suffix",
@@ -2405,7 +2301,7 @@
     "required_level": 80,
     "text": "Curse Enemies with Conductivity on Hit",
     "weight": 200,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalCriticalStrikeChanceRingInfluence1___": {
     "generation_type": "Suffix",
@@ -2413,7 +2309,7 @@
     "required_level": 68,
     "text": "(15-17)% increased Global Critical Strike Chance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalCriticalStrikeChanceRingInfluence2": {
     "generation_type": "Suffix",
@@ -2421,7 +2317,7 @@
     "required_level": 75,
     "text": "(18-21)% increased Global Critical Strike Chance",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "GlobalCriticalStrikeChanceRingInfluence3": {
     "generation_type": "Suffix",
@@ -2429,15 +2325,7 @@
     "required_level": 80,
     "text": "(22-25)% increased Global Critical Strike Chance",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ReducedCurseEffectInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(29-25)% reduced Effect of Curses on you",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ReducedCurseEffectInfluence2_": {
     "generation_type": "Suffix",
@@ -2445,23 +2333,7 @@
     "required_level": 75,
     "text": "(40-35)% reduced Effect of Curses on you",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalChanceToEvadeUber1__": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "+(2-3)% chance to Evade Attack Hits",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalChanceToEvadeUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "+(4-5)% chance to Evade Attack Hits",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CriticalStrikeMultiplierUber1": {
     "generation_type": "Suffix",
@@ -2469,7 +2341,7 @@
     "required_level": 68,
     "text": "+(8-12)% to Global Critical Strike Multiplier",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "CriticalStrikeMultiplierUber2_": {
     "generation_type": "Suffix",
@@ -2477,7 +2349,7 @@
     "required_level": 75,
     "text": "+(13-16)% to Global Critical Strike Multiplier",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "CriticalStrikeMultiplierUber3": {
     "generation_type": "Suffix",
@@ -2485,39 +2357,7 @@
     "required_level": 80,
     "text": "+(17-20)% to Global Critical Strike Multiplier",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "CurseOnHitPoachersMarkUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "Trigger Level 8 Poacher's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitPoachersMarkUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 80,
-    "text": "Trigger Level 12 Poacher's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitWarlordsMarkUber1_": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "Trigger Level 8 Warlords's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitWarlordsMarkUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 80,
-    "text": "Trigger Level 12 Warlords's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GrantsHeraldOfAshSkillUber1": {
     "generation_type": "Suffix",
@@ -2525,7 +2365,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Herald of Ash Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAccuracyPercentUber1_": {
     "generation_type": "Suffix",
@@ -2533,7 +2373,7 @@
     "required_level": 68,
     "text": "(6-10)% increased Global Accuracy Rating",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAccuracyPercentUber2": {
     "generation_type": "Suffix",
@@ -2541,7 +2381,7 @@
     "required_level": 75,
     "text": "(11-15)% increased Global Accuracy Rating",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedAccuracyPercentUber3": {
     "generation_type": "Suffix",
@@ -2549,87 +2389,7 @@
     "required_level": 82,
     "text": "(16-20)% increased Global Accuracy Rating",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "MeleeDamageRingUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "(20-25)% increased Melee Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MeleeDamageRingUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "(26-30)% increased Melee Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MeleeDamageRingUber3": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 83,
-    "text": "(31-35)% increased Melee Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ProjectileAttackDamageRingUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "(20-25)% increased Projectile Attack Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ProjectileAttackDamageRingUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "(26-30)% increased Projectile Attack Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ProjectileAttackDamageRingUber3": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 84,
-    "text": "(31-35)% increased Projectile Attack Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitPoachersMarkNewUber1__": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "Trigger Level 8 Poacher's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitPoachersMarkNewUber2__": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 80,
-    "text": "Trigger Level 12 Poacher's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitWarlordsMarkNewUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "Trigger Level 8 Warlord's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitWarlordsMarkNewUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 80,
-    "text": "Trigger Level 12 Warlord's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AttackSpeedHitRecentlyInfluence1_": {
     "generation_type": "Suffix",
@@ -2637,7 +2397,7 @@
     "required_level": 75,
     "text": "(8-12)% increased Attack Speed if you've been Hit Recently",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "CurseOnHitFrostbiteInfluence1_": {
     "generation_type": "Suffix",
@@ -2645,7 +2405,7 @@
     "required_level": 75,
     "text": "Curse Enemies with Frostbite on Hit",
     "weight": 200,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "CurseOnHitFrostbiteInfluence2": {
     "generation_type": "Suffix",
@@ -2653,7 +2413,7 @@
     "required_level": 80,
     "text": "Curse Enemies with Frostbite on Hit",
     "weight": 200,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAccuracyPercentInfluence1": {
     "generation_type": "Suffix",
@@ -2661,7 +2421,7 @@
     "required_level": 68,
     "text": "(12-15)% increased Global Accuracy Rating",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAccuracyPercentInfluence2": {
     "generation_type": "Suffix",
@@ -2669,15 +2429,7 @@
     "required_level": 80,
     "text": "(16-20)% increased Global Accuracy Rating",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "IncreasedAccuracyPercentInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(21-30)% increased Global Accuracy Rating",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence1": {
     "generation_type": "Suffix",
@@ -2685,7 +2437,7 @@
     "required_level": 68,
     "text": "(15-20)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectLowInfluence2_": {
     "generation_type": "Suffix",
@@ -2693,7 +2445,7 @@
     "required_level": 75,
     "text": "(21-25)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "CriticalStrikeChanceUber1": {
     "generation_type": "Suffix",
@@ -2701,7 +2453,7 @@
     "required_level": 68,
     "text": "(10-15)% increased Global Critical Strike Chance",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "CriticalStrikeChanceUber2": {
     "generation_type": "Suffix",
@@ -2709,7 +2461,7 @@
     "required_level": 75,
     "text": "(16-20)% increased Global Critical Strike Chance",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "CriticalStrikeChanceUber3_": {
     "generation_type": "Suffix",
@@ -2717,23 +2469,7 @@
     "required_level": 80,
     "text": "(21-25)% increased Global Critical Strike Chance",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "CurseOnHitAssassinsMarkUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "Trigger Level 8 Assassin's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitAssassinsMarkUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 80,
-    "text": "Trigger Level 12 Assassin's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsHeraldOfIceSkillUber1": {
     "generation_type": "Suffix",
@@ -2741,7 +2477,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Herald of Ice Skill",
     "weight": 800,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsHeraldOfThunderSkillUber1": {
     "generation_type": "Suffix",
@@ -2749,15 +2485,7 @@
     "required_level": 68,
     "text": "Grants Level 22 Herald of Thunder Skill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ReducedCurseEffectUber1_": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "(29-25)% reduced Effect of Curses on you",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ReducedCurseEffectUber2": {
     "generation_type": "Suffix",
@@ -2765,46 +2493,6 @@
     "required_level": 75,
     "text": "(40-35)% reduced Effect of Curses on you",
     "weight": 1600,
-    "influence": "Normal"
-  },
-  "SpellDamageRingUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "(20-25)% increased Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "SpellDamageRingUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "(26-30)% increased Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "SpellDamageRingUber3__": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 82,
-    "text": "(31-35)% increased Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitAssassinsMarkNewUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "Trigger Level 8 Assassin's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "CurseOnHitAssassinsMarkNewUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 80,
-    "text": "Trigger Level 12 Assassin's Mark when you Hit a Rare or Unique Enemy and have no Mark",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   }
 }

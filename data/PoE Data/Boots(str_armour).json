@@ -325,15 +325,7 @@
     "required_level": 68,
     "text": "Unaffected by Burning Ground",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "UnaffectedByBurningGroundInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 78,
-    "text": "Unaffected by Ignite",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "SocketedFireGemLevelInfluence1": {
     "generation_type": "Prefix",
@@ -341,15 +333,7 @@
     "required_level": 68,
     "text": "+2 to Level of Socketed Fire Gems",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SocketedFireGemLevelInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 78,
-    "text": "+2 to Level of Socketed Fire Gems | +(3-7)% to Quality of Socketed Fire Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "MaximumEnduranceChargeInfluence1": {
     "generation_type": "Prefix",
@@ -357,15 +341,7 @@
     "required_level": 75,
     "text": "+1 to Maximum Endurance Charges",
     "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumEnduranceChargeInfluenceMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 85,
-    "text": "+1 to Maximum Endurance Charges | 10% chance that if you would gain Endurance Charges, you instead gain up to maximum Endurance Charges",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalAddedAsExtraFireBootsInfluence1": {
     "generation_type": "Prefix",
@@ -373,7 +349,7 @@
     "required_level": 68,
     "text": "Gain (3-5)% of Physical Damage as Extra Fire Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "PhysicalAddedAsExtraFireBootsInfluence2": {
     "generation_type": "Prefix",
@@ -381,15 +357,7 @@
     "required_level": 75,
     "text": "Gain (6-8)% of Physical Damage as Extra Fire Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysicalAddedAsExtraFireBootsInfluenceMaven___": {
-    "generation_type": "Prefix",
-    "name": "Elevated Warlord's",
-    "required_level": 85,
-    "text": "Gain (9-11)% of Physical Damage as Extra Fire Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AdditionalPierceInfluence1": {
     "generation_type": "Prefix",
@@ -397,7 +365,7 @@
     "required_level": 75,
     "text": "Projectiles Pierce an additional Target",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AdditionalPierceInfluence2__": {
     "generation_type": "Prefix",
@@ -405,15 +373,7 @@
     "required_level": 80,
     "text": "Projectiles Pierce 2 additional Targets",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AdditionalPierceInfluenceMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 90,
-    "text": "Projectiles Pierce (3-5) additional Targets",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "UnaffectedByDesecratedGroundInfluence1_": {
     "generation_type": "Prefix",
@@ -421,15 +381,7 @@
     "required_level": 68,
     "text": "Unaffected by Desecrated Ground",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "UnaffectedByDesecratedGroundInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 78,
-    "text": "Unaffected by Poison",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SocketedChaosGemLevelInfluence1": {
     "generation_type": "Prefix",
@@ -437,15 +389,7 @@
     "required_level": 68,
     "text": "+2 to Level of Socketed Chaos Gems",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SocketedChaosGemLevelInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Hunter's",
-    "required_level": 78,
-    "text": "+2 to Level of Socketed Chaos Gems | +(3-7)% to Quality of Socketed Chaos Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "SocketedLightningGemLevelInfluence1_": {
     "generation_type": "Prefix",
@@ -453,39 +397,7 @@
     "required_level": 68,
     "text": "+2 to Level of Socketed Lightning Gems",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SocketedLightningGemLevelInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 78,
-    "text": "+2 to Level of Socketed Lightning Gems | +(3-7)% to Quality of Socketed Lightning Gems",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumFireResistanceInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 75,
-    "text": "+1% to maximum Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumFireResistanceInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 85,
-    "text": "+2% to maximum Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "MaximumFireResistanceInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 95,
-    "text": "+3% to maximum Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningBootsInfluence1": {
     "generation_type": "Prefix",
@@ -493,7 +405,7 @@
     "required_level": 68,
     "text": "Gain (3-5)% of Physical Damage as Extra Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "PhysicalAddedAsExtraLightningBootsInfluence2": {
     "generation_type": "Prefix",
@@ -501,15 +413,7 @@
     "required_level": 75,
     "text": "Gain (6-8)% of Physical Damage as Extra Lightning Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysicalAddedAsExtraLightningBootsInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 85,
-    "text": "Gain (9-11)% of Physical Damage as Extra Lightning Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "UnaffectedByShockedGroundInfluence1": {
     "generation_type": "Prefix",
@@ -517,15 +421,7 @@
     "required_level": 68,
     "text": "Unaffected by Shocked Ground",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "UnaffectedByShockedGroundInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Crusader's",
-    "required_level": 78,
-    "text": "Unaffected by Shock",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ImmuneToDesecratedGroundUber1_": {
     "generation_type": "Prefix",
@@ -533,15 +429,7 @@
     "required_level": 68,
     "text": "Unaffected by Desecrated Ground",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ImmuneToDesecratedGroundUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 78,
-    "text": "Unaffected by Poison",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "SupportedByFortifyUber1": {
     "generation_type": "Prefix",
@@ -549,15 +437,7 @@
     "required_level": 68,
     "text": "Socketed Gems are Supported by Level 20 Fortify",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "SupportedByFortifyUberMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 78,
-    "text": "Socketed Gems are Supported by Level 25 Fortify",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChanceToGainEnduranceChargeOnKillUber1": {
     "generation_type": "Prefix",
@@ -565,7 +445,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain an Endurance Charge on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ChanceToGainEnduranceChargeOnKillUber2": {
     "generation_type": "Prefix",
@@ -573,15 +453,7 @@
     "required_level": 83,
     "text": "(7-10)% chance to gain an Endurance Charge on Kill",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceToGainEnduranceChargeOnKillUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 93,
-    "text": "(7-10)% chance to gain an Endurance Charge on Kill | 50% increased Endurance Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "ImmuneToShockedGroundUber1": {
     "generation_type": "Prefix",
@@ -589,15 +461,7 @@
     "required_level": 68,
     "text": "Unaffected by Shocked Ground",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ImmuneToShockedGroundUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Elder's",
-    "required_level": 78,
-    "text": "Unaffected by Shock",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "UnaffectedByChilledGroundInfluence1": {
     "generation_type": "Prefix",
@@ -605,15 +469,7 @@
     "required_level": 68,
     "text": "Unaffected by Chilled Ground",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "UnaffectedByChilledGroundInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 78,
-    "text": "Unaffected by Chill",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ElusiveOnCriticalStrikeInfluence1": {
     "generation_type": "Prefix",
@@ -621,15 +477,7 @@
     "required_level": 75,
     "text": "(5-10)% chance to gain Elusive on Critical Strike",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "ElusiveOnCriticalStrikeInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 85,
-    "text": "(11-20)% chance to gain Elusive on Critical Strike | (5-10)% increased Elusive Effect",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "EnduranceChargeOnKillInfluence1": {
     "generation_type": "Prefix",
@@ -637,7 +485,7 @@
     "required_level": 68,
     "text": "(4-6)% chance to gain an Endurance Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "EnduranceChargeOnKillInfluence2": {
     "generation_type": "Prefix",
@@ -645,15 +493,7 @@
     "required_level": 80,
     "text": "(7-10)% chance to gain an Endurance Charge on Kill",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "EnduranceChargeOnKillInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 90,
-    "text": "(7-10)% chance to gain an Endurance Charge on Kill | 50% increased Endurance Charge Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "SocketedColdGemLevelInfluence1": {
     "generation_type": "Prefix",
@@ -661,15 +501,7 @@
     "required_level": 68,
     "text": "+2 to Level of Socketed Cold Gems",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "SocketedColdGemLevelInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 78,
-    "text": "+2 to Level of Socketed Cold Gems | +(3-7)% to Quality of Socketed Cold Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdBootsInfluence1": {
     "generation_type": "Prefix",
@@ -677,7 +509,7 @@
     "required_level": 68,
     "text": "Gain (3-5)% of Physical Damage as Extra Cold Damage",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "PhysicalAddedAsExtraColdBootsInfluence2": {
     "generation_type": "Prefix",
@@ -685,15 +517,7 @@
     "required_level": 75,
     "text": "Gain (6-8)% of Physical Damage as Extra Cold Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PhysicalAddedAsExtraColdBootsInfluenceMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Redeemer's",
-    "required_level": 85,
-    "text": "Gain (9-11)% of Physical Damage as Extra Cold Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ImmuneToBurningGroundUber1": {
     "generation_type": "Prefix",
@@ -701,15 +525,7 @@
     "required_level": 68,
     "text": "Unaffected by Burning Ground",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ImmuneToBurningGroundUberMaven_": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 78,
-    "text": "Unaffected by Ignite",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ImmuneToChilledGroundUber1": {
     "generation_type": "Prefix",
@@ -717,15 +533,7 @@
     "required_level": 68,
     "text": "Unaffected by Chilled Ground",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "ImmuneToChilledGroundUberMaven": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 78,
-    "text": "Unaffected by Chill",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "SupportedByLifeLeechUber1": {
     "generation_type": "Prefix",
@@ -733,15 +541,7 @@
     "required_level": 68,
     "text": "Socketed Gems are supported by Level 15 Life Leech",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "SupportedByLifeLeechUberMaven__": {
-    "generation_type": "Prefix",
-    "name": "Elevated Shaper's",
-    "required_level": 78,
-    "text": "Socketed Gems are supported by Level 20 Life Leech",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToSuppressSpells1_": {
     "generation_type": "Suffix",
@@ -1239,37 +1039,13 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "AvoidStunInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 68,
-    "text": "(16-20)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidStunInfluence2_": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 70,
-    "text": "(21-25)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
   "AvoidStunInfluence3": {
     "generation_type": "Suffix",
     "name": "of the Conquest",
     "required_level": 75,
     "text": "(31-35)% chance to Avoid being Stunned",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidStunInfluenceMaven__": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "(36-50)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidColdDamageInfluence1_": {
     "generation_type": "Suffix",
@@ -1277,7 +1053,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Cold Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidColdDamageInfluence2": {
     "generation_type": "Suffix",
@@ -1285,15 +1061,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Cold Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidColdDamageInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(8-10)% chance to Avoid Cold Damage from Hits | +(20-30)% to Cold Resistance",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidFireDamageInfluence1": {
     "generation_type": "Suffix",
@@ -1301,7 +1069,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Fire Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidFireDamageInfluence2__": {
     "generation_type": "Suffix",
@@ -1309,39 +1077,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Fire Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidFireDamageInfluenceMaven_____": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(8-10)% chance to Avoid Fire Damage from Hits | +(20-30)% to Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 68,
-    "text": "Regenerate (0.8-1.2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 73,
-    "text": "Regenerate (1.3-1.5)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "LifeRegenerationPercentInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 83,
-    "text": "Regenerate (1.6-2)% of Life per second",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidLightningDamageInfluence1": {
     "generation_type": "Suffix",
@@ -1349,7 +1085,7 @@
     "required_level": 68,
     "text": "(5-7)% chance to Avoid Lightning Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidLightningDamageInfluence2": {
     "generation_type": "Suffix",
@@ -1357,47 +1093,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Lightning Damage from Hits",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidLightningDamageInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 90,
-    "text": "(8-10)% chance to Avoid Lightning Damage from Hits | +(20-30)% to Lightning Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalPhysicalDamageReductionInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 75,
-    "text": "(2-4)% additional Physical Damage Reduction",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AdditionalPhysicalDamageReductionInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Conquest",
-    "required_level": 85,
-    "text": "(2-4)% additional Physical Damage Reduction | (15-20)% increased Armour",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidBleedAndPoisonInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 68,
-    "text": "(21-25)% chance to Avoid Bleeding | (21-25)% chance to Avoid being Poisoned",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidBleedAndPoisonInfluence2____": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 70,
-    "text": "(26-30)% chance to Avoid Bleeding | (26-30)% chance to Avoid being Poisoned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Warlord"
   },
   "AvoidBleedAndPoisonInfluence3": {
     "generation_type": "Suffix",
@@ -1405,15 +1101,7 @@
     "required_level": 75,
     "text": "(41-50)% chance to Avoid Bleeding | (41-50)% chance to Avoid being Poisoned",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidBleedAndPoisonInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 85,
-    "text": "(61-70)% chance to Avoid Bleeding | (61-70)% chance to Avoid being Poisoned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FasterBleedInfluence1": {
     "generation_type": "Suffix",
@@ -1421,7 +1109,7 @@
     "required_level": 68,
     "text": "Bleeding you inflict deals Damage (7-9)% faster",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FasterBleedInfluence2": {
     "generation_type": "Suffix",
@@ -1429,15 +1117,7 @@
     "required_level": 73,
     "text": "Bleeding you inflict deals Damage (10-12)% faster",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FasterBleedInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 83,
-    "text": "Bleeding you inflict deals Damage (11-15)% faster | (10-20)% increased Bleeding Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FasterIgniteInfluence1_": {
     "generation_type": "Suffix",
@@ -1445,7 +1125,7 @@
     "required_level": 68,
     "text": "Ignites you inflict deal Damage (7-9)% faster",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FasterIgniteInfluence2_": {
     "generation_type": "Suffix",
@@ -1453,15 +1133,7 @@
     "required_level": 73,
     "text": "Ignites you inflict deal Damage (10-12)% faster",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FasterIgniteInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 83,
-    "text": "Ignites you inflict deal Damage (11-15)% faster | (10-20)% increased Ignite Duration on Enemies",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FasterPoisonInfluence1_": {
     "generation_type": "Suffix",
@@ -1469,7 +1141,7 @@
     "required_level": 68,
     "text": "Poisons you inflict deal Damage (7-9)% faster",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "FasterPoisonInfluence2": {
     "generation_type": "Suffix",
@@ -1477,15 +1149,7 @@
     "required_level": 73,
     "text": "Poisons you inflict deal Damage (10-12)% faster",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FasterPoisonInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 83,
-    "text": "Poisons you inflict deal Damage (11-15)% faster | (10-20)% increased Poison Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageStrengthInfluence1": {
     "generation_type": "Suffix",
@@ -1493,7 +1157,7 @@
     "required_level": 68,
     "text": "(6-8)% increased Strength",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "PercentageStrengthInfluence2_": {
     "generation_type": "Suffix",
@@ -1501,15 +1165,7 @@
     "required_level": 75,
     "text": "(9-10)% increased Strength",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "PercentageStrengthInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 85,
-    "text": "(11-12)% increased Strength",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "TailwindOnCriticalStrikeInfluence1": {
     "generation_type": "Suffix",
@@ -1517,31 +1173,7 @@
     "required_level": 75,
     "text": "You have Tailwind if you have dealt a Critical Strike Recently",
     "weight": 100,
-    "influence": "Normal"
-  },
-  "TailwindOnCriticalStrikeInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Hunt",
-    "required_level": 85,
-    "text": "You have Tailwind if you have dealt a Critical Strike Recently | (10-25)% increased Effect of Tailwind on you",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidFreezeInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% chance to Avoid being Frozen",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidFreezeInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% chance to Avoid being Frozen",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Hunter"
   },
   "AvoidFreezeInfluence3": {
     "generation_type": "Suffix",
@@ -1549,31 +1181,7 @@
     "required_level": 75,
     "text": "(51-60)% chance to Avoid being Frozen",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidFreezeInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(71-80)% chance to Avoid being Frozen",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidIgniteInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% chance to Avoid being Ignited",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidIgniteInfluence2_": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% chance to Avoid being Ignited",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AvoidIgniteInfluence3": {
     "generation_type": "Suffix",
@@ -1581,31 +1189,7 @@
     "required_level": 75,
     "text": "(51-60)% chance to Avoid being Ignited",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidIgniteInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(71-80)% chance to Avoid being Ignited",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidShockInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "(31-35)% chance to Avoid being Shocked",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "AvoidShockInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 70,
-    "text": "(36-40)% chance to Avoid being Shocked",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "AvoidShockInfluence3": {
     "generation_type": "Suffix",
@@ -1613,15 +1197,7 @@
     "required_level": 75,
     "text": "(51-60)% chance to Avoid being Shocked",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "AvoidShockInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 85,
-    "text": "(71-80)% chance to Avoid being Shocked",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CooldownRecoveryInfluence1": {
     "generation_type": "Suffix",
@@ -1629,7 +1205,7 @@
     "required_level": 75,
     "text": "(6-10)% increased Cooldown Recovery Rate",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "CooldownRecoveryInfluence2": {
     "generation_type": "Suffix",
@@ -1637,15 +1213,7 @@
     "required_level": 80,
     "text": "(11-15)% increased Cooldown Recovery Rate",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "CooldownRecoveryInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 90,
-    "text": "(16-20)% increased Cooldown Recovery Rate",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumFireResistanceInfluence1New_": {
     "generation_type": "Suffix",
@@ -1653,7 +1221,7 @@
     "required_level": 75,
     "text": "+1% to maximum Fire Resistance",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "MaximumFireResistanceInfluence2New_": {
     "generation_type": "Suffix",
@@ -1661,31 +1229,7 @@
     "required_level": 85,
     "text": "+2% to maximum Fire Resistance",
     "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumFireResistanceInfluenceMavenNew": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Crusade",
-    "required_level": 95,
-    "text": "+3% to maximum Fire Resistance",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidStunUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "(15-22)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidStunUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "(23-30)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Crusader"
   },
   "ChanceToAvoidStunUber3": {
     "generation_type": "Suffix",
@@ -1693,47 +1237,7 @@
     "required_level": 82,
     "text": "(31-35)% chance to Avoid being Stunned",
     "weight": 1600,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidStunUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 92,
-    "text": "(36-50)% chance to Avoid being Stunned",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 93,
-    "text": "+(16.5-18)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "+(4.5-7.5)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 75,
-    "text": "+(9-12)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsUber3": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 83,
-    "text": "+(13.5-15)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "GlobalRaiseSpectreGemLevelUber1": {
     "generation_type": "Suffix",
@@ -1741,15 +1245,7 @@
     "required_level": 75,
     "text": "+1 to Level of all Raise Spectre Gems",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "GlobalRaiseSpectreGemLevelUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 85,
-    "text": "+2 to Level of all Raise Spectre Gems",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "IncreasedDurationBootsUber1": {
     "generation_type": "Suffix",
@@ -1757,15 +1253,7 @@
     "required_level": 68,
     "text": "(10-15)% increased Skill Effect Duration | Socketed Gems are Supported by Level 15 Increased Duration",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "IncreasedDurationBootsUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 78,
-    "text": "(10-15)% increased Skill Effect Duration | Socketed Gems are Supported by Level 20 Increased Duration",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "TotemDamageSpellUber1": {
     "generation_type": "Suffix",
@@ -1773,7 +1261,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Totem Damage | Socketed Gems are Supported by Level 18 Spell Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "TotemDamageSpellUber2": {
     "generation_type": "Suffix",
@@ -1781,7 +1269,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Totem Damage | Socketed Gems are Supported by Level 20 Spell Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "TotemDamageSpellUber3": {
     "generation_type": "Suffix",
@@ -1789,15 +1277,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Totem Damage | Socketed Gems are Supported by Level 22 Spell Totem",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TotemDamageSpellUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(31-35)% increased Totem Damage | Socketed Gems are Supported by Level 25 Spell Totem",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "TotemSpeedSpellUber1_": {
     "generation_type": "Suffix",
@@ -1805,7 +1285,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Totem Placement speed | Socketed Gems are Supported by Level 18 Spell Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "TotemSpeedSpellUber2": {
     "generation_type": "Suffix",
@@ -1813,7 +1293,7 @@
     "required_level": 75,
     "text": "(13-16)% increased Totem Placement speed | Socketed Gems are Supported by Level 20 Spell Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "TotemSpeedSpellUber3": {
     "generation_type": "Suffix",
@@ -1821,15 +1301,7 @@
     "required_level": 80,
     "text": "(17-20)% increased Totem Placement speed | Socketed Gems are Supported by Level 22 Spell Totem",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TotemSpeedSpellUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of the Elevated Elder",
-    "required_level": 90,
-    "text": "(17-20)% increased Totem Placement speed | Socketed Gems are Supported by Level 25 Spell Totem",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Elder"
   },
   "AvoidProjectilesInfluence1": {
     "generation_type": "Suffix",
@@ -1837,7 +1309,7 @@
     "required_level": 68,
     "text": "(6-9)% chance to avoid Projectiles",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "AvoidProjectilesInfluence2": {
     "generation_type": "Suffix",
@@ -1845,15 +1317,7 @@
     "required_level": 73,
     "text": "(10-12)% chance to avoid Projectiles",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "AvoidProjectilesInfluenceMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 83,
-    "text": "(10-12)% chance to avoid Projectiles | (11-15)% chance to avoid Projectiles if you've taken Projectile Damage Recently",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "OnslaughtOnKillInfluence1": {
     "generation_type": "Suffix",
@@ -1861,7 +1325,7 @@
     "required_level": 75,
     "text": "(5-7)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "OnslaughtOnKillInfluence2_": {
     "generation_type": "Suffix",
@@ -1869,79 +1333,7 @@
     "required_level": 80,
     "text": "(8-10)% chance to gain Onslaught for 4 seconds on Kill",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "OnslaughtOnKillInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "(8-10)% chance to gain Onslaught for 4 seconds on Kill | (3-10)% increased Attack, Cast and Movement Speed while you have Onslaught",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeAttacksInfluenceMaven__": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "+(16.5-18)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 90,
-    "text": "+(16.5-18)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeAttacksInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 68,
-    "text": "+(4.5-7.5)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeAttacksInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 73,
-    "text": "+(9-12)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeAttacksInfluence3": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 80,
-    "text": "+(13.5-15)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 68,
-    "text": "+(4.5-7.5)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsInfluence2___": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 73,
-    "text": "+(9-12)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeSpellsInfluence3": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 80,
-    "text": "+(13.5-15)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectOnEnemiesInfluence1": {
     "generation_type": "Suffix",
@@ -1949,7 +1341,7 @@
     "required_level": 68,
     "text": "(30-34)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "IncreasedAilmentEffectOnEnemiesInfluence2": {
     "generation_type": "Suffix",
@@ -1957,31 +1349,7 @@
     "required_level": 73,
     "text": "(35-40)% increased Effect of Non-Damaging Ailments",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "IncreasedAilmentEffectOnEnemiesInfluenceMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Redemption",
-    "required_level": 83,
-    "text": "(41-60)% increased Effect of Non-Damaging Ailments",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidElementalAilmentsUber1_": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "(14-17)% chance to Avoid Elemental Ailments",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidElementalAilmentsUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "(18-21)% chance to Avoid Elemental Ailments",
-    "weight": 0,
-    "influence": "Normal"
+    "Influence": "Redeemer"
   },
   "ChanceToAvoidElementalAilmentsUber3": {
     "generation_type": "Suffix",
@@ -1989,15 +1357,7 @@
     "required_level": 81,
     "text": "(31-35)% chance to Avoid Elemental Ailments",
     "weight": 1600,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidElementalAilmentsUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 91,
-    "text": "(36-45)% chance to Avoid Elemental Ailments",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToAvoidProjectilesUber1": {
     "generation_type": "Suffix",
@@ -2005,7 +1365,7 @@
     "required_level": 68,
     "text": "(6-9)% chance to avoid Projectiles",
     "weight": 500,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "ChanceToAvoidProjectilesUber2": {
     "generation_type": "Suffix",
@@ -2013,47 +1373,7 @@
     "required_level": 84,
     "text": "(10-12)% chance to avoid Projectiles",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidProjectilesUberMaven___": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 94,
-    "text": "(10-12)% chance to avoid Projectiles | (11-15)% chance to avoid Projectiles if you've taken Projectile Damage Recently",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 94,
-    "text": "+(16.5-18)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "+(4.5-7.5)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "+(9-12)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
-  },
-  "ChanceToDodgeUber3": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 84,
-    "text": "+(13.5-15)% chance to Suppress Spell Damage",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "GrantsDecoyTotemSkillUber1": {
     "generation_type": "Suffix",
@@ -2061,15 +1381,7 @@
     "required_level": 68,
     "text": "Grants Level 20 Decoy Totem Skill",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "GrantsDecoyTotemSkillUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 78,
-    "text": "Grants Level 25 Decoy Totem Skill",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedCooldownRecoveryBootsUber1": {
     "generation_type": "Suffix",
@@ -2077,15 +1389,7 @@
     "required_level": 80,
     "text": "(10-15)% increased Cooldown Recovery Rate",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "IncreasedCooldownRecoveryBootsUberMaven_": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(16-20)% increased Cooldown Recovery Rate",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TotemDamageAttackUber1": {
     "generation_type": "Suffix",
@@ -2093,7 +1397,7 @@
     "required_level": 68,
     "text": "(20-25)% increased Totem Damage | Socketed Gems are Supported by Level 18 Ballista Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TotemDamageAttackUber2_": {
     "generation_type": "Suffix",
@@ -2101,7 +1405,7 @@
     "required_level": 75,
     "text": "(26-30)% increased Totem Damage | Socketed Gems are Supported by Level 20 Ballista Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TotemDamageAttackUber3": {
     "generation_type": "Suffix",
@@ -2109,15 +1413,7 @@
     "required_level": 80,
     "text": "(31-35)% increased Totem Damage | Socketed Gems are Supported by Level 22 Ballista Totem",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TotemDamageAttackUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(31-35)% increased Totem Damage | Socketed Gems are Supported by Level 25 Ballista Totem",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TotemSpeedAttackUber1": {
     "generation_type": "Suffix",
@@ -2125,7 +1421,7 @@
     "required_level": 68,
     "text": "(8-12)% increased Totem Placement speed | Socketed Gems are Supported by Level 18 Ballista Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TotemSpeedAttackUber2": {
     "generation_type": "Suffix",
@@ -2133,7 +1429,7 @@
     "required_level": 75,
     "text": "(13-16)% increased Totem Placement speed | Socketed Gems are Supported by Level 20 Ballista Totem",
     "weight": 250,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "TotemSpeedAttackUber3": {
     "generation_type": "Suffix",
@@ -2141,15 +1437,7 @@
     "required_level": 80,
     "text": "(17-20)% increased Totem Placement speed | Socketed Gems are Supported by Level 22 Ballista Totem",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "TotemSpeedAttackUberMaven": {
-    "generation_type": "Suffix",
-    "name": "of Elevated Shaping",
-    "required_level": 90,
-    "text": "(17-20)% increased Totem Placement speed | Socketed Gems are Supported by Level 25 Ballista Totem",
-    "weight": 0,
-    "influence": "Normal"
+    "influence": "Shaper"
   },
   "IncreasedMana1": {
     "generation_type": "Prefix",
