@@ -693,32 +693,6 @@ WR_Menu(Function:="",Var*){
 
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
-      ;Load DDL Content from API
-      for k, v in POEData{
-        If (v ~= "Map(.+)" || v ~= "Sextant" || v ~= "Heist")
-          Continue
-        If (v ~= "^SCJ") {
-          category := "Small Cluster"
-        } Else If (v ~= "^MCJ") {
-          category := "Medium Cluster"
-        } Else If (v ~= "^LCJ") {
-          category := "Large Cluster"
-        } Else If (v ~= "Jewel$") {
-          category := "Jewels"
-        } Else If (v ~= "Flask$") {
-          category := "Flasks"
-        } Else If (v ~= "Unset Ring|Iron Flask|Bone Ring|Convoking Wand|Bone Spirit Shield|Runic Crown|Runic Sabatons|Runic Gauntlets|Silver Flask") {
-          category := "Special Itens"
-        } Else If (v ~= "Amulet|Ring|Belt|Trinket") {
-          category := "Jewellery"
-        } Else If (v ~= "^(Gloves|Boots|Body Armour|Helmet|Shield|Quiver)") {
-          category := "Armours"
-        } Else {
-          category := "Weapons"
-        }
-        WR.MenuDDLItemCrafting[category] .= v "|"
-      }
-      category := ""
 
       ; Item Type
       Gui, Crafting: Font, Bold s9 cBlack, Arial

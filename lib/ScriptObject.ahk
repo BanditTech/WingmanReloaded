@@ -1,6 +1,6 @@
 ﻿; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{},"MenuDDLItemCrafting":{}
+Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
 ,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
 ,"CustomCraftingBases":{},"CustomMapMods":{},"CustomSextantMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
@@ -92,21 +92,15 @@ WR.String.h1080.General:={"OHB":"|<1080 Overhead Health Bar>0x201614@0.99$106.Tz
 WR.CustomMapMods.MapMods := []
 WR.CustomSextantMods.SextantMods := []
 
-for k, v in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]
-{
-	WR.CustomCraftingBases[v] := []
-}
-
-
 for k,v in POEData
 {
-	WR.ItemCrafting[v]
-	WR.ActualTier[v]
-	WR.MenuDDLItemCrafting[k] := []
+	WR.ItemCrafting[k] := {}
+	WR.ActualTier[k] := {}
+	WR.CustomCraftingBases[k] := {}
 	for ki,vi in v{
-		WR.ItemCrafting[v][vi] := []
-		WR.ActualTier[v][vi] := []
-		WR.MenuDDLItemCrafting[v].push(vi)
+		WR.ItemCrafting[k][vi] := {}
+		WR.ActualTier[k][vi] := {}
+		WR.CustomCraftingBases[k][vi] := {}
 	}
 }
 	
