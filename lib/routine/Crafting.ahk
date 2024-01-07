@@ -141,24 +141,24 @@ CraftingItem(){
 		Return
 	}
 	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-	&& (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
+		&& (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
 	} Else If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-	&& (WR.CustomSextantMods.SextantMods.Count() <= 0) {
+		&& (WR.CustomSextantMods.SextantMods.Count() <= 0) {
 		Notify("Sextant Mod Selector Empty","You Need Select at Least 1 Affix on Sextant Mod Selector",4)
 		Log("[End]Item Crafting - Sextant Crafting Error","You Need Select at Least 1 Affix on Sextant Mod Selector")
 		Return
 	}
 	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-	&& (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
+		&& (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
 		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
 	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-	&& (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
+		&& (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
 		Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
 		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 		Return
@@ -205,7 +205,7 @@ CraftingMaps(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
 	BlackList := Array_DeepClone(BlackList_Default)
-	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Augmentation","Awakened","Elevated"])
+	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Chaos","Augmentation","Awakened","Elevated"])
 	; MsgBoxVals(WR.data.Counts)
 	MapList := {}
 	; Start Scan on Inventory
@@ -231,7 +231,7 @@ CraftingMaps(){
 			addToBlacklist(C, R)
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding)" ))) && !Item.Prop.Corrupted)
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding|Chaos)" ))) && !Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
 					ClipItem(Grid.X,Grid.Y)
@@ -262,7 +262,7 @@ CraftingMaps(){
 					{
 						If (!Item.Prop.RarityNormal)
 						{
-							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$)")) || (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid)") )
+							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)")) || (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid|Chaos)") )
 							{
 								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 								If (CraftingMapMethod%i% ~= "Vaal$")
@@ -279,7 +279,7 @@ CraftingMaps(){
 						{
 							If (CraftingMapMethod%i% ~= "^Chisel")
 								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
-								Return False
+									Return False
 							MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 							If (CraftingMapMethod%i% ~= "Vaal$")
 								ApplyCurrency("Vaal",Grid.X,Grid.Y)
@@ -311,7 +311,7 @@ CraftingMaps(){
 				LeftClick(gogo.X,gogo.Y)
 				Sleep, 120 + (15 * ClickLatency)
 			}	Else
-			Break
+				Break
 		}
 	}
 	Return
@@ -321,17 +321,17 @@ InMapArea(C:=0){
 		Return False
 	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=")
 		|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
-	Return True
+		Return True
 	Return False
 }
 getMapCraftingMethod(){
 	Loop, 3
 	{
 		If ( EndMapTier%A_Index% >= StartMapTier%A_Index%
-				&& CraftingMapMethod%A_Index% != "Disable"
+			&& CraftingMapMethod%A_Index% != "Disable"
 			&& Item.Prop.Map_Tier >= StartMapTier%A_Index%
-		&& Item.Prop.Map_Tier <= EndMapTier%A_Index% )
-		Return CraftingMapMethod%A_Index%
+			&& Item.Prop.Map_Tier <= EndMapTier%A_Index% )
+			Return CraftingMapMethod%A_Index%
 	}
 	Return False
 }
@@ -409,6 +409,14 @@ MapRoll(Method, x, y){
 		cname := "Binding"
 		crname := "Scouring"
 	}
+	Else If (Method ~= "Chaos")
+	{
+		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
+			cname := "Binding"
+		Else
+			cname := "Alchemy"
+		crname := "Chaos"
+	}
 	Else If (Method ~= "Hybrid")
 	{
 		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
@@ -470,18 +478,18 @@ MapRoll(Method, x, y){
 		Log("Crafting","Map reroll initiated because:"
 			. (Item.Prop.RarityNormal?" Normal Item":"")
 			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
-			. (Item.Prop.MapSumMod < MMapWeight?  " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
-		, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,")
+			. (Item.Prop.MapSumMod < MMapWeight? " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
+			, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,")
 			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
 			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
-		,JSON.Dump(Item) )
+			,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
 			Return False
 		If (Item.Prop.RarityNormal) {
 			If !ApplyCurrency(cname, x, y)
 				Return False
-		; Augmentation if not 2 mods on magic maps
+			; Augmentation if not 2 mods on magic maps
 		} Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic) {
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
@@ -499,7 +507,7 @@ MapRoll(Method, x, y){
 		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,")
 		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
 		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity :" Adequate Quantity")
-	,JSON.Dump(Item) )
+		,JSON.Dump(Item) )
 	Return 1
 }
 ItemCraftingRoll(Method, x, y){
@@ -557,9 +565,9 @@ ItemCraftingRoll(Method, x, y){
 			} Else If (Method ~= "AltAug" && Item.Prop.AffixCount < 2 && (Item.Prop.CraftingMatchedPrefix > 0 || Item.Prop.CraftingMatchedSuffix > 0)) {
 				If !ApplyCurrency("Augmentation",x,y)
 					Return False
-			} Else If (Method ~= "Regal" && ((Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1) 
-			|| (Item.Prop.CraftingMatchedPrefix == 1 && ItemCraftingNumberPrefix >= 1 && ItemCraftingNumberSuffix == 0)
-			|| (Item.Prop.CraftingMatchedSuffix == 1 && ItemCraftingNumberSuffix >= 1 && ItemCraftingNumberPrefix == 0))) {
+			} Else If (Method ~= "Regal" && ((Item.Prop.CraftingMatchedPrefix == 1 && Item.Prop.CraftingMatchedSuffix == 1)
+				|| (Item.Prop.CraftingMatchedPrefix == 1 && ItemCraftingNumberPrefix >= 1 && ItemCraftingNumberSuffix == 0)
+				|| (Item.Prop.CraftingMatchedSuffix == 1 && ItemCraftingNumberSuffix >= 1 && ItemCraftingNumberPrefix == 0))) {
 				If !ApplyCurrency("Regal",x,y)
 					Return False
 			}	Else {
@@ -571,7 +579,7 @@ ItemCraftingRoll(Method, x, y){
 			If(Method ~= "Regal")
 			{
 				If !ApplyCurrency(cr2name, x, y)
-						Return False
+					Return False
 			}
 			Else
 			{
@@ -580,9 +588,9 @@ ItemCraftingRoll(Method, x, y){
 			}
 		}
 		Log("Item Crafting Loop ","Item result has "
-		. Item.Prop.CraftingMatchedPrefix " Matched Prefix and "
-		. Item.Prop.CraftingMatchedSuffix " Matched Suffix"
-		,JSON.Dump(Item) )
+			. Item.Prop.CraftingMatchedPrefix " Matched Prefix and "
+			. Item.Prop.CraftingMatchedSuffix " Matched Suffix"
+			,JSON.Dump(Item) )
 
 	}
 	If (Item.Prop.ItemCraftingHit) {
@@ -596,7 +604,7 @@ SextantCraftingRoll(Method, x, y){
 	If (SextantCraftingMethod == 1) {
 		While (WR.data.Counts[Method] > 0) {
 			If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
-			Break
+				Break
 			ClipItem(GrabCompassX,GrabCompassY)
 			If (Item.Prop.Stack_Size < 1){
 				Log("Sextant Crafting Loop ", "No compass available to seal the sextant")
