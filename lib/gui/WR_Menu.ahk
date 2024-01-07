@@ -18,7 +18,8 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Button, default gupdateEverything x295 y470 w150 h23, Save Configuration
       Gui, Inventory: Add, Button, gLaunchSite x+5 h23, Website
 
-      Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|Crafting Bases
+      ;Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|Crafting Bases
+      Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe
 
       Gui, Inventory: Tab, Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -458,6 +459,9 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
       Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
 
+      /*
+
+
       ; Crafting Bases
       Gui, Inventory: Tab, Crafting Bases
 
@@ -531,7 +535,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseLimitBases Checked%YesCraftingBaseLimitBases% xs+8 y+8 , Max Number of Each Bases (At Max ILvL Found)
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-10 hp gUpdateExtra vCraftingBaseLimitBasesNumber , %CraftingBaseLimitBasesNumber%
-
+      */
     }
     Gui, Inventory: show , w600 h500, Inventory Settings
   } Else If (Function = "Crafting") {

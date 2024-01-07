@@ -1,0 +1,206 @@
+{
+  "Crude Bow": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Decurve Bow": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Compound Bow": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Sniper Bow": {
+    "drop_level": 44,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Ivory Bow": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Highborn Bow": {
+    "drop_level": 50,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Decimation Bow": {
+    "drop_level": 53,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Thicket Bow": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Citadel Bow": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Ranger Bow": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Assassin Bow": {
+    "drop_level": 62,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Short Bow": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Spine Bow": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Imperial Bow": {
+    "drop_level": 66,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Harbinger Bow": {
+    "drop_level": 68,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Long Bow": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Composite Bow": {
+    "drop_level": 14,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Recurve Bow": {
+    "drop_level": 18,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Bone Bow": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Royal Bow": {
+    "drop_level": 28,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Death Bow": {
+    "drop_level": 32,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Grove Bow": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Hedron Bow": {
+    "drop_level": 30,
+    "implicits": [
+      "Adds (46-55) to (69-83) Fire Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Foundry Bow": {
+    "drop_level": 50,
+    "implicits": [
+      "Adds (80-97) to (126-144) Fire Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Solarine Bow": {
+    "drop_level": 70,
+    "implicits": [
+      "Adds (121-133) to (184-197) Fire Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Reflex Bow": {
+    "drop_level": 36,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Steelwood Bow": {
+    "drop_level": 57,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Maraketh Bow": {
+    "drop_level": 71,
+    "implicits": [
+      "10% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Ethereal Bow": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  }
+}

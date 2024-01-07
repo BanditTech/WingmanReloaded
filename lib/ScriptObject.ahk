@@ -1,20 +1,20 @@
 ﻿; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
-,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
-,"CustomCraftingBases":{},"CustomMapMods":{},"CustomSextantMods":{},"ItemCrafting":{},"ActualTier":{}}
+	,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
+	,"CustomCraftingBases":{},"CustomMapMods":{},"CustomSextantMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
-,"CurrencyGeneral","CurrencyInfluence"
-, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
-,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"
-,"Augmentation","Divine"
-,"Jeweller","Fusing","Chromatic","Awakened","Elevated","Harbinger","Horizon"
-,"Enkindling","Ancient","Binding","Engineer","Regret","Unmaking"
-,"Instilling","Scouring","Sacred","Blessed","Vaal"
-, "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor", "OnVendorHeist"
-, "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
+	,"CurrencyGeneral","CurrencyInfluence"
+	, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
+	,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"
+	,"Augmentation","Divine"
+	,"Jeweller","Fusing","Chromatic","Awakened","Elevated","Harbinger","Horizon"
+	,"Enkindling","Ancient","Binding","Engineer","Regret","Unmaking"
+	,"Instilling","Scouring","Sacred","Blessed","Vaal"
+	, "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor", "OnVendorHeist"
+	, "OnDiv", "OnLeft", "OnDelveChart", "OnMetamorph", "OnLocker"]
 	WR.loc.pixel[v] := {"X":0,"Y":0}
 
 for k, v in []
@@ -28,28 +28,28 @@ WR.perChar.Setting := {"typeLife":"1", "typeHybrid":"0", "typeES":"0", "typeEldr
 	, "movementDelay":".5", "movementMainAttack":"0", "movementSecondaryAttack":"0"
 	, "channelrepressEnable":"0" , "channelrepressKey":"RButton", "channelrepressOffsetX1":"0", "channelrepressOffsetY1":"0", "channelrepressOffsetX2":"0", "channelrepressOffsetY2":"20"
 	, "channelrepressIcon":"|<Scourge Arrow>0xFDF100@0.60$40"
-		. ".108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
+	. ".108104040k60E0k30M303UQ1UA0C1kC0s0s70w7U3US3kC040k70k0E30M1011hzw4049zwQE0F3zVt01SLwDw0DsjUzk0zmS7zkDz9QTk1Xw3lk001sD60oQ3UwED1w23k1w7s0DUDkTk3B1z1zUBo5y7z26U0sTk0H00lw0A0017U2k000w0053w/c00kDwj3k01zMMzU0Dptrz01wFgzzU7U2rzzwQ0Tzzzllz7zzzzz03zzzzU003zz008"
 	, "channelrepressStack":"|<5 stacks>*52$8.zsC3bsS3wz7nwsSTzs"
 	, "autominesEnable":"0", "autominesBoomDelay":"500", "autominesPauseDoubleTapSpeed":"300", "autominesPauseSingleTap":"2", "autominesSmokeDashEnable":"0", "autominesSmokeDashKey":"q"
-	, "autolevelgemsEnable":"0", "autolevelgemsWait":"0" 
+	, "autolevelgemsEnable":"0", "autolevelgemsWait":"0"
 	, "swap1AltWeapon":"0", "swap1Item":"0", "swap1Xa":"0", "swap1Ya":"0", "swap1Xb":"0", "swap1Yb":"0"
 	, "swap2AltWeapon":"0", "swap2Item":"0", "swap2Xa":"0", "swap2Ya":"0", "swap2Xb":"0", "swap2Yb":"0"
 	, "profilesYesFlask":"0", "profilesFlask":"", "profilesYesUtility":"0", "profilesUtility":""}
 for k, v in ["1","2","3","4","5"]
 {
 	WR.Flask[v] := {"Key":v, "GroupCD":"150", "Condition":"1", "CD":"4000"
-	, "Group":"f"A_Index, "Slot":A_Index, "Type":"Flask"
-	, "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
-	, "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0", "ResetCooldownAtHealthPercentage":"0", "ResetCooldownAtHealthPercentageInput":"0", "ResetCooldownAtEnergyShieldPercentage":"0", "ResetCooldownAtEnergyShieldPercentageInput":"0", "ResetCooldownAtManaPercentage":"0", "ResetCooldownAtManaPercentageInput":"0"}
+		, "Group":"f"A_Index, "Slot":A_Index, "Type":"Flask"
+		, "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"1", "Life":0, "ES":0, "Mana":0
+		, "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0", "ResetCooldownAtHealthPercentage":"0", "ResetCooldownAtHealthPercentageInput":"0", "ResetCooldownAtEnergyShieldPercentage":"0", "ResetCooldownAtEnergyShieldPercentageInput":"0", "ResetCooldownAtManaPercentage":"0", "ResetCooldownAtManaPercentageInput":"0"}
 	WR.cdExpires.Flask[v] := A_TickCount
 }
 for k, v in ["1","2","3","4","5","6","7","8","9","10"]
 {
 	WR.Utility[v] := {"Enable":"0", "OnCD":"0", "Condition":"1", "Key":v, "GroupCD":"5000", "CD":"5000"
-	, "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"
-	, "MainAttackOnly":"0", "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"0", "Life":0, "ES":0, "Mana":0
-	, "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0"
-	, "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
+		, "Group":"u"A_Index, "Slot":A_Index, "QS":"0", "Type":"Utility"
+		, "MainAttackOnly":"0", "MainAttack":"0", "SecondaryAttack":"0", "MainAttackRelease":"0", "SecondaryAttackRelease":"0", "Move":"0", "PopAll":"0", "Life":0, "ES":0, "Mana":0
+		, "Icon":"", "IconShown":"0", "IconSearch":"1", "IconArea":{}, "IconVar0":"0", "IconVar1":"0"
+		, "Curse":"0", "Shock":"0", "Bleed":"0", "Freeze":"0", "Ignite":"0", "Poison":"0"}
 	WR.cdExpires.Utility[v] := A_TickCount
 }
 for k, v in ["f1","f2","f3","f4","f5","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
@@ -88,7 +88,6 @@ WR.String.h1080.General:={"OHB":"|<1080 Overhead Health Bar>0x201614@0.99$106.Tz
 	,"Xbutton":"|<1080 X Button>*43$12.0307sDwSDwDs7k7sDwSSwTsDk7U"
 	,"HeistLocker":"|<1080 Locker>*90$59.7zzzzzzzzzDzzzzzzzzyTyTyTDTzzwzkDk4QE60tz6D6AlnANnwSASt7bslbtwNzkTDlXDnsnzVy3XCTblbz1w70QzDX7yFty1tyDCDwXnwFnaASCNXbslUA1y1nX0llzyTzDzzzzy"}
 
-
 WR.CustomMapMods.MapMods := []
 WR.CustomMapMods.HeistMods := []
 WR.CustomSextantMods.SextantMods := []
@@ -100,12 +99,15 @@ for k,v in POEData
 	WR.CustomCraftingBases[k] := {}
 	for ki,vi in v{
 		WR.ItemCrafting[k][vi] := {}
-		WR.CustomCraftingBases[k][vi] := {}
 	}
 }
 
+for k,v in BasesData
+{
+	WR.CustomCraftingBases[k] := {}
+}
+
 ActualTierCreator()
-	
 
 WR.Data.Map_Affixes := RegexReplace(ArrayToString(Util.Load("Affix_List_Map")),"\%","`%")
 WR.Data.Map_Affixes := RegexReplace(WR.Data.Map_Affixes,",","`,")

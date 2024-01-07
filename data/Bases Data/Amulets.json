@@ -1,0 +1,403 @@
+{
+  "Blue Pearl Amulet": {
+    "drop_level": 77,
+    "implicits": [
+      "(48-56)% increased Mana Regeneration Rate"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Marble Amulet": {
+    "drop_level": 74,
+    "implicits": [
+      "Regenerate (1.2-1.6)% of Life per second"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Seaglass Amulet": {
+    "drop_level": 74,
+    "implicits": [
+      "(10-15)% faster start of Energy Shield Recharge"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jet Amulet": {
+    "drop_level": 1,
+    "implicits": [
+      "+(8-12)% to all Elemental Resistances"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Paua Amulet": {
+    "drop_level": 3,
+    "implicits": [
+      "(20-30)% increased Mana Regeneration Rate"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Citrine Amulet": {
+    "drop_level": 20,
+    "implicits": [
+      "+(16-24) to Strength and Dexterity"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ruby Amulet": {
+    "drop_level": 50,
+    "implicits": [
+      "+(20-30)% to Fire Resistance"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unset Amulet": {
+    "drop_level": 45,
+    "implicits": [
+      "Has 1 Socket"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Coral Amulet": {
+    "drop_level": 3,
+    "implicits": [
+      "Regenerate (2-4) Life per second"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Amber Amulet": {
+    "drop_level": 7,
+    "implicits": [
+      "+(20-30) to Strength"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jade Amulet": {
+    "drop_level": 7,
+    "implicits": [
+      "+(20-30) to Dexterity"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lapis Amulet": {
+    "drop_level": 7,
+    "implicits": [
+      "+(20-30) to Intelligence"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gold Amulet": {
+    "drop_level": 15,
+    "implicits": [
+      "(12-20)% increased Rarity of Items found"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Onyx Amulet": {
+    "drop_level": 3,
+    "implicits": [
+      "+(10-16) to all Attributes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Turquoise Amulet": {
+    "drop_level": 20,
+    "implicits": [
+      "+(16-24) to Dexterity and Intelligence"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Agate Amulet": {
+    "drop_level": 20,
+    "implicits": [
+      "+(16-24) to Strength and Intelligence"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Astrolabe Amulet": {
+    "drop_level": 75,
+    "implicits": [
+      "Has Elder, Shaper and all Conqueror Influences\nImplicit Modifiers Cannot Be Changed"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Simplex Amulet": {
+    "drop_level": 80,
+    "implicits": [
+      "-2 Prefix Modifiers allowed\n-1 Suffix Modifier allowed\nImplicit Modifiers Cannot Be Changed\n100% increased Explicit Modifier magnitudes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Focused Amulet": {
+    "drop_level": 80,
+    "implicits": [
+      "-1 Prefix Modifier allowed\n-2 Suffix Modifiers allowed\nImplicit Modifiers Cannot Be Changed\n100% increased Explicit Modifier magnitudes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Black Maw Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "Has 1 Socket",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mandible Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(6-10)% increased Attack and Cast Speed",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Chrysalis Talisman": {
+    "drop_level": 35,
+    "implicits": [
+      "(20-30)% increased Spell Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Writhing Talisman": {
+    "drop_level": 35,
+    "implicits": [
+      "(20-30)% increased Attack Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Bonespire Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(20-30)% increased maximum Mana",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ashscale Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(20-30)% increased Fire Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lone Antler Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(20-30)% increased Lightning Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deep One Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(20-30)% increased Cold Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Breakrib Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(20-30)% increased Global Physical Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deadhand Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(19-31)% increased Chaos Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Undying Flesh Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "+1 to maximum number of Raised Zombies",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rot Head Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(30-40)% increased Fish Bite Sensitivity",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hexclaw Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(40-50)% increased Global Critical Strike Chance",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Primal Skull Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "Regenerate 2% of Life per second",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wereclaw Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "+(24-36)% to Global Critical Strike Multiplier",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Splitnewt Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(4-6)% chance to Freeze, Shock and Ignite",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Clutching Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(15-25)% increased Global Defences",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Avian Twins Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "50% of Lightning Damage from Hits taken as Fire Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fangjaw Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(8-12)% increased maximum Life",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Horned Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "Projectiles Pierce 2 additional Targets",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Spinefuse Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(6-10)% increased Quantity of Items found",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Three Rat Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(12-16)% increased Attributes",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Monkey Twins Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(5-8)% increased Area of Effect",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Longtooth Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(4-6)% additional Physical Damage Reduction",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rotfeather Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(25-35)% increased Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Monkey Paw Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "10% chance to gain an Endurance Charge on Kill",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Three Hands Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "Gain (6-12)% of Physical Damage as Extra Damage of a random Element",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greatwolf Talisman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  }
+}

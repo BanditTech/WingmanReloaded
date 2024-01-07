@@ -1,0 +1,226 @@
+{
+  "Driftwood Sceptre": {
+    "drop_level": 1,
+    "implicits": [
+      "10% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Sekhem": {
+    "drop_level": 38,
+    "implicits": [
+      "18% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Crystal Sceptre": {
+    "drop_level": 41,
+    "implicits": [
+      "30% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Lead Sceptre": {
+    "drop_level": 44,
+    "implicits": [
+      "22% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Blood Sceptre": {
+    "drop_level": 47,
+    "implicits": [
+      "24% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Royal Sceptre": {
+    "drop_level": 50,
+    "implicits": [
+      "24% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Abyssal Sceptre": {
+    "drop_level": 53,
+    "implicits": [
+      "30% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Karui Sceptre": {
+    "drop_level": 56,
+    "implicits": [
+      "26% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Tyrant's Sekhem": {
+    "drop_level": 58,
+    "implicits": [
+      "26% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Opal Sceptre": {
+    "drop_level": 60,
+    "implicits": [
+      "40% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Platinum Sceptre": {
+    "drop_level": 62,
+    "implicits": [
+      "30% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Darkwood Sceptre": {
+    "drop_level": 5,
+    "implicits": [
+      "12% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Vaal Sceptre": {
+    "drop_level": 64,
+    "implicits": [
+      "32% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Carnal Sceptre": {
+    "drop_level": 66,
+    "implicits": [
+      "32% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Void Sceptre": {
+    "drop_level": 68,
+    "implicits": [
+      "40% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Bronze Sceptre": {
+    "drop_level": 10,
+    "implicits": [
+      "12% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Quartz Sceptre": {
+    "drop_level": 15,
+    "implicits": [
+      "20% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Iron Sceptre": {
+    "drop_level": 20,
+    "implicits": [
+      "14% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Ochre Sceptre": {
+    "drop_level": 24,
+    "implicits": [
+      "16% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Ritual Sceptre": {
+    "drop_level": 28,
+    "implicits": [
+      "16% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Shadow Sceptre": {
+    "drop_level": 32,
+    "implicits": [
+      "22% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Grinning Fetish": {
+    "drop_level": 35,
+    "implicits": [
+      "18% increased Elemental Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Oscillating Sceptre": {
+    "drop_level": 30,
+    "implicits": [
+      "Elemental Overload"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Stabilising Sceptre": {
+    "drop_level": 50,
+    "implicits": [
+      "Elemental Equilibrium"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Alternating Sceptre": {
+    "drop_level": 70,
+    "implicits": [
+      "Secrets of Suffering"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Horned Sceptre": {
+    "drop_level": 36,
+    "implicits": [
+      "Damage Penetrates 4% Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Stag Sceptre": {
+    "drop_level": 55,
+    "implicits": [
+      "Damage Penetrates 4% Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Sambar Sceptre": {
+    "drop_level": 70,
+    "implicits": [
+      "Damage Penetrates 6% Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  }
+}

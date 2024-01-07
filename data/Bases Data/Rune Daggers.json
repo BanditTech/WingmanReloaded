@@ -1,0 +1,146 @@
+{
+  "Butcher Knife": {
+    "drop_level": 38,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Boot Blade": {
+    "drop_level": 44,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Golden Kris": {
+    "drop_level": 47,
+    "implicits": [
+      "50% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Royal Skean": {
+    "drop_level": 50,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Fiend Dagger": {
+    "drop_level": 53,
+    "implicits": [
+      "40% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Slaughter Knife": {
+    "drop_level": 58,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Ezomyte Dagger": {
+    "drop_level": 62,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Platinum Kris": {
+    "drop_level": 64,
+    "implicits": [
+      "50% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Imperial Skean": {
+    "drop_level": 66,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Demon Dagger": {
+    "drop_level": 68,
+    "implicits": [
+      "40% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Carving Knife": {
+    "drop_level": 10,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Boot Knife": {
+    "drop_level": 20,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Copper Kris": {
+    "drop_level": 24,
+    "implicits": [
+      "50% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Skean": {
+    "drop_level": 28,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Imp Dagger": {
+    "drop_level": 32,
+    "implicits": [
+      "40% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Flickerflame Blade": {
+    "drop_level": 30,
+    "implicits": [
+      "Trigger Level 10 Flame Dash when you use a Socketed Skill"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Flashfire Blade": {
+    "drop_level": 50,
+    "implicits": [
+      "Trigger Level 20 Flame Dash when you use a Socketed Skill\n20% increased Cooldown Recovery Rate of Travel Skills"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Infernal Blade": {
+    "drop_level": 70,
+    "implicits": [
+      "Trigger Level 30 Flame Dash when you use a Socketed Skill\n40% increased Cooldown Recovery Rate of Travel Skills"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  }
+}

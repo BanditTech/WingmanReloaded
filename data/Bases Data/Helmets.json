@@ -1,0 +1,494 @@
+{
+  "Bone Helmet": {
+    "drop_level": 73,
+    "implicits": [
+      "Minions deal (15-20)% increased Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Golden Visage": {
+    "drop_level": 12,
+    "implicits": [
+      "+(8-16)% to all Elemental Resistances"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Leather Cap": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lion Pelt": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Tricorne": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Leather Hood": {
+    "drop_level": 20,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wolf Pelt": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Hunter Hood": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Noble Tricorne": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ursine Pelt": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Silken Hood": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sinner Tricorne": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Scare Mask": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Vaal Mask": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Deicide Mask": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Plague Mask": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Iron Mask": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Festival Mask": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Golden Mask": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Raven Mask": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Callous Mask": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Regicide Mask": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Harlequin Mask": {
+    "drop_level": 57,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Gale Crown": {
+    "drop_level": 15,
+    "implicits": [
+      "Adds (3-4) to (5-6) Cold Damage\nYour Hits treat Cold Resistance as 10% higher than actual value"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Winter Crown": {
+    "drop_level": 45,
+    "implicits": [
+      "Adds (15-20) to (28-35) Cold Damage\nYour Hits treat Cold Resistance as 10% higher than actual value"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Blizzard Crown": {
+    "drop_level": 75,
+    "implicits": [
+      "Adds (75-85) to (115-128) Cold Damage\nYour Hits treat Cold Resistance as 10% higher than actual value"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Helm": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Crest": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Crown": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Vine Circlet": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Mind Cage": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Hubris Circlet": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Iron Circlet": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Torture Cage": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Tribal Circlet": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Bone Circlet": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lunaris Circlet": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Steel Circlet": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Necromancer Circlet": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Solaris Circlet": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Iron Hat": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Royal Burgonet": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Eternal Burgonet": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Cone Helmet": {
+    "drop_level": 7,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Barbute Helmet": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Close Helmet": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Gladiator Helmet": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Reaver Helmet": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Siege Helmet": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Samnite Helmet": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ezomyte Burgonet": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Battered Helm": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Nightmare Bascinet": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sallet": {
+    "drop_level": 13,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Visored Sallet": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Gilded Sallet": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Secutor Helm": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fencer Helm": {
+    "drop_level": 43,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lacquered Helmet": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fluted Bascinet": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Pig-Faced Bascinet": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sorrow Mask": {
+    "drop_level": 15,
+    "implicits": [
+      "+(2-3) to maximum Fortification\nYou are Crushed\n-15% additional Physical Damage Reduction"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Atonement Mask": {
+    "drop_level": 45,
+    "implicits": [
+      "+(2-3) to maximum Fortification\nYou are Crushed\n-15% additional Physical Damage Reduction"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Penitent Mask": {
+    "drop_level": 75,
+    "implicits": [
+      "+(2-3) to maximum Fortification\nYou are Crushed\n-15% additional Physical Damage Reduction"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Rusted Coif": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Praetor Crown": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Soldier Helmet": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Great Helmet": {
+    "drop_level": 22,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Crusader Helmet": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Aventail Helmet": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Zealot Helmet": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Great Crown": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Magistrate Crown": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Prophet Crown": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Imp Crown": {
+    "drop_level": 15,
+    "implicits": [
+      "-10% to all Elemental Resistances\nSocketed Skills apply Fire, Cold and Lightning Exposure on Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Demon Crown": {
+    "drop_level": 45,
+    "implicits": [
+      "-10% to all Elemental Resistances\nSocketed Skills apply Fire, Cold and Lightning Exposure on Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Archdemon Crown": {
+    "drop_level": 75,
+    "implicits": [
+      "-10% to all Elemental Resistances\nSocketed Skills apply Fire, Cold and Lightning Exposure on Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Golden Wreath": {
+    "drop_level": 12,
+    "implicits": [
+      "+(16-24) to all Attributes"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  }
+}

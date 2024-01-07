@@ -1,0 +1,766 @@
+{
+  "Golden Flame": {
+    "drop_level": 15,
+    "implicits": [
+      "+(11-19)% to Chaos Resistance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Goathide Buckler": {
+    "drop_level": 2,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Battle Buckler": {
+    "drop_level": 50,
+    "implicits": [
+      "9% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Golden Buckler": {
+    "drop_level": 54,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ironwood Buckler": {
+    "drop_level": 57,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lacquered Buckler": {
+    "drop_level": 60,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Vaal Buckler": {
+    "drop_level": 63,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Crusader Buckler": {
+    "drop_level": 66,
+    "implicits": [
+      "9% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Imperial Buckler": {
+    "drop_level": 69,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Pine Buckler": {
+    "drop_level": 8,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Painted Buckler": {
+    "drop_level": 16,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Hammered Buckler": {
+    "drop_level": 23,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "War Buckler": {
+    "drop_level": 29,
+    "implicits": [
+      "9% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Gilded Buckler": {
+    "drop_level": 34,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Oak Buckler": {
+    "drop_level": 38,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Enameled Buckler": {
+    "drop_level": 42,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Corrugated Buckler": {
+    "drop_level": 46,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Endothermic Buckler": {
+    "drop_level": 30,
+    "implicits": [
+      "Inflict Brittle on Enemies when you Block their Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Polar Buckler": {
+    "drop_level": 50,
+    "implicits": [
+      "Inflict Brittle on Enemies when you Block their Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Cold-attuned Buckler": {
+    "drop_level": 70,
+    "implicits": [
+      "Inflict Brittle on Enemies when you Block their Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Spiked Bundle": {
+    "drop_level": 5,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Alder Spiked Shield": {
+    "drop_level": 58,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ezomyte Spiked Shield": {
+    "drop_level": 62,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Mirrored Spiked Shield": {
+    "drop_level": 66,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Supreme Spiked Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Driftwood Spiked Shield": {
+    "drop_level": 12,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Alloyed Spiked Shield": {
+    "drop_level": 20,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Burnished Spiked Shield": {
+    "drop_level": 27,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ornate Spiked Shield": {
+    "drop_level": 33,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Redwood Spiked Shield": {
+    "drop_level": 39,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Compound Spiked Shield": {
+    "drop_level": 45,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Polished Spiked Shield": {
+    "drop_level": 49,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sovereign Spiked Shield": {
+    "drop_level": 54,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Twig Spirit Shield": {
+    "drop_level": 3,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Chiming Spirit Shield": {
+    "drop_level": 49,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Thorium Spirit Shield": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lacewood Spirit Shield": {
+    "drop_level": 56,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fossilised Spirit Shield": {
+    "drop_level": 59,
+    "implicits": [
+      "Minions deal (5-10)% increased Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Vaal Spirit Shield": {
+    "drop_level": 62,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Harmonic Spirit Shield": {
+    "drop_level": 65,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Titanium Spirit Shield": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Yew Spirit Shield": {
+    "drop_level": 9,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Bone Spirit Shield": {
+    "drop_level": 15,
+    "implicits": [
+      "Minions deal (5-10)% increased Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Tarnished Spirit Shield": {
+    "drop_level": 23,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Jingling Spirit Shield": {
+    "drop_level": 28,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Brass Spirit Shield": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Walnut Spirit Shield": {
+    "drop_level": 37,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ivory Spirit Shield": {
+    "drop_level": 41,
+    "implicits": [
+      "Minions deal (5-10)% increased Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ancient Spirit Shield": {
+    "drop_level": 45,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Exhausting Spirit Shield": {
+    "drop_level": 30,
+    "implicits": [
+      "Sap Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Subsuming Spirit Shield": {
+    "drop_level": 50,
+    "implicits": [
+      "Sap Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Transfer-attuned Spirit Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "Sap Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Splintered Tower Shield": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Bronze Tower Shield": {
+    "drop_level": 47,
+    "implicits": [
+      "+(30-40) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Girded Tower Shield": {
+    "drop_level": 51,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Crested Tower Shield": {
+    "drop_level": 55,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Shagreen Tower Shield": {
+    "drop_level": 58,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Ebony Tower Shield": {
+    "drop_level": 61,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Ezomyte Tower Shield": {
+    "drop_level": 64,
+    "implicits": [
+      "+(30-40) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Colossal Tower Shield": {
+    "drop_level": 67,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Pinnacle Tower Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Corroded Tower Shield": {
+    "drop_level": 5,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Rawhide Tower Shield": {
+    "drop_level": 11,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Cedar Tower Shield": {
+    "drop_level": 17,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Copper Tower Shield": {
+    "drop_level": 24,
+    "implicits": [
+      "+(30-40) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Reinforced Tower Shield": {
+    "drop_level": 30,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Painted Tower Shield": {
+    "drop_level": 35,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Buckskin Tower Shield": {
+    "drop_level": 39,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Mahogany Tower Shield": {
+    "drop_level": 43,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Rotted Round Shield": {
+    "drop_level": 5,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Teak Round Shield": {
+    "drop_level": 58,
+    "implicits": [
+      "180% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Spiny Round Shield": {
+    "drop_level": 62,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Cardinal Round Shield": {
+    "drop_level": 66,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Elegant Round Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "120% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Fir Round Shield": {
+    "drop_level": 12,
+    "implicits": [
+      "180% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Studded Round Shield": {
+    "drop_level": 20,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Scarlet Round Shield": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Splendid Round Shield": {
+    "drop_level": 33,
+    "implicits": [
+      "120% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Maple Round Shield": {
+    "drop_level": 39,
+    "implicits": [
+      "180% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Spiked Round Shield": {
+    "drop_level": 45,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Crimson Round Shield": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Baroque Round Shield": {
+    "drop_level": 54,
+    "implicits": [
+      "120% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Exothermic Tower Shield": {
+    "drop_level": 30,
+    "implicits": [
+      "Scorch Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Magmatic Tower Shield": {
+    "drop_level": 50,
+    "implicits": [
+      "Scorch Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Heat-attuned Tower Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "Scorch Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Plank Kite Shield": {
+    "drop_level": 7,
+    "implicits": [
+      "+4% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Branded Kite Shield": {
+    "drop_level": 59,
+    "implicits": [
+      "+4% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Champion Kite Shield": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Mosaic Kite Shield": {
+    "drop_level": 65,
+    "implicits": [
+      "+8% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Archon Kite Shield": {
+    "drop_level": 68,
+    "implicits": [
+      "+12% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Linden Kite Shield": {
+    "drop_level": 13,
+    "implicits": [
+      "+4% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Reinforced Kite Shield": {
+    "drop_level": 20,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Layered Kite Shield": {
+    "drop_level": 27,
+    "implicits": [
+      "+8% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Ceremonial Kite Shield": {
+    "drop_level": 34,
+    "implicits": [
+      "+12% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Etched Kite Shield": {
+    "drop_level": 40,
+    "implicits": [
+      "+4% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Steel Kite Shield": {
+    "drop_level": 46,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Laminated Kite Shield": {
+    "drop_level": 50,
+    "implicits": [
+      "+8% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Angelic Kite Shield": {
+    "drop_level": 55,
+    "implicits": [
+      "+12% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  }
+}

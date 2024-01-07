@@ -1,0 +1,202 @@
+{
+  "Rusted Spike": {
+    "drop_level": 3,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Burnished Foil": {
+    "drop_level": 40,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Estoc": {
+    "drop_level": 43,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Serrated Foil": {
+    "drop_level": 46,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Primeval Rapier": {
+    "drop_level": 49,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Fancy Foil": {
+    "drop_level": 52,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Apex Rapier": {
+    "drop_level": 55,
+    "implicits": [
+      "+35% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Dragonbone Rapier": {
+    "drop_level": 58,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Tempered Foil": {
+    "drop_level": 60,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Pecoraro": {
+    "drop_level": 62,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Spiraled Foil": {
+    "drop_level": 64,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Whalebone Rapier": {
+    "drop_level": 7,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Vaal Rapier": {
+    "drop_level": 66,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Jewelled Foil": {
+    "drop_level": 68,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Harpy Rapier": {
+    "drop_level": 70,
+    "implicits": [
+      "+35% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Battered Foil": {
+    "drop_level": 12,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Basket Rapier": {
+    "drop_level": 17,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Jagged Foil": {
+    "drop_level": 22,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Antique Rapier": {
+    "drop_level": 26,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Elegant Foil": {
+    "drop_level": 30,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Thorn Rapier": {
+    "drop_level": 34,
+    "implicits": [
+      "+35% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Wyrmbone Rapier": {
+    "drop_level": 37,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Smallsword": {
+    "drop_level": 36,
+    "implicits": [
+      "15% chance to cause Bleeding on Hit"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Courtesan Sword": {
+    "drop_level": 57,
+    "implicits": [
+      "15% chance to cause Bleeding on Hit"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Dragoon Sword": {
+    "drop_level": 72,
+    "implicits": [
+      "20% chance to cause Bleeding on Hit"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  }
+}

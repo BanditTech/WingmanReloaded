@@ -1,0 +1,50 @@
+{
+  "Viridian Jewel": {
+    "drop_level": 20,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Cobalt Jewel": {
+    "drop_level": 20,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Large Cluster Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Medium Cluster Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Small Cluster Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prismatic Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Crimson Jewel": {
+    "drop_level": 20,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Jewel": {
+    "drop_level": 20,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  }
+}

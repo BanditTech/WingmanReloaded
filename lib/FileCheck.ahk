@@ -103,6 +103,34 @@ UpdatePOEData(){
 }
 UpdatePOEData()
 
+UpdateBasesData(){
+	IfNotExist, %A_ScriptDir%\data\Bases Data\BasesCategory.json
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Bases Data/BasesCategory.json, %A_ScriptDir%\data\Bases Data\BasesCategory.json
+		if ErrorLevel {
+			Log("Error","Data download error", "Category.json")
+			MsgBox, Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub
+		} Else if (ErrorLevel=0){
+			Log("Verbose","Data downloaded Correctly", "Downloading POEData was a success")
+		}
+	}
+	BasesData := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesCategory","r").Read())
+	For k, v in BasesData {
+			aux := k . ".json"
+			IfNotExist, %A_ScriptDir%\data\Bases Data\%aux%
+			{
+				UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Bases Data/%aux%, %A_ScriptDir%\data\Bases Data\%aux%
+				if ErrorLevel {
+					Log("Error","Data download error", aux)
+					MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
+				} Else if (ErrorLevel=0){
+					Log("Verbose","Data downloaded Correctly", "Downloading BasesData was a success")
+				}
+			}
+	}
+}
+UpdateBasesData()
+
 IfNotExist, %A_ScriptDir%\data\Quest.json
 {
 	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
@@ -127,5 +155,11 @@ IfNotExist, %A_ScriptDir%\data\Affix_Lines.json
 }
 WR.Data.Affix := JSON.Load(FileOpen(A_ScriptDir "\data\Affix_Lines.json","r").Read(),,1)
 
+;Create ActualTier
+IfNotExist, %A_ScriptDir%\save\ActualTier.json
+{
+	ActualTierCreator()
+}
+s
 If needReload
 	Reload

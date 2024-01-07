@@ -1,0 +1,226 @@
+{
+  "Driftwood Club": {
+    "drop_level": 1,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Barbed Club": {
+    "drop_level": 38,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Rock Breaker": {
+    "drop_level": 41,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Battle Hammer": {
+    "drop_level": 44,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Flanged Mace": {
+    "drop_level": 47,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Ornate Mace": {
+    "drop_level": 50,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Phantom Mace": {
+    "drop_level": 53,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Ancestral Club": {
+    "drop_level": 56,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Tenderizer": {
+    "drop_level": 58,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Gavel": {
+    "drop_level": 60,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Legion Hammer": {
+    "drop_level": 62,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Tribal Club": {
+    "drop_level": 5,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Pernach": {
+    "drop_level": 64,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Auric Mace": {
+    "drop_level": 66,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Nightmare Mace": {
+    "drop_level": 68,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Spiked Club": {
+    "drop_level": 10,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Stone Hammer": {
+    "drop_level": 15,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "War Hammer": {
+    "drop_level": 20,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Bladed Mace": {
+    "drop_level": 24,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Ceremonial Mace": {
+    "drop_level": 28,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Dream Mace": {
+    "drop_level": 32,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Petrified Club": {
+    "drop_level": 35,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Flare Mace": {
+    "drop_level": 30,
+    "implicits": [
+      "Trigger Level 10 Fiery Impact on Melee Hit with this Weapon"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Crack Mace": {
+    "drop_level": 50,
+    "implicits": [
+      "Trigger Level 15 Fiery Impact on Melee Hit with this Weapon"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Boom Mace": {
+    "drop_level": 70,
+    "implicits": [
+      "Trigger Level 20 Fiery Impact on Melee Hit with this Weapon"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Wyrm Mace": {
+    "drop_level": 34,
+    "implicits": [
+      "4% increased Attack Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Dragon Mace": {
+    "drop_level": 55,
+    "implicits": [
+      "4% increased Attack Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Behemoth Mace": {
+    "drop_level": 70,
+    "implicits": [
+      "6% increased Attack Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  }
+}

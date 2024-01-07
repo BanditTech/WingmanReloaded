@@ -1,0 +1,182 @@
+{
+  "Rusted Hatchet": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Tomahawk": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Wrist Chopper": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "War Axe": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Chest Splitter": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Ceremonial Axe": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Wraith Axe": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Karui Axe": {
+    "drop_level": 57,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Siege Axe": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Reaver Axe": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Butcher Axe": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Jade Hatchet": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Vaal Hatchet": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Royal Axe": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Infernal Axe": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Boarding Axe": {
+    "drop_level": 11,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Cleaver": {
+    "drop_level": 16,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Broad Axe": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Arming Axe": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Decorative Axe": {
+    "drop_level": 29,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Spectral Axe": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Jasper Axe": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Maltreatment Axe": {
+    "drop_level": 30,
+    "implicits": [
+      "+10 to Maximum Rage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Disapprobation Axe": {
+    "drop_level": 50,
+    "implicits": [
+      "+15 to Maximum Rage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Psychotic Axe": {
+    "drop_level": 70,
+    "implicits": [
+      "+20 to Maximum Rage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Etched Hatchet": {
+    "drop_level": 35,
+    "implicits": [
+      "8% increased Global Physical Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Engraved Hatchet": {
+    "drop_level": 56,
+    "implicits": [
+      "8% increased Global Physical Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Runic Hatchet": {
+    "drop_level": 71,
+    "implicits": [
+      "12% increased Global Physical Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2
+  }
+}

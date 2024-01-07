@@ -1,0 +1,26 @@
+{
+  "Hypnotic Eye Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Murderous Eye Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Searching Eye Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ghastly Eye Jewel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  }
+}

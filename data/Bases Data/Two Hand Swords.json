@@ -1,0 +1,216 @@
+{
+  "Energy Blade": {
+    "drop_level": 1,
+    "implicits": [
+      null
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Corroded Blade": {
+    "drop_level": 3,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Highland Blade": {
+    "drop_level": 44,
+    "implicits": [
+      "+305 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Engraved Greatsword": {
+    "drop_level": 48,
+    "implicits": [
+      "60% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Tiger Sword": {
+    "drop_level": 51,
+    "implicits": [
+      "+360 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Wraith Sword": {
+    "drop_level": 54,
+    "implicits": [
+      "45% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Headman's Sword": {
+    "drop_level": 57,
+    "implicits": [
+      "+400 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Reaver Sword": {
+    "drop_level": 59,
+    "implicits": [
+      "60% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Ezomyte Blade": {
+    "drop_level": 61,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Vaal Greatsword": {
+    "drop_level": 63,
+    "implicits": [
+      "+470 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Lion Sword": {
+    "drop_level": 65,
+    "implicits": [
+      "+50 to Strength and Dexterity"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Infernal Sword": {
+    "drop_level": 67,
+    "implicits": [
+      "30% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Longsword": {
+    "drop_level": 8,
+    "implicits": [
+      "+60 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Bastard Sword": {
+    "drop_level": 12,
+    "implicits": [
+      "60% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Two-Handed Sword": {
+    "drop_level": 17,
+    "implicits": [
+      "+120 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Etched Greatsword": {
+    "drop_level": 22,
+    "implicits": [
+      "60% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Ornate Sword": {
+    "drop_level": 27,
+    "implicits": [
+      "+185 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Spectral Sword": {
+    "drop_level": 32,
+    "implicits": [
+      "45% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Butcher Sword": {
+    "drop_level": 36,
+    "implicits": [
+      "+250 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Footman Sword": {
+    "drop_level": 40,
+    "implicits": [
+      "60% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Keyblade": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Rebuking Blade": {
+    "drop_level": 30,
+    "implicits": [
+      "Attack Critical Strikes ignore Enemy Monster Elemental Resistances"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Blasting Blade": {
+    "drop_level": 50,
+    "implicits": [
+      "Attack Critical Strikes ignore Enemy Monster Elemental Resistances"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Banishing Blade": {
+    "drop_level": 70,
+    "implicits": [
+      "Attack Critical Strikes ignore Enemy Monster Elemental Resistances"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Curved Blade": {
+    "drop_level": 35,
+    "implicits": [
+      "+40% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Lithe Blade": {
+    "drop_level": 56,
+    "implicits": [
+      "+40% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Exquisite Blade": {
+    "drop_level": 70,
+    "implicits": [
+      "+50% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  }
+}

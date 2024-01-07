@@ -1,0 +1,130 @@
+{
+  "Gnarled Branch": {
+    "drop_level": 4,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Highborn Staff": {
+    "drop_level": 52,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Primordial Staff": {
+    "drop_level": 58,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Lathi": {
+    "drop_level": 62,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Imperial Staff": {
+    "drop_level": 66,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Primitive Staff": {
+    "drop_level": 9,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Long Staff": {
+    "drop_level": 18,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Royal Staff": {
+    "drop_level": 28,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Woodful Staff": {
+    "drop_level": 37,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Quarterstaff": {
+    "drop_level": 45,
+    "implicits": [
+      "+18% Chance to Block Attack Damage while wielding a Staff"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Transformer Staff": {
+    "drop_level": 30,
+    "implicits": [
+      "+(66-80) to maximum Energy Shield\nSpend Energy Shield before Mana for Costs of Socketed Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Reciprocation Staff": {
+    "drop_level": 50,
+    "implicits": [
+      "+(100-120) to maximum Energy Shield\nSpend Energy Shield before Mana for Costs of Socketed Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Battery Staff": {
+    "drop_level": 70,
+    "implicits": [
+      "+(140-165) to maximum Energy Shield\nSpend Energy Shield before Mana for Costs of Socketed Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Crescent Staff": {
+    "drop_level": 36,
+    "implicits": [
+      "80% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Moon Staff": {
+    "drop_level": 57,
+    "implicits": [
+      "80% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Eclipse Staff": {
+    "drop_level": 70,
+    "implicits": [
+      "100% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2
+  }
+}

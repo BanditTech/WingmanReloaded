@@ -1,0 +1,112 @@
+{
+  "Glass Shank": {
+    "drop_level": 1,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Poignard": {
+    "drop_level": 41,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Gutting Knife": {
+    "drop_level": 56,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Ambusher": {
+    "drop_level": 60,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Skinning Knife": {
+    "drop_level": 5,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Stiletto": {
+    "drop_level": 15,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Flaying Knife": {
+    "drop_level": 30,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Hollowpoint Dagger": {
+    "drop_level": 30,
+    "implicits": [
+      "All Damage from Hits with This Weapon can Poison"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Pressurised Dagger": {
+    "drop_level": 50,
+    "implicits": [
+      "All Damage from Hits with This Weapon can Poison"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Pneumatic Dagger": {
+    "drop_level": 70,
+    "implicits": [
+      "All Damage from Hits with This Weapon can Poison"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Prong Dagger": {
+    "drop_level": 36,
+    "implicits": [
+      "4% Chance to Block Attack Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Trisula": {
+    "drop_level": 51,
+    "implicits": [
+      "4% Chance to Block Attack Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Sai": {
+    "drop_level": 70,
+    "implicits": [
+      "6% Chance to Block Attack Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Ethereal Blade": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 1
+  }
+}
