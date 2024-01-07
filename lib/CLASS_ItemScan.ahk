@@ -1001,7 +1001,7 @@
 		{
 			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"] && This.Affix[v["Affix"]])
 			{
-				If(v["ModGenerationTypeID"] == 1){
+				If(v["ModGenerationType"] == "Prefix"){
 					If(v["RNMod"] > 1){
 						If(v["ID"] != LastID){
 							SumRNP := 1

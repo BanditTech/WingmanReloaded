@@ -82,7 +82,7 @@ Return
 
 ;; Functions
 
-MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID,Affix)
+MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
 {
   Item := New Itemscan()
   Repeat := 1
@@ -147,7 +147,7 @@ MatchLineForItemCraft(FullLine,ModGenerationTypeID,ObjectToPush,MyID,Affix)
     If(IsHybridMod){
       Mod := "(Hybrid) " . Mod
     }
-    aux := {"Mod":OriginalFullLine,"Affix":Affix,"ModGenerationTypeID":ModGenerationTypeID,"ModWRFormat":Mod,"ValueWRFormatLow":FinalValueLow,"ValueWRFormatHigh":FinalValueHigh,"RNMod":Repeat,"ID":MyID}
+    aux := {"Mod":OriginalFullLine,"Affix":Affix,"ModGenerationType":ModGenerationType,"ModWRFormat":Mod,"ValueWRFormatLow":FinalValueLow,"ValueWRFormatHigh":FinalValueHigh,"RNMod":Repeat,"ID":MyID}
     ObjectToPush.push(aux)
   }
 }
