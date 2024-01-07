@@ -1,3 +1,11 @@
+## Version .15.13 - Alpha Version - January/07/2024
+Modifications
+  * Fix Sextant Logic and New Data
+  
+  
+---
+
+
 ## Version .15.12 - Alpha Version - April/13/2022
 Modifications
   * GUI Improvement
