@@ -967,8 +967,14 @@
 		}
 		For k, v in WR.CustomSextantMods.SextantMods{
 			Content := StrSplit(v["Sextant Enchant"], " | ")
-			Content := Content[1] . " (enchant)"
-			If(This.Affix[Content]) {
+			aux := 0
+			for a, b in Content{
+				b := b . " (enchant)"
+				If(This.Affix[b]) {
+					aux++
+				}
+			}
+			If(aux == Content.Length()) {
 				If(v["Mod Type"] == "Good") {
 					This.Prop.SextantFlag := "Good"
 				} Else If(v["Mod Type"] == "Bad") {
