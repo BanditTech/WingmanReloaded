@@ -1,0 +1,1058 @@
+{
+  "Contract: A Matter of Honour": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Flying False Colours": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Admiral's Records": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Findings for Fidium": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Nameless Play": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Finest Costumes": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Enoch's Whereabouts": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Enoch's Remains": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Isla's Prototypes": {
+    "drop_level": 46,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Isla's Designs": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Stolen Lockpicks": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Karst's Revenge": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Credit Where Credit's Due": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Hyrri's Gift": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Negotiation": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Rescue": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Book of Jamanra": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Rational Tools": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: A Mundane Sample": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Finding Opal": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Opal's Jewels": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Wedding Dress": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Disengagement": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Grocery List": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: The Vinderi Bomb": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Slaver's Revenge": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Follow the Paper Trail": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Contract: Trial Run": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Solerai's Spear": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Nashta's War Journal": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Confront Nashta": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Admiral Darnaw's Papers": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fleet Orders": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Admiral Darnaw": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "\"The Nameless Play\"": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Templar Uniforms": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blackguard Personnel Files": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Enoch's Tags": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Pile of Inexplicable Junk": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Baffling Blueprints": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Unbreakable": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Karst's Lockpicks": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "\"The Kiss Goodnight\"": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Poisoned Lockpick": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "\"O' Eternal\"": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Negotiate with the Client": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rescue Hana": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Vox Twins": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Book of Jamanra": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jamanra, the Legendary Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Thought Extractor": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Viridi's Finger": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Census Records": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tibbs' Wealth": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Merveil's Wedding Dress": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tullina's Engagement Ring": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Alchemical Supplies": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fumarole Tar": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hapihapi's Charm": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Slaver's Records": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Blood Idol": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: The Atlas": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: Glennach Cairns": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: Valdo's Rest": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: Tirn's End": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: Lex Proxima": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: New Vastir": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: Lira Arthain": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: Haewark Hamlet": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maven's Invitation: Lex Ejoris": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Incandescent Invitation": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polaric Invitation": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Invitation": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Writhing Invitation": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Master Key": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Staff of Purity": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2
+  },
+  "Book of Skill": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Book of Regrets": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Elixir of Allure": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "The Teardrop": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Luminous Astrolabe": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vault Key": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Maven's Beacon": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Flesh Compass": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Eye of Desire": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "The Eye of Fury": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Malachai's Lungs": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Malachai's Heart": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Malachai's Entrails": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Deshret's Banner": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Sign of Purity": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Miasmeter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Eyes of Zeal": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tukohama's Tooth": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hinekora's Hair": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Valako's Jaw": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Bestel's Manuscript": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "The Black Flag": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Eye of Conquest": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Black Venom": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Firefly": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greust's Necklace": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Kishara's Star": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maligaro's Map": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Obsidian Key": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Silver Locket": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ankh of Eternity": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Moon Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sun Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wings of Vastiri": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Bottled Storm": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Calendar of Fortune": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Trarthan Powder": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Basilisk Acid": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sekhema Feather": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Storm Blade": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Allflame": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "The Apex": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Kraityn's Amulet": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Alira's Amulet": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Oak's Amulet": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Bust of Hector Titucius": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Bust of Gaius Sentari": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Bust of Marceus Lioneye": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Decanter Spiritus": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 1
+  },
+  "Chitus' Plum": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Haliotis Glyph": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ammonite Glyph": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Roseus Glyph": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Golden Hand": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Golden Page": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Blood Crucible": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Dream Furnace": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Viscera Cauldron": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Infernal Talc": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Shaper's Orb (Tier 10)": {
+    "drop_level": 77,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 1)": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 2)": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 3)": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 4)": {
+    "drop_level": 71,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 5)": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 6)": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 7)": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 8)": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shaper's Orb (Tier 9)": {
+    "drop_level": 76,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Elder's Orb": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Medicine Chest": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2
+  },
+  "Baleful Gem": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maligaro's Spike": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 1
+  },
+  "Ribbon Spool": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "The Mortinomicon Exitio Immortalis": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sentinel Controller": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sewer Keys": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Shaper's Key": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Memory Fragment XIII": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment XIV": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment XV": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment I": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment II": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment III": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment IV": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment V": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment VI": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment VII": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment VIII": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment IX": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment X": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment XI": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Memory Fragment XII": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Atlas Book of Skill": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Book of Reform": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Book of Regression": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Thaumetic Emblem": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Thaumetic Sulphite": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Tolman's Bracelet": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tower Key": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  }
+}

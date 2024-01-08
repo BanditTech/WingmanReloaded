@@ -19,6 +19,7 @@ Global DelayAction := {}
 Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar
 Global POEData
 Global BasesData
+Global BasesWR
 Global Active_executable := "TempName"
 Global selectedLeague := "Standard"
 ; Hybrid Mods First Line

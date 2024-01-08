@@ -1,3 +1,14 @@
+## Version .15.2 - Alpha Version - January/08/2024
+Modifications
+  * Replace POEDB API
+  * Retire Crafting Bases
+  * Base Data Reworked
+  
+  
+
+---
+
+
 ## Version .15.12 - Alpha Version - April/13/2022
 Modifications
   * GUI Improvement

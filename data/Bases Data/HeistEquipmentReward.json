@@ -1,0 +1,40 @@
+{
+  "Silver Brooch": {
+    "drop_level": 60,
+    "implicits": [
+      "(11-15)% increased Rarity of Items dropped in Heists"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Golden Brooch": {
+    "drop_level": 75,
+    "implicits": [
+      "(16-20)% increased Rarity of Items dropped in Heists"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Enamel Brooch": {
+    "drop_level": 80,
+    "implicits": [
+      "(21-25)% increased Rarity of Items dropped in Heists"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Foliate Brooch": {
+    "drop_level": 83,
+    "implicits": [
+      "(26-30)% increased Rarity of Items dropped in Heists"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "[UNUSED] Heist Test Reward Equipment": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  }
+}

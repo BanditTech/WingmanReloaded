@@ -1,0 +1,3194 @@
+{
+  "Crusader's Exalted Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hunter's Exalted Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Redeemer's Exalted Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Warlord's Exalted Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Awakener's Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Primal Wisps": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wild Wisps": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vivid Wisps": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Fortune": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Blanching": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Death-dancing": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Adrenaline": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Death's Door": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Resurgence": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Refreshment": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Return": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Bequeathal": {
+    "drop_level": 46,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Revenge": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Amelioration": {
+    "drop_level": 46,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Connections": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of the Jeweller": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Brilliance": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of the Soul Devourer": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Omen of Acceleration": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Arohongui Moonwarden": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Arohongui Scout": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Arohongui Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Arohongui Warmonger": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Arohongui Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Ikiaho": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Arohongui Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Hinekora Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Hinekora Deathwarden": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Hinekora Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Hinekora Storyteller": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Hinekora Warmonger": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Tawhanuku": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Hinekora Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Kitava Blood Drinker": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Kitava Rebel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Kitava Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Kitava Heart Eater": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Kitava Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Utula": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Kitava Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ngamahu Firewalker": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ngamahu Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ngamahu Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ngamahu Warmonger": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ngamahu Woodcarver": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Kaom": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ngamahu Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ramako Scout": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ramako Archer": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ramako Sniper": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ramako Fleetfoot": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ramako Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Ahuana": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Ramako Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Rongokurai Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Rongokurai Brute": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Rongokurai Goliath": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Rongokurai Turtle": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Rongokurai Guard": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Kahuturoa": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Rongokurai Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Hunter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Barbarian": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Berserker": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Wise": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Storm": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Flood": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Warlord": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Mountain": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Pa": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Dove": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Sky": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Tuatara": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Pillager": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Turtle": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Oak": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Hatungo": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Flock": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ancestral Tattoo of Bloodlines": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Honoured Tattoo of the Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Journey Tattoo of the Body": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Journey Tattoo of the Mind": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Journey Tattoo of the Soul": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Journey Tattoo of Makanui": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tasalio Bladedancer": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tasalio Tideshifter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tasalio Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tasalio Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tasalio Scout": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Rakiata": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tasalio Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tawhoa Naturalist": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tawhoa Scout": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tawhoa Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tawhoa Herbalist": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tawhoa Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Maata": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tawhoa Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tukohama Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tukohama Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tukohama Brawler": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tukohama Warmonger": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tukohama Warcaller": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Akoya": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Tukohama Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Valako Stormrider": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Valako Scout": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Valako Warrior": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Valako Shieldbearer": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Valako Shaman": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty Tattoo of Kiloava": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tattoo of the Valako Makanga": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Simple Rope Net": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Thaumaturgical Net": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Necromancy Net": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Reinforced Rope Net": {
+    "drop_level": 7,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Strong Rope Net": {
+    "drop_level": 15,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Simple Iron Net": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Reinforced Iron Net": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Strong Iron Net": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Simple Steel Net": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Reinforced Steel Net": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Strong Steel Net": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Igneous Geode": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Crystalline Geode": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Simple Sextant": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Awakened Sextant": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Elevated Sextant": {
+    "drop_level": 83,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prime Sextant": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Magmatic Ore": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Facetor's Lens": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Augmentation": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Exalted Orb": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Exalted Shard": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Abyssal Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Armoursmith's Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blighted Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Obscured Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fine Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Diviner's Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Whispering Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fossilised Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragmented Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Thaumaturge's Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Foreboding Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Imperial Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Cartographer's Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Challenging Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Kalguuran Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Skittering Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Primal Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jeweller's Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Singular Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blacksmith's Delirium Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Simulacrum Splinter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Silver Coin": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Armourer's Scrap": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Unmaking": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Splinter of Chayula": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Splinter of Tul": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Splinter of Xoph": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Splinter of Esh": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Splinter of Uul-Netol": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blessing of Chayula": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blessing of Tul": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blessing of Xoph": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blessing of Esh": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blessing of Uul-Netol": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Conflict": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Scouring": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vaal Orb": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Remnant of Corruption": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hollow Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Serrated Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Corroded Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Aetheric Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Aberrant Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Frigid Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Glyphic Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dense Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prismatic Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deft Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Scorched Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Faceted Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Pristine Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Metallic Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sanctified Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lucent Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Bound Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fractured Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jagged Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Perfect Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tangled Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fundamental Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shuddering Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Bloodstained Fossil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mirror of Kalandra": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mirror Shard": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Eldritch Exalted Orb": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lesser Eldritch Ember": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greater Eldritch Ember": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Grand Eldritch Ember": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Exceptional Eldritch Ember": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lesser Eldritch Ichor": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greater Eldritch Ichor": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Grand Eldritch Ichor": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Exceptional Eldritch Ichor": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Eldritch Orb of Annulment": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Eldritch Chaos Orb": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Enkindling Orb": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Anger": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Anger": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Anger": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Anger": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Anger": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Anger": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Anguish": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Anguish": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Anguish": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Anguish": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Whispering Essence of Contempt": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Contempt": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Contempt": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Contempt": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Contempt": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Contempt": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Contempt": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Essence of Delirium": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Doubt": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Doubt": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Doubt": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Doubt": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Doubt": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Dread": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Dread": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Dread": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Envy": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Envy": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Envy": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Fear": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Fear": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Fear": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Fear": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Fear": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Fear": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Whispering Essence of Greed": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Greed": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Greed": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Greed": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Greed": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Greed": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Greed": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Whispering Essence of Hatred": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Hatred": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Hatred": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Hatred": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Hatred": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Hatred": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Hatred": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Essence of Horror": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Essence of Hysteria": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Essence of Insanity": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Loathing": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Loathing": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Loathing": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Loathing": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Misery": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Misery": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Misery": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Rage": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Rage": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Rage": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Rage": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Rage": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Scorn": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Scorn": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Scorn": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Sorrow": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Sorrow": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Sorrow": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Sorrow": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Sorrow": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Sorrow": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Spite": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Spite": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Spite": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Spite": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Suffering": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Suffering": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Suffering": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Suffering": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Suffering": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Torment": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Torment": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Torment": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Torment": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Torment": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Torment": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Whispering Essence of Woe": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Muttering Essence of Woe": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Woe": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Woe": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Woe": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Woe": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Woe": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weeping Essence of Wrath": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Wrath": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Wrath": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Wrath": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Wrath": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wailing Essence of Zeal": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Screaming Essence of Zeal": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shrieking Essence of Zeal": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deafening Essence of Zeal": {
+    "drop_level": 82,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Oil Extractor": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Glassblower's Bauble": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fracturing Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fracturing Shard": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gemcutter's Prism": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Time-light Scroll": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deregulation Scroll": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragmentation Scroll": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Specularity Scroll": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Haemocombustion Scroll": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Electroshock Scroll": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tailoring Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tempering Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Exalted Orb": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Armourer's Scrap": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Chaos Orb": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Chromatic Orb": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Orb of Fusing": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Jeweller's Orb": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Divine Teardrop": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Mythic Orb": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Blacksmith's Whetstone": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hinekora's Lock": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Scroll of Wisdom": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Scroll Fragment": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Imprint": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Eternal Orb": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Corrupt": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of Sacrifice": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of the Ghost": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of Transcendence": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of Fate": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of Summoning": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of the Ritual": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of Consequence": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of Awakening": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vial of Dominance": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Instilling Orb": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Bestiary Orb": {
+    "drop_level": 15,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Surveyor's Compass": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Imprinted Bestiary Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prophecy": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Charged Compass": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Abrasive Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Intrinsic Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Imbued Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unstable Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tempering Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Turbulent Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Noxious Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prismatic Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fertile Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Accelerating Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Catalyst": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Enchant": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Blessing": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Eternal Empire Splinter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Karui Splinter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Maraketh Splinter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Templar Splinter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Vaal Splinter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Cartographer's Chisel": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Divine Orb": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Regret": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Perandus Coin": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Portal Scroll": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Exotic Coinage": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Scrap Metal": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Astragali": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Burial Medallion": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Annulment": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Annulment Shard": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sacred Orb": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blessed Orb": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Alteration": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Alteration Shard": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Horizons": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Horizon Shard": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Chaos Orb": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Chaos Shard": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Veiled Chaos Orb": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prime Regrading Lens": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Chromatic Orb": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Fusing": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jeweller's Orb": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Secondary Regrading Lens": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ancient Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ancient Shard": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unshaping Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Albino Rhoa Feather": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ritual Splinter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ritual Vessel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Master Cartographer's Seal": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Apprentice Cartographer's Seal": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Journeyman Cartographer's Seal": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Uncarved Gemstone": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Engineer's Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Infused Engineer's Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Engineer's Shard": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Dominance": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Regal Orb": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Regal Shard": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Harbinger's Orb": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Harbinger's Shard": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Chance": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Transmutation": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Transmutation Shard": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Alchemy": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Orb of Binding": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Binding Shard": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Alchemy Shard": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Valdo's Puzzle Box": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blacksmith's Whetstone": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gold": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Primal Crystallised Lifeforce": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sacred Crystallised Lifeforce": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vivid Crystallised Lifeforce": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wild Crystallised Lifeforce": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Clear Oil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Opalescent Oil": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Silver Oil": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Golden Oil": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sepia Oil": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Amber Oil": {
+    "drop_level": 19,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Verdant Oil": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Teal Oil": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Azure Oil": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Indigo Oil": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Violet Oil": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Crimson Oil": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Black Oil": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tainted Oil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Reflective Oil": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Acrobatics": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Ancestral Bond": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Arrow Dancing": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Avatar of Fire": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Blood Magic": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Call to Arms": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Conduit": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Crimson Dance": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Divine Shield": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Hex Master": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Eldritch Battery": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Elemental Equilibrium": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Elemental Overload": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Eternal Youth": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Ghost Dance": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Ghost Reaver": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Glancing Blows": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Imbalanced Guard": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Iron Grip": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Iron Reflexes": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Iron Will": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Lethe Shade": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Magebane": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Mind over Matter": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Minion Instability": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Pain Attunement": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Perfect Agony": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Point Blank": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Precise Technique": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Resolute Technique": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Runebinder": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Solipsism": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Supreme Ego": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of the Agnostic": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of the Impaler": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Unwavering Stance": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Vaal Pact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Versatile Combatant": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Wicked Ward": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Wind Dancer": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lycia's Invocation of Zealot's Oath": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blighted Scouting Report": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Otherworldly Scouting Report": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vaal Scouting Report": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Delirious Scouting Report": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Explorer's Scouting Report": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Influenced Scouting Report": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Operative's Scouting Report": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Comprehensive Scouting Report": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Singular Scouting Report": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Augmenting Power Core": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Armour Recombinator": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Power Core": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jewellery Recombinator": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Transforming Power Core": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Amplifying Power Core": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Weapon Recombinator": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Stacked Deck": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lesser Broken Circle Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greater Broken Circle Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Grand Broken Circle Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Exceptional Broken Circle Artifact": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lesser Black Scythe Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greater Black Scythe Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Grand Black Scythe Artifact": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Exceptional Black Scythe Artifact": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lesser Order Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greater Order Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Grand Order Artifact": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Exceptional Order Artifact": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lesser Sun Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Greater Sun Artifact": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Grand Sun Artifact": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Exceptional Sun Artifact": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Rogue's Marker": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Crescent Splinter": {
+    "drop_level": 83,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  }
+}

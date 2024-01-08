@@ -1,0 +1,104 @@
+{
+  "Focal Stone": {
+    "drop_level": 60,
+    "implicits": [
+      "(11-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Conduit Line": {
+    "drop_level": 75,
+    "implicits": [
+      "(16-20)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Aggregator Charm": {
+    "drop_level": 80,
+    "implicits": [
+      "(21-25)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Burst Band": {
+    "drop_level": 83,
+    "implicits": [
+      "(26-30)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Rough Sharpening Stone": {
+    "drop_level": 60,
+    "implicits": [
+      "(11-15)% increased Melee Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Standard Sharpening Stone": {
+    "drop_level": 75,
+    "implicits": [
+      "(16-20)% increased Melee Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fine Sharpening Stone": {
+    "drop_level": 80,
+    "implicits": [
+      "(21-25)% increased Melee Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Obsidian Sharpening Stone": {
+    "drop_level": 83,
+    "implicits": [
+      "(26-30)% increased Melee Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Flanged Arrowhead": {
+    "drop_level": 60,
+    "implicits": [
+      "(11-15)% increased Projectile Attack Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fragmenting Arrowhead": {
+    "drop_level": 75,
+    "implicits": [
+      "(16-20)% increased Projectile Attack Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Hollowpoint Arrowhead": {
+    "drop_level": 80,
+    "implicits": [
+      "(21-25)% increased Projectile Attack Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Precise Arrowhead": {
+    "drop_level": 83,
+    "implicits": [
+      "(26-30)% increased Projectile Attack Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "[UNUSED] Heist Test Weapon": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  }
+}

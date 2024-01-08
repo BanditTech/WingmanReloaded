@@ -1,0 +1,438 @@
+{
+  "Gripped Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(14-18)% increased Projectile Attack Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fingerless Silk Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(12-16)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Spiked Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(16-20)% increased Melee Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Apothecary's Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(14-18)% increased Damage over Time"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Golden Bracers": {
+    "drop_level": 12,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Rawhide Gloves": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Goathide Gloves": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Deerskin Gloves": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Nubuck Gloves": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Eelskin Gloves": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sharkskin Gloves": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Shagreen Gloves": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Stealth Gloves": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Slink Gloves": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wrapped Mitts": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Strapped Mitts": {
+    "drop_level": 16,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Clasped Mitts": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Trapper Mitts": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ambush Mitts": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Carnal Mitts": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Assassin's Mitts": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Murder Mitts": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Gauche Gloves": {
+    "drop_level": 10,
+    "implicits": [
+      "25% reduced Attack Damage with Main Hand\n(40-50)% increased Attack Damage with Off Hand"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Southswing Gloves": {
+    "drop_level": 40,
+    "implicits": [
+      "25% reduced Attack Damage with Main Hand\n(40-50)% increased Attack Damage with Off Hand"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sinistral Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "25% reduced Attack Damage with Main Hand\n(40-50)% increased Attack Damage with Off Hand"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Gloves": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Gages": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Gauntlets": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wool Gloves": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Velvet Gloves": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Silk Gloves": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Embroidered Gloves": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Satin Gloves": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Samite Gloves": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Conjurer Gloves": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Arcanist Gloves": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sorcerer Gloves": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Leyline Gloves": {
+    "drop_level": 10,
+    "implicits": [
+      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Aetherwind Gloves": {
+    "drop_level": 40,
+    "implicits": [
+      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Nexus Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Iron Gauntlets": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Plated Gauntlets": {
+    "drop_level": 11,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Bronze Gauntlets": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Steel Gauntlets": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Antique Gauntlets": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ancient Gauntlets": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Goliath Gauntlets": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Vaal Gauntlets": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Titan Gauntlets": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fishscale Gauntlets": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ironscale Gauntlets": {
+    "drop_level": 15,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Bronzescale Gauntlets": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Steelscale Gauntlets": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Serpentscale Gauntlets": {
+    "drop_level": 43,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wyrmscale Gauntlets": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Hydrascale Gauntlets": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Dragonscale Gauntlets": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Chain Gloves": {
+    "drop_level": 7,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ringmail Gloves": {
+    "drop_level": 19,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Mesh Gloves": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Riveted Gloves": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Zealot Gloves": {
+    "drop_level": 43,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Soldier Gloves": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Legion Gloves": {
+    "drop_level": 57,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Crusader Gloves": {
+    "drop_level": 66,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Taxing Gauntlets": {
+    "drop_level": 10,
+    "implicits": [
+      "Exerted Attacks deal (25-30)% increased Damage\nWarcry Skills have +2 seconds to Cooldown"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Gruelling Gauntlets": {
+    "drop_level": 40,
+    "implicits": [
+      "Exerted Attacks deal (30-40)% increased Damage\nWarcry Skills have +2 seconds to Cooldown"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Debilitation Gauntlets": {
+    "drop_level": 70,
+    "implicits": [
+      "Exerted Attacks deal (40-50)% increased Damage\nWarcry Skills have +2 seconds to Cooldown"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  }
+}

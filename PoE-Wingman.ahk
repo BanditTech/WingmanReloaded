@@ -1,6 +1,5 @@
-Global VersionNumber := .15.12
+Global VersionNumber := .15.2
 #Include, %A_ScriptDir%\lib\Header.ahk
-;REMEMBER TO ENABLE IF PUSHING TO ALPHA/MASTER!!!
 #Include, %A_ScriptDir%\lib\RunAdmin.ahk
 #Include, %A_ScriptDir%\lib\FileCheck.ahk
 #Include, %A_ScriptDir%\lib\TrayMenu.ahk

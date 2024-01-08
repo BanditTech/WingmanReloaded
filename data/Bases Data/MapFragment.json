@@ -1,0 +1,768 @@
+{
+  "Simulacrum": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Enslavement": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Eradication": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Constriction": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Purification": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Key to Decay": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Divine Vessel": {
+    "drop_level": 68,
+    "implicits": [
+      "Unique Boss deals 10% increased Damage\nUnique Boss has 10% increased Attack and Cast Speed\nUnique Boss has 10% increased Life\nUnique Boss has 20% increased Area of Effect"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Sacred Blossom": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Eternal Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unrelenting Timeless Eternal Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Karui Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unrelenting Timeless Karui Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Maraketh Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unrelenting Timeless Maraketh Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Templar Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unrelenting Timeless Templar Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Timeless Vaal Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unrelenting Timeless Vaal Emblem": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Maven's Writ": {
+    "drop_level": 83,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Offering to the Goddess": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dedication to the Goddess": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gift to the Goddess": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tribute to the Goddess": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Eber's Key": {
+    "drop_level": 60,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Yriel's Key": {
+    "drop_level": 60,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Inya's Key": {
+    "drop_level": 60,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Volkuur's Key": {
+    "drop_level": 60,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Pale Court Set": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fragment of the Phoenix": {
+    "drop_level": 84,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of the Minotaur": {
+    "drop_level": 84,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of the Chimera": {
+    "drop_level": 84,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of the Hydra": {
+    "drop_level": 84,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Key to the Crucible": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Al-Hezmin's Crest": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Baran's Crest": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Drox's Crest": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Veritania's Crest": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Crest of the Elderslayers": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Terror": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Emptiness": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Shape": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fragment of Knowledge": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Maddening Object": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sacrifice at Midnight": {
+    "drop_level": 60,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sacrifice at Dawn": {
+    "drop_level": 36,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sacrifice at Noon": {
+    "drop_level": 36,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sacrifice at Dusk": {
+    "drop_level": 36,
+    "implicits": [
+      "5% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mortal Rage": {
+    "drop_level": 68,
+    "implicits": [
+      "10% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mortal Hope": {
+    "drop_level": 68,
+    "implicits": [
+      "10% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mortal Ignorance": {
+    "drop_level": 68,
+    "implicits": [
+      "10% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mortal Grief": {
+    "drop_level": 68,
+    "implicits": [
+      "10% increased Quantity of Items found in this Area"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sacrifice Set": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Mortal Set": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Blood-filled Vessel": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Abyss Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Abyss Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Abyss Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Abyss Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Bestiary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Bestiary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Bestiary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Bestiary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Farric Lure": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Saqawine Lure": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fenumal Lure": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Craicic Lure": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Blight Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Blight Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Blight Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Blight Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Breach Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Breach Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Breach Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Breach Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Divination Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Divination Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Divination Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Divination Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Elder Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Elder Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Elder Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Elder Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Harbinger Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Harbinger Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Harbinger Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Harbinger Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Legion Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Legion Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Legion Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Legion Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Cartography Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Cartography Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Cartography Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Cartography Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Ultimatum Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Ultimatum Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Ultimatum Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Ultimatum Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Expedition Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Expedition Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Expedition Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Expedition Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Shaper Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Shaper Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Shaper Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Shaper Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Ambush Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Ambush Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Ambush Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Ambush Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Sulphite Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Sulphite Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Sulphite Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Sulphite Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Torment Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Torment Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Torment Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Torment Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rusted Reliquary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Polished Reliquary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gilded Reliquary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winged Reliquary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  }
+}

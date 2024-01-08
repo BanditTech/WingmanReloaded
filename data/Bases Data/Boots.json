@@ -1,0 +1,442 @@
+{
+  "Two-Toned Boots": {
+    "drop_level": 70,
+    "implicits": [
+      "+(8-12)% to Fire and Lightning Resistances"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fugitive Boots": {
+    "drop_level": 70,
+    "implicits": [
+      "+(13-17)% to Chaos Resistance"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Golden Caligae": {
+    "drop_level": 12,
+    "implicits": [
+      "+(8-16)% to all Elemental Resistances"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Avian Slippers": {
+    "drop_level": 1,
+    "implicits": [
+      "10% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Rawhide Boots": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Goathide Boots": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Deerskin Boots": {
+    "drop_level": 22,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Nubuck Boots": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Eelskin Boots": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sharkskin Boots": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Shagreen Boots": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Stealth Boots": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Slink Boots": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wrapped Boots": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Strapped Boots": {
+    "drop_level": 16,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Clasped Boots": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Shackled Boots": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Trapper Boots": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ambush Boots": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Carnal Boots": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Assassin's Boots": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Murder Boots": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Cloudwhisper Boots": {
+    "drop_level": 20,
+    "implicits": [
+      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Windbreak Boots": {
+    "drop_level": 50,
+    "implicits": [
+      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Stormrider Boots": {
+    "drop_level": 80,
+    "implicits": [
+      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Greaves": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Sollerets": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runic Sabatons": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wool Shoes": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Velvet Slippers": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Silk Slippers": {
+    "drop_level": 22,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Scholar Boots": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Satin Slippers": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Samite Slippers": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Conjurer Boots": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Arcanist Slippers": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sorcerer Boots": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Duskwalk Slippers": {
+    "drop_level": 20,
+    "implicits": [
+      "(30-40)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Nightwind Slippers": {
+    "drop_level": 50,
+    "implicits": [
+      "(30-40)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Dreamquest Slippers": {
+    "drop_level": 80,
+    "implicits": [
+      "(30-40)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Iron Greaves": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Steel Greaves": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Plated Greaves": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Reinforced Greaves": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Antique Greaves": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ancient Greaves": {
+    "drop_level": 46,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Goliath Greaves": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Vaal Greaves": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Titan Greaves": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Leatherscale Boots": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ironscale Boots": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Bronzescale Boots": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Steelscale Boots": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Serpentscale Boots": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Wyrmscale Boots": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Hydrascale Boots": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Dragonscale Boots": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Chain Boots": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Ringmail Boots": {
+    "drop_level": 13,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Mesh Boots": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Riveted Boots": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Zealot Boots": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Soldier Boots": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Legion Boots": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Crusader Boots": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Basemetal Treads": {
+    "drop_level": 20,
+    "implicits": [
+      "+(4-5)% Chance to Block Attack Damage\nYou take 20% of Damage from Blocked Hits"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Darksteel Treads": {
+    "drop_level": 50,
+    "implicits": [
+      "+(4-5)% Chance to Block Attack Damage\nYou take 20% of Damage from Blocked Hits"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Brimstone Treads": {
+    "drop_level": 80,
+    "implicits": [
+      "+(4-5)% Chance to Block Attack Damage\nYou take 20% of Damage from Blocked Hits"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Kaom's Greaves": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  }
+}

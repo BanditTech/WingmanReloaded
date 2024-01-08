@@ -1,0 +1,38 @@
+{
+  "Small Hybrid Flask": {
+    "drop_level": 10,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Medium Hybrid Flask": {
+    "drop_level": 20,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Large Hybrid Flask": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Colossal Hybrid Flask": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Sacred Hybrid Flask": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Hallowed Hybrid Flask": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "Small Life Flask": {
+    "drop_level": 1,
+    "implicits": [
+      "Effect is removed when Hit by a Player"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Sanctified Life Flask": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Divine Life Flask": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Eternal Life Flask": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Medium Life Flask": {
+    "drop_level": 3,
+    "implicits": [
+      null,
+      "Effect is removed when Hit by a Player"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Large Life Flask": {
+    "drop_level": 6,
+    "implicits": [
+      null,
+      "Effect is removed when Hit by a Player"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Greater Life Flask": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Grand Life Flask": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Giant Life Flask": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Colossal Life Flask": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Sacred Life Flask": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  },
+  "Hallowed Life Flask": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1
+  }
+}

@@ -519,49 +519,6 @@
 					This.Prop.SpecialType := "Catalyst"
 				}
 			}
-			Else If (This.Prop.ItemClass = "Metamorph Samples")
-			{
-				If (InStr(This.Prop.ItemBase, "'s Lung"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Lung"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Heart"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Heart"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Brain"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Brain"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Liver"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Liver"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Eye"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Eye"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-			}
 			Else If (This.Prop.ItemClass = "Contracts")
 			{
 				This.Prop.Heist := True
@@ -1067,7 +1024,7 @@
 				Continue
 			}
 			for k,v in ILvLList
-			{	
+			{
 				if ((This.Prop.ItemLevel >= v && This.Prop.ItemLevel < ILvLList[k+1]) || k == ILvLList.Length())
 				{
 					for ki,vi in AffixList
@@ -1725,48 +1682,50 @@
 		}
 		If (!This.Prop.IsMap)
 		{
-			For k, v in Bases
+			For k, v in BasesWR
 			{
-				If (v["name"] = This.Prop.ItemBase)
-				{
-					This.Prop.Item_Width := v["inventory_width"]
-					This.Prop.Item_Height := v["inventory_height"]
-					This.Prop.ItemBase := v["name"]
-					This.Prop.DropLevel := v["drop_level"]
+				for a, b in v{
+					If (a == This.Prop.ItemBase)
+					{
+						This.Prop.Item_Width := b["inventory_width"]
+						This.Prop.Item_Height := b["inventory_height"]
+						This.Prop.ItemBase := a
+						This.Prop.DropLevel := b["drop_level"]
 
-					If (This.Prop.Rating_Armour || This.Prop.Rating_EnergyShield || This.Prop.Rating_Evasion){
-						tally := total := 0
-						If This.Prop.Rating_Armour {
-							tally++
-							val := This.Perc(This.Prop.Rating_Armour,[v.properties.armour.min,v.properties.armour.max])
-							total += val
-							This.Prop.Rating_Armour_Percent := round(val,2)
+						If (This.Prop.Rating_Armour || This.Prop.Rating_EnergyShield || This.Prop.Rating_Evasion){
+							tally := total := 0
+							If This.Prop.Rating_Armour {
+								tally++
+								val := This.Perc(This.Prop.Rating_Armour,[v.properties.armour.min,v.properties.armour.max])
+								total += val
+								This.Prop.Rating_Armour_Percent := round(val,2)
+							}
+							If This.Prop.Rating_EnergyShield {
+								tally++
+								val := This.Perc(This.Prop.Rating_EnergyShield,[v.properties.energy_shield.min,v.properties.energy_shield.max])
+								total += val
+								This.Prop.Rating_EnergyShield_Percent := round(val,2)
+							}
+							If This.Prop.Rating_Evasion {
+								tally++
+								val := This.Perc(This.Prop.Rating_Evasion,[v.properties.evasion.min,v.properties.evasion.max])
+								total += val
+								This.Prop.Rating_Evasion_Percent := round(val,2)
+							}
+							This.Prop.Rating_Percent := round(total/tally,2)
+							tally := total := val := ""
 						}
-						If This.Prop.Rating_EnergyShield {
-							tally++
-							val := This.Perc(This.Prop.Rating_EnergyShield,[v.properties.energy_shield.min,v.properties.energy_shield.max])
-							total += val
-							This.Prop.Rating_EnergyShield_Percent := round(val,2)
-						}
-						If This.Prop.Rating_Evasion {
-							tally++
-							val := This.Perc(This.Prop.Rating_Evasion,[v.properties.evasion.min,v.properties.evasion.max])
-							total += val
-							This.Prop.Rating_Evasion_Percent := round(val,2)
-						}
-						This.Prop.Rating_Percent := round(total/tally,2)
-						tally := total := val := ""
+
+						If InStr(This.Prop.ItemClass, "Rings")
+							This.Prop.Ring := True
+						If InStr(This.Prop.ItemClass, "Amulets")
+							This.Prop.Amulet := True
+						If InStr(This.Prop.ItemClass, "Belts")
+							This.Prop.Belt := True
+						If (This.Prop.ItemClass = "Support Skill Gems")
+							This.Prop.Support := True
+						Break
 					}
-
-					If InStr(This.Prop.ItemClass, "Rings")
-						This.Prop.Ring := True
-					If InStr(This.Prop.ItemClass, "Amulets")
-						This.Prop.Amulet := True
-					If InStr(This.Prop.ItemClass, "Belts")
-						This.Prop.Belt := True
-					If (This.Prop.ItemClass = "Support Skill Gems")
-						This.Prop.Support := True
-					Break
 				}
 			}
 		}

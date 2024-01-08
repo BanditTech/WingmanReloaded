@@ -1,0 +1,296 @@
+{
+  "Eelskin Sole": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Agility speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Foxhide Sole": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Agility speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Winged Sole": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Agility speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Silkweave Sole": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Agility speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Leather Bracers": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Brute Force speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Studded Bracers": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Brute Force speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Runed Bracers": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Brute Force speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Steel Bracers": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Brute Force speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Crude Ward": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Counter-Thaumaturgy speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Lustrous Ward": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Counter-Thaumaturgy speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Shining Ward": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Counter-Thaumaturgy speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Thaumaturgical Ward": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Counter-Thaumaturgy speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Basic Disguise Kit": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Deception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Theatre Disguise Kit": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Deception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Espionage Disguise Kit": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Deception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Regicide Disguise Kit": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Deception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Voltaxic Flashpowder": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Demolition speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Trarthan Flashpowder": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Demolition speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Azurite Flashpowder": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Demolition speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Thaumetic Flashpowder": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Demolition speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Steel Drill": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Engineering speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Flanged Drill": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Engineering speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Sulphur Blowtorch": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Engineering speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Thaumetic Blowtorch": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Engineering speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Simple Lockpick": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Lockpicking speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Standard Lockpick": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Lockpicking speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fine Lockpick": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Lockpicking speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Master Lockpick": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Lockpicking speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Crude Sensing Charm": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Perception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Fine Sensing Charm": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Perception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Polished Sensing Charm": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Perception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Thaumaturgical Sensing Charm": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Perception speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "[UNUSED] Heist Test Tool": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Essential Keyring": {
+    "drop_level": 60,
+    "implicits": [
+      "(4-6)% increased Trap Disarmament speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Versatile Keyring": {
+    "drop_level": 75,
+    "implicits": [
+      "(7-9)% increased Trap Disarmament speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Skeleton Keyring": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-12)% increased Trap Disarmament speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  },
+  "Grandmaster Keyring": {
+    "drop_level": 83,
+    "implicits": [
+      "(13-15)% increased Trap Disarmament speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2
+  }
+}

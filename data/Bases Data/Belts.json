@@ -1,0 +1,98 @@
+{
+  "Rustic Sash": {
+    "drop_level": 2,
+    "implicits": [
+      "(12-24)% increased Global Physical Damage"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Chain Belt": {
+    "drop_level": 2,
+    "implicits": [
+      "+(9-20) to maximum Energy Shield"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Leather Belt": {
+    "drop_level": 2,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Heavy Belt": {
+    "drop_level": 2,
+    "implicits": [
+      "+(25-35) to Strength"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Cloth Belt": {
+    "drop_level": 2,
+    "implicits": [
+      "(30-40)% increased Stun and Block Recovery"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Studded Belt": {
+    "drop_level": 20,
+    "implicits": [
+      "(20-30)% increased Stun Duration on Enemies"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Stygian Vise": {
+    "drop_level": 1,
+    "implicits": [
+      "Has 1 Abyssal Socket"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Vanguard Belt": {
+    "drop_level": 73,
+    "implicits": [
+      "+(260-320) to Armour and Evasion Rating"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Crystal Belt": {
+    "drop_level": 73,
+    "implicits": [
+      "+(60-80) to maximum Energy Shield"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Golden Obi": {
+    "drop_level": 12,
+    "implicits": [
+      "(20-30)% increased Rarity of Items found"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Micro-Distillery Belt": {
+    "drop_level": 68,
+    "implicits": [
+      "Can't use Flask in Fifth Slot\nFlasks applied to you have 30% increased Effect"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  },
+  "Mechalarm Belt": {
+    "drop_level": 70,
+    "implicits": [
+      "Trigger Level 20 Summon Taunting Contraption when you use a Flask"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2
+  }
+}

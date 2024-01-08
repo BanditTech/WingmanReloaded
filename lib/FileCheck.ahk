@@ -63,7 +63,7 @@ For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","WR_Prop.json","WR_Pseudo.j
 
 IfNotExist, %A_ScriptDir%\data\Bases.json
 {
-	UrlDownloadToFile, https://raw.githubusercontent.com/brather1ng/lvlvllvlvllvlvl/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
+	UrlDownloadToFile, https://raw.githubusercontent.com/lvlvllvlvllvlvl/RePoE/master/RePoE/data/base_items.json, %A_ScriptDir%\data\Bases.json
 	if ErrorLevel {
 		Log("Error","Data download error", "Bases.json")
 		MsgBox, Error ED02 : There was a problem downloading Bases.json from RePoE
@@ -71,7 +71,7 @@ IfNotExist, %A_ScriptDir%\data\Bases.json
 		Log("Verbose","Data downloaded Correctly", "Downloading Bases.json was a success")
 	}
 }
-Bases := JSON.Load(FileOpen(A_ScriptDir "\data\Bases.json","r").Read())
+;Bases := JSON.Load(FileOpen(A_ScriptDir "\data\Bases.json","r").Read())
 
 UpdatePOEData(){
 	IfNotExist, %A_ScriptDir%\data\PoE Data\Category.json
@@ -106,7 +106,7 @@ UpdatePOEData()
 UpdateBasesData(){
 	IfNotExist, %A_ScriptDir%\data\Bases Data\BasesCategory.json
 	{
-		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Bases Data/BasesCategory.json, %A_ScriptDir%\data\Bases Data\BasesCategory.json
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Bases Data/Category.json, %A_ScriptDir%\data\Bases Data\Category.json
 		if ErrorLevel {
 			Log("Error","Data download error", "Category.json")
 			MsgBox, Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub
@@ -114,7 +114,18 @@ UpdateBasesData(){
 			Log("Verbose","Data downloaded Correctly", "Downloading POEData was a success")
 		}
 	}
-	BasesData := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesCategory","r").Read())
+	BasesData := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\Category","r").Read())
+	IfNotExist, %A_ScriptDir%\data\Bases Data\BasesWR.json
+	{
+		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Bases Data/BasesWR.json, %A_ScriptDir%\data\Bases Data\BasesWR.json
+		if ErrorLevel {
+			Log("Error","Data download error", "BasesWR.json")
+			MsgBox, Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub
+		} Else if (ErrorLevel=0){
+			Log("Verbose","Data downloaded Correctly", "Downloading POEData was a success")
+		}
+	}
+	BasesWR := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesWR","r").Read())
 	For k, v in BasesData {
 			aux := k . ".json"
 			IfNotExist, %A_ScriptDir%\data\Bases Data\%aux%
@@ -160,6 +171,5 @@ IfNotExist, %A_ScriptDir%\save\ActualTier.json
 {
 	ActualTierCreator()
 }
-s
 If needReload
 	Reload

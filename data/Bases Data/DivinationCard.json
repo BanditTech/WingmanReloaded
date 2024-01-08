@@ -1,0 +1,2672 @@
+{
+  "A Chilling Wind": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Dab of Ink": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Dusty Memory": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Familiar Call": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Fate Worse Than Death": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Modest Request": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Mother's Parting Gift": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Note in the Wind": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Sea of Blue": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "A Stone Perfected": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Abandoned Wealth": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Acclimatisation": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Akil's Prophecy": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Alivia's Grace": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Alluring Bounty": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Alone in the Darkness": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Altered Perception": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ambitious Obsession": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Anarchy's Price": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Arrogance of the Vaal": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Assassin's Favour": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Assassin's Gift": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Astral Protection": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Atziri's Arsenal": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Audacity": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Auspicious Ambitions": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Azure Rage": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Azyran's Reward": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Baited Expectations": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Beauty Through Death": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Bijoux": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Birth of the Three": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blessing of God": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Blind Venture": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Boon of Justice": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Boon of the First Ones": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Boundless Realms": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Bowyer's Dream": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Broken Promises": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Broken Truce": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Brotherhood in Exile": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Brother's Gift": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Brother's Stash": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Brush, Paint and Palette": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Buried Treasure": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Burning Blood": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Call to the First Ones": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Cameria's Cut": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Cartographer's Delight": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Chaotic Disposition": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Chasing Risk": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Checkmate": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Choking Guilt": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Costly Curio": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Council of Cats": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Coveted Possession": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Cursed Words": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dark Dreams": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dark Temptation": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Darker Half": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deadly Joy": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Death": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Deathly Designs": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dementophobia": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Demigod's Wager": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Desecrated Virtue": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Desperate Crusade": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Destined to Crumble": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dialla's Subjugation": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Disdain": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Divine Beauty": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Divine Justice": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Doedre's Madness": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Doryani's Epiphany": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Draped in Dreams": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Duality": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dying Anguish": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Dying Light": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Earth Drinker": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Echoes of Love": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Eldritch Perfection": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Emperor of Purity": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Emperor's Luck": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Endless Night": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Etched in Blood": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Eternal Bonds": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Ever-Changing": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fateful Meeting": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Fire Of Unknown Origin": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Forbidden Power": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Friendship": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "From Bone to Ashes": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Further Invention": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gemcutter's Mercy": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gemcutter's Promise": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gift of Asenath": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Gift of the Gemling Queen": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Glimmer of Hope": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Grave Knowledge": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Guardian's Challenge": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Harmony of Souls": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Haunting Shadows": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Her Mask": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Heterochromia": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "His Judgement": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Home": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hope": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "House of Mirrors": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hubris": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Humility": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hunter's Resolve": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Hunter's Reward": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "I See Brothers": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Immortal Resolve": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Imperfect Memories": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Imperial Legacy": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Jack in the Box": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Judging Voices": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Justified Ambition": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Keeper's Corruption": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lachrymal Necrosis": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lantador's Lost Love": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Last Hope": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Left to Fate": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lethean Temptation": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Light and Truth": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lingering Remnants": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lost Worlds": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Love Through Ice": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Loyalty": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Luck of the Vaal": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lucky Connections": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lucky Deck": {
+    "drop_level": 74,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Luminous Trove": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Lysah's Respite": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Magnum Opus": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Man With Bear": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Matryoshka": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mawr Blaidd": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Merciless Armament": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Might is Right": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Misery in Darkness": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Mitts": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Monochrome": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "More is Never Enough": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "No Traces": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Nook's Crown": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Parasitic Passengers": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Peaceful Moments": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Perfection": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Poisoned Faith": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prejudice": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Pride Before the Fall": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Pride of the First Ones": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prometheus' Armoury": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Prosperity": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rain of Chaos": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rain Tempter": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rats": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rebirth": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Rebirth and Renewal": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Reckless Ambition": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Remembrance": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sambodhi's Vow": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Sambodhi's Wisdom": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Scholar of the Seas": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Seven Years Bad Luck": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Shard of Fate": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Silence and Frost": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Society's Remorse": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Something Dark": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Soul Quenched": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Squandered Prosperity": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Struck by Lightning": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Succor of the Sinless": {
+    "drop_level": 79,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Terrible Secret of Space": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Academic": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Admirer": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Adventuring Spirit": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Aesthete": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Apothecary": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Archmage's Right Hand": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Arena Champion": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Army of Blood": {
+    "drop_level": 26,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Artist": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Aspirant": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Astromancer": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Avenger": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Awakened": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Bargain": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Battle Born": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Bear Woman": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Beast": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Betrayal": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Bitter Blossom": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Blazing Fire": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Blessing of Moosh": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Body": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Bones": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Brawny Battle Mage": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Breach": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Brittle Emperor": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Cache": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Cacophony": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Calling": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Card Sharp": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Carrion Crow": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Cartographer": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Cataclysm": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Catalyst": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Catch": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Celestial Justicar": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Celestial Stone": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Chains that Bind": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Cheater": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Chosen": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Coming Storm": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Conduit": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Craving": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Cursed King": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Damned": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Dapper Prodigy": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Dark Mage": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Darkest Dream": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Deal": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Deceiver": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Deep Ones": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Demon": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Demoness": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Destination": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Devastator": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Doctor": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Doppelganger": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Dragon": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Dragon's Heart": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Dreamer": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Dreamland": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Drunken Aristocrat": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Dungeon Master": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Easy Stroll": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Eldritch Decay": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Emptiness": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Encroaching Darkness": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Endless Darkness": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Endurance": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Enforcer": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Enlightened": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Enthusiasts": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Escape": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Eternal War": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Ethereal": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Explorer": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Eye of Terror": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Eye of the Dragon": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fathomless Depths": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Feast": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fiend": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Finishing Touch": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fishmonger": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fletcher": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Flora's Gift": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fool": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Forgotten Treasure": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Formless Sea": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Forsaken": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fortunate": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Forward Gaze": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fox": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Fox in the Brambles": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Gambler": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Garish Power": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Gemcutter": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Gentleman": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Gladiator": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Golden Era": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Greatest Intentions": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Gulf": {
+    "drop_level": 86,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Hale Heart": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Harvester": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Hermit": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Heroic Shot": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Hive of Knowledge": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Hoarder": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Hook": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Hunger": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Immortal": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Incantation": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Innocent": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Inoculated": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Insane Cat": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Insatiable": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Inventor": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Rusted Bard": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Jester": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Jeweller's Boon": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Journalist": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Journey": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The King's Blade": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The King's Heart": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Landing": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Last One Standing": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Last Supper": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Leviathan": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Lich": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Life Thief": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Lion": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Long Con": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Long Watch": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Lord in Black": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Lord of Celebration": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Lover": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Lunaris Priestess": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Mad King": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Magma Crab": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Master": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Master Artisan": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Mayor": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Mercenary": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Messenger": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Metalsmith's Gift": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Mind's Eyes": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Mountain": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Nurse": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Oath": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Obscured": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Offering": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Offspring": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Old Man": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The One That Got Away": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The One With All": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Opulent": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Pack Leader": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Pact": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Patient": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Penitent": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Poet": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Polymath": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Porcupine": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Price of Devotion": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Price of Loyalty": {
+    "drop_level": 79,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Price of Prescience": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Price of Protection": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Primordial": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Prince of Darkness": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Professor": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Progeny of Lunaris": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Puzzle": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Queen": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Rabbit's Foot": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Rabid Rhoa": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Realm": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Return of the Rat": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Risk": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Rite of Elements": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Road to Power": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Ruthless Ceinture": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Sacrifice": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Saint's Treasure": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Samurai's Eye": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Scarred Meadow": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Scavenger": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Scholar": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Scout": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Seeker": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Sephirot": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Shepherd's Sandals": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Shieldbearer": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Shortcut": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Side Quest": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Sigil": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Siren": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Skeleton": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Soul": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Spark and the Flame": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Spoiled Prince": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Standoff": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Stormcaller": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Strategist": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Summoner": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Sun": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Surgeon": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Surveyor": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Survivalist": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Sustenance": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Sword King's Salute": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Thaumaturgist": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Throne": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Tinkerer's Table": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Tireless Extractor": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Tower": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Traitor": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Transformation": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Trial": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Tumbleweed": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Twilight Moon": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Twins": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Tyrant": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Undaunted": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Undisputed": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Unexpected Prize": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Union": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Valkyrie": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Valley of Steel Boxes": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Vast": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Visionary": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Void": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Warden": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Warlord": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Watcher": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Web": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wedding Gift": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The White Knight": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Whiteout": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wilted Rose": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wind": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Witch": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wolf": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wolf's Legacy": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wolf's Shadow": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wolven King's Bite": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wolverine": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The World Eater": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wrath": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "The Wretched": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Thirst for Knowledge": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Three Faces in the Dark": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Three Voices": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Thunderous Skies": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Time-Lost Relic": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Tranquillity": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Treasure Hunter": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Treasures of the Vaal": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Triskaidekaphobia": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Turn the Other Cheek": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unchained": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Underground Forest": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Unrequited Love": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vanity": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vile Power": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Vinia's Token": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Void of the Elements": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Volatile Power": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Wealth and Power": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Who Asked": {
+    "drop_level": 80,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  },
+  "Winter's Embrace": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1
+  }
+}
