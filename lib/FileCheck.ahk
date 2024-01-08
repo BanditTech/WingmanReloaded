@@ -104,7 +104,7 @@ UpdatePOEData(){
 UpdatePOEData()
 
 UpdateBasesData(){
-	IfNotExist, %A_ScriptDir%\data\Bases Data\BasesCategory.json
+	IfNotExist, %A_ScriptDir%\data\Bases Data\Category.json
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Bases Data/Category.json, %A_ScriptDir%\data\Bases Data\Category.json
 		if ErrorLevel {
