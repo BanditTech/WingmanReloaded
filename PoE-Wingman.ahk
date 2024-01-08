@@ -19,7 +19,7 @@ If (YesNinjaDatabase && DaysSince()) {
 } Else {
   Ninja := JSON.Load(FileOpen(A_ScriptDir "\data\Ninja.json","r").Read())
 }
-CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart)
+;CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart)
 Critical, Off
 Tooltip,
 

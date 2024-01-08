@@ -1050,9 +1050,6 @@ submit(){
 	return
 }
 
-;;First Update Crafting Base
-;CraftingBasesRequest()
-
 ; Settings Save/Load
 Settings(name:="perChar",Action:="Load"){
 	local f, JSONtext, obj
