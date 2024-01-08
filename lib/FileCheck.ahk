@@ -111,7 +111,7 @@ UpdateBasesData(){
 			Log("Error","Data download error", "Category.json")
 			MsgBox, Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub
 		} Else if (ErrorLevel=0){
-			Log("Verbose","Data downloaded Correctly", "Downloading POEData was a success")
+			Log("Verbose","Data downloaded Correctly", "Downloading Category for Bases was a success")
 		}
 	}
 	BasesData := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\Category","r").Read())
@@ -122,7 +122,7 @@ UpdateBasesData(){
 			Log("Error","Data download error", "BasesWR.json")
 			MsgBox, Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub
 		} Else if (ErrorLevel=0){
-			Log("Verbose","Data downloaded Correctly", "Downloading POEData was a success")
+			Log("Verbose","Data downloaded Correctly", "Downloading BasesWR was a success")
 		}
 	}
 	BasesWR := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesWR","r").Read())
