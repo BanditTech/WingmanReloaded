@@ -1,6 +1,8 @@
 ﻿#Include, %A_ScriptDir%\lib\GLOBALS.ahk
 
 directories := [ "\data"
+	,"\data\Bases Data"
+	,"\data\PoE Data"
 	,"\save"
 	,"\save\profiles"
 	,"\save\profiles\Flask"
@@ -114,7 +116,7 @@ UpdateBasesData(){
 			Log("Verbose","Data downloaded Correctly", "Downloading Category for Bases was a success")
 		}
 	}
-	BasesData := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\Category","r").Read())
+	BasesData := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\Category.json","r").Read())
 	IfNotExist, %A_ScriptDir%\data\Bases Data\BasesWR.json
 	{
 		UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Bases Data/BasesWR.json, %A_ScriptDir%\data\Bases Data\BasesWR.json
@@ -125,7 +127,7 @@ UpdateBasesData(){
 			Log("Verbose","Data downloaded Correctly", "Downloading BasesWR was a success")
 		}
 	}
-	BasesWR := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesWR","r").Read())
+	BasesWR := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesWR.json","r").Read())
 	For k, v in BasesData {
 			aux := k . ".json"
 			IfNotExist, %A_ScriptDir%\data\Bases Data\%aux%
