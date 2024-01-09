@@ -141,20 +141,9 @@ UpdateBasesData(){
 				}
 			}
 	}
+	QuestItems := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\QuestItem.json","r").Read())
 }
 UpdateBasesData()
-
-IfNotExist, %A_ScriptDir%\data\Quest.json
-{
-	UrlDownloadToFile, https://raw.githubusercontent.com/BanditTech/WingmanReloaded/%BranchName%/data/Quest.json, %A_ScriptDir%\data\Quest.json
-	if ErrorLevel {
-		Log("Error","Data download error", "Quest.json")
-		MsgBox, Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub
-	} Else if (ErrorLevel=0){
-		Log("Verbose","Data downloaded Correctly", "Downloading Quest.json was a success")
-	}
-}
-QuestItems := JSON.Load(FileOpen(A_ScriptDir "\data\Quest.json","r").Read())
 
 IfNotExist, %A_ScriptDir%\data\PoE.Watch_PerfectUnique.json
 {

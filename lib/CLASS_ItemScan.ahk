@@ -1672,10 +1672,10 @@
 	MatchExtenalDB(){
 		For k, v in QuestItems
 		{
-			If (v["Name"] = This.Prop.ItemName)
+			If (k == This.Prop.ItemName)
 			{
-				This.Prop.Item_Width := v["Width"]
-				This.Prop.Item_Height := v["Height"]
+				This.Prop.Item_Width := v["inventory_width"]
+				This.Prop.Item_Height := v["inventory_height"]
 				This.Prop.SpecialType := "Quest Item"
 				Return
 			}
