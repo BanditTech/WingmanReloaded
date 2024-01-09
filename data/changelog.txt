@@ -6,18 +6,12 @@ Modifications
   * Retire Crafting Bases
   * Base Data Reworked
   * Sextant Crafting Improved
-  
-  
-
+ 
 ---
-
 
 ## Version .15.12 - Alpha Version - April/13/2022
 Modifications
   * GUI Improvement
-  
-  
-
 ---
 
 ## Version .15.11 - Alpha Version - April/11/2022
