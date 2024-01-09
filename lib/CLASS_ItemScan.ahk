@@ -519,49 +519,6 @@
 					This.Prop.SpecialType := "Catalyst"
 				}
 			}
-			Else If (This.Prop.ItemClass = "Metamorph Samples")
-			{
-				If (InStr(This.Prop.ItemBase, "'s Lung"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Lung"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Heart"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Heart"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Brain"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Brain"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Liver"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Liver"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-				Else If (InStr(This.Prop.ItemBase, "'s Eye"))
-				{
-					If (This.Prop.RarityUnique)
-					{
-						This.Prop.IsOrgan := "Eye"
-						This.Prop.SpecialType := "Organ"
-					}
-				}
-			}
 			Else If (This.Prop.ItemClass = "Contracts")
 			{
 				This.Prop.Heist := True
@@ -997,11 +954,11 @@
 		SumRNP := 0
 		SumRNS := 0
 		LastID :=0
-		For k, v in WR.ItemCrafting[ItemCraftingBaseSelector]
+		For k, v in WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector]
 		{
 			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"] && This.Affix[v["Affix"]])
 			{
-				If(v["ModGenerationTypeID"] == 1){
+				If(v["ModGenerationType"] == "Prefix"){
 					If(v["RNMod"] > 1){
 						If(v["ID"] != LastID){
 							SumRNP := 1
@@ -1053,33 +1010,7 @@
 	}
 	CreateAllActualTiers()
 	{
-		Base := This.Prop.ItemClass
-		CheckBaseType:= ""
-		If(This.Prop.Rating_Armour > 0)
-		{
-			CheckBaseType .= "-STR-"
-		}
-		If(This.Prop.Rating_Evasion > 0)
-		{
-			CheckBaseType .= "-DEX-"
-		}
-		If(This.Prop.Rating_EnergyShield > 0)
-		{
-			CheckBaseType .= "-INT-"
-		}
-		CheckBaseType:= RegExReplace(CheckBaseType,"^-|-$", "")
-		CheckBaseType:= RegExReplace(CheckBaseType,"--", "-")
-		If(CheckBaseType != "")
-		{
-			CheckBaseType:= "(" . CheckBaseType . ")"
-		}
-		Base := RegExReplace(Base,"s$", "")
-		Base := RegExReplace(Base,"Boot", "Boots")
-		Base := RegExReplace(Base,"Glove", "Gloves")
-		Base := RegExReplace(Base,"^Warstaff", "Warstaves")
-		Base := RegExReplace(Base,"^Staff", "Staves")
-		Base := Base . CheckBaseType
-		for a , b in WR.ActualTier[Base]
+		for a , b in WR.ActualTier[This.Prop.ItemClass]
 		{
 			ILvLList := b["ILvL"]
 			AffixList := b["AffixLine"]
@@ -1741,58 +1672,60 @@
 	MatchExtenalDB(){
 		For k, v in QuestItems
 		{
-			If (v["Name"] = This.Prop.ItemName)
+			If (k == This.Prop.ItemName)
 			{
-				This.Prop.Item_Width := v["Width"]
-				This.Prop.Item_Height := v["Height"]
+				This.Prop.Item_Width := v["inventory_width"]
+				This.Prop.Item_Height := v["inventory_height"]
 				This.Prop.SpecialType := "Quest Item"
 				Return
 			}
 		}
 		If (!This.Prop.IsMap)
 		{
-			For k, v in Bases
+			For k, v in BasesWR
 			{
-				If (v["name"] = This.Prop.ItemBase)
-				{
-					This.Prop.Item_Width := v["inventory_width"]
-					This.Prop.Item_Height := v["inventory_height"]
-					This.Prop.ItemBase := v["name"]
-					This.Prop.DropLevel := v["drop_level"]
+				for a, b in v{
+					If (a == This.Prop.ItemBase)
+					{
+						This.Prop.Item_Width := b["inventory_width"]
+						This.Prop.Item_Height := b["inventory_height"]
+						This.Prop.ItemBase := a
+						This.Prop.DropLevel := b["drop_level"]
 
-					If (This.Prop.Rating_Armour || This.Prop.Rating_EnergyShield || This.Prop.Rating_Evasion){
-						tally := total := 0
-						If This.Prop.Rating_Armour {
-							tally++
-							val := This.Perc(This.Prop.Rating_Armour,[v.properties.armour.min,v.properties.armour.max])
-							total += val
-							This.Prop.Rating_Armour_Percent := round(val,2)
+						If (This.Prop.Rating_Armour || This.Prop.Rating_EnergyShield || This.Prop.Rating_Evasion){
+							tally := total := 0
+							If This.Prop.Rating_Armour {
+								tally++
+								val := This.Perc(This.Prop.Rating_Armour,[b.properties.armour.min,b.properties.armour.max])
+								total += val
+								This.Prop.Rating_Armour_Percent := round(val,2)
+							}
+							If This.Prop.Rating_EnergyShield {
+								tally++
+								val := This.Perc(This.Prop.Rating_EnergyShield,[b.properties.energy_shield.min,b.properties.energy_shield.max])
+								total += val
+								This.Prop.Rating_EnergyShield_Percent := round(val,2)
+							}
+							If This.Prop.Rating_Evasion {
+								tally++
+								val := This.Perc(This.Prop.Rating_Evasion,[b.properties.evasion.min,b.properties.evasion.max])
+								total += val
+								This.Prop.Rating_Evasion_Percent := round(val,2)
+							}
+							This.Prop.Rating_Percent := round(total/tally,2)
+							tally := total := val := ""
 						}
-						If This.Prop.Rating_EnergyShield {
-							tally++
-							val := This.Perc(This.Prop.Rating_EnergyShield,[v.properties.energy_shield.min,v.properties.energy_shield.max])
-							total += val
-							This.Prop.Rating_EnergyShield_Percent := round(val,2)
-						}
-						If This.Prop.Rating_Evasion {
-							tally++
-							val := This.Perc(This.Prop.Rating_Evasion,[v.properties.evasion.min,v.properties.evasion.max])
-							total += val
-							This.Prop.Rating_Evasion_Percent := round(val,2)
-						}
-						This.Prop.Rating_Percent := round(total/tally,2)
-						tally := total := val := ""
+
+						If InStr(This.Prop.ItemClass, "Rings")
+							This.Prop.Ring := True
+						If InStr(This.Prop.ItemClass, "Amulets")
+							This.Prop.Amulet := True
+						If InStr(This.Prop.ItemClass, "Belts")
+							This.Prop.Belt := True
+						If (This.Prop.ItemClass = "Support Skill Gems")
+							This.Prop.Support := True
+						Break
 					}
-
-					If InStr(This.Prop.ItemClass, "Rings")
-						This.Prop.Ring := True
-					If InStr(This.Prop.ItemClass, "Amulets")
-						This.Prop.Amulet := True
-					If InStr(This.Prop.ItemClass, "Belts")
-						This.Prop.Belt := True
-					If (This.Prop.ItemClass = "Support Skill Gems")
-						This.Prop.Support := True
-					Break
 				}
 			}
 		}

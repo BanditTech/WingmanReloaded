@@ -4,43 +4,57 @@ LoadActualTierName() {
 
 ActualTierCreator() {
     ActualTierNameJSON := LoadActualTierName()
-    For kii , vii in PoeDBAPI {
-        Mods := LoadOnDemand(vii)
-        WR.ActualTier[vii] := []
-        For ki ,vi in ["normal"] {
-            For k, v in Mods[vi] {
-                AffixWRLine := FirstLineToWRFormat(v["str"])
-                ModGenerationTypeID := v["ModGenerationTypeID"]
-                If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationTypeID,ActualTierNameJSON)) {
-                    If(index := CheckAffixWR(AffixWRLine,WR.ActualTier[vii],v["ModGenerationTypeID"])) {
-                        WR.ActualTier[vii][index]["AffixLine"].Push(v["Name"])
-                        WR.ActualTier[vii][index]["ILvL"].Push(v["Level"])
-                    } Else {
-                        aux := {"ActualTierName":ActualTierName,"ModGenerationTypeID":v["ModGenerationTypeID"],"AffixWRLine":FirstLineToWRFormat(v["str"]),"AffixLine":[v["Name"]],"ILvL":[v["Level"]]}
-                        WR.ActualTier[vii].Push(aux)
+    For kii , vii in POEData{
+        WR.ActualTier[kii] := []
+        for kiii, viii in vii{
+            Mods := LoadOnDemand(kii,viii)
+            For k, v in Mods
+            {
+                if(v["influence"] == "Normal"){
+                    AffixWRLine := FirstLineToWRFormat(v["text"])
+                    ModGenerationType := v["generation_type"]
+                    If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationType,ActualTierNameJSON)) {
+                        If(index := CheckAffixWR(AffixWRLine,v["generation_type"],WR.ActualTier[kii])) {
+                            aux := False
+                            aux2 := 0
+                            for a, b in WR.ActualTier[kii][index]["ILvL"]{
+                                if (b == v["required_level"]){
+                                    aux := true
+                                    break
+                                }
+                                if(v["required_level"] > b){
+                                    aux2 = %A_Index%
+                                }
+                            }
+                            if(!aux){
+                                WR.ActualTier[kii][index]["AffixLine"].InsertAt(aux2+1, v["name"])
+                                WR.ActualTier[kii][index]["ILvL"].InsertAt(aux2+1, v["required_level"])
+                            }
+                        } Else {
+                            aux := {"ActualTierName":ActualTierName,"ModGenerationType":v["generation_type"],"AffixWRLine":FirstLineToWRFormat(v["text"]),"AffixLine":[v["name"]],"ILvL":[v["required_level"]]}
+                            WR.ActualTier[kii].Push(aux)
+                        }
                     }
                 }
             }
         }
     }
-    ;Free at End
-    Mods := []
     ;Save Json
     Settings("ActualTier","Save")
     Return
 }
 
-CheckAffixWR(Line,Obj,ModGenerationTypeID) {
+CheckAffixWR(Line,ModGenerationType,Obj) {
     for k , v in Obj {
-        If (v["AffixWRLine"] == Line && ModGenerationTypeID == v["ModGenerationTypeID"]) {
+        If (v["AffixWRLine"] == Line && ModGenerationType == v["ModGenerationType"]) {
             Return k
         }
     }
 }
 
-CheckAffixWRFromJson(Line,ModGenerationTypeID,Obj) {
+CheckAffixWRFromJson(Line,ModGenerationType,Obj) {
     for k , v in Obj {
-        If(v["AffixWRLine"] == Line and (v["ModGenerationTypeID"] == ModGenerationTypeID || !v["ModGenerationTypeID"])) {
+        If(v["AffixWRLine"] == Line and (v["ModGenerationType"] == ModGenerationType)) {
             aux:= "ActualTier" . v["ActualTierName"]
             Return aux
         }
@@ -69,10 +83,10 @@ CraftingBasesRequest(ShouldRun) {
     Strings := []
     For k, v in Object.items {
         item := new ItemBuild(v,Object.quadLayout)
-        Strings.Push("Item Base: " item["Prop"]["ItemBase"] 
-        . ", Name: " item["Prop"]["ItemName"] 
-        . ", ILVL: " item["Prop"]["CraftingBaseHigherILvLFound"] 
-        . ", Quantity: " item["Prop"]["CraftingBaseQuantFound"])
+        Strings.Push("Item Base: " item["Prop"]["ItemBase"]
+            . ", Name: " item["Prop"]["ItemName"]
+            . ", ILVL: " item["Prop"]["CraftingBaseHigherILvLFound"]
+            . ", Quantity: " item["Prop"]["CraftingBaseQuantFound"])
     }
     Log("Crafting Bases ","Refreshing quantity and minimum ilvl from stash items",Strings*)
     Return

@@ -1,0 +1,422 @@
+{
+  "Driftwood Club": {
+    "drop_level": 1,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 8,
+      "physical_damage_min": 6,
+      "range": 11
+    }
+  },
+  "Barbed Club": {
+    "drop_level": 38,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 42,
+      "physical_damage_min": 33,
+      "range": 11
+    }
+  },
+  "Rock Breaker": {
+    "drop_level": 41,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 69,
+      "physical_damage_min": 37,
+      "range": 11
+    }
+  },
+  "Battle Hammer": {
+    "drop_level": 44,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 59,
+      "physical_damage_min": 25,
+      "range": 11
+    }
+  },
+  "Flanged Mace": {
+    "drop_level": 47,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 63,
+      "physical_damage_min": 38,
+      "range": 11
+    }
+  },
+  "Ornate Mace": {
+    "drop_level": 50,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 67,
+      "physical_damage_min": 53,
+      "range": 11
+    }
+  },
+  "Phantom Mace": {
+    "drop_level": 53,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 69,
+      "physical_damage_min": 33,
+      "range": 11
+    }
+  },
+  "Ancestral Club": {
+    "drop_level": 56,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 80,
+      "physical_damage_min": 48,
+      "range": 11
+    }
+  },
+  "Tenderizer": {
+    "drop_level": 58,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 62,
+      "physical_damage_min": 49,
+      "range": 11
+    }
+  },
+  "Gavel": {
+    "drop_level": 60,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 101,
+      "physical_damage_min": 54,
+      "range": 11
+    }
+  },
+  "Legion Hammer": {
+    "drop_level": 62,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 81,
+      "physical_damage_min": 35,
+      "range": 11
+    }
+  },
+  "Tribal Club": {
+    "drop_level": 5,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 13,
+      "physical_damage_min": 8,
+      "range": 11
+    }
+  },
+  "Pernach": {
+    "drop_level": 64,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 82,
+      "physical_damage_min": 49,
+      "range": 11
+    }
+  },
+  "Auric Mace": {
+    "drop_level": 66,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 82,
+      "physical_damage_min": 65,
+      "range": 11
+    }
+  },
+  "Nightmare Mace": {
+    "drop_level": 68,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 80,
+      "physical_damage_min": 38,
+      "range": 11
+    }
+  },
+  "Spiked Club": {
+    "drop_level": 10,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 16,
+      "physical_damage_min": 13,
+      "range": 11
+    }
+  },
+  "Stone Hammer": {
+    "drop_level": 15,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 27,
+      "physical_damage_min": 15,
+      "range": 11
+    }
+  },
+  "War Hammer": {
+    "drop_level": 20,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 31,
+      "physical_damage_min": 13,
+      "range": 11
+    }
+  },
+  "Bladed Mace": {
+    "drop_level": 24,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 32,
+      "physical_damage_min": 19,
+      "range": 11
+    }
+  },
+  "Ceremonial Mace": {
+    "drop_level": 28,
+    "implicits": [
+      "15% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 40,
+      "physical_damage_min": 32,
+      "range": 11
+    }
+  },
+  "Dream Mace": {
+    "drop_level": 32,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 43,
+      "physical_damage_min": 21,
+      "range": 11
+    }
+  },
+  "Petrified Club": {
+    "drop_level": 35,
+    "implicits": [
+      "10% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 51,
+      "physical_damage_min": 31,
+      "range": 11
+    }
+  },
+  "Flare Mace": {
+    "drop_level": 30,
+    "implicits": [
+      "Trigger Level 10 Fiery Impact on Melee Hit with this Weapon"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 41,
+      "physical_damage_min": 20,
+      "range": 11
+    }
+  },
+  "Crack Mace": {
+    "drop_level": 50,
+    "implicits": [
+      "Trigger Level 15 Fiery Impact on Melee Hit with this Weapon"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 64,
+      "physical_damage_min": 31,
+      "range": 11
+    }
+  },
+  "Boom Mace": {
+    "drop_level": 70,
+    "implicits": [
+      "Trigger Level 20 Fiery Impact on Melee Hit with this Weapon"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 81,
+      "physical_damage_min": 39,
+      "range": 11
+    }
+  },
+  "Wyrm Mace": {
+    "drop_level": 34,
+    "implicits": [
+      "4% increased Attack Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 42,
+      "physical_damage_min": 28,
+      "range": 11
+    }
+  },
+  "Dragon Mace": {
+    "drop_level": 55,
+    "implicits": [
+      "4% increased Attack Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 66,
+      "physical_damage_min": 44,
+      "range": 11
+    }
+  },
+  "Behemoth Mace": {
+    "drop_level": 70,
+    "implicits": [
+      "6% increased Attack Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 74,
+      "physical_damage_min": 49,
+      "range": 11
+    }
+  }
+}

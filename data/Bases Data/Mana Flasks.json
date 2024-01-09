@@ -1,0 +1,146 @@
+{
+  "Small Mana Flask": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 24,
+      "charges_per_use": 6,
+      "duration": 30,
+      "mana_per_use": 50
+    }
+  },
+  "Sanctified Mana Flask": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 35,
+      "charges_per_use": 7,
+      "duration": 65,
+      "mana_per_use": 1100
+    }
+  },
+  "Divine Mana Flask": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 42,
+      "charges_per_use": 8,
+      "duration": 50,
+      "mana_per_use": 1400
+    }
+  },
+  "Eternal Mana Flask": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 42,
+      "charges_per_use": 8,
+      "duration": 70,
+      "mana_per_use": 1800
+    }
+  },
+  "Medium Mana Flask": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 30,
+      "charges_per_use": 7,
+      "duration": 35,
+      "mana_per_use": 70
+    }
+  },
+  "Large Mana Flask": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 35,
+      "charges_per_use": 8,
+      "duration": 40,
+      "mana_per_use": 90
+    }
+  },
+  "Greater Mana Flask": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 36,
+      "charges_per_use": 9,
+      "duration": 40,
+      "mana_per_use": 120
+    }
+  },
+  "Grand Mana Flask": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 30,
+      "charges_per_use": 7,
+      "duration": 45,
+      "mana_per_use": 170
+    }
+  },
+  "Giant Mana Flask": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 36,
+      "charges_per_use": 8,
+      "duration": 50,
+      "mana_per_use": 250
+    }
+  },
+  "Colossal Mana Flask": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 38,
+      "charges_per_use": 8,
+      "duration": 50,
+      "mana_per_use": 350
+    }
+  },
+  "Sacred Mana Flask": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 35,
+      "charges_per_use": 7,
+      "duration": 55,
+      "mana_per_use": 480
+    }
+  },
+  "Hallowed Mana Flask": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 30,
+      "charges_per_use": 6,
+      "duration": 60,
+      "mana_per_use": 700
+    }
+  }
+}

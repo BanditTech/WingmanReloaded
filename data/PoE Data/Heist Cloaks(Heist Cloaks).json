@@ -1,0 +1,498 @@
+{
+  "HeistNPCAllDamage1": {
+    "generation_type": "Prefix",
+    "name": "Harmful",
+    "required_level": 1,
+    "text": "(30-34)% increased Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage2": {
+    "generation_type": "Prefix",
+    "name": "Hazardous",
+    "required_level": 45,
+    "text": "(35-39)% increased Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage3": {
+    "generation_type": "Prefix",
+    "name": "Dangerous",
+    "required_level": 75,
+    "text": "(40-44)% increased Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage4": {
+    "generation_type": "Prefix",
+    "name": "Destructive",
+    "required_level": 81,
+    "text": "(45-50)% increased Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain1_": {
+    "generation_type": "Prefix",
+    "name": "Footpad's",
+    "required_level": 1,
+    "text": "(3-4)% increased Job Experience gain",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain2": {
+    "generation_type": "Prefix",
+    "name": "Crook's",
+    "required_level": 45,
+    "text": "(5-6)% increased Job Experience gain",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain3_": {
+    "generation_type": "Prefix",
+    "name": "Criminal's",
+    "required_level": 75,
+    "text": "(7-8)% increased Job Experience gain",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain4_": {
+    "generation_type": "Prefix",
+    "name": "Mastermind's",
+    "required_level": 81,
+    "text": "(9-10)% increased Job Experience gain",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer1": {
+    "generation_type": "Prefix",
+    "name": "Slowing",
+    "required_level": 1,
+    "text": "(4-5)% increased time before Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer2": {
+    "generation_type": "Prefix",
+    "name": "Stalling",
+    "required_level": 45,
+    "text": "(6-7)% increased time before Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer3_": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "(7-8)% increased time before Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer4_": {
+    "generation_type": "Prefix",
+    "name": "Interrupting",
+    "required_level": 81,
+    "text": "(9-10)% increased time before Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed1___": {
+    "generation_type": "Prefix",
+    "name": "Practiced",
+    "required_level": 1,
+    "text": "(9-11)% increased Job speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed2": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 45,
+    "text": "(12-14)% increased Job speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed3": {
+    "generation_type": "Prefix",
+    "name": "Professional",
+    "required_level": 75,
+    "text": "(15-17)% increased Job speed",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed4__": {
+    "generation_type": "Prefix",
+    "name": "Masterful",
+    "required_level": 81,
+    "text": "(18-20)% increased Job speed",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut1": {
+    "generation_type": "Suffix",
+    "name": "of Bartering",
+    "required_level": 1,
+    "text": "The Ring's Cut reduced by (7-6)%",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut2_": {
+    "generation_type": "Suffix",
+    "name": "of Negotiating",
+    "required_level": 45,
+    "text": "The Ring's Cut reduced by (9-8)%",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut3": {
+    "generation_type": "Suffix",
+    "name": "of Selfishness",
+    "required_level": 75,
+    "text": "The Ring's Cut reduced by (12-10)%",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut4": {
+    "generation_type": "Suffix",
+    "name": "of Greed",
+    "required_level": 81,
+    "text": "The Ring's Cut reduced by (15-13)%",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost1": {
+    "generation_type": "Suffix",
+    "name": "of Personality",
+    "required_level": 1,
+    "text": "(7-6)% reduced Hiring Fee",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost2": {
+    "generation_type": "Suffix",
+    "name": "of Presence",
+    "required_level": 45,
+    "text": "(9-8)% reduced Hiring Fee",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost3": {
+    "generation_type": "Suffix",
+    "name": "of Charm",
+    "required_level": 75,
+    "text": "(12-10)% reduced Hiring Fee",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost4": {
+    "generation_type": "Suffix",
+    "name": "of Charisma",
+    "required_level": 81,
+    "text": "(15-13)% reduced Hiring Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost1_": {
+    "generation_type": "Suffix",
+    "name": "of Efficiency",
+    "required_level": 1,
+    "text": "(7-6)% reduced Travel Fee",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost2__": {
+    "generation_type": "Suffix",
+    "name": "of Shortcuts",
+    "required_level": 45,
+    "text": "(9-8)% reduced Travel Fee",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost3": {
+    "generation_type": "Suffix",
+    "name": "of Bypasses",
+    "required_level": 75,
+    "text": "(12-10)% reduced Travel Fee",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost4": {
+    "generation_type": "Suffix",
+    "name": "of Passage",
+    "required_level": 81,
+    "text": "(15-13)% reduced Travel Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel1_": {
+    "generation_type": "Prefix",
+    "name": "Capable",
+    "required_level": 1,
+    "text": "+1 to Character Level",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel2": {
+    "generation_type": "Prefix",
+    "name": "Experienced",
+    "required_level": 45,
+    "text": "+2 to Character Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel3": {
+    "generation_type": "Prefix",
+    "name": "Accomplished",
+    "required_level": 75,
+    "text": "+3 to Character Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLevel4": {
+    "generation_type": "Prefix",
+    "name": "Veteran",
+    "required_level": 83,
+    "text": "+4 to Character Level",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageFullLife1_": {
+    "generation_type": "Prefix",
+    "name": "Initiator's",
+    "required_level": 1,
+    "text": "(25-28)% increased Damage with Hits against Enemies on Full Life | Players deal (25-28)% increased Damage with Hits against Enemies on Full Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageFullLife2": {
+    "generation_type": "Prefix",
+    "name": "Instigator's",
+    "required_level": 45,
+    "text": "(29-32)% increased Damage with Hits against Enemies on Full Life | Players deal (29-32)% increased Damage with Hits against Enemies on Full Life",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageFullLife3": {
+    "generation_type": "Prefix",
+    "name": "Ambusher's",
+    "required_level": 75,
+    "text": "(33-36)% increased Damage with Hits against Enemies on Full Life | Players deal (33-36)% increased Damage with Hits against Enemies on Full Life",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageFullLife4": {
+    "generation_type": "Prefix",
+    "name": "Assassin's",
+    "required_level": 81,
+    "text": "(37-40)% increased Damage with Hits against Enemies on Full Life | Players deal (37-40)% increased Damage with Hits against Enemies on Full Life",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageNotEscaping1_": {
+    "generation_type": "Prefix",
+    "name": "Invader's",
+    "required_level": 1,
+    "text": "(15-18)% increased Damage while area is not in Lockdown | Players deal (15-18)% increased Damage while area is not in Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageNotEscaping2": {
+    "generation_type": "Prefix",
+    "name": "Attacker's",
+    "required_level": 45,
+    "text": "(19-22)% increased Damage while area is not in Lockdown | Players deal (19-22)% increased Damage while area is not in Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageNotEscaping3": {
+    "generation_type": "Prefix",
+    "name": "Raider's",
+    "required_level": 75,
+    "text": "(23-26)% increased Damage while area is not in Lockdown | Players deal (23-26)% increased Damage while area is not in Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCDamageNotEscaping4_": {
+    "generation_type": "Prefix",
+    "name": "Marauder's",
+    "required_level": 81,
+    "text": "(27-30)% increased Damage while area is not in Lockdown | Players deal (27-30)% increased Damage while area is not in Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCMovementVelocityNotEscaping1_": {
+    "generation_type": "Prefix",
+    "name": "Tresspassing",
+    "required_level": 1,
+    "text": "(6-7)% increased Movement Speed while area is not in Lockdown | Players have (6-7)% increased Movement Speed while area is not in Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCMovementVelocityNotEscaping2": {
+    "generation_type": "Prefix",
+    "name": "Intruding",
+    "required_level": 45,
+    "text": "(8-9)% increased Movement Speed while area is not in Lockdown | Players have (8-9)% increased Movement Speed while area is not in Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCMovementVelocityNotEscaping3": {
+    "generation_type": "Prefix",
+    "name": "Invading",
+    "required_level": 75,
+    "text": "(10-12)% increased Movement Speed while area is not in Lockdown | Players have (10-12)% increased Movement Speed while area is not in Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCMovementVelocityNotEscaping4": {
+    "generation_type": "Prefix",
+    "name": "Storming",
+    "required_level": 81,
+    "text": "(13-15)% increased Movement Speed while area is not in Lockdown | Players have (13-15)% increased Movement Speed while area is not in Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCAvoidAlarmChanceChest1": {
+    "generation_type": "Suffix",
+    "name": "of Defusing",
+    "required_level": 1,
+    "text": "(3-4)% chance on opening a Chest to not generate Alert Level",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistNPCAvoidAlarmChanceChest2": {
+    "generation_type": "Suffix",
+    "name": "of Disarming",
+    "required_level": 45,
+    "text": "(5-6)% chance on opening a Chest to not generate Alert Level",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "HeistNPCAvoidAlarmChanceChest3": {
+    "generation_type": "Suffix",
+    "name": "of Disabling",
+    "required_level": 75,
+    "text": "(7-8)% chance on opening a Chest to not generate Alert Level",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "HeistNPCAvoidAlarmChanceChest4": {
+    "generation_type": "Suffix",
+    "name": "of Deactivating",
+    "required_level": 82,
+    "text": "(9-10)% chance on opening a Chest to not generate Alert Level",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "HeistNPCAvoidBlueprintAlarm1": {
+    "generation_type": "Suffix",
+    "name": "of Planning",
+    "required_level": 68,
+    "text": "(2-3)% chance to not Activate Lockdown in Grand Heists",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "HeistNPCAvoidBlueprintAlarm2____": {
+    "generation_type": "Suffix",
+    "name": "of Choreography",
+    "required_level": 83,
+    "text": "(4-5)% chance to not Activate Lockdown in Grand Heists",
+    "weight": 80,
+    "influence": "Normal"
+  },
+  "HeistNPCChestAlertLevel1": {
+    "generation_type": "Suffix",
+    "name": "of Muffling",
+    "required_level": 1,
+    "text": "(5-3)% reduced raising of Alert Level from opening Chests",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Stealth",
+    "required_level": 45,
+    "text": "(8-6)% reduced raising of Alert Level from opening Chests",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestAlertLevel3_": {
+    "generation_type": "Suffix",
+    "name": "of Quiet",
+    "required_level": 75,
+    "text": "(10-9)% reduced raising of Alert Level from opening Chests",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestAlertLevel4_": {
+    "generation_type": "Suffix",
+    "name": "of Silence",
+    "required_level": 82,
+    "text": "(12-11)% reduced raising of Alert Level from opening Chests",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalChanceNotEscaping1": {
+    "generation_type": "Suffix",
+    "name": "of Staggering",
+    "required_level": 1,
+    "text": "(14-16)% increased Critical Strike Chance while area is not in Lockdown | Players have (14-16)% increased Critical Strike Chance while area is not in Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalChanceNotEscaping2": {
+    "generation_type": "Suffix",
+    "name": "of Startling",
+    "required_level": 45,
+    "text": "(17-19)% increased Critical Strike Chance while area is not in Lockdown | Players have (17-19)% increased Critical Strike Chance while area is not in Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalChanceNotEscaping3_": {
+    "generation_type": "Suffix",
+    "name": "of Surprise",
+    "required_level": 75,
+    "text": "(20-22)% increased Critical Strike Chance while area is not in Lockdown | Players have (20-22)% increased Critical Strike Chance while area is not in Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalChanceNotEscaping4": {
+    "generation_type": "Suffix",
+    "name": "of Astonishment",
+    "required_level": 81,
+    "text": "(23-25)% increased Critical Strike Chance while area is not in Lockdown | Players have (23-25)% increased Critical Strike Chance while area is not in Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalMultiplierNotEscaping1": {
+    "generation_type": "Suffix",
+    "name": "of Advantage",
+    "required_level": 1,
+    "text": "+(14-16)% to Critical Strike Multiplier while area is not in Lockdown | Players have +(14-16)% to Critical Strike Multiplier while area is not in Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalMultiplierNotEscaping2": {
+    "generation_type": "Suffix",
+    "name": "of Power",
+    "required_level": 45,
+    "text": "+(17-19)% to Critical Strike Multiplier while area is not in Lockdown | Players have +(17-19)% to Critical Strike Multiplier while area is not in Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalMultiplierNotEscaping3": {
+    "generation_type": "Suffix",
+    "name": "of Control",
+    "required_level": 75,
+    "text": "+(20-22)% to Critical Strike Multiplier while area is not in Lockdown | Players have +(20-22)% to Critical Strike Multiplier while area is not in Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalMultiplierNotEscaping4_": {
+    "generation_type": "Suffix",
+    "name": "of Dominance",
+    "required_level": 81,
+    "text": "+(23-25)% to Critical Strike Multiplier while area is not in Lockdown | Players have +(23-25)% to Critical Strike Multiplier while area is not in Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  }
+}

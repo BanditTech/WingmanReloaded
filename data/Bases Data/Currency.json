@@ -1,0 +1,14 @@
+{
+  "Mystery Leaguestone": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Contains an unknown Leaguestone.",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 0
+    }
+  }
+}

@@ -2,396 +2,391 @@
   {
     "ActualTierName": "ChaosResist",
     "AffixWRLine": "#% to Chaos Resistance",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "FireResist",
     "AffixWRLine": "#% to Fire Resistance",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "ColdResist",
     "AffixWRLine": "#% to Cold Resistance",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "LightningResist",
     "AffixWRLine": "#% to Lightning Resistance",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "AllElementalResist",
     "AffixWRLine": "#% to all Elemental Resistances",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "Life",
     "AffixWRLine": "# to maximum Life",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "Mana",
     "AffixWRLine": "# to maximum Mana",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "MS",
     "AffixWRLine": "#% increased Movement Speed",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "STR",
     "AffixWRLine": "# to Strength",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "DEX",
     "AffixWRLine": "# to Dexterity",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "INT",
     "AffixWRLine": "# to Intelligence",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "AllAttributes",
     "AffixWRLine": "# to all Attributes",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "IncES",
     "AffixWRLine": "#% increased Energy Shield",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncES",
     "AffixWRLine": "#% increased maximum Energy Shield",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "ES",
     "AffixWRLine": "# to maximum Energy Shield",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "Armour",
     "AffixWRLine": "# to Armour",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncArmour",
     "AffixWRLine": "#% increased Armour",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "Evasion",
     "AffixWRLine": "# to Evasion Rating",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncEvasion",
     "AffixWRLine": "#% increased Evasion Rating",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncArmourEvasion",
     "AffixWRLine": "#% increased Armour and Evasion",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncArmourES",
     "AffixWRLine": "#% increased Armour and Energy Shield",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncEvasionES",
     "AffixWRLine": "#% increased Evasion and Energy Shield",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncArmourSBR",
     "AffixWRLine": "#% increased Armour | #% increased Stun and Block Recovery",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncEvasionSBR",
     "AffixWRLine": "#% increased Evasion Rating | #% increased Stun and Block Recovery",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncESSBR",
     "AffixWRLine": "#% increased Energy Shield | #% increased Stun and Block Recovery",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncArmourEvasionSBR",
     "AffixWRLine": "#% increased Armour and Evasion | #% increased Stun and Block Recovery",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncArmourESSBR",
     "AffixWRLine": "#% increased Armour and Energy Shield | #% increased Stun and Block Recovery",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "IncEvasionESSBR",
     "AffixWRLine": "#% increased Evasion and Energy Shield | #% increased Stun and Block Recovery",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "EvasionES",
     "AffixWRLine": "# to Evasion Rating | # to maximum Energy Shield",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "ArmourES",
     "AffixWRLine": "# to Armour | # to maximum Energy Shield",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "ArmourEvasion",
     "AffixWRLine": "# to Armour | # to Evasion Rating ",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "ArmourLife",
     "AffixWRLine": "# to Armour | # to maximum Life",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "EvasionLife",
     "AffixWRLine": "# to Evasion Rating | # to maximum Life",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "ESLife",
     "AffixWRLine": "# to maximum Energy Shield | # to maximum Life",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "ESMana",
     "AffixWRLine": "# to maximum Energy Shield | # to maximum Mana",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "SpellSuppress",
     "AffixWRLine": "#% chance to Suppress Spell Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "INCSpellDamage",
     "AffixWRLine": "#% increased Spell Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "INCFireDamage",
     "AffixWRLine": "#% increased Fire Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "INCColdDamage",
     "AffixWRLine": "#% increased Cold Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "INCLightningDamage",
     "AffixWRLine": "#% increased Lightning Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "CastSpeed",
     "AffixWRLine": "#% increased Cast Speed",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "ChaosDOT",
     "AffixWRLine": "#% to Chaos Damage over Time Multiplier",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "ColdDOT",
     "AffixWRLine": "#% to Cold Damage over Time Multiplier",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "FireDOT",
     "AffixWRLine": "#% to Fire Damage over Time Multiplier",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "PhysicalDOT",
     "AffixWRLine": "#% to Physical Damage over Time Multiplier",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "DOTMultiplier",
     "AffixWRLine": "#% to Damage over Time Multiplier",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "DOTMultiplier",
     "AffixWRLine": "#% to Damage over Time Multiplier with Attack Skills",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "GlobalCriticalStrikeMultiplier",
     "AffixWRLine": "#% to Global Critical Strike Multiplier",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "GlobalCriticalStrikeMultiplier",
     "AffixWRLine": "#% to Critical Strike Multiplier with Bows",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "CriticalStrikeChance",
     "AffixWRLine": "#% increased Critical Strike Chance",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "CriticalStrikeChance",
     "AffixWRLine": "#% increased Critical Strike Chance with Bows",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "CriticalStrikeChance",
     "AffixWRLine": "#% increased Global Critical Strike Chance",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "CriticalStrikeChance",
     "AffixWRLine": "#% increased Critical Strike Chance for Spells",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "AttackSpeed",
     "AffixWRLine": "#% increased Attack Speed",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "IncElementalDamage",
     "AffixWRLine": "#% increased Elemental Damage with Attack Skills",
-    "ModGenerationTypeID": 0
-  },
-  {
-    "ActualTierName": "IncBowDamage",
-    "AffixWRLine": "#% increased Damage with Bow Skills",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "AddLightningDamage",
     "AffixWRLine": "Adds # to # Lightning Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddLightningDamage",
     "AffixWRLine": "Adds # to # Lightning Damage to Attacks",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddColdDamage",
     "AffixWRLine": "Adds # to # Cold Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddColdDamage",
     "AffixWRLine": "Adds # to # Cold Damage to Attacks",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddFireDamage",
     "AffixWRLine": "Adds # to # Fire Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddFireDamage",
     "AffixWRLine": "Adds # to # Fire Damage to Attacks",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddPhysicalDamage",
     "AffixWRLine": "Adds # to # Physical Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddPhysicalDamage",
     "AffixWRLine": "Adds # to # Physical Damage to Attacks",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "INCPhysicalDamage",
     "AffixWRLine": "#% increased Physical Damage",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "Accuracy",
     "AffixWRLine": "# to Accuracy Rating",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "INCProjectileSpeed",
     "AffixWRLine": "#% increased Projectile Speed",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "ManaRegeneration",
     "AffixWRLine": "#% increased Mana Regeneration Rate",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "LifeRegeneration",
     "AffixWRLine": "Regenerate # Life per second",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "AvoidElementalAilments",
     "AffixWRLine": "#% change to Avoid Elemental Ailments",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "ChanceBlock",
     "AffixWRLine": "#% Chance to Block",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "FasterESRecharge",
     "AffixWRLine": "#% faster start of Energy Shield Recharge",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "INCESRecharge",
     "AffixWRLine": "#% increased Energy Shield Recharge Rate",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "PhysicalDmgReduction",
     "AffixWRLine": "#% additional Physical Damage Reduction",
-    "ModGenerationTypeID": 0
+    "ModGenerationType": "Suffix"
   },
   {
     "ActualTierName": "AddFireSpellDamagePrefix",
     "AffixWRLine": "Adds # to # Fire Damage to Spells",
-    "ModGenerationTypeID": 1
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddColdSpellDamagePrefix",
     "AffixWRLine": "Adds # to # Cold Damage to Spells",
-    "ModGenerationTypeID": 1
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "AddLightningSpellDamagePrefix",
     "AffixWRLine": "Adds # to # Lightning Damage to Spells",
-    "ModGenerationTypeID": 1
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "HybridPhysicalAccuracyPrefix",
     "AffixWRLine": "#% increased Physical Damage | # to Accuracy Rating",
-    "ModGenerationTypeID": 1
+    "ModGenerationType": "Prefix"
   },
   {
     "ActualTierName": "HybridSpellDamageManaPrefix",
     "AffixWRLine": "#% increased Spell Damage | # to maximum Mana",
-    "ModGenerationTypeID": 1
+    "ModGenerationType": "Prefix"
   }
 ]

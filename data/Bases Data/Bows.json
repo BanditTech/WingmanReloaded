@@ -1,0 +1,409 @@
+{
+  "Crude Bow": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 10,
+      "physical_damage_min": 4,
+      "range": 120
+    }
+  },
+  "Decurve Bow": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 96,
+      "physical_damage_min": 24,
+      "range": 120
+    }
+  },
+  "Compound Bow": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 76,
+      "physical_damage_min": 37,
+      "range": 120
+    }
+  },
+  "Sniper Bow": {
+    "drop_level": 44,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 670,
+      "physical_damage_max": 96,
+      "physical_damage_min": 32,
+      "range": 120
+    }
+  },
+  "Ivory Bow": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 86,
+      "physical_damage_min": 29,
+      "range": 120
+    }
+  },
+  "Highborn Bow": {
+    "drop_level": 50,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 94,
+      "physical_damage_min": 24,
+      "range": 120
+    }
+  },
+  "Decimation Bow": {
+    "drop_level": 53,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 116,
+      "physical_damage_min": 44,
+      "range": 120
+    }
+  },
+  "Thicket Bow": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 96,
+      "physical_damage_min": 32,
+      "range": 120
+    }
+  },
+  "Citadel Bow": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 144,
+      "physical_damage_min": 36,
+      "range": 120
+    }
+  },
+  "Ranger Bow": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 117,
+      "physical_damage_min": 56,
+      "range": 120
+    }
+  },
+  "Assassin Bow": {
+    "drop_level": 62,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 670,
+      "physical_damage_max": 130,
+      "physical_damage_min": 43,
+      "range": 120
+    }
+  },
+  "Short Bow": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 16,
+      "physical_damage_min": 6,
+      "range": 120
+    }
+  },
+  "Spine Bow": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 115,
+      "physical_damage_min": 38,
+      "range": 120
+    }
+  },
+  "Imperial Bow": {
+    "drop_level": 66,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 117,
+      "physical_damage_min": 29,
+      "range": 120
+    }
+  },
+  "Harbinger Bow": {
+    "drop_level": 68,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 133,
+      "physical_damage_min": 50,
+      "range": 120
+    }
+  },
+  "Long Bow": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 33,
+      "physical_damage_min": 8,
+      "range": 120
+    }
+  },
+  "Composite Bow": {
+    "drop_level": 14,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 34,
+      "physical_damage_min": 16,
+      "range": 120
+    }
+  },
+  "Recurve Bow": {
+    "drop_level": 18,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 670,
+      "physical_damage_max": 45,
+      "physical_damage_min": 15,
+      "range": 120
+    }
+  },
+  "Bone Bow": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 45,
+      "physical_damage_min": 15,
+      "range": 120
+    }
+  },
+  "Royal Bow": {
+    "drop_level": 28,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 56,
+      "physical_damage_min": 14,
+      "range": 120
+    }
+  },
+  "Death Bow": {
+    "drop_level": 32,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 73,
+      "physical_damage_min": 28,
+      "range": 120
+    }
+  },
+  "Grove Bow": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 61,
+      "physical_damage_min": 20,
+      "range": 120
+    }
+  },
+  "Hedron Bow": {
+    "drop_level": 30,
+    "implicits": [
+      "Adds (46-55) to (69-83) Fire Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 13,
+      "physical_damage_min": 9,
+      "range": 120
+    }
+  },
+  "Foundry Bow": {
+    "drop_level": 50,
+    "implicits": [
+      "Adds (80-97) to (126-144) Fire Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 20,
+      "physical_damage_min": 13,
+      "range": 120
+    }
+  },
+  "Solarine Bow": {
+    "drop_level": 70,
+    "implicits": [
+      "Adds (121-133) to (184-197) Fire Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 24,
+      "physical_damage_min": 16,
+      "range": 120
+    }
+  },
+  "Reflex Bow": {
+    "drop_level": 36,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 56,
+      "physical_damage_min": 37,
+      "range": 120
+    }
+  },
+  "Steelwood Bow": {
+    "drop_level": 57,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 86,
+      "physical_damage_min": 58,
+      "range": 120
+    }
+  },
+  "Maraketh Bow": {
+    "drop_level": 71,
+    "implicits": [
+      "10% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 92,
+      "physical_damage_min": 61,
+      "range": 120
+    }
+  },
+  "Ethereal Bow": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 9,
+      "physical_damage_min": 5,
+      "range": 120
+    }
+  }
+}

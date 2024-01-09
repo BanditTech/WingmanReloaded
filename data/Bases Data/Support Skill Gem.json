@@ -1,0 +1,1486 @@
+{
+  "Added Chaos Damage Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Added Chaos Damage Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Added Cold Damage Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Added Cold Damage Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Added Fire Damage Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Added Fire Damage Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Added Lightning Damage Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Added Lightning Damage Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Additional Accuracy Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Empower Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Enhance Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Enlighten Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Ancestral Call Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Arcane Surge Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Archmage Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Arrow Nova Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Arrow Nova Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Barrage Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Behead Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Blasphemy Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Blasphemy Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Blind Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Block Chance Reduction Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Arrogance Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Bloodlust Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Bloodthirst Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Bonechill Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Brutality Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Brutality Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Burning Damage Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "WIP Support": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cast On Critical Strike Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Cast On Critical Strike Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cast when Damage Taken Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cast on Death Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cast on Melee Kill Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cast when Stunned Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cast while Channelling Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Cast While Channelling Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Chain Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Chain Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Chance to Bleed Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Chance to Flee Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Combustion Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Withering Touch Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Charged Mines Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Close Combat Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cluster Traps Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cold Penetration Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Cold Penetration Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cold to Fire Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Concentrated Effect Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "[UNUSED] Conflagration Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Controlled Blaze Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Controlled Destruction Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Controlled Destruction Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Corrupting Cry Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cruelty Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Culling Strike Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Hextouch Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Hextouch Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cursed Ground Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Hypothermia Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Deadly Ailments Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Deadly Ailments Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Predator Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Decay Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Devour Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Divine Blessing Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Earthbreaker Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Efficacy Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Elemental Focus Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Elemental Focus Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Elemental Penetration Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Elemental Proliferation Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Empower Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Endurance Charge on Melee Stun Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Energy Leech Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Enhance Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Enlighten Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Eternal Blessing Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Faster Attacks Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Faster Casting Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Faster Projectiles Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Feeding Frenzy Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Fire Penetration Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Fire Penetration Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Fist of War Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Flamewood Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Focused Ballista Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Fork Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Fork Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Fortify Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ice Bite Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Charged Traps Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Fresh Meat Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Frigid Bond Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Generosity Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Generosity Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Greater Multiple Projectiles Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Greater Multiple Projectiles Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Greater Volley Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Guardian's Blessing Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Unleash Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "[UNUSED] Handcast Rapid Fire": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Intensify Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Hex Bloom Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "High-Impact Mine Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ignite Proliferation Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Immolate Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Impale Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Impending Doom Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Increased Area of Effect Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Increased Area of Effect Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Burning Damage Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Increased Critical Damage Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Increased Critical Strikes Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Increased Duration Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Infernal Legion Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Iron Grip Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Iron Will Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Item Quantity Support": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Item Rarity Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Knockback Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Lesser Multiple Projectiles Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Chance to Poison Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Life Gain on Hit Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Life Leech Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Lifetap Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Lightning Penetration Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Lightning Penetration Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Locus Mine Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Maim Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Mana Leech Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Manaforged Arrows Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Mark On Hit Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Meat Shield Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Damage on Full Life Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Melee Physical Damage Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Melee Physical Damage Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Melee Splash Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Melee Splash Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Minefield Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Minion Damage Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Minion Damage Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Minion Life Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Minion Speed Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Mirage Archer Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Multiple Totems Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Multiple Traps Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Spell Echo Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Multistrike Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Multistrike Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Nightblade Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Momentum Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Innervate Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Overcharge Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Volley Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Vicious Projectiles Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Physical to Lightning Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Pierce Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Pinpoint Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Point Blank Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Critical Strike Affliction Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Power Charge On Critical Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Prismatic Burst Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Pulverise Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Rage Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ballista Totem Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Swift Affliction Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Less Duration Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Inspiration Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Blastchain Mine Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Returning Projectiles Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ruthless Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Sacrifice Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Sadism Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Second Wind Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Shockwave Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Slower Projectiles Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Spell Cascade Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Spell Cascade Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Spell Echo Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Spell Totem Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Spellblade Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ancestral Call Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Split Projectiles Support": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Infused Channelling Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Stun Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Elemental Army Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Summon Phantasm Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Swift Affliction Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Swift Assembly Support": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Swiftbrand Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Lesser Reduced Mana Cost Support": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Trap Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Trap and Mine Damage Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Advanced Traps Support": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Trauma Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Trinity Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Unbound Ailments Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Unbound Ailments Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Unleash Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Urgent Orders Support": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Vaal Soul Harvesting": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Vicious Projectiles Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Vile Toxins Support": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Void Manipulation Support": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Void Manipulation Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Volatility Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Elemental Damage with Attacks Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Awakened Elemental Damage with Attacks Support": {
+    "drop_level": 72,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  }
+}

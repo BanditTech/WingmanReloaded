@@ -1,0 +1,1616 @@
+{
+  "Golden Mantle": {
+    "drop_level": 20,
+    "implicits": [
+      "+(15-25)% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 86,
+        "min": 75
+      },
+      "energy_shield": {
+        "max": 19,
+        "min": 17
+      },
+      "evasion": {
+        "max": 86,
+        "min": 75
+      }
+    }
+  },
+  "Shabby Jerkin": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 41,
+        "min": 29
+      },
+      "movement_speed": -3
+    }
+  },
+  "Glorious Leather": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 519,
+        "min": 451
+      },
+      "movement_speed": -3
+    }
+  },
+  "Coronal Leather": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 579,
+        "min": 491
+      },
+      "movement_speed": -3
+    }
+  },
+  "Cutthroat's Garb": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 594,
+        "min": 530
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sharkskin Tunic": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 643,
+        "min": 559
+      },
+      "movement_speed": -3
+    }
+  },
+  "Destiny Leather": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 721,
+        "min": 601
+      },
+      "movement_speed": -3
+    }
+  },
+  "Exquisite Leather": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 810,
+        "min": 704
+      },
+      "movement_speed": -3
+    }
+  },
+  "Zodiac Leather": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 982,
+        "min": 854
+      },
+      "movement_speed": -3
+    }
+  },
+  "Assassin's Garb": {
+    "drop_level": 68,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 811,
+        "min": 737
+      }
+    }
+  },
+  "Strapped Leather": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 127,
+        "min": 98
+      },
+      "movement_speed": -3
+    }
+  },
+  "Buckskin Tunic": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 221,
+        "min": 176
+      },
+      "movement_speed": -3
+    }
+  },
+  "Wild Leather": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 306,
+        "min": 255
+      },
+      "movement_speed": -3
+    }
+  },
+  "Full Leather": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 327,
+        "min": 284
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sun Leather": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 382,
+        "min": 324
+      },
+      "movement_speed": -3
+    }
+  },
+  "Thief's Garb": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 396,
+        "min": 353
+      },
+      "movement_speed": -3
+    }
+  },
+  "Eelskin Tunic": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 429,
+        "min": 373
+      },
+      "movement_speed": -3
+    }
+  },
+  "Frontier Leather": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "evasion": {
+        "max": 495,
+        "min": 412
+      },
+      "movement_speed": -3
+    }
+  },
+  "Padded Vest": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 13,
+        "min": 9
+      },
+      "evasion": {
+        "max": 38,
+        "min": 27
+      },
+      "movement_speed": -3
+    }
+  },
+  "Crimson Raiment": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 63,
+        "min": 55
+      },
+      "evasion": {
+        "max": 304,
+        "min": 264
+      },
+      "movement_speed": -3
+    }
+  },
+  "Lacquered Garb": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 68,
+        "min": 59
+      },
+      "evasion": {
+        "max": 329,
+        "min": 286
+      },
+      "movement_speed": -3
+    }
+  },
+  "Crypt Armour": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 76,
+        "min": 63
+      },
+      "evasion": {
+        "max": 369,
+        "min": 308
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sentinel Jacket": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 76,
+        "min": 67
+      },
+      "evasion": {
+        "max": 370,
+        "min": 330
+      },
+      "movement_speed": -3
+    }
+  },
+  "Varnished Coat": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 89,
+        "min": 79
+      },
+      "evasion": {
+        "max": 434,
+        "min": 387
+      },
+      "movement_speed": -3
+    }
+  },
+  "Blood Raiment": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 84,
+        "min": 73
+      },
+      "evasion": {
+        "max": 501,
+        "min": 436
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sadist Garb": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 107,
+        "min": 93
+      },
+      "evasion": {
+        "max": 491,
+        "min": 427
+      },
+      "movement_speed": -3
+    }
+  },
+  "Carnal Armour": {
+    "drop_level": 71,
+    "implicits": [
+      "+(20-25) to maximum Mana"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 113,
+        "min": 103
+      },
+      "evasion": {
+        "max": 388,
+        "min": 353
+      },
+      "movement_speed": -3
+    }
+  },
+  "Oiled Vest": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 18,
+        "min": 14
+      },
+      "evasion": {
+        "max": 70,
+        "min": 54
+      },
+      "movement_speed": -3
+    }
+  },
+  "Padded Jacket": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 29,
+        "min": 24
+      },
+      "evasion": {
+        "max": 128,
+        "min": 102
+      },
+      "movement_speed": -3
+    }
+  },
+  "Oiled Coat": {
+    "drop_level": 22,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 33,
+        "min": 28
+      },
+      "evasion": {
+        "max": 146,
+        "min": 124
+      },
+      "movement_speed": -3
+    }
+  },
+  "Scarlet Raiment": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 39,
+        "min": 34
+      },
+      "evasion": {
+        "max": 180,
+        "min": 156
+      },
+      "movement_speed": -3
+    }
+  },
+  "Waxed Garb": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 44,
+        "min": 38
+      },
+      "evasion": {
+        "max": 205,
+        "min": 178
+      },
+      "movement_speed": -3
+    }
+  },
+  "Bone Armour": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 49,
+        "min": 41
+      },
+      "evasion": {
+        "max": 233,
+        "min": 194
+      },
+      "movement_speed": -3
+    }
+  },
+  "Quilted Jacket": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 52,
+        "min": 46
+      },
+      "evasion": {
+        "max": 248,
+        "min": 221
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sleek Coat": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 60,
+        "min": 51
+      },
+      "evasion": {
+        "max": 287,
+        "min": 243
+      },
+      "movement_speed": -3
+    }
+  },
+  "Simple Robe": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 20,
+        "min": 14
+      },
+      "movement_speed": -3
+    }
+  },
+  "Conjurer's Vestment": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 105,
+        "min": 94
+      },
+      "movement_speed": -3
+    }
+  },
+  "Spidersilk Robe": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 117,
+        "min": 101
+      },
+      "movement_speed": -3
+    }
+  },
+  "Destroyer Regalia": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 129,
+        "min": 109
+      },
+      "movement_speed": -3
+    }
+  },
+  "Savant's Robe": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 132,
+        "min": 115
+      },
+      "movement_speed": -3
+    }
+  },
+  "Necromancer Silks": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 147,
+        "min": 123
+      },
+      "movement_speed": -3
+    }
+  },
+  "Occultist's Vestment": {
+    "drop_level": 62,
+    "implicits": [
+      "(3-10)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 151,
+        "min": 137
+      },
+      "movement_speed": -3
+    }
+  },
+  "Widowsilk Robe": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 181,
+        "min": 157
+      },
+      "movement_speed": -3
+    }
+  },
+  "Vaal Regalia": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 197,
+        "min": 171
+      },
+      "movement_speed": -3
+    }
+  },
+  "Silken Vest": {
+    "drop_level": 11,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 38,
+        "min": 30
+      },
+      "movement_speed": -3
+    }
+  },
+  "Scholar's Robe": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 53,
+        "min": 43
+      },
+      "movement_speed": -3
+    }
+  },
+  "Silken Garb": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 64,
+        "min": 56
+      },
+      "movement_speed": -3
+    }
+  },
+  "Mage's Vestment": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 69,
+        "min": 62
+      },
+      "movement_speed": -3
+    }
+  },
+  "Silk Robe": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 80,
+        "min": 69
+      },
+      "movement_speed": -3
+    }
+  },
+  "Cabalist Regalia": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 88,
+        "min": 75
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sage's Robe": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 90,
+        "min": 79
+      },
+      "movement_speed": -3
+    }
+  },
+  "Silken Wrap": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "energy_shield": {
+        "max": 104,
+        "min": 86
+      },
+      "movement_speed": -3
+    }
+  },
+  "Plate Vest": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 27,
+        "min": 19
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sun Plate": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 506,
+        "min": 451
+      },
+      "movement_speed": -5
+    }
+  },
+  "Colosseum Plate": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 589,
+        "min": 491
+      },
+      "movement_speed": -5
+    }
+  },
+  "Majestic Plate": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 625,
+        "min": 530
+      },
+      "movement_speed": -5
+    }
+  },
+  "Golden Plate": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 643,
+        "min": 559
+      },
+      "movement_speed": -5
+    }
+  },
+  "Crusader Plate": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 691,
+        "min": 601
+      },
+      "movement_speed": -5
+    }
+  },
+  "Astral Plate": {
+    "drop_level": 62,
+    "implicits": [
+      "+(8-12)% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 782,
+        "min": 711
+      },
+      "movement_speed": -5
+    }
+  },
+  "Gladiator Plate": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 848,
+        "min": 738
+      },
+      "movement_speed": -5
+    }
+  },
+  "Glorious Plate": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 892,
+        "min": 776
+      }
+    }
+  },
+  "Chestplate": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 89,
+        "min": 68
+      },
+      "movement_speed": -5
+    }
+  },
+  "Copper Plate": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 221,
+        "min": 176
+      },
+      "movement_speed": -5
+    }
+  },
+  "War Plate": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 248,
+        "min": 216
+      },
+      "movement_speed": -5
+    }
+  },
+  "Full Plate": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 319,
+        "min": 284
+      },
+      "movement_speed": -5
+    }
+  },
+  "Arena Plate": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 389,
+        "min": 324
+      },
+      "movement_speed": -5
+    }
+  },
+  "Lordly Plate": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 417,
+        "min": 353
+      },
+      "movement_speed": -5
+    }
+  },
+  "Bronze Plate": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 429,
+        "min": 373
+      },
+      "movement_speed": -5
+    }
+  },
+  "Battle Plate": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 474,
+        "min": 412
+      },
+      "movement_speed": -5
+    }
+  },
+  "Scale Vest": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 38,
+        "min": 27
+      },
+      "evasion": {
+        "max": 38,
+        "min": 27
+      },
+      "movement_speed": -3
+    }
+  },
+  "Full Wyrmscale": {
+    "drop_level": 46,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 292,
+        "min": 254
+      },
+      "evasion": {
+        "max": 292,
+        "min": 254
+      },
+      "movement_speed": -3
+    }
+  },
+  "Commander's Brigandine": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 325,
+        "min": 275
+      },
+      "evasion": {
+        "max": 325,
+        "min": 275
+      },
+      "movement_speed": -3
+    }
+  },
+  "Battle Lamellar": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 341,
+        "min": 297
+      },
+      "evasion": {
+        "max": 341,
+        "min": 297
+      },
+      "movement_speed": -3
+    }
+  },
+  "Dragonscale Doublet": {
+    "drop_level": 57,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 351,
+        "min": 313
+      },
+      "evasion": {
+        "max": 351,
+        "min": 313
+      },
+      "movement_speed": -3
+    }
+  },
+  "Desert Brigandine": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 451,
+        "min": 376
+      },
+      "evasion": {
+        "max": 451,
+        "min": 376
+      },
+      "movement_speed": -3
+    }
+  },
+  "Full Dragonscale": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 541,
+        "min": 470
+      },
+      "evasion": {
+        "max": 429,
+        "min": 373
+      },
+      "movement_speed": -3
+    }
+  },
+  "General's Brigandine": {
+    "drop_level": 66,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 465,
+        "min": 415
+      },
+      "evasion": {
+        "max": 465,
+        "min": 415
+      },
+      "movement_speed": -3
+    }
+  },
+  "Triumphant Lamellar": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 437,
+        "min": 380
+      },
+      "evasion": {
+        "max": 549,
+        "min": 477
+      },
+      "movement_speed": -3
+    }
+  },
+  "Light Brigandine": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 63,
+        "min": 48
+      },
+      "evasion": {
+        "max": 63,
+        "min": 48
+      },
+      "movement_speed": -3
+    }
+  },
+  "Scale Doublet": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 121,
+        "min": 97
+      },
+      "evasion": {
+        "max": 121,
+        "min": 97
+      },
+      "movement_speed": -3
+    }
+  },
+  "Infantry Brigandine": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 142,
+        "min": 119
+      },
+      "evasion": {
+        "max": 142,
+        "min": 119
+      },
+      "movement_speed": -3
+    }
+  },
+  "Full Scale Armour": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 180,
+        "min": 156
+      },
+      "evasion": {
+        "max": 180,
+        "min": 156
+      },
+      "movement_speed": -3
+    }
+  },
+  "Soldier's Brigandine": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 210,
+        "min": 178
+      },
+      "evasion": {
+        "max": 210,
+        "min": 178
+      },
+      "movement_speed": -3
+    }
+  },
+  "Field Lamellar": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 223,
+        "min": 194
+      },
+      "evasion": {
+        "max": 223,
+        "min": 194
+      },
+      "movement_speed": -3
+    }
+  },
+  "Wyrmscale Doublet": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 236,
+        "min": 210
+      },
+      "evasion": {
+        "max": 236,
+        "min": 210
+      },
+      "movement_speed": -3
+    }
+  },
+  "Hussar Brigandine": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 278,
+        "min": 232
+      },
+      "evasion": {
+        "max": 278,
+        "min": 232
+      },
+      "movement_speed": -3
+    }
+  },
+  "Sacrificial Garb": {
+    "drop_level": 72,
+    "implicits": [
+      "+1 to Level of all Vaal Skill Gems"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 378,
+        "min": 329
+      },
+      "energy_shield": {
+        "max": 77,
+        "min": 67
+      },
+      "evasion": {
+        "max": 378,
+        "min": 329
+      },
+      "movement_speed": -3
+    }
+  },
+  "Grasping Mail": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 250,
+        "min": 217
+      },
+      "energy_shield": {
+        "max": 51,
+        "min": 44
+      },
+      "evasion": {
+        "max": 250,
+        "min": 217
+      },
+      "movement_speed": -3
+    }
+  },
+  "Chainmail Vest": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 38,
+        "min": 27
+      },
+      "energy_shield": {
+        "max": 13,
+        "min": 9
+      },
+      "movement_speed": -5
+    }
+  },
+  "Ornate Ringmail": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 298,
+        "min": 259
+      },
+      "energy_shield": {
+        "max": 62,
+        "min": 54
+      },
+      "movement_speed": -5
+    }
+  },
+  "Chain Hauberk": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 314,
+        "min": 281
+      },
+      "energy_shield": {
+        "max": 65,
+        "min": 58
+      },
+      "movement_speed": -5
+    }
+  },
+  "Devout Chainmail": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 363,
+        "min": 302
+      },
+      "energy_shield": {
+        "max": 74,
+        "min": 62
+      },
+      "movement_speed": -5
+    }
+  },
+  "Loricated Ringmail": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 374,
+        "min": 325
+      },
+      "energy_shield": {
+        "max": 76,
+        "min": 66
+      },
+      "movement_speed": -5
+    }
+  },
+  "Conquest Chainmail": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 445,
+        "min": 387
+      },
+      "energy_shield": {
+        "max": 91,
+        "min": 79
+      },
+      "movement_speed": -5
+    }
+  },
+  "Elegant Ringmail": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 433,
+        "min": 377
+      },
+      "energy_shield": {
+        "max": 105,
+        "min": 92
+      },
+      "movement_speed": -5
+    }
+  },
+  "Saint's Hauberk": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 496,
+        "min": 443
+      },
+      "energy_shield": {
+        "max": 85,
+        "min": 76
+      },
+      "movement_speed": -5
+    }
+  },
+  "Saintly Chainmail": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 461,
+        "min": 401
+      },
+      "energy_shield": {
+        "max": 110,
+        "min": 96
+      },
+      "movement_speed": -5
+    }
+  },
+  "Chainmail Tunic": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 63,
+        "min": 48
+      },
+      "energy_shield": {
+        "max": 17,
+        "min": 13
+      },
+      "movement_speed": -5
+    }
+  },
+  "Ringmail Coat": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 121,
+        "min": 97
+      },
+      "energy_shield": {
+        "max": 28,
+        "min": 22
+      },
+      "movement_speed": -5
+    }
+  },
+  "Chainmail Doublet": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 140,
+        "min": 119
+      },
+      "energy_shield": {
+        "max": 31,
+        "min": 27
+      },
+      "movement_speed": -5
+    }
+  },
+  "Full Ringmail": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 180,
+        "min": 156
+      },
+      "energy_shield": {
+        "max": 39,
+        "min": 34
+      },
+      "movement_speed": -5
+    }
+  },
+  "Full Chainmail": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 199,
+        "min": 178
+      },
+      "energy_shield": {
+        "max": 43,
+        "min": 38
+      },
+      "movement_speed": -5
+    }
+  },
+  "Holy Chainmail": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 233,
+        "min": 194
+      },
+      "energy_shield": {
+        "max": 49,
+        "min": 41
+      },
+      "movement_speed": -5
+    }
+  },
+  "Latticed Ringmail": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 248,
+        "min": 216
+      },
+      "energy_shield": {
+        "max": 52,
+        "min": 45
+      },
+      "movement_speed": -5
+    }
+  },
+  "Crusader Chainmail": {
+    "drop_level": 43,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 266,
+        "min": 237
+      },
+      "energy_shield": {
+        "max": 55,
+        "min": 50
+      },
+      "movement_speed": -5
+    }
+  },
+  "Kaom's Plate": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 23,
+        "min": 23
+      }
+    }
+  }
+}

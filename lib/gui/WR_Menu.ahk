@@ -18,7 +18,8 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Button, default gupdateEverything x295 y470 w150 h23, Save Configuration
       Gui, Inventory: Add, Button, gLaunchSite x+5 h23, Website
 
-      Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|Crafting Bases
+      ;Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe|Crafting Bases
+      Gui, Inventory: Add, Tab2, vInventoryGuiTabs x3 y3 w625 h505 -wrap , Options|Stash Tabs|Affinity|Chaos Recipe
 
       Gui, Inventory: Tab, Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -458,6 +459,9 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown,gSaveChaos Range1-99 vChaosRecipeStashTabRing , %ChaosRecipeStashTabRing%
       Gui, Inventory: Add, Text, x+5 yp+3, Stash Tab for Rings
 
+      /*
+
+
       ; Crafting Bases
       Gui, Inventory: Tab, Crafting Bases
 
@@ -531,7 +535,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCraftingBaseLimitBases Checked%YesCraftingBaseLimitBases% xs+8 y+8 , Max Number of Each Bases (At Max ILvL Found)
       Gui, Inventory: Add, Edit, Number w40 x+2 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-10 hp gUpdateExtra vCraftingBaseLimitBasesNumber , %CraftingBaseLimitBasesNumber%
-
+      */
     }
     Gui, Inventory: show , w600 h500, Inventory Settings
   } Else If (Function = "Crafting") {
@@ -550,7 +554,7 @@ WR_Menu(Function:="",Var*){
 
       Gui, Crafting: Tab, Map Crafting
 
-      MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Alchemy+Vaal|Chisel+Alchemy|Chisel+Alchemy+Vaal|Binding|Chisel+Binding|Chisel+Binding+Vaal|Hybrid|Hybrid+Vaal|Binding+Vaal|Chisel+Hybrid|Chisel+Hybrid+Vaal"
+      MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Alchemy+Vaal|Chisel+Alchemy|Chisel+Alchemy+Vaal|Binding|Chisel+Binding|Chisel+Binding+Vaal|Hybrid|Hybrid+Vaal|Binding+Vaal|Chisel+Hybrid|Chisel+Hybrid+Vaal|Chaos|Chisel+Chaos|Chisel+Chaos+Vaal"
       MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
       MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
       Gui, Crafting: Font, Bold s9 cBlack, Arial
@@ -608,6 +612,18 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 
+      /*
+      ;HeistMods GroupBox
+      Gui, Crafting: Add,GroupBox,Section w285 h85 xs, Heist Mods:
+      Gui, Crafting: Font,
+      Gui, Crafting: Font,s7
+      Gui, Crafting: Add, Button, xs+40 ys+20 w200 gCustomHeistModsUI, Custom Heist Mods
+      ;Gui, Crafting: Add, Text, xs+35 y+15 center w100, Minimum Weight:
+      ;Gui, Crafting: Add, Edit, x+5 yp-4 w50,
+      ;Gui, Crafting: Add, UpDown, Range-100-200 vMMapWeight, %MMapWeight%
+      ;Gui, Crafting: Font,
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      */
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add,GroupBox,Section w200 h150 x320 y50, Minimum Map Qualities:
       Gui, Crafting: Font,
@@ -693,47 +709,24 @@ WR_Menu(Function:="",Var*){
 
       ;Item Crafting Beta
       Gui, Crafting: Tab, Item Craft Beta
-      ;Load DDL Content from API
-      For k, v in ["Weapons","Armours","Special Itens","Jewellery","Flasks","Jewels","Small Cluster","Medium Cluster","Large Cluster","Sextant"] {
-        WR.MenuDDLstr[v] := ""
-      }
-      for k, v in PoeDBAPI{
-        If (v ~= "Map(.+)" || v ~= "Sextant" || v ~= "Heist")
-          Continue
-        If (v ~= "^SCJ") {
-          category := "Small Cluster"
-        } Else If (v ~= "^MCJ") {
-          category := "Medium Cluster"
-        } Else If (v ~= "^LCJ") {
-          category := "Large Cluster"
-        } Else If (v ~= "Jewel$") {
-          category := "Jewels"
-        } Else If (v ~= "Flask$") {
-          category := "Flasks"
-        } Else If (v ~= "Unset Ring|Iron Flask|Bone Ring|Convoking Wand|Bone Spirit Shield|Runic Crown|Runic Sabatons|Runic Gauntlets|Silver Flask") {
-          category := "Special Itens"
-        } Else If (v ~= "Amulet|Ring|Belt|Trinket") {
-          category := "Jewellery"
-        } Else If (v ~= "^(Gloves|Boots|Body Armour|Helmet|Shield|Quiver)") {
-          category := "Armours"
-        } Else {
-          category := "Weapons"
-        }
-        WR.MenuDDLstr[category] .= v "|"
-      }
-      WR.MenuDDLstr["Sextant"] .= "Awakened|Elevated"
-      category := ""
 
       ; Item Type
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       Gui, Crafting: Add, GroupBox, Section w292 h80 xm ym+25 , Item Type
       Gui, Crafting: Font,
-      Gui, Crafting: Add, Text, xs+15 yp+25 w60, Category:
-      Gui, Crafting: Add, DropDownList, vItemCraftingcategorySelector gItemCraftingSubmit xs+70 yp-4 w210, Weapons|Armours|Special Itens|Jewellery|Flasks|Jewels|Small Cluster|Medium Cluster|Large Cluster|Sextant
-      GuiControl, ChooseString, ItemCraftingcategorySelector, %ItemCraftingcategorySelector%
-      Gui, Crafting: Add, Text, xs+15 y+5 w60, Class:
-      Gui, Crafting: Add, DropDownList, vItemCraftingBaseSelector gItemCraftingSubmit Sort xs+70 yp-4 w210, % WR.MenuDDLstr[ItemCraftingcategorySelector]
-      GuiControl, ChooseString, ItemCraftingBaseSelector, % WR.MenuDDLselect[ItemCraftingcategorySelector]
+      Gui, Crafting: Add, Text, xs+5 yp+25 w60, Category:
+      aux := ""
+      for a,b in POEData{
+        if(a ~= "Maps|Contracts|Expedition Logbooks|Blueprints"){
+          Continue
+        }
+        aux .= a "|"
+      }
+      Gui, Crafting: Add, DropDownList, vItemCraftingCategorySelector gItemCraftingSubmit xs+70 yp-4 w210, %aux%
+      GuiControl, ChooseString, ItemCraftingCategorySelector, %ItemCraftingCategorySelector%
+      Gui, Crafting: Add, Text, xs+5 y+5 w60, SubCategory:
+      Gui, Crafting: Add, DropDownList, vItemCraftingSubCategorySelector gItemCraftingSubmit Sort xs+70 yp-4 w210
+      GuiControl, ChooseString, ItemCraftingSubCategorySelector, %ItemCraftingSubCategorySelector%
 
       ; Affix Rules
       Gui, Crafting: Font, Bold s9 cBlack, Arial

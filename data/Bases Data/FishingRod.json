@@ -1,0 +1,15 @@
+{
+  "Fishing Rod": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 15,
+      "physical_damage_min": 8,
+      "range": 13
+    }
+  }
+}

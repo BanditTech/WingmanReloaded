@@ -1,0 +1,234 @@
+{
+  "SanctumMaximumResolve1": {
+    "generation_type": "Prefix",
+    "name": "Steadfast",
+    "required_level": 1,
+    "text": "+(5-8) to Maximum Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolve2": {
+    "generation_type": "Prefix",
+    "name": "Enduring",
+    "required_level": 74,
+    "text": "+(9-12) to Maximum Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolve3": {
+    "generation_type": "Prefix",
+    "name": "Adamant",
+    "required_level": 78,
+    "text": "+(13-16) to Maximum Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolve4": {
+    "generation_type": "Prefix",
+    "name": "Ardent",
+    "required_level": 82,
+    "text": "+(17-20) to Maximum Resolve",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolve5": {
+    "generation_type": "Prefix",
+    "name": "Resolute",
+    "required_level": 85,
+    "text": "+(21-25) to Maximum Resolve",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumStartingGold1": {
+    "generation_type": "Prefix",
+    "name": "Pauper's",
+    "required_level": 1,
+    "text": "Gain (10-19) Aureus Coins at the start of the Sanctum",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumStartingGold2": {
+    "generation_type": "Prefix",
+    "name": "Commoner's",
+    "required_level": 74,
+    "text": "Gain (20-29) Aureus Coins at the start of the Sanctum",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumStartingGold3": {
+    "generation_type": "Prefix",
+    "name": "Merchant's",
+    "required_level": 78,
+    "text": "Gain (30-39) Aureus Coins at the start of the Sanctum",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumStartingGold4": {
+    "generation_type": "Prefix",
+    "name": "Nobleman's",
+    "required_level": 82,
+    "text": "Gain (40-49) Aureus Coins at the start of the Sanctum",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumStartingGold5": {
+    "generation_type": "Prefix",
+    "name": "King's",
+    "required_level": 85,
+    "text": "Gain (50-59) Aureus Coins at the start of the Sanctum",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumStartingShield1": {
+    "generation_type": "Prefix",
+    "name": "Boosting",
+    "required_level": 1,
+    "text": "Gain (13-16) Inspiration at the start of the Sanctum",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumStartingShield2": {
+    "generation_type": "Prefix",
+    "name": "Bolstering",
+    "required_level": 74,
+    "text": "Gain (17-20) Inspiration at the start of the Sanctum",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumStartingShield3": {
+    "generation_type": "Prefix",
+    "name": "Augmenting",
+    "required_level": 78,
+    "text": "Gain (21-25) Inspiration at the start of the Sanctum",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumStartingShield4": {
+    "generation_type": "Prefix",
+    "name": "Invigorating",
+    "required_level": 82,
+    "text": "Gain (26-30) Inspiration at the start of the Sanctum",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumStartingShield5": {
+    "generation_type": "Prefix",
+    "name": "Inspiring",
+    "required_level": 85,
+    "text": "Gain (31-35) Inspiration at the start of the Sanctum",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance1": {
+    "generation_type": "Suffix",
+    "name": "of Bounty",
+    "required_level": 1,
+    "text": "Chests have (3-4)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance2": {
+    "generation_type": "Suffix",
+    "name": "of Fortune",
+    "required_level": 74,
+    "text": "Chests have (5-6)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance3": {
+    "generation_type": "Suffix",
+    "name": "of the Trove",
+    "required_level": 80,
+    "text": "Chests have (7-8)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance4": {
+    "generation_type": "Suffix",
+    "name": "of Hidden Treasure",
+    "required_level": 85,
+    "text": "Chests have (9-10)% chance to drop Double Aureus Coins",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumMonstersDoubleGoldChance1": {
+    "generation_type": "Suffix",
+    "name": "of Affluence",
+    "required_level": 1,
+    "text": "Monsters have (3-4)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMonstersDoubleGoldChance2": {
+    "generation_type": "Suffix",
+    "name": "of Opulence",
+    "required_level": 74,
+    "text": "Monsters have (5-6)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMonstersDoubleGoldChance3": {
+    "generation_type": "Suffix",
+    "name": "of Extravagance",
+    "required_level": 80,
+    "text": "Monsters have (7-8)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMonstersDoubleGoldChance4": {
+    "generation_type": "Suffix",
+    "name": "of Doubling",
+    "required_level": 85,
+    "text": "Monsters have (9-10)% chance to drop Double Aureus Coins",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumResolveOnBossKill1": {
+    "generation_type": "Suffix",
+    "name": "of Success",
+    "required_level": 1,
+    "text": "Gain (15-18) Resolve when you kill a Boss",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumResolveOnBossKill2": {
+    "generation_type": "Suffix",
+    "name": "of Achievement",
+    "required_level": 74,
+    "text": "Gain (19-22) Resolve when you kill a Boss",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumResolveOnBossKill3": {
+    "generation_type": "Suffix",
+    "name": "of Conquest",
+    "required_level": 80,
+    "text": "Gain (23-26) Resolve when you kill a Boss",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumResolveOnBossKill4": {
+    "generation_type": "Suffix",
+    "name": "of Triumph",
+    "required_level": 85,
+    "text": "Gain (27-30) Resolve when you kill a Boss",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumRevealExtraRoomEachFloor1": {
+    "generation_type": "Suffix",
+    "name": "of Illumination",
+    "required_level": 77,
+    "text": "An additional Room is revealed on the Sanctum Map",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumRevealExtraRoomEachFloor2": {
+    "generation_type": "Suffix",
+    "name": "of Clairvoyance",
+    "required_level": 85,
+    "text": "2 additional Rooms are revealed on the Sanctum Map",
+    "weight": 20,
+    "influence": "Normal"
+  }
+}

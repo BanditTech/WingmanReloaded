@@ -1,0 +1,306 @@
+{
+  "Breach Ring": {
+    "drop_level": 1,
+    "implicits": [
+      "Properties are doubled while in a Breach"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ring": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Iron Ring": {
+    "drop_level": 2,
+    "implicits": [
+      "Adds 1 to 4 Physical Damage to Attacks"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Amethyst Ring": {
+    "drop_level": 38,
+    "implicits": [
+      "+(17-23)% to Chaos Resistance"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Diamond Ring": {
+    "drop_level": 2,
+    "implicits": [
+      "(30-40)% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Two-Stone Ring": {
+    "drop_level": 20,
+    "implicits": [
+      "+(12-16)% to Fire and Cold Resistances"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Unset Ring": {
+    "drop_level": 45,
+    "implicits": [
+      "Has 1 Socket"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Bone Ring": {
+    "drop_level": 30,
+    "implicits": [
+      "Minions have +(10-15)% to all Elemental Resistances"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Coral Ring": {
+    "drop_level": 4,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Paua Ring": {
+    "drop_level": 2,
+    "implicits": [
+      "+(20-30) to maximum Mana"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Gold Ring": {
+    "drop_level": 20,
+    "implicits": [
+      "(6-15)% increased Rarity of Items found"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Topaz Ring": {
+    "drop_level": 12,
+    "implicits": [
+      "+(20-30)% to Lightning Resistance"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Sapphire Ring": {
+    "drop_level": 8,
+    "implicits": [
+      "+(20-30)% to Cold Resistance"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ruby Ring": {
+    "drop_level": 16,
+    "implicits": [
+      "+(20-30)% to Fire Resistance"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Prismatic Ring": {
+    "drop_level": 2,
+    "implicits": [
+      "+(8-10)% to all Elemental Resistances"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Moonstone Ring": {
+    "drop_level": 25,
+    "implicits": [
+      "+(15-25) to maximum Energy Shield"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Steel Ring": {
+    "drop_level": 78,
+    "implicits": [
+      "Adds (3-4) to (10-14) Physical Damage to Attacks"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Opal Ring": {
+    "drop_level": 2,
+    "implicits": [
+      "(12-16)% increased Elemental Damage"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Vermillion Ring": {
+    "drop_level": 80,
+    "implicits": [
+      "(5-7)% increased maximum Life"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cerulean Ring": {
+    "drop_level": 80,
+    "implicits": [
+      "(8-10)% increased maximum Mana"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Iolite Ring": {
+    "drop_level": 78,
+    "implicits": [
+      "(17-23)% increased Chaos Damage"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Golden Hoop": {
+    "drop_level": 12,
+    "implicits": [
+      "+(8-12) to all Attributes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Cogwork Ring": {
+    "drop_level": 68,
+    "implicits": [
+      "-1 Prefix Modifier allowed\n+1 Suffix Modifier allowed\nImplicit Modifiers Cannot Be Changed\n25% increased Suffix Modifier magnitudes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Geodesic Ring": {
+    "drop_level": 68,
+    "implicits": [
+      "+1 Prefix Modifier allowed\n-1 Suffix Modifier allowed\nImplicit Modifiers Cannot Be Changed\n25% increased Prefix Modifier magnitudes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Composite Ring": {
+    "drop_level": 68,
+    "implicits": [
+      "+3 Prefix Modifiers allowed\n-3 Suffix Modifiers allowed\nImplicit Modifiers Cannot Be Changed"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Manifold Ring": {
+    "drop_level": 75,
+    "implicits": [
+      "+1 Prefix Modifier allowed\n-2 Suffix Modifiers allowed\nImplicit Modifiers Cannot Be Changed\n50% increased Prefix Modifier magnitudes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ratcheting Ring": {
+    "drop_level": 68,
+    "implicits": [
+      "-3 Prefix Modifiers allowed\n+3 Suffix Modifiers allowed\nImplicit Modifiers Cannot Be Changed"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Helical Ring": {
+    "drop_level": 75,
+    "implicits": [
+      "-2 Prefix Modifiers allowed\n+1 Suffix Modifier allowed\nImplicit Modifiers Cannot Be Changed\n50% increased Suffix Modifier magnitudes"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Dusk Ring": {
+    "drop_level": 25,
+    "implicits": [
+      "Left ring slot: 15% reduced Skill Effect Duration\nRight ring slot: 15% increased Skill Effect Duration"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Penumbra Ring": {
+    "drop_level": 25,
+    "implicits": [
+      "Left ring slot: 30% reduced Effect of Curses on you\nRight ring slot: 30% increased Effect of Curses on you"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Gloam Ring": {
+    "drop_level": 25,
+    "implicits": [
+      "Left ring slot: Minions take 15% reduced Damage\nRight ring slot: Minions take 15% increased Damage"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Tenebrous Ring": {
+    "drop_level": 25,
+    "implicits": [
+      "Left ring slot: 30% reduced Duration of Ailments on You\nRight ring slot: 30% increased Duration of Ailments on You"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Shadowed Ring": {
+    "drop_level": 25,
+    "implicits": [
+      "Left ring slot: 25% of Lightning Damage from Hits taken as Cold Damage\nRight ring slot: 25% of Cold Damage from Hits taken as Lightning Damage"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Jet Ring": {
+    "drop_level": 15,
+    "implicits": [
+      "(5-10)% increased Global Defences"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  }
+}

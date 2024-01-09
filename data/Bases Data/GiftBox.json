@@ -1,0 +1,14 @@
+{
+  "Wrapped Gift": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 4,
+    "properties": {
+      "description": "",
+      "directions": "Right click on this item to open it.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 0
+    }
+  }
+}

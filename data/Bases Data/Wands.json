@@ -1,0 +1,377 @@
+{
+  "Driftwood Wand": {
+    "drop_level": 1,
+    "implicits": [
+      "(8-12)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 9,
+      "physical_damage_min": 5,
+      "range": 120
+    }
+  },
+  "Coiled Wand": {
+    "drop_level": 49,
+    "implicits": [
+      "Adds (1-2) to (22-24) Lightning Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 64,
+      "physical_damage_min": 21,
+      "range": 120
+    }
+  },
+  "Omen Wand": {
+    "drop_level": 53,
+    "implicits": [
+      "(27-31)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 61,
+      "physical_damage_min": 33,
+      "range": 120
+    }
+  },
+  "Demon's Horn": {
+    "drop_level": 56,
+    "implicits": [
+      "Adds (18-36) to (53-59) Fire Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 71,
+      "physical_damage_min": 38,
+      "range": 120
+    }
+  },
+  "Imbued Wand": {
+    "drop_level": 59,
+    "implicits": [
+      "(33-37)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 53,
+      "physical_damage_min": 29,
+      "range": 120
+    }
+  },
+  "Opal Wand": {
+    "drop_level": 62,
+    "implicits": [
+      "Adds (14-29) to (42-47) Cold Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 65,
+      "physical_damage_min": 35,
+      "range": 120
+    }
+  },
+  "Tornado Wand": {
+    "drop_level": 65,
+    "implicits": [
+      "Adds (3-5) to (70-82) Lightning Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 75,
+      "physical_damage_min": 25,
+      "range": 120
+    }
+  },
+  "Prophecy Wand": {
+    "drop_level": 68,
+    "implicits": [
+      "(36-40)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 64,
+      "physical_damage_min": 35,
+      "range": 120
+    }
+  },
+  "Goat's Horn": {
+    "drop_level": 6,
+    "implicits": [
+      "Adds (1-2) to (3-4) Fire Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 16,
+      "physical_damage_min": 9,
+      "range": 120
+    }
+  },
+  "Carved Wand": {
+    "drop_level": 12,
+    "implicits": [
+      "(11-15)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 17,
+      "physical_damage_min": 9,
+      "range": 120
+    }
+  },
+  "Quartz Wand": {
+    "drop_level": 18,
+    "implicits": [
+      "Adds (2-3) to (4-7) Cold Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 27,
+      "physical_damage_min": 14,
+      "range": 120
+    }
+  },
+  "Spiraled Wand": {
+    "drop_level": 24,
+    "implicits": [
+      "Adds (1-2) to (9-11) Lightning Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 37,
+      "physical_damage_min": 12,
+      "range": 120
+    }
+  },
+  "Sage Wand": {
+    "drop_level": 30,
+    "implicits": [
+      "(17-21)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 42,
+      "physical_damage_min": 23,
+      "range": 120
+    }
+  },
+  "Faun's Horn": {
+    "drop_level": 35,
+    "implicits": [
+      "Adds (5-10) to (11-13) Fire Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 48,
+      "physical_damage_min": 26,
+      "range": 120
+    }
+  },
+  "Engraved Wand": {
+    "drop_level": 40,
+    "implicits": [
+      "(22-26)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 38,
+      "physical_damage_min": 21,
+      "range": 120
+    }
+  },
+  "Crystal Wand": {
+    "drop_level": 45,
+    "implicits": [
+      "Adds (4-8) to (10-12) Cold Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 52,
+      "physical_damage_min": 28,
+      "range": 120
+    }
+  },
+  "Convoking Wand": {
+    "drop_level": 72,
+    "implicits": [
+      "Minions deal (26-30)% increased Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 55,
+      "physical_damage_min": 30,
+      "range": 120
+    }
+  },
+  "Assembler Wand": {
+    "drop_level": 30,
+    "implicits": [
+      "Gain an Endurance, Frenzy or Power Charge every 6 seconds"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 30,
+      "physical_damage_min": 16,
+      "range": 120
+    }
+  },
+  "Congregator Wand": {
+    "drop_level": 50,
+    "implicits": [
+      "Gain an Endurance, Frenzy or Power Charge every 6 seconds"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 46,
+      "physical_damage_min": 25,
+      "range": 120
+    }
+  },
+  "Accumulator Wand": {
+    "drop_level": 70,
+    "implicits": [
+      "Gain 2 Endurance, Frenzy or Power Charges every 6 seconds"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 54,
+      "physical_damage_min": 29,
+      "range": 120
+    }
+  },
+  "Pagan Wand": {
+    "drop_level": 34,
+    "implicits": [
+      "10% increased Cast Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 40,
+      "physical_damage_min": 22,
+      "range": 120
+    }
+  },
+  "Heathen Wand": {
+    "drop_level": 55,
+    "implicits": [
+      "10% increased Cast Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 57,
+      "physical_damage_min": 31,
+      "range": 120
+    }
+  },
+  "Profane Wand": {
+    "drop_level": 70,
+    "implicits": [
+      "14% increased Cast Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 61,
+      "physical_damage_min": 33,
+      "range": 120
+    }
+  },
+  "Calling Wand": {
+    "drop_level": 20,
+    "implicits": [
+      "Minions deal (12-16)% increased Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 25,
+      "physical_damage_min": 13,
+      "range": 120
+    }
+  },
+  "Convening Wand": {
+    "drop_level": 50,
+    "implicits": [
+      "Minions deal (20-24)% increased Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 50,
+      "physical_damage_min": 27,
+      "range": 120
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "Primitive Chaotic Resonator": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Potent Chaotic Resonator": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Powerful Chaotic Resonator": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Prime Chaotic Resonator": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Primitive Alchemical Resonator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Upgrades a normal item to a rare item",
+      "directions": "Right click this item then left click a normal item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Potent Alchemical Resonator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Upgrades a normal item to a rare item",
+      "directions": "Right click this item then left click a normal item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Powerful Alchemical Resonator": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "description": "Upgrades a normal item to a rare item",
+      "directions": "Right click this item then left click a normal item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Prime Alchemical Resonator": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "description": "Upgrades a normal item to a rare item",
+      "directions": "Right click this item then left click a normal item to apply it.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  }
+}

@@ -1,0 +1,546 @@
+{
+  "HeistNPCAllDamage1": {
+    "generation_type": "Prefix",
+    "name": "Harmful",
+    "required_level": 1,
+    "text": "(30-34)% increased Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage2": {
+    "generation_type": "Prefix",
+    "name": "Hazardous",
+    "required_level": 45,
+    "text": "(35-39)% increased Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage3": {
+    "generation_type": "Prefix",
+    "name": "Dangerous",
+    "required_level": 75,
+    "text": "(40-44)% increased Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCAllDamage4": {
+    "generation_type": "Prefix",
+    "name": "Destructive",
+    "required_level": 81,
+    "text": "(45-50)% increased Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain1_": {
+    "generation_type": "Prefix",
+    "name": "Footpad's",
+    "required_level": 1,
+    "text": "(3-4)% increased Job Experience gain",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain2": {
+    "generation_type": "Prefix",
+    "name": "Crook's",
+    "required_level": 45,
+    "text": "(5-6)% increased Job Experience gain",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain3_": {
+    "generation_type": "Prefix",
+    "name": "Criminal's",
+    "required_level": 75,
+    "text": "(7-8)% increased Job Experience gain",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCExperienceGain4_": {
+    "generation_type": "Prefix",
+    "name": "Mastermind's",
+    "required_level": 81,
+    "text": "(9-10)% increased Job Experience gain",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedColdDamage1_": {
+    "generation_type": "Prefix",
+    "name": "Frosted",
+    "required_level": 1,
+    "text": "(11-15) to (18-21) added Cold Damage | Players and their Minions have (11-15) to (18-21) added Cold Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedColdDamage2___": {
+    "generation_type": "Prefix",
+    "name": "Chilled",
+    "required_level": 45,
+    "text": "(16-20) to (22-25) added Cold Damage | Players and their Minions have (16-20) to (22-25) added Cold Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedColdDamage3": {
+    "generation_type": "Prefix",
+    "name": "Icy",
+    "required_level": 75,
+    "text": "(20-25) to (26-35) added Cold Damage | Players and their Minions have (20-25) to (26-35) added Cold Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedColdDamage4": {
+    "generation_type": "Prefix",
+    "name": "Frigid",
+    "required_level": 83,
+    "text": "(26-30) to (36-42) added Cold Damage | Players and their Minions have (26-30) to (36-42) added Cold Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedFireDamage1": {
+    "generation_type": "Prefix",
+    "name": "Heated",
+    "required_level": 1,
+    "text": "(11-15) to (18-21) added Fire Damage | Players and their Minions have (11-15) to (18-21) added Fire Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedFireDamage2": {
+    "generation_type": "Prefix",
+    "name": "Smouldering",
+    "required_level": 45,
+    "text": "(16-20) to (22-25) added Fire Damage | Players and their Minions have (16-20) to (22-25) added Fire Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedFireDamage3___": {
+    "generation_type": "Prefix",
+    "name": "Smoking",
+    "required_level": 75,
+    "text": "(20-25) to (26-35) added Fire Damage | Players and their Minions have (20-25) to (26-35) added Fire Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedFireDamage4": {
+    "generation_type": "Prefix",
+    "name": "Burning",
+    "required_level": 83,
+    "text": "(26-30) to (36-42) added Fire Damage | Players and their Minions have (26-30) to (36-42) added Fire Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedLightningDamage1": {
+    "generation_type": "Prefix",
+    "name": "Humming",
+    "required_level": 1,
+    "text": "1 to (35-40) added Lightning Damage | Players and their Minions have 1 to (35-40) added Lightning Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedLightningDamage2": {
+    "generation_type": "Prefix",
+    "name": "Buzzing",
+    "required_level": 45,
+    "text": "1 to (41-47) added Lightning Damage | Players and their Minions have 1 to (41-47) added Lightning Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedLightningDamage3": {
+    "generation_type": "Prefix",
+    "name": "Snapping",
+    "required_level": 75,
+    "text": "1 to (48-60) added Lightning Damage | Players and their Minions have 1 to (48-60) added Lightning Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedLightningDamage4_": {
+    "generation_type": "Prefix",
+    "name": "Crackling",
+    "required_level": 83,
+    "text": "1 to (61-66) added Lightning Damage | Players and their Minions have 1 to (61-66) added Lightning Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedPhysicalDamage1": {
+    "generation_type": "Prefix",
+    "name": "Glinting",
+    "required_level": 1,
+    "text": "(2-3) to (4-5) added Physical Damage | Players and their Minions have (2-3) to (4-5) added Physical Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedPhysicalDamage2": {
+    "generation_type": "Prefix",
+    "name": "Burnished",
+    "required_level": 45,
+    "text": "(4-5) to (6-8) added Physical Damage | Players and their Minions have (4-5) to (6-8) added Physical Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedPhysicalDamage3": {
+    "generation_type": "Prefix",
+    "name": "Polished",
+    "required_level": 75,
+    "text": "(6-8) to (9-11) added Physical Damage | Players and their Minions have (6-8) to (9-11) added Physical Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCGlobalAddedPhysicalDamage4_": {
+    "generation_type": "Prefix",
+    "name": "Honed",
+    "required_level": 83,
+    "text": "(7-9) to (12-14) added Physical Damage | Players and their Minions have (7-9) to (12-14) added Physical Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer1": {
+    "generation_type": "Prefix",
+    "name": "Slowing",
+    "required_level": 1,
+    "text": "(4-5)% increased time before Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer2": {
+    "generation_type": "Prefix",
+    "name": "Stalling",
+    "required_level": 45,
+    "text": "(6-7)% increased time before Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer3_": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "(7-8)% increased time before Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer4_": {
+    "generation_type": "Prefix",
+    "name": "Interrupting",
+    "required_level": 81,
+    "text": "(9-10)% increased time before Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed1___": {
+    "generation_type": "Prefix",
+    "name": "Practiced",
+    "required_level": 1,
+    "text": "(9-11)% increased Job speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed2": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 45,
+    "text": "(12-14)% increased Job speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed3": {
+    "generation_type": "Prefix",
+    "name": "Professional",
+    "required_level": 75,
+    "text": "(15-17)% increased Job speed",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed4__": {
+    "generation_type": "Prefix",
+    "name": "Masterful",
+    "required_level": 81,
+    "text": "(18-20)% increased Job speed",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCProjectileAttackDamage1": {
+    "generation_type": "Prefix",
+    "name": "Scout's",
+    "required_level": 1,
+    "text": "(21-25)% increased Projectile Attack Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCProjectileAttackDamage2_": {
+    "generation_type": "Prefix",
+    "name": "Poacher's",
+    "required_level": 45,
+    "text": "(26-30)% increased Projectile Attack Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCProjectileAttackDamage3": {
+    "generation_type": "Prefix",
+    "name": "Ranger's",
+    "required_level": 75,
+    "text": "(31-35)% increased Projectile Attack Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCProjectileAttackDamage4": {
+    "generation_type": "Prefix",
+    "name": "Sniper's",
+    "required_level": 81,
+    "text": "(36-40)% increased Projectile Attack Damage",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedFlaskChargesGained1": {
+    "generation_type": "Suffix",
+    "name": "of Refilling",
+    "required_level": 1,
+    "text": "Players have (11-15)% increased Flask Charges gained",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedFlaskChargesGained2__": {
+    "generation_type": "Suffix",
+    "name": "of Brimming",
+    "required_level": 45,
+    "text": "Players have (16-20)% increased Flask Charges gained",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedFlaskChargesGained3": {
+    "generation_type": "Suffix",
+    "name": "of Overflowing",
+    "required_level": 75,
+    "text": "Players have (21-25)% increased Flask Charges gained",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedFlaskChargesGained4": {
+    "generation_type": "Suffix",
+    "name": "of Plenty",
+    "required_level": 82,
+    "text": "Players have (26-30)% increased Flask Charges gained",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalStrikeChance1": {
+    "generation_type": "Suffix",
+    "name": "of Needling",
+    "required_level": 1,
+    "text": "(61-70)% increased Critical Strike Chance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalStrikeChance2_": {
+    "generation_type": "Suffix",
+    "name": "of Stinging",
+    "required_level": 45,
+    "text": "(71-80)% increased Critical Strike Chance",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalStrikeChance3": {
+    "generation_type": "Suffix",
+    "name": "of Piercing",
+    "required_level": 75,
+    "text": "(81-90)% increased Critical Strike Chance",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCCriticalStrikeChance4": {
+    "generation_type": "Suffix",
+    "name": "of Rupturing",
+    "required_level": 82,
+    "text": "(91-100)% increased Critical Strike Chance",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut1": {
+    "generation_type": "Suffix",
+    "name": "of Bartering",
+    "required_level": 1,
+    "text": "The Ring's Cut reduced by (7-6)%",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut2_": {
+    "generation_type": "Suffix",
+    "name": "of Negotiating",
+    "required_level": 45,
+    "text": "The Ring's Cut reduced by (9-8)%",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut3": {
+    "generation_type": "Suffix",
+    "name": "of Selfishness",
+    "required_level": 75,
+    "text": "The Ring's Cut reduced by (12-10)%",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut4": {
+    "generation_type": "Suffix",
+    "name": "of Greed",
+    "required_level": 81,
+    "text": "The Ring's Cut reduced by (15-13)%",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost1": {
+    "generation_type": "Suffix",
+    "name": "of Personality",
+    "required_level": 1,
+    "text": "(7-6)% reduced Hiring Fee",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost2": {
+    "generation_type": "Suffix",
+    "name": "of Presence",
+    "required_level": 45,
+    "text": "(9-8)% reduced Hiring Fee",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost3": {
+    "generation_type": "Suffix",
+    "name": "of Charm",
+    "required_level": 75,
+    "text": "(12-10)% reduced Hiring Fee",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractNPCCost4": {
+    "generation_type": "Suffix",
+    "name": "of Charisma",
+    "required_level": 81,
+    "text": "(15-13)% reduced Hiring Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost1_": {
+    "generation_type": "Suffix",
+    "name": "of Efficiency",
+    "required_level": 1,
+    "text": "(7-6)% reduced Travel Fee",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost2__": {
+    "generation_type": "Suffix",
+    "name": "of Shortcuts",
+    "required_level": 45,
+    "text": "(9-8)% reduced Travel Fee",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost3": {
+    "generation_type": "Suffix",
+    "name": "of Bypasses",
+    "required_level": 75,
+    "text": "(12-10)% reduced Travel Fee",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractTravelCost4": {
+    "generation_type": "Suffix",
+    "name": "of Passage",
+    "required_level": 81,
+    "text": "(15-13)% reduced Travel Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCColdResistAura1_": {
+    "generation_type": "Suffix",
+    "name": "of Aid",
+    "required_level": 45,
+    "text": "Grants Level 5 Purity of Ice Skill",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCColdResistAura2_": {
+    "generation_type": "Suffix",
+    "name": "of Coordination",
+    "required_level": 68,
+    "text": "Grants Level 10 Purity of Ice Skill",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCColdResistAura3": {
+    "generation_type": "Suffix",
+    "name": "of Cooperation",
+    "required_level": 75,
+    "text": "Grants Level 15 Purity of Ice Skill",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "HeistNPCGraceAura1_": {
+    "generation_type": "Suffix",
+    "name": "of Aid",
+    "required_level": 45,
+    "text": "Grants Level 5 Grace Skill",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCGraceAura2": {
+    "generation_type": "Suffix",
+    "name": "of Coordination",
+    "required_level": 68,
+    "text": "Grants Level 10 Grace Skill",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCGraceAura3": {
+    "generation_type": "Suffix",
+    "name": "of Cooperation",
+    "required_level": 75,
+    "text": "Grants Level 15 Grace Skill",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "HeistNPCHasteAura1": {
+    "generation_type": "Suffix",
+    "name": "of Aid",
+    "required_level": 45,
+    "text": "Grants Level 5 Haste Skill",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCHasteAura2": {
+    "generation_type": "Suffix",
+    "name": "of Coordination",
+    "required_level": 68,
+    "text": "Grants Level 10 Haste Skill",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCHasteAura3_": {
+    "generation_type": "Suffix",
+    "name": "of Cooperation",
+    "required_level": 75,
+    "text": "Grants Level 15 Haste Skill",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "HeistNPCHatredAura1": {
+    "generation_type": "Suffix",
+    "name": "of Aid",
+    "required_level": 45,
+    "text": "Grants Level 5 Hatred Skill",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCHatredAura2": {
+    "generation_type": "Suffix",
+    "name": "of Coordination",
+    "required_level": 68,
+    "text": "Grants Level 10 Hatred Skill",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCHatredAura3": {
+    "generation_type": "Suffix",
+    "name": "of Cooperation",
+    "required_level": 75,
+    "text": "Grants Level 15 Hatred Skill",
+    "weight": 300,
+    "influence": "Normal"
+  }
+}

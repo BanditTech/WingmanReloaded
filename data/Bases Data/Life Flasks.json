@@ -1,0 +1,154 @@
+{
+  "Small Life Flask": {
+    "drop_level": 1,
+    "implicits": [
+      "Effect is removed when Hit by a Player"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 21,
+      "charges_per_use": 7,
+      "duration": 40,
+      "life_per_use": 70
+    }
+  },
+  "Sanctified Life Flask": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 30,
+      "charges_per_use": 15,
+      "duration": 15,
+      "life_per_use": 1460
+    }
+  },
+  "Divine Life Flask": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 45,
+      "charges_per_use": 15,
+      "duration": 35,
+      "life_per_use": 2400
+    }
+  },
+  "Eternal Life Flask": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 45,
+      "charges_per_use": 15,
+      "duration": 20,
+      "life_per_use": 2080
+    }
+  },
+  "Medium Life Flask": {
+    "drop_level": 3,
+    "implicits": [
+      null,
+      "Effect is removed when Hit by a Player"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 28,
+      "charges_per_use": 8,
+      "duration": 50,
+      "life_per_use": 130
+    }
+  },
+  "Large Life Flask": {
+    "drop_level": 6,
+    "implicits": [
+      null,
+      "Effect is removed when Hit by a Player"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 30,
+      "charges_per_use": 9,
+      "duration": 60,
+      "life_per_use": 200
+    }
+  },
+  "Greater Life Flask": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 32,
+      "charges_per_use": 10,
+      "duration": 35,
+      "life_per_use": 360
+    }
+  },
+  "Grand Life Flask": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 25,
+      "charges_per_use": 10,
+      "duration": 30,
+      "life_per_use": 640
+    }
+  },
+  "Giant Life Flask": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 30,
+      "charges_per_use": 10,
+      "duration": 40,
+      "life_per_use": 830
+    }
+  },
+  "Colossal Life Flask": {
+    "drop_level": 30,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 32,
+      "charges_per_use": 10,
+      "duration": 35,
+      "life_per_use": 1000
+    }
+  },
+  "Sacred Life Flask": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 25,
+      "charges_per_use": 10,
+      "duration": 30,
+      "life_per_use": 1200
+    }
+  },
+  "Hallowed Life Flask": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "charges_max": 30,
+      "charges_per_use": 10,
+      "duration": 40,
+      "life_per_use": 1990
+    }
+  }
+}

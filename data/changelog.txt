@@ -1,17 +1,17 @@
-## Version .15.13 - Alpha Version - January/07/2024
+## Version .15.2 - Alpha Version - January/08/2024
 Modifications
-  * Fix Sextant Logic and New Data
-  
-  
+  * Replace POEDB API
+    * As this new API will be in a new format, files contain maps, itemcrafting  e actualtier will not work in new format
+    * You can delete them in your save folder, they will be regenerate in new format as soon you start WR or use this tools
+  * Retire Crafting Bases
+  * Base Data Reworked
+  * Sextant Crafting Improved
+ 
 ---
-
 
 ## Version .15.12 - Alpha Version - April/13/2022
 Modifications
   * GUI Improvement
-  
-  
-
 ---
 
 ## Version .15.11 - Alpha Version - April/11/2022

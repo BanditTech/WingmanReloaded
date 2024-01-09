@@ -1,0 +1,378 @@
+{
+  "Rusted Hatchet": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 11,
+      "physical_damage_min": 6,
+      "range": 11
+    }
+  },
+  "Tomahawk": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 46,
+      "physical_damage_min": 25,
+      "range": 11
+    }
+  },
+  "Wrist Chopper": {
+    "drop_level": 42,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 79,
+      "physical_damage_min": 26,
+      "range": 11
+    }
+  },
+  "War Axe": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 65,
+      "physical_damage_min": 35,
+      "range": 11
+    }
+  },
+  "Chest Splitter": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 71,
+      "physical_damage_min": 24,
+      "range": 11
+    }
+  },
+  "Ceremonial Axe": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 83,
+      "physical_damage_min": 45,
+      "range": 11
+    }
+  },
+  "Wraith Axe": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 75,
+      "physical_damage_min": 45,
+      "range": 11
+    }
+  },
+  "Karui Axe": {
+    "drop_level": 57,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 77,
+      "physical_damage_min": 49,
+      "range": 11
+    }
+  },
+  "Siege Axe": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 70,
+      "physical_damage_min": 38,
+      "range": 11
+    }
+  },
+  "Reaver Axe": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 114,
+      "physical_damage_min": 38,
+      "range": 11
+    }
+  },
+  "Butcher Axe": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 87,
+      "physical_damage_min": 47,
+      "range": 11
+    }
+  },
+  "Jade Hatchet": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 15,
+      "physical_damage_min": 10,
+      "range": 11
+    }
+  },
+  "Vaal Hatchet": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 90,
+      "physical_damage_min": 30,
+      "range": 11
+    }
+  },
+  "Royal Axe": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 100,
+      "physical_damage_min": 54,
+      "range": 11
+    }
+  },
+  "Infernal Axe": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 85,
+      "physical_damage_min": 51,
+      "range": 11
+    }
+  },
+  "Boarding Axe": {
+    "drop_level": 11,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 21,
+      "physical_damage_min": 11,
+      "range": 11
+    }
+  },
+  "Cleaver": {
+    "drop_level": 16,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 35,
+      "physical_damage_min": 12,
+      "range": 11
+    }
+  },
+  "Broad Axe": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 34,
+      "physical_damage_min": 19,
+      "range": 11
+    }
+  },
+  "Arming Axe": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 42,
+      "physical_damage_min": 14,
+      "range": 11
+    }
+  },
+  "Decorative Axe": {
+    "drop_level": 29,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 50,
+      "physical_damage_min": 27,
+      "range": 11
+    }
+  },
+  "Spectral Axe": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 48,
+      "physical_damage_min": 29,
+      "range": 11
+    }
+  },
+  "Jasper Axe": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 50,
+      "physical_damage_min": 32,
+      "range": 11
+    }
+  },
+  "Maltreatment Axe": {
+    "drop_level": 30,
+    "implicits": [
+      "+10 to Maximum Rage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 39,
+      "physical_damage_min": 19,
+      "range": 11
+    }
+  },
+  "Disapprobation Axe": {
+    "drop_level": 50,
+    "implicits": [
+      "+15 to Maximum Rage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 60,
+      "physical_damage_min": 29,
+      "range": 11
+    }
+  },
+  "Psychotic Axe": {
+    "drop_level": 70,
+    "implicits": [
+      "+20 to Maximum Rage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 71,
+      "physical_damage_min": 34,
+      "range": 11
+    }
+  },
+  "Etched Hatchet": {
+    "drop_level": 35,
+    "implicits": [
+      "8% increased Global Physical Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 46,
+      "physical_damage_min": 26,
+      "range": 11
+    }
+  },
+  "Engraved Hatchet": {
+    "drop_level": 56,
+    "implicits": [
+      "8% increased Global Physical Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 71,
+      "physical_damage_min": 40,
+      "range": 11
+    }
+  },
+  "Runic Hatchet": {
+    "drop_level": 71,
+    "implicits": [
+      "12% increased Global Physical Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 79,
+      "physical_damage_min": 44,
+      "range": 11
+    }
+  }
+}

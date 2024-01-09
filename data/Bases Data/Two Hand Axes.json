@@ -1,0 +1,343 @@
+{
+  "Stone Axe": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 20,
+      "physical_damage_min": 12,
+      "range": 13
+    }
+  },
+  "Headsman Axe": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 92,
+      "physical_damage_min": 61,
+      "range": 13
+    }
+  },
+  "Labrys": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 123,
+      "physical_damage_min": 74,
+      "range": 13
+    }
+  },
+  "Noble Axe": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 103,
+      "physical_damage_min": 76,
+      "range": 13
+    }
+  },
+  "Abyssal Axe": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 121,
+      "physical_damage_min": 81,
+      "range": 13
+    }
+  },
+  "Karui Chopper": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 952,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 189,
+      "physical_damage_min": 121,
+      "range": 13
+    }
+  },
+  "Sundering Axe": {
+    "drop_level": 60,
+    "implicits": [
+      "+20% to Damage over Time Multiplier for Bleeding"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 155,
+      "physical_damage_min": 74,
+      "range": 13
+    }
+  },
+  "Ezomyte Axe": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 570,
+      "physical_damage_max": 131,
+      "physical_damage_min": 87,
+      "range": 13
+    }
+  },
+  "Vaal Axe": {
+    "drop_level": 64,
+    "implicits": [
+      "25% chance to Maim on Hit"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 174,
+      "physical_damage_min": 104,
+      "range": 13
+    }
+  },
+  "Despot Axe": {
+    "drop_level": 66,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 122,
+      "physical_damage_min": 90,
+      "range": 13
+    }
+  },
+  "Void Axe": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 144,
+      "physical_damage_min": 96,
+      "range": 13
+    }
+  },
+  "Jade Chopper": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 30,
+      "physical_damage_min": 19,
+      "range": 13
+    }
+  },
+  "Woodsplitter": {
+    "drop_level": 13,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 39,
+      "physical_damage_min": 19,
+      "range": 13
+    }
+  },
+  "Poleaxe": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 43,
+      "physical_damage_min": 29,
+      "range": 13
+    }
+  },
+  "Double Axe": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 60,
+      "physical_damage_min": 36,
+      "range": 13
+    }
+  },
+  "Gilded Axe": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 58,
+      "physical_damage_min": 43,
+      "range": 13
+    }
+  },
+  "Shadow Axe": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 73,
+      "physical_damage_min": 49,
+      "range": 13
+    }
+  },
+  "Jasper Chopper": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 91,
+      "physical_damage_min": 58,
+      "range": 13
+    }
+  },
+  "Timber Axe": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 99,
+      "physical_damage_min": 48,
+      "range": 13
+    }
+  },
+  "Prime Cleaver": {
+    "drop_level": 30,
+    "implicits": [
+      "+20% to Maximum Quality"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 61,
+      "physical_damage_min": 39,
+      "range": 13
+    }
+  },
+  "Honed Cleaver": {
+    "drop_level": 50,
+    "implicits": [
+      "+30% to Maximum Quality"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 95,
+      "physical_damage_min": 60,
+      "range": 13
+    }
+  },
+  "Apex Cleaver": {
+    "drop_level": 70,
+    "implicits": [
+      "+40% to Maximum Quality"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 111,
+      "physical_damage_min": 71,
+      "range": 13
+    }
+  },
+  "Dagger Axe": {
+    "drop_level": 36,
+    "implicits": [
+      "50% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 83,
+      "physical_damage_min": 53,
+      "range": 13
+    }
+  },
+  "Talon Axe": {
+    "drop_level": 59,
+    "implicits": [
+      "50% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 138,
+      "physical_damage_min": 88,
+      "range": 13
+    }
+  },
+  "Fleshripper": {
+    "drop_level": 70,
+    "implicits": [
+      "50% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 152,
+      "physical_damage_min": 97,
+      "range": 13
+    }
+  }
+}

@@ -19,7 +19,7 @@
 	OldLoc := ThisLoc
 	Log("Zone Change ",Strings*)
 	If (RunRefresh) {
-		CraftingBasesRequest(YesCraftingBaseAutoUpdateOnZone)
+		;CraftingBasesRequest(YesCraftingBaseAutoUpdateOnZone)
 	}
 	#Include *i %A_ScriptDir%\save\MyCustomZoneChange.ahk
 }

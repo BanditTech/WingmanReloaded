@@ -1,0 +1,228 @@
+{
+  "Rusted Stalker Sentinel": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Bronze Stalker Sentinel": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Cobalt Stalker Sentinel": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Brimstone Stalker Sentinel": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Emberstone Stalker Sentinel": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Obsidian Stalker Sentinel": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Bronze Pandemonium Sentinel": {
+    "drop_level": 40,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Cobalt Pandemonium Sentinel": {
+    "drop_level": 46,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Brimstone Pandemonium Sentinel": {
+    "drop_level": 54,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Emberstone Pandemonium Sentinel": {
+    "drop_level": 62,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Obsidian Pandemonium Sentinel": {
+    "drop_level": 68,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Bronze Apex Sentinel": {
+    "drop_level": 24,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Cobalt Apex Sentinel": {
+    "drop_level": 36,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Brimstone Apex Sentinel": {
+    "drop_level": 48,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Emberstone Apex Sentinel": {
+    "drop_level": 58,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Obsidian Apex Sentinel": {
+    "drop_level": 66,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Cryptic Stalker Sentinel": {
+    "drop_level": 2,
+    "implicits": [
+      "Beams Chain an additional time"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Primeval Stalker Sentinel": {
+    "drop_level": 68,
+    "implicits": [
+      "(30-40)% increased Cast Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Ancient Stalker Sentinel": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-15)% increased Empowerment"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Cryptic Pandemonium Sentinel": {
+    "drop_level": 40,
+    "implicits": [
+      "(30-40)% increased Chaining range",
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Primeval Pandemonium Sentinel": {
+    "drop_level": 68,
+    "implicits": [
+      "Fires an additional Beam",
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Ancient Pandemonium Sentinel": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-15)% increased Empowerment",
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Cryptic Apex Sentinel": {
+    "drop_level": 24,
+    "implicits": [
+      "Empowers +2 Enemies",
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Primeval Apex Sentinel": {
+    "drop_level": 68,
+    "implicits": [
+      "(10-15)% chance for Rewards to be Doubled",
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Ancient Apex Sentinel": {
+    "drop_level": 80,
+    "implicits": [
+      "(10-15)% increased Empowerment",
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  },
+  "Cosmic Apex Sentinel": {
+    "drop_level": 75,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {}
+  }
+}

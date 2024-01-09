@@ -63,25 +63,27 @@ class ItemBuild extends ItemScan
 		This.MatchAffixes(This.Data.Blocks.Affix)
 		This.MatchBase2Slot()
 		This.MatchChaosRegal()
-		This.MatchCraftingBases(True)
+		;This.MatchCraftingBases(True)
 	}
 	MatchBaseType(){
-		For k, v in Bases
+		For k, v in BasesWR
 		{
-			If (v["name"] = This.Prop.ItemBase)
-			{
-				This.Prop.DropLevel := v["drop_level"]
-				This.Prop.ItemClass := v["item_class"]
-
-				If InStr(This.Prop.ItemClass, "Ring")
-					This.Prop.Ring := True
-				If InStr(This.Prop.ItemClass, "Amulet")
-					This.Prop.Amulet := True
-				If InStr(This.Prop.ItemClass, "Belt")
-					This.Prop.Belt := True
-				If (This.Prop.ItemClass = "Support Skill Gem")
-					This.Prop.Support := True
-				Break
+			for a, b in v{
+				If (a == This.Prop.ItemBase)
+					{
+						This.Prop.DropLevel := b["drop_level"]
+						This.Prop.ItemClass := k
+		
+						If InStr(This.Prop.ItemClass, "Ring")
+							This.Prop.Ring := True
+						If InStr(This.Prop.ItemClass, "Amulet")
+							This.Prop.Amulet := True
+						If InStr(This.Prop.ItemClass, "Belt")
+							This.Prop.Belt := True
+						If (This.Prop.ItemClass = "Support Skill Gem")
+							This.Prop.Support := True
+						Break
+					}
 			}
 		}
 	}

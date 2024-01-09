@@ -1,0 +1,226 @@
+{
+  "SanctumMaximumResolvePercent1": {
+    "generation_type": "Prefix",
+    "name": "Motivating",
+    "required_level": 1,
+    "text": "(5-8)% increased Maximum Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolvePercent2": {
+    "generation_type": "Prefix",
+    "name": "Rallying",
+    "required_level": 74,
+    "text": "(9-12)% increased Maximum Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolvePercent3": {
+    "generation_type": "Prefix",
+    "name": "Heartening",
+    "required_level": 78,
+    "text": "(13-16)% increased Maximum Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolvePercent4": {
+    "generation_type": "Prefix",
+    "name": "Encouraging",
+    "required_level": 82,
+    "text": "(17-20)% increased Maximum Resolve",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolvePercent5": {
+    "generation_type": "Prefix",
+    "name": "Auspicious",
+    "required_level": 85,
+    "text": "(21-25)% increased Maximum Resolve",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumMonstersIncreasedDamageTaken1": {
+    "generation_type": "Prefix",
+    "name": "Crushing",
+    "required_level": 1,
+    "text": "Monsters take (5-7)% increased Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMonstersIncreasedDamageTaken2": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 78,
+    "text": "Monsters take (8-10)% increased Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMonstersIncreasedDamageTaken3": {
+    "generation_type": "Prefix",
+    "name": "Annihilating",
+    "required_level": 85,
+    "text": "Monsters take (11-15)% increased Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumShieldOnGainingAffliction1": {
+    "generation_type": "Prefix",
+    "name": "Adaptable",
+    "required_level": 1,
+    "text": "Gain (5-6) Inspiration when you receive an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumShieldOnGainingAffliction2": {
+    "generation_type": "Prefix",
+    "name": "Tenacious",
+    "required_level": 74,
+    "text": "Gain (7-9) Inspiration when you receive an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumShieldOnGainingAffliction3": {
+    "generation_type": "Prefix",
+    "name": "Resilient",
+    "required_level": 80,
+    "text": "Gain (10-12) Inspiration when you receive an Affliction",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumShieldOnGainingAffliction4": {
+    "generation_type": "Prefix",
+    "name": "Iron-Willed",
+    "required_level": 85,
+    "text": "Gain (13-15) Inspiration when you receive an Affliction",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance1": {
+    "generation_type": "Suffix",
+    "name": "of Devotion",
+    "required_level": 1,
+    "text": "3% chance to Avoid gaining an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance2": {
+    "generation_type": "Suffix",
+    "name": "of Piousness",
+    "required_level": 74,
+    "text": "4% chance to Avoid gaining an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance3": {
+    "generation_type": "Suffix",
+    "name": "of Righteousness",
+    "required_level": 80,
+    "text": "5% chance to Avoid gaining an Affliction",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance4": {
+    "generation_type": "Suffix",
+    "name": "of Sainthood",
+    "required_level": 85,
+    "text": "(6-7)% chance to Avoid gaining an Affliction",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolveOnBossKill1": {
+    "generation_type": "Suffix",
+    "name": "of Empowerment",
+    "required_level": 1,
+    "text": "Gain (20-29) Maximum Resolve when you kill a Boss",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolveOnBossKill2": {
+    "generation_type": "Suffix",
+    "name": "of Championship",
+    "required_level": 78,
+    "text": "Gain (30-39) Maximum Resolve when you kill a Boss",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolveOnBossKill3": {
+    "generation_type": "Suffix",
+    "name": "of Victory",
+    "required_level": 85,
+    "text": "Gain (40-49) Maximum Resolve when you kill a Boss",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolveOnFountainUse1": {
+    "generation_type": "Suffix",
+    "name": "of Refreshment",
+    "required_level": 1,
+    "text": "Gain (11-15) Maximum Resolve when you use a Fountain",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolveOnFountainUse2": {
+    "generation_type": "Suffix",
+    "name": "of Convalescence",
+    "required_level": 78,
+    "text": "Gain (16-20) Maximum Resolve when you use a Fountain",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMaximumResolveOnFountainUse3": {
+    "generation_type": "Suffix",
+    "name": "of Youth",
+    "required_level": 85,
+    "text": "Gain (21-25) Maximum Resolve when you use a Fountain",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumMonstersReducedDamage1": {
+    "generation_type": "Suffix",
+    "name": "of Resistance",
+    "required_level": 1,
+    "text": "Monsters impact 4% reduced Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMonstersReducedDamage2": {
+    "generation_type": "Suffix",
+    "name": "of Fortification",
+    "required_level": 78,
+    "text": "Monsters impact 5% reduced Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumMonstersReducedDamage3": {
+    "generation_type": "Suffix",
+    "name": "of Impenetrability",
+    "required_level": 85,
+    "text": "Monsters impact (7-6)% reduced Resolve",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumRelicQuantity1": {
+    "generation_type": "Suffix",
+    "name": "of Discovery",
+    "required_level": 1,
+    "text": "(11-15)% increased Quantity of Relics Dropped by Monsters",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "SanctumRelicQuantity2": {
+    "generation_type": "Suffix",
+    "name": "of Learning",
+    "required_level": 78,
+    "text": "(16-20)% increased Quantity of Relics Dropped by Monsters",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "SanctumRelicQuantity3": {
+    "generation_type": "Suffix",
+    "name": "of Investigation",
+    "required_level": 85,
+    "text": "(21-25)% increased Quantity of Relics Dropped by Monsters",
+    "weight": 30,
+    "influence": "Normal"
+  }
+}

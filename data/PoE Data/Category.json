@@ -1,0 +1,238 @@
+{
+  "Abyss Jewels": [
+    "Hypnotic Eye Jewel",
+    "Murderous Eye Jewel",
+    "Searching Eye Jewel",
+    "Ghastly Eye Jewel"
+  ],
+  "Amulets": [
+    "Amulets"
+  ],
+  "Belts": [
+    "Belts"
+  ],
+  "Blueprints": [
+    "Blueprints"
+  ],
+  "Body Armours": [
+    "dex_armour",
+    "dex_int_armour",
+    "int_armour",
+    "str_armour",
+    "str_dex_armour",
+    "str_int_armour",
+    "str_dex_int_armour"
+  ],
+  "Boots": [
+    "dex_armour",
+    "dex_int_armour",
+    "int_armour",
+    "str_armour",
+    "str_dex_armour",
+    "str_int_armour",
+    "ward_armour"
+  ],
+  "Bows": [
+    "Bows"
+  ],
+  "Claws": [
+    "Claws"
+  ],
+  "Contracts": [
+    "Contracts"
+  ],
+  "Daggers": [
+    "Daggers"
+  ],
+  "Expedition Logbooks": [
+    "Expedition Logbooks"
+  ],
+  "Fishing Rods": [
+    "Fishing Rods"
+  ],
+  "Gloves": [
+    "dex_armour",
+    "dex_int_armour",
+    "int_armour",
+    "str_armour",
+    "str_dex_armour",
+    "str_int_armour",
+    "ward_armour"
+  ],
+  "Heist Brooches": [
+    "Heist Brooches"
+  ],
+  "Heist Cloaks": [
+    "Heist Cloaks"
+  ],
+  "Heist Gear": [
+    "heist_equipment_weapon,heist_equipment_caster,heist_equipment,default",
+    "heist_equipment_weapon,heist_equipment_melee,heist_equipment,default",
+    "heist_equipment_weapon,heist_equipment_ranged,heist_equipment,default"
+  ],
+  "Heist Tools": [
+    "heist_equipment_agility,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_bruteforce,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_counterthaumaturge,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_deception,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_demolition,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_engineering,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_lockpick,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_perception,heist_equipment_tool,heist_equipment,default",
+    "heist_equipment_trapdisarmament,heist_equipment_tool,heist_equipment,default"
+  ],
+  "Helmets": [
+    "dex_armour",
+    "dex_int_armour",
+    "int_armour",
+    "str_armour",
+    "str_dex_armour",
+    "str_int_armour",
+    "ward_armour"
+  ],
+  "Hybrid Flasks": [
+    "Hybrid Flasks"
+  ],
+  "Jewels": [
+    "Prismatic Jewel",
+    "Crimson Jewel",
+    "Cobalt Jewel",
+    "Viridian Jewel"
+  ],
+  "Life Flasks": [
+    "Life Flasks"
+  ],
+  "Mana Flasks": [
+    "Mana Flasks"
+  ],
+  "Maps": [
+    "low_tier_map",
+    "mid_tier_map",
+    "top_tier_map"
+  ],
+  "One Hand Axes": [
+    "One Hand Axes"
+  ],
+  "One Hand Maces": [
+    "One Hand Maces"
+  ],
+  "One Hand Swords": [
+    "One Hand Swords"
+  ],
+  "Quivers": [
+    "Quivers"
+  ],
+  "Relics": [
+    "large_sanctum_relic,default",
+    "medium_sanctum_relic,default",
+    "small_sanctum_relic,default"
+  ],
+  "Rings": [
+    "Rings",
+    "Bone Ring",
+    "Unset Ring"
+  ],
+  "Rune Daggers": [
+    "Rune Daggers"
+  ],
+  "Sanctified Relics": [
+    "dex_special_relic,default",
+    "int_special_relic,default",
+    "str_special_relic,default"
+  ],
+  "Sceptres": [
+    "Sceptres"
+  ],
+  "Shields": [
+    "dex_armour",
+    "dex_int_armour",
+    "int_armour",
+    "str_armour",
+    "str_dex_armour",
+    "str_int_armour"
+  ],
+  "Staves": [
+    "Staves"
+  ],
+  "Thrusting One Hand Swords": [
+    "Thrusting One Hand Swords"
+  ],
+  "Two Hand Axes": [
+    "Two Hand Axes"
+  ],
+  "Two Hand Maces": [
+    "Two Hand Maces"
+  ],
+  "Two Hand Swords": [
+    "Two Hand Swords"
+  ],
+  "Utility Flasks": [
+    "Iron Flask",
+    "Utility Flasks"
+  ],
+  "Wands": [
+    "Convoking Wand",
+    "Wands"
+  ],
+  "Warstaves": [
+    "Warstaves"
+  ],
+  "Small Cluster Jewels": [
+    "affliction_maximum_life",
+    "affliction_chance_to_dodge_attacks",
+    "affliction_cold_resistance",
+    "affliction_chaos_resistance",
+    "affliction_armour",
+    "affliction_evasion",
+    "affliction_fire_resistance",
+    "affliction_maximum_mana",
+    "affliction_curse_effect_small",
+    "affliction_maximum_energy_shield",
+    "affliction_lightning_resistance",
+    "affliction_reservation_efficiency_small"
+  ],
+  "Medium Cluster Jewels": [
+    "affliction_area_damage",
+    "affliction_brand_damage",
+    "affliction_channelling_skill_damage",
+    "affliction_critical_chance",
+    "affliction_fire_damage_over_time_multiplier",
+    "affliction_chaos_damage_over_time_multiplier",
+    "affliction_physical_damage_over_time_multiplier",
+    "affliction_cold_damage_over_time_multiplier",
+    "affliction_damage_over_time_multiplier",
+    "affliction_effect_of_non-damaging_ailments",
+    "affliction_life_and_mana_recovery_from_flasks",
+    "affliction_flask_duration",
+    "affliction_damage_while_you_have_a_herald",
+    "affliction_minion_damage_while_you_have_a_herald",
+    "affliction_minion_life",
+    "affliction_projectile_damage",
+    "affliction_totem_damage",
+    "affliction_trap_and_mine_damage",
+    "affliction_warcry_buff_effect"
+  ],
+  "Large Cluster Jewels": [
+    "affliction_axe_and_sword_damage",
+    "affliction_mace_and_staff_damage",
+    "affliction_dagger_and_claw_damage",
+    "affliction_bow_damage",
+    "affliction_wand_damage",
+    "affliction_damage_with_two_handed_melee_weapons",
+    "affliction_attack_damage_while_dual_wielding_",
+    "affliction_attack_damage_while_holding_a_shield",
+    "affliction_attack_damage_",
+    "affliction_spell_damage",
+    "affliction_chaos_damage",
+    "affliction_cold_damage",
+    "affliction_elemental_damage",
+    "affliction_fire_damage",
+    "affliction_lightning_damage",
+    "affliction_minion_damage",
+    "affliction_physical_damage"
+  ],
+  "Sextant": [
+    "Elevated Sextant",
+    "Awakened Sextant"
+  ]
+}
