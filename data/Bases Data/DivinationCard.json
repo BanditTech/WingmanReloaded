@@ -3,2670 +3,5340 @@
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Vaal Cold Snap}\r\n<default>{Quality:} <augmented>{+20%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Dab of Ink": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Poet's Pen}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Dusty Memory": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Item}\r\n<default>{Item Level:} <normal>{100}\r\n<fractured>{Fractured}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Familiar Call": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Jewellery of Farrul}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Shaper + Hunter Item}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Fate Worse Than Death": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Cortex}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Modest Request": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Megalomaniac}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Mother's Parting Gift": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Fertile Mind}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Note in the Wind": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Asenath's Mark}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Sea of Blue": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{13x Orb of Alteration}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "A Stone Perfected": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Jewel}\r\n<magicitem>{Primordial}\r\n<corrupted>{1-2 Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Abandoned Wealth": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{3x Exalted Orb}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Acclimatisation": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{20x Orb of Alteration}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Akil's Prophecy": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Elegant Round Shield}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Alivia's Grace": {
     "drop_level": 48,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Queen of the Forest}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Alluring Bounty": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Exalted Orb}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Alone in the Darkness": {
     "drop_level": 33,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Delve Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Altered Perception": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Simulacrum}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Ambitious Obsession": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Skittering Delirium Orb}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Anarchy's Price": {
     "drop_level": 48,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Voltaxic Rift}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 13,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Arrogance of the Vaal": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Item}\r\n <corrupted>{Two-Implicit}\r\n <corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Assassin's Favour": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Dagger}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Assassin's Gift": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Divinarius}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Astral Protection": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Shield}\r\n<default>{Shaper Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Atziri's Arsenal": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Weapon}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Audacity": {
     "drop_level": 52,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Doryani's Fist}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Auspicious Ambitions": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Experimented Item}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Double-Influenced Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Azure Rage": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Punishing Map}\r\n<default>{Map Tier:} <normal>{16}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Azyran's Reward": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Prismatic Jewel}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Baited Expectations": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Fishing Item}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Beauty Through Death": {
     "drop_level": 56,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Atziri's Reflection}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Bijoux": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Cluster Jewel}\r\n<default>{Item Level:} <normal>{84}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Birth of the Three": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Goddess Bound}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Blessing of God": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Elreon's Jewellery}\r\n<default>{Item Level:} <normal>{85}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Blind Venture": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Ring}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Boon of Justice": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Offering to the Goddess}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Boon of the First Ones": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Bestiary Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Boundless Realms": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Map}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Bowyer's Dream": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Harbinger Bow}\r\n<default>{Item Level:} <normal>{91}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Broken Promises": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Diamond Ring}\r\n<default>{Item Level:} <normal>{87}\r\n<enchanted>{Two-Implicit}\r\n<enchanted>{Synthesised}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Broken Truce": {
     "drop_level": 62,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Cold Iron Point}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Brotherhood in Exile": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{One With Nothing}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Brother's Gift": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Divine Orb}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Brother's Stash": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Exalted Orb}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Brush, Paint and Palette": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<divination>{The Artist}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Buried Treasure": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Sulphite Scarab}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Burning Blood": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Xoph's Blood}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Call to the First Ones": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Tier 1 Talisman}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Cameria's Cut": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Scarab}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Cartographer's Delight": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<normal>{Map}\r\n<default>{Map Tier:} <normal>{5}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Chaotic Disposition": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Chaos Orb}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Chasing Risk": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Synthesis Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Checkmate": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{76x Simulacrum Splinter}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Choking Guilt": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Stranglegasp}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Costly Curio": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Item}\r\n<default>{Double-Influenced Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Council of Cats": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Farrul Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Coveted Possession": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Regal Orb}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Cursed Words": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Maw of Mischief}",
+      "directions": "",
+      "stack_size": 13,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Dark Dreams": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Bone Helmet}\r\n<default>{Elder Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Dark Temptation": {
     "drop_level": 44,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Obliteration}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Darker Half": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Eldritch Chaos Orb}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Deadly Joy": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Torrent's Reclamation}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Death": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Mon'tregul's Grasp}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Deathly Designs": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Trap Gem}\r\n<default>{Quality:} <augmented>{+23%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Dementophobia": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Delirium Orb}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Demigod's Wager": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Orb of Annulment}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Desecrated Virtue": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:29>{<gemitem>{Level 6 Awakened Support Gem}}\r\n<default>{Quality:} <augmented>{+23%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Desperate Crusade": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Prism Guardian}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Destined to Crumble": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Body Armour}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Dialla's Subjugation": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:31>{<gemitem>{Support Gem}\r\n<default>{Quality:} <augmented>{+23%}\r\n<corrupted>{Corrupted}}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Disdain": {
     "drop_level": 44,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Delirium Orb}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Divine Beauty": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{7x Divine Orb}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Divine Justice": {
     "drop_level": 56,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Doedre's Madness": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Doedre Item}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Doryani's Epiphany": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Draped in Dreams": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Astral Plate}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Influenced Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Duality": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Body Armour}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Double-Influenced Item}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Dying Anguish": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Dying Light": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Diamond Ring}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Shaper + Elder Item}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Earth Drinker": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Granite Flask}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Echoes of Love": {
     "drop_level": 41,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Fidelitas' Spike}\r\n <corrupted>{Two-Implicit}\r\n <corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Eldritch Perfection": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Item}\r\n<default>{Item Level:} <normal>{100}\r\n<enchanted>{Perfect Eldritch Implicit Modifier}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Emperor of Purity": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Holy Chainmail}\r\n<default>{Item Level:} <normal>{60}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Emperor's Luck": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Currency}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Endless Night": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Maloney's Mechanism}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Etched in Blood": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Rigwald's Quills}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Eternal Bonds": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Replica Cortex}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Ever-Changing": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Orb of Unmaking}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Fateful Meeting": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{League-Specific Item}\r\n<default>{Double-Influenced Item}\r\n<default>{Item Level:} <normal>{97}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Fire Of Unknown Origin": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Nimis}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Forbidden Power": {
     "drop_level": 45,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Balefire}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Friendship": {
     "drop_level": 34,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "From Bone to Ashes": {
     "drop_level": 55,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Ngamahu's Flame}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Further Invention": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Helmet}\r\n<default>{Double-Influenced Item}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Gemcutter's Mercy": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Exceptional Gem}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Gemcutter's Promise": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Gem}\r\n<default>{Quality:} <augmented>{+20%}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Gift of Asenath": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Asenath's Gentle Touch}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Gift of the Gemling Queen": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 20 Support Gem}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Glimmer of Hope": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Gold Ring}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Grave Knowledge": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Summon Raging Spirit}\r\n<default>{Quality:} <augmented>{+20%}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Guardian's Challenge": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Shaper Guardian Map}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Harmony of Souls": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{9x Shrieking Essence}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Haunting Shadows": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Metamorph Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Her Mask": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Sacrifice Fragment}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Heterochromia": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Two-Stone Ring}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "His Judgement": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Home": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Exceptional Gem}\r\n<default>{Quality:} <augmented>{+1-20%}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Hope": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Prismatic Ring}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "House of Mirrors": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Mirror of Kalandra}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Hubris": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Ring}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Humility": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Tabula Rasa}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Hunter's Resolve": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Bow}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Hunter's Reward": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Taming}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "I See Brothers": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{2x Fracturing Orb}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Immortal Resolve": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Linked Body Armour}\r\n<default>{Influenced Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Imperfect Memories": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Jewellery}\r\n<default>{Item Level:} <normal>{100}\r\n<enchanted>{Three-Implicit}\r\n<enchanted>{Synthesised}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Imperial Legacy": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Imperial Bow}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 22,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Jack in the Box": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Judging Voices": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Forbidden Shako}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Justified Ambition": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Synthesis Map}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Keeper's Corruption": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Eldritch Bone Helmet (Concentrated Effect)}\r\n<default>{Item Level:} <normal>{89}\r\n<default>{Elder Item}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lachrymal Necrosis": {
     "drop_level": 33,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Jewel}\r\n<enchanted>{Implicit Modifier:} \r\n<magicitem>{Corrupted Blood cannot be inflicted on you}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lantador's Lost Love": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Two-Stone Ring}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Last Hope": {
     "drop_level": 53,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Mortal Hope}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Left to Fate": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Map}\r\n<default>{Map Tier:} <normal>{16}\r\n<corrupted>{Unidentified Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lethean Temptation": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Nebulis}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Light and Truth": {
     "drop_level": 31,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Crystal Sceptre}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lingering Remnants": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Vaal Temple Map}\r\n<default>{Item Level:} <normal>{83}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 16,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lost Worlds": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Map}\r\n<default>{Map Tier:} <normal>{15}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Love Through Ice": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Unnatural Instinct}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Loyalty": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{3x Orb of Fusing}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Luck of the Vaal": {
     "drop_level": 47,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Vaal Gauntlets}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lucky Connections": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{20x Orb of Fusing}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lucky Deck": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Stacked Deck}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Luminous Trove": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Voices}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Lysah's Respite": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Agate Amulet}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Magnum Opus": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Item}\r\n<default>{Item Level:} <normal>{100}\r\n<enchanted>{Three-Implicit}\r\n<enchanted>{Synthesised}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Man With Bear": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Bestiary Scarab}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Matryoshka": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem> {Onyx Amulet}\r\n<size:25>{<default>{Item Level:} <normal>{85}\r\n<default>{Quality:} <augmented>{+20%}\r\n<default>{Influenced Item}\r\n<enchanted>{Four Anointments}\r\n<enchanted>{Incubating Talisman Item}\r\n<corrupted>{Corrupted}}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Mawr Blaidd": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Eyes of the Greatwolf}",
+      "directions": "",
+      "stack_size": 16,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Merciless Armament": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:31>{<magicitem>{Merciless Two-Hand Weapon}\r\n<default>{Item Level:} <normal>{100}}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Might is Right": {
     "drop_level": 30,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Trypanon}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Misery in Darkness": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Shroud of the Lightless}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Mitts": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Gloves}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Monochrome": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{2x Elevated Sextant}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "More is Never Enough": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Gilded Scarab}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "No Traces": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{30x Orb of Scouring}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Nook's Crown": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Bone Helmet}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Elder Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Parasitic Passengers": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Incubator}\r\n<default>{Item Level:} <normal>{84}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Peaceful Moments": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Timeless Jewel}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Perfection": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Jewellery}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Shaper Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Poisoned Faith": {
     "drop_level": 53,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Arakaali's Fang}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Prejudice": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Item}\r\n<default>{Influenced Item}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Pride Before the Fall": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Kaom's Heart}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Pride of the First Ones": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Farrul's Fur}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Prometheus' Armoury": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{One-Hand Weapon}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Double-Influenced Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Prosperity": {
     "drop_level": 61,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Perandus' Gold Ring}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Rain of Chaos": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Chaos Orb}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Rain Tempter": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Map}\r\n<default>{Map Tier:} <normal>{6}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Rats": {
     "drop_level": 41,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Rat's Nest}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Rebirth": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Charan's Sword}",
+      "directions": "",
+      "stack_size": 27,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Rebirth and Renewal": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Winged Scarab}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Reckless Ambition": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Omeyocan}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Remembrance": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Precursor's Emblem}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Sambodhi's Vow": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Mortal Fragment}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Sambodhi's Wisdom": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Armour}\r\n<default>{Quality:} <augmented>{+30%}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Scholar of the Seas": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Mao Kun}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Seven Years Bad Luck": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Mirror Shard}",
+      "directions": "",
+      "stack_size": 13,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Shard of Fate": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Vivid Jewel}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Silence and Frost": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Pandemonius}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Society's Remorse": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Orb of Alteration}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Something Dark": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Blueprint}\r\n<default>{Area Level:} <normal>{83}\r\n<default>{Fully Revealed}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Soul Quenched": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem> {Experimented Two-Handed Weapon}\r\n<default>{Item Level:} <normal>{86}\r\n<default>{Quality:} <augmented>{+30%}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Squandered Prosperity": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Perandus Manor}\r\n<default>{Voidstone Count:} <normal>{4}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Struck by Lightning": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Electrocuting Jewellery}\r\n<default>{Item Level:} <normal>{76}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Succor of the Sinless": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Bottled Faith}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Terrible Secret of Space": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Academic": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Inspired Learning}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Admirer": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Atziri Item}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Adventuring Spirit": {
     "drop_level": 39,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Victario's Influence}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Aesthete": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Shavronne Item}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Apothecary": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Mageblood}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Archmage's Right Hand": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Glyphic Prophecy Wand}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Arena Champion": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Map}\r\n<default>{Map Tier:} <normal>{12}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Army of Blood": {
     "drop_level": 26,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Bloodbond}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Artist": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 4 Enhance}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Aspirant": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Item}\r\n<default>{Elevated Item}\r\n<default>{Influenced Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Astromancer": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:27>{<uniqueitem>{The Eternity Shroud}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Avenger": {
     "drop_level": 45,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Mj\u00f6lner}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Awakened": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Jewellery}\r\n<default>{Item Level:} <normal>{86}\r\n<default>{Double-Influenced Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Bargain": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Battle Born": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Axe}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Bear Woman": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Fecund Ursine Pelt}\r\n<default>{Warlord Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Beast": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Belly of the Beast}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Betrayal": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Maligaro's Virtuosity}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Bitter Blossom": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Chaos Gem}\r\n<default>{Quality:} <augmented>{+23%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Blazing Fire": {
     "drop_level": 47,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Chin Sol}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Blessing of Moosh": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Body": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Body Armour}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Bones": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Vaal Summon Skeletons}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Brawny Battle Mage": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Merciless Tornado Wand}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Breach": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Breach Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Brittle Emperor": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Voll's Devotion}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Cache": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Jewellery}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Cacophony": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{3x Deafening Essence}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Calling": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Beyond Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Card Sharp": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Divination Scarab}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Carrion Crow": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Life Armour}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Cartographer": {
     "drop_level": 39,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Cartographer's Chisel}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Cataclysm": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Spell Gem}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 13,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Catalyst": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Vaal Orb}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Catch": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Fishing Rod}\r\n<enchanted>{Incubated}\r\n<default>{Item Level:} <normal>{99}",
+      "directions": "",
+      "stack_size": 18,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Celestial Justicar": {
     "drop_level": 47,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Astral Plate}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Celestial Stone": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Opal Ring}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Shaper Item}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Chains that Bind": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Body Armour}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Cheater": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:30>{<gemitem>{Level 6 Awakened Support Gem}}\r\n<default>{Quality:} <augmented>{+20%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Chosen": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Skin of the Lords}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Coming Storm": {
     "drop_level": 45,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Lightning Coil}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Conduit": {
     "drop_level": 52,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Doryani's Fist}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Craving": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Unending Hunger}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Cursed King": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Rigwald's Curse}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Damned": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Soul Ripper}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Dapper Prodigy": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Body Armour}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Dark Mage": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Staff}\r\n<default>{Item Level:} <normal>{55}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Darkest Dream": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Severed in Sleep}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Deal": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Cartography Scarab}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Deceiver": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Belt of the Deceiver}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Deep Ones": {
     "drop_level": 49,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Tidebreaker}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Demon": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Headhunter}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Demoness": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Death's Hand}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Destination": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Watcher's Eye}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Devastator": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Atziri's Disfavour}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Doctor": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Headhunter}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Doppelganger": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Mirror Arrow}\r\n<default>{Quality:} <augmented>{+20%}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Dragon": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Coruscating Elixir}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Dragon's Heart": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 4 Empower}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Dreamer": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Chayula Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Dreamland": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Poorjoy's Asylum}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Drunken Aristocrat": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Divination Distillate}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Dungeon Master": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Belt}\r\n<default>{Double-Influenced Item}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Easy Stroll": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Map}\r\n<default>{Map Tier:} <normal>{15}\r\n<default>{Modifiers:} <normal>{8}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Eldritch Decay": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Uber Elder Fragment}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Emptiness": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Vaal Breach}\r\n<default>{Quality:} <augmented>{+6%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Encroaching Darkness": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Map}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Endless Darkness": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Voidforge}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Endurance": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Vivid Crimson Jewel}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Enforcer": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Spiked Gloves of the Conquest (Culling Strike)}\r\n<default>{Item Level:} <normal>{86}\r\n<default>{Warlord Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Enlightened": {
     "drop_level": 60,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 3 Enlighten}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Enthusiasts": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Victario's Influence}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Escape": {
     "drop_level": 56,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Seven-League Step}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Eternal War": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Timeless Jewel}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Ethereal": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Vaal Regalia}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Explorer": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Map}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Eye of Terror": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Chayula's Flawless Breachstone}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Eye of the Dragon": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Jewel}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fathomless Depths": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Lightpoacher}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Feast": {
     "drop_level": 45,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Romira's Banquet}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fiend": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Headhunter}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Finishing Touch": {
     "drop_level": 60,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{1x Fertile Catalyst}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fishmonger": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Albino Rhoa Feather}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fletcher": {
     "drop_level": 27,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Drillneck}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Flora's Gift": {
     "drop_level": 60,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Five-Link Staff}\r\n<default>{Item Level:} <normal>{66}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fool": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{20x Orb of Chance}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Forgotten Treasure": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Leather Belt}\r\n<default>{Double-Influenced Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Formless Sea": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Varunastra}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Forsaken": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Umbilicus Immortalis}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fortunate": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{2x Divine Orb}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Forward Gaze": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Replica Item}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fox": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 20 Gem}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Fox in the Brambles": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Bramblejack}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Gambler": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<divination>{Divination Card}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Garish Power": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Jewel}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Gemcutter": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Gemcutter's Prism}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Gentleman": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Sword}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Gladiator": {
     "drop_level": 55,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Nightmare Bascinet}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Golden Era": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Flaring Eclipse Staff}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Greatest Intentions": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Saviour}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Gulf": {
     "drop_level": 86,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Thread of Hope}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Hale Heart": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Item}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Elder Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Harvester": {
     "drop_level": 28,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Harvest}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Hermit": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Lifesprig}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Heroic Shot": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{17x Chromatic Orb}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Hive of Knowledge": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Machina Mitts}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Hoarder": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Exalted Orb}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Hook": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Hunger": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Taste of Hate}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Immortal": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<divination>{House of Mirrors}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Incantation": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Whispering Ice}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Innocent": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{40x Orb of Regret}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Inoculated": {
     "drop_level": 59,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Seraphim's Armour}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Insane Cat": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Mageblood}\r\n<default>{Item Level:} <normal>{84}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Insatiable": {
     "drop_level": 28,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Harvest}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Inventor": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Vaal Orb}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Rusted Bard": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{4x Tainted Mythic Orb}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Jester": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:31>{<magicitem>{Merciless One-Hand Weapon}\r\n<default>{Item Level:} <normal>{100}}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Jeweller's Boon": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Five-Linked Body Armour}\r\n<default>{Influenced Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Journalist": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Helmet}\r\n<default>{Double-Veiled Item}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Journey": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Harbinger's Orb}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The King's Blade": {
     "drop_level": 60,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:31>{<magicitem>{Bloodthirsty Eternal Sword}\r\n<default>{Item Level:} <normal>{66}}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The King's Heart": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Kaom's Heart}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Landing": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Beachhead}\r\n<default>{Map Tier:} <normal>{15}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Last One Standing": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Atziri's Disfavour}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Last Supper": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Bino's Kitchen Knife}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Leviathan": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Maven Item}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Lich": {
     "drop_level": 30,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Midnight Bargain}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Life Thief": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Zerphi's Heart}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Lion": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Lioneye Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Long Con": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Elderslayer's Exalted Orb}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Long Watch": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Lord in Black": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Ring of Bameth}\r\n<default>{Item Level:} <normal>{83}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Lord of Celebration": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Sceptre of Celebration}\r\n<default>{Shaper Item}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Lover": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Jewellery}\r\n<default>{Item Level:} <normal>{79}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Lunaris Priestess": {
     "drop_level": 37,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Sire of Shards}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Mad King": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Ultimatum Aspect}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Magma Crab": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Vaal Molten Shell}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Master": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Bisco's Collar}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Master Artisan": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{20x Quality Currency}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Mayor": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Perandus Manor}\r\n<default>{Voidstone Count:} <normal>{4}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Mercenary": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Shield}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Messenger": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Harbinger Piece}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Metalsmith's Gift": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Prismatic Ring}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Mind's Eyes": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Astral Projector}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Mountain": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Jewel of Potency}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Nurse": {
     "drop_level": 30,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<divination>{The Doctor}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Oath": {
     "drop_level": 47,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Death's Oath}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Obscured": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<normal>{Breachstone}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Offering": {
     "drop_level": 47,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Shavronne's Wrappings}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Offspring": {
     "drop_level": 32,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Ryslatha's Coil}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Old Man": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Fishing Rod}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The One That Got Away": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Replica Bated Breath}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The One With All": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Le Heup of All}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Opulent": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Ring}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Pack Leader": {
     "drop_level": 48,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Alpha's Howl}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Pact": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Pledge of Hands}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Patient": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<divination>{The Nurse}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Penitent": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Unset Ring}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Poet": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Blood of Corruption}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Polymath": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Astramentis}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Porcupine": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Short Bow}\r\n<default>{Item Level:} <normal>{50}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Price of Devotion": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Mageblood}\r\n<default>{Quality:} <augmented>{+20%}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Price of Loyalty": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Skin of the Loyal}\r\n<size:26>{<default>{Item Level:} <normal>{25}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Price of Prescience": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Vaal Temple Map}\r\n<default>{Map Tier:} <normal>{16}\r\n<default>{Delirium:} <normal>{100%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Price of Protection": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:28>{<rareitem>{Elder Guardian Occupied Map}\r\n<default>{Map Tier:} <normal>{14 to 16}\r\n<default>{Modifiers:} <normal>{8}\r\n<corrupted>{Corrupted}}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Primordial": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Jewel}\r\n<magicitem>{Primordial}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Prince of Darkness": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Elegant Hubris}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Professor": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Putrid Cloister}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Progeny of Lunaris": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Dying Sun}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Puzzle": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Breachstone Splinter}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Queen": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Atziri's Acuity}",
+      "directions": "",
+      "stack_size": 16,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Rabbit's Foot": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Incursion Vial}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Rabid Rhoa": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Malicious Gemini Claw}\r\n<default>{Item Level:} <normal>{83}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Realm": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Portal}\r\n<default>{Quality:} <augmented>{+1-20%}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Return of the Rat": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Tavukai}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Risk": {
     "drop_level": 49,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Ventor's Gamble}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Rite of Elements": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Golem Gem}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Road to Power": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Runic One-Hand Weapon}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Ruthless Ceinture": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Meginord's Girdle}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Sacrifice": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Sacrificial Garb}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Saint's Treasure": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{2x Exalted Orb}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Samurai's Eye": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Watcher's Eye}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Scarred Meadow": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Wake of Destruction}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Scavenger": {
     "drop_level": 47,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Carcass Jack}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Scholar": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{40x Scroll of Wisdom}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Scout": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{7x Exalted Orb}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Seeker": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{3x Orb of Annulment}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Sephirot": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Divine Orb}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Shepherd's Sandals": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Boots}\r\n<default>{Item Level:} <normal>{100}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Shieldbearer": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Squire}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Shortcut": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Quicksilver Flask of the Cheetah}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Side Quest": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{20x Scouting Report}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Sigil": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Unassailable Amulet}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Siren": {
     "drop_level": 25,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Whispering Ice}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Skeleton": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 1 Summon Skeletons}\r\n<default>{Quality:} <augmented>{+23%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Soul": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Soul Taker}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Spark and the Flame": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Berek's Respite}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Spoiled Prince": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Dictator's Prophecy Wand}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Standoff": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Rustic Sash}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Stormcaller": {
     "drop_level": 50,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Agnerod Staff}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Strategist": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Inspired Learning}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Summoner": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Minion Gem}\r\n<default>{Quality:} <augmented>{+20%}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Sun": {
     "drop_level": 49,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Rise of the Phoenix}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Surgeon": {
     "drop_level": 60,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Surgeon's Flask}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Surveyor": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Map}\r\n<default>{Map Tier:} <normal>{14}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Survivalist": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{7x Orb of Alchemy}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Sustenance": {
     "drop_level": 54,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Sword King's Salute": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Daresso's Salute}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Thaumaturgist": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Shavronne's Revelation}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Throne": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Kaom's Roots}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Tinkerer's Table": {
     "drop_level": 33,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{5x Fossil}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Tireless Extractor": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Oil}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Tower": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Staff}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Traitor": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Wand}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Transformation": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{Tainted Mythic Orb}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Trial": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Map}\r\n<default>{Map Tier:} <normal>{15}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Tumbleweed": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:30>{<magicitem>{Diamond Ring of Redemption}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Redeemer Item}}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Twilight Moon": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{The Twilight Temple}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Twins": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Gemini Claw of Celebration}\r\n<default>{Item Level:} <normal>{83}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Tyrant": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Merciless Weapon}\r\n<default>{Item Level:} <normal>{100}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Undaunted": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Nemesis Item}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Undisputed": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Merciless Vaal Axe}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Elder Item}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Unexpected Prize": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:29>{<uniqueitem>{Attribute Transforming Jewel}}\r\n<size:29>{<corrupted>{Corrupted}}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Union": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Gemcutter's Prism}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Valkyrie": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Nemesis Item}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Valley of Steel Boxes": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Disabled",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Vast": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Song of the Sirens}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Visionary": {
     "drop_level": 53,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Lioneye's Vision}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Void": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": " ",
+      "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Warden": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<rareitem>{Amulet}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Warlord": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Coronal Maul}\r\n<default>{Item Level:} <normal>{83}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Watcher": {
     "drop_level": 52,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Crown of Eyes}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Web": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Weapon of Crafting}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wedding Gift": {
     "drop_level": 53,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Arakaali's Fang}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The White Knight": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<whiteitem>{Six-Link Astral Plate}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Crusader Item}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Whiteout": {
     "drop_level": 51,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Cospri's Malice}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wilted Rose": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 21 Aura Gem}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wind": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Windripper}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Witch": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Kiara's Determination}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wolf": {
     "drop_level": 45,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Rigwald Item}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wolf's Legacy": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Vaults of Atziri}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wolf's Shadow": {
     "drop_level": 47,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Hyaon's Fury}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wolven King's Bite": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Rigwald's Quills}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wolverine": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Claw}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The World Eater": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Starforge}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wrath": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Chaos Orb}",
+      "directions": "",
+      "stack_size": 8,
+      "stack_size_currency_tab": 5000
+    }
   },
   "The Wretched": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Belt}",
+      "directions": "",
+      "stack_size": 6,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Thirst for Knowledge": {
     "drop_level": 36,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Gluttony}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Three Faces in the Dark": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{3x Chaos Orb}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Three Voices": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{3x Essence}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Thunderous Skies": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Storm Cloud}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Time-Lost Relic": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{League-Specific Item}",
+      "directions": "",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Tranquillity": {
     "drop_level": 48,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Voltaxic Rift}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Treasure Hunter": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Vaults of Atziri}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 7,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Treasures of the Vaal": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Vaal Jewel}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 12,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Triskaidekaphobia": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<size:26>{<rareitem>{Map}}\r\n<size:26>{<default>{Map Tier:} <normal>{13}\r\n<default>{Quality:} <augmented>{+13%}\r\n<default>{Delirium:} <normal>{100%}\r\n<default>{Modifiers:} <normal>{8}\r\n<corrupted>{Corrupted}}",
+      "directions": "",
+      "stack_size": 13,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Turn the Other Cheek": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Pacifism}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Unchained": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Facebreaker}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Underground Forest": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Awakened Sextant}",
+      "directions": "",
+      "stack_size": 4,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Unrequited Love": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{19x Mirror Shard}",
+      "directions": "",
+      "stack_size": 16,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Vanity": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Tabula Rasa}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Vile Power": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Doomfletch}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Vinia's Token": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<currencyitem>{10x Orb of Regret}",
+      "directions": "",
+      "stack_size": 5,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Void of the Elements": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Overpowering Opal Ring}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Elder Item}",
+      "directions": "",
+      "stack_size": 3,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Volatile Power": {
     "drop_level": 23,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Vaal Gem}\r\n<default>{Quality:} <augmented>{+20%}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Wealth and Power": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<gemitem>{Level 4 Enlighten}\r\n<corrupted>{Corrupted}",
+      "directions": "",
+      "stack_size": 11,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Who Asked": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<magicitem>{Dictator's Weapon}\r\n<default>{Item Level:} <normal>{83}\r\n<fractured>{Fractured}",
+      "directions": "",
+      "stack_size": 9,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Winter's Embrace": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "<uniqueitem>{Circle of Fear}\r\n<enchanted>{Three-Implicit}\r\n<enchanted>{Synthesised}",
+      "directions": "",
+      "stack_size": 2,
+      "stack_size_currency_tab": 5000
+    }
   }
 }

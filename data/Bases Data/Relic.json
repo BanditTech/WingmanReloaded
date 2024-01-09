@@ -3,84 +3,98 @@
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 2,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "[DO NOT USE] Processional Relic": {
     "drop_level": 60,
     "implicits": [],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "[DO NOT USE] Candlestick Relic": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "[DO NOT USE] Urn Relic": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "[DO NOT USE] Coffer Relic": {
     "drop_level": 45,
     "implicits": [],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "[DO NOT USE] Tome Relic": {
     "drop_level": 60,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 3
+    "inventory_width": 3,
+    "properties": {}
   },
   "[DO NOT USE] Papyrus Relic": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 4
+    "inventory_width": 4,
+    "properties": {}
   },
   "Censer Relic": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 2,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Processional Relic": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Candlestick Relic": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Urn Relic": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Coffer Relic": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Tome Relic": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 3
+    "inventory_width": 3,
+    "properties": {}
   },
   "Papyrus Relic": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 4
+    "inventory_width": 4,
+    "properties": {}
   }
 }

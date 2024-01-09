@@ -5,7 +5,8 @@
       "Adds 2 to 4 Fire Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Fire Arrow Quiver": {
     "drop_level": 9,
@@ -13,7 +14,8 @@
       "Adds 3 to 5 Fire Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Broadhead Arrow Quiver": {
     "drop_level": 49,
@@ -21,7 +23,8 @@
       "(8-10)% increased Attack Speed"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Penetrating Arrow Quiver": {
     "drop_level": 25,
@@ -29,7 +32,8 @@
       "Arrows Pierce an additional Target"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Spike-Point Arrow Quiver": {
     "drop_level": 40,
@@ -37,7 +41,8 @@
       "(20-30)% increased Critical Strike Chance with Bows"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Ornate Quiver": {
     "drop_level": 45,
@@ -45,7 +50,8 @@
       "Has 1 Socket"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Rugged Quiver": {
     "drop_level": 2,
@@ -53,7 +59,8 @@
       "Adds 2 to 3 Cold Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Conductive Quiver": {
     "drop_level": 2,
@@ -61,7 +68,8 @@
       "Adds 1 to 5 Lightning Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Heavy Quiver": {
     "drop_level": 7,
@@ -69,7 +77,8 @@
       "Adds 1 to 4 Physical Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Light Quiver": {
     "drop_level": 15,
@@ -77,7 +86,8 @@
       "+(30-40) to Dexterity"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Serrated Arrow Quiver": {
     "drop_level": 4,
@@ -85,7 +95,8 @@
       "Adds 1 to 4 Physical Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Two-Point Arrow Quiver": {
     "drop_level": 36,
@@ -93,7 +104,8 @@
       "(20-30)% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Sharktooth Arrow Quiver": {
     "drop_level": 14,
@@ -101,7 +113,8 @@
       "Gain (6-8) Life per Enemy Hit with Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Blunt Arrow Quiver": {
     "drop_level": 31,
@@ -109,7 +122,8 @@
       "Adds (7-9) to (13-16) Physical Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Artillery Quiver": {
     "drop_level": 74,
@@ -117,7 +131,8 @@
       "(20-30)% increased Totem Placement speed"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Vile Arrow Quiver": {
     "drop_level": 55,
@@ -125,7 +140,8 @@
       "Gain (10-15)% of Physical Damage as Extra Chaos Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Heavy Arrow Quiver": {
     "drop_level": 61,
@@ -133,7 +149,8 @@
       "Adds (12-15) to (24-27) Physical Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Primal Arrow Quiver": {
     "drop_level": 66,
@@ -141,7 +158,8 @@
       "(20-30)% increased Elemental Damage with Attack Skills"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Feathered Arrow Quiver": {
     "drop_level": 20,
@@ -149,7 +167,8 @@
       "(20-30)% increased Projectile Speed"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Blazing Arrow Quiver": {
     "drop_level": 45,
@@ -157,6 +176,7 @@
       "Adds (12-15) to (24-27) Fire Damage to Attacks"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   }
 }

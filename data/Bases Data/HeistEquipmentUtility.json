@@ -5,7 +5,8 @@
       "2% reduced raising of Alert Level"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Tattered Cloak": {
     "drop_level": 75,
@@ -13,7 +14,8 @@
       "3% reduced raising of Alert Level"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Hooded Cloak": {
     "drop_level": 80,
@@ -21,7 +23,8 @@
       "4% reduced raising of Alert Level"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Whisper-woven Cloak": {
     "drop_level": 83,
@@ -29,12 +32,14 @@
       "5% reduced raising of Alert Level"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "[UNUSED] Heist Test Utility Equipment": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   }
 }

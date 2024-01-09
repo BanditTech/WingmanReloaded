@@ -5,7 +5,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 9,
+      "physical_damage_min": 4,
+      "range": 11
+    }
   },
   "Cutlass": {
     "drop_level": 38,
@@ -13,7 +20,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 53,
+      "physical_damage_min": 13,
+      "range": 11
+    }
   },
   "Baselard": {
     "drop_level": 41,
@@ -21,7 +35,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 53,
+      "physical_damage_min": 37,
+      "range": 11
+    }
   },
   "Battle Sword": {
     "drop_level": 44,
@@ -29,7 +50,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 70,
+      "physical_damage_min": 38,
+      "range": 11
+    }
   },
   "Elder Sword": {
     "drop_level": 47,
@@ -37,7 +65,14 @@
       "+330 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 66,
+      "physical_damage_min": 36,
+      "range": 11
+    }
   },
   "Graceful Sword": {
     "drop_level": 50,
@@ -45,7 +80,14 @@
       "+350 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 55,
+      "physical_damage_min": 34,
+      "range": 11
+    }
   },
   "Twilight Blade": {
     "drop_level": 53,
@@ -53,7 +95,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 86,
+      "physical_damage_min": 30,
+      "range": 11
+    }
   },
   "Gemstone Sword": {
     "drop_level": 56,
@@ -61,7 +110,14 @@
       "+400 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 83,
+      "physical_damage_min": 39,
+      "range": 11
+    }
   },
   "Corsair Sword": {
     "drop_level": 58,
@@ -69,7 +125,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 80,
+      "physical_damage_min": 20,
+      "range": 11
+    }
   },
   "Gladius": {
     "drop_level": 60,
@@ -77,7 +140,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 78,
+      "physical_damage_min": 54,
+      "range": 11
+    }
   },
   "Legion Sword": {
     "drop_level": 62,
@@ -85,7 +155,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 98,
+      "physical_damage_min": 53,
+      "range": 11
+    }
   },
   "Copper Sword": {
     "drop_level": 5,
@@ -93,7 +170,14 @@
       "+45 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 14,
+      "physical_damage_min": 6,
+      "range": 11
+    }
   },
   "Vaal Blade": {
     "drop_level": 64,
@@ -101,7 +185,14 @@
       "+460 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 86,
+      "physical_damage_min": 46,
+      "range": 11
+    }
   },
   "Eternal Sword": {
     "drop_level": 66,
@@ -109,7 +200,14 @@
       "+475 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 68,
+      "physical_damage_min": 41,
+      "range": 11
+    }
   },
   "Midnight Blade": {
     "drop_level": 68,
@@ -117,7 +215,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 99,
+      "physical_damage_min": 35,
+      "range": 11
+    }
   },
   "Sabre": {
     "drop_level": 10,
@@ -125,7 +230,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 22,
+      "physical_damage_min": 5,
+      "range": 11
+    }
   },
   "Broad Sword": {
     "drop_level": 15,
@@ -133,7 +245,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 21,
+      "physical_damage_min": 15,
+      "range": 11
+    }
   },
   "War Sword": {
     "drop_level": 20,
@@ -141,7 +260,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 30,
+      "physical_damage_min": 16,
+      "range": 11
+    }
   },
   "Ancient Sword": {
     "drop_level": 24,
@@ -149,7 +275,14 @@
       "+165 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 33,
+      "physical_damage_min": 18,
+      "range": 11
+    }
   },
   "Elegant Sword": {
     "drop_level": 28,
@@ -157,7 +290,14 @@
       "+190 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 33,
+      "physical_damage_min": 20,
+      "range": 11
+    }
   },
   "Dusk Blade": {
     "drop_level": 32,
@@ -165,7 +305,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 54,
+      "physical_damage_min": 19,
+      "range": 11
+    }
   },
   "Variscite Blade": {
     "drop_level": 35,
@@ -173,7 +320,14 @@
       "+240 to Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 53,
+      "physical_damage_min": 25,
+      "range": 11
+    }
   },
   "Fickle Spiritblade": {
     "drop_level": 30,
@@ -181,7 +335,14 @@
       "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 33,
+      "physical_damage_min": 18,
+      "range": 11
+    }
   },
   "Capricious Spiritblade": {
     "drop_level": 50,
@@ -189,7 +350,14 @@
       "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 51,
+      "physical_damage_min": 27,
+      "range": 11
+    }
   },
   "Anarchic Spiritblade": {
     "drop_level": 70,
@@ -197,7 +365,14 @@
       "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 63,
+      "physical_damage_min": 34,
+      "range": 11
+    }
   },
   "Hook Sword": {
     "drop_level": 34,
@@ -205,7 +380,14 @@
       "15% chance to Maim on Hit"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 60,
+      "physical_damage_min": 28,
+      "range": 11
+    }
   },
   "Grappler": {
     "drop_level": 55,
@@ -213,7 +395,14 @@
       "15% chance to Maim on Hit"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 94,
+      "physical_damage_min": 44,
+      "range": 11
+    }
   },
   "Tiger Hook": {
     "drop_level": 70,
@@ -221,7 +410,14 @@
       "20% chance to Maim on Hit"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 80,
+      "physical_damage_min": 37,
+      "range": 11
+    }
   },
   "Energy Blade": {
     "drop_level": 1,
@@ -229,7 +425,14 @@
       null
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 588,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 0,
+      "physical_damage_min": 0,
+      "range": 11
+    }
   },
   "Charan's Sword": {
     "drop_level": 2,
@@ -237,7 +440,14 @@
       "40% increased Global Accuracy Rating"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 11,
+      "physical_damage_min": 5,
+      "range": 11
+    }
   },
   "Golden Blade": {
     "drop_level": 1,
@@ -245,6 +455,13 @@
       "+(16-24) to all Attributes"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 909,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 23,
+      "physical_damage_min": 3,
+      "range": 11
+    }
   }
 }

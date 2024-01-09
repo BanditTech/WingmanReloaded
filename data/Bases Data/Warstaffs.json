@@ -5,7 +5,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 660,
+      "physical_damage_max": 114,
+      "physical_damage_min": 38,
+      "range": 13
+    }
   },
   "Serpentine Staff": {
     "drop_level": 49,
@@ -13,7 +20,14 @@
       "+20% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 117,
+      "physical_damage_min": 56,
+      "range": 13
+    }
   },
   "Foul Staff": {
     "drop_level": 55,
@@ -21,7 +35,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 610,
+      "physical_damage_max": 121,
+      "physical_damage_min": 65,
+      "range": 13
+    }
   },
   "Ezomyte Staff": {
     "drop_level": 60,
@@ -29,7 +50,14 @@
       "+20% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 730,
+      "physical_damage_max": 160,
+      "physical_damage_min": 53,
+      "range": 13
+    }
   },
   "Maelstr\u00f6m Staff": {
     "drop_level": 64,
@@ -37,7 +65,14 @@
       "+25% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 680,
+      "physical_damage_max": 147,
+      "physical_damage_min": 71,
+      "range": 13
+    }
   },
   "Judgement Staff": {
     "drop_level": 68,
@@ -45,7 +80,14 @@
       "+20% Chance to Block Spell Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 136,
+      "physical_damage_min": 73,
+      "range": 13
+    }
   },
   "Iron Staff": {
     "drop_level": 13,
@@ -53,7 +95,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 640,
+      "physical_damage_max": 42,
+      "physical_damage_min": 14,
+      "range": 13
+    }
   },
   "Coiled Staff": {
     "drop_level": 23,
@@ -61,7 +110,14 @@
       "+20% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 57,
+      "physical_damage_min": 27,
+      "range": 13
+    }
   },
   "Vile Staff": {
     "drop_level": 33,
@@ -69,7 +125,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 610,
+      "physical_damage_max": 76,
+      "physical_damage_min": 41,
+      "range": 13
+    }
   },
   "Capacity Rod": {
     "drop_level": 30,
@@ -77,7 +140,14 @@
       "+1 to Maximum Power Charges and Maximum Endurance Charges"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 73,
+      "physical_damage_min": 39,
+      "range": 13
+    }
   },
   "Potentiality Rod": {
     "drop_level": 50,
@@ -85,7 +155,14 @@
       "+1 to Maximum Power Charges and Maximum Endurance Charges"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 113,
+      "physical_damage_min": 61,
+      "range": 13
+    }
   },
   "Eventuality Rod": {
     "drop_level": 70,
@@ -93,6 +170,13 @@
       "+1 to Maximum Power Charges and Maximum Endurance Charges"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 144,
+      "physical_damage_min": 78,
+      "range": 13
+    }
   }
 }

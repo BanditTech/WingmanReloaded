@@ -5,7 +5,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 16,
+      "physical_damage_min": 10,
+      "range": 13
+    }
   },
   "Steelhead": {
     "drop_level": 44,
@@ -13,7 +20,14 @@
       "45% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 81,
+      "physical_damage_min": 54,
+      "range": 13
+    }
   },
   "Spiny Maul": {
     "drop_level": 48,
@@ -21,7 +35,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 103,
+      "physical_damage_min": 55,
+      "range": 13
+    }
   },
   "Plated Maul": {
     "drop_level": 51,
@@ -29,7 +50,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 108,
+      "physical_damage_min": 72,
+      "range": 13
+    }
   },
   "Dread Maul": {
     "drop_level": 54,
@@ -37,7 +65,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 104,
+      "physical_damage_min": 77,
+      "range": 13
+    }
   },
   "Karui Maul": {
     "drop_level": 57,
@@ -45,7 +80,14 @@
       "45% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 1000,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 168,
+      "physical_damage_min": 112,
+      "range": 13
+    }
   },
   "Colossus Mallet": {
     "drop_level": 59,
@@ -53,7 +95,14 @@
       "30% increased Area Damage"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 135,
+      "physical_damage_min": 65,
+      "range": 13
+    }
   },
   "Piledriver": {
     "drop_level": 61,
@@ -61,7 +110,14 @@
       "20% reduced Enemy Stun Threshold"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 115,
+      "physical_damage_min": 77,
+      "range": 13
+    }
   },
   "Meatgrinder": {
     "drop_level": 63,
@@ -69,7 +125,14 @@
       "5% chance to deal Double Damage"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 138,
+      "physical_damage_min": 74,
+      "range": 13
+    }
   },
   "Imperial Maul": {
     "drop_level": 65,
@@ -77,7 +140,14 @@
       "10% increased Strength"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 909,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 153,
+      "physical_damage_min": 102,
+      "range": 13
+    }
   },
   "Terror Maul": {
     "drop_level": 67,
@@ -85,7 +155,14 @@
       "25% chance to double Stun Duration"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 137,
+      "physical_damage_min": 101,
+      "range": 13
+    }
   },
   "Tribal Maul": {
     "drop_level": 8,
@@ -93,7 +170,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 25,
+      "physical_damage_min": 17,
+      "range": 13
+    }
   },
   "Mallet": {
     "drop_level": 12,
@@ -101,7 +185,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 33,
+      "physical_damage_min": 16,
+      "range": 13
+    }
   },
   "Sledgehammer": {
     "drop_level": 17,
@@ -109,7 +200,14 @@
       "45% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 38,
+      "physical_damage_min": 25,
+      "range": 13
+    }
   },
   "Jagged Maul": {
     "drop_level": 22,
@@ -117,7 +215,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 49,
+      "physical_damage_min": 27,
+      "range": 13
+    }
   },
   "Brass Maul": {
     "drop_level": 27,
@@ -125,7 +230,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 60,
+      "physical_damage_min": 40,
+      "range": 13
+    }
   },
   "Fright Maul": {
     "drop_level": 32,
@@ -133,7 +245,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 62,
+      "physical_damage_min": 46,
+      "range": 13
+    }
   },
   "Totemic Maul": {
     "drop_level": 36,
@@ -141,7 +260,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 909,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 85,
+      "physical_damage_min": 57,
+      "range": 13
+    }
   },
   "Great Mallet": {
     "drop_level": 40,
@@ -149,7 +275,14 @@
       "30% increased Stun Duration on Enemies"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 88,
+      "physical_damage_min": 43,
+      "range": 13
+    }
   },
   "Blunt Force Condenser": {
     "drop_level": 30,
@@ -157,7 +290,14 @@
       "Warcries Exert 1 additional Attack"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 64,
+      "physical_damage_min": 39,
+      "range": 13
+    }
   },
   "Crushing Force Magnifier": {
     "drop_level": 50,
@@ -165,7 +305,14 @@
       "Warcries Exert 1 additional Attack"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 103,
+      "physical_damage_min": 62,
+      "range": 13
+    }
   },
   "Impact Force Propagator": {
     "drop_level": 70,
@@ -173,7 +320,14 @@
       "Warcries Exert 2 additional Attacks"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 135,
+      "physical_damage_min": 81,
+      "range": 13
+    }
   },
   "Morning Star": {
     "drop_level": 34,
@@ -181,7 +335,14 @@
       "15% increased Area of Effect"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 68,
+      "physical_damage_min": 45,
+      "range": 13
+    }
   },
   "Solar Maul": {
     "drop_level": 56,
@@ -189,7 +350,14 @@
       "15% increased Area of Effect"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 113,
+      "physical_damage_min": 75,
+      "range": 13
+    }
   },
   "Coronal Maul": {
     "drop_level": 69,
@@ -197,6 +365,13 @@
       "20% increased Area of Effect"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 136,
+      "physical_damage_min": 91,
+      "range": 13
+    }
   }
 }

@@ -5,7 +5,14 @@
       "Grants 3 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 11,
+      "physical_damage_min": 4,
+      "range": 11
+    }
   },
   "Gouger": {
     "drop_level": 40,
@@ -13,7 +20,14 @@
       "Grants 24 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 51,
+      "physical_damage_min": 15,
+      "range": 11
+    }
   },
   "Tiger's Paw": {
     "drop_level": 43,
@@ -21,7 +35,14 @@
       "1.6% of Physical Attack Damage Leeched as Life"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 43,
+      "physical_damage_min": 23,
+      "range": 11
+    }
   },
   "Gut Ripper": {
     "drop_level": 46,
@@ -29,7 +50,14 @@
       "Grants 44 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 53,
+      "physical_damage_min": 20,
+      "range": 11
+    }
   },
   "Prehistoric Claw": {
     "drop_level": 49,
@@ -37,7 +65,14 @@
       "2% of Physical Attack Damage Leeched as Life"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 68,
+      "physical_damage_min": 26,
+      "range": 11
+    }
   },
   "Noble Claw": {
     "drop_level": 52,
@@ -45,7 +80,14 @@
       "Grants 40 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 56,
+      "physical_damage_min": 21,
+      "range": 11
+    }
   },
   "Eagle Claw": {
     "drop_level": 55,
@@ -53,7 +95,14 @@
       "2% of Physical Attack Damage Leeched as Life"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 69,
+      "physical_damage_min": 17,
+      "range": 11
+    }
   },
   "Great White Claw": {
     "drop_level": 58,
@@ -61,7 +110,14 @@
       "Grants 46 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 78,
+      "physical_damage_min": 30,
+      "range": 11
+    }
   },
   "Throat Stabber": {
     "drop_level": 60,
@@ -69,7 +125,14 @@
       "Grants 40 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 73,
+      "physical_damage_min": 21,
+      "range": 11
+    }
   },
   "Hellion's Paw": {
     "drop_level": 62,
@@ -77,7 +140,14 @@
       "1.6% of Physical Attack Damage Leeched as Life"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 55,
+      "physical_damage_min": 29,
+      "range": 11
+    }
   },
   "Eye Gouger": {
     "drop_level": 64,
@@ -85,7 +155,14 @@
       "Grants 50 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 68,
+      "physical_damage_min": 26,
+      "range": 11
+    }
   },
   "Sharktooth Claw": {
     "drop_level": 7,
@@ -93,7 +170,14 @@
       "Grants 6 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 17,
+      "physical_damage_min": 6,
+      "range": 11
+    }
   },
   "Vaal Claw": {
     "drop_level": 66,
@@ -101,7 +185,14 @@
       "2% of Physical Attack Damage Leeched as Life"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 76,
+      "physical_damage_min": 29,
+      "range": 11
+    }
   },
   "Imperial Claw": {
     "drop_level": 68,
@@ -109,7 +200,14 @@
       "Grants 46 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 65,
+      "physical_damage_min": 25,
+      "range": 11
+    }
   },
   "Terror Claw": {
     "drop_level": 70,
@@ -117,7 +215,14 @@
       "2% of Physical Attack Damage Leeched as Life"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 71,
+      "physical_damage_min": 18,
+      "range": 11
+    }
   },
   "Awl": {
     "drop_level": 12,
@@ -125,7 +230,14 @@
       "Grants 7 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 23,
+      "physical_damage_min": 7,
+      "range": 11
+    }
   },
   "Cat's Paw": {
     "drop_level": 17,
@@ -133,7 +245,14 @@
       "Grants 8 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 22,
+      "physical_damage_min": 12,
+      "range": 11
+    }
   },
   "Blinder": {
     "drop_level": 22,
@@ -141,7 +260,14 @@
       "Grants 12 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 31,
+      "physical_damage_min": 12,
+      "range": 11
+    }
   },
   "Timeworn Claw": {
     "drop_level": 26,
@@ -149,7 +275,14 @@
       "Grants 19 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 43,
+      "physical_damage_min": 16,
+      "range": 11
+    }
   },
   "Sparkling Claw": {
     "drop_level": 30,
@@ -157,7 +290,14 @@
       "Grants 15 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 38,
+      "physical_damage_min": 14,
+      "range": 11
+    }
   },
   "Fright Claw": {
     "drop_level": 34,
@@ -165,7 +305,14 @@
       "Grants 20 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 46,
+      "physical_damage_min": 12,
+      "range": 11
+    }
   },
   "Thresher Claw": {
     "drop_level": 37,
@@ -173,7 +320,14 @@
       "Grants 25 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 53,
+      "physical_damage_min": 20,
+      "range": 11
+    }
   },
   "Shadow Fangs": {
     "drop_level": 30,
@@ -181,7 +335,14 @@
       "Adds (26-38) to (52-70) Chaos Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 24,
+      "physical_damage_min": 13,
+      "range": 11
+    }
   },
   "Malign Fangs": {
     "drop_level": 50,
@@ -189,7 +350,14 @@
       "Adds (43-55) to (81-104) Chaos Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 37,
+      "physical_damage_min": 20,
+      "range": 11
+    }
   },
   "Void Fangs": {
     "drop_level": 70,
@@ -197,7 +365,14 @@
       "Adds (46-63) to (92-113) Chaos Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 41,
+      "physical_damage_min": 22,
+      "range": 11
+    }
   },
   "Double Claw": {
     "drop_level": 36,
@@ -205,7 +380,14 @@
       "Grants 6 Mana per Enemy Hit\nGrants 15 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 44,
+      "physical_damage_min": 15,
+      "range": 11
+    }
   },
   "Twin Claw": {
     "drop_level": 57,
@@ -213,7 +395,14 @@
       "Grants 10 Mana per Enemy Hit\nGrants 28 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 64,
+      "physical_damage_min": 21,
+      "range": 11
+    }
   },
   "Gemini Claw": {
     "drop_level": 72,
@@ -221,6 +410,13 @@
       "Grants 14 Mana per Enemy Hit\nGrants 38 Life per Enemy Hit"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 68,
+      "physical_damage_min": 23,
+      "range": 11
+    }
   }
 }

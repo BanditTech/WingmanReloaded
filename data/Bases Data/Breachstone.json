@@ -3,150 +3,300 @@
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n200% increased Experience Gain\r\nMonster Level: 83",
+      "directions": "Travel to Chayula's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Chayula's Charged Breachstone": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n200% increased Experience Gain\r\n20% increased Rarity of Items found in this Area\r\n20% increased Pack Size\r\nMonster Level: 81",
+      "directions": "Travel to Chayula's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Chayula's Enriched Breachstone": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n200% increased Experience Gain\r\n40% increased Rarity of Items found in this Area\r\n40% increased Pack Size\r\nMonster Level: 82",
+      "directions": "Travel to Chayula's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Chayula's Pure Breachstone": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n200% increased Experience Gain\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 83",
+      "directions": "Travel to Chayula's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Chayula's Flawless Breachstone": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop 2 additional Reward Types\r\nArea has 4 additional random Modifiers\r\n200% increased Experience Gain\r\n250% more Monster Life\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 84",
+      "directions": "Travel to Chayula's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Tul's Breachstone": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\nMonster Level: 81",
+      "directions": "Travel to Tul's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Tul's Charged Breachstone": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n20% increased Rarity of Items found in this Area\r\n20% increased Pack Size\r\nMonster Level: 74",
+      "directions": "Travel to Tul's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Tul's Enriched Breachstone": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n40% increased Rarity of Items found in this Area\r\n40% increased Pack Size\r\nMonster Level: 79",
+      "directions": "Travel to Tul's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Tul's Pure Breachstone": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 81",
+      "directions": "Travel to Tul's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Tul's Flawless Breachstone": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop 2 additional Reward Types\r\nArea has 4 additional random Modifiers\r\n200% increased Experience Gain\r\n250% more Monster Life\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 84",
+      "directions": "Travel to Tul's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Xoph's Breachstone": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\nMonster Level: 81",
+      "directions": "Travel to Xoph's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Xoph's Charged Breachstone": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n20% increased Rarity of Items found in this Area\r\n20% increased Pack Size\r\nMonster Level: 74",
+      "directions": "Travel to Xoph's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Xoph's Enriched Breachstone": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n40% increased Rarity of Items found in this Area\r\n40% increased Pack Size\r\nMonster Level: 79",
+      "directions": "Travel to Xoph's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Xoph's Pure Breachstone": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 81",
+      "directions": "Travel to Xoph's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Xoph's Flawless Breachstone": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop 2 additional Reward Types\r\nArea has 4 additional random Modifiers\r\n200% increased Experience Gain\r\n250% more Monster Life\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 84",
+      "directions": "Travel to Xoph's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Esh's Breachstone": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\nMonster Level: 81",
+      "directions": "Travel to Esh's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Esh's Charged Breachstone": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n20% increased Rarity of Items found in this Area\r\n20% increased Pack Size\r\nMonster Level: 74",
+      "directions": "Travel to Esh's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Esh's Enriched Breachstone": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n40% increased Rarity of Items found in this Area\r\n40% increased Pack Size\r\nMonster Level: 79",
+      "directions": "Travel to Esh's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Esh's Pure Breachstone": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n100% increased Experience Gain\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 81",
+      "directions": "Travel to Esh's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Esh's Flawless Breachstone": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop 2 additional Reward Types\r\nArea has 4 additional random Modifiers\r\n200% increased Experience Gain\r\n250% more Monster Life\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 84",
+      "directions": "Travel to Esh's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Uul-Netol's Breachstone": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n150% increased Experience Gain\r\nMonster Level: 82",
+      "directions": "Travel to Uul-Netol's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Uul-Netol's Charged Breachstone": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n150% increased Experience Gain\r\n20% increased Rarity of Items found in this Area\r\n20% increased Pack Size\r\nMonster Level: 78",
+      "directions": "Travel to Uul-Netol's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Uul-Netol's Enriched Breachstone": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n150% increased Experience Gain\r\n40% increased Rarity of Items found in this Area\r\n40% increased Pack Size\r\nMonster Level: 81",
+      "directions": "Travel to Uul-Netol's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Uul-Netol's Pure Breachstone": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop an additional Reward Type\r\nArea has 2 additional random Modifiers\r\n150% increased Experience Gain\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 82",
+      "directions": "Travel to Uul-Netol's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   },
   "Uul-Netol's Flawless Breachstone": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters drop 2 additional Reward Types\r\nArea has 4 additional random Modifiers\r\n200% increased Experience Gain\r\n250% more Monster Life\r\n60% increased Rarity of Items found in this Area\r\n60% increased Pack Size\r\nMonster Level: 84",
+      "directions": "Travel to Uul-Netol's Domain by using this item in a personal Map Device. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
   }
 }

@@ -5,7 +5,14 @@
       "10% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 11,
+      "physical_damage_min": 8,
+      "range": 11
+    }
   },
   "Sekhem": {
     "drop_level": 38,
@@ -13,7 +20,14 @@
       "18% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 55,
+      "physical_damage_min": 30,
+      "range": 11
+    }
   },
   "Crystal Sceptre": {
     "drop_level": 41,
@@ -21,7 +35,14 @@
       "30% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 52,
+      "physical_damage_min": 35,
+      "range": 11
+    }
   },
   "Lead Sceptre": {
     "drop_level": 44,
@@ -29,7 +50,14 @@
       "22% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 57,
+      "physical_damage_min": 38,
+      "range": 11
+    }
   },
   "Blood Sceptre": {
     "drop_level": 47,
@@ -37,7 +65,14 @@
       "24% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 55,
+      "physical_damage_min": 30,
+      "range": 11
+    }
   },
   "Royal Sceptre": {
     "drop_level": 50,
@@ -45,7 +80,14 @@
       "24% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 80,
+      "physical_damage_min": 34,
+      "range": 11
+    }
   },
   "Abyssal Sceptre": {
     "drop_level": 53,
@@ -53,7 +95,14 @@
       "30% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 67,
+      "physical_damage_min": 45,
+      "range": 11
+    }
   },
   "Karui Sceptre": {
     "drop_level": 56,
@@ -61,7 +110,14 @@
       "26% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 55,
+      "physical_damage_min": 37,
+      "range": 11
+    }
   },
   "Tyrant's Sekhem": {
     "drop_level": 58,
@@ -69,7 +125,14 @@
       "26% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 80,
+      "physical_damage_min": 43,
+      "range": 11
+    }
   },
   "Opal Sceptre": {
     "drop_level": 60,
@@ -77,7 +140,14 @@
       "40% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 73,
+      "physical_damage_min": 49,
+      "range": 11
+    }
   },
   "Platinum Sceptre": {
     "drop_level": 62,
@@ -85,7 +155,14 @@
       "30% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 76,
+      "physical_damage_min": 51,
+      "range": 11
+    }
   },
   "Darkwood Sceptre": {
     "drop_level": 5,
@@ -93,7 +170,14 @@
       "12% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 17,
+      "physical_damage_min": 11,
+      "range": 11
+    }
   },
   "Vaal Sceptre": {
     "drop_level": 64,
@@ -101,7 +185,14 @@
       "32% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 70,
+      "physical_damage_min": 37,
+      "range": 11
+    }
   },
   "Carnal Sceptre": {
     "drop_level": 66,
@@ -109,7 +200,14 @@
       "32% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 95,
+      "physical_damage_min": 41,
+      "range": 11
+    }
   },
   "Void Sceptre": {
     "drop_level": 68,
@@ -117,7 +215,14 @@
       "40% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 76,
+      "physical_damage_min": 50,
+      "range": 11
+    }
   },
   "Bronze Sceptre": {
     "drop_level": 10,
@@ -125,7 +230,14 @@
       "12% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 909,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 29,
+      "physical_damage_min": 15,
+      "range": 11
+    }
   },
   "Quartz Sceptre": {
     "drop_level": 15,
@@ -133,7 +245,14 @@
       "20% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 909,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 32,
+      "physical_damage_min": 21,
+      "range": 11
+    }
   },
   "Iron Sceptre": {
     "drop_level": 20,
@@ -141,7 +260,14 @@
       "14% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 909,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 40,
+      "physical_damage_min": 27,
+      "range": 11
+    }
   },
   "Ochre Sceptre": {
     "drop_level": 24,
@@ -149,7 +275,14 @@
       "16% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 45,
+      "physical_damage_min": 24,
+      "range": 11
+    }
   },
   "Ritual Sceptre": {
     "drop_level": 28,
@@ -157,7 +290,14 @@
       "16% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 50,
+      "physical_damage_min": 21,
+      "range": 11
+    }
   },
   "Shadow Sceptre": {
     "drop_level": 32,
@@ -165,7 +305,14 @@
       "22% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 44,
+      "physical_damage_min": 29,
+      "range": 11
+    }
   },
   "Grinning Fetish": {
     "drop_level": 35,
@@ -173,7 +320,14 @@
       "18% increased Elemental Damage"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 36,
+      "physical_damage_min": 24,
+      "range": 11
+    }
   },
   "Oscillating Sceptre": {
     "drop_level": 30,
@@ -181,7 +335,14 @@
       "Elemental Overload"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 34,
+      "physical_damage_min": 23,
+      "range": 11
+    }
   },
   "Stabilising Sceptre": {
     "drop_level": 50,
@@ -189,7 +350,14 @@
       "Elemental Equilibrium"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 52,
+      "physical_damage_min": 35,
+      "range": 11
+    }
   },
   "Alternating Sceptre": {
     "drop_level": 70,
@@ -197,7 +365,14 @@
       "Secrets of Suffering"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 690,
+      "critical_strike_chance": 630,
+      "physical_damage_max": 61,
+      "physical_damage_min": 41,
+      "range": 11
+    }
   },
   "Horned Sceptre": {
     "drop_level": 36,
@@ -205,7 +380,14 @@
       "Damage Penetrates 4% Elemental Resistances"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 50,
+      "physical_damage_min": 27,
+      "range": 11
+    }
   },
   "Stag Sceptre": {
     "drop_level": 55,
@@ -213,7 +395,14 @@
       "Damage Penetrates 4% Elemental Resistances"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 72,
+      "physical_damage_min": 39,
+      "range": 11
+    }
   },
   "Sambar Sceptre": {
     "drop_level": 70,
@@ -221,6 +410,13 @@
       "Damage Penetrates 6% Elemental Resistances"
     ],
     "inventory_height": 3,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 78,
+      "physical_damage_min": 42,
+      "range": 11
+    }
   }
 }

@@ -3,121 +3,141 @@
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Plateau Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Bazaar Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Volcano Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chateau Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lava Chamber Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Precinct Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Academy Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Fungal Hollow Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shipyard Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Overgrown Ruin Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Castle Ruins Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Arsenal Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Wasteland Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Courtyard Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Excavation Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Waterways Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Palace Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shrine Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Maze Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Vaal Temple Map": {
     "drop_level": 83,
@@ -125,529 +145,617 @@
       "Area contains 10 additional guarded Vaal Vessels"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Plaza Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Core Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Caldera Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Colosseum Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Cursed Crypt Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Dungeon Map": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Grotto Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Dunes Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Pit Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Tropical Island Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Desert Map": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Toxic Sewer Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Channel Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Thicket Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Atoll Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Cemetery Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Arcade Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Wharf Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ghetto Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Spider Lair Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Vaal Pyramid Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Reef Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Geode Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Mud Geyser Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Museum Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Arena Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Overgrown Shrine Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Crystal Ore Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shore Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Spider Forest Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Promenade Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Phantasmagoria Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Underground River Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Pier Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Bog Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Graveyard Map": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Coves Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Villa Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Temple Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Arachnid Nest Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Strand Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ashen Wood Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Colonnade Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Bone Crypt Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Primordial Blocks Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Waste Pool Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Flooded Mine Map": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Jungle Valley Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Gardens Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Cells Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Canyon Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Dark Forest Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Peninsula Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Orchard Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Underground Sea Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Arid Lake Map": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Glacier Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Residence Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Malformation Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Academy Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Acid Caverns Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Acid Caverns Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Arachnid Nest Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Arachnid Tomb Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Arachnid Tomb Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Arcade Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Arena Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Arid Lake Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Armoury Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Armoury Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Arsenal Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Atoll Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Barrows Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Barrows Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Beach Map": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Beach Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lighthouse Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Bog Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Burial Chambers Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Burial Chambers Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Canyon Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Castle Ruins Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Bone Crypt Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Flooded Mine Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Cells Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Cemetery Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Channel Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Pit of the Chimera Map": {
     "drop_level": 83,
@@ -655,115 +763,134 @@
       "Area is influenced by The Shaper"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Colonnade Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Courtyard Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Coves Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Cursed Crypt Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Crystal Ore Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Desert Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Peninsula Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Ashen Wood Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Dunes Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Dungeon Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Estuary Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Factory Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Factory Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Ghetto Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Graveyard Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Grotto Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Harbinger Map": {
     "drop_level": 83,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Terrace Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lair of the Hydra Map": {
     "drop_level": 83,
@@ -771,61 +898,71 @@
       "Area is influenced by The Shaper"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ivory Temple Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Jungle Valley Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lair Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Malformation Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Marshes Map": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Marshes Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Mesa Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Mesa Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Mineral Pools Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Maze of the Minotaur Map": {
     "drop_level": 83,
@@ -833,49 +970,57 @@
       "Area is influenced by The Shaper"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Mud Geyser Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Museum Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Desert Spring Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Desert Spring Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Orchard Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Overgrown Shrine Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Phantasmagoria Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Forge of the Phoenix Map": {
     "drop_level": 83,
@@ -883,474 +1028,553 @@
       "Area is influenced by The Shaper"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Pier Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Pit Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Primordial Pool Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Primordial Pool Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Promenade Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Geode Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Port Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Port Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Racecourse Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Racecourse Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ramparts Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Ramparts Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Reef Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Scriptorium Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Toxic Sewer Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "The Shaper's Realm": {
     "drop_level": 84,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Shore Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Spider Forest Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Spider Lair Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Strand Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Leyline Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Temple Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Gardens Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Thicket Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Tower Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Tower Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Tropical Island Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Underground River Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ancient City Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Ancient City Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Vaal Pyramid Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Vault Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Villa Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Waste Pool Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Shaped Wharf Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Alleyways Map": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Basilica Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Belfry Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Bramble Valley Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Cage Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Carcass Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "City Square Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Cold River Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Conservatory Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Coral Ruins Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Courthouse Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Crimson Temple Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Crimson Township Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Defiled Cathedral Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Dig Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Dry Sea Map": {
     "drop_level": 81,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Fields Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Forbidden Woods Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Forking River Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Foundry Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Frozen Cabins Map": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Grave Trough Map": {
     "drop_level": 78,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Haunted Mansion Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Iceberg Map": {
     "drop_level": 70,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Infested Valley Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Laboratory Map": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lava Lake Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lookout Map": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Mausoleum Map": {
     "drop_level": 73,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Moon Temple Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Park Map": {
     "drop_level": 80,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Pen Map": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Relic Chambers Map": {
     "drop_level": 71,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Sepulchre Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Siege Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Silo Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Stagnation Map": {
     "drop_level": 76,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Sulphur Vents Map": {
     "drop_level": 72,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Summit Map": {
     "drop_level": 79,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Sunken City Map": {
     "drop_level": 82,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Synthesised Map": {
     "drop_level": 77,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Engraved Ultimatum": {
     "drop_level": 83,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Crater Map": {
     "drop_level": 74,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   }
 }

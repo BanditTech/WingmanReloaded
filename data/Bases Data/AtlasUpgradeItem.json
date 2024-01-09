@@ -3,198 +3,231 @@
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Cobalt Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Viridian Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Golden Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ivory Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium Haewark Hamlet Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium Tirn's End Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium Lex Proxima Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium Lex Ejoris Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium New Vastir Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium Glennach Cairns Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium Valdo's Rest Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chromium Lira Arthain Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum Haewark Hamlet Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum Tirn's End Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum Lex Proxima Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum Lex Ejoris Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum New Vastir Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum Glennach Cairns Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum Valdo's Rest Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Platinum Lira Arthain Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium Haewark Hamlet Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium Tirn's End Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium Lex Proxima Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium Lex Ejoris Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium New Vastir Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium Glennach Cairns Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium Valdo's Rest Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Titanium Lira Arthain Watchstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ceremonial Voidstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Decayed Voidstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Grasping Voidstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Omniscient Voidstone": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   }
 }

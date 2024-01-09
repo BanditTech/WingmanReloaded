@@ -3,24 +3,28 @@
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Murderous Eye Jewel": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Searching Eye Jewel": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ghastly Eye Jewel": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   }
 }

@@ -5,7 +5,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 11,
+      "physical_damage_min": 5,
+      "range": 14
+    }
   },
   "Burnished Foil": {
     "drop_level": 40,
@@ -13,7 +20,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 46,
+      "physical_damage_min": 25,
+      "range": 14
+    }
   },
   "Estoc": {
     "drop_level": 43,
@@ -21,7 +35,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 50,
+      "physical_damage_min": 21,
+      "range": 14
+    }
   },
   "Serrated Foil": {
     "drop_level": 46,
@@ -29,7 +50,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 49,
+      "physical_damage_min": 21,
+      "range": 14
+    }
   },
   "Primeval Rapier": {
     "drop_level": 49,
@@ -37,7 +65,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 73,
+      "physical_damage_min": 18,
+      "range": 14
+    }
   },
   "Fancy Foil": {
     "drop_level": 52,
@@ -45,7 +80,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 51,
+      "physical_damage_min": 28,
+      "range": 14
+    }
   },
   "Apex Rapier": {
     "drop_level": 55,
@@ -53,7 +95,14 @@
       "+35% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 570,
+      "physical_damage_max": 67,
+      "physical_damage_min": 29,
+      "range": 14
+    }
   },
   "Dragonbone Rapier": {
     "drop_level": 58,
@@ -61,7 +110,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 75,
+      "physical_damage_min": 19,
+      "range": 14
+    }
   },
   "Tempered Foil": {
     "drop_level": 60,
@@ -69,7 +125,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 65,
+      "physical_damage_min": 35,
+      "range": 14
+    }
   },
   "Pecoraro": {
     "drop_level": 62,
@@ -77,7 +140,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 69,
+      "physical_damage_min": 29,
+      "range": 14
+    }
   },
   "Spiraled Foil": {
     "drop_level": 64,
@@ -85,7 +155,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 64,
+      "physical_damage_min": 27,
+      "range": 14
+    }
   },
   "Whalebone Rapier": {
     "drop_level": 7,
@@ -93,7 +170,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 17,
+      "physical_damage_min": 4,
+      "range": 14
+    }
   },
   "Vaal Rapier": {
     "drop_level": 66,
@@ -101,7 +185,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 87,
+      "physical_damage_min": 22,
+      "range": 14
+    }
   },
   "Jewelled Foil": {
     "drop_level": 68,
@@ -109,7 +200,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 60,
+      "physical_damage_min": 32,
+      "range": 14
+    }
   },
   "Harpy Rapier": {
     "drop_level": 70,
@@ -117,7 +215,14 @@
       "+35% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 570,
+      "physical_damage_max": 72,
+      "physical_damage_min": 31,
+      "range": 14
+    }
   },
   "Battered Foil": {
     "drop_level": 12,
@@ -125,7 +230,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 20,
+      "physical_damage_min": 11,
+      "range": 14
+    }
   },
   "Basket Rapier": {
     "drop_level": 17,
@@ -133,7 +245,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 25,
+      "physical_damage_min": 11,
+      "range": 14
+    }
   },
   "Jagged Foil": {
     "drop_level": 22,
@@ -141,7 +260,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 29,
+      "physical_damage_min": 12,
+      "range": 14
+    }
   },
   "Antique Rapier": {
     "drop_level": 26,
@@ -149,7 +275,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 46,
+      "physical_damage_min": 12,
+      "range": 14
+    }
   },
   "Elegant Foil": {
     "drop_level": 30,
@@ -157,7 +290,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 625,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 33,
+      "physical_damage_min": 18,
+      "range": 14
+    }
   },
   "Thorn Rapier": {
     "drop_level": 34,
@@ -165,7 +305,14 @@
       "+35% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 714,
+      "critical_strike_chance": 570,
+      "physical_damage_max": 44,
+      "physical_damage_min": 19,
+      "range": 14
+    }
   },
   "Wyrmbone Rapier": {
     "drop_level": 37,
@@ -173,7 +320,14 @@
       "+25% to Global Critical Strike Multiplier"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 51,
+      "physical_damage_min": 13,
+      "range": 14
+    }
   },
   "Smallsword": {
     "drop_level": 36,
@@ -181,7 +335,14 @@
       "15% chance to cause Bleeding on Hit"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 40,
+      "physical_damage_min": 19,
+      "range": 14
+    }
   },
   "Courtesan Sword": {
     "drop_level": 57,
@@ -189,7 +350,14 @@
       "15% chance to cause Bleeding on Hit"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 645,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 60,
+      "physical_damage_min": 29,
+      "range": 14
+    }
   },
   "Dragoon Sword": {
     "drop_level": 72,
@@ -197,6 +365,13 @@
       "20% chance to cause Bleeding on Hit"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 667,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 66,
+      "physical_damage_min": 32,
+      "range": 14
+    }
   }
 }

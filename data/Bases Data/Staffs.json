@@ -5,7 +5,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 19,
+      "physical_damage_min": 9,
+      "range": 13
+    }
   },
   "Highborn Staff": {
     "drop_level": 52,
@@ -13,7 +20,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 145,
+      "physical_damage_min": 48,
+      "range": 13
+    }
   },
   "Primordial Staff": {
     "drop_level": 58,
@@ -21,7 +35,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 165,
+      "physical_damage_min": 55,
+      "range": 13
+    }
   },
   "Lathi": {
     "drop_level": 62,
@@ -29,7 +50,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 120,
+      "physical_damage_min": 72,
+      "range": 13
+    }
   },
   "Imperial Staff": {
     "drop_level": 66,
@@ -37,7 +65,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 171,
+      "physical_damage_min": 57,
+      "range": 13
+    }
   },
   "Primitive Staff": {
     "drop_level": 9,
@@ -45,7 +80,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 31,
+      "physical_damage_min": 10,
+      "range": 13
+    }
   },
   "Long Staff": {
     "drop_level": 18,
@@ -53,7 +95,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 41,
+      "physical_damage_min": 24,
+      "range": 13
+    }
   },
   "Royal Staff": {
     "drop_level": 28,
@@ -61,7 +110,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 81,
+      "physical_damage_min": 27,
+      "range": 13
+    }
   },
   "Woodful Staff": {
     "drop_level": 37,
@@ -69,7 +125,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 870,
+      "critical_strike_chance": 620,
+      "physical_damage_max": 102,
+      "physical_damage_min": 34,
+      "range": 13
+    }
   },
   "Quarterstaff": {
     "drop_level": 45,
@@ -77,7 +140,14 @@
       "+18% Chance to Block Attack Damage while wielding a Staff"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 86,
+      "physical_damage_min": 51,
+      "range": 13
+    }
   },
   "Transformer Staff": {
     "drop_level": 30,
@@ -85,7 +155,14 @@
       "+(66-80) to maximum Energy Shield\nSpend Energy Shield before Mana for Costs of Socketed Skills"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 66,
+      "physical_damage_min": 36,
+      "range": 13
+    }
   },
   "Reciprocation Staff": {
     "drop_level": 50,
@@ -93,7 +170,14 @@
       "+(100-120) to maximum Energy Shield\nSpend Energy Shield before Mana for Costs of Socketed Skills"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 102,
+      "physical_damage_min": 55,
+      "range": 13
+    }
   },
   "Battery Staff": {
     "drop_level": 70,
@@ -101,7 +185,14 @@
       "+(140-165) to maximum Energy Shield\nSpend Energy Shield before Mana for Costs of Socketed Skills"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 120,
+      "physical_damage_min": 65,
+      "range": 13
+    }
   },
   "Crescent Staff": {
     "drop_level": 36,
@@ -109,7 +200,14 @@
       "80% increased Global Critical Strike Chance"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 85,
+      "physical_damage_min": 41,
+      "range": 13
+    }
   },
   "Moon Staff": {
     "drop_level": 57,
@@ -117,7 +215,14 @@
       "80% increased Global Critical Strike Chance"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 138,
+      "physical_damage_min": 66,
+      "range": 13
+    }
   },
   "Eclipse Staff": {
     "drop_level": 70,
@@ -125,6 +230,13 @@
       "100% increased Global Critical Strike Chance"
     ],
     "inventory_height": 4,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {
+      "attack_time": 833,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 145,
+      "physical_damage_min": 70,
+      "range": 13
+    }
   }
 }

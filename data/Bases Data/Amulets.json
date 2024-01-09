@@ -5,7 +5,8 @@
       "(48-56)% increased Mana Regeneration Rate"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Marble Amulet": {
     "drop_level": 74,
@@ -13,7 +14,8 @@
       "Regenerate (1.2-1.6)% of Life per second"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Seaglass Amulet": {
     "drop_level": 74,
@@ -21,7 +23,8 @@
       "(10-15)% faster start of Energy Shield Recharge"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Jet Amulet": {
     "drop_level": 1,
@@ -29,7 +32,8 @@
       "+(8-12)% to all Elemental Resistances"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Paua Amulet": {
     "drop_level": 3,
@@ -37,7 +41,8 @@
       "(20-30)% increased Mana Regeneration Rate"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Citrine Amulet": {
     "drop_level": 20,
@@ -45,7 +50,8 @@
       "+(16-24) to Strength and Dexterity"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ruby Amulet": {
     "drop_level": 50,
@@ -53,7 +59,8 @@
       "+(20-30)% to Fire Resistance"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Unset Amulet": {
     "drop_level": 45,
@@ -61,7 +68,8 @@
       "Has 1 Socket"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Coral Amulet": {
     "drop_level": 3,
@@ -69,7 +77,8 @@
       "Regenerate (2-4) Life per second"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Amber Amulet": {
     "drop_level": 7,
@@ -77,7 +86,8 @@
       "+(20-30) to Strength"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Jade Amulet": {
     "drop_level": 7,
@@ -85,7 +95,8 @@
       "+(20-30) to Dexterity"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lapis Amulet": {
     "drop_level": 7,
@@ -93,7 +104,8 @@
       "+(20-30) to Intelligence"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Gold Amulet": {
     "drop_level": 15,
@@ -101,7 +113,8 @@
       "(12-20)% increased Rarity of Items found"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Onyx Amulet": {
     "drop_level": 3,
@@ -109,7 +122,8 @@
       "+(10-16) to all Attributes"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Turquoise Amulet": {
     "drop_level": 20,
@@ -117,7 +131,8 @@
       "+(16-24) to Dexterity and Intelligence"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Agate Amulet": {
     "drop_level": 20,
@@ -125,7 +140,8 @@
       "+(16-24) to Strength and Intelligence"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Astrolabe Amulet": {
     "drop_level": 75,
@@ -133,7 +149,8 @@
       "Has Elder, Shaper and all Conqueror Influences\nImplicit Modifiers Cannot Be Changed"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Simplex Amulet": {
     "drop_level": 80,
@@ -141,7 +158,8 @@
       "-2 Prefix Modifiers allowed\n-1 Suffix Modifier allowed\nImplicit Modifiers Cannot Be Changed\n100% increased Explicit Modifier magnitudes"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Focused Amulet": {
     "drop_level": 80,
@@ -149,7 +167,8 @@
       "-1 Prefix Modifier allowed\n-2 Suffix Modifiers allowed\nImplicit Modifiers Cannot Be Changed\n100% increased Explicit Modifier magnitudes"
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Black Maw Talisman": {
     "drop_level": 1,
@@ -158,7 +177,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Mandible Talisman": {
     "drop_level": 1,
@@ -167,7 +187,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Chrysalis Talisman": {
     "drop_level": 35,
@@ -176,7 +197,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Writhing Talisman": {
     "drop_level": 35,
@@ -185,7 +207,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Bonespire Talisman": {
     "drop_level": 1,
@@ -194,7 +217,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Ashscale Talisman": {
     "drop_level": 1,
@@ -203,7 +227,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Lone Antler Talisman": {
     "drop_level": 1,
@@ -212,7 +237,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Deep One Talisman": {
     "drop_level": 1,
@@ -221,7 +247,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Breakrib Talisman": {
     "drop_level": 1,
@@ -230,7 +257,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Deadhand Talisman": {
     "drop_level": 1,
@@ -239,7 +267,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Undying Flesh Talisman": {
     "drop_level": 1,
@@ -248,7 +277,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Rot Head Talisman": {
     "drop_level": 1,
@@ -257,7 +287,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Hexclaw Talisman": {
     "drop_level": 1,
@@ -266,7 +297,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Primal Skull Talisman": {
     "drop_level": 1,
@@ -275,7 +307,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Wereclaw Talisman": {
     "drop_level": 1,
@@ -284,7 +317,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Splitnewt Talisman": {
     "drop_level": 1,
@@ -293,7 +327,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Clutching Talisman": {
     "drop_level": 1,
@@ -302,7 +337,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Avian Twins Talisman": {
     "drop_level": 1,
@@ -311,7 +347,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Fangjaw Talisman": {
     "drop_level": 1,
@@ -320,7 +357,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Horned Talisman": {
     "drop_level": 1,
@@ -329,7 +367,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Spinefuse Talisman": {
     "drop_level": 1,
@@ -338,7 +377,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Three Rat Talisman": {
     "drop_level": 1,
@@ -347,7 +387,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Monkey Twins Talisman": {
     "drop_level": 1,
@@ -356,7 +397,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Longtooth Talisman": {
     "drop_level": 1,
@@ -365,7 +407,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Rotfeather Talisman": {
     "drop_level": 1,
@@ -374,7 +417,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Monkey Paw Talisman": {
     "drop_level": 1,
@@ -383,7 +427,8 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Three Hands Talisman": {
     "drop_level": 1,
@@ -392,12 +437,14 @@
       null
     ],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   },
   "Greatwolf Talisman": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
-    "inventory_width": 1
+    "inventory_width": 1,
+    "properties": {}
   }
 }

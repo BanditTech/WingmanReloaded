@@ -5,7 +5,8 @@
       "(11-15)% increased Spell Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Conduit Line": {
     "drop_level": 75,
@@ -13,7 +14,8 @@
       "(16-20)% increased Spell Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Aggregator Charm": {
     "drop_level": 80,
@@ -21,7 +23,8 @@
       "(21-25)% increased Spell Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Burst Band": {
     "drop_level": 83,
@@ -29,7 +32,8 @@
       "(26-30)% increased Spell Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Rough Sharpening Stone": {
     "drop_level": 60,
@@ -37,7 +41,8 @@
       "(11-15)% increased Melee Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Standard Sharpening Stone": {
     "drop_level": 75,
@@ -45,7 +50,8 @@
       "(16-20)% increased Melee Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Fine Sharpening Stone": {
     "drop_level": 80,
@@ -53,7 +59,8 @@
       "(21-25)% increased Melee Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Obsidian Sharpening Stone": {
     "drop_level": 83,
@@ -61,7 +68,8 @@
       "(26-30)% increased Melee Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Flanged Arrowhead": {
     "drop_level": 60,
@@ -69,7 +77,8 @@
       "(11-15)% increased Projectile Attack Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Fragmenting Arrowhead": {
     "drop_level": 75,
@@ -77,7 +86,8 @@
       "(16-20)% increased Projectile Attack Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Hollowpoint Arrowhead": {
     "drop_level": 80,
@@ -85,7 +95,8 @@
       "(21-25)% increased Projectile Attack Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Precise Arrowhead": {
     "drop_level": 83,
@@ -93,12 +104,14 @@
       "(26-30)% increased Projectile Attack Damage"
     ],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "[UNUSED] Heist Test Weapon": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 2,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   }
 }

@@ -5,7 +5,8 @@
       "(12-24)% increased Global Physical Damage"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Chain Belt": {
     "drop_level": 2,
@@ -13,7 +14,8 @@
       "+(9-20) to maximum Energy Shield"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Leather Belt": {
     "drop_level": 2,
@@ -21,7 +23,8 @@
       "+(20-30) to maximum Life"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Heavy Belt": {
     "drop_level": 2,
@@ -29,7 +32,8 @@
       "+(25-35) to Strength"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Cloth Belt": {
     "drop_level": 2,
@@ -37,7 +41,8 @@
       "(30-40)% increased Stun and Block Recovery"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Studded Belt": {
     "drop_level": 20,
@@ -45,7 +50,8 @@
       "(20-30)% increased Stun Duration on Enemies"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Stygian Vise": {
     "drop_level": 1,
@@ -53,7 +59,8 @@
       "Has 1 Abyssal Socket"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Vanguard Belt": {
     "drop_level": 73,
@@ -61,7 +68,8 @@
       "+(260-320) to Armour and Evasion Rating"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Crystal Belt": {
     "drop_level": 73,
@@ -69,7 +77,8 @@
       "+(60-80) to maximum Energy Shield"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Golden Obi": {
     "drop_level": 12,
@@ -77,7 +86,8 @@
       "(20-30)% increased Rarity of Items found"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Micro-Distillery Belt": {
     "drop_level": 68,
@@ -85,7 +95,8 @@
       "Can't use Flask in Fifth Slot\nFlasks applied to you have 30% increased Effect"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   },
   "Mechalarm Belt": {
     "drop_level": 70,
@@ -93,6 +104,7 @@
       "Trigger Level 20 Summon Taunting Contraption when you use a Flask"
     ],
     "inventory_height": 1,
-    "inventory_width": 2
+    "inventory_width": 2,
+    "properties": {}
   }
 }
