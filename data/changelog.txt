@@ -1,7 +1,7 @@
 ## Version .15.2 - Alpha Version - January/08/2024
 Modifications
   * Replace POEDB API
-    * As this new API will be in a new format, files contain maps, itemcrafting  e actualtier will not work in new format
+    * As this new API/Data Files will be in a new format, old files contain maps, itemcrafting and actualtier will not work in new format
     * You can delete them in your save folder, they will be regenerate in new format as soon you start WR or use this tools
   * Retire Crafting Bases
   * Base Data Reworked
