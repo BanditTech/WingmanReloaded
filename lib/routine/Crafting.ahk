@@ -110,10 +110,15 @@ CraftingItem(){
 		Return
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
-	If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated") {
+	If (ItemCraftingSubCategorySelector ~= "Awakened Sextant") {
 		CurrencyList := []
-		CurrencyList.Push(ItemCraftingSubCategorySelector)
-	} Else {
+		CurrencyList.Push("Awakened")
+	} 
+	Else If (ItemCraftingSubCategorySelector ~= "Elevated Sextant") {
+		CurrencyList := []
+		CurrencyList.Push("Elevated")
+	} 
+	Else {
 		CurrencyList := []
 		If (ItemCraftingMethod ~= "Alteration")
 			CurrencyList.Push("Alteration")
@@ -171,8 +176,10 @@ CraftingItem(){
 		Log("Missing Surveyor's Compass Location","You must setup the co-ordinates in your currency tab before you can craft with sextants")
 		Return
 	}
-	If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated") {
-		SextantCraftingRoll(ItemCraftingSubCategorySelector,xx,yy)
+	If (ItemCraftingSubCategorySelector ~= "Awakened Sextant") {
+		SextantCraftingRoll("Awakened",xx,yy)
+	}Else If (ItemCraftingSubCategorySelector ~= "Elevated Sextant") {
+		SextantCraftingRoll("Elevated",xx,yy)
 	}Else If(ItemCraftingMethod == "Alteration Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
 			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",4)
