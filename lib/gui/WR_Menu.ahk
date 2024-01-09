@@ -726,6 +726,7 @@ WR_Menu(Function:="",Var*){
       GuiControl, ChooseString, ItemCraftingCategorySelector, %ItemCraftingCategorySelector%
       Gui, Crafting: Add, Text, xs+5 y+5 w60, SubCategory:
       Gui, Crafting: Add, DropDownList, vItemCraftingSubCategorySelector gItemCraftingSubmit Sort xs+70 yp-4 w210
+      FillItemCraftingSubCategoryDropdown()
       GuiControl, ChooseString, ItemCraftingSubCategorySelector, %ItemCraftingSubCategorySelector%
 
       ; Affix Rules

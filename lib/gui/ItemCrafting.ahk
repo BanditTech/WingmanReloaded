@@ -14,7 +14,7 @@ ModsUI:
   RefreshModList(ItemCraftingCategorySelector,ItemCraftingSubCategorySelector)
   Gui, ModsUI1: Add, Button, gSaveItemCrafting x+5 w120 h30 center, Save
   Gui, ModsUI1: Add, Button, gResetItemCrafting w120 h30 center, Reset
-  Gui, ModsUI1: Show, , Category %ItemCraftingCategorySelector% SubCategory %ItemCraftingSubCategorySelector% Affix List
+  Gui, ModsUI1: Show, , Category: "%ItemCraftingCategorySelector%" SubCategory: "%ItemCraftingSubCategorySelector%" - Affix List
 Return
 
 ResetItemCrafting:
@@ -65,19 +65,18 @@ Return
 SaveItemCraftingMenu:
 Return
 
+FillItemCraftingSubCategoryDropdown(){
+  aux := ""
+  for a,b in POEData[ItemCraftingCategorySelector] {
+    aux .= b "|"
+  }
+  GuiControl, , ItemCraftingSubCategorySelector, |%aux%
+}
+
 ItemCraftingSubmit:
-  If (A_GuiControl ~= "ItemCraftingCategorySelector") {
-    SaveINI("Item Crafting Settings")
-    aux := ""
-    for a,b in POEData[ItemCraftingCategorySelector]
-    {
-      aux .= b "|"
-    }
-    GuiControl, , ItemCraftingSubCategorySelector, |%aux%
-  }
-  If (A_GuiControl ~= "ItemCraftingSubCategorySelector") {
-    SaveINI("Item Crafting Settings")
-  }
+  SaveINI("Item Crafting Settings")
+  If (A_GuiControl ~= "ItemCraftingCategorySelector")
+    FillItemCraftingSubCategoryDropdown()
 Return
 
 ;; Functions
