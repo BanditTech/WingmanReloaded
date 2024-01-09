@@ -135,11 +135,14 @@ CraftingItem(){
 	Log("[Start] Item Crafting ","Initial Clip",JSON.Dump(Item))
 	Sleep, 45*Latency
 
+	/*
+	Each case must be revised
 	If (!ItemCraftingBaseComparator(ItemCraftingSubCategorySelector,Item.Prop.ItemClass)) {
 		Notify("Item Base Error","You Need Select or Use Same Base as Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select or Use Same Base as Mod Selector")
 		Return
 	}
+	*/
 	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
 		&& (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
@@ -159,7 +162,7 @@ CraftingItem(){
 	}
 	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
 		&& (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
-		Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsin")
+		Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 		Return
 	}
