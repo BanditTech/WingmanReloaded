@@ -7,7 +7,7 @@ ItemCraftingNamingMaping(Content)
   Output := ""
   Content := StrSplit(Content, " | ")
   for k, v in Content{
-    if (v ~= "increased Quantity of Items found in this Area" || v ~= "increased Rarity of Items found in this Area" || v ~= "increased Pack size" || v ~= "^[a-z]" || v ~= "^0\%"){
+    if (v ~= "increased Quantity of Items found in this Area" || v ~= "increased Rarity of Items found in this Area" || v ~= "increased Pack size"){
       Continue
     }Else{
       Output .= v . (k==Content.Length()?"":" | ")
