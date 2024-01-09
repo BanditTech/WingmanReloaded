@@ -68,9 +68,12 @@ Return
 FillItemCraftingSubCategoryDropdown(){
   aux := ""
   for a,b in POEData[ItemCraftingCategorySelector] {
+    if (a = 1)
+      firstEntry := b
     aux .= b "|"
   }
   GuiControl, , ItemCraftingSubCategorySelector, |%aux%
+  GuiControl, Choose, ItemCraftingSubCategorySelector, 1
 }
 
 ItemCraftingSubmit:
