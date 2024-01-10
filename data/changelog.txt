@@ -5,6 +5,7 @@ Modifications
       * Check your affinities after this update
     * Remove Fill Metamorph
     * Remove Predict Prices
+    * Remove OnLocker (Heist Stash) and OnMetamorph
   * Data Updated
     * Better Naming for Heist Gear/Sanctum Relic/Minion Items/Expedition Flask(Iron Flask)/Cluster Jewel
   
