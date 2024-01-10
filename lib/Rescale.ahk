@@ -1,6 +1,6 @@
 ﻿; Rescale - Rescales values of the script to the user's resolution
 Rescale(){
-  Global GameX, GameY, GameW, GameH, FillMetamorph, Base, Globe, InvGrid, WR
+  Global GameX, GameY, GameW, GameH, Base, Globe, InvGrid, WR
   If checkActiveType()
   {
     ; Build array framework
@@ -13,16 +13,6 @@ Rescale(){
             ,"Inventory":{"X":{},"Y":{}}
             ,"VendorRec":{"X":{},"Y":{}}
             ,"VendorOff":{"X":{},"Y":{}}}
-    If (FileExist(A_ScriptDir "\save\FillMetamorph.json") && VersionNumber != "")
-    {
-      WR_Menu("JSON","Load","FillMetamorph")
-      FillMetamorphImported := True
-    }
-    Else If (VersionNumber = "")
-      FillMetamorphImported := True
-    Else
-      FillMetamorphImported := False
-    
     If (FileExist(A_ScriptDir "\save\Globe.json") && VersionNumber != "")
     {
       WR_Menu("JSON","Load","Globe")
@@ -39,14 +29,6 @@ Rescale(){
       ; Item Inventory Grid
       Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
       Global InventoryGridY := [ GameY + Round(GameH/(1080/638)), GameY + Round(GameH/(1080/690)), GameY + Round(GameH/(1080/743)), GameY + Round(GameH/(1080/796)), GameY + Round(GameH/(1080/848)) ]  
-      ; Fill Metamorph
-      If (!FillMetamorphImported) 
-      {
-        Global FillMetamorph := {"X1": GameX + Round(GameW/(1920/329)) ; (1920/2)-631
-                    , "Y1": GameY + Round(GameH/(1080/189))
-                    , "X2": GameX + Round(GameW/(1920/745)) ; (1920/2)-215
-                    , "Y2": GameY + Round(GameH/(1080/746))}
-      }
       ; Globe areas
       If (!GlobeImported)
       {
@@ -273,12 +255,6 @@ Rescale(){
       ;Status Check OnDelveChart
       WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1920 / 466))
       WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
-      ;Status Check OnMetamporph
-      WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1920 / 785))
-      WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
-      ;Status Check OnLocker
-      WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1920 / 458))
-      WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
       ;Divination Y locations
       WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1080 / 736))
       WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1080 / 605))
@@ -290,12 +266,6 @@ Rescale(){
       ; Item Inventory Grid
       Global InventoryGridX := [ Round(GameW/(1440/794)) , Round(GameW/(1440/846)) , Round(GameW/(1440/899)) , Round(GameW/(1440/952)) , Round(GameW/(1440/1004)) , Round(GameW/(1440/1057)) , Round(GameW/(1440/1110)) , Round(GameW/(1440/1162)) , Round(GameW/(1440/1215)) , Round(GameW/(1440/1268)) , Round(GameW/(1440/1320)) , Round(GameW/(1440/1373)) ]
       Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
-      ; Fill Metamorph
-      If !FillMetamorphImported
-        Global FillMetamorph := {"X1": GameX + Round(GameW/(1440/89)) ; (1440/2)-631
-                , "Y1": GameY + Round(GameH/(1080/189))
-                , "X2": GameX + Round(GameW/(1440/505)) ; (1440/2)-215
-                , "Y2": GameY + Round(GameH/(1080/746))}
       ; Globe areas
       If (!GlobeImported)
       {
@@ -499,9 +469,6 @@ Rescale(){
       ;Status Check OnDelveChart
       WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1440 / 226))
       WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
-      ;Status Check OnMetamorph
-      WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1440 / 545))
-      WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
       ;GUI overlay
       WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1440 / -10))
       WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
@@ -513,12 +480,6 @@ Rescale(){
       ; Item Inventory Grid
       Global InventoryGridX := [ Round(GameW/(2560/1914)), Round(GameW/(2560/1967)), Round(GameW/(2560/2018)), Round(GameW/(2560/2072)), Round(GameW/(2560/2125)), Round(GameW/(2560/2178)), Round(GameW/(2560/2230)), Round(GameW/(2560/2281)), Round(GameW/(2560/2336)), Round(GameW/(2560/2388)), Round(GameW/(2560/2440)), Round(GameW/(2560/2493)) ]
       Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]
-      ; Fill Metamorph
-      If !FillMetamorphImported
-        Global FillMetamorph := {"X1": GameX + Round(GameW/(2560/649)) ; (2560/2)-631
-                , "Y1": GameY + Round(GameH/(1080/189))
-                , "X2": GameX + Round(GameW/(2560/1065)) ; (2560/2)-215
-                , "Y2": GameY + Round(GameH/(1080/746))}
       ; Globe areas
       If (!GlobeImported)
       {
@@ -720,13 +681,6 @@ Rescale(){
       ;Status Check OnDelveChart
       WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (2560 / 786))
       WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
-      ;Status Check OnMetamorph
-      WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (2560 / 1105))
-      WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
-      ;Status Check OnLocker
-      WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (2560 / 490))
-      WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918))
-
       ;GUI overlay
       WR.loc.pixel.Gui.X:=GameX + Round(GameW / (2560 / -10))
       WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
@@ -739,12 +693,6 @@ Rescale(){
       ;Item Inventory Grid
       Global InventoryGridX := [ Round(GameW/(3440/2579)), Round(GameW/(3440/2649)), Round(GameW/(3440/2719)), Round(GameW/(3440/2789)), Round(GameW/(3440/2860)), Round(GameW/(3440/2930)), Round(GameW/(3440/3000)), Round(GameW/(3440/3070)), Round(GameW/(3440/3140)), Round(GameW/(3440/3211)), Round(GameW/(3440/3281)), Round(GameW/(3440/3351)) ]
       Global InventoryGridY := [ Round(GameH/(1440/851)), Round(GameH/(1440/921)), Round(GameH/(1440/992)), Round(GameH/(1440/1062)), Round(GameH/(1440/1132)) ]
-      ; Fill Metamorph
-      If !FillMetamorphImported
-        Global FillMetamorph := {"X1": GameX + Round(GameW/(2560/649)) ; (2560/2)-631
-                , "Y1": GameY + Round(GameH/(1080/189))
-                , "X2": GameX + Round(GameW/(2560/1065)) ; (2560/2)-215
-                , "Y2": GameY + Round(GameH/(1080/746))}
       If (!GlobeImported)
       {
         ; Life scan area
@@ -950,12 +898,6 @@ Rescale(){
       ;Status Check OnDelveChart
       WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (3440 / 1056))
       WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1440 / 118))
-      ;Status Check OnMetamporph
-      WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / ( 3440 / 1480))
-      WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1440 / 270))
-      ;Status Check OnLocker ((3440/3)-2)
-      WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3440 / 600))
-      WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1440 / 918))
       ;GUI overlay
       WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3440 / -10))
       WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1440 / 1370))
@@ -967,12 +909,6 @@ Rescale(){
       ; Item Inventory Grid
       Global InventoryGridX := [ Round(GameW/(3840/3193)), Round(GameW/(3840/3246)), Round(GameW/(3840/3299)), Round(GameW/(3840/3352)), Round(GameW/(3840/3404)), Round(GameW/(3840/3457)), Round(GameW/(3840/3510)), Round(GameW/(3840/3562)), Round(GameW/(3840/3615)), Round(GameW/(3840/3668)), Round(GameW/(3840/3720)), Round(GameW/(3840/3773)) ]
       Global InventoryGridY := [ Round(GameH/(1080/638)), Round(GameH/(1080/690)), Round(GameH/(1080/743)), Round(GameH/(1080/796)), Round(GameH/(1080/848)) ]  
-      ; Fill Metamorph
-      If !FillMetamorphImported
-        Global FillMetamorph := {"X1": GameX + Round(GameW/(3840/1289)) ; (3840/2)-631
-                , "Y1": GameY + Round(GameH/(1080/189))
-                , "X2": GameX + Round(GameW/(3840/1705)) ; (3840/2)-215
-                , "Y2": GameY + Round(GameH/(1080/746))}
       If (!GlobeImported)
       {
         ; Life scan area
@@ -1171,12 +1107,6 @@ Rescale(){
       ;Status Check OnDelveChart
       WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (3840 / 1426))
       WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1080 / 89))
-      ;Status Check OnMetamorph
-      WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (3840 / 1745))
-      WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1080 / 204))
-      ;Status Check OnLocker ((3840/3)-2)
-      WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (3840 / 1415))
-      WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1080 / 918)) 
       ;GUI overlay
       WR.loc.pixel.Gui.X:=GameX + Round(GameW / (3840 / -10))
       WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1080 / 1027))
@@ -1188,15 +1118,6 @@ Rescale(){
       ; Item Inventory Grid
       Global InventoryGridX := [ GameX + Round(GameW/(1680/1051)), GameX + Round(GameW/(1680/1103)), GameX + Round(GameW/(1680/1154)), GameX + Round(GameW/(1680/1205)), GameX + Round(GameW/(1680/1256)), GameX + Round(GameW/(1680/1306)), GameX + Round(GameW/(1680/1358)), GameX + Round(GameW/(1680/1410)), GameX + Round(GameW/(1680/1461)), GameX + Round(GameW/(1680/1512)), GameX + Round(GameW/(1680/1563)), GameX + Round(GameW/(1680/1614)) ]
       Global InventoryGridY := [ GameY + Round(GameH/(1050/620)), GameY + Round(GameH/(1050/671)), GameY + Round(GameH/(1050/722)), GameY + Round(GameH/(1050/773)), GameY + Round(GameH/(1050/824)) ]  
-
-      ; Fill Metamorph
-      If (!FillMetamorphImported)
-      {
-        Global FillMetamorph := {"X1": GameX + Round(GameW/(1680/227)) ; (1680/2)-631
-                    , "Y1": GameY + Round(GameH/(1050/188))
-                    , "X2": GameX + Round(GameW/(1680/632)) ; (1680/2)-215
-                    , "Y2": GameY + Round(GameH/(1050/725))}
-      }
 
       ; Globe areas
       If (!GlobeImported)
@@ -1417,14 +1338,6 @@ Rescale(){
       WR.loc.pixel.OnDelveChart.X:=GameX + Round(GameW / (1680 / 362))
       WR.loc.pixel.OnDelveChart.Y:=GameY + Round(GameH / ( 1050 / 84))
       
-      ;Status Check OnMetamporph
-      WR.loc.pixel.OnMetamorph.X:=GameX + Round(GameW / (1680 / 850))
-      WR.loc.pixel.OnMetamorph.Y:=GameY + Round(GameH / ( 1050 / 195))
-      
-      ;Status Check OnLocker ((1680/3)-2)
-      WR.loc.pixel.OnLocker.X:=GameX + Round(GameW / (1680 / 450))
-      WR.loc.pixel.OnLocker.Y:=GameY + Round(GameH / ( 1050 / 918))
-
       ;GUI overlay
       WR.loc.pixel.Gui.X:=GameX + Round(GameW / (1680 / -10))
       WR.loc.pixel.Gui.Y:=GameY + Round(GameH / (1050 / 1000))
@@ -1631,10 +1544,6 @@ FirstScale(){
     WR.loc.pixel.OnLeft.Y:=57
     WR.loc.pixel.OnDelveChart.X:=466
     WR.loc.pixel.OnDelveChart.Y:=89
-    WR.loc.pixel.OnMetamorph.X:=785
-    WR.loc.pixel.OnMetamorph.Y:=204
-    WR.loc.pixel.OnLocker.X:=638
-    WR.loc.pixel.OnLocker.Y:=600
     WR.loc.pixel.DivTrade.Y:=736
     WR.loc.pixel.DivItem.Y:=605
     WR.loc.pixel.DivItem.X:= WR.loc.pixel.DivTrade.X:=WR.loc.pixel.OnDiv.X

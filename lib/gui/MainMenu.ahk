@@ -97,15 +97,9 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnLeft hwndMainMenuIDOnLeft, % "Left Panel Open"
 	CtlColors.Attach(MainMenuIDOnLeft, "", "Green")
 	Gui, Add, Text, xp yp wp hp gupdateOnStash BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnMetamorph hwndMainMenuIDOnMetamorph, % "Map Metamorph Open"
-	CtlColors.Attach(MainMenuIDOnMetamorph, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnMetamorph BackgroundTrans
-	Gui, Add, Text, x+5 yp w150 Center h20 0x200 vMainMenuOnDetonate hwndMainMenuIDOnDetonate, % "Detonate Shown"
+	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnDetonate hwndMainMenuIDOnDetonate, % "Detonate Shown"
 	CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
 	Gui, Add, Text, xp yp wp hp gupdateDetonate BackgroundTrans
-	Gui, Add, Text, xs y+10 w150 Center h20 0x200 vMainMenuOnLocker hwndMainMenuIDOnLocker, % "Heist Locker Open"
-	CtlColors.Attach(MainMenuIDOnLocker, "", "Green")
-	Gui, Add, Text, xp yp wp hp gupdateOnLocker BackgroundTrans
 
 	Gui, Font, Bold s9 cBlack, Arial
 	Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h60 ,         Gamestate Calibration

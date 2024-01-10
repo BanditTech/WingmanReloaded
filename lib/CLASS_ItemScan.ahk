@@ -83,9 +83,6 @@
 		This.MatchChaosRegal()
 		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
-		If (This.Prop.Rarity_Digit = 3 && !This.Affix.Unidentified && (StashTabYesPredictive && YesPredictivePrice != "Off") ){
-			This.Prop.PredictPrice := This.PredictPrice()
-		}
 		If (This.Prop.ClusterJewel) {
 			This.Prop.ClusterSkills := 0
 			This.Prop.ClusterSmall := 0
@@ -113,69 +110,7 @@
 		}
 		This.Prop.StashReturnVal := This.MatchStashManagement(false)
 	}
-	; PredictPrice - Evaluate results from TradeFunc_DoPoePricesRequest
-	PredictPrice(Switch:="")
-	{
-		Static ItemList := []
-		Static WarnedError := 0
-		FoundMatch := False
-		If (This.Prop.Rarity_Digit != 3 || This.Affix.Unidentified)
-			Return 0
-		If (This.Prop.Rarity_Digit = 3 && (!This.Prop.SpecialType || This.Prop.SpecialType = "6Link" || This.Prop.SpecialType = "5Link") && YesPredictivePrice != "Off" )
-		{
-			For k, obj in ItemList
-			{
-				If (obj.Clip_Contents = Clip_Contents)
-				{
-					FoundMatch := True
-					PriceObj := obj
-					Break
-				}
-			}
-			If !FoundMatch
-			{
-				PriceObj := TradeFunc_DoPoePricesRequest(Clip_Contents, "")
-				if (PriceObj.error)
-				{
-					If (A_TickCount - WarnedError > 30000 )
-					{
-						Notify(PriceObj.error_msg, "", 10)
-						WarnedError := A_TickCount
-					}
-					return
-				}
-				PriceObj.Clip_Contents := Clip_Contents
-				If (YesPredictivePrice = "Low")
-					Price := SelectedPrice := PriceObj.min
-				Else If (YesPredictivePrice = "Avg")
-					Price := SelectedPrice := (PriceObj.min + PriceObj.max) / 2
-				Else If (YesPredictivePrice = "High")
-					Price := SelectedPrice := PriceObj.max
 
-				Price := Price * (YesPredictivePrice_Percent_Val / 100)
-				PriceObj.Avg := (PriceObj.min + PriceObj.max) / 2
-				PriceObj.Price := Price
-
-				tt := "Priced using Machine Learning`n" Format("{1:0.3g}", PriceObj.min) " << " Format("{1:0.3g}", PriceObj.Avg ) " >> " Format("{1:0.3g}", PriceObj.max) " @ " PriceObj.currency
-					. "`nSelected Price: " YesPredictivePrice " (" Format("{1:0.3g}", SelectedPrice) ") " " multiplied by " YesPredictivePrice_Percent_Val "`%`nAffixes Influencing Price:"
-				For k, reason in PriceObj.pred_explanation
-					tt .= "`n" Round(reason.2 * 100) "`% " reason.1
-				tt.= "`nEnd Of Predicive Price Information"
-				PriceObj.tt := tt
-				ItemList.Push(PriceObj)
-			}
-		}
-		Else
-			Return "000"
-
-		If !(PriceObj.max > 0)
-			Return "0000"
-
-		If (Switch = "Obj")
-			Return PriceObj
-		Else
-			Return PriceObj.Price
-	}
 	MatchProperties(){
 		;Get total count of affixes
 		This.Prop.AffixCount := 0
@@ -2510,11 +2445,11 @@
 				sendstash := -2
 			Else
 				sendstash := StashTabMap
-		} Else If ((This.Prop.Catalyst || This.Prop.IsOrgan != "") && StashTabYesMetamorph) {
-			If (StashTabYesMetamorph > 1)
+		} Else If (This.Prop.Catalyst && StashTabYesUltimatum) {
+			If (StashTabYesUltimatum > 1)
 				sendstash := -2
 			Else
-				sendstash := StashTabMetamorph
+				sendstash := StashTabUltimatum
 		} Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium) {
 			If (StashTabYesDelirium > 1)
 				sendstash := -2
@@ -2550,7 +2485,7 @@
 				sendstash := -2
 			Else
 				sendstash := StashTabGem
-		} Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && !This.Prop.IsOrgan
+		} Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique
 			&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.HasRange && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) ) {
 			If (StashTabYesUnique = 2)
 				Return -2
@@ -2560,7 +2495,7 @@
 				sendstash := StashTabUniqueRing
 			Else If (StashTabYesUniqueDump)
 				sendstash := StashTabUniqueDump
-		} Else If ( ((StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan=""
+		} Else If ( ((StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique
 			&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage) ) {
 			If (StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring)
 				sendstash := StashTabUniqueRing
@@ -2580,8 +2515,6 @@
 			sendstash := StashTabHeistGear
 		} Else If (StashTabYesCrafting && This.Prop.WantedCraftingBase) {
 			sendstash := StashTabCrafting
-		} Else If (StashTabYesPredictive && PPServerStatus && This.Prop.PredictPrice >= StashTabYesPredictive_Price ) {
-			sendstash := StashTabPredictive
 		} Else If (ChaosRecipeEnableFunction && This.StashChaosRecipe(passthrough)) {
 			If (ChaosRecipeStashMethodDump)
 				sendstash := StashTabDump
