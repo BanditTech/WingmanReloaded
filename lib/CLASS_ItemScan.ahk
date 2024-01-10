@@ -2445,6 +2445,11 @@
 				sendstash := -2
 			Else
 				sendstash := StashTabMap
+		} Else If (This.Prop.Catalyst && StashTabYesUltimatum) {
+			If (StashTabYesUltimatum > 1)
+				sendstash := -2
+			Else
+				sendstash := StashTabUltimatum
 		} Else If (This.Prop.SpecialType="Delirium" && StashTabYesDelirium) {
 			If (StashTabYesDelirium > 1)
 				sendstash := -2
@@ -2480,7 +2485,7 @@
 				sendstash := -2
 			Else
 				sendstash := StashTabGem
-		} Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique && !This.Prop.IsOrgan
+		} Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique
 			&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.HasRange && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) ) {
 			If (StashTabYesUnique = 2)
 				Return -2
@@ -2490,7 +2495,7 @@
 				sendstash := StashTabUniqueRing
 			Else If (StashTabYesUniqueDump)
 				sendstash := StashTabUniqueDump
-		} Else If ( ((StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique && This.Prop.IsOrgan=""
+		} Else If ( ((StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring) || (StashTabYesUniqueDump&&StashTabYesUniqueDumpAll)) && This.Prop.RarityUnique
 			&& (StashTabYesUniquePercentage && This.Prop.PercentageAffix < StashTabUniquePercentage) ) {
 			If (StashTabYesUniqueRing && StashTabYesUniqueRingAll && This.Prop.Ring)
 				sendstash := StashTabUniqueRing
