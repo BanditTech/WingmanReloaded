@@ -1,3 +1,15 @@
+## Version .15.21 - Alpha Version - January/10/2024
+Modifications
+  * Major Clean UP
+    * Remove Metamorph (Replaced by Ultimatum)
+      * Check your affinities after this update
+    * Remove Fill Metamorph
+    * Remove Predict Prices
+  * Data Updated
+    * Better Naming for Heist Gear/Sanctum Relic/Minion Items/Expedition Flask(Iron Flask)/Cluster Jewel
+  
+---
+
 ## Version .15.2 - Alpha Version - January/08/2024
 Modifications
   * Replace POEDB API
