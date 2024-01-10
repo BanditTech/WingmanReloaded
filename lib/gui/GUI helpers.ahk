@@ -62,8 +62,6 @@ UpdateExtra:
 	IniWrite, %LootVacuumTapZSec%, %A_ScriptDir%\save\Settings.ini, General, LootVacuumTapZSec
 	IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
 	IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-	IniWrite, %YesHeistLocker%, %A_ScriptDir%\save\Settings.ini, General, YesHeistLocker
-	IniWrite, %YesPredictivePrice%, %A_ScriptDir%\save\Settings.ini, General, YesPredictivePrice
 	IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
 	IniWrite, %YesSkipMaps_Prep%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep
 	IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
@@ -95,9 +93,6 @@ UpdateExtra:
 	IniWrite, %YesEnableNextAutomation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableNextAutomation
 	IniWrite, %YesEnableAutoSellConfirmation%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmation
 	IniWrite, %YesEnableAutoSellConfirmationSafe%, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutoSellConfirmationSafe
-	
-	;Automation Metamorph Settings
-	IniWrite, %YesFillMetamorph%, %A_ScriptDir%\save\Settings.ini, General, YesFillMetamorph
 	IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
 	IniWrite, %YesLootChests%, %A_ScriptDir%\save\Settings.ini, General, YesLootChests
 	IniWrite, %YesLootDelve%, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve
@@ -213,7 +208,7 @@ SelectClientLog:
 Return
 
 GreyOutAffinity() {
-  for key, val in ["Blight","Delirium","Divination","Fragment","Metamorph","Delve","Essence","Map","Currency","Unique","Gem","Flask"] {
+  for key, val in ["Blight","Delirium","Divination","Fragment","Ultimatum","Delve","Essence","Map","Currency","Unique","Gem","Flask"] {
     GuiControlGet, CheckBoxState,, StashTabYes%val%
     If (CheckBoxState == 0) { 
       GuiControl, Disable, %val%Edit
@@ -256,7 +251,7 @@ ShowHideOverlay() {
 
 mainmenuGameLogicState(refresh:=False) {
   Static OldOnChar:=-1, OldOHB:=-1, OldOnChat:=-1, OldOnInventory:=-1, OldOnDiv:=-1, OldOnStash:=-1, OldOnMenu:=-1
-  , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnMetamorph:=-1, OldOnDetonate:=-1, OldOnLocker:=-1
+  , OldOnVendor:=-1, OldOnDelveChart:=-1, OldOnLeft:=-1, OldOnDetonate:=-1
   Local NewOHB
   If (OnChar != OldOnChar) || refresh {
     OldOnChar := OnChar
@@ -334,20 +329,6 @@ mainmenuGameLogicState(refresh:=False) {
       CtlColors.Change(MainMenuIDOnMenu, "Red", "")
     Else
       CtlColors.Change(MainMenuIDOnMenu, "", "Green")
-  }
-  If (OnMetamorph != OldOnMetamorph) || refresh {
-    OldOnMetamorph := OnMetamorph
-    If (OnMetamorph)
-      CtlColors.Change(MainMenuIDOnMetamorph, "Red", "")
-    Else
-      CtlColors.Change(MainMenuIDOnMetamorph, "", "Green")
-  }
-  If (OnLocker != OldOnLocker) || refresh {
-    OldOnLocker := OnLocker
-    If (OnLocker)
-      CtlColors.Change(MainMenuIDOnLocker, "Red", "")
-    Else
-      CtlColors.Change(MainMenuIDOnLocker, "", "Green")
   }
   Return
 

@@ -105,60 +105,6 @@ updateOnDelveChart:
 	
 return
 
-updateOnMetamorph:
-	Critical
-	Gui, Submit ; , NoHide
-	
-	IfWinExist, ahk_group POEGameGroup
-	{
-		Rescale()
-		WinActivate, ahk_group POEGameGroup
-	} else {
-		MsgBox % "PoE Window does not exist. `nRecalibrate of OnMetamorph didn't work"
-		Return
-	}
-	
-	
-	if WinActive(ahk_group POEGameGroup){
-		FindText.ScreenShot()
-		varOnMetamorph := FindText.GetColor(WR.loc.pixel.OnMetamorph.X,WR.loc.pixel.OnMetamorph.Y)
-		IniWrite, %varOnMetamorph%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnMetamorph
-		readFromFile()
-		MsgBox % "OnMetamorph recalibrated!`nTook color hex: " . varOnMetamorph . " `nAt coords x: " . WR.loc.pixel.OnMetamorph.X . " and y: " . WR.loc.pixel.OnMetamorph.Y
-	}else
-	MsgBox % "PoE Window is not active. `nRecalibrate of OnMetamorph didn't work"
-	
-	MainMenu()
-	
-return
-
-updateOnLocker:
-	Critical
-	Gui, Submit ; , NoHide
-	
-	IfWinExist, ahk_group POEGameGroup
-	{
-		Rescale()
-		WinActivate, ahk_group POEGameGroup
-	} else {
-		MsgBox % "PoE Window does not exist. `nRecalibrate of OnLocker didn't work"
-		Return
-	}
-	
-	
-	if WinActive(ahk_group POEGameGroup){
-		FindText.ScreenShot()
-		varOnLocker := FindText.GetColor(WR.loc.pixel.OnLocker.X,WR.loc.pixel.OnLocker.Y)
-		IniWrite, %varOnLocker%, %A_ScriptDir%\save\Settings.ini, Failsafe Colors, OnLocker
-		readFromFile()
-		MsgBox % "OnLocker recalibrated!`nTook color hex: " . varOnLocker . " `nAt coords x: " . WR.loc.pixel.OnLocker.X . " and y: " . WR.loc.pixel.OnLocker.Y
-	}else
-	MsgBox % "PoE Window is not active. `nRecalibrate of OnLocker didn't work"
-	
-	MainMenu()
-	
-return
-
 updateOnStash:
 	Critical
 	Gui, Submit ; , NoHide
@@ -391,7 +337,6 @@ CalibrationWizard(){
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationOnVendor      xp   y+10      wp h20 , Vendor Trade Open
 		Gui, Wizard: Add, CheckBox, vCalibrationOnDiv             xp   y+10      wp h20 , Divination Trade Open
 		Gui, Wizard: Add, CheckBox, vCalibrationDetonate          xp   y+10      wp h20 , Detonate Shown
-
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationOnMenu        xp+140 ys       wp h20 , Talent Menu Open
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationEmpty         xp   y+10      wp h20 , !EMPTY! Inventory Open
 		Gui, Wizard: Add, CheckBox, Checked vCalibrationOnStash       xp   y+10      wp h20 , Stash Open

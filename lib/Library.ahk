@@ -69,7 +69,6 @@
 #Include, %A_ScriptDir%\lib\routine\Logout.ahk
 #Include, %A_ScriptDir%\lib\routine\LootScan.ahk
 #Include, %A_ScriptDir%\lib\routine\MainLogic.ahk
-#Include, %A_ScriptDir%\lib\routine\Metamorph_FillOrgans.ahk
 #Include, %A_ScriptDir%\lib\routine\PopFlasks.ahk
 #Include, %A_ScriptDir%\lib\routine\QuickPortal.ahk
 #Include, %A_ScriptDir%\lib\routine\StackRelease.ahk

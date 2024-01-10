@@ -1,7 +1,7 @@
 ﻿; WR_Menu - New menu handling method
 WR_Menu(Function:="",Var*){
   Global
-  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_Locate_GrabCompass, WR_Btn_FillMetamorph_Select, WR_Btn_FillMetamorph_Show, WR_Btn_FillMetamorph_Menu, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj, WR_Save_JSON_FillMetamorph
+  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_Locate_GrabCompass, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj
     , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
 
   Log("Verbose","Load menu: " Function,Var*)
@@ -66,17 +66,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, DropDownList, vUpdateDatabaseInterval x+1 yp-4 w30 Choose%UpdateDatabaseInterval%, 1|2|3|4|5|6|7
       Gui, Inventory: Add, Checkbox, vForceMatch6Link xs+5 y+8 Checked%ForceMatch6Link%, Match with the 6 Link price
       Gui, Inventory: Add, Checkbox, vForceMatchGem20 xs+5 y+8 Checked%ForceMatchGem20%, Match with gems below 20
-      Gui, Inventory: Add, Text, xs+5 y+11 hwndPredictivePriceHWND, Price Rares?
-      Gui, Inventory: Add, DropDownList, gUpdateExtra vYesPredictivePrice x+2 yp-3 w45 h13 r5, Off|Low|Avg|High
-      GuiControl,Inventory: ChooseString, YesPredictivePrice, %YesPredictivePrice%
-
-      Gui, Inventory: Font, s18
-      Gui, Inventory: Add, Text, x+1 yp-3 cC39F22, `%
-      Gui, Inventory: Add, Text, vYesPredictivePrice_Percent_Val x+0 yp w40 cC39F22 center, %YesPredictivePrice_Percent_Val%
-      Gui, Inventory: Font,
-      ControlGetPos, PPx, PPy, , , , ahk_id %PredictivePriceHWND%
-      PPx:=Scale_PositionFromDPI(PPx), PPy:=Scale_PositionFromDPI(PPy)
-      Slider_PredictivePrice := new Progress_Slider("Inventory", "YesPredictivePrice_Percent" , (PPx-6) , (PPy-3) , 175 , 15 , 50 , 200 , YesPredictivePrice_Percent_Val , "Black" , "F1C15D" , 1 , "YesPredictivePrice_Percent_Val" , 0 , 0 , 1, "General")
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w180 h145 section xm+370 ys, Automation
@@ -91,10 +80,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gWarningAutomation vYesEnableAutoSellConfirmation Checked%YesEnableAutoSellConfirmation% y+8 , Enable Auto Confirm Vendor ?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesEnableAutoSellConfirmationSafe Checked%YesEnableAutoSellConfirmationSafe% y+8 , Enable Safe Auto Confirm?
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w180 h70 section xm+370 y+15, Metamorph Options
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesFillMetamorph Checked%YesFillMetamorph% xs+5 ys+18 , Auto fill metamorph?
-      Gui, Inventory: Add, Button, gWR_Update vWR_Btn_FillMetamorph_Menu y+8 w170 center , Adjust Metamorph Panel
 
       Gui, Inventory: Tab, Stash Tabs
       Gui, Inventory: Font, Bold s9 cBlack, Arial
@@ -177,13 +162,6 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesDump Checked%StashTabYesDump% x+5 yp+4, Enable
 
       Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Priced Rares
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabPredictive , %StashTabPredictive%
-      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesPredictive Checked%StashTabYesPredictive% x+5 yp+4, Enable
-
-      Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Ninja Priced
       Gui, Inventory: Font,
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
@@ -197,19 +175,11 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweller/Chroma Items
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w185 h40 section xs y+10, Priced Rares Tab
-      Gui, Inventory: Font,
-      Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
-      Gui, Inventory: Add, Edit, x+5 yp-3 w40
-      Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesPredictive_Price , %StashTabYesPredictive_Price%
-
-      Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w185 h65 section xs y+10, Ninja Priced Tab
+      Gui, Inventory: Add, GroupBox, w185 h40 section xs y+10, Ninja Priced Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
       Gui, Inventory: Add, Edit, x+5 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
-      Gui, Inventory: Add, Button, xs+5 y+3 w175 , Included Item Types
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w185 h135 section xs y+10, Map/Contract Options
@@ -275,14 +245,14 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesFragment x+5 yp-5 w90 h20, %StashTabYesFragment%
       Gui, Inventory: Add, Text, xp yp+22 w90 center vFragmentEditText, Disable Type
 
-      ; Metamorph
+      ; Ultimatum
       Gui, Inventory: Font, Bold s8 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Metamorph
+      Gui, Inventory: Add, GroupBox, w145 h50 xs yp+20 , Ultimatum
       Gui, Inventory: Font,
-      Gui, Inventory: Add, Edit, Number vMetamorphEdit w40 xp+6 yp+17
-      Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabMetamorph x+0 yp hp , %StashTabMetamorph%
-      Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesMetamorph x+5 yp-5 w90 h20, %StashTabYesMetamorph%
-      Gui, Inventory: Add, Text, xp yp+22 w90 center vMetamorphEditText, Disable Type
+      Gui, Inventory: Add, Edit, Number vUltimatumEdit w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabUltimatum x+0 yp hp , %StashTabUltimatum%
+      Gui, Inventory: Add, Slider, range0-2 center noticks gSaveStashTabs vStashTabYesUltimatum x+5 yp-5 w90 h20, %StashTabYesUltimatum%
+      Gui, Inventory: Add, Text, xp yp+22 w90 center vUltimatumEditText, Disable Type
 
       ; Gem
       Gui, Inventory: Font, Bold s8 cBlack, Arial
@@ -821,8 +791,6 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: Add, ComboBox, y+8 w280 vStashStr gUpdateStringEdit , %StashStr%??"%1080_StashStr%"?"%2160_StashStr%"?"%1440_StashStr%"?"%1050_StashStr%"?"%768_StashStr%"
       Gui, Strings: Add, Text, xs y+15 section , Capture of the X button
       Gui, Strings: Add, ComboBox, y+8 w280 vXButtonStr gUpdateStringEdit , %XButtonStr%??"%1080_XButtonStr%"?"%1440_XButtonStr%"?"%1050_XButtonStr%"?"%768_XButtonStr%"
-      Gui, Strings: Add, Text, x+10 ys , Capture of the Heist Locker
-      Gui, Strings: Add, ComboBox, y+8 w280 vHeistLockerStr gUpdateStringEdit , %HeistLockerStr%??"%1080_HeistLockerStr%"?"%1440_HeistLockerStr%"
       Gui, Strings: +Delimiter|
 
       Gui, Strings: Tab, Vendor
@@ -1289,43 +1257,6 @@ WR_Menu(Function:="",Var*){
       Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
       GuiControl,% "Globe: +c" Format("0x{1:06X}",WR_Edit_Color_%AreaType%), WR_Progress_Color_%AreaType%
     }
-  } Else If (Function = "FillMetamorph") {
-    Gui, Submit
-    ValueType := Var[2]
-    Element := Var[1]
-    If (Element = "Btn")
-    {
-      If (ValueType = "Menu")
-      {
-        If (!FillMetamorphInitialized)
-        {
-          FillMetamorphInitialized := True
-          Gui, FillMetamorph: New, -MinimizeBox -Resize
-          Gui, FillMetamorph: Font, s12 c777777 bold
-          Gui, FillMetamorph: Add, Text, xm+5 vWR_Btn_FillMetamorph_Area w170, % "X1: " FillMetamorph.X1 " Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 " Y2: " FillMetamorph.Y2
-          Gui, FillMetamorph: Font,
-          Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Btn_FillMetamorph_Select w85, Select area
-          Gui, FillMetamorph: Add, Button, x+5 yp gWR_Update vWR_Btn_FillMetamorph_Show wp, Show area
-          Gui, FillMetamorph: Add, Button, xm+5 gWR_Update vWR_Save_JSON_FillMetamorph w170, Save to JSON
-        }
-      }
-      Else If (ValueType = "Select")
-      {
-        If (Obj := LetUserSelectRect())
-        {
-          FillMetamorph := {"X1":Obj.X1
-            ,"Y1":Obj.Y1
-            ,"X2":Obj.X2
-            ,"Y2":Obj.Y2}
-          GuiControl,,WR_Btn_FillMetamorph_Area, % "X1: " FillMetamorph.X1 " Y1: " FillMetamorph.Y1 "`nX2: " FillMetamorph.X2 " Y2: " FillMetamorph.Y2
-        }
-      }
-      Else If (ValueType = "Show")
-      {
-        MouseTip(FillMetamorph.X1,FillMetamorph.Y1,FillMetamorph.X2 - FillMetamorph.X1,FillMetamorph.Y2 - FillMetamorph.Y1)
-      }
-      Gui, FillMetamorph: Show
-    }
   } Else If (Function = "hkStash") {
     Static hkStashBuilt := False
     If !(hkStashBuilt)
@@ -1422,12 +1353,6 @@ WR_Menu(Function:="",Var*){
   Return
   ColorLabel_EB:
     Picker.SetColor(Globe.EB.Color.hex)
-  Return
-
-  FillMetamorphGuiClose:
-  FillMetamorphGuiEscape:
-    Gui, Submit
-    Gui, Inventory: Show
   Return
 
   hkStashGuiClose:

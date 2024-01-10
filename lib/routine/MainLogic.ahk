@@ -1,6 +1,6 @@
 ﻿; TGameTick - Main Logic timer - Coordinates all other functions
 TGameTick(GuiCheck:=True){
-	Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, Metamorph_Filled := False, OnScreenMM := 0
+	Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, OnScreenMM := 0
 	Global GlobeActive, CurrentMessage, NoGame, GamePID
 	If (NoGame)
 		Return
@@ -44,21 +44,9 @@ TGameTick(GuiCheck:=True){
 		{
 			If !GuiStatus()
 			{
-				Msg := "Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(OnMetamorph?"Metamorph is Open":(YesXButtonFound?"X Button is Detected":"Error")))))))))))
+				Msg := "Paused while " . (!OnChar?"Not on Character":(OnChat?"Chat is Open":(OnMenu?"Passive/Atlas Menu Open":(OnInventory?"Inventory is Open":(OnStash?"Stash is Open":(OnVendor?"Vendor is Open":(OnDiv?"Divination Trade is Open":(OnLeft?"Left Panel is Open":(OnDelveChart?"Delve Chart is Open":(YesXButtonFound?"X Button is Detected":"Error"))))))))))
 				If CheckTime("seconds",1,"StatusBar1")
 					SB_SetText(Msg, 1)
-				If (YesFillMetamorph) 
-				{
-					If (Metamorph_Filled && (OnMetamorph || FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr )))
-						OnScreenMM := A_TickCount
-					Else If (OnMetamorph && !Metamorph_Filled 
-					&& FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr ) )
-					{
-						Metamorph_Filled := True
-						Metamorph_FillOrgans()
-						OnScreenMM := A_TickCount
-					}
-				}
 				If CheckGamestates
 				{
 					mainmenuGameLogicState()
@@ -99,8 +87,6 @@ TGameTick(GuiCheck:=True){
 			; }
 			Else If CheckTime("seconds",1,"StatusBar1")
 				SB_SetText("WingmanReloaded Active", 1)
-			If (!OnMetamorph && Metamorph_Filled && ((A_TickCount - OnScreenMM) >= 5000) && !FindText( GameX + GameW * .5, GameY, GameX + GameW * .7, GameY + GameH * .3, 0, 0, XButtonStr ))
-				Metamorph_Filled := False
 			If CheckGamestates
 				mainmenuGameLogicState()
 		}

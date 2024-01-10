@@ -94,7 +94,6 @@ Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
 	, ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
 	, ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
 	, ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
-Global FillMetamorph := {}
 Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak"
 	,"Silver Brooch","Golden Brooch","Enamel Brooch","Foliate Brooch"
 	,"Simple Lockpick","Standard Lockpick","Fine Lockpick","Master Lockpick"
@@ -120,8 +119,6 @@ ft_ToolTip_Text_Part1=
 	UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
 	UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
 	UpdateOnDelveChartBtn = Calibrate the OnDelveChart Color`rThis color determines if the Delve Chart panel is open`rSample located at the left of the Delve Chart panel
-	UpdateOnMetamorphBtn = Calibrate the OnMetamorph Color`rThis color determines if the Metamorph panel is open`rSample located at the i Button of the Metamorph panel
-	UpdateOnLockerBtn = Calibrate the OnLocker Color`rThis color determines if the Heist Locker panel is open`rSample located in the bottom right of the Heist Locker panel
 	UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
 	UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
 	UpdateOnStashBtn = Calibrate the OnStash/OnLeft Colors`rThese colors determine if the Stash/Left panel is open`rSample is located at the top of the Stash panel
@@ -253,7 +250,6 @@ ft_ToolTip_Text_Part2=
 	StashTabYesNinjaPrice_Price = Assign the minimum value in chaos to send to Ninja Priced Tab
 	StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
 	StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
-	StashTabYesPredictive_Price = Set the minimum value to consider worth stashing
 	StashTabClusterJewel = Assign the Stash tab for cluster jewels
 	StashTabYesClusterJewel = Enable to send Cluster Jewels to the assigned tab on the left
 	StashTabDump = Assign the Stash tab for Unsorted items left over during Stash routine
@@ -262,8 +258,8 @@ ft_ToolTip_Text_Part2=
 	StashDumpSkipJC = Do not stash Jewler or Chromatic items when dumping
 	StashTabGemSupport = Assign the Stash tab for Support Gem items
 	StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left
-	StashTabMetamorph = Assign the Stash tab for Metamorph items
-	StashTabYesMetamorph = Enable to send Metamorph items to the assigned tab on the left
+	StashTabUltimatum = Assign the Stash tab for Ultimatum items
+	StashTabYesUltimatum = Enable to send Ultimatum items to the assigned tab on the left
 	StashTabGem = Assign the Stash tab for Normal Gem items
 	StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
 	StashTabGemVaal = Assign the Stash tab for Vaal Gem items
@@ -407,9 +403,6 @@ Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x201614@0.99$106.Tzzzzz
 	, 1050_SellItemsStr := "|<1050 Sell Items>*93$71.zzzzzzzzzzzzzzz6DzzzzzzzzzyATzzzzzzy3zwMzlzzzzztXzslznzzzzznjzlXzbbzzzzby3X7zC3Us133sX6DyQC8k033naATwswtXb73UAMztls37CD28slznXWCCQTaTlXzb7bwQszAxX7zCDDMtlAM36DyQ20lnW1sCATwwC3Xb7DxzzzzwzTzzzzzzzzzzzzzzzzzzzzzzzzzzU"
 	, 768_SellItemsStr := "|<768 Sell Items>0xE0E0DB@0.52$56.00NU000007U6M600001A1a1a0000kCNUPtnvXr7qM6QyzxhvBa1aNgnQ7zNUNbvAnUw6M6NUnASDZa1aQgn3STNUNvvArn1000A800G"
 
-	, 1080_HeistLockerStr := "|<1080 Locker>*90$59.7zzzzzzzzzDzzzzzzzzyTyTyTDTzzwzkDk4QE60tz6D6AlnANnwSASt7bslbtwNzkTDlXDnsnzVy3XCTblbz1w70QzDX7yFty1tyDCDwXnwFnaASCNXbslUA1y1nX0llzyTzDzzzzy"
-	, 1440_HeistLockerStr := "|<1440 Locker>**50$64.00000000000000000z0000000003A0000000008k001wDzzw0n03w7lzzzs3A0zwFA301UAk70tYrZty0n0llqGTzbs3A3DXN8z6M0AkNX5YlkNU0n1aAKH3la03A4EFN636M0AkF1ZYC6N00n166KEQNY03A6MFNCNaE0AnsnBYzaNU0nzXsqGQNa037D7aNA36M0A0y1lwzsTU0zzDy00y000000TU00000000002"
-
 	, 2160_StashStr := "|<2160 Stash>116$64.w0zzzzzzzzz00zzzzzzzzsS3zzzzzzzzXyDzzzzzzzwDszzzzzzzzlzrU00zsTzU3zw003z1zs0DzksADw7zXkTzDVyzUDwTUTzy7zyEzly0TzsTzl3z7w0zzVzz47wDs1zy7zssTkTk1zsTzXUzUTk3zVzyT3y0zUDy7zlwDw3zUTsTz7kTwDz1zVzs01zszy7y7zU07zvzsTsTyDsDzzzVzVzlzkzzzy7y7z7z3zwzkzsTszw7Tk03zVzXzsQTU0Ty7yDzUk307zsTlzz3UDVzzzzzzzzVU"
 	, 1440_StashStr := "|<1440 Stash>**50$62.U000000000800zk00000200QC000000U060U00000803DDzw7UTW00qPzzXgDyU0Ark0NX61c03C5tyMFj+00ktyTY6HSU0C71a3NYTc01kMNUq9XW00C36MNnMSU01sla6wn1c0074N104QC000l6EmFXXU0D6FYByTAs03zANaEXzC00n36NgAnXU0C1VaH361c01zkTbUTzm007k00007kU0000000008"
 	, 1080_StashStr := "|<1080 Stash>0xC8C8DC@0.78$57.00Q000000006s00000001V00000000A3zVUT6301k3UC48kM070A2kk6300S1UK70kM01sA4MQ7z0031UX1skM00MADs3630031V1UMkM08MA8AX6300y1X0rkkQ"
@@ -495,7 +488,7 @@ Global 1080_DelveStr := "|<1080 Hidden>*100$65.7szzzzzzzzzDlzzzzzzzzyTXnyzyzzyzg
 	, 1080_DelveStr .= "|<1080 Fossil>*100$50.0Tzzzzzzs3zzzzzzyQyTtyTDDby1s61XXtz6CNaQwyTXlbtzDDUNwMyDnnsCT63UwwyTblsS7DDbswT7lnntyDDsyAwyTVXiPbDCbw1s61nkDzlz7lzzy"
 	, 1080_DelveStr .= "|<1080 Resona>*100$62.0Tzzzzzzzzk3zzzzzzzzyQTznzDvyzjb60kD0wT7ltlnAnX7XlsSQQzDlssQy7bDDlwyC3D8s7kQ7DXUHmC1w7knst0s3aDDyASCMC0NVnzl7bb3b6QQzQkltsnsXX0kC0yTAyDzzyDszzzzy"
 ; FindText strings from INI
-Global StashStr, HeistLockerStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
+Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
 	, XButtonStr
 	, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
 	, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr, VendorHarbourStr
@@ -545,14 +538,9 @@ Global OnVendor := False
 Global OnDiv := False
 Global OnLeft := False
 Global OnDelveChart := False
-Global OnMetamorph := False
-Global OnLocker := False
 Global RescaleRan := False
 Global ToggleExist := False
 Global YesOHB := True
-Global YesFillMetamorph := True
-Global YesPredictivePrice := "Off"
-Global YesPredictivePrice_Percent_Val := 100
 Global HPerc := 100
 Global GameX, GameY, GameW, GameH, mouseX, mouseY
 Global OHB
@@ -689,7 +677,6 @@ Global StashTabYesDump := 1
 ;Priced Tabs Options
 Global StashTabPredictive := 1
 Global StashTabYesPredictive := 0
-Global StashTabYesPredictive_Price := 5
 Global StashTabNinjaPrice := 1
 Global StashTabYesNinjaPrice := 0
 Global StashTabYesNinjaPrice_Price := 5
@@ -705,8 +692,8 @@ Global StashTabMap := 1
 Global StashTabYesMap := 0
 Global StashTabDivination := 1
 Global StashTabYesDivination := 0
-Global StashTabMetamorph := 1
-Global StashTabYesMetamorph := 0
+Global StashTabUltimatum := 1
+Global StashTabYesUltimatum := 0
 Global StashTabFragment := 1
 Global StashTabYesFragment := 0
 Global StashTabEssence := 1
@@ -820,8 +807,6 @@ Global varOnVendorHeist:=0xCEB178
 Global varOnDiv:=0xF6E2C5
 Global varOnLeft:=0xB58C4D
 Global varOnDelveChart:=0xB58C4D
-Global varOnMetamorph:=0xE06718
-Global varOnLocker:=0xE97724
 Global varOnDetonate := 0x5D4661
 Global varOnDetonateDelve := 0x5D4661
 
