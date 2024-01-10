@@ -106,7 +106,8 @@ for k,v in BasesData
 	WR.CustomCraftingBases[k] := {}
 }
 
-ActualTierCreator()
+; Only Enable to Reclear ActualTier every Reload/Start
+;ActualTierCreator()
 
 WR.Data.Map_Affixes := RegexReplace(ArrayToString(Util.Load("Affix_List_Map")),"\%","`%")
 WR.Data.Map_Affixes := RegexReplace(WR.Data.Map_Affixes,",","`,")
