@@ -1,6 +1,15 @@
 ﻿; Main UI
 
 ModsUI:
+  If (!HasVal(PoEData[ItemCraftingCategorySelector], ItemCraftingSubCategorySelector)) {
+    Gui, hide
+    MsgBox,0,% "Error", % "SubCategory from " ItemCraftingCategorySelector " was not selected correctly"
+    IfMsgBox, OK 
+    {
+      Gui, show
+    }
+    Return
+  }
   If (ItemCraftingCategorySelector ~= "Sextant") {
     GoTo, CustomSextantModsUI
   }
