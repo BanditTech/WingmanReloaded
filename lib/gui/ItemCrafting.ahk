@@ -51,7 +51,7 @@ SaveItemCrafting:
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     LV_GetText(Affix, RowNumber,2)
-    MatchLineForItemCraft(ModLine,1,WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,"Prefix",WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   RowNumber := 0
@@ -65,7 +65,7 @@ SaveItemCrafting:
     TrueIndex++
     LV_GetText(ModLine, RowNumber,4)
     LV_GetText(Affix, RowNumber,2)
-    MatchLineForItemCraft(ModLine,2,WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,"Suffix",WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   Settings("ItemCrafting","Save")

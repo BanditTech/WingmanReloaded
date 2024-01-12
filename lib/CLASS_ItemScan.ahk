@@ -907,7 +907,8 @@
 						SumRNP := 0
 						This.Prop.CraftingMatchedPrefix++
 					}
-				}Else{
+				}
+				Else If(v["ModGenerationType"] == "Suffix"){
 					If(v["RNMod"] > 1){
 						If(v["ID"] != LastID){
 							SumRNS := 1
