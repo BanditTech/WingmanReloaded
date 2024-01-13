@@ -92,7 +92,7 @@ RefreshSextantList()
     LV_GetText(OutputVar, A_Index , 2)
     For k, v in WR.CustomSextantMods.SextantMods
     {
-      If (v["Sextant Enchant"] == OutputVar && v["Sextant Type"] == aux){
+      If (v["Sextant Enchant"] == OutputVar && v["Sextant Type"] == ItemCraftingSubCategorySelector){
         LV_Modify(Index,"Check",,,,v["Mod Type"])
       }
     }
