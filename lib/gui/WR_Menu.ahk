@@ -175,11 +175,12 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashDumpSkipJC Checked%StashDumpSkipJC% xs+5 y+5, Skip Jeweller/Chroma Items
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, w185 h40 section xs y+10, Ninja Priced Tab
+      Gui, Inventory: Add, GroupBox, w185 h65 section xs y+10, Ninja Priced Tab
       Gui, Inventory: Font,
       Gui, Inventory: Add, Text, center xs+5 ys+18, Minimum Value to Stash
       Gui, Inventory: Add, Edit, x+5 yp-3 w40
       Gui, Inventory: Add, UpDown, Range1-100 x+0 yp hp gSaveStashTabs vStashTabYesNinjaPrice_Price , %StashTabYesNinjaPrice_Price%
+      Gui, Inventory: Add, Button, xs+5 y+3 w175 , Included Item Types
 
       Gui, Inventory: Font, Bold s9 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w185 h135 section xs y+10, Map/Contract Options

@@ -106198,6 +106198,45 @@
       "id": "Wand7"
     }
   },
+  "Metadata/Items/Weapons/OneHandWeapons/Wands/ManualAddWand1": {
+    "domain": "item",
+    "drop_level": 70,
+    "implicits": [
+      "IncreasedCastSpeedImplicitMarakethWand2"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "item_class": "Wand",
+    "name": "Coiled Wand",
+    "properties": {
+      "attack_time": 741,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 61,
+      "physical_damage_min": 33,
+      "range": 120
+    },
+    "release_state": "released",
+    "requirements": {
+      "dexterity": 0,
+      "intelligence": 237,
+      "level": 70,
+      "strength": 0
+    },
+    "tags": [
+      "not_for_sale",
+      "maraketh",
+      "wand",
+      "ranged",
+      "one_hand_weapon",
+      "onehand",
+      "weapon",
+      "default"
+    ],
+    "visual_identity": {
+      "dds_file": "Art/2DItems/Weapons/OneHandWeapons/Wands/Wand7.dds",
+      "id": "Wand7"
+    }
+  },
   "Metadata/Items/Weapons/OneHandWeapons/Wands/WandMinion1": {
     "domain": "item",
     "drop_level": 20,
