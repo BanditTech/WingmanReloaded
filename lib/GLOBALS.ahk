@@ -340,6 +340,7 @@ ft_ToolTip_Text_Part3=
 	hotkeyMainAttack = Bind the Main Attack for this Character
 	hotkeySecondaryAttack = Bind the Secondary Attack for this Character
 	YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
+	YesOpenVeiledScarab = Open Veiled Scarabs while at the stash`rMoves to inventory respecting ignore slots
 	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
 	CLFStrictnessNumber = Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) All Filters Strictness Will Be Matched`rLevel 5 (Higher Strictness) Only Main Filters Will be Matched`rAny Filter Without Strictness Defined Will Be Always Matched
 
@@ -551,6 +552,7 @@ Global HeistAlcNGo := 1
 Global YesBatchVendorBauble := 1
 Global YesBatchVendorGCP := 1
 Global YesOpenStackedDeck := True
+Global YesOpenVeiledScarab := True
 Global YesSpecial5Link := True
 Global EnableRestock:=True
 Global MoveMapsToArea:=True

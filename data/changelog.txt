@@ -1,3 +1,10 @@
+## Version .15.24 - Alpha Version - March/29/2024
+Added Functionality
+  * Automatically open Veiled Scarabs into your inventory when at stash.
+  * Enable this in the inventory sorting options.
+  
+---
+
 ## Version .15.21 - Alpha Version - January/10/2024
 Modifications
   * Major Clean UP

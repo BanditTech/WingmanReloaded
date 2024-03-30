@@ -416,7 +416,8 @@ StashRoutine()
 				WisdomScroll(Grid.X,Grid.Y)
 				ClipItem(Grid.X,Grid.Y)
 			}
-			If (YesOpenStackedDeck && Item.Prop.ItemName = "Stacked Deck") {
+			If (YesOpenStackedDeck && Item.Prop.ItemName = "Stacked Deck")
+			|| (YesOpenVeiledScarab && Item.Prop.ItemName = "Veiled Scarab") {
 				StackedDeckOpen(Item.Prop.Stack_Size,Grid.X,Grid.Y)
 				ShooMouse(),GuiStatus(),Continue
 			}

@@ -1,4 +1,4 @@
-Global VersionNumber := .15.23
+Global VersionNumber := .15.24
 #Include, %A_ScriptDir%\lib\Header.ahk
 #Include, %A_ScriptDir%\lib\RunAdmin.ahk
 #Include, %A_ScriptDir%\lib\FileCheck.ahk

@@ -37,6 +37,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesBatchVendorGCP Checked%YesBatchVendorGCP% y+8 , Batch Vendor Quality Gems?
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesSpecial5Link Checked%YesSpecial5Link% y+8 , Give 5 link Special Type?
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesOpenStackedDeck Checked%YesOpenStackedDeck% y+8 , Open Stacked Decks?
+      Gui, Inventory: Add, Checkbox, gSaveGeneral vYesOpenVeiledScarab Checked%YesOpenVeiledScarab% y+8 , Open Veiled Scarab?
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesVendorDumpItems Checked%YesVendorDumpItems% y+8 , Vendor Dump Tab Items?
       Gui, Inventory: Add, Edit, Number w40 y+8
       Gui, Inventory: Add, UpDown,Range0-5 gSaveGeneral vCLFStrictnessNumber x+0 yp hp , %CLFStrictnessNumber%, CLF Strictness Level
