@@ -1,4 +1,4 @@
-## Version .15.25 - Alpha Version - March/31/2024
+## Version .15.26 - Alpha Version - March/31/2024
 Updated Item Parser
   * Added support for the new item format Allflame Embers use.
   
