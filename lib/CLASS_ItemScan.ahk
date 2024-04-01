@@ -16,12 +16,12 @@
 		{
 			If ((SVal ~= ":" || SVal ~= "Currently has \d+ Charges") && !(SVal ~= "grant:") && !(SVal ~= "slot:"))
 			{
-				If (SectionKey = 1 && SVal ~= "Rarity:"){
+				If (SectionKey = 1 && SVal ~= "Rarity:" || SVal ~= "Item Class:"){
 					This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
 				} Else If (SVal ~= "\(implicit\)$"){
 					This.Prop.HasImplicit := True
 					This.Data.Blocks.Implicit := SVal
-				} Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" ) {
+				} Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" || SVal ~= "Pack Size:" ) {
 					This.Data.Blocks.Affix := SVal
 				} Else If (SVal ~= " \(enchant\)$"){
 					This.Prop.Enchanted := True
@@ -152,12 +152,13 @@
 		}
 		This.Prop.OpenAffix := 6 - This.Prop.PrefixCount - This.Prop.SuffixCount
 
-		;Start NamePlate Parser
+		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", RxMatch)
+			This.Prop.ItemClass := RxMatch1
 		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
-		{
 			This.Prop.Rarity := RxMatch1
-			If RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", RxMatch)
-				This.Prop.ItemClass := RxMatch1
+		;Start NamePlate Parser
+		If (This.Prop.Rarity || This.Prop.ItemClass)
+		{
 			;Prop Rarity Comparator
 			If (InStr(This.Prop.Rarity, "Currency"))
 			{
@@ -196,7 +197,7 @@
 			; Fail Safe in case nothing match, to avoid auto-sell
 			Else
 			{
-				This.Prop.SpecialType := This.Prop.Rarity
+				This.Prop.SpecialType := This.Prop.Rarity ? This.Prop.Rarity : This.Prop.ItemClass
 			}
 			If (This.Prop.Rarity_Digit < 3)
 				This.Prop.OpenAffix -= 4
@@ -213,6 +214,12 @@
 			{
 				This.Prop.ItemName := RxMatch1
 				This.Prop.ItemBase := RxMatch1
+			}
+			; 2 Lines in NamePlate => Item Name
+			Else If (RegExMatch(This.Data.Blocks.NamePlate, "^.+`r`n(.+)$",RxMatch))
+			{
+				This.Prop.ItemName := RxMatch1
+				This.Prop.ItemBase := This.Prop.ItemClass
 			}
 			If (This.Prop.ItemName ~= "^Superior ")
 				This.Prop.ItemName := RegExReplace(This.Prop.ItemName, "^Superior ", "")
