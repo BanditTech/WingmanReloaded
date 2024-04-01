@@ -21,7 +21,7 @@
 				} Else If (SVal ~= "\(implicit\)$"){
 					This.Prop.HasImplicit := True
 					This.Data.Blocks.Implicit := SVal
-				} Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" || SVal ~= "Pack Size:" ) {
+				} Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" || SVal ~= "^Pack Size:" ) {
 					This.Data.Blocks.Affix := SVal
 				} Else If (SVal ~= " \(enchant\)$"){
 					This.Prop.Enchanted := True
