@@ -1,6 +1,6 @@
-## Version .15.26 - Alpha Version - April/3/2024
+## Version .15.27 - Alpha Version - April/3/2024
 Necropolis Update
-  * Disable Sextant crafting
+  * Remove references to Sextant crafting
   * Update Mods to Match Necropolis Changes
   
 ---
