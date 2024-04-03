@@ -135,8 +135,6 @@ ft_ToolTip_Text_Part1=
 	ClipLatency = Use this to modify delay to Item clip`rAdd this many multiples of 15ms to each delay
 	GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
 	GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
-	GrabCompassX = Select the X location that your Surveyor's Compass is stored at. Must be a slot in your currency tab`rPress Locate to grab positions
-	GrabCompassY = Select the Y location that your Surveyor's Compass is stored at. Must be a slot in your currency tab`rPress Locate to grab positions
 	EnableRestock = Enable this to restock any inventory slots assigned a currency type
 	YesEnableAutomation = Enable Automation Routines
 	FirstAutomationSetting = Start Automation selected option
@@ -569,7 +567,6 @@ Global ItemCraftingMethod
 Global ItemCraftingNumberPrefix
 Global ItemCraftingNumberSuffix
 Global ItemCraftingNumberCombination
-Global SextantCraftingMethod
 
 ; Chaos Recipe
 Global ChaosRecipeEnableFunction := False
@@ -816,10 +813,6 @@ Global varOnDetonateDelve := 0x5D4661
 Global GrabCurrencyX:=1877
 Global GrabCurrencyY:=772
 
-; Grab Compass
-Global GrabCompassX:=503
-Global GrabCompassY:=604
-
 ; Chat Hotkeys, and stash hotkeys
 Global CharName := "ReplaceWithCharName"
 Global RecipientName := "NothingYet"
@@ -833,7 +826,7 @@ Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuf
 Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
 
 ; Map Crafting Settings
-Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,EnableMQQForMagicMap,MMQorWeight,MMapItemRarity,MMapMonsterPackSize,MMapItemQuantity,MMapWeight,ForceMaxChisel,SextantDDLSelector
+Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,EnableMQQForMagicMap,MMQorWeight,MMapItemRarity,MMapMonsterPackSize,MMapItemQuantity,MMapWeight,ForceMaxChisel
 
 ; ItemInfo GUI
 Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21,

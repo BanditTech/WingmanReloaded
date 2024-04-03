@@ -2,7 +2,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
 	,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
-	,"CustomCraftingBases":{},"CustomMapMods":{},"CustomSextantMods":{},"ItemCrafting":{},"ActualTier":{}}
+	,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
@@ -89,7 +89,6 @@ WR.String.h1080.General:={"OHB":"|<1080 Overhead Health Bar>0x201614@0.99$106.Tz
 
 WR.CustomMapMods.MapMods := []
 WR.CustomMapMods.HeistMods := []
-WR.CustomSextantMods.SextantMods := []
 
 for k,v in POEData
 {

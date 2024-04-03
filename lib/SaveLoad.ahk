@@ -10,7 +10,6 @@ readFromFile(){
 	; Settings("String","Load")
 	Settings("CustomCraftingBases","Load")
 	Settings("CustomMapMods","Load")
-	Settings("CustomSextantMods","Load")
 	Settings("ItemCrafting","Load")
 	Settings("ActualTier","Load")
 
@@ -125,7 +124,6 @@ readFromFile(){
 	IniRead, ItemCraftingNumberSuffix, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix, 1
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
 	IniRead, ItemCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod, Alteration Spam
-	IniRead, SextantCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, SextantCraftingMethod, 2
 
 
 	;Crafting Map Settings
@@ -145,7 +143,6 @@ readFromFile(){
 	IniRead, MMQorWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight, 0
 	IniRead, MMapWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight, 0
 	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
-	IniRead, SextantDDLSelector, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, SextantDDLSelector, Reroll until Good Match
 
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
@@ -323,10 +320,6 @@ readFromFile(){
 	;Grab Currency From Inventory
 	IniRead, GrabCurrencyX, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX, 1877
 	IniRead, GrabCurrencyY, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY, 772
-
-	;Grab Compass From Location
-	IniRead, GrabCompassX, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassX, 327
-	IniRead, GrabCompassY, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassY, 602
 
 	;~ hotkeys reset
 	hotkey, IfWinActive, ahk_group POEGameGroup
@@ -626,7 +619,6 @@ submit(){
 		; Settings("String","Save")
 		Settings("CustomCraftingBases","Save")
 		Settings("CustomMapMods","Save")
-		Settings("CustomSextantMods","Save")
 		Settings("ItemCrafting","Save")
 
 		;GUI Position
@@ -828,10 +820,6 @@ submit(){
 		IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
 		IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
 
-		;Grab Compass From Location
-		IniWrite, %GrabCompassX%, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassX
-		IniWrite, %GrabCompassY%, %A_ScriptDir%\save\Settings.ini, Grab Compass, GrabCompassY
-
 		;Crafting Bases Options
 
 		IniWrite, %YesStashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl
@@ -867,7 +855,6 @@ submit(){
 		IniWrite, %MMQorWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight
 		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
 		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
-		IniWrite, %SextantDDLSelector%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, SextantDDLSelector
 
 		;Affinities
 		IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency

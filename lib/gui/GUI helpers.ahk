@@ -22,11 +22,6 @@ SaveBasicCraft:
 	SaveINI("Basic Craft")
 Return
 
-SaveSextantMethodRadio:
-	Gui, Submit, NoHide
-	IniWrite, %SextantCraftingMethod%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, SextantCraftingMethod
-Return
-
 BasicCraftRadio:
 	Gui, Submit, NoHide
 	IniWrite, %BasicCraftChanceMethod%, %A_ScriptDir%\save\Settings.ini, Basic Craft, BasicCraftChanceMethod

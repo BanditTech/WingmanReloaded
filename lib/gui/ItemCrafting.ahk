@@ -10,9 +10,6 @@ ModsUI:
     }
     Return
   }
-  If (ItemCraftingCategorySelector ~= "Sextant") {
-    GoTo, CustomSextantModsUI
-  }
   Gui, ModsUI1: New
   Gui, ModsUI1: Default
   Gui, ModsUI1: +AlwaysOnTop -MinimizeBox

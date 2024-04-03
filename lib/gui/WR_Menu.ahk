@@ -1,7 +1,7 @@
 ﻿; WR_Menu - New menu handling method
 WR_Menu(Function:="",Var*){
   Global
-  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_Locate_GrabCompass, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj
+  Static Built_Inventory, Built_Crafting, Built_Strings, Built_Chat, Built_Controller, Built_Hotkeys, Built_Globe, LeagueIndex, UpdateLeaguesBtn, OHB_EditorBtn, WR_Reset_Globe, DefaultWhisper, DefaultCommands, DefaultButtons, LocateType, oldx, oldy, TempC ,WR_Btn_Locate_PortalScroll, WR_Btn_Locate_WisdomScroll, WR_Btn_Locate_CurrentGem, WR_Btn_Locate_AlternateGem, WR_Btn_Locate_CurrentGem2, WR_Btn_Locate_AlternateGem2, WR_Btn_Locate_GrabCurrency, WR_Btn_IgnoreSlot, WR_UpDown_Color_Life, WR_UpDown_Color_ES, WR_UpDown_Color_Mana, WR_UpDown_Color_EB, WR_Edit_Color_Life, WR_Edit_Color_ES, WR_Edit_Color_Mana, WR_Edit_Color_EB, WR_Save_JSON_Globe, WR_Load_JSON_Globe, Obj
     , ChaosRecipeMaxHoldingUpDown, ChaosRecipeLimitUnIdUpDown, ChaosRecipeStashTabUpDown, ChaosRecipeStashTabWeaponUpDown, ChaosRecipeStashTabHelmetUpDown, ChaosRecipeStashTabArmourUpDown, ChaosRecipeStashTabGlovesUpDown, ChaosRecipeStashTabBootsUpDown, ChaosRecipeStashTabBeltUpDown, ChaosRecipeStashTabAmuletUpDown, ChaosRecipeStashTabRingUpDown
 
   Log("Verbose","Load menu: " Function,Var*)
@@ -704,7 +704,7 @@ WR_Menu(Function:="",Var*){
 
       ; Affix Rules
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w292 h165 xs yp+40 , Affix Rules
+      Gui, Crafting: Add, GroupBox, w292 h140 xs yp+40 , Affix Rules
       Gui, Crafting: Font,
       Gui, Crafting: Add, Button, gModsUI xs+10 yp+25 w272, Affix Selector
       Gui, Crafting: Add, Text, xs+15 yp+30, Match how many Prefix?
@@ -716,9 +716,6 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, xs+15 yp+30, Match Combination of Affixes? (0 to Disable)
       Gui, Crafting: Add, Edit, Number w40 x+10 yp-4
       Gui, Crafting: Add, UpDown,Range0-3 vItemCraftingNumberCombination gItemCraftingSubmit x+0 yp hp , %ItemCraftingNumberCombination%
-      Gui, Crafting: Add, Text, xs+15 yp+30 w40, Sextant:
-      Gui, Crafting: Add, DropDownList, vSextantDDLSelector xs+70 yp-4 w210, Reroll until Good Match|Reroll until not Bad Match
-      GuiControl, ChooseString, SextantDDLSelector, %SextantDDLSelector%
 
       ; Crafting Method
       Gui, Crafting: Font, Bold s9 cBlack, Arial
@@ -727,24 +724,6 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, DropDownList, vItemCraftingMethod gItemCraftingSubmit xp+10 yp+25 w270, Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam
       ; Select DDL Value Based on Last Value Saved
       GuiControl, ChooseString, ItemCraftingMethod, %ItemCraftingMethod%
-
-      ; Sextant Crafting Style
-      Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add, GroupBox, w292 h83 xs yp+40 , Sextant Crafting Method
-      Gui, Crafting: Font,
-      Gui, Crafting: Add, Radio, xs+15 yp+25 hwndtemp1 vSextantCraftingMethod gSaveSextantMethodRadio, Use Compasses (Multiple)
-      Gui, Crafting: Add, Radio, x+15 yp hwndtemp2 gSaveSextantMethodRadio, One craft (Single)
-      GuiControl, ,% (SextantCraftingMethod=1?temp1:temp2), 1
-      temp1:=
-      temp2:=
-
-      ; Compass Location
-      Gui, Crafting: Add, Text, xs+15 yp+30 w90, Compass Location:
-      Gui, Crafting: Add, Text, x+10 yp-10, X-Pos
-      Gui, Crafting: Add, Edit, vGrabCompassX xp yp+15 w34 h17, %GrabCompassX%
-      Gui, Crafting: Add, Text, x+5 yp-15, Y-Pos
-      Gui, Crafting: Add, Edit, vGrabCompassY xp yp+15 w34 h17, %GrabCompassY%
-      Gui, Crafting: Add, Button, gWR_Update vWR_Btn_Locate3_GrabCompass x+5 yp h17, Locate
 
       ; Guide
       Gui, Crafting: Font, Bold s9 cBlack, Arial

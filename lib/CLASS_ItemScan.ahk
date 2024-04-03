@@ -800,9 +800,7 @@
 		}
 		; Call MapCraft Logic
 		This.MapCraftItemLogic()
-		If (This.Prop.ItemClass = "Atlas Upgrade Items") {
-			This.SextantLogic()
-		} Else If (This.MatchCraftingItemMods()) {
+		If (This.MatchCraftingItemMods()) {
 			; Flags for Item Crafting
 			This.Prop.ItemCraftingHit := True
 		}
@@ -858,35 +856,6 @@
 		}
 		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Unidentified || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
 			This.Prop.IsBrickedMap := True
-		}
-	}
-	SextantLogic(){
-		If(!This.Prop.AtlasStone){
-			Return
-		}
-		For k, v in WR.CustomSextantMods.SextantMods{
-			Content := StrSplit(v["Sextant Enchant"], " | ")
-			aux := 0
-			for a, b in Content{
-				b := b . " (enchant)"
-				If(This.Affix[b]) {
-					aux++
-				}
-			}
-			If(aux == Content.Length()) {
-				If(v["Mod Type"] == "Good") {
-					This.Prop.SextantFlag := "Good"
-				} Else If(v["Mod Type"] == "Bad") {
-					This.Prop.SextantFlag := "Bad"
-				}
-				Break
-			}
-		}
-		If (SextantDDLSelector ~= "Good" && This.Prop.SextantFlag == "Good")
-			|| (SextantDDLSelector ~= "Bad" && (This.Prop.HasEnchant && This.Prop.SextantFlag != "Bad")) {
-			This.Prop.SextantCraftingHit := True
-		} Else {
-			This.Prop.SextantCraftingHit := False
 		}
 	}
 	MatchCraftingItemMods() {

@@ -76,35 +76,6 @@ RefreshHeistList()
   Return
 }
 
-RefreshSextantList()
-{
-  AffixName:= ""
-  Mods := LoadOnDemand(ItemCraftingCategorySelector,ItemCraftingSubCategorySelector)
-  For k, v in Mods
-  {
-    LV_Add("",ItemCraftingSubCategorySelector,FirstLineToWRFormat(v["text"]),v["weight"],"Good")
-  }
-  Mods := []
-  ;;Check Box
-  Loop % LV_GetCount()
-  {
-    Index := A_Index
-    LV_GetText(OutputVar, A_Index , 2)
-    For k, v in WR.CustomSextantMods.SextantMods
-    {
-      If (v["Sextant Enchant"] == OutputVar && v["Sextant Type"] == ItemCraftingSubCategorySelector){
-        LV_Modify(Index,"Check",,,,v["Mod Type"])
-      }
-    }
-  }
-  ;; Style
-  Loop % LV_GetCount("Column")
-    LV_ModifyCol(A_Index,"AutoHdr")
-  LV_ModifyCol(2,"700")
-  LV_ModifyCol(1, "Sort")
-  Return
-}
-
 CustomMapModsUI:
   Gui, CustomMapModsUI: New
   Gui, CustomMapModsUI: Default
@@ -125,32 +96,6 @@ CustomHeistModsUI:
   Gui, CustomMapModsUI: Add, Button, gSaveHeistData x+5 w120 h30 center, Save Heist Modifiers
   Gui, CustomMapModsUI: Add, Button, gResetHeistData w120 h30 center, Reset Heist Modifiers
   Gui, CustomMapModsUI: Show, , Custom Heist
-Return
-
-CustomSextantModsUI:
-  Gui, CustomSextantModsUI: New
-  Gui, CustomSextantModsUI: Default
-  Gui, CustomSextantModsUI: +AlwaysOnTop -MinimizeBox
-  Gui, CustomSextantModsUI: Add, ListView , w1200 h350 -wrap -Multi Grid Checked gMyListViewSextant vlistview1, Sextant Type|Sextant Enchant|Mod Weight|Mod Type
-  RefreshSextantList()
-  Gui, CustomSextantModsUI: Add, Button, gSaveSextantData x+5 w120 h30 center, Save Sextant Modifiers
-  Gui, CustomSextantModsUI: Add, Button, gResetSextantData w120 h30 center, Reset Sextant Modifiers
-  Gui, CustomSextantModsUI: Show, , Custom Sextant Mods
-Return
-
-MyListViewSextant:
-  if (A_GuiEvent = "DoubleClick")
-  {
-    RowNumber := A_EventInfo
-    LV_GetText(OutputVar1, RowNumber,4)
-    Gui, CustomUI: New
-    Gui, CustomUI: +AlwaysOnTop -MinimizeBox
-    Gui, CustomUI: Add, Text,, Mod Type:
-    Gui, CustomUI: Add, DropDownList, vCSP_ModType, Good|Bad
-    GuiControl, ChooseString, CSP_ModType, %OutputVar1%
-    Gui, CustomUI: Add, Button, gSaveRowLVS y+8 w120 h30 center, Save
-    Gui, CustomUI: Show, , Edit Sextant Mod
-  }
 Return
 
 MyListViewMap:
@@ -198,13 +143,6 @@ SaveRowLVM:
   Gui, CustomUI: Hide
 Return
 
-SaveRowLVS:
-  Gui, CustomUI: Submit, NoHide
-  Gui, CustomSextantModsUI:Default
-  LV_Modify(RowNumber,,,,,CSP_ModType)
-  Gui, CustomUI: Hide
-Return
-
 SaveMapData:
   Gui, CustomMapModsUI:Default
   TrueIndex:=0
@@ -227,7 +165,7 @@ SaveMapData:
 Return
 
 ResetMapData:
-  Gui, CustomSextantModsUI:Default
+  Gui, CustomMapModsUI:Default
   Loop % LV_GetCount()
     LV_Modify(A_Index,"-Check")
   WR.CustomMapMods.MapMods := []
@@ -256,37 +194,9 @@ SaveHeistData:
 Return
 
 ResetHeistData:
-  Gui, CustomSextantModsUI:Default
+  Gui, CustomHeistModsUI:Default
   Loop % LV_GetCount()
     LV_Modify(A_Index,"-Check")
   WR.CustomMapMods.HeistMods := []
   Settings("CustomMapMods","Save")
-Return
-
-SaveSextantData:
-  Gui, CustomSextantModsUI:Default
-  TrueIndex:=0
-  WR.CustomSextantMods.SextantMods := []
-  RowNumber := 0
-  Loop
-  {
-    RowNumber := LV_GetNext(RowNumber,"C")
-    If not RowNumber
-      Break
-    TrueIndex++
-    LV_GetText(SextantType, RowNumber, 1)
-    LV_GetText(SextantEnchant, RowNumber, 2)
-    LV_GetText(ModType, RowNumber, 4)
-    aux:={"Sextant Type":SextantType,"Sextant Enchant":SextantEnchant,"Mod Type":ModType}
-    WR.CustomSextantMods.SextantMods.Push(aux)
-  }
-  Settings("CustomSextantMods","Save")
-Return
-
-ResetSextantData:
-  Gui, CustomSextantModsUI:Default
-  Loop % LV_GetCount()
-    LV_Modify(A_Index,"-Check")
-  WR.CustomSextantMods.SextantMods := []
-  Settings("CustomSextantMods","Save")
 Return

@@ -110,29 +110,20 @@ CraftingItem(){
 		Return
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
-	If (ItemCraftingSubCategorySelector ~= "Awakened Sextant") {
-		CurrencyList := []
-		CurrencyList.Push("Awakened")
-	} 
-	Else If (ItemCraftingSubCategorySelector ~= "Elevated Sextant") {
-		CurrencyList := []
-		CurrencyList.Push("Elevated")
-	} 
-	Else {
-		CurrencyList := []
-		If (ItemCraftingMethod ~= "Alteration")
-			CurrencyList.Push("Alteration")
-		If (ItemCraftingMethod ~= "Aug")
-			CurrencyList.Push("Augmentation")
-		If (ItemCraftingMethod ~= "Regal")
-			CurrencyList.Push("Regal")
-		If (ItemCraftingMethod ~= "Scouring")
-			CurrencyList.Push("Scouring")
-		If (ItemCraftingMethod ~= "Alchemy")
-			CurrencyList.Push("Alchemy")
-		If (ItemCraftingMethod ~= "Chaos")
-			CurrencyList.Push("Chaos")
-	}
+	CurrencyList := []
+	If (ItemCraftingMethod ~= "Alteration")
+		CurrencyList.Push("Alteration")
+	If (ItemCraftingMethod ~= "Aug")
+		CurrencyList.Push("Augmentation")
+	If (ItemCraftingMethod ~= "Regal")
+		CurrencyList.Push("Regal")
+	If (ItemCraftingMethod ~= "Scouring")
+		CurrencyList.Push("Scouring")
+	If (ItemCraftingMethod ~= "Alchemy")
+		CurrencyList.Push("Alchemy")
+	If (ItemCraftingMethod ~= "Chaos")
+		CurrencyList.Push("Chaos")
+
 	WR.data.Counts := CountCurrency(CurrencyList)
 	MouseMove %xx%, %yy%
 	Sleep, 150
@@ -148,49 +139,33 @@ CraftingItem(){
 		Return
 	}
 	*/
-	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-		&& (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
+	If (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
-	} Else If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-		&& (WR.CustomSextantMods.SextantMods.Count() <= 0) {
-		Notify("Sextant Mod Selector Empty","You Need Select at Least 1 Affix on Sextant Mod Selector",4)
-		Log("[End]Item Crafting - Sextant Crafting Error","You Need Select at Least 1 Affix on Sextant Mod Selector")
-		Return
-	}
-	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-		&& (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
+	} 
+	If (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
 		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
 		Return
 	}
-	If !(ItemCraftingSubCategorySelector ~= "Awakened|Elevated")
-		&& (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
-		Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
-		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+	If (!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)) {
+		Notify("Missing Advanced Tooltip","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
+		Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","Restore the default binding for advanced tooltip in-game to Alt as this is required for CTRL+ALT+C to get advanced clip information")
 		Return
 	}
-	If (ItemCraftingSubCategorySelector ~= "Awakened|Elevated") && (GrabCompassX <= 0) or (GrabCompassY <=0) {
-		Notify("Missing Surveyor's Compass Location","You must setup the co-ordinates in your currency tab before you can craft with sextants")
-		Log("Missing Surveyor's Compass Location","You must setup the co-ordinates in your currency tab before you can craft with sextants")
-		Return
-	}
-	If (ItemCraftingSubCategorySelector ~= "Awakened Sextant") {
-		SextantCraftingRoll("Awakened",xx,yy)
-	}Else If (ItemCraftingSubCategorySelector ~= "Elevated Sextant") {
-		SextantCraftingRoll("Elevated",xx,yy)
-	}Else If(ItemCraftingMethod == "Alteration Spam"){
+
+	If(ItemCraftingMethod == "Alteration Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",4)
-			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
+			Notify("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
+			Log("[End]Item Crafting - Item Crafting Error","Match conditions are out of range for a magic item, reduce the required count")
 			Return
 		}
 		ItemCraftingRoll("Alt", xx, yy)
 	}Else If(ItemCraftingMethod == "Alteration and Aug Spam"){
 		If(ItemCraftingNumberPrefix > 1 || ItemCraftingNumberSuffix > 1 || ItemCraftingNumberCombination > 2){
-			Notify("Magic Item Mismatch","Magic Itens Roll can only have 1 Prefix and 1 Suffix",4)
-			Log("[End]Item Crafting - Item Crafting Error","Magic Itens Roll can only have 1 Prefix and 1 Suffix")
+			Notify("Magic Item Mismatch","Match conditions are out of range for a magic item, reduce the required count",4)
+			Log("[End]Item Crafting - Item Crafting Error","Match conditions are out of range for a magic item, reduce the required count")
 			Return
 		}
 		ItemCraftingRoll("AltAug", xx, yy)
@@ -608,65 +583,5 @@ ItemCraftingRoll(Method, x, y){
 		Log("[End]Item Crafting - Sucess ","End Routine")
 	}
 
-	Return
-}
-SextantCraftingRoll(Method, x, y){
-	If (SextantCraftingMethod == 1) {
-		While (WR.data.Counts[Method] > 0) {
-			If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
-				Break
-			ClipItem(GrabCompassX,GrabCompassY)
-			If (Item.Prop.Stack_Size < 1){
-				Log("Sextant Crafting Loop ", "No compass available to seal the sextant")
-				Break
-			}
-			EmptySlots := EmptyGrid()
-			If (EmptySlots.Count() = 0) {
-				Log("Sextant Crafting Loop ", "No inventory slot available for compass")
-				Break
-			}
-			Log("Sextant Crafting Loop ", "Starting with:"
-				, WR.data.Counts[Method] " Sextants available"
-				, Item.Prop.Stack_Size " Compass available"
-				, EmptySlots.Count() " Inventory slots available")
-
-			While (!Item.Prop.SextantCraftingHit) {
-				If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
-					Break
-				If !ApplyCurrency(Method,x,y) ; Ran out of sextants so end loop
-					Break
-				Log("Sextant Crafting Loop ", "Sextant result has " (Item.Prop.SextantFlag?Item.Prop.SextantFlag:"no Good or Bad") " Mod", Item)
-			}
-			If (Item.Prop.SextantCraftingHit) {
-				Log("Sextant Crafting Loop ", "Hit a match, saving sextant with compass")
-				If (OnInventory && OnStash) {
-					EmptySlot := EmptySlots.Pop()
-					RightClick(GrabCompassX, GrabCompassY)
-					RandomSleep(75,75)
-					LeftClick(x, y)
-					RandomSleep(45,45)
-					LeftClick(EmptySlot.X,EmptySlot.Y)
-					RandomSleep(75,75)
-				} Else {
-					Log("[End]Sextant Crafting - Inventory or Stash closed ","End Routine")
-					Break
-				}
-			} Else {
-				Log("[End]Sextant Crafting Loop ", "No Sextant available for crafting", "End Routine")
-				Break
-			}
-		}
-	} Else If (SextantCraftingMethod == 2) {
-		While (!Item.Prop.SextantCraftingHit) {
-			If !RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
-				Break
-			If !ApplyCurrency(Method,x,y) { ; Ran out of sextants so end loop
-				Log("[End]Sextant Crafting Loop ", "No Sextant available for crafting", "End Routine")
-				Break
-			}
-			Log("Sextant Crafting Loop ", "Sextant result has " (Item.Prop.SextantFlag?Item.Prop.SextantFlag:"no Good or Bad") " Mod", Item)
-		}
-	}
-	Log("[End]Sextant Crafting ","End Routine")
 	Return
 }
