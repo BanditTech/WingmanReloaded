@@ -75,7 +75,7 @@
     "generation_type": "Prefix",
     "name": "Profane",
     "required_level": 73,
-    "text": "Monsters deal (21-25)% extra Physical Damage as Chaos | Monsters Inflict Withered for 2 seconds on Hit",
+    "text": "Monsters gain (21-25)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
     "weight": 500,
     "influence": "Normal"
   },
@@ -83,7 +83,7 @@
     "generation_type": "Prefix",
     "name": "Profane",
     "required_level": 78,
-    "text": "Monsters deal (31-35)% extra Physical Damage as Chaos | Monsters Inflict Withered for 2 seconds on Hit",
+    "text": "Monsters gain (31-35)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
     "weight": 500,
     "influence": "Normal"
   },
@@ -771,7 +771,7 @@
     "generation_type": "Prefix",
     "name": "Unstoppable",
     "required_level": 46,
-    "text": "Monsters' Action Speed cannot be modified to below base value | Monsters cannot be Taunted",
+    "text": "Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value | Monsters cannot be Taunted",
     "weight": 650,
     "influence": "Normal"
   },
@@ -779,7 +779,7 @@
     "generation_type": "Prefix",
     "name": "Empowered",
     "required_level": 73,
-    "text": "Monsters have a 15% chance to cause Elemental Ailments on Hit",
+    "text": "Monsters have a 15% chance Ignite, Freeze and Shock on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -787,7 +787,7 @@
     "generation_type": "Prefix",
     "name": "Empowered",
     "required_level": 78,
-    "text": "Monsters have a 20% chance to cause Elemental Ailments on Hit",
+    "text": "Monsters have a 20% chance Ignite, Freeze and Shock on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -859,7 +859,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 46,
-    "text": "Monsters have 15% chance to Impale with Attacks",
+    "text": "Monsters' Attacks have 15% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -867,7 +867,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 68,
-    "text": "Monsters have 25% chance to Impale with Attacks",
+    "text": "Monsters' Attacks have 25% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -875,7 +875,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 73,
-    "text": "Monsters have 40% chance to Impale with Attacks",
+    "text": "Monsters' Attacks have 40% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -883,7 +883,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 78,
-    "text": "Monsters have 60% chance to Impale with Attacks",
+    "text": "Monsters' Attacks have 60% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -1315,7 +1315,7 @@
     "generation_type": "Suffix",
     "name": "of Congealment",
     "required_level": 78,
-    "text": "Cannot Leech from Monsters",
+    "text": "Monsters cannot be Leeched from",
     "weight": 300,
     "influence": "Normal"
   },
@@ -1763,7 +1763,7 @@
     "generation_type": "Suffix",
     "name": "of Exposure",
     "required_level": 73,
-    "text": "-(8-5)% maximum Player Resistances",
+    "text": "Players have -(8-5)% to all maximum Resistances",
     "weight": 600,
     "influence": "Normal"
   },
@@ -1771,7 +1771,7 @@
     "generation_type": "Suffix",
     "name": "of Exposure",
     "required_level": 78,
-    "text": "-(12-9)% maximum Player Resistances",
+    "text": "Players have -(12-9)% to all maximum Resistances",
     "weight": 1000,
     "influence": "Normal"
   },

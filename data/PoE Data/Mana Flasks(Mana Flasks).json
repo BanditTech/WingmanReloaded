@@ -607,46 +607,6 @@
     "weight": 750,
     "influence": "Normal"
   },
-  "FlaskBuffReducedManaCostWhileHealing1_": {
-    "generation_type": "Suffix",
-    "name": "of the Pupil",
-    "required_level": 12,
-    "text": "(14-11)% reduced Mana Cost of Skills during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffReducedManaCostWhileHealing2__": {
-    "generation_type": "Suffix",
-    "name": "of the Initiate",
-    "required_level": 29,
-    "text": "(18-15)% reduced Mana Cost of Skills during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffReducedManaCostWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of the Mage",
-    "required_level": 46,
-    "text": "(21-19)% reduced Mana Cost of Skills during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffReducedManaCostWhileHealing4": {
-    "generation_type": "Suffix",
-    "name": "of the Arcanist",
-    "required_level": 63,
-    "text": "(25-22)% reduced Mana Cost of Skills during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffReducedManaCostWhileHealing5": {
-    "generation_type": "Suffix",
-    "name": "of the Sorcerer",
-    "required_level": 80,
-    "text": "(29-26)% reduced Mana Cost of Skills during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
   "LocalManaFlaskHinderNearbyEnemies1_": {
     "generation_type": "Suffix",
     "name": "of Interference",

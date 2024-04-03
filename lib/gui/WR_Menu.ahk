@@ -688,8 +688,9 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font,
       Gui, Crafting: Add, Text, xs+5 yp+25 w60, Category:
       aux := ""
+      ; Disable Sextants Craftings as they removed in Necropolis
       for a,b in POEData{
-        if(a ~= "Maps|Contracts|Expedition Logbooks|Blueprints"){
+        if(a ~= "Maps|Contracts|Expedition Logbooks|Blueprints|Sextant"){
           Continue
         }
         aux .= a "|"

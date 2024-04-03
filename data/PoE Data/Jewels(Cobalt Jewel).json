@@ -615,14 +615,6 @@
     "weight": 500,
     "influence": "Normal"
   },
-  "ManaCostReductionJewel": {
-    "generation_type": "Suffix",
-    "name": "of Efficiency",
-    "required_level": 1,
-    "text": "(3-5)% reduced Mana Cost of Skills",
-    "weight": 500,
-    "influence": "Normal"
-  },
   "MinionAccuracyRatingJewel": {
     "generation_type": "Suffix",
     "name": "of Training",

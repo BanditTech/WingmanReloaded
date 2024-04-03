@@ -1,12 +1,4 @@
 {
-  "MapBeyondLeagueRolledMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Otherworldly",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Slaying Enemies close together can attract monsters from Beyond this realm",
-    "weight": 650,
-    "influence": "Normal"
-  },
   "MapBossPossessedMapWorlds": {
     "generation_type": "Prefix",
     "name": "Enthralled",
@@ -259,7 +251,7 @@
     "generation_type": "Prefix",
     "name": "Unstoppable",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters' Action Speed cannot be modified to below base value | Monsters cannot be Taunted",
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value | Monsters cannot be Taunted",
     "weight": 650,
     "influence": "Normal"
   },
@@ -283,7 +275,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 25% chance to Impale with Attacks",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' Attacks have 25% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -300,14 +292,6 @@
     "name": "Multifarious",
     "required_level": 1,
     "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has increased monster variety",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMultipleExilesMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Anarchic",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area is inhabited by 2 additional Rogue Exiles",
     "weight": 1000,
     "influence": "Normal"
   },

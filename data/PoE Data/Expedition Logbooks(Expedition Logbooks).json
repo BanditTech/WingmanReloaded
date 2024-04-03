@@ -43,7 +43,7 @@
     "generation_type": "Prefix",
     "name": "Profane",
     "required_level": 73,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (21-25)% extra Physical Damage as Chaos | Monsters Inflict Withered for 2 seconds on Hit",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters gain (21-25)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
     "weight": 500,
     "influence": "Normal"
   },
@@ -51,7 +51,7 @@
     "generation_type": "Prefix",
     "name": "Profane",
     "required_level": 78,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (31-35)% extra Physical Damage as Chaos | Monsters Inflict Withered for 2 seconds on Hit",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters gain (31-35)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
     "weight": 500,
     "influence": "Normal"
   },
@@ -403,7 +403,7 @@
     "generation_type": "Prefix",
     "name": "Unstoppable",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters' Action Speed cannot be modified to below base value | Monsters cannot be Taunted",
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value | Monsters cannot be Taunted",
     "weight": 650,
     "influence": "Normal"
   },
@@ -411,7 +411,7 @@
     "generation_type": "Prefix",
     "name": "Empowered",
     "required_level": 73,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 15% chance to cause Elemental Ailments on Hit",
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 15% chance Ignite, Freeze and Shock on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -419,7 +419,7 @@
     "generation_type": "Prefix",
     "name": "Empowered",
     "required_level": 78,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 20% chance to cause Elemental Ailments on Hit",
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 20% chance Ignite, Freeze and Shock on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -427,7 +427,7 @@
     "generation_type": "Prefix",
     "name": "Empowered",
     "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 10% chance to cause Elemental Ailments on Hit",
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 10% chance Ignite, Freeze and Shock on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -499,7 +499,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 68,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 25% chance to Impale with Attacks",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' Attacks have 25% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -507,7 +507,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 73,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 40% chance to Impale with Attacks",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' Attacks have 40% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -515,7 +515,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 78,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 60% chance to Impale with Attacks",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' Attacks have 60% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -523,7 +523,7 @@
     "generation_type": "Prefix",
     "name": "Impaling",
     "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters have 15% chance to Impale with Attacks",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' Attacks have 15% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -979,7 +979,7 @@
     "generation_type": "Suffix",
     "name": "of Exposure",
     "required_level": 1,
-    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | -(8-5)% maximum Player Resistances",
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | Players have -(8-5)% to all maximum Resistances",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -987,7 +987,7 @@
     "generation_type": "Suffix",
     "name": "of Exposure",
     "required_level": 73,
-    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | -(12-9)% maximum Player Resistances",
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | Players have -(12-9)% to all maximum Resistances",
     "weight": 1000,
     "influence": "Normal"
   },

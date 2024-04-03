@@ -803,40 +803,24 @@
     "generation_type": "Suffix",
     "name": "of the Crystal",
     "required_level": 1,
-    "text": "(21-24)% additional Elemental Resistances during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffResistancesWhileHealing2": {
-    "generation_type": "Suffix",
-    "name": "of the Prism",
-    "required_level": 21,
-    "text": "(25-28)% additional Elemental Resistances during Effect",
-    "weight": 600,
+    "text": "(12-14)% additional Elemental Resistances during Effect",
+    "weight": 750,
     "influence": "Normal"
   },
   "FlaskBuffResistancesWhileHealing3": {
     "generation_type": "Suffix",
     "name": "of the Kaleidoscope",
     "required_level": 41,
-    "text": "(29-32)% additional Elemental Resistances during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffResistancesWhileHealing4": {
-    "generation_type": "Suffix",
-    "name": "of Variegation",
-    "required_level": 61,
-    "text": "(33-36)% additional Elemental Resistances during Effect",
-    "weight": 600,
+    "text": "(15-17)% additional Elemental Resistances during Effect",
+    "weight": 750,
     "influence": "Normal"
   },
   "FlaskBuffResistancesWhileHealing5_": {
     "generation_type": "Suffix",
     "name": "of the Rainbow",
     "required_level": 81,
-    "text": "(37-40)% additional Elemental Resistances during Effect",
-    "weight": 600,
+    "text": "(18-20)% additional Elemental Resistances during Effect",
+    "weight": 750,
     "influence": "Normal"
   },
   "FlaskBuffShockEffect1": {

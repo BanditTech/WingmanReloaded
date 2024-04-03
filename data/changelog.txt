@@ -1,3 +1,9 @@
+## Version .15.26 - Alpha Version - April/3/2024
+Necropolis Update
+  * Disable Sextant crafting
+  * Update Mods to Match Necropolis Changes
+  
+---
 ## Version .15.26 - Alpha Version - March/31/2024
 Updated Item Parser
   * Added support for the new item format Allflame Embers use.

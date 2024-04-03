@@ -734,37 +734,5 @@
     "text": "Heist Chests have a (13-15)% chance to Duplicate contained Scarabs",
     "weight": 400,
     "influence": "Normal"
-  },
-  "HeistNPCChestDoubleSextant1_": {
-    "generation_type": "Suffix",
-    "name": "of Guiding",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Sextants",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleSextant2": {
-    "generation_type": "Suffix",
-    "name": "of Charting",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Sextants",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleSextant3_": {
-    "generation_type": "Suffix",
-    "name": "of Navigating",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Sextants",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleSextant4_": {
-    "generation_type": "Suffix",
-    "name": "of Helmsmanship",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Sextants",
-    "weight": 400,
-    "influence": "Normal"
   }
 }

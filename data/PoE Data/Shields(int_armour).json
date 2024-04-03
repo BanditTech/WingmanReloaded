@@ -1807,6 +1807,14 @@
     "weight": 2000,
     "influence": "Normal"
   },
+  "MinionGrantsConvocation1": {
+    "generation_type": "Suffix",
+    "name": "of the Convocation",
+    "required_level": 45,
+    "text": "Grants Level 1 Convocation Skill",
+    "weight": 1000,
+    "influence": "Normal"
+  },
   "MinionLifeWeapon1": {
     "generation_type": "Suffix",
     "name": "of the Administrator",
