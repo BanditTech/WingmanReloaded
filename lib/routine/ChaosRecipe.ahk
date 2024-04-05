@@ -579,10 +579,13 @@ retCount(obj){
 }
 ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
 VendorRoutineChaos(){
+  SetActionTimings()
 	CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
 	BlackList := Array_DeepClone(BlackList_Default)
  ; Move mouse out of the way to grab screenshot
-	ShooMouse(), GuiStatus(), ClearNotifications()
+	ShooMouse()
+  GuiStatus()
+  ClearNotifications()
 	If !OnVendor
 	{
 		Notify("Error", "Not at vendor", 2)
@@ -615,8 +618,12 @@ VendorRoutineChaos(){
 			}
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
-			If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
-				ShooMouse(),GuiStatus(),Continue
+			If (!Item.Prop.IsItem || Item.Prop.ItemName = "") {
+				ShooMouse()
+        GuiStatus()
+        Continue
+      }
+
 			If (OnVendor&&YesVendor)
 			{
 				If ( ( Item.Prop.SpecialType="" || (Item.Prop.SpecialType="Enchanted Item" && Item.Prop.ChaosValue < 1) ) && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) ) {
@@ -717,6 +724,7 @@ VendorRoutineChaos(){
 VendorChaosRecipe(){
  ; Ensure we only run one instance, second press of hotkey should stop function
 	CheckRunning()
+  SetActionTimings()
 	Global InvGrid, CurrentTab
 	CurrentTab := 0
 	Static Object := {}

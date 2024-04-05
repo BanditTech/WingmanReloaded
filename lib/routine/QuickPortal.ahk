@@ -4,6 +4,7 @@ QuickPortal(ChickenFlag := False){
 	QuickPortalCommand:
 		If (OnTown || OnHideout || OnMines)
 			Return
+		SetActionTimings()
 		Critical
 		; BlockInput On
 		BlockInput MouseMove

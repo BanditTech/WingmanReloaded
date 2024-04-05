@@ -2,6 +2,7 @@
 ItemSortCommand(){
 	; Thread, NoTimers, True
 	CheckRunning()
+	SetActionTimings()
 	MouseGetPos xx, yy
 	IfWinActive, ahk_group POEGameGroup
 	{
@@ -140,6 +141,7 @@ CheckToIdentify(){
 ; VendorRoutine - Does vendor functions
 VendorRoutine()
 {
+	SetActionTimings()
 	tQ := 0
 	tGQ := 0
 	SortFlask := []
@@ -353,6 +355,7 @@ EmptyGrid(){
 }
 ; Open Stacked Decks Automatically
 StackedDeckOpen(number,x,y){
+	SetActionTimings()
 	EmptySlots := EmptyGrid()
 	Loop %number% {
 		If (EmptySlots.Count() >= 1){
@@ -375,6 +378,7 @@ ResetMainTimer(toggle:="On"){
 ; StashRoutine - Does stash functions
 StashRoutine()
 {
+	SetActionTimings()
 	Global PPServerStatus
 	If StashTabYesPredictive
 	{
@@ -683,6 +687,7 @@ SearchVendor()
 ; DivRoutine - Does divination trading function
 DivRoutine()
 {
+	SetActionTimings()
 	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Main loop through inventory
@@ -726,6 +731,7 @@ DivRoutine()
 ; IdentifyRoutine - Does basic function when not at other windows
 IdentifyRoutine()
 {
+	SetActionTimings()
 	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Main loop through inventory
@@ -816,6 +822,7 @@ MoveStash(Tab,CheckStatus:=0)
 }
 ; RunRestock - Restock currency Items in inventory
 RunRestock(){
+	SetActionTimings()
 	BlockInput, MouseMove
 	For C, vv in WR.Restock {
 		For R, v in vv {

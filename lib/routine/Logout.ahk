@@ -2,6 +2,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LogoutCommand(){
   LogoutCommand:
+    SetActionTimings()
     Critical
     Static LastLogout := 0
     if (WR.perChar.Setting.quitDC || (WR.perChar.Setting.quitPortal && (OnMines || OnTown || OnHideout))) {

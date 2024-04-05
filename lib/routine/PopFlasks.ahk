@@ -2,6 +2,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
+		SetActionTimings()
 		Critical
 		WR.func.Toggle.PopAll := True
 		If PopFlaskRespectCD

@@ -7,6 +7,7 @@ autoLevelGems()
 	{
 		IfWinActive, ahk_group POEGameGroup 
 		{
+			SetActionTimings()
 			If (WR.perChar.Setting.autolevelgemsWait && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
 				Return
 			LastCheck := A_TickCount
