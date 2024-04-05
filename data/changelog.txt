@@ -1,9 +1,19 @@
+## Version .15.28 - Alpha Version - April/5/2024
+General Improvements
+  * Attempt to fix randomly slow mouse movements
+  * Quick Portal now uses the in-game hotkey
+    * Assign the matching in-game key in the hotkey tab
+    * Clicking the portal after use is no longer optional
+  
+---
+
 ## Version .15.27 - Alpha Version - April/3/2024
 Necropolis Update
   * Remove references to Sextant crafting
   * Update Mods to Match Necropolis Changes
   
 ---
+
 ## Version .15.26 - Alpha Version - March/31/2024
 Updated Item Parser
   * Added support for the new item format Allflame Embers use.
