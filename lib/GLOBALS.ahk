@@ -88,7 +88,6 @@ Global StackSizes := {"Wisdom":40,"Portal":40,"Scouring":30,"Perandus":5000
 	,"Alchemy":20,"Binding":20,"Vaal":20,"Chisel":20
 	,"Harbinger":20,"Horizon":20,"Chaos":20,"Engineer":20,"Regal":10
 	,"Simple":10,"Prime":10,"Awakened":10,"Exalted":10,"Veiled":10}
-Global YesClickPortal := True
 Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
 Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
 	, ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
@@ -770,6 +769,7 @@ Global hotkeyItemInfo:="F5"
 Global hotkeyChaosRecipe:="F8"
 Global hotkeyLootScan:="f"
 Global hotkeyDetonateMines:="d"
+Global hotkeyOpenPortal="``"
 Global hotkeyPauseMines:="d"
 Global hotkeyQuickPortal:="!q"
 Global hotkeyGemSwap:="!e"

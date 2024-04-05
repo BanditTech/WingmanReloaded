@@ -43,7 +43,7 @@ LogoutCommand(){
       {
         If !GameActive
           WinActivate, %GameStr%
-        QuickPortal(True)
+        QuickPortal()
         LastLogout := A_TickCount
       }
     }

@@ -65,7 +65,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Add, Text,                   x+1   y23    w1  h483 0x7
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,  Center   Section  w350 h230        x+15   ym+20 ,    Game Logic States
+	Gui, Add, GroupBox,  Center   Section  w350 h210        x+15   ym+20 ,    Game Logic States
 	Gui, Font,
 	Gui, Add, Text, Section xs+20 ys+20 w150 Center h20 0x200 vMainMenuOnChar hwndMainMenuIDOnChar, % "Character Active"
 	CtlColors.Attach(MainMenuIDOnChar, "52D165", "")
@@ -102,7 +102,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Add, Text, xp yp wp hp gupdateDetonate BackgroundTrans
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui, Add, GroupBox,      Center       section        xs-20   y+20 w350 h60 ,         Gamestate Calibration
+	Gui, Add, GroupBox,      Center       section        xs-20   y+35 w350 h60 ,         Gamestate Calibration
 	Gui, Font, s8
 	Gui, Add, Button, ghelpCalibration   xp+250 ys-4    h20, %  "? help"
 	Gui, Add, Button, gStartCalibrationWizard vStartCalibrationWizardBtn  xs+10  ys+20 w105 h25,   Run Wizard
@@ -274,7 +274,7 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Text,                     hp x+5   yp+3,         Secondary Attack
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h155               xm+5   y+5,       Ingame Assigned Keys: 
+	Gui Add, GroupBox,    center w170 h180               xm+5   y+5,       Ingame Assigned Keys: 
 	Gui, Font
 
 	Gui,Add,Edit, xp+5 yp+20  w60 h19   vhotkeyCloseAllUI    ,%hotkeyCloseAllUI%
@@ -287,9 +287,11 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Text, hp x+5   yp+3,         Item Pickup
 	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyDetonateMines    ,%hotkeyDetonateMines%
 	Gui Add, Text, hp x+5   yp+3,         Detonate Mines
+	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyOpenPortal    ,%hotkeyOpenPortal%
+	Gui Add, Text, hp x+5   yp+3,         Open Portal
 
 	Gui, Font, Bold s9 cBlack, Arial
-	Gui Add, GroupBox,    center w170 h450               xs+175   ym+25,       Tool Keybinds: 
+	Gui Add, GroupBox,    center w170 h440               xs+175   ym+25,       Tool Keybinds: 
 	Gui, Font
 
 	Gui,Add,Edit, section xp+5 yp+20   w60 h19   vhotkeyLogout            ,%hotkeyLogout%
@@ -299,7 +301,6 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui Add, Checkbox, gUpdateExtra  vPopFlaskRespectCD Checked%PopFlaskRespectCD%                 xs y+1 , Pop Flasks Respect CD?
 	Gui,Add,Edit, xs y+3   w60 h19   vhotkeyQuickPortal       ,%hotkeyQuickPortal%
 	Gui Add, Text,                     hp x+5   yp+3,         Quick-Portal
-	Gui Add, Checkbox, gUpdateExtra  vYesClickPortal Checked%YesClickPortal%                         xs y+1 , Click portal after opening?
 	Gui,Add,Edit, xs y+3   w60 h19   vhotkeyGemSwap           ,%hotkeyGemSwap%
 	Gui Add, Text,                     hp x+5   yp+3,         Gem-Swap
 	Gui,Add,Edit, xs y+5   w60 h19   vhotkeyGrabCurrency      ,%hotkeyGrabCurrency%

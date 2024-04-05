@@ -71,7 +71,6 @@ readFromFile(){
 	IniRead, YesSkipMaps_rare, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare, 1
 	IniRead, YesSkipMaps_unique, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique, 1
 	IniRead, YesSkipMaps_tier, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier, 2
-	IniRead, YesClickPortal, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal, 0
 	IniRead, AreaScale, %A_ScriptDir%\save\Settings.ini, General, AreaScale, 60
 	IniRead, LVdelay, %A_ScriptDir%\save\Settings.ini, General, LVdelay, 30
 	IniRead, YesLootChests, %A_ScriptDir%\save\Settings.ini, General, YesLootChests, 1
@@ -418,6 +417,7 @@ readFromFile(){
 	IniRead, hotkeyChaosRecipe, %A_ScriptDir%\save\Settings.ini, hotkeys, ChaosRecipe, F8
 	IniRead, hotkeyLootScan, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan, f
 	IniRead, hotkeyDetonateMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines, d
+	IniRead, hotkeyOpenPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyOpenPortal, ``
 	IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines, d
 	IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
 	IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
@@ -753,7 +753,6 @@ submit(){
 		IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
 		IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
 		IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
-		IniWrite, %YesClickPortal%, %A_ScriptDir%\save\Settings.ini, General, YesClickPortal
 		IniWrite, %YesBatchVendorBauble%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble
 		IniWrite, %YesBatchVendorGCP%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP
 		IniWrite, %BrickedWhenCorrupted%, %A_ScriptDir%\save\Settings.ini, General, BrickedWhenCorrupted
@@ -805,6 +804,7 @@ submit(){
 		IniWrite, %hotkeyChaosRecipe%, %A_ScriptDir%\save\Settings.ini, hotkeys, ChaosRecipe
 		IniWrite, %hotkeyLootScan%, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan
 		IniWrite, %hotkeyDetonateMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines
+		IniWrite, %hotkeyOpenPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyOpenPortal
 		IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
 		IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
 		IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
