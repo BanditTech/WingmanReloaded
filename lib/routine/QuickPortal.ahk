@@ -4,6 +4,11 @@ QuickPortal(){
 	QuickPortalCommand:
 		If (OnTown || OnHideout || OnMines)
 			Return
+		if (hotkeyOpenPortal == A_Space) {
+			Notify("Hotkey Unset","Set the keybinding to match the in-game Open Portal key.",3)
+			Return
+		}
+		
 		SetActionTimings()
 		Critical
 		BlockInput MouseMove
@@ -13,7 +18,7 @@ QuickPortal(){
 			Click, Right, up
 			RandomSleep(60,90)
 		}
-
+		
 		SendHotkey(hotkeyOpenPortal)
 
 		RandomSleep(60,90)

@@ -417,7 +417,7 @@ readFromFile(){
 	IniRead, hotkeyChaosRecipe, %A_ScriptDir%\save\Settings.ini, hotkeys, ChaosRecipe, F8
 	IniRead, hotkeyLootScan, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan, f
 	IniRead, hotkeyDetonateMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines, d
-	IniRead, hotkeyOpenPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyOpenPortal, ``
+	IniRead, hotkeyOpenPortal, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyOpenPortal, % A_Space
 	IniRead, hotkeyPauseMines, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines, d
 	IniRead, hotkeyMainAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack, RButton
 	IniRead, hotkeySecondaryAttack, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack, w
