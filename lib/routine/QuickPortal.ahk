@@ -13,20 +13,34 @@ QuickPortal(){
 		Critical
 		BlockInput MouseMove
 		MouseGetPos xx, yy
-		If (GetKeyState("LButton","P") || GetKeyState("RButton","P")) {
-			Click, up
-			Click, Right, up
-			RandomSleep(60,90)
+
+		; Release both the left and right mouse keys
+		lState := GetKeyState("LButton","P")
+		rState := GetKeyState("RButton","P")
+		If (lState || rState) {
+			if (lState)
+				Click, up
+			if (rState)
+				Click, Right, up
+			RandomSleep(75,90)
+		}
+
+		; Close the inventory if we have it open, required to click in the center of screen.
+		If (OnInventory && GuiStatus("OnInventory")) {
+			SendHotkey(hotkeyInventory)
+			RandomSleep(75,90)
 		}
 		
+		centerX := GameX + Round(GameW/2)
+		centerY := GameY + Round(GameH*0.48148148148148148148148148148148)
+
+		; First click at center of screen to stop movement
+		LeftClick(centerX,centerY)
+		; Open the Portal using in-game key
 		SendHotkey(hotkeyOpenPortal)
-
-		RandomSleep(60,90)
-
-		If (OnInventory && GuiStatus("OnInventory"))
-			SendHotkey(hotkeyInventory)
-		RandomSleep(75,90)
-		LeftClick(GameX + Round(GameW/2),GameY + Round(GameH/2.427))
+		RandomSleep(90,120)
+		; Click the center of screen to use the portal.
+		LeftClick(centerX,centerY)
 
 		BlockInput MouseMoveOff
 		RandomSleep(300,600)
