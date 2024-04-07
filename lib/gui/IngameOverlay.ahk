@@ -10,7 +10,7 @@ Gui 2:Font, bold cFFFFFF S9, Trebuchet MS
 IfWinExist, ahk_group POEGameGroup
 {
   Rescale()
-  Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA", StatusOverlay
+  Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA"
   GuiUpdate()
   ToggleExist := True
 }

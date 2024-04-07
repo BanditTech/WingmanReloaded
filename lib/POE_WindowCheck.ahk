@@ -26,7 +26,7 @@ PoEWindowCheck()
 				Rescale()
 			If ((!ToggleExist || newDim) && GameActive) 
 			{
-				Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA", StatusOverlay
+				Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA"
 				GuiUpdate()
 				ToggleExist := True
 				NoGame := False
@@ -34,7 +34,7 @@ PoEWindowCheck()
 			Else If (ToggleExist && !GameActive)
 			{
 				ToggleExist := False
-				Gui 2: Show, Hide, StatusOverlay
+				Gui 2: Show, Hide
 			}
 		} 
 		Else 
@@ -50,7 +50,7 @@ PoEWindowCheck()
 			}
 			If (ToggleExist)
 			{
-				Gui 2: Show, Hide, StatusOverlay
+				Gui 2: Show, Hide
 				ToggleExist := False
 				RescaleRan := False
 				NoGame := True

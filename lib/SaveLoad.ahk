@@ -704,7 +704,7 @@ submit(){
 		{
 			Gui, Submit
 			Rescale()
-			Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15, StatusOverlay
+			Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15
 			ToggleExist := True
 			WinActivate, ahk_group POEGameGroup
 		}
