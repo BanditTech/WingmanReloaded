@@ -108,7 +108,8 @@
   "Maps": [
     "low_tier_map",
     "mid_tier_map",
-    "top_tier_map"
+    "top_tier_map",
+    "uber_tier_map"
   ],
   "One Hand Axes": [
     "One Hand Axes"

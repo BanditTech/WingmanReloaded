@@ -779,7 +779,7 @@
     "generation_type": "Prefix",
     "name": "Empowered",
     "required_level": 73,
-    "text": "Monsters have a 15% chance Ignite, Freeze and Shock on Hit",
+    "text": "Monsters have a 15% chance to Ignite, Freeze and Shock on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -787,7 +787,7 @@
     "generation_type": "Prefix",
     "name": "Empowered",
     "required_level": 78,
-    "text": "Monsters have a 20% chance Ignite, Freeze and Shock on Hit",
+    "text": "Monsters have a 20% chance to Ignite, Freeze and Shock on Hit",
     "weight": 800,
     "influence": "Normal"
   },

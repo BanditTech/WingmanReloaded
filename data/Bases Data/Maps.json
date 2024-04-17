@@ -1276,6 +1276,15 @@
     "inventory_width": 1,
     "properties": {}
   },
+  "Abomination Map": {
+    "drop_level": 84,
+    "implicits": [
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
   "Alleyways Map": {
     "drop_level": 69,
     "implicits": [],
@@ -1314,6 +1323,15 @@
   "Carcass Map": {
     "drop_level": 82,
     "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Citadel Map": {
+    "drop_level": 84,
+    "implicits": [
+      null
+    ],
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {}
@@ -1405,6 +1423,15 @@
   "Forking River Map": {
     "drop_level": 70,
     "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Fortress Map": {
+    "drop_level": 84,
+    "implicits": [
+      null
+    ],
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {}
@@ -1507,6 +1534,15 @@
     "inventory_width": 1,
     "properties": {}
   },
+  "Sanctuary Map": {
+    "drop_level": 84,
+    "implicits": [
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
   "Sepulchre Map": {
     "drop_level": 76,
     "implicits": [],
@@ -1573,6 +1609,15 @@
   "Crater Map": {
     "drop_level": 74,
     "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
+  "Ziggurat Map": {
+    "drop_level": 84,
+    "implicits": [
+      null
+    ],
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {}

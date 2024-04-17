@@ -1,0 +1,490 @@
+{
+  "MapUberModAOEPlayer": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 1,
+    "text": "Players have 50% less Area of Effect",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModActionSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Deceleration",
+    "required_level": 1,
+    "text": "Players have 4% reduced Action Speed for each time they've used a Skill Recently",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModAuraEffect": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 1,
+    "text": "Players have 90% reduced effect of Non-Curse Auras from Skills",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModBarrels": {
+    "generation_type": "Suffix",
+    "name": "of Storage",
+    "required_level": 1,
+    "text": "Area contains (30-40) additional Clusters of Highly Volatile Barrels",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModBuffExpiry": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 1,
+    "text": "Buffs on Players expire 100% faster",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModCrit": {
+    "generation_type": "Suffix",
+    "name": "of Deadliness",
+    "required_level": 1,
+    "text": "+(70-75)% to Monster Critical Strike Multiplier | Monsters have (650-700)% increased Critical Strike Chance",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModCritDefence": {
+    "generation_type": "Suffix",
+    "name": "of Toughness",
+    "required_level": 1,
+    "text": "Monsters take 100% reduced Extra Damage from Critical Strikes",
+    "weight": 30,
+    "influence": "Normal"
+  },
+  "MapUberModCurses": {
+    "generation_type": "Suffix",
+    "name": "of Curses",
+    "required_level": 1,
+    "text": "Players are Cursed with Vulnerability | Players are Cursed with Temporal Chains | Players are Cursed with Elemental Weakness",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModElderNovas": {
+    "generation_type": "Suffix",
+    "name": "Decaying",
+    "required_level": 1,
+    "text": "Area contains Unstable Tentacle Fiends",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModEleDamagePenetration": {
+    "generation_type": "Suffix",
+    "name": "of Penetration",
+    "required_level": 1,
+    "text": "Monster Damage Penetrates 15% Elemental Resistances",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModEnduranceCharges": {
+    "generation_type": "Suffix",
+    "name": "of Endurance",
+    "required_level": 1,
+    "text": "Monsters have +1 to Maximum Endurance Charges | Monsters gain an Endurance Charge when hit",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModFlaskMeteor": {
+    "generation_type": "Suffix",
+    "name": "of Imbibing",
+    "required_level": 1,
+    "text": "Players are targeted by a Meteor when they use a Flask",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModFrenzyCharges": {
+    "generation_type": "Suffix",
+    "name": "of Frenzy",
+    "required_level": 1,
+    "text": "Monsters gain a Frenzy Charge on Hit | Monsters have +1 to Maximum Frenzy Charges",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModGlobalDefences": {
+    "generation_type": "Suffix",
+    "name": "of Miring",
+    "required_level": 1,
+    "text": "Players have 50% less Defences",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModJuggernaut": {
+    "generation_type": "Suffix",
+    "name": "of the Juggernaut",
+    "required_level": 1,
+    "text": "Monsters cannot be Stunned | Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value",
+    "weight": 40,
+    "influence": "Normal"
+  },
+  "MapUberModMavenFollower": {
+    "generation_type": "Suffix",
+    "name": "of Collection",
+    "required_level": 1,
+    "text": "The Maven interferes with Players",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModMinionSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Revolt",
+    "required_level": 1,
+    "text": "Players' Minions have 50% less Attack Speed | Players' Minions have 50% less Cast Speed | Players' Minions have 50% less Movement Speed",
+    "weight": 30,
+    "influence": "Normal"
+  },
+  "MapUberModMinusMax": {
+    "generation_type": "Suffix",
+    "name": "of Exposure",
+    "required_level": 1,
+    "text": "Players have -20% to all maximum Resistances",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModMonsterDebuffSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Defiance",
+    "required_level": 1,
+    "text": "Debuffs on Monsters expire 100% faster",
+    "weight": 40,
+    "influence": "Normal"
+  },
+  "MapUberModNoBlockNoSuppress": {
+    "generation_type": "Suffix",
+    "name": "of Vulnerability",
+    "required_level": 1,
+    "text": "Players cannot Block | Players cannot Suppress Spell Damage",
+    "weight": 40,
+    "influence": "Normal"
+  },
+  "MapUberModNoCharges": {
+    "generation_type": "Suffix",
+    "name": "of Powerlessness",
+    "required_level": 1,
+    "text": "Players cannot gain Power Charges | Players cannot gain Frenzy Charges | Players cannot gain Endurance Charges",
+    "weight": 40,
+    "influence": "Normal"
+  },
+  "MapUberModNoLeech": {
+    "generation_type": "Suffix",
+    "name": "of Congealment",
+    "required_level": 1,
+    "text": "Monsters cannot be Leeched from",
+    "weight": 30,
+    "influence": "Normal"
+  },
+  "MapUberModNoRegen": {
+    "generation_type": "Suffix",
+    "name": "of Stasis",
+    "required_level": 1,
+    "text": "Players cannot Regenerate Life, Mana or Energy Shield | Players cannot Recharge Energy Shield",
+    "weight": 40,
+    "influence": "Normal"
+  },
+  "MapUberModPetrify": {
+    "generation_type": "Suffix",
+    "name": "of Petrification",
+    "required_level": 1,
+    "text": "Area contains Petrification Statues",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModPoison": {
+    "generation_type": "Suffix",
+    "name": "of Venom",
+    "required_level": 1,
+    "text": "Monsters Poison on Hit | Monsters have 100% increased Poison Duration | All Damage from Monsters' Hits can Poison",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModPowerCharges": {
+    "generation_type": "Suffix",
+    "name": "of Power",
+    "required_level": 1,
+    "text": "Monsters gain a Power Charge on Hit | Monsters have +1 to Maximum Power Charges",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModRecoveryRate": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 1,
+    "text": "Players have 80% less Recovery Rate of Life and Energy Shield",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModShrineBuff": {
+    "generation_type": "Suffix",
+    "name": "of Domination",
+    "required_level": 1,
+    "text": "Unique Monsters have a random Shrine Buff",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModSirusGround": {
+    "generation_type": "Suffix",
+    "name": "of Desolation",
+    "required_level": 1,
+    "text": "Area has patches of Awakeners' Desolation",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModUnionOfSouls": {
+    "generation_type": "Suffix",
+    "name": "of Unification",
+    "required_level": 1,
+    "text": "All Magic and Normal Monsters in Area are in a Union of Souls",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModAllyPunishment": {
+    "generation_type": "Prefix",
+    "name": "Distanced",
+    "required_level": 1,
+    "text": "Players in Area take 20% increased Damage per nearby Ally",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModChain": {
+    "generation_type": "Prefix",
+    "name": "Chaining",
+    "required_level": 1,
+    "text": "Monsters' skills Chain 3 additional times | Monsters' Projectiles can Chain when colliding with Terrain",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModDamageAsChaos": {
+    "generation_type": "Prefix",
+    "name": "Profane",
+    "required_level": 1,
+    "text": "Monsters gain (80-100)% of their Physical Damage as Extra Chaos Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModDamageAsElemental": {
+    "generation_type": "Prefix",
+    "name": "Prismatic",
+    "required_level": 1,
+    "text": "Monsters gain (180-200)% of their Physical Damage as Extra Damage of a random Element",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModDamageRotation": {
+    "generation_type": "Prefix",
+    "name": "Cycling",
+    "required_level": 1,
+    "text": "Players and their Minions deal no damage for 4 out of every 10 seconds",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModDrowningOrbs": {
+    "generation_type": "Prefix",
+    "name": "Hungering",
+    "required_level": 1,
+    "text": "Area contains Drowning Orbs",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModExarch": {
+    "generation_type": "Prefix",
+    "name": "Searing",
+    "required_level": 1,
+    "text": "Area contains Runes of the Searing Exarch",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModImpaleDetonation": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 1,
+    "text": "When a fifth Impale is inflicted on a Player, Impales are removed to Reflect thier Physical Damage multiplied by their remaining Hits to that Player and their Allies within 1.8 metres | Monsters' Attacks Impale on Hit",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModLifeAsEnergyShield": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 1,
+    "text": "Monsters gain (70-80)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModMarkedForDeath": {
+    "generation_type": "Prefix",
+    "name": "Retributive",
+    "required_level": 1,
+    "text": "Players are Marked for Death for 10 seconds | after killing a Rare or Unique monster",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModMonsterAilments": {
+    "generation_type": "Prefix",
+    "name": "Afflicting",
+    "required_level": 1,
+    "text": "Monsters Ignite, Freeze and Shock on Hit | All Monster Damage can Ignite, Freeze and Shock",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModMonsterAttackBlock": {
+    "generation_type": "Prefix",
+    "name": "Stalwart",
+    "required_level": 1,
+    "text": "Monsters have +50% Chance to Block Attack Damage",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModMonsterDamage": {
+    "generation_type": "Prefix",
+    "name": "Savage",
+    "required_level": 1,
+    "text": "(30-40)% increased Monster Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModMonsterLife": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 1,
+    "text": "(90-100)% more Monster Life",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModMonsterSuppress": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 1,
+    "text": "Monsters have +100% chance to Suppress Spell Damage",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModPercentDamage": {
+    "generation_type": "Prefix",
+    "name": "Equalising",
+    "required_level": 1,
+    "text": "Rare and Unique Monsters remove 10% of Life, Mana and Energy Shield from Players or their Minions on Hit",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModPlayerCurseEffect": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 1,
+    "text": "100% reduced Effect of Curses on Monsters",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MapUberModPossessedBoss": {
+    "generation_type": "Prefix",
+    "name": "Enthralled",
+    "required_level": 1,
+    "text": "Unique Bosses are Possessed",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModProjAOE": {
+    "generation_type": "Prefix",
+    "name": "Magnifying",
+    "required_level": 1,
+    "text": "Monsters fire 4 additional Projectiles | Monsters have 100% increased Area of Effect",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModRareMonsters": {
+    "generation_type": "Prefix",
+    "name": "Antagonist's",
+    "required_level": 1,
+    "text": "Rare Monsters each have 2 additional Modifiers | (35-45)% increased number of Rare Monsters",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModReflect": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 1,
+    "text": "Monsters reflect 20% of Physical Damage | Monsters reflect 20% of Elemental Damage",
+    "weight": 40,
+    "influence": "Normal"
+  },
+  "MapUberModResistancePDR": {
+    "generation_type": "Prefix",
+    "name": "Protected",
+    "required_level": 1,
+    "text": "+50% Monster Physical Damage Reduction | +55% Monster Elemental Resistances | +35% Monster Chaos Resistance",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModSawblades": {
+    "generation_type": "Prefix",
+    "name": "Ultimate",
+    "required_level": 1,
+    "text": "Players are assaulted by Bloodstained Sawblades",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModShaperTouched": {
+    "generation_type": "Prefix",
+    "name": "Valdo's",
+    "required_level": 1,
+    "text": "Rare monsters in area are Shaper-Touched",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModSynthMiniboss": {
+    "generation_type": "Prefix",
+    "name": "Synthetic",
+    "required_level": 1,
+    "text": "Map Boss is accompanied by a Synthesis Boss",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModTotemCount": {
+    "generation_type": "Prefix",
+    "name": "Ancestral",
+    "required_level": 1,
+    "text": "Players have -2 to maximum number of Summoned Totems",
+    "weight": 30,
+    "influence": "Normal"
+  },
+  "MapUberModTotemLife": {
+    "generation_type": "Prefix",
+    "name": "Parasitic",
+    "required_level": 1,
+    "text": "15% of Damage Players' Totems take from Hits is taken from their Summoner's Life instead",
+    "weight": 30,
+    "influence": "Normal"
+  },
+  "MapUberModTrapMineCount": {
+    "generation_type": "Prefix",
+    "name": "Sabotaging",
+    "required_level": 1,
+    "text": "Player Skills which Throw Traps throw 1 fewer Trap | Player Skills which Throw Mines throw 1 fewer Mine",
+    "weight": 30,
+    "influence": "Normal"
+  },
+  "MapUberModTurbo": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 1,
+    "text": "(35-45)% increased Monster Cast Speed | (35-45)% increased Monster Attack Speed | (25-30)% increased Monster Movement Speed",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MapUberModVines": {
+    "generation_type": "Prefix",
+    "name": "Grasping",
+    "required_level": 1,
+    "text": "Monsters inflict 2 Grasping Vines on Hit",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "MapUberModVolatiles": {
+    "generation_type": "Prefix",
+    "name": "Volatile",
+    "required_level": 1,
+    "text": "Rare Monsters have Volatile Cores",
+    "weight": 50,
+    "influence": "Normal"
+  }
+}

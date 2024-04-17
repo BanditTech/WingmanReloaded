@@ -408,6 +408,90 @@
     "inventory_width": 1,
     "properties": {}
   },
+  "Synthesising Fragment": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "The Cortex is level 85\r\nVenarius' full power is unleashed in the Cortex",
+      "directions": "Use five of these in a personal Map Device to open Portals to The Cortex. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Devouring Fragment": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "The Absence of Symmetry and Harmony is level 85\r\nThe Eater of Worlds' full power is unleashed in The Absence of Symmetry and Harmony",
+      "directions": "Use five of these in a personal Map Device to open Portals to The Absence of Symmetry and Harmony. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Blazing Fragment": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "The Absence of Patience and Wisdom is level 85\r\nThe Searing Exarch's full power is unleashed in The Absence of Patience and Wisdom",
+      "directions": "Use five of these in a personal Map Device to open Portals to The Absence of Patience and Wisdom. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Reality Fragment": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "The Absence of Mercy and Empathy is level 85\r\nThe Maven's full power is unleashed in The Absence of Mercy and Empathy",
+      "directions": "Use five of these in a personal Map Device to open Portals to The Absence of Mercy and Empathy. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Cosmic Fragment": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "The Shaper's Realm is level 85\r\nThe Shaper's full power is unleashed in The Shaper's Realm",
+      "directions": "Use five of these in a personal Map Device to open Portals to The Shaper's Realm. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Awakening Fragment": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "The Eye of the Storm is level 85\r\nSirus' full power is unleashed in The Eye of the Storm",
+      "directions": "Use five of these in a personal Map Device to open Portals to The Eye of the Storm. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Decaying Fragment": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "The Shaper's Realm is level 85\r\nThe Shaper's and The Elder's full power are unleashed in The Shaper's Realm",
+      "directions": "Use five of these in a personal Map Device to open Portals to The Shaper's Realm. Can only be used once.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Fragment of Terror": {
     "drop_level": 80,
     "implicits": [],
@@ -609,6 +693,90 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Abyss Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains an additional Abyss",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Abyss Scarab of Multitudes": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Abysses in Area spawn 75% increased Monsters",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Abyss Scarab of Emptiness": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Abyss Monsters in Area have a 50% chance to drop\nan additional Rare item with an Abyssal socket",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Abyss Scarab of Edifice": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Abysses in Area that do not lead to an Abyssal Depths lead to a Stygian Spire\nAbysses in Area spawn Hoards as they travel",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Anarchy Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 4 additional Rogue Exiles",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Anarchy Scarab of Gigantification": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rogue Exiles in Area have a 30% chance to be replaced with a Rogue Giant",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Anarchy Scarab of Partnership": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rogue Exiles in Area have a 50% chance to appear in pairs",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Bestiary Scarab": {
     "drop_level": 68,
     "implicits": [],
@@ -658,7 +826,7 @@
     }
   },
   "Farric Lure": {
-    "drop_level": 1,
+    "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
@@ -670,7 +838,7 @@
     }
   },
   "Saqawine Lure": {
-    "drop_level": 1,
+    "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
@@ -682,7 +850,7 @@
     }
   },
   "Fenumal Lure": {
-    "drop_level": 1,
+    "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
@@ -694,7 +862,7 @@
     }
   },
   "Craicic Lure": {
-    "drop_level": 1,
+    "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
@@ -702,6 +870,162 @@
       "description": "Area contains Einhar\r\nArea contains 4 additional Red Beasts from The Deep\r\nCannot be used alongside a Bestiary Scarab",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 1,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Bestiary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains Einhar",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Bestiary Scarab of the Herd": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 5 additional Red Beasts if it contains Einhar",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Bestiary Scarab of Duplicating": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Create a copy of Beasts captured in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Bestiary Scarab of the Shadowed Crow": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains The Black M\u00f3rrigan if it contains Einhar",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Betrayal Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains Jun",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Betrayal Scarab of Intelligence": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "150% Increased Intelligence gained from\nImmortal Syndicate targets encountered in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Betrayal Scarab of Reinforcements": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Immortal Syndicate Members in Area have 50% increased chance to be accompanied by reinforcements",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Betrayal Scarab of Perpetuation": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Defeated Immortal Syndicate targets in Area have a 50% chance\nto drop an additional Scarab",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Beyond Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Slaying enemies close together in Area can attract monsters from Beyond this realm",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Beyond Scarab of Corruption": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Items dropped by Beyond Demons in Area are Corrupted",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Beyond Scarab of Haemophilia": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Beyond Portals in Area have 30% increased Merging Radius",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Beyond Scarab of Resurgence": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Beyond Bosses in Area are enraged on low life\nBeyond Bosses in Area drop 100% increased Tainted Currency\nBeyond Portals in Area have 30% increased chance to spawn a Unique Boss",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Beyond Scarab of the Invasion": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Unique Monsters slain in Area create 8 to 12 additional Beyond Portals",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -753,6 +1077,54 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Blight Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains a Blight Encounter",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Blight Scarab of Bounty": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Blight Chests in Area have a 20% chance to be openable again",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Blight Scarab of Oils": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Blight Oils found in Area are 1 tier higher",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Blight Scarab of Blooming": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Blight Encounters in Area have up to 3 additional Unique Bosses\nUnique enemies in Blight Encounters have 100% increased life\nTier 14+ Blighted Maps found in Area drop as Blight-Ravaged Maps instead",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Breach Scarab": {
     "drop_level": 68,
     "implicits": [],
@@ -798,6 +1170,126 @@
       "description": "Area contains 2 additional Breaches\r\nBreaches in Area contain an additional Breach Boss' Clasped Hand\r\nBreach Hands in Area drop double Breach Splinters",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Breach Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 2 additional Breaches",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Breach Scarab of the Dreamer": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Breaches in Area will always belong to Chayula",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Breach Scarab of Lordship": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Breaches in Area each contain a Breachlord",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Breach Scarab of Splintering": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Breach Monsters in Area drop 50% more Breach Splinters\nClasped Hands in Area drop 50% more Breach Splinters",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Breach Scarab of Snares": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Breaches in Area have 5 to 10 additional Clasped Hands\nClasped Hands in Area are guarded by a rare Breach Monster",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Delirium Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains a Mirror of Delirium",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Delirium Scarab of Mania": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Delirium Reward Meters fill 100% faster in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Delirium Scarab of Paranoia": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Delirium Encounters in Area generate 2 additional Reward types",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Delirium Scarab of Neuroses": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Delirium Encounters in Area contain all Unique Delirium Bosses\nCan only be used with Tier 11+ Maps",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Delirium Scarab of Delusions": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Maps found in Area have layers of Delirium",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -849,6 +1341,90 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Divination Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "150% increased Divination Cards found in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Divination Scarab of Curation": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "10% more Divination Cards found in Area per different Favoured Map\nDivination card drops in Area are replaced by those of your Favoured Maps",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Divination Scarab of Completion": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Divination cards which drop in Area have a 20% chance to drop as a full stack instead",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Domination Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 2 additional Shrines",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Domination Scarab of Abnormality": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains an additional Unusual Shrine",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Domination Scarab of Teachings": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Shrine buffs in Area also grant 30% increased Experience gained",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Domination Scarab of Terrors": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Shrines in Area are guarded by an Atlas Boss\nModifiers to the Final Map Boss also apply to these Atlas Bosses",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Elder Scarab": {
     "drop_level": 68,
     "implicits": [],
@@ -894,6 +1470,114 @@
       "description": "Adds Elder Influence outcome to Map Area\r\n150% more Rare Elder Items found in Area",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Essence Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 2 additional Essences",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Essence Scarab of Ascent": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Essences found in Area are a tier higher",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Essence Scarab of Stability": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Using a Remnant of Corruption in Area can only result in\nupgrading or transforming Essences",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Essence Scarab of Calcification": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare monsters that are natural inhabitants of the Area are imprisoned by Essences",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Expedition Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains an Expedition Encounter",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Expedition Scarab of Runefinding": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Expedition Encounters in Area have 100% increased\nnumber of Runic Monster Markers",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Expedition Scarab of Verisium Powder": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Expedition Encounters in Area have 20% increased number of Explosives\n80% increased Explosive Radius",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Expedition Scarab of the Skald": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Expedition Encounters in Area are lead by Dannig",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Expedition Scarab of Archaeology": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Remnants in Expedition Encounters in Area have 2 additional Suffixes and Prefixes",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -945,6 +1629,186 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Harbinger Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 3 additional Harbingers",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Harbinger Scarab of Discernment": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Harbingers in Area drop rarer currency shards\nHarbingers in Area drop a single type of currency shard",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Harbinger Scarab of Regency": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Harbingers in Area have a 50% chance to be replaced by a powerful Harbinger Boss",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Harbinger Scarab of Warhoards": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Currency shards dropped by Harbingers in Area are duplicated",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Harvest Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains the Sacred Grove",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Harvest Scarab of Doubling": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Lifeforce dropped by Harvest Monsters in Area is duplicated\nHarvest Monsters in Area have 100% more Life",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Harvest Scarab of Cornucopia": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "If Area contains the Sacred Grove, it will contain up to 1 additional Tier 4 seed of each type, if possible",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Incursion Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains Alva",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Incursion Scarab of Invasion": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 12-16 additional packs of Incursion Monsters",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Incursion Scarab of Champions": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Incursions in Area have a 35% chance for all Monsters to be at least Magic\nIncursions in Area have 15% increased Pack Size",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Incursion Scarab of Timelines": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Final Architect slain in Area will drop an Itemised Temple\n Itemised Temples dropped in Area are generated based on current Temple layout, but with randomised room tiers",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Influencing Scarab of the Shaper": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Adds Shaper Influence outcome to Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Influencing Scarab of the Elder": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Adds Elder Influence outcome to Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Influencing Scarab of Hordes": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Influenced Monster Packs in Area have 40% increased Pack Size",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Influencing Scarab of Conversion": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Tier 14+ Maps found in Area have a chance to drop as Shaper Guardian, Elder Guardian, Conqueror or Unique Synthesised Maps instead",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Legion Scarab": {
     "drop_level": 68,
     "implicits": [],
@@ -990,6 +1854,66 @@
       "description": "Area contains 2 additional Legion Encounters\r\nEach Legion contains a War Hoard\r\nEach Legion is accompanied by a General",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Legion Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains an additional Legion Encounter",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Legion Scarab of Officers": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Legion Factions in Area have 5 additional Sergeants",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Legion Scarab of Command": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Legion Factions in Area are accompanied by a General",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Legion Scarab of The Sekhema": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Legion Encounters in Area always contain the Maraketh Faction",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Legion Scarab of Eternal Conflict": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Legion Monsters in Area can be broken out of Stasis multiple times",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -1041,6 +1965,66 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Cartography Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "50% increased Maps found in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Cartography Scarab of Ascension": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Maps found in Area are a tier higher, up to Tier 16",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Cartography Scarab of Singularity": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "A Unique Map will drop from the Final Map Boss",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Cartography Scarab of Corruption": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Non-Unique Maps found in Area are Corrupted with 8 Modifiers",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Cartography Scarab of Duplication": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Maps found in Area have a 30% chance to be Duplicated",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Ultimatum Scarab": {
     "drop_level": 68,
     "implicits": [],
@@ -1089,6 +2073,138 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Scarab of Monstrous Lineage": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "40% increased Magic Pack Size",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Heresy": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Drop a Forbidden Tome on Map Completion",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Remembrance": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Drop an Atlas Memory on Map Completion\nCan only be used with Tier 14+ Maps",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Adversaries": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 4 additional Packs with Mirrored Rare Monsters",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Mysterious Scarab": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 40-60 additional Clusters of Mysterious Barrels",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Hunted Traitors": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains Hunted Traitors",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Stability": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Portals to Area have a 50% chance to not be consumed on use",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of the Commander": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Grants an additional Kirac Mission on Map Completion",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Evolution": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "10 Monster Packs in Area are upgraded to Magic",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Wisps": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Monsters in Area have 25% chance to be Empowered by Wildwood Wisps",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Scarab of Bisection": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "You can select the Nullify Prefixes or Nullify Suffixes crafting options on the Map Device",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Expedition Scarab": {
     "drop_level": 68,
     "implicits": [],
@@ -1134,6 +2250,42 @@
       "description": "Area contains an additional Expedition Encounter\r\nArea contains 50% increased number of Runic Monster Markers\r\n20% increased number of Explosives\r\nRemnants in area have an additional Suffix",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ritual Scarab of Selectiveness": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rerolling Favours at Ritual Altars in Area has no cost the first 2 times\nRitual Altars in Area allow rerolling Favours 1 additional time",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ritual Scarab of Recognition": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Unique enemies slain at Ritual Altars in Area grant 200% more Tribute",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ritual Scarab of Abundance": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rituals in Area offer 100% increased Favours",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -1233,6 +2385,66 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Ambush Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains 5 additional Strongboxes",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ambush Scarab of Hidden Compartments": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "15% Chance for Strongboxes in Area to be openable again",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ambush Scarab of Potency": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "75% Increased effect of Explicit Modifiers on Strongboxes in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ambush Scarab of Containment": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains many additional Strongboxes\nArea's inhabitants are lying in ambush",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ambush Scarab of Discernment": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Strongboxes in Area are more likely to be rarer varieties",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Sulphite Scarab": {
     "drop_level": 68,
     "implicits": [],
@@ -1278,6 +2490,42 @@
       "description": "Area contains Niko\r\nMap owner gains 100% more Sulphite",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Sulphite Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains Niko",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Sulphite Scarab of Greed": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Map owner gains 150% more Sulphite",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Sulphite Scarab of Fumes": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Sulphite found in Map Area releases Enraging Fumes\nMonsters affected by Enraging Fumes have 500% increased Item Quantity\nSulphite in your maps is guarded by Monsters from the Azurite Mine",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -1329,13 +2577,217 @@
       "stack_size_currency_tab": 5000
     }
   },
+  "Torment Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area is haunted by 5 additional Tormented Spirits",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Torment Scarab of Peculiarity": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Tormented Spirits in Area are replaced with unusual variants",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Torment Scarab of Release": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Tormented Spirits in Area have a 25% chance to\nbe set free when Possessed Monsters are slain",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Torment Scarab of Possession": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "25% chance for Rare Monsters in Area to be Possessed",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Bloodlines": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "All Monster packs in Area are at least Magic",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Nemeses": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Rare Monsters in Area have 2 additional Modifiers",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Preservation": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Other Scarabs are not consumed on use",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Awakening": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "You can select one Imbued crafting option on the Map Device",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Tradition": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "All Rare Monsters in Area have at least one Reward Modifier\nPlayer Modifiers to Item Rarity and Item Quantity do not apply in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Glittering": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Players in Area gain increased Item Rarity and Item Quantity for each Monster slain recently, up to 200% and 100% respectively",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Pandemonium": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Monster packs in Area have a 15% chance to be replaced by a random Atlas Boss\nModifiers to the Final Map Boss also apply to these Atlas Bosses",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Horned Scarab of Opulence": {
+    "drop_level": 81,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Equipment Items found in Area are converted to Basic Currency Items",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ultimatum Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains an Ultimatum Encounter",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ultimatum Scarab of Bribing": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Ultimatum Monsters grant 150% increased Experience\nUltimatum Encounters grant rewards as though you completed 2 additional Rounds",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ultimatum Scarab of Dueling": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Ultimatum Encounters in Area will always lead to a Unique Boss if possible",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ultimatum Scarab of Catalysing": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Ultimatum Encounters in Area will only offer Catalysts as Rewards",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Ultimatum Scarab of Inscription": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Ultimatum Encounter rewards in Area offering Catalysts\nwill offer Inscribed Ultimatums instead",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Rusted Reliquary Scarab": {
     "drop_level": 68,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "50% more Unique Items found in Area",
+      "description": "50% increased Unique Items found in Area",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
       "stack_size_currency_tab": 5000
@@ -1347,7 +2799,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "100% more Unique Items found in Area",
+      "description": "100% increased Unique Items found in Area",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
       "stack_size_currency_tab": 5000
@@ -1359,7 +2811,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "150% more Unique Items found in Area",
+      "description": "150% increased Unique Items found in Area",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
       "stack_size_currency_tab": 5000
@@ -1371,9 +2823,45 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "250% more Unique Items found in Area",
+      "description": "250% increased Unique Items found in Area",
       "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
       "stack_size": 10,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Reliquary Scarab": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "100% increased Unique Items found in Area",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Reliquary Scarab of Overlords": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Unique Monsters in Area drop an additional Unique Item",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
+  "Reliquary Scarab of Vision": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "Area contains The Nameless Seer",
+      "directions": "Can be used in a personal Map Device to add modifiers to a Map.",
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   }

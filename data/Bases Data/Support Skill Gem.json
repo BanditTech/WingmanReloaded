@@ -1224,6 +1224,13 @@
     "inventory_width": 1,
     "properties": {}
   },
+  "Sacred Wisps Support": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
   "Sacrifice Support": {
     "drop_level": 31,
     "implicits": [],

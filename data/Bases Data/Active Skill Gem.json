@@ -111,6 +111,13 @@
     "inventory_width": 1,
     "properties": {}
   },
+  "Automation": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
   "Backstab": {
     "drop_level": 1,
     "implicits": [],
@@ -307,6 +314,13 @@
     "inventory_width": 1,
     "properties": {}
   },
+  "Call to Arms": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {}
+  },
   "Capture Monster": {
     "drop_level": 1,
     "implicits": [],
@@ -420,7 +434,7 @@
     "properties": {}
   },
   "Convocation": {
-    "drop_level": 24,
+    "drop_level": 31,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,

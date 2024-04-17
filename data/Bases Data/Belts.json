@@ -106,5 +106,14 @@
     "inventory_height": 1,
     "inventory_width": 2,
     "properties": {}
+  },
+  "Mechanical Belt": {
+    "drop_level": 70,
+    "implicits": [
+      "Has 1 Socket"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "properties": {}
   }
 }

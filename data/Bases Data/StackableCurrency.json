@@ -7,7 +7,7 @@
     "properties": {
       "description": "Adds Crusader influence and a new Crusader modifier to a rare item",
       "directions": "Right click this item then left click a high-level rare item with no influence to apply it. Rare items can have up to six random modifiers.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -19,7 +19,7 @@
     "properties": {
       "description": "Adds Hunter influence and a new Hunter modifier to a rare item",
       "directions": "Right click this item then left click a high-level rare item with no influence to apply it. Rare items can have up to six random modifiers.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -31,7 +31,7 @@
     "properties": {
       "description": "Adds Redeemer influence and a new Redeemer modifier to a rare item",
       "directions": "Right click this item then left click a high-level rare item with no influence to apply it. Rare items can have up to six random modifiers.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -43,7 +43,7 @@
     "properties": {
       "description": "Adds Warlord influence and a new Warlord modifier to a rare item",
       "directions": "Right click this item then left click a high-level rare item with no influence to apply it. Rare items can have up to six random modifiers.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -1651,7 +1651,7 @@
     "properties": {
       "description": "Augments a rare item with a new random modifier",
       "directions": "Right click this item then left click a rare item to apply it. Rare items can have up to six random modifiers.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -2487,7 +2487,7 @@
     "properties": {
       "description": "If The Searing Exarch is dominant, add a prefix modifier\r\nIf The Eater of Worlds is dominant, add a suffix modifier",
       "directions": "Right click this item then left click a rare item with The Searing Exarch or The Eater of Worlds dominance to apply it. Rare items can have up to six random modifiers.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -2619,7 +2619,7 @@
     "properties": {
       "description": "Adds an enchantment to a utility flask that will improve it\r\nbut prevent it from gaining charges during its effect\r\nReplaces any existing enchantment",
       "directions": "Right click this item then left click a flask to apply it.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -4036,7 +4036,7 @@
     "properties": {
       "description": "Unpredictably adds or removes a modifier on a corrupted rare item",
       "directions": "Right click this item then left click a corrupted rare item to apply it. Rare items can have up to six random modifiers.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -4325,7 +4325,7 @@
     "properties": {
       "description": "Adds an enchantment to a utility flask that will cause\r\nit to be used when certain conditions are met\r\nReplaces any existing enchantment",
       "directions": "Right click this item then left click a flask to apply it.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -4339,6 +4339,18 @@
       "directions": "Right click on this item then left click on a Beast in your Menagerie to itemise the Beast.",
       "stack_size": 10,
       "stack_size_currency_tab": 5000
+    }
+  },
+  "Empty Coffin": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "properties": {
+      "description": "Stores a Corpse in an item",
+      "directions": "Right click on this item then left click on a Corpse in the Necropolis Morgue.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 0
     }
   },
   "Surveyor's Compass": {
@@ -4361,6 +4373,18 @@
     "properties": {
       "description": "",
       "directions": "",
+      "stack_size": 1,
+      "stack_size_currency_tab": 0
+    }
+  },
+  "Filled Coffin": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 2,
+    "properties": {
+      "description": "",
+      "directions": "Right click on this item to use it while in the Necropolis to add it to the Necropolis Morgue.",
       "stack_size": 1,
       "stack_size_currency_tab": 0
     }
@@ -4630,7 +4654,7 @@
     "properties": {
       "description": "Randomises the values of the random modifiers on an item",
       "directions": "Right click this item then left click a magic, rare or unique item to apply it.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -4842,13 +4866,13 @@
       "stack_size_currency_tab": 0
     }
   },
-  "Veiled Chaos Orb": {
+  "Veiled Orb": {
     "drop_level": 61,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Reforges a rare item with new random modifiers, including a Veiled modifier\r\nCan only be used on items that can have a Veiled modifier",
+      "description": "Removes a random modifier and adds a random Veiled modifier to a rare item",
       "directions": "Right click this item then left click a rare item to apply it.",
       "stack_size": 20,
       "stack_size_currency_tab": 5000
@@ -5036,6 +5060,18 @@
       "stack_size_currency_tab": 0
     }
   },
+  "Veiled Scarab": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "description": "A collection of unknown Scarabs",
+      "directions": "Right Click to reveal a random Scarab",
+      "stack_size": 20,
+      "stack_size_currency_tab": 5000
+    }
+  },
   "Engineer's Orb": {
     "drop_level": 1,
     "implicits": [],
@@ -5093,7 +5129,7 @@
     "properties": {
       "description": "Upgrades a magic item to a rare item",
       "directions": "Right click this item then left click a magic item to apply it. Current modifiers are retained and a new one is added.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },
@@ -6190,7 +6226,7 @@
     "properties": {
       "description": "A stack of unknown divination cards",
       "directions": "Right click to take a divination card out of the deck.",
-      "stack_size": 10,
+      "stack_size": 20,
       "stack_size_currency_tab": 5000
     }
   },

@@ -857,7 +857,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Disabled",
+      "description": "<uniqueitem>{Grand Spectrum}\r\n<corrupted>{Corrupted}",
       "directions": "",
       "stack_size": 1,
       "stack_size_currency_tab": 5000
@@ -881,7 +881,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Disabled",
+      "description": "<gemitem>{Level 21 Transfigured Gem}\r\n<default>{Quality:} <augmented>{+20%}\r\n<corrupted>{Corrupted}",
       "directions": "",
       "stack_size": 3,
       "stack_size_currency_tab": 5000
@@ -917,7 +917,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Disabled",
+      "description": "<gemitem>{Level 19 Transfigured Gem}\r\n<default>{Quality:} <augmented>{+19%}",
       "directions": "",
       "stack_size": 8,
       "stack_size_currency_tab": 5000
@@ -1721,7 +1721,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "<currencyitem>{2x Elevated Sextant}",
+      "description": "Disabled",
       "directions": "",
       "stack_size": 3,
       "stack_size_currency_tab": 5000
@@ -1733,7 +1733,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "<whiteitem>{Gilded Scarab}",
+      "description": "Disabled",
       "directions": "",
       "stack_size": 7,
       "stack_size_currency_tab": 5000
@@ -1925,7 +1925,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "<currencyitem>{Winged Scarab}",
+      "description": "Disabled",
       "directions": "",
       "stack_size": 4,
       "stack_size_currency_tab": 5000
@@ -2105,7 +2105,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Disabled",
+      "description": "<gemitem>{Level 21 Transfigured Golem Gem}\r\n<default>{Quality:} <augmented>{+23%}\r\n<corrupted>{Corrupted}",
       "directions": "",
       "stack_size": 8,
       "stack_size_currency_tab": 5000
@@ -2357,7 +2357,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Disabled",
+      "description": "<gemitem>{Level 21 Transfigured Gem}\r\n<corrupted>{Corrupted}",
       "directions": "",
       "stack_size": 4,
       "stack_size_currency_tab": 5000
@@ -3401,7 +3401,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Disabled",
+      "description": "<gemitem>{Level 21 Transfigured Gem}\r\n<default>{Quality:} <augmented>{+23%}\r\n<corrupted>{Corrupted}",
       "directions": "",
       "stack_size": 8,
       "stack_size_currency_tab": 5000
@@ -3749,7 +3749,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "<uniqueitem>{Ultimatum Aspect}",
+      "description": "<uniqueitem>{Vaal Aspect}",
       "directions": "",
       "stack_size": 7,
       "stack_size_currency_tab": 5000
@@ -5225,7 +5225,7 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "<currencyitem>{10x Awakened Sextant}",
+      "description": "Disabled",
       "directions": "",
       "stack_size": 4,
       "stack_size_currency_tab": 5000
