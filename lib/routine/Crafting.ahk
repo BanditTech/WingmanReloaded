@@ -214,9 +214,14 @@ CraftingMaps(){
 			; Identify Items routines
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
+			mapCraftingMethod := getMapCraftingMethod()
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) && (!YesMapUnid || ( Item.Prop.RarityMagic && ( getMapCraftingMethod() ~= "(Alchemy|Hybrid|Binding|Chaos)" ))) && !Item.Prop.Corrupted)
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) 
+					&& (!YesMapUnid
+							|| ( Item.Prop.RarityMagic && mapCraftingMethod ~= "(Alchemy|Hybrid|Binding|Chaos)" )
+							|| ( Item.Affix.Unidentified && mapCraftingMethod ~= "Chisel" && Item.Prop.Map_Quality < 20 )	)
+					&& !Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
 					ClipItem(Grid.X,Grid.Y)
@@ -230,7 +235,7 @@ CraftingMaps(){
 			;Crafting Map Script
 			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
 			{
-				If (CraftingMapMethod%i% ~= "^Chisel") {
+				If (mapCraftingMethod ~= "^Chisel") {
 					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5 :
 					Item.Prop.Map_Tier > 5 ? 10 :
 					Item.Prop.Map_Tier >= 1 ? 20 : 1
@@ -243,43 +248,35 @@ CraftingMaps(){
 						}
 					Else
 						numberChisel := 0
-					
+				
 					If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
 						Return False
 				}
 
-
-
-				;Check all 3 ranges tier with same logic
-				i = 0
-				Loop, 3
+				If (!Item.Prop.RarityNormal)
 				{
-					i++
-					If (EndMapTier%i% >= StartMapTier%i% && CraftingMapMethod%i% != "Disable" && Item.Prop.Map_Tier >= StartMapTier%i% && Item.Prop.Map_Tier <= EndMapTier%i%)
+					If ( (Item.Prop.RarityMagic && mapCraftingMethod == "Transmutation+Augmentation") 
+						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)")) 
+						|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && mapCraftingMethod ~= "(Alchemy|Binding|Hybrid|Chaos)") )
 					{
-						If (!Item.Prop.RarityNormal)
-						{
-							If ( (Item.Prop.RarityMagic && CraftingMapMethod%i% == "Transmutation+Augmentation") || (Item.Prop.RarityRare && (CraftingMapMethod%i% == "Transmutation+Augmentation" || CraftingMapMethod%i% ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)")) || (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && CraftingMapMethod%i% ~= "(Alchemy|Binding|Hybrid|Chaos)") )
-							{
-								MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
-								If (CraftingMapMethod%i% ~= "Vaal$")
-									ApplyCurrency("Vaal",Grid.X,Grid.Y)
-								Continue
-							}
-							Else
-							{
-								If !ApplyCurrency("Scouring",Grid.X,Grid.Y)
-									Return False
-							}
-						}
-						If (Item.Prop.RarityNormal)
-						{
-							MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
-							If (CraftingMapMethod%i% ~= "Vaal$")
-								ApplyCurrency("Vaal",Grid.X,Grid.Y)
-						}
+						MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
+						If (mapCraftingMethod ~= "Vaal$")
+							ApplyCurrency("Vaal",Grid.X,Grid.Y)
+						Continue
+					}
+					Else
+					{
+						If !ApplyCurrency("Scouring",Grid.X,Grid.Y)
+							Return False
 					}
 				}
+				If (Item.Prop.RarityNormal)
+				{
+					MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
+					If (mapCraftingMethod ~= "Vaal$")
+						ApplyCurrency("Vaal",Grid.X,Grid.Y)
+				}
+
 			} Else If (indexOf(Item.Prop.ItemClass,["Blueprints","Contracts"]) && HeistAlcNGo) {
 				If (Item.Prop.RarityMagic)
 					ApplyCurrency("Scouring",Grid.X,Grid.Y)
