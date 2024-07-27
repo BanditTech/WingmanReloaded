@@ -11,7 +11,7 @@ Gui 2:Font, bold cFFFFFF S9, Trebuchet MS
 ; Chaos Recipe Overlay
 Gui Chaos:Color, 0X130F13
 Gui Chaos:+LastFound +AlwaysOnTop +ToolWindow -Caption +E0x20
-; WinSet, TransColor, 0X130F13
+WinSet, TransColor, 0X130F13
 Gui Chaos:Font, bold cFFFFFF S9, Trebuchet MS
   Gui Chaos:Add, Text, Right     BackgroundTrans       cRed      , Chest: 
   Gui Chaos:Add, Text, Center w25 x+5  BackgroundTrans vGuiChaosCountChest , %GuiChaosCountChest%
