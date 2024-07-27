@@ -1346,6 +1346,11 @@ Rescale(){
       WR.loc.pixel.DivTrade.Y:=GameY + Round(GameH / (1050 / 716))
       WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
     }
+
+    WR.loc.pixel.GuiChaos.X:=GameX + Round(GameW/2)
+    WR.loc.pixel.GuiChaos.Y:=GameY
+
+
     x_center := GameX + GameW / 2
     compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
     Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) ,"Yadjusted" : GameY + GameH / 2 / compensation}

@@ -883,3 +883,13 @@ Global ForceMatch6Link := False
 Global ForceMatchGem20 := False
 ; Ingame Overlay Transparency
 Global YesInGameOverlay := 0
+; Chaos Recipe Overlay
+Global YesChaosOverlay := 0
+Global GuiChaosCountChest := "-"
+Global GuiChaosCountHelmet := "-"
+Global GuiChaosCountBoot := "-"
+Global GuiChaosCountGlove := "-"
+Global GuiChaosCountBelt := "-"
+Global GuiChaosCountWeapons := "-"
+Global GuiChaosCountRings := "-"
+Global GuiChaosCountAmulet := "-"

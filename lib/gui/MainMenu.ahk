@@ -158,9 +158,10 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 
 	Gui Add, Checkbox, gUpdateExtra  vYesOHB Checked%YesOHB%                                , Pause script when OHB missing?
 	Gui Add, Checkbox, gUpdateExtra  vShowOnStart Checked%ShowOnStart%                      , Show GUI on startup?
-	Gui Add, CheckBox, gSaveGeneral vYesInGameOverlay Checked%YesInGameOverlay%                    , Show In-Game Overlay?
-	Gui Add, Checkbox, gUpdateExtra  vYesGuiLastPosition Checked%YesGuiLastPosition%      xs        , Remember Last GUI Position?
-	Gui Add, Checkbox, gUpdateExtra  vYesDX12 Checked%YesDX12%      xs        , Use Direct X 12?
+	Gui Add, CheckBox, gSaveGeneral vYesInGameOverlay Checked%YesInGameOverlay%             , Show In-Game Overlay?
+	Gui Add, CheckBox, gSaveGeneral vYesChaosOverlay Checked%YesChaosOverlay%               , Show Chaos Overlay?
+	Gui Add, Checkbox, gUpdateExtra  vYesGuiLastPosition Checked%YesGuiLastPosition%   xs   , Remember Last GUI Position?
+	Gui Add, Checkbox, gUpdateExtra  vYesDX12 Checked%YesDX12%      xs                      , Use Direct X 12?
 
 	Gui,Font, Bold s9 cBlack, Arial
 	Gui,Add,GroupBox,Section x295 ym+20  w350 h130              ,Update Control

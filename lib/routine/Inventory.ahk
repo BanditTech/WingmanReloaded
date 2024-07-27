@@ -59,6 +59,7 @@ ItemSortCommand(){
 	Sleep, 90*Latency
 	MouseMove, xx, yy, 0
 	CheckRunning("Off")
+	UpdateGuiChaosCounts()
 	Return
 }
 

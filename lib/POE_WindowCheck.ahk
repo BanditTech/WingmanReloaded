@@ -2,7 +2,7 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PoEWindowCheck()
 {
-	Global GamePID, NoGame, GameActive, YesInGameOverlay, WR
+	Global GamePID, NoGame, GameActive, WR
 	try {
 		If (GamePID := WinExist(GameStr))
 		{

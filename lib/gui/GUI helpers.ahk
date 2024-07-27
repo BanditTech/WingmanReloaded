@@ -239,6 +239,12 @@ ShowHideOverlay() {
   GuiControl,2: Show%YesInGameOverlay%, overlayT2
   GuiControl,2: Show%YesInGameOverlay%, overlayT3
   GuiControl,2: Show%YesInGameOverlay%, overlayT4
+
+  If (YesChaosOverlay) {
+    Gui Chaos: Show, NA
+  } Else {
+    Gui Chaos: Show, Hide
+  }
   Return
 }
 
@@ -434,4 +440,3 @@ MouseTip(x:="", y:="", w:=21, h:=21)
   }
   Gui, _MouseTip_: Destroy
 }
-

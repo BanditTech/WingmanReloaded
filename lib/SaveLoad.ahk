@@ -77,6 +77,7 @@ readFromFile(){
 	IniRead, YesLootDelve, %A_ScriptDir%\save\Settings.ini, General, YesLootDelve, 1
 	IniRead, YesStashChaosRecipe, %A_ScriptDir%\save\Settings.ini, General, YesStashChaosRecipe, 0
 	IniRead, YesInGameOverlay, %A_ScriptDir%\save\Settings.ini, General, YesInGameOverlay, 1
+	IniRead, YesChaosOverlay, %A_ScriptDir%\save\Settings.ini, General, YesChaosOverlay, 1
 	IniRead, YesBatchVendorBauble, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble, 1
 	IniRead, YesBatchVendorGCP, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP, 1
 	IniRead, BrickedWhenCorrupted, %A_ScriptDir%\save\Settings.ini, General, BrickedWhenCorrupted, 1

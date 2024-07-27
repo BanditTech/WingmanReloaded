@@ -5,7 +5,7 @@ Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
 	,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
-for k, v in ["DetonateDelve", "Detonate", "Gui", "VendorAccept", "DivTrade", "DivItem"
+for k, v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "DivTrade", "DivItem"
 	,"CurrencyGeneral","CurrencyInfluence"
 	, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
 	,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"

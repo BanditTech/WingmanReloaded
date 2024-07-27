@@ -869,6 +869,36 @@ PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
 	, (Duration != "False" ? Duration : 20))
 	Return
 }
+
+UpdateGuiChaosCounts(){
+  If !YesChaosOverlay
+    Return
+  Items := CountChaosRecipe()
+  Counts := {}
+  Counts.Chest := Items.Tally.Body
+  Counts.Chest += Items.uTally.Body
+  Counts.Helmet := Items.Tally.Helmet
+  Counts.Helmet += Items.uTally.Helmet
+  Counts.Boot := Items.Tally.Boots
+  Counts.Boot += Items.uTally.Boots
+  Counts.Glove := Items.Tally.Gloves
+  Counts.Glove += Items.uTally.Gloves
+  Counts.Belt := Items.Tally.Belt
+  Counts.Belt += Items.uTally.Belt
+  Counts.Weapons := Items.Tally["Two Hand"] + (Items.Tally["One Hand"] + Items.Tally["Shield"]) / 2
+  Counts.Weapons += Items.uTally["Two Hand"] + (Items.uTally["One Hand"] + Items.uTally["Shield"]) / 2
+  Counts.Weapons := Round(Counts.Weapons,1)
+  Counts.Rings := Items.Tally.Ring / 2
+  Counts.Rings += Items.uTally.Ring / 2
+  Counts.Rings := Round(Counts.Rings,1)
+  Counts.Amulet := Items.Tally.Amulet
+  Counts.Amulet += Items.uTally.Amulet
+
+  for k, v in Counts {
+    GuiControl, Chaos:, % "GuiChaosCount" k, % v
+  }
+}
+
 fn_sortByTab(o){
   Return o.Prop.StashTab
 }
