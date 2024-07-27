@@ -230,14 +230,26 @@ CraftingMaps(){
 			;Crafting Map Script
 			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
 			{
-				If (Item.Prop.Map_Quality < 20)
-					If (ForceMaxChisel) {
-						numberChisel := Ceil((20 - Item.Prop.Map_Quality)/5)
-					} Else {
-						numberChisel := (20 - Item.Prop.Map_Quality)//5
-					}
-				Else
-					numberChisel := 0
+				If (CraftingMapMethod%i% ~= "^Chisel") {
+					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5 :
+					Item.Prop.Map_Tier > 5 ? 10 :
+					Item.Prop.Map_Tier >= 1 ? 20 : 1
+
+					If (Item.Prop.Map_Quality < 20)
+						If (ForceMaxChisel) {
+							numberChisel := Ceil((20 - Item.Prop.Map_Quality)/qualityPerChisel)
+						} Else {
+							numberChisel := (20 - Item.Prop.Map_Quality)//qualityPerChisel
+						}
+					Else
+						numberChisel := 0
+					
+					If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
+						Return False
+				}
+
+
+
 				;Check all 3 ranges tier with same logic
 				i = 0
 				Loop, 3
@@ -262,9 +274,6 @@ CraftingMaps(){
 						}
 						If (Item.Prop.RarityNormal)
 						{
-							If (CraftingMapMethod%i% ~= "^Chisel")
-								If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
-									Return False
 							MapRoll(CraftingMapMethod%i%, Grid.X,Grid.Y)
 							If (CraftingMapMethod%i% ~= "Vaal$")
 								ApplyCurrency("Vaal",Grid.X,Grid.Y)
