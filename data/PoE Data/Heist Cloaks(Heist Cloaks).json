@@ -31,38 +31,6 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistNPCExperienceGain1_": {
-    "generation_type": "Prefix",
-    "name": "Footpad's",
-    "required_level": 1,
-    "text": "(3-4)% increased Job Experience gain",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCExperienceGain2": {
-    "generation_type": "Prefix",
-    "name": "Crook's",
-    "required_level": 45,
-    "text": "(5-6)% increased Job Experience gain",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCExperienceGain3_": {
-    "generation_type": "Prefix",
-    "name": "Criminal's",
-    "required_level": 75,
-    "text": "(7-8)% increased Job Experience gain",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCExperienceGain4_": {
-    "generation_type": "Prefix",
-    "name": "Mastermind's",
-    "required_level": 81,
-    "text": "(9-10)% increased Job Experience gain",
-    "weight": 400,
-    "influence": "Normal"
-  },
   "HeistNPCLockdownTimer1": {
     "generation_type": "Prefix",
     "name": "Slowing",
@@ -127,35 +95,35 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistContractGangCut1": {
-    "generation_type": "Suffix",
-    "name": "of Bartering",
+  "HeistNPCExperienceGain1_": {
+    "generation_type": "Prefix",
+    "name": "Footpad's",
     "required_level": 1,
-    "text": "The Ring's Cut reduced by (7-6)%",
+    "text": "(3-4)% increased Job Experience gain",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractGangCut2_": {
-    "generation_type": "Suffix",
-    "name": "of Negotiating",
+  "HeistNPCExperienceGain2": {
+    "generation_type": "Prefix",
+    "name": "Crook's",
     "required_level": 45,
-    "text": "The Ring's Cut reduced by (9-8)%",
+    "text": "(5-6)% increased Job Experience gain",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractGangCut3": {
-    "generation_type": "Suffix",
-    "name": "of Selfishness",
+  "HeistNPCExperienceGain3_": {
+    "generation_type": "Prefix",
+    "name": "Criminal's",
     "required_level": 75,
-    "text": "The Ring's Cut reduced by (12-10)%",
+    "text": "(7-8)% increased Job Experience gain",
     "weight": 600,
     "influence": "Normal"
   },
-  "HeistContractGangCut4": {
-    "generation_type": "Suffix",
-    "name": "of Greed",
+  "HeistNPCExperienceGain4_": {
+    "generation_type": "Prefix",
+    "name": "Mastermind's",
     "required_level": 81,
-    "text": "The Ring's Cut reduced by (15-13)%",
+    "text": "(9-10)% increased Job Experience gain",
     "weight": 400,
     "influence": "Normal"
   },
@@ -188,6 +156,38 @@
     "name": "of Charisma",
     "required_level": 81,
     "text": "(15-13)% reduced Hiring Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut1": {
+    "generation_type": "Suffix",
+    "name": "of Bartering",
+    "required_level": 1,
+    "text": "The Ring's Cut reduced by (7-6)%",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut2_": {
+    "generation_type": "Suffix",
+    "name": "of Negotiating",
+    "required_level": 45,
+    "text": "The Ring's Cut reduced by (9-8)%",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut3": {
+    "generation_type": "Suffix",
+    "name": "of Selfishness",
+    "required_level": 75,
+    "text": "The Ring's Cut reduced by (12-10)%",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut4": {
+    "generation_type": "Suffix",
+    "name": "of Greed",
+    "required_level": 81,
+    "text": "The Ring's Cut reduced by (15-13)%",
     "weight": 400,
     "influence": "Normal"
   },
@@ -351,6 +351,38 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "HeistNPCChestAlertLevel1": {
+    "generation_type": "Suffix",
+    "name": "of Muffling",
+    "required_level": 1,
+    "text": "(5-3)% reduced raising of Alert Level from opening Chests",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Stealth",
+    "required_level": 45,
+    "text": "(8-6)% reduced raising of Alert Level from opening Chests",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestAlertLevel3_": {
+    "generation_type": "Suffix",
+    "name": "of Quiet",
+    "required_level": 75,
+    "text": "(10-9)% reduced raising of Alert Level from opening Chests",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestAlertLevel4_": {
+    "generation_type": "Suffix",
+    "name": "of Silence",
+    "required_level": 82,
+    "text": "(12-11)% reduced raising of Alert Level from opening Chests",
+    "weight": 400,
+    "influence": "Normal"
+  },
   "HeistNPCAvoidAlarmChanceChest1": {
     "generation_type": "Suffix",
     "name": "of Defusing",
@@ -397,38 +429,6 @@
     "required_level": 83,
     "text": "(4-5)% chance to not Activate Lockdown in Grand Heists",
     "weight": 80,
-    "influence": "Normal"
-  },
-  "HeistNPCChestAlertLevel1": {
-    "generation_type": "Suffix",
-    "name": "of Muffling",
-    "required_level": 1,
-    "text": "(5-3)% reduced raising of Alert Level from opening Chests",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestAlertLevel2": {
-    "generation_type": "Suffix",
-    "name": "of Stealth",
-    "required_level": 45,
-    "text": "(8-6)% reduced raising of Alert Level from opening Chests",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestAlertLevel3_": {
-    "generation_type": "Suffix",
-    "name": "of Quiet",
-    "required_level": 75,
-    "text": "(10-9)% reduced raising of Alert Level from opening Chests",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestAlertLevel4_": {
-    "generation_type": "Suffix",
-    "name": "of Silence",
-    "required_level": 82,
-    "text": "(12-11)% reduced raising of Alert Level from opening Chests",
-    "weight": 400,
     "influence": "Normal"
   },
   "HeistNPCCriticalChanceNotEscaping1": {

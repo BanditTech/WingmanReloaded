@@ -5,9 +5,250 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 20,
-      "duration": 60
+      "duration": 60,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ruby Flask": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 50,
+      "charges_per_use": 20,
+      "duration": 80,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sapphire Flask": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 50,
+      "charges_per_use": 20,
+      "duration": 80,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Topaz Flask": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 50,
+      "charges_per_use": 20,
+      "duration": 80,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Granite Flask": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 60,
+      "charges_per_use": 30,
+      "duration": 60,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Quicksilver Flask": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 60,
+      "charges_per_use": 30,
+      "duration": 60,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Amethyst Flask": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 65,
+      "charges_per_use": 35,
+      "duration": 65,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Quartz Flask": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 60,
+      "charges_per_use": 30,
+      "duration": 60,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Jade Flask": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 60,
+      "charges_per_use": 30,
+      "duration": 60,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Basalt Flask": {
@@ -18,9 +259,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 60,
       "charges_per_use": 40,
-      "duration": 80
+      "duration": 80,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Aquamarine Flask": {
@@ -31,9 +289,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 50,
       "charges_per_use": 20,
-      "duration": 80
+      "duration": 80,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Stibnite Flask": {
@@ -44,9 +319,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 60,
       "charges_per_use": 40,
-      "duration": 80
+      "duration": 80,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Sulphur Flask": {
@@ -57,9 +349,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 60,
       "charges_per_use": 40,
-      "duration": 80
+      "duration": 80,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Silver Flask": {
@@ -68,9 +377,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 60,
       "charges_per_use": 40,
-      "duration": 60
+      "duration": 60,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Bismuth Flask": {
@@ -79,9 +405,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 15,
-      "duration": 85
+      "duration": 85,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Gold Flask": {
@@ -90,9 +433,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 80,
       "charges_per_use": 60,
-      "duration": 50
+      "duration": 50,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Corundum Flask": {
@@ -101,9 +461,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 50,
       "charges_per_use": 20,
-      "duration": 75
+      "duration": 75,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Iron Flask": {
@@ -114,97 +491,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 60,
       "charges_per_use": 40,
-      "duration": 50
-    }
-  },
-  "Ruby Flask": {
-    "drop_level": 18,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 50,
-      "charges_per_use": 20,
-      "duration": 80
-    }
-  },
-  "Sapphire Flask": {
-    "drop_level": 18,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 50,
-      "charges_per_use": 20,
-      "duration": 80
-    }
-  },
-  "Topaz Flask": {
-    "drop_level": 18,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 50,
-      "charges_per_use": 20,
-      "duration": 80
-    }
-  },
-  "Granite Flask": {
-    "drop_level": 27,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 60,
-      "charges_per_use": 30,
-      "duration": 60
-    }
-  },
-  "Quicksilver Flask": {
-    "drop_level": 4,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 60,
-      "charges_per_use": 30,
-      "duration": 60
-    }
-  },
-  "Amethyst Flask": {
-    "drop_level": 18,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 65,
-      "charges_per_use": 35,
-      "duration": 65
-    }
-  },
-  "Quartz Flask": {
-    "drop_level": 27,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 60,
-      "charges_per_use": 30,
-      "duration": 60
-    }
-  },
-  "Jade Flask": {
-    "drop_level": 27,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 60,
-      "charges_per_use": 30,
-      "duration": 60
+      "duration": 40,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

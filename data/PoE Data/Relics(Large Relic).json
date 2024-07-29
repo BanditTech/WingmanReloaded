@@ -1,4 +1,36 @@
 {
+  "SanctumShieldOnGainingAffliction1": {
+    "generation_type": "Prefix",
+    "name": "Adaptable",
+    "required_level": 1,
+    "text": "Gain (5-6) Inspiration when you receive an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumShieldOnGainingAffliction2": {
+    "generation_type": "Prefix",
+    "name": "Tenacious",
+    "required_level": 74,
+    "text": "Gain (7-9) Inspiration when you receive an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumShieldOnGainingAffliction3": {
+    "generation_type": "Prefix",
+    "name": "Resilient",
+    "required_level": 80,
+    "text": "Gain (10-12) Inspiration when you receive an Affliction",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumShieldOnGainingAffliction4": {
+    "generation_type": "Prefix",
+    "name": "Iron-Willed",
+    "required_level": 85,
+    "text": "Gain (13-15) Inspiration when you receive an Affliction",
+    "weight": 20,
+    "influence": "Normal"
+  },
   "SanctumMaximumResolvePercent1": {
     "generation_type": "Prefix",
     "name": "Motivating",
@@ -63,70 +95,6 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumShieldOnGainingAffliction1": {
-    "generation_type": "Prefix",
-    "name": "Adaptable",
-    "required_level": 1,
-    "text": "Gain (5-6) Inspiration when you receive an Affliction",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumShieldOnGainingAffliction2": {
-    "generation_type": "Prefix",
-    "name": "Tenacious",
-    "required_level": 74,
-    "text": "Gain (7-9) Inspiration when you receive an Affliction",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumShieldOnGainingAffliction3": {
-    "generation_type": "Prefix",
-    "name": "Resilient",
-    "required_level": 80,
-    "text": "Gain (10-12) Inspiration when you receive an Affliction",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumShieldOnGainingAffliction4": {
-    "generation_type": "Prefix",
-    "name": "Iron-Willed",
-    "required_level": 85,
-    "text": "Gain (13-15) Inspiration when you receive an Affliction",
-    "weight": 20,
-    "influence": "Normal"
-  },
-  "SanctumAvoidAfflictionChance1": {
-    "generation_type": "Suffix",
-    "name": "of Devotion",
-    "required_level": 1,
-    "text": "3% chance to Avoid gaining an Affliction",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumAvoidAfflictionChance2": {
-    "generation_type": "Suffix",
-    "name": "of Piousness",
-    "required_level": 74,
-    "text": "4% chance to Avoid gaining an Affliction",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumAvoidAfflictionChance3": {
-    "generation_type": "Suffix",
-    "name": "of Righteousness",
-    "required_level": 80,
-    "text": "5% chance to Avoid gaining an Affliction",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumAvoidAfflictionChance4": {
-    "generation_type": "Suffix",
-    "name": "of Sainthood",
-    "required_level": 85,
-    "text": "(6-7)% chance to Avoid gaining an Affliction",
-    "weight": 20,
-    "influence": "Normal"
-  },
   "SanctumMaximumResolveOnBossKill1": {
     "generation_type": "Suffix",
     "name": "of Empowerment",
@@ -173,6 +141,38 @@
     "required_level": 85,
     "text": "Gain (21-25) Maximum Resolve when you use a Fountain",
     "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance1": {
+    "generation_type": "Suffix",
+    "name": "of Devotion",
+    "required_level": 1,
+    "text": "3% chance to Avoid gaining an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance2": {
+    "generation_type": "Suffix",
+    "name": "of Piousness",
+    "required_level": 74,
+    "text": "4% chance to Avoid gaining an Affliction",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance3": {
+    "generation_type": "Suffix",
+    "name": "of Righteousness",
+    "required_level": 80,
+    "text": "5% chance to Avoid gaining an Affliction",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumAvoidAfflictionChance4": {
+    "generation_type": "Suffix",
+    "name": "of Sainthood",
+    "required_level": 85,
+    "text": "(6-7)% chance to Avoid gaining an Affliction",
+    "weight": 20,
     "influence": "Normal"
   },
   "SanctumMonstersReducedDamage1": {

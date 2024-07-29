@@ -1,16 +1,29 @@
 {
-  "Energy Blade": {
+  "Keyblade": {
     "drop_level": 1,
-    "implicits": [
-      null
-    ],
+    "implicits": [],
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 0,
-      "physical_damage_min": 0,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 1,
+      "physical_damage_min": 1,
       "range": 13
     }
   },
@@ -22,160 +35,25 @@
     "inventory_height": 4,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
       "critical_strike_chance": 500,
       "physical_damage_max": 16,
       "physical_damage_min": 8,
-      "range": 13
-    }
-  },
-  "Highland Blade": {
-    "drop_level": 44,
-    "implicits": [
-      "+305 to Accuracy Rating"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 84,
-      "physical_damage_min": 45,
-      "range": 13
-    }
-  },
-  "Engraved Greatsword": {
-    "drop_level": 48,
-    "implicits": [
-      "60% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 102,
-      "physical_damage_min": 49,
-      "range": 13
-    }
-  },
-  "Tiger Sword": {
-    "drop_level": 51,
-    "implicits": [
-      "+360 to Accuracy Rating"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 89,
-      "physical_damage_min": 54,
-      "range": 13
-    }
-  },
-  "Wraith Sword": {
-    "drop_level": 54,
-    "implicits": [
-      "45% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 109,
-      "physical_damage_min": 52,
-      "range": 13
-    }
-  },
-  "Headman's Sword": {
-    "drop_level": 57,
-    "implicits": [
-      "+400 to Accuracy Rating"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 128,
-      "physical_damage_min": 55,
-      "range": 13
-    }
-  },
-  "Reaver Sword": {
-    "drop_level": 59,
-    "implicits": [
-      "60% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 104,
-      "physical_damage_min": 62,
-      "range": 13
-    }
-  },
-  "Ezomyte Blade": {
-    "drop_level": 61,
-    "implicits": [
-      "+25% to Global Critical Strike Multiplier"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 115,
-      "physical_damage_min": 62,
-      "range": 13
-    }
-  },
-  "Vaal Greatsword": {
-    "drop_level": 63,
-    "implicits": [
-      "+470 to Accuracy Rating"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 142,
-      "physical_damage_min": 68,
-      "range": 13
-    }
-  },
-  "Lion Sword": {
-    "drop_level": 65,
-    "implicits": [
-      "+50 to Strength and Dexterity"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 690,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 115,
-      "physical_damage_min": 69,
-      "range": 13
-    }
-  },
-  "Infernal Sword": {
-    "drop_level": 67,
-    "implicits": [
-      "30% increased Elemental Damage with Attack Skills"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 129,
-      "physical_damage_min": 62,
       "range": 13
     }
   },
@@ -187,6 +65,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 500,
       "physical_damage_max": 26,
@@ -202,6 +95,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
       "critical_strike_chance": 500,
       "physical_damage_max": 29,
@@ -217,6 +125,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 500,
       "physical_damage_max": 38,
@@ -232,6 +155,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 500,
       "physical_damage_max": 48,
@@ -247,6 +185,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 500,
       "physical_damage_max": 50,
@@ -262,10 +215,55 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 741,
       "critical_strike_chance": 500,
       "physical_damage_max": 65,
       "physical_damage_min": 31,
+      "range": 13
+    }
+  },
+  "Curved Blade": {
+    "drop_level": 35,
+    "implicits": [
+      "+40% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 741,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 68,
+      "physical_damage_min": 41,
       "range": 13
     }
   },
@@ -277,6 +275,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 500,
       "physical_damage_max": 79,
@@ -292,6 +305,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
       "critical_strike_chance": 500,
       "physical_damage_max": 65,
@@ -299,16 +327,363 @@
       "range": 13
     }
   },
-  "Keyblade": {
-    "drop_level": 1,
-    "implicits": [],
+  "Highland Blade": {
+    "drop_level": 44,
+    "implicits": [
+      "+305 to Accuracy Rating"
+    ],
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
-      "attack_time": 833,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 741,
       "critical_strike_chance": 500,
-      "physical_damage_max": 1,
-      "physical_damage_min": 1,
+      "physical_damage_max": 84,
+      "physical_damage_min": 45,
+      "range": 13
+    }
+  },
+  "Engraved Greatsword": {
+    "drop_level": 48,
+    "implicits": [
+      "60% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 102,
+      "physical_damage_min": 49,
+      "range": 13
+    }
+  },
+  "Tiger Sword": {
+    "drop_level": 51,
+    "implicits": [
+      "+360 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 89,
+      "physical_damage_min": 54,
+      "range": 13
+    }
+  },
+  "Wraith Sword": {
+    "drop_level": 54,
+    "implicits": [
+      "45% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 109,
+      "physical_damage_min": 52,
+      "range": 13
+    }
+  },
+  "Lithe Blade": {
+    "drop_level": 56,
+    "implicits": [
+      "+40% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 741,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 104,
+      "physical_damage_min": 63,
+      "range": 13
+    }
+  },
+  "Headman's Sword": {
+    "drop_level": 57,
+    "implicits": [
+      "+400 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 128,
+      "physical_damage_min": 55,
+      "range": 13
+    }
+  },
+  "Reaver Sword": {
+    "drop_level": 59,
+    "implicits": [
+      "60% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 104,
+      "physical_damage_min": 62,
+      "range": 13
+    }
+  },
+  "Ezomyte Blade": {
+    "drop_level": 61,
+    "implicits": [
+      "+25% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 115,
+      "physical_damage_min": 62,
+      "range": 13
+    }
+  },
+  "Vaal Greatsword": {
+    "drop_level": 63,
+    "implicits": [
+      "+470 to Accuracy Rating"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 142,
+      "physical_damage_min": 68,
+      "range": 13
+    }
+  },
+  "Lion Sword": {
+    "drop_level": 65,
+    "implicits": [
+      "+50 to Strength and Dexterity"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 115,
+      "physical_damage_min": 69,
+      "range": 13
+    }
+  },
+  "Infernal Sword": {
+    "drop_level": 67,
+    "implicits": [
+      "30% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 129,
+      "physical_damage_min": 62,
+      "range": 13
+    }
+  },
+  "Exquisite Blade": {
+    "drop_level": 70,
+    "implicits": [
+      "+50% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 741,
+      "critical_strike_chance": 570,
+      "physical_damage_max": 112,
+      "physical_damage_min": 67,
       "range": 13
     }
   },
@@ -320,6 +695,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 650,
       "physical_damage_max": 56,
@@ -335,6 +725,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 650,
       "physical_damage_max": 87,
@@ -350,6 +755,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 650,
       "physical_damage_max": 102,
@@ -357,48 +777,33 @@
       "range": 13
     }
   },
-  "Curved Blade": {
-    "drop_level": 35,
+  "Energy Blade": {
+    "drop_level": 1,
     "implicits": [
-      "+40% to Global Critical Strike Multiplier"
+      null
     ],
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 68,
-      "physical_damage_min": 41,
-      "range": 13
-    }
-  },
-  "Lithe Blade": {
-    "drop_level": 56,
-    "implicits": [
-      "+40% to Global Critical Strike Multiplier"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 104,
-      "physical_damage_min": 63,
-      "range": 13
-    }
-  },
-  "Exquisite Blade": {
-    "drop_level": 70,
-    "implicits": [
-      "+50% to Global Critical Strike Multiplier"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 570,
-      "physical_damage_max": 112,
-      "physical_damage_min": 67,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 0,
+      "physical_damage_min": 0,
       "range": 13
     }
   }

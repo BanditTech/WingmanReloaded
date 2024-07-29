@@ -7,55 +7,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 750,
       "physical_damage_max": 10,
       "physical_damage_min": 6,
-      "range": 10
-    }
-  },
-  "Poignard": {
-    "drop_level": 41,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 610,
-      "physical_damage_max": 52,
-      "physical_damage_min": 13,
-      "range": 10
-    }
-  },
-  "Gutting Knife": {
-    "drop_level": 56,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 76,
-      "physical_damage_min": 19,
-      "range": 10
-    }
-  },
-  "Ambusher": {
-    "drop_level": 60,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 610,
-      "physical_damage_max": 74,
-      "physical_damage_min": 19,
       "range": 10
     }
   },
@@ -67,8 +37,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 750,
       "physical_damage_max": 17,
       "physical_damage_min": 4,
       "range": 10
@@ -82,70 +67,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
-      "critical_strike_chance": 610,
+      "critical_strike_chance": 780,
       "physical_damage_max": 27,
       "physical_damage_min": 7,
-      "range": 10
-    }
-  },
-  "Flaying Knife": {
-    "drop_level": 30,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 45,
-      "physical_damage_min": 11,
-      "range": 10
-    }
-  },
-  "Hollowpoint Dagger": {
-    "drop_level": 30,
-    "implicits": [
-      "All Damage from Hits with This Weapon can Poison"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 46,
-      "physical_damage_min": 12,
-      "range": 10
-    }
-  },
-  "Pressurised Dagger": {
-    "drop_level": 50,
-    "implicits": [
-      "All Damage from Hits with This Weapon can Poison"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 71,
-      "physical_damage_min": 18,
-      "range": 10
-    }
-  },
-  "Pneumatic Dagger": {
-    "drop_level": 70,
-    "implicits": [
-      "All Damage from Hits with This Weapon can Poison"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 79,
-      "physical_damage_min": 20,
       "range": 10
     }
   },
@@ -157,10 +97,85 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 741,
-      "critical_strike_chance": 620,
+      "critical_strike_chance": 800,
       "physical_damage_max": 54,
       "physical_damage_min": 14,
+      "range": 10
+    }
+  },
+  "Flaying Knife": {
+    "drop_level": 30,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 45,
+      "physical_damage_min": 11,
+      "range": 10
+    }
+  },
+  "Poignard": {
+    "drop_level": 41,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 780,
+      "physical_damage_max": 52,
+      "physical_damage_min": 13,
       "range": 10
     }
   },
@@ -172,8 +187,83 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 741,
-      "critical_strike_chance": 650,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 74,
+      "physical_damage_min": 19,
+      "range": 10
+    }
+  },
+  "Gutting Knife": {
+    "drop_level": 56,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 76,
+      "physical_damage_min": 19,
+      "range": 10
+    }
+  },
+  "Ambusher": {
+    "drop_level": 60,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 780,
       "physical_damage_max": 74,
       "physical_damage_min": 19,
       "range": 10
@@ -187,10 +277,115 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 741,
-      "critical_strike_chance": 620,
+      "critical_strike_chance": 800,
       "physical_damage_max": 88,
       "physical_damage_min": 22,
+      "range": 10
+    }
+  },
+  "Hollowpoint Dagger": {
+    "drop_level": 30,
+    "implicits": [
+      "All Damage from Hits with This Weapon can Poison"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 830,
+      "physical_damage_max": 46,
+      "physical_damage_min": 12,
+      "range": 10
+    }
+  },
+  "Pressurised Dagger": {
+    "drop_level": 50,
+    "implicits": [
+      "All Damage from Hits with This Weapon can Poison"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 830,
+      "physical_damage_max": 71,
+      "physical_damage_min": 18,
+      "range": 10
+    }
+  },
+  "Pneumatic Dagger": {
+    "drop_level": 70,
+    "implicits": [
+      "All Damage from Hits with This Weapon can Poison"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 830,
+      "physical_damage_max": 79,
+      "physical_damage_min": 20,
       "range": 10
     }
   },
@@ -200,8 +395,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 750,
       "physical_damage_max": 8,
       "physical_damage_min": 4,
       "range": 10

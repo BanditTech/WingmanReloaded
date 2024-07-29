@@ -31,6 +31,70 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "HeistNPCLockdownTimer1": {
+    "generation_type": "Prefix",
+    "name": "Slowing",
+    "required_level": 1,
+    "text": "(4-5)% increased time before Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer2": {
+    "generation_type": "Prefix",
+    "name": "Stalling",
+    "required_level": 45,
+    "text": "(6-7)% increased time before Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer3_": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "(7-8)% increased time before Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer4_": {
+    "generation_type": "Prefix",
+    "name": "Interrupting",
+    "required_level": 81,
+    "text": "(9-10)% increased time before Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed1___": {
+    "generation_type": "Prefix",
+    "name": "Practiced",
+    "required_level": 1,
+    "text": "(9-11)% increased Job speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed2": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 45,
+    "text": "(12-14)% increased Job speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed3": {
+    "generation_type": "Prefix",
+    "name": "Professional",
+    "required_level": 75,
+    "text": "(15-17)% increased Job speed",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed4__": {
+    "generation_type": "Prefix",
+    "name": "Masterful",
+    "required_level": 81,
+    "text": "(18-20)% increased Job speed",
+    "weight": 400,
+    "influence": "Normal"
+  },
   "HeistNPCExperienceGain1_": {
     "generation_type": "Prefix",
     "name": "Footpad's",
@@ -95,6 +159,22 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "HeistNPCAllJobLevel1": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 82,
+    "text": "+1 to Level of all Jobs for Heists",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "HeistCounterThaumaturgyLevel1": {
+    "generation_type": "Prefix",
+    "name": "Mental",
+    "required_level": 83,
+    "text": "+1 to Counter-Thaumaturgy Level for Heists",
+    "weight": 100,
+    "influence": "Normal"
+  },
   "HeistCounterThaumaturgyExperienceGain1_": {
     "generation_type": "Prefix",
     "name": "Simple",
@@ -125,22 +205,6 @@
     "required_level": 82,
     "text": "(9-10)% increased Counter-Thaumaturgy Experience gained",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistCounterThaumaturgyLevel1": {
-    "generation_type": "Prefix",
-    "name": "Mental",
-    "required_level": 83,
-    "text": "+1 to Counter-Thaumaturgy Level for Heists",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "HeistNPCAllJobLevel1": {
-    "generation_type": "Prefix",
-    "name": "Skillful",
-    "required_level": 82,
-    "text": "+1 to Level of all Jobs for Heists",
-    "weight": 100,
     "influence": "Normal"
   },
   "HeistNPCCounterThaumaturgySpeed1__": {
@@ -207,67 +271,35 @@
     "weight": 300,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer1": {
-    "generation_type": "Prefix",
-    "name": "Slowing",
+  "HeistContractNPCCost1": {
+    "generation_type": "Suffix",
+    "name": "of Personality",
     "required_level": 1,
-    "text": "(4-5)% increased time before Lockdown",
+    "text": "(7-6)% reduced Hiring Fee",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer2": {
-    "generation_type": "Prefix",
-    "name": "Stalling",
+  "HeistContractNPCCost2": {
+    "generation_type": "Suffix",
+    "name": "of Presence",
     "required_level": 45,
-    "text": "(6-7)% increased time before Lockdown",
+    "text": "(9-8)% reduced Hiring Fee",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer3_": {
-    "generation_type": "Prefix",
-    "name": "Delaying",
+  "HeistContractNPCCost3": {
+    "generation_type": "Suffix",
+    "name": "of Charm",
     "required_level": 75,
-    "text": "(7-8)% increased time before Lockdown",
+    "text": "(12-10)% reduced Hiring Fee",
     "weight": 600,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer4_": {
-    "generation_type": "Prefix",
-    "name": "Interrupting",
+  "HeistContractNPCCost4": {
+    "generation_type": "Suffix",
+    "name": "of Charisma",
     "required_level": 81,
-    "text": "(9-10)% increased time before Lockdown",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed1___": {
-    "generation_type": "Prefix",
-    "name": "Practiced",
-    "required_level": 1,
-    "text": "(9-11)% increased Job speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed2": {
-    "generation_type": "Prefix",
-    "name": "Skillful",
-    "required_level": 45,
-    "text": "(12-14)% increased Job speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed3": {
-    "generation_type": "Prefix",
-    "name": "Professional",
-    "required_level": 75,
-    "text": "(15-17)% increased Job speed",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed4__": {
-    "generation_type": "Prefix",
-    "name": "Masterful",
-    "required_level": 81,
-    "text": "(18-20)% increased Job speed",
+    "text": "(15-13)% reduced Hiring Fee",
     "weight": 400,
     "influence": "Normal"
   },
@@ -300,38 +332,6 @@
     "name": "of Greed",
     "required_level": 81,
     "text": "The Ring's Cut reduced by (15-13)%",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost1": {
-    "generation_type": "Suffix",
-    "name": "of Personality",
-    "required_level": 1,
-    "text": "(7-6)% reduced Hiring Fee",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost2": {
-    "generation_type": "Suffix",
-    "name": "of Presence",
-    "required_level": 45,
-    "text": "(9-8)% reduced Hiring Fee",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost3": {
-    "generation_type": "Suffix",
-    "name": "of Charm",
-    "required_level": 75,
-    "text": "(12-10)% reduced Hiring Fee",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost4": {
-    "generation_type": "Suffix",
-    "name": "of Charisma",
-    "required_level": 81,
-    "text": "(15-13)% reduced Hiring Fee",
     "weight": 400,
     "influence": "Normal"
   },
@@ -431,6 +431,14 @@
     "weight": 300,
     "influence": "Normal"
   },
+  "HeistNPCCounterThaumaturgyNoAlertMultiplier1": {
+    "generation_type": "Suffix",
+    "name": "of Aplomb",
+    "required_level": 81,
+    "text": "Performing Counter-Thaumaturgy during Lockdown doesn't take additional time",
+    "weight": 200,
+    "influence": "Normal"
+  },
   "HeistNPCCounterThaumaturgyCost1": {
     "generation_type": "Suffix",
     "name": "of Discount",
@@ -461,14 +469,6 @@
     "required_level": 82,
     "text": "(15-13)% reduced Hiring Fee for Counter-Thaumaturgy Jobs",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCCounterThaumaturgyNoAlertMultiplier1": {
-    "generation_type": "Suffix",
-    "name": "of Aplomb",
-    "required_level": 81,
-    "text": "Performing Counter-Thaumaturgy during Lockdown doesn't take additional time",
-    "weight": 200,
     "influence": "Normal"
   }
 }

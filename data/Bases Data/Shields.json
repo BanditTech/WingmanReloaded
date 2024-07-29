@@ -1,878 +1,4 @@
 {
-  "Golden Flame": {
-    "drop_level": 15,
-    "implicits": [
-      "+(11-19)% to Chaos Resistance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "block": 20,
-      "movement_speed": -3
-    }
-  },
-  "Goathide Buckler": {
-    "drop_level": 2,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "evasion": {
-        "max": 20,
-        "min": 14
-      },
-      "movement_speed": -3
-    }
-  },
-  "Battle Buckler": {
-    "drop_level": 50,
-    "implicits": [
-      "9% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "evasion": {
-        "max": 330,
-        "min": 287
-      },
-      "movement_speed": -3
-    }
-  },
-  "Golden Buckler": {
-    "drop_level": 54,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "evasion": {
-        "max": 407,
-        "min": 354
-      },
-      "movement_speed": -3
-    }
-  },
-  "Ironwood Buckler": {
-    "drop_level": 57,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "evasion": {
-        "max": 385,
-        "min": 327
-      },
-      "movement_speed": -3
-    }
-  },
-  "Lacquered Buckler": {
-    "drop_level": 60,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "evasion": {
-        "max": 549,
-        "min": 477
-      },
-      "movement_speed": -3
-    }
-  },
-  "Vaal Buckler": {
-    "drop_level": 63,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 27,
-      "evasion": {
-        "max": 379,
-        "min": 330
-      },
-      "movement_speed": -3
-    }
-  },
-  "Crusader Buckler": {
-    "drop_level": 66,
-    "implicits": [
-      "9% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "evasion": {
-        "max": 442,
-        "min": 385
-      },
-      "movement_speed": -3
-    }
-  },
-  "Imperial Buckler": {
-    "drop_level": 69,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "evasion": {
-        "max": 506,
-        "min": 440
-      },
-      "movement_speed": -3
-    }
-  },
-  "Pine Buckler": {
-    "drop_level": 8,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "evasion": {
-        "max": 66,
-        "min": 51
-      },
-      "movement_speed": -3
-    }
-  },
-  "Painted Buckler": {
-    "drop_level": 16,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "evasion": {
-        "max": 154,
-        "min": 123
-      },
-      "movement_speed": -3
-    }
-  },
-  "Hammered Buckler": {
-    "drop_level": 23,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 27,
-      "evasion": {
-        "max": 139,
-        "min": 116
-      },
-      "movement_speed": -3
-    }
-  },
-  "War Buckler": {
-    "drop_level": 29,
-    "implicits": [
-      "9% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "evasion": {
-        "max": 194,
-        "min": 169
-      },
-      "movement_speed": -3
-    }
-  },
-  "Gilded Buckler": {
-    "drop_level": 34,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "evasion": {
-        "max": 259,
-        "min": 225
-      },
-      "movement_speed": -3
-    }
-  },
-  "Oak Buckler": {
-    "drop_level": 38,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "evasion": {
-        "max": 259,
-        "min": 220
-      },
-      "movement_speed": -3
-    }
-  },
-  "Enameled Buckler": {
-    "drop_level": 42,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "evasion": {
-        "max": 349,
-        "min": 311
-      },
-      "movement_speed": -3
-    }
-  },
-  "Corrugated Buckler": {
-    "drop_level": 46,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 27,
-      "evasion": {
-        "max": 272,
-        "min": 227
-      },
-      "movement_speed": -3
-    }
-  },
-  "Endothermic Buckler": {
-    "drop_level": 30,
-    "implicits": [
-      "Inflict Brittle on Enemies when you Block their Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "evasion": {
-        "max": 86,
-        "min": 75
-      },
-      "movement_speed": -3
-    }
-  },
-  "Polar Buckler": {
-    "drop_level": 50,
-    "implicits": [
-      "Inflict Brittle on Enemies when you Block their Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "evasion": {
-        "max": 142,
-        "min": 123
-      },
-      "movement_speed": -3
-    }
-  },
-  "Cold-attuned Buckler": {
-    "drop_level": 70,
-    "implicits": [
-      "Inflict Brittle on Enemies when you Block their Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 28,
-      "evasion": {
-        "max": 237,
-        "min": 206
-      },
-      "movement_speed": -3
-    }
-  },
-  "Spiked Bundle": {
-    "drop_level": 5,
-    "implicits": [
-      "+3% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 6,
-        "min": 4
-      },
-      "evasion": {
-        "max": 18,
-        "min": 13
-      },
-      "movement_speed": -3
-    }
-  },
-  "Alder Spiked Shield": {
-    "drop_level": 58,
-    "implicits": [
-      "+3% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 49,
-        "min": 43
-      },
-      "evasion": {
-        "max": 240,
-        "min": 209
-      },
-      "movement_speed": -3
-    }
-  },
-  "Ezomyte Spiked Shield": {
-    "drop_level": 62,
-    "implicits": [
-      "+3% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "energy_shield": {
-        "max": 43,
-        "min": 37
-      },
-      "evasion": {
-        "max": 209,
-        "min": 181
-      },
-      "movement_speed": -3
-    }
-  },
-  "Mirrored Spiked Shield": {
-    "drop_level": 66,
-    "implicits": [
-      "+5% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "energy_shield": {
-        "max": 35,
-        "min": 31
-      },
-      "evasion": {
-        "max": 174,
-        "min": 151
-      },
-      "movement_speed": -3
-    }
-  },
-  "Supreme Spiked Shield": {
-    "drop_level": 70,
-    "implicits": [
-      "+5% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 57,
-        "min": 49
-      },
-      "evasion": {
-        "max": 278,
-        "min": 242
-      },
-      "movement_speed": -3
-    }
-  },
-  "Driftwood Spiked Shield": {
-    "drop_level": 12,
-    "implicits": [
-      "+3% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 15,
-        "min": 11
-      },
-      "evasion": {
-        "max": 60,
-        "min": 46
-      },
-      "movement_speed": -3
-    }
-  },
-  "Alloyed Spiked Shield": {
-    "drop_level": 20,
-    "implicits": [
-      "+3% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "energy_shield": {
-        "max": 16,
-        "min": 13
-      },
-      "evasion": {
-        "max": 70,
-        "min": 56
-      },
-      "movement_speed": -3
-    }
-  },
-  "Burnished Spiked Shield": {
-    "drop_level": 27,
-    "implicits": [
-      "+5% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "energy_shield": {
-        "max": 16,
-        "min": 13
-      },
-      "evasion": {
-        "max": 73,
-        "min": 62
-      },
-      "movement_speed": -3
-    }
-  },
-  "Ornate Spiked Shield": {
-    "drop_level": 33,
-    "implicits": [
-      "+5% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 29,
-        "min": 26
-      },
-      "evasion": {
-        "max": 135,
-        "min": 120
-      },
-      "movement_speed": -3
-    }
-  },
-  "Redwood Spiked Shield": {
-    "drop_level": 39,
-    "implicits": [
-      "+3% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 34,
-        "min": 30
-      },
-      "evasion": {
-        "max": 163,
-        "min": 142
-      },
-      "movement_speed": -3
-    }
-  },
-  "Compound Spiked Shield": {
-    "drop_level": 45,
-    "implicits": [
-      "+3% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "energy_shield": {
-        "max": 30,
-        "min": 25
-      },
-      "evasion": {
-        "max": 144,
-        "min": 122
-      },
-      "movement_speed": -3
-    }
-  },
-  "Polished Spiked Shield": {
-    "drop_level": 49,
-    "implicits": [
-      "+5% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "energy_shield": {
-        "max": 27,
-        "min": 23
-      },
-      "evasion": {
-        "max": 131,
-        "min": 111
-      },
-      "movement_speed": -3
-    }
-  },
-  "Sovereign Spiked Shield": {
-    "drop_level": 54,
-    "implicits": [
-      "+5% chance to Suppress Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 45,
-        "min": 40
-      },
-      "evasion": {
-        "max": 218,
-        "min": 195
-      },
-      "movement_speed": -3
-    }
-  },
-  "Twig Spirit Shield": {
-    "drop_level": 3,
-    "implicits": [
-      "(10-15)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 22,
-      "energy_shield": {
-        "max": 8,
-        "min": 6
-      },
-      "movement_speed": -3
-    }
-  },
-  "Chiming Spirit Shield": {
-    "drop_level": 49,
-    "implicits": [
-      "(10-15)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 23,
-      "energy_shield": {
-        "max": 48,
-        "min": 42
-      },
-      "movement_speed": -3
-    }
-  },
-  "Thorium Spirit Shield": {
-    "drop_level": 53,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "energy_shield": {
-        "max": 62,
-        "min": 54
-      },
-      "movement_speed": -3
-    }
-  },
-  "Lacewood Spirit Shield": {
-    "drop_level": 56,
-    "implicits": [
-      "(5-10)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 55,
-        "min": 47
-      },
-      "movement_speed": -3
-    }
-  },
-  "Fossilised Spirit Shield": {
-    "drop_level": 59,
-    "implicits": [
-      "Minions deal (5-10)% increased Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 22,
-      "energy_shield": {
-        "max": 55,
-        "min": 49
-      },
-      "movement_speed": -3
-    }
-  },
-  "Vaal Spirit Shield": {
-    "drop_level": 62,
-    "implicits": [
-      "(5-10)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 64,
-        "min": 56
-      },
-      "movement_speed": -3
-    }
-  },
-  "Harmonic Spirit Shield": {
-    "drop_level": 65,
-    "implicits": [
-      "(10-15)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 23,
-      "energy_shield": {
-        "max": 66,
-        "min": 58
-      },
-      "movement_speed": -3
-    }
-  },
-  "Titanium Spirit Shield": {
-    "drop_level": 68,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "energy_shield": {
-        "max": 77,
-        "min": 67
-      },
-      "movement_speed": -3
-    }
-  },
-  "Yew Spirit Shield": {
-    "drop_level": 9,
-    "implicits": [
-      "(5-10)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 14,
-        "min": 11
-      },
-      "movement_speed": -3
-    }
-  },
-  "Bone Spirit Shield": {
-    "drop_level": 15,
-    "implicits": [
-      "Minions deal (5-10)% increased Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 22,
-      "energy_shield": {
-        "max": 19,
-        "min": 15
-      },
-      "movement_speed": -3
-    }
-  },
-  "Tarnished Spirit Shield": {
-    "drop_level": 23,
-    "implicits": [
-      "(5-10)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 25,
-        "min": 21
-      },
-      "movement_speed": -3
-    }
-  },
-  "Jingling Spirit Shield": {
-    "drop_level": 28,
-    "implicits": [
-      "(10-15)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 23,
-      "energy_shield": {
-        "max": 29,
-        "min": 25
-      },
-      "movement_speed": -3
-    }
-  },
-  "Brass Spirit Shield": {
-    "drop_level": 33,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 25,
-      "energy_shield": {
-        "max": 40,
-        "min": 35
-      },
-      "movement_speed": -3
-    }
-  },
-  "Walnut Spirit Shield": {
-    "drop_level": 37,
-    "implicits": [
-      "(5-10)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 38,
-        "min": 32
-      },
-      "movement_speed": -3
-    }
-  },
-  "Ivory Spirit Shield": {
-    "drop_level": 41,
-    "implicits": [
-      "Minions deal (5-10)% increased Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 22,
-      "energy_shield": {
-        "max": 40,
-        "min": 35
-      },
-      "movement_speed": -3
-    }
-  },
-  "Ancient Spirit Shield": {
-    "drop_level": 45,
-    "implicits": [
-      "(5-10)% increased Spell Damage"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 45,
-        "min": 38
-      },
-      "movement_speed": -3
-    }
-  },
-  "Exhausting Spirit Shield": {
-    "drop_level": 30,
-    "implicits": [
-      "Sap Enemies when you Block their Damage"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "block": 22,
-      "energy_shield": {
-        "max": 19,
-        "min": 16
-      },
-      "movement_speed": -3
-    }
-  },
-  "Subsuming Spirit Shield": {
-    "drop_level": 50,
-    "implicits": [
-      "Sap Enemies when you Block their Damage"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "block": 24,
-      "energy_shield": {
-        "max": 29,
-        "min": 25
-      },
-      "movement_speed": -3
-    }
-  },
-  "Transfer-attuned Spirit Shield": {
-    "drop_level": 70,
-    "implicits": [
-      "Sap Enemies when you Block their Damage"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "block": 26,
-      "energy_shield": {
-        "max": 45,
-        "min": 39
-      },
-      "movement_speed": -3
-    }
-  },
   "Splintered Tower Shield": {
     "drop_level": 1,
     "implicits": [],
@@ -883,136 +9,25 @@
         "max": 12,
         "min": 9
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 24,
-      "movement_speed": -3
-    }
-  },
-  "Bronze Tower Shield": {
-    "drop_level": 47,
-    "implicits": [
-      "+(30-40) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 324,
-        "min": 290
-      },
-      "block": 24,
-      "movement_speed": -3
-    }
-  },
-  "Girded Tower Shield": {
-    "drop_level": 51,
-    "implicits": [
-      "+(10-20) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 437,
-        "min": 397
-      },
-      "block": 23,
-      "movement_speed": -3
-    }
-  },
-  "Crested Tower Shield": {
-    "drop_level": 55,
-    "implicits": [
-      "+(20-30) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 337,
-        "min": 293
-      },
-      "block": 25,
-      "movement_speed": -3
-    }
-  },
-  "Shagreen Tower Shield": {
-    "drop_level": 58,
-    "implicits": [
-      "+(10-20) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 308,
-        "min": 261
-      },
-      "block": 26,
-      "movement_speed": -3
-    }
-  },
-  "Ebony Tower Shield": {
-    "drop_level": 61,
-    "implicits": [
-      "+(20-30) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 411,
-        "min": 357
-      },
-      "block": 25,
-      "movement_speed": -3
-    }
-  },
-  "Ezomyte Tower Shield": {
-    "drop_level": 64,
-    "implicits": [
-      "+(30-40) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 474,
-        "min": 412
-      },
-      "block": 24,
-      "movement_speed": -3
-    }
-  },
-  "Colossal Tower Shield": {
-    "drop_level": 67,
-    "implicits": [
-      "+(10-20) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 601,
-        "min": 522
-      },
-      "block": 23,
-      "movement_speed": -3
-    }
-  },
-  "Pinnacle Tower Shield": {
-    "drop_level": 70,
-    "implicits": [
-      "+(20-30) to maximum Life"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 537,
-        "min": 467
-      },
-      "block": 25,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Corroded Tower Shield": {
@@ -1027,8 +42,25 @@
         "max": 47,
         "min": 36
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 23,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Rawhide Tower Shield": {
@@ -1043,8 +75,25 @@
         "max": 66,
         "min": 53
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 26,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Cedar Tower Shield": {
@@ -1059,8 +108,25 @@
         "max": 113,
         "min": 94
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 25,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Copper Tower Shield": {
@@ -1075,8 +141,25 @@
         "max": 173,
         "min": 151
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 24,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Reinforced Tower Shield": {
@@ -1091,8 +174,25 @@
         "max": 260,
         "min": 237
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 23,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Painted Tower Shield": {
@@ -1107,8 +207,25 @@
         "max": 216,
         "min": 188
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 25,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Buckskin Tower Shield": {
@@ -1123,8 +240,25 @@
         "max": 209,
         "min": 177
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 26,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Mahogany Tower Shield": {
@@ -1139,262 +273,289 @@
         "max": 265,
         "min": 230
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 25,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Rotted Round Shield": {
-    "drop_level": 5,
+  "Bronze Tower Shield": {
+    "drop_level": 47,
     "implicits": [
-      "60% increased Block Recovery"
+      "+(30-40) to maximum Life"
     ],
-    "inventory_height": 3,
+    "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
       "armour": {
-        "max": 18,
-        "min": 13
+        "max": 324,
+        "min": 290
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 24,
-      "evasion": {
-        "max": 18,
-        "min": 13
-      },
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Teak Round Shield": {
+  "Girded Tower Shield": {
+    "drop_level": 51,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 437,
+        "min": 397
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 23,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Crested Tower Shield": {
+    "drop_level": 55,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 337,
+        "min": 293
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Shagreen Tower Shield": {
     "drop_level": 58,
     "implicits": [
-      "180% increased Block Recovery"
+      "+(10-20) to maximum Life"
     ],
-    "inventory_height": 3,
+    "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
       "armour": {
-        "max": 146,
-        "min": 131
+        "max": 308,
+        "min": 261
       },
-      "block": 24,
-      "evasion": {
-        "max": 146,
-        "min": 131
-      },
-      "movement_speed": -3
-    }
-  },
-  "Spiny Round Shield": {
-    "drop_level": 62,
-    "implicits": [
-      "60% increased Block Recovery"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 177,
-        "min": 154
-      },
-      "block": 27,
-      "evasion": {
-        "max": 177,
-        "min": 154
-      },
-      "movement_speed": -3
-    }
-  },
-  "Cardinal Round Shield": {
-    "drop_level": 66,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 240,
-        "min": 209
-      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 26,
-      "evasion": {
-        "max": 240,
-        "min": 209
-      },
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Elegant Round Shield": {
+  "Ebony Tower Shield": {
+    "drop_level": 61,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 411,
+        "min": 357
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ezomyte Tower Shield": {
+    "drop_level": 64,
+    "implicits": [
+      "+(30-40) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 474,
+        "min": 412
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Colossal Tower Shield": {
+    "drop_level": 67,
+    "implicits": [
+      "+(10-20) to maximum Life"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 601,
+        "min": 522
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 23,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Pinnacle Tower Shield": {
     "drop_level": 70,
     "implicits": [
-      "120% increased Block Recovery"
+      "+(20-30) to maximum Life"
     ],
-    "inventory_height": 3,
+    "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
       "armour": {
-        "max": 170,
-        "min": 148
+        "max": 537,
+        "min": 467
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 25,
-      "evasion": {
-        "max": 170,
-        "min": 148
-      },
-      "movement_speed": -3
-    }
-  },
-  "Fir Round Shield": {
-    "drop_level": 12,
-    "implicits": [
-      "180% increased Block Recovery"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 37,
-        "min": 29
-      },
-      "block": 24,
-      "evasion": {
-        "max": 37,
-        "min": 29
-      },
-      "movement_speed": -3
-    }
-  },
-  "Studded Round Shield": {
-    "drop_level": 20,
-    "implicits": [
-      "60% increased Block Recovery"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 58,
-        "min": 46
-      },
-      "block": 27,
-      "evasion": {
-        "max": 58,
-        "min": 46
-      },
-      "movement_speed": -3
-    }
-  },
-  "Scarlet Round Shield": {
-    "drop_level": 27,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 100,
-        "min": 87
-      },
-      "block": 26,
-      "evasion": {
-        "max": 100,
-        "min": 87
-      },
-      "movement_speed": -3
-    }
-  },
-  "Splendid Round Shield": {
-    "drop_level": 33,
-    "implicits": [
-      "120% increased Block Recovery"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 86,
-        "min": 75
-      },
-      "block": 25,
-      "evasion": {
-        "max": 86,
-        "min": 75
-      },
-      "movement_speed": -3
-    }
-  },
-  "Maple Round Shield": {
-    "drop_level": 39,
-    "implicits": [
-      "180% increased Block Recovery"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 99,
-        "min": 88
-      },
-      "block": 24,
-      "evasion": {
-        "max": 99,
-        "min": 88
-      },
-      "movement_speed": -3
-    }
-  },
-  "Spiked Round Shield": {
-    "drop_level": 45,
-    "implicits": [
-      "60% increased Block Recovery"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 120,
-        "min": 102
-      },
-      "block": 27,
-      "evasion": {
-        "max": 120,
-        "min": 102
-      },
-      "movement_speed": -3
-    }
-  },
-  "Crimson Round Shield": {
-    "drop_level": 49,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 178,
-        "min": 155
-      },
-      "block": 26,
-      "evasion": {
-        "max": 178,
-        "min": 155
-      },
-      "movement_speed": -3
-    }
-  },
-  "Baroque Round Shield": {
-    "drop_level": 54,
-    "implicits": [
-      "120% increased Block Recovery"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 140,
-        "min": 122
-      },
-      "block": 25,
-      "evasion": {
-        "max": 140,
-        "min": 122
-      },
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Exothermic Tower Shield": {
@@ -1409,8 +570,25 @@
         "max": 100,
         "min": 87
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 25,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Magmatic Tower Shield": {
@@ -1425,8 +603,25 @@
         "max": 165,
         "min": 144
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 27,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Heat-attuned Tower Shield": {
@@ -1441,8 +636,1735 @@
         "max": 253,
         "min": 220
       },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
       "block": 29,
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Goathide Buckler": {
+    "drop_level": 2,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 20,
+        "min": 14
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Pine Buckler": {
+    "drop_level": 8,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 66,
+        "min": 51
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Painted Buckler": {
+    "drop_level": 16,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 154,
+        "min": 123
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Hammered Buckler": {
+    "drop_level": 23,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 139,
+        "min": 116
+      },
+      "movement_speed": -3,
+      "block": 27,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "War Buckler": {
+    "drop_level": 29,
+    "implicits": [
+      "9% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 194,
+        "min": 169
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Gilded Buckler": {
+    "drop_level": 34,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 259,
+        "min": 225
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Oak Buckler": {
+    "drop_level": 38,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 259,
+        "min": 220
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Enameled Buckler": {
+    "drop_level": 42,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 349,
+        "min": 311
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Corrugated Buckler": {
+    "drop_level": 46,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 272,
+        "min": 227
+      },
+      "movement_speed": -3,
+      "block": 27,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Battle Buckler": {
+    "drop_level": 50,
+    "implicits": [
+      "9% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 330,
+        "min": 287
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Golden Buckler": {
+    "drop_level": 54,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 407,
+        "min": 354
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ironwood Buckler": {
+    "drop_level": 57,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 385,
+        "min": 327
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Lacquered Buckler": {
+    "drop_level": 60,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 549,
+        "min": 477
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Vaal Buckler": {
+    "drop_level": 63,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 379,
+        "min": 330
+      },
+      "movement_speed": -3,
+      "block": 27,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Crusader Buckler": {
+    "drop_level": 66,
+    "implicits": [
+      "9% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 442,
+        "min": 385
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Imperial Buckler": {
+    "drop_level": 69,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 506,
+        "min": 440
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Endothermic Buckler": {
+    "drop_level": 30,
+    "implicits": [
+      "Inflict Brittle on Enemies when you Block their Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 86,
+        "min": 75
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Polar Buckler": {
+    "drop_level": 50,
+    "implicits": [
+      "Inflict Brittle on Enemies when you Block their Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 142,
+        "min": 123
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cold-attuned Buckler": {
+    "drop_level": 70,
+    "implicits": [
+      "Inflict Brittle on Enemies when you Block their Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 237,
+        "min": 206
+      },
+      "movement_speed": -3,
+      "block": 28,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Twig Spirit Shield": {
+    "drop_level": 3,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 8,
+        "min": 6
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Yew Spirit Shield": {
+    "drop_level": 9,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 14,
+        "min": 11
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Bone Spirit Shield": {
+    "drop_level": 15,
+    "implicits": [
+      "Minions deal (5-10)% increased Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 19,
+        "min": 15
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Tarnished Spirit Shield": {
+    "drop_level": 23,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 25,
+        "min": 21
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Jingling Spirit Shield": {
+    "drop_level": 28,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 29,
+        "min": 25
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 23,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Brass Spirit Shield": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 40,
+        "min": 35
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Walnut Spirit Shield": {
+    "drop_level": 37,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 38,
+        "min": 32
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ivory Spirit Shield": {
+    "drop_level": 41,
+    "implicits": [
+      "Minions deal (5-10)% increased Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 40,
+        "min": 35
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ancient Spirit Shield": {
+    "drop_level": 45,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 45,
+        "min": 38
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chiming Spirit Shield": {
+    "drop_level": 49,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 48,
+        "min": 42
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 23,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Thorium Spirit Shield": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 62,
+        "min": 54
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Lacewood Spirit Shield": {
+    "drop_level": 56,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 55,
+        "min": 47
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Fossilised Spirit Shield": {
+    "drop_level": 59,
+    "implicits": [
+      "Minions deal (5-10)% increased Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 55,
+        "min": 49
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Vaal Spirit Shield": {
+    "drop_level": 62,
+    "implicits": [
+      "(5-10)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 64,
+        "min": 56
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Harmonic Spirit Shield": {
+    "drop_level": 65,
+    "implicits": [
+      "(10-15)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 66,
+        "min": 58
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 23,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Titanium Spirit Shield": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 77,
+        "min": 67
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Exhausting Spirit Shield": {
+    "drop_level": 30,
+    "implicits": [
+      "Sap Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 19,
+        "min": 16
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Subsuming Spirit Shield": {
+    "drop_level": 50,
+    "implicits": [
+      "Sap Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 29,
+        "min": 25
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Transfer-attuned Spirit Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "Sap Enemies when you Block their Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 45,
+        "min": 39
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Rotted Round Shield": {
+    "drop_level": 5,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 18,
+        "min": 13
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 18,
+        "min": 13
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Fir Round Shield": {
+    "drop_level": 12,
+    "implicits": [
+      "180% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 37,
+        "min": 29
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 37,
+        "min": 29
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Studded Round Shield": {
+    "drop_level": 20,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 58,
+        "min": 46
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 58,
+        "min": 46
+      },
+      "movement_speed": -3,
+      "block": 27,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Scarlet Round Shield": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 100,
+        "min": 87
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 100,
+        "min": 87
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Splendid Round Shield": {
+    "drop_level": 33,
+    "implicits": [
+      "120% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 86,
+        "min": 75
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 86,
+        "min": 75
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Maple Round Shield": {
+    "drop_level": 39,
+    "implicits": [
+      "180% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 99,
+        "min": 88
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 99,
+        "min": 88
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Spiked Round Shield": {
+    "drop_level": 45,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 120,
+        "min": 102
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 120,
+        "min": 102
+      },
+      "movement_speed": -3,
+      "block": 27,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Crimson Round Shield": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 178,
+        "min": 155
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 178,
+        "min": 155
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Baroque Round Shield": {
+    "drop_level": 54,
+    "implicits": [
+      "120% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 140,
+        "min": 122
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 140,
+        "min": 122
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Teak Round Shield": {
+    "drop_level": 58,
+    "implicits": [
+      "180% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 146,
+        "min": 131
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 146,
+        "min": 131
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Spiny Round Shield": {
+    "drop_level": 62,
+    "implicits": [
+      "60% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 177,
+        "min": 154
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 177,
+        "min": 154
+      },
+      "movement_speed": -3,
+      "block": 27,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cardinal Round Shield": {
+    "drop_level": 66,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 240,
+        "min": 209
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 240,
+        "min": 209
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Elegant Round Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "120% increased Block Recovery"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 170,
+        "min": 148
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 170,
+        "min": 148
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Plank Kite Shield": {
@@ -1457,90 +2379,28 @@
         "max": 25,
         "min": 18
       },
-      "block": 22,
       "energy_shield": {
         "max": 7,
         "min": 5
       },
-      "movement_speed": -3
-    }
-  },
-  "Branded Kite Shield": {
-    "drop_level": 59,
-    "implicits": [
-      "+4% to all Elemental Resistances"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 208,
-        "min": 186
-      },
-      "block": 24,
-      "energy_shield": {
-        "max": 43,
-        "min": 38
-      },
-      "movement_speed": -3
-    }
-  },
-  "Champion Kite Shield": {
-    "drop_level": 62,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 247,
-        "min": 215
-      },
-      "block": 26,
-      "energy_shield": {
-        "max": 50,
-        "min": 44
-      },
-      "movement_speed": -3
-    }
-  },
-  "Mosaic Kite Shield": {
-    "drop_level": 65,
-    "implicits": [
-      "+8% to all Elemental Resistances"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 169,
-        "min": 147
-      },
-      "block": 24,
-      "energy_shield": {
-        "max": 34,
-        "min": 30
-      },
-      "movement_speed": -3
-    }
-  },
-  "Archon Kite Shield": {
-    "drop_level": 68,
-    "implicits": [
-      "+12% to all Elemental Resistances"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 179,
-        "min": 156
-      },
+      "evasion": null,
+      "movement_speed": -3,
       "block": 22,
-      "energy_shield": {
-        "max": 37,
-        "min": 32
-      },
-      "movement_speed": -3
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Linden Kite Shield": {
@@ -1555,12 +2415,28 @@
         "max": 56,
         "min": 43
       },
-      "block": 24,
       "energy_shield": {
         "max": 14,
         "min": 11
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Reinforced Kite Shield": {
@@ -1573,12 +2449,28 @@
         "max": 81,
         "min": 65
       },
-      "block": 26,
       "energy_shield": {
         "max": 18,
         "min": 15
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Layered Kite Shield": {
@@ -1593,12 +2485,28 @@
         "max": 73,
         "min": 62
       },
-      "block": 24,
       "energy_shield": {
         "max": 16,
         "min": 13
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Ceremonial Kite Shield": {
@@ -1613,12 +2521,28 @@
         "max": 89,
         "min": 77
       },
-      "block": 22,
       "energy_shield": {
         "max": 19,
         "min": 16
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Etched Kite Shield": {
@@ -1633,12 +2557,28 @@
         "max": 142,
         "min": 127
       },
-      "block": 24,
       "energy_shield": {
         "max": 30,
         "min": 27
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Steel Kite Shield": {
@@ -1651,12 +2591,28 @@
         "max": 167,
         "min": 146
       },
-      "block": 26,
       "energy_shield": {
         "max": 35,
         "min": 30
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Laminated Kite Shield": {
@@ -1671,12 +2627,28 @@
         "max": 133,
         "min": 113
       },
-      "block": 24,
       "energy_shield": {
         "max": 27,
         "min": 23
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Angelic Kite Shield": {
@@ -1691,12 +2663,668 @@
         "max": 142,
         "min": 124
       },
-      "block": 22,
       "energy_shield": {
         "max": 29,
         "min": 25
       },
-      "movement_speed": -3
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Branded Kite Shield": {
+    "drop_level": 59,
+    "implicits": [
+      "+4% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 208,
+        "min": 186
+      },
+      "energy_shield": {
+        "max": 43,
+        "min": 38
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Champion Kite Shield": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 247,
+        "min": 215
+      },
+      "energy_shield": {
+        "max": 50,
+        "min": 44
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Mosaic Kite Shield": {
+    "drop_level": 65,
+    "implicits": [
+      "+8% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 169,
+        "min": 147
+      },
+      "energy_shield": {
+        "max": 34,
+        "min": 30
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Archon Kite Shield": {
+    "drop_level": 68,
+    "implicits": [
+      "+12% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 179,
+        "min": 156
+      },
+      "energy_shield": {
+        "max": 37,
+        "min": 32
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 22,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Spiked Bundle": {
+    "drop_level": 5,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 6,
+        "min": 4
+      },
+      "evasion": {
+        "max": 18,
+        "min": 13
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Driftwood Spiked Shield": {
+    "drop_level": 12,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 15,
+        "min": 11
+      },
+      "evasion": {
+        "max": 60,
+        "min": 46
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Alloyed Spiked Shield": {
+    "drop_level": 20,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 16,
+        "min": 13
+      },
+      "evasion": {
+        "max": 70,
+        "min": 56
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Burnished Spiked Shield": {
+    "drop_level": 27,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 16,
+        "min": 13
+      },
+      "evasion": {
+        "max": 73,
+        "min": 62
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ornate Spiked Shield": {
+    "drop_level": 33,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 29,
+        "min": 26
+      },
+      "evasion": {
+        "max": 135,
+        "min": 120
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Redwood Spiked Shield": {
+    "drop_level": 39,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 34,
+        "min": 30
+      },
+      "evasion": {
+        "max": 163,
+        "min": 142
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Compound Spiked Shield": {
+    "drop_level": 45,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 30,
+        "min": 25
+      },
+      "evasion": {
+        "max": 144,
+        "min": 122
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Polished Spiked Shield": {
+    "drop_level": 49,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 27,
+        "min": 23
+      },
+      "evasion": {
+        "max": 131,
+        "min": 111
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sovereign Spiked Shield": {
+    "drop_level": 54,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 45,
+        "min": 40
+      },
+      "evasion": {
+        "max": 218,
+        "min": 195
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Alder Spiked Shield": {
+    "drop_level": 58,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 49,
+        "min": 43
+      },
+      "evasion": {
+        "max": 240,
+        "min": 209
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ezomyte Spiked Shield": {
+    "drop_level": 62,
+    "implicits": [
+      "+3% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 43,
+        "min": 37
+      },
+      "evasion": {
+        "max": 209,
+        "min": 181
+      },
+      "movement_speed": -3,
+      "block": 25,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Mirrored Spiked Shield": {
+    "drop_level": 66,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 35,
+        "min": 31
+      },
+      "evasion": {
+        "max": 174,
+        "min": 151
+      },
+      "movement_speed": -3,
+      "block": 26,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Supreme Spiked Shield": {
+    "drop_level": 70,
+    "implicits": [
+      "+5% chance to Suppress Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 57,
+        "min": 49
+      },
+      "evasion": {
+        "max": 278,
+        "min": 242
+      },
+      "movement_speed": -3,
+      "block": 24,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Golden Flame": {
+    "drop_level": 15,
+    "implicits": [
+      "+(11-19)% to Chaos Resistance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
+      "block": 20,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

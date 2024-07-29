@@ -5,11 +5,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 20,
       "duration": 50,
       "life_per_use": 100,
-      "mana_per_use": 70
+      "mana_per_use": 70,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Medium Hybrid Flask": {
@@ -18,11 +33,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 20,
       "duration": 50,
       "life_per_use": 230,
-      "mana_per_use": 100
+      "mana_per_use": 100,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Large Hybrid Flask": {
@@ -31,11 +61,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 20,
       "duration": 50,
       "life_per_use": 510,
-      "mana_per_use": 140
+      "mana_per_use": 140,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Colossal Hybrid Flask": {
@@ -44,11 +89,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 20,
       "duration": 50,
       "life_per_use": 690,
-      "mana_per_use": 200
+      "mana_per_use": 200,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Sacred Hybrid Flask": {
@@ -57,11 +117,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 20,
       "duration": 50,
       "life_per_use": 1440,
-      "mana_per_use": 400
+      "mana_per_use": 400,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Hallowed Hybrid Flask": {
@@ -70,11 +145,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 40,
       "charges_per_use": 20,
       "duration": 50,
       "life_per_use": 1740,
-      "mana_per_use": 480
+      "mana_per_use": 480,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

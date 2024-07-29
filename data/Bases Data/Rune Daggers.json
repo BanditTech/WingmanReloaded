@@ -1,154 +1,4 @@
 {
-  "Butcher Knife": {
-    "drop_level": 38,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 62,
-      "physical_damage_min": 7,
-      "range": 10
-    }
-  },
-  "Boot Blade": {
-    "drop_level": 44,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 59,
-      "physical_damage_min": 15,
-      "range": 10
-    }
-  },
-  "Golden Kris": {
-    "drop_level": 47,
-    "implicits": [
-      "50% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 75,
-      "physical_damage_min": 19,
-      "range": 10
-    }
-  },
-  "Royal Skean": {
-    "drop_level": 50,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 690,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 64,
-      "physical_damage_min": 16,
-      "range": 10
-    }
-  },
-  "Fiend Dagger": {
-    "drop_level": 53,
-    "implicits": [
-      "40% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 87,
-      "physical_damage_min": 22,
-      "range": 10
-    }
-  },
-  "Slaughter Knife": {
-    "drop_level": 58,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 86,
-      "physical_damage_min": 10,
-      "range": 10
-    }
-  },
-  "Ezomyte Dagger": {
-    "drop_level": 62,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 79,
-      "physical_damage_min": 20,
-      "range": 10
-    }
-  },
-  "Platinum Kris": {
-    "drop_level": 64,
-    "implicits": [
-      "50% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 95,
-      "physical_damage_min": 24,
-      "range": 10
-    }
-  },
-  "Imperial Skean": {
-    "drop_level": 66,
-    "implicits": [
-      "30% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 73,
-      "physical_damage_min": 18,
-      "range": 10
-    }
-  },
-  "Demon Dagger": {
-    "drop_level": 68,
-    "implicits": [
-      "40% increased Global Critical Strike Chance"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 97,
-      "physical_damage_min": 24,
-      "range": 10
-    }
-  },
   "Carving Knife": {
     "drop_level": 10,
     "implicits": [
@@ -157,8 +7,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 800,
       "physical_damage_max": 26,
       "physical_damage_min": 3,
       "range": 10
@@ -172,8 +37,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 800,
       "physical_damage_max": 34,
       "physical_damage_min": 8,
       "range": 10
@@ -187,8 +67,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
-      "critical_strike_chance": 650,
+      "critical_strike_chance": 850,
       "physical_damage_max": 41,
       "physical_damage_min": 10,
       "range": 10
@@ -202,8 +97,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 800,
       "physical_damage_max": 43,
       "physical_damage_min": 11,
       "range": 10
@@ -217,10 +127,325 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 833,
-      "critical_strike_chance": 650,
+      "critical_strike_chance": 850,
       "physical_damage_max": 59,
       "physical_damage_min": 15,
+      "range": 10
+    }
+  },
+  "Butcher Knife": {
+    "drop_level": 38,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 62,
+      "physical_damage_min": 7,
+      "range": 10
+    }
+  },
+  "Boot Blade": {
+    "drop_level": 44,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 59,
+      "physical_damage_min": 15,
+      "range": 10
+    }
+  },
+  "Golden Kris": {
+    "drop_level": 47,
+    "implicits": [
+      "50% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 75,
+      "physical_damage_min": 19,
+      "range": 10
+    }
+  },
+  "Royal Skean": {
+    "drop_level": 50,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 64,
+      "physical_damage_min": 16,
+      "range": 10
+    }
+  },
+  "Fiend Dagger": {
+    "drop_level": 53,
+    "implicits": [
+      "40% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 87,
+      "physical_damage_min": 22,
+      "range": 10
+    }
+  },
+  "Slaughter Knife": {
+    "drop_level": 58,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 86,
+      "physical_damage_min": 10,
+      "range": 10
+    }
+  },
+  "Ezomyte Dagger": {
+    "drop_level": 62,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 79,
+      "physical_damage_min": 20,
+      "range": 10
+    }
+  },
+  "Platinum Kris": {
+    "drop_level": 64,
+    "implicits": [
+      "50% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 95,
+      "physical_damage_min": 24,
+      "range": 10
+    }
+  },
+  "Imperial Skean": {
+    "drop_level": 66,
+    "implicits": [
+      "30% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 73,
+      "physical_damage_min": 18,
+      "range": 10
+    }
+  },
+  "Demon Dagger": {
+    "drop_level": 68,
+    "implicits": [
+      "40% increased Global Critical Strike Chance"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 97,
+      "physical_damage_min": 24,
       "range": 10
     }
   },
@@ -232,8 +457,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 800,
       "physical_damage_max": 47,
       "physical_damage_min": 12,
       "range": 10
@@ -247,8 +487,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 800,
       "physical_damage_max": 73,
       "physical_damage_min": 18,
       "range": 10
@@ -262,8 +517,23 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 800,
       "physical_damage_max": 85,
       "physical_damage_min": 21,
       "range": 10

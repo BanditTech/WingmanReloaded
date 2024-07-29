@@ -1,137 +1,17 @@
 {
-  "DualWieldingAttackSpeedJewel": {
+  "MaceDamageJewel": {
     "generation_type": "Prefix",
-    "name": "Harmonic",
+    "name": "Brutal",
     "required_level": 1,
-    "text": "(4-6)% increased Attack Speed while Dual Wielding",
+    "text": "(14-16)% increased Damage with Maces or Sceptres",
     "weight": 500,
     "influence": "Normal"
   },
-  "AxeAttackSpeedJewel": {
+  "OneHandedMeleeDamageJewel": {
     "generation_type": "Prefix",
-    "name": "Cleaving",
+    "name": "Soldier's",
     "required_level": 1,
-    "text": "(6-8)% increased Attack Speed with Axes",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "FlaskDurationJewel": {
-    "generation_type": "Prefix",
-    "name": "Prolonging",
-    "required_level": 1,
-    "text": "(6-10)% increased Flask Effect Duration",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "BlockDualWieldingJewel": {
-    "generation_type": "Prefix",
-    "name": "Parrying",
-    "required_level": 1,
-    "text": "+1% Chance to Block Attack Damage while Dual Wielding",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "ChaosDamageJewel": {
-    "generation_type": "Prefix",
-    "name": "Chaotic",
-    "required_level": 1,
-    "text": "(9-13)% increased Chaos Damage",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "ColdCritChanceJewel": {
-    "generation_type": "Prefix",
-    "name": "Avalanching",
-    "required_level": 1,
-    "text": "(14-18)% increased Critical Strike Chance with Cold Skills",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "ColdCritMultiplier": {
-    "generation_type": "Prefix",
-    "name": "Arctic",
-    "required_level": 1,
-    "text": "+(15-18)% to Critical Strike Multiplier with Cold Skills",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "ColdDamageJewel": {
-    "generation_type": "Prefix",
-    "name": "Chilling",
-    "required_level": 1,
-    "text": "(14-16)% increased Cold Damage",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "DualWieldingCritChanceJewel": {
-    "generation_type": "Prefix",
-    "name": "Technical",
-    "required_level": 1,
-    "text": "(14-18)% increased Attack Critical Strike Chance while Dual Wielding",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "DualWieldingCritMultiplierJewel": {
-    "generation_type": "Prefix",
-    "name": "Puncturing",
-    "required_level": 1,
-    "text": "+(15-18)% to Critical Strike Multiplier while Dual Wielding",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "DualWieldingSpellBlockForJewel": {
-    "generation_type": "Prefix",
-    "name": "Dissipating",
-    "required_level": 1,
-    "text": "+1% Chance to Block Spell Damage while Dual Wielding",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "FasterAilmentDamageJewel": {
-    "generation_type": "Prefix",
-    "name": "Decrepifying",
-    "required_level": 1,
-    "text": "Damaging Ailments deal damage (4-6)% faster",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "FireCritChanceJewel": {
-    "generation_type": "Prefix",
-    "name": "Incinerating",
-    "required_level": 1,
-    "text": "(14-18)% increased Critical Strike Chance with Fire Skills",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "FireCritMultiplier": {
-    "generation_type": "Prefix",
-    "name": "Infernal",
-    "required_level": 1,
-    "text": "+(15-18)% to Critical Strike Multiplier with Fire Skills",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "FireDamageJewel": {
-    "generation_type": "Prefix",
-    "name": "Flaming",
-    "required_level": 1,
-    "text": "(14-16)% increased Fire Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "IncreasedArmourJewel": {
-    "generation_type": "Prefix",
-    "name": "Armoured",
-    "required_level": 1,
-    "text": "(14-18)% increased Armour",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AxeDamageJewel": {
-    "generation_type": "Prefix",
-    "name": "Sinister",
-    "required_level": 1,
-    "text": "(14-16)% increased Damage with Axes",
+    "text": "(12-14)% increased Damage with One Handed Weapons",
     "weight": 500,
     "influence": "Normal"
   },
@@ -143,44 +23,20 @@
     "weight": 500,
     "influence": "Normal"
   },
-  "IncreasedManaRegenJewel": {
+  "FireDamageJewel": {
     "generation_type": "Prefix",
-    "name": "Energetic",
+    "name": "Flaming",
     "required_level": 1,
-    "text": "(12-15)% increased Mana Regeneration Rate",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "OneHandedMeleeDamageJewel": {
-    "generation_type": "Prefix",
-    "name": "Soldier's",
-    "required_level": 1,
-    "text": "(12-14)% increased Damage with One Handed Weapons",
+    "text": "(14-16)% increased Fire Damage",
     "weight": 500,
     "influence": "Normal"
   },
-  "LifeLeechPermyriadJewel": {
+  "ColdDamageJewel": {
     "generation_type": "Prefix",
-    "name": "Hungering",
+    "name": "Chilling",
     "required_level": 1,
-    "text": "(0.2-0.4)% of Physical Attack Damage Leeched as Life",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LightningCritChanceJewel": {
-    "generation_type": "Prefix",
-    "name": "Thundering",
-    "required_level": 1,
-    "text": "(14-18)% increased Critical Strike Chance with Lightning Skills",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "LightningCritMultiplier": {
-    "generation_type": "Prefix",
-    "name": "Surging",
-    "required_level": 1,
-    "text": "+(15-18)% to Critical Strike Multiplier with Lightning Skills",
-    "weight": 200,
+    "text": "(14-16)% increased Cold Damage",
+    "weight": 400,
     "influence": "Normal"
   },
   "LightningDamageJewel": {
@@ -191,28 +47,28 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "ManaReservationEfficiencyJewel": {
+  "PhysicalDamageJewel": {
     "generation_type": "Prefix",
-    "name": "Cerebral",
+    "name": "Sharpened",
     "required_level": 1,
-    "text": "(2-3)% increased Mana Reservation Efficiency of Skills",
-    "weight": 250,
+    "text": "(14-16)% increased Global Physical Damage",
+    "weight": 500,
     "influence": "Normal"
   },
-  "OneHandCritMultiplierJewel_": {
+  "ChaosDamageJewel": {
     "generation_type": "Prefix",
-    "name": "Piercing",
+    "name": "Chaotic",
     "required_level": 1,
-    "text": "+(15-18)% to Critical Strike Multiplier with One Handed Melee Weapons",
-    "weight": 250,
+    "text": "(9-13)% increased Chaos Damage",
+    "weight": 200,
     "influence": "Normal"
   },
-  "OneHandedCritChanceJewel": {
+  "MaceAttackSpeedJewel": {
     "generation_type": "Prefix",
-    "name": "Harming",
+    "name": "Beating",
     "required_level": 1,
-    "text": "(14-18)% increased Critical Strike Chance with One Handed Melee Weapons",
-    "weight": 250,
+    "text": "(6-8)% increased Attack Speed with Maces or Sceptres",
+    "weight": 500,
     "influence": "Normal"
   },
   "OneHandedMeleeAttackSpeedJewel": {
@@ -220,6 +76,14 @@
     "name": "Bandit's",
     "required_level": 1,
     "text": "(4-6)% increased Attack Speed with One Handed Melee Weapons",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "DualWieldingAttackSpeedJewel": {
+    "generation_type": "Prefix",
+    "name": "Harmonic",
+    "required_level": 1,
+    "text": "(4-6)% increased Attack Speed while Dual Wielding",
     "weight": 500,
     "influence": "Normal"
   },
@@ -239,12 +103,148 @@
     "weight": 250,
     "influence": "Normal"
   },
-  "PhysicalDamageJewel": {
+  "IncreasedManaRegenJewel": {
     "generation_type": "Prefix",
-    "name": "Sharpened",
+    "name": "Energetic",
     "required_level": 1,
-    "text": "(14-16)% increased Global Physical Damage",
+    "text": "(12-15)% increased Mana Regeneration Rate",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "LifeLeechPermyriadJewel": {
+    "generation_type": "Prefix",
+    "name": "Hungering",
+    "required_level": 1,
+    "text": "(0.2-0.4)% of Physical Attack Damage Leeched as Life",
     "weight": 500,
+    "influence": "Normal"
+  },
+  "IncreasedArmourJewel": {
+    "generation_type": "Prefix",
+    "name": "Armoured",
+    "required_level": 1,
+    "text": "(14-18)% increased Armour",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "OneHandedCritChanceJewel": {
+    "generation_type": "Prefix",
+    "name": "Harming",
+    "required_level": 1,
+    "text": "(14-18)% increased Critical Strike Chance with One Handed Melee Weapons",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "DualWieldingCritChanceJewel": {
+    "generation_type": "Prefix",
+    "name": "Technical",
+    "required_level": 1,
+    "text": "(14-18)% increased Attack Critical Strike Chance while Dual Wielding",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "FireCritChanceJewel": {
+    "generation_type": "Prefix",
+    "name": "Incinerating",
+    "required_level": 1,
+    "text": "(14-18)% increased Critical Strike Chance with Fire Skills",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ColdCritChanceJewel": {
+    "generation_type": "Prefix",
+    "name": "Avalanching",
+    "required_level": 1,
+    "text": "(14-18)% increased Critical Strike Chance with Cold Skills",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "LightningCritChanceJewel": {
+    "generation_type": "Prefix",
+    "name": "Thundering",
+    "required_level": 1,
+    "text": "(14-18)% increased Critical Strike Chance with Lightning Skills",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "OneHandCritMultiplierJewel_": {
+    "generation_type": "Prefix",
+    "name": "Piercing",
+    "required_level": 1,
+    "text": "+(15-18)% to Critical Strike Multiplier with One Handed Melee Weapons",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "DualWieldingCritMultiplierJewel": {
+    "generation_type": "Prefix",
+    "name": "Puncturing",
+    "required_level": 1,
+    "text": "+(15-18)% to Critical Strike Multiplier while Dual Wielding",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "FireCritMultiplier": {
+    "generation_type": "Prefix",
+    "name": "Infernal",
+    "required_level": 1,
+    "text": "+(15-18)% to Critical Strike Multiplier with Fire Skills",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ColdCritMultiplier": {
+    "generation_type": "Prefix",
+    "name": "Arctic",
+    "required_level": 1,
+    "text": "+(15-18)% to Critical Strike Multiplier with Cold Skills",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "LightningCritMultiplier": {
+    "generation_type": "Prefix",
+    "name": "Surging",
+    "required_level": 1,
+    "text": "+(15-18)% to Critical Strike Multiplier with Lightning Skills",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "FasterAilmentDamageJewel": {
+    "generation_type": "Prefix",
+    "name": "Decrepifying",
+    "required_level": 1,
+    "text": "Damaging Ailments deal damage (4-6)% faster",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "BlockDualWieldingJewel": {
+    "generation_type": "Prefix",
+    "name": "Parrying",
+    "required_level": 1,
+    "text": "+(2-3)% Chance to Block Attack Damage while Dual Wielding",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "DualWieldingSpellBlockForJewel": {
+    "generation_type": "Prefix",
+    "name": "Dissipating",
+    "required_level": 1,
+    "text": "+(2-3)% Chance to Block Spell Damage while Dual Wielding",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "ManaReservationEfficiencyJewel": {
+    "generation_type": "Prefix",
+    "name": "Cerebral",
+    "required_level": 1,
+    "text": "(2-3)% increased Mana Reservation Efficiency of Skills",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "FlaskDurationJewel": {
+    "generation_type": "Prefix",
+    "name": "Prolonging",
+    "required_level": 1,
+    "text": "(6-10)% increased Flask Effect Duration",
+    "weight": 250,
     "influence": "Normal"
   },
   "TotemDamageJewel": {
@@ -263,116 +263,20 @@
     "weight": 350,
     "influence": "Normal"
   },
-  "AllAttributesJewel": {
+  "MeleeDamageJewel_": {
     "generation_type": "Suffix",
-    "name": "of Adaption",
+    "name": "of Combat",
     "required_level": 1,
-    "text": "+(6-8) to all Attributes",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AllResistancesJewel": {
-    "generation_type": "Suffix",
-    "name": "of Resistance",
-    "required_level": 1,
-    "text": "+(8-10)% to all Elemental Resistances",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AreaDamageJewel": {
-    "generation_type": "Suffix",
-    "name": "of Blasting",
-    "required_level": 1,
-    "text": "(10-12)% increased Area Damage",
+    "text": "(10-12)% increased Melee Damage",
     "weight": 500,
     "influence": "Normal"
   },
-  "AttackAndCastSpeedJewel": {
+  "ProjectileDamageJewel": {
     "generation_type": "Suffix",
-    "name": "of Zeal",
+    "name": "of Archery",
     "required_level": 1,
-    "text": "(2-4)% increased Attack and Cast Speed",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "BleedChanceAndDurationForJewel__": {
-    "generation_type": "Suffix",
-    "name": "of Bleeding",
-    "required_level": 1,
-    "text": "Attacks have (3-5)% chance to cause Bleeding | (12-16)% increased Bleeding Duration",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "BleedDamageForJewel": {
-    "generation_type": "Suffix",
-    "name": "of Haemophilia",
-    "required_level": 1,
-    "text": "(16-20)% increased Damage with Bleeding",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "BurningDamageForJewel": {
-    "generation_type": "Suffix",
-    "name": "of Combusting",
-    "required_level": 1,
-    "text": "(16-20)% increased Burning Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ChaosResistanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of Order",
-    "required_level": 1,
-    "text": "+(7-13)% to Chaos Resistance",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "ChillEffectOnYouJewel": {
-    "generation_type": "Suffix",
-    "name": "of the Snowbreather",
-    "required_level": 1,
-    "text": "(35-30)% reduced Effect of Chill on you",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ColdLightningResistanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of Shelter",
-    "required_level": 1,
-    "text": "+(10-12)% to Cold and Lightning Resistances",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ColdResistanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of the Beast",
-    "required_level": 1,
-    "text": "+(12-15)% to Cold Resistance",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "CriticalStrikeChanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of Menace",
-    "required_level": 1,
-    "text": "(8-12)% increased Global Critical Strike Chance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "CriticalStrikeMultiplierJewel": {
-    "generation_type": "Suffix",
-    "name": "of Potency",
-    "required_level": 1,
-    "text": "+(9-12)% to Global Critical Strike Multiplier",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "CurseEffectOnYouJewel": {
-    "generation_type": "Suffix",
-    "name": "of Hexwarding",
-    "required_level": 1,
-    "text": "(30-25)% reduced Effect of Curses on you",
-    "weight": 250,
+    "text": "(10-12)% increased Projectile Damage",
+    "weight": 400,
     "influence": "Normal"
   },
   "DamageJewel": {
@@ -391,100 +295,12 @@
     "weight": 500,
     "influence": "Normal"
   },
-  "DexterityJewel": {
+  "AreaDamageJewel": {
     "generation_type": "Suffix",
-    "name": "of Dexterity",
+    "name": "of Blasting",
     "required_level": 1,
-    "text": "+(12-16) to Dexterity",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "DexterityIntelligenceJewel": {
-    "generation_type": "Suffix",
-    "name": "of Cunning",
-    "required_level": 1,
-    "text": "+(8-10) to Dexterity and Intelligence",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ElementalCritChanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of the Apocalypse",
-    "required_level": 1,
-    "text": "(10-14)% increased Critical Strike Chance with Elemental Skills",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "ElementalCritMultiplier": {
-    "generation_type": "Suffix",
-    "name": "of the Elements",
-    "required_level": 1,
-    "text": "+(12-15)% to Critical Strike Multiplier with Elemental Skills",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "FireColdResistanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of the Hearth",
-    "required_level": 1,
-    "text": "+(10-12)% to Fire and Cold Resistances",
-    "weight": 450,
-    "influence": "Normal"
-  },
-  "JewelFireDamageOverTimeMultiplier1": {
-    "generation_type": "Suffix",
-    "name": "of Zealousness",
-    "required_level": 1,
-    "text": "+(6-8)% to Fire Damage over Time Multiplier",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "FireLightningResistanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of Insulation",
-    "required_level": 1,
-    "text": "+(10-12)% to Fire and Lightning Resistances",
-    "weight": 450,
-    "influence": "Normal"
-  },
-  "FireResistanceJewel": {
-    "generation_type": "Suffix",
-    "name": "of the Dragon",
-    "required_level": 1,
-    "text": "+(12-15)% to Fire Resistance",
+    "text": "(10-12)% increased Area Damage",
     "weight": 500,
-    "influence": "Normal"
-  },
-  "FreezeChanceAndDurationJewel": {
-    "generation_type": "Suffix",
-    "name": "of Freezing",
-    "required_level": 1,
-    "text": "(3-5)% chance to Freeze | (12-16)% increased Freeze Duration on Enemies",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "JewelGlobalDamageOverTimeMultiplier1": {
-    "generation_type": "Suffix",
-    "name": "of Acrimony",
-    "required_level": 1,
-    "text": "+(4-6)% to Damage over Time Multiplier",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "IgniteChanceAndDurationJewel": {
-    "generation_type": "Suffix",
-    "name": "of Burning",
-    "required_level": 1,
-    "text": "(3-5)% chance to Ignite | (6-8)% increased Ignite Duration on Enemies",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "ImpaleChanceForJewel_": {
-    "generation_type": "Suffix",
-    "name": "of Impaling",
-    "required_level": 1,
-    "text": "(5-7)% chance to Impale Enemies on Hit with Attacks",
-    "weight": 350,
     "influence": "Normal"
   },
   "AttackSpeedJewel": {
@@ -503,6 +319,30 @@
     "weight": 300,
     "influence": "Normal"
   },
+  "AttackAndCastSpeedJewel": {
+    "generation_type": "Suffix",
+    "name": "of Zeal",
+    "required_level": 1,
+    "text": "(2-4)% increased Attack and Cast Speed",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "StrengthJewel": {
+    "generation_type": "Suffix",
+    "name": "of Strength",
+    "required_level": 1,
+    "text": "+(12-16) to Strength",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "DexterityJewel": {
+    "generation_type": "Suffix",
+    "name": "of Dexterity",
+    "required_level": 1,
+    "text": "+(12-16) to Dexterity",
+    "weight": 300,
+    "influence": "Normal"
+  },
   "IntelligenceJewel": {
     "generation_type": "Suffix",
     "name": "of Intelligence",
@@ -511,20 +351,36 @@
     "weight": 300,
     "influence": "Normal"
   },
-  "ItemRarityJewel": {
+  "StrengthDexterityJewel": {
     "generation_type": "Suffix",
-    "name": "of Raiding",
+    "name": "of Athletics",
     "required_level": 1,
-    "text": "(4-6)% increased Rarity of Items found",
-    "weight": 150,
+    "text": "+(8-10) to Strength and Dexterity",
+    "weight": 450,
     "influence": "Normal"
   },
-  "KnockbackChanceJewel_": {
+  "StrengthIntelligenceJewel": {
     "generation_type": "Suffix",
-    "name": "of Fending",
+    "name": "of Spirit",
     "required_level": 1,
-    "text": "(4-6)% chance to Knock Enemies Back on hit",
+    "text": "+(8-10) to Strength and Intelligence",
+    "weight": 450,
+    "influence": "Normal"
+  },
+  "DexterityIntelligenceJewel": {
+    "generation_type": "Suffix",
+    "name": "of Cunning",
+    "required_level": 1,
+    "text": "+(8-10) to Dexterity and Intelligence",
     "weight": 250,
+    "influence": "Normal"
+  },
+  "AllAttributesJewel": {
+    "generation_type": "Suffix",
+    "name": "of Adaption",
+    "required_level": 1,
+    "text": "+(6-8) to all Attributes",
+    "weight": 300,
     "influence": "Normal"
   },
   "LifeOnHitJewel": {
@@ -543,12 +399,20 @@
     "weight": 250,
     "influence": "Normal"
   },
-  "LightningResistanceJewel": {
+  "CriticalStrikeChanceJewel": {
     "generation_type": "Suffix",
-    "name": "of Grounding",
+    "name": "of Menace",
     "required_level": 1,
-    "text": "+(12-15)% to Lightning Resistance",
-    "weight": 300,
+    "text": "(8-12)% increased Global Critical Strike Chance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "CriticalStrikeMultiplierJewel": {
+    "generation_type": "Suffix",
+    "name": "of Potency",
+    "required_level": 1,
+    "text": "+(9-12)% to Global Critical Strike Multiplier",
+    "weight": 250,
     "influence": "Normal"
   },
   "MeleeCritChanceJewel": {
@@ -559,6 +423,14 @@
     "weight": 250,
     "influence": "Normal"
   },
+  "ElementalCritChanceJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Apocalypse",
+    "required_level": 1,
+    "text": "(10-14)% increased Critical Strike Chance with Elemental Skills",
+    "weight": 100,
+    "influence": "Normal"
+  },
   "MeleeCritMultiplier": {
     "generation_type": "Suffix",
     "name": "of Demolishing",
@@ -567,108 +439,100 @@
     "weight": 250,
     "influence": "Normal"
   },
-  "MeleeDamageJewel_": {
+  "ElementalCritMultiplier": {
     "generation_type": "Suffix",
-    "name": "of Combat",
+    "name": "of the Elements",
     "required_level": 1,
-    "text": "(10-12)% increased Melee Damage",
+    "text": "+(12-15)% to Critical Strike Multiplier with Elemental Skills",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "FireResistanceJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Dragon",
+    "required_level": 1,
+    "text": "+(12-15)% to Fire Resistance",
     "weight": 500,
     "influence": "Normal"
   },
-  "JewelPhysicalDamageOverTimeMultiplier1": {
+  "ColdResistanceJewel": {
     "generation_type": "Suffix",
-    "name": "of Exsanguinating",
+    "name": "of the Beast",
     "required_level": 1,
-    "text": "+(6-8)% to Physical Damage over Time Multiplier",
+    "text": "+(12-15)% to Cold Resistance",
     "weight": 300,
     "influence": "Normal"
   },
-  "PoisonChanceAndDurationForJewel": {
+  "LightningResistanceJewel": {
     "generation_type": "Suffix",
-    "name": "of Poisoning",
+    "name": "of Grounding",
     "required_level": 1,
-    "text": "(3-5)% chance to Poison on Hit | (6-8)% increased Poison Duration",
-    "weight": 250,
+    "text": "+(12-15)% to Lightning Resistance",
+    "weight": 300,
     "influence": "Normal"
   },
-  "PoisonDamageForJewel": {
+  "FireColdResistanceJewel": {
     "generation_type": "Suffix",
-    "name": "of Venom",
+    "name": "of the Hearth",
     "required_level": 1,
-    "text": "(16-20)% increased Damage with Poison",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ProjectileDamageJewel": {
-    "generation_type": "Suffix",
-    "name": "of Archery",
-    "required_level": 1,
-    "text": "(10-12)% increased Projectile Damage",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "BleedDurationOnYouJewel": {
-    "generation_type": "Suffix",
-    "name": "of Stemming",
-    "required_level": 1,
-    "text": "(35-30)% reduced Bleed Duration on you",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "IgniteDurationOnYouJewel": {
-    "generation_type": "Suffix",
-    "name": "of the Flameruler",
-    "required_level": 1,
-    "text": "(30-35)% reduced Ignite Duration on you",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "PoisonDurationOnYouJewel": {
-    "generation_type": "Suffix",
-    "name": "of Neutralisation",
-    "required_level": 1,
-    "text": "(35-30)% reduced Poison Duration on you",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ShockEffectOnYouJewel": {
-    "generation_type": "Suffix",
-    "name": "of the Stormdweller",
-    "required_level": 1,
-    "text": "(35-30)% reduced Effect of Shock on you",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ShockChanceAndDurationJewel": {
-    "generation_type": "Suffix",
-    "name": "of Shocking",
-    "required_level": 1,
-    "text": "(3-5)% chance to Shock | (12-16)% increased Shock Duration on Enemies",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "StrengthDexterityJewel": {
-    "generation_type": "Suffix",
-    "name": "of Athletics",
-    "required_level": 1,
-    "text": "+(8-10) to Strength and Dexterity",
+    "text": "+(10-12)% to Fire and Cold Resistances",
     "weight": 450,
     "influence": "Normal"
   },
-  "StrengthJewel": {
+  "FireLightningResistanceJewel": {
     "generation_type": "Suffix",
-    "name": "of Strength",
+    "name": "of Insulation",
     "required_level": 1,
-    "text": "+(12-16) to Strength",
-    "weight": 500,
+    "text": "+(10-12)% to Fire and Lightning Resistances",
+    "weight": 450,
     "influence": "Normal"
   },
-  "StrengthIntelligenceJewel": {
+  "ColdLightningResistanceJewel": {
     "generation_type": "Suffix",
-    "name": "of Spirit",
+    "name": "of Shelter",
     "required_level": 1,
-    "text": "+(8-10) to Strength and Intelligence",
-    "weight": 450,
+    "text": "+(10-12)% to Cold and Lightning Resistances",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AllResistancesJewel": {
+    "generation_type": "Suffix",
+    "name": "of Resistance",
+    "required_level": 1,
+    "text": "+(8-10)% to all Elemental Resistances",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "ChaosResistanceJewel": {
+    "generation_type": "Suffix",
+    "name": "of Order",
+    "required_level": 1,
+    "text": "+(7-13)% to Chaos Resistance",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MaximumFireResistanceJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Phoenix",
+    "required_level": 1,
+    "text": "+(1-2)% to maximum Fire Resistance",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "MaximumColdResistanceJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Kraken",
+    "required_level": 1,
+    "text": "+(1-2)% to maximum Cold Resistance",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "MaximumLightningResistanceJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Leviathan",
+    "required_level": 1,
+    "text": "+(1-2)% to maximum Lightning Resistance",
+    "weight": 60,
     "influence": "Normal"
   },
   "StunDurationJewel": {
@@ -687,12 +551,164 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "KnockbackChanceJewel_": {
+    "generation_type": "Suffix",
+    "name": "of Fending",
+    "required_level": 1,
+    "text": "(4-6)% chance to Knock Enemies Back on hit",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "CurseEffectOnYouJewel": {
+    "generation_type": "Suffix",
+    "name": "of Hexwarding",
+    "required_level": 1,
+    "text": "(30-25)% reduced Effect of Curses on you",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "IgniteDurationOnYouJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Flameruler",
+    "required_level": 1,
+    "text": "(30-35)% reduced Ignite Duration on you",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ChillEffectOnYouJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Snowbreather",
+    "required_level": 1,
+    "text": "(35-30)% reduced Effect of Chill on you",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ShockEffectOnYouJewel": {
+    "generation_type": "Suffix",
+    "name": "of the Stormdweller",
+    "required_level": 1,
+    "text": "(35-30)% reduced Effect of Shock on you",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "PoisonDurationOnYouJewel": {
+    "generation_type": "Suffix",
+    "name": "of Neutralisation",
+    "required_level": 1,
+    "text": "(35-30)% reduced Poison Duration on you",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "BleedDurationOnYouJewel": {
+    "generation_type": "Suffix",
+    "name": "of Stemming",
+    "required_level": 1,
+    "text": "(35-30)% reduced Bleed Duration on you",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "FreezeChanceAndDurationJewel": {
+    "generation_type": "Suffix",
+    "name": "of Freezing",
+    "required_level": 1,
+    "text": "(3-5)% chance to Freeze | (12-16)% increased Freeze Duration on Enemies",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ShockChanceAndDurationJewel": {
+    "generation_type": "Suffix",
+    "name": "of Shocking",
+    "required_level": 1,
+    "text": "(3-5)% chance to Shock | (12-16)% increased Shock Duration on Enemies",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "IgniteChanceAndDurationJewel": {
+    "generation_type": "Suffix",
+    "name": "of Burning",
+    "required_level": 1,
+    "text": "(3-5)% chance to Ignite | (6-8)% increased Ignite Duration on Enemies",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "PoisonChanceAndDurationForJewel": {
+    "generation_type": "Suffix",
+    "name": "of Poisoning",
+    "required_level": 1,
+    "text": "(3-5)% chance to Poison on Hit | (6-8)% increased Poison Duration",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "BleedChanceAndDurationForJewel__": {
+    "generation_type": "Suffix",
+    "name": "of Bleeding",
+    "required_level": 1,
+    "text": "Attacks have (3-5)% chance to cause Bleeding | (12-16)% increased Bleeding Duration",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "ImpaleChanceForJewel_": {
+    "generation_type": "Suffix",
+    "name": "of Impaling",
+    "required_level": 1,
+    "text": "(5-7)% chance to Impale Enemies on Hit with Attacks",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "PoisonDamageForJewel": {
+    "generation_type": "Suffix",
+    "name": "of Venom",
+    "required_level": 1,
+    "text": "(16-20)% increased Damage with Poison",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "BleedDamageForJewel": {
+    "generation_type": "Suffix",
+    "name": "of Haemophilia",
+    "required_level": 1,
+    "text": "(16-20)% increased Damage with Bleeding",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "BurningDamageForJewel": {
+    "generation_type": "Suffix",
+    "name": "of Combusting",
+    "required_level": 1,
+    "text": "(16-20)% increased Burning Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
   "TotemElementalResistancesJewel": {
     "generation_type": "Suffix",
     "name": "of Runes",
     "required_level": 1,
     "text": "Totems gain +(6-10)% to all Elemental Resistances",
     "weight": 350,
+    "influence": "Normal"
+  },
+  "JewelFireDamageOverTimeMultiplier1": {
+    "generation_type": "Suffix",
+    "name": "of Zealousness",
+    "required_level": 1,
+    "text": "+(6-8)% to Fire Damage over Time Multiplier",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "JewelPhysicalDamageOverTimeMultiplier1": {
+    "generation_type": "Suffix",
+    "name": "of Exsanguinating",
+    "required_level": 1,
+    "text": "+(6-8)% to Physical Damage over Time Multiplier",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "JewelGlobalDamageOverTimeMultiplier1": {
+    "generation_type": "Suffix",
+    "name": "of Acrimony",
+    "required_level": 1,
+    "text": "+(4-6)% to Damage over Time Multiplier",
+    "weight": 300,
     "influence": "Normal"
   }
 }

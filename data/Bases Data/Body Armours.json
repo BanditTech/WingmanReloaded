@@ -1,762 +1,4 @@
 {
-  "Golden Mantle": {
-    "drop_level": 20,
-    "implicits": [
-      "+(15-25)% to all Elemental Resistances"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 86,
-        "min": 75
-      },
-      "energy_shield": {
-        "max": 19,
-        "min": 17
-      },
-      "evasion": {
-        "max": 86,
-        "min": 75
-      }
-    }
-  },
-  "Shabby Jerkin": {
-    "drop_level": 2,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 41,
-        "min": 29
-      },
-      "movement_speed": -3
-    }
-  },
-  "Glorious Leather": {
-    "drop_level": 45,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 519,
-        "min": 451
-      },
-      "movement_speed": -3
-    }
-  },
-  "Coronal Leather": {
-    "drop_level": 49,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 579,
-        "min": 491
-      },
-      "movement_speed": -3
-    }
-  },
-  "Cutthroat's Garb": {
-    "drop_level": 53,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 594,
-        "min": 530
-      },
-      "movement_speed": -3
-    }
-  },
-  "Sharkskin Tunic": {
-    "drop_level": 56,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 643,
-        "min": 559
-      },
-      "movement_speed": -3
-    }
-  },
-  "Destiny Leather": {
-    "drop_level": 59,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 721,
-        "min": 601
-      },
-      "movement_speed": -3
-    }
-  },
-  "Exquisite Leather": {
-    "drop_level": 62,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 810,
-        "min": 704
-      },
-      "movement_speed": -3
-    }
-  },
-  "Zodiac Leather": {
-    "drop_level": 65,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 982,
-        "min": 854
-      },
-      "movement_speed": -3
-    }
-  },
-  "Assassin's Garb": {
-    "drop_level": 68,
-    "implicits": [
-      "3% increased Movement Speed"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 811,
-        "min": 737
-      }
-    }
-  },
-  "Strapped Leather": {
-    "drop_level": 9,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 127,
-        "min": 98
-      },
-      "movement_speed": -3
-    }
-  },
-  "Buckskin Tunic": {
-    "drop_level": 17,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 221,
-        "min": 176
-      },
-      "movement_speed": -3
-    }
-  },
-  "Wild Leather": {
-    "drop_level": 25,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 306,
-        "min": 255
-      },
-      "movement_speed": -3
-    }
-  },
-  "Full Leather": {
-    "drop_level": 28,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 327,
-        "min": 284
-      },
-      "movement_speed": -3
-    }
-  },
-  "Sun Leather": {
-    "drop_level": 32,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 382,
-        "min": 324
-      },
-      "movement_speed": -3
-    }
-  },
-  "Thief's Garb": {
-    "drop_level": 35,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 396,
-        "min": 353
-      },
-      "movement_speed": -3
-    }
-  },
-  "Eelskin Tunic": {
-    "drop_level": 37,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 429,
-        "min": 373
-      },
-      "movement_speed": -3
-    }
-  },
-  "Frontier Leather": {
-    "drop_level": 41,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 495,
-        "min": 412
-      },
-      "movement_speed": -3
-    }
-  },
-  "Padded Vest": {
-    "drop_level": 4,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 13,
-        "min": 9
-      },
-      "evasion": {
-        "max": 38,
-        "min": 27
-      },
-      "movement_speed": -3
-    }
-  },
-  "Crimson Raiment": {
-    "drop_level": 48,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 63,
-        "min": 55
-      },
-      "evasion": {
-        "max": 304,
-        "min": 264
-      },
-      "movement_speed": -3
-    }
-  },
-  "Lacquered Garb": {
-    "drop_level": 52,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 68,
-        "min": 59
-      },
-      "evasion": {
-        "max": 329,
-        "min": 286
-      },
-      "movement_speed": -3
-    }
-  },
-  "Crypt Armour": {
-    "drop_level": 56,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 76,
-        "min": 63
-      },
-      "evasion": {
-        "max": 369,
-        "min": 308
-      },
-      "movement_speed": -3
-    }
-  },
-  "Sentinel Jacket": {
-    "drop_level": 59,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 76,
-        "min": 67
-      },
-      "evasion": {
-        "max": 370,
-        "min": 330
-      },
-      "movement_speed": -3
-    }
-  },
-  "Varnished Coat": {
-    "drop_level": 62,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 89,
-        "min": 79
-      },
-      "evasion": {
-        "max": 434,
-        "min": 387
-      },
-      "movement_speed": -3
-    }
-  },
-  "Blood Raiment": {
-    "drop_level": 65,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 84,
-        "min": 73
-      },
-      "evasion": {
-        "max": 501,
-        "min": 436
-      },
-      "movement_speed": -3
-    }
-  },
-  "Sadist Garb": {
-    "drop_level": 68,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 107,
-        "min": 93
-      },
-      "evasion": {
-        "max": 491,
-        "min": 427
-      },
-      "movement_speed": -3
-    }
-  },
-  "Carnal Armour": {
-    "drop_level": 71,
-    "implicits": [
-      "+(20-25) to maximum Mana"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 113,
-        "min": 103
-      },
-      "evasion": {
-        "max": 388,
-        "min": 353
-      },
-      "movement_speed": -3
-    }
-  },
-  "Oiled Vest": {
-    "drop_level": 9,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 18,
-        "min": 14
-      },
-      "evasion": {
-        "max": 70,
-        "min": 54
-      },
-      "movement_speed": -3
-    }
-  },
-  "Padded Jacket": {
-    "drop_level": 18,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 29,
-        "min": 24
-      },
-      "evasion": {
-        "max": 128,
-        "min": 102
-      },
-      "movement_speed": -3
-    }
-  },
-  "Oiled Coat": {
-    "drop_level": 22,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 33,
-        "min": 28
-      },
-      "evasion": {
-        "max": 146,
-        "min": 124
-      },
-      "movement_speed": -3
-    }
-  },
-  "Scarlet Raiment": {
-    "drop_level": 28,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 39,
-        "min": 34
-      },
-      "evasion": {
-        "max": 180,
-        "min": 156
-      },
-      "movement_speed": -3
-    }
-  },
-  "Waxed Garb": {
-    "drop_level": 32,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 44,
-        "min": 38
-      },
-      "evasion": {
-        "max": 205,
-        "min": 178
-      },
-      "movement_speed": -3
-    }
-  },
-  "Bone Armour": {
-    "drop_level": 35,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 49,
-        "min": 41
-      },
-      "evasion": {
-        "max": 233,
-        "min": 194
-      },
-      "movement_speed": -3
-    }
-  },
-  "Quilted Jacket": {
-    "drop_level": 40,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 52,
-        "min": 46
-      },
-      "evasion": {
-        "max": 248,
-        "min": 221
-      },
-      "movement_speed": -3
-    }
-  },
-  "Sleek Coat": {
-    "drop_level": 44,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 60,
-        "min": 51
-      },
-      "evasion": {
-        "max": 287,
-        "min": 243
-      },
-      "movement_speed": -3
-    }
-  },
-  "Simple Robe": {
-    "drop_level": 3,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 20,
-        "min": 14
-      },
-      "movement_speed": -3
-    }
-  },
-  "Conjurer's Vestment": {
-    "drop_level": 45,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 105,
-        "min": 94
-      },
-      "movement_speed": -3
-    }
-  },
-  "Spidersilk Robe": {
-    "drop_level": 49,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 117,
-        "min": 101
-      },
-      "movement_speed": -3
-    }
-  },
-  "Destroyer Regalia": {
-    "drop_level": 53,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 129,
-        "min": 109
-      },
-      "movement_speed": -3
-    }
-  },
-  "Savant's Robe": {
-    "drop_level": 56,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 132,
-        "min": 115
-      },
-      "movement_speed": -3
-    }
-  },
-  "Necromancer Silks": {
-    "drop_level": 59,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 147,
-        "min": 123
-      },
-      "movement_speed": -3
-    }
-  },
-  "Occultist's Vestment": {
-    "drop_level": 62,
-    "implicits": [
-      "(3-10)% increased Spell Damage"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 151,
-        "min": 137
-      },
-      "movement_speed": -3
-    }
-  },
-  "Widowsilk Robe": {
-    "drop_level": 65,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 181,
-        "min": 157
-      },
-      "movement_speed": -3
-    }
-  },
-  "Vaal Regalia": {
-    "drop_level": 68,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 197,
-        "min": 171
-      },
-      "movement_speed": -3
-    }
-  },
-  "Silken Vest": {
-    "drop_level": 11,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 38,
-        "min": 30
-      },
-      "movement_speed": -3
-    }
-  },
-  "Scholar's Robe": {
-    "drop_level": 18,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 53,
-        "min": 43
-      },
-      "movement_speed": -3
-    }
-  },
-  "Silken Garb": {
-    "drop_level": 25,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 64,
-        "min": 56
-      },
-      "movement_speed": -3
-    }
-  },
-  "Mage's Vestment": {
-    "drop_level": 28,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 69,
-        "min": 62
-      },
-      "movement_speed": -3
-    }
-  },
-  "Silk Robe": {
-    "drop_level": 32,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 80,
-        "min": 69
-      },
-      "movement_speed": -3
-    }
-  },
-  "Cabalist Regalia": {
-    "drop_level": 35,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 88,
-        "min": 75
-      },
-      "movement_speed": -3
-    }
-  },
-  "Sage's Robe": {
-    "drop_level": 37,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 90,
-        "min": 79
-      },
-      "movement_speed": -3
-    }
-  },
-  "Silken Wrap": {
-    "drop_level": 41,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 104,
-        "min": 86
-      },
-      "movement_speed": -3
-    }
-  },
   "Plate Vest": {
     "drop_level": 1,
     "implicits": [],
@@ -767,7 +9,273 @@
         "max": 27,
         "min": 19
       },
-      "movement_speed": -3
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chestplate": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 89,
+        "min": 68
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Copper Plate": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 221,
+        "min": 176
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "War Plate": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 248,
+        "min": 216
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Full Plate": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 319,
+        "min": 284
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Arena Plate": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 389,
+        "min": 324
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Lordly Plate": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 417,
+        "min": 353
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Bronze Plate": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 429,
+        "min": 373
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Battle Plate": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 474,
+        "min": 412
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Sun Plate": {
@@ -780,7 +288,25 @@
         "max": 506,
         "min": 451
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Colosseum Plate": {
@@ -793,7 +319,25 @@
         "max": 589,
         "min": 491
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Majestic Plate": {
@@ -806,7 +350,25 @@
         "max": 625,
         "min": 530
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Golden Plate": {
@@ -819,7 +381,25 @@
         "max": 643,
         "min": 559
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Crusader Plate": {
@@ -832,7 +412,25 @@
         "max": 691,
         "min": 601
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Astral Plate": {
@@ -847,7 +445,25 @@
         "max": 782,
         "min": 711
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Gladiator Plate": {
@@ -860,7 +476,25 @@
         "max": 848,
         "min": 738
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Glorious Plate": {
@@ -872,111 +506,1394 @@
       "armour": {
         "max": 892,
         "min": 776
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Chestplate": {
-    "drop_level": 6,
+  "Titan Plate": {
+    "drop_level": 73,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
       "armour": {
-        "max": 89,
-        "min": 68
+        "max": 1009,
+        "min": 877
       },
-      "movement_speed": -5
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Copper Plate": {
+  "Legion Plate": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 1171,
+        "min": 1018
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Royal Plate": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 1360,
+        "min": 1183
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Kaom's Plate": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 23,
+        "min": 23
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Shabby Jerkin": {
+    "drop_level": 2,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 41,
+        "min": 29
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Strapped Leather": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 127,
+        "min": 98
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Buckskin Tunic": {
     "drop_level": 17,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
-      "armour": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
         "max": 221,
         "min": 176
       },
-      "movement_speed": -5
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "War Plate": {
-    "drop_level": 21,
+  "Wild Leather": {
+    "drop_level": 25,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
-      "armour": {
-        "max": 248,
-        "min": 216
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 306,
+        "min": 255
       },
-      "movement_speed": -5
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Full Plate": {
+  "Full Leather": {
     "drop_level": 28,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
-      "armour": {
-        "max": 319,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 327,
         "min": 284
       },
-      "movement_speed": -5
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Arena Plate": {
+  "Sun Leather": {
     "drop_level": 32,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
-      "armour": {
-        "max": 389,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 382,
         "min": 324
       },
-      "movement_speed": -5
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Lordly Plate": {
+  "Thief's Garb": {
     "drop_level": 35,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
-      "armour": {
-        "max": 417,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 396,
         "min": 353
       },
-      "movement_speed": -5
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Bronze Plate": {
+  "Eelskin Tunic": {
     "drop_level": 37,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
-      "armour": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
         "max": 429,
         "min": 373
       },
-      "movement_speed": -5
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Battle Plate": {
+  "Frontier Leather": {
     "drop_level": 41,
     "implicits": [],
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
-      "armour": {
-        "max": 474,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 495,
         "min": 412
       },
-      "movement_speed": -5
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Glorious Leather": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 519,
+        "min": 451
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Coronal Leather": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 579,
+        "min": 491
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cutthroat's Garb": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 594,
+        "min": 530
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sharkskin Tunic": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 643,
+        "min": 559
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Destiny Leather": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 721,
+        "min": 601
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Exquisite Leather": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 810,
+        "min": 704
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Zodiac Leather": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 982,
+        "min": 854
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Assassin's Garb": {
+    "drop_level": 68,
+    "implicits": [
+      "3% increased Movement Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 811,
+        "min": 737
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Supreme Leather": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 1028,
+        "min": 894
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Astral Leather": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 1193,
+        "min": 1037
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Syndicate's Garb": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 1386,
+        "min": 1205
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Simple Robe": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 20,
+        "min": 14
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Silken Vest": {
+    "drop_level": 11,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 38,
+        "min": 30
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Scholar's Robe": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 53,
+        "min": 43
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Silken Garb": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 64,
+        "min": 56
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Mage's Vestment": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 69,
+        "min": 62
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Silk Robe": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 80,
+        "min": 69
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cabalist Regalia": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 88,
+        "min": 75
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sage's Robe": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 90,
+        "min": 79
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Silken Wrap": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 104,
+        "min": 86
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Conjurer's Vestment": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 105,
+        "min": 94
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Spidersilk Robe": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 117,
+        "min": 101
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Destroyer Regalia": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 129,
+        "min": 109
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Savant's Robe": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 132,
+        "min": 115
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Necromancer Silks": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 147,
+        "min": 123
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Occultist's Vestment": {
+    "drop_level": 62,
+    "implicits": [
+      "(3-10)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 151,
+        "min": 137
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Widowsilk Robe": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 181,
+        "min": 157
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Vaal Regalia": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 197,
+        "min": 171
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Arcane Vestment": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 225,
+        "min": 196
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Nightweave Robe": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 260,
+        "min": 227
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Twilight Regalia": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 302,
+        "min": 262
+      },
+      "evasion": null,
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Scale Vest": {
@@ -989,147 +1906,28 @@
         "max": 38,
         "min": 27
       },
+      "energy_shield": null,
       "evasion": {
         "max": 38,
         "min": 27
       },
-      "movement_speed": -3
-    }
-  },
-  "Full Wyrmscale": {
-    "drop_level": 46,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 292,
-        "min": 254
-      },
-      "evasion": {
-        "max": 292,
-        "min": 254
-      },
-      "movement_speed": -3
-    }
-  },
-  "Commander's Brigandine": {
-    "drop_level": 50,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 325,
-        "min": 275
-      },
-      "evasion": {
-        "max": 325,
-        "min": 275
-      },
-      "movement_speed": -3
-    }
-  },
-  "Battle Lamellar": {
-    "drop_level": 54,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 341,
-        "min": 297
-      },
-      "evasion": {
-        "max": 341,
-        "min": 297
-      },
-      "movement_speed": -3
-    }
-  },
-  "Dragonscale Doublet": {
-    "drop_level": 57,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 351,
-        "min": 313
-      },
-      "evasion": {
-        "max": 351,
-        "min": 313
-      },
-      "movement_speed": -3
-    }
-  },
-  "Desert Brigandine": {
-    "drop_level": 60,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 451,
-        "min": 376
-      },
-      "evasion": {
-        "max": 451,
-        "min": 376
-      },
-      "movement_speed": -3
-    }
-  },
-  "Full Dragonscale": {
-    "drop_level": 63,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 541,
-        "min": 470
-      },
-      "evasion": {
-        "max": 429,
-        "min": 373
-      },
-      "movement_speed": -3
-    }
-  },
-  "General's Brigandine": {
-    "drop_level": 66,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 465,
-        "min": 415
-      },
-      "evasion": {
-        "max": 465,
-        "min": 415
-      },
-      "movement_speed": -3
-    }
-  },
-  "Triumphant Lamellar": {
-    "drop_level": 69,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 437,
-        "min": 380
-      },
-      "evasion": {
-        "max": 549,
-        "min": 477
-      },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Light Brigandine": {
@@ -1142,11 +1940,28 @@
         "max": 63,
         "min": 48
       },
+      "energy_shield": null,
       "evasion": {
         "max": 63,
         "min": 48
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Scale Doublet": {
@@ -1159,11 +1974,28 @@
         "max": 121,
         "min": 97
       },
+      "energy_shield": null,
       "evasion": {
         "max": 121,
         "min": 97
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Infantry Brigandine": {
@@ -1176,11 +2008,28 @@
         "max": 142,
         "min": 119
       },
+      "energy_shield": null,
       "evasion": {
         "max": 142,
         "min": 119
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Full Scale Armour": {
@@ -1193,11 +2042,28 @@
         "max": 180,
         "min": 156
       },
+      "energy_shield": null,
       "evasion": {
         "max": 180,
         "min": 156
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Soldier's Brigandine": {
@@ -1210,11 +2076,28 @@
         "max": 210,
         "min": 178
       },
+      "energy_shield": null,
       "evasion": {
         "max": 210,
         "min": 178
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Field Lamellar": {
@@ -1227,11 +2110,28 @@
         "max": 223,
         "min": 194
       },
+      "energy_shield": null,
       "evasion": {
         "max": 223,
         "min": 194
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Wyrmscale Doublet": {
@@ -1244,11 +2144,28 @@
         "max": 236,
         "min": 210
       },
+      "energy_shield": null,
       "evasion": {
         "max": 236,
         "min": 210
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Hussar Brigandine": {
@@ -1261,11 +2178,1764 @@
         "max": 278,
         "min": 232
       },
+      "energy_shield": null,
       "evasion": {
         "max": 278,
         "min": 232
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Full Wyrmscale": {
+    "drop_level": 46,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 292,
+        "min": 254
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 292,
+        "min": 254
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Commander's Brigandine": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 325,
+        "min": 275
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 325,
+        "min": 275
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Battle Lamellar": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 341,
+        "min": 297
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 341,
+        "min": 297
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Dragonscale Doublet": {
+    "drop_level": 57,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 351,
+        "min": 313
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 351,
+        "min": 313
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Desert Brigandine": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 451,
+        "min": 376
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 451,
+        "min": 376
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Full Dragonscale": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 541,
+        "min": 470
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 429,
+        "min": 373
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "General's Brigandine": {
+    "drop_level": 66,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 465,
+        "min": 415
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 465,
+        "min": 415
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Triumphant Lamellar": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 437,
+        "min": 380
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 549,
+        "min": 477
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Full Wyvernscale": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 627,
+        "min": 545
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 627,
+        "min": 545
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Marshall's Brigandine": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 721,
+        "min": 627
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 721,
+        "min": 627
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Conquest Lamellar": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 831,
+        "min": 723
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 831,
+        "min": 723
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chainmail Vest": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 38,
+        "min": 27
+      },
+      "energy_shield": {
+        "max": 13,
+        "min": 9
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chainmail Tunic": {
+    "drop_level": 8,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 63,
+        "min": 48
+      },
+      "energy_shield": {
+        "max": 17,
+        "min": 13
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ringmail Coat": {
+    "drop_level": 17,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 121,
+        "min": 97
+      },
+      "energy_shield": {
+        "max": 28,
+        "min": 22
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chainmail Doublet": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 140,
+        "min": 119
+      },
+      "energy_shield": {
+        "max": 31,
+        "min": 27
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Full Ringmail": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 180,
+        "min": 156
+      },
+      "energy_shield": {
+        "max": 39,
+        "min": 34
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Full Chainmail": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 199,
+        "min": 178
+      },
+      "energy_shield": {
+        "max": 43,
+        "min": 38
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Holy Chainmail": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 233,
+        "min": 194
+      },
+      "energy_shield": {
+        "max": 49,
+        "min": 41
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Latticed Ringmail": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 248,
+        "min": 216
+      },
+      "energy_shield": {
+        "max": 52,
+        "min": 45
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Crusader Chainmail": {
+    "drop_level": 43,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 266,
+        "min": 237
+      },
+      "energy_shield": {
+        "max": 55,
+        "min": 50
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ornate Ringmail": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 298,
+        "min": 259
+      },
+      "energy_shield": {
+        "max": 62,
+        "min": 54
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chain Hauberk": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 314,
+        "min": 281
+      },
+      "energy_shield": {
+        "max": 65,
+        "min": 58
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Devout Chainmail": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 363,
+        "min": 302
+      },
+      "energy_shield": {
+        "max": 74,
+        "min": 62
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Loricated Ringmail": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 374,
+        "min": 325
+      },
+      "energy_shield": {
+        "max": 76,
+        "min": 66
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Conquest Chainmail": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 445,
+        "min": 387
+      },
+      "energy_shield": {
+        "max": 91,
+        "min": 79
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Elegant Ringmail": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 433,
+        "min": 377
+      },
+      "energy_shield": {
+        "max": 105,
+        "min": 92
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Saint's Hauberk": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 496,
+        "min": 443
+      },
+      "energy_shield": {
+        "max": 85,
+        "min": 76
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Saintly Chainmail": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 461,
+        "min": 401
+      },
+      "energy_shield": {
+        "max": 110,
+        "min": 96
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Grand Ringmail": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 627,
+        "min": 545
+      },
+      "energy_shield": {
+        "max": 127,
+        "min": 110
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Paladin's Hauberk": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 721,
+        "min": 627
+      },
+      "energy_shield": {
+        "max": 145,
+        "min": 126
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sacred Chainmail": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 831,
+        "min": 723
+      },
+      "energy_shield": {
+        "max": 167,
+        "min": 145
+      },
+      "evasion": null,
+      "movement_speed": -5,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Padded Vest": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 13,
+        "min": 9
+      },
+      "evasion": {
+        "max": 38,
+        "min": 27
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Oiled Vest": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 18,
+        "min": 14
+      },
+      "evasion": {
+        "max": 70,
+        "min": 54
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Padded Jacket": {
+    "drop_level": 18,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 29,
+        "min": 24
+      },
+      "evasion": {
+        "max": 128,
+        "min": 102
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Oiled Coat": {
+    "drop_level": 22,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 33,
+        "min": 28
+      },
+      "evasion": {
+        "max": 146,
+        "min": 124
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Scarlet Raiment": {
+    "drop_level": 28,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 39,
+        "min": 34
+      },
+      "evasion": {
+        "max": 180,
+        "min": 156
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Waxed Garb": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 44,
+        "min": 38
+      },
+      "evasion": {
+        "max": 205,
+        "min": 178
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Bone Armour": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 49,
+        "min": 41
+      },
+      "evasion": {
+        "max": 233,
+        "min": 194
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Quilted Jacket": {
+    "drop_level": 40,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 52,
+        "min": 46
+      },
+      "evasion": {
+        "max": 248,
+        "min": 221
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sleek Coat": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 60,
+        "min": 51
+      },
+      "evasion": {
+        "max": 287,
+        "min": 243
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Crimson Raiment": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 63,
+        "min": 55
+      },
+      "evasion": {
+        "max": 304,
+        "min": 264
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Lacquered Garb": {
+    "drop_level": 52,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 68,
+        "min": 59
+      },
+      "evasion": {
+        "max": 329,
+        "min": 286
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Crypt Armour": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 76,
+        "min": 63
+      },
+      "evasion": {
+        "max": 369,
+        "min": 308
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sentinel Jacket": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 76,
+        "min": 67
+      },
+      "evasion": {
+        "max": 370,
+        "min": 330
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Varnished Coat": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 89,
+        "min": 79
+      },
+      "evasion": {
+        "max": 434,
+        "min": 387
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Blood Raiment": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 84,
+        "min": 73
+      },
+      "evasion": {
+        "max": 501,
+        "min": 436
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sadist Garb": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 107,
+        "min": 93
+      },
+      "evasion": {
+        "max": 491,
+        "min": 427
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Carnal Armour": {
+    "drop_level": 71,
+    "implicits": [
+      "+(20-25) to maximum Mana"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 113,
+        "min": 103
+      },
+      "evasion": {
+        "max": 388,
+        "min": 353
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sanguine Raiment": {
+    "drop_level": 73,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 127,
+        "min": 110
+      },
+      "evasion": {
+        "max": 627,
+        "min": 545
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Torturer Garb": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 145,
+        "min": 126
+      },
+      "evasion": {
+        "max": 721,
+        "min": 627
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Necrotic Armour": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 167,
+        "min": 145
+      },
+      "evasion": {
+        "max": 831,
+        "min": 723
+      },
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Sacrificial Garb": {
@@ -1288,7 +3958,62 @@
         "max": 378,
         "min": 329
       },
-      "movement_speed": -3
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Golden Mantle": {
+    "drop_level": 20,
+    "implicits": [
+      "+(15-25)% to all Elemental Resistances"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 86,
+        "min": 75
+      },
+      "energy_shield": {
+        "max": 19,
+        "min": 17
+      },
+      "evasion": {
+        "max": 86,
+        "min": 75
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Grasping Mail": {
@@ -1309,308 +4034,23 @@
         "max": 250,
         "min": 217
       },
-      "movement_speed": -3
-    }
-  },
-  "Chainmail Vest": {
-    "drop_level": 4,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 38,
-        "min": 27
-      },
-      "energy_shield": {
-        "max": 13,
-        "min": 9
-      },
-      "movement_speed": -5
-    }
-  },
-  "Ornate Ringmail": {
-    "drop_level": 47,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 298,
-        "min": 259
-      },
-      "energy_shield": {
-        "max": 62,
-        "min": 54
-      },
-      "movement_speed": -5
-    }
-  },
-  "Chain Hauberk": {
-    "drop_level": 51,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 314,
-        "min": 281
-      },
-      "energy_shield": {
-        "max": 65,
-        "min": 58
-      },
-      "movement_speed": -5
-    }
-  },
-  "Devout Chainmail": {
-    "drop_level": 55,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 363,
-        "min": 302
-      },
-      "energy_shield": {
-        "max": 74,
-        "min": 62
-      },
-      "movement_speed": -5
-    }
-  },
-  "Loricated Ringmail": {
-    "drop_level": 58,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 374,
-        "min": 325
-      },
-      "energy_shield": {
-        "max": 76,
-        "min": 66
-      },
-      "movement_speed": -5
-    }
-  },
-  "Conquest Chainmail": {
-    "drop_level": 61,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 445,
-        "min": 387
-      },
-      "energy_shield": {
-        "max": 91,
-        "min": 79
-      },
-      "movement_speed": -5
-    }
-  },
-  "Elegant Ringmail": {
-    "drop_level": 64,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 433,
-        "min": 377
-      },
-      "energy_shield": {
-        "max": 105,
-        "min": 92
-      },
-      "movement_speed": -5
-    }
-  },
-  "Saint's Hauberk": {
-    "drop_level": 67,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 496,
-        "min": 443
-      },
-      "energy_shield": {
-        "max": 85,
-        "min": 76
-      },
-      "movement_speed": -5
-    }
-  },
-  "Saintly Chainmail": {
-    "drop_level": 70,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 461,
-        "min": 401
-      },
-      "energy_shield": {
-        "max": 110,
-        "min": 96
-      },
-      "movement_speed": -5
-    }
-  },
-  "Chainmail Tunic": {
-    "drop_level": 8,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 63,
-        "min": 48
-      },
-      "energy_shield": {
-        "max": 17,
-        "min": 13
-      },
-      "movement_speed": -5
-    }
-  },
-  "Ringmail Coat": {
-    "drop_level": 17,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 121,
-        "min": 97
-      },
-      "energy_shield": {
-        "max": 28,
-        "min": 22
-      },
-      "movement_speed": -5
-    }
-  },
-  "Chainmail Doublet": {
-    "drop_level": 21,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 140,
-        "min": 119
-      },
-      "energy_shield": {
-        "max": 31,
-        "min": 27
-      },
-      "movement_speed": -5
-    }
-  },
-  "Full Ringmail": {
-    "drop_level": 28,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 180,
-        "min": 156
-      },
-      "energy_shield": {
-        "max": 39,
-        "min": 34
-      },
-      "movement_speed": -5
-    }
-  },
-  "Full Chainmail": {
-    "drop_level": 32,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 199,
-        "min": 178
-      },
-      "energy_shield": {
-        "max": 43,
-        "min": 38
-      },
-      "movement_speed": -5
-    }
-  },
-  "Holy Chainmail": {
-    "drop_level": 35,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 233,
-        "min": 194
-      },
-      "energy_shield": {
-        "max": 49,
-        "min": 41
-      },
-      "movement_speed": -5
-    }
-  },
-  "Latticed Ringmail": {
-    "drop_level": 39,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 248,
-        "min": 216
-      },
-      "energy_shield": {
-        "max": 52,
-        "min": 45
-      },
-      "movement_speed": -5
-    }
-  },
-  "Crusader Chainmail": {
-    "drop_level": 43,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 266,
-        "min": 237
-      },
-      "energy_shield": {
-        "max": 55,
-        "min": 50
-      },
-      "movement_speed": -5
-    }
-  },
-  "Kaom's Plate": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 23,
-        "min": 23
-      }
+      "movement_speed": -3,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

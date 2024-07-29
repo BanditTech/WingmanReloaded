@@ -1,89 +1,129 @@
 {
-  "FlaskChanceRechargeOnCrit1": {
+  "FlaskIncreasedRecoverySpeed1": {
     "generation_type": "Prefix",
-    "name": "Medic's",
-    "required_level": 8,
-    "text": "(11-15)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "name": "Undiluted",
+    "required_level": 1,
+    "text": "(41-46)% increased Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChanceRechargeOnCrit2": {
+  "FlaskIncreasedRecoverySpeed2": {
     "generation_type": "Prefix",
-    "name": "Physician's",
-    "required_level": 26,
-    "text": "(16-20)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "name": "Thickened",
+    "required_level": 21,
+    "text": "(47-52)% increased Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChanceRechargeOnCrit3___": {
+  "FlaskIncreasedRecoverySpeed3_": {
     "generation_type": "Prefix",
-    "name": "Doctor's",
-    "required_level": 44,
-    "text": "(21-25)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "name": "Viscous",
+    "required_level": 41,
+    "text": "(53-58)% increased Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChanceRechargeOnCrit4": {
+  "FlaskIncreasedRecoverySpeed4": {
     "generation_type": "Prefix",
-    "name": "Specialist's",
-    "required_level": 62,
-    "text": "(26-30)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "name": "Condensed",
+    "required_level": 61,
+    "text": "(59-64)% increased Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChanceRechargeOnCrit5": {
+  "FlaskIncreasedRecoverySpeed5": {
     "generation_type": "Prefix",
-    "name": "Surgeon's",
-    "required_level": 80,
-    "text": "(31-35)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "name": "Catalysed",
+    "required_level": 81,
+    "text": "(65-70)% increased Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChargesUsed1": {
+  "FlaskIncreasedRecoveryAmount1": {
     "generation_type": "Prefix",
-    "name": "Apprentice's",
-    "required_level": 14,
-    "text": "(16-14)% reduced Charges per use",
+    "name": "Substantial",
+    "required_level": 1,
+    "text": "(41-46)% increased Amount Recovered | 33% reduced Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChargesUsed2": {
+  "FlaskIncreasedRecoveryAmount2_": {
     "generation_type": "Prefix",
-    "name": "Scholar's",
-    "required_level": 31,
-    "text": "(19-17)% reduced Charges per use",
+    "name": "Opaque",
+    "required_level": 21,
+    "text": "(47-52)% increased Amount Recovered | 33% reduced Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChargesUsed3__": {
+  "FlaskIncreasedRecoveryAmount3": {
     "generation_type": "Prefix",
-    "name": "Practitioner's",
-    "required_level": 48,
-    "text": "(22-20)% reduced Charges per use",
+    "name": "Full-bodied",
+    "required_level": 41,
+    "text": "(53-58)% increased Amount Recovered | 33% reduced Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChargesUsed4__": {
+  "FlaskIncreasedRecoveryAmount4": {
     "generation_type": "Prefix",
-    "name": "Brewer's",
-    "required_level": 65,
-    "text": "(25-23)% reduced Charges per use",
+    "name": "Concentrated",
+    "required_level": 61,
+    "text": "(59-64)% increased Amount Recovered | 33% reduced Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskChargesUsed5": {
+  "FlaskIncreasedRecoveryAmount5": {
     "generation_type": "Prefix",
-    "name": "Chemist's",
-    "required_level": 82,
-    "text": "(28-26)% reduced Charges per use",
+    "name": "Saturated",
+    "required_level": 81,
+    "text": "(65-70)% increased Amount Recovered | 33% reduced Recovery rate",
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskEffectNotRemovedOnFullMana1": {
+  "FlaskPartialInstantRecovery1": {
     "generation_type": "Prefix",
-    "name": "Enduring",
-    "required_level": 16,
-    "text": "Effect is not removed when Unreserved Mana is Filled | Effect does not Queue | 66% reduced Amount Recovered",
+    "name": "Simmering",
+    "required_level": 3,
+    "text": "50% of Recovery applied Instantly | (55-52)% reduced Amount Recovered | 135% increased Recovery rate",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskPartialInstantRecovery2": {
+    "generation_type": "Prefix",
+    "name": "Ebullient",
+    "required_level": 22,
+    "text": "50% of Recovery applied Instantly | (51-48)% reduced Amount Recovered | 135% increased Recovery rate",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskPartialInstantRecovery3": {
+    "generation_type": "Prefix",
+    "name": "Effusive",
+    "required_level": 41,
+    "text": "50% of Recovery applied Instantly | (47-44)% reduced Amount Recovered | 135% increased Recovery rate",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskPartialInstantRecovery4": {
+    "generation_type": "Prefix",
+    "name": "Effervescent",
+    "required_level": 60,
+    "text": "50% of Recovery applied Instantly | (43-40)% reduced Amount Recovered | 135% increased Recovery rate",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskPartialInstantRecovery5_": {
+    "generation_type": "Prefix",
+    "name": "Bubbling",
+    "required_level": 79,
+    "text": "50% of Recovery applied Instantly | (39-36)% reduced Amount Recovered | 135% increased Recovery rate",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskFullInstantRecovery1": {
+    "generation_type": "Prefix",
+    "name": "Seething",
+    "required_level": 7,
+    "text": "Instant Recovery | 66% reduced Amount Recovered",
     "weight": 3000,
     "influence": "Normal"
   },
@@ -167,38 +207,6 @@
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskFullInstantRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Seething",
-    "required_level": 7,
-    "text": "Instant Recovery | 66% reduced Amount Recovered",
-    "weight": 3000,
-    "influence": "Normal"
-  },
-  "FlaskFullRechargeOnHit2_": {
-    "generation_type": "Prefix",
-    "name": "Transgressor's",
-    "required_level": 29,
-    "text": "Gain 1 Charge when you are Hit by an Enemy",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskFullRechargeOnHit4_": {
-    "generation_type": "Prefix",
-    "name": "Masochist's",
-    "required_level": 63,
-    "text": "Gain 2 Charges when you are Hit by an Enemy",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskFullRechargeOnHit5___": {
-    "generation_type": "Prefix",
-    "name": "Flagellant's",
-    "required_level": 80,
-    "text": "Gain 3 Charges when you are Hit by an Enemy",
-    "weight": 600,
-    "influence": "Normal"
-  },
   "FlaskChargesAddedIncreasePercent1": {
     "generation_type": "Prefix",
     "name": "Constant",
@@ -236,6 +244,110 @@
     "name": "Perpetual",
     "required_level": 83,
     "text": "(46-50)% increased Charge Recovery",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit1": {
+    "generation_type": "Prefix",
+    "name": "Medic's",
+    "required_level": 8,
+    "text": "(11-15)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit2": {
+    "generation_type": "Prefix",
+    "name": "Physician's",
+    "required_level": 26,
+    "text": "(16-20)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit3___": {
+    "generation_type": "Prefix",
+    "name": "Doctor's",
+    "required_level": 44,
+    "text": "(21-25)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit4": {
+    "generation_type": "Prefix",
+    "name": "Specialist's",
+    "required_level": 62,
+    "text": "(26-30)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit5": {
+    "generation_type": "Prefix",
+    "name": "Surgeon's",
+    "required_level": 80,
+    "text": "(31-35)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed1": {
+    "generation_type": "Prefix",
+    "name": "Apprentice's",
+    "required_level": 14,
+    "text": "(16-14)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed2": {
+    "generation_type": "Prefix",
+    "name": "Scholar's",
+    "required_level": 31,
+    "text": "(19-17)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed3__": {
+    "generation_type": "Prefix",
+    "name": "Practitioner's",
+    "required_level": 48,
+    "text": "(22-20)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed4__": {
+    "generation_type": "Prefix",
+    "name": "Brewer's",
+    "required_level": 65,
+    "text": "(25-23)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed5": {
+    "generation_type": "Prefix",
+    "name": "Chemist's",
+    "required_level": 82,
+    "text": "(28-26)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskFullRechargeOnHit2_": {
+    "generation_type": "Prefix",
+    "name": "Transgressor's",
+    "required_level": 29,
+    "text": "Gain 1 Charge when you are Hit by an Enemy",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskFullRechargeOnHit4_": {
+    "generation_type": "Prefix",
+    "name": "Masochist's",
+    "required_level": 63,
+    "text": "Gain 2 Charges when you are Hit by an Enemy",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskFullRechargeOnHit5___": {
+    "generation_type": "Prefix",
+    "name": "Flagellant's",
+    "required_level": 80,
+    "text": "Gain 3 Charges when you are Hit by an Enemy",
     "weight": 600,
     "influence": "Normal"
   },
@@ -279,86 +391,6 @@
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskIncreasedRecoveryAmount1": {
-    "generation_type": "Prefix",
-    "name": "Substantial",
-    "required_level": 1,
-    "text": "(41-46)% increased Amount Recovered | 33% reduced Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoveryAmount2_": {
-    "generation_type": "Prefix",
-    "name": "Opaque",
-    "required_level": 21,
-    "text": "(47-52)% increased Amount Recovered | 33% reduced Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoveryAmount3": {
-    "generation_type": "Prefix",
-    "name": "Full-bodied",
-    "required_level": 41,
-    "text": "(53-58)% increased Amount Recovered | 33% reduced Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoveryAmount4": {
-    "generation_type": "Prefix",
-    "name": "Concentrated",
-    "required_level": 61,
-    "text": "(59-64)% increased Amount Recovered | 33% reduced Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoveryAmount5": {
-    "generation_type": "Prefix",
-    "name": "Saturated",
-    "required_level": 81,
-    "text": "(65-70)% increased Amount Recovered | 33% reduced Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoverySpeed1": {
-    "generation_type": "Prefix",
-    "name": "Undiluted",
-    "required_level": 1,
-    "text": "(41-46)% increased Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoverySpeed2": {
-    "generation_type": "Prefix",
-    "name": "Thickened",
-    "required_level": 21,
-    "text": "(47-52)% increased Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoverySpeed3_": {
-    "generation_type": "Prefix",
-    "name": "Viscous",
-    "required_level": 41,
-    "text": "(53-58)% increased Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoverySpeed4": {
-    "generation_type": "Prefix",
-    "name": "Condensed",
-    "required_level": 61,
-    "text": "(59-64)% increased Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskIncreasedRecoverySpeed5": {
-    "generation_type": "Prefix",
-    "name": "Catalysed",
-    "required_level": 81,
-    "text": "(65-70)% increased Recovery rate",
-    "weight": 600,
-    "influence": "Normal"
-  },
   "FlaskManaRecoveryAtEnd1_": {
     "generation_type": "Prefix",
     "name": "Foreboding",
@@ -367,44 +399,84 @@
     "weight": 3000,
     "influence": "Normal"
   },
-  "FlaskPartialInstantRecovery1": {
+  "FlaskEffectNotRemovedOnFullMana1": {
     "generation_type": "Prefix",
-    "name": "Simmering",
-    "required_level": 3,
-    "text": "50% of Recovery applied Instantly | (55-52)% reduced Amount Recovered | 135% increased Recovery rate",
-    "weight": 600,
+    "name": "Enduring",
+    "required_level": 16,
+    "text": "Effect is not removed when Unreserved Mana is Filled | Effect does not Queue | 66% reduced Amount Recovered",
+    "weight": 3000,
     "influence": "Normal"
   },
-  "FlaskPartialInstantRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Ebullient",
-    "required_level": 22,
-    "text": "50% of Recovery applied Instantly | (51-48)% reduced Amount Recovered | 135% increased Recovery rate",
-    "weight": 600,
+  "FlaskCurseImmunity1": {
+    "generation_type": "Suffix",
+    "name": "of Warding",
+    "required_level": 18,
+    "text": "Removes Curses on use",
+    "weight": 3000,
     "influence": "Normal"
   },
-  "FlaskPartialInstantRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Effusive",
-    "required_level": 41,
-    "text": "50% of Recovery applied Instantly | (47-44)% reduced Amount Recovered | 135% increased Recovery rate",
-    "weight": 600,
+  "LocalManaFlaskHinderNearbyEnemies1_": {
+    "generation_type": "Suffix",
+    "name": "of Interference",
+    "required_level": 30,
+    "text": "Hinders nearby Enemies with (17-22)% reduced Movement Speed if used while not on Full Mana",
+    "weight": 750,
     "influence": "Normal"
   },
-  "FlaskPartialInstantRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Effervescent",
+  "LocalManaFlaskHinderNearbyEnemies2": {
+    "generation_type": "Suffix",
+    "name": "of Obstruction",
+    "required_level": 48,
+    "text": "Hinders nearby Enemies with (23-28)% reduced Movement Speed if used while not on Full Mana",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "LocalManaFlaskHinderNearbyEnemies3": {
+    "generation_type": "Suffix",
+    "name": "of Occlusion",
+    "required_level": 66,
+    "text": "Hinders nearby Enemies with (29-34)% reduced Movement Speed if used while not on Full Mana",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "LocalManaFlaskHinderNearbyEnemies4": {
+    "generation_type": "Suffix",
+    "name": "of Restraint",
+    "required_level": 84,
+    "text": "Hinders nearby Enemies with (35-40)% reduced Movement Speed if used while not on Full Mana",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "LocalFlaskImmuneToMaimAndHinder1": {
+    "generation_type": "Suffix",
+    "name": "of Movement",
+    "required_level": 16,
+    "text": "Grants Immunity to Hinder for (6-8) seconds if used while Hindered | Grants Immunity to Maim for (6-8) seconds if used while Maimed",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "LocalFlaskImmuneToMaimAndHinder2": {
+    "generation_type": "Suffix",
+    "name": "of Motion",
+    "required_level": 38,
+    "text": "Grants Immunity to Hinder for (9-11) seconds if used while Hindered | Grants Immunity to Maim for (9-11) seconds if used while Maimed",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "LocalFlaskImmuneToMaimAndHinder3": {
+    "generation_type": "Suffix",
+    "name": "of Freedom",
     "required_level": 60,
-    "text": "50% of Recovery applied Instantly | (43-40)% reduced Amount Recovered | 135% increased Recovery rate",
-    "weight": 600,
+    "text": "Grants Immunity to Hinder for (12-14) seconds if used while Hindered | Grants Immunity to Maim for (12-14) seconds if used while Maimed",
+    "weight": 750,
     "influence": "Normal"
   },
-  "FlaskPartialInstantRecovery5_": {
-    "generation_type": "Prefix",
-    "name": "Bubbling",
-    "required_level": 79,
-    "text": "50% of Recovery applied Instantly | (39-36)% reduced Amount Recovered | 135% increased Recovery rate",
-    "weight": 600,
+  "LocalFlaskImmuneToMaimAndHinder4": {
+    "generation_type": "Suffix",
+    "name": "of Liberation",
+    "required_level": 82,
+    "text": "Grants Immunity to Hinder for (15-17) seconds if used while Hindered | Grants Immunity to Maim for (15-17) seconds if used while Maimed",
+    "weight": 750,
     "influence": "Normal"
   },
   "FlaskBleedCorruptingBloodImmunity1": {
@@ -439,6 +511,38 @@
     "weight": 750,
     "influence": "Normal"
   },
+  "FlaskShockImmunity1": {
+    "generation_type": "Suffix",
+    "name": "of Earthing",
+    "required_level": 6,
+    "text": "Grants Immunity to Shock for (6-8) seconds if used while Shocked",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskShockImmunity2": {
+    "generation_type": "Suffix",
+    "name": "of Grounding",
+    "required_level": 30,
+    "text": "Grants Immunity to Shock for (9-11) seconds if used while Shocked",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskShockImmunity3": {
+    "generation_type": "Suffix",
+    "name": "of Insulation",
+    "required_level": 54,
+    "text": "Grants Immunity to Shock for (12-14) seconds if used while Shocked",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskShockImmunity4_": {
+    "generation_type": "Suffix",
+    "name": "of the Dielectric",
+    "required_level": 78,
+    "text": "Grants Immunity to Shock for (15-17) seconds if used while Shocked",
+    "weight": 750,
+    "influence": "Normal"
+  },
   "FlaskChillFreezeImmunity1": {
     "generation_type": "Suffix",
     "name": "of Convection",
@@ -469,14 +573,6 @@
     "required_level": 76,
     "text": "Grants Immunity to Chill for (15-17) seconds if used while Chilled | Grants Immunity to Freeze for (15-17) seconds if used while Frozen",
     "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskCurseImmunity1": {
-    "generation_type": "Suffix",
-    "name": "of Warding",
-    "required_level": 18,
-    "text": "Removes Curses on use",
-    "weight": 3000,
     "influence": "Normal"
   },
   "FlaskIgniteImmunity1": {
@@ -540,102 +636,6 @@
     "name": "of the Antidote",
     "required_level": 82,
     "text": "Grants Immunity to Poison for (15-17) seconds if used while Poisoned",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskShockImmunity1": {
-    "generation_type": "Suffix",
-    "name": "of Earthing",
-    "required_level": 6,
-    "text": "Grants Immunity to Shock for (6-8) seconds if used while Shocked",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskShockImmunity2": {
-    "generation_type": "Suffix",
-    "name": "of Grounding",
-    "required_level": 30,
-    "text": "Grants Immunity to Shock for (9-11) seconds if used while Shocked",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskShockImmunity3": {
-    "generation_type": "Suffix",
-    "name": "of Insulation",
-    "required_level": 54,
-    "text": "Grants Immunity to Shock for (12-14) seconds if used while Shocked",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskShockImmunity4_": {
-    "generation_type": "Suffix",
-    "name": "of the Dielectric",
-    "required_level": 78,
-    "text": "Grants Immunity to Shock for (15-17) seconds if used while Shocked",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalFlaskImmuneToMaimAndHinder1": {
-    "generation_type": "Suffix",
-    "name": "of Movement",
-    "required_level": 16,
-    "text": "Grants Immunity to Hinder for (6-8) seconds if used while Hindered | Grants Immunity to Maim for (6-8) seconds if used while Maimed",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalFlaskImmuneToMaimAndHinder2": {
-    "generation_type": "Suffix",
-    "name": "of Motion",
-    "required_level": 38,
-    "text": "Grants Immunity to Hinder for (9-11) seconds if used while Hindered | Grants Immunity to Maim for (9-11) seconds if used while Maimed",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalFlaskImmuneToMaimAndHinder3": {
-    "generation_type": "Suffix",
-    "name": "of Freedom",
-    "required_level": 60,
-    "text": "Grants Immunity to Hinder for (12-14) seconds if used while Hindered | Grants Immunity to Maim for (12-14) seconds if used while Maimed",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalFlaskImmuneToMaimAndHinder4": {
-    "generation_type": "Suffix",
-    "name": "of Liberation",
-    "required_level": 82,
-    "text": "Grants Immunity to Hinder for (15-17) seconds if used while Hindered | Grants Immunity to Maim for (15-17) seconds if used while Maimed",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalManaFlaskHinderNearbyEnemies1_": {
-    "generation_type": "Suffix",
-    "name": "of Interference",
-    "required_level": 30,
-    "text": "Hinders nearby Enemies with (17-22)% reduced Movement Speed if used while not on Full Mana",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalManaFlaskHinderNearbyEnemies2": {
-    "generation_type": "Suffix",
-    "name": "of Obstruction",
-    "required_level": 48,
-    "text": "Hinders nearby Enemies with (23-28)% reduced Movement Speed if used while not on Full Mana",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalManaFlaskHinderNearbyEnemies3": {
-    "generation_type": "Suffix",
-    "name": "of Occlusion",
-    "required_level": 66,
-    "text": "Hinders nearby Enemies with (29-34)% reduced Movement Speed if used while not on Full Mana",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "LocalManaFlaskHinderNearbyEnemies4": {
-    "generation_type": "Suffix",
-    "name": "of Restraint",
-    "required_level": 84,
-    "text": "Hinders nearby Enemies with (35-40)% reduced Movement Speed if used while not on Full Mana",
     "weight": 750,
     "influence": "Normal"
   }

@@ -1,1332 +1,4 @@
 {
-  "AttackerTakesDamage1": {
-    "generation_type": "Prefix",
-    "name": "Thorny",
-    "required_level": 1,
-    "text": "Reflects (1-4) Physical Damage to Melee Attackers",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AttackerTakesDamage2": {
-    "generation_type": "Prefix",
-    "name": "Spiny",
-    "required_level": 10,
-    "text": "Reflects (5-10) Physical Damage to Melee Attackers",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AttackerTakesDamage3": {
-    "generation_type": "Prefix",
-    "name": "Barbed",
-    "required_level": 20,
-    "text": "Reflects (11-24) Physical Damage to Melee Attackers",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AttackerTakesDamage4": {
-    "generation_type": "Prefix",
-    "name": "Jagged",
-    "required_level": 35,
-    "text": "Reflects (25-50) Physical Damage to Melee Attackers",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon1": {
-    "generation_type": "Prefix",
-    "name": "Bitter",
-    "required_level": 2,
-    "text": "(10-19)% increased Cold Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon2": {
-    "generation_type": "Prefix",
-    "name": "Biting",
-    "required_level": 11,
-    "text": "(20-29)% increased Cold Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon3_": {
-    "generation_type": "Prefix",
-    "name": "Alpine",
-    "required_level": 23,
-    "text": "(30-39)% increased Cold Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon4": {
-    "generation_type": "Prefix",
-    "name": "Snowy",
-    "required_level": 35,
-    "text": "(40-54)% increased Cold Damage",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon5_": {
-    "generation_type": "Prefix",
-    "name": "Hailing",
-    "required_level": 46,
-    "text": "(55-69)% increased Cold Damage",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon6": {
-    "generation_type": "Prefix",
-    "name": "Crystalline",
-    "required_level": 58,
-    "text": "(70-84)% increased Cold Damage",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon7": {
-    "generation_type": "Prefix",
-    "name": "Cryomancer's",
-    "required_level": 64,
-    "text": "(85-99)% increased Cold Damage",
-    "weight": 25,
-    "influence": "Normal"
-  },
-  "ColdDamagePrefixOnWeapon8": {
-    "generation_type": "Prefix",
-    "name": "Tul's",
-    "required_level": 84,
-    "text": "(100-109)% increased Cold Damage",
-    "weight": 12,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon1": {
-    "generation_type": "Prefix",
-    "name": "Searing",
-    "required_level": 2,
-    "text": "(10-19)% increased Fire Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon2": {
-    "generation_type": "Prefix",
-    "name": "Sizzling",
-    "required_level": 11,
-    "text": "(20-29)% increased Fire Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon3": {
-    "generation_type": "Prefix",
-    "name": "Blistering",
-    "required_level": 23,
-    "text": "(30-39)% increased Fire Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon4": {
-    "generation_type": "Prefix",
-    "name": "Cauterising",
-    "required_level": 35,
-    "text": "(40-54)% increased Fire Damage",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon5_": {
-    "generation_type": "Prefix",
-    "name": "Volcanic",
-    "required_level": 46,
-    "text": "(55-69)% increased Fire Damage",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon6": {
-    "generation_type": "Prefix",
-    "name": "Magmatic",
-    "required_level": 58,
-    "text": "(70-84)% increased Fire Damage",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon7_": {
-    "generation_type": "Prefix",
-    "name": "Pyroclastic",
-    "required_level": 64,
-    "text": "(85-99)% increased Fire Damage",
-    "weight": 25,
-    "influence": "Normal"
-  },
-  "FireDamagePrefixOnWeapon8_": {
-    "generation_type": "Prefix",
-    "name": "Xoph's",
-    "required_level": 84,
-    "text": "(100-109)% increased Fire Damage",
-    "weight": 12,
-    "influence": "Normal"
-  },
-  "GlobalChaosSpellGemsLevel1": {
-    "generation_type": "Prefix",
-    "name": "Mad Lord's",
-    "required_level": 2,
-    "text": "+1 to Level of all Chaos Spell Skill Gems",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "GlobalColdSpellGemsLevel1_": {
-    "generation_type": "Prefix",
-    "name": "Frost Singer's",
-    "required_level": 2,
-    "text": "+1 to Level of all Cold Spell Skill Gems",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "GlobalFireSpellGemsLevel1_": {
-    "generation_type": "Prefix",
-    "name": "Flame Shaper's",
-    "required_level": 2,
-    "text": "+1 to Level of all Fire Spell Skill Gems",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "GlobalLightningSpellGemsLevel1": {
-    "generation_type": "Prefix",
-    "name": "Thunderhand's",
-    "required_level": 2,
-    "text": "+1 to Level of all Lightning Spell Skill Gems",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MinionGemLevel1h1": {
-    "generation_type": "Prefix",
-    "name": "Martinet's",
-    "required_level": 60,
-    "text": "+1 to Level of all Minion Skill Gems",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "GlobalPhysicalSpellGemsLevel1": {
-    "generation_type": "Prefix",
-    "name": "Lithomancer's",
-    "required_level": 2,
-    "text": "+1 to Level of all Physical Spell Skill Gems",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "IncreasedLife0": {
-    "generation_type": "Prefix",
-    "name": "Hale",
-    "required_level": 1,
-    "text": "+(3-9) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife1": {
-    "generation_type": "Prefix",
-    "name": "Healthy",
-    "required_level": 5,
-    "text": "+(10-19) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife10": {
-    "generation_type": "Prefix",
-    "name": "Vigorous",
-    "required_level": 73,
-    "text": "+(100-109) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife2": {
-    "generation_type": "Prefix",
-    "name": "Sanguine",
-    "required_level": 11,
-    "text": "+(20-29) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife3": {
-    "generation_type": "Prefix",
-    "name": "Stalwart",
-    "required_level": 18,
-    "text": "+(30-39) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife4": {
-    "generation_type": "Prefix",
-    "name": "Stout",
-    "required_level": 24,
-    "text": "+(40-49) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife5": {
-    "generation_type": "Prefix",
-    "name": "Robust",
-    "required_level": 30,
-    "text": "+(50-59) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife6": {
-    "generation_type": "Prefix",
-    "name": "Rotund",
-    "required_level": 36,
-    "text": "+(60-69) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife7": {
-    "generation_type": "Prefix",
-    "name": "Virile",
-    "required_level": 44,
-    "text": "+(70-79) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife8": {
-    "generation_type": "Prefix",
-    "name": "Athlete's",
-    "required_level": 54,
-    "text": "+(80-89) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedLife9": {
-    "generation_type": "Prefix",
-    "name": "Fecund",
-    "required_level": 64,
-    "text": "+(90-99) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana1": {
-    "generation_type": "Prefix",
-    "name": "Beryl",
-    "required_level": 1,
-    "text": "+(15-19) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana10": {
-    "generation_type": "Prefix",
-    "name": "Mazarine",
-    "required_level": 69,
-    "text": "+(60-64) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana11": {
-    "generation_type": "Prefix",
-    "name": "Blue",
-    "required_level": 75,
-    "text": "+(65-68) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana12": {
-    "generation_type": "Prefix",
-    "name": "Zaffre",
-    "required_level": 81,
-    "text": "+(69-73) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana2": {
-    "generation_type": "Prefix",
-    "name": "Cobalt",
-    "required_level": 11,
-    "text": "+(20-24) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana3": {
-    "generation_type": "Prefix",
-    "name": "Azure",
-    "required_level": 17,
-    "text": "+(25-29) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana4": {
-    "generation_type": "Prefix",
-    "name": "Sapphire",
-    "required_level": 23,
-    "text": "+(30-34) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana5": {
-    "generation_type": "Prefix",
-    "name": "Cerulean",
-    "required_level": 29,
-    "text": "+(35-39) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana6": {
-    "generation_type": "Prefix",
-    "name": "Aqua",
-    "required_level": 35,
-    "text": "+(40-44) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana7": {
-    "generation_type": "Prefix",
-    "name": "Opalescent",
-    "required_level": 42,
-    "text": "+(45-49) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana8": {
-    "generation_type": "Prefix",
-    "name": "Gentian",
-    "required_level": 51,
-    "text": "+(50-54) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedMana9": {
-    "generation_type": "Prefix",
-    "name": "Chalybeous",
-    "required_level": 60,
-    "text": "+(55-59) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon1_": {
-    "generation_type": "Prefix",
-    "name": "Charged",
-    "required_level": 2,
-    "text": "(10-19)% increased Lightning Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon2": {
-    "generation_type": "Prefix",
-    "name": "Hissing",
-    "required_level": 11,
-    "text": "(20-29)% increased Lightning Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon3": {
-    "generation_type": "Prefix",
-    "name": "Bolting",
-    "required_level": 23,
-    "text": "(30-39)% increased Lightning Damage",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon4": {
-    "generation_type": "Prefix",
-    "name": "Coursing",
-    "required_level": 35,
-    "text": "(40-54)% increased Lightning Damage",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon5": {
-    "generation_type": "Prefix",
-    "name": "Striking",
-    "required_level": 46,
-    "text": "(55-69)% increased Lightning Damage",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon6": {
-    "generation_type": "Prefix",
-    "name": "Smiting",
-    "required_level": 58,
-    "text": "(70-84)% increased Lightning Damage",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon7": {
-    "generation_type": "Prefix",
-    "name": "Ionising",
-    "required_level": 64,
-    "text": "(85-99)% increased Lightning Damage",
-    "weight": 25,
-    "influence": "Normal"
-  },
-  "LightningDamagePrefixOnWeapon8": {
-    "generation_type": "Prefix",
-    "name": "Esh's",
-    "required_level": 84,
-    "text": "(100-109)% increased Lightning Damage",
-    "weight": 12,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndLife1": {
-    "generation_type": "Prefix",
-    "name": "Monk's",
-    "required_level": 30,
-    "text": "+(8-10) to maximum Energy Shield | +(18-23) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndLife2": {
-    "generation_type": "Prefix",
-    "name": "Prior's",
-    "required_level": 46,
-    "text": "+(11-15) to maximum Energy Shield | +(24-28) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndLife3_": {
-    "generation_type": "Prefix",
-    "name": "Abbot's",
-    "required_level": 62,
-    "text": "+(16-25) to maximum Energy Shield | +(29-33) to maximum Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndMana1": {
-    "generation_type": "Prefix",
-    "name": "Acolyte's",
-    "required_level": 30,
-    "text": "+(8-10) to maximum Energy Shield | +(11-15) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndMana2": {
-    "generation_type": "Prefix",
-    "name": "Deacon's",
-    "required_level": 46,
-    "text": "+(11-15) to maximum Energy Shield | +(16-19) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalBaseEnergyShieldAndMana3": {
-    "generation_type": "Prefix",
-    "name": "Priest's",
-    "required_level": 62,
-    "text": "+(16-25) to maximum Energy Shield | +(20-22) to maximum Mana",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield1": {
-    "generation_type": "Prefix",
-    "name": "Shining",
-    "required_level": 3,
-    "text": "+(3-5) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield10": {
-    "generation_type": "Prefix",
-    "name": "Incandescent",
-    "required_level": 69,
-    "text": "+(77-90) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield2": {
-    "generation_type": "Prefix",
-    "name": "Glimmering",
-    "required_level": 11,
-    "text": "+(6-11) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield3": {
-    "generation_type": "Prefix",
-    "name": "Glittering",
-    "required_level": 17,
-    "text": "+(12-16) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield4": {
-    "generation_type": "Prefix",
-    "name": "Glowing",
-    "required_level": 23,
-    "text": "+(17-23) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield5": {
-    "generation_type": "Prefix",
-    "name": "Radiating",
-    "required_level": 29,
-    "text": "+(24-30) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield6": {
-    "generation_type": "Prefix",
-    "name": "Pulsing",
-    "required_level": 35,
-    "text": "+(31-38) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield7": {
-    "generation_type": "Prefix",
-    "name": "Seething",
-    "required_level": 43,
-    "text": "+(39-49) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield8": {
-    "generation_type": "Prefix",
-    "name": "Blazing",
-    "required_level": 51,
-    "text": "+(50-61) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShield9": {
-    "generation_type": "Prefix",
-    "name": "Scintillating",
-    "required_level": 60,
-    "text": "+(62-76) to maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Pixie's",
-    "required_level": 3,
-    "text": "(6-13)% increased Energy Shield | (6-7)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Gremlin's",
-    "required_level": 18,
-    "text": "(14-20)% increased Energy Shield | (8-9)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Boggart's",
-    "required_level": 30,
-    "text": "(21-26)% increased Energy Shield | (10-11)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Naga's",
-    "required_level": 44,
-    "text": "(27-32)% increased Energy Shield | (12-13)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery5": {
-    "generation_type": "Prefix",
-    "name": "Djinn's",
-    "required_level": 60,
-    "text": "(33-38)% increased Energy Shield | (14-15)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercentAndStunRecovery6": {
-    "generation_type": "Prefix",
-    "name": "Seraphim's",
-    "required_level": 78,
-    "text": "(39-42)% increased Energy Shield | (16-17)% increased Stun and Block Recovery",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent1": {
-    "generation_type": "Prefix",
-    "name": "Protective",
-    "required_level": 3,
-    "text": "(11-28)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent2": {
-    "generation_type": "Prefix",
-    "name": "Strong-Willed",
-    "required_level": 18,
-    "text": "(27-42)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent3": {
-    "generation_type": "Prefix",
-    "name": "Resolute",
-    "required_level": 30,
-    "text": "(43-55)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent4": {
-    "generation_type": "Prefix",
-    "name": "Fearless",
-    "required_level": 44,
-    "text": "(56-67)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent5": {
-    "generation_type": "Prefix",
-    "name": "Dauntless",
-    "required_level": 60,
-    "text": "(68-79)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent6": {
-    "generation_type": "Prefix",
-    "name": "Indomitable",
-    "required_level": 72,
-    "text": "(80-91)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent7_": {
-    "generation_type": "Prefix",
-    "name": "Unassailable",
-    "required_level": 84,
-    "text": "(92-100)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LocalIncreasedEnergyShieldPercent8": {
-    "generation_type": "Prefix",
-    "name": "Unfaltering",
-    "required_level": 86,
-    "text": "(101-110)% increased Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon1": {
-    "generation_type": "Prefix",
-    "name": "Baroness's",
-    "required_level": 2,
-    "text": "Minions deal (10-19)% increased Damage",
-    "weight": 3000,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon2": {
-    "generation_type": "Prefix",
-    "name": "Viscountess's",
-    "required_level": 11,
-    "text": "Minions deal (20-29)% increased Damage",
-    "weight": 3000,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon3": {
-    "generation_type": "Prefix",
-    "name": "Marchioness's",
-    "required_level": 23,
-    "text": "Minions deal (30-39)% increased Damage",
-    "weight": 3000,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon4_": {
-    "generation_type": "Prefix",
-    "name": "Countess's",
-    "required_level": 35,
-    "text": "Minions deal (40-54)% increased Damage",
-    "weight": 1200,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon5": {
-    "generation_type": "Prefix",
-    "name": "Duchess's",
-    "required_level": 46,
-    "text": "Minions deal (55-69)% increased Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon6": {
-    "generation_type": "Prefix",
-    "name": "Princess's",
-    "required_level": 58,
-    "text": "Minions deal (70-84)% increased Damage",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon7": {
-    "generation_type": "Prefix",
-    "name": "Queen's",
-    "required_level": 64,
-    "text": "Minions deal (85-99)% increased Damage",
-    "weight": 160,
-    "influence": "Normal"
-  },
-  "MinionDamageOnWeapon8": {
-    "generation_type": "Prefix",
-    "name": "Empress's",
-    "required_level": 84,
-    "text": "Minions deal (100-109)% increased Damage",
-    "weight": 80,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon1": {
-    "generation_type": "Prefix",
-    "name": "Apprentice's",
-    "required_level": 2,
-    "text": "(10-19)% increased Spell Damage",
-    "weight": 1500,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon2": {
-    "generation_type": "Prefix",
-    "name": "Adept's",
-    "required_level": 11,
-    "text": "(20-29)% increased Spell Damage",
-    "weight": 1500,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon3": {
-    "generation_type": "Prefix",
-    "name": "Scholar's",
-    "required_level": 23,
-    "text": "(30-39)% increased Spell Damage",
-    "weight": 1500,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon4": {
-    "generation_type": "Prefix",
-    "name": "Professor's",
-    "required_level": 35,
-    "text": "(40-54)% increased Spell Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon5": {
-    "generation_type": "Prefix",
-    "name": "Occultist's",
-    "required_level": 46,
-    "text": "(55-69)% increased Spell Damage",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon6": {
-    "generation_type": "Prefix",
-    "name": "Incanter's",
-    "required_level": 58,
-    "text": "(70-84)% increased Spell Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon7": {
-    "generation_type": "Prefix",
-    "name": "Glyphic",
-    "required_level": 64,
-    "text": "(85-99)% increased Spell Damage",
-    "weight": 80,
-    "influence": "Normal"
-  },
-  "SpellDamageOnWeapon8_": {
-    "generation_type": "Prefix",
-    "name": "Runic",
-    "required_level": 84,
-    "text": "(100-109)% increased Spell Damage",
-    "weight": 40,
-    "influence": "Normal"
-  },
-  "AreaOfEffectInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 68,
-    "text": "(7-9)% increased Area of Effect",
-    "weight": 500,
-    "influence": "Warlord"
-  },
-  "AreaOfEffectInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 75,
-    "text": "(10-12)% increased Area of Effect",
-    "weight": 500,
-    "influence": "Warlord"
-  },
-  "AreaOfEffectInfluence3": {
-    "generation_type": "Prefix",
-    "name": "Warlord's",
-    "required_level": 80,
-    "text": "(13-15)% increased Area of Effect",
-    "weight": 500,
-    "influence": "Warlord"
-  },
-  "MaximumLifeInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 68,
-    "text": "(3-6)% increased maximum Life",
-    "weight": 500,
-    "influence": "Hunter"
-  },
-  "MaximumLifeInfluence2": {
-    "generation_type": "Prefix",
-    "name": "Hunter's",
-    "required_level": 84,
-    "text": "(7-10)% increased maximum Life",
-    "weight": 500,
-    "influence": "Hunter"
-  },
-  "DamagePerBlockChanceInfluence1": {
-    "generation_type": "Prefix",
-    "name": "Crusader's",
-    "required_level": 68,
-    "text": "1% increased Damage per 1% Chance to Block Attack Damage",
-    "weight": 500,
-    "influence": "Crusader"
-  },
-  "AreaOfEffectUber1_": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 68,
-    "text": "(7-9)% increased Area of Effect",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "AreaOfEffectUber2": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 75,
-    "text": "(10-12)% increased Area of Effect",
-    "weight": 600,
-    "influence": "Elder"
-  },
-  "AreaOfEffectUber3_": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 82,
-    "text": "(13-15)% increased Area of Effect",
-    "weight": 400,
-    "influence": "Elder"
-  },
-  "DamagePerBlockChanceUber1_": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 68,
-    "text": "1% increased Damage per 1% Chance to Block Attack Damage",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "GainArmourIfBlockedRecentlyUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 68,
-    "text": "+(500-650) Armour if you've Blocked Recently",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "GainArmourIfBlockedRecentlyUber2": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 75,
-    "text": "+(651-800) Armour if you've Blocked Recently",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "MaximumLifeIncreasePercentShieldUber1": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 68,
-    "text": "(3-6)% increased maximum Life",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "MaximumLifeIncreasePercentShieldUber2": {
-    "generation_type": "Prefix",
-    "name": "The Elder's",
-    "required_level": 84,
-    "text": "(7-10)% increased maximum Life",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "WeaponElementalDamageInfluence1__": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 68,
-    "text": "(26-30)% increased Elemental Damage with Attack Skills",
-    "weight": 500,
-    "Influence": "Redeemer"
-  },
-  "WeaponElementalDamageInfluence2_": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 75,
-    "text": "(31-35)% increased Elemental Damage with Attack Skills",
-    "weight": 500,
-    "Influence": "Redeemer"
-  },
-  "WeaponElementalDamageInfluence3_": {
-    "generation_type": "Prefix",
-    "name": "Redeemer's",
-    "required_level": 80,
-    "text": "(36-40)% increased Elemental Damage with Attack Skills",
-    "weight": 500,
-    "Influence": "Redeemer"
-  },
-  "MaximumTotemUber1": {
-    "generation_type": "Prefix",
-    "name": "The Shaper's",
-    "required_level": 70,
-    "text": "+1 to maximum number of Summoned Totems",
-    "weight": 800,
-    "influence": "Shaper"
-  },
-  "AllResistances1": {
-    "generation_type": "Suffix",
-    "name": "of the Crystal",
-    "required_level": 12,
-    "text": "+(3-5)% to all Elemental Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AllResistances2": {
-    "generation_type": "Suffix",
-    "name": "of the Prism",
-    "required_level": 24,
-    "text": "+(6-8)% to all Elemental Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AllResistances3": {
-    "generation_type": "Suffix",
-    "name": "of the Kaleidoscope",
-    "required_level": 36,
-    "text": "+(9-11)% to all Elemental Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AllResistances4": {
-    "generation_type": "Suffix",
-    "name": "of Variegation",
-    "required_level": 48,
-    "text": "+(12-14)% to all Elemental Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AllResistances5": {
-    "generation_type": "Suffix",
-    "name": "of the Rainbow",
-    "required_level": 60,
-    "text": "+(15-16)% to all Elemental Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AllResistances6": {
-    "generation_type": "Suffix",
-    "name": "of the Span",
-    "required_level": 85,
-    "text": "+(17-18)% to all Elemental Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidElementalStatusAilments1": {
-    "generation_type": "Suffix",
-    "name": "of Stoicism",
-    "required_level": 23,
-    "text": "(16-20)% chance to Avoid Elemental Ailments",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidElementalStatusAilments2": {
-    "generation_type": "Suffix",
-    "name": "of Resolve",
-    "required_level": 41,
-    "text": "(21-25)% chance to Avoid Elemental Ailments",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidElementalStatusAilments3__": {
-    "generation_type": "Suffix",
-    "name": "of Fortitude",
-    "required_level": 57,
-    "text": "(26-30)% chance to Avoid Elemental Ailments",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ChanceToAvoidElementalStatusAilments4": {
-    "generation_type": "Suffix",
-    "name": "of Will",
-    "required_level": 73,
-    "text": "(31-35)% chance to Avoid Elemental Ailments",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ChaosResist1": {
-    "generation_type": "Suffix",
-    "name": "of the Lost",
-    "required_level": 16,
-    "text": "+(5-10)% to Chaos Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ChaosResist2": {
-    "generation_type": "Suffix",
-    "name": "of Banishment",
-    "required_level": 30,
-    "text": "+(11-15)% to Chaos Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ChaosResist3": {
-    "generation_type": "Suffix",
-    "name": "of Eviction",
-    "required_level": 44,
-    "text": "+(16-20)% to Chaos Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ChaosResist4": {
-    "generation_type": "Suffix",
-    "name": "of Expulsion",
-    "required_level": 56,
-    "text": "+(21-25)% to Chaos Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ChaosResist5": {
-    "generation_type": "Suffix",
-    "name": "of Exile",
-    "required_level": 65,
-    "text": "+(26-30)% to Chaos Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ChaosResist6": {
-    "generation_type": "Suffix",
-    "name": "of Bameth",
-    "required_level": 81,
-    "text": "+(31-35)% to Chaos Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "ColdResist1": {
-    "generation_type": "Suffix",
-    "name": "of the Inuit",
-    "required_level": 1,
-    "text": "+(6-11)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdResist2": {
-    "generation_type": "Suffix",
-    "name": "of the Seal",
-    "required_level": 14,
-    "text": "+(12-17)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdResist3": {
-    "generation_type": "Suffix",
-    "name": "of the Penguin",
-    "required_level": 26,
-    "text": "+(18-23)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdResist4": {
-    "generation_type": "Suffix",
-    "name": "of the Yeti",
-    "required_level": 38,
-    "text": "+(24-29)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdResist5": {
-    "generation_type": "Suffix",
-    "name": "of the Walrus",
-    "required_level": 50,
-    "text": "+(30-35)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdResist6": {
-    "generation_type": "Suffix",
-    "name": "of the Polar Bear",
-    "required_level": 60,
-    "text": "+(36-41)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdResist7": {
-    "generation_type": "Suffix",
-    "name": "of the Ice",
-    "required_level": 72,
-    "text": "+(42-45)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ColdResist8": {
-    "generation_type": "Suffix",
-    "name": "of Haast",
-    "required_level": 84,
-    "text": "+(46-48)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartEnergyShieldRecharge1": {
-    "generation_type": "Suffix",
-    "name": "of Enlivening",
-    "required_level": 45,
-    "text": "(27-34)% faster start of Energy Shield Recharge",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartEnergyShieldRecharge2": {
-    "generation_type": "Suffix",
-    "name": "of Zest",
-    "required_level": 58,
-    "text": "(35-42)% faster start of Energy Shield Recharge",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartEnergyShieldRecharge3__": {
-    "generation_type": "Suffix",
-    "name": "of Galvanising",
-    "required_level": 67,
-    "text": "(43-50)% faster start of Energy Shield Recharge",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartEnergyShieldRecharge4": {
-    "generation_type": "Suffix",
-    "name": "of Vigour",
-    "required_level": 77,
-    "text": "(51-58)% faster start of Energy Shield Recharge",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FasterStartEnergyShieldRecharge5_": {
-    "generation_type": "Suffix",
-    "name": "of Second Wind",
-    "required_level": 86,
-    "text": "(59-66)% faster start of Energy Shield Recharge",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist1": {
-    "generation_type": "Suffix",
-    "name": "of the Whelpling",
-    "required_level": 1,
-    "text": "+(6-11)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist2": {
-    "generation_type": "Suffix",
-    "name": "of the Salamander",
-    "required_level": 12,
-    "text": "+(12-17)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist3": {
-    "generation_type": "Suffix",
-    "name": "of the Drake",
-    "required_level": 24,
-    "text": "+(18-23)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist4": {
-    "generation_type": "Suffix",
-    "name": "of the Kiln",
-    "required_level": 36,
-    "text": "+(24-29)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist5": {
-    "generation_type": "Suffix",
-    "name": "of the Furnace",
-    "required_level": 48,
-    "text": "+(30-35)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist6": {
-    "generation_type": "Suffix",
-    "name": "of the Volcano",
-    "required_level": 60,
-    "text": "+(36-41)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist7": {
-    "generation_type": "Suffix",
-    "name": "of the Magma",
-    "required_level": 72,
-    "text": "+(42-45)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FireResist8": {
-    "generation_type": "Suffix",
-    "name": "of Tzteosh",
-    "required_level": 84,
-    "text": "+(46-48)% to Fire Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "IncreasedCastSpeed2Royale": {
-    "generation_type": "Suffix",
-    "name": "of Nimbleness",
-    "required_level": 4,
-    "text": "(8-15)% increased Cast Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChance1": {
-    "generation_type": "Suffix",
-    "name": "of Intercepting",
-    "required_level": 10,
-    "text": "+(1-3)% Chance to Block",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChance2": {
-    "generation_type": "Suffix",
-    "name": "of Walling",
-    "required_level": 25,
-    "text": "+(4-5)% Chance to Block",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChance3": {
-    "generation_type": "Suffix",
-    "name": "of Blocking",
-    "required_level": 40,
-    "text": "+(6-7)% Chance to Block",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChance4_": {
-    "generation_type": "Suffix",
-    "name": "of the Stalwart",
-    "required_level": 55,
-    "text": "+(8-9)% Chance to Block",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChance5": {
-    "generation_type": "Suffix",
-    "name": "of the Buttress",
-    "required_level": 66,
-    "text": "+(10-11)% Chance to Block",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChance6": {
-    "generation_type": "Suffix",
-    "name": "of the Sentinel",
-    "required_level": 77,
-    "text": "+(12-13)% Chance to Block",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AdditionalBlockChance7": {
-    "generation_type": "Suffix",
-    "name": "of the Citadel",
-    "required_level": 86,
-    "text": "+(14-15)% Chance to Block",
-    "weight": 1000,
-    "influence": "Normal"
-  },
   "Intelligence1": {
     "generation_type": "Suffix",
     "name": "of the Pupil",
@@ -1399,19 +71,19 @@
     "weight": 1000,
     "influence": "Normal"
   },
+  "IncreasedCastSpeed2Royale": {
+    "generation_type": "Suffix",
+    "name": "of Nimbleness",
+    "required_level": 4,
+    "text": "(8-15)% increased Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
   "LifeRegeneration1": {
     "generation_type": "Suffix",
     "name": "of the Newt",
     "required_level": 1,
     "text": "Regenerate (1-2) Life per second",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "LifeRegeneration10__": {
-    "generation_type": "Suffix",
-    "name": "of Life-giving",
-    "required_level": 83,
-    "text": "Regenerate (128.1-152) Life per second",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -1479,6 +151,190 @@
     "weight": 1000,
     "influence": "Normal"
   },
+  "LifeRegeneration10__": {
+    "generation_type": "Suffix",
+    "name": "of Life-giving",
+    "required_level": 83,
+    "text": "Regenerate (128.1-152) Life per second",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ManaRegeneration1": {
+    "generation_type": "Suffix",
+    "name": "of Excitement",
+    "required_level": 2,
+    "text": "(10-19)% increased Mana Regeneration Rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ManaRegeneration2": {
+    "generation_type": "Suffix",
+    "name": "of Joy",
+    "required_level": 18,
+    "text": "(20-29)% increased Mana Regeneration Rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ManaRegeneration3": {
+    "generation_type": "Suffix",
+    "name": "of Elation",
+    "required_level": 29,
+    "text": "(30-39)% increased Mana Regeneration Rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ManaRegeneration4": {
+    "generation_type": "Suffix",
+    "name": "of Bliss",
+    "required_level": 42,
+    "text": "(40-49)% increased Mana Regeneration Rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ManaRegeneration5": {
+    "generation_type": "Suffix",
+    "name": "of Euphoria",
+    "required_level": 55,
+    "text": "(50-59)% increased Mana Regeneration Rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ManaRegeneration6": {
+    "generation_type": "Suffix",
+    "name": "of Nirvana",
+    "required_level": 79,
+    "text": "(60-69)% increased Mana Regeneration Rate",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist1": {
+    "generation_type": "Suffix",
+    "name": "of the Whelpling",
+    "required_level": 1,
+    "text": "+(6-11)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist2": {
+    "generation_type": "Suffix",
+    "name": "of the Salamander",
+    "required_level": 12,
+    "text": "+(12-17)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist3": {
+    "generation_type": "Suffix",
+    "name": "of the Drake",
+    "required_level": 24,
+    "text": "+(18-23)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist4": {
+    "generation_type": "Suffix",
+    "name": "of the Kiln",
+    "required_level": 36,
+    "text": "+(24-29)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist5": {
+    "generation_type": "Suffix",
+    "name": "of the Furnace",
+    "required_level": 48,
+    "text": "+(30-35)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist6": {
+    "generation_type": "Suffix",
+    "name": "of the Volcano",
+    "required_level": 60,
+    "text": "+(36-41)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist7": {
+    "generation_type": "Suffix",
+    "name": "of the Magma",
+    "required_level": 72,
+    "text": "+(42-45)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FireResist8": {
+    "generation_type": "Suffix",
+    "name": "of Tzteosh",
+    "required_level": 84,
+    "text": "+(46-48)% to Fire Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist1": {
+    "generation_type": "Suffix",
+    "name": "of the Inuit",
+    "required_level": 1,
+    "text": "+(6-11)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist2": {
+    "generation_type": "Suffix",
+    "name": "of the Seal",
+    "required_level": 14,
+    "text": "+(12-17)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist3": {
+    "generation_type": "Suffix",
+    "name": "of the Penguin",
+    "required_level": 26,
+    "text": "+(18-23)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist4": {
+    "generation_type": "Suffix",
+    "name": "of the Yeti",
+    "required_level": 38,
+    "text": "+(24-29)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist5": {
+    "generation_type": "Suffix",
+    "name": "of the Walrus",
+    "required_level": 50,
+    "text": "+(30-35)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist6": {
+    "generation_type": "Suffix",
+    "name": "of the Polar Bear",
+    "required_level": 60,
+    "text": "+(36-41)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist7": {
+    "generation_type": "Suffix",
+    "name": "of the Ice",
+    "required_level": 72,
+    "text": "+(42-45)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ColdResist8": {
+    "generation_type": "Suffix",
+    "name": "of Haast",
+    "required_level": 84,
+    "text": "+(46-48)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
   "LightningResist1": {
     "generation_type": "Suffix",
     "name": "of the Cloud",
@@ -1543,451 +399,99 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "ReducedLocalAttributeRequirements1": {
+  "ChaosResist1": {
     "generation_type": "Suffix",
-    "name": "of the Worthy",
-    "required_level": 36,
-    "text": "18% reduced Attribute Requirements",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "ReducedLocalAttributeRequirements2": {
-    "generation_type": "Suffix",
-    "name": "of the Apt",
-    "required_level": 60,
-    "text": "32% reduced Attribute Requirements",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "ManaRegeneration1": {
-    "generation_type": "Suffix",
-    "name": "of Excitement",
-    "required_level": 2,
-    "text": "(10-19)% increased Mana Regeneration Rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ManaRegeneration2": {
-    "generation_type": "Suffix",
-    "name": "of Joy",
-    "required_level": 18,
-    "text": "(20-29)% increased Mana Regeneration Rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ManaRegeneration3": {
-    "generation_type": "Suffix",
-    "name": "of Elation",
-    "required_level": 29,
-    "text": "(30-39)% increased Mana Regeneration Rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ManaRegeneration4": {
-    "generation_type": "Suffix",
-    "name": "of Bliss",
-    "required_level": 42,
-    "text": "(40-49)% increased Mana Regeneration Rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ManaRegeneration5": {
-    "generation_type": "Suffix",
-    "name": "of Euphoria",
-    "required_level": 55,
-    "text": "(50-59)% increased Mana Regeneration Rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "ManaRegeneration6": {
-    "generation_type": "Suffix",
-    "name": "of Nirvana",
-    "required_level": 79,
-    "text": "(60-69)% increased Mana Regeneration Rate",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MaximumChaosResist1": {
-    "generation_type": "Suffix",
-    "name": "of Regularity",
-    "required_level": 68,
-    "text": "+1% to maximum Chaos Resistance",
-    "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumChaosResist2_": {
-    "generation_type": "Suffix",
-    "name": "of Concord",
-    "required_level": 75,
-    "text": "+2% to maximum Chaos Resistance",
-    "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumChaosResist3": {
-    "generation_type": "Suffix",
-    "name": "of Harmony",
-    "required_level": 81,
-    "text": "+3% to maximum Chaos Resistance",
-    "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumColdResist1": {
-    "generation_type": "Suffix",
-    "name": "of Furs",
-    "required_level": 68,
-    "text": "+1% to maximum Cold Resistance",
+    "name": "of the Lost",
+    "required_level": 16,
+    "text": "+(5-10)% to Chaos Resistance",
     "weight": 250,
     "influence": "Normal"
   },
-  "MaximumColdResist2": {
+  "ChaosResist2": {
     "generation_type": "Suffix",
-    "name": "of the Tundra",
-    "required_level": 75,
-    "text": "+2% to maximum Cold Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumColdResist3": {
-    "generation_type": "Suffix",
-    "name": "of the Mammoth",
-    "required_level": 81,
-    "text": "+3% to maximum Cold Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumFireResist1": {
-    "generation_type": "Suffix",
-    "name": "of the Bushfire",
-    "required_level": 68,
-    "text": "+1% to maximum Fire Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumFireResist2_": {
-    "generation_type": "Suffix",
-    "name": "of the Molten Core",
-    "required_level": 75,
-    "text": "+2% to maximum Fire Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumFireResist3": {
-    "generation_type": "Suffix",
-    "name": "of the Solar Storm",
-    "required_level": 81,
-    "text": "+3% to maximum Fire Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumLightningResist1": {
-    "generation_type": "Suffix",
-    "name": "of Impedance",
-    "required_level": 68,
-    "text": "+1% to maximum Lightning Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumLightningResist2___": {
-    "generation_type": "Suffix",
-    "name": "of Shockproofing",
-    "required_level": 75,
-    "text": "+2% to maximum Lightning Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumLightningResist3": {
-    "generation_type": "Suffix",
-    "name": "of the Lightning Rod",
-    "required_level": 81,
-    "text": "+3% to maximum Lightning Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MaximumAllResist1_": {
-    "generation_type": "Suffix",
-    "name": "of the Sempiternal",
-    "required_level": 75,
-    "text": "+1% to all maximum Resistances",
-    "weight": 125,
-    "influence": "Normal"
-  },
-  "MaximumAllResist2": {
-    "generation_type": "Suffix",
-    "name": "of the Deathless",
-    "required_level": 81,
-    "text": "+2% to all maximum Resistances",
-    "weight": 125,
-    "influence": "Normal"
-  },
-  "MinionCriticalStrikeChanceIncrease1": {
-    "generation_type": "Suffix",
-    "name": "of Luck",
-    "required_level": 11,
-    "text": "Minions have (10-19)% increased Critical Strike Chance",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionCriticalStrikeChanceIncrease2": {
-    "generation_type": "Suffix",
-    "name": "of Fortune",
-    "required_level": 21,
-    "text": "Minions have (20-39)% increased Critical Strike Chance",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionCriticalStrikeChanceIncrease3": {
-    "generation_type": "Suffix",
-    "name": "of Providence",
-    "required_level": 28,
-    "text": "Minions have (40-59)% increased Critical Strike Chance",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionCriticalStrikeChanceIncrease4": {
-    "generation_type": "Suffix",
-    "name": "of Serendipity",
-    "required_level": 41,
-    "text": "Minions have (60-79)% increased Critical Strike Chance",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionCriticalStrikeChanceIncrease5": {
-    "generation_type": "Suffix",
-    "name": "of Determinism",
-    "required_level": 59,
-    "text": "Minions have (80-99)% increased Critical Strike Chance",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionCriticalStrikeChanceIncrease6": {
-    "generation_type": "Suffix",
-    "name": "of Destiny",
-    "required_level": 76,
-    "text": "Minions have (100-109)% increased Critical Strike Chance",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionResistancesWeapon1_": {
-    "generation_type": "Suffix",
-    "name": "of Adjustment",
-    "required_level": 8,
-    "text": "Minions have +(11-15)% to all Elemental Resistances",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionResistancesWeapon2": {
-    "generation_type": "Suffix",
-    "name": "of Acclimatisation",
-    "required_level": 24,
-    "text": "Minions have +(16-20)% to all Elemental Resistances",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionResistancesWeapon3": {
-    "generation_type": "Suffix",
-    "name": "of Adaptation",
-    "required_level": 37,
-    "text": "Minions have +(21-23)% to all Elemental Resistances",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionResistancesWeapon4": {
-    "generation_type": "Suffix",
-    "name": "of Evolution",
-    "required_level": 50,
-    "text": "Minions have +(24-26)% to all Elemental Resistances",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionResistancesWeapon5": {
-    "generation_type": "Suffix",
-    "name": "of Metamorphosis",
-    "required_level": 61,
-    "text": "Minions have +(27-30)% to all Elemental Resistances",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionGrantsConvocation1": {
-    "generation_type": "Suffix",
-    "name": "of the Convocation",
-    "required_level": 45,
-    "text": "Grants Level 1 Convocation Skill",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MinionLifeWeapon1": {
-    "generation_type": "Suffix",
-    "name": "of the Administrator",
-    "required_level": 10,
-    "text": "Minions have (13-17)% increased maximum Life",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionLifeWeapon2": {
-    "generation_type": "Suffix",
-    "name": "of the Rector",
-    "required_level": 26,
-    "text": "Minions have (18-22)% increased maximum Life",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionLifeWeapon3": {
-    "generation_type": "Suffix",
-    "name": "of the Overseer",
-    "required_level": 42,
-    "text": "Minions have (23-27)% increased maximum Life",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionLifeWeapon4__": {
-    "generation_type": "Suffix",
-    "name": "of the Taskmaster",
-    "required_level": 58,
-    "text": "Minions have (28-32)% increased maximum Life",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionLifeWeapon5": {
-    "generation_type": "Suffix",
-    "name": "of the Slavedriver",
-    "required_level": 74,
-    "text": "Minions have (33-36)% increased maximum Life",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionLifeWeapon6_": {
-    "generation_type": "Suffix",
-    "name": "of the Despot",
-    "required_level": 82,
-    "text": "Minions have (37-40)% increased maximum Life",
-    "weight": 2000,
-    "influence": "Normal"
-  },
-  "MinionMaxElementalResistance1": {
-    "generation_type": "Suffix",
-    "name": "of Impermeability",
-    "required_level": 68,
-    "text": "Minions have +(3-4)% to all maximum Elemental Resistances",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "MinionMaxElementalResistance2": {
-    "generation_type": "Suffix",
-    "name": "of Countervailing",
-    "required_level": 75,
-    "text": "Minions have +(5-6)% to all maximum Elemental Resistances",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "MinionMaxElementalResistance3": {
-    "generation_type": "Suffix",
-    "name": "of Imperviousness",
-    "required_level": 81,
-    "text": "Minions have +(7-8)% to all maximum Elemental Resistances",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "MinionPhysicalDamageReduction1": {
-    "generation_type": "Suffix",
-    "name": "of the Guard",
-    "required_level": 68,
-    "text": "Minions have (7-9)% additional Physical Damage Reduction",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "MinionPhysicalDamageReduction2": {
-    "generation_type": "Suffix",
-    "name": "of the Brigade",
-    "required_level": 75,
-    "text": "Minions have (10-12)% additional Physical Damage Reduction",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "MinionPhysicalDamageReduction3": {
-    "generation_type": "Suffix",
-    "name": "of the Phalanx",
-    "required_level": 81,
-    "text": "Minions have (13-15)% additional Physical Damage Reduction",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "SpellBlockPercentage1__": {
-    "generation_type": "Suffix",
-    "name": "of the Barrier",
+    "name": "of Banishment",
     "required_level": 30,
-    "text": "(4-6)% Chance to Block Spell Damage",
+    "text": "+(11-15)% to Chaos Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ChaosResist3": {
+    "generation_type": "Suffix",
+    "name": "of Eviction",
+    "required_level": 44,
+    "text": "+(16-20)% to Chaos Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ChaosResist4": {
+    "generation_type": "Suffix",
+    "name": "of Expulsion",
+    "required_level": 56,
+    "text": "+(21-25)% to Chaos Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ChaosResist5": {
+    "generation_type": "Suffix",
+    "name": "of Exile",
+    "required_level": 65,
+    "text": "+(26-30)% to Chaos Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "ChaosResist6": {
+    "generation_type": "Suffix",
+    "name": "of Bameth",
+    "required_level": 81,
+    "text": "+(31-35)% to Chaos Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AllResistances1": {
+    "generation_type": "Suffix",
+    "name": "of the Crystal",
+    "required_level": 12,
+    "text": "+(3-5)% to all Elemental Resistances",
     "weight": 1000,
     "influence": "Normal"
   },
-  "SpellBlockPercentage2": {
+  "AllResistances2": {
     "generation_type": "Suffix",
-    "name": "of the Bulwark",
-    "required_level": 52,
-    "text": "(7-9)% Chance to Block Spell Damage",
+    "name": "of the Prism",
+    "required_level": 24,
+    "text": "+(6-8)% to all Elemental Resistances",
     "weight": 1000,
     "influence": "Normal"
   },
-  "SpellBlockPercentage3_": {
+  "AllResistances3": {
     "generation_type": "Suffix",
-    "name": "of the Barricade",
-    "required_level": 71,
-    "text": "(10-12)% Chance to Block Spell Damage",
+    "name": "of the Kaleidoscope",
+    "required_level": 36,
+    "text": "+(9-11)% to all Elemental Resistances",
     "weight": 1000,
     "influence": "Normal"
   },
-  "SpellBlockPercentage4_": {
+  "AllResistances4": {
     "generation_type": "Suffix",
-    "name": "of the Bastion",
-    "required_level": 84,
-    "text": "(13-15)% Chance to Block Spell Damage",
+    "name": "of Variegation",
+    "required_level": 48,
+    "text": "+(12-14)% to all Elemental Resistances",
     "weight": 1000,
     "influence": "Normal"
   },
-  "SpellCriticalStrikeChance1": {
+  "AllResistances5": {
     "generation_type": "Suffix",
-    "name": "of Menace",
-    "required_level": 11,
-    "text": "(10-19)% increased Critical Strike Chance for Spells",
+    "name": "of the Rainbow",
+    "required_level": 60,
+    "text": "+(15-16)% to all Elemental Resistances",
     "weight": 1000,
     "influence": "Normal"
   },
-  "SpellCriticalStrikeChance2": {
+  "AllResistances6": {
     "generation_type": "Suffix",
-    "name": "of Havoc",
-    "required_level": 21,
-    "text": "(20-39)% increased Critical Strike Chance for Spells",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SpellCriticalStrikeChance3": {
-    "generation_type": "Suffix",
-    "name": "of Disaster",
-    "required_level": 28,
-    "text": "(40-59)% increased Critical Strike Chance for Spells",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SpellCriticalStrikeChance4": {
-    "generation_type": "Suffix",
-    "name": "of Calamity",
-    "required_level": 41,
-    "text": "(60-79)% increased Critical Strike Chance for Spells",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SpellCriticalStrikeChance5": {
-    "generation_type": "Suffix",
-    "name": "of Ruin",
-    "required_level": 59,
-    "text": "(80-99)% increased Critical Strike Chance for Spells",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SpellCriticalStrikeChance6_": {
-    "generation_type": "Suffix",
-    "name": "of Unmaking",
-    "required_level": 76,
-    "text": "(100-109)% increased Critical Strike Chance for Spells",
+    "name": "of the Span",
+    "required_level": 85,
+    "text": "+(17-18)% to all Elemental Resistances",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -2039,19 +543,1299 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "AttackBlockIfBlockedAttacksInfluence1": {
+  "SpellCriticalStrikeChance1": {
+    "generation_type": "Suffix",
+    "name": "of Menace",
+    "required_level": 11,
+    "text": "(10-19)% increased Spell Critical Strike Chance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SpellCriticalStrikeChance2": {
+    "generation_type": "Suffix",
+    "name": "of Havoc",
+    "required_level": 21,
+    "text": "(20-39)% increased Spell Critical Strike Chance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SpellCriticalStrikeChance3": {
+    "generation_type": "Suffix",
+    "name": "of Disaster",
+    "required_level": 28,
+    "text": "(40-59)% increased Spell Critical Strike Chance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SpellCriticalStrikeChance4": {
+    "generation_type": "Suffix",
+    "name": "of Calamity",
+    "required_level": 41,
+    "text": "(60-79)% increased Spell Critical Strike Chance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SpellCriticalStrikeChance5": {
+    "generation_type": "Suffix",
+    "name": "of Ruin",
+    "required_level": 59,
+    "text": "(80-99)% increased Spell Critical Strike Chance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SpellCriticalStrikeChance6_": {
+    "generation_type": "Suffix",
+    "name": "of Unmaking",
+    "required_level": 76,
+    "text": "(100-109)% increased Spell Critical Strike Chance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ReducedLocalAttributeRequirements1": {
+    "generation_type": "Suffix",
+    "name": "of the Worthy",
+    "required_level": 36,
+    "text": "18% reduced Attribute Requirements",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "ReducedLocalAttributeRequirements2": {
+    "generation_type": "Suffix",
+    "name": "of the Apt",
+    "required_level": 60,
+    "text": "32% reduced Attribute Requirements",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "ChanceToAvoidElementalStatusAilments1": {
+    "generation_type": "Suffix",
+    "name": "of Stoicism",
+    "required_level": 23,
+    "text": "(16-20)% chance to Avoid Elemental Ailments",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ChanceToAvoidElementalStatusAilments2": {
+    "generation_type": "Suffix",
+    "name": "of Resolve",
+    "required_level": 41,
+    "text": "(21-25)% chance to Avoid Elemental Ailments",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ChanceToAvoidElementalStatusAilments3__": {
+    "generation_type": "Suffix",
+    "name": "of Fortitude",
+    "required_level": 57,
+    "text": "(26-30)% chance to Avoid Elemental Ailments",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ChanceToAvoidElementalStatusAilments4": {
+    "generation_type": "Suffix",
+    "name": "of Will",
+    "required_level": 73,
+    "text": "(31-35)% chance to Avoid Elemental Ailments",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FasterStartEnergyShieldRecharge1": {
+    "generation_type": "Suffix",
+    "name": "of Enlivening",
+    "required_level": 45,
+    "text": "(27-34)% faster start of Energy Shield Recharge",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FasterStartEnergyShieldRecharge2": {
+    "generation_type": "Suffix",
+    "name": "of Zest",
+    "required_level": 58,
+    "text": "(35-42)% faster start of Energy Shield Recharge",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FasterStartEnergyShieldRecharge3__": {
+    "generation_type": "Suffix",
+    "name": "of Galvanising",
+    "required_level": 67,
+    "text": "(43-50)% faster start of Energy Shield Recharge",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FasterStartEnergyShieldRecharge4": {
+    "generation_type": "Suffix",
+    "name": "of Vigour",
+    "required_level": 77,
+    "text": "(51-58)% faster start of Energy Shield Recharge",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FasterStartEnergyShieldRecharge5_": {
+    "generation_type": "Suffix",
+    "name": "of Second Wind",
+    "required_level": 86,
+    "text": "(59-66)% faster start of Energy Shield Recharge",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MaximumFireResist1": {
+    "generation_type": "Suffix",
+    "name": "of the Bushfire",
+    "required_level": 68,
+    "text": "+1% to maximum Fire Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumFireResist2_": {
+    "generation_type": "Suffix",
+    "name": "of the Molten Core",
+    "required_level": 75,
+    "text": "+2% to maximum Fire Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumFireResist3": {
+    "generation_type": "Suffix",
+    "name": "of the Solar Storm",
+    "required_level": 81,
+    "text": "+3% to maximum Fire Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumColdResist1": {
+    "generation_type": "Suffix",
+    "name": "of Furs",
+    "required_level": 68,
+    "text": "+1% to maximum Cold Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumColdResist2": {
+    "generation_type": "Suffix",
+    "name": "of the Tundra",
+    "required_level": 75,
+    "text": "+2% to maximum Cold Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumColdResist3": {
+    "generation_type": "Suffix",
+    "name": "of the Mammoth",
+    "required_level": 81,
+    "text": "+3% to maximum Cold Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumLightningResist1": {
+    "generation_type": "Suffix",
+    "name": "of Impedance",
+    "required_level": 68,
+    "text": "+1% to maximum Lightning Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumLightningResist2___": {
+    "generation_type": "Suffix",
+    "name": "of Shockproofing",
+    "required_level": 75,
+    "text": "+2% to maximum Lightning Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumLightningResist3": {
+    "generation_type": "Suffix",
+    "name": "of the Lightning Rod",
+    "required_level": 81,
+    "text": "+3% to maximum Lightning Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "MaximumChaosResist1": {
+    "generation_type": "Suffix",
+    "name": "of Regularity",
+    "required_level": 68,
+    "text": "+1% to maximum Chaos Resistance",
+    "weight": 125,
+    "influence": "Normal"
+  },
+  "MaximumChaosResist2_": {
+    "generation_type": "Suffix",
+    "name": "of Concord",
+    "required_level": 75,
+    "text": "+2% to maximum Chaos Resistance",
+    "weight": 125,
+    "influence": "Normal"
+  },
+  "MaximumChaosResist3": {
+    "generation_type": "Suffix",
+    "name": "of Harmony",
+    "required_level": 81,
+    "text": "+3% to maximum Chaos Resistance",
+    "weight": 125,
+    "influence": "Normal"
+  },
+  "MaximumAllResist1_": {
+    "generation_type": "Suffix",
+    "name": "of the Sempiternal",
+    "required_level": 75,
+    "text": "+1% to all maximum Resistances",
+    "weight": 125,
+    "influence": "Normal"
+  },
+  "MaximumAllResist2": {
+    "generation_type": "Suffix",
+    "name": "of the Deathless",
+    "required_level": 81,
+    "text": "+2% to all maximum Resistances",
+    "weight": 125,
+    "influence": "Normal"
+  },
+  "IncreasedLife0": {
+    "generation_type": "Prefix",
+    "name": "Hale",
+    "required_level": 1,
+    "text": "+(3-9) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife1": {
+    "generation_type": "Prefix",
+    "name": "Healthy",
+    "required_level": 5,
+    "text": "+(10-24) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife2": {
+    "generation_type": "Prefix",
+    "name": "Sanguine",
+    "required_level": 11,
+    "text": "+(25-39) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife3": {
+    "generation_type": "Prefix",
+    "name": "Stalwart",
+    "required_level": 18,
+    "text": "+(40-54) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife4": {
+    "generation_type": "Prefix",
+    "name": "Stout",
+    "required_level": 24,
+    "text": "+(55-69) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife5": {
+    "generation_type": "Prefix",
+    "name": "Robust",
+    "required_level": 30,
+    "text": "+(70-84) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife6": {
+    "generation_type": "Prefix",
+    "name": "Rotund",
+    "required_level": 36,
+    "text": "+(85-99) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife7": {
+    "generation_type": "Prefix",
+    "name": "Virile",
+    "required_level": 44,
+    "text": "+(100-114) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife8": {
+    "generation_type": "Prefix",
+    "name": "Athlete's",
+    "required_level": 54,
+    "text": "+(115-129) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife9": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 64,
+    "text": "+(130-144) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedLife10": {
+    "generation_type": "Prefix",
+    "name": "Vigorous",
+    "required_level": 73,
+    "text": "+(145-159) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana1": {
+    "generation_type": "Prefix",
+    "name": "Beryl",
+    "required_level": 1,
+    "text": "+(15-19) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana2": {
+    "generation_type": "Prefix",
+    "name": "Cobalt",
+    "required_level": 11,
+    "text": "+(20-24) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana3": {
+    "generation_type": "Prefix",
+    "name": "Azure",
+    "required_level": 17,
+    "text": "+(25-29) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana4": {
+    "generation_type": "Prefix",
+    "name": "Sapphire",
+    "required_level": 23,
+    "text": "+(30-34) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana5": {
+    "generation_type": "Prefix",
+    "name": "Cerulean",
+    "required_level": 29,
+    "text": "+(35-39) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana6": {
+    "generation_type": "Prefix",
+    "name": "Aqua",
+    "required_level": 35,
+    "text": "+(40-44) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana7": {
+    "generation_type": "Prefix",
+    "name": "Opalescent",
+    "required_level": 42,
+    "text": "+(45-49) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana8": {
+    "generation_type": "Prefix",
+    "name": "Gentian",
+    "required_level": 51,
+    "text": "+(50-54) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana9": {
+    "generation_type": "Prefix",
+    "name": "Chalybeous",
+    "required_level": 60,
+    "text": "+(55-59) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana10": {
+    "generation_type": "Prefix",
+    "name": "Mazarine",
+    "required_level": 69,
+    "text": "+(60-64) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana11": {
+    "generation_type": "Prefix",
+    "name": "Blue",
+    "required_level": 75,
+    "text": "+(65-68) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "IncreasedMana12": {
+    "generation_type": "Prefix",
+    "name": "Zaffre",
+    "required_level": 81,
+    "text": "+(69-73) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield1": {
+    "generation_type": "Prefix",
+    "name": "Shining",
+    "required_level": 3,
+    "text": "+(3-5) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield2": {
+    "generation_type": "Prefix",
+    "name": "Glimmering",
+    "required_level": 11,
+    "text": "+(6-11) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield3": {
+    "generation_type": "Prefix",
+    "name": "Glittering",
+    "required_level": 17,
+    "text": "+(12-16) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield4": {
+    "generation_type": "Prefix",
+    "name": "Glowing",
+    "required_level": 23,
+    "text": "+(17-23) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield5": {
+    "generation_type": "Prefix",
+    "name": "Radiating",
+    "required_level": 29,
+    "text": "+(24-30) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield6": {
+    "generation_type": "Prefix",
+    "name": "Pulsing",
+    "required_level": 35,
+    "text": "+(31-38) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield7": {
+    "generation_type": "Prefix",
+    "name": "Seething",
+    "required_level": 43,
+    "text": "+(39-49) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield8": {
+    "generation_type": "Prefix",
+    "name": "Blazing",
+    "required_level": 51,
+    "text": "+(50-61) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield9": {
+    "generation_type": "Prefix",
+    "name": "Scintillating",
+    "required_level": 60,
+    "text": "+(62-76) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShield10": {
+    "generation_type": "Prefix",
+    "name": "Incandescent",
+    "required_level": 69,
+    "text": "+(77-90) to maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent1": {
+    "generation_type": "Prefix",
+    "name": "Protective",
+    "required_level": 3,
+    "text": "(11-28)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent2": {
+    "generation_type": "Prefix",
+    "name": "Strong-Willed",
+    "required_level": 18,
+    "text": "(27-42)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent3": {
+    "generation_type": "Prefix",
+    "name": "Resolute",
+    "required_level": 30,
+    "text": "(43-55)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent4": {
+    "generation_type": "Prefix",
+    "name": "Fearless",
+    "required_level": 44,
+    "text": "(56-67)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent5": {
+    "generation_type": "Prefix",
+    "name": "Dauntless",
+    "required_level": 60,
+    "text": "(68-79)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent6": {
+    "generation_type": "Prefix",
+    "name": "Indomitable",
+    "required_level": 72,
+    "text": "(80-91)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent7_": {
+    "generation_type": "Prefix",
+    "name": "Unassailable",
+    "required_level": 84,
+    "text": "(92-100)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercent8": {
+    "generation_type": "Prefix",
+    "name": "Unfaltering",
+    "required_level": 86,
+    "text": "(101-110)% increased Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercentAndStunRecovery1": {
+    "generation_type": "Prefix",
+    "name": "Pixie's",
+    "required_level": 3,
+    "text": "(6-13)% increased Energy Shield | (6-7)% increased Stun and Block Recovery",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercentAndStunRecovery2": {
+    "generation_type": "Prefix",
+    "name": "Gremlin's",
+    "required_level": 18,
+    "text": "(14-20)% increased Energy Shield | (8-9)% increased Stun and Block Recovery",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercentAndStunRecovery3": {
+    "generation_type": "Prefix",
+    "name": "Boggart's",
+    "required_level": 30,
+    "text": "(21-26)% increased Energy Shield | (10-11)% increased Stun and Block Recovery",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercentAndStunRecovery4": {
+    "generation_type": "Prefix",
+    "name": "Naga's",
+    "required_level": 44,
+    "text": "(27-32)% increased Energy Shield | (12-13)% increased Stun and Block Recovery",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercentAndStunRecovery5": {
+    "generation_type": "Prefix",
+    "name": "Djinn's",
+    "required_level": 60,
+    "text": "(33-38)% increased Energy Shield | (14-15)% increased Stun and Block Recovery",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedEnergyShieldPercentAndStunRecovery6": {
+    "generation_type": "Prefix",
+    "name": "Seraphim's",
+    "required_level": 78,
+    "text": "(39-42)% increased Energy Shield | (16-17)% increased Stun and Block Recovery",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalBaseEnergyShieldAndLife1": {
+    "generation_type": "Prefix",
+    "name": "Monk's",
+    "required_level": 30,
+    "text": "+(8-10) to maximum Energy Shield | +(18-23) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalBaseEnergyShieldAndLife2": {
+    "generation_type": "Prefix",
+    "name": "Prior's",
+    "required_level": 46,
+    "text": "+(11-15) to maximum Energy Shield | +(24-28) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalBaseEnergyShieldAndLife3_": {
+    "generation_type": "Prefix",
+    "name": "Abbot's",
+    "required_level": 62,
+    "text": "+(16-25) to maximum Energy Shield | +(29-33) to maximum Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalBaseEnergyShieldAndMana1": {
+    "generation_type": "Prefix",
+    "name": "Acolyte's",
+    "required_level": 30,
+    "text": "+(8-10) to maximum Energy Shield | +(11-15) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalBaseEnergyShieldAndMana2": {
+    "generation_type": "Prefix",
+    "name": "Deacon's",
+    "required_level": 46,
+    "text": "+(11-15) to maximum Energy Shield | +(16-19) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalBaseEnergyShieldAndMana3": {
+    "generation_type": "Prefix",
+    "name": "Priest's",
+    "required_level": 62,
+    "text": "+(16-25) to maximum Energy Shield | +(20-22) to maximum Mana",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon1": {
+    "generation_type": "Prefix",
+    "name": "Apprentice's",
+    "required_level": 2,
+    "text": "(10-19)% increased Spell Damage",
+    "weight": 1500,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon2": {
+    "generation_type": "Prefix",
+    "name": "Adept's",
+    "required_level": 11,
+    "text": "(20-29)% increased Spell Damage",
+    "weight": 1500,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon3": {
+    "generation_type": "Prefix",
+    "name": "Scholar's",
+    "required_level": 23,
+    "text": "(30-39)% increased Spell Damage",
+    "weight": 1500,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon4": {
+    "generation_type": "Prefix",
+    "name": "Professor's",
+    "required_level": 35,
+    "text": "(40-54)% increased Spell Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon5": {
+    "generation_type": "Prefix",
+    "name": "Occultist's",
+    "required_level": 46,
+    "text": "(55-69)% increased Spell Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon6": {
+    "generation_type": "Prefix",
+    "name": "Incanter's",
+    "required_level": 58,
+    "text": "(70-84)% increased Spell Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon7": {
+    "generation_type": "Prefix",
+    "name": "Glyphic",
+    "required_level": 64,
+    "text": "(85-99)% increased Spell Damage",
+    "weight": 80,
+    "influence": "Normal"
+  },
+  "SpellDamageOnWeapon8_": {
+    "generation_type": "Prefix",
+    "name": "Runic",
+    "required_level": 84,
+    "text": "(100-109)% increased Spell Damage",
+    "weight": 40,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon1": {
+    "generation_type": "Prefix",
+    "name": "Searing",
+    "required_level": 2,
+    "text": "(10-19)% increased Fire Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon2": {
+    "generation_type": "Prefix",
+    "name": "Sizzling",
+    "required_level": 11,
+    "text": "(20-29)% increased Fire Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon3": {
+    "generation_type": "Prefix",
+    "name": "Blistering",
+    "required_level": 23,
+    "text": "(30-39)% increased Fire Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon4": {
+    "generation_type": "Prefix",
+    "name": "Cauterising",
+    "required_level": 35,
+    "text": "(40-54)% increased Fire Damage",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon5_": {
+    "generation_type": "Prefix",
+    "name": "Volcanic",
+    "required_level": 46,
+    "text": "(55-69)% increased Fire Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon6": {
+    "generation_type": "Prefix",
+    "name": "Magmatic",
+    "required_level": 58,
+    "text": "(70-84)% increased Fire Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon7_": {
+    "generation_type": "Prefix",
+    "name": "Pyroclastic",
+    "required_level": 64,
+    "text": "(85-99)% increased Fire Damage",
+    "weight": 25,
+    "influence": "Normal"
+  },
+  "FireDamagePrefixOnWeapon8_": {
+    "generation_type": "Prefix",
+    "name": "Xoph's",
+    "required_level": 84,
+    "text": "(100-109)% increased Fire Damage",
+    "weight": 12,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon1": {
+    "generation_type": "Prefix",
+    "name": "Bitter",
+    "required_level": 2,
+    "text": "(10-19)% increased Cold Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon2": {
+    "generation_type": "Prefix",
+    "name": "Biting",
+    "required_level": 11,
+    "text": "(20-29)% increased Cold Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon3_": {
+    "generation_type": "Prefix",
+    "name": "Alpine",
+    "required_level": 23,
+    "text": "(30-39)% increased Cold Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon4": {
+    "generation_type": "Prefix",
+    "name": "Snowy",
+    "required_level": 35,
+    "text": "(40-54)% increased Cold Damage",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon5_": {
+    "generation_type": "Prefix",
+    "name": "Hailing",
+    "required_level": 46,
+    "text": "(55-69)% increased Cold Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon6": {
+    "generation_type": "Prefix",
+    "name": "Crystalline",
+    "required_level": 58,
+    "text": "(70-84)% increased Cold Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon7": {
+    "generation_type": "Prefix",
+    "name": "Cryomancer's",
+    "required_level": 64,
+    "text": "(85-99)% increased Cold Damage",
+    "weight": 25,
+    "influence": "Normal"
+  },
+  "ColdDamagePrefixOnWeapon8": {
+    "generation_type": "Prefix",
+    "name": "Tul's",
+    "required_level": 84,
+    "text": "(100-109)% increased Cold Damage",
+    "weight": 12,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon1_": {
+    "generation_type": "Prefix",
+    "name": "Charged",
+    "required_level": 2,
+    "text": "(10-19)% increased Lightning Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon2": {
+    "generation_type": "Prefix",
+    "name": "Hissing",
+    "required_level": 11,
+    "text": "(20-29)% increased Lightning Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon3": {
+    "generation_type": "Prefix",
+    "name": "Bolting",
+    "required_level": 23,
+    "text": "(30-39)% increased Lightning Damage",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon4": {
+    "generation_type": "Prefix",
+    "name": "Coursing",
+    "required_level": 35,
+    "text": "(40-54)% increased Lightning Damage",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon5": {
+    "generation_type": "Prefix",
+    "name": "Striking",
+    "required_level": 46,
+    "text": "(55-69)% increased Lightning Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon6": {
+    "generation_type": "Prefix",
+    "name": "Smiting",
+    "required_level": 58,
+    "text": "(70-84)% increased Lightning Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon7": {
+    "generation_type": "Prefix",
+    "name": "Ionising",
+    "required_level": 64,
+    "text": "(85-99)% increased Lightning Damage",
+    "weight": 25,
+    "influence": "Normal"
+  },
+  "LightningDamagePrefixOnWeapon8": {
+    "generation_type": "Prefix",
+    "name": "Esh's",
+    "required_level": 84,
+    "text": "(100-109)% increased Lightning Damage",
+    "weight": 12,
+    "influence": "Normal"
+  },
+  "GlobalFireSpellGemsLevel1_": {
+    "generation_type": "Prefix",
+    "name": "Flame Shaper's",
+    "required_level": 2,
+    "text": "+1 to Level of all Fire Spell Skill Gems",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "GlobalColdSpellGemsLevel1_": {
+    "generation_type": "Prefix",
+    "name": "Frost Singer's",
+    "required_level": 2,
+    "text": "+1 to Level of all Cold Spell Skill Gems",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "GlobalLightningSpellGemsLevel1": {
+    "generation_type": "Prefix",
+    "name": "Thunderhand's",
+    "required_level": 2,
+    "text": "+1 to Level of all Lightning Spell Skill Gems",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "GlobalChaosSpellGemsLevel1": {
+    "generation_type": "Prefix",
+    "name": "Mad Lord's",
+    "required_level": 2,
+    "text": "+1 to Level of all Chaos Spell Skill Gems",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "GlobalPhysicalSpellGemsLevel1": {
+    "generation_type": "Prefix",
+    "name": "Lithomancer's",
+    "required_level": 2,
+    "text": "+1 to Level of all Physical Spell Skill Gems",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "AttackerTakesDamage1": {
+    "generation_type": "Prefix",
+    "name": "Thorny",
+    "required_level": 1,
+    "text": "Reflects (1-4) Physical Damage to Melee Attackers",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "AttackerTakesDamage2": {
+    "generation_type": "Prefix",
+    "name": "Spiny",
+    "required_level": 10,
+    "text": "Reflects (5-10) Physical Damage to Melee Attackers",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "AttackerTakesDamage3": {
+    "generation_type": "Prefix",
+    "name": "Barbed",
+    "required_level": 20,
+    "text": "Reflects (11-24) Physical Damage to Melee Attackers",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "AttackerTakesDamage4": {
+    "generation_type": "Prefix",
+    "name": "Jagged",
+    "required_level": 35,
+    "text": "Reflects (25-50) Physical Damage to Melee Attackers",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "LocalIncreasedBlockPercentage1": {
+    "generation_type": "Prefix",
+    "name": "Steadfast",
+    "required_level": 2,
+    "text": "(40-45)% increased Chance to Block",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LocalIncreasedBlockPercentage2": {
+    "generation_type": "Prefix",
+    "name": "Unrelenting",
+    "required_level": 15,
+    "text": "(46-51)% increased Chance to Block",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LocalIncreasedBlockPercentage3": {
+    "generation_type": "Prefix",
+    "name": "Adamant",
+    "required_level": 35,
+    "text": "(52-57)% increased Chance to Block",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LocalIncreasedBlockPercentage4": {
+    "generation_type": "Prefix",
+    "name": "Warded",
+    "required_level": 48,
+    "text": "(58-63)% increased Chance to Block",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LocalIncreasedBlockPercentage5": {
+    "generation_type": "Prefix",
+    "name": "Unwavering",
+    "required_level": 61,
+    "text": "(64-69)% increased Chance to Block",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LocalIncreasedBlockPercentage6": {
+    "generation_type": "Prefix",
+    "name": "Enduring",
+    "required_level": 77,
+    "text": "(70-75)% increased Chance to Block",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "LocalIncreasedBlockPercentage7": {
+    "generation_type": "Prefix",
+    "name": "Unyielding",
+    "required_level": 86,
+    "text": "(76-81)% increased Chance to Block",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "ShieldSpellBlockPercentage1": {
+    "generation_type": "Prefix",
+    "name": "Mystic",
+    "required_level": 16,
+    "text": "(4-5)% Chance to Block Spell Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ShieldSpellBlockPercentage2": {
+    "generation_type": "Prefix",
+    "name": "Clairvoyant",
+    "required_level": 28,
+    "text": "(6-7)% Chance to Block Spell Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ShieldSpellBlockPercentage3": {
+    "generation_type": "Prefix",
+    "name": "Enigmatic",
+    "required_level": 40,
+    "text": "(8-9)% Chance to Block Spell Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ShieldSpellBlockPercentage4": {
+    "generation_type": "Prefix",
+    "name": "Enlightened",
+    "required_level": 55,
+    "text": "(10-11)% Chance to Block Spell Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ShieldSpellBlockPercentage5": {
+    "generation_type": "Prefix",
+    "name": "Seer's",
+    "required_level": 66,
+    "text": "(12-13)% Chance to Block Spell Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "ShieldSpellBlockPercentage6": {
+    "generation_type": "Prefix",
+    "name": "Oracle's",
+    "required_level": 77,
+    "text": "(14-15)% Chance to Block Spell Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "AreaOfEffectUber1_": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 68,
+    "text": "(7-9)% increased Area of Effect",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "AreaOfEffectUber2": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 75,
+    "text": "(10-12)% increased Area of Effect",
+    "weight": 600,
+    "influence": "Elder"
+  },
+  "AreaOfEffectUber3_": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 82,
+    "text": "(13-15)% increased Area of Effect",
+    "weight": 400,
+    "influence": "Elder"
+  },
+  "MaximumLifeIncreasePercentShieldUber1": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 68,
+    "text": "(3-6)% increased maximum Life",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "MaximumLifeIncreasePercentShieldUber2": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 84,
+    "text": "(7-10)% increased maximum Life",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "GainArmourIfBlockedRecentlyUber1": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 68,
+    "text": "+(500-650) Armour if you've Blocked Recently",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "GainArmourIfBlockedRecentlyUber2": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 75,
+    "text": "+(651-800) Armour if you've Blocked Recently",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "DamagePerBlockChanceUber1_": {
+    "generation_type": "Prefix",
+    "name": "The Elder's",
+    "required_level": 68,
+    "text": "1% increased Damage per 1% Chance to Block Attack Damage",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "SupportedByCastOnDamageTakenUber1": {
+    "generation_type": "Suffix",
+    "name": "of the Elder",
+    "required_level": 68,
+    "text": "Socketed Gems are Supported by Level 5 Cast when Damage Taken",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "AdditionalBlockWith5NearbyEnemiesUber1": {
+    "generation_type": "Suffix",
+    "name": "of the Elder",
+    "required_level": 68,
+    "text": "+(2-3)% Chance to Block Attack Damage if there are at least 5 nearby Enemies",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "AdditionalBlockWith5NearbyEnemiesUber2": {
+    "generation_type": "Suffix",
+    "name": "of the Elder",
+    "required_level": 75,
+    "text": "+(4-5)% Chance to Block Attack Damage if there are at least 5 nearby Enemies",
+    "weight": 800,
+    "influence": "Elder"
+  },
+  "MaximumTotemUber1": {
+    "generation_type": "Prefix",
+    "name": "The Shaper's",
+    "required_level": 70,
+    "text": "+1 to maximum number of Summoned Totems",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "DisplaySocketedGemsGetReducedReservationUber1": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 68,
+    "text": "Socketed Gems have 20% increased Reservation Efficiency",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "DisplaySocketedGemsGetReducedReservationUber2": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 80,
+    "text": "Socketed Gems have 30% increased Reservation Efficiency",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "GainRandomChargeOnBlockUber1__": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 68,
+    "text": "Gain an Endurance, Frenzy or Power charge when you Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "ChanceToChillAttackersOnBlockUber1": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 68,
+    "text": "(25-40)% chance to Chill Attackers for 4 seconds on Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "ChanceToChillAttackersOnBlockUber2": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 75,
+    "text": "(41-50)% chance to Chill Attackers for 4 seconds on Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "ChanceToShockAttackersOnBlockUber1": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 68,
+    "text": "(25-40)% chance to Shock Attackers for 4 seconds on Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "ChanceToShockAttackersOnBlockUber2": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 75,
+    "text": "(41-50)% chance to Shock Attackers for 4 seconds on Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "RecoverLifePercentOnBlockUber1_": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 68,
+    "text": "Recover (3-5)% of Life when you Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "RecoverManaPercentOnBlockUber1": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 68,
+    "text": "Recover (3-5)% of your maximum Mana when you Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "RecoverEnergyShieldPercentOnBlockUber1": {
+    "generation_type": "Suffix",
+    "name": "of Shaping",
+    "required_level": 68,
+    "text": "Recover (3-5)% of Energy Shield when you Block",
+    "weight": 800,
+    "influence": "Shaper"
+  },
+  "AvoidFireDamageInfluence1": {
     "generation_type": "Suffix",
     "name": "of the Conquest",
     "required_level": 68,
-    "text": "+(5-6)% Chance to Block Attack Damage if you have Blocked Attack Damage Recently",
+    "text": "(5-7)% chance to Avoid Fire Damage from Hits",
     "weight": 500,
     "influence": "Warlord"
   },
-  "AttackBlockIfBlockedAttacksInfluence2": {
+  "AvoidFireDamageInfluence2__": {
     "generation_type": "Suffix",
     "name": "of the Conquest",
-    "required_level": 75,
-    "text": "+(7-8)% Chance to Block Attack Damage if you have Blocked Attack Damage Recently",
+    "required_level": 80,
+    "text": "(8-10)% chance to Avoid Fire Damage from Hits",
     "weight": 500,
     "influence": "Warlord"
   },
@@ -2068,22 +1852,6 @@
     "name": "of the Conquest",
     "required_level": 80,
     "text": "(8-10)% chance to Avoid Cold Damage from Hits",
-    "weight": 500,
-    "influence": "Warlord"
-  },
-  "AvoidFireDamageInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 68,
-    "text": "(5-7)% chance to Avoid Fire Damage from Hits",
-    "weight": 500,
-    "influence": "Warlord"
-  },
-  "AvoidFireDamageInfluence2__": {
-    "generation_type": "Suffix",
-    "name": "of the Conquest",
-    "required_level": 80,
-    "text": "(8-10)% chance to Avoid Fire Damage from Hits",
     "weight": 500,
     "influence": "Warlord"
   },
@@ -2127,61 +1895,53 @@
     "weight": 250,
     "influence": "Warlord"
   },
-  "DegenDamageTakenInfluence1_": {
+  "AttackBlockIfBlockedAttacksInfluence1": {
     "generation_type": "Suffix",
-    "name": "of the Hunt",
+    "name": "of the Conquest",
     "required_level": 68,
-    "text": "(6-4)% reduced Damage taken from Damage Over Time",
+    "text": "+(5-6)% Chance to Block Attack Damage if you have Blocked Attack Damage Recently",
     "weight": 500,
-    "influence": "Hunter"
+    "influence": "Warlord"
   },
-  "DegenDamageTakenInfluence2": {
+  "AttackBlockIfBlockedAttacksInfluence2": {
     "generation_type": "Suffix",
-    "name": "of the Hunt",
+    "name": "of the Conquest",
+    "required_level": 75,
+    "text": "+(7-8)% Chance to Block Attack Damage if you have Blocked Attack Damage Recently",
+    "weight": 500,
+    "influence": "Warlord"
+  },
+  "DamagePerBlockChanceInfluence1": {
+    "generation_type": "Prefix",
+    "name": "Crusader's",
+    "required_level": 68,
+    "text": "1% increased Damage per 1% Chance to Block Attack Damage",
+    "weight": 500,
+    "influence": "Crusader"
+  },
+  "MinimumPowerChargeInfluence1": {
+    "generation_type": "Suffix",
+    "name": "of the Crusade",
+    "required_level": 68,
+    "text": "+1 to Minimum Power Charges",
+    "weight": 500,
+    "influence": "Crusader"
+  },
+  "MinimumPowerChargeInfluence2": {
+    "generation_type": "Suffix",
+    "name": "of the Crusade",
     "required_level": 80,
-    "text": "(10-7)% reduced Damage taken from Damage Over Time",
+    "text": "+2 to Minimum Power Charges",
     "weight": 500,
-    "influence": "Hunter"
+    "influence": "Crusader"
   },
-  "SocketedGemsReducedReservationInfluence1": {
+  "RecoverEnergyShieldPercentOnBlockInfluence1": {
     "generation_type": "Suffix",
-    "name": "of the Hunt",
+    "name": "of the Crusade",
     "required_level": 68,
-    "text": "Socketed Gems have 20% increased Reservation Efficiency",
-    "weight": 500,
-    "influence": "Hunter"
-  },
-  "SocketedGemsReducedReservationInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 80,
-    "text": "Socketed Gems have 30% increased Reservation Efficiency",
-    "weight": 500,
-    "influence": "Hunter"
-  },
-  "GainRandomChargeOnBlockInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 68,
-    "text": "Gain an Endurance, Frenzy or Power charge when you Block",
+    "text": "Recover (3-5)% of Energy Shield when you Block",
     "weight": 250,
-    "influence": "Hunter"
-  },
-  "WarcryCooldownSpeedTwoHandInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 68,
-    "text": "(35-40)% increased Warcry Cooldown Recovery Rate",
-    "weight": 500,
-    "influence": "Hunter"
-  },
-  "WarcryCooldownSpeedTwoHandInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Hunt",
-    "required_level": 73,
-    "text": "(41-45)% increased Warcry Cooldown Recovery Rate",
-    "weight": 500,
-    "influence": "Hunter"
+    "influence": "Crusader"
   },
   "ChanceToChillAttackersOnBlockInfluence1": {
     "generation_type": "Suffix",
@@ -2213,30 +1973,6 @@
     "required_level": 75,
     "text": "(41-50)% chance to Shock Attackers for 4 seconds on Block",
     "weight": 500,
-    "influence": "Crusader"
-  },
-  "MinimumPowerChargeInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "+1 to Minimum Power Charges",
-    "weight": 500,
-    "influence": "Crusader"
-  },
-  "MinimumPowerChargeInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 80,
-    "text": "+2 to Minimum Power Charges",
-    "weight": 500,
-    "influence": "Crusader"
-  },
-  "RecoverEnergyShieldPercentOnBlockInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of the Crusade",
-    "required_level": 68,
-    "text": "Recover (3-5)% of Energy Shield when you Block",
-    "weight": 250,
     "influence": "Crusader"
   },
   "SpellBlockIfBlockedSpellsInfluence1_": {
@@ -2271,67 +2007,51 @@
     "weight": 500,
     "influence": "Crusader"
   },
-  "AdditionalBlockWith5NearbyEnemiesUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
+  "AreaOfEffectInfluence1": {
+    "generation_type": "Prefix",
+    "name": "Warlord's",
     "required_level": 68,
-    "text": "+(2-3)% Chance to Block Attack Damage if there are at least 5 nearby Enemies",
-    "weight": 800,
-    "influence": "Elder"
+    "text": "(7-9)% increased Area of Effect",
+    "weight": 500,
+    "influence": "Warlord"
   },
-  "AdditionalBlockWith5NearbyEnemiesUber2": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
+  "AreaOfEffectInfluence2": {
+    "generation_type": "Prefix",
+    "name": "Warlord's",
     "required_level": 75,
-    "text": "+(4-5)% Chance to Block Attack Damage if there are at least 5 nearby Enemies",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "SupportedByCastOnDamageTakenUber1": {
-    "generation_type": "Suffix",
-    "name": "of the Elder",
-    "required_level": 68,
-    "text": "Socketed Gems are Supported by Level 5 Cast when Damage Taken",
-    "weight": 800,
-    "influence": "Elder"
-  },
-  "AuraEffectInfluence1_": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 73,
-    "text": "(5-7)% increased effect of Non-Curse Auras from your Skills",
+    "text": "(10-12)% increased Area of Effect",
     "weight": 500,
-    "Influence": "Redeemer"
+    "influence": "Warlord"
   },
-  "AuraEffectInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
+  "AreaOfEffectInfluence3": {
+    "generation_type": "Prefix",
+    "name": "Warlord's",
     "required_level": 80,
-    "text": "(8-10)% increased effect of Non-Curse Auras from your Skills",
+    "text": "(13-15)% increased Area of Effect",
     "weight": 500,
-    "Influence": "Redeemer"
+    "influence": "Warlord"
   },
-  "CurseEffectivenessInfluence2": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
-    "required_level": 80,
-    "text": "(8-12)% increased Effect of your Curses",
-    "weight": 500,
-    "Influence": "Redeemer"
-  },
-  "IncreasedAilmentEffectLowInfluence1": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
+  "WeaponElementalDamageInfluence1__": {
+    "generation_type": "Prefix",
+    "name": "Redeemer's",
     "required_level": 68,
-    "text": "(15-20)% increased Effect of Non-Damaging Ailments",
+    "text": "(26-30)% increased Elemental Damage with Attack Skills",
     "weight": 500,
     "Influence": "Redeemer"
   },
-  "IncreasedAilmentEffectLowInfluence2_": {
-    "generation_type": "Suffix",
-    "name": "of Redemption",
+  "WeaponElementalDamageInfluence2_": {
+    "generation_type": "Prefix",
+    "name": "Redeemer's",
     "required_level": 75,
-    "text": "(21-25)% increased Effect of Non-Damaging Ailments",
+    "text": "(31-35)% increased Elemental Damage with Attack Skills",
+    "weight": 500,
+    "Influence": "Redeemer"
+  },
+  "WeaponElementalDamageInfluence3_": {
+    "generation_type": "Prefix",
+    "name": "Redeemer's",
+    "required_level": 80,
+    "text": "(36-40)% increased Elemental Damage with Attack Skills",
     "weight": 500,
     "Influence": "Redeemer"
   },
@@ -2351,6 +2071,14 @@
     "weight": 500,
     "Influence": "Redeemer"
   },
+  "RecoverManaPercentOnBlockInfluence1_": {
+    "generation_type": "Suffix",
+    "name": "of Redemption",
+    "required_level": 68,
+    "text": "Recover (3-5)% of your maximum Mana when you Block",
+    "weight": 250,
+    "Influence": "Redeemer"
+  },
   "AvoidPhysicalDamageInfluence1": {
     "generation_type": "Suffix",
     "name": "of Redemption",
@@ -2367,92 +2095,380 @@
     "weight": 500,
     "Influence": "Redeemer"
   },
-  "RecoverManaPercentOnBlockInfluence1_": {
+  "CurseEffectivenessInfluence2": {
+    "generation_type": "Suffix",
+    "name": "of Redemption",
+    "required_level": 80,
+    "text": "(8-12)% increased Effect of your Curses",
+    "weight": 500,
+    "Influence": "Redeemer"
+  },
+  "AuraEffectInfluence1_": {
+    "generation_type": "Suffix",
+    "name": "of Redemption",
+    "required_level": 73,
+    "text": "(5-7)% increased effect of Non-Curse Auras from your Skills",
+    "weight": 500,
+    "Influence": "Redeemer"
+  },
+  "AuraEffectInfluence2": {
+    "generation_type": "Suffix",
+    "name": "of Redemption",
+    "required_level": 80,
+    "text": "(8-10)% increased effect of Non-Curse Auras from your Skills",
+    "weight": 500,
+    "Influence": "Redeemer"
+  },
+  "IncreasedAilmentEffectLowInfluence1": {
     "generation_type": "Suffix",
     "name": "of Redemption",
     "required_level": 68,
-    "text": "Recover (3-5)% of your maximum Mana when you Block",
-    "weight": 250,
+    "text": "(15-20)% increased Effect of Non-Damaging Ailments",
+    "weight": 500,
     "Influence": "Redeemer"
   },
-  "ChanceToChillAttackersOnBlockUber1": {
+  "IncreasedAilmentEffectLowInfluence2_": {
     "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "(25-40)% chance to Chill Attackers for 4 seconds on Block",
-    "weight": 800,
-    "influence": "Shaper"
-  },
-  "ChanceToChillAttackersOnBlockUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
+    "name": "of Redemption",
     "required_level": 75,
-    "text": "(41-50)% chance to Chill Attackers for 4 seconds on Block",
-    "weight": 800,
-    "influence": "Shaper"
+    "text": "(21-25)% increased Effect of Non-Damaging Ailments",
+    "weight": 500,
+    "Influence": "Redeemer"
   },
-  "ChanceToShockAttackersOnBlockUber1": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
+  "MaximumLifeInfluence1": {
+    "generation_type": "Prefix",
+    "name": "Hunter's",
     "required_level": 68,
-    "text": "(25-40)% chance to Shock Attackers for 4 seconds on Block",
-    "weight": 800,
-    "influence": "Shaper"
+    "text": "(3-6)% increased maximum Life",
+    "weight": 500,
+    "influence": "Hunter"
   },
-  "ChanceToShockAttackersOnBlockUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 75,
-    "text": "(41-50)% chance to Shock Attackers for 4 seconds on Block",
-    "weight": 800,
-    "influence": "Shaper"
+  "MaximumLifeInfluence2": {
+    "generation_type": "Prefix",
+    "name": "Hunter's",
+    "required_level": 84,
+    "text": "(7-10)% increased maximum Life",
+    "weight": 500,
+    "influence": "Hunter"
   },
-  "DisplaySocketedGemsGetReducedReservationUber1": {
+  "GainRandomChargeOnBlockInfluence1": {
     "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "Socketed Gems have 20% increased Reservation Efficiency",
-    "weight": 800,
-    "influence": "Shaper"
-  },
-  "DisplaySocketedGemsGetReducedReservationUber2": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 80,
-    "text": "Socketed Gems have 30% increased Reservation Efficiency",
-    "weight": 800,
-    "influence": "Shaper"
-  },
-  "GainRandomChargeOnBlockUber1__": {
-    "generation_type": "Suffix",
-    "name": "of Shaping",
+    "name": "of the Hunt",
     "required_level": 68,
     "text": "Gain an Endurance, Frenzy or Power charge when you Block",
-    "weight": 800,
-    "influence": "Shaper"
+    "weight": 250,
+    "influence": "Hunter"
   },
-  "RecoverEnergyShieldPercentOnBlockUber1": {
+  "SocketedGemsReducedReservationInfluence1": {
     "generation_type": "Suffix",
-    "name": "of Shaping",
+    "name": "of the Hunt",
     "required_level": 68,
-    "text": "Recover (3-5)% of Energy Shield when you Block",
-    "weight": 800,
-    "influence": "Shaper"
+    "text": "Socketed Gems have 20% increased Reservation Efficiency",
+    "weight": 500,
+    "influence": "Hunter"
   },
-  "RecoverLifePercentOnBlockUber1_": {
+  "SocketedGemsReducedReservationInfluence2": {
     "generation_type": "Suffix",
-    "name": "of Shaping",
-    "required_level": 68,
-    "text": "Recover (3-5)% of Life when you Block",
-    "weight": 800,
-    "influence": "Shaper"
+    "name": "of the Hunt",
+    "required_level": 80,
+    "text": "Socketed Gems have 30% increased Reservation Efficiency",
+    "weight": 500,
+    "influence": "Hunter"
   },
-  "RecoverManaPercentOnBlockUber1": {
+  "DegenDamageTakenInfluence1_": {
     "generation_type": "Suffix",
-    "name": "of Shaping",
+    "name": "of the Hunt",
     "required_level": 68,
-    "text": "Recover (3-5)% of your maximum Mana when you Block",
-    "weight": 800,
-    "influence": "Shaper"
+    "text": "(6-4)% reduced Damage taken from Damage Over Time",
+    "weight": 500,
+    "influence": "Hunter"
+  },
+  "DegenDamageTakenInfluence2": {
+    "generation_type": "Suffix",
+    "name": "of the Hunt",
+    "required_level": 80,
+    "text": "(10-7)% reduced Damage taken from Damage Over Time",
+    "weight": 500,
+    "influence": "Hunter"
+  },
+  "WarcryCooldownSpeedTwoHandInfluence1": {
+    "generation_type": "Suffix",
+    "name": "of the Hunt",
+    "required_level": 68,
+    "text": "(35-40)% increased Warcry Cooldown Recovery Rate",
+    "weight": 500,
+    "influence": "Hunter"
+  },
+  "WarcryCooldownSpeedTwoHandInfluence2": {
+    "generation_type": "Suffix",
+    "name": "of the Hunt",
+    "required_level": 73,
+    "text": "(41-45)% increased Warcry Cooldown Recovery Rate",
+    "weight": 500,
+    "influence": "Hunter"
+  },
+  "MinionLifeWeapon1": {
+    "generation_type": "Suffix",
+    "name": "of the Administrator",
+    "required_level": 10,
+    "text": "Minions have (13-17)% increased maximum Life",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionLifeWeapon2": {
+    "generation_type": "Suffix",
+    "name": "of the Rector",
+    "required_level": 26,
+    "text": "Minions have (18-22)% increased maximum Life",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionLifeWeapon3": {
+    "generation_type": "Suffix",
+    "name": "of the Overseer",
+    "required_level": 42,
+    "text": "Minions have (23-27)% increased maximum Life",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionLifeWeapon4__": {
+    "generation_type": "Suffix",
+    "name": "of the Taskmaster",
+    "required_level": 58,
+    "text": "Minions have (28-32)% increased maximum Life",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionLifeWeapon5": {
+    "generation_type": "Suffix",
+    "name": "of the Slavedriver",
+    "required_level": 74,
+    "text": "Minions have (33-36)% increased maximum Life",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionLifeWeapon6_": {
+    "generation_type": "Suffix",
+    "name": "of the Despot",
+    "required_level": 82,
+    "text": "Minions have (37-40)% increased maximum Life",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionResistancesWeapon1_": {
+    "generation_type": "Suffix",
+    "name": "of Adjustment",
+    "required_level": 8,
+    "text": "Minions have +(11-15)% to all Elemental Resistances",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionResistancesWeapon2": {
+    "generation_type": "Suffix",
+    "name": "of Acclimatisation",
+    "required_level": 24,
+    "text": "Minions have +(16-20)% to all Elemental Resistances",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionResistancesWeapon3": {
+    "generation_type": "Suffix",
+    "name": "of Adaptation",
+    "required_level": 37,
+    "text": "Minions have +(21-23)% to all Elemental Resistances",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionResistancesWeapon4": {
+    "generation_type": "Suffix",
+    "name": "of Evolution",
+    "required_level": 50,
+    "text": "Minions have +(24-26)% to all Elemental Resistances",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionResistancesWeapon5": {
+    "generation_type": "Suffix",
+    "name": "of Metamorphosis",
+    "required_level": 61,
+    "text": "Minions have +(27-30)% to all Elemental Resistances",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionMaxElementalResistance1": {
+    "generation_type": "Suffix",
+    "name": "of Impermeability",
+    "required_level": 68,
+    "text": "Minions have +(3-4)% to all maximum Elemental Resistances",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MinionMaxElementalResistance2": {
+    "generation_type": "Suffix",
+    "name": "of Countervailing",
+    "required_level": 75,
+    "text": "Minions have +(5-6)% to all maximum Elemental Resistances",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MinionMaxElementalResistance3": {
+    "generation_type": "Suffix",
+    "name": "of Imperviousness",
+    "required_level": 81,
+    "text": "Minions have +(7-8)% to all maximum Elemental Resistances",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MinionPhysicalDamageReduction1": {
+    "generation_type": "Suffix",
+    "name": "of the Guard",
+    "required_level": 68,
+    "text": "Minions have (7-9)% additional Physical Damage Reduction",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MinionPhysicalDamageReduction2": {
+    "generation_type": "Suffix",
+    "name": "of the Brigade",
+    "required_level": 75,
+    "text": "Minions have (10-12)% additional Physical Damage Reduction",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MinionPhysicalDamageReduction3": {
+    "generation_type": "Suffix",
+    "name": "of the Phalanx",
+    "required_level": 81,
+    "text": "Minions have (13-15)% additional Physical Damage Reduction",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MinionCriticalStrikeChanceIncrease1": {
+    "generation_type": "Suffix",
+    "name": "of Luck",
+    "required_level": 11,
+    "text": "Minions have (10-19)% increased Critical Strike Chance",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionCriticalStrikeChanceIncrease2": {
+    "generation_type": "Suffix",
+    "name": "of Fortune",
+    "required_level": 21,
+    "text": "Minions have (20-39)% increased Critical Strike Chance",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionCriticalStrikeChanceIncrease3": {
+    "generation_type": "Suffix",
+    "name": "of Providence",
+    "required_level": 28,
+    "text": "Minions have (40-59)% increased Critical Strike Chance",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionCriticalStrikeChanceIncrease4": {
+    "generation_type": "Suffix",
+    "name": "of Serendipity",
+    "required_level": 41,
+    "text": "Minions have (60-79)% increased Critical Strike Chance",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionCriticalStrikeChanceIncrease5": {
+    "generation_type": "Suffix",
+    "name": "of Determinism",
+    "required_level": 59,
+    "text": "Minions have (80-99)% increased Critical Strike Chance",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionCriticalStrikeChanceIncrease6": {
+    "generation_type": "Suffix",
+    "name": "of Destiny",
+    "required_level": 76,
+    "text": "Minions have (100-109)% increased Critical Strike Chance",
+    "weight": 2000,
+    "influence": "Normal"
+  },
+  "MinionGrantsConvocation1": {
+    "generation_type": "Suffix",
+    "name": "of the Convocation",
+    "required_level": 45,
+    "text": "Grants Level 1 Convocation Skill",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon1": {
+    "generation_type": "Prefix",
+    "name": "Baroness's",
+    "required_level": 2,
+    "text": "Minions deal (10-19)% increased Damage",
+    "weight": 3000,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon2": {
+    "generation_type": "Prefix",
+    "name": "Viscountess's",
+    "required_level": 11,
+    "text": "Minions deal (20-29)% increased Damage",
+    "weight": 3000,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon3": {
+    "generation_type": "Prefix",
+    "name": "Marchioness's",
+    "required_level": 23,
+    "text": "Minions deal (30-39)% increased Damage",
+    "weight": 3000,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon4_": {
+    "generation_type": "Prefix",
+    "name": "Countess's",
+    "required_level": 35,
+    "text": "Minions deal (40-54)% increased Damage",
+    "weight": 1200,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon5": {
+    "generation_type": "Prefix",
+    "name": "Duchess's",
+    "required_level": 46,
+    "text": "Minions deal (55-69)% increased Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon6": {
+    "generation_type": "Prefix",
+    "name": "Princess's",
+    "required_level": 58,
+    "text": "Minions deal (70-84)% increased Damage",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon7": {
+    "generation_type": "Prefix",
+    "name": "Queen's",
+    "required_level": 64,
+    "text": "Minions deal (85-99)% increased Damage",
+    "weight": 160,
+    "influence": "Normal"
+  },
+  "MinionDamageOnWeapon8": {
+    "generation_type": "Prefix",
+    "name": "Empress's",
+    "required_level": 84,
+    "text": "Minions deal (100-109)% increased Damage",
+    "weight": 80,
+    "influence": "Normal"
+  },
+  "MinionGemLevel1h1": {
+    "generation_type": "Prefix",
+    "name": "Martinet's",
+    "required_level": 60,
+    "text": "+1 to Level of all Minion Skill Gems",
+    "weight": 400,
+    "influence": "Normal"
   }
 }

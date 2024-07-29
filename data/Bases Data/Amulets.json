@@ -1,40 +1,4 @@
 {
-  "Blue Pearl Amulet": {
-    "drop_level": 77,
-    "implicits": [
-      "(48-56)% increased Mana Regeneration Rate"
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
-  "Marble Amulet": {
-    "drop_level": 74,
-    "implicits": [
-      "Regenerate (1.2-1.6)% of Life per second"
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
-  "Seaglass Amulet": {
-    "drop_level": 74,
-    "implicits": [
-      "(10-15)% faster start of Energy Shield Recharge"
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
-  "Jet Amulet": {
-    "drop_level": 1,
-    "implicits": [
-      "+(8-12)% to all Elemental Resistances"
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
   "Paua Amulet": {
     "drop_level": 3,
     "implicits": [
@@ -42,34 +6,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
-  },
-  "Citrine Amulet": {
-    "drop_level": 20,
-    "implicits": [
-      "+(16-24) to Strength and Dexterity"
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
-  "Ruby Amulet": {
-    "drop_level": 50,
-    "implicits": [
-      "+(20-30)% to Fire Resistance"
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
-  "Unset Amulet": {
-    "drop_level": 45,
-    "implicits": [
-      "Has 1 Socket"
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Coral Amulet": {
     "drop_level": 3,
@@ -78,7 +36,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Amber Amulet": {
     "drop_level": 7,
@@ -87,7 +66,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Jade Amulet": {
     "drop_level": 7,
@@ -96,7 +96,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Lapis Amulet": {
     "drop_level": 7,
@@ -105,7 +126,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Gold Amulet": {
     "drop_level": 15,
@@ -114,7 +156,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Onyx Amulet": {
     "drop_level": 3,
@@ -123,7 +186,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Turquoise Amulet": {
     "drop_level": 20,
@@ -132,7 +216,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Agate Amulet": {
     "drop_level": 20,
@@ -141,7 +246,118 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Citrine Amulet": {
+    "drop_level": 20,
+    "implicits": [
+      "+(16-24) to Strength and Dexterity"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ruby Amulet": {
+    "drop_level": 50,
+    "implicits": [
+      "+(20-30)% to Fire Resistance"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Unset Amulet": {
+    "drop_level": 45,
+    "implicits": [
+      "Has 1 Socket"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Astrolabe Amulet": {
     "drop_level": 75,
@@ -150,7 +366,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Simplex Amulet": {
     "drop_level": 80,
@@ -159,7 +396,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Focused Amulet": {
     "drop_level": 80,
@@ -168,7 +426,148 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Jet Amulet": {
+    "drop_level": 1,
+    "implicits": [
+      "+(8-12)% to all Elemental Resistances"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Blue Pearl Amulet": {
+    "drop_level": 77,
+    "implicits": [
+      "(48-56)% increased Mana Regeneration Rate"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Marble Amulet": {
+    "drop_level": 74,
+    "implicits": [
+      "Regenerate (1.2-1.6)% of Life per second"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Seaglass Amulet": {
+    "drop_level": 74,
+    "implicits": [
+      "(10-15)% faster start of Energy Shield Recharge"
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Black Maw Talisman": {
     "drop_level": 1,
@@ -178,37 +577,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
-  },
-  "Mandible Talisman": {
-    "drop_level": 1,
-    "implicits": [
-      "(6-10)% increased Attack and Cast Speed",
-      null
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
-  "Chrysalis Talisman": {
-    "drop_level": 35,
-    "implicits": [
-      "(20-30)% increased Spell Damage",
-      null
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
-  },
-  "Writhing Talisman": {
-    "drop_level": 35,
-    "implicits": [
-      "(20-30)% increased Attack Damage",
-      null
-    ],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Bonespire Talisman": {
     "drop_level": 1,
@@ -218,7 +608,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Ashscale Talisman": {
     "drop_level": 1,
@@ -228,7 +639,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Lone Antler Talisman": {
     "drop_level": 1,
@@ -238,7 +670,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Deep One Talisman": {
     "drop_level": 1,
@@ -248,7 +701,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Breakrib Talisman": {
     "drop_level": 1,
@@ -258,7 +732,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Deadhand Talisman": {
     "drop_level": 1,
@@ -268,7 +763,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Undying Flesh Talisman": {
     "drop_level": 1,
@@ -278,7 +794,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Rot Head Talisman": {
     "drop_level": 1,
@@ -288,7 +825,121 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Mandible Talisman": {
+    "drop_level": 1,
+    "implicits": [
+      "(6-10)% increased Attack and Cast Speed",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chrysalis Talisman": {
+    "drop_level": 35,
+    "implicits": [
+      "(20-30)% increased Spell Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Writhing Talisman": {
+    "drop_level": 35,
+    "implicits": [
+      "(20-30)% increased Attack Damage",
+      null
+    ],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Hexclaw Talisman": {
     "drop_level": 1,
@@ -298,7 +949,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Primal Skull Talisman": {
     "drop_level": 1,
@@ -308,7 +980,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Wereclaw Talisman": {
     "drop_level": 1,
@@ -318,7 +1011,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Splitnewt Talisman": {
     "drop_level": 1,
@@ -328,7 +1042,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Clutching Talisman": {
     "drop_level": 1,
@@ -338,7 +1073,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Avian Twins Talisman": {
     "drop_level": 1,
@@ -348,7 +1104,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Fangjaw Talisman": {
     "drop_level": 1,
@@ -358,7 +1135,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Horned Talisman": {
     "drop_level": 1,
@@ -368,17 +1166,59 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Spinefuse Talisman": {
     "drop_level": 1,
     "implicits": [
-      "(6-10)% increased Quantity of Items found",
+      "+(12-18)% to Damage over Time Multiplier",
       null
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Three Rat Talisman": {
     "drop_level": 1,
@@ -388,7 +1228,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Monkey Twins Talisman": {
     "drop_level": 1,
@@ -398,7 +1259,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Longtooth Talisman": {
     "drop_level": 1,
@@ -408,7 +1290,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Rotfeather Talisman": {
     "drop_level": 1,
@@ -418,7 +1321,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Monkey Paw Talisman": {
     "drop_level": 1,
@@ -428,7 +1352,28 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Three Hands Talisman": {
     "drop_level": 1,
@@ -438,13 +1383,55 @@
     ],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Greatwolf Talisman": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   }
 }

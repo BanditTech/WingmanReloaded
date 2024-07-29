@@ -7,46 +7,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 21,
       "charges_per_use": 7,
       "duration": 40,
-      "life_per_use": 70
-    }
-  },
-  "Sanctified Life Flask": {
-    "drop_level": 50,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 30,
-      "charges_per_use": 15,
-      "duration": 15,
-      "life_per_use": 1460
-    }
-  },
-  "Divine Life Flask": {
-    "drop_level": 60,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 45,
-      "charges_per_use": 15,
-      "duration": 35,
-      "life_per_use": 2400
-    }
-  },
-  "Eternal Life Flask": {
-    "drop_level": 65,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 45,
-      "charges_per_use": 15,
-      "duration": 20,
-      "life_per_use": 2080
+      "life_per_use": 70,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Medium Life Flask": {
@@ -58,10 +38,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 28,
       "charges_per_use": 8,
       "duration": 50,
-      "life_per_use": 130
+      "life_per_use": 130,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Large Life Flask": {
@@ -73,10 +69,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 30,
       "charges_per_use": 9,
       "duration": 60,
-      "life_per_use": 200
+      "life_per_use": 200,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Greater Life Flask": {
@@ -85,10 +97,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 32,
       "charges_per_use": 10,
       "duration": 35,
-      "life_per_use": 360
+      "life_per_use": 360,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Grand Life Flask": {
@@ -97,10 +125,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 25,
       "charges_per_use": 10,
       "duration": 30,
-      "life_per_use": 640
+      "life_per_use": 640,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Giant Life Flask": {
@@ -109,10 +153,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 30,
       "charges_per_use": 10,
       "duration": 40,
-      "life_per_use": 830
+      "life_per_use": 830,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Colossal Life Flask": {
@@ -121,10 +181,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 32,
       "charges_per_use": 10,
       "duration": 35,
-      "life_per_use": 1000
+      "life_per_use": 1000,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Sacred Life Flask": {
@@ -133,10 +209,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 25,
       "charges_per_use": 10,
       "duration": 30,
-      "life_per_use": 1200
+      "life_per_use": 1200,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Hallowed Life Flask": {
@@ -145,10 +237,110 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 30,
       "charges_per_use": 10,
       "duration": 40,
-      "life_per_use": 1990
+      "life_per_use": 1990,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sanctified Life Flask": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 30,
+      "charges_per_use": 15,
+      "duration": 15,
+      "life_per_use": 1460,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Divine Life Flask": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 45,
+      "charges_per_use": 15,
+      "duration": 35,
+      "life_per_use": 2400,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Eternal Life Flask": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 45,
+      "charges_per_use": 15,
+      "duration": 20,
+      "life_per_use": 2080,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

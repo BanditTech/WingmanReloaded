@@ -119,38 +119,6 @@
     "weight": 20,
     "influence": "Normal"
   },
-  "SanctumChestDoubleGoldChance1": {
-    "generation_type": "Suffix",
-    "name": "of Bounty",
-    "required_level": 1,
-    "text": "Chests have (3-4)% chance to drop Double Aureus Coins",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumChestDoubleGoldChance2": {
-    "generation_type": "Suffix",
-    "name": "of Fortune",
-    "required_level": 74,
-    "text": "Chests have (5-6)% chance to drop Double Aureus Coins",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumChestDoubleGoldChance3": {
-    "generation_type": "Suffix",
-    "name": "of the Trove",
-    "required_level": 80,
-    "text": "Chests have (7-8)% chance to drop Double Aureus Coins",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumChestDoubleGoldChance4": {
-    "generation_type": "Suffix",
-    "name": "of Hidden Treasure",
-    "required_level": 85,
-    "text": "Chests have (9-10)% chance to drop Double Aureus Coins",
-    "weight": 50,
-    "influence": "Normal"
-  },
   "SanctumMonstersDoubleGoldChance1": {
     "generation_type": "Suffix",
     "name": "of Affluence",
@@ -180,6 +148,38 @@
     "name": "of Doubling",
     "required_level": 85,
     "text": "Monsters have (9-10)% chance to drop Double Aureus Coins",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance1": {
+    "generation_type": "Suffix",
+    "name": "of Bounty",
+    "required_level": 1,
+    "text": "Chests have (3-4)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance2": {
+    "generation_type": "Suffix",
+    "name": "of Fortune",
+    "required_level": 74,
+    "text": "Chests have (5-6)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance3": {
+    "generation_type": "Suffix",
+    "name": "of the Trove",
+    "required_level": 80,
+    "text": "Chests have (7-8)% chance to drop Double Aureus Coins",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumChestDoubleGoldChance4": {
+    "generation_type": "Suffix",
+    "name": "of Hidden Treasure",
+    "required_level": 85,
+    "text": "Chests have (9-10)% chance to drop Double Aureus Coins",
     "weight": 50,
     "influence": "Normal"
   },

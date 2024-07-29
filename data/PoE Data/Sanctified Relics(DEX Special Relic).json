@@ -1,266 +1,586 @@
 {
-  "SanctumSpecialAllColdDamageCanIgnite": {
-    "generation_type": "Prefix",
-    "name": "Apocalyptic",
-    "required_level": 84,
-    "text": "Your Cold Damage can Ignite",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAllFireDamageCanShock": {
-    "generation_type": "Prefix",
-    "name": "Rapturous",
-    "required_level": 84,
-    "text": "Your Fire Damage can Shock",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAllLightningDamageCanFreeze": {
-    "generation_type": "Prefix",
-    "name": "Cataclysmic",
-    "required_level": 84,
-    "text": "Your Lightning Damage can Freeze",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialArcaneSurgeEffect": {
-    "generation_type": "Prefix",
-    "name": "Inspiring",
+  "SanctumSpecialIncreasedAttackSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Bladedancing",
     "required_level": 75,
-    "text": "(10-15)% increased Effect of Arcane Surge on you",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialArmourFromHelmetGloves": {
-    "generation_type": "Prefix",
-    "name": "Armoured",
-    "required_level": 75,
-    "text": "(40-60)% increased Armour from Equipped Helmet and Gloves",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAttackDamage": {
-    "generation_type": "Prefix",
-    "name": "Crusading",
-    "required_level": 75,
-    "text": "30% increased Attack Damage",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAuraEffect": {
-    "generation_type": "Prefix",
-    "name": "Empowering",
-    "required_level": 82,
-    "text": "(10-15)% increased effect of Non-Curse Auras from your Skills",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAddedChaosDamage": {
-    "generation_type": "Prefix",
-    "name": "Malicious",
-    "required_level": 75,
-    "text": "Adds (7-9) to (14-17) Chaos Damage to Attacks",
+    "text": "(10-15)% increased Attack Speed",
     "weight": 1000,
     "influence": "Normal"
   },
-  "SanctumSpecialChaosDamageLifeLeech": {
-    "generation_type": "Prefix",
-    "name": "Heretic's",
+  "SanctumSpecialAttackCriticalStrikeChance": {
+    "generation_type": "Suffix",
+    "name": "of Precision",
     "required_level": 75,
-    "text": "(0.3-0.5)% of Chaos Damage Leeched as Life",
+    "text": "(30-40)% increased Critical Strike Chance for Attacks",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireDamageOverTimeMultiplier": {
+    "generation_type": "Suffix",
+    "name": "of Blazing",
+    "required_level": 75,
+    "text": "+(15-20)% to Fire Damage over Time Multiplier",
     "weight": 150,
     "influence": "Normal"
   },
-  "SanctumSpecialAddedColdDamage": {
-    "generation_type": "Prefix",
-    "name": "Hyperboreal",
+  "SanctumSpecialColdDamageOverTimeMultiplier": {
+    "generation_type": "Suffix",
+    "name": "of Chilling",
     "required_level": 75,
-    "text": "Adds (8-11) to (17-19) Cold Damage to Attacks",
-    "weight": 1000,
+    "text": "+(15-20)% to Cold Damage over Time Multiplier",
+    "weight": 150,
     "influence": "Normal"
   },
-  "SanctumSpecialColdDamageLifeLeech": {
-    "generation_type": "Prefix",
-    "name": "Winter Preacher's",
+  "SanctumSpecialPhysicalDamageOverTimeMultiplier": {
+    "generation_type": "Suffix",
+    "name": "of Lacerating",
     "required_level": 75,
-    "text": "(0.3-0.5)% of Cold Damage Leeched as Life",
+    "text": "+(15-20)% to Physical Damage over Time Multiplier",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChaosDamageOverTimeMultiplier": {
+    "generation_type": "Suffix",
+    "name": "of Entropy",
+    "required_level": 75,
+    "text": "+(15-20)% to Chaos Damage over Time Multiplier",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialStunThresholdReduction": {
+    "generation_type": "Suffix",
+    "name": "of the Pugilist",
+    "required_level": 75,
+    "text": "(15-20)% reduced Enemy Stun Threshold",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialTrapThrowSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Sabotage",
+    "required_level": 75,
+    "text": "(10-15)% increased Trap Throwing Speed",
     "weight": 600,
     "influence": "Normal"
   },
-  "SanctumSpecialColdDamagePercentage": {
-    "generation_type": "Prefix",
-    "name": "Crystalline",
+  "SanctumSpecialMineLayingSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Planning",
     "required_level": 75,
-    "text": "(20-30)% increased Cold Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SanctumSpecialColdDamageTakenGainedAsLife": {
-    "generation_type": "Prefix",
-    "name": "Iceborn",
-    "required_level": 75,
-    "text": "(15-20)% of Cold Damage taken Recouped as Life",
+    "text": "(10-15)% increased Mine Throwing Speed",
     "weight": 600,
     "influence": "Normal"
   },
-  "SanctumSpecialColdDamageToAttacksPerDexterity": {
-    "generation_type": "Prefix",
-    "name": "Skillful",
+  "SanctumSpecialMaximumColdResistance": {
+    "generation_type": "Suffix",
+    "name": "of Warmth",
+    "required_level": 75,
+    "text": "+(2-3)% to maximum Cold Resistance",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToIntimidateOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Intimidation",
+    "required_level": 75,
+    "text": "(30-35)% chance to Intimidate Enemies for 4 seconds on Hit",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToUnnerveOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Unnerving",
+    "required_level": 75,
+    "text": "(30-35)% chance to Unnerve Enemies for 4 seconds on Hit",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToSuppressSpells": {
+    "generation_type": "Suffix",
+    "name": "of Suppression",
+    "required_level": 75,
+    "text": "+(6-10)% chance to Suppress Spell Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireExposureEffectOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Dehydration",
+    "required_level": 82,
+    "text": "Inflict Fire Exposure on Hit, applying -15% to Fire Resistance",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialColdExposureEffectOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Hypothermia",
+    "required_level": 82,
+    "text": "Inflict Cold Exposure on Hit, applying -15% to Cold Resistance",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLightningExposureEffectOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Potential",
+    "required_level": 82,
+    "text": "Inflict Lightning Exposure on Hit, applying -15% to Lightning Resistance",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialArmourPenetration": {
+    "generation_type": "Suffix",
+    "name": "of Overwhelming",
+    "required_level": 82,
+    "text": "Hits have (15-20)% chance to ignore Enemy Physical Damage Reduction",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialWitherExpireSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Withering",
+    "required_level": 82,
+    "text": "Withered you Inflict expires (25-20)% slower",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialBlindEffect": {
+    "generation_type": "Suffix",
+    "name": "of Blinding",
+    "required_level": 75,
+    "text": "(10-20)% increased Blind Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialGlobalMaimOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Maiming",
+    "required_level": 75,
+    "text": "Attacks have (30-35)% chance to Maim on Hit",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialSpellsHinderOnHitChance": {
+    "generation_type": "Suffix",
+    "name": "of Arcane Hindrance",
+    "required_level": 75,
+    "text": "(30-35)% chance to Hinder Enemies on Hit with Spells",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMarkEffect": {
+    "generation_type": "Suffix",
+    "name": "of Marking",
+    "required_level": 75,
+    "text": "(15-20)% increased Effect of your Marks",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAdditionalPierce": {
+    "generation_type": "Suffix",
+    "name": "of Piercing",
+    "required_level": 75,
+    "text": "Projectiles Pierce (1-2) additional Targets",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPoisonOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Toxicity",
+    "required_level": 75,
+    "text": "(20-30)% chance to Poison on Hit",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToBleed": {
+    "generation_type": "Suffix",
+    "name": "of Bleeding",
+    "required_level": 75,
+    "text": "Attacks have (20-30)% chance to cause Bleeding",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAttackImpaleChance": {
+    "generation_type": "Suffix",
+    "name": "of Impaling",
+    "required_level": 75,
+    "text": "(20-30)% chance to Impale Enemies on Hit with Attacks",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedCastSpeed": {
+    "generation_type": "Suffix",
+    "name": "of the Archmage",
+    "required_level": 75,
+    "text": "(10-15)% increased Cast Speed",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialSpellCriticalStrikeChance": {
+    "generation_type": "Suffix",
+    "name": "of the Evocationist",
+    "required_level": 75,
+    "text": "(30-40)% increased Spell Critical Strike Chance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMaximumLightningResistanceImplicit": {
+    "generation_type": "Suffix",
+    "name": "of Grounding",
+    "required_level": 75,
+    "text": "+(2-3)% to maximum Lightning Resistance",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMinionRunSpeed": {
+    "generation_type": "Suffix",
+    "name": "of Charging",
+    "required_level": 75,
+    "text": "Minions have (15-25)% increased Movement Speed",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAreaOfEffect": {
+    "generation_type": "Suffix",
+    "name": "of Expansion",
+    "required_level": 75,
+    "text": "(15-20)% increased Area of Effect",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedAilmentDuration": {
+    "generation_type": "Suffix",
+    "name": "of Prolonged Suffering",
+    "required_level": 75,
+    "text": "(20-30)% increased Duration of Ailments on Enemies",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedAilmentEffectOnEnemies": {
+    "generation_type": "Suffix",
+    "name": "of Punishment",
+    "required_level": 75,
+    "text": "(20-30)% increased Effect of Non-Damaging Ailments",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialManaReservationEfficiency": {
+    "generation_type": "Suffix",
+    "name": "of Efficiency",
+    "required_level": 82,
+    "text": "(8-12)% increased Mana Reservation Efficiency of Skills",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToIgnite": {
+    "generation_type": "Suffix",
+    "name": "of Ignition",
+    "required_level": 75,
+    "text": "(20-30)% chance to Ignite",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToFreeze": {
+    "generation_type": "Suffix",
+    "name": "of Freezing",
+    "required_level": 75,
+    "text": "(20-30)% chance to Freeze",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToShock": {
+    "generation_type": "Suffix",
+    "name": "of Shocking",
+    "required_level": 75,
+    "text": "(20-30)% chance to Shock",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialReducedIgniteDurationOnSelf": {
+    "generation_type": "Suffix",
+    "name": "of Dousing",
+    "required_level": 75,
+    "text": "(40-50)% reduced Ignite Duration on you",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialReducedFreezeDuration": {
+    "generation_type": "Suffix",
+    "name": "of Melting",
+    "required_level": 75,
+    "text": "(40-50)% reduced Freeze Duration on you",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialReducedShockEffectOnSelf": {
+    "generation_type": "Suffix",
+    "name": "of Insulation",
+    "required_level": 75,
+    "text": "(50-40)% reduced Effect of Shock on you",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialManaRegeneration": {
+    "generation_type": "Suffix",
+    "name": "of Focus",
+    "required_level": 75,
+    "text": "(30-40)% increased Mana Regeneration Rate",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedManaRegenerationPerPowerCharge": {
+    "generation_type": "Suffix",
+    "name": "of Concentration",
+    "required_level": 75,
+    "text": "(6-8)% increased Mana Regeneration Rate per Power Charge",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireResistance": {
+    "generation_type": "Suffix",
+    "name": "of the Pyre",
+    "required_level": 75,
+    "text": "+(20-30)% to Fire Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialColdResistance": {
+    "generation_type": "Suffix",
+    "name": "of Vestments",
+    "required_level": 75,
+    "text": "+(20-30)% to Cold Resistance",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLightningResistance": {
+    "generation_type": "Suffix",
+    "name": "of the Storm",
+    "required_level": 75,
+    "text": "+(20-30)% to Lightning Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChaosResistance": {
+    "generation_type": "Suffix",
+    "name": "of Purity",
+    "required_level": 75,
+    "text": "+(10-20)% to Chaos Resistance",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMaximumFireResistanceImplicit": {
+    "generation_type": "Suffix",
+    "name": "of the Forge",
+    "required_level": 75,
+    "text": "+(2-3)% to maximum Fire Resistance",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialSummonTotemCastSpeed": {
+    "generation_type": "Suffix",
+    "name": "of the Descry",
+    "required_level": 75,
+    "text": "(10-20)% increased Totem Placement speed",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialBrandAttachmentRange": {
+    "generation_type": "Suffix",
+    "name": "of Accusation",
+    "required_level": 75,
+    "text": "(10-20)% increased Brand Attachment range",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAvoidIgnite": {
+    "generation_type": "Suffix",
+    "name": "of the Blameless",
+    "required_level": 75,
+    "text": "(40-50)% chance to Avoid being Ignited",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAvoidFreeze": {
+    "generation_type": "Suffix",
+    "name": "of the Guiltless",
+    "required_level": 75,
+    "text": "(40-50)% chance to Avoid being Frozen",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAvoidShock": {
+    "generation_type": "Suffix",
+    "name": "of the Faultless",
+    "required_level": 75,
+    "text": "(40-50)% chance to Avoid being Shocked",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAvoidStun": {
+    "generation_type": "Suffix",
+    "name": "of Righteousness",
+    "required_level": 75,
+    "text": "(25-35)% chance to Avoid being Stunned",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedStunThreshold": {
+    "generation_type": "Suffix",
+    "name": "of Guarding",
+    "required_level": 75,
+    "text": "(25-35)% increased Stun Threshold",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialTravelSkillCooldownRecovery": {
+    "generation_type": "Suffix",
+    "name": "of Marching",
+    "required_level": 75,
+    "text": "(20-30)% increased Cooldown Recovery Rate of Travel Skills",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialWarcrySpeed": {
+    "generation_type": "Suffix",
+    "name": "of Rallying",
+    "required_level": 75,
+    "text": "(20-30)% increased Warcry Speed",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAvoidElementalStatusAilments": {
+    "generation_type": "Suffix",
+    "name": "of the Untouchable",
+    "required_level": 75,
+    "text": "(20-30)% chance to Avoid Elemental Ailments",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToAvoidBleeding": {
+    "generation_type": "Suffix",
+    "name": "of Staunching",
+    "required_level": 75,
+    "text": "(40-50)% chance to Avoid Bleeding",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChanceToAvoidPoison": {
+    "generation_type": "Suffix",
+    "name": "of Constitution",
+    "required_level": 75,
+    "text": "(40-50)% chance to Avoid being Poisoned",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialGlobalCooldownRecovery": {
+    "generation_type": "Suffix",
+    "name": "of Alacrity",
+    "required_level": 82,
+    "text": "(8-12)% increased Cooldown Recovery Rate",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "SanctumSpecialSpellCriticalStrikeMultiplier": {
+    "generation_type": "Suffix",
+    "name": "of the Word",
+    "required_level": 75,
+    "text": "+(20-30)% to Critical Strike Multiplier for Spell Damage",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAttackCriticalStrikeMultiplier": {
+    "generation_type": "Suffix",
+    "name": "of Destruction",
+    "required_level": 75,
+    "text": "+(20-30)% to Critical Strike Multiplier for Attack Damage",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialDamageRemovedFromManaBeforeLife": {
+    "generation_type": "Suffix",
+    "name": "of Rational Faith",
+    "required_level": 75,
+    "text": "(4-6)% of Damage is taken from Mana before Life",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMaximumChaosResistanceImplicit": {
+    "generation_type": "Suffix",
+    "name": "of Sainthood",
+    "required_level": 82,
+    "text": "+(2-3)% to maximum Chaos Resistance",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialBlockPercent": {
+    "generation_type": "Suffix",
+    "name": "of Parrying",
+    "required_level": 75,
+    "text": "(5-8)% Chance to Block Attack Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialSpellBlockPercentage": {
+    "generation_type": "Suffix",
+    "name": "of Negation",
+    "required_level": 75,
+    "text": "(5-8)% Chance to Block Spell Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFortifyOnMeleeHit": {
+    "generation_type": "Suffix",
+    "name": "of Fortification",
+    "required_level": 82,
+    "text": "Melee Hits have (10-15)% chance to Fortify",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAllResistances": {
+    "generation_type": "Suffix",
+    "name": "of the Rainbow",
+    "required_level": 75,
+    "text": "+(10-15)% to all Elemental Resistances",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SanctumSpecialSkillEffectDuration": {
+    "generation_type": "Suffix",
+    "name": "of the Expert",
+    "required_level": 75,
+    "text": "(10-15)% increased Skill Effect Duration",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMaximumEnduranceCharge": {
+    "generation_type": "Suffix",
+    "name": "of Newfound Courage",
     "required_level": 84,
-    "text": "Adds 2 to 3 Cold Damage to Attacks per 10 Dexterity",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "SanctumSpecialColdResistancePenetration": {
-    "generation_type": "Prefix",
-    "name": "Biting",
-    "required_level": 75,
-    "text": "Damage Penetrates (5-8)% Cold Resistance",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialConvertPhysicalToCold": {
-    "generation_type": "Prefix",
-    "name": "Glaciating",
-    "required_level": 75,
-    "text": "(20-30)% of Physical Damage Converted to Cold Damage",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "SanctumSpecialConvertPhysicalToFire": {
-    "generation_type": "Prefix",
-    "name": "Combusting",
-    "required_level": 75,
-    "text": "(20-30)% of Physical Damage Converted to Fire Damage",
+    "text": "+1 to Maximum Endurance Charges",
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumSpecialConvertPhysicalToLightning": {
-    "generation_type": "Prefix",
-    "name": "Electrifying",
-    "required_level": 75,
-    "text": "(20-30)% of Physical Damage Converted to Lightning Damage",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialCurseEffectiveness": {
-    "generation_type": "Prefix",
-    "name": "Excommunicating",
-    "required_level": 82,
-    "text": "(5-10)% increased Effect of your Curses",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialDamagePerEnduranceCharge": {
-    "generation_type": "Prefix",
-    "name": "Determined",
-    "required_level": 75,
-    "text": "(6-8)% increased Damage per Endurance Charge",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialDamagePerFrenzyCharge": {
-    "generation_type": "Prefix",
-    "name": "Savage",
-    "required_level": 75,
-    "text": "(6-8)% increased Damage per Frenzy Charge",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialDamageTakenGainedAsLife": {
-    "generation_type": "Prefix",
-    "name": "Resolute",
-    "required_level": 75,
-    "text": "(15-20)% of Damage taken Recouped as Life",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialElusiveEffect": {
-    "generation_type": "Prefix",
-    "name": "Intangible",
-    "required_level": 82,
-    "text": "(10-15)% increased Elusive Effect",
+  "SanctumSpecialMaximumFrenzyCharge": {
+    "generation_type": "Suffix",
+    "name": "of Deepening Fervour",
+    "required_level": 84,
+    "text": "+1 to Maximum Frenzy Charges",
     "weight": 200,
     "influence": "Normal"
   },
-  "SanctumSpecialEnemyLifeRegenerationRate": {
-    "generation_type": "Prefix",
-    "name": "Festering",
-    "required_level": 75,
-    "text": "Enemies you've Hit Recently have (80-70)% reduced Life Regeneration rate",
-    "weight": 150,
+  "SanctumSpecialMaximumPowerCharge": {
+    "generation_type": "Suffix",
+    "name": "of Untapped Power",
+    "required_level": 84,
+    "text": "+1 to Maximum Power Charges",
+    "weight": 50,
     "influence": "Normal"
   },
-  "SanctumSpecialEnergyShieldFromGlovesBoots": {
+  "SanctumSpecialAddedPhysicalDamage": {
     "generation_type": "Prefix",
-    "name": "Acolyte's",
+    "name": "Tempered",
     "required_level": 75,
-    "text": "(40-60)% increased Maximum Energy Shield from Equipped Gloves and Boots",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialEnergyShieldRecoveryRate": {
-    "generation_type": "Prefix",
-    "name": "Reassuring",
-    "required_level": 75,
-    "text": "(8-12)% increased Energy Shield Recovery rate",
+    "text": "Adds (5-7) to (11-12) Physical Damage to Attacks",
     "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialEnergyShieldRegeneration": {
-    "generation_type": "Prefix",
-    "name": "Praying",
-    "required_level": 75,
-    "text": "(20-30)% increased Energy Shield Recharge Rate",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialEvasionRatingHelmetBoots": {
-    "generation_type": "Prefix",
-    "name": "Well-equipped",
-    "required_level": 75,
-    "text": "(40-60)% increased Evasion Rating from Equipped Helmet and Boots",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialExertedAttackDamage": {
-    "generation_type": "Prefix",
-    "name": "Colossal",
-    "required_level": 75,
-    "text": "Exerted Attacks deal (30-40)% increased Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialExtinguishOnHit": {
-    "generation_type": "Prefix",
-    "name": "Extinguishing",
-    "required_level": 75,
-    "text": "(30-35)% chance to Extinguish Enemies on Hit",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFasterBleedDamage": {
-    "generation_type": "Prefix",
-    "name": "Bloodletting",
-    "required_level": 75,
-    "text": "Bleeding you inflict deals Damage (7-10)% faster",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFasterIgniteDamage": {
-    "generation_type": "Prefix",
-    "name": "Witch-burning",
-    "required_level": 75,
-    "text": "Ignites you inflict deal Damage (7-10)% faster",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFasterPoisonDamage": {
-    "generation_type": "Prefix",
-    "name": "Heretical",
-    "required_level": 75,
-    "text": "Poisons you inflict deal Damage (7-10)% faster",
-    "weight": 200,
     "influence": "Normal"
   },
   "SanctumSpecialAddedFireDamage": {
@@ -271,83 +591,27 @@
     "weight": 250,
     "influence": "Normal"
   },
-  "SanctumSpecialFireDamageLifeLeech": {
+  "SanctumSpecialAddedColdDamage": {
     "generation_type": "Prefix",
-    "name": "Summer Preacher's",
+    "name": "Hyperboreal",
     "required_level": 75,
-    "text": "(0.3-0.5)% of Fire Damage Leeched as Life",
-    "weight": 150,
+    "text": "Adds (8-11) to (17-19) Cold Damage to Attacks",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "SanctumSpecialFireDamagePercentage": {
+  "SanctumSpecialAddedLightningDamage": {
     "generation_type": "Prefix",
-    "name": "Pyroclastic",
+    "name": "Electrocuting",
     "required_level": 75,
-    "text": "(20-30)% increased Fire Damage",
-    "weight": 250,
+    "text": "Adds (2-4) to (32-35) Lightning Damage to Attacks",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "SanctumSpecialFireDamageTakenGainedAsLife": {
+  "SanctumSpecialAddedChaosDamage": {
     "generation_type": "Prefix",
-    "name": "Fireborn",
+    "name": "Malicious",
     "required_level": 75,
-    "text": "(15-20)% of Fire Damage taken Recouped as Life",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFireDamageToAttacksPerStrength": {
-    "generation_type": "Prefix",
-    "name": "Forceful",
-    "required_level": 84,
-    "text": "Adds 2 to 3 Fire Damage to Attacks per 10 Strength",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFireResistancePenetration": {
-    "generation_type": "Prefix",
-    "name": "Searing",
-    "required_level": 75,
-    "text": "Damage Penetrates (5-8)% Fire Resistance",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFlaskEffect": {
-    "generation_type": "Prefix",
-    "name": "Sacramental",
-    "required_level": 82,
-    "text": "Flasks applied to you have (5-10)% increased Effect",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFlaskGainPerSecond": {
-    "generation_type": "Prefix",
-    "name": "Refilling",
-    "required_level": 82,
-    "text": "Flasks gain (1-2) Charges every 3 seconds",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFreezeProliferation": {
-    "generation_type": "Prefix",
-    "name": "Wintry",
-    "required_level": 75,
-    "text": "Freezes you inflict spread to other Enemies within 1.6 metres",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "SanctumSpecialGlobalEnergyShieldPercent": {
-    "generation_type": "Prefix",
-    "name": "Faithful",
-    "required_level": 75,
-    "text": "(10-15)% increased maximum Energy Shield",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialGlobalEvasionRatingPercent": {
-    "generation_type": "Prefix",
-    "name": "Evasive",
-    "required_level": 75,
-    "text": "(20-30)% increased Evasion Rating",
+    "text": "Adds (7-9) to (14-17) Chaos Damage to Attacks",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -359,276 +623,12 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumSpecialGlobalPhysicalDamageReductionRatingPercent": {
+  "SanctumSpecialFreezeProliferation": {
     "generation_type": "Prefix",
-    "name": "Iron-willed",
+    "name": "Wintry",
     "required_level": 75,
-    "text": "(20-30)% increased Armour",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialGolemBuffEffectUnique": {
-    "generation_type": "Prefix",
-    "name": "Hallowed",
-    "required_level": 82,
-    "text": "(25-35)% increased Effect of Buffs granted by your Golems",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFlatAccuracyPerFrenzyCharge": {
-    "generation_type": "Prefix",
-    "name": "Zealous",
-    "required_level": 75,
-    "text": "+(55-70) to Accuracy Rating per Frenzy Charge",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialIncreasedAccuracyPercent": {
-    "generation_type": "Prefix",
-    "name": "Aiming",
-    "required_level": 75,
-    "text": "(15-20)% increased Global Accuracy Rating",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SanctumSpecialIncreasedChaosDamage": {
-    "generation_type": "Prefix",
-    "name": "Unholy",
-    "required_level": 75,
-    "text": "(20-30)% increased Chaos Damage",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialIncreasedDamagePerPowerCharge": {
-    "generation_type": "Prefix",
-    "name": "Ambitious",
-    "required_level": 75,
-    "text": "(6-8)% increased Damage per Power Charge",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLifeRecoveryRate": {
-    "generation_type": "Prefix",
-    "name": "Healing",
-    "required_level": 75,
-    "text": "(8-12)% increased Life Recovery rate",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLifeRegenerationPercentPerEnduranceCharge": {
-    "generation_type": "Prefix",
-    "name": "Steadfast",
-    "required_level": 75,
-    "text": "Regenerate 0.3% of Life per second per Endurance Charge",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLifeRegenerationRate": {
-    "generation_type": "Prefix",
-    "name": "Rejuvenating",
-    "required_level": 75,
-    "text": "(8-12)% increased Life Regeneration rate",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAddedLightningDamage": {
-    "generation_type": "Prefix",
-    "name": "Electrocuting",
-    "required_level": 75,
-    "text": "Adds (2-4) to (32-35) Lightning Damage to Attacks",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLightningDamageLifeLeech": {
-    "generation_type": "Prefix",
-    "name": "Storm Preacher's",
-    "required_level": 75,
-    "text": "(0.3-0.5)% of Lightning Damage Leeched as Life",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLightningDamagePercentage": {
-    "generation_type": "Prefix",
-    "name": "Ionising",
-    "required_level": 75,
-    "text": "(20-30)% increased Lightning Damage",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLightningDamageTakenGainedAsLife": {
-    "generation_type": "Prefix",
-    "name": "Stormborn",
-    "required_level": 75,
-    "text": "(15-20)% of Lightning Damage taken Recouped as Life",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLightningDamageToAttacksPerIntelligence": {
-    "generation_type": "Prefix",
-    "name": "Genius",
-    "required_level": 84,
-    "text": "Adds 1 to 4 Lightning Damage to Attacks per 10 Intelligence",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLightningResistancePenetration": {
-    "generation_type": "Prefix",
-    "name": "Coursing",
-    "required_level": 75,
-    "text": "Damage Penetrates (5-8)% Lightning Resistance",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialManaRecoveryRate": {
-    "generation_type": "Prefix",
-    "name": "Refreshing",
-    "required_level": 75,
-    "text": "(8-12)% increased Mana Recovery rate",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMinionDamage": {
-    "generation_type": "Prefix",
-    "name": "Leader's",
-    "required_level": 75,
-    "text": "Minions deal (20-30)% increased Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMinionLife": {
-    "generation_type": "Prefix",
-    "name": "Protector's",
-    "required_level": 75,
-    "text": "Minions have (20-30)% increased maximum Life",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMinionReflectedDamage": {
-    "generation_type": "Prefix",
-    "name": "Anointed",
-    "required_level": 75,
-    "text": "Minions take (65-50)% reduced Reflected Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMovementVelocity": {
-    "generation_type": "Prefix",
-    "name": "Quickening",
-    "required_level": 75,
-    "text": "(8-12)% increased Movement Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SanctumSpecialOfferingEffect": {
-    "generation_type": "Prefix",
-    "name": "Sacrificial",
-    "required_level": 82,
-    "text": "(15-25)% increased effect of Offerings",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialOnslaughtEffect": {
-    "generation_type": "Prefix",
-    "name": "Assailant's",
-    "required_level": 75,
-    "text": "(10-15)% increased Effect of Onslaught on you",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPhysicalAddedAsCold": {
-    "generation_type": "Prefix",
-    "name": "Benumbing",
-    "required_level": 75,
-    "text": "Gain (5-8)% of Physical Damage as Extra Cold Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPhysicalAddedAsFire": {
-    "generation_type": "Prefix",
-    "name": "Infernal",
-    "required_level": 75,
-    "text": "Gain (5-8)% of Physical Damage as Extra Fire Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPhysicalAddedAsLightning": {
-    "generation_type": "Prefix",
-    "name": "Excoriating",
-    "required_level": 75,
-    "text": "Gain (5-8)% of Physical Damage as Extra Lightning Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAddedPhysicalDamage": {
-    "generation_type": "Prefix",
-    "name": "Tempered",
-    "required_level": 75,
-    "text": "Adds (5-7) to (11-12) Physical Damage to Attacks",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPhysicalDamageAddedAsChaos": {
-    "generation_type": "Prefix",
-    "name": "Putrescent",
-    "required_level": 75,
-    "text": "Gain (5-8)% of Physical Damage as Extra Chaos Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialConvertPhysicalToChaos": {
-    "generation_type": "Prefix",
-    "name": "Desanctifying",
-    "required_level": 75,
-    "text": "(20-30)% of Physical Damage Converted to Chaos Damage",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPhysicalDamageLifeLeech": {
-    "generation_type": "Prefix",
-    "name": "Blood Preacher's",
-    "required_level": 75,
-    "text": "(0.3-0.5)% of Physical Damage Leeched as Life",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPhysicalDamagePercent": {
-    "generation_type": "Prefix",
-    "name": "Tyrant's",
-    "required_level": 75,
-    "text": "(20-30)% increased Global Physical Damage",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPhysicalDamageTakenGainedAsLife": {
-    "generation_type": "Prefix",
-    "name": "Bladeborn",
-    "required_level": 75,
-    "text": "(15-20)% of Physical Damage taken Recouped as Life",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPlayerReflectedDamage": {
-    "generation_type": "Prefix",
-    "name": "Chosen",
-    "required_level": 75,
-    "text": "(65-50)% reduced Reflected Damage taken",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialRageOnHitImplicit": {
-    "generation_type": "Prefix",
-    "name": "Enraging",
-    "required_level": 82,
-    "text": "Gain 1 Rage on Hit with Attacks, no more than once every 0.8 seconds",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialReducedAttackManaCost": {
-    "generation_type": "Prefix",
-    "name": "Efficient",
-    "required_level": 75,
-    "text": "(25-20)% reduced Mana Cost of Attacks",
-    "weight": 150,
+    "text": "Freezes you inflict spread to other Enemies within 1.6 metres",
+    "weight": 200,
     "influence": "Normal"
   },
   "SanctumSpecialShockProliferation": {
@@ -639,11 +639,155 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumSpecialSpellAddedChaosDamage": {
+  "SanctumSpecialMinionDamage": {
     "generation_type": "Prefix",
-    "name": "Putrefying",
+    "name": "Leader's",
     "required_level": 75,
-    "text": "Adds (10-14) to (21-25) Chaos Damage to Spells",
+    "text": "Minions deal (20-30)% increased Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialExtinguishOnHit": {
+    "generation_type": "Prefix",
+    "name": "Extinguishing",
+    "required_level": 75,
+    "text": "(30-35)% chance to Extinguish Enemies on Hit",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialDamagePerFrenzyCharge": {
+    "generation_type": "Prefix",
+    "name": "Savage",
+    "required_level": 75,
+    "text": "(6-8)% increased Damage per Frenzy Charge",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialStrikeSkillsAdditionalTarget": {
+    "generation_type": "Prefix",
+    "name": "Ancestral",
+    "required_level": 82,
+    "text": "Non-Vaal Strike Skills target (1-2) additional nearby Enemies",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialRageOnHitImplicit": {
+    "generation_type": "Prefix",
+    "name": "Enraging",
+    "required_level": 82,
+    "text": "Gain 1 Rage on Hit with Attacks",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialEvasionRatingHelmetBoots": {
+    "generation_type": "Prefix",
+    "name": "Well-equipped",
+    "required_level": 75,
+    "text": "(40-60)% increased Evasion Rating from Equipped Helmet and Boots",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialConvertPhysicalToFire": {
+    "generation_type": "Prefix",
+    "name": "Combusting",
+    "required_level": 75,
+    "text": "(20-30)% of Physical Damage Converted to Fire Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialConvertPhysicalToCold": {
+    "generation_type": "Prefix",
+    "name": "Glaciating",
+    "required_level": 75,
+    "text": "(20-30)% of Physical Damage Converted to Cold Damage",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "SanctumSpecialConvertPhysicalToLightning": {
+    "generation_type": "Prefix",
+    "name": "Electrifying",
+    "required_level": 75,
+    "text": "(20-30)% of Physical Damage Converted to Lightning Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialConvertPhysicalToChaos": {
+    "generation_type": "Prefix",
+    "name": "Desanctifying",
+    "required_level": 75,
+    "text": "(20-30)% of Physical Damage Converted to Chaos Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireDamageLifeLeech": {
+    "generation_type": "Prefix",
+    "name": "Summer Preacher's",
+    "required_level": 75,
+    "text": "(0.3-0.5)% of Fire Damage Leeched as Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialColdDamageLifeLeech": {
+    "generation_type": "Prefix",
+    "name": "Winter Preacher's",
+    "required_level": 75,
+    "text": "(0.3-0.5)% of Cold Damage Leeched as Life",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLightningDamageLifeLeech": {
+    "generation_type": "Prefix",
+    "name": "Storm Preacher's",
+    "required_level": 75,
+    "text": "(0.3-0.5)% of Lightning Damage Leeched as Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPhysicalDamageLifeLeech": {
+    "generation_type": "Prefix",
+    "name": "Blood Preacher's",
+    "required_level": 75,
+    "text": "(0.3-0.5)% of Physical Damage Leeched as Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialChaosDamageLifeLeech": {
+    "generation_type": "Prefix",
+    "name": "Heretic's",
+    "required_level": 75,
+    "text": "(0.3-0.5)% of Chaos Damage Leeched as Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialExertedAttackDamage": {
+    "generation_type": "Prefix",
+    "name": "Colossal",
+    "required_level": 75,
+    "text": "Exerted Attacks deal (30-40)% increased Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedAccuracyPercent": {
+    "generation_type": "Prefix",
+    "name": "Aiming",
+    "required_level": 75,
+    "text": "(15-20)% increased Global Accuracy Rating",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFlatAccuracyPerFrenzyCharge": {
+    "generation_type": "Prefix",
+    "name": "Zealous",
+    "required_level": 75,
+    "text": "+(55-70) to Accuracy Rating per Frenzy Charge",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialSpellAddedFireDamage": {
+    "generation_type": "Prefix",
+    "name": "Cremating",
+    "required_level": 75,
+    "text": "Adds (14-18) to (29-33) Fire Damage to Spells",
     "weight": 250,
     "influence": "Normal"
   },
@@ -652,14 +796,6 @@
     "name": "Entombing",
     "required_level": 75,
     "text": "Adds (13-16) to (25-30) Cold Damage to Spells",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialSpellAddedFireDamage": {
-    "generation_type": "Prefix",
-    "name": "Cremating",
-    "required_level": 75,
-    "text": "Adds (14-18) to (29-33) Fire Damage to Spells",
     "weight": 250,
     "influence": "Normal"
   },
@@ -679,6 +815,126 @@
     "weight": 250,
     "influence": "Normal"
   },
+  "SanctumSpecialSpellAddedChaosDamage": {
+    "generation_type": "Prefix",
+    "name": "Putrefying",
+    "required_level": 75,
+    "text": "Adds (10-14) to (21-25) Chaos Damage to Spells",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireDamageTakenGainedAsLife": {
+    "generation_type": "Prefix",
+    "name": "Fireborn",
+    "required_level": 75,
+    "text": "(15-20)% of Fire Damage taken Recouped as Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialColdDamageTakenGainedAsLife": {
+    "generation_type": "Prefix",
+    "name": "Iceborn",
+    "required_level": 75,
+    "text": "(15-20)% of Cold Damage taken Recouped as Life",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLightningDamageTakenGainedAsLife": {
+    "generation_type": "Prefix",
+    "name": "Stormborn",
+    "required_level": 75,
+    "text": "(15-20)% of Lightning Damage taken Recouped as Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPhysicalDamageTakenGainedAsLife": {
+    "generation_type": "Prefix",
+    "name": "Bladeborn",
+    "required_level": 75,
+    "text": "(15-20)% of Physical Damage taken Recouped as Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialReducedAttackManaCost": {
+    "generation_type": "Prefix",
+    "name": "Efficient",
+    "required_level": 75,
+    "text": "(25-20)% reduced Mana Cost of Attacks",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedDamagePerPowerCharge": {
+    "generation_type": "Prefix",
+    "name": "Ambitious",
+    "required_level": 75,
+    "text": "(6-8)% increased Damage per Power Charge",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMinionLife": {
+    "generation_type": "Prefix",
+    "name": "Protector's",
+    "required_level": 75,
+    "text": "Minions have (20-30)% increased maximum Life",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialEnergyShieldRegeneration": {
+    "generation_type": "Prefix",
+    "name": "Praying",
+    "required_level": 75,
+    "text": "(20-30)% increased Energy Shield Recharge Rate",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialEnergyShieldFromGlovesBoots": {
+    "generation_type": "Prefix",
+    "name": "Acolyte's",
+    "required_level": 75,
+    "text": "(40-60)% increased Maximum Energy Shield from Equipped Gloves and Boots",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireResistancePenetration": {
+    "generation_type": "Prefix",
+    "name": "Searing",
+    "required_level": 75,
+    "text": "Damage Penetrates (5-8)% Fire Resistance",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialColdResistancePenetration": {
+    "generation_type": "Prefix",
+    "name": "Biting",
+    "required_level": 75,
+    "text": "Damage Penetrates (5-8)% Cold Resistance",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLightningResistancePenetration": {
+    "generation_type": "Prefix",
+    "name": "Coursing",
+    "required_level": 75,
+    "text": "Damage Penetrates (5-8)% Lightning Resistance",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialEnemyLifeRegenerationRate": {
+    "generation_type": "Prefix",
+    "name": "Festering",
+    "required_level": 75,
+    "text": "Enemies you've Hit Recently have (80-70)% reduced Life Regeneration rate",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAttackDamage": {
+    "generation_type": "Prefix",
+    "name": "Crusading",
+    "required_level": 75,
+    "text": "30% increased Attack Damage",
+    "weight": 250,
+    "influence": "Normal"
+  },
   "SanctumSpecialSpellDamage": {
     "generation_type": "Prefix",
     "name": "Preaching",
@@ -687,11 +943,195 @@
     "weight": 250,
     "influence": "Normal"
   },
-  "SanctumSpecialStrikeSkillsAdditionalTarget": {
+  "SanctumSpecialArcaneSurgeEffect": {
     "generation_type": "Prefix",
-    "name": "Ancestral",
+    "name": "Inspiring",
+    "required_level": 75,
+    "text": "(10-15)% increased Effect of Arcane Surge on you",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialMovementVelocity": {
+    "generation_type": "Prefix",
+    "name": "Quickening",
+    "required_level": 75,
+    "text": "(8-12)% increased Movement Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SanctumSpecialDamagePerEnduranceCharge": {
+    "generation_type": "Prefix",
+    "name": "Determined",
+    "required_level": 75,
+    "text": "(6-8)% increased Damage per Endurance Charge",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialOnslaughtEffect": {
+    "generation_type": "Prefix",
+    "name": "Assailant's",
+    "required_level": 75,
+    "text": "(10-15)% increased Effect of Onslaught on you",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLifeRegenerationRate": {
+    "generation_type": "Prefix",
+    "name": "Rejuvenating",
+    "required_level": 75,
+    "text": "(8-12)% increased Life Regeneration rate",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialArmourFromHelmetGloves": {
+    "generation_type": "Prefix",
+    "name": "Armoured",
+    "required_level": 75,
+    "text": "(40-60)% increased Armour from Equipped Helmet and Gloves",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFasterIgniteDamage": {
+    "generation_type": "Prefix",
+    "name": "Witch-burning",
+    "required_level": 75,
+    "text": "Ignites you inflict deal Damage (7-10)% faster",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFasterPoisonDamage": {
+    "generation_type": "Prefix",
+    "name": "Heretical",
+    "required_level": 75,
+    "text": "Poisons you inflict deal Damage (7-10)% faster",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFasterBleedDamage": {
+    "generation_type": "Prefix",
+    "name": "Bloodletting",
+    "required_level": 75,
+    "text": "Bleeding you inflict deals Damage (7-10)% faster",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPhysicalAddedAsFire": {
+    "generation_type": "Prefix",
+    "name": "Infernal",
+    "required_level": 75,
+    "text": "Gain (5-8)% of Physical Damage as Extra Fire Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPhysicalAddedAsCold": {
+    "generation_type": "Prefix",
+    "name": "Benumbing",
+    "required_level": 75,
+    "text": "Gain (5-8)% of Physical Damage as Extra Cold Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPhysicalAddedAsLightning": {
+    "generation_type": "Prefix",
+    "name": "Excoriating",
+    "required_level": 75,
+    "text": "Gain (5-8)% of Physical Damage as Extra Lightning Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPhysicalDamageAddedAsChaos": {
+    "generation_type": "Prefix",
+    "name": "Putrescent",
+    "required_level": 75,
+    "text": "Gain (5-8)% of Physical Damage as Extra Chaos Damage",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLifeRegenerationPercentPerEnduranceCharge": {
+    "generation_type": "Prefix",
+    "name": "Steadfast",
+    "required_level": 75,
+    "text": "Regenerate 0.3% of Life per second per Endurance Charge",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "SanctumSpecialElusiveEffect": {
+    "generation_type": "Prefix",
+    "name": "Intangible",
     "required_level": 82,
-    "text": "Non-Vaal Strike Skills target (1-2) additional nearby Enemies",
+    "text": "(10-15)% increased Elusive Effect",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireDamagePercentage": {
+    "generation_type": "Prefix",
+    "name": "Pyroclastic",
+    "required_level": 75,
+    "text": "(20-30)% increased Fire Damage",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialColdDamagePercentage": {
+    "generation_type": "Prefix",
+    "name": "Crystalline",
+    "required_level": 75,
+    "text": "(20-30)% increased Cold Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "SanctumSpecialLightningDamagePercentage": {
+    "generation_type": "Prefix",
+    "name": "Ionising",
+    "required_level": 75,
+    "text": "(20-30)% increased Lightning Damage",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialIncreasedChaosDamage": {
+    "generation_type": "Prefix",
+    "name": "Unholy",
+    "required_level": 75,
+    "text": "(20-30)% increased Chaos Damage",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialPhysicalDamagePercent": {
+    "generation_type": "Prefix",
+    "name": "Tyrant's",
+    "required_level": 75,
+    "text": "(20-30)% increased Global Physical Damage",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialGolemBuffEffectUnique": {
+    "generation_type": "Prefix",
+    "name": "Hallowed",
+    "required_level": 82,
+    "text": "(25-35)% increased Effect of Buffs granted by your Golems",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialAuraEffect": {
+    "generation_type": "Prefix",
+    "name": "Empowering",
+    "required_level": 82,
+    "text": "(10-15)% increased effect of Non-Curse Auras from your Skills",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialCurseEffectiveness": {
+    "generation_type": "Prefix",
+    "name": "Excommunicating",
+    "required_level": 82,
+    "text": "(5-10)% increased Effect of your Curses",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialOfferingEffect": {
+    "generation_type": "Prefix",
+    "name": "Sacrificial",
+    "required_level": 82,
+    "text": "(15-25)% increased effect of Offerings",
     "weight": 50,
     "influence": "Normal"
   },
@@ -703,579 +1143,139 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumSpecialAdditionalPierce": {
-    "generation_type": "Suffix",
-    "name": "of Piercing",
-    "required_level": 75,
-    "text": "Projectiles Pierce (1-2) additional Targets",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAllResistances": {
-    "generation_type": "Suffix",
-    "name": "of the Rainbow",
-    "required_level": 75,
-    "text": "+(10-15)% to all Elemental Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAreaOfEffect": {
-    "generation_type": "Suffix",
-    "name": "of Expansion",
-    "required_level": 75,
-    "text": "(15-20)% increased Area of Effect",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialArmourPenetration": {
-    "generation_type": "Suffix",
-    "name": "of Overwhelming",
+  "SanctumSpecialFlaskEffect": {
+    "generation_type": "Prefix",
+    "name": "Sacramental",
     "required_level": 82,
-    "text": "Overwhelm (15-20)% Physical Damage Reduction",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAttackCriticalStrikeChance": {
-    "generation_type": "Suffix",
-    "name": "of Precision",
-    "required_level": 75,
-    "text": "(30-40)% increased Critical Strike Chance for Attacks",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAttackCriticalStrikeMultiplier": {
-    "generation_type": "Suffix",
-    "name": "of Destruction",
-    "required_level": 75,
-    "text": "+(20-30)% to Critical Strike Multiplier for Attack Damage",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAttackImpaleChance": {
-    "generation_type": "Suffix",
-    "name": "of Impaling",
-    "required_level": 75,
-    "text": "(20-30)% chance to Impale Enemies on Hit with Attacks",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAvoidElementalStatusAilments": {
-    "generation_type": "Suffix",
-    "name": "of the Untouchable",
-    "required_level": 75,
-    "text": "(20-30)% chance to Avoid Elemental Ailments",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAvoidFreeze": {
-    "generation_type": "Suffix",
-    "name": "of the Guiltless",
-    "required_level": 75,
-    "text": "(40-50)% chance to Avoid being Frozen",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAvoidIgnite": {
-    "generation_type": "Suffix",
-    "name": "of the Blameless",
-    "required_level": 75,
-    "text": "(40-50)% chance to Avoid being Ignited",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAvoidShock": {
-    "generation_type": "Suffix",
-    "name": "of the Faultless",
-    "required_level": 75,
-    "text": "(40-50)% chance to Avoid being Shocked",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialAvoidStun": {
-    "generation_type": "Suffix",
-    "name": "of Righteousness",
-    "required_level": 75,
-    "text": "(25-35)% chance to Avoid being Stunned",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialBlindEffect": {
-    "generation_type": "Suffix",
-    "name": "of Blinding",
-    "required_level": 75,
-    "text": "(10-20)% increased Blind Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialBlockPercent": {
-    "generation_type": "Suffix",
-    "name": "of Parrying",
-    "required_level": 75,
-    "text": "(5-8)% Chance to Block Attack Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialBrandAttachmentRange": {
-    "generation_type": "Suffix",
-    "name": "of Accusation",
-    "required_level": 75,
-    "text": "(10-20)% increased Brand Attachment range",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToAvoidBleeding": {
-    "generation_type": "Suffix",
-    "name": "of Staunching",
-    "required_level": 75,
-    "text": "(40-50)% chance to Avoid Bleeding",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToAvoidPoison": {
-    "generation_type": "Suffix",
-    "name": "of Constitution",
-    "required_level": 75,
-    "text": "(40-50)% chance to Avoid being Poisoned",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToBleed": {
-    "generation_type": "Suffix",
-    "name": "of Bleeding",
-    "required_level": 75,
-    "text": "Attacks have (20-30)% chance to cause Bleeding",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToFreeze": {
-    "generation_type": "Suffix",
-    "name": "of Freezing",
-    "required_level": 75,
-    "text": "(20-30)% chance to Freeze",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToIgnite": {
-    "generation_type": "Suffix",
-    "name": "of Ignition",
-    "required_level": 75,
-    "text": "(20-30)% chance to Ignite",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToIntimidateOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Intimidation",
-    "required_level": 75,
-    "text": "(30-35)% chance to Intimidate Enemies for 4 seconds on Hit",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToShock": {
-    "generation_type": "Suffix",
-    "name": "of Shocking",
-    "required_level": 75,
-    "text": "(20-30)% chance to Shock",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToSuppressSpells": {
-    "generation_type": "Suffix",
-    "name": "of Suppression",
-    "required_level": 75,
-    "text": "+(6-10)% chance to Suppress Spell Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChanceToUnnerveOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Unnerving",
-    "required_level": 75,
-    "text": "(30-35)% chance to Unnerve Enemies for 4 seconds on Hit",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChaosDamageOverTimeMultiplier": {
-    "generation_type": "Suffix",
-    "name": "of Entropy",
-    "required_level": 75,
-    "text": "+(15-20)% to Chaos Damage over Time Multiplier",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialChaosResistance": {
-    "generation_type": "Suffix",
-    "name": "of Purity",
-    "required_level": 75,
-    "text": "+(10-20)% to Chaos Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialColdDamageOverTimeMultiplier": {
-    "generation_type": "Suffix",
-    "name": "of Chilling",
-    "required_level": 75,
-    "text": "+(15-20)% to Cold Damage over Time Multiplier",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialColdExposureEffectOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Hypothermia",
-    "required_level": 82,
-    "text": "Inflict Cold Exposure on Hit, applying -15% to Cold Resistance",
+    "text": "Flasks applied to you have (5-10)% increased Effect",
     "weight": 200,
     "influence": "Normal"
   },
-  "SanctumSpecialColdResistance": {
-    "generation_type": "Suffix",
-    "name": "of Vestments",
+  "SanctumSpecialDamageTakenGainedAsLife": {
+    "generation_type": "Prefix",
+    "name": "Resolute",
     "required_level": 75,
-    "text": "+(20-30)% to Cold Resistance",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "SanctumSpecialDamageRemovedFromManaBeforeLife": {
-    "generation_type": "Suffix",
-    "name": "of Rational Faith",
-    "required_level": 75,
-    "text": "(4-6)% of Damage is taken from Mana before Life",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFireDamageOverTimeMultiplier": {
-    "generation_type": "Suffix",
-    "name": "of Blazing",
-    "required_level": 75,
-    "text": "+(15-20)% to Fire Damage over Time Multiplier",
+    "text": "(15-20)% of Damage taken Recouped as Life",
     "weight": 150,
     "influence": "Normal"
   },
-  "SanctumSpecialFireExposureEffectOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Dehydration",
+  "SanctumSpecialFlaskGainPerSecond": {
+    "generation_type": "Prefix",
+    "name": "Refilling",
     "required_level": 82,
-    "text": "Inflict Fire Exposure on Hit, applying -15% to Fire Resistance",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFireResistance": {
-    "generation_type": "Suffix",
-    "name": "of the Pyre",
-    "required_level": 75,
-    "text": "+(20-30)% to Fire Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialFortifyOnMeleeHit": {
-    "generation_type": "Suffix",
-    "name": "of Fortification",
-    "required_level": 82,
-    "text": "Melee Hits have (10-15)% chance to Fortify",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialGlobalCooldownRecovery": {
-    "generation_type": "Suffix",
-    "name": "of Alacrity",
-    "required_level": 82,
-    "text": "(8-12)% increased Cooldown Recovery Rate",
+    "text": "Flasks gain (1-2) Charges every 3 seconds",
     "weight": 200,
     "influence": "Normal"
   },
-  "SanctumSpecialGlobalMaimOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Maiming",
+  "SanctumSpecialGlobalPhysicalDamageReductionRatingPercent": {
+    "generation_type": "Prefix",
+    "name": "Iron-willed",
     "required_level": 75,
-    "text": "Attacks have (30-35)% chance to Maim on Hit",
-    "weight": 150,
+    "text": "(20-30)% increased Armour",
+    "weight": 250,
     "influence": "Normal"
   },
-  "SanctumSpecialIncreasedAilmentDuration": {
-    "generation_type": "Suffix",
-    "name": "of Prolonged Suffering",
+  "SanctumSpecialGlobalEvasionRatingPercent": {
+    "generation_type": "Prefix",
+    "name": "Evasive",
     "required_level": 75,
-    "text": "(20-30)% increased Duration of Ailments on Enemies",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialIncreasedAilmentEffectOnEnemies": {
-    "generation_type": "Suffix",
-    "name": "of Punishment",
-    "required_level": 75,
-    "text": "(20-30)% increased Effect of Non-Damaging Ailments",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialIncreasedAttackSpeed": {
-    "generation_type": "Suffix",
-    "name": "of Bladedancing",
-    "required_level": 75,
-    "text": "(10-15)% increased Attack Speed",
+    "text": "(20-30)% increased Evasion Rating",
     "weight": 1000,
     "influence": "Normal"
   },
-  "SanctumSpecialIncreasedCastSpeed": {
-    "generation_type": "Suffix",
-    "name": "of the Archmage",
+  "SanctumSpecialGlobalEnergyShieldPercent": {
+    "generation_type": "Prefix",
+    "name": "Faithful",
     "required_level": 75,
-    "text": "(10-15)% increased Cast Speed",
+    "text": "(10-15)% increased maximum Energy Shield",
     "weight": 250,
     "influence": "Normal"
   },
-  "SanctumSpecialIncreasedManaRegenerationPerPowerCharge": {
-    "generation_type": "Suffix",
-    "name": "of Concentration",
+  "SanctumSpecialPlayerReflectedDamage": {
+    "generation_type": "Prefix",
+    "name": "Chosen",
     "required_level": 75,
-    "text": "(6-8)% increased Mana Regeneration Rate per Power Charge",
+    "text": "(65-50)% reduced Reflected Damage taken",
     "weight": 150,
     "influence": "Normal"
   },
-  "SanctumSpecialMaximumPowerCharge": {
-    "generation_type": "Suffix",
-    "name": "of Untapped Power",
-    "required_level": 84,
-    "text": "+1 to Maximum Power Charges",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialIncreasedStunThreshold": {
-    "generation_type": "Suffix",
-    "name": "of Guarding",
+  "SanctumSpecialMinionReflectedDamage": {
+    "generation_type": "Prefix",
+    "name": "Anointed",
     "required_level": 75,
-    "text": "(25-35)% increased Stun Threshold",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLightningExposureEffectOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Potential",
-    "required_level": 82,
-    "text": "Inflict Lightning Exposure on Hit, applying -15% to Lightning Resistance",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialLightningResistance": {
-    "generation_type": "Suffix",
-    "name": "of the Storm",
-    "required_level": 75,
-    "text": "+(20-30)% to Lightning Resistance",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialManaRegeneration": {
-    "generation_type": "Suffix",
-    "name": "of Focus",
-    "required_level": 75,
-    "text": "(30-40)% increased Mana Regeneration Rate",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialManaReservationEfficiency": {
-    "generation_type": "Suffix",
-    "name": "of Efficiency",
-    "required_level": 82,
-    "text": "(8-12)% increased Mana Reservation Efficiency of Skills",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMarkEffect": {
-    "generation_type": "Suffix",
-    "name": "of Marking",
-    "required_level": 75,
-    "text": "(15-20)% increased Effect of your Marks",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMaximumChaosResistanceImplicit": {
-    "generation_type": "Suffix",
-    "name": "of Sainthood",
-    "required_level": 82,
-    "text": "+(2-3)% to maximum Chaos Resistance",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMaximumColdResistance": {
-    "generation_type": "Suffix",
-    "name": "of Warmth",
-    "required_level": 75,
-    "text": "+(2-3)% to maximum Cold Resistance",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMaximumEnduranceCharge": {
-    "generation_type": "Suffix",
-    "name": "of Newfound Courage",
-    "required_level": 84,
-    "text": "+1 to Maximum Endurance Charges",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumSpecialMaximumFireResistanceImplicit": {
-    "generation_type": "Suffix",
-    "name": "of the Forge",
-    "required_level": 75,
-    "text": "+(2-3)% to maximum Fire Resistance",
+    "text": "Minions take (65-50)% reduced Reflected Damage",
     "weight": 150,
     "influence": "Normal"
   },
-  "SanctumSpecialMaximumFrenzyCharge": {
-    "generation_type": "Suffix",
-    "name": "of Deepening Fervour",
+  "SanctumSpecialLifeRecoveryRate": {
+    "generation_type": "Prefix",
+    "name": "Healing",
+    "required_level": 75,
+    "text": "(8-12)% increased Life Recovery rate",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialManaRecoveryRate": {
+    "generation_type": "Prefix",
+    "name": "Refreshing",
+    "required_level": 75,
+    "text": "(8-12)% increased Mana Recovery rate",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialEnergyShieldRecoveryRate": {
+    "generation_type": "Prefix",
+    "name": "Reassuring",
+    "required_level": 75,
+    "text": "(8-12)% increased Energy Shield Recovery rate",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "SanctumSpecialFireDamageToAttacksPerStrength": {
+    "generation_type": "Prefix",
+    "name": "Forceful",
     "required_level": 84,
-    "text": "+1 to Maximum Frenzy Charges",
+    "text": "Adds 2 to 3 Fire Damage to Attacks per 10 Strength",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumSpecialColdDamageToAttacksPerDexterity": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 84,
+    "text": "Adds 2 to 3 Cold Damage to Attacks per 10 Dexterity",
     "weight": 200,
     "influence": "Normal"
   },
-  "SanctumSpecialMaximumLightningResistanceImplicit": {
-    "generation_type": "Suffix",
-    "name": "of Grounding",
-    "required_level": 75,
-    "text": "+(2-3)% to maximum Lightning Resistance",
-    "weight": 150,
+  "SanctumSpecialLightningDamageToAttacksPerIntelligence": {
+    "generation_type": "Prefix",
+    "name": "Genius",
+    "required_level": 84,
+    "text": "Adds 1 to 4 Lightning Damage to Attacks per 10 Intelligence",
+    "weight": 50,
     "influence": "Normal"
   },
-  "SanctumSpecialMineLayingSpeed": {
-    "generation_type": "Suffix",
-    "name": "of Planning",
-    "required_level": 75,
-    "text": "(10-15)% increased Mine Throwing Speed",
-    "weight": 600,
+  "SanctumSpecialAllFireDamageCanShock": {
+    "generation_type": "Prefix",
+    "name": "Rapturous",
+    "required_level": 84,
+    "text": "Your Fire Damage can Shock",
+    "weight": 50,
     "influence": "Normal"
   },
-  "SanctumSpecialMinionRunSpeed": {
-    "generation_type": "Suffix",
-    "name": "of Charging",
-    "required_level": 75,
-    "text": "Minions have (15-25)% increased Movement Speed",
-    "weight": 150,
+  "SanctumSpecialAllColdDamageCanIgnite": {
+    "generation_type": "Prefix",
+    "name": "Apocalyptic",
+    "required_level": 84,
+    "text": "Your Cold Damage can Ignite",
+    "weight": 200,
     "influence": "Normal"
   },
-  "SanctumSpecialPhysicalDamageOverTimeMultiplier": {
-    "generation_type": "Suffix",
-    "name": "of Lacerating",
-    "required_level": 75,
-    "text": "+(15-20)% to Physical Damage over Time Multiplier",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialPoisonOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Toxicity",
-    "required_level": 75,
-    "text": "(20-30)% chance to Poison on Hit",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialReducedFreezeDuration": {
-    "generation_type": "Suffix",
-    "name": "of Melting",
-    "required_level": 75,
-    "text": "(40-50)% reduced Freeze Duration on you",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialReducedIgniteDurationOnSelf": {
-    "generation_type": "Suffix",
-    "name": "of Dousing",
-    "required_level": 75,
-    "text": "(40-50)% reduced Ignite Duration on you",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialReducedShockEffectOnSelf": {
-    "generation_type": "Suffix",
-    "name": "of Insulation",
-    "required_level": 75,
-    "text": "(50-40)% reduced Effect of Shock on you",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialSkillEffectDuration": {
-    "generation_type": "Suffix",
-    "name": "of the Expert",
-    "required_level": 75,
-    "text": "(10-15)% increased Skill Effect Duration",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialSpellBlockPercentage": {
-    "generation_type": "Suffix",
-    "name": "of Negation",
-    "required_level": 75,
-    "text": "(5-8)% Chance to Block Spell Damage",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialSpellCriticalStrikeChance": {
-    "generation_type": "Suffix",
-    "name": "of the Evocationist",
-    "required_level": 75,
-    "text": "(30-40)% increased Critical Strike Chance for Spells",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialSpellCriticalStrikeMultiplier": {
-    "generation_type": "Suffix",
-    "name": "of the Word",
-    "required_level": 75,
-    "text": "+(20-30)% to Critical Strike Multiplier for Spell Damage",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialSpellsHinderOnHitChance": {
-    "generation_type": "Suffix",
-    "name": "of Arcane Hindrance",
-    "required_level": 75,
-    "text": "(30-35)% chance to Hinder Enemies on Hit with Spells",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialStunThresholdReduction": {
-    "generation_type": "Suffix",
-    "name": "of the Pugilist",
-    "required_level": 75,
-    "text": "(15-20)% reduced Enemy Stun Threshold",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "SanctumSpecialSummonTotemCastSpeed": {
-    "generation_type": "Suffix",
-    "name": "of the Descry",
-    "required_level": 75,
-    "text": "(10-20)% increased Totem Placement speed",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialTrapThrowSpeed": {
-    "generation_type": "Suffix",
-    "name": "of Sabotage",
-    "required_level": 75,
-    "text": "(10-15)% increased Trap Throwing Speed",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialTravelSkillCooldownRecovery": {
-    "generation_type": "Suffix",
-    "name": "of Marching",
-    "required_level": 75,
-    "text": "(20-30)% increased Cooldown Recovery Rate of Travel Skills",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "SanctumSpecialWarcrySpeed": {
-    "generation_type": "Suffix",
-    "name": "of Rallying",
-    "required_level": 75,
-    "text": "(20-30)% increased Warcry Speed",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "SanctumSpecialWitherExpireSpeed": {
-    "generation_type": "Suffix",
-    "name": "of Withering",
-    "required_level": 82,
-    "text": "Withered you Inflict expires (25-20)% slower",
+  "SanctumSpecialAllLightningDamageCanFreeze": {
+    "generation_type": "Prefix",
+    "name": "Cataclysmic",
+    "required_level": 84,
+    "text": "Your Lightning Damage can Freeze",
     "weight": 50,
     "influence": "Normal"
   }

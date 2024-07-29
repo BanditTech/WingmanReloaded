@@ -4,132 +4,168 @@
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Bronze Stalker Sentinel": {
     "drop_level": 5,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Cobalt Stalker Sentinel": {
     "drop_level": 18,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Brimstone Stalker Sentinel": {
     "drop_level": 38,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Emberstone Stalker Sentinel": {
     "drop_level": 58,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Obsidian Stalker Sentinel": {
     "drop_level": 67,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
-  },
-  "Bronze Pandemonium Sentinel": {
-    "drop_level": 40,
-    "implicits": [
-      "Empowers many enemies in one shot"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Cobalt Pandemonium Sentinel": {
-    "drop_level": 46,
-    "implicits": [
-      "Empowers many enemies in one shot"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Brimstone Pandemonium Sentinel": {
-    "drop_level": 54,
-    "implicits": [
-      "Empowers many enemies in one shot"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Emberstone Pandemonium Sentinel": {
-    "drop_level": 62,
-    "implicits": [
-      "Empowers many enemies in one shot"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Obsidian Pandemonium Sentinel": {
-    "drop_level": 68,
-    "implicits": [
-      "Empowers many enemies in one shot"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Bronze Apex Sentinel": {
-    "drop_level": 24,
-    "implicits": [
-      "Can only empower Rare or Unique enemies"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Cobalt Apex Sentinel": {
-    "drop_level": 36,
-    "implicits": [
-      "Can only empower Rare or Unique enemies"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Brimstone Apex Sentinel": {
-    "drop_level": 48,
-    "implicits": [
-      "Can only empower Rare or Unique enemies"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Emberstone Apex Sentinel": {
-    "drop_level": 58,
-    "implicits": [
-      "Can only empower Rare or Unique enemies"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Obsidian Apex Sentinel": {
-    "drop_level": 66,
-    "implicits": [
-      "Can only empower Rare or Unique enemies"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Cryptic Stalker Sentinel": {
     "drop_level": 2,
@@ -138,7 +174,28 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Primeval Stalker Sentinel": {
     "drop_level": 68,
@@ -147,7 +204,28 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Ancient Stalker Sentinel": {
     "drop_level": 80,
@@ -156,7 +234,178 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Bronze Pandemonium Sentinel": {
+    "drop_level": 40,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cobalt Pandemonium Sentinel": {
+    "drop_level": 46,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Brimstone Pandemonium Sentinel": {
+    "drop_level": 54,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Emberstone Pandemonium Sentinel": {
+    "drop_level": 62,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Obsidian Pandemonium Sentinel": {
+    "drop_level": 68,
+    "implicits": [
+      "Empowers many enemies in one shot"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Cryptic Pandemonium Sentinel": {
     "drop_level": 40,
@@ -166,7 +415,28 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Primeval Pandemonium Sentinel": {
     "drop_level": 68,
@@ -176,7 +446,28 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Ancient Pandemonium Sentinel": {
     "drop_level": 80,
@@ -186,7 +477,178 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Bronze Apex Sentinel": {
+    "drop_level": 24,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cobalt Apex Sentinel": {
+    "drop_level": 36,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Brimstone Apex Sentinel": {
+    "drop_level": 48,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Emberstone Apex Sentinel": {
+    "drop_level": 58,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Obsidian Apex Sentinel": {
+    "drop_level": 66,
+    "implicits": [
+      "Can only empower Rare or Unique enemies"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Cryptic Apex Sentinel": {
     "drop_level": 24,
@@ -196,7 +658,28 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Primeval Apex Sentinel": {
     "drop_level": 68,
@@ -206,7 +689,28 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Ancient Apex Sentinel": {
     "drop_level": 80,
@@ -216,13 +720,55 @@
     ],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Cosmic Apex Sentinel": {
     "drop_level": 75,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   }
 }

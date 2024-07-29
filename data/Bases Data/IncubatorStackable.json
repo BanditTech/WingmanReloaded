@@ -1,86 +1,30 @@
 {
-  "Abyssal Incubator": {
+  "Whispering Incubator": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
-      "description": "Adds an incubated Rare Abyss item to an equippable item\r\nItem drops after killing {0} monsters",
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Essence item to an equippable item\r\nItem drops after killing {0} monsters",
       "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
       "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Geomancer's Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated 6-Linked Armour item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Celestial Armoursmith's Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Shaper or Elder Armour item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Feral Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Bestiary item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Blighted Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Blight item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Obscured Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Breach item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Ornate Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Currency item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Fine Incubator": {
@@ -89,250 +33,26 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "Adds an incubated Currency item to an equippable item\r\nItem drops after killing {0} monsters",
       "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
       "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Maddening Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Delirium item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Diviner's Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds incubated Stacked Decks to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Infused Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Essence item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Whispering Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Essence item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Fossilised Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Fossil item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Fragmented Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Fragment item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Gemcutter's Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Quality Gem item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Thaumaturge's Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated high level Corrupted Gem or valuable Gem item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Mysterious Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Foreboding Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds incubated valuable Currency Shards or a Harbinger item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Enchanted Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Labyrinth item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Eldritch Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Elder Map item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Cartographer's Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Map item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Challenging Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Ultimatum item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Kalguuran Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Expedition item to an equippable item \r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Skittering Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Scarab item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Primal Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Talisman item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Celestial Jeweller's Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Shaper or Elder Trinket item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Time-Lost Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated League-specific Unique item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
-    }
-  },
-  "Otherworldly Incubator": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Adds an incubated Unique Map item to an equippable item\r\nItem drops after killing {0} monsters",
-      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
-      "stack_size": 10,
-      "stack_size_currency_tab": 5000
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Singular Incubator": {
@@ -341,10 +61,446 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "Adds an incubated Unique item to an equippable item\r\nItem drops after killing {0} monsters",
       "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
       "stack_size": 10,
-      "stack_size_currency_tab": 5000
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cartographer's Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Map item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Otherworldly Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Unique Map item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Abyssal Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Rare Abyss item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Fragmented Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Fragment item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Skittering Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Scarab item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Infused Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Essence item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Fossilised Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Fossil item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Kalguuran Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Expedition item to an equippable item \r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Diviner's Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds incubated Stacked Decks to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Primal Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Talisman item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Enchanted Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Labyrinth item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Geomancer's Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated 6-Linked Armour item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ornate Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Currency item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Time-Lost Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated League-specific Unique item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Celestial Armoursmith's Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Shaper or Elder Armour item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Celestial Blacksmith's Incubator": {
@@ -353,10 +509,334 @@
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "Adds an incubated Shaper or Elder Weapon item to an equippable item\r\nItem drops after killing {0} monsters",
       "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
       "stack_size": 10,
-      "stack_size_currency_tab": 5000
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Celestial Jeweller's Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Shaper or Elder Trinket item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Eldritch Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Elder Map item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Obscured Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Breach item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Foreboding Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds incubated valuable Currency Shards or a Harbinger item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Thaumaturge's Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated high level Corrupted Gem or valuable Gem item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Mysterious Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Gemcutter's Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Quality Gem item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Feral Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Bestiary item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Blighted Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Blight item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Challenging Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Ultimatum item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Maddening Incubator": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Adds an incubated Delirium item to an equippable item\r\nItem drops after killing {0} monsters",
+      "directions": "Right click this item then left click an item to apply it. The Incubated item drops after killing a specific number of monsters.",
+      "stack_size": 10,
+      "stack_size_currency_tab": 5000,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

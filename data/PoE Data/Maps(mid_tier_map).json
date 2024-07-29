@@ -1,186 +1,18 @@
 {
-  "MapBossPossessedMapWorlds": {
+  "MapTotemsMapWorlds": {
     "generation_type": "Prefix",
-    "name": "Enthralled",
+    "name": "Ceremonial",
     "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Unique Bosses are Possessed",
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area contains many Totems",
     "weight": 1000,
     "influence": "Normal"
   },
-  "MapDangerousBoss2MapWorlds": {
+  "MapNemesisModOnRaresMapWorlds": {
     "generation_type": "Prefix",
-    "name": "Overlord's",
+    "name": "Antagonist's",
     "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Unique Boss deals 20% increased Damage | Unique Boss has 25% increased Attack and Cast Speed",
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (20-30)% increased number of Rare Monsters",
     "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMassiveBoss2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Titan's",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Unique Boss has 30% increased Life | Unique Boss has 55% increased Area of Effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterCannotBeStunned2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Unwavering",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters cannot be Stunned | (20-24)% more Monster Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterChainMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Chaining",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' skills Chain 2 additional times",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterChaosDamage2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Profane",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters gain (21-25)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "MapMonsterColdDamage2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Freezing",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Cold",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterDamage2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Savage",
-    "required_level": 1,
-    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (18-21)% increased Monster Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterElementalReflection2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Mirrored",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 15% of Elemental Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "MapMonsterFast2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Fleet",
-    "required_level": 1,
-    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (20-25)% increased Monster Movement Speed | (25-35)% increased Monster Attack Speed | (25-35)% increased Monster Cast Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterFireDamage2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Burning",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Fire",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterLife2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Fecund",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (30-39)% more Monster Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterLightningDamage2MapWorlds__": {
-    "generation_type": "Prefix",
-    "name": "Shocking",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Lightning",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterMultipleProjectilesWorlds": {
-    "generation_type": "Prefix",
-    "name": "Splitting",
-    "required_level": 1,
-    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | Monsters fire 2 additional Projectiles",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksAbominationMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Abhorrent",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Area is inhabited by Abominations",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksAnimalsMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Feral",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Area is inhabited by Animals",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksDemonsMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Demonic",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Demons",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksGhostsMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Haunting",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Ghosts",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksGoatmenMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Capricious",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Goatmen",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksHumanoidsMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Bipedal",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Humanoids",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksKitavaMapWorlds_": {
-    "generation_type": "Prefix",
-    "name": "Feasting",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Area is inhabited by Cultists of Kitava",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksLunarisMapWorlds_": {
-    "generation_type": "Prefix",
-    "name": "Lunar",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Lunaris fanatics",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "MapMonsterPacksRangedMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Emanant",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by ranged monsters",
-    "weight": 150,
     "influence": "Normal"
   },
   "MapMonsterPacksSkeletonsMapWorlds_": {
@@ -191,11 +23,11 @@
     "weight": 150,
     "influence": "Normal"
   },
-  "MapMonsterPacksSolarisMapWorlds_": {
+  "MapMonsterPacksGoatmenMapWorlds": {
     "generation_type": "Prefix",
-    "name": "Solar",
+    "name": "Capricious",
     "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Solaris fanatics",
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Goatmen",
     "weight": 150,
     "influence": "Normal"
   },
@@ -215,12 +47,100 @@
     "weight": 150,
     "influence": "Normal"
   },
-  "MapMonsterPhysicalReflection2MapWorlds": {
+  "MapMonsterPacksRangedMapWorlds": {
     "generation_type": "Prefix",
-    "name": "Punishing",
+    "name": "Emanant",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 15% of Physical Damage",
-    "weight": 600,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by ranged monsters",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksAnimalsMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Feral",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Area is inhabited by Animals",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksDemonsMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Demonic",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Demons",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksHumanoidsMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Bipedal",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Humanoids",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksSolarisMapWorlds_": {
+    "generation_type": "Prefix",
+    "name": "Solar",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Solaris fanatics",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksLunarisMapWorlds_": {
+    "generation_type": "Prefix",
+    "name": "Lunar",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Lunaris fanatics",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksGhostsMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Haunting",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Area is inhabited by Ghosts",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksKitavaMapWorlds_": {
+    "generation_type": "Prefix",
+    "name": "Feasting",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Area is inhabited by Cultists of Kitava",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMoreMonsterPackVarietyMapWorlds_": {
+    "generation_type": "Prefix",
+    "name": "Multifarious",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has increased monster variety",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterChainMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Chaining",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' skills Chain 2 additional times",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterCannotBeStunned2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Unwavering",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters cannot be Stunned | (20-24)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterMultipleProjectilesWorlds": {
+    "generation_type": "Prefix",
+    "name": "Splitting",
+    "required_level": 1,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | Monsters fire 2 additional Projectiles",
+    "weight": 1000,
     "influence": "Normal"
   },
   "MapMonsterPhysicalResistance2MapWorlds": {
@@ -229,6 +149,126 @@
     "required_level": 1,
     "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | +30% Monster Physical Damage Reduction",
     "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterLife2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (30-39)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterDamage2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Savage",
+    "required_level": 1,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (18-21)% increased Monster Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterFireDamage2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Burning",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Fire",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterColdDamage2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Freezing",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Cold",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterLightningDamage2MapWorlds__": {
+    "generation_type": "Prefix",
+    "name": "Shocking",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters deal (70-89)% extra Physical Damage as Lightning",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterChaosDamage2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Profane",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters gain (21-25)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "MapMonsterFast2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 1,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | (20-25)% increased Monster Movement Speed | (25-35)% increased Monster Attack Speed | (25-35)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonsterPhysicalReflection2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 15% of Physical Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MapMonsterElementalReflection2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Mirrored",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters reflect 15% of Elemental Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MapDangerousBoss2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Overlord's",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Unique Boss deals 20% increased Damage | Unique Boss has 25% increased Attack and Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMassiveBoss2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Titan's",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Unique Boss has 30% increased Life | Unique Boss has 55% increased Area of Effect",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "MapMonstersCurseEffectOnSelfFinal2MapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | 40% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersChanceToInflictStatusAilmentsMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Empowered",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 15% chance to Ignite, Freeze and Shock on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonsterPacksAbominationMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Abhorrent",
+    "required_level": 1,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Area is inhabited by Abominations",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "MapMonstersCantBeSlowedOrTauntedMapWorlds_": {
+    "generation_type": "Prefix",
+    "name": "Unstoppable",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value | Monsters cannot be Taunted",
+    "weight": 650,
     "influence": "Normal"
   },
   "MapMonstersAllDamageAlwaysIgnitesMapWorlds_": {
@@ -255,19 +295,11 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "MapMonstersCantBeSlowedOrTauntedMapWorlds_": {
+  "MapMonstersImpaleOnHit2MapWorlds": {
     "generation_type": "Prefix",
-    "name": "Unstoppable",
+    "name": "Impaling",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value | Monsters cannot be Taunted",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "MapMonstersChanceToInflictStatusAilmentsMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Empowered",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters have a 15% chance to Ignite, Freeze and Shock on Hit",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' Attacks have 40% chance to Impale on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -279,22 +311,6 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "MapMonstersCurseEffectOnSelfFinal2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Hexwarded",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | 40% less effect of Curses on Monsters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "MapMonstersImpaleOnHit2MapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Impaling",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters' Attacks have 40% chance to Impale on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
   "MapMonstersMaximumLifeAddedEnergyShield2MapWorlds_____": {
     "generation_type": "Prefix",
     "name": "Buffered",
@@ -303,35 +319,11 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "MapMoreMonsterPackVarietyMapWorlds_": {
+  "MapBossPossessedMapWorlds": {
     "generation_type": "Prefix",
-    "name": "Multifarious",
+    "name": "Enthralled",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has increased monster variety",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapNemesisModOnRaresMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Antagonist's",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | (20-30)% increased number of Rare Monsters",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapTotemsMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Ceremonial",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area contains many Totems",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "MapTwoBossesMapWorlds": {
-    "generation_type": "Prefix",
-    "name": "Twinned",
-    "required_level": 1,
-    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | Area contains two Unique Bosses",
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Unique Bosses are Possessed",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -339,48 +331,24 @@
     "generation_type": "Suffix",
     "name": "of Bloodlines",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | (20-30)% more Magic Monsters",
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | (20-30)% increased Magic Monsters",
     "weight": 1000,
     "influence": "Normal"
   },
-  "MapBurningGround2MapWorlds": {
+  "MapPoisoningMapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Flames",
+    "name": "of Venom",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Burning Ground",
-    "weight": 250,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters Poison on Hit",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "MapChilledGroundSuffix2MapWorlds": {
+  "MapPlayerElementalEquilibriumMapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Ice",
+    "name": "of Balance",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Chilled Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MapConsecratedGround2MapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Consecration",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Consecrated Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MapDesecratedGround2MapWorlds__": {
-    "generation_type": "Suffix",
-    "name": "of Desecration",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of desecrated ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "MapPlayersEvasionAndUnluckyDodge2MapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Miring",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have -15% to amount of Suppressed Spell Damage Prevented | Monsters have 40% increased Accuracy Rating",
-    "weight": 800,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Players cannot inflict Exposure",
+    "weight": 1000,
     "influence": "Normal"
   },
   "MapMonsterAreaOfEffect2MapWorlds": {
@@ -399,76 +367,44 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "MapMonsterStatusAilmentAvoidance2MapWorlds": {
+  "MapPlayerReducedRegen2MapWorlds_": {
     "generation_type": "Suffix",
-    "name": "of Insulation",
+    "name": "of Smothering",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters have 50% chance to Avoid Elemental Ailments",
-    "weight": 800,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players have 40% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
     "influence": "Normal"
   },
-  "MapMonstersBaseSelfCriticalMultiplier2MapWorlds": {
+  "MapBurningGround2MapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Toughness",
+    "name": "of Flames",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters take (31-35)% reduced Extra Damage from Critical Strikes",
-    "weight": 800,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Burning Ground",
+    "weight": 250,
     "influence": "Normal"
   },
-  "MapMonstersBlindOnHitMapWorlds": {
+  "MapChilledGroundSuffix2MapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Blinding",
+    "name": "of Ice",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Blind on Hit",
-    "weight": 650,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Chilled Ground",
+    "weight": 250,
     "influence": "Normal"
   },
-  "MapMonstersEnduranceChargeOnHitMapWorlds": {
+  "MapShockedGround2MapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Endurance",
+    "name": "of Lightning",
     "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain an Endurance Charge on Hit",
-    "weight": 800,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Shocked Ground which increase Damage taken by 35%",
+    "weight": 250,
     "influence": "Normal"
   },
-  "MapMonstersFrenzyChargeOnHitMapWorlds": {
+  "MapDesecratedGround2MapWorlds__": {
     "generation_type": "Suffix",
-    "name": "of Frenzy",
+    "name": "of Desecration",
     "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain a Frenzy Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "MapMonstersHinderOnHitMapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Impedance",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Hinder on Hit with Spells",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "MapMonstersMaimOnHitMapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Carnage",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Maim on Hit with Attacks",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "MapMonstersPowerChargeOnHitMapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Power",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain a Power Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "MapMonstersStealChargesOnHitMapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Enervation",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters steal Power, Frenzy and Endurance charges on Hit",
-    "weight": 800,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of desecrated ground",
+    "weight": 250,
     "influence": "Normal"
   },
   "MapPlayerCurseElementalWeakness1MapWorlds": {
@@ -476,6 +412,14 @@
     "name": "of Elemental Weakness",
     "required_level": 1,
     "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Elemental Weakness",
+    "weight": 850,
+    "influence": "Normal"
+  },
+  "MapPlayerCurseVulnerability1MapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Vulnerability",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Vulnerability",
     "weight": 850,
     "influence": "Normal"
   },
@@ -495,20 +439,12 @@
     "weight": 850,
     "influence": "Normal"
   },
-  "MapPlayerCurseVulnerability1MapWorlds": {
+  "MapPlayerNoLifeESRegenMapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Vulnerability",
+    "name": "of Stasis",
     "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players are Cursed with Vulnerability",
-    "weight": 850,
-    "influence": "Normal"
-  },
-  "MapPlayerElementalEquilibriumMapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Balance",
-    "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Players cannot inflict Exposure",
-    "weight": 1000,
+    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players cannot Regenerate Life, Mana or Energy Shield",
+    "weight": 300,
     "influence": "Normal"
   },
   "MapPlayerMaxResists1MapWorlds": {
@@ -519,35 +455,27 @@
     "weight": 600,
     "influence": "Normal"
   },
-  "MapPlayerNoLifeESRegenMapWorlds": {
+  "MapMonsterStatusAilmentAvoidance2MapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Stasis",
+    "name": "of Insulation",
     "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players cannot Regenerate Life, Mana or Energy Shield",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "MapPlayerReducedRegen2MapWorlds_": {
-    "generation_type": "Suffix",
-    "name": "of Smothering",
-    "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Players have 40% less Recovery Rate of Life and Energy Shield",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "MapPlayersAccuracyRating2MapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Imprecision",
-    "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% less Accuracy Rating",
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters have 50% chance to Avoid Elemental Ailments",
     "weight": 800,
     "influence": "Normal"
   },
-  "MapPlayersLessAoERadius2MapWorlds": {
+  "MapMonstersBaseSelfCriticalMultiplier2MapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Impotence",
+    "name": "of Toughness",
     "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% less Area of Effect",
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters take (31-35)% reduced Extra Damage from Critical Strikes",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersGainReducedFlaskCharges2MapWorlds_": {
+    "generation_type": "Suffix",
+    "name": "of Drought",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players gain 40% reduced Flask Charges",
     "weight": 800,
     "influence": "Normal"
   },
@@ -559,20 +487,84 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "MapPlayersBuffsExpireFaster2MapWorlds___": {
+  "MapPlayersEvasionAndUnluckyDodge2MapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Transience",
+    "name": "of Miring",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Buffs on Players expire 50% faster",
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have -15% to amount of Suppressed Spell Damage Prevented | Monsters have 40% increased Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapPlayersLessAoERadius2MapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersFrenzyChargeOnHitMapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Frenzy",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain a Frenzy Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersEnduranceChargeOnHitMapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Endurance",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain an Endurance Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersPowerChargeOnHitMapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Power",
+    "required_level": 1,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Monsters gain a Power Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "MapMonstersBlindOnHitMapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Blinding",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Blind on Hit",
     "weight": 650,
     "influence": "Normal"
   },
-  "MapPlayersGainReducedFlaskCharges2MapWorlds_": {
+  "MapMonstersMaimOnHitMapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Drought",
+    "name": "of Carnage",
     "required_level": 1,
-    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players gain 40% reduced Flask Charges",
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Maim on Hit with Attacks",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MapMonstersHinderOnHitMapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Impedance",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters Hinder on Hit with Spells",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "MapMonstersStealChargesOnHitMapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Enervation",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Monsters steal Power, Frenzy and Endurance charges on Hit",
     "weight": 800,
+    "influence": "Normal"
+  },
+  "MapConsecratedGround2MapWorlds": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Consecrated Ground",
+    "weight": 250,
     "influence": "Normal"
   },
   "MapPlayersLessCooldownRecovery2MapWorlds": {
@@ -580,6 +572,14 @@
     "name": "of Fatigue",
     "required_level": 1,
     "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 30% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "MapPlayersBuffsExpireFaster2MapWorlds___": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 1,
+    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Buffs on Players expire 50% faster",
     "weight": 650,
     "influence": "Normal"
   },
@@ -591,20 +591,20 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "MapPoisoningMapWorlds": {
+  "MapPlayersAccuracyRating2MapWorlds": {
     "generation_type": "Suffix",
-    "name": "of Venom",
+    "name": "of Imprecision",
     "required_level": 1,
-    "text": "16% increased Quantity of Items found in this Area | 9% increased Rarity of Items found in this Area | 6% increased Pack size | Monsters Poison on Hit",
-    "weight": 1000,
+    "text": "13% increased Quantity of Items found in this Area | 8% increased Rarity of Items found in this Area | 5% increased Pack size | Players have 20% less Accuracy Rating",
+    "weight": 800,
     "influence": "Normal"
   },
-  "MapShockedGround2MapWorlds": {
-    "generation_type": "Suffix",
-    "name": "of Lightning",
+  "MapTwoBossesMapWorlds": {
+    "generation_type": "Prefix",
+    "name": "Twinned",
     "required_level": 1,
-    "text": "10% increased Quantity of Items found in this Area | 6% increased Rarity of Items found in this Area | 4% increased Pack size | Area has patches of Shocked Ground which increase Damage taken by 35%",
-    "weight": 250,
+    "text": "19% increased Quantity of Items found in this Area | 11% increased Rarity of Items found in this Area | 7% increased Pack size | Area contains two Unique Bosses",
+    "weight": 1000,
     "influence": "Normal"
   }
 }

@@ -1,523 +1,4 @@
 {
-  "Two-Toned Boots": {
-    "drop_level": 70,
-    "implicits": [
-      "+(8-12)% to Fire and Lightning Resistances"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 145,
-        "min": 126
-      },
-      "energy_shield": {
-        "max": 30,
-        "min": 26
-      }
-    }
-  },
-  "Fugitive Boots": {
-    "drop_level": 70,
-    "implicits": [
-      "+(13-17)% to Chaos Resistance"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 37,
-        "min": 32
-      },
-      "evasion": {
-        "max": 129,
-        "min": 112
-      }
-    }
-  },
-  "Golden Caligae": {
-    "drop_level": 12,
-    "implicits": [
-      "+(8-16)% to all Elemental Resistances"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Avian Slippers": {
-    "drop_level": 1,
-    "implicits": [
-      "10% increased Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Rawhide Boots": {
-    "drop_level": 3,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 18,
-        "min": 13
-      }
-    }
-  },
-  "Goathide Boots": {
-    "drop_level": 12,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 54,
-        "min": 42
-      }
-    }
-  },
-  "Deerskin Boots": {
-    "drop_level": 22,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 92,
-        "min": 74
-      }
-    }
-  },
-  "Nubuck Boots": {
-    "drop_level": 34,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 126,
-        "min": 113
-      }
-    }
-  },
-  "Eelskin Boots": {
-    "drop_level": 39,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 148,
-        "min": 129
-      }
-    }
-  },
-  "Sharkskin Boots": {
-    "drop_level": 44,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 171,
-        "min": 145
-      }
-    }
-  },
-  "Shagreen Boots": {
-    "drop_level": 55,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 216,
-        "min": 180
-      }
-    }
-  },
-  "Stealth Boots": {
-    "drop_level": 62,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 253,
-        "min": 220
-      }
-    }
-  },
-  "Slink Boots": {
-    "drop_level": 69,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 283,
-        "min": 246
-      }
-    }
-  },
-  "Wrapped Boots": {
-    "drop_level": 6,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 5,
-        "min": 4
-      },
-      "evasion": {
-        "max": 17,
-        "min": 12
-      }
-    }
-  },
-  "Strapped Boots": {
-    "drop_level": 16,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 9,
-        "min": 7
-      },
-      "evasion": {
-        "max": 39,
-        "min": 30
-      }
-    }
-  },
-  "Clasped Boots": {
-    "drop_level": 27,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 12,
-        "min": 11
-      },
-      "evasion": {
-        "max": 57,
-        "min": 50
-      }
-    }
-  },
-  "Shackled Boots": {
-    "drop_level": 34,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 15,
-        "min": 13
-      },
-      "evasion": {
-        "max": 71,
-        "min": 62
-      }
-    }
-  },
-  "Trapper Boots": {
-    "drop_level": 41,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 18,
-        "min": 16
-      },
-      "evasion": {
-        "max": 85,
-        "min": 74
-      }
-    }
-  },
-  "Ambush Boots": {
-    "drop_level": 47,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 20,
-        "min": 18
-      },
-      "evasion": {
-        "max": 95,
-        "min": 85
-      }
-    }
-  },
-  "Carnal Boots": {
-    "drop_level": 55,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 24,
-        "min": 20
-      },
-      "evasion": {
-        "max": 117,
-        "min": 99
-      }
-    }
-  },
-  "Assassin's Boots": {
-    "drop_level": 63,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 28,
-        "min": 25
-      },
-      "evasion": {
-        "max": 139,
-        "min": 121
-      }
-    }
-  },
-  "Murder Boots": {
-    "drop_level": 69,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 21,
-        "min": 18
-      },
-      "evasion": {
-        "max": 213,
-        "min": 185
-      }
-    }
-  },
-  "Cloudwhisper Boots": {
-    "drop_level": 20,
-    "implicits": [
-      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 78,
-        "min": 68
-      }
-    }
-  },
-  "Windbreak Boots": {
-    "drop_level": 50,
-    "implicits": [
-      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 189,
-        "min": 164
-      }
-    }
-  },
-  "Stormrider Boots": {
-    "drop_level": 80,
-    "implicits": [
-      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 271,
-        "min": 236
-      }
-    }
-  },
-  "Runic Greaves": {
-    "drop_level": 24,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Runic Sollerets": {
-    "drop_level": 48,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Runic Sabatons": {
-    "drop_level": 69,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Wool Shoes": {
-    "drop_level": 3,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 7,
-        "min": 5
-      }
-    }
-  },
-  "Velvet Slippers": {
-    "drop_level": 9,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 11,
-        "min": 8
-      }
-    }
-  },
-  "Silk Slippers": {
-    "drop_level": 22,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 21,
-        "min": 17
-      }
-    }
-  },
-  "Scholar Boots": {
-    "drop_level": 32,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 25,
-        "min": 23
-      }
-    }
-  },
-  "Satin Slippers": {
-    "drop_level": 38,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 30,
-        "min": 26
-      }
-    }
-  },
-  "Samite Slippers": {
-    "drop_level": 44,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 35,
-        "min": 30
-      }
-    }
-  },
-  "Conjurer Boots": {
-    "drop_level": 53,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 42,
-        "min": 36
-      }
-    }
-  },
-  "Arcanist Slippers": {
-    "drop_level": 61,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 55,
-        "min": 47
-      }
-    }
-  },
-  "Sorcerer Boots": {
-    "drop_level": 67,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 59,
-        "min": 51
-      }
-    }
-  },
-  "Duskwalk Slippers": {
-    "drop_level": 20,
-    "implicits": [
-      "(30-40)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 18,
-        "min": 15
-      }
-    }
-  },
-  "Nightwind Slippers": {
-    "drop_level": 50,
-    "implicits": [
-      "(30-40)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 39,
-        "min": 34
-      }
-    }
-  },
-  "Dreamquest Slippers": {
-    "drop_level": 80,
-    "implicits": [
-      "(30-40)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 57,
-        "min": 50
-      }
-    }
-  },
   "Iron Greaves": {
     "drop_level": 1,
     "implicits": [],
@@ -527,7 +8,26 @@
       "armour": {
         "max": 9,
         "min": 6
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Steel Greaves": {
@@ -539,7 +39,26 @@
       "armour": {
         "max": 42,
         "min": 32
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Plated Greaves": {
@@ -551,7 +70,26 @@
       "armour": {
         "max": 96,
         "min": 77
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Reinforced Greaves": {
@@ -563,7 +101,26 @@
       "armour": {
         "max": 120,
         "min": 109
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Antique Greaves": {
@@ -575,7 +132,26 @@
       "armour": {
         "max": 144,
         "min": 122
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Ancient Greaves": {
@@ -587,7 +163,26 @@
       "armour": {
         "max": 174,
         "min": 151
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Goliath Greaves": {
@@ -599,7 +194,26 @@
       "armour": {
         "max": 209,
         "min": 177
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Vaal Greaves": {
@@ -611,7 +225,26 @@
       "armour": {
         "max": 253,
         "min": 220
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Titan Greaves": {
@@ -623,7 +256,1098 @@
       "armour": {
         "max": 278,
         "min": 241
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Precursor Greaves": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 353,
+        "min": 307
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Leviathan Greaves": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 413,
+        "min": 359
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Basemetal Treads": {
+    "drop_level": 20,
+    "implicits": [
+      "20% reduced Stun Threshold\n30% increased Stun and Block Recovery"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 78,
+        "min": 68
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Darksteel Treads": {
+    "drop_level": 50,
+    "implicits": [
+      "20% reduced Stun Threshold\n40% increased Stun and Block Recovery"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 189,
+        "min": 164
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Brimstone Treads": {
+    "drop_level": 80,
+    "implicits": [
+      "20% reduced Stun Threshold\n50% increased Stun and Block Recovery"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 271,
+        "min": 236
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Kaom's Greaves": {
+    "drop_level": 1,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 8,
+        "min": 8
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Rawhide Boots": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 18,
+        "min": 13
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Goathide Boots": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 54,
+        "min": 42
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Deerskin Boots": {
+    "drop_level": 22,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 92,
+        "min": 74
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Nubuck Boots": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 126,
+        "min": 113
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Eelskin Boots": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 148,
+        "min": 129
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sharkskin Boots": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 171,
+        "min": 145
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Shagreen Boots": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 216,
+        "min": 180
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Stealth Boots": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 253,
+        "min": 220
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Slink Boots": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 283,
+        "min": 246
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Harpyskin Boots": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 353,
+        "min": 307
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Velour Boots": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 413,
+        "min": 359
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Cloudwhisper Boots": {
+    "drop_level": 20,
+    "implicits": [
+      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 78,
+        "min": 68
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Windbreak Boots": {
+    "drop_level": 50,
+    "implicits": [
+      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 189,
+        "min": 164
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Stormrider Boots": {
+    "drop_level": 80,
+    "implicits": [
+      "25% less Accuracy Rating\n1 to (5-6) Added Attack Lightning Damage per 200 Accuracy Rating"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 271,
+        "min": 236
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Wool Shoes": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 7,
+        "min": 5
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Velvet Slippers": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 11,
+        "min": 8
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Silk Slippers": {
+    "drop_level": 22,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 21,
+        "min": 17
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Scholar Boots": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 25,
+        "min": 23
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Satin Slippers": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 30,
+        "min": 26
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Samite Slippers": {
+    "drop_level": 44,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 35,
+        "min": 30
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Conjurer Boots": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 42,
+        "min": 36
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Arcanist Slippers": {
+    "drop_level": 61,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 55,
+        "min": 47
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sorcerer Boots": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 59,
+        "min": 51
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sage Slippers": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 71,
+        "min": 62
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Warlock Boots": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 83,
+        "min": 72
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Duskwalk Slippers": {
+    "drop_level": 20,
+    "implicits": [
+      "(45-50)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 18,
+        "min": 15
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Nightwind Slippers": {
+    "drop_level": 50,
+    "implicits": [
+      "(45-50)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 39,
+        "min": 34
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Dreamquest Slippers": {
+    "drop_level": 80,
+    "implicits": [
+      "(45-50)% increased Cooldown Recovery Rate of Movement Skills\n10% reduced Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 57,
+        "min": 50
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Leatherscale Boots": {
@@ -636,10 +1360,28 @@
         "max": 17,
         "min": 12
       },
+      "energy_shield": null,
       "evasion": {
         "max": 17,
         "min": 12
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Ironscale Boots": {
@@ -652,10 +1394,28 @@
         "max": 44,
         "min": 34
       },
+      "energy_shield": null,
       "evasion": {
         "max": 44,
         "min": 34
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Bronzescale Boots": {
@@ -668,10 +1428,28 @@
         "max": 63,
         "min": 55
       },
+      "energy_shield": null,
       "evasion": {
         "max": 63,
         "min": 55
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Steelscale Boots": {
@@ -684,10 +1462,28 @@
         "max": 75,
         "min": 65
       },
+      "energy_shield": null,
       "evasion": {
         "max": 75,
         "min": 65
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Serpentscale Boots": {
@@ -700,10 +1496,28 @@
         "max": 90,
         "min": 76
       },
+      "energy_shield": null,
       "evasion": {
         "max": 90,
         "min": 76
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Wyrmscale Boots": {
@@ -716,10 +1530,28 @@
         "max": 103,
         "min": 92
       },
+      "energy_shield": null,
       "evasion": {
         "max": 103,
         "min": 92
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Hydrascale Boots": {
@@ -732,10 +1564,28 @@
         "max": 122,
         "min": 106
       },
+      "energy_shield": null,
       "evasion": {
         "max": 122,
         "min": 106
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Dragonscale Boots": {
@@ -748,10 +1598,96 @@
         "max": 139,
         "min": 121
       },
+      "energy_shield": null,
       "evasion": {
         "max": 139,
         "min": 121
-      }
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chimerascale Boots": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 203,
+        "min": 176
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 203,
+        "min": 176
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Wyvernscale Boots": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 236,
+        "min": 205
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 236,
+        "min": 205
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Chain Boots": {
@@ -767,7 +1703,25 @@
       "energy_shield": {
         "max": 5,
         "min": 3
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Ringmail Boots": {
@@ -783,7 +1737,25 @@
       "energy_shield": {
         "max": 8,
         "min": 6
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Mesh Boots": {
@@ -799,7 +1771,25 @@
       "energy_shield": {
         "max": 14,
         "min": 11
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Riveted Boots": {
@@ -815,7 +1805,25 @@
       "energy_shield": {
         "max": 15,
         "min": 14
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Zealot Boots": {
@@ -831,7 +1839,25 @@
       "energy_shield": {
         "max": 18,
         "min": 15
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Soldier Boots": {
@@ -847,7 +1873,25 @@
       "energy_shield": {
         "max": 20,
         "min": 18
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Legion Boots": {
@@ -863,7 +1907,25 @@
       "energy_shield": {
         "max": 25,
         "min": 21
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Crusader Boots": {
@@ -879,61 +1941,683 @@
       "energy_shield": {
         "max": 28,
         "min": 25
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Basemetal Treads": {
-    "drop_level": 20,
-    "implicits": [
-      "+(4-5)% Chance to Block Attack Damage\nYou take 20% of Damage from Blocked Hits"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 78,
-        "min": 68
-      }
-    }
-  },
-  "Darksteel Treads": {
-    "drop_level": 50,
-    "implicits": [
-      "+(4-5)% Chance to Block Attack Damage\nYou take 20% of Damage from Blocked Hits"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 189,
-        "min": 164
-      }
-    }
-  },
-  "Brimstone Treads": {
-    "drop_level": 80,
-    "implicits": [
-      "+(4-5)% Chance to Block Attack Damage\nYou take 20% of Damage from Blocked Hits"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 271,
-        "min": 236
-      }
-    }
-  },
-  "Kaom's Greaves": {
-    "drop_level": 1,
+  "Martyr Boots": {
+    "drop_level": 78,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
       "armour": {
-        "max": 8,
-        "min": 8
-      }
+        "max": 203,
+        "min": 176
+      },
+      "energy_shield": {
+        "max": 41,
+        "min": 35
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Paladin Boots": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 236,
+        "min": 205
+      },
+      "energy_shield": {
+        "max": 47,
+        "min": 41
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Wrapped Boots": {
+    "drop_level": 6,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 5,
+        "min": 4
+      },
+      "evasion": {
+        "max": 17,
+        "min": 12
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Strapped Boots": {
+    "drop_level": 16,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 9,
+        "min": 7
+      },
+      "evasion": {
+        "max": 39,
+        "min": 30
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Clasped Boots": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 12,
+        "min": 11
+      },
+      "evasion": {
+        "max": 57,
+        "min": 50
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Shackled Boots": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 15,
+        "min": 13
+      },
+      "evasion": {
+        "max": 71,
+        "min": 62
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Trapper Boots": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 18,
+        "min": 16
+      },
+      "evasion": {
+        "max": 85,
+        "min": 74
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ambush Boots": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 20,
+        "min": 18
+      },
+      "evasion": {
+        "max": 95,
+        "min": 85
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Carnal Boots": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 24,
+        "min": 20
+      },
+      "evasion": {
+        "max": 117,
+        "min": 99
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Assassin's Boots": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 28,
+        "min": 25
+      },
+      "evasion": {
+        "max": 139,
+        "min": 121
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Murder Boots": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 21,
+        "min": 18
+      },
+      "evasion": {
+        "max": 213,
+        "min": 185
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Infiltrator Boots": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 41,
+        "min": 35
+      },
+      "evasion": {
+        "max": 203,
+        "min": 176
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Phantom Boots": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 47,
+        "min": 41
+      },
+      "evasion": {
+        "max": 236,
+        "min": 205
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Golden Caligae": {
+    "drop_level": 12,
+    "implicits": [
+      "+(8-16)% to all Elemental Resistances"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Avian Slippers": {
+    "drop_level": 1,
+    "implicits": [
+      "10% increased Movement Speed"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Two-Toned Boots": {
+    "drop_level": 70,
+    "implicits": [
+      "+(8-12)% to Fire and Lightning Resistances"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 145,
+        "min": 126
+      },
+      "energy_shield": {
+        "max": 30,
+        "min": 26
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Fugitive Boots": {
+    "drop_level": 70,
+    "implicits": [
+      "+(13-17)% to Chaos Resistance"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 37,
+        "min": 32
+      },
+      "evasion": {
+        "max": 129,
+        "min": 112
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Runic Greaves": {
+    "drop_level": 24,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Runic Sollerets": {
+    "drop_level": 48,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Runic Sabatons": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

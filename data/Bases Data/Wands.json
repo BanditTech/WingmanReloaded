@@ -7,115 +7,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 9,
-      "physical_damage_min": 5,
-      "range": 120
-    }
-  },
-  "Coiled Wand": {
-    "drop_level": 49,
-    "implicits": [
-      "Adds (1-2) to (22-24) Lightning Damage to Spells and Attacks"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 64,
-      "physical_damage_min": 21,
-      "range": 120
-    }
-  },
-  "Omen Wand": {
-    "drop_level": 53,
-    "implicits": [
-      "(27-31)% increased Spell Damage"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 800,
-      "physical_damage_max": 61,
-      "physical_damage_min": 33,
-      "range": 120
-    }
-  },
-  "Demon's Horn": {
-    "drop_level": 56,
-    "implicits": [
-      "Adds (18-36) to (53-59) Fire Damage to Spells and Attacks"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 71,
-      "physical_damage_min": 38,
-      "range": 120
-    }
-  },
-  "Imbued Wand": {
-    "drop_level": 59,
-    "implicits": [
-      "(33-37)% increased Spell Damage"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 53,
-      "physical_damage_min": 29,
-      "range": 120
-    }
-  },
-  "Opal Wand": {
-    "drop_level": 62,
-    "implicits": [
-      "Adds (14-29) to (42-47) Cold Damage to Spells and Attacks"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 65,
-      "physical_damage_min": 35,
-      "range": 120
-    }
-  },
-  "Tornado Wand": {
-    "drop_level": 65,
-    "implicits": [
-      "Adds (3-5) to (70-82) Lightning Damage to Spells and Attacks"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 75,
-      "physical_damage_min": 25,
-      "range": 120
-    }
-  },
-  "Prophecy Wand": {
-    "drop_level": 68,
-    "implicits": [
-      "(36-40)% increased Spell Damage"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 800,
-      "physical_damage_max": 64,
-      "physical_damage_min": 35,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 950,
+      "physical_damage_max": 8,
+      "physical_damage_min": 4,
       "range": 120
     }
   },
@@ -127,10 +37,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 16,
-      "physical_damage_min": 9,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 13,
+      "physical_damage_min": 7,
       "range": 120
     }
   },
@@ -142,9 +67,24 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 17,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 16,
       "physical_damage_min": 9,
       "range": 120
     }
@@ -157,10 +97,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 27,
-      "physical_damage_min": 14,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 23,
+      "physical_damage_min": 12,
       "range": 120
     }
   },
@@ -172,10 +127,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 37,
-      "physical_damage_min": 12,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 32,
+      "physical_damage_min": 11,
       "range": 120
     }
   },
@@ -187,10 +157,55 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 800,
-      "physical_damage_max": 42,
-      "physical_damage_min": 23,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 1000,
+      "physical_damage_max": 34,
+      "physical_damage_min": 18,
+      "range": 120
+    }
+  },
+  "Pagan Wand": {
+    "drop_level": 34,
+    "implicits": [
+      "10% increased Cast Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 37,
+      "physical_damage_min": 20,
       "range": 120
     }
   },
@@ -202,10 +217,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 48,
-      "physical_damage_min": 26,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 38,
+      "physical_damage_min": 21,
       "range": 120
     }
   },
@@ -217,10 +247,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 38,
-      "physical_damage_min": 21,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 36,
+      "physical_damage_min": 19,
       "range": 120
     }
   },
@@ -232,24 +277,294 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 700,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 45,
+      "physical_damage_min": 24,
+      "range": 120
+    }
+  },
+  "Coiled Wand": {
+    "drop_level": 49,
+    "implicits": [
+      "Adds (1-2) to (22-24) Lightning Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 55,
+      "physical_damage_min": 18,
+      "range": 120
+    }
+  },
+  "Omen Wand": {
+    "drop_level": 53,
+    "implicits": [
+      "(27-31)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 1000,
+      "physical_damage_max": 49,
+      "physical_damage_min": 26,
+      "range": 120
+    }
+  },
+  "Heathen Wand": {
+    "drop_level": 55,
+    "implicits": [
+      "10% increased Cast Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 800,
       "physical_damage_max": 52,
       "physical_damage_min": 28,
       "range": 120
     }
   },
-  "Convoking Wand": {
-    "drop_level": 72,
+  "Demon's Horn": {
+    "drop_level": 56,
     "implicits": [
-      "Minions deal (26-30)% increased Damage"
+      "Adds (18-36) to (53-59) Fire Damage to Spells and Attacks"
     ],
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 55,
+      "critical_strike_chance": 950,
+      "physical_damage_max": 57,
+      "physical_damage_min": 31,
+      "range": 120
+    }
+  },
+  "Imbued Wand": {
+    "drop_level": 59,
+    "implicits": [
+      "(33-37)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 50,
+      "physical_damage_min": 27,
+      "range": 120
+    }
+  },
+  "Opal Wand": {
+    "drop_level": 62,
+    "implicits": [
+      "Adds (14-29) to (42-47) Cold Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 56,
+      "physical_damage_min": 30,
+      "range": 120
+    }
+  },
+  "Tornado Wand": {
+    "drop_level": 65,
+    "implicits": [
+      "Adds (3-5) to (70-82) Lightning Damage to Spells and Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 65,
+      "physical_damage_min": 22,
+      "range": 120
+    }
+  },
+  "Prophecy Wand": {
+    "drop_level": 68,
+    "implicits": [
+      "(36-40)% increased Spell Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 1000,
+      "physical_damage_max": 52,
+      "physical_damage_min": 28,
+      "range": 120
+    }
+  },
+  "Profane Wand": {
+    "drop_level": 70,
+    "implicits": [
+      "14% increased Cast Speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 850,
+      "physical_damage_max": 56,
       "physical_damage_min": 30,
       "range": 120
     }
@@ -262,10 +577,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 750,
-      "physical_damage_max": 30,
-      "physical_damage_min": 16,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 28,
+      "physical_damage_min": 15,
       "range": 120
     }
   },
@@ -277,10 +607,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 750,
-      "physical_damage_max": 46,
-      "physical_damage_min": 25,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 43,
+      "physical_damage_min": 23,
       "range": 120
     }
   },
@@ -292,55 +637,25 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 750,
-      "physical_damage_max": 54,
-      "physical_damage_min": 29,
-      "range": 120
-    }
-  },
-  "Pagan Wand": {
-    "drop_level": 34,
-    "implicits": [
-      "10% increased Cast Speed"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 40,
-      "physical_damage_min": 22,
-      "range": 120
-    }
-  },
-  "Heathen Wand": {
-    "drop_level": 55,
-    "implicits": [
-      "10% increased Cast Speed"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 57,
-      "physical_damage_min": 31,
-      "range": 120
-    }
-  },
-  "Profane Wand": {
-    "drop_level": 70,
-    "implicits": [
-      "14% increased Cast Speed"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 61,
-      "physical_damage_min": 33,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 900,
+      "physical_damage_max": 50,
+      "physical_damage_min": 27,
       "range": 120
     }
   },
@@ -352,9 +667,24 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 25,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 830,
+      "physical_damage_max": 23,
       "physical_damage_min": 13,
       "range": 120
     }
@@ -367,10 +697,55 @@
     "inventory_height": 3,
     "inventory_width": 1,
     "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 50,
-      "physical_damage_min": 27,
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 830,
+      "physical_damage_max": 47,
+      "physical_damage_min": 25,
+      "range": 120
+    }
+  },
+  "Convoking Wand": {
+    "drop_level": 72,
+    "implicits": [
+      "Minions deal (26-30)% increased Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 830,
+      "physical_damage_max": 52,
+      "physical_damage_min": 28,
       "range": 120
     }
   }

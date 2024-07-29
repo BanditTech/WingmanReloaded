@@ -7,160 +7,25 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 625,
-      "critical_strike_chance": 620,
+      "critical_strike_chance": 730,
       "physical_damage_max": 11,
       "physical_damage_min": 4,
-      "range": 11
-    }
-  },
-  "Gouger": {
-    "drop_level": 40,
-    "implicits": [
-      "Grants 24 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 51,
-      "physical_damage_min": 15,
-      "range": 11
-    }
-  },
-  "Tiger's Paw": {
-    "drop_level": 43,
-    "implicits": [
-      "1.6% of Physical Attack Damage Leeched as Life"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 43,
-      "physical_damage_min": 23,
-      "range": 11
-    }
-  },
-  "Gut Ripper": {
-    "drop_level": 46,
-    "implicits": [
-      "Grants 44 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 53,
-      "physical_damage_min": 20,
-      "range": 11
-    }
-  },
-  "Prehistoric Claw": {
-    "drop_level": 49,
-    "implicits": [
-      "2% of Physical Attack Damage Leeched as Life"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 68,
-      "physical_damage_min": 26,
-      "range": 11
-    }
-  },
-  "Noble Claw": {
-    "drop_level": 52,
-    "implicits": [
-      "Grants 40 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 56,
-      "physical_damage_min": 21,
-      "range": 11
-    }
-  },
-  "Eagle Claw": {
-    "drop_level": 55,
-    "implicits": [
-      "2% of Physical Attack Damage Leeched as Life"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 69,
-      "physical_damage_min": 17,
-      "range": 11
-    }
-  },
-  "Great White Claw": {
-    "drop_level": 58,
-    "implicits": [
-      "Grants 46 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 78,
-      "physical_damage_min": 30,
-      "range": 11
-    }
-  },
-  "Throat Stabber": {
-    "drop_level": 60,
-    "implicits": [
-      "Grants 40 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 73,
-      "physical_damage_min": 21,
-      "range": 11
-    }
-  },
-  "Hellion's Paw": {
-    "drop_level": 62,
-    "implicits": [
-      "1.6% of Physical Attack Damage Leeched as Life"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 55,
-      "physical_damage_min": 29,
-      "range": 11
-    }
-  },
-  "Eye Gouger": {
-    "drop_level": 64,
-    "implicits": [
-      "Grants 50 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 68,
-      "physical_damage_min": 26,
       "range": 11
     }
   },
@@ -172,55 +37,25 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
-      "critical_strike_chance": 650,
+      "critical_strike_chance": 800,
       "physical_damage_max": 17,
       "physical_damage_min": 6,
-      "range": 11
-    }
-  },
-  "Vaal Claw": {
-    "drop_level": 66,
-    "implicits": [
-      "2% of Physical Attack Damage Leeched as Life"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 76,
-      "physical_damage_min": 29,
-      "range": 11
-    }
-  },
-  "Imperial Claw": {
-    "drop_level": 68,
-    "implicits": [
-      "Grants 46 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 65,
-      "physical_damage_min": 25,
-      "range": 11
-    }
-  },
-  "Terror Claw": {
-    "drop_level": 70,
-    "implicits": [
-      "2% of Physical Attack Damage Leeched as Life"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 71,
-      "physical_damage_min": 18,
       "range": 11
     }
   },
@@ -232,8 +67,23 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 645,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 750,
       "physical_damage_max": 23,
       "physical_damage_min": 7,
       "range": 11
@@ -247,8 +97,23 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 625,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 700,
       "physical_damage_max": 22,
       "physical_damage_min": 12,
       "range": 11
@@ -262,8 +127,23 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 645,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 750,
       "physical_damage_max": 31,
       "physical_damage_min": 12,
       "range": 11
@@ -277,8 +157,23 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
-      "critical_strike_chance": 650,
+      "critical_strike_chance": 800,
       "physical_damage_max": 43,
       "physical_damage_min": 16,
       "range": 11
@@ -292,8 +187,23 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 625,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 700,
       "physical_damage_max": 38,
       "physical_damage_min": 14,
       "range": 11
@@ -307,10 +217,55 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
-      "critical_strike_chance": 630,
+      "critical_strike_chance": 750,
       "physical_damage_max": 46,
       "physical_damage_min": 12,
+      "range": 11
+    }
+  },
+  "Double Claw": {
+    "drop_level": 36,
+    "implicits": [
+      "Grants 6 Mana per Enemy Hit\nGrants 15 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 44,
+      "physical_damage_min": 15,
       "range": 11
     }
   },
@@ -322,10 +277,475 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
-      "critical_strike_chance": 650,
+      "critical_strike_chance": 800,
       "physical_damage_max": 53,
       "physical_damage_min": 20,
+      "range": 11
+    }
+  },
+  "Gouger": {
+    "drop_level": 40,
+    "implicits": [
+      "Grants 24 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 51,
+      "physical_damage_min": 15,
+      "range": 11
+    }
+  },
+  "Tiger's Paw": {
+    "drop_level": 43,
+    "implicits": [
+      "1.6% of Physical Attack Damage Leeched as Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 43,
+      "physical_damage_min": 23,
+      "range": 11
+    }
+  },
+  "Gut Ripper": {
+    "drop_level": 46,
+    "implicits": [
+      "Grants 44 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 53,
+      "physical_damage_min": 20,
+      "range": 11
+    }
+  },
+  "Prehistoric Claw": {
+    "drop_level": 49,
+    "implicits": [
+      "2% of Physical Attack Damage Leeched as Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 68,
+      "physical_damage_min": 26,
+      "range": 11
+    }
+  },
+  "Noble Claw": {
+    "drop_level": 52,
+    "implicits": [
+      "Grants 40 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 56,
+      "physical_damage_min": 21,
+      "range": 11
+    }
+  },
+  "Eagle Claw": {
+    "drop_level": 55,
+    "implicits": [
+      "2% of Physical Attack Damage Leeched as Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 69,
+      "physical_damage_min": 17,
+      "range": 11
+    }
+  },
+  "Twin Claw": {
+    "drop_level": 57,
+    "implicits": [
+      "Grants 10 Mana per Enemy Hit\nGrants 28 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 64,
+      "physical_damage_min": 21,
+      "range": 11
+    }
+  },
+  "Great White Claw": {
+    "drop_level": 58,
+    "implicits": [
+      "Grants 46 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 78,
+      "physical_damage_min": 30,
+      "range": 11
+    }
+  },
+  "Throat Stabber": {
+    "drop_level": 60,
+    "implicits": [
+      "Grants 40 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 73,
+      "physical_damage_min": 21,
+      "range": 11
+    }
+  },
+  "Hellion's Paw": {
+    "drop_level": 62,
+    "implicits": [
+      "1.6% of Physical Attack Damage Leeched as Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 55,
+      "physical_damage_min": 29,
+      "range": 11
+    }
+  },
+  "Eye Gouger": {
+    "drop_level": 64,
+    "implicits": [
+      "Grants 50 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 68,
+      "physical_damage_min": 26,
+      "range": 11
+    }
+  },
+  "Vaal Claw": {
+    "drop_level": 66,
+    "implicits": [
+      "2% of Physical Attack Damage Leeched as Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 800,
+      "physical_damage_max": 76,
+      "physical_damage_min": 29,
+      "range": 11
+    }
+  },
+  "Imperial Claw": {
+    "drop_level": 68,
+    "implicits": [
+      "Grants 46 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 65,
+      "physical_damage_min": 25,
+      "range": 11
+    }
+  },
+  "Terror Claw": {
+    "drop_level": 70,
+    "implicits": [
+      "2% of Physical Attack Damage Leeched as Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 71,
+      "physical_damage_min": 18,
+      "range": 11
+    }
+  },
+  "Gemini Claw": {
+    "drop_level": 72,
+    "implicits": [
+      "Grants 14 Mana per Enemy Hit\nGrants 38 Life per Enemy Hit"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 750,
+      "physical_damage_max": 68,
+      "physical_damage_min": 23,
       "range": 11
     }
   },
@@ -337,8 +757,23 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 625,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 700,
       "physical_damage_max": 24,
       "physical_damage_min": 13,
       "range": 11
@@ -352,8 +787,23 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 625,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 700,
       "physical_damage_max": 37,
       "physical_damage_min": 20,
       "range": 11
@@ -367,55 +817,25 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 625,
-      "critical_strike_chance": 600,
+      "critical_strike_chance": 700,
       "physical_damage_max": 41,
       "physical_damage_min": 22,
-      "range": 11
-    }
-  },
-  "Double Claw": {
-    "drop_level": 36,
-    "implicits": [
-      "Grants 6 Mana per Enemy Hit\nGrants 15 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 44,
-      "physical_damage_min": 15,
-      "range": 11
-    }
-  },
-  "Twin Claw": {
-    "drop_level": 57,
-    "implicits": [
-      "Grants 10 Mana per Enemy Hit\nGrants 28 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 64,
-      "physical_damage_min": 21,
-      "range": 11
-    }
-  },
-  "Gemini Claw": {
-    "drop_level": 72,
-    "implicits": [
-      "Grants 14 Mana per Enemy Hit\nGrants 38 Life per Enemy Hit"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 630,
-      "physical_damage_max": 68,
-      "physical_damage_min": 23,
       "range": 11
     }
   }

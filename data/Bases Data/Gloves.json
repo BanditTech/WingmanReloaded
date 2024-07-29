@@ -1,30 +1,2372 @@
 {
-  "Gripped Gloves": {
-    "drop_level": 70,
-    "implicits": [
-      "(14-18)% increased Projectile Attack Damage"
-    ],
+  "Iron Gauntlets": {
+    "drop_level": 1,
+    "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
-      "evasion": {
-        "max": 253,
-        "min": 220
-      }
+      "armour": {
+        "max": 9,
+        "min": 6
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
-  "Fingerless Silk Gloves": {
-    "drop_level": 70,
+  "Plated Gauntlets": {
+    "drop_level": 11,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 50,
+        "min": 39
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Bronze Gauntlets": {
+    "drop_level": 23,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 96,
+        "min": 77
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Steel Gauntlets": {
+    "drop_level": 35,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 127,
+        "min": 116
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Antique Gauntlets": {
+    "drop_level": 39,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 154,
+        "min": 129
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ancient Gauntlets": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 173,
+        "min": 154
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Goliath Gauntlets": {
+    "drop_level": 53,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 200,
+        "min": 174
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Vaal Gauntlets": {
+    "drop_level": 63,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 266,
+        "min": 232
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Titan Gauntlets": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 278,
+        "min": 242
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Precursor Gauntlets": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 353,
+        "min": 307
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Leviathan Gauntlets": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 413,
+        "min": 359
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Preserving Gauntlets": {
+    "drop_level": 10,
     "implicits": [
-      "(12-16)% increased Spell Damage"
+      "+(3-4)% Chance to Block Attack Damage\nYou take 10% of Damage from Blocked Hits"
     ],
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": {
+        "max": 41,
+        "min": 35
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Guarding Gauntlets": {
+    "drop_level": 40,
+    "implicits": [
+      "+(4-5)% Chance to Block Attack Damage\nYou take 10% of Damage from Blocked Hits"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 152,
+        "min": 132
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Thwarting Gauntlets": {
+    "drop_level": 70,
+    "implicits": [
+      "+(5-6)% Chance to Block Attack Damage\nYou take 10% of Damage from Blocked Hits"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 271,
+        "min": 236
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Rawhide Gloves": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 18,
+        "min": 13
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Goathide Gloves": {
+    "drop_level": 9,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 42,
+        "min": 32
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Deerskin Gloves": {
+    "drop_level": 21,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 88,
+        "min": 71
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Nubuck Gloves": {
+    "drop_level": 33,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 122,
+        "min": 109
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Eelskin Gloves": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 148,
+        "min": 125
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sharkskin Gloves": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 163,
+        "min": 148
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Shagreen Gloves": {
+    "drop_level": 54,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 212,
+        "min": 177
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Stealth Gloves": {
+    "drop_level": 62,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 265,
+        "min": 231
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Slink Gloves": {
+    "drop_level": 70,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 278,
+        "min": 242
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Harpyskin Gloves": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 353,
+        "min": 307
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Velour Gloves": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 413,
+        "min": 359
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Tinker Gloves": {
+    "drop_level": 10,
+    "implicits": [
+      "Trap Skills have (10-15)% increased Skill Effect Duration\n30% reduced Cooldown Recovery Rate for throwing Traps"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 41,
+        "min": 35
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Apprentice Gloves": {
+    "drop_level": 40,
+    "implicits": [
+      "Trap Skills have (15-20)% increased Skill Effect Duration\n30% reduced Cooldown Recovery Rate for throwing Traps"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 152,
+        "min": 132
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Trapsetter Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "Trap Skills have (20-25)% increased Skill Effect Duration\n30% reduced Cooldown Recovery Rate for throwing Traps"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 271,
+        "min": 236
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Wool Gloves": {
+    "drop_level": 3,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 7,
+        "min": 5
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Velvet Gloves": {
+    "drop_level": 12,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 13,
+        "min": 10
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Silk Gloves": {
+    "drop_level": 25,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 23,
+        "min": 18
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Embroidered Gloves": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 28,
+        "min": 25
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Satin Gloves": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 33,
+        "min": 28
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Samite Gloves": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 37,
+        "min": 32
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Conjurer Gloves": {
+    "drop_level": 55,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 44,
+        "min": 37
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Arcanist Gloves": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
       "energy_shield": {
         "max": 52,
         "min": 45
-      }
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sorcerer Gloves": {
+    "drop_level": 69,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 57,
+        "min": 49
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sage Gloves": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 71,
+        "min": 62
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Warlock Gloves": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 83,
+        "min": 72
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Leyline Gloves": {
+    "drop_level": 10,
+    "implicits": [
+      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 10,
+        "min": 9
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Aetherwind Gloves": {
+    "drop_level": 40,
+    "implicits": [
+      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 32,
+        "min": 28
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Nexus Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 54,
+        "min": 47
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Fishscale Gauntlets": {
+    "drop_level": 4,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 12,
+        "min": 9
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 12,
+        "min": 9
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ironscale Gauntlets": {
+    "drop_level": 15,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 37,
+        "min": 28
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 37,
+        "min": 28
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Bronzescale Gauntlets": {
+    "drop_level": 27,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 62,
+        "min": 50
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 62,
+        "min": 50
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Steelscale Gauntlets": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 75,
+        "min": 65
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 75,
+        "min": 65
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Serpentscale Gauntlets": {
+    "drop_level": 43,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 87,
+        "min": 78
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 87,
+        "min": 78
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Wyrmscale Gauntlets": {
+    "drop_level": 49,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 104,
+        "min": 88
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 104,
+        "min": 88
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Hydrascale Gauntlets": {
+    "drop_level": 59,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 122,
+        "min": 106
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 122,
+        "min": 106
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Dragonscale Gauntlets": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 139,
+        "min": 121
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 139,
+        "min": 121
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chimerascale Gauntlets": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 176,
+        "min": 176
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 176,
+        "min": 176
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Wyvernscale Gauntlets": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 205,
+        "min": 205
+      },
+      "energy_shield": null,
+      "evasion": {
+        "max": 205,
+        "min": 205
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Chain Gloves": {
+    "drop_level": 7,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 20,
+        "min": 14
+      },
+      "energy_shield": {
+        "max": 6,
+        "min": 4
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ringmail Gloves": {
+    "drop_level": 19,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 46,
+        "min": 35
+      },
+      "energy_shield": {
+        "max": 10,
+        "min": 8
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Mesh Gloves": {
+    "drop_level": 32,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 67,
+        "min": 58
+      },
+      "energy_shield": {
+        "max": 14,
+        "min": 12
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Riveted Gloves": {
+    "drop_level": 37,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 77,
+        "min": 67
+      },
+      "energy_shield": {
+        "max": 16,
+        "min": 14
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Zealot Gloves": {
+    "drop_level": 43,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 92,
+        "min": 78
+      },
+      "energy_shield": {
+        "max": 19,
+        "min": 16
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Soldier Gloves": {
+    "drop_level": 51,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 103,
+        "min": 92
+      },
+      "energy_shield": {
+        "max": 21,
+        "min": 19
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Legion Gloves": {
+    "drop_level": 57,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 121,
+        "min": 103
+      },
+      "energy_shield": {
+        "max": 25,
+        "min": 21
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Crusader Gloves": {
+    "drop_level": 66,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 139,
+        "min": 121
+      },
+      "energy_shield": {
+        "max": 28,
+        "min": 25
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Martyr Gloves": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 203,
+        "min": 176
+      },
+      "energy_shield": {
+        "max": 41,
+        "min": 35
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Paladin Gloves": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": {
+        "max": 236,
+        "min": 205
+      },
+      "energy_shield": {
+        "max": 47,
+        "min": 41
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Wrapped Mitts": {
+    "drop_level": 5,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 5,
+        "min": 3
+      },
+      "evasion": {
+        "max": 15,
+        "min": 11
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Strapped Mitts": {
+    "drop_level": 16,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 9,
+        "min": 7
+      },
+      "evasion": {
+        "max": 39,
+        "min": 30
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Clasped Mitts": {
+    "drop_level": 31,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 14,
+        "min": 12
+      },
+      "evasion": {
+        "max": 65,
+        "min": 57
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Trapper Mitts": {
+    "drop_level": 36,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 16,
+        "min": 14
+      },
+      "evasion": {
+        "max": 77,
+        "min": 65
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ambush Mitts": {
+    "drop_level": 45,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 19,
+        "min": 17
+      },
+      "evasion": {
+        "max": 91,
+        "min": 81
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Carnal Mitts": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 21,
+        "min": 19
+      },
+      "evasion": {
+        "max": 101,
+        "min": 90
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Assassin's Mitts": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 25,
+        "min": 21
+      },
+      "evasion": {
+        "max": 123,
+        "min": 104
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Murder Mitts": {
+    "drop_level": 67,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 28,
+        "min": 25
+      },
+      "evasion": {
+        "max": 139,
+        "min": 121
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Infiltrator Mitts": {
+    "drop_level": 78,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 41,
+        "min": 35
+      },
+      "evasion": {
+        "max": 203,
+        "min": 176
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Phantom Mitts": {
+    "drop_level": 84,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 47,
+        "min": 41
+      },
+      "evasion": {
+        "max": 236,
+        "min": 205
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Golden Bracers": {
+    "drop_level": 12,
+    "implicits": [
+      "+(20-30) to maximum Life"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Spiked Gloves": {
@@ -38,7 +2380,92 @@
       "armour": {
         "max": 253,
         "min": 220
-      }
+      },
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Gripped Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(14-18)% increased Projectile Attack Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": {
+        "max": 253,
+        "min": 220
+      },
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Fingerless Silk Gloves": {
+    "drop_level": 70,
+    "implicits": [
+      "(12-16)% increased Spell Damage"
+    ],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": {
+        "max": 52,
+        "min": 45
+      },
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Apothecary's Gloves": {
@@ -56,294 +2483,25 @@
       "energy_shield": {
         "max": 33,
         "min": 29
-      }
-    }
-  },
-  "Golden Bracers": {
-    "drop_level": 12,
-    "implicits": [
-      "+(20-30) to maximum Life"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Rawhide Gloves": {
-    "drop_level": 3,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 18,
-        "min": 13
-      }
-    }
-  },
-  "Goathide Gloves": {
-    "drop_level": 9,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 42,
-        "min": 32
-      }
-    }
-  },
-  "Deerskin Gloves": {
-    "drop_level": 21,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 88,
-        "min": 71
-      }
-    }
-  },
-  "Nubuck Gloves": {
-    "drop_level": 33,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 122,
-        "min": 109
-      }
-    }
-  },
-  "Eelskin Gloves": {
-    "drop_level": 38,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 148,
-        "min": 125
-      }
-    }
-  },
-  "Sharkskin Gloves": {
-    "drop_level": 45,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 163,
-        "min": 148
-      }
-    }
-  },
-  "Shagreen Gloves": {
-    "drop_level": 54,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 212,
-        "min": 177
-      }
-    }
-  },
-  "Stealth Gloves": {
-    "drop_level": 62,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 265,
-        "min": 231
-      }
-    }
-  },
-  "Slink Gloves": {
-    "drop_level": 70,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 278,
-        "min": 242
-      }
-    }
-  },
-  "Wrapped Mitts": {
-    "drop_level": 5,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 5,
-        "min": 3
       },
-      "evasion": {
-        "max": 15,
-        "min": 11
-      }
-    }
-  },
-  "Strapped Mitts": {
-    "drop_level": 16,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 9,
-        "min": 7
-      },
-      "evasion": {
-        "max": 39,
-        "min": 30
-      }
-    }
-  },
-  "Clasped Mitts": {
-    "drop_level": 31,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 14,
-        "min": 12
-      },
-      "evasion": {
-        "max": 65,
-        "min": 57
-      }
-    }
-  },
-  "Trapper Mitts": {
-    "drop_level": 36,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 16,
-        "min": 14
-      },
-      "evasion": {
-        "max": 77,
-        "min": 65
-      }
-    }
-  },
-  "Ambush Mitts": {
-    "drop_level": 45,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 19,
-        "min": 17
-      },
-      "evasion": {
-        "max": 91,
-        "min": 81
-      }
-    }
-  },
-  "Carnal Mitts": {
-    "drop_level": 50,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 21,
-        "min": 19
-      },
-      "evasion": {
-        "max": 101,
-        "min": 90
-      }
-    }
-  },
-  "Assassin's Mitts": {
-    "drop_level": 58,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 25,
-        "min": 21
-      },
-      "evasion": {
-        "max": 123,
-        "min": 104
-      }
-    }
-  },
-  "Murder Mitts": {
-    "drop_level": 67,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 28,
-        "min": 25
-      },
-      "evasion": {
-        "max": 139,
-        "min": 121
-      }
-    }
-  },
-  "Gauche Gloves": {
-    "drop_level": 10,
-    "implicits": [
-      "25% reduced Attack Damage with Main Hand\n(40-50)% increased Attack Damage with Off Hand"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 41,
-        "min": 35
-      }
-    }
-  },
-  "Southswing Gloves": {
-    "drop_level": 40,
-    "implicits": [
-      "25% reduced Attack Damage with Main Hand\n(40-50)% increased Attack Damage with Off Hand"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 152,
-        "min": 132
-      }
-    }
-  },
-  "Sinistral Gloves": {
-    "drop_level": 70,
-    "implicits": [
-      "25% reduced Attack Damage with Main Hand\n(40-50)% increased Attack Damage with Off Hand"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "evasion": {
-        "max": 271,
-        "min": 236
-      }
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Runic Gloves": {
@@ -351,576 +2509,83 @@
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Runic Gages": {
     "drop_level": 48,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Runic Gauntlets": {
     "drop_level": 69,
     "implicits": [],
     "inventory_height": 2,
     "inventory_width": 2,
-    "properties": {}
-  },
-  "Wool Gloves": {
-    "drop_level": 3,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
     "properties": {
-      "energy_shield": {
-        "max": 7,
-        "min": 5
-      }
-    }
-  },
-  "Velvet Gloves": {
-    "drop_level": 12,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 13,
-        "min": 10
-      }
-    }
-  },
-  "Silk Gloves": {
-    "drop_level": 25,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 23,
-        "min": 18
-      }
-    }
-  },
-  "Embroidered Gloves": {
-    "drop_level": 36,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 28,
-        "min": 25
-      }
-    }
-  },
-  "Satin Gloves": {
-    "drop_level": 41,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 33,
-        "min": 28
-      }
-    }
-  },
-  "Samite Gloves": {
-    "drop_level": 47,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 37,
-        "min": 32
-      }
-    }
-  },
-  "Conjurer Gloves": {
-    "drop_level": 55,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 44,
-        "min": 37
-      }
-    }
-  },
-  "Arcanist Gloves": {
-    "drop_level": 60,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 52,
-        "min": 45
-      }
-    }
-  },
-  "Sorcerer Gloves": {
-    "drop_level": 69,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 57,
-        "min": 49
-      }
-    }
-  },
-  "Leyline Gloves": {
-    "drop_level": 10,
-    "implicits": [
-      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 10,
-        "min": 9
-      }
-    }
-  },
-  "Aetherwind Gloves": {
-    "drop_level": 40,
-    "implicits": [
-      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 32,
-        "min": 28
-      }
-    }
-  },
-  "Nexus Gloves": {
-    "drop_level": 70,
-    "implicits": [
-      "(25-30)% chance when you pay a Skill's Cost to gain that much Mana\n30% reduced maximum Mana"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "energy_shield": {
-        "max": 54,
-        "min": 47
-      }
-    }
-  },
-  "Iron Gauntlets": {
-    "drop_level": 1,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 9,
-        "min": 6
-      }
-    }
-  },
-  "Plated Gauntlets": {
-    "drop_level": 11,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 50,
-        "min": 39
-      }
-    }
-  },
-  "Bronze Gauntlets": {
-    "drop_level": 23,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 96,
-        "min": 77
-      }
-    }
-  },
-  "Steel Gauntlets": {
-    "drop_level": 35,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 127,
-        "min": 116
-      }
-    }
-  },
-  "Antique Gauntlets": {
-    "drop_level": 39,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 154,
-        "min": 129
-      }
-    }
-  },
-  "Ancient Gauntlets": {
-    "drop_level": 47,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 173,
-        "min": 154
-      }
-    }
-  },
-  "Goliath Gauntlets": {
-    "drop_level": 53,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 200,
-        "min": 174
-      }
-    }
-  },
-  "Vaal Gauntlets": {
-    "drop_level": 63,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 266,
-        "min": 232
-      }
-    }
-  },
-  "Titan Gauntlets": {
-    "drop_level": 69,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 278,
-        "min": 242
-      }
-    }
-  },
-  "Fishscale Gauntlets": {
-    "drop_level": 4,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 12,
-        "min": 9
-      },
-      "evasion": {
-        "max": 12,
-        "min": 9
-      }
-    }
-  },
-  "Ironscale Gauntlets": {
-    "drop_level": 15,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 37,
-        "min": 28
-      },
-      "evasion": {
-        "max": 37,
-        "min": 28
-      }
-    }
-  },
-  "Bronzescale Gauntlets": {
-    "drop_level": 27,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 62,
-        "min": 50
-      },
-      "evasion": {
-        "max": 62,
-        "min": 50
-      }
-    }
-  },
-  "Steelscale Gauntlets": {
-    "drop_level": 36,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 75,
-        "min": 65
-      },
-      "evasion": {
-        "max": 75,
-        "min": 65
-      }
-    }
-  },
-  "Serpentscale Gauntlets": {
-    "drop_level": 43,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 87,
-        "min": 78
-      },
-      "evasion": {
-        "max": 87,
-        "min": 78
-      }
-    }
-  },
-  "Wyrmscale Gauntlets": {
-    "drop_level": 49,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 104,
-        "min": 88
-      },
-      "evasion": {
-        "max": 104,
-        "min": 88
-      }
-    }
-  },
-  "Hydrascale Gauntlets": {
-    "drop_level": 59,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 122,
-        "min": 106
-      },
-      "evasion": {
-        "max": 122,
-        "min": 106
-      }
-    }
-  },
-  "Dragonscale Gauntlets": {
-    "drop_level": 67,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 139,
-        "min": 121
-      },
-      "evasion": {
-        "max": 139,
-        "min": 121
-      }
-    }
-  },
-  "Chain Gloves": {
-    "drop_level": 7,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 20,
-        "min": 14
-      },
-      "energy_shield": {
-        "max": 6,
-        "min": 4
-      }
-    }
-  },
-  "Ringmail Gloves": {
-    "drop_level": 19,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 46,
-        "min": 35
-      },
-      "energy_shield": {
-        "max": 10,
-        "min": 8
-      }
-    }
-  },
-  "Mesh Gloves": {
-    "drop_level": 32,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 67,
-        "min": 58
-      },
-      "energy_shield": {
-        "max": 14,
-        "min": 12
-      }
-    }
-  },
-  "Riveted Gloves": {
-    "drop_level": 37,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 77,
-        "min": 67
-      },
-      "energy_shield": {
-        "max": 16,
-        "min": 14
-      }
-    }
-  },
-  "Zealot Gloves": {
-    "drop_level": 43,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 92,
-        "min": 78
-      },
-      "energy_shield": {
-        "max": 19,
-        "min": 16
-      }
-    }
-  },
-  "Soldier Gloves": {
-    "drop_level": 51,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 103,
-        "min": 92
-      },
-      "energy_shield": {
-        "max": 21,
-        "min": 19
-      }
-    }
-  },
-  "Legion Gloves": {
-    "drop_level": 57,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 121,
-        "min": 103
-      },
-      "energy_shield": {
-        "max": 25,
-        "min": 21
-      }
-    }
-  },
-  "Crusader Gloves": {
-    "drop_level": 66,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 139,
-        "min": 121
-      },
-      "energy_shield": {
-        "max": 28,
-        "min": 25
-      }
-    }
-  },
-  "Taxing Gauntlets": {
-    "drop_level": 10,
-    "implicits": [
-      "Exerted Attacks deal (25-30)% increased Damage\nWarcry Skills have +2 seconds to Cooldown"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 41,
-        "min": 35
-      }
-    }
-  },
-  "Gruelling Gauntlets": {
-    "drop_level": 40,
-    "implicits": [
-      "Exerted Attacks deal (30-40)% increased Damage\nWarcry Skills have +2 seconds to Cooldown"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 152,
-        "min": 132
-      }
-    }
-  },
-  "Debilitation Gauntlets": {
-    "drop_level": 70,
-    "implicits": [
-      "Exerted Attacks deal (40-50)% increased Damage\nWarcry Skills have +2 seconds to Cooldown"
-    ],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "armour": {
-        "max": 271,
-        "min": 236
-      }
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

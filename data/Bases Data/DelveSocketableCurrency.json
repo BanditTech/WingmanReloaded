@@ -1,62 +1,30 @@
 {
-  "Primitive Chaotic Resonator": {
-    "drop_level": 34,
-    "implicits": [],
-    "inventory_height": 1,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Reforges a rare item with new random modifiers",
-      "directions": "Right click this item then left click a rare item to apply it.",
-      "stack_size": 1,
-      "stack_size_currency_tab": 0
-    }
-  },
-  "Potent Chaotic Resonator": {
-    "drop_level": 34,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "description": "Reforges a rare item with new random modifiers",
-      "directions": "Right click this item then left click a rare item to apply it.",
-      "stack_size": 1,
-      "stack_size_currency_tab": 0
-    }
-  },
-  "Powerful Chaotic Resonator": {
-    "drop_level": 34,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "description": "Reforges a rare item with new random modifiers",
-      "directions": "Right click this item then left click a rare item to apply it.",
-      "stack_size": 1,
-      "stack_size_currency_tab": 0
-    }
-  },
-  "Prime Chaotic Resonator": {
-    "drop_level": 68,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 2,
-    "properties": {
-      "description": "Reforges a rare item with new random modifiers",
-      "directions": "Right click this item then left click a rare item to apply it.",
-      "stack_size": 1,
-      "stack_size_currency_tab": 0
-    }
-  },
   "Primitive Alchemical Resonator": {
     "drop_level": 1,
     "implicits": [],
     "inventory_height": 1,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "Upgrades a normal item to a rare item",
       "directions": "Right click this item then left click a normal item to apply it.",
       "stack_size": 1,
-      "stack_size_currency_tab": 0
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Potent Alchemical Resonator": {
@@ -65,10 +33,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "Upgrades a normal item to a rare item",
       "directions": "Right click this item then left click a normal item to apply it.",
       "stack_size": 1,
-      "stack_size_currency_tab": 0
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Powerful Alchemical Resonator": {
@@ -77,10 +61,26 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "Upgrades a normal item to a rare item",
       "directions": "Right click this item then left click a normal item to apply it.",
       "stack_size": 1,
-      "stack_size_currency_tab": 0
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Prime Alchemical Resonator": {
@@ -89,10 +89,138 @@
     "inventory_height": 2,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "Upgrades a normal item to a rare item",
       "directions": "Right click this item then left click a normal item to apply it.",
       "stack_size": 1,
-      "stack_size_currency_tab": 0
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Primitive Chaotic Resonator": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 1,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Potent Chaotic Resonator": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Powerful Chaotic Resonator": {
+    "drop_level": 34,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Prime Chaotic Resonator": {
+    "drop_level": 68,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": "Reforges a rare item with new random modifiers",
+      "directions": "Right click this item then left click a rare item to apply it.",
+      "stack_size": 1,
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

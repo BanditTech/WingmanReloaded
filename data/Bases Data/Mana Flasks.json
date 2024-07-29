@@ -5,46 +5,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 24,
       "charges_per_use": 6,
       "duration": 30,
-      "mana_per_use": 50
-    }
-  },
-  "Sanctified Mana Flask": {
-    "drop_level": 50,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 35,
-      "charges_per_use": 7,
-      "duration": 65,
-      "mana_per_use": 1100
-    }
-  },
-  "Divine Mana Flask": {
-    "drop_level": 60,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 42,
-      "charges_per_use": 8,
-      "duration": 50,
-      "mana_per_use": 1400
-    }
-  },
-  "Eternal Mana Flask": {
-    "drop_level": 65,
-    "implicits": [],
-    "inventory_height": 2,
-    "inventory_width": 1,
-    "properties": {
-      "charges_max": 42,
-      "charges_per_use": 8,
-      "duration": 70,
-      "mana_per_use": 1800
+      "life_per_use": null,
+      "mana_per_use": 50,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Medium Mana Flask": {
@@ -53,10 +33,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 30,
       "charges_per_use": 7,
       "duration": 35,
-      "mana_per_use": 70
+      "life_per_use": null,
+      "mana_per_use": 70,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Large Mana Flask": {
@@ -65,10 +61,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 35,
       "charges_per_use": 8,
       "duration": 40,
-      "mana_per_use": 90
+      "life_per_use": null,
+      "mana_per_use": 90,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Greater Mana Flask": {
@@ -77,10 +89,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 36,
       "charges_per_use": 9,
       "duration": 40,
-      "mana_per_use": 120
+      "life_per_use": null,
+      "mana_per_use": 120,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Grand Mana Flask": {
@@ -89,10 +117,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 30,
       "charges_per_use": 7,
       "duration": 45,
-      "mana_per_use": 170
+      "life_per_use": null,
+      "mana_per_use": 170,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Giant Mana Flask": {
@@ -101,10 +145,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 36,
       "charges_per_use": 8,
       "duration": 50,
-      "mana_per_use": 250
+      "life_per_use": null,
+      "mana_per_use": 250,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Colossal Mana Flask": {
@@ -113,10 +173,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 38,
       "charges_per_use": 8,
       "duration": 50,
-      "mana_per_use": 350
+      "life_per_use": null,
+      "mana_per_use": 350,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Sacred Mana Flask": {
@@ -125,10 +201,26 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 35,
       "charges_per_use": 7,
       "duration": 55,
-      "mana_per_use": 480
+      "life_per_use": null,
+      "mana_per_use": 480,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   },
   "Hallowed Mana Flask": {
@@ -137,10 +229,110 @@
     "inventory_height": 2,
     "inventory_width": 1,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
       "charges_max": 30,
       "charges_per_use": 6,
       "duration": 60,
-      "mana_per_use": 700
+      "life_per_use": null,
+      "mana_per_use": 700,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Sanctified Mana Flask": {
+    "drop_level": 50,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 35,
+      "charges_per_use": 7,
+      "duration": 65,
+      "life_per_use": null,
+      "mana_per_use": 1100,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Divine Mana Flask": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 42,
+      "charges_per_use": 8,
+      "duration": 50,
+      "life_per_use": null,
+      "mana_per_use": 1400,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Eternal Mana Flask": {
+    "drop_level": 65,
+    "implicits": [],
+    "inventory_height": 2,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": 42,
+      "charges_per_use": 8,
+      "duration": 70,
+      "life_per_use": null,
+      "mana_per_use": 1800,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

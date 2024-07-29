@@ -1,4 +1,140 @@
 {
+  "SanctumResolveRecovery1": {
+    "generation_type": "Prefix",
+    "name": "Revitalising",
+    "required_level": 1,
+    "text": "(6-9)% increased Resolve Recovered",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumResolveRecovery2": {
+    "generation_type": "Prefix",
+    "name": "Galvanising",
+    "required_level": 74,
+    "text": "(10-13)% increased Resolve Recovered",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumResolveRecovery3": {
+    "generation_type": "Prefix",
+    "name": "Enlivening",
+    "required_level": 80,
+    "text": "(14-16)% increased Resolve Recovered",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumResolveRecovery4": {
+    "generation_type": "Prefix",
+    "name": "Emboldening",
+    "required_level": 85,
+    "text": "(17-20)% increased Resolve Recovered",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumShieldAtStartOfFloor1": {
+    "generation_type": "Prefix",
+    "name": "Uplifting",
+    "required_level": 1,
+    "text": "Gain (5-8) Inspiration at the start of each Floor",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumShieldAtStartOfFloor2": {
+    "generation_type": "Prefix",
+    "name": "Effervescent",
+    "required_level": 74,
+    "text": "Gain (9-12) Inspiration at the start of each Floor",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumShieldAtStartOfFloor3": {
+    "generation_type": "Prefix",
+    "name": "Inspirited",
+    "required_level": 78,
+    "text": "Gain (13-16) Inspiration at the start of each Floor",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumShieldAtStartOfFloor4": {
+    "generation_type": "Prefix",
+    "name": "Fervent",
+    "required_level": 82,
+    "text": "Gain (17-20) Inspiration at the start of each Floor",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumShieldAtStartOfFloor5": {
+    "generation_type": "Prefix",
+    "name": "Impassioned",
+    "required_level": 85,
+    "text": "Gain (21-25) Inspiration at the start of each Floor",
+    "weight": 20,
+    "influence": "Normal"
+  },
+  "SanctumGuardsIncreasedDamageTaken1": {
+    "generation_type": "Prefix",
+    "name": "Transgressor's",
+    "required_level": 1,
+    "text": "Guards take (5-7)% increased Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumGuardsIncreasedDamageTaken2": {
+    "generation_type": "Prefix",
+    "name": "Violator's",
+    "required_level": 78,
+    "text": "Guards take (8-10)% increased Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumGuardsIncreasedDamageTaken3": {
+    "generation_type": "Prefix",
+    "name": "Sinner's",
+    "required_level": 85,
+    "text": "Guards take (11-15)% increased Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumBossIncreasedDamageTaken1": {
+    "generation_type": "Prefix",
+    "name": "Challenger's",
+    "required_level": 1,
+    "text": "Bosses take (5-7)% increased Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumBossIncreasedDamageTaken2": {
+    "generation_type": "Prefix",
+    "name": "Usurper's",
+    "required_level": 78,
+    "text": "Bosses take (8-10)% increased Damage",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumBossIncreasedDamageTaken3": {
+    "generation_type": "Prefix",
+    "name": "Regicidal",
+    "required_level": 85,
+    "text": "Bosses take (11-15)% increased Damage",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumMerchantExtraOptions1": {
+    "generation_type": "Prefix",
+    "name": "Plentiful",
+    "required_level": 78,
+    "text": "The Merchant has an additional Choice",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumMerchantExtraOptions2": {
+    "generation_type": "Prefix",
+    "name": "Cornucopic",
+    "required_level": 85,
+    "text": "The Merchant has 2 additional Choices",
+    "weight": 20,
+    "influence": "Normal"
+  },
   "SanctumAvoidResolveLossFromMeleeHitChance1": {
     "generation_type": "Prefix",
     "name": "Agile",
@@ -47,52 +183,28 @@
     "weight": 15,
     "influence": "Normal"
   },
-  "SanctumBossIncreasedDamageTaken1": {
+  "SanctumResolveReductionBasedOnArmour1": {
     "generation_type": "Prefix",
-    "name": "Challenger's",
+    "name": "Reinforced",
     "required_level": 1,
-    "text": "Bosses take (5-7)% increased Damage",
-    "weight": 100,
+    "text": "Resolve Mitigation from Enemy Hits is based on +(11-15)% of Armour",
+    "weight": 60,
     "influence": "Normal"
   },
-  "SanctumBossIncreasedDamageTaken2": {
+  "SanctumResolveReductionBasedOnArmour2": {
     "generation_type": "Prefix",
-    "name": "Usurper's",
-    "required_level": 78,
-    "text": "Bosses take (8-10)% increased Damage",
-    "weight": 100,
+    "name": "Layered",
+    "required_level": 77,
+    "text": "Resolve Mitigation from Enemy Hits is based on +(16-20)% of Armour",
+    "weight": 60,
     "influence": "Normal"
   },
-  "SanctumBossIncreasedDamageTaken3": {
+  "SanctumResolveReductionBasedOnArmour3": {
     "generation_type": "Prefix",
-    "name": "Regicidal",
-    "required_level": 85,
-    "text": "Bosses take (11-15)% increased Damage",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumGuardsIncreasedDamageTaken1": {
-    "generation_type": "Prefix",
-    "name": "Transgressor's",
-    "required_level": 1,
-    "text": "Guards take (5-7)% increased Damage",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumGuardsIncreasedDamageTaken2": {
-    "generation_type": "Prefix",
-    "name": "Violator's",
-    "required_level": 78,
-    "text": "Guards take (8-10)% increased Damage",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumGuardsIncreasedDamageTaken3": {
-    "generation_type": "Prefix",
-    "name": "Sinner's",
-    "required_level": 85,
-    "text": "Guards take (11-15)% increased Damage",
-    "weight": 50,
+    "name": "Girded",
+    "required_level": 84,
+    "text": "Resolve Mitigation from Enemy Hits is based on +(21-25)% of Armour",
+    "weight": 30,
     "influence": "Normal"
   },
   "SanctumIncreasedResolveAegis1": {
@@ -119,163 +231,19 @@
     "weight": 30,
     "influence": "Normal"
   },
-  "SanctumMerchantExtraOptions1": {
-    "generation_type": "Prefix",
-    "name": "Plentiful",
-    "required_level": 78,
-    "text": "The Merchant has an additional Choice",
+  "SanctumMerchantReducedCosts1": {
+    "generation_type": "Suffix",
+    "name": "of Charity",
+    "required_level": 1,
+    "text": "(5-4)% reduced Merchant Prices",
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumMerchantExtraOptions2": {
-    "generation_type": "Prefix",
-    "name": "Cornucopic",
+  "SanctumMerchantReducedCosts2": {
+    "generation_type": "Suffix",
+    "name": "of Diplomacy",
     "required_level": 85,
-    "text": "The Merchant has 2 additional Choices",
-    "weight": 20,
-    "influence": "Normal"
-  },
-  "SanctumResolveRecovery1": {
-    "generation_type": "Prefix",
-    "name": "Revitalising",
-    "required_level": 1,
-    "text": "(6-9)% increased Resolve Recovered",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumResolveRecovery2": {
-    "generation_type": "Prefix",
-    "name": "Galvanising",
-    "required_level": 74,
-    "text": "(10-13)% increased Resolve Recovered",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumResolveRecovery3": {
-    "generation_type": "Prefix",
-    "name": "Enlivening",
-    "required_level": 80,
-    "text": "(14-16)% increased Resolve Recovered",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumResolveRecovery4": {
-    "generation_type": "Prefix",
-    "name": "Emboldening",
-    "required_level": 85,
-    "text": "(17-20)% increased Resolve Recovered",
-    "weight": 20,
-    "influence": "Normal"
-  },
-  "SanctumResolveReductionBasedOnArmour1": {
-    "generation_type": "Prefix",
-    "name": "Reinforced",
-    "required_level": 1,
-    "text": "Resolve Mitigation from Enemy Hits is based on +(11-15)% of Armour",
-    "weight": 60,
-    "influence": "Normal"
-  },
-  "SanctumResolveReductionBasedOnArmour2": {
-    "generation_type": "Prefix",
-    "name": "Layered",
-    "required_level": 77,
-    "text": "Resolve Mitigation from Enemy Hits is based on +(16-20)% of Armour",
-    "weight": 60,
-    "influence": "Normal"
-  },
-  "SanctumResolveReductionBasedOnArmour3": {
-    "generation_type": "Prefix",
-    "name": "Girded",
-    "required_level": 84,
-    "text": "Resolve Mitigation from Enemy Hits is based on +(21-25)% of Armour",
-    "weight": 30,
-    "influence": "Normal"
-  },
-  "SanctumShieldAtStartOfFloor1": {
-    "generation_type": "Prefix",
-    "name": "Uplifting",
-    "required_level": 1,
-    "text": "Gain (5-8) Inspiration at the start of each Floor",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumShieldAtStartOfFloor2": {
-    "generation_type": "Prefix",
-    "name": "Effervescent",
-    "required_level": 74,
-    "text": "Gain (9-12) Inspiration at the start of each Floor",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumShieldAtStartOfFloor3": {
-    "generation_type": "Prefix",
-    "name": "Inspirited",
-    "required_level": 78,
-    "text": "Gain (13-16) Inspiration at the start of each Floor",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumShieldAtStartOfFloor4": {
-    "generation_type": "Prefix",
-    "name": "Fervent",
-    "required_level": 82,
-    "text": "Gain (17-20) Inspiration at the start of each Floor",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumShieldAtStartOfFloor5": {
-    "generation_type": "Prefix",
-    "name": "Impassioned",
-    "required_level": 85,
-    "text": "Gain (21-25) Inspiration at the start of each Floor",
-    "weight": 20,
-    "influence": "Normal"
-  },
-  "SanctumAvoidResolveIfHitRecently1": {
-    "generation_type": "Suffix",
-    "name": "of the Shade",
-    "required_level": 1,
-    "text": "(2-3)% chance to Avoid Resolve loss from Enemy Hits if you've been Hit recently",
-    "weight": 60,
-    "influence": "Normal"
-  },
-  "SanctumAvoidResolveIfHitRecently2": {
-    "generation_type": "Suffix",
-    "name": "of the Spectre",
-    "required_level": 77,
-    "text": "(4-5)% chance to Avoid Resolve loss from Enemy Hits if you've been Hit recently",
-    "weight": 60,
-    "influence": "Normal"
-  },
-  "SanctumAvoidResolveIfHitRecently3": {
-    "generation_type": "Suffix",
-    "name": "of the Phantasm",
-    "required_level": 84,
-    "text": "(6-7)% chance to Avoid Resolve loss from Enemy Hits if you've been Hit recently",
-    "weight": 30,
-    "influence": "Normal"
-  },
-  "SanctumBossReducedDamage1": {
-    "generation_type": "Suffix",
-    "name": "of the Aegis",
-    "required_level": 1,
-    "text": "Bosses impact 4% reduced Resolve",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumBossReducedDamage2": {
-    "generation_type": "Suffix",
-    "name": "of the Vanguard",
-    "required_level": 78,
-    "text": "Bosses impact 5% reduced Resolve",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumBossReducedDamage3": {
-    "generation_type": "Suffix",
-    "name": "of the Phalanx",
-    "required_level": 85,
-    "text": "Bosses impact (7-6)% reduced Resolve",
+    "text": "(7-6)% reduced Merchant Prices",
     "weight": 50,
     "influence": "Normal"
   },
@@ -303,68 +271,20 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumGuardsReducedDamage1": {
+  "SanctumResolveOnRoomComplete1": {
     "generation_type": "Suffix",
-    "name": "of the Bulwark",
-    "required_level": 1,
-    "text": "Guards impact 4% reduced Resolve",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumGuardsReducedDamage2": {
-    "generation_type": "Suffix",
-    "name": "of the Bastion",
-    "required_level": 78,
-    "text": "Guards impact 5% reduced Resolve",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "SanctumGuardsReducedDamage3": {
-    "generation_type": "Suffix",
-    "name": "of the Citadel",
-    "required_level": 85,
-    "text": "Guards impact (7-6)% reduced Resolve",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumMerchantReducedCosts1": {
-    "generation_type": "Suffix",
-    "name": "of Charity",
-    "required_level": 1,
-    "text": "(5-4)% reduced Merchant Prices",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumMerchantReducedCosts2": {
-    "generation_type": "Suffix",
-    "name": "of Diplomacy",
-    "required_level": 85,
-    "text": "(7-6)% reduced Merchant Prices",
-    "weight": 50,
-    "influence": "Normal"
-  },
-  "SanctumResolveAegisFasterRecovery1": {
-    "generation_type": "Suffix",
-    "name": "of the Pixie",
-    "required_level": 1,
-    "text": "Resolve Aegis Recovers (11-15)% faster while not losing Resolve",
-    "weight": 60,
-    "influence": "Normal"
-  },
-  "SanctumResolveAegisFasterRecovery2": {
-    "generation_type": "Suffix",
-    "name": "of the Djinn",
+    "name": "of Progress",
     "required_level": 77,
-    "text": "Resolve Aegis Recovers (16-20)% faster while not losing Resolve",
-    "weight": 60,
+    "text": "Recover 3 Resolve when you complete a Room",
+    "weight": 100,
     "influence": "Normal"
   },
-  "SanctumResolveAegisFasterRecovery3": {
+  "SanctumResolveOnRoomComplete2": {
     "generation_type": "Suffix",
-    "name": "of the Seraphim",
-    "required_level": 84,
-    "text": "Resolve Aegis Recovers (21-25)% faster while not losing Resolve",
-    "weight": 30,
+    "name": "of Advancement",
+    "required_level": 85,
+    "text": "Recover 4 Resolve when you complete a Room",
+    "weight": 100,
     "influence": "Normal"
   },
   "SanctumResolveOnFountainUse1": {
@@ -399,20 +319,76 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "SanctumResolveOnRoomComplete1": {
+  "SanctumGuardsReducedDamage1": {
     "generation_type": "Suffix",
-    "name": "of Progress",
-    "required_level": 77,
-    "text": "Recover 3 Resolve when you complete a Room",
+    "name": "of the Bulwark",
+    "required_level": 1,
+    "text": "Guards impact 4% reduced Resolve",
     "weight": 100,
     "influence": "Normal"
   },
-  "SanctumResolveOnRoomComplete2": {
+  "SanctumGuardsReducedDamage2": {
     "generation_type": "Suffix",
-    "name": "of Advancement",
-    "required_level": 85,
-    "text": "Recover 4 Resolve when you complete a Room",
+    "name": "of the Bastion",
+    "required_level": 78,
+    "text": "Guards impact 5% reduced Resolve",
     "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumGuardsReducedDamage3": {
+    "generation_type": "Suffix",
+    "name": "of the Citadel",
+    "required_level": 85,
+    "text": "Guards impact (7-6)% reduced Resolve",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumBossReducedDamage1": {
+    "generation_type": "Suffix",
+    "name": "of the Aegis",
+    "required_level": 1,
+    "text": "Bosses impact 4% reduced Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumBossReducedDamage2": {
+    "generation_type": "Suffix",
+    "name": "of the Vanguard",
+    "required_level": 78,
+    "text": "Bosses impact 5% reduced Resolve",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "SanctumBossReducedDamage3": {
+    "generation_type": "Suffix",
+    "name": "of the Phalanx",
+    "required_level": 85,
+    "text": "Bosses impact (7-6)% reduced Resolve",
+    "weight": 50,
+    "influence": "Normal"
+  },
+  "SanctumAvoidResolveIfHitRecently1": {
+    "generation_type": "Suffix",
+    "name": "of the Shade",
+    "required_level": 1,
+    "text": "(2-3)% chance to Avoid Resolve loss from Enemy Hits if you've been Hit recently",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "SanctumAvoidResolveIfHitRecently2": {
+    "generation_type": "Suffix",
+    "name": "of the Spectre",
+    "required_level": 77,
+    "text": "(4-5)% chance to Avoid Resolve loss from Enemy Hits if you've been Hit recently",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "SanctumAvoidResolveIfHitRecently3": {
+    "generation_type": "Suffix",
+    "name": "of the Phantasm",
+    "required_level": 84,
+    "text": "(6-7)% chance to Avoid Resolve loss from Enemy Hits if you've been Hit recently",
+    "weight": 30,
     "influence": "Normal"
   },
   "SanctumResolveReductionDoubledChance1": {
@@ -436,6 +412,30 @@
     "name": "of the Titan",
     "required_level": 84,
     "text": "(6-7)% chance for Resolve Mitigation to be doubled when Hit by an Enemy",
+    "weight": 30,
+    "influence": "Normal"
+  },
+  "SanctumResolveAegisFasterRecovery1": {
+    "generation_type": "Suffix",
+    "name": "of the Pixie",
+    "required_level": 1,
+    "text": "Resolve Aegis Recovers (11-15)% faster while not losing Resolve",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "SanctumResolveAegisFasterRecovery2": {
+    "generation_type": "Suffix",
+    "name": "of the Djinn",
+    "required_level": 77,
+    "text": "Resolve Aegis Recovers (16-20)% faster while not losing Resolve",
+    "weight": 60,
+    "influence": "Normal"
+  },
+  "SanctumResolveAegisFasterRecovery3": {
+    "generation_type": "Suffix",
+    "name": "of the Seraphim",
+    "required_level": 84,
+    "text": "Resolve Aegis Recovers (21-25)% faster while not losing Resolve",
     "weight": 30,
     "influence": "Normal"
   }

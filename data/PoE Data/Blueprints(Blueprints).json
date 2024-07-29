@@ -1,18 +1,58 @@
 {
+  "HeistContractNemesisModOnRares": {
+    "generation_type": "Prefix",
+    "name": "Antagonist's",
+    "required_level": 1,
+    "text": "(20-30)% increased number of Rare Monsters",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterChain1_": {
+    "generation_type": "Prefix",
+    "name": "Chaining",
+    "required_level": 1,
+    "text": "Monsters' skills Chain 1 additional times",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterChain2_": {
+    "generation_type": "Prefix",
+    "name": "Chaining",
+    "required_level": 68,
+    "text": "Monsters' skills Chain 2 additional times",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterMultipleProjectiles": {
+    "generation_type": "Prefix",
+    "name": "Splitting",
+    "required_level": 1,
+    "text": "Monsters fire 2 additional Projectiles",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersCantBeSlowedOrTaunted": {
+    "generation_type": "Prefix",
+    "name": "Unstoppable",
+    "required_level": 46,
+    "text": "Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value | Monsters cannot be Taunted",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAllDamageAlwaysIgnites_": {
+    "generation_type": "Prefix",
+    "name": "Conflagrating",
+    "required_level": 46,
+    "text": "All Monster Damage from Hits always Ignites",
+    "weight": 650,
+    "influence": "Normal"
+  },
   "HeistContractHexproof": {
     "generation_type": "Prefix",
     "name": "Hexproof",
     "required_level": 46,
     "text": "Monsters are Hexproof",
     "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractLockdownInstant1": {
-    "generation_type": "Prefix",
-    "name": "Instantaneous",
-    "required_level": 68,
-    "text": "Lockdown occurs immediately when Alert Level is full",
-    "weight": 600,
     "influence": "Normal"
   },
   "HeistContractMonsterCannotBeStunned1": {
@@ -55,75 +95,83 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterChain1_": {
+  "HeistContractMonsterPhysicalResistance1_": {
     "generation_type": "Prefix",
-    "name": "Chaining",
+    "name": "Armoured",
     "required_level": 1,
-    "text": "Monsters' skills Chain 1 additional times",
-    "weight": 1000,
+    "text": "+10% Monster Physical Damage Reduction",
+    "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractMonsterChain2_": {
+  "HeistContractMonsterPhysicalResistance2": {
     "generation_type": "Prefix",
-    "name": "Chaining",
-    "required_level": 68,
-    "text": "Monsters' skills Chain 2 additional times",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterChaosDamage1": {
-    "generation_type": "Prefix",
-    "name": "Profane",
-    "required_level": 73,
-    "text": "Monsters gain (21-25)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterChaosDamage2": {
-    "generation_type": "Prefix",
-    "name": "Profane",
-    "required_level": 78,
-    "text": "Monsters gain (31-35)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterColdDamage1_": {
-    "generation_type": "Prefix",
-    "name": "Freezing",
-    "required_level": 1,
-    "text": "Monsters deal (10-29)% extra Physical Damage as Cold",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterColdDamage2": {
-    "generation_type": "Prefix",
-    "name": "Freezing",
+    "name": "Armoured",
     "required_level": 46,
-    "text": "Monsters deal (30-49)% extra Physical Damage as Cold",
-    "weight": 1000,
+    "text": "+15% Monster Physical Damage Reduction",
+    "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractMonsterColdDamage3": {
+  "HeistContractMonsterPhysicalResistance3": {
     "generation_type": "Prefix",
-    "name": "Freezing",
+    "name": "Armoured",
     "required_level": 68,
-    "text": "Monsters deal (50-69)% extra Physical Damage as Cold",
-    "weight": 1000,
+    "text": "+20% Monster Physical Damage Reduction",
+    "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractMonsterColdDamage4": {
+  "HeistContractMonsterPhysicalResistance4": {
     "generation_type": "Prefix",
-    "name": "Freezing",
+    "name": "Armoured",
     "required_level": 73,
-    "text": "Monsters deal (70-89)% extra Physical Damage as Cold",
+    "text": "+30% Monster Physical Damage Reduction",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterPhysicalResistance5_": {
+    "generation_type": "Prefix",
+    "name": "Armoured",
+    "required_level": 78,
+    "text": "+40% Monster Physical Damage Reduction",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterLife1": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 1,
+    "text": "(10-14)% more Monster Life",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterColdDamage5": {
+  "HeistContractMonsterLife2": {
     "generation_type": "Prefix",
-    "name": "Freezing",
+    "name": "Fecund",
+    "required_level": 46,
+    "text": "(15-19)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterLife3": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 68,
+    "text": "(20-29)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterLife4": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
+    "required_level": 73,
+    "text": "(30-39)% more Monster Life",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterLife5_": {
+    "generation_type": "Prefix",
+    "name": "Fecund",
     "required_level": 78,
-    "text": "Monsters deal (90-110)% extra Physical Damage as Cold",
+    "text": "(40-49)% more Monster Life",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -167,70 +215,6 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterElementalReflection1": {
-    "generation_type": "Prefix",
-    "name": "Mirrored",
-    "required_level": 68,
-    "text": "Monsters reflect 13% of Elemental Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterElementalReflection2": {
-    "generation_type": "Prefix",
-    "name": "Mirrored",
-    "required_level": 73,
-    "text": "Monsters reflect 15% of Elemental Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterElementalReflection3": {
-    "generation_type": "Prefix",
-    "name": "Mirrored",
-    "required_level": 78,
-    "text": "Monsters reflect 18% of Elemental Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterFast1": {
-    "generation_type": "Prefix",
-    "name": "Fleet",
-    "required_level": 1,
-    "text": "(5-10)% increased Monster Movement Speed | (10-15)% increased Monster Attack Speed | (10-15)% increased Monster Cast Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterFast2___": {
-    "generation_type": "Prefix",
-    "name": "Fleet",
-    "required_level": 46,
-    "text": "(10-15)% increased Monster Movement Speed | (15-20)% increased Monster Attack Speed | (15-20)% increased Monster Cast Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterFast3_": {
-    "generation_type": "Prefix",
-    "name": "Fleet",
-    "required_level": 68,
-    "text": "(15-20)% increased Monster Movement Speed | (20-25)% increased Monster Attack Speed | (20-25)% increased Monster Cast Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterFast4_": {
-    "generation_type": "Prefix",
-    "name": "Fleet",
-    "required_level": 73,
-    "text": "(20-25)% increased Monster Movement Speed | (25-35)% increased Monster Attack Speed | (25-35)% increased Monster Cast Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterFast5": {
-    "generation_type": "Prefix",
-    "name": "Fleet",
-    "required_level": 78,
-    "text": "(25-30)% increased Monster Movement Speed | (35-45)% increased Monster Attack Speed | (35-45)% increased Monster Cast Speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
   "HeistContractMonsterFireDamage1": {
     "generation_type": "Prefix",
     "name": "Burning",
@@ -271,123 +255,43 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterGuardingDamage1": {
+  "HeistContractMonsterColdDamage1_": {
     "generation_type": "Prefix",
-    "name": "Indifferent",
+    "name": "Freezing",
     "required_level": 1,
-    "text": "Guards deal (13-15)% increased Damage",
+    "text": "Monsters deal (10-29)% extra Physical Damage as Cold",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterGuardingDamage2": {
+  "HeistContractMonsterColdDamage2": {
     "generation_type": "Prefix",
-    "name": "Indifferent",
+    "name": "Freezing",
     "required_level": 46,
-    "text": "Guards deal (16-18)% increased Damage",
+    "text": "Monsters deal (30-49)% extra Physical Damage as Cold",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterGuardingDamage3": {
+  "HeistContractMonsterColdDamage3": {
     "generation_type": "Prefix",
-    "name": "Indifferent",
+    "name": "Freezing",
     "required_level": 68,
-    "text": "Guards deal (19-22)% increased Damage",
+    "text": "Monsters deal (50-69)% extra Physical Damage as Cold",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterGuardingDamage4": {
+  "HeistContractMonsterColdDamage4": {
     "generation_type": "Prefix",
-    "name": "Indifferent",
+    "name": "Freezing",
     "required_level": 73,
-    "text": "Guards deal (23-26)% increased Damage",
+    "text": "Monsters deal (70-89)% extra Physical Damage as Cold",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterGuardingDamage5": {
+  "HeistContractMonsterColdDamage5": {
     "generation_type": "Prefix",
-    "name": "Indifferent",
+    "name": "Freezing",
     "required_level": 78,
-    "text": "Guards deal (27-30)% increased Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterGuardingDamageReduction1": {
-    "generation_type": "Prefix",
-    "name": "Stoic",
-    "required_level": 1,
-    "text": "Guards take (15-13)% reduced Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterGuardingDamageReduction2___": {
-    "generation_type": "Prefix",
-    "name": "Stoic",
-    "required_level": 46,
-    "text": "Guards take (18-16)% reduced Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterGuardingDamageReduction3": {
-    "generation_type": "Prefix",
-    "name": "Stoic",
-    "required_level": 68,
-    "text": "Guards take (22-19)% reduced Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterGuardingDamageReduction4": {
-    "generation_type": "Prefix",
-    "name": "Stoic",
-    "required_level": 73,
-    "text": "Guards take (26-23)% reduced Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterGuardingDamageReduction5": {
-    "generation_type": "Prefix",
-    "name": "Stoic",
-    "required_level": 78,
-    "text": "Guards take (30-27)% reduced Damage",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterLife1": {
-    "generation_type": "Prefix",
-    "name": "Fecund",
-    "required_level": 1,
-    "text": "(10-14)% more Monster Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterLife2": {
-    "generation_type": "Prefix",
-    "name": "Fecund",
-    "required_level": 46,
-    "text": "(15-19)% more Monster Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterLife3": {
-    "generation_type": "Prefix",
-    "name": "Fecund",
-    "required_level": 68,
-    "text": "(20-29)% more Monster Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterLife4": {
-    "generation_type": "Prefix",
-    "name": "Fecund",
-    "required_level": 73,
-    "text": "(30-39)% more Monster Life",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterLife5_": {
-    "generation_type": "Prefix",
-    "name": "Fecund",
-    "required_level": 78,
-    "text": "(40-49)% more Monster Life",
+    "text": "Monsters deal (90-110)% extra Physical Damage as Cold",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -431,11 +335,315 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterMultipleProjectiles": {
+  "HeistContractMonsterChaosDamage1": {
     "generation_type": "Prefix",
-    "name": "Splitting",
+    "name": "Profane",
+    "required_level": 73,
+    "text": "Monsters gain (21-25)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterChaosDamage2": {
+    "generation_type": "Prefix",
+    "name": "Profane",
+    "required_level": 78,
+    "text": "Monsters gain (31-35)% of their Physical Damage as Extra Chaos Damage | Monsters Inflict Withered for 2 seconds on Hit",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterFast1": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
     "required_level": 1,
-    "text": "Monsters fire 2 additional Projectiles",
+    "text": "(5-10)% increased Monster Movement Speed | (10-15)% increased Monster Attack Speed | (10-15)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterFast2___": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 46,
+    "text": "(10-15)% increased Monster Movement Speed | (15-20)% increased Monster Attack Speed | (15-20)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterFast3_": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 68,
+    "text": "(15-20)% increased Monster Movement Speed | (20-25)% increased Monster Attack Speed | (20-25)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterFast4_": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 73,
+    "text": "(20-25)% increased Monster Movement Speed | (25-35)% increased Monster Attack Speed | (25-35)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterFast5": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 78,
+    "text": "(25-30)% increased Monster Movement Speed | (35-45)% increased Monster Attack Speed | (35-45)% increased Monster Cast Speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterPhysicalReflection1_": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 68,
+    "text": "Monsters reflect 13% of Physical Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterPhysicalReflection2_": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 73,
+    "text": "Monsters reflect 15% of Physical Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterPhysicalReflection3": {
+    "generation_type": "Prefix",
+    "name": "Punishing",
+    "required_level": 78,
+    "text": "Monsters reflect 18% of Physical Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterElementalReflection1": {
+    "generation_type": "Prefix",
+    "name": "Mirrored",
+    "required_level": 68,
+    "text": "Monsters reflect 13% of Elemental Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterElementalReflection2": {
+    "generation_type": "Prefix",
+    "name": "Mirrored",
+    "required_level": 73,
+    "text": "Monsters reflect 15% of Elemental Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterElementalReflection3": {
+    "generation_type": "Prefix",
+    "name": "Mirrored",
+    "required_level": 78,
+    "text": "Monsters reflect 18% of Elemental Damage",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersCurseEffectOnSelfFinal1": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 46,
+    "text": "15% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersCurseEffectOnSelfFinal2": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 68,
+    "text": "25% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersCurseEffectOnSelfFinal3": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 73,
+    "text": "40% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersCurseEffectOnSelfFinal4": {
+    "generation_type": "Prefix",
+    "name": "Hexwarded",
+    "required_level": 78,
+    "text": "60% less effect of Curses on Monsters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersChanceToInflictStatusAilments1_": {
+    "generation_type": "Prefix",
+    "name": "Empowered",
+    "required_level": 73,
+    "text": "Monsters have a 15% chance to Ignite, Freeze and Shock on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersChanceToInflictStatusAilments2": {
+    "generation_type": "Prefix",
+    "name": "Empowered",
+    "required_level": 78,
+    "text": "Monsters have a 20% chance to Ignite, Freeze and Shock on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAllResistances1": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 1,
+    "text": "+10% Monster Chaos Resistance | +15% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAllResistances2": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 68,
+    "text": "+15% Monster Chaos Resistance | +20% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAllResistances3_": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 73,
+    "text": "+20% Monster Chaos Resistance | +30% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAllResistances4": {
+    "generation_type": "Prefix",
+    "name": "Resistant",
+    "required_level": 78,
+    "text": "+25% Monster Chaos Resistance | +40% Monster Elemental Resistances",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAvoidPoisonBleedBlind1_": {
+    "generation_type": "Prefix",
+    "name": "Impervious",
+    "required_level": 46,
+    "text": "Monsters have a 20% chance to avoid Poison, Impale, and Bleeding",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAvoidPoisonBleedBlind2": {
+    "generation_type": "Prefix",
+    "name": "Impervious",
+    "required_level": 73,
+    "text": "Monsters have a 35% chance to avoid Poison, Impale, and Bleeding",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersAvoidPoisonBleedBlind3___": {
+    "generation_type": "Prefix",
+    "name": "Impervious",
+    "required_level": 78,
+    "text": "Monsters have a 50% chance to avoid Poison, Impale, and Bleeding",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersImpaleOnHit1": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 46,
+    "text": "Monsters' Attacks have 15% chance to Impale on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersImpaleOnHit2": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 68,
+    "text": "Monsters' Attacks have 25% chance to Impale on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersImpaleOnHit3": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 73,
+    "text": "Monsters' Attacks have 40% chance to Impale on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersImpaleOnHit4": {
+    "generation_type": "Prefix",
+    "name": "Impaling",
+    "required_level": 78,
+    "text": "Monsters' Attacks have 60% chance to Impale on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersChanceToSuppressSpells1___": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 46,
+    "text": "Monsters have +20% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersChanceToSuppressSpells2": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 68,
+    "text": "Monsters have +30% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersChanceToSuppressSpells3_": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 73,
+    "text": "Monsters have +45% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersChanceToSuppressSpells4": {
+    "generation_type": "Prefix",
+    "name": "Oppressive",
+    "required_level": 78,
+    "text": "Monsters have +60% chance to Suppress Spell Damage",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersMaximumLifeAddedEnergyShield1____": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 1,
+    "text": "Monsters gain (10-14)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersMaximumLifeAddedEnergyShield2": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 46,
+    "text": "Monsters gain (15-19)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersMaximumLifeAddedEnergyShield3": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 68,
+    "text": "Monsters gain (20-29)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersMaximumLifeAddedEnergyShield4_": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 73,
+    "text": "Monsters gain (30-39)% of Maximum Life as Extra Maximum Energy Shield",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersMaximumLifeAddedEnergyShield5__": {
+    "generation_type": "Prefix",
+    "name": "Buffered",
+    "required_level": 78,
+    "text": "Monsters gain (40-49)% of Maximum Life as Extra Maximum Energy Shield",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -559,70 +767,6 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonsterPhysicalReflection1_": {
-    "generation_type": "Prefix",
-    "name": "Punishing",
-    "required_level": 68,
-    "text": "Monsters reflect 13% of Physical Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterPhysicalReflection2_": {
-    "generation_type": "Prefix",
-    "name": "Punishing",
-    "required_level": 73,
-    "text": "Monsters reflect 15% of Physical Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterPhysicalReflection3": {
-    "generation_type": "Prefix",
-    "name": "Punishing",
-    "required_level": 78,
-    "text": "Monsters reflect 18% of Physical Damage",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterPhysicalResistance1_": {
-    "generation_type": "Prefix",
-    "name": "Armoured",
-    "required_level": 1,
-    "text": "+10% Monster Physical Damage Reduction",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterPhysicalResistance2": {
-    "generation_type": "Prefix",
-    "name": "Armoured",
-    "required_level": 46,
-    "text": "+15% Monster Physical Damage Reduction",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterPhysicalResistance3": {
-    "generation_type": "Prefix",
-    "name": "Armoured",
-    "required_level": 68,
-    "text": "+20% Monster Physical Damage Reduction",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterPhysicalResistance4": {
-    "generation_type": "Prefix",
-    "name": "Armoured",
-    "required_level": 73,
-    "text": "+30% Monster Physical Damage Reduction",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterPhysicalResistance5_": {
-    "generation_type": "Prefix",
-    "name": "Armoured",
-    "required_level": 78,
-    "text": "+40% Monster Physical Damage Reduction",
-    "weight": 800,
-    "influence": "Normal"
-  },
   "HeistContractMonsterSideAreaDamage1": {
     "generation_type": "Prefix",
     "name": "Tempting",
@@ -703,235 +847,83 @@
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersAllDamageAlwaysIgnites_": {
+  "HeistContractMonsterGuardingDamage1": {
     "generation_type": "Prefix",
-    "name": "Conflagrating",
-    "required_level": 46,
-    "text": "All Monster Damage from Hits always Ignites",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersAllResistances1": {
-    "generation_type": "Prefix",
-    "name": "Resistant",
+    "name": "Indifferent",
     "required_level": 1,
-    "text": "+10% Monster Chaos Resistance | +15% Monster Elemental Resistances",
-    "weight": 800,
+    "text": "Guards deal (13-15)% increased Damage",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersAllResistances2": {
+  "HeistContractMonsterGuardingDamage2": {
     "generation_type": "Prefix",
-    "name": "Resistant",
+    "name": "Indifferent",
+    "required_level": 46,
+    "text": "Guards deal (16-18)% increased Damage",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractMonsterGuardingDamage3": {
+    "generation_type": "Prefix",
+    "name": "Indifferent",
     "required_level": 68,
-    "text": "+15% Monster Chaos Resistance | +20% Monster Elemental Resistances",
-    "weight": 800,
+    "text": "Guards deal (19-22)% increased Damage",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersAllResistances3_": {
+  "HeistContractMonsterGuardingDamage4": {
     "generation_type": "Prefix",
-    "name": "Resistant",
+    "name": "Indifferent",
     "required_level": 73,
-    "text": "+20% Monster Chaos Resistance | +30% Monster Elemental Resistances",
-    "weight": 800,
+    "text": "Guards deal (23-26)% increased Damage",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersAllResistances4": {
+  "HeistContractMonsterGuardingDamage5": {
     "generation_type": "Prefix",
-    "name": "Resistant",
+    "name": "Indifferent",
     "required_level": 78,
-    "text": "+25% Monster Chaos Resistance | +40% Monster Elemental Resistances",
-    "weight": 800,
+    "text": "Guards deal (27-30)% increased Damage",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersAvoidPoisonBleedBlind1_": {
+  "HeistContractMonsterGuardingDamageReduction1": {
     "generation_type": "Prefix",
-    "name": "Impervious",
-    "required_level": 46,
-    "text": "Monsters have a 20% chance to avoid Poison, Impale, and Bleeding",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersAvoidPoisonBleedBlind2": {
-    "generation_type": "Prefix",
-    "name": "Impervious",
-    "required_level": 73,
-    "text": "Monsters have a 35% chance to avoid Poison, Impale, and Bleeding",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersAvoidPoisonBleedBlind3___": {
-    "generation_type": "Prefix",
-    "name": "Impervious",
-    "required_level": 78,
-    "text": "Monsters have a 50% chance to avoid Poison, Impale, and Bleeding",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersCantBeSlowedOrTaunted": {
-    "generation_type": "Prefix",
-    "name": "Unstoppable",
-    "required_level": 46,
-    "text": "Monsters' Action Speed cannot be modified to below Base Value | Monsters' Movement Speed cannot be modified to below Base Value | Monsters cannot be Taunted",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersChanceToInflictStatusAilments1_": {
-    "generation_type": "Prefix",
-    "name": "Empowered",
-    "required_level": 73,
-    "text": "Monsters have a 15% chance to Ignite, Freeze and Shock on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersChanceToInflictStatusAilments2": {
-    "generation_type": "Prefix",
-    "name": "Empowered",
-    "required_level": 78,
-    "text": "Monsters have a 20% chance to Ignite, Freeze and Shock on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersChanceToSuppressSpells1___": {
-    "generation_type": "Prefix",
-    "name": "Oppressive",
-    "required_level": 46,
-    "text": "Monsters have +20% chance to Suppress Spell Damage",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersChanceToSuppressSpells2": {
-    "generation_type": "Prefix",
-    "name": "Oppressive",
-    "required_level": 68,
-    "text": "Monsters have +30% chance to Suppress Spell Damage",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersChanceToSuppressSpells3_": {
-    "generation_type": "Prefix",
-    "name": "Oppressive",
-    "required_level": 73,
-    "text": "Monsters have +45% chance to Suppress Spell Damage",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersChanceToSuppressSpells4": {
-    "generation_type": "Prefix",
-    "name": "Oppressive",
-    "required_level": 78,
-    "text": "Monsters have +60% chance to Suppress Spell Damage",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersCurseEffectOnSelfFinal1": {
-    "generation_type": "Prefix",
-    "name": "Hexwarded",
-    "required_level": 46,
-    "text": "15% less effect of Curses on Monsters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersCurseEffectOnSelfFinal2": {
-    "generation_type": "Prefix",
-    "name": "Hexwarded",
-    "required_level": 68,
-    "text": "25% less effect of Curses on Monsters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersCurseEffectOnSelfFinal3": {
-    "generation_type": "Prefix",
-    "name": "Hexwarded",
-    "required_level": 73,
-    "text": "40% less effect of Curses on Monsters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersCurseEffectOnSelfFinal4": {
-    "generation_type": "Prefix",
-    "name": "Hexwarded",
-    "required_level": 78,
-    "text": "60% less effect of Curses on Monsters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersImpaleOnHit1": {
-    "generation_type": "Prefix",
-    "name": "Impaling",
-    "required_level": 46,
-    "text": "Monsters' Attacks have 15% chance to Impale on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersImpaleOnHit2": {
-    "generation_type": "Prefix",
-    "name": "Impaling",
-    "required_level": 68,
-    "text": "Monsters' Attacks have 25% chance to Impale on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersImpaleOnHit3": {
-    "generation_type": "Prefix",
-    "name": "Impaling",
-    "required_level": 73,
-    "text": "Monsters' Attacks have 40% chance to Impale on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersImpaleOnHit4": {
-    "generation_type": "Prefix",
-    "name": "Impaling",
-    "required_level": 78,
-    "text": "Monsters' Attacks have 60% chance to Impale on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersMaximumLifeAddedEnergyShield1____": {
-    "generation_type": "Prefix",
-    "name": "Buffered",
+    "name": "Stoic",
     "required_level": 1,
-    "text": "Monsters gain (10-14)% of Maximum Life as Extra Maximum Energy Shield",
+    "text": "Guards take (15-13)% reduced Damage",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersMaximumLifeAddedEnergyShield2": {
+  "HeistContractMonsterGuardingDamageReduction2___": {
     "generation_type": "Prefix",
-    "name": "Buffered",
+    "name": "Stoic",
     "required_level": 46,
-    "text": "Monsters gain (15-19)% of Maximum Life as Extra Maximum Energy Shield",
+    "text": "Guards take (18-16)% reduced Damage",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersMaximumLifeAddedEnergyShield3": {
+  "HeistContractMonsterGuardingDamageReduction3": {
     "generation_type": "Prefix",
-    "name": "Buffered",
+    "name": "Stoic",
     "required_level": 68,
-    "text": "Monsters gain (20-29)% of Maximum Life as Extra Maximum Energy Shield",
+    "text": "Guards take (22-19)% reduced Damage",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersMaximumLifeAddedEnergyShield4_": {
+  "HeistContractMonsterGuardingDamageReduction4": {
     "generation_type": "Prefix",
-    "name": "Buffered",
+    "name": "Stoic",
     "required_level": 73,
-    "text": "Monsters gain (30-39)% of Maximum Life as Extra Maximum Energy Shield",
+    "text": "Guards take (26-23)% reduced Damage",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractMonstersMaximumLifeAddedEnergyShield5__": {
+  "HeistContractMonsterGuardingDamageReduction5": {
     "generation_type": "Prefix",
-    "name": "Buffered",
+    "name": "Stoic",
     "required_level": 78,
-    "text": "Monsters gain (40-49)% of Maximum Life as Extra Maximum Energy Shield",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractNemesisModOnRares": {
-    "generation_type": "Prefix",
-    "name": "Antagonist's",
-    "required_level": 1,
-    "text": "(20-30)% increased number of Rare Monsters",
+    "text": "Guards take (30-27)% reduced Damage",
     "weight": 1000,
     "influence": "Normal"
   },
@@ -975,46 +967,6 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractReinforcementsFast1": {
-    "generation_type": "Prefix",
-    "name": "Supplemented",
-    "required_level": 1,
-    "text": "Reinforcements have (5-10)% increased Movement Speed | Reinforcements have (10-15)% increased Attack Speed | Reinforcements have (10-15)% increased Cast Speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractReinforcementsFast2": {
-    "generation_type": "Prefix",
-    "name": "Supplemented",
-    "required_level": 1,
-    "text": "Reinforcements have (10-15)% increased Movement Speed | Reinforcements have (15-20)% increased Attack Speed | Reinforcements have (15-20)% increased Cast Speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractReinforcementsFast3": {
-    "generation_type": "Prefix",
-    "name": "Supplemented",
-    "required_level": 1,
-    "text": "Reinforcements have (15-20)% increased Movement Speed | Reinforcements have (20-25)% increased Attack Speed | Reinforcements have (20-25)% increased Cast Speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractReinforcementsFast4": {
-    "generation_type": "Prefix",
-    "name": "Supplemented",
-    "required_level": 1,
-    "text": "Reinforcements have (20-25)% increased Movement Speed | Reinforcements have (25-35)% increased Attack Speed | Reinforcements have (25-35)% increased Cast Speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractReinforcementsFast5": {
-    "generation_type": "Prefix",
-    "name": "Supplemented",
-    "required_level": 1,
-    "text": "Reinforcements have (25-30)% increased Movement Speed | Reinforcements have (35-45)% increased Attack Speed | Reinforcements have (35-45)% increased Cast Speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
   "HeistContractSideAreaIncreasedMonsters1_": {
     "generation_type": "Prefix",
     "name": "Deployed",
@@ -1055,179 +1007,123 @@
     "weight": 800,
     "influence": "Normal"
   },
+  "HeistContractReinforcementsFast1": {
+    "generation_type": "Prefix",
+    "name": "Supplemented",
+    "required_level": 1,
+    "text": "Reinforcements have (5-10)% increased Movement Speed | Reinforcements have (10-15)% increased Attack Speed | Reinforcements have (10-15)% increased Cast Speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractReinforcementsFast2": {
+    "generation_type": "Prefix",
+    "name": "Supplemented",
+    "required_level": 1,
+    "text": "Reinforcements have (10-15)% increased Movement Speed | Reinforcements have (15-20)% increased Attack Speed | Reinforcements have (15-20)% increased Cast Speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractReinforcementsFast3": {
+    "generation_type": "Prefix",
+    "name": "Supplemented",
+    "required_level": 1,
+    "text": "Reinforcements have (15-20)% increased Movement Speed | Reinforcements have (20-25)% increased Attack Speed | Reinforcements have (20-25)% increased Cast Speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractReinforcementsFast4": {
+    "generation_type": "Prefix",
+    "name": "Supplemented",
+    "required_level": 1,
+    "text": "Reinforcements have (20-25)% increased Movement Speed | Reinforcements have (25-35)% increased Attack Speed | Reinforcements have (25-35)% increased Cast Speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractReinforcementsFast5": {
+    "generation_type": "Prefix",
+    "name": "Supplemented",
+    "required_level": 1,
+    "text": "Reinforcements have (25-30)% increased Movement Speed | Reinforcements have (35-45)% increased Attack Speed | Reinforcements have (35-45)% increased Cast Speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractLockdownInstant1": {
+    "generation_type": "Prefix",
+    "name": "Instantaneous",
+    "required_level": 68,
+    "text": "Lockdown occurs immediately when Alert Level is full",
+    "weight": 600,
+    "influence": "Normal"
+  },
   "HeistContractBloodlinesModOnMagics_": {
     "generation_type": "Suffix",
     "name": "of Bloodlines",
     "required_level": 1,
-    "text": "(20-30)% more Magic Monsters",
+    "text": "(20-30)% increased Magic Monsters",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractBurningGround1": {
+  "HeistContractPoisoning": {
     "generation_type": "Suffix",
-    "name": "of Flames",
-    "required_level": 46,
-    "text": "Area has patches of Burning Ground",
-    "weight": 250,
+    "name": "of Venom",
+    "required_level": 1,
+    "text": "Monsters Poison on Hit",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractBurningGround2": {
+  "HeistContractPlayerElementalEquilibrium": {
     "generation_type": "Suffix",
-    "name": "of Flames",
+    "name": "of Balance",
     "required_level": 68,
-    "text": "Area has patches of Burning Ground",
-    "weight": 250,
+    "text": "Players cannot inflict Exposure",
+    "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractBurningGround3___": {
+  "HeistContractMonstersFrenzyChargeOnHit1": {
     "generation_type": "Suffix",
-    "name": "of Flames",
-    "required_level": 73,
-    "text": "Area has patches of Burning Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractBurningGround4": {
-    "generation_type": "Suffix",
-    "name": "of Flames",
-    "required_level": 78,
-    "text": "Area has patches of Burning Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractChilledGround1": {
-    "generation_type": "Suffix",
-    "name": "of Ice",
-    "required_level": 46,
-    "text": "Area has patches of Chilled Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractChilledGround2_": {
-    "generation_type": "Suffix",
-    "name": "of Ice",
-    "required_level": 68,
-    "text": "Area has patches of Chilled Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractChilledGround3": {
-    "generation_type": "Suffix",
-    "name": "of Ice",
-    "required_level": 73,
-    "text": "Area has patches of Chilled Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractChilledGround4": {
-    "generation_type": "Suffix",
-    "name": "of Ice",
-    "required_level": 78,
-    "text": "Area has patches of Chilled Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractConsecratedGround1_": {
-    "generation_type": "Suffix",
-    "name": "of Consecration",
-    "required_level": 46,
-    "text": "Area has patches of Consecrated Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractConsecratedGround2": {
-    "generation_type": "Suffix",
-    "name": "of Consecration",
-    "required_level": 68,
-    "text": "Area has patches of Consecrated Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractConsecratedGround3___": {
-    "generation_type": "Suffix",
-    "name": "of Consecration",
-    "required_level": 73,
-    "text": "Area has patches of Consecrated Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractConsecratedGround4": {
-    "generation_type": "Suffix",
-    "name": "of Consecration",
-    "required_level": 78,
-    "text": "Area has patches of Consecrated Ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractDesecratedGround1_": {
-    "generation_type": "Suffix",
-    "name": "of Desecration",
-    "required_level": 46,
-    "text": "Area has patches of desecrated ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractDesecratedGround2": {
-    "generation_type": "Suffix",
-    "name": "of Desecration",
-    "required_level": 68,
-    "text": "Area has patches of desecrated ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractDesecratedGround3": {
-    "generation_type": "Suffix",
-    "name": "of Desecration",
-    "required_level": 73,
-    "text": "Area has patches of desecrated ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractDesecratedGround4": {
-    "generation_type": "Suffix",
-    "name": "of Desecration",
-    "required_level": 78,
-    "text": "Area has patches of desecrated ground",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "HeistContractGainAlertLevelPassive1": {
-    "generation_type": "Suffix",
-    "name": "of Paranoia",
-    "required_level": 68,
-    "text": "Alert Level increases by 0.2% per second",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "HeistContractMonsterAccuracyPlayersUnlockyDodge1": {
-    "generation_type": "Suffix",
-    "name": "of Miring",
-    "required_level": 46,
-    "text": "Players have -5% to amount of Suppressed Spell Damage Prevented | Monsters have 20% increased Accuracy Rating",
+    "name": "of Frenzy",
+    "required_level": 1,
+    "text": "Monsters have (30-60)% chance to gain a Frenzy Charge on Hit",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractMonsterAccuracyPlayersUnlockyDodge2": {
+  "HeistContractMonstersFrenzyChargeOnHit2_": {
     "generation_type": "Suffix",
-    "name": "of Miring",
+    "name": "of Frenzy",
     "required_level": 68,
-    "text": "Players have -10% to amount of Suppressed Spell Damage Prevented | Monsters have 30% increased Accuracy Rating",
+    "text": "Monsters gain a Frenzy Charge on Hit",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractMonsterAccuracyPlayersUnlockyDodge3": {
+  "HeistContractMonstersEnduranceChargeOnHit1__": {
     "generation_type": "Suffix",
-    "name": "of Miring",
-    "required_level": 73,
-    "text": "Players have -15% to amount of Suppressed Spell Damage Prevented | Monsters have 40% increased Accuracy Rating",
+    "name": "of Endurance",
+    "required_level": 1,
+    "text": "Monsters have (30-60)% chance to gain an Endurance Charge on Hit",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractMonsterAccuracyPlayersUnlockyDodge4": {
+  "HeistContractMonstersEnduranceChargeOnHit2": {
     "generation_type": "Suffix",
-    "name": "of Miring",
-    "required_level": 78,
-    "text": "Players have -20% to amount of Suppressed Spell Damage Prevented | Monsters have 50% increased Accuracy Rating",
+    "name": "of Endurance",
+    "required_level": 68,
+    "text": "Monsters gain an Endurance Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersPowerChargeOnHit1": {
+    "generation_type": "Suffix",
+    "name": "of Power",
+    "required_level": 1,
+    "text": "Monsters have (30-60)% chance to gain a Power Charge on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersPowerChargeOnHit2___": {
+    "generation_type": "Suffix",
+    "name": "of Power",
+    "required_level": 68,
+    "text": "Monsters gain a Power Charge on Hit",
     "weight": 800,
     "influence": "Normal"
   },
@@ -1311,6 +1207,278 @@
     "weight": 800,
     "influence": "Normal"
   },
+  "HeistContractPlayerReducedRegen1": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 1,
+    "text": "Players have 20% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerReducedRegen2": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 73,
+    "text": "Players have 40% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerReducedRegen3": {
+    "generation_type": "Suffix",
+    "name": "of Smothering",
+    "required_level": 78,
+    "text": "Players have 60% less Recovery Rate of Life and Energy Shield",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractBurningGround1": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 46,
+    "text": "Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractBurningGround2": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 68,
+    "text": "Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractBurningGround3___": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 73,
+    "text": "Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractBurningGround4": {
+    "generation_type": "Suffix",
+    "name": "of Flames",
+    "required_level": 78,
+    "text": "Area has patches of Burning Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractChilledGround1": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 46,
+    "text": "Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractChilledGround2_": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 68,
+    "text": "Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractChilledGround3": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 73,
+    "text": "Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractChilledGround4": {
+    "generation_type": "Suffix",
+    "name": "of Ice",
+    "required_level": 78,
+    "text": "Area has patches of Chilled Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractShockedGround1": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 46,
+    "text": "Area has patches of Shocked Ground which increase Damage taken by 20%",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractShockedGround2_": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 68,
+    "text": "Area has patches of Shocked Ground which increase Damage taken by 20%",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractShockedGround3": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 73,
+    "text": "Area has patches of Shocked Ground which increase Damage taken by 35%",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractShockedGround4_": {
+    "generation_type": "Suffix",
+    "name": "of Lightning",
+    "required_level": 78,
+    "text": "Area has patches of Shocked Ground which increase Damage taken by 50%",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractDesecratedGround1_": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 46,
+    "text": "Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractDesecratedGround2": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 68,
+    "text": "Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractDesecratedGround3": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 73,
+    "text": "Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractDesecratedGround4": {
+    "generation_type": "Suffix",
+    "name": "of Desecration",
+    "required_level": 78,
+    "text": "Area has patches of desecrated ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractConsecratedGround1_": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 46,
+    "text": "Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractConsecratedGround2": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 68,
+    "text": "Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractConsecratedGround3___": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 73,
+    "text": "Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractConsecratedGround4": {
+    "generation_type": "Suffix",
+    "name": "of Consecration",
+    "required_level": 78,
+    "text": "Area has patches of Consecrated Ground",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseElementalWeakness1_": {
+    "generation_type": "Suffix",
+    "name": "of Elemental Weakness",
+    "required_level": 73,
+    "text": "Players are Cursed with Elemental Weakness",
+    "weight": 850,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseElementalWeakness2_": {
+    "generation_type": "Suffix",
+    "name": "of Elemental Weakness",
+    "required_level": 78,
+    "text": "Players are Cursed with Elemental Weakness",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseVulnerability1": {
+    "generation_type": "Suffix",
+    "name": "of Vulnerability",
+    "required_level": 73,
+    "text": "Players are Cursed with Vulnerability",
+    "weight": 850,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseVulnerability2": {
+    "generation_type": "Suffix",
+    "name": "of Vulnerability",
+    "required_level": 78,
+    "text": "Players are Cursed with Vulnerability",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseEnfeeblement1": {
+    "generation_type": "Suffix",
+    "name": "of Enfeeblement",
+    "required_level": 73,
+    "text": "Players are Cursed with Enfeeble",
+    "weight": 850,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseEnfeeblement2": {
+    "generation_type": "Suffix",
+    "name": "of Enfeeblement",
+    "required_level": 78,
+    "text": "Players are Cursed with Enfeeble",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseTemporalChains1": {
+    "generation_type": "Suffix",
+    "name": "of Temporal Chains",
+    "required_level": 73,
+    "text": "Players are Cursed with Temporal Chains",
+    "weight": 850,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerCurseTemporalChains2": {
+    "generation_type": "Suffix",
+    "name": "of Temporal Chains",
+    "required_level": 78,
+    "text": "Players are Cursed with Temporal Chains",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerNoLifeESRegen_": {
+    "generation_type": "Suffix",
+    "name": "of Stasis",
+    "required_level": 73,
+    "text": "Players cannot Regenerate Life, Mana or Energy Shield",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerMaxResists1__": {
+    "generation_type": "Suffix",
+    "name": "of Exposure",
+    "required_level": 73,
+    "text": "Players have -(8-5)% to all maximum Resistances",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerMaxResists2_": {
+    "generation_type": "Suffix",
+    "name": "of Exposure",
+    "required_level": 78,
+    "text": "Players have -(12-9)% to all maximum Resistances",
+    "weight": 1000,
+    "influence": "Normal"
+  },
   "HeistContractMonsterLifeLeechImmunity": {
     "generation_type": "Suffix",
     "name": "of Congealment",
@@ -1383,638 +1551,6 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractMonstersBlindOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Blinding",
-    "required_level": 46,
-    "text": "Monsters Blind on Hit",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersEnduranceChargeOnHit1__": {
-    "generation_type": "Suffix",
-    "name": "of Endurance",
-    "required_level": 1,
-    "text": "Monsters have (30-60)% chance to gain an Endurance Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersEnduranceChargeOnHit2": {
-    "generation_type": "Suffix",
-    "name": "of Endurance",
-    "required_level": 68,
-    "text": "Monsters gain an Endurance Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersFrenzyChargeOnHit1": {
-    "generation_type": "Suffix",
-    "name": "of Frenzy",
-    "required_level": 1,
-    "text": "Monsters have (30-60)% chance to gain a Frenzy Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersFrenzyChargeOnHit2_": {
-    "generation_type": "Suffix",
-    "name": "of Frenzy",
-    "required_level": 68,
-    "text": "Monsters gain a Frenzy Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersHinderOnHit_": {
-    "generation_type": "Suffix",
-    "name": "of Impedance",
-    "required_level": 46,
-    "text": "Monsters Hinder on Hit with Spells",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersMaimOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Carnage",
-    "required_level": 46,
-    "text": "Monsters Maim on Hit with Attacks",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersPowerChargeOnHit1": {
-    "generation_type": "Suffix",
-    "name": "of Power",
-    "required_level": 1,
-    "text": "Monsters have (30-60)% chance to gain a Power Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersPowerChargeOnHit2___": {
-    "generation_type": "Suffix",
-    "name": "of Power",
-    "required_level": 68,
-    "text": "Monsters gain a Power Charge on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractMonstersStealChargesOnHit": {
-    "generation_type": "Suffix",
-    "name": "of Enervation",
-    "required_level": 46,
-    "text": "Monsters steal Power, Frenzy and Endurance charges on Hit",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractNoGangCut1": {
-    "generation_type": "Suffix",
-    "name": "of Selfishness",
-    "required_level": 68,
-    "text": "The Ring takes no Cut",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "HeistContractNoTravelCost1__": {
-    "generation_type": "Suffix",
-    "name": "of Proximity",
-    "required_level": 68,
-    "text": "No Travel Cost",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerArmourAlertLevel1___": {
-    "generation_type": "Suffix",
-    "name": "of Distress",
-    "required_level": 46,
-    "text": "Players have 5% less Armour per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerArmourAlertLevel2_": {
-    "generation_type": "Suffix",
-    "name": "of Distress",
-    "required_level": 68,
-    "text": "Players have 6% less Armour per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerArmourAlertLevel3": {
-    "generation_type": "Suffix",
-    "name": "of Distress",
-    "required_level": 73,
-    "text": "Players have 7% less Armour per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerArmourAlertLevel4": {
-    "generation_type": "Suffix",
-    "name": "of Distress",
-    "required_level": 78,
-    "text": "Players have 8% less Armour per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerColdResistAlertLevel1_": {
-    "generation_type": "Suffix",
-    "name": "of Spine-Chilling",
-    "required_level": 68,
-    "text": "-3% Player Cold Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerColdResistAlertLevel2_": {
-    "generation_type": "Suffix",
-    "name": "of Spine-Chilling",
-    "required_level": 73,
-    "text": "-4% Player Cold Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerColdResistAlertLevel3_": {
-    "generation_type": "Suffix",
-    "name": "of Spine-Chilling",
-    "required_level": 78,
-    "text": "-5% Player Cold Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseElementalWeakness1_": {
-    "generation_type": "Suffix",
-    "name": "of Elemental Weakness",
-    "required_level": 73,
-    "text": "Players are Cursed with Elemental Weakness",
-    "weight": 850,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseElementalWeakness2_": {
-    "generation_type": "Suffix",
-    "name": "of Elemental Weakness",
-    "required_level": 78,
-    "text": "Players are Cursed with Elemental Weakness",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseEnfeeblement1": {
-    "generation_type": "Suffix",
-    "name": "of Enfeeblement",
-    "required_level": 73,
-    "text": "Players are Cursed with Enfeeble",
-    "weight": 850,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseEnfeeblement2": {
-    "generation_type": "Suffix",
-    "name": "of Enfeeblement",
-    "required_level": 78,
-    "text": "Players are Cursed with Enfeeble",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseTemporalChains1": {
-    "generation_type": "Suffix",
-    "name": "of Temporal Chains",
-    "required_level": 73,
-    "text": "Players are Cursed with Temporal Chains",
-    "weight": 850,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseTemporalChains2": {
-    "generation_type": "Suffix",
-    "name": "of Temporal Chains",
-    "required_level": 78,
-    "text": "Players are Cursed with Temporal Chains",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseVulnerability1": {
-    "generation_type": "Suffix",
-    "name": "of Vulnerability",
-    "required_level": 73,
-    "text": "Players are Cursed with Vulnerability",
-    "weight": 850,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerCurseVulnerability2": {
-    "generation_type": "Suffix",
-    "name": "of Vulnerability",
-    "required_level": 78,
-    "text": "Players are Cursed with Vulnerability",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerElementalEquilibrium": {
-    "generation_type": "Suffix",
-    "name": "of Balance",
-    "required_level": 68,
-    "text": "Players cannot inflict Exposure",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerEnergyShieldReducedRegenAlertLevel1_": {
-    "generation_type": "Suffix",
-    "name": "of Wavering Will",
-    "required_level": 46,
-    "text": "Players have 6% less Energy Shield Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerEnergyShieldReducedRegenAlertLevel2": {
-    "generation_type": "Suffix",
-    "name": "of Wavering Will",
-    "required_level": 73,
-    "text": "Players have 12% less Energy Shield Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerEnergyShieldReducedRegenAlertLevel3__": {
-    "generation_type": "Suffix",
-    "name": "of Wavering Will",
-    "required_level": 78,
-    "text": "Players have 16% less Energy Shield Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerEvasionAlertLevel1": {
-    "generation_type": "Suffix",
-    "name": "of Apprehension",
-    "required_level": 46,
-    "text": "Players have 5% less Evasion per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerEvasionAlertLevel2__": {
-    "generation_type": "Suffix",
-    "name": "of Apprehension",
-    "required_level": 68,
-    "text": "Players have 6% less Evasion per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerEvasionAlertLevel3": {
-    "generation_type": "Suffix",
-    "name": "of Apprehension",
-    "required_level": 73,
-    "text": "Players have 7% less Evasion per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerEvasionAlertLevel4": {
-    "generation_type": "Suffix",
-    "name": "of Apprehension",
-    "required_level": 78,
-    "text": "Players have 8% less Evasion per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerFireResistAlertLevel1": {
-    "generation_type": "Suffix",
-    "name": "of Over-Heating",
-    "required_level": 68,
-    "text": "-3% Player Fire Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerFireResistAlertLevel2": {
-    "generation_type": "Suffix",
-    "name": "of Over-Heating",
-    "required_level": 73,
-    "text": "-4% Player Fire Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerFireResistAlertLevel3_": {
-    "generation_type": "Suffix",
-    "name": "of Over-Heating",
-    "required_level": 78,
-    "text": "-5% Player Fire Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerLifeReducedRegenAlertLevel1": {
-    "generation_type": "Suffix",
-    "name": "of Anxiety",
-    "required_level": 46,
-    "text": "Players have 6% less Life Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerLifeReducedRegenAlertLevel2": {
-    "generation_type": "Suffix",
-    "name": "of Anxiety",
-    "required_level": 73,
-    "text": "Players have 12% less Life Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerLifeReducedRegenAlertLevel3___": {
-    "generation_type": "Suffix",
-    "name": "of Anxiety",
-    "required_level": 78,
-    "text": "Players have 16% less Life Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerLightningResistAlertLevel1": {
-    "generation_type": "Suffix",
-    "name": "of Hair-Raising",
-    "required_level": 68,
-    "text": "-3% Player Lightning Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerLightningResistAlertLevel2": {
-    "generation_type": "Suffix",
-    "name": "of Hair-Raising",
-    "required_level": 73,
-    "text": "-4% Player Lightning Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerLightningResistAlertLevel3": {
-    "generation_type": "Suffix",
-    "name": "of Hair-Raising",
-    "required_level": 78,
-    "text": "-5% Player Lightning Resistance per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerManaReducedRegenAlertLevel1_": {
-    "generation_type": "Suffix",
-    "name": "of Clouded Judgement",
-    "required_level": 46,
-    "text": "Players have 6% less Mana Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerManaReducedRegenAlertLevel2": {
-    "generation_type": "Suffix",
-    "name": "of Clouded Judgement",
-    "required_level": 73,
-    "text": "Players have 12% less Mana Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerManaReducedRegenAlertLevel3": {
-    "generation_type": "Suffix",
-    "name": "of Clouded Judgement",
-    "required_level": 78,
-    "text": "Players have 16% less Mana Recovery Rate per 25% Alert Level",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerMaxResists1__": {
-    "generation_type": "Suffix",
-    "name": "of Exposure",
-    "required_level": 73,
-    "text": "Players have -(8-5)% to all maximum Resistances",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerMaxResists2_": {
-    "generation_type": "Suffix",
-    "name": "of Exposure",
-    "required_level": 78,
-    "text": "Players have -(12-9)% to all maximum Resistances",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerMaxResistsAlertLevel1_": {
-    "generation_type": "Suffix",
-    "name": "of Unravelling",
-    "required_level": 73,
-    "text": "-3% maximum Player Resistances per 25% Alert Level",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerMaxResistsAlertLevel2_": {
-    "generation_type": "Suffix",
-    "name": "of Unravelling",
-    "required_level": 78,
-    "text": "-4% maximum Player Resistances per 25% Alert Level",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerNoLifeESRegen_": {
-    "generation_type": "Suffix",
-    "name": "of Stasis",
-    "required_level": 73,
-    "text": "Players cannot Regenerate Life, Mana or Energy Shield",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerReducedRegen1": {
-    "generation_type": "Suffix",
-    "name": "of Smothering",
-    "required_level": 1,
-    "text": "Players have 20% less Recovery Rate of Life and Energy Shield",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerReducedRegen2": {
-    "generation_type": "Suffix",
-    "name": "of Smothering",
-    "required_level": 73,
-    "text": "Players have 40% less Recovery Rate of Life and Energy Shield",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayerReducedRegen3": {
-    "generation_type": "Suffix",
-    "name": "of Smothering",
-    "required_level": 78,
-    "text": "Players have 60% less Recovery Rate of Life and Energy Shield",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAccuracyRating1_": {
-    "generation_type": "Suffix",
-    "name": "of Imprecision",
-    "required_level": 46,
-    "text": "Players have 10% less Accuracy Rating",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAccuracyRating2": {
-    "generation_type": "Suffix",
-    "name": "of Imprecision",
-    "required_level": 68,
-    "text": "Players have 15% less Accuracy Rating",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAccuracyRating3": {
-    "generation_type": "Suffix",
-    "name": "of Imprecision",
-    "required_level": 73,
-    "text": "Players have 20% less Accuracy Rating",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAccuracyRating4_": {
-    "generation_type": "Suffix",
-    "name": "of Imprecision",
-    "required_level": 78,
-    "text": "Players have 25% less Accuracy Rating",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAoERadius1": {
-    "generation_type": "Suffix",
-    "name": "of Impotence",
-    "required_level": 1,
-    "text": "Players have 10% less Area of Effect",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAoERadius2___": {
-    "generation_type": "Suffix",
-    "name": "of Impotence",
-    "required_level": 68,
-    "text": "Players have 15% less Area of Effect",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAoERadius3": {
-    "generation_type": "Suffix",
-    "name": "of Impotence",
-    "required_level": 73,
-    "text": "Players have 20% less Area of Effect",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAoERadius4": {
-    "generation_type": "Suffix",
-    "name": "of Impotence",
-    "required_level": 78,
-    "text": "Players have 25% less Area of Effect",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAuraEffect1_": {
-    "generation_type": "Suffix",
-    "name": "of Doubt",
-    "required_level": 46,
-    "text": "Players have 15% reduced effect of Non-Curse Auras from Skills",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAuraEffect2": {
-    "generation_type": "Suffix",
-    "name": "of Doubt",
-    "required_level": 68,
-    "text": "Players have 25% reduced effect of Non-Curse Auras from Skills",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAuraEffect3": {
-    "generation_type": "Suffix",
-    "name": "of Doubt",
-    "required_level": 73,
-    "text": "Players have 40% reduced effect of Non-Curse Auras from Skills",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersAuraEffect4": {
-    "generation_type": "Suffix",
-    "name": "of Doubt",
-    "required_level": 78,
-    "text": "Players have 60% reduced effect of Non-Curse Auras from Skills",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBlockAndArmour1": {
-    "generation_type": "Suffix",
-    "name": "of Rust",
-    "required_level": 46,
-    "text": "Players have 10% reduced Chance to Block | Players have 15% less Armour",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBlockAndArmour2": {
-    "generation_type": "Suffix",
-    "name": "of Rust",
-    "required_level": 68,
-    "text": "Players have 20% reduced Chance to Block | Players have 20% less Armour",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBlockAndArmour3": {
-    "generation_type": "Suffix",
-    "name": "of Rust",
-    "required_level": 73,
-    "text": "Players have 30% reduced Chance to Block | Players have 25% less Armour",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBlockAndArmour4": {
-    "generation_type": "Suffix",
-    "name": "of Rust",
-    "required_level": 78,
-    "text": "Players have 40% reduced Chance to Block | Players have 30% less Armour",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBuffsExpireFaster1__": {
-    "generation_type": "Suffix",
-    "name": "of Transience",
-    "required_level": 46,
-    "text": "Buffs on Players expire 20% faster",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBuffsExpireFaster2_": {
-    "generation_type": "Suffix",
-    "name": "of Transience",
-    "required_level": 68,
-    "text": "Buffs on Players expire 30% faster",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBuffsExpireFaster3": {
-    "generation_type": "Suffix",
-    "name": "of Transience",
-    "required_level": 73,
-    "text": "Buffs on Players expire 50% faster",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersBuffsExpireFaster4": {
-    "generation_type": "Suffix",
-    "name": "of Transience",
-    "required_level": 78,
-    "text": "Buffs on Players expire 70% faster",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersCooldownRecovery1__": {
-    "generation_type": "Suffix",
-    "name": "of Fatigue",
-    "required_level": 46,
-    "text": "Players have 15% less Cooldown Recovery Rate",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersCooldownRecovery2": {
-    "generation_type": "Suffix",
-    "name": "of Fatigue",
-    "required_level": 68,
-    "text": "Players have 20% less Cooldown Recovery Rate",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersCooldownRecovery3_": {
-    "generation_type": "Suffix",
-    "name": "of Fatigue",
-    "required_level": 73,
-    "text": "Players have 30% less Cooldown Recovery Rate",
-    "weight": 650,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersCooldownRecovery4": {
-    "generation_type": "Suffix",
-    "name": "of Fatigue",
-    "required_level": 78,
-    "text": "Players have 40% less Cooldown Recovery Rate",
-    "weight": 650,
-    "influence": "Normal"
-  },
   "HeistContractPlayersGainReducedFlaskCharges1": {
     "generation_type": "Suffix",
     "name": "of Drought",
@@ -2055,84 +1591,260 @@
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractPlayersGainReducedFlaskChargesAlertLevel1_": {
+  "HeistContractPlayersBlockAndArmour1": {
     "generation_type": "Suffix",
-    "name": "of Dehydration",
-    "required_level": 1,
-    "text": "Players gain 4% reduced Flask Charges per 25% Alert Level",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractPlayersGainReducedFlaskChargesAlertLevel2": {
-    "generation_type": "Suffix",
-    "name": "of Dehydration",
+    "name": "of Rust",
     "required_level": 46,
-    "text": "Players gain 6% reduced Flask Charges per 25% Alert Level",
+    "text": "Players have 10% reduced Chance to Block | Players have 15% less Armour",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractPlayersGainReducedFlaskChargesAlertLevel3": {
+  "HeistContractPlayersBlockAndArmour2": {
     "generation_type": "Suffix",
-    "name": "of Dehydration",
+    "name": "of Rust",
     "required_level": 68,
-    "text": "Players gain 8% reduced Flask Charges per 25% Alert Level",
+    "text": "Players have 20% reduced Chance to Block | Players have 20% less Armour",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractPlayersGainReducedFlaskChargesAlertLevel4": {
+  "HeistContractPlayersBlockAndArmour3": {
     "generation_type": "Suffix",
-    "name": "of Dehydration",
+    "name": "of Rust",
     "required_level": 73,
-    "text": "Players gain 10% reduced Flask Charges per 25% Alert Level",
+    "text": "Players have 30% reduced Chance to Block | Players have 25% less Armour",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractPlayersGainReducedFlaskChargesAlertLevel5": {
+  "HeistContractPlayersBlockAndArmour4": {
     "generation_type": "Suffix",
-    "name": "of Dehydration",
+    "name": "of Rust",
     "required_level": 78,
-    "text": "Players gain 12% reduced Flask Charges per 25% Alert Level",
+    "text": "Players have 40% reduced Chance to Block | Players have 30% less Armour",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractPoisoning": {
+  "HeistContractMonsterAccuracyPlayersUnlockyDodge1": {
     "generation_type": "Suffix",
-    "name": "of Venom",
-    "required_level": 1,
-    "text": "Monsters Poison on Hit",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractShockedGround1": {
-    "generation_type": "Suffix",
-    "name": "of Lightning",
+    "name": "of Miring",
     "required_level": 46,
-    "text": "Area has patches of Shocked Ground which increase Damage taken by 20%",
-    "weight": 250,
+    "text": "Players have -5% to amount of Suppressed Spell Damage Prevented | Monsters have 20% increased Accuracy Rating",
+    "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractShockedGround2_": {
+  "HeistContractMonsterAccuracyPlayersUnlockyDodge2": {
     "generation_type": "Suffix",
-    "name": "of Lightning",
+    "name": "of Miring",
     "required_level": 68,
-    "text": "Area has patches of Shocked Ground which increase Damage taken by 20%",
-    "weight": 250,
+    "text": "Players have -10% to amount of Suppressed Spell Damage Prevented | Monsters have 30% increased Accuracy Rating",
+    "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractShockedGround3": {
+  "HeistContractMonsterAccuracyPlayersUnlockyDodge3": {
     "generation_type": "Suffix",
-    "name": "of Lightning",
+    "name": "of Miring",
     "required_level": 73,
-    "text": "Area has patches of Shocked Ground which increase Damage taken by 35%",
-    "weight": 250,
+    "text": "Players have -15% to amount of Suppressed Spell Damage Prevented | Monsters have 40% increased Accuracy Rating",
+    "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractShockedGround4_": {
+  "HeistContractMonsterAccuracyPlayersUnlockyDodge4": {
     "generation_type": "Suffix",
-    "name": "of Lightning",
+    "name": "of Miring",
     "required_level": 78,
-    "text": "Area has patches of Shocked Ground which increase Damage taken by 50%",
-    "weight": 250,
+    "text": "Players have -20% to amount of Suppressed Spell Damage Prevented | Monsters have 50% increased Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAoERadius1": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 1,
+    "text": "Players have 10% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAoERadius2___": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 68,
+    "text": "Players have 15% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAoERadius3": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 73,
+    "text": "Players have 20% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAoERadius4": {
+    "generation_type": "Suffix",
+    "name": "of Impotence",
+    "required_level": 78,
+    "text": "Players have 25% less Area of Effect",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersBlindOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Blinding",
+    "required_level": 46,
+    "text": "Monsters Blind on Hit",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersMaimOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Carnage",
+    "required_level": 46,
+    "text": "Monsters Maim on Hit with Attacks",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersHinderOnHit_": {
+    "generation_type": "Suffix",
+    "name": "of Impedance",
+    "required_level": 46,
+    "text": "Monsters Hinder on Hit with Spells",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractMonstersStealChargesOnHit": {
+    "generation_type": "Suffix",
+    "name": "of Enervation",
+    "required_level": 46,
+    "text": "Monsters steal Power, Frenzy and Endurance charges on Hit",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersCooldownRecovery1__": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 46,
+    "text": "Players have 15% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersCooldownRecovery2": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 68,
+    "text": "Players have 20% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersCooldownRecovery3_": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 73,
+    "text": "Players have 30% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersCooldownRecovery4": {
+    "generation_type": "Suffix",
+    "name": "of Fatigue",
+    "required_level": 78,
+    "text": "Players have 40% less Cooldown Recovery Rate",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersBuffsExpireFaster1__": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 46,
+    "text": "Buffs on Players expire 20% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersBuffsExpireFaster2_": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 68,
+    "text": "Buffs on Players expire 30% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersBuffsExpireFaster3": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 73,
+    "text": "Buffs on Players expire 50% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersBuffsExpireFaster4": {
+    "generation_type": "Suffix",
+    "name": "of Transience",
+    "required_level": 78,
+    "text": "Buffs on Players expire 70% faster",
+    "weight": 650,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAuraEffect1_": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 46,
+    "text": "Players have 15% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAuraEffect2": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 68,
+    "text": "Players have 25% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAuraEffect3": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 73,
+    "text": "Players have 40% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAuraEffect4": {
+    "generation_type": "Suffix",
+    "name": "of Doubt",
+    "required_level": 78,
+    "text": "Players have 60% reduced effect of Non-Curse Auras from Skills",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAccuracyRating1_": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 46,
+    "text": "Players have 10% less Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAccuracyRating2": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 68,
+    "text": "Players have 15% less Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAccuracyRating3": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 73,
+    "text": "Players have 20% less Accuracy Rating",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersAccuracyRating4_": {
+    "generation_type": "Suffix",
+    "name": "of Imprecision",
+    "required_level": 78,
+    "text": "Players have 25% less Accuracy Rating",
+    "weight": 800,
     "influence": "Normal"
   },
   "HeistContractTotalCost1_": {
@@ -2173,6 +1885,294 @@
     "required_level": 78,
     "text": "(27-30)% increased Total Heist Fee",
     "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractNoGangCut1": {
+    "generation_type": "Suffix",
+    "name": "of Selfishness",
+    "required_level": 68,
+    "text": "The Ring takes no Cut",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistContractNoTravelCost1__": {
+    "generation_type": "Suffix",
+    "name": "of Proximity",
+    "required_level": 68,
+    "text": "No Travel Cost",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistContractGainAlertLevelPassive1": {
+    "generation_type": "Suffix",
+    "name": "of Paranoia",
+    "required_level": 68,
+    "text": "Alert Level increases by 0.2% per second",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerMaxResistsAlertLevel1_": {
+    "generation_type": "Suffix",
+    "name": "of Unravelling",
+    "required_level": 73,
+    "text": "-3% maximum Player Resistances per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerMaxResistsAlertLevel2_": {
+    "generation_type": "Suffix",
+    "name": "of Unravelling",
+    "required_level": 78,
+    "text": "-4% maximum Player Resistances per 25% Alert Level",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerFireResistAlertLevel1": {
+    "generation_type": "Suffix",
+    "name": "of Over-Heating",
+    "required_level": 68,
+    "text": "-3% Player Fire Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerFireResistAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Over-Heating",
+    "required_level": 73,
+    "text": "-4% Player Fire Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerFireResistAlertLevel3_": {
+    "generation_type": "Suffix",
+    "name": "of Over-Heating",
+    "required_level": 78,
+    "text": "-5% Player Fire Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerColdResistAlertLevel1_": {
+    "generation_type": "Suffix",
+    "name": "of Spine-Chilling",
+    "required_level": 68,
+    "text": "-3% Player Cold Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerColdResistAlertLevel2_": {
+    "generation_type": "Suffix",
+    "name": "of Spine-Chilling",
+    "required_level": 73,
+    "text": "-4% Player Cold Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerColdResistAlertLevel3_": {
+    "generation_type": "Suffix",
+    "name": "of Spine-Chilling",
+    "required_level": 78,
+    "text": "-5% Player Cold Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerLightningResistAlertLevel1": {
+    "generation_type": "Suffix",
+    "name": "of Hair-Raising",
+    "required_level": 68,
+    "text": "-3% Player Lightning Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerLightningResistAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Hair-Raising",
+    "required_level": 73,
+    "text": "-4% Player Lightning Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerLightningResistAlertLevel3": {
+    "generation_type": "Suffix",
+    "name": "of Hair-Raising",
+    "required_level": 78,
+    "text": "-5% Player Lightning Resistance per 25% Alert Level",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerArmourAlertLevel1___": {
+    "generation_type": "Suffix",
+    "name": "of Distress",
+    "required_level": 46,
+    "text": "Players have 5% less Armour per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerArmourAlertLevel2_": {
+    "generation_type": "Suffix",
+    "name": "of Distress",
+    "required_level": 68,
+    "text": "Players have 6% less Armour per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerArmourAlertLevel3": {
+    "generation_type": "Suffix",
+    "name": "of Distress",
+    "required_level": 73,
+    "text": "Players have 7% less Armour per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerArmourAlertLevel4": {
+    "generation_type": "Suffix",
+    "name": "of Distress",
+    "required_level": 78,
+    "text": "Players have 8% less Armour per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerEvasionAlertLevel1": {
+    "generation_type": "Suffix",
+    "name": "of Apprehension",
+    "required_level": 46,
+    "text": "Players have 5% less Evasion per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerEvasionAlertLevel2__": {
+    "generation_type": "Suffix",
+    "name": "of Apprehension",
+    "required_level": 68,
+    "text": "Players have 6% less Evasion per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerEvasionAlertLevel3": {
+    "generation_type": "Suffix",
+    "name": "of Apprehension",
+    "required_level": 73,
+    "text": "Players have 7% less Evasion per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerEvasionAlertLevel4": {
+    "generation_type": "Suffix",
+    "name": "of Apprehension",
+    "required_level": 78,
+    "text": "Players have 8% less Evasion per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerEnergyShieldReducedRegenAlertLevel1_": {
+    "generation_type": "Suffix",
+    "name": "of Wavering Will",
+    "required_level": 46,
+    "text": "Players have 6% less Energy Shield Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerEnergyShieldReducedRegenAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Wavering Will",
+    "required_level": 73,
+    "text": "Players have 12% less Energy Shield Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerEnergyShieldReducedRegenAlertLevel3__": {
+    "generation_type": "Suffix",
+    "name": "of Wavering Will",
+    "required_level": 78,
+    "text": "Players have 16% less Energy Shield Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerLifeReducedRegenAlertLevel1": {
+    "generation_type": "Suffix",
+    "name": "of Anxiety",
+    "required_level": 46,
+    "text": "Players have 6% less Life Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerLifeReducedRegenAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Anxiety",
+    "required_level": 73,
+    "text": "Players have 12% less Life Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerLifeReducedRegenAlertLevel3___": {
+    "generation_type": "Suffix",
+    "name": "of Anxiety",
+    "required_level": 78,
+    "text": "Players have 16% less Life Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerManaReducedRegenAlertLevel1_": {
+    "generation_type": "Suffix",
+    "name": "of Clouded Judgement",
+    "required_level": 46,
+    "text": "Players have 6% less Mana Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerManaReducedRegenAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Clouded Judgement",
+    "required_level": 73,
+    "text": "Players have 12% less Mana Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayerManaReducedRegenAlertLevel3": {
+    "generation_type": "Suffix",
+    "name": "of Clouded Judgement",
+    "required_level": 78,
+    "text": "Players have 16% less Mana Recovery Rate per 25% Alert Level",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersGainReducedFlaskChargesAlertLevel1_": {
+    "generation_type": "Suffix",
+    "name": "of Dehydration",
+    "required_level": 1,
+    "text": "Players gain 4% reduced Flask Charges per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersGainReducedFlaskChargesAlertLevel2": {
+    "generation_type": "Suffix",
+    "name": "of Dehydration",
+    "required_level": 46,
+    "text": "Players gain 6% reduced Flask Charges per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersGainReducedFlaskChargesAlertLevel3": {
+    "generation_type": "Suffix",
+    "name": "of Dehydration",
+    "required_level": 68,
+    "text": "Players gain 8% reduced Flask Charges per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersGainReducedFlaskChargesAlertLevel4": {
+    "generation_type": "Suffix",
+    "name": "of Dehydration",
+    "required_level": 73,
+    "text": "Players gain 10% reduced Flask Charges per 25% Alert Level",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractPlayersGainReducedFlaskChargesAlertLevel5": {
+    "generation_type": "Suffix",
+    "name": "of Dehydration",
+    "required_level": 78,
+    "text": "Players gain 12% reduced Flask Charges per 25% Alert Level",
+    "weight": 800,
     "influence": "Normal"
   }
 }

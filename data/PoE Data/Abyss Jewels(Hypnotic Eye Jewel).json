@@ -63,30 +63,6 @@
     "weight": 500,
     "influence": "Normal"
   },
-  "AbyssFlatManaShieldRegenerationJewel1": {
-    "generation_type": "Prefix",
-    "name": "Energising",
-    "required_level": 1,
-    "text": "Regenerate (1.1-2) Mana per second",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "AbyssFlatManaShieldRegenerationJewel2": {
-    "generation_type": "Prefix",
-    "name": "Inspirational",
-    "required_level": 40,
-    "text": "Regenerate (2.1-3) Mana per second",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "AbyssFlatManaShieldRegenerationJewel3": {
-    "generation_type": "Prefix",
-    "name": "Resonating",
-    "required_level": 75,
-    "text": "Regenerate (3.3-4) Mana per second",
-    "weight": 350,
-    "influence": "Normal"
-  },
   "AbyssDamageOverTimeWhileDualWieldingJewel1": {
     "generation_type": "Prefix",
     "name": "Degenerative",
@@ -103,243 +79,51 @@
     "weight": 200,
     "influence": "Normal"
   },
-  "AbyssFlatEnergyShieldJewel1": {
+  "AbyssSpellAddedFireDamageWhileDualWieldingJewel1": {
     "generation_type": "Prefix",
-    "name": "Shining",
+    "name": "Heated",
     "required_level": 1,
-    "text": "+(21-25) to maximum Energy Shield",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatEnergyShieldJewel2": {
-    "generation_type": "Prefix",
-    "name": "Seething",
-    "required_level": 40,
-    "text": "+(26-30) to maximum Energy Shield",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatEnergyShieldJewel3": {
-    "generation_type": "Prefix",
-    "name": "Incandescent",
-    "required_level": 75,
-    "text": "+(31-35) to maximum Energy Shield",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatEnergyShieldJewel4": {
-    "generation_type": "Prefix",
-    "name": "Resplendent",
-    "required_level": 83,
-    "text": "+(36-40) to maximum Energy Shield",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssFlatEvasionJewel1": {
-    "generation_type": "Prefix",
-    "name": "Agile",
-    "required_level": 1,
-    "text": "+(36-60) to Evasion Rating",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatEvasionJewel2": {
-    "generation_type": "Prefix",
-    "name": "Fleet",
-    "required_level": 40,
-    "text": "+(61-100) to Evasion Rating",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatEvasionJewel3": {
-    "generation_type": "Prefix",
-    "name": "Vaporous",
-    "required_level": 75,
-    "text": "+(101-180) to Evasion Rating",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatEvasionJewel4_": {
-    "generation_type": "Prefix",
-    "name": "Beclouded",
-    "required_level": 83,
-    "text": "+(181-250) to Evasion Rating",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssFlatEnergyShieldRegenerationJewel1": {
-    "generation_type": "Prefix",
-    "name": "Captivating",
-    "required_level": 1,
-    "text": "Regenerate (9-12) Energy Shield per second",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssFlatEnergyShieldRegenerationJewel2": {
-    "generation_type": "Prefix",
-    "name": "Beautiful",
-    "required_level": 30,
-    "text": "Regenerate (13-16) Energy Shield per second",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssFlatEnergyShieldRegenerationJewel3": {
-    "generation_type": "Prefix",
-    "name": "Breathtaking",
-    "required_level": 60,
-    "text": "Regenerate (17-20) Energy Shield per second",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssCooldownRecoverySpeed1_": {
-    "generation_type": "Prefix",
-    "name": "Facilitating",
-    "required_level": 75,
-    "text": "2% increased Cooldown Recovery Rate",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssCooldownRecoverySpeed2__": {
-    "generation_type": "Prefix",
-    "name": "Expediting",
-    "required_level": 86,
-    "text": "3% increased Cooldown Recovery Rate",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssImpaleEffect1_": {
-    "generation_type": "Prefix",
-    "name": "Skewering",
-    "required_level": 75,
-    "text": "(3-4)% increased Impale Effect",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssImpaleEffect2_": {
-    "generation_type": "Prefix",
-    "name": "Lancing",
-    "required_level": 86,
-    "text": "(5-6)% increased Impale Effect",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssFlatLifeRegenerationJewel1": {
-    "generation_type": "Prefix",
-    "name": "Youthful",
-    "required_level": 1,
-    "text": "Regenerate (9-12) Life per second",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssFlatLifeRegenerationJewel2": {
-    "generation_type": "Prefix",
-    "name": "Spirited",
-    "required_level": 40,
-    "text": "Regenerate (13-16) Life per second",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssFlatLifeRegenerationJewel3_": {
-    "generation_type": "Prefix",
-    "name": "Vivacious",
-    "required_level": 80,
-    "text": "Regenerate (17-20) Life per second",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssDamageRecoupedAsMana1": {
-    "generation_type": "Prefix",
-    "name": "Spurring",
-    "required_level": 75,
-    "text": "2% of Damage taken Recouped as Mana",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssDamageRecoupedAsMana2": {
-    "generation_type": "Prefix",
-    "name": "Motivating",
-    "required_level": 86,
-    "text": "3% of Damage taken Recouped as Mana",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssFlatArmourJewel1": {
-    "generation_type": "Prefix",
-    "name": "Lacquered",
-    "required_level": 1,
-    "text": "+(36-60) to Armour",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatArmourJewel2": {
-    "generation_type": "Prefix",
-    "name": "Fortified",
-    "required_level": 40,
-    "text": "+(61-100) to Armour",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatArmourJewel3": {
-    "generation_type": "Prefix",
-    "name": "Carapaced",
-    "required_level": 75,
-    "text": "+(101-180) to Armour",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "AbyssFlatArmourJewel4__": {
-    "generation_type": "Prefix",
-    "name": "Encased",
-    "required_level": 83,
-    "text": "+(181-250) to Armour",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel1": {
-    "generation_type": "Prefix",
-    "name": "Tainted",
-    "required_level": 1,
-    "text": "(1-2) to (3-5) Added Spell Chaos Damage while Dual Wielding",
+    "text": "(2-4) to (5-7) Added Spell Fire Damage while Dual Wielding",
     "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel2": {
+  "AbyssSpellAddedFireDamageWhileDualWieldingJewel2": {
     "generation_type": "Prefix",
-    "name": "Clouded",
-    "required_level": 42,
-    "text": "(3-5) to (7-9) Added Spell Chaos Damage while Dual Wielding",
+    "name": "Flaming",
+    "required_level": 39,
+    "text": "(7-9) to (11-13) Added Spell Fire Damage while Dual Wielding",
     "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel3": {
+  "AbyssSpellAddedFireDamageWhileDualWieldingJewel3": {
     "generation_type": "Prefix",
-    "name": "Darkened",
-    "required_level": 54,
-    "text": "(6-8) to (10-12) Added Spell Chaos Damage while Dual Wielding",
+    "name": "Scorching",
+    "required_level": 48,
+    "text": "(10-12) to (14-16) Added Spell Fire Damage while Dual Wielding",
     "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel4": {
+  "AbyssSpellAddedFireDamageWhileDualWieldingJewel4": {
     "generation_type": "Prefix",
-    "name": "Malignant",
-    "required_level": 65,
-    "text": "(9-11) to (13-15) Added Spell Chaos Damage while Dual Wielding",
+    "name": "Incinerating",
+    "required_level": 58,
+    "text": "(13-15) to (17-21) Added Spell Fire Damage while Dual Wielding",
     "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel5": {
+  "AbyssSpellAddedFireDamageWhileDualWieldingJewel5_": {
     "generation_type": "Prefix",
-    "name": "Vile",
-    "required_level": 75,
-    "text": "(12-14) to (15-17) Added Spell Chaos Damage while Dual Wielding",
+    "name": "Blasting",
+    "required_level": 70,
+    "text": "(16-18) to (22-24) Added Spell Fire Damage while Dual Wielding",
     "weight": 350,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel6": {
+  "AbyssSpellAddedFireDamageWhileDualWieldingJewel6": {
     "generation_type": "Prefix",
-    "name": "Malicious",
-    "required_level": 84,
-    "text": "(15-17) to (20-24) Added Spell Chaos Damage while Dual Wielding",
+    "name": "Cremating",
+    "required_level": 82,
+    "text": "(19-25) to (26-34) Added Spell Fire Damage while Dual Wielding",
     "weight": 175,
     "influence": "Normal"
   },
@@ -388,54 +172,6 @@
     "name": "Entombing",
     "required_level": 82,
     "text": "(19-25) to (26-34) Added Spell Cold Damage while Dual Wielding",
-    "weight": 175,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageWhileDualWieldingJewel1": {
-    "generation_type": "Prefix",
-    "name": "Heated",
-    "required_level": 1,
-    "text": "(2-4) to (5-7) Added Spell Fire Damage while Dual Wielding",
-    "weight": 700,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageWhileDualWieldingJewel2": {
-    "generation_type": "Prefix",
-    "name": "Flaming",
-    "required_level": 39,
-    "text": "(7-9) to (11-13) Added Spell Fire Damage while Dual Wielding",
-    "weight": 700,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageWhileDualWieldingJewel3": {
-    "generation_type": "Prefix",
-    "name": "Scorching",
-    "required_level": 48,
-    "text": "(10-12) to (14-16) Added Spell Fire Damage while Dual Wielding",
-    "weight": 700,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageWhileDualWieldingJewel4": {
-    "generation_type": "Prefix",
-    "name": "Incinerating",
-    "required_level": 58,
-    "text": "(13-15) to (17-21) Added Spell Fire Damage while Dual Wielding",
-    "weight": 700,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageWhileDualWieldingJewel5_": {
-    "generation_type": "Prefix",
-    "name": "Blasting",
-    "required_level": 70,
-    "text": "(16-18) to (22-24) Added Spell Fire Damage while Dual Wielding",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageWhileDualWieldingJewel6": {
-    "generation_type": "Prefix",
-    "name": "Cremating",
-    "required_level": 82,
-    "text": "(19-25) to (26-34) Added Spell Fire Damage while Dual Wielding",
     "weight": 175,
     "influence": "Normal"
   },
@@ -535,6 +271,270 @@
     "weight": 175,
     "influence": "Normal"
   },
+  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel1": {
+    "generation_type": "Prefix",
+    "name": "Tainted",
+    "required_level": 1,
+    "text": "(1-2) to (3-5) Added Spell Chaos Damage while Dual Wielding",
+    "weight": 700,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel2": {
+    "generation_type": "Prefix",
+    "name": "Clouded",
+    "required_level": 42,
+    "text": "(3-5) to (7-9) Added Spell Chaos Damage while Dual Wielding",
+    "weight": 700,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel3": {
+    "generation_type": "Prefix",
+    "name": "Darkened",
+    "required_level": 54,
+    "text": "(6-8) to (10-12) Added Spell Chaos Damage while Dual Wielding",
+    "weight": 700,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel4": {
+    "generation_type": "Prefix",
+    "name": "Malignant",
+    "required_level": 65,
+    "text": "(9-11) to (13-15) Added Spell Chaos Damage while Dual Wielding",
+    "weight": 700,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel5": {
+    "generation_type": "Prefix",
+    "name": "Vile",
+    "required_level": 75,
+    "text": "(12-14) to (15-17) Added Spell Chaos Damage while Dual Wielding",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageWhileDualWieldingJewel6": {
+    "generation_type": "Prefix",
+    "name": "Malicious",
+    "required_level": 84,
+    "text": "(15-17) to (20-24) Added Spell Chaos Damage while Dual Wielding",
+    "weight": 175,
+    "influence": "Normal"
+  },
+  "AbyssFlatEnergyShieldRegenerationJewel1": {
+    "generation_type": "Prefix",
+    "name": "Captivating",
+    "required_level": 1,
+    "text": "Regenerate (9-12) Energy Shield per second",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssFlatEnergyShieldRegenerationJewel2": {
+    "generation_type": "Prefix",
+    "name": "Beautiful",
+    "required_level": 30,
+    "text": "Regenerate (13-16) Energy Shield per second",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssFlatEnergyShieldRegenerationJewel3": {
+    "generation_type": "Prefix",
+    "name": "Breathtaking",
+    "required_level": 60,
+    "text": "Regenerate (17-20) Energy Shield per second",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssFlatLifeRegenerationJewel1": {
+    "generation_type": "Prefix",
+    "name": "Youthful",
+    "required_level": 1,
+    "text": "Regenerate (9-12) Life per second",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssFlatLifeRegenerationJewel2": {
+    "generation_type": "Prefix",
+    "name": "Spirited",
+    "required_level": 40,
+    "text": "Regenerate (13-16) Life per second",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssFlatLifeRegenerationJewel3_": {
+    "generation_type": "Prefix",
+    "name": "Vivacious",
+    "required_level": 80,
+    "text": "Regenerate (17-20) Life per second",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssFlatManaShieldRegenerationJewel1": {
+    "generation_type": "Prefix",
+    "name": "Energising",
+    "required_level": 1,
+    "text": "Regenerate (1.1-2) Mana per second",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "AbyssFlatManaShieldRegenerationJewel2": {
+    "generation_type": "Prefix",
+    "name": "Inspirational",
+    "required_level": 40,
+    "text": "Regenerate (2.1-3) Mana per second",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "AbyssFlatManaShieldRegenerationJewel3": {
+    "generation_type": "Prefix",
+    "name": "Resonating",
+    "required_level": 75,
+    "text": "Regenerate (3.3-4) Mana per second",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "AbyssFlatArmourJewel1": {
+    "generation_type": "Prefix",
+    "name": "Lacquered",
+    "required_level": 1,
+    "text": "+(36-60) to Armour",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatArmourJewel2": {
+    "generation_type": "Prefix",
+    "name": "Fortified",
+    "required_level": 40,
+    "text": "+(61-100) to Armour",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatArmourJewel3": {
+    "generation_type": "Prefix",
+    "name": "Carapaced",
+    "required_level": 75,
+    "text": "+(101-180) to Armour",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatArmourJewel4__": {
+    "generation_type": "Prefix",
+    "name": "Encased",
+    "required_level": 83,
+    "text": "+(181-250) to Armour",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssFlatEvasionJewel1": {
+    "generation_type": "Prefix",
+    "name": "Agile",
+    "required_level": 1,
+    "text": "+(36-60) to Evasion Rating",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatEvasionJewel2": {
+    "generation_type": "Prefix",
+    "name": "Fleet",
+    "required_level": 40,
+    "text": "+(61-100) to Evasion Rating",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatEvasionJewel3": {
+    "generation_type": "Prefix",
+    "name": "Vaporous",
+    "required_level": 75,
+    "text": "+(101-180) to Evasion Rating",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatEvasionJewel4_": {
+    "generation_type": "Prefix",
+    "name": "Beclouded",
+    "required_level": 83,
+    "text": "+(181-250) to Evasion Rating",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssFlatEnergyShieldJewel1": {
+    "generation_type": "Prefix",
+    "name": "Shining",
+    "required_level": 1,
+    "text": "+(21-25) to maximum Energy Shield",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatEnergyShieldJewel2": {
+    "generation_type": "Prefix",
+    "name": "Seething",
+    "required_level": 40,
+    "text": "+(26-30) to maximum Energy Shield",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatEnergyShieldJewel3": {
+    "generation_type": "Prefix",
+    "name": "Incandescent",
+    "required_level": 75,
+    "text": "+(31-35) to maximum Energy Shield",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "AbyssFlatEnergyShieldJewel4": {
+    "generation_type": "Prefix",
+    "name": "Resplendent",
+    "required_level": 83,
+    "text": "+(36-40) to maximum Energy Shield",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssCooldownRecoverySpeed1_": {
+    "generation_type": "Prefix",
+    "name": "Facilitating",
+    "required_level": 75,
+    "text": "2% increased Cooldown Recovery Rate",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "AbyssCooldownRecoverySpeed2__": {
+    "generation_type": "Prefix",
+    "name": "Expediting",
+    "required_level": 86,
+    "text": "3% increased Cooldown Recovery Rate",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "AbyssImpaleEffect1_": {
+    "generation_type": "Prefix",
+    "name": "Skewering",
+    "required_level": 75,
+    "text": "(3-4)% increased Impale Effect",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "AbyssImpaleEffect2_": {
+    "generation_type": "Prefix",
+    "name": "Lancing",
+    "required_level": 86,
+    "text": "(5-6)% increased Impale Effect",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "AbyssDamageRecoupedAsMana1": {
+    "generation_type": "Prefix",
+    "name": "Spurring",
+    "required_level": 75,
+    "text": "2% of Damage taken Recouped as Mana",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssDamageRecoupedAsMana2": {
+    "generation_type": "Prefix",
+    "name": "Motivating",
+    "required_level": 86,
+    "text": "3% of Damage taken Recouped as Mana",
+    "weight": 300,
+    "influence": "Normal"
+  },
   "AbyssJewelChillEffect1_": {
     "generation_type": "Suffix",
     "name": "of Chilling",
@@ -551,235 +551,11 @@
     "weight": 500,
     "influence": "Normal"
   },
-  "AbyssAllAttributesJewel1": {
+  "AbyssStrengthJewel1_": {
     "generation_type": "Suffix",
-    "name": "of Adaption",
+    "name": "of Strength",
     "required_level": 1,
-    "text": "+(6-8) to all Attributes",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssAllResistancesJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Resistance",
-    "required_level": 1,
-    "text": "+(8-10)% to all Elemental Resistances",
-    "weight": 200,
-    "influence": "Normal"
-  },
-  "AbyssAttackSpeedIfCriticalStrikeDealtRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Opportunity",
-    "required_level": 25,
-    "text": "(6-8)% increased Attack Speed if you've dealt a Critical Strike Recently",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssAvoidIgniteJewel1_": {
-    "generation_type": "Suffix",
-    "name": "of Nonflammability",
-    "required_level": 50,
-    "text": "(31-40)% chance to Avoid being Ignited",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssAvoidIgniteJewel2": {
-    "generation_type": "Suffix",
-    "name": "of Fireproofing",
-    "required_level": 70,
-    "text": "(41-50)% chance to Avoid being Ignited",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "AbyssAvoidShockJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Insulating",
-    "required_level": 50,
-    "text": "(31-40)% chance to Avoid being Shocked",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssAvoidShockJewel2": {
-    "generation_type": "Suffix",
-    "name": "of the Lightning Rod",
-    "required_level": 70,
-    "text": "(41-50)% chance to Avoid being Shocked",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "AbyssAvoidStunJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Balance",
-    "required_level": 50,
-    "text": "(21-24)% chance to Avoid being Stunned",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssAvoidStunJewel2": {
-    "generation_type": "Suffix",
-    "name": "of Poise",
-    "required_level": 70,
-    "text": "(25-30)% chance to Avoid being Stunned",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "AbyssCastSpeedIfCriticalStrikeDealtRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Abuse",
-    "required_level": 25,
-    "text": "(5-7)% increased Cast Speed if you've dealt a Critical Strike Recently",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssAvoidBleedingJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Stemming",
-    "required_level": 50,
-    "text": "(31-40)% chance to Avoid Bleeding",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssAvoidBleedingJewel2": {
-    "generation_type": "Suffix",
-    "name": "of the Tourniquet",
-    "required_level": 70,
-    "text": "(41-50)% chance to Avoid Bleeding",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "AbyssAvoidFreezeAndChillJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Warming",
-    "required_level": 50,
-    "text": "(31-40)% chance to Avoid being Frozen",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssAvoidFreezeAndChillJewel2": {
-    "generation_type": "Suffix",
-    "name": "of Heating",
-    "required_level": 70,
-    "text": "(41-50)% chance to Avoid being Frozen",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "AbyssAvoidPoisonJewel1__": {
-    "generation_type": "Suffix",
-    "name": "of Tolerance",
-    "required_level": 50,
-    "text": "(31-40)% chance to Avoid being Poisoned",
-    "weight": 300,
-    "influence": "Normal"
-  },
-  "AbyssAvoidPoisonJewel2__": {
-    "generation_type": "Suffix",
-    "name": "of Immunity",
-    "required_level": 70,
-    "text": "(41-50)% chance to Avoid being Poisoned",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "AbyssChanceToBlockIfDamagedRecentlyJewel1_": {
-    "generation_type": "Suffix",
-    "name": "of Guarding",
-    "required_level": 1,
-    "text": "+2% Chance to Block Attack Damage if you were Damaged by a Hit Recently",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssChancetoGainPhasingOnKillJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Phasing",
-    "required_level": 50,
-    "text": "(3-5)% chance to gain Phasing for 4 seconds on Kill",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "AbyssChancetoGainPhasingOnKillJewel2": {
-    "generation_type": "Suffix",
-    "name": "of Phasing",
-    "required_level": 80,
-    "text": "(6-8)% chance to gain Phasing for 4 seconds on Kill",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssChaosResistanceJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Order",
-    "required_level": 1,
-    "text": "+(7-13)% to Chaos Resistance",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssColdLightningResistanceJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Shelter",
-    "required_level": 1,
-    "text": "+(10-12)% to Cold and Lightning Resistances",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssColdResistanceJewel1": {
-    "generation_type": "Suffix",
-    "name": "of the Beast",
-    "required_level": 1,
-    "text": "+(12-15)% to Cold Resistance",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "AbyssCriticalStrikeChanceJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Menace",
-    "required_level": 50,
-    "text": "(8-12)% increased Global Critical Strike Chance",
-    "weight": 900,
-    "influence": "Normal"
-  },
-  "AbyssCriticalStrikeMultiplierJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Potency",
-    "required_level": 50,
-    "text": "+(9-12)% to Global Critical Strike Multiplier",
-    "weight": 900,
-    "influence": "Normal"
-  },
-  "AbyssCriticalStrikeChanceIfNoCriticalStrikeDealtRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Preparation",
-    "required_level": 1,
-    "text": "(20-30)% increased Critical Strike Chance if you haven't dealt a Critical Strike Recently",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssCriticalStrikeMultiplierIfEnemySlainRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of the Assassin",
-    "required_level": 25,
-    "text": "+(8-14)% to Critical Strike Multiplier if you've Killed Recently",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssDamageIfEnemySlainRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of the Slayer",
-    "required_level": 1,
-    "text": "(15-20)% increased Damage if you've Killed Recently",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssDamagePenetratesElementalResistancesIfNoEnemySlainRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of the Inquisitor",
-    "required_level": 1,
-    "text": "Damage Penetrates 2% Elemental Resistances if you haven't Killed Recently",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssDamageVSAbyssMonstersJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Banishing",
-    "required_level": 1,
-    "text": "(30-40)% increased Damage with Hits and Ailments against Abyssal Monsters",
+    "text": "+(12-16) to Strength",
     "weight": 500,
     "influence": "Normal"
   },
@@ -791,6 +567,30 @@
     "weight": 500,
     "influence": "Normal"
   },
+  "AbyssIntelligenceJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Intelligence",
+    "required_level": 1,
+    "text": "+(12-16) to Intelligence",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssStrengthDexterityJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Athletics",
+    "required_level": 1,
+    "text": "+(8-10) to Strength and Dexterity",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssStrengthIntelligenceJewel1_": {
+    "generation_type": "Suffix",
+    "name": "of Spirit",
+    "required_level": 1,
+    "text": "+(8-10) to Strength and Intelligence",
+    "weight": 500,
+    "influence": "Normal"
+  },
   "AbyssDexterityIntelligenceJewel1": {
     "generation_type": "Suffix",
     "name": "of Cunning",
@@ -799,68 +599,36 @@
     "weight": 500,
     "influence": "Normal"
   },
-  "AbyssBlindedEnemiesCriticalStrikeChanceJewel1": {
+  "AbyssAllAttributesJewel1": {
     "generation_type": "Suffix",
-    "name": "of Clouding",
-    "required_level": 84,
-    "text": "Enemies Blinded by you have (20-15)% reduced Critical Strike Chance",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssSelfCurseEffectOnConsecratedGroundJewel1__": {
-    "generation_type": "Suffix",
-    "name": "of the Sanctum",
-    "required_level": 84,
-    "text": "(15-10)% reduced Effect of Curses on you while on Consecrated Ground",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssAvoidElementalAilmentsWhileElusiveJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Escape",
-    "required_level": 84,
-    "text": "(8-10)% chance to Avoid Elemental Ailments while you have Elusive",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssHinderedEnemiesLifeRegenerationRateJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Enervation",
-    "required_level": 84,
-    "text": "Enemies Hindered by you have (20-15)% reduced Life Regeneration rate",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssIntimidatedEnemiesStunDurationJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Daunting",
-    "required_level": 84,
-    "text": "Enemies Intimidated by you have (10-15)% increased duration of stuns against them",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssMaimedEnemiesDamageOverTimeJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Mangling",
-    "required_level": 84,
-    "text": "Enemies Maimed by you take (4-5)% increased Damage Over Time",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "AbyssWitheredEnemiesAllResistanceJewel1___": {
-    "generation_type": "Suffix",
-    "name": "of Languishing",
-    "required_level": 84,
-    "text": "Enemies Withered by you have -2% to all Resistances",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssEvasionRatingWhileMovingJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Maneuvering",
+    "name": "of Adaption",
     "required_level": 1,
-    "text": "(25-35)% increased Evasion Rating while moving",
+    "text": "+(6-8) to all Attributes",
     "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssFireResistanceJewel1": {
+    "generation_type": "Suffix",
+    "name": "of the Dragon",
+    "required_level": 1,
+    "text": "+(12-15)% to Fire Resistance",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AbyssColdResistanceJewel1": {
+    "generation_type": "Suffix",
+    "name": "of the Beast",
+    "required_level": 1,
+    "text": "+(12-15)% to Cold Resistance",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "AbyssLightningResistanceJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Grounding",
+    "required_level": 1,
+    "text": "+(12-15)% to Lightning Resistance",
+    "weight": 400,
     "influence": "Normal"
   },
   "AbyssFireColdResistanceJewel1": {
@@ -879,20 +647,28 @@
     "weight": 250,
     "influence": "Normal"
   },
-  "AbyssFireResistanceJewel1": {
+  "AbyssColdLightningResistanceJewel1": {
     "generation_type": "Suffix",
-    "name": "of the Dragon",
+    "name": "of Shelter",
     "required_level": 1,
-    "text": "+(12-15)% to Fire Resistance",
-    "weight": 400,
+    "text": "+(10-12)% to Cold and Lightning Resistances",
+    "weight": 250,
     "influence": "Normal"
   },
-  "AbyssIncreasedArmourIfNoEnemySlainRecentlyJewel1__": {
+  "AbyssAllResistancesJewel1": {
     "generation_type": "Suffix",
-    "name": "of the Guardian",
+    "name": "of Resistance",
     "required_level": 1,
-    "text": "(20-30)% increased Armour if you haven't Killed Recently",
-    "weight": 250,
+    "text": "+(8-10)% to all Elemental Resistances",
+    "weight": 200,
+    "influence": "Normal"
+  },
+  "AbyssChaosResistanceJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Order",
+    "required_level": 1,
+    "text": "+(7-13)% to Chaos Resistance",
+    "weight": 100,
     "influence": "Normal"
   },
   "AbyssCastSpeedJewel1": {
@@ -903,115 +679,59 @@
     "weight": 750,
     "influence": "Normal"
   },
-  "AbyssIntelligenceJewel1": {
+  "AbyssCriticalStrikeChanceJewel1": {
     "generation_type": "Suffix",
-    "name": "of Intelligence",
-    "required_level": 1,
-    "text": "+(12-16) to Intelligence",
-    "weight": 500,
+    "name": "of Menace",
+    "required_level": 50,
+    "text": "(8-12)% increased Global Critical Strike Chance",
+    "weight": 900,
     "influence": "Normal"
   },
-  "AbyssLifeRegenerationRateWhileMovingJewel1": {
+  "AbyssCriticalStrikeMultiplierJewel1": {
     "generation_type": "Suffix",
-    "name": "of Vivaciousness",
-    "required_level": 1,
-    "text": "Regenerate (0.5-1)% of Life per second while moving",
-    "weight": 250,
+    "name": "of Potency",
+    "required_level": 50,
+    "text": "+(9-12)% to Global Critical Strike Multiplier",
+    "weight": 900,
     "influence": "Normal"
   },
-  "AbyssLightningResistanceJewel1": {
+  "AbyssSpellAddedFireDamageJewel1": {
     "generation_type": "Suffix",
-    "name": "of Grounding",
-    "required_level": 1,
-    "text": "+(12-15)% to Lightning Resistance",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "AbyssManaRegenerationRateWhileMovingJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Praxis",
-    "required_level": 1,
-    "text": "(20-25)% increased Mana Regeneration Rate while moving",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssMovementSpeedIfEnemySlainRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of the Raider",
-    "required_level": 1,
-    "text": "(2-4)% increased Movement Speed if you've Killed Recently",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssMovementSpeedIfNotDamagedRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Momentum",
-    "required_level": 1,
-    "text": "(3-4)% increased Movement Speed if you haven't taken Damage Recently",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssPhysicalDamageAddedAsExtraFireIfCriticalStrikeDealtRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of the Inferno",
-    "required_level": 40,
-    "text": "Gain (2-4)% of Physical Damage as Extra Fire Damage if you've dealt a Critical Strike Recently",
-    "weight": 150,
-    "influence": "Normal"
-  },
-  "AbyssReducedPhysicalDamageTakenIfNotHitRecentlyJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Confidence",
-    "required_level": 1,
-    "text": "2% additional Physical Damage Reduction if you weren't Damaged by a Hit Recently",
-    "weight": 250,
-    "influence": "Normal"
-  },
-  "AbyssReducedPhysicalDamageTakenVsAbyssMonsterJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Warding",
-    "required_level": 1,
-    "text": "(4-6)% additional Physical Damage Reduction against Abyssal Monsters",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedChaosDamageJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Dishonour",
-    "required_level": 33,
-    "text": "Adds (3-4) to (6-7) Chaos Damage to Spells",
+    "name": "of Coals",
+    "required_level": 30,
+    "text": "Adds (6-8) to (9-11) Fire Damage to Spells",
     "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageJewel2": {
+  "AbyssSpellAddedFireDamageJewel2_": {
     "generation_type": "Suffix",
-    "name": "of Harm",
-    "required_level": 48,
-    "text": "Adds (5-7) to (8-10) Chaos Damage to Spells",
+    "name": "of Cinders",
+    "required_level": 43,
+    "text": "Adds (9-11) to (12-14) Fire Damage to Spells",
     "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageJewel3": {
+  "AbyssSpellAddedFireDamageJewel3": {
     "generation_type": "Suffix",
-    "name": "of Malevolence",
-    "required_level": 57,
-    "text": "Adds (8-10) to (11-13) Chaos Damage to Spells",
+    "name": "of Flames",
+    "required_level": 55,
+    "text": "Adds (12-14) to (15-19) Fire Damage to Spells",
     "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageJewel4": {
+  "AbyssSpellAddedFireDamageJewel4": {
     "generation_type": "Suffix",
-    "name": "of Malice",
-    "required_level": 68,
-    "text": "Adds (11-13) to (14-16) Chaos Damage to Spells",
+    "name": "of Immolation",
+    "required_level": 66,
+    "text": "Adds (15-17) to (20-23) Fire Damage to Spells",
     "weight": 350,
     "influence": "Normal"
   },
-  "AbyssSpellAddedChaosDamageJewel5": {
+  "AbyssSpellAddedFireDamageJewel5": {
     "generation_type": "Suffix",
-    "name": "of Sin",
-    "required_level": 79,
-    "text": "Adds (14-16) to (18-22) Chaos Damage to Spells",
+    "name": "of Ashes",
+    "required_level": 77,
+    "text": "Adds (19-23) to (24-32) Fire Damage to Spells",
     "weight": 175,
     "influence": "Normal"
   },
@@ -1052,46 +772,6 @@
     "name": "of Glaciation",
     "required_level": 77,
     "text": "Adds (19-23) to (24-32) Cold Damage to Spells",
-    "weight": 175,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageJewel1": {
-    "generation_type": "Suffix",
-    "name": "of Coals",
-    "required_level": 30,
-    "text": "Adds (6-8) to (9-11) Fire Damage to Spells",
-    "weight": 700,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageJewel2_": {
-    "generation_type": "Suffix",
-    "name": "of Cinders",
-    "required_level": 43,
-    "text": "Adds (9-11) to (12-14) Fire Damage to Spells",
-    "weight": 700,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageJewel3": {
-    "generation_type": "Suffix",
-    "name": "of Flames",
-    "required_level": 55,
-    "text": "Adds (12-14) to (15-19) Fire Damage to Spells",
-    "weight": 700,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageJewel4": {
-    "generation_type": "Suffix",
-    "name": "of Immolation",
-    "required_level": 66,
-    "text": "Adds (15-17) to (20-23) Fire Damage to Spells",
-    "weight": 350,
-    "influence": "Normal"
-  },
-  "AbyssSpellAddedFireDamageJewel5": {
-    "generation_type": "Suffix",
-    "name": "of Ashes",
-    "required_level": 77,
-    "text": "Adds (19-23) to (24-32) Fire Damage to Spells",
     "weight": 175,
     "influence": "Normal"
   },
@@ -1175,20 +855,44 @@
     "weight": 175,
     "influence": "Normal"
   },
-  "AbyssSpellBlockChanceIfHitRecentlyJewel1": {
+  "AbyssSpellAddedChaosDamageJewel1": {
     "generation_type": "Suffix",
-    "name": "of Instinct",
-    "required_level": 1,
-    "text": "+2% Chance to Block Spell Damage if you were Damaged by a Hit Recently",
-    "weight": 500,
+    "name": "of Dishonour",
+    "required_level": 33,
+    "text": "Adds (3-4) to (6-7) Chaos Damage to Spells",
+    "weight": 700,
     "influence": "Normal"
   },
-  "AbyssSpellDodgeAndDodgeChanceIfHitRecentlyJewel1": {
+  "AbyssSpellAddedChaosDamageJewel2": {
     "generation_type": "Suffix",
-    "name": "of Readiness",
-    "required_level": 1,
-    "text": "+2% Chance to Block Spell Damage if you were Damaged by a Hit Recently",
-    "weight": 250,
+    "name": "of Harm",
+    "required_level": 48,
+    "text": "Adds (5-7) to (8-10) Chaos Damage to Spells",
+    "weight": 700,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageJewel3": {
+    "generation_type": "Suffix",
+    "name": "of Malevolence",
+    "required_level": 57,
+    "text": "Adds (8-10) to (11-13) Chaos Damage to Spells",
+    "weight": 700,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageJewel4": {
+    "generation_type": "Suffix",
+    "name": "of Malice",
+    "required_level": 68,
+    "text": "Adds (11-13) to (14-16) Chaos Damage to Spells",
+    "weight": 350,
+    "influence": "Normal"
+  },
+  "AbyssSpellAddedChaosDamageJewel5": {
+    "generation_type": "Suffix",
+    "name": "of Sin",
+    "required_level": 79,
+    "text": "Adds (14-16) to (18-22) Chaos Damage to Spells",
+    "weight": 175,
     "influence": "Normal"
   },
   "AbyssSpellsHinderOnHitChanceJewel1": {
@@ -1207,28 +911,324 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "AbyssStrengthDexterityJewel1": {
+  "AbyssDamageVSAbyssMonstersJewel1": {
     "generation_type": "Suffix",
-    "name": "of Athletics",
+    "name": "of Banishing",
     "required_level": 1,
-    "text": "+(8-10) to Strength and Dexterity",
+    "text": "(30-40)% increased Damage with Hits and Ailments against Abyssal Monsters",
     "weight": 500,
     "influence": "Normal"
   },
-  "AbyssStrengthJewel1_": {
+  "AbyssReducedPhysicalDamageTakenVsAbyssMonsterJewel1": {
     "generation_type": "Suffix",
-    "name": "of Strength",
+    "name": "of Warding",
     "required_level": 1,
-    "text": "+(12-16) to Strength",
+    "text": "(4-6)% additional Physical Damage Reduction against Abyssal Monsters",
     "weight": 500,
     "influence": "Normal"
   },
-  "AbyssStrengthIntelligenceJewel1_": {
+  "AbyssAvoidIgniteJewel1_": {
     "generation_type": "Suffix",
-    "name": "of Spirit",
+    "name": "of Nonflammability",
+    "required_level": 50,
+    "text": "(31-40)% chance to Avoid being Ignited",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssAvoidIgniteJewel2": {
+    "generation_type": "Suffix",
+    "name": "of Fireproofing",
+    "required_level": 70,
+    "text": "(41-50)% chance to Avoid being Ignited",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "AbyssAvoidFreezeAndChillJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Warming",
+    "required_level": 50,
+    "text": "(31-40)% chance to Avoid being Frozen",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssAvoidFreezeAndChillJewel2": {
+    "generation_type": "Suffix",
+    "name": "of Heating",
+    "required_level": 70,
+    "text": "(41-50)% chance to Avoid being Frozen",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "AbyssAvoidShockJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Insulating",
+    "required_level": 50,
+    "text": "(31-40)% chance to Avoid being Shocked",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssAvoidShockJewel2": {
+    "generation_type": "Suffix",
+    "name": "of the Lightning Rod",
+    "required_level": 70,
+    "text": "(41-50)% chance to Avoid being Shocked",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "AbyssAvoidPoisonJewel1__": {
+    "generation_type": "Suffix",
+    "name": "of Tolerance",
+    "required_level": 50,
+    "text": "(31-40)% chance to Avoid being Poisoned",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssAvoidPoisonJewel2__": {
+    "generation_type": "Suffix",
+    "name": "of Immunity",
+    "required_level": 70,
+    "text": "(41-50)% chance to Avoid being Poisoned",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "AbyssAvoidBleedingJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Stemming",
+    "required_level": 50,
+    "text": "(31-40)% chance to Avoid Bleeding",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssAvoidBleedingJewel2": {
+    "generation_type": "Suffix",
+    "name": "of the Tourniquet",
+    "required_level": 70,
+    "text": "(41-50)% chance to Avoid Bleeding",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "AbyssAvoidStunJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Balance",
+    "required_level": 50,
+    "text": "(21-24)% chance to Avoid being Stunned",
+    "weight": 300,
+    "influence": "Normal"
+  },
+  "AbyssAvoidStunJewel2": {
+    "generation_type": "Suffix",
+    "name": "of Poise",
+    "required_level": 70,
+    "text": "(25-30)% chance to Avoid being Stunned",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "AbyssSpellBlockChanceIfHitRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Instinct",
     "required_level": 1,
-    "text": "+(8-10) to Strength and Intelligence",
+    "text": "+(3-4)% Chance to Block Spell Damage if you were Damaged by a Hit Recently",
     "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssSpellDodgeAndDodgeChanceIfHitRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Readiness",
+    "required_level": 1,
+    "text": "+2% Chance to Block Spell Damage if you were Damaged by a Hit Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssReducedPhysicalDamageTakenIfNotHitRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Confidence",
+    "required_level": 1,
+    "text": "2% additional Physical Damage Reduction if you weren't Damaged by a Hit Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssMovementSpeedIfNotDamagedRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Momentum",
+    "required_level": 1,
+    "text": "(3-4)% increased Movement Speed if you haven't taken Damage Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssDamageIfEnemySlainRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of the Slayer",
+    "required_level": 1,
+    "text": "(15-20)% increased Damage if you've Killed Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssCriticalStrikeMultiplierIfEnemySlainRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of the Assassin",
+    "required_level": 25,
+    "text": "+(8-14)% to Critical Strike Multiplier if you've Killed Recently",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssIncreasedArmourIfNoEnemySlainRecentlyJewel1__": {
+    "generation_type": "Suffix",
+    "name": "of the Guardian",
+    "required_level": 1,
+    "text": "(20-30)% increased Armour if you haven't Killed Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssDamagePenetratesElementalResistancesIfNoEnemySlainRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of the Inquisitor",
+    "required_level": 1,
+    "text": "Damage Penetrates 2% Elemental Resistances if you haven't Killed Recently",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssEvasionRatingWhileMovingJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Maneuvering",
+    "required_level": 1,
+    "text": "(25-35)% increased Evasion Rating while moving",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssManaRegenerationRateWhileMovingJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Praxis",
+    "required_level": 1,
+    "text": "(20-25)% increased Mana Regeneration Rate while moving",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssLifeRegenerationRateWhileMovingJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Vivaciousness",
+    "required_level": 1,
+    "text": "Regenerate (0.5-1)% of Life per second while moving",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssPhysicalDamageAddedAsExtraFireIfCriticalStrikeDealtRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of the Inferno",
+    "required_level": 40,
+    "text": "Gain (2-4)% of Physical Damage as Extra Fire Damage if you've dealt a Critical Strike Recently",
+    "weight": 150,
+    "influence": "Normal"
+  },
+  "AbyssAttackSpeedIfCriticalStrikeDealtRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Opportunity",
+    "required_level": 25,
+    "text": "(6-8)% increased Attack Speed if you've dealt a Critical Strike Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssCastSpeedIfCriticalStrikeDealtRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Abuse",
+    "required_level": 25,
+    "text": "(5-7)% increased Cast Speed if you've dealt a Critical Strike Recently",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssCriticalStrikeChanceIfNoCriticalStrikeDealtRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Preparation",
+    "required_level": 1,
+    "text": "(20-30)% increased Critical Strike Chance if you haven't dealt a Critical Strike Recently",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssMovementSpeedIfEnemySlainRecentlyJewel1": {
+    "generation_type": "Suffix",
+    "name": "of the Raider",
+    "required_level": 1,
+    "text": "(2-4)% increased Movement Speed if you've Killed Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssChanceToBlockIfDamagedRecentlyJewel1_": {
+    "generation_type": "Suffix",
+    "name": "of Guarding",
+    "required_level": 1,
+    "text": "+(3-4)% Chance to Block Attack Damage if you were Damaged by a Hit Recently",
+    "weight": 250,
+    "influence": "Normal"
+  },
+  "AbyssChancetoGainPhasingOnKillJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Phasing",
+    "required_level": 50,
+    "text": "(3-5)% chance to gain Phasing for 4 seconds on Kill",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "AbyssChancetoGainPhasingOnKillJewel2": {
+    "generation_type": "Suffix",
+    "name": "of Phasing",
+    "required_level": 80,
+    "text": "(6-8)% chance to gain Phasing for 4 seconds on Kill",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssSelfCurseEffectOnConsecratedGroundJewel1__": {
+    "generation_type": "Suffix",
+    "name": "of the Sanctum",
+    "required_level": 84,
+    "text": "(15-10)% reduced Effect of Curses on you while on Consecrated Ground",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssAvoidElementalAilmentsWhileElusiveJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Escape",
+    "required_level": 84,
+    "text": "(8-10)% chance to Avoid Elemental Ailments while you have Elusive",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "AbyssHinderedEnemiesLifeRegenerationRateJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Enervation",
+    "required_level": 84,
+    "text": "Enemies Hindered by you have (20-15)% reduced Life Regeneration rate",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssBlindedEnemiesCriticalStrikeChanceJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Clouding",
+    "required_level": 84,
+    "text": "Enemies Blinded by you have (20-15)% reduced Critical Strike Chance",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "AbyssWitheredEnemiesAllResistanceJewel1___": {
+    "generation_type": "Suffix",
+    "name": "of Languishing",
+    "required_level": 84,
+    "text": "Enemies Withered by you have -2% to all Resistances",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "AbyssMaimedEnemiesDamageOverTimeJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Mangling",
+    "required_level": 84,
+    "text": "Enemies Maimed by you take (4-5)% increased Damage Over Time",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "AbyssIntimidatedEnemiesStunDurationJewel1": {
+    "generation_type": "Suffix",
+    "name": "of Daunting",
+    "required_level": 84,
+    "text": "Enemies Intimidated by you have (10-15)% increased duration of stuns against them",
+    "weight": 100,
     "influence": "Normal"
   }
 }

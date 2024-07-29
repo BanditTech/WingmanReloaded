@@ -1,439 +1,4 @@
 {
-  "Rusted Sword": {
-    "drop_level": 1,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 645,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 9,
-      "physical_damage_min": 4,
-      "range": 11
-    }
-  },
-  "Cutlass": {
-    "drop_level": 38,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 645,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 53,
-      "physical_damage_min": 13,
-      "range": 11
-    }
-  },
-  "Baselard": {
-    "drop_level": 41,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 53,
-      "physical_damage_min": 37,
-      "range": 11
-    }
-  },
-  "Battle Sword": {
-    "drop_level": 44,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 70,
-      "physical_damage_min": 38,
-      "range": 11
-    }
-  },
-  "Elder Sword": {
-    "drop_level": 47,
-    "implicits": [
-      "+330 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 66,
-      "physical_damage_min": 36,
-      "range": 11
-    }
-  },
-  "Graceful Sword": {
-    "drop_level": 50,
-    "implicits": [
-      "+350 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 55,
-      "physical_damage_min": 34,
-      "range": 11
-    }
-  },
-  "Twilight Blade": {
-    "drop_level": 53,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 86,
-      "physical_damage_min": 30,
-      "range": 11
-    }
-  },
-  "Gemstone Sword": {
-    "drop_level": 56,
-    "implicits": [
-      "+400 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 83,
-      "physical_damage_min": 39,
-      "range": 11
-    }
-  },
-  "Corsair Sword": {
-    "drop_level": 58,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 645,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 80,
-      "physical_damage_min": 20,
-      "range": 11
-    }
-  },
-  "Gladius": {
-    "drop_level": 60,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 78,
-      "physical_damage_min": 54,
-      "range": 11
-    }
-  },
-  "Legion Sword": {
-    "drop_level": 62,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 98,
-      "physical_damage_min": 53,
-      "range": 11
-    }
-  },
-  "Copper Sword": {
-    "drop_level": 5,
-    "implicits": [
-      "+45 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 14,
-      "physical_damage_min": 6,
-      "range": 11
-    }
-  },
-  "Vaal Blade": {
-    "drop_level": 64,
-    "implicits": [
-      "+460 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 86,
-      "physical_damage_min": 46,
-      "range": 11
-    }
-  },
-  "Eternal Sword": {
-    "drop_level": 66,
-    "implicits": [
-      "+475 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 68,
-      "physical_damage_min": 41,
-      "range": 11
-    }
-  },
-  "Midnight Blade": {
-    "drop_level": 68,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 99,
-      "physical_damage_min": 35,
-      "range": 11
-    }
-  },
-  "Sabre": {
-    "drop_level": 10,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 645,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 22,
-      "physical_damage_min": 5,
-      "range": 11
-    }
-  },
-  "Broad Sword": {
-    "drop_level": 15,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 690,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 21,
-      "physical_damage_min": 15,
-      "range": 11
-    }
-  },
-  "War Sword": {
-    "drop_level": 20,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 30,
-      "physical_damage_min": 16,
-      "range": 11
-    }
-  },
-  "Ancient Sword": {
-    "drop_level": 24,
-    "implicits": [
-      "+165 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 690,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 33,
-      "physical_damage_min": 18,
-      "range": 11
-    }
-  },
-  "Elegant Sword": {
-    "drop_level": 28,
-    "implicits": [
-      "+190 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 33,
-      "physical_damage_min": 20,
-      "range": 11
-    }
-  },
-  "Dusk Blade": {
-    "drop_level": 32,
-    "implicits": [
-      "40% increased Global Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 54,
-      "physical_damage_min": 19,
-      "range": 11
-    }
-  },
-  "Variscite Blade": {
-    "drop_level": 35,
-    "implicits": [
-      "+240 to Accuracy Rating"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 1,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 53,
-      "physical_damage_min": 25,
-      "range": 11
-    }
-  },
-  "Fickle Spiritblade": {
-    "drop_level": 30,
-    "implicits": [
-      "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 33,
-      "physical_damage_min": 18,
-      "range": 11
-    }
-  },
-  "Capricious Spiritblade": {
-    "drop_level": 50,
-    "implicits": [
-      "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 51,
-      "physical_damage_min": 27,
-      "range": 11
-    }
-  },
-  "Anarchic Spiritblade": {
-    "drop_level": 70,
-    "implicits": [
-      "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 625,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 63,
-      "physical_damage_min": 34,
-      "range": 11
-    }
-  },
-  "Hook Sword": {
-    "drop_level": 34,
-    "implicits": [
-      "15% chance to Maim on Hit"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 870,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 60,
-      "physical_damage_min": 28,
-      "range": 11
-    }
-  },
-  "Grappler": {
-    "drop_level": 55,
-    "implicits": [
-      "15% chance to Maim on Hit"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 870,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 94,
-      "physical_damage_min": 44,
-      "range": 11
-    }
-  },
-  "Tiger Hook": {
-    "drop_level": 70,
-    "implicits": [
-      "20% chance to Maim on Hit"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 80,
-      "physical_damage_min": 37,
-      "range": 11
-    }
-  },
-  "Energy Blade": {
-    "drop_level": 1,
-    "implicits": [
-      null
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 588,
-      "critical_strike_chance": 700,
-      "physical_damage_max": 0,
-      "physical_damage_min": 0,
-      "range": 11
-    }
-  },
   "Charan's Sword": {
     "drop_level": 2,
     "implicits": [
@@ -442,6 +7,21 @@
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
       "critical_strike_chance": 500,
       "physical_damage_max": 11,
@@ -457,10 +37,895 @@
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 909,
       "critical_strike_chance": 500,
       "physical_damage_max": 23,
       "physical_damage_min": 3,
+      "range": 11
+    }
+  },
+  "Rusted Sword": {
+    "drop_level": 1,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 9,
+      "physical_damage_min": 4,
+      "range": 11
+    }
+  },
+  "Copper Sword": {
+    "drop_level": 5,
+    "implicits": [
+      "+45 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 14,
+      "physical_damage_min": 6,
+      "range": 11
+    }
+  },
+  "Sabre": {
+    "drop_level": 10,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 22,
+      "physical_damage_min": 5,
+      "range": 11
+    }
+  },
+  "Broad Sword": {
+    "drop_level": 15,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 21,
+      "physical_damage_min": 15,
+      "range": 11
+    }
+  },
+  "War Sword": {
+    "drop_level": 20,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 30,
+      "physical_damage_min": 16,
+      "range": 11
+    }
+  },
+  "Ancient Sword": {
+    "drop_level": 24,
+    "implicits": [
+      "+165 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 33,
+      "physical_damage_min": 18,
+      "range": 11
+    }
+  },
+  "Elegant Sword": {
+    "drop_level": 28,
+    "implicits": [
+      "+190 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 33,
+      "physical_damage_min": 20,
+      "range": 11
+    }
+  },
+  "Dusk Blade": {
+    "drop_level": 32,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 54,
+      "physical_damage_min": 19,
+      "range": 11
+    }
+  },
+  "Hook Sword": {
+    "drop_level": 34,
+    "implicits": [
+      "15% chance to Maim on Hit"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 60,
+      "physical_damage_min": 28,
+      "range": 11
+    }
+  },
+  "Variscite Blade": {
+    "drop_level": 35,
+    "implicits": [
+      "+240 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 53,
+      "physical_damage_min": 25,
+      "range": 11
+    }
+  },
+  "Cutlass": {
+    "drop_level": 38,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 53,
+      "physical_damage_min": 13,
+      "range": 11
+    }
+  },
+  "Baselard": {
+    "drop_level": 41,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 53,
+      "physical_damage_min": 37,
+      "range": 11
+    }
+  },
+  "Battle Sword": {
+    "drop_level": 44,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 70,
+      "physical_damage_min": 38,
+      "range": 11
+    }
+  },
+  "Elder Sword": {
+    "drop_level": 47,
+    "implicits": [
+      "+330 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 66,
+      "physical_damage_min": 36,
+      "range": 11
+    }
+  },
+  "Graceful Sword": {
+    "drop_level": 50,
+    "implicits": [
+      "+350 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 55,
+      "physical_damage_min": 34,
+      "range": 11
+    }
+  },
+  "Twilight Blade": {
+    "drop_level": 53,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 86,
+      "physical_damage_min": 30,
+      "range": 11
+    }
+  },
+  "Grappler": {
+    "drop_level": 55,
+    "implicits": [
+      "15% chance to Maim on Hit"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 870,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 94,
+      "physical_damage_min": 44,
+      "range": 11
+    }
+  },
+  "Gemstone Sword": {
+    "drop_level": 56,
+    "implicits": [
+      "+400 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 83,
+      "physical_damage_min": 39,
+      "range": 11
+    }
+  },
+  "Corsair Sword": {
+    "drop_level": 58,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 1,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 645,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 80,
+      "physical_damage_min": 20,
+      "range": 11
+    }
+  },
+  "Gladius": {
+    "drop_level": 60,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 78,
+      "physical_damage_min": 54,
+      "range": 11
+    }
+  },
+  "Legion Sword": {
+    "drop_level": 62,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 98,
+      "physical_damage_min": 53,
+      "range": 11
+    }
+  },
+  "Vaal Blade": {
+    "drop_level": 64,
+    "implicits": [
+      "+460 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 86,
+      "physical_damage_min": 46,
+      "range": 11
+    }
+  },
+  "Eternal Sword": {
+    "drop_level": 66,
+    "implicits": [
+      "+475 to Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 68,
+      "physical_damage_min": 41,
+      "range": 11
+    }
+  },
+  "Midnight Blade": {
+    "drop_level": 68,
+    "implicits": [
+      "40% increased Global Accuracy Rating"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 99,
+      "physical_damage_min": 35,
+      "range": 11
+    }
+  },
+  "Tiger Hook": {
+    "drop_level": 70,
+    "implicits": [
+      "20% chance to Maim on Hit"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 80,
+      "physical_damage_min": 37,
+      "range": 11
+    }
+  },
+  "Fickle Spiritblade": {
+    "drop_level": 30,
+    "implicits": [
+      "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 33,
+      "physical_damage_min": 18,
+      "range": 11
+    }
+  },
+  "Capricious Spiritblade": {
+    "drop_level": 50,
+    "implicits": [
+      "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 51,
+      "physical_damage_min": 27,
+      "range": 11
+    }
+  },
+  "Anarchic Spiritblade": {
+    "drop_level": 70,
+    "implicits": [
+      "100% of Physical Damage from Hits with this Weapon is Converted to a random Element"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 625,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 63,
+      "physical_damage_min": 34,
+      "range": 11
+    }
+  },
+  "Energy Blade": {
+    "drop_level": 1,
+    "implicits": [
+      null
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 588,
+      "critical_strike_chance": 700,
+      "physical_damage_max": 0,
+      "physical_damage_min": 0,
       "range": 11
     }
   }

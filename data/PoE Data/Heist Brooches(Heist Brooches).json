@@ -31,38 +31,6 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistNPCExperienceGain1_": {
-    "generation_type": "Prefix",
-    "name": "Footpad's",
-    "required_level": 1,
-    "text": "(3-4)% increased Job Experience gain",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCExperienceGain2": {
-    "generation_type": "Prefix",
-    "name": "Crook's",
-    "required_level": 45,
-    "text": "(5-6)% increased Job Experience gain",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCExperienceGain3_": {
-    "generation_type": "Prefix",
-    "name": "Criminal's",
-    "required_level": 75,
-    "text": "(7-8)% increased Job Experience gain",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCExperienceGain4_": {
-    "generation_type": "Prefix",
-    "name": "Mastermind's",
-    "required_level": 81,
-    "text": "(9-10)% increased Job Experience gain",
-    "weight": 400,
-    "influence": "Normal"
-  },
   "HeistNPCLockdownTimer1": {
     "generation_type": "Prefix",
     "name": "Slowing",
@@ -127,35 +95,35 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistContractGangCut1": {
-    "generation_type": "Suffix",
-    "name": "of Bartering",
+  "HeistNPCExperienceGain1_": {
+    "generation_type": "Prefix",
+    "name": "Footpad's",
     "required_level": 1,
-    "text": "The Ring's Cut reduced by (7-6)%",
+    "text": "(3-4)% increased Job Experience gain",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistContractGangCut2_": {
-    "generation_type": "Suffix",
-    "name": "of Negotiating",
+  "HeistNPCExperienceGain2": {
+    "generation_type": "Prefix",
+    "name": "Crook's",
     "required_level": 45,
-    "text": "The Ring's Cut reduced by (9-8)%",
+    "text": "(5-6)% increased Job Experience gain",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistContractGangCut3": {
-    "generation_type": "Suffix",
-    "name": "of Selfishness",
+  "HeistNPCExperienceGain3_": {
+    "generation_type": "Prefix",
+    "name": "Criminal's",
     "required_level": 75,
-    "text": "The Ring's Cut reduced by (12-10)%",
+    "text": "(7-8)% increased Job Experience gain",
     "weight": 600,
     "influence": "Normal"
   },
-  "HeistContractGangCut4": {
-    "generation_type": "Suffix",
-    "name": "of Greed",
+  "HeistNPCExperienceGain4_": {
+    "generation_type": "Prefix",
+    "name": "Mastermind's",
     "required_level": 81,
-    "text": "The Ring's Cut reduced by (15-13)%",
+    "text": "(9-10)% increased Job Experience gain",
     "weight": 400,
     "influence": "Normal"
   },
@@ -191,6 +159,38 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "HeistContractGangCut1": {
+    "generation_type": "Suffix",
+    "name": "of Bartering",
+    "required_level": 1,
+    "text": "The Ring's Cut reduced by (7-6)%",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut2_": {
+    "generation_type": "Suffix",
+    "name": "of Negotiating",
+    "required_level": 45,
+    "text": "The Ring's Cut reduced by (9-8)%",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut3": {
+    "generation_type": "Suffix",
+    "name": "of Selfishness",
+    "required_level": 75,
+    "text": "The Ring's Cut reduced by (12-10)%",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut4": {
+    "generation_type": "Suffix",
+    "name": "of Greed",
+    "required_level": 81,
+    "text": "The Ring's Cut reduced by (15-13)%",
+    "weight": 400,
+    "influence": "Normal"
+  },
   "HeistContractTravelCost1_": {
     "generation_type": "Suffix",
     "name": "of Efficiency",
@@ -220,6 +220,38 @@
     "name": "of Passage",
     "required_level": 81,
     "text": "(15-13)% reduced Travel Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedRarity1": {
+    "generation_type": "Prefix",
+    "name": "Shrewd",
+    "required_level": 1,
+    "text": "(23-26)% increased Rarity of Items dropped in Heists",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedRarity2_": {
+    "generation_type": "Prefix",
+    "name": "Tasteful",
+    "required_level": 45,
+    "text": "(27-30)% increased Rarity of Items dropped in Heists",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedRarity3": {
+    "generation_type": "Prefix",
+    "name": "Cultured",
+    "required_level": 75,
+    "text": "(31-35)% increased Rarity of Items dropped in Heists",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCIncreasedRarity4": {
+    "generation_type": "Prefix",
+    "name": "Sophisticated",
+    "required_level": 82,
+    "text": "(36-40)% increased Rarity of Items dropped in Heists",
     "weight": 400,
     "influence": "Normal"
   },
@@ -255,38 +287,6 @@
     "weight": 200,
     "influence": "Normal"
   },
-  "HeistNPCIncreasedRarity1": {
-    "generation_type": "Prefix",
-    "name": "Shrewd",
-    "required_level": 1,
-    "text": "(23-26)% increased Rarity of Items dropped in Heists",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCIncreasedRarity2_": {
-    "generation_type": "Prefix",
-    "name": "Tasteful",
-    "required_level": 45,
-    "text": "(27-30)% increased Rarity of Items dropped in Heists",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCIncreasedRarity3": {
-    "generation_type": "Prefix",
-    "name": "Cultured",
-    "required_level": 75,
-    "text": "(31-35)% increased Rarity of Items dropped in Heists",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCIncreasedRarity4": {
-    "generation_type": "Prefix",
-    "name": "Sophisticated",
-    "required_level": 82,
-    "text": "(36-40)% increased Rarity of Items dropped in Heists",
-    "weight": 400,
-    "influence": "Normal"
-  },
   "HeistNPCPrimaryTargetValue1": {
     "generation_type": "Prefix",
     "name": "Customer's",
@@ -316,102 +316,6 @@
     "name": "Sponsor's",
     "required_level": 82,
     "text": "(23-25)% increased Rogue's Marker value of primary Heist Target",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBlight1": {
-    "generation_type": "Suffix",
-    "name": "of Spores",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Blighted Maps and Catalysts",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBlight2__": {
-    "generation_type": "Suffix",
-    "name": "of Fungi",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Blighted Maps and Catalysts",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBlight3": {
-    "generation_type": "Suffix",
-    "name": "of Infestation",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Blighted Maps and Catalysts",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBlight4": {
-    "generation_type": "Suffix",
-    "name": "of the Blight",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Blighted Maps and Catalysts",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBreach1_": {
-    "generation_type": "Suffix",
-    "name": "of the Tear",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Breach Splinters",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBreach2_": {
-    "generation_type": "Suffix",
-    "name": "of the Hand",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Breach Splinters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBreach3": {
-    "generation_type": "Suffix",
-    "name": "of the Breach",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Breach Splinters",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleBreach4": {
-    "generation_type": "Suffix",
-    "name": "of the Domain",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Breach Splinters",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleCatalyst1": {
-    "generation_type": "Suffix",
-    "name": "of Powders",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Catalysts",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleCatalyst2_": {
-    "generation_type": "Suffix",
-    "name": "of Reactants",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Catalysts",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleCatalyst3": {
-    "generation_type": "Suffix",
-    "name": "of Concatenation",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Catalysts",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleCatalyst4": {
-    "generation_type": "Suffix",
-    "name": "of Catalysts",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Catalysts",
     "weight": 400,
     "influence": "Normal"
   },
@@ -447,102 +351,6 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistNPCChestDoubleDelirium1": {
-    "generation_type": "Suffix",
-    "name": "of Confusion",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Delirium Orbs and Splinters",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleDelirium2": {
-    "generation_type": "Suffix",
-    "name": "of Uncertainty",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Delirium Orbs and Splinters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleDelirium3": {
-    "generation_type": "Suffix",
-    "name": "of Voices",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Delirium Orbs and Splinters",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleDelirium4": {
-    "generation_type": "Suffix",
-    "name": "of Insanity",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Delirium Orbs and Splinters",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleDivination1": {
-    "generation_type": "Suffix",
-    "name": "of Cards",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Divination Cards",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleDivination2": {
-    "generation_type": "Suffix",
-    "name": "of Decks",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Divination Cards",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleDivination3_": {
-    "generation_type": "Suffix",
-    "name": "of Collections",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Divination Cards",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleDivination4": {
-    "generation_type": "Suffix",
-    "name": "of Compendiums",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Divination Cards",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleEssence1": {
-    "generation_type": "Suffix",
-    "name": "of Whispering",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Essences",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleEssence2": {
-    "generation_type": "Suffix",
-    "name": "of Weeping",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Essences",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleEssence3": {
-    "generation_type": "Suffix",
-    "name": "of Screaming",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Essences",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleEssence4": {
-    "generation_type": "Suffix",
-    "name": "of Deafening",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Essences",
-    "weight": 400,
-    "influence": "Normal"
-  },
   "HeistNPCChestDoubleJewel1": {
     "generation_type": "Suffix",
     "name": "of Glimmering",
@@ -572,38 +380,6 @@
     "name": "of Radiance",
     "required_level": 83,
     "text": "Heist Chests have a (13-15)% chance to Duplicate contained Jewels",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleLegion1": {
-    "generation_type": "Suffix",
-    "name": "of the Few",
-    "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Legion Splinters",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleLegion2_": {
-    "generation_type": "Suffix",
-    "name": "of the Many",
-    "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Legion Splinters",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleLegion3": {
-    "generation_type": "Suffix",
-    "name": "of the Countless",
-    "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Legion Splinters",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCChestDoubleLegion4": {
-    "generation_type": "Suffix",
-    "name": "of the Legion",
-    "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Legion Splinters",
     "weight": 400,
     "influence": "Normal"
   },
@@ -671,35 +447,131 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistNPCChestDoubleOil1": {
+  "HeistNPCChestDoubleDivination1": {
     "generation_type": "Suffix",
-    "name": "of Prayers",
+    "name": "of Cards",
     "required_level": 1,
-    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Oils",
+    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Divination Cards",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistNPCChestDoubleOil2": {
+  "HeistNPCChestDoubleDivination2": {
     "generation_type": "Suffix",
-    "name": "of Blessings",
+    "name": "of Decks",
     "required_level": 45,
-    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Oils",
+    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Divination Cards",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistNPCChestDoubleOil3": {
+  "HeistNPCChestDoubleDivination3_": {
     "generation_type": "Suffix",
-    "name": "of Consecrations",
+    "name": "of Collections",
     "required_level": 75,
-    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Oils",
+    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Divination Cards",
     "weight": 600,
     "influence": "Normal"
   },
-  "HeistNPCChestDoubleOil4_": {
+  "HeistNPCChestDoubleDivination4": {
     "generation_type": "Suffix",
-    "name": "of Anointments",
+    "name": "of Compendiums",
     "required_level": 83,
-    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Oils",
+    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Divination Cards",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleDelirium1": {
+    "generation_type": "Suffix",
+    "name": "of Confusion",
+    "required_level": 1,
+    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Delirium Orbs and Splinters",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleDelirium2": {
+    "generation_type": "Suffix",
+    "name": "of Uncertainty",
+    "required_level": 45,
+    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Delirium Orbs and Splinters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleDelirium3": {
+    "generation_type": "Suffix",
+    "name": "of Voices",
+    "required_level": 75,
+    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Delirium Orbs and Splinters",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleDelirium4": {
+    "generation_type": "Suffix",
+    "name": "of Insanity",
+    "required_level": 83,
+    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Delirium Orbs and Splinters",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleEssence1": {
+    "generation_type": "Suffix",
+    "name": "of Whispering",
+    "required_level": 1,
+    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Essences",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleEssence2": {
+    "generation_type": "Suffix",
+    "name": "of Weeping",
+    "required_level": 45,
+    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Essences",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleEssence3": {
+    "generation_type": "Suffix",
+    "name": "of Screaming",
+    "required_level": 75,
+    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Essences",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleEssence4": {
+    "generation_type": "Suffix",
+    "name": "of Deafening",
+    "required_level": 83,
+    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Essences",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleBreach1_": {
+    "generation_type": "Suffix",
+    "name": "of the Tear",
+    "required_level": 1,
+    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Breach Splinters",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleBreach2_": {
+    "generation_type": "Suffix",
+    "name": "of the Hand",
+    "required_level": 45,
+    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Breach Splinters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleBreach3": {
+    "generation_type": "Suffix",
+    "name": "of the Breach",
+    "required_level": 75,
+    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Breach Splinters",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleBreach4": {
+    "generation_type": "Suffix",
+    "name": "of the Domain",
+    "required_level": 83,
+    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Breach Splinters",
     "weight": 400,
     "influence": "Normal"
   },
@@ -732,6 +604,102 @@
     "name": "of Wings",
     "required_level": 83,
     "text": "Heist Chests have a (13-15)% chance to Duplicate contained Scarabs",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleCatalyst1": {
+    "generation_type": "Suffix",
+    "name": "of Powders",
+    "required_level": 1,
+    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Catalysts",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleCatalyst2_": {
+    "generation_type": "Suffix",
+    "name": "of Reactants",
+    "required_level": 45,
+    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Catalysts",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleCatalyst3": {
+    "generation_type": "Suffix",
+    "name": "of Concatenation",
+    "required_level": 75,
+    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Catalysts",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleCatalyst4": {
+    "generation_type": "Suffix",
+    "name": "of Catalysts",
+    "required_level": 83,
+    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Catalysts",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleLegion1": {
+    "generation_type": "Suffix",
+    "name": "of the Few",
+    "required_level": 1,
+    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Legion Splinters",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleLegion2_": {
+    "generation_type": "Suffix",
+    "name": "of the Many",
+    "required_level": 45,
+    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Legion Splinters",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleLegion3": {
+    "generation_type": "Suffix",
+    "name": "of the Countless",
+    "required_level": 75,
+    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Legion Splinters",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleLegion4": {
+    "generation_type": "Suffix",
+    "name": "of the Legion",
+    "required_level": 83,
+    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Legion Splinters",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleOil1": {
+    "generation_type": "Suffix",
+    "name": "of Prayers",
+    "required_level": 1,
+    "text": "Heist Chests have a (6-7)% chance to Duplicate contained Oils",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleOil2": {
+    "generation_type": "Suffix",
+    "name": "of Blessings",
+    "required_level": 45,
+    "text": "Heist Chests have a (8-9)% chance to Duplicate contained Oils",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleOil3": {
+    "generation_type": "Suffix",
+    "name": "of Consecrations",
+    "required_level": 75,
+    "text": "Heist Chests have a (10-12)% chance to Duplicate contained Oils",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCChestDoubleOil4_": {
+    "generation_type": "Suffix",
+    "name": "of Anointments",
+    "required_level": 83,
+    "text": "Heist Chests have a (13-15)% chance to Duplicate contained Oils",
     "weight": 400,
     "influence": "Normal"
   }

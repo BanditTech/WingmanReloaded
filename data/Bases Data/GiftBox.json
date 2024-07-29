@@ -5,10 +5,26 @@
     "inventory_height": 1,
     "inventory_width": 4,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
       "description": "",
       "directions": "Right click on this item to open it.",
       "stack_size": 1,
-      "stack_size_currency_tab": 0
+      "stack_size_currency_tab": 0,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
     }
   }
 }

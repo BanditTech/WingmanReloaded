@@ -6,52 +6,28 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
-  },
-  "Fire Arrow Quiver": {
-    "drop_level": 9,
-    "implicits": [
-      "Adds 3 to 5 Fire Damage to Attacks"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Broadhead Arrow Quiver": {
-    "drop_level": 49,
-    "implicits": [
-      "(8-10)% increased Attack Speed"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Penetrating Arrow Quiver": {
-    "drop_level": 25,
-    "implicits": [
-      "Arrows Pierce an additional Target"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Spike-Point Arrow Quiver": {
-    "drop_level": 40,
-    "implicits": [
-      "(20-30)% increased Critical Strike Chance with Bows"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {}
-  },
-  "Ornate Quiver": {
-    "drop_level": 45,
-    "implicits": [
-      "Has 1 Socket"
-    ],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Rugged Quiver": {
     "drop_level": 2,
@@ -60,7 +36,28 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Conductive Quiver": {
     "drop_level": 2,
@@ -69,7 +66,28 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Heavy Quiver": {
     "drop_level": 7,
@@ -78,7 +96,28 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Light Quiver": {
     "drop_level": 15,
@@ -87,16 +126,58 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Serrated Arrow Quiver": {
-    "drop_level": 4,
+    "drop_level": 1,
     "implicits": [
-      "Adds 1 to 4 Physical Damage to Attacks"
+      "1 to 4 Added Physical Damage with Bow Attacks"
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Two-Point Arrow Quiver": {
     "drop_level": 36,
@@ -105,7 +186,28 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Sharktooth Arrow Quiver": {
     "drop_level": 14,
@@ -114,7 +216,28 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Blunt Arrow Quiver": {
     "drop_level": 31,
@@ -123,43 +246,178 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
-  "Artillery Quiver": {
-    "drop_level": 74,
+  "Fire Arrow Quiver": {
+    "drop_level": 9,
     "implicits": [
-      "(20-30)% increased Totem Placement speed"
+      "Adds 3 to 5 Fire Damage to Attacks"
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
-  "Vile Arrow Quiver": {
-    "drop_level": 55,
+  "Broadhead Arrow Quiver": {
+    "drop_level": 49,
     "implicits": [
-      "Gain (10-15)% of Physical Damage as Extra Chaos Damage"
+      "(8-10)% increased Attack Speed"
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
-  "Heavy Arrow Quiver": {
-    "drop_level": 61,
+  "Penetrating Arrow Quiver": {
+    "drop_level": 25,
     "implicits": [
-      "Adds (12-15) to (24-27) Physical Damage to Attacks"
+      "Arrows Pierce an additional Target"
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
-  "Primal Arrow Quiver": {
-    "drop_level": 66,
+  "Spike-Point Arrow Quiver": {
+    "drop_level": 40,
     "implicits": [
-      "(20-30)% increased Elemental Damage with Attack Skills"
+      "(20-30)% increased Critical Strike Chance with Bows"
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Ornate Quiver": {
+    "drop_level": 45,
+    "implicits": [
+      "Has 1 Socket"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Feathered Arrow Quiver": {
     "drop_level": 20,
@@ -168,7 +426,28 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   },
   "Blazing Arrow Quiver": {
     "drop_level": 45,
@@ -177,6 +456,147 @@
     ],
     "inventory_height": 3,
     "inventory_width": 2,
-    "properties": {}
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Vile Arrow Quiver": {
+    "drop_level": 55,
+    "implicits": [
+      "Gain (10-15)% of Physical Damage as Extra Chaos Damage"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Heavy Arrow Quiver": {
+    "drop_level": 61,
+    "implicits": [
+      "Adds (12-15) to (24-27) Physical Damage to Attacks"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Primal Arrow Quiver": {
+    "drop_level": 66,
+    "implicits": [
+      "(20-30)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
+  },
+  "Artillery Quiver": {
+    "drop_level": 74,
+    "implicits": [
+      "(20-30)% increased Totem Placement speed"
+    ],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": null,
+      "critical_strike_chance": null,
+      "physical_damage_max": null,
+      "physical_damage_min": null,
+      "range": null
+    }
   }
 }

@@ -31,6 +31,70 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "HeistNPCLockdownTimer1": {
+    "generation_type": "Prefix",
+    "name": "Slowing",
+    "required_level": 1,
+    "text": "(4-5)% increased time before Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer2": {
+    "generation_type": "Prefix",
+    "name": "Stalling",
+    "required_level": 45,
+    "text": "(6-7)% increased time before Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer3_": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "(7-8)% increased time before Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer4_": {
+    "generation_type": "Prefix",
+    "name": "Interrupting",
+    "required_level": 81,
+    "text": "(9-10)% increased time before Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed1___": {
+    "generation_type": "Prefix",
+    "name": "Practiced",
+    "required_level": 1,
+    "text": "(9-11)% increased Job speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed2": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 45,
+    "text": "(12-14)% increased Job speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed3": {
+    "generation_type": "Prefix",
+    "name": "Professional",
+    "required_level": 75,
+    "text": "(15-17)% increased Job speed",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed4__": {
+    "generation_type": "Prefix",
+    "name": "Masterful",
+    "required_level": 81,
+    "text": "(18-20)% increased Job speed",
+    "weight": 400,
+    "influence": "Normal"
+  },
   "HeistNPCExperienceGain1_": {
     "generation_type": "Prefix",
     "name": "Footpad's",
@@ -103,99 +167,43 @@
     "weight": 100,
     "influence": "Normal"
   },
-  "HeistNPCFlatLockdownTime1": {
+  "HeistPerceptionLevel1": {
     "generation_type": "Prefix",
-    "name": "Hampering",
-    "required_level": 1,
-    "text": "+8 seconds to Lockdown Timer",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCFlatLockdownTime2": {
-    "generation_type": "Prefix",
-    "name": "Hindering",
-    "required_level": 45,
-    "text": "+12 seconds to Lockdown Timer",
-    "weight": 500,
-    "influence": "Normal"
-  },
-  "HeistNPCFlatLockdownTime3": {
-    "generation_type": "Prefix",
-    "name": "Delaying",
-    "required_level": 75,
-    "text": "+16 seconds to Lockdown Timer",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCFlatLockdownTime4_": {
-    "generation_type": "Prefix",
-    "name": "Stalling",
+    "name": "Revealing",
     "required_level": 83,
-    "text": "+20 seconds to Lockdown Timer",
-    "weight": 300,
+    "text": "+1 to Perception Level for Heists",
+    "weight": 100,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer1": {
+  "HeistPerceptionExperienceGain1_": {
     "generation_type": "Prefix",
-    "name": "Slowing",
+    "name": "Simple",
     "required_level": 1,
-    "text": "(4-5)% increased time before Lockdown",
+    "text": "(3-4)% increased Perception Experience gained",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer2": {
+  "HeistPerceptionExperienceGain2": {
     "generation_type": "Prefix",
-    "name": "Stalling",
+    "name": "Complicated",
     "required_level": 45,
-    "text": "(6-7)% increased time before Lockdown",
+    "text": "(5-6)% increased Perception Experience gained",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer3_": {
+  "HeistPerceptionExperienceGain3": {
     "generation_type": "Prefix",
-    "name": "Delaying",
+    "name": "Complex",
     "required_level": 75,
-    "text": "(7-8)% increased time before Lockdown",
+    "text": "(7-8)% increased Perception Experience gained",
     "weight": 600,
     "influence": "Normal"
   },
-  "HeistNPCLockdownTimer4_": {
+  "HeistPerceptionExperienceGain4": {
     "generation_type": "Prefix",
-    "name": "Interrupting",
-    "required_level": 81,
-    "text": "(9-10)% increased time before Lockdown",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed1___": {
-    "generation_type": "Prefix",
-    "name": "Practiced",
-    "required_level": 1,
-    "text": "(9-11)% increased Job speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed2": {
-    "generation_type": "Prefix",
-    "name": "Skillful",
-    "required_level": 45,
-    "text": "(12-14)% increased Job speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed3": {
-    "generation_type": "Prefix",
-    "name": "Professional",
-    "required_level": 75,
-    "text": "(15-17)% increased Job speed",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed4__": {
-    "generation_type": "Prefix",
-    "name": "Masterful",
-    "required_level": 81,
-    "text": "(18-20)% increased Job speed",
+    "name": "Specialised",
+    "required_level": 82,
+    "text": "(9-10)% increased Perception Experience gained",
     "weight": 400,
     "influence": "Normal"
   },
@@ -231,76 +239,36 @@
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistPerceptionExperienceGain1_": {
+  "HeistNPCFlatLockdownTime1": {
     "generation_type": "Prefix",
-    "name": "Simple",
+    "name": "Hampering",
     "required_level": 1,
-    "text": "(3-4)% increased Perception Experience gained",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistPerceptionExperienceGain2": {
-    "generation_type": "Prefix",
-    "name": "Complicated",
-    "required_level": 45,
-    "text": "(5-6)% increased Perception Experience gained",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistPerceptionExperienceGain3": {
-    "generation_type": "Prefix",
-    "name": "Complex",
-    "required_level": 75,
-    "text": "(7-8)% increased Perception Experience gained",
+    "text": "+8 seconds to Lockdown Timer",
     "weight": 600,
     "influence": "Normal"
   },
-  "HeistPerceptionExperienceGain4": {
+  "HeistNPCFlatLockdownTime2": {
     "generation_type": "Prefix",
-    "name": "Specialised",
-    "required_level": 82,
-    "text": "(9-10)% increased Perception Experience gained",
+    "name": "Hindering",
+    "required_level": 45,
+    "text": "+12 seconds to Lockdown Timer",
+    "weight": 500,
+    "influence": "Normal"
+  },
+  "HeistNPCFlatLockdownTime3": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "+16 seconds to Lockdown Timer",
     "weight": 400,
     "influence": "Normal"
   },
-  "HeistPerceptionLevel1": {
+  "HeistNPCFlatLockdownTime4_": {
     "generation_type": "Prefix",
-    "name": "Revealing",
+    "name": "Stalling",
     "required_level": 83,
-    "text": "+1 to Perception Level for Heists",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "HeistContractGangCut1": {
-    "generation_type": "Suffix",
-    "name": "of Bartering",
-    "required_level": 1,
-    "text": "The Ring's Cut reduced by (7-6)%",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractGangCut2_": {
-    "generation_type": "Suffix",
-    "name": "of Negotiating",
-    "required_level": 45,
-    "text": "The Ring's Cut reduced by (9-8)%",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractGangCut3": {
-    "generation_type": "Suffix",
-    "name": "of Selfishness",
-    "required_level": 75,
-    "text": "The Ring's Cut reduced by (12-10)%",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractGangCut4": {
-    "generation_type": "Suffix",
-    "name": "of Greed",
-    "required_level": 81,
-    "text": "The Ring's Cut reduced by (15-13)%",
-    "weight": 400,
+    "text": "+20 seconds to Lockdown Timer",
+    "weight": 300,
     "influence": "Normal"
   },
   "HeistContractNPCCost1": {
@@ -332,6 +300,38 @@
     "name": "of Charisma",
     "required_level": 81,
     "text": "(15-13)% reduced Hiring Fee",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut1": {
+    "generation_type": "Suffix",
+    "name": "of Bartering",
+    "required_level": 1,
+    "text": "The Ring's Cut reduced by (7-6)%",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut2_": {
+    "generation_type": "Suffix",
+    "name": "of Negotiating",
+    "required_level": 45,
+    "text": "The Ring's Cut reduced by (9-8)%",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut3": {
+    "generation_type": "Suffix",
+    "name": "of Selfishness",
+    "required_level": 75,
+    "text": "The Ring's Cut reduced by (12-10)%",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistContractGangCut4": {
+    "generation_type": "Suffix",
+    "name": "of Greed",
+    "required_level": 81,
+    "text": "The Ring's Cut reduced by (15-13)%",
     "weight": 400,
     "influence": "Normal"
   },

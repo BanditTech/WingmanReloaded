@@ -1,9 +1,57 @@
 {
-  "Abyss Jewels": [
-    "Hypnotic Eye Jewel",
-    "Murderous Eye Jewel",
-    "Searching Eye Jewel",
-    "Ghastly Eye Jewel"
+  "Two Hand Swords": [
+    "Two Hand Swords"
+  ],
+  "Wands": [
+    "Wands",
+    "Minion Wands"
+  ],
+  "Daggers": [
+    "Daggers"
+  ],
+  "Rune Daggers": [
+    "Rune Daggers"
+  ],
+  "Claws": [
+    "Claws"
+  ],
+  "One Hand Axes": [
+    "One Hand Axes"
+  ],
+  "One Hand Swords": [
+    "One Hand Swords"
+  ],
+  "Thrusting One Hand Swords": [
+    "Thrusting One Hand Swords"
+  ],
+  "One Hand Maces": [
+    "One Hand Maces"
+  ],
+  "Sceptres": [
+    "Sceptres"
+  ],
+  "Bows": [
+    "Bows"
+  ],
+  "Staves": [
+    "Staves"
+  ],
+  "Warstaves": [
+    "Warstaves"
+  ],
+  "Two Hand Axes": [
+    "Two Hand Axes"
+  ],
+  "Two Hand Maces": [
+    "Two Hand Maces"
+  ],
+  "Fishing Rods": [
+    "Fishing Rods"
+  ],
+  "Rings": [
+    "Rings",
+    "Unset Rings",
+    "Minion Rings"
   ],
   "Amulets": [
     "Amulets"
@@ -11,8 +59,22 @@
   "Belts": [
     "Belts"
   ],
-  "Blueprints": [
-    "Blueprints"
+  "Shields": [
+    "dex_armour",
+    "dex_int_armour",
+    "int_armour",
+    "str_armour",
+    "str_dex_armour",
+    "str_int_armour"
+  ],
+  "Helmets": [
+    "dex_armour",
+    "dex_int_armour",
+    "int_armour",
+    "str_armour",
+    "str_dex_armour",
+    "str_int_armour",
+    "ward_armour"
   ],
   "Body Armours": [
     "dex_armour",
@@ -32,24 +94,6 @@
     "str_int_armour",
     "ward_armour"
   ],
-  "Bows": [
-    "Bows"
-  ],
-  "Claws": [
-    "Claws"
-  ],
-  "Contracts": [
-    "Contracts"
-  ],
-  "Daggers": [
-    "Daggers"
-  ],
-  "Expedition Logbooks": [
-    "Expedition Logbooks"
-  ],
-  "Fishing Rods": [
-    "Fishing Rods"
-  ],
   "Gloves": [
     "dex_armour",
     "dex_int_armour",
@@ -59,51 +103,33 @@
     "str_int_armour",
     "ward_armour"
   ],
-  "Heist Brooches": [
-    "Heist Brooches"
-  ],
-  "Heist Cloaks": [
-    "Heist Cloaks"
-  ],
-  "Heist Gear": [
-    "Weapon Caster",
-    "Weapon Melee",
-    "Weapon Ranged"
-  ],
-  "Heist Tools": [
-    "Equipment Agility",
-    "Equipment Brute Force",
-    "Equipment Counter Thaumaturge",
-    "Equipment Deception",
-    "Equipment Demolition",
-    "Equipment Engineering",
-    "Equipment Lockpick",
-    "Equipment Perception",
-    "Equipment Trap Disarmament"
-  ],
-  "Helmets": [
-    "dex_armour",
-    "dex_int_armour",
-    "int_armour",
-    "str_armour",
-    "str_dex_armour",
-    "str_int_armour",
-    "ward_armour"
-  ],
-  "Hybrid Flasks": [
-    "Hybrid Flasks"
-  ],
-  "Jewels": [
-    "Prismatic Jewel",
-    "Crimson Jewel",
-    "Cobalt Jewel",
-    "Viridian Jewel"
-  ],
   "Life Flasks": [
     "Life Flasks"
   ],
   "Mana Flasks": [
     "Mana Flasks"
+  ],
+  "Hybrid Flasks": [
+    "Hybrid Flasks"
+  ],
+  "Utility Flasks": [
+    "Utility Flasks",
+    "Expedition Flasks"
+  ],
+  "Quivers": [
+    "Quivers"
+  ],
+  "Jewels": [
+    "Crimson Jewel",
+    "Viridian Jewel",
+    "Cobalt Jewel",
+    "Prismatic Jewel"
+  ],
+  "Abyss Jewels": [
+    "Murderous Eye Jewel",
+    "Searching Eye Jewel",
+    "Hypnotic Eye Jewel",
+    "Ghastly Eye Jewel"
   ],
   "Maps": [
     "low_tier_map",
@@ -111,126 +137,100 @@
     "top_tier_map",
     "uber_tier_map"
   ],
-  "One Hand Axes": [
-    "One Hand Axes"
+  "Contracts": [
+    "Contracts"
   ],
-  "One Hand Maces": [
-    "One Hand Maces"
+  "Blueprints": [
+    "Blueprints"
   ],
-  "One Hand Swords": [
-    "One Hand Swords"
+  "Heist Gear": [
+    "Weapon Melee",
+    "Weapon Ranged",
+    "Weapon Caster"
   ],
-  "Quivers": [
-    "Quivers"
+  "Heist Tools": [
+    "Equipment Lockpick",
+    "Equipment Brute Force",
+    "Equipment Perception",
+    "Equipment Demolition",
+    "Equipment Counter Thaumaturge",
+    "Equipment Trap Disarmament",
+    "Equipment Agility",
+    "Equipment Deception",
+    "Equipment Engineering"
+  ],
+  "Heist Cloaks": [
+    "Heist Cloaks"
+  ],
+  "Heist Brooches": [
+    "Heist Brooches"
+  ],
+  "Expedition Logbooks": [
+    "Expedition Logbooks"
   ],
   "Relics": [
-    "Large Relic",
+    "Small Relic",
     "Medium Relic",
-    "Small Relic"
-  ],
-  "Rings": [
-    "Rings",
-    "Minion Rings",
-    "Unset Rings"
-  ],
-  "Rune Daggers": [
-    "Rune Daggers"
+    "Large Relic"
   ],
   "Sanctified Relics": [
+    "STR Special Relic",
     "DEX Special Relic",
-    "INT Special Relic",
-    "STR Special Relic"
-  ],
-  "Sceptres": [
-    "Sceptres"
-  ],
-  "Shields": [
-    "dex_armour",
-    "dex_int_armour",
-    "int_armour",
-    "str_armour",
-    "str_dex_armour",
-    "str_int_armour"
-  ],
-  "Staves": [
-    "Staves"
-  ],
-  "Thrusting One Hand Swords": [
-    "Thrusting One Hand Swords"
-  ],
-  "Two Hand Axes": [
-    "Two Hand Axes"
-  ],
-  "Two Hand Maces": [
-    "Two Hand Maces"
-  ],
-  "Two Hand Swords": [
-    "Two Hand Swords"
-  ],
-  "Utility Flasks": [
-    "Expedition Flasks",
-    "Utility Flasks"
-  ],
-  "Wands": [
-    "Minion Wands",
-    "Wands"
-  ],
-  "Warstaves": [
-    "Warstaves"
+    "INT Special Relic"
   ],
   "Small Cluster Jewels": [
-    "Maximum life",
-    "Chance to dodge attacks",
-    "Cold resistance",
-    "Chaos resistance",
+    "Maximum Life",
     "Armour",
     "Evasion",
-    "Fire resistance",
-    "Maximum mana",
-    "Curse effect small",
-    "Maximum energy shield",
-    "Lightning resistance",
-    "Reservation efficiency small"
+    "Reservation Efficiency Small",
+    "Lightning Resistance",
+    "Cold Resistance",
+    "Fire Resistance",
+    "Maximum Energy Shield",
+    "Chance To Dodge Attacks",
+    "Maximum Mana",
+    "Chaos Resistance",
+    "Curse Effect Small"
   ],
   "Medium Cluster Jewels": [
-    "Area damage",
-    "Brand damage",
-    "Channelling skill damage",
-    "Critical chance",
-    "Fire damage over time multiplier",
-    "Chaos damage over time multiplier",
-    "Physical damage over time multiplier",
-    "Cold damage over time multiplier",
-    "Damage over time multiplier",
-    "Effect of non-damaging ailments",
-    "Life and mana recovery from flasks",
-    "Flask duration",
-    "Damage while you have a herald",
-    "Minion damage while you have a herald",
-    "Minion life",
-    "Projectile damage",
-    "Totem damage",
-    "Trap and mine damage",
-    "Warcry buff effect"
+    "Critical Chance",
+    "Damage While You Have A Herald",
+    "Minion Damage While You Have A Herald",
+    "Area Damage",
+    "Fire Damage Over Time Multiplier",
+    "Effect Of Non-Damaging Ailments",
+    "Totem Damage",
+    "Channelling Skill Damage",
+    "Flask Duration",
+    "Life And Mana Recovery From Flasks",
+    "Warcry Buff Effect",
+    "Physical Damage Over Time Multiplier",
+    "Cold Damage Over Time Multiplier",
+    "Chaos Damage Over Time Multiplier",
+    "Minion Life",
+    "Damage Over Time Multiplier",
+    "Projectile Damage",
+    "Brand Damage",
+    "Trap And Mine Damage"
   ],
   "Large Cluster Jewels": [
-    "Axe and sword damage",
-    "Mace and staff damage",
-    "Dagger and claw damage",
-    "Bow damage",
-    "Wand damage",
-    "Damage with two handed melee weapons",
-    "Attack damage while dual wielding ",
-    "Attack damage while holding a shield",
-    "Attack damage ",
-    "Spell damage",
-    "Chaos damage",
-    "Cold damage",
-    "Elemental damage",
-    "Fire damage",
-    "Lightning damage",
-    "Minion damage",
-    "Physical damage"
+    "Attack Damage While Holding A Shield",
+    "Physical Damage",
+    "Attack Damage",
+    "Axe And Sword Damage",
+    "Mace And Staff Damage",
+    "Dagger And Claw Damage",
+    "Bow Damage",
+    "Wand Damage",
+    "Damage With Two Handed Melee Weapons",
+    "Attack Damage While Dual Wielding",
+    "Chaos Damage",
+    "Elemental Damage",
+    "Lightning Damage",
+    "Cold Damage",
+    "Fire Damage",
+    "Spell Damage",
+    "Minion Damage"
   ],
   "Sextant": [
     "Elevated Sextant",

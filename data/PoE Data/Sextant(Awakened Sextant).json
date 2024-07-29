@@ -1,81 +1,108 @@
 {
-  "MapAtlasAdditionalAbysses2": {
-    "text": "Your Maps can contain Abysses | Your Maps contain an additional Abyss",
-    "weight": 250
-  },
-  "MapAtlasAdditionalBreaches2": {
-    "text": "Your Maps contain an additional Breach | Your Maps can contain Breaches",
-    "weight": 250
-  },
-  "MapAtlasAdditionalEssencesAndRemnantChance_": {
-    "text": "Your Maps contain an additional Essence | Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption",
-    "weight": 500
-  },
-  "MapAtlasBetrayalIntelligence": {
-    "text": "100% increased Intelligence gained from Immortal Syndicate targets encountered in your Maps",
-    "weight": 50
-  },
-  "MapAtlasBeyondAndExtraBeyondDemonChance": {
-    "text": "Slaying Enemies close together can attract monsters from Beyond this realm | 25% increased Beyond Demon Pack Size in your Maps",
-    "weight": 250
-  },
-  "MapAtlasBlight": {
-    "text": "Your Maps contain a Blight Encounter",
-    "weight": 250
-  },
-  "MapAtlasBlightOilsChanceToDropOneTierHigher": {
-    "text": "Oils found in your Maps are 1 tier higher | Cost of Building and Upgrading Blight Towers in your Maps is doubled",
-    "weight": 50
-  },
-  "MapAtlasBodyguardsAndBossMapDrops2": {
-    "text": "Map Bosses are accompanied by Bodyguards | An additional Map drops on Completing your Maps",
-    "weight": 250
-  },
   "MapAtlasBossAdditionalUnique": {
     "text": "Map Bosses drop an additional Unique Item",
     "weight": 500
   },
-  "MapAtlasBossDropsConquerorMap": {
-    "text": "An additional Conqueror Map drops on Completing your Maps (Tier 14+) | Map Bosses have 200% more Life | Map Bosses deal 100% more Damage",
+  "MapAtlasBossDropsShaperGuardianMap": {
+    "text": "An additional Shaper Guardian Map drops on Completing your Maps (Tier 14+) | Map Bosses have 200% more Life | Map Bosses deal 100% more Damage",
     "weight": 50
   },
   "MapAtlasBossDropsElderGuardianMap": {
     "text": "An additional Elder Guardian Map drops on Completing your Maps (Tier 14+) | Map Bosses have 200% more Life | Map Bosses deal 100% more Damage",
     "weight": 50
   },
-  "MapAtlasBossDropsShaperGuardianMap": {
-    "text": "An additional Shaper Guardian Map drops on Completing your Maps (Tier 14+) | Map Bosses have 200% more Life | Map Bosses deal 100% more Damage",
+  "MapAtlasBossDropsConquerorMap": {
+    "text": "An additional Conqueror Map drops on Completing your Maps (Tier 14+) | Map Bosses have 200% more Life | Map Bosses deal 100% more Damage",
     "weight": 50
   },
-  "MapAtlasBreachIsChaos": {
-    "text": "Breaches in your Maps belong to Chayula | Breaches in your Maps contain 3 additional Clasped Hands",
-    "weight": 50
+  "MapAtlasUnIDedMapsGrantQuantity3": {
+    "text": "20% increased Pack Size in your Unidentified Maps",
+    "weight": 250
   },
-  "MapAtlasBreachIsCold": {
-    "text": "Breaches in your Maps belong to Tul | Breaches in your Maps contain 3 additional Clasped Hands",
-    "weight": 50
+  "MapAtlasContainsAdditionalRandomBoss": {
+    "text": "Your Maps are inhabited by an additional Invasion Boss"
   },
-  "MapAtlasBreachIsFire": {
-    "text": "Breaches in your Maps belong to Xoph | Breaches in your Maps contain 3 additional Clasped Hands",
-    "weight": 50
+  "MapAtlasFireDamageAndPacks3": {
+    "text": "Your Maps contain 6 additional packs of Monsters that deal Fire Damage | Players and Monsters take 12% increased Fire Damage",
+    "weight": 1000
   },
-  "MapAtlasBreachIsLightning": {
-    "text": "Breaches in your Maps belong to Esh | Breaches in your Maps contain 3 additional Clasped Hands",
-    "weight": 50
+  "MapAtlasColdDamageAndPacks3": {
+    "text": "Your Maps contain 6 additional packs of Monsters that deal Cold Damage | Players and Monsters take 12% increased Cold Damage",
+    "weight": 1000
   },
-  "MapAtlasBreachIsPhysical": {
-    "text": "Breaches in your Maps belong to Uul-Netol | Breaches in your Maps contain 3 additional Clasped Hands",
-    "weight": 50
+  "MapAtlasLightningDamageAndPacks3": {
+    "text": "Your Maps contain 6 additional packs of Monsters that deal Lightning Damage | Players and Monsters take 12% increased Lightning Damage",
+    "weight": 1000
   },
-  "MapAtlasCapturedBeastsDuplicateChance": {
-    "text": "Create a copy of Beasts Captured in your Maps",
-    "weight": 50
+  "MapAtlasPhysicalDamageAndPacks3_": {
+    "text": "Your Maps contain 6 additional packs of Monsters that deal Physical Damage | Players and Monsters take 12% increased Physical Damage",
+    "weight": 1000
   },
   "MapAtlasChaosDamageAndPacks3": {
     "text": "Your Maps contain 6 additional packs of Monsters that deal Chaos Damage | Players and Monsters take 12% increased Chaos Damage",
     "weight": 1000
   },
-  "MapAtlasClustersOfBeaconBarrels3": {
+  "MapAtlasUniqueMonstersDropCorruptedItems2_": {
+    "text": "Unique Monsters drop Corrupted Items",
+    "weight": 250
+  },
+  "MapAtlasMapsHave20PercentQuality": {
+    "text": "Your Maps have 20% Quality | Map Bosses deal 20% increased Damage",
+    "weight": 500
+  },
+  "MapAtlasMapQualityBonusAlsoAppliesToRarity": {
+    "text": "Quality bonus of your Maps also applies to Rarity of Items found | Map Bosses have 20% increased Life",
+    "weight": 500
+  },
+  "MapAtlasFishy": {
+    "text": "Your Maps are Alluring",
+    "weight": 10
+  },
+  "MapAtlasContainsEinharMission2_": {
+    "text": "Your Maps contain Einhar",
+    "weight": 125
+  },
+  "MapAtlasContainsAlvaMission2": {
+    "text": "Your Maps contain Alva",
+    "weight": 125
+  },
+  "MapAtlasContainsNikoMission2": {
+    "text": "Your Maps contain Niko",
+    "weight": 125
+  },
+  "MapAtlasContainsJunMission2": {
+    "text": "Your Maps contain Jun",
+    "weight": 125
+  },
+  "MapAtlasStrongboxesAreCorruptedAndUnided2_": {
+    "text": "Strongboxes in your Maps are Corrupted | Your Maps contain 2 additional Strongboxes | Strongboxes in your Maps are at least Rare",
+    "weight": 500
+  },
+  "MapAtlasCorruptedMapBossesDropAdditionalVaalItems2": {
+    "text": "Map Bosses of your Corrupted Maps drop 2 additional Vaal Items | Items found in your Maps have 5% chance to be Corrupted",
+    "weight": 500
+  },
+  "MapAtlasMagicPackSize3": {
+    "text": "25% increased Magic Pack Size",
+    "weight": 500
+  },
+  "MapAtlasRogueExilesDamageAndDropAdditionalJewels": {
+    "text": "Rogue Exiles deal 20% increased Damage | Rogue Exiles in your Maps have 20% increased Life | Rogue Exiles drop 2 additional Jewels | Your Maps are inhabited by 2 additional Rogue Exiles",
+    "weight": 500
+  },
+  "MapAtlasMagicAndRareMapsHaveAdditionalPacks3": {
+    "text": "Your Magic Maps contain 4 additional packs of Magic Monsters | Your Rare Maps contain 4 additional Rare Monster packs | Your Normal Maps contain 4 additional packs of Normal Monsters",
+    "weight": 1000
+  },
+  "MapAtlasReducedReflectedDamageTakenMirroredRares3": {
+    "text": "Players and their Minions cannot take Reflected Damage | Your Maps contain 4 additional Packs with Mirrored Rare Monsters",
+    "weight": 1000
+  },
+  "MapAtlasClustersOfWealthyBarrels3": {
+    "text": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
+    "weight": 50
+  },
+  "MapAtlasClustersOfVolatileBarrels3__": {
     "text": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
     "weight": 250
   },
@@ -87,76 +114,101 @@
     "text": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
     "weight": 250
   },
-  "MapAtlasClustersOfVolatileBarrels3__": {
+  "MapAtlasClustersOfBeaconBarrels3": {
     "text": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
     "weight": 250
   },
-  "MapAtlasClustersOfWealthyBarrels3": {
-    "text": "Your Maps contain 25 additional Clusters of Mysterious Barrels",
-    "weight": 50
+  "MapAtlasStrongboxMonstersEnrageAndDrops": {
+    "text": "Strongbox Monsters have 500% increased Item Quantity | Strongbox Monsters are Enraged | Your Maps contain an additional Strongbox",
+    "weight": 250
   },
-  "MapAtlasColdDamageAndPacks3": {
-    "text": "Your Maps contain 6 additional packs of Monsters that deal Cold Damage | Players and Monsters take 12% increased Cold Damage",
+  "MapAtlasHighValueEnemiesOnOwnTeam": {
+    "text": "Your Maps contain hunted traitors",
+    "weight": 250
+  },
+  "MapAtlasMontersThatConvertOnDeath3": {
+    "text": "Your Maps contain 6 additional packs of Monsters that Convert when Killed",
     "weight": 1000
   },
-  "MapAtlasContainsAdditionalRandomBoss": {
-    "text": "Your Maps are inhabited by an additional Invasion Boss"
+  "MapAtlasInstantFlasksAndHealingMonsters3": {
+    "text": "Player's Life and Mana Recovery from Flasks are instant | Your Maps contain 6 additional packs of Monsters that Heal",
+    "weight": 1000
   },
-  "MapAtlasContainsAlvaMission2": {
-    "text": "Your Maps contain Alva",
-    "weight": 125
-  },
-  "MapAtlasContainsEinharMission2_": {
-    "text": "Your Maps contain Einhar",
-    "weight": 125
-  },
-  "MapAtlasContainsJunMission2": {
-    "text": "Your Maps contain Jun",
-    "weight": 125
-  },
-  "MapAtlasContainsNikoMission2": {
-    "text": "Your Maps contain Niko",
-    "weight": 125
-  },
-  "MapAtlasCorruptedDropWithExtraVaalPacks3____": {
-    "text": "Your Maps contain 6 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 25% chance to be Corrupted",
+  "MapAtlasBodyguardsAndBossMapDrops2": {
+    "text": "Map Bosses are accompanied by Bodyguards | An additional Map drops on Completing your Maps",
     "weight": 250
   },
-  "MapAtlasCorruptedMapBossesDropAdditionalVaalItems2": {
-    "text": "Map Bosses of your Corrupted Maps drop 2 additional Vaal Items | Items found in your Maps have 5% chance to be Corrupted",
+  "MapAtlasAdditionalBreaches2": {
+    "text": "Your Maps contain an additional Breach | Your Maps can contain Breaches",
+    "weight": 250
+  },
+  "MapAtlasBreachIsFire": {
+    "text": "Breaches in your Maps belong to Xoph | Breaches in your Maps contain 3 additional Clasped Hands",
+    "weight": 50
+  },
+  "MapAtlasBreachIsCold": {
+    "text": "Breaches in your Maps belong to Tul | Breaches in your Maps contain 3 additional Clasped Hands",
+    "weight": 50
+  },
+  "MapAtlasBreachIsLightning": {
+    "text": "Breaches in your Maps belong to Esh | Breaches in your Maps contain 3 additional Clasped Hands",
+    "weight": 50
+  },
+  "MapAtlasBreachIsPhysical": {
+    "text": "Breaches in your Maps belong to Uul-Netol | Breaches in your Maps contain 3 additional Clasped Hands",
+    "weight": 50
+  },
+  "MapAtlasBreachIsChaos": {
+    "text": "Breaches in your Maps belong to Chayula | Breaches in your Maps contain 3 additional Clasped Hands",
+    "weight": 50
+  },
+  "MapAtlasAdditionalAbysses2": {
+    "text": "Your Maps can contain Abysses | Your Maps contain an additional Abyss",
+    "weight": 250
+  },
+  "MapAtlasGloomShrineEffectAndDuration2": {
+    "text": "50% increased Duration of Shrine Effects on Players in your Maps | Your Maps contain an additional Gloom Shrine",
+    "weight": 1000
+  },
+  "MapAtlasResonatingShrineEffectAndDuration2": {
+    "text": "50% increased Duration of Shrine Effects on Players in your Maps | Your Maps contain an additional Resonating Shrine",
+    "weight": 1000
+  },
+  "MapAtlasAdditionalEssencesAndRemnantChance_": {
+    "text": "Your Maps contain an additional Imprisoned Monster | Monsters Imprisoned by Essences have a 50% chance to contain a Remnant of Corruption",
     "weight": 500
   },
-  "MapAtlasDelirium": {
-    "text": "Your Maps contain a Mirror of Delirium",
-    "weight": 100
+  "MapAtlasMapDropsAreCorruptedAndHave8Modifiers": {
+    "text": "Maps found in your Maps are Corrupted with 8 Modifiers",
+    "weight": 50
   },
-  "MapAtlasDeliriumRewardsFillFaster": {
-    "text": "Delirium Reward Bars fill 100% faster in your Maps",
+  "MapAtlasCapturedBeastsDuplicateChance": {
+    "text": "Create a copy of Beasts Captured in your Maps",
     "weight": 50
   },
   "MapAtlasExpeditionAdditionalRunicMonsterMarkers": {
     "text": "Your Maps contain 100% increased number of Runic Monster Markers",
     "weight": 50
   },
-  "MapAtlasFireDamageAndPacks3": {
-    "text": "Your Maps contain 6 additional packs of Monsters that deal Fire Damage | Players and Monsters take 12% increased Fire Damage",
-    "weight": 1000
+  "MapAtlasLegionSplintersEmblemsDuplicated": {
+    "text": "Splinters and Emblems dropped by Legion Monsters in your Maps are duplicated | Legion Monsters in your Maps have 100% more Life",
+    "weight": 50
   },
-  "MapAtlasFishy": {
-    "text": "Your Maps are Alluring",
-    "weight": 10
+  "MapAtlasMetamorphCatalystsDuplicated": {
+    "text": "Your Maps contain an Ultimatum Encounter",
+    "weight": 50
   },
-  "MapAtlasGloomShrineEffectAndDuration2": {
-    "text": "50% increased Duration of Shrine Effects on Players in your Maps | Your Maps contain an additional Gloom Shrine",
-    "weight": 1000
+  "MapAtlasBlightOilsChanceToDropOneTierHigher": {
+    "text": "Oils found in your Maps are 1 tier higher | Cost of Building and Upgrading Blight Towers in your Maps is doubled",
+    "weight": 50
   },
-  "MapAtlasHarbingerAndBossAdditionalCurrencyShards": {
-    "text": "Map Bosses drop additional Currency Shards | Harbingers in your Maps drop additional Currency Shards | Map Bosses are accompanied by a mysterious Harbinger",
-    "weight": 250
+  "MapAtlasBetrayalIntelligence": {
+    "text": "100% increased Intelligence gained from Immortal Syndicate targets encountered in your Maps",
+    "weight": 50
   },
-  "MapAtlasHarvest": {
-    "text": "Your Maps contain The Sacred Grove",
-    "weight": 100
+  "MapAtlasDeliriumRewardsFillFaster": {
+    "text": "Delirium Reward Bars fill 100% faster in your Maps",
+    "weight": 50
   },
   "MapAtlasHarvestPlotSeedsContainBlueSeeds": {
     "text": "Harvests in your Maps contain at least one Crop of Blue Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
@@ -170,140 +222,88 @@
     "text": "Harvests in your Maps contain at least one Crop of Yellow Plants | Lifeforce dropped by Harvest Monsters in your Maps is Duplicated | Harvest Monsters in your Maps have 100% more Life",
     "weight": 50
   },
-  "MapAtlasHeist": {
-    "text": "Area contains a Smuggler's Cache",
-    "weight": 250
-  },
   "MapAtlasHeistContractsHaveImplicitModifier": {
     "text": "Non-Unique Heist Contracts found in your Maps have an additional Implicit Modifier",
     "weight": 50
-  },
-  "MapAtlasHighValueEnemiesOnOwnTeam": {
-    "text": "Your Maps contain hunted traitors",
-    "weight": 250
-  },
-  "MapAtlasInstantFlasksAndHealingMonsters3": {
-    "text": "Player's Life and Mana Recovery from Flasks are instant | Your Maps contain 6 additional packs of Monsters that Heal",
-    "weight": 1000
-  },
-  "MapAtlasLegion": {
-    "text": "Your Maps contain an additional Legion Encounter",
-    "weight": 250
-  },
-  "MapAtlasLegionSplintersEmblemsDuplicated": {
-    "text": "Splinters and Emblems dropped by Legion Monsters in your Maps are duplicated | Legion Monsters in your Maps have 100% more Life",
-    "weight": 50
-  },
-  "MapAtlasLightningDamageAndPacks3": {
-    "text": "Your Maps contain 6 additional packs of Monsters that deal Lightning Damage | Players and Monsters take 12% increased Lightning Damage",
-    "weight": 1000
-  },
-  "MapAtlasMagicAndRareMapsHaveAdditionalPacks3": {
-    "text": "Your Magic Maps contain 4 additional packs of Magic Monsters | Your Rare Maps contain 4 additional Rare Monster packs | Your Normal Maps contain 4 additional packs of Normal Monsters",
-    "weight": 1000
-  },
-  "MapAtlasMagicPackSize3": {
-    "text": "25% increased Magic Pack Size",
-    "weight": 500
-  },
-  "MapAtlasMapDropsAreCorruptedAndHave8Modifiers": {
-    "text": "Maps found in your Maps are Corrupted with 8 Modifiers",
-    "weight": 50
-  },
-  "MapAtlasMapQualityBonusAlsoAppliesToRarity": {
-    "text": "Quality bonus of your Maps also applies to Rarity of Items found | Map Bosses have 20% increased Life",
-    "weight": 500
-  },
-  "MapAtlasMapsHave20PercentQuality": {
-    "text": "Your Maps have 20% Quality | Map Bosses deal 20% increased Damage",
-    "weight": 500
-  },
-  "MapAtlasMetamorph": {
-    "text": "Your Maps contain an Ultimatum Encounter",
-    "weight": 50
-  },
-  "MapAtlasMetamorphCatalystsDuplicated": {
-    "text": "Your Maps contain an Ultimatum Encounter",
-    "weight": 50
-  },
-  "MapAtlasMontersThatConvertOnDeath3": {
-    "text": "Your Maps contain 6 additional packs of Monsters that Convert when Killed",
-    "weight": 1000
-  },
-  "MapAtlasNoSoulGainPreventionWithExtraVaalPacks3": {
-    "text": "Your Maps contain 6 additional packs of Corrupted Vaal Monsters | Players' Vaal Skills do not apply Soul Gain Prevention",
-    "weight": 250
-  },
-  "MapAtlasPhysicalDamageAndPacks3_": {
-    "text": "Your Maps contain 6 additional packs of Monsters that deal Physical Damage | Players and Monsters take 12% increased Physical Damage",
-    "weight": 1000
-  },
-  "MapAtlasReducedReflectedDamageTakenMirroredRares3": {
-    "text": "Players and their Minions cannot take Reflected Damage | Your Maps contain 4 additional Packs with Mirrored Rare Monsters",
-    "weight": 1000
-  },
-  "MapAtlasResonatingShrineEffectAndDuration2": {
-    "text": "50% increased Duration of Shrine Effects on Players in your Maps | Your Maps contain an additional Resonating Shrine",
-    "weight": 1000
-  },
-  "MapAtlasRitual": {
-    "text": "Your Maps contain Ritual Altars",
-    "weight": 100
   },
   "MapAtlasRitualsInAreasCanBeRerolledOnceAtNoCost": {
     "text": "Rerolling Favours at Ritual Altars in your Maps has no Cost the first 1 time",
     "weight": 50
   },
-  "MapAtlasRogueExilesDamageAndDropAdditionalJewels": {
-    "text": "Rogue Exiles deal 20% increased Damage | Rogue Exiles in your Maps have 20% increased Life | Rogue Exiles drop 2 additional Jewels | Your Maps are inhabited by 2 additional Rogue Exiles",
-    "weight": 500
-  },
-  "MapAtlasStrongboxMonstersEnrageAndDrops": {
-    "text": "Strongbox Monsters have 500% increased Item Quantity | Strongbox Monsters are Enraged | Your Maps contain an additional Strongbox",
+  "MapAtlasHarbingerAndBossAdditionalCurrencyShards": {
+    "text": "Map Bosses drop additional Currency Shards | Harbingers in your Maps drop additional Currency Shards | Map Bosses are accompanied by a mysterious Harbinger",
     "weight": 250
   },
-  "MapAtlasStrongboxesAreCorruptedAndUnided2_": {
-    "text": "Strongboxes in your Maps are Corrupted | Your Maps contain 2 additional Strongboxes | Strongboxes in your Maps are at least Rare",
+  "MapAtlasVaalSoulsOnKillAndExtraVaalPacks3": {
+    "text": "Your Maps contain 6 additional packs of Corrupted Vaal Monsters | Players gain an additional Vaal Soul on Kill",
     "weight": 500
   },
-  "MapAtlasTormentedBetrayerAndGildedScarabDropChance": {
-    "text": "Your Maps are haunted by an additional Tormented Betrayer | The First 3 Possessed Monsters drop an additional Gilded Scarab",
-    "weight": 60
+  "MapAtlasCorruptedDropWithExtraVaalPacks3____": {
+    "text": "Your Maps contain 6 additional packs of Corrupted Vaal Monsters | Items dropped by Corrupted Vaal Monsters in your Maps have 25% chance to be Corrupted",
+    "weight": 250
   },
-  "MapAtlasTormentedBetrayerAndPolishedScarabDropChance": {
-    "text": "Your Maps are haunted by an additional Tormented Betrayer | The First 3 Possessed Monsters drop an additional Polished Scarab",
-    "weight": 175
+  "MapAtlasBeyondAndExtraBeyondDemonChance": {
+    "text": "Slaying Enemies close together can attract monsters from Beyond this realm | 25% increased Beyond Demon Pack Size in your Maps",
+    "weight": 250
   },
   "MapAtlasTormentedBetrayerAndScarabDropChance": {
     "text": "Your Maps are haunted by an additional Tormented Betrayer | The First 3 Possessed Monsters drop an additional Rusted Scarab",
     "weight": 520
   },
-  "MapAtlasTormentedGraverobberAndUniqueDropChance": {
-    "text": "Your Maps are haunted by an additional Tormented Graverobber | The First 3 Possessed Monsters drop an additional Unique Item",
-    "weight": 250
+  "MapAtlasTormentedBetrayerAndPolishedScarabDropChance": {
+    "text": "Your Maps are haunted by an additional Tormented Betrayer | The First 3 Possessed Monsters drop an additional Polished Scarab",
+    "weight": 175
+  },
+  "MapAtlasTormentedBetrayerAndGildedScarabDropChance": {
+    "text": "Your Maps are haunted by an additional Tormented Betrayer | The First 3 Possessed Monsters drop an additional Gilded Scarab",
+    "weight": 60
   },
   "MapAtlasTormentedHereticAndMapDropChance": {
     "text": "Your Maps are haunted by an additional Tormented Heretic | The First 3 Possessed Monsters drop an additional Map",
     "weight": 250
   },
-  "MapAtlasUltimatum": {
-    "text": "Your Maps contain an Ultimatum Encounter",
-    "weight": 100
-  },
-  "MapAtlasUnIDedMapsGrantQuantity3": {
-    "text": "20% increased Pack Size in your Unidentified Maps",
-    "weight": 250
-  },
-  "MapAtlasUniqueMonstersDropCorruptedItems2_": {
-    "text": "Unique Monsters drop Corrupted Items",
+  "MapAtlasTormentedGraverobberAndUniqueDropChance": {
+    "text": "Your Maps are haunted by an additional Tormented Graverobber | The First 3 Possessed Monsters drop an additional Unique Item",
     "weight": 250
   },
   "MapAtlasUniqueStrongboxChanceWithExtraVaalPacks3_": {
     "text": "Your Maps contain 6 additional packs of Corrupted Vaal Monsters | Your Maps have a 50% chance to contain Gifts of the Sacrificed per Sacrifice Fragment used | Your Maps have a 50% chance to contain Gifts of the Red Queen per Mortal Fragment used",
     "weight": 250
   },
-  "MapAtlasVaalSoulsOnKillAndExtraVaalPacks3": {
-    "text": "Your Maps contain 6 additional packs of Corrupted Vaal Monsters | Players gain an additional Vaal Soul on Kill",
-    "weight": 500
+  "MapAtlasNoSoulGainPreventionWithExtraVaalPacks3": {
+    "text": "Your Maps contain 6 additional packs of Corrupted Vaal Monsters | Players' Vaal Skills do not apply Soul Gain Prevention",
+    "weight": 250
+  },
+  "MapAtlasLegion": {
+    "text": "Your Maps contain an additional Legion Encounter",
+    "weight": 250
+  },
+  "MapAtlasBlight": {
+    "text": "Your Maps contain a Blight Encounter",
+    "weight": 250
+  },
+  "MapAtlasDelirium": {
+    "text": "Your Maps contain a Mirror of Delirium",
+    "weight": 100
+  },
+  "MapAtlasMetamorph": {
+    "text": "Your Maps contain an Ultimatum Encounter",
+    "weight": 50
+  },
+  "MapAtlasHeist": {
+    "text": "Area contains a Smuggler's Cache",
+    "weight": 250
+  },
+  "MapAtlasHarvest": {
+    "text": "Your Maps contain The Sacred Grove",
+    "weight": 100
+  },
+  "MapAtlasRitual": {
+    "text": "Your Maps contain Ritual Altars",
+    "weight": 100
+  },
+  "MapAtlasUltimatum": {
+    "text": "Your Maps contain an Ultimatum Encounter",
+    "weight": 100
   }
 }

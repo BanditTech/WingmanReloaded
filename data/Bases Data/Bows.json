@@ -5,148 +5,25 @@
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 741,
       "critical_strike_chance": 500,
       "physical_damage_max": 10,
       "physical_damage_min": 4,
-      "range": 120
-    }
-  },
-  "Decurve Bow": {
-    "drop_level": 38,
-    "implicits": [],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 96,
-      "physical_damage_min": 24,
-      "range": 120
-    }
-  },
-  "Compound Bow": {
-    "drop_level": 41,
-    "implicits": [],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 76,
-      "physical_damage_min": 37,
-      "range": 120
-    }
-  },
-  "Sniper Bow": {
-    "drop_level": 44,
-    "implicits": [
-      "+(15-25)% to Global Critical Strike Multiplier"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 670,
-      "physical_damage_max": 96,
-      "physical_damage_min": 32,
-      "range": 120
-    }
-  },
-  "Ivory Bow": {
-    "drop_level": 47,
-    "implicits": [],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 86,
-      "physical_damage_min": 29,
-      "range": 120
-    }
-  },
-  "Highborn Bow": {
-    "drop_level": 50,
-    "implicits": [
-      "(20-24)% increased Elemental Damage with Attack Skills"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 690,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 94,
-      "physical_damage_min": 24,
-      "range": 120
-    }
-  },
-  "Decimation Bow": {
-    "drop_level": 53,
-    "implicits": [
-      "(30-50)% increased Critical Strike Chance"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 116,
-      "physical_damage_min": 44,
-      "range": 120
-    }
-  },
-  "Thicket Bow": {
-    "drop_level": 56,
-    "implicits": [],
-    "inventory_height": 3,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 667,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 96,
-      "physical_damage_min": 32,
-      "range": 120
-    }
-  },
-  "Citadel Bow": {
-    "drop_level": 58,
-    "implicits": [],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 144,
-      "physical_damage_min": 36,
-      "range": 120
-    }
-  },
-  "Ranger Bow": {
-    "drop_level": 60,
-    "implicits": [],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 117,
-      "physical_damage_min": 56,
-      "range": 120
-    }
-  },
-  "Assassin Bow": {
-    "drop_level": 62,
-    "implicits": [
-      "+(15-25)% to Global Critical Strike Multiplier"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 670,
-      "physical_damage_max": 130,
-      "physical_damage_min": 43,
       "range": 120
     }
   },
@@ -156,53 +33,25 @@
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
       "critical_strike_chance": 500,
       "physical_damage_max": 16,
       "physical_damage_min": 6,
-      "range": 120
-    }
-  },
-  "Spine Bow": {
-    "drop_level": 64,
-    "implicits": [],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 650,
-      "physical_damage_max": 115,
-      "physical_damage_min": 38,
-      "range": 120
-    }
-  },
-  "Imperial Bow": {
-    "drop_level": 66,
-    "implicits": [
-      "(20-24)% increased Elemental Damage with Attack Skills"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 690,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 117,
-      "physical_damage_min": 29,
-      "range": 120
-    }
-  },
-  "Harbinger Bow": {
-    "drop_level": 68,
-    "implicits": [
-      "(30-50)% increased Critical Strike Chance"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 133,
-      "physical_damage_min": 50,
       "range": 120
     }
   },
@@ -212,6 +61,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 600,
       "physical_damage_max": 33,
@@ -225,6 +89,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 600,
       "physical_damage_max": 34,
@@ -240,6 +119,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 800,
       "critical_strike_chance": 670,
       "physical_damage_max": 45,
@@ -253,6 +147,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 714,
       "critical_strike_chance": 650,
       "physical_damage_max": 45,
@@ -268,6 +177,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 690,
       "critical_strike_chance": 500,
       "physical_damage_max": 56,
@@ -283,10 +207,55 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 833,
       "critical_strike_chance": 500,
       "physical_damage_max": 73,
       "physical_damage_min": 28,
+      "range": 120
+    }
+  },
+  "Reflex Bow": {
+    "drop_level": 36,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 56,
+      "physical_damage_min": 37,
       "range": 120
     }
   },
@@ -296,10 +265,461 @@
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
       "critical_strike_chance": 500,
       "physical_damage_max": 61,
       "physical_damage_min": 20,
+      "range": 120
+    }
+  },
+  "Decurve Bow": {
+    "drop_level": 38,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 96,
+      "physical_damage_min": 24,
+      "range": 120
+    }
+  },
+  "Compound Bow": {
+    "drop_level": 41,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 76,
+      "physical_damage_min": 37,
+      "range": 120
+    }
+  },
+  "Sniper Bow": {
+    "drop_level": 44,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 670,
+      "physical_damage_max": 96,
+      "physical_damage_min": 32,
+      "range": 120
+    }
+  },
+  "Ivory Bow": {
+    "drop_level": 47,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 86,
+      "physical_damage_min": 29,
+      "range": 120
+    }
+  },
+  "Highborn Bow": {
+    "drop_level": 50,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 94,
+      "physical_damage_min": 24,
+      "range": 120
+    }
+  },
+  "Decimation Bow": {
+    "drop_level": 53,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 116,
+      "physical_damage_min": 44,
+      "range": 120
+    }
+  },
+  "Steelwood Bow": {
+    "drop_level": 57,
+    "implicits": [
+      "6% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 86,
+      "physical_damage_min": 58,
+      "range": 120
+    }
+  },
+  "Thicket Bow": {
+    "drop_level": 56,
+    "implicits": [],
+    "inventory_height": 3,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 667,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 96,
+      "physical_damage_min": 32,
+      "range": 120
+    }
+  },
+  "Citadel Bow": {
+    "drop_level": 58,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 144,
+      "physical_damage_min": 36,
+      "range": 120
+    }
+  },
+  "Ranger Bow": {
+    "drop_level": 60,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 117,
+      "physical_damage_min": 56,
+      "range": 120
+    }
+  },
+  "Assassin Bow": {
+    "drop_level": 62,
+    "implicits": [
+      "+(15-25)% to Global Critical Strike Multiplier"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 670,
+      "physical_damage_max": 130,
+      "physical_damage_min": 43,
+      "range": 120
+    }
+  },
+  "Spine Bow": {
+    "drop_level": 64,
+    "implicits": [],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 650,
+      "physical_damage_max": 115,
+      "physical_damage_min": 38,
+      "range": 120
+    }
+  },
+  "Imperial Bow": {
+    "drop_level": 66,
+    "implicits": [
+      "(20-24)% increased Elemental Damage with Attack Skills"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 690,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 117,
+      "physical_damage_min": 29,
+      "range": 120
+    }
+  },
+  "Harbinger Bow": {
+    "drop_level": 68,
+    "implicits": [
+      "(30-50)% increased Critical Strike Chance"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 133,
+      "physical_damage_min": 50,
+      "range": 120
+    }
+  },
+  "Maraketh Bow": {
+    "drop_level": 71,
+    "implicits": [
+      "10% increased Movement Speed"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 714,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 92,
+      "physical_damage_min": 61,
       "range": 120
     }
   },
@@ -311,6 +731,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 550,
       "physical_damage_max": 13,
@@ -326,6 +761,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 550,
       "physical_damage_max": 20,
@@ -341,55 +791,25 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 550,
       "physical_damage_max": 24,
       "physical_damage_min": 16,
-      "range": 120
-    }
-  },
-  "Reflex Bow": {
-    "drop_level": 36,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 550,
-      "physical_damage_max": 56,
-      "physical_damage_min": 37,
-      "range": 120
-    }
-  },
-  "Steelwood Bow": {
-    "drop_level": 57,
-    "implicits": [
-      "6% increased Movement Speed"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 550,
-      "physical_damage_max": 86,
-      "physical_damage_min": 58,
-      "range": 120
-    }
-  },
-  "Maraketh Bow": {
-    "drop_level": 71,
-    "implicits": [
-      "10% increased Movement Speed"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 714,
-      "critical_strike_chance": 550,
-      "physical_damage_max": 92,
-      "physical_damage_min": 61,
       "range": 120
     }
   },
@@ -399,6 +819,21 @@
     "inventory_height": 3,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 667,
       "critical_strike_chance": 600,
       "physical_damage_max": 9,

@@ -1,108 +1,4 @@
 {
-  "FlaskChanceRechargeOnCrit1": {
-    "generation_type": "Prefix",
-    "name": "Medic's",
-    "required_level": 8,
-    "text": "(11-15)% chance to gain a Flask Charge when you deal a Critical Strike",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChanceRechargeOnCrit2": {
-    "generation_type": "Prefix",
-    "name": "Physician's",
-    "required_level": 26,
-    "text": "(16-20)% chance to gain a Flask Charge when you deal a Critical Strike",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChanceRechargeOnCrit3___": {
-    "generation_type": "Prefix",
-    "name": "Doctor's",
-    "required_level": 44,
-    "text": "(21-25)% chance to gain a Flask Charge when you deal a Critical Strike",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChanceRechargeOnCrit4": {
-    "generation_type": "Prefix",
-    "name": "Specialist's",
-    "required_level": 62,
-    "text": "(26-30)% chance to gain a Flask Charge when you deal a Critical Strike",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChanceRechargeOnCrit5": {
-    "generation_type": "Prefix",
-    "name": "Surgeon's",
-    "required_level": 80,
-    "text": "(31-35)% chance to gain a Flask Charge when you deal a Critical Strike",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChargesUsed1": {
-    "generation_type": "Prefix",
-    "name": "Apprentice's",
-    "required_level": 14,
-    "text": "(16-14)% reduced Charges per use",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChargesUsed2": {
-    "generation_type": "Prefix",
-    "name": "Scholar's",
-    "required_level": 31,
-    "text": "(19-17)% reduced Charges per use",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChargesUsed3__": {
-    "generation_type": "Prefix",
-    "name": "Practitioner's",
-    "required_level": 48,
-    "text": "(22-20)% reduced Charges per use",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChargesUsed4__": {
-    "generation_type": "Prefix",
-    "name": "Brewer's",
-    "required_level": 65,
-    "text": "(25-23)% reduced Charges per use",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskChargesUsed5": {
-    "generation_type": "Prefix",
-    "name": "Chemist's",
-    "required_level": 82,
-    "text": "(28-26)% reduced Charges per use",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskEffectReducedDuration1": {
-    "generation_type": "Prefix",
-    "name": "Abecedarian's",
-    "required_level": 20,
-    "text": "(38-33)% reduced Duration | 25% increased effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskEffectReducedDuration2": {
-    "generation_type": "Prefix",
-    "name": "Dabbler's",
-    "required_level": 50,
-    "text": "(32-28)% reduced Duration | 25% increased effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskEffectReducedDuration3": {
-    "generation_type": "Prefix",
-    "name": "Alchemist's",
-    "required_level": 80,
-    "text": "(27-23)% reduced Duration | 25% increased effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
   "FlaskExtraCharges1": {
     "generation_type": "Prefix",
     "name": "Wide",
@@ -140,30 +36,6 @@
     "name": "Ample",
     "required_level": 82,
     "text": "+(32-35) to Maximum Charges",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskFullRechargeOnHit2_": {
-    "generation_type": "Prefix",
-    "name": "Transgressor's",
-    "required_level": 29,
-    "text": "Gain 1 Charge when you are Hit by an Enemy",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskFullRechargeOnHit4_": {
-    "generation_type": "Prefix",
-    "name": "Masochist's",
-    "required_level": 63,
-    "text": "Gain 2 Charges when you are Hit by an Enemy",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskFullRechargeOnHit5___": {
-    "generation_type": "Prefix",
-    "name": "Flagellant's",
-    "required_level": 80,
-    "text": "Gain 3 Charges when you are Hit by an Enemy",
     "weight": 600,
     "influence": "Normal"
   },
@@ -247,6 +119,110 @@
     "weight": 600,
     "influence": "Normal"
   },
+  "FlaskChanceRechargeOnCrit1": {
+    "generation_type": "Prefix",
+    "name": "Medic's",
+    "required_level": 8,
+    "text": "(11-15)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit2": {
+    "generation_type": "Prefix",
+    "name": "Physician's",
+    "required_level": 26,
+    "text": "(16-20)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit3___": {
+    "generation_type": "Prefix",
+    "name": "Doctor's",
+    "required_level": 44,
+    "text": "(21-25)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit4": {
+    "generation_type": "Prefix",
+    "name": "Specialist's",
+    "required_level": 62,
+    "text": "(26-30)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChanceRechargeOnCrit5": {
+    "generation_type": "Prefix",
+    "name": "Surgeon's",
+    "required_level": 80,
+    "text": "(31-35)% chance to gain a Flask Charge when you deal a Critical Strike",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskEffectReducedDuration1": {
+    "generation_type": "Prefix",
+    "name": "Abecedarian's",
+    "required_level": 20,
+    "text": "(38-33)% reduced Duration | 25% increased effect",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskEffectReducedDuration2": {
+    "generation_type": "Prefix",
+    "name": "Dabbler's",
+    "required_level": 50,
+    "text": "(32-28)% reduced Duration | 25% increased effect",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskEffectReducedDuration3": {
+    "generation_type": "Prefix",
+    "name": "Alchemist's",
+    "required_level": 80,
+    "text": "(27-23)% reduced Duration | 25% increased effect",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed1": {
+    "generation_type": "Prefix",
+    "name": "Apprentice's",
+    "required_level": 14,
+    "text": "(16-14)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed2": {
+    "generation_type": "Prefix",
+    "name": "Scholar's",
+    "required_level": 31,
+    "text": "(19-17)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed3__": {
+    "generation_type": "Prefix",
+    "name": "Practitioner's",
+    "required_level": 48,
+    "text": "(22-20)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed4__": {
+    "generation_type": "Prefix",
+    "name": "Brewer's",
+    "required_level": 65,
+    "text": "(25-23)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskChargesUsed5": {
+    "generation_type": "Prefix",
+    "name": "Chemist's",
+    "required_level": 82,
+    "text": "(28-26)% reduced Charges per use",
+    "weight": 600,
+    "influence": "Normal"
+  },
   "FlaskIncreasedDuration2": {
     "generation_type": "Prefix",
     "name": "Investigator's",
@@ -287,28 +263,148 @@
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskBleedingAndCorruptedBloodImmunityDuringEffect2_": {
+  "FlaskFullRechargeOnHit2_": {
+    "generation_type": "Prefix",
+    "name": "Transgressor's",
+    "required_level": 29,
+    "text": "Gain 1 Charge when you are Hit by an Enemy",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskFullRechargeOnHit4_": {
+    "generation_type": "Prefix",
+    "name": "Masochist's",
+    "required_level": 63,
+    "text": "Gain 2 Charges when you are Hit by an Enemy",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskFullRechargeOnHit5___": {
+    "generation_type": "Prefix",
+    "name": "Flagellant's",
+    "required_level": 80,
+    "text": "Gain 3 Charges when you are Hit by an Enemy",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffMovementSpeedWhileHealing": {
     "generation_type": "Suffix",
-    "name": "of the Skink",
-    "required_level": 42,
-    "text": "Immunity to Bleeding and Corrupted Blood during Effect | (44-40)% less Duration",
+    "name": "of the Hare",
+    "required_level": 5,
+    "text": "(6-8)% increased Movement Speed during Effect",
     "weight": 1000,
     "influence": "Normal"
   },
-  "FlaskBleedingAndCorruptedBloodImmunityDuringEffect3___": {
+  "FlaskBuffMovementSpeedWhileHealing2": {
     "generation_type": "Suffix",
-    "name": "of the Iguana",
-    "required_level": 76,
-    "text": "Immunity to Bleeding and Corrupted Blood during Effect | (39-35)% less Duration",
+    "name": "of the Lynx",
+    "required_level": 65,
+    "text": "(9-11)% increased Movement Speed during Effect",
     "weight": 1000,
     "influence": "Normal"
   },
-  "FlaskBleedingAndCorruptedBloodImmunityDuringEffect_1": {
+  "FlaskBuffMovementSpeedWhileHealing3": {
     "generation_type": "Suffix",
-    "name": "of the Lizard",
-    "required_level": 8,
-    "text": "Immunity to Bleeding and Corrupted Blood during Effect | (49-45)% less Duration",
+    "name": "of the Cheetah",
+    "required_level": 85,
+    "text": "(12-14)% increased Movement Speed during Effect",
     "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskBuffStunRecoveryWhileHealing": {
+    "generation_type": "Suffix",
+    "name": "of Stiffness",
+    "required_level": 1,
+    "text": "(51-56)% increased Block and Stun Recovery during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffStunRecoveryWhileHealing2": {
+    "generation_type": "Suffix",
+    "name": "of Bracing",
+    "required_level": 19,
+    "text": "(57-62)% increased Block and Stun Recovery during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffStunRecoveryWhileHealing3": {
+    "generation_type": "Suffix",
+    "name": "of Ballast",
+    "required_level": 37,
+    "text": "(63-68)% increased Block and Stun Recovery during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffStunRecoveryWhileHealing4": {
+    "generation_type": "Suffix",
+    "name": "of Counterpoise",
+    "required_level": 55,
+    "text": "(69-74)% increased Block and Stun Recovery during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffStunRecoveryWhileHealing5": {
+    "generation_type": "Suffix",
+    "name": "of Stabilisation",
+    "required_level": 73,
+    "text": "(75-80)% increased Block and Stun Recovery during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffResistancesWhileHealing": {
+    "generation_type": "Suffix",
+    "name": "of the Crystal",
+    "required_level": 1,
+    "text": "(12-14)% additional Elemental Resistances during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffResistancesWhileHealing3": {
+    "generation_type": "Suffix",
+    "name": "of the Kaleidoscope",
+    "required_level": 41,
+    "text": "(15-17)% additional Elemental Resistances during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffResistancesWhileHealing5_": {
+    "generation_type": "Suffix",
+    "name": "of the Rainbow",
+    "required_level": 81,
+    "text": "(18-20)% additional Elemental Resistances during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffWardWhileHealing1": {
+    "generation_type": "Suffix",
+    "name": "of Runegleaming",
+    "required_level": 12,
+    "text": "(19-21)% increased Ward during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffWardWhileHealing2_": {
+    "generation_type": "Suffix",
+    "name": "of Runeshining",
+    "required_level": 26,
+    "text": "(22-24)% increased Ward during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffWardWhileHealing3": {
+    "generation_type": "Suffix",
+    "name": "of Runeflaring",
+    "required_level": 52,
+    "text": "(25-27)% increased Ward during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffWardWhileHealing4": {
+    "generation_type": "Suffix",
+    "name": "of Runeblazing",
+    "required_level": 78,
+    "text": "(28-30)% increased Ward during Effect",
+    "weight": 750,
     "influence": "Normal"
   },
   "FlaskBuffAttackLifeLeechWhileHealing1": {
@@ -351,28 +447,276 @@
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskBuffAttackSpeedWhileHealing1": {
+  "FlaskBuffSpellEnergyShieldLeechWhileHealing1": {
     "generation_type": "Suffix",
-    "name": "of the Falcon",
-    "required_level": 12,
-    "text": "(9-11)% increased Attack Speed during Effect",
-    "weight": 1000,
+    "name": "of Diverting",
+    "required_level": 10,
+    "text": "0.4% of Spell Damage Leeched as Energy Shield during Effect",
+    "weight": 600,
     "influence": "Normal"
   },
-  "FlaskBuffAttackSpeedWhileHealing2_____": {
+  "FlaskBuffSpellEnergyShieldLeechWhileHealing2_": {
     "generation_type": "Suffix",
-    "name": "of the Eagle",
-    "required_level": 62,
-    "text": "(12-14)% increased Attack Speed during Effect",
-    "weight": 1000,
+    "name": "of Depletion",
+    "required_level": 20,
+    "text": "0.5% of Spell Damage Leeched as Energy Shield during Effect",
+    "weight": 600,
     "influence": "Normal"
   },
-  "FlaskBuffAttackSpeedWhileHealing3_": {
+  "FlaskBuffSpellEnergyShieldLeechWhileHealing3_____": {
     "generation_type": "Suffix",
-    "name": "of the Dove",
+    "name": "of Tapping",
+    "required_level": 40,
+    "text": "0.6% of Spell Damage Leeched as Energy Shield during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffSpellEnergyShieldLeechWhileHealing4": {
+    "generation_type": "Suffix",
+    "name": "of Siphoning",
+    "required_level": 60,
+    "text": "0.7% of Spell Damage Leeched as Energy Shield during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffSpellEnergyShieldLeechWhileHealing5": {
+    "generation_type": "Suffix",
+    "name": "of Draining",
+    "required_level": 80,
+    "text": "0.8% of Spell Damage Leeched as Energy Shield during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCriticalChanceWhileHealing1_": {
+    "generation_type": "Suffix",
+    "name": "of Stinging",
+    "required_level": 18,
+    "text": "(26-31)% increased Critical Strike Chance during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCriticalChanceWhileHealing2_": {
+    "generation_type": "Suffix",
+    "name": "of Piercing",
+    "required_level": 34,
+    "text": "(32-37)% increased Critical Strike Chance during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCriticalChanceWhileHealing3": {
+    "generation_type": "Suffix",
+    "name": "of Rupturing",
+    "required_level": 50,
+    "text": "(38-43)% increased Critical Strike Chance during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCriticalChanceWhileHealing4__": {
+    "generation_type": "Suffix",
+    "name": "of Penetrating",
+    "required_level": 66,
+    "text": "(44-49)% increased Critical Strike Chance during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCriticalChanceWhileHealing5": {
+    "generation_type": "Suffix",
+    "name": "of Incision",
     "required_level": 82,
-    "text": "(15-17)% increased Attack Speed during Effect",
-    "weight": 1000,
+    "text": "(50-55)% increased Critical Strike Chance during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffFreezeShockIgniteChanceWhileHealing1_": {
+    "generation_type": "Suffix",
+    "name": "of Foisting",
+    "required_level": 12,
+    "text": "(19-22)% chance to Freeze, Shock and Ignite during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffFreezeShockIgniteChanceWhileHealing2____": {
+    "generation_type": "Suffix",
+    "name": "of Imposing",
+    "required_level": 32,
+    "text": "(23-26)% chance to Freeze, Shock and Ignite during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffFreezeShockIgniteChanceWhileHealing3": {
+    "generation_type": "Suffix",
+    "name": "of Wreaking",
+    "required_level": 52,
+    "text": "(27-30)% chance to Freeze, Shock and Ignite during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffFreezeShockIgniteChanceWhileHealing4_": {
+    "generation_type": "Suffix",
+    "name": "of Infliction",
+    "required_level": 72,
+    "text": "(31-34)% chance to Freeze, Shock and Ignite during Effect",
+    "weight": 750,
+    "influence": "Normal"
+  },
+  "FlaskBuffAvoidStunWhileHealing1_": {
+    "generation_type": "Suffix",
+    "name": "of Composure",
+    "required_level": 12,
+    "text": "(31-35)% Chance to Avoid being Stunned during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffAvoidStunWhileHealing2": {
+    "generation_type": "Suffix",
+    "name": "of Surefootedness",
+    "required_level": 29,
+    "text": "(36-40)% Chance to Avoid being Stunned during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffAvoidStunWhileHealing3": {
+    "generation_type": "Suffix",
+    "name": "of Persistence",
+    "required_level": 46,
+    "text": "(41-45)% Chance to Avoid being Stunned during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffAvoidStunWhileHealing4": {
+    "generation_type": "Suffix",
+    "name": "of Relentlessness",
+    "required_level": 63,
+    "text": "(46-50)% Chance to Avoid being Stunned during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffAvoidStunWhileHealing5": {
+    "generation_type": "Suffix",
+    "name": "of Tenaciousness",
+    "required_level": 80,
+    "text": "(51-55)% Chance to Avoid being Stunned during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffChillFreezeDuration1": {
+    "generation_type": "Suffix",
+    "name": "of the Rabbit",
+    "required_level": 4,
+    "text": "(41-36)% reduced Effect of Chill on you during Effect | (41-36)% reduced Freeze Duration on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffChillFreezeDuration2_": {
+    "generation_type": "Suffix",
+    "name": "of the Cat",
+    "required_level": 23,
+    "text": "(47-42)% reduced Effect of Chill on you during Effect | (47-42)% reduced Freeze Duration on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffChillFreezeDuration3_": {
+    "generation_type": "Suffix",
+    "name": "of the Fox",
+    "required_level": 42,
+    "text": "(52-48)% reduced Effect of Chill on you during Effect | (52-48)% reduced Freeze Duration on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffChillFreezeDuration4": {
+    "generation_type": "Suffix",
+    "name": "of the Sable",
+    "required_level": 61,
+    "text": "(59-52)% reduced Effect of Chill on you during Effect | (59-52)% reduced Freeze Duration on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffChillFreezeDuration5": {
+    "generation_type": "Suffix",
+    "name": "of the Bear",
+    "required_level": 80,
+    "text": "(65-60)% reduced Effect of Chill on you during Effect | (65-60)% reduced Freeze Duration on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffShockEffect1": {
+    "generation_type": "Suffix",
+    "name": "of the Plover",
+    "required_level": 6,
+    "text": "(41-36)% reduced Effect of Shock on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffShockEffect2": {
+    "generation_type": "Suffix",
+    "name": "of the Sandpiper",
+    "required_level": 25,
+    "text": "(47-42)% reduced Effect of Shock on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffShockEffect3___": {
+    "generation_type": "Suffix",
+    "name": "of the Cormorant",
+    "required_level": 44,
+    "text": "(52-48)% reduced Effect of Shock on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffShockEffect4": {
+    "generation_type": "Suffix",
+    "name": "of the Sanderling",
+    "required_level": 63,
+    "text": "(59-52)% reduced Effect of Shock on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffShockEffect5": {
+    "generation_type": "Suffix",
+    "name": "of the Heron",
+    "required_level": 82,
+    "text": "(65-60)% reduced Effect of Shock on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCurseEffect1": {
+    "generation_type": "Suffix",
+    "name": "of the Petrel",
+    "required_level": 8,
+    "text": "(41-36)% reduced Effect of Curses on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCurseEffect2": {
+    "generation_type": "Suffix",
+    "name": "of the Mockingbird",
+    "required_level": 27,
+    "text": "(47-42)% reduced Effect of Curses on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCurseEffect3_": {
+    "generation_type": "Suffix",
+    "name": "of the Curlew",
+    "required_level": 46,
+    "text": "(52-48)% reduced Effect of Curses on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCurseEffect4": {
+    "generation_type": "Suffix",
+    "name": "of the Kakapo",
+    "required_level": 65,
+    "text": "(59-52)% reduced Effect of Curses on you during Effect",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "FlaskBuffCurseEffect5": {
+    "generation_type": "Suffix",
+    "name": "of the Owl",
+    "required_level": 84,
+    "text": "(65-60)% reduced Effect of Curses on you during Effect",
+    "weight": 600,
     "influence": "Normal"
   },
   "FlaskBuffAvoidChillFreeze1_": {
@@ -495,470 +839,6 @@
     "weight": 600,
     "influence": "Normal"
   },
-  "FlaskBuffAvoidStunWhileHealing1_": {
-    "generation_type": "Suffix",
-    "name": "of Composure",
-    "required_level": 12,
-    "text": "(31-35)% Chance to Avoid being Stunned during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffAvoidStunWhileHealing2": {
-    "generation_type": "Suffix",
-    "name": "of Surefootedness",
-    "required_level": 29,
-    "text": "(36-40)% Chance to Avoid being Stunned during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffAvoidStunWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of Persistence",
-    "required_level": 46,
-    "text": "(41-45)% Chance to Avoid being Stunned during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffAvoidStunWhileHealing4": {
-    "generation_type": "Suffix",
-    "name": "of Relentlessness",
-    "required_level": 63,
-    "text": "(46-50)% Chance to Avoid being Stunned during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffAvoidStunWhileHealing5": {
-    "generation_type": "Suffix",
-    "name": "of Tenaciousness",
-    "required_level": 80,
-    "text": "(51-55)% Chance to Avoid being Stunned during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCastSpeedWhileHealing1": {
-    "generation_type": "Suffix",
-    "name": "of the Albatross",
-    "required_level": 12,
-    "text": "(9-11)% increased Cast Speed during Effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskBuffCastSpeedWhileHealing2": {
-    "generation_type": "Suffix",
-    "name": "of the Hummingbird",
-    "required_level": 62,
-    "text": "(12-14)% increased Cast Speed during Effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskBuffCastSpeedWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of the Horsefly",
-    "required_level": 82,
-    "text": "(15-17)% increased Cast Speed during Effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskBuffChillFreezeDuration1": {
-    "generation_type": "Suffix",
-    "name": "of the Rabbit",
-    "required_level": 4,
-    "text": "(41-36)% reduced Effect of Chill on you during Effect | (41-36)% reduced Freeze Duration on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffChillFreezeDuration2_": {
-    "generation_type": "Suffix",
-    "name": "of the Cat",
-    "required_level": 23,
-    "text": "(47-42)% reduced Effect of Chill on you during Effect | (47-42)% reduced Freeze Duration on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffChillFreezeDuration3_": {
-    "generation_type": "Suffix",
-    "name": "of the Fox",
-    "required_level": 42,
-    "text": "(52-48)% reduced Effect of Chill on you during Effect | (52-48)% reduced Freeze Duration on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffChillFreezeDuration4": {
-    "generation_type": "Suffix",
-    "name": "of the Sable",
-    "required_level": 61,
-    "text": "(59-52)% reduced Effect of Chill on you during Effect | (59-52)% reduced Freeze Duration on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffChillFreezeDuration5": {
-    "generation_type": "Suffix",
-    "name": "of the Bear",
-    "required_level": 80,
-    "text": "(65-60)% reduced Effect of Chill on you during Effect | (65-60)% reduced Freeze Duration on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCriticalChanceWhileHealing1_": {
-    "generation_type": "Suffix",
-    "name": "of Stinging",
-    "required_level": 18,
-    "text": "(26-31)% increased Critical Strike Chance during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCriticalChanceWhileHealing2_": {
-    "generation_type": "Suffix",
-    "name": "of Piercing",
-    "required_level": 34,
-    "text": "(32-37)% increased Critical Strike Chance during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCriticalChanceWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of Rupturing",
-    "required_level": 50,
-    "text": "(38-43)% increased Critical Strike Chance during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCriticalChanceWhileHealing4__": {
-    "generation_type": "Suffix",
-    "name": "of Penetrating",
-    "required_level": 66,
-    "text": "(44-49)% increased Critical Strike Chance during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCriticalChanceWhileHealing5": {
-    "generation_type": "Suffix",
-    "name": "of Incision",
-    "required_level": 82,
-    "text": "(50-55)% increased Critical Strike Chance during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCurseEffect1": {
-    "generation_type": "Suffix",
-    "name": "of the Petrel",
-    "required_level": 8,
-    "text": "(41-36)% reduced Effect of Curses on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCurseEffect2": {
-    "generation_type": "Suffix",
-    "name": "of the Mockingbird",
-    "required_level": 27,
-    "text": "(47-42)% reduced Effect of Curses on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCurseEffect3_": {
-    "generation_type": "Suffix",
-    "name": "of the Curlew",
-    "required_level": 46,
-    "text": "(52-48)% reduced Effect of Curses on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCurseEffect4": {
-    "generation_type": "Suffix",
-    "name": "of the Kakapo",
-    "required_level": 65,
-    "text": "(59-52)% reduced Effect of Curses on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffCurseEffect5": {
-    "generation_type": "Suffix",
-    "name": "of the Owl",
-    "required_level": 84,
-    "text": "(65-60)% reduced Effect of Curses on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffFreezeShockIgniteChanceWhileHealing1_": {
-    "generation_type": "Suffix",
-    "name": "of Foisting",
-    "required_level": 12,
-    "text": "(19-22)% chance to Freeze, Shock and Ignite during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffFreezeShockIgniteChanceWhileHealing2____": {
-    "generation_type": "Suffix",
-    "name": "of Imposing",
-    "required_level": 32,
-    "text": "(23-26)% chance to Freeze, Shock and Ignite during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffFreezeShockIgniteChanceWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of Wreaking",
-    "required_level": 52,
-    "text": "(27-30)% chance to Freeze, Shock and Ignite during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffFreezeShockIgniteChanceWhileHealing4_": {
-    "generation_type": "Suffix",
-    "name": "of Infliction",
-    "required_level": 72,
-    "text": "(31-34)% chance to Freeze, Shock and Ignite during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffMovementSpeedWhileHealing": {
-    "generation_type": "Suffix",
-    "name": "of the Hare",
-    "required_level": 5,
-    "text": "(6-8)% increased Movement Speed during Effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskBuffMovementSpeedWhileHealing2": {
-    "generation_type": "Suffix",
-    "name": "of the Lynx",
-    "required_level": 65,
-    "text": "(9-11)% increased Movement Speed during Effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskBuffMovementSpeedWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of the Cheetah",
-    "required_level": 85,
-    "text": "(12-14)% increased Movement Speed during Effect",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskBuffResistancesWhileHealing": {
-    "generation_type": "Suffix",
-    "name": "of the Crystal",
-    "required_level": 1,
-    "text": "(12-14)% additional Elemental Resistances during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffResistancesWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of the Kaleidoscope",
-    "required_level": 41,
-    "text": "(15-17)% additional Elemental Resistances during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffResistancesWhileHealing5_": {
-    "generation_type": "Suffix",
-    "name": "of the Rainbow",
-    "required_level": 81,
-    "text": "(18-20)% additional Elemental Resistances during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffShockEffect1": {
-    "generation_type": "Suffix",
-    "name": "of the Plover",
-    "required_level": 6,
-    "text": "(41-36)% reduced Effect of Shock on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffShockEffect2": {
-    "generation_type": "Suffix",
-    "name": "of the Sandpiper",
-    "required_level": 25,
-    "text": "(47-42)% reduced Effect of Shock on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffShockEffect3___": {
-    "generation_type": "Suffix",
-    "name": "of the Cormorant",
-    "required_level": 44,
-    "text": "(52-48)% reduced Effect of Shock on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffShockEffect4": {
-    "generation_type": "Suffix",
-    "name": "of the Sanderling",
-    "required_level": 63,
-    "text": "(59-52)% reduced Effect of Shock on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffShockEffect5": {
-    "generation_type": "Suffix",
-    "name": "of the Heron",
-    "required_level": 82,
-    "text": "(65-60)% reduced Effect of Shock on you during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffSpellEnergyShieldLeechWhileHealing1": {
-    "generation_type": "Suffix",
-    "name": "of Diverting",
-    "required_level": 10,
-    "text": "0.4% of Spell Damage Leeched as Energy Shield during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffSpellEnergyShieldLeechWhileHealing2_": {
-    "generation_type": "Suffix",
-    "name": "of Depletion",
-    "required_level": 20,
-    "text": "0.5% of Spell Damage Leeched as Energy Shield during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffSpellEnergyShieldLeechWhileHealing3_____": {
-    "generation_type": "Suffix",
-    "name": "of Tapping",
-    "required_level": 40,
-    "text": "0.6% of Spell Damage Leeched as Energy Shield during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffSpellEnergyShieldLeechWhileHealing4": {
-    "generation_type": "Suffix",
-    "name": "of Siphoning",
-    "required_level": 60,
-    "text": "0.7% of Spell Damage Leeched as Energy Shield during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffSpellEnergyShieldLeechWhileHealing5": {
-    "generation_type": "Suffix",
-    "name": "of Draining",
-    "required_level": 80,
-    "text": "0.8% of Spell Damage Leeched as Energy Shield during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffStunRecoveryWhileHealing": {
-    "generation_type": "Suffix",
-    "name": "of Stiffness",
-    "required_level": 1,
-    "text": "(51-56)% increased Block and Stun Recovery during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffStunRecoveryWhileHealing2": {
-    "generation_type": "Suffix",
-    "name": "of Bracing",
-    "required_level": 19,
-    "text": "(57-62)% increased Block and Stun Recovery during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffStunRecoveryWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of Ballast",
-    "required_level": 37,
-    "text": "(63-68)% increased Block and Stun Recovery during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffStunRecoveryWhileHealing4": {
-    "generation_type": "Suffix",
-    "name": "of Counterpoise",
-    "required_level": 55,
-    "text": "(69-74)% increased Block and Stun Recovery during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffStunRecoveryWhileHealing5": {
-    "generation_type": "Suffix",
-    "name": "of Stabilisation",
-    "required_level": 73,
-    "text": "(75-80)% increased Block and Stun Recovery during Effect",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "FlaskBuffWardWhileHealing1": {
-    "generation_type": "Suffix",
-    "name": "of Runegleaming",
-    "required_level": 12,
-    "text": "(19-21)% increased Ward during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffWardWhileHealing2_": {
-    "generation_type": "Suffix",
-    "name": "of Runeshining",
-    "required_level": 26,
-    "text": "(22-24)% increased Ward during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffWardWhileHealing3": {
-    "generation_type": "Suffix",
-    "name": "of Runeflaring",
-    "required_level": 52,
-    "text": "(25-27)% increased Ward during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskBuffWardWhileHealing4": {
-    "generation_type": "Suffix",
-    "name": "of Runeblazing",
-    "required_level": 78,
-    "text": "(28-30)% increased Ward during Effect",
-    "weight": 750,
-    "influence": "Normal"
-  },
-  "FlaskFreezeAndChillImmunityDuringEffect": {
-    "generation_type": "Suffix",
-    "name": "of the Deer",
-    "required_level": 4,
-    "text": "Immunity to Freeze and Chill during Effect | (49-45)% less Duration",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskFreezeAndChillImmunityDuringEffect2": {
-    "generation_type": "Suffix",
-    "name": "of the Walrus",
-    "required_level": 38,
-    "text": "Immunity to Freeze and Chill during Effect | (44-40)% less Duration",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskFreezeAndChillImmunityDuringEffect3__": {
-    "generation_type": "Suffix",
-    "name": "of the Penguin",
-    "required_level": 72,
-    "text": "Immunity to Freeze and Chill during Effect | (39-35)% less Duration",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskIgniteImmunityDuringEffect2": {
-    "generation_type": "Suffix",
-    "name": "of the Mussel",
-    "required_level": 40,
-    "text": "Immunity to Ignite during Effect | Removes Burning on use | (44-40)% less Duration",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskIgniteImmunityDuringEffect3": {
-    "generation_type": "Suffix",
-    "name": "of the Starfish",
-    "required_level": 74,
-    "text": "Immunity to Ignite during Effect | Removes Burning on use | (39-35)% less Duration",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "FlaskIgniteImmunityDuringEffect_": {
-    "generation_type": "Suffix",
-    "name": "of the Urchin",
-    "required_level": 6,
-    "text": "Immunity to Ignite during Effect | Removes Burning on use | (49-45)% less Duration",
-    "weight": 1000,
-    "influence": "Normal"
-  },
   "FlaskPoisonImmunityDuringEffect": {
     "generation_type": "Suffix",
     "name": "of the Skunk",
@@ -1004,6 +884,78 @@
     "name": "of the Eel",
     "required_level": 74,
     "text": "Immunity to Shock during Effect | (39-35)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskFreezeAndChillImmunityDuringEffect": {
+    "generation_type": "Suffix",
+    "name": "of the Deer",
+    "required_level": 4,
+    "text": "Immunity to Freeze and Chill during Effect | (49-45)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskFreezeAndChillImmunityDuringEffect2": {
+    "generation_type": "Suffix",
+    "name": "of the Walrus",
+    "required_level": 38,
+    "text": "Immunity to Freeze and Chill during Effect | (44-40)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskFreezeAndChillImmunityDuringEffect3__": {
+    "generation_type": "Suffix",
+    "name": "of the Penguin",
+    "required_level": 72,
+    "text": "Immunity to Freeze and Chill during Effect | (39-35)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskIgniteImmunityDuringEffect_": {
+    "generation_type": "Suffix",
+    "name": "of the Urchin",
+    "required_level": 6,
+    "text": "Immunity to Ignite during Effect | Removes Burning on use | (49-45)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskIgniteImmunityDuringEffect2": {
+    "generation_type": "Suffix",
+    "name": "of the Mussel",
+    "required_level": 40,
+    "text": "Immunity to Ignite during Effect | Removes Burning on use | (44-40)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskIgniteImmunityDuringEffect3": {
+    "generation_type": "Suffix",
+    "name": "of the Starfish",
+    "required_level": 74,
+    "text": "Immunity to Ignite during Effect | Removes Burning on use | (39-35)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskBleedingAndCorruptedBloodImmunityDuringEffect_1": {
+    "generation_type": "Suffix",
+    "name": "of the Lizard",
+    "required_level": 8,
+    "text": "Immunity to Bleeding and Corrupted Blood during Effect | (49-45)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskBleedingAndCorruptedBloodImmunityDuringEffect2_": {
+    "generation_type": "Suffix",
+    "name": "of the Skink",
+    "required_level": 42,
+    "text": "Immunity to Bleeding and Corrupted Blood during Effect | (44-40)% less Duration",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "FlaskBleedingAndCorruptedBloodImmunityDuringEffect3___": {
+    "generation_type": "Suffix",
+    "name": "of the Iguana",
+    "required_level": 76,
+    "text": "Immunity to Bleeding and Corrupted Blood during Effect | (39-35)% less Duration",
     "weight": 1000,
     "influence": "Normal"
   }

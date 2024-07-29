@@ -7,160 +7,25 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 500,
       "physical_damage_max": 16,
       "physical_damage_min": 10,
-      "range": 13
-    }
-  },
-  "Steelhead": {
-    "drop_level": 44,
-    "implicits": [
-      "45% increased Stun Duration on Enemies"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 81,
-      "physical_damage_min": 54,
-      "range": 13
-    }
-  },
-  "Spiny Maul": {
-    "drop_level": 48,
-    "implicits": [
-      "30% increased Stun Duration on Enemies"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 103,
-      "physical_damage_min": 55,
-      "range": 13
-    }
-  },
-  "Plated Maul": {
-    "drop_level": 51,
-    "implicits": [
-      "30% increased Stun Duration on Enemies"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 108,
-      "physical_damage_min": 72,
-      "range": 13
-    }
-  },
-  "Dread Maul": {
-    "drop_level": 54,
-    "implicits": [
-      "30% increased Stun Duration on Enemies"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 104,
-      "physical_damage_min": 77,
-      "range": 13
-    }
-  },
-  "Karui Maul": {
-    "drop_level": 57,
-    "implicits": [
-      "45% increased Stun Duration on Enemies"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 1000,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 168,
-      "physical_damage_min": 112,
-      "range": 13
-    }
-  },
-  "Colossus Mallet": {
-    "drop_level": 59,
-    "implicits": [
-      "30% increased Area Damage"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 769,
-      "critical_strike_chance": 550,
-      "physical_damage_max": 135,
-      "physical_damage_min": 65,
-      "range": 13
-    }
-  },
-  "Piledriver": {
-    "drop_level": 61,
-    "implicits": [
-      "20% reduced Enemy Stun Threshold"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 741,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 115,
-      "physical_damage_min": 77,
-      "range": 13
-    }
-  },
-  "Meatgrinder": {
-    "drop_level": 63,
-    "implicits": [
-      "5% chance to deal Double Damage"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 138,
-      "physical_damage_min": 74,
-      "range": 13
-    }
-  },
-  "Imperial Maul": {
-    "drop_level": 65,
-    "implicits": [
-      "10% increased Strength"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 909,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 153,
-      "physical_damage_min": 102,
-      "range": 13
-    }
-  },
-  "Terror Maul": {
-    "drop_level": 67,
-    "implicits": [
-      "25% chance to double Stun Duration"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 870,
-      "critical_strike_chance": 600,
-      "physical_damage_max": 137,
-      "physical_damage_min": 101,
       "range": 13
     }
   },
@@ -172,6 +37,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 800,
       "critical_strike_chance": 500,
       "physical_damage_max": 25,
@@ -187,6 +67,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 500,
       "physical_damage_max": 33,
@@ -202,6 +97,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 500,
       "physical_damage_max": 38,
@@ -217,6 +127,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 769,
       "critical_strike_chance": 500,
       "physical_damage_max": 49,
@@ -232,6 +157,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 833,
       "critical_strike_chance": 500,
       "physical_damage_max": 60,
@@ -247,10 +187,55 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 800,
       "critical_strike_chance": 500,
       "physical_damage_max": 62,
       "physical_damage_min": 46,
+      "range": 13
+    }
+  },
+  "Morning Star": {
+    "drop_level": 34,
+    "implicits": [
+      "15% increased Area of Effect"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 68,
+      "physical_damage_min": 45,
       "range": 13
     }
   },
@@ -262,6 +247,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 909,
       "critical_strike_chance": 500,
       "physical_damage_max": 85,
@@ -277,10 +277,385 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 800,
       "critical_strike_chance": 500,
       "physical_damage_max": 88,
       "physical_damage_min": 43,
+      "range": 13
+    }
+  },
+  "Steelhead": {
+    "drop_level": 44,
+    "implicits": [
+      "45% increased Stun Duration on Enemies"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 81,
+      "physical_damage_min": 54,
+      "range": 13
+    }
+  },
+  "Spiny Maul": {
+    "drop_level": 48,
+    "implicits": [
+      "30% increased Stun Duration on Enemies"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 103,
+      "physical_damage_min": 55,
+      "range": 13
+    }
+  },
+  "Plated Maul": {
+    "drop_level": 51,
+    "implicits": [
+      "30% increased Stun Duration on Enemies"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 108,
+      "physical_damage_min": 72,
+      "range": 13
+    }
+  },
+  "Dread Maul": {
+    "drop_level": 54,
+    "implicits": [
+      "30% increased Stun Duration on Enemies"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 104,
+      "physical_damage_min": 77,
+      "range": 13
+    }
+  },
+  "Solar Maul": {
+    "drop_level": 56,
+    "implicits": [
+      "15% increased Area of Effect"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 113,
+      "physical_damage_min": 75,
+      "range": 13
+    }
+  },
+  "Karui Maul": {
+    "drop_level": 57,
+    "implicits": [
+      "45% increased Stun Duration on Enemies"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 1000,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 168,
+      "physical_damage_min": 112,
+      "range": 13
+    }
+  },
+  "Colossus Mallet": {
+    "drop_level": 59,
+    "implicits": [
+      "30% increased Area Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 769,
+      "critical_strike_chance": 550,
+      "physical_damage_max": 135,
+      "physical_damage_min": 65,
+      "range": 13
+    }
+  },
+  "Piledriver": {
+    "drop_level": 61,
+    "implicits": [
+      "20% reduced Enemy Stun Threshold"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 741,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 115,
+      "physical_damage_min": 77,
+      "range": 13
+    }
+  },
+  "Meatgrinder": {
+    "drop_level": 63,
+    "implicits": [
+      "5% chance to deal Double Damage"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 800,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 138,
+      "physical_damage_min": 74,
+      "range": 13
+    }
+  },
+  "Imperial Maul": {
+    "drop_level": 65,
+    "implicits": [
+      "10% increased Strength"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 909,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 153,
+      "physical_damage_min": 102,
+      "range": 13
+    }
+  },
+  "Terror Maul": {
+    "drop_level": 67,
+    "implicits": [
+      "25% chance to double Stun Duration"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 870,
+      "critical_strike_chance": 600,
+      "physical_damage_max": 137,
+      "physical_damage_min": 101,
+      "range": 13
+    }
+  },
+  "Coronal Maul": {
+    "drop_level": 69,
+    "implicits": [
+      "20% increased Area of Effect"
+    ],
+    "inventory_height": 4,
+    "inventory_width": 2,
+    "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
+      "attack_time": 833,
+      "critical_strike_chance": 500,
+      "physical_damage_max": 136,
+      "physical_damage_min": 91,
       "range": 13
     }
   },
@@ -292,6 +667,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 870,
       "critical_strike_chance": 500,
       "physical_damage_max": 64,
@@ -307,6 +697,21 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 870,
       "critical_strike_chance": 500,
       "physical_damage_max": 103,
@@ -322,55 +727,25 @@
     "inventory_height": 4,
     "inventory_width": 2,
     "properties": {
+      "armour": null,
+      "energy_shield": null,
+      "evasion": null,
+      "movement_speed": null,
+      "block": null,
+      "description": null,
+      "directions": null,
+      "stack_size": null,
+      "stack_size_currency_tab": null,
+      "full_stack_turns_into": null,
+      "charges_max": null,
+      "charges_per_use": null,
+      "duration": null,
+      "life_per_use": null,
+      "mana_per_use": null,
       "attack_time": 870,
       "critical_strike_chance": 500,
       "physical_damage_max": 135,
       "physical_damage_min": 81,
-      "range": 13
-    }
-  },
-  "Morning Star": {
-    "drop_level": 34,
-    "implicits": [
-      "15% increased Area of Effect"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 68,
-      "physical_damage_min": 45,
-      "range": 13
-    }
-  },
-  "Solar Maul": {
-    "drop_level": 56,
-    "implicits": [
-      "15% increased Area of Effect"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 800,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 113,
-      "physical_damage_min": 75,
-      "range": 13
-    }
-  },
-  "Coronal Maul": {
-    "drop_level": 69,
-    "implicits": [
-      "20% increased Area of Effect"
-    ],
-    "inventory_height": 4,
-    "inventory_width": 2,
-    "properties": {
-      "attack_time": 833,
-      "critical_strike_chance": 500,
-      "physical_damage_max": 136,
-      "physical_damage_min": 91,
       "range": 13
     }
   }

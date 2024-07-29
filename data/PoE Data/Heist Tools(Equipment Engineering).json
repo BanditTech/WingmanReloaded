@@ -31,6 +31,70 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "HeistNPCLockdownTimer1": {
+    "generation_type": "Prefix",
+    "name": "Slowing",
+    "required_level": 1,
+    "text": "(4-5)% increased time before Lockdown",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer2": {
+    "generation_type": "Prefix",
+    "name": "Stalling",
+    "required_level": 45,
+    "text": "(6-7)% increased time before Lockdown",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer3_": {
+    "generation_type": "Prefix",
+    "name": "Delaying",
+    "required_level": 75,
+    "text": "(7-8)% increased time before Lockdown",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCLockdownTimer4_": {
+    "generation_type": "Prefix",
+    "name": "Interrupting",
+    "required_level": 81,
+    "text": "(9-10)% increased time before Lockdown",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed1___": {
+    "generation_type": "Prefix",
+    "name": "Practiced",
+    "required_level": 1,
+    "text": "(9-11)% increased Job speed",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed2": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 45,
+    "text": "(12-14)% increased Job speed",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed3": {
+    "generation_type": "Prefix",
+    "name": "Professional",
+    "required_level": 75,
+    "text": "(15-17)% increased Job speed",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCObjectiveSpeed4__": {
+    "generation_type": "Prefix",
+    "name": "Masterful",
+    "required_level": 81,
+    "text": "(18-20)% increased Job speed",
+    "weight": 400,
+    "influence": "Normal"
+  },
   "HeistNPCExperienceGain1_": {
     "generation_type": "Prefix",
     "name": "Footpad's",
@@ -95,6 +159,54 @@
     "weight": 400,
     "influence": "Normal"
   },
+  "HeistNPCHitResistance1": {
+    "generation_type": "Prefix",
+    "name": "Devious",
+    "required_level": 1,
+    "text": "(9-11)% chance to Avoid being Interrupted",
+    "weight": 1000,
+    "influence": "Normal"
+  },
+  "HeistNPCHitResistance2": {
+    "generation_type": "Prefix",
+    "name": "Wiley",
+    "required_level": 45,
+    "text": "(12-14)% chance to Avoid being Interrupted",
+    "weight": 800,
+    "influence": "Normal"
+  },
+  "HeistNPCHitResistance3": {
+    "generation_type": "Prefix",
+    "name": "Elusive",
+    "required_level": 75,
+    "text": "(15-17)% chance to Avoid being Interrupted",
+    "weight": 600,
+    "influence": "Normal"
+  },
+  "HeistNPCHitResistance4": {
+    "generation_type": "Prefix",
+    "name": "Untouchable",
+    "required_level": 81,
+    "text": "(18-20)% chance to Avoid being Interrupted",
+    "weight": 400,
+    "influence": "Normal"
+  },
+  "HeistNPCAllJobLevel1": {
+    "generation_type": "Prefix",
+    "name": "Skillful",
+    "required_level": 82,
+    "text": "+1 to Level of all Jobs for Heists",
+    "weight": 100,
+    "influence": "Normal"
+  },
+  "HeistEngineeringLevel1": {
+    "generation_type": "Prefix",
+    "name": "Ingenious",
+    "required_level": 83,
+    "text": "+1 to Engineering Level for Heists",
+    "weight": 100,
+    "influence": "Normal"
+  },
   "HeistEngineeringExperienceGain1_": {
     "generation_type": "Prefix",
     "name": "Simple",
@@ -125,22 +237,6 @@
     "required_level": 82,
     "text": "(9-10)% increased Engineering Experience gained",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistEngineeringLevel1": {
-    "generation_type": "Prefix",
-    "name": "Ingenious",
-    "required_level": 83,
-    "text": "+1 to Engineering Level for Heists",
-    "weight": 100,
-    "influence": "Normal"
-  },
-  "HeistNPCAllJobLevel1": {
-    "generation_type": "Prefix",
-    "name": "Skillful",
-    "required_level": 82,
-    "text": "+1 to Level of all Jobs for Heists",
-    "weight": 100,
     "influence": "Normal"
   },
   "HeistNPCEngineeringSpeed1": {
@@ -207,99 +303,35 @@
     "weight": 300,
     "influence": "Normal"
   },
-  "HeistNPCHitResistance1": {
-    "generation_type": "Prefix",
-    "name": "Devious",
+  "HeistContractNPCCost1": {
+    "generation_type": "Suffix",
+    "name": "of Personality",
     "required_level": 1,
-    "text": "(9-11)% chance to Avoid being Interrupted",
+    "text": "(7-6)% reduced Hiring Fee",
     "weight": 1000,
     "influence": "Normal"
   },
-  "HeistNPCHitResistance2": {
-    "generation_type": "Prefix",
-    "name": "Wiley",
+  "HeistContractNPCCost2": {
+    "generation_type": "Suffix",
+    "name": "of Presence",
     "required_level": 45,
-    "text": "(12-14)% chance to Avoid being Interrupted",
+    "text": "(9-8)% reduced Hiring Fee",
     "weight": 800,
     "influence": "Normal"
   },
-  "HeistNPCHitResistance3": {
-    "generation_type": "Prefix",
-    "name": "Elusive",
+  "HeistContractNPCCost3": {
+    "generation_type": "Suffix",
+    "name": "of Charm",
     "required_level": 75,
-    "text": "(15-17)% chance to Avoid being Interrupted",
+    "text": "(12-10)% reduced Hiring Fee",
     "weight": 600,
     "influence": "Normal"
   },
-  "HeistNPCHitResistance4": {
-    "generation_type": "Prefix",
-    "name": "Untouchable",
+  "HeistContractNPCCost4": {
+    "generation_type": "Suffix",
+    "name": "of Charisma",
     "required_level": 81,
-    "text": "(18-20)% chance to Avoid being Interrupted",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCLockdownTimer1": {
-    "generation_type": "Prefix",
-    "name": "Slowing",
-    "required_level": 1,
-    "text": "(4-5)% increased time before Lockdown",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCLockdownTimer2": {
-    "generation_type": "Prefix",
-    "name": "Stalling",
-    "required_level": 45,
-    "text": "(6-7)% increased time before Lockdown",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCLockdownTimer3_": {
-    "generation_type": "Prefix",
-    "name": "Delaying",
-    "required_level": 75,
-    "text": "(7-8)% increased time before Lockdown",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCLockdownTimer4_": {
-    "generation_type": "Prefix",
-    "name": "Interrupting",
-    "required_level": 81,
-    "text": "(9-10)% increased time before Lockdown",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed1___": {
-    "generation_type": "Prefix",
-    "name": "Practiced",
-    "required_level": 1,
-    "text": "(9-11)% increased Job speed",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed2": {
-    "generation_type": "Prefix",
-    "name": "Skillful",
-    "required_level": 45,
-    "text": "(12-14)% increased Job speed",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed3": {
-    "generation_type": "Prefix",
-    "name": "Professional",
-    "required_level": 75,
-    "text": "(15-17)% increased Job speed",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistNPCObjectiveSpeed4__": {
-    "generation_type": "Prefix",
-    "name": "Masterful",
-    "required_level": 81,
-    "text": "(18-20)% increased Job speed",
+    "text": "(15-13)% reduced Hiring Fee",
     "weight": 400,
     "influence": "Normal"
   },
@@ -332,38 +364,6 @@
     "name": "of Greed",
     "required_level": 81,
     "text": "The Ring's Cut reduced by (15-13)%",
-    "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost1": {
-    "generation_type": "Suffix",
-    "name": "of Personality",
-    "required_level": 1,
-    "text": "(7-6)% reduced Hiring Fee",
-    "weight": 1000,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost2": {
-    "generation_type": "Suffix",
-    "name": "of Presence",
-    "required_level": 45,
-    "text": "(9-8)% reduced Hiring Fee",
-    "weight": 800,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost3": {
-    "generation_type": "Suffix",
-    "name": "of Charm",
-    "required_level": 75,
-    "text": "(12-10)% reduced Hiring Fee",
-    "weight": 600,
-    "influence": "Normal"
-  },
-  "HeistContractNPCCost4": {
-    "generation_type": "Suffix",
-    "name": "of Charisma",
-    "required_level": 81,
-    "text": "(15-13)% reduced Hiring Fee",
     "weight": 400,
     "influence": "Normal"
   },
@@ -463,6 +463,14 @@
     "weight": 300,
     "influence": "Normal"
   },
+  "HeistNPCEngineeringNoAlertMultiplier1_": {
+    "generation_type": "Suffix",
+    "name": "of Aplomb",
+    "required_level": 81,
+    "text": "Performing Engineering during Lockdown doesn't take additional time",
+    "weight": 200,
+    "influence": "Normal"
+  },
   "HeistNPCEngineeringCost1": {
     "generation_type": "Suffix",
     "name": "of Discount",
@@ -493,14 +501,6 @@
     "required_level": 82,
     "text": "(15-13)% reduced Hiring Fee for Engineering Jobs",
     "weight": 400,
-    "influence": "Normal"
-  },
-  "HeistNPCEngineeringNoAlertMultiplier1_": {
-    "generation_type": "Suffix",
-    "name": "of Aplomb",
-    "required_level": 81,
-    "text": "Performing Engineering during Lockdown doesn't take additional time",
-    "weight": 200,
     "influence": "Normal"
   }
 }
