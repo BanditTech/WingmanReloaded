@@ -1,4 +1,4 @@
-class ItemScan
+﻿class ItemScan
 {
 	__New(){
 		This.Data := {}
@@ -1638,6 +1638,30 @@ class ItemScan
 							This.Prop.Support := True
 						Break 2
 					}
+				}
+			}
+			If (!This.Prop.Item_Height || !This.Prop.Item_Width) {
+				If (This.Prop.ItemClass ~= "Amulets|Rings") {
+					This.Prop.Item_Width := 1
+					This.Prop.Item_Height := 1
+				} Else If (This.Prop.ItemClass ~= "Belts") {
+					This.Prop.Item_Width := 2
+					This.Prop.Item_Height := 1
+				} Else If (This.Prop.ItemClass ~= "Thrusting") {
+					This.Prop.Item_Width := 1
+					This.Prop.Item_Height := 4				
+				} Else If (This.Prop.ItemClass ~= "Body Armours|Quivers|One Hand|Sceptres") {
+					This.Prop.Item_Width := 2
+					This.Prop.Item_Height := 3
+				} Else If (This.Prop.ItemClass ~= "Boots|Gloves|Helmets|Claws") {
+					This.Prop.Item_Width := 2
+					This.Prop.Item_Height := 2				
+				} Else If (This.Prop.ItemClass ~= "Warstaffs|Staffs|Two Hand|Bows") {
+					This.Prop.Item_Width := 2
+					This.Prop.Item_Height := 4				
+				} Else If (This.Prop.ItemClass ~= "Daggers|Wands") {
+					This.Prop.Item_Width := 1
+					This.Prop.Item_Height := 3				
 				}
 			}
 		}
