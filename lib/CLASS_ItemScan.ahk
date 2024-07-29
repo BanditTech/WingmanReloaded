@@ -1,4 +1,4 @@
-﻿class ItemScan
+class ItemScan
 {
 	__New(){
 		This.Data := {}
@@ -1636,7 +1636,7 @@
 							This.Prop.Belt := True
 						If (This.Prop.ItemClass = "Support Skill Gems")
 							This.Prop.Support := True
-						Break
+						Break 2
 					}
 				}
 			}
