@@ -492,6 +492,11 @@
 				Else
 					This.Prop.Item_Width := This.Prop.Item_Height := 2
 			}
+			Else If (This.Prop.ItemClass = "Tinctures")
+			{
+				This.Prop.Item_Width := 1
+				This.Prop.Item_Height := 2
+			}
 		}
 		;End NamePlate Parser
 
