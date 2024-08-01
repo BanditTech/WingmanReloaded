@@ -706,6 +706,7 @@ submit(){
 			Gui, Submit
 			Rescale()
 			Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15
+			Gui Chaos: Show,% "x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA"
 			ToggleExist := True
 			WinActivate, ahk_group POEGameGroup
 		}
