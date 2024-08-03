@@ -256,7 +256,8 @@ CraftingMaps(){
 						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)")) 
 						|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && mapCraftingMethod ~= "(Alchemy|Binding|Hybrid|Chaos)") )
 					{
-						MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
+						If (!Item.Prop.MapKeepFlag)
+							MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
 						If (mapCraftingMethod ~= "Vaal$")
 							ApplyCurrency("Vaal",Grid.X,Grid.Y)
 						Continue
