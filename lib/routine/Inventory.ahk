@@ -128,7 +128,7 @@ CheckToIdentify(){
 		Else If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe)
 			&& Item.Prop.ItemLevel < ChaosRecipeLimitUnId && Item.StashChaosRecipe(false))
 			Return False
-		Else If (Item.Prop.IsMap && !YesMapUnid && !Item.Prop.Corrupted)
+		Else If (Item.Prop.IsMap && !YesMapUnid)
 			Return True
 		Else If (Item.Prop.Chromatic && (Item.Prop.RarityRare || Item.Prop.RarityUnique ) )
 			Return True
