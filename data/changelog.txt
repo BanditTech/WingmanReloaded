@@ -1,3 +1,14 @@
+## Version .15.31 - Alpha Version - August/02/2024
+Misc Adjustments
+  * Fallback values for bases missing from bases file
+  * Small adjustment to Ctrl Shift Click delay
+Chaos Recipe Improvements
+  * Gui overlay now shows/hides properly with the game being on top
+  * Added button to refresh Chaos Recipe data
+  * Also added it to the tray menu
+
+---
+
 ## Version .15.30 - Alpha Version - July/29/2024
 Data Files
   * Update Data File to Match RePOE
