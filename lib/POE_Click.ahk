@@ -78,7 +78,7 @@ CtrlShiftClick(x, y){
 	Log("Verbose","CtrlShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 105+(ClickLatency*15)
 	Send +^{Click}
 	Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
