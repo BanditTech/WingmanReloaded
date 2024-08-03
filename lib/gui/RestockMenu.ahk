@@ -54,7 +54,7 @@
 		Gui, Restock: Add, Radio, xs+5 ys+22 vRestockNormal gRestockSetValue, Normal slot
 		Gui, Restock: Add, Radio, xs+5 y+5 vRestockIgnored gRestockSetValue, Ignore this slot
 		Gui, Restock: Add, Radio, xs+5 y+5 vRestockRestock gRestockSetValue, Restock this slot
-		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Blacksmith|Armourer|Glassblower|Gemcutter|Chisel|Transmutation|Alteration|Annulment|Chance|Regal|Alchemy|Chaos|Veiled|Augmentation|Divine|Jeweller|Fusing|Chromatic|Awakened|Elevated|Harbinger|Horizon|Enkindling|Ancient|Binding|Engineer|Regret|Unmaking|Instilling|Scouring|Sacred|Blessed|Vaal|Custom
+		Gui, Restock: Add, DropDownList, xs+5 y+5 w180 vRestockRestockName gRestockSetValue, ||Wisdom|Portal|Blacksmith|Armourer|Glassblower|Gemcutter|Chisel|Transmutation|Alteration|Annulment|Chance|Regal|Alchemy|Chaos|Veiled|Augmentation|Divine|Jeweller|Fusing|Chromatic|Harbinger|Horizon|Enkindling|Ancient|Binding|Engineer|Regret|Unmaking|Instilling|Scouring|Sacred|Blessed|Vaal|Custom
 		Gui, Restock: Font, Bold s9
 		Gui, Restock: Add, Text, xs+5 y+10, Min stack:
 		Gui, Restock: Font, s9

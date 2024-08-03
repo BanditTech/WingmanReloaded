@@ -10,7 +10,7 @@ for k, v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "Di
 	, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
 	,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"
 	,"Augmentation","Divine"
-	,"Jeweller","Fusing","Chromatic","Awakened","Elevated","Harbinger","Horizon"
+	,"Jeweller","Fusing","Chromatic","Harbinger","Horizon"
 	,"Enkindling","Ancient","Binding","Engineer","Regret","Unmaking"
 	,"Instilling","Scouring","Sacred","Blessed","Vaal"
 	, "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor", "OnVendorHeist"

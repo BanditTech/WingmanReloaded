@@ -96,7 +96,6 @@ ItemCraftingBaseComparator(base1,base2){
 	base1 := RegExReplace(base1,"SCJ", "Small Cluster Jewel")
 	base1 := RegExReplace(base1,"MCJ", "Medium Cluster Jewel")
 	base1 := RegExReplace(base1,"LCJ", "Large Cluster Jewel")
-	base1 := RegExReplace(base1,"Awakened|Elevated", "Atlas Upgrade Items")
 	base1 := RegExReplace(base1,"([^s])$", "$1s")
 	result := base1 ~= base2
 	Log("Item Crafting Base Comparison ","Evaluating " base1 " and " base2 " returned " (result?"True":"False"))
@@ -190,7 +189,7 @@ CraftingMaps(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
 	BlackList := Array_DeepClone(BlackList_Default)
-	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Chaos","Augmentation","Awakened","Elevated"])
+	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Chaos","Augmentation"])
 	; MsgBoxVals(WR.data.Counts)
 	MapList := {}
 	; Start Scan on Inventory
@@ -260,7 +259,6 @@ CraftingMaps(){
 							MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
 						If (mapCraftingMethod ~= "Vaal$")
 							ApplyCurrency("Vaal",Grid.X,Grid.Y)
-						Continue
 					}
 					Else
 					{

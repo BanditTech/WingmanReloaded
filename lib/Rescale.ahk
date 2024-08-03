@@ -173,12 +173,6 @@ Rescale(){
       ; Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1920/226))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/396))
-      ; Awakened
-      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(1920/436))
-      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/396))
-      ; Elevated
-      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(1920/493))
-      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1080/396))
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1920/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
@@ -388,12 +382,6 @@ Rescale(){
       ; Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1440/226))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/396))
-      ; Awakened
-      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(1440/436))
-      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/396))
-      ; Elevated
-      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(1440/493))
-      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1080/396))
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1440/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
@@ -600,12 +588,6 @@ Rescale(){
       ; Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2560/226))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/396))
-      ; Awakened
-      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(2560/436))
-      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/396))
-      ; Elevated
-      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(2560/493))
-      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1080/396))
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(2560/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
@@ -817,12 +799,6 @@ Rescale(){
       ; Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(2580/226))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/396))
-      ; Awakened
-      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(2580/436))
-      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/396))
-      ; Elevated
-      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(2580/493))
-      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1080/396))
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(2580/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
@@ -1030,12 +1006,6 @@ Rescale(){
       ; Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(3840/226))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/396))
-      ; Awakened
-      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(3840/436))
-      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/396))
-      ; Elevated
-      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(3840/493))
-      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1080/396))
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(3840/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
@@ -1247,12 +1217,6 @@ Rescale(){
       ; Chromatic
       WR.loc.pixel.Chromatic.X:=GameX + Round(GameW/(1728/226))
       WR.loc.pixel.Chromatic.Y:=GameY + Round(GameH/(1080/396))
-      ; Awakened
-      WR.loc.pixel.Awakened.X:=GameX + Round(GameW/(1728/436))
-      WR.loc.pixel.Awakened.Y:=GameY + Round(GameH/(1080/396))
-      ; Elevated
-      WR.loc.pixel.Elevated.X:=GameX + Round(GameW/(1728/493))
-      WR.loc.pixel.Elevated.Y:=GameY + Round(GameH/(1080/396))
       ; Harbinger
       WR.loc.pixel.Harbinger.X:=GameX + Round(GameW/(1728/548))
       WR.loc.pixel.Harbinger.Y:=GameY + Round(GameH/(1080/396))
