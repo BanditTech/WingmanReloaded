@@ -364,12 +364,12 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Font, Bold s9 cBlack, Arial
 	Gui Add, GroupBox,  section  center w200 h100               xm+5   ym+25,         Debug Tooltips:
 	Gui, Font
-
 	Gui Add, Checkbox,   vDebugMessages Checked%DebugMessages%  gUpdateDebug     xs+20 ys+20, Show Debug Tooltips
 	Gui Add, Checkbox,   vYesTimeMS Checked%YesTimeMS%  gUpdateDebug     , Logic Tooltips
 	Gui Add, Checkbox,   vYesLocation Checked%YesLocation%  gUpdateDebug , Location Tooltips
-
+	
 	Gui, Add, Button,      gActualTierCreator     xs ys+120          h23,   Update Actual Tiers
 	Gui, Add, Button,      gDBUpdateNinja           h23,   Update Ninja Database
+	Gui, Add, Button,      gRefreshChaosRecipe h23,   Reset Chaos Recipe Data
 	; Gui, Add, Button,      gForceUpdatePOEDB           h23,   Update PoeDB Affixes
 	

@@ -25,6 +25,10 @@ Tooltip,
 #Include, %A_ScriptDir%\lib\gui\IngameOverlay.ahk
 If (ShowOnStart)
   MainMenu()
+If (YesChaosOverlay){
+  RefreshChaosRecipe()
+}
+
 #Include, %A_ScriptDir%\lib\Timers.ahk
 #Include *i %A_ScriptDir%\save\MyCustomAutoRun.ahk
 ; Hotkeys to reload or exit script - Hardcoded Hotkeys

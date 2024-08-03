@@ -15,6 +15,8 @@ Menu, Tray, add,         Print Object, PromptForObject
 Menu, Tray, add
 Menu, Tray, Add,         Custom Loot Filter, LaunchLootFilter
 Menu, Tray, Add
+Menu, Tray, Add,         Refresh Chaos Data, RefreshChaosRecipe
+Menu, Tray, Add
 Menu, Tray, Add,         Open FindText interface, ft_Start
 Menu, Tray, Add
 Menu, Tray, add,         Window Spy, WINSPY
