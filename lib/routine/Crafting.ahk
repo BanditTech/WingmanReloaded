@@ -235,19 +235,16 @@ CraftingMaps(){
 			;Crafting Map Script
 			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
 			{
-				If (mapCraftingMethod ~= "^Chisel") {
-					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5 :
-					Item.Prop.Map_Tier > 5 ? 10 :
-					Item.Prop.Map_Tier >= 1 ? 20 : 1
+				If (mapCraftingMethod ~= "Chisel") {
+					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5 
+					:	Item.Prop.Map_Tier > 5 ? 10 
+					:	Item.Prop.Map_Tier >= 1 ? 20 
+					: 1
+					numberChisel := 0
 
-					If (Item.Prop.Map_Quality < 20)
-						If (ForceMaxChisel) {
-							numberChisel := Ceil((20 - Item.Prop.Map_Quality)/qualityPerChisel)
-						} Else {
-							numberChisel := (20 - Item.Prop.Map_Quality)//qualityPerChisel
-						}
-					Else
-						numberChisel := 0
+					If (Item.Prop.Map_Quality < 20) {
+						numberChisel := ForceMaxChisel ? Ceil((20 - Item.Prop.Map_Quality)/qualityPerChisel) : (20 - Item.Prop.Map_Quality)//qualityPerChisel
+					}
 				
 					If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
 						Return False
