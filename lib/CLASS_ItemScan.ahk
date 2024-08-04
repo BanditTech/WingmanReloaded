@@ -952,6 +952,7 @@
 							if(AffixWRLine[1] == This.Prop.FracturedModKey){
 								Name := "Fractured" . Name
 								This.Prop[Name] := value
+								This.Prop.FracturedActualTier := value
 							}
 							break
 						}
