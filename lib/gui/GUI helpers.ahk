@@ -69,6 +69,7 @@ UpdateExtra:
 	IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
 	IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
 	IniWrite, %YesInfluencedUnid%, %A_ScriptDir%\save\Settings.ini, General, YesInfluencedUnid
+	IniWrite, %YesSynthesisId%, %A_ScriptDir%\save\Settings.ini, General, YesSynthesisId
 	IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
 	IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
 	IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency

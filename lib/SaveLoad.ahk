@@ -48,6 +48,7 @@ readFromFile(){
 	IniRead, YesDiv, %A_ScriptDir%\save\Settings.ini, General, YesDiv, 1
 	IniRead, YesMapUnid, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid, 0
 	IniRead, YesInfluencedUnid, %A_ScriptDir%\save\Settings.ini, General, YesInfluencedUnid, 0
+	IniRead, YesSynthesisId, %A_ScriptDir%\save\Settings.ini, General, YesSynthesisId, 1
 	IniRead, YesCLFIgnoreImplicit, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit, 0
 	IniRead, YesSortFirst, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst, 1
 	IniRead, Latency, %A_ScriptDir%\save\Settings.ini, General, Latency, 1
@@ -736,6 +737,7 @@ submit(){
 		IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
 		IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
 		IniWrite, %YesInfluencedUnid%, %A_ScriptDir%\save\Settings.ini, General, YesInfluencedUnid
+		IniWrite, %YesSynthesisId%, %A_ScriptDir%\save\Settings.ini, General, YesSynthesisId
 		IniWrite, %YesCLFIgnoreImplicit%, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit
 		IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
 		IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency

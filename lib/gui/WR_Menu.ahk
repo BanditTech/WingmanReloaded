@@ -23,7 +23,7 @@ WR_Menu(Function:="",Var*){
 
       Gui, Inventory: Tab, Options
       Gui, Inventory: Font, Bold s9 cBlack, Arial
-      Gui, Inventory: Add, GroupBox, Section w170 h315 xm ym+25, Inventory Sort/CLF Options
+      Gui, Inventory: Add, GroupBox, Section w170 h330 xm ym+25, Inventory Sort/CLF Options
       Gui, Inventory: Font,
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesIdentify Checked%YesIdentify% xs+5 ys+18 , Identify Items?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesStash Checked%YesStash% y+8 , Deposit at Stash?
@@ -32,6 +32,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesSortFirst Checked%YesSortFirst% y+8 , Group Items before stashing?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesMapUnid Checked%YesMapUnid% y+8 , Leave Map Un-ID?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesInfluencedUnid Checked%YesInfluencedUnid% y+8 , Leave Influenced Un-ID?
+      Gui, Inventory: Add, Checkbox, gUpdateExtra vYesSynthesisId Checked%YesSynthesisId% y+8 , Always ID Frac/Syth rares?
       Gui, Inventory: Add, Checkbox, gUpdateExtra vYesCLFIgnoreImplicit Checked%YesCLFIgnoreImplicit% y+8 , Ignore Implicit in CLF?
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesBatchVendorBauble Checked%YesBatchVendorBauble% y+8 , Batch Vendor Quality Flasks?
       Gui, Inventory: Add, Checkbox, gSaveGeneral vYesBatchVendorGCP Checked%YesBatchVendorGCP% y+8 , Batch Vendor Quality Gems?

@@ -123,7 +123,9 @@ ClearNotifications()
 CheckToIdentify(){
 	If (Item.Affix["Unidentified"] && YesIdentify)
 	{
-		If (Item.Prop.IsInfluenceItem && YesInfluencedUnid && Item.Prop.RarityRare)
+		If (Item.Prop.IsSynthesisItem && YesSynthesisId && Item.Prop.Rarity_Digit <= 3)
+			Return True
+		Else If (Item.Prop.IsInfluenceItem && YesInfluencedUnid && Item.Prop.RarityRare)
 			Return False
 		Else If (ChaosRecipeEnableFunction && ChaosRecipeEnableUnId && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe)
 			&& Item.Prop.ItemLevel < ChaosRecipeLimitUnId && Item.StashChaosRecipe(false))
