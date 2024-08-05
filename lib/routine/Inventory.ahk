@@ -104,7 +104,7 @@ ShooMouse()
 	Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
 	Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
 	MouseMove, RX, RY, 0
-	Sleep, 60*Latency
+	Sleep, 90*Latency
 }
 ; ClearNotifications - Get rid of overlay messages if any are present
 ClearNotifications()
