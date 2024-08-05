@@ -1,4 +1,4 @@
-﻿class ItemScan
+class ItemScan
 {
 	__New(){
 		This.Data := {}
@@ -2476,10 +2476,8 @@
 	}
 	MatchStashManagement(passthrough:=False){
 		; Create associative array so HasKey function can be used
-		UnsupportedAffinityCurrencies := { "Stacked Deck":0
-			, "Prime Regrading Lens":0
+		UnsupportedAffinityCurrencies := { "Prime Regrading Lens":0
 			, "Secondary Regrading Lens":0
-			, "Veiled Chaos Orb":0
 			, "Vial of Transcendence":0
 			, "Vial of Sacrifice":0
 			, "Vial of the Ghost":0
@@ -2489,14 +2487,7 @@
 			, "Vial of Awakening":0
 			, "Vial of the Ritual":0
 			, "Vial of Fate":0
-			, "Bestiary Orb":0
-			, "Blessing of Chayula":0
-			, "Blessing of Xoph":0
-			, "Blessing of Uul-Netol":0
-			, "Blessing of Tul":0
-			, "Blessing of Esh":0 }
-		If (StashTabYesCurrency && This.Prop.RarityCurrency && (This.Prop.SpecialType="" || This.Prop.SpecialType = "Ritual Item")) {
-			If (StashTabYesCurrency > 1 && !UnsupportedAffinityCurrencies.HasKey(This.Prop.ItemName))
+			, "Bestiary Orb":0 }
 				sendstash := -2
 			Else
 				sendstash := StashTabCurrency
