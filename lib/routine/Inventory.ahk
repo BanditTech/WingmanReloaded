@@ -1,4 +1,4 @@
-﻿; ItemSortCommand - Sort inventory and determine action
+; ItemSortCommand - Sort inventory and determine action
 ItemSortCommand(){
 	; Thread, NoTimers, True
 	CheckRunning()
@@ -151,7 +151,9 @@ VendorRoutine()
 	SortGem := []
 	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse out of the way to grab screenshot
-	ShooMouse(), GuiStatus(), ClearNotifications()
+	ShooMouse()
+	GuiStatus()
+	ClearNotifications()
 	If !OnVendor
 	{
 		Return
@@ -396,7 +398,9 @@ StashRoutine()
 	}
 	BlackList := Array_DeepClone(BlackList_Default)
 	; Move mouse away for Screenshot
-	ShooMouse(), FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH) , ClearNotifications()
+	ShooMouse()
+	FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
+	ClearNotifications()
 	; CraftingBasesRequest()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
@@ -461,7 +465,10 @@ StashRoutine()
 						If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
 						{
 							Sleep, 250*Latency
-							ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+							ShooMouse()
+							GuiStatus()
+							ClearNotifications()
+							Pitem := FindText.GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({"C":C,"R":R,"Item":Item})
@@ -500,7 +507,10 @@ StashRoutine()
 							If (StashTabYesUniqueDump)
 							{
 								Sleep, 200*Latency
-								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+								ShooMouse()
+								GuiStatus()
+								ClearNotifications()
+								Pitem := FindText.GetColor(GridX,GridY)
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
@@ -692,7 +702,9 @@ DivRoutine()
 {
 	SetActionTimings()
 	BlackList := Array_DeepClone(BlackList_Default)
-	ShooMouse(), GuiStatus(), ClearNotifications()
+	ShooMouse()
+	GuiStatus()
+	ClearNotifications()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
@@ -736,7 +748,9 @@ IdentifyRoutine()
 {
 	SetActionTimings()
 	BlackList := Array_DeepClone(BlackList_Default)
-	ShooMouse(), GuiStatus(), ClearNotifications()
+	ShooMouse()
+	GuiStatus()
+	ClearNotifications()
 	; Main loop through inventory
 	For C, GridX in InventoryGridX
 	{
