@@ -47,19 +47,26 @@ Global apiList := ["Currency"
 	, "Resonator"
 	, "Essence"
 	, "DivinationCard"
-	, "Prophecy"
 	, "SkillGem"
 	, "BaseType"
 	, "HelmetEnchant"
 	, "UniqueMap"
 	, "Map"
+	, "BlightedMap"
+	, "BlightRavagedMap"
 	, "UniqueJewel"
 	, "UniqueFlask"
 	, "UniqueWeapon"
 	, "UniqueArmour"
 	, "UniqueAccessory"
 	, "Beast"
-	, "Vial"]
+	, "Vial"
+	, "Omen"
+	, "ClusterJewel"
+	, "Invitation"
+	, "Memory"
+	, "KalguuranRune"
+	, "Tattoo"]
 ; Create Executable group for gameHotkey, IfWinActive
 Global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExileEGS.exe"]
 for n, exe in POEGameArr
