@@ -77,27 +77,25 @@
 		If (This.Prop.Rarity_Digit == 4 && !This.Affix["Unidentified"])
 			This.ApproximatePerfection()
 		This.MatchPseudoAffix()
-		This.MatchExtenalDB()
-		This.MatchCraftingBases()
-		This.MatchBase2Slot()
-		This.MatchChaosRegal()
-		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
-			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.ClusterJewel) {
 			This.Prop.ClusterSkills := 0
 			This.Prop.ClusterSmall := 0
 			For k, v in This.Affix {
 				If InStr(k, "# Added Passive Skill is")
 					This.Prop.ClusterSkills += 1
-				If InStr(k, "Added Small Passive Skills also grant:") {
+				If InStr(k, "Added Small Passive Skills also grant:")
 					This.Prop.ClusterSmall += 1
-					If (InStr(k,"(enchant)") && RegExMatch(k, "Added Small Passive Skills grant\: (.*) \(enchant\)", match)){
-						This.Prop.ClusterKey := match1
-					}
-				}
+				If (RegExMatch(k, "Added Small Passive Skills grant\: (.*) \(enchant\)", match))
+					This.Prop.ClusterKey := StrReplace(match1,"#",This.Affix[k])
 			}
 			This.Prop.ClusterVariant := This.Affix["Adds # Passive Skills (enchant)"] " passives"
 		}
+		This.MatchExtenalDB()
+		This.MatchCraftingBases()
+		This.MatchBase2Slot()
+		This.MatchChaosRegal()
+		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
+			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
 			Static Tiers := {"Lesser":1,"Greater":2,"Grand":3,"Exceptional":4,"ReplaceWithTier5Name":5,"Perfect":6}
 			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", RxMatch) {
@@ -1845,7 +1843,6 @@
 			{
 				If (This.Prop.ClusterKey = v["name"]
 					&& This.Prop.ClusterVariant = v["variant"]
-					&& This.Prop.ItemBase = v["baseType"]
 					&& This.Prop.ItemLevel >= v["levelRequired"])
 				{
 					This.Prop.ChaosValue := v["chaosValue"]
