@@ -203,6 +203,10 @@ readFromFile(){
 	IniRead, StashTabYesBrickedMaps, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBrickedMaps, 1
 	IniRead, StashTabInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem, 1
 	IniRead, StashTabYesInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem, 1
+	IniRead, StashTabRunes, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabRunes, 1
+	IniRead, StashTabYesRunes, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesRunes, 1
+	IniRead, StashTabTattoos, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabTattoos, 1
+	IniRead, StashTabYesTattoos, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesTattoos, 1
 	IniRead, StashTabCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting, 1
 	IniRead, StashTabYesCrafting, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting, 1
 	IniRead, StashTabDump, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump, 1
@@ -911,6 +915,10 @@ submit(){
 		IniWrite, %StashTabYesBrickedMaps%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBrickedMaps
 		IniWrite, %StashTabInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem
 		IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
+		IniWrite, %StashTabRunes%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabRunes
+		IniWrite, %StashTabYesRunes%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesRunes
+		IniWrite, %StashTabTattoos%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabTattoos
+		IniWrite, %StashTabYesTattoos%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesTattoos
 		IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
 		IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
 		IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump

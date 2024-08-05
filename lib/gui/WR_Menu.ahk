@@ -124,7 +124,7 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, UpDown,Range1-99 gSaveStashTabs vStashTabMiscMapItems x+0 yp hp , %StashTabMiscMapItems%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesMiscMapItems Checked%StashTabYesMiscMapItems% x+5 yp+4, Enable
 
-      ; Second column Gui - GEMS
+      ; Second column Gui - Links/Bricked Maps/Influenced/Runes/Tattoos
 
       Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, Section w110 h50 x+15 ys+18 , 5/6 linked
@@ -146,6 +146,20 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
       Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabInfluencedItem , %StashTabInfluencedItem%
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesInfluencedItem Checked%StashTabYesInfluencedItem% x+5 yp+4, Enable
+
+      Gui, Inventory: Font, Bold s8 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Runes
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabRunes , %StashTabRunes%
+      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesRunes Checked%StashTabYesRunes% x+5 yp+4, Enable
+
+      Gui, Inventory: Font, Bold s8 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Tattoos
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTabTattoos , %StashTabTattoos%
+      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesTattoos Checked%StashTabYesTattoos% x+5 yp+4, Enable
 
       ; Third column Gui - Rare itens
 

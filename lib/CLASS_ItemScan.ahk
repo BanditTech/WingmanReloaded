@@ -1,4 +1,4 @@
-class ItemScan
+﻿class ItemScan
 {
 	__New(){
 		This.Data := {}
@@ -2488,9 +2488,28 @@ class ItemScan
 			, "Vial of the Ritual":0
 			, "Vial of Fate":0
 			, "Bestiary Orb":0 }
+		If (This.Prop.IsRune && StashTabYesRunes){
+			sendstash := StashTabRunes
+		} Else If (This.Prop.IsTattoo && StashTabYesTattoos){
+			sendstash := StashTabTattoos
+		} Else If ( StashTabYesCurrency 
+			&& This.Prop.RarityCurrency 
+			&& ( This.Prop.SpecialType = ""
+				|| This.Prop.SpecialType = "Ritual Item"
+				|| (This.Prop.IsRune && !StashTabYesRunes)
+				|| (This.Prop.IsTattoo && !StashTabYesTattoos) ) ) 
+		{
+			If ( StashTabYesCurrency > 1 
+				&& !This.Prop.IsRune
+				&& !This.Prop.IsTattoo 
+				&& !UnsupportedAffinityCurrencies.HasKey( This.Prop.ItemName ) )
 				sendstash := -2
 			Else
 				sendstash := StashTabCurrency
+		} Else If (This.Prop.IsRune && StashTabYesRunes){
+			sendstash := StashTabRunes
+		} Else If (This.Prop.IsTattoo && StashTabYesTattoos){
+			sendstash := StashTabTattoos
 		} Else If (StashTabYesNinjaPrice && This.Prop.ChaosValue >= StashTabYesNinjaPrice_Price && !This.Prop.IsMap) {
 			sendstash := StashTabNinjaPrice
 		} Else If (This.Prop.Expedition) {
