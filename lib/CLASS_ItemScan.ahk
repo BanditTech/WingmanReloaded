@@ -398,6 +398,10 @@
 				This.Prop.UberDuberOffering := True
 				This.Prop.SpecialType := "Uber Duber Offering"
 			}
+			Else If (This.Prop.ItemClass = "Map Fragments")
+			{
+				This.Prop.SpecialType := "Map Fragments"
+			}
 			Else If (InStr(This.Prop.ItemBase, "Essence of")
 				|| InStr(This.Prop.ItemBase, "Remnant of Corruption"))
 			{
