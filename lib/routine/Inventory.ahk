@@ -1,4 +1,4 @@
-; ItemSortCommand - Sort inventory and determine action
+﻿; ItemSortCommand - Sort inventory and determine action
 ItemSortCommand(){
 	; Thread, NoTimers, True
 	CheckRunning()
@@ -110,7 +110,7 @@ ShooMouse()
 ClearNotifications()
 {
 	; Global InventoryGridY
-	If (xBtn := FindText(GameW - 21,InventoryGridY[1] - 60,GameW,InventoryGridY[5] + 10,0.2,0.2,XButtonStr,0))
+	If (xBtn := FindText(GameW - 30,InventoryGridY[1] - 90,GameW,InventoryGridY[5] + 30,0.2,0.2,XButtonStr,0))
 	{
 		Log("Verbose","Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
