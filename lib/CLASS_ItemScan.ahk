@@ -1821,8 +1821,8 @@
 		}
 		If (This.Prop.IsMap)
 		{
-			keyToUse := This.Prop.BlightedMap ? "BlightedMap" 
-				: This.Prop.BlightRavagedMap ? "BlightRavagedMap"
+			keyToUse := This.Prop.IsBlightedMap ? "BlightedMap" 
+				: This.Prop.IsBlightRavagedMap ? "BlightRavagedMap"
 				: "Map"
 			If This.MatchNinjaDB(keyToUse,"ItemBase","name")
 				Return
