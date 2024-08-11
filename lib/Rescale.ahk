@@ -25,6 +25,15 @@ Rescale(){
       GlobeImported := False
 
     WinGetPos, GameX, GameY, GameW, GameH
+
+    ; Scaled Resolutions for all aspects
+    ; Checks to see if the game UI is displayed
+    WR.loc.pixel.OnChar.X:=GameX + Round(GameW / 2) - 1
+    WR.loc.pixel.OnChar.Y:=GameY + GameH - 1
+    
+    WR.loc.pixel.GuiChaos.X:=GameX + Round(GameW/2)
+    WR.loc.pixel.GuiChaos.Y:=GameY
+
     If (ResolutionScale="Standard") {
       ; Item Inventory Grid
       Global InventoryGridX := [ GameX + Round(GameW/(1920/1274)), GameX + Round(GameW/(1920/1326)), GameX + Round(GameW/(1920/1379)), GameX + Round(GameW/(1920/1432)), GameX + Round(GameW/(1920/1484)), GameX + Round(GameW/(1920/1537)), GameX + Round(GameW/(1920/1590)), GameX + Round(GameW/(1920/1642)), GameX + Round(GameW/(1920/1695)), GameX + Round(GameW/(1920/1748)), GameX + Round(GameW/(1920/1800)), GameX + Round(GameW/(1920/1853)) ]
@@ -222,9 +231,6 @@ Rescale(){
       ;Status Check OnMenu
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
-      ;Status Check OnChar
-      WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1920 / 41))
-      WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
       ;Status Check OnChat
       WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1920 / 0))
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
@@ -430,9 +436,6 @@ Rescale(){
       ;Status Check OnMenu
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
-      ;Status Check OnChar
-      WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1440 / 41))
-      WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
       ;Status Check OnChat
       WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1440 / 0))
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
@@ -636,9 +639,6 @@ Rescale(){
       ;Status Check OnMenu
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
-      ;Status Check OnChar
-      WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (2560 / 41))
-      WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
       ;Status Check OnChat
       WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (2560 / 0))
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
@@ -847,9 +847,6 @@ Rescale(){
       ;Status Check OnMenu
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1440 / 72))
-      ;Status Check OnChar
-      WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (3440 / 54))
-      WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1440 / 1217))
       ;Status Check OnChat
       WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3440 / 0))
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1440 / 850))
@@ -1050,9 +1047,6 @@ Rescale(){
       ;Status Check OnMenu
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1080 / 54))
-      ;Status Check OnChar
-      WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (3840 / 41))
-      WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1080 / 915))
       ;Status Check OnChat
       WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (3840 / 0))
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1080 / 653))
@@ -1267,10 +1261,6 @@ Rescale(){
       WR.loc.pixel.OnMenu.X:=GameX + Round(GameW / 2)
       WR.loc.pixel.OnMenu.Y:=GameY + Round(GameH / (1050 / 54))
       
-      ;Status Check OnChar
-      WR.loc.pixel.OnChar.X:=GameX + Round(GameW / (1680 / 36))
-      WR.loc.pixel.OnChar.Y:=GameY + Round(GameH / ( 1050 / 920))
-      
       ;Status Check OnChat
       WR.loc.pixel.OnChat.X:=GameX + Round(GameW / (1680 / 0))
       WR.loc.pixel.OnChat.Y:=GameY + Round(GameH / ( 1050 / 653))
@@ -1311,8 +1301,6 @@ Rescale(){
       WR.loc.pixel.DivItem.Y:=GameY + Round(GameH / (1050 / 605))
     }
 
-    WR.loc.pixel.GuiChaos.X:=GameX + Round(GameW/2)
-    WR.loc.pixel.GuiChaos.Y:=GameY
 
 
     x_center := GameX + GameW / 2
@@ -1497,8 +1485,8 @@ FirstScale(){
 
     WR.loc.pixel.OnMenu.X:=960
     WR.loc.pixel.OnMenu.Y:=54
-    WR.loc.pixel.OnChar.X:=41
-    WR.loc.pixel.OnChar.Y:=915
+    WR.loc.pixel.OnChar.X:=1919
+    WR.loc.pixel.OnChar.Y:=1079
     WR.loc.pixel.OnChat.X:=41
     WR.loc.pixel.OnChat.Y:=915
     WR.loc.pixel.OnInventory.X:=1583
