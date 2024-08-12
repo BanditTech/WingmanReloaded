@@ -204,10 +204,10 @@ ErrorText(e){
 }
 ; Sets the delays and speed for mouse and keyboard actions
 SetActionTimings(){
-  return
-  ; SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%
+  ; SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
   ; SetMouseDelay, %SetMouseDelayValue%
   ; SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
   ; SetWinDelay, %SetWinDelayValue%
   ; SetControlDelay, %SetControlDelayValue%
+  return
 }

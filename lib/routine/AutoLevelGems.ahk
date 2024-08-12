@@ -26,9 +26,9 @@ autoLevelGems()
 				}
 				BlockInput, MouseMove
 				MouseMove, X, Y, 0
-				Sleep, 30*Latency
+				; Sleep, 30*Latency
 				Send {Click}
-				Sleep, 45*Latency
+				; Sleep, 45*Latency
 				MouseMove, mX, mY, 0
 				BlockInput, MouseMoveOff
 				LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")

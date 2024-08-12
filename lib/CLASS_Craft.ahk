@@ -127,11 +127,11 @@
 		Global WR
 		MoveStash(StashTabCurrency)
 		RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
-		Sleep, 45*Latency
+		; Sleep, 45*Latency
 		LeftClick(x,y)
-		Sleep, 90*Latency
+		; Sleep, 90*Latency
 		ClipItem(x,y)
-		Sleep, 45*Latency
+		; Sleep, 45*Latency
 		return
 	}
 	Looping(x,y){

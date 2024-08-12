@@ -15,17 +15,17 @@ SpamClick(Toggle:="",Modifier:=""){
 			Modifier := StrSplit(Modifier,",")
 		For k, mod in Modifier{
 			Send {%mod% Down}
-			Sleep, 60+(ClickLatency*15)
+			; Sleep, 60+(ClickLatency*15)
 		}
 	}
 	While Spam {
 		Send {Click}
-		Sleep, 60+(ClickLatency*15)
+		; Sleep, 60+(ClickLatency*15)
 	}
 	If (Modifier != "") {
 		For k, mod in Modifier{
 			Send {%mod% Up}
-			Sleep, 60+(ClickLatency*15)
+			; Sleep, 60+(ClickLatency*15)
 		}
 	}
 }

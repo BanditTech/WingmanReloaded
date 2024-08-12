@@ -56,7 +56,7 @@ ItemSortCommand(){
 		Else If (OnInventory&&YesIdentify)
 			IdentifyRoutine()
 	}
-	Sleep, 90*Latency
+	; Sleep, 90*Latency
 	MouseMove, xx, yy, 0
 	CheckRunning("Off")
 	UpdateGuiChaosCounts()
@@ -104,7 +104,7 @@ ShooMouse()
 	Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
 	Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
 	MouseMove, RX, RY, 0
-	Sleep, 90*Latency
+	Sleep, 105
 }
 ; ClearNotifications - Get rid of overlay messages if any are present
 ClearNotifications()
@@ -115,7 +115,7 @@ ClearNotifications()
 		Log("Verbose","Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
 			LeftClick(v.x,v.y)
-		Sleep, 300*Latency
+		Sleep, 300
 		GuiStatus()
 	}
 }
@@ -464,7 +464,7 @@ StashRoutine()
 						CtrlClick(Grid.X,Grid.Y)
 						If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
 						{
-							Sleep, 250*Latency
+							Sleep, 250
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
@@ -496,8 +496,11 @@ StashRoutine()
 							If (StashTabYesUniqueRing && Item.Prop.Ring
 								&& sendstash != StashTabUniqueRing)
 							{
-								Sleep, 200*Latency
-								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+								Sleep, 200
+								ShooMouse()
+								GuiStatus()
+								ClearNotifications()
+								Pitem := FindText.GetColor(GridX,GridY)
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueRing)
@@ -506,7 +509,7 @@ StashRoutine()
 							}
 							If (StashTabYesUniqueDump)
 							{
-								Sleep, 200*Latency
+								Sleep, 200
 								ShooMouse()
 								GuiStatus()
 								ClearNotifications()
@@ -551,7 +554,7 @@ StashRoutine()
 						If (StashTabYesUniqueRing && Item.Prop.Ring
 							&& Tab != StashTabUniqueRing)
 						{
-							Sleep, 200*Latency
+							Sleep, 200
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
@@ -564,7 +567,7 @@ StashRoutine()
 						}
 						If (StashTabYesUniqueDump)
 						{
-							Sleep, 200*Latency
+							Sleep, 200
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
@@ -635,12 +638,12 @@ SearchVendor()
 		Else
 			Return
 	}
-	Sleep, 45*Latency
+	; Sleep, 45*Latency
 	Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0)
 	If (Sell)	{
-		Sleep, 30*Latency
+		; Sleep, 30*Latency
 		LeftClick(Sell.1.x,Sell.1.y)
-		Sleep, 120*Latency
+		; Sleep, 120*Latency
 		Return True
 	}
 	Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
@@ -676,14 +679,14 @@ SearchVendor()
 	if (Vendor)
 	{
 		LeftClick(Vendor.1.x, Vendor.1.y)
-		Sleep, 60
+		; Sleep, 60
 		Loop, 66
 		{
 			If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
 			{
-				Sleep, 30*Latency
+				; Sleep, 30*Latency
 				LeftClick(Sell.1.x,Sell.1.y)
-				Sleep, 120*Latency
+				; Sleep, 120*Latency
 				Return True
 			}
 			Else If !Mod(A_Index, 20)
@@ -733,9 +736,9 @@ DivRoutine()
 					CtrlClick(Grid.X,Grid.Y)
 					RandomSleep(150,200)
 					LeftClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivTrade.Y)
-					Sleep, 45+(ClickLatency*15)
+					; Sleep, 45+(ClickLatency*15)
 					CtrlClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivItem.Y)
-					Sleep, 45+(ClickLatency*15)
+					; Sleep, 45+(ClickLatency*15)
 				}
 				Continue
 			}
@@ -808,7 +811,7 @@ MoveStash(Tab,CheckStatus:=0)
 		return
 	If (CurrentTab!=Tab)
 	{
-		Sleep, 90*Latency
+		Sleep, 105
 		Dif:=(CurrentTab-Tab)
 		If (CurrentTab = 0)
 		{
@@ -831,10 +834,10 @@ MoveStash(Tab,CheckStatus:=0)
 				SendInput {Right %val%}
 			CurrentTab:=Tab
 		}
-		Sleep, 210*Latency
+		Sleep, 210
 	}
 	If (Tab == StashTabMap || Tab == StashTabUnique)
-		Sleep, 300*Latency
+		Sleep, 300
 	return
 }
 ; RunRestock - Restock currency Items in inventory

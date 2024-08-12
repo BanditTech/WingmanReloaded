@@ -825,7 +825,7 @@ VendorChaosRecipe(){
 			SetTimer VendorChaosRecipe, -500
 	}
  ; Reset in preparation for the next press of this hotkey.
-	Sleep, 90*Latency
+	Sleep, 105
 	CheckRunning("Off")
 	Return True
 }
