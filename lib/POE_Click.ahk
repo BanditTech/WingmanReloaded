@@ -34,9 +34,9 @@ LeftClick(x, y){
 	Log("Verbose","LeftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
+	; Sleep, 90+(ClickLatency*15)
 	Send {Click}
-	Sleep, 105+(ClickLatency*15)
+	; Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -45,9 +45,9 @@ RightClick(x, y){
 	Log("Verbose","RightClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
+	; Sleep, 90+(ClickLatency*15)
 	Send {Click, Right}
-	Sleep, 105+(ClickLatency*15)
+	; Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -56,9 +56,9 @@ ShiftClick(x, y){
 	Log("Verbose","ShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
+	; Sleep, 90+(ClickLatency*15)
 	Send +{Click}
-	Sleep, 105+(ClickLatency*15)
+	; Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -67,9 +67,9 @@ CtrlClick(x, y){
 	Log("Verbose","CtrlClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
+	; Sleep, 105+(ClickLatency*15)
 	Send ^{Click}
-	Sleep, 105+(ClickLatency*15)
+	; Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -78,9 +78,9 @@ CtrlShiftClick(x, y){
 	Log("Verbose","CtrlShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 105+(ClickLatency*15)
+	; Sleep, 105+(ClickLatency*15)
 	Send +^{Click}
-	Sleep, 105+(ClickLatency*15)
+	; Sleep, 105+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -100,7 +100,7 @@ ClipItem(x, y){
 	Clipboard := ""
 	Item := ""
 	MouseMove, x, y
-	Sleep, 105+(ClipLatency*15)
+	; Sleep, 105+(ClipLatency*15)
 	Send ^!c
 	ClipWait, 0.1
 	If ErrorLevel

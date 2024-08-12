@@ -1,7 +1,7 @@
 ﻿#IfWinActive Path of Exile 
 #NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
+; #MaxHotkeysPerInterval 99000000
+; #HotkeyInterval 99000000
 #KeyHistory 0
 #SingleInstance force
 #Warn UseEnv 
@@ -23,11 +23,11 @@ IniRead, SetWinDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetWinDelayV
 IniRead, SetControlDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetControlDelayValue, 15
 
 ; Set default delays
-SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%
-SetMouseDelay, %SetMouseDelayValue%
-SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
-SetWinDelay, %SetWinDelayValue%
-SetControlDelay, %SetControlDelayValue%
+; SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%
+; SetMouseDelay, %SetMouseDelayValue%
+; SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
+; SetWinDelay, %SetWinDelayValue%
+; SetControlDelay, %SetControlDelayValue%
 
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
