@@ -37,9 +37,15 @@ If (YesChaosOverlay){
 ; Return
 !+^L::Array_Gui(Item)
 ; Reload Script with Alt+Escape
-!Escape::Reload
+!Escape::
+BlockInput, MouseMoveOff
+Reload
+return
 ; Exit Script with Win+Escape
-#Escape::ExitApp
+#Escape::
+BlockInput, MouseMoveOff
+ExitApp
+return
 #IfWinActive, ahk_group POEGameGroup
   ; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
   Return

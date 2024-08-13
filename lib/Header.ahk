@@ -15,19 +15,15 @@ ListLines Off
 SetBatchLines, -1
 
 ; Load default delays values from INI
-IniRead, SetKeyDelayValue1, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue1, 15
-IniRead, SetKeyDelayValue2, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue2, 30
-IniRead, SetMouseDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetMouseDelayValue, 45
-IniRead, SetDefaultMouseSpeedValue, %A_ScriptDir%\save\Settings.ini, Delays, SetDefaultMouseSpeedValue, 30
-IniRead, SetWinDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetWinDelayValue, -1
-IniRead, SetControlDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetControlDelayValue, 15
+IniRead, SetKeyDelayValue1, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue1, 150
+IniRead, SetKeyDelayValue2, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue2, 150
+IniRead, SetMouseDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetMouseDelayValue, 150
+IniRead, SetDefaultMouseSpeedValue, %A_ScriptDir%\save\Settings.ini, Delays, SetDefaultMouseSpeedValue, 5
 
 ; Set default delays
-SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%
+SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
 SetMouseDelay, %SetMouseDelayValue%
 SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
-SetWinDelay, %SetWinDelayValue%
-SetControlDelay, %SetControlDelayValue%
 
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
