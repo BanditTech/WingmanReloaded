@@ -294,9 +294,9 @@ CraftingMaps(){
 				R := split.2
 				gogo := Slots.Pop()
 				LeftClick(obj.X,obj.Y)
-				; Sleep, 180 + (15 * ClickLatency)
+				Sleep, 180 + (15 * ClickLatency)
 				LeftClick(gogo.X,gogo.Y)
-				; Sleep, 120 + (15 * ClickLatency)
+				Sleep, 120 + (15 * ClickLatency)
 			}	Else
 				Break
 		}
@@ -361,22 +361,22 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	}
 	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
-	; Sleep, 45*Latency
+	Sleep, 45*Latency
 	If (Amount > 1) {
 		Send, {Shift down}
-		; RandomSleep(30,45)
+		RandomSleep(30,45)
 	}
 	Loop, %Amount% {
 		LeftClick(x,y)
-		; RandomSleep(30,45)
+		RandomSleep(30,45)
 	}
 	If (Amount > 1) {
 		Send, {Shift up}
-		; RandomSleep(30,45)
+		RandomSleep(30,45)
 	}
-	; Sleep, 90*Latency
+	Sleep, 90*Latency
 	ClipItem(x,y)
-	; Sleep, 45*Latency
+	Sleep, 45*Latency
 	return True
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
@@ -434,7 +434,7 @@ MapRoll(Method, x, y){
 		{
 			WisdomScroll(x,y)
 			ClipItem(x,y)
-			; Sleep, 45*Latency
+			Sleep, 45*Latency
 		}
 	}
 	; Apply Currency if Normal
@@ -535,7 +535,7 @@ ItemCraftingRoll(Method, x, y){
 	{
 		WisdomScroll(x,y)
 		ClipItem(x,y)
-		; Sleep, 45*Latency
+		Sleep, 45*Latency
 	}
 	While (!Item.Prop.ItemCraftingHit){
 		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
