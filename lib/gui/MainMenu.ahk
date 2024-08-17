@@ -372,4 +372,20 @@ Gui Add, Tab2, vMainGuiTabs xm y3 w655 h505 -wrap , Main|Configuration|Hotkeys|D
 	Gui, Add, Button,      gDBUpdateNinja           h23,   Update Ninja Database
 	Gui, Add, Button,      gRefreshChaosRecipe h23,   Reset Chaos Recipe Data
 	; Gui, Add, Button,      gForceUpdatePOEDB           h23,   Update PoeDB Affixes
+
+	; AHK Delay Adjustments
+	Gui Add, GroupBox,  section  center w200 h130               xm+5 y+15,         AHK Action Adjustment:
+
+	Gui, Add, Edit, xs+20 ys+20 w40 h20 vSetKeyDelayValue1 gSaveDelays, %SetKeyDelayValue1%
+	Gui, Add, Text, x+5, Keypress Duration (ms)
+
+	Gui, Add, Edit, xs+20 y+10 w40 h20 vSetKeyDelayValue2 gSaveDelays, %SetKeyDelayValue2%
+	Gui, Add, Text, x+5, Keypress Delay (ms)
+
+	Gui, Add, Edit, xs+20 y+10 w40 h20 vSetMouseDelayValue gSaveDelays, %SetMouseDelayValue%
+	Gui, Add, Text, x+5, Mouse Delay (ms)
+
+	Gui, Add, Edit, xs+20 y+10 w40 h20 vSetDefaultMouseSpeedValue gSaveDelays, %SetDefaultMouseSpeedValue%
+	Gui, Add, Text, x+5, Mouse Speed (0-100)
+
 	

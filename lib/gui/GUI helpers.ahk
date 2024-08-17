@@ -14,6 +14,10 @@ SaveGeneral:
 	SaveINI("General")
 Return
 
+SaveDelays:
+	SaveINI("Delays")
+Return
+
 SaveChaos:
 	SaveINI("Chaos Recipe")
 Return
