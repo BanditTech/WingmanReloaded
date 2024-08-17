@@ -15,9 +15,9 @@ ListLines Off
 SetBatchLines, -1
 
 ; Load default delays values from INI
-IniRead, SetKeyDelayValue1, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue1, 150
-IniRead, SetKeyDelayValue2, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue2, 150
-IniRead, SetMouseDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetMouseDelayValue, 150
+IniRead, SetKeyDelayValue1, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue1, 60
+IniRead, SetKeyDelayValue2, %A_ScriptDir%\save\Settings.ini, Delays, SetKeyDelayValue2, 90
+IniRead, SetMouseDelayValue, %A_ScriptDir%\save\Settings.ini, Delays, SetMouseDelayValue, 90
 IniRead, SetDefaultMouseSpeedValue, %A_ScriptDir%\save\Settings.ini, Delays, SetDefaultMouseSpeedValue, 5
 
 ; Set default delays
