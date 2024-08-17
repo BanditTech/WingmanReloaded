@@ -1,3 +1,17 @@
+## Version .15.33 - Alpha Version - August/17/2024
+Bug Fixes
+  * Fix items being picked up by inventory sorting
+  * Fix some timings in various routines such as chaos recipe
+  * May have finally fixed the speed up/down of the inventory sort
+  * Fix for blighted map pricing
+  * Added special type for any map fragment
+  * Adjusted OnChar location to better support centered UI
+New Functionality
+  * Options in the debug menu for adjusting AHK delay values
+  * New stash tab sorting options for Runes and Tattoos.
+
+---
+
 ## Version .15.32 - Alpha Version - August/05/2024
 Bug Fixes
   * Fixed ninja pricing for several categories
