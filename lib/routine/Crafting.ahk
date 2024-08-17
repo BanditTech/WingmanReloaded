@@ -368,9 +368,9 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	}
 	Loop, %Amount% {
 		LeftClick(x,y)
-		RandomSleep(30,45)
 	}
 	If (Amount > 1) {
+		RandomSleep(30,45)
 		Send, {Shift up}
 		RandomSleep(30,45)
 	}

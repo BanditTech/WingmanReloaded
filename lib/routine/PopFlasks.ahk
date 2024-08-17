@@ -2,7 +2,9 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
-		SetActionTimings()
+		SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+		SetMouseDelay, %SetMouseDelayValue%
+		SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
 		Critical
 		WR.func.Toggle.PopAll := True
 		If PopFlaskRespectCD

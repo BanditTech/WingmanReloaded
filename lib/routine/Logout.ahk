@@ -2,7 +2,9 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LogoutCommand(){
   LogoutCommand:
-    SetActionTimings()
+    SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+    SetMouseDelay, %SetMouseDelayValue%
+    SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
     Critical
     Static LastLogout := 0
     if (WR.perChar.Setting.quitDC || (WR.perChar.Setting.quitPortal && (OnMines || OnTown || OnHideout))) {

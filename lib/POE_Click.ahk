@@ -34,9 +34,9 @@ LeftClick(x, y){
 	Log("Verbose","LeftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 60+(ClickLatency*15)
 	Send {Click}
-	Sleep, 105+(ClickLatency*15)
+	Sleep, 60+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -45,9 +45,9 @@ RightClick(x, y){
 	Log("Verbose","RightClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
+	Sleep, 60+(ClickLatency*15)
 	Send {Click, Right}
-	Sleep, 105+(ClickLatency*15)
+	Sleep, 60+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	Return
 }
@@ -56,9 +56,12 @@ ShiftClick(x, y){
 	Log("Verbose","ShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
-	Send +{Click}
-	Sleep, 105+(ClickLatency*15)
+	Sleep, 60+(ClickLatency*15)
+	Send {Shift down}
+	Send {Click}
+	Sleep, 60
+	Send {Shift up}
+	Sleep, 60+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -67,9 +70,12 @@ CtrlClick(x, y){
 	Log("Verbose","CtrlClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 90+(ClickLatency*15)
-	Send ^{Click}
-	Sleep, 105+(ClickLatency*15)
+	Sleep, 60+(ClickLatency*15)
+	Send {Ctrl down}
+	Send {Click}
+	Sleep, 60
+	Send {Ctrl up}
+	Sleep, 60+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -78,9 +84,14 @@ CtrlShiftClick(x, y){
 	Log("Verbose","CtrlShiftClick: " x ", " y)
 	BlockInput, MouseMove
 	MouseMove, x, y
-	Sleep, 105+(ClickLatency*15)
-	Send +^{Click}
-	Sleep, 105+(ClickLatency*15)
+	Sleep, 60+(ClickLatency*15)
+	Send {Ctrl down}
+	Send {Shift down}
+	Send {Click}
+	Sleep, 60
+	Send {Ctrl up}
+	Send {Shift up}
+	Sleep, 60+(ClickLatency*15)
 	BlockInput, MouseMoveOff
 	return
 }
@@ -100,21 +111,31 @@ ClipItem(x, y){
 	Clipboard := ""
 	Item := ""
 	MouseMove, x, y
-	Sleep, 105+(ClipLatency*15)
-	Send ^!c
+	Sleep, 60+(ClipLatency*15)
+	Send {Ctrl down}
+	Send {Alt down}
+	Send c
+	Sleep, 30
+	Send {Ctrl up}
+	Send {Alt up}
 	ClipWait, 0.1
 	If ErrorLevel
 	{
 		Sleep, 120+(ClipLatency*15)
-		Send ^!c
+		Send {Ctrl down}
+		Send {Alt down}
+		Send c
+		Sleep, 30
+	Send {Ctrl up}
+		Send {Alt up}
 		ClipWait, 0.1
 		If (ErrorLevel && ItemParseActive)
 			Clipboard := Backup
 	}
 	Clip_Contents := Clipboard
 	Clipboard := Backup
-	Item := new ItemScan
 	BlockInput, MouseMoveOff
+	Item := new ItemScan
 	Return
 }
 ; WisdomScroll - Identify Item at Coord
@@ -140,6 +161,7 @@ WisdomScroll(x, y){
 	RightClick(o.X,o.Y)
 	Sleep, 30
 	LeftClick(x,y)
+	Sleep, 30
 	BlockInput, MouseMoveOff
 	return
 }

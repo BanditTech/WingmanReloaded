@@ -1,6 +1,8 @@
 ﻿; LootScan - Finds matching colors under the cursor while key pressed
 LootScan(Reset:=0){
-		SetActionTimings()
+		SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+		SetMouseDelay, %SetMouseDelayValue%
+		SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
 		Static LV_LastClick := 0
 		Global LootVacuumActive
 		If (!ComboHex || Reset)

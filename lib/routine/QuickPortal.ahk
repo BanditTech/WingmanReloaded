@@ -8,8 +8,7 @@ QuickPortal(){
 			Notify("Hotkey Unset","Set the keybinding to match the in-game Open Portal key.",3)
 			Return
 		}
-		
-		SetActionTimings()
+
 		Critical
 		BlockInput MouseMove
 		MouseGetPos xx, yy
@@ -38,7 +37,7 @@ QuickPortal(){
 		LeftClick(centerX,centerY)
 		; Open the Portal using in-game key
 		SendHotkey(hotkeyOpenPortal)
-		RandomSleep(90,120)
+		RandomSleep(120,150)
 		; Click the center of screen to use the portal.
 		LeftClick(centerX,centerY)
 

@@ -2,7 +2,9 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GrabCurrency(){
 	GrabCurrencyCommand:
-		SetActionTimings()
+		SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+		SetMouseDelay, %SetMouseDelayValue%
+		SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
 		Critical
 		Keywait, Alt
 		BlockInput, MouseMove

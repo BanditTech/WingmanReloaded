@@ -7,7 +7,9 @@ autoLevelGems()
 	{
 		IfWinActive, ahk_group POEGameGroup 
 		{
-			SetActionTimings()
+			SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+			SetMouseDelay, %SetMouseDelayValue%
+			SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
 			If (WR.perChar.Setting.autolevelgemsWait && (GetKeyState("LButton","P") || GetKeyState("RButton","P")))
 				Return
 			LastCheck := A_TickCount

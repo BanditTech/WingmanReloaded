@@ -579,8 +579,10 @@ retCount(obj){
 }
 ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
 VendorRoutineChaos(){
-  SetActionTimings()
-	CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
+  SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+  SetMouseDelay, %SetMouseDelayValue%
+  SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
+  CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
 	BlackList := Array_DeepClone(BlackList_Default)
  ; Move mouse out of the way to grab screenshot
 	ShooMouse()
@@ -596,7 +598,7 @@ VendorRoutineChaos(){
 	For C, GridX in InventoryGridX
 	{
     If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
-      Sleep, 75
+      Sleep, 90
       Break
     }
 		For R, GridY in InventoryGridY
@@ -604,7 +606,7 @@ VendorRoutineChaos(){
       If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
         RecipeComplete := True
 			If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
-				Sleep, 75
+				Sleep, 90
         Break
       }
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
@@ -646,7 +648,9 @@ VendorRoutineChaos(){
 						CtrlClick(Grid.X,Grid.Y)
 						CRECIPE[Item.Prop.SlotType] += 1
 						}
-					}
+					} Else
+            Continue
+          Sleep, 60
 				}
 			}
 		}
@@ -659,9 +663,9 @@ VendorRoutineChaos(){
 			Return False
 		If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
 		{
-			RandomSleep(180,210)
+			RandomSleep(210,240)
 			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
-			RandomSleep(180,210)
+			RandomSleep(210,240)
 			ContinueFlag := True
 		}
 		Else If (FirstAutomationSetting=="Search Vendor")
@@ -685,9 +689,9 @@ VendorRoutineChaos(){
   ; Search Stash and StashRoutine
 		If (YesEnableNextAutomation && ContinueFlag)
 		{
-			RandomSleep(90,180)
+			RandomSleep(150,200)
 			SendHotkey(hotkeyCloseAllUI)
-			RandomSleep(90,180)
+			RandomSleep(150,200)
 			If OnHideout
 				Town := "Hideout"
 			Else If OnMines
@@ -724,8 +728,10 @@ VendorRoutineChaos(){
 VendorChaosRecipe(){
  ; Ensure we only run one instance, second press of hotkey should stop function
 	CheckRunning()
-  SetActionTimings()
-	Global InvGrid, CurrentTab
+  SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+  SetMouseDelay, %SetMouseDelayValue%
+  SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
+  Global InvGrid, CurrentTab
 	CurrentTab := 0
 	Static Object := {}
 	If !Object.Count()
@@ -756,11 +762,11 @@ VendorChaosRecipe(){
 	{
   ; Move to Tab
 		MoveStash(v.Prop.StashTab)
-		Sleep, 30
+		Sleep, 60
   ; Ctrl+Click to inventory
 		CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
 		, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
-		Sleep, 30
+		Sleep, 60
 	}
 
  ; Remove set from Object array
@@ -768,11 +774,12 @@ VendorChaosRecipe(){
 
  ; Close Stash panel
 	SendHotkey(hotkeyCloseAllUI)
+  Sleep, 60
 	GuiStatus()
  ; Search for Vendor
 	If SearchVendor()
 	{
-		Sleep, 45
+		Sleep, 60
   ; Vendor set
 		If !VendorRoutineChaos() {
 				Notify("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
@@ -788,19 +795,20 @@ VendorChaosRecipe(){
 					{
       ; Move to Tab
 						MoveStash(v.Prop.StashTab)
-						Sleep, 45
+						Sleep, 60
       ; Ctrl+Click to inventory
 						CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
 						, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
-						Sleep, 45
+						Sleep, 60
 					}
      ; Close Stash panel
 					SendHotkey(hotkeyCloseAllUI)
+          Sleep, 60
 					GuiStatus()
      ; Search for Vendor
 					If SearchVendor()
 					{
-						Sleep, 45
+						Sleep, 60
       ; Vendor set
 						If !VendorRoutineChaos() {
 							Notify("Recipe Set INCOMPLETE","Second Time failing",2)

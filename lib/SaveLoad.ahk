@@ -476,7 +476,7 @@ readFromFile(){
 	If hotkeyLogout
 		hotkey,% hotkeyLogout, LogoutCommand, On
 	If hotkeyItemSort
-		hotkey,% hotkeyItemSort, ItemSortCommand, On
+		hotkey,% hotkeyItemSort, ItemSortCommand, On P69
 	If hotkeyItemInfo
 		hotkey,% hotkeyItemInfo, ItemInfoCommand, On
 	If hotkeyChaosRecipe

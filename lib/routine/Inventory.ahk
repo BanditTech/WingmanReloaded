@@ -2,7 +2,10 @@
 ItemSortCommand(){
 	; Thread, NoTimers, True
 	CheckRunning()
-	SetActionTimings()
+	Thread, Priority, 69
+  SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
+  SetMouseDelay, %SetMouseDelayValue%
+  SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
 	MouseGetPos xx, yy
 	IfWinActive, ahk_group POEGameGroup
 	{
@@ -144,7 +147,6 @@ CheckToIdentify(){
 ; VendorRoutine - Does vendor functions
 VendorRoutine()
 {
-	SetActionTimings()
 	tQ := 0
 	tGQ := 0
 	SortFlask := []
@@ -360,7 +362,6 @@ EmptyGrid(){
 }
 ; Open Stacked Decks Automatically
 StackedDeckOpen(number,x,y){
-	SetActionTimings()
 	EmptySlots := EmptyGrid()
 	Loop %number% {
 		If (EmptySlots.Count() >= 1){
@@ -383,7 +384,6 @@ ResetMainTimer(toggle:="On"){
 ; StashRoutine - Does stash functions
 StashRoutine()
 {
-	SetActionTimings()
 	Global PPServerStatus
 	If StashTabYesPredictive
 	{
@@ -483,13 +483,14 @@ StashRoutine()
 					++Unstashed
 				If (sendstash == -2) {
 					CtrlClick(Grid.X,Grid.Y)
+					Sleep, 60
 				} Else If (sendstash > 0) {
 					If YesSortFirst
 						SortFirst[sendstash].Push({"C":C,"R":R,"Item":Item})
 					Else
 					{
 						MoveStash(sendstash)
-						RandomSleep(20,40)
+						RandomSleep(60,90)
 						CtrlShiftClick(Grid.X,Grid.Y)
 						; Check if we need to send to alternate stash for uniques
 						If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
@@ -539,6 +540,7 @@ StashRoutine()
 					If !RunningToggle
 						Break
 					MoveStash(Tab)
+					Sleep, 60
 					C := SortFirst[Tab][Items]["C"]
 					R := SortFirst[Tab][Items]["R"]
 					Item := SortFirst[Tab][Items]["Item"]
@@ -546,6 +548,7 @@ StashRoutine()
 					GridY := InventoryGridY[R]
 					Grid := RandClick(GridX, GridY)
 					CtrlShiftClick(Grid.X,Grid.Y)
+					Sleep, 60
 					; Check for unique items
 					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
 						&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
@@ -637,12 +640,12 @@ SearchVendor()
 		Else
 			Return
 	}
-	Sleep, 45*Latency
+	Sleep, 60*Latency
 	Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0)
 	If (Sell)	{
-		Sleep, 30*Latency
+		Sleep, 60*Latency
 		LeftClick(Sell.1.x,Sell.1.y)
-		Sleep, 120*Latency
+		Sleep, 150*Latency
 		Return True
 	}
 	Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
@@ -678,7 +681,7 @@ SearchVendor()
 	if (Vendor)
 	{
 		LeftClick(Vendor.1.x, Vendor.1.y)
-		Sleep, 60
+		Sleep, 120
 		Loop, 66
 		{
 			If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
@@ -690,10 +693,12 @@ SearchVendor()
 			}
 			Else If !Mod(A_Index, 20)
 			{
-				If (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0))
+				If (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)) {
 					LeftClick(Vendor.1.x, Vendor.1.y)
+					Sleep, 120
+				}
 			}
-			Sleep, 50
+			Sleep, 60
 		}
 	}
 	Return False
@@ -702,7 +707,6 @@ SearchVendor()
 ; DivRoutine - Does divination trading function
 DivRoutine()
 {
-	SetActionTimings()
 	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse()
 	GuiStatus()
@@ -748,7 +752,6 @@ DivRoutine()
 ; IdentifyRoutine - Does basic function when not at other windows
 IdentifyRoutine()
 {
-	SetActionTimings()
 	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse()
 	GuiStatus()
@@ -810,7 +813,7 @@ MoveStash(Tab,CheckStatus:=0)
 		return
 	If (CurrentTab!=Tab)
 	{
-		Sleep, 90*Latency
+		Sleep, 180*Latency
 		Dif:=(CurrentTab-Tab)
 		If (CurrentTab = 0)
 		{
@@ -841,7 +844,6 @@ MoveStash(Tab,CheckStatus:=0)
 }
 ; RunRestock - Restock currency Items in inventory
 RunRestock(){
-	SetActionTimings()
 	BlockInput, MouseMove
 	For C, vv in WR.Restock {
 		For R, v in vv {
@@ -884,13 +886,13 @@ RunRestock(){
 				If (InvCount > v.RestockTo) {
 					dif := InvCount - v.RestockTo
 					ShiftClick(o.X, o.Y)
-					Sleep, 90*Latency
+					Sleep, 120
 					Send %dif%
-					Sleep, 90*Latency
+					Sleep, 120
 					Send {Enter}
-					Sleep, 120*Latency
+					Sleep, 120
 					LeftClick(StockX, StockY)
-					Sleep, 120*Latency
+					Sleep, 120
 				} Else {
 					dif := v.RestockTo - InvCount
 					If (StashCount < dif) {
@@ -900,13 +902,13 @@ RunRestock(){
 						Continue
 					}
 					ShiftClick(StockX, StockY)
-					Sleep, 90*Latency
+					Sleep, 120
 					Send %dif%
-					Sleep, 90*Latency
+					Sleep, 120
 					Send {Enter}
-					Sleep, 120*Latency
+					Sleep, 120
 					LeftClick(o.X, o.Y)
-					Sleep, 120*Latency
+					Sleep, 120
 				}
 			}
 		}
