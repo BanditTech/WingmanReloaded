@@ -29,7 +29,7 @@ Rescale(){
     ; Scaled Resolutions for all aspects
     ; Checks to see if the game UI is displayed
     WR.loc.pixel.OnChar.X:=GameX + Round(GameW / 2) - 1
-    WR.loc.pixel.OnChar.Y:=GameY + GameH - 1
+    WR.loc.pixel.OnChar.Y:=GameY + GameH - 2
     
     WR.loc.pixel.GuiChaos.X:=GameX + Round(GameW/2)
     WR.loc.pixel.GuiChaos.Y:=GameY
@@ -239,7 +239,7 @@ Rescale(){
       WR.loc.pixel.OnInventory.Y:=GameY + Round(GameH / ( 1080 / 36))
       ;Status Check OnStash
       WR.loc.pixel.OnStash.X:=GameX + Round(GameW / (1920 / 248))
-      WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 896))
+      WR.loc.pixel.OnStash.Y:=GameY + Round(GameH / ( 1080 / 897))
       ;Status Check OnVendor
       WR.loc.pixel.OnVendor.X:=GameX + Round(GameW / (1920 / 670))
       WR.loc.pixel.OnVendor.Y:=GameY + Round(GameH / ( 1080 / 125))
