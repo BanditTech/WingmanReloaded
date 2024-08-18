@@ -1,0 +1,202 @@
+﻿Welcome to the tutorial on how to modify your own Custom CLF groups like a pro!
+
+First lets start by explaining the basic JSON structure of the file.
+
+The first layer will always be {} inside a JSON object, so we naturally start there.
+An empty JSON object would look like this:
+
+{
+
+}
+
+Now lets add a group. We will want to give it a descriptive name for adjustments later.
+We can give the group different modes, similar to the search function on the trade website.
+The most important difference between the types, is the usage of weights.
+
+And = weight ignored
+Not = weight ignored
+Count = weight added to total
+Weight = weight multiplied by stat value then added to total
+
+weight defaults to 1 if not assigned
+
+I will add a group named TestFilter that will be using Count.
+
+{
+	"TestFilter": { "GroupName": "General Test Filter", "GroupType": "Count", "StashTab": "1", "TypeValue": "1", "Strictness": "0", "~ElementList": [
+	]},
+}
+
+Whoah! What the hell is that! Lets expand the compressed lines to make it more readable.
+
+{
+	"TestFilter": { 
+		"GroupName": "General Test Filter",
+		"GroupType": "Count",
+		"StashTab": "1",
+		"TypeValue": "1",
+		"Strictness": "0",
+		"~ElementList": []
+	},
+}
+
+so now, we have a Count group, with a minimum of 1 weight. But the element list is an empty array.
+Lets add elements to the element list.
+
+{
+	"TestFilter": { "GroupName": "General Test Filter", "GroupType": "Count", "StashTab": "1", "TypeValue": "1", "Strictness": "0", "~ElementList": [
+			{ "#Key": "My_Desired_Key_Name", "Eval": "=", "Min": "This Exact Text or value", "Type": "Prop", "Weight": "1" },
+			{ "#Key": "My_Desired_Key_Name", "Eval": "~", "Min": "Contains this text|or this", "Type": "Prop", "Weight": "1" },
+			{ "#Key": "My_Desired_Key_Name", "Eval": "!=", "Min": "Not This", "Type": "Prop", "Weight": "1" },
+			{ "#Key": "My_Desired_Key_Name", "Eval": "~=", "Min": "Reg[ex]*Exp?(ression)?", "Type": "Prop", "Weight": "1" }
+	]},
+}
+
+Ok, so now we have a functional group with elements contained within.
+There are now four entries, each performing a different matching evaluation.
+They will be matching against "Prop" keys, specifically "My_Desired_Key_Name"
+There are only Prop or Affix as types.
+
+First it is checking for an exact match. This is useful when you know exactly what it should be every time.
+Second, we have a string search performed. This text can contain the vertical pipe character as OR and the & symbol as AND.
+Third we have not equals, which would be an inverted check if the value is NOT the min.
+Fourth we have a RegEx pattern match. For when you want more control over the string search options.
+
+
+those are the basic methods of evaluation, but there are more.
+The mathematical evaluations most people would know:
+< (less than)
+> (greater than)
+<= (less than or equal to)
+>= (greater than or equal to)
+
+but then we have an additional mathematical evaluation:
+>0< (Greater than zero but less than)
+>0<= (Greater than zero but less than or equal to)
+
+This is useful for those pesky tiers that go downward instead of up, so you can match for tier 1 without matching null.
+
+
+OK, so we got more of the basics, and we have a simple group. Lets crank this up to the next level and add another layer of groups!
+
+{
+	"TestFilter": { "GroupName": "General Test Filter", "GroupType": "And", "StashTab": "1", "Strictness": "0", "~ElementList": [
+		{ "GroupType": "Count", "TypeValue": "1", "~ElementList": [
+			{ "#Key": "RarityRare", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" },
+			{ "#Key": "RarityMagic", "Eval": "=", "Min": "1", "Type": "Prop", "Weight": "1" }
+		]},
+		{ "GroupType": "And", "~ElementList": [
+			{ "#Key": "My_Desired_Key_Name", "Eval": "=", "Min": "This Exact Text or value", "Type": "Prop", "Weight": "1" },
+			{ "#Key": "My_Desired_Key_Name", "Eval": "~", "Min": "Contains this text|or this", "Type": "Prop", "Weight": "1" },
+			{ "#Key": "My_Desired_Key_Name", "Eval": "!=", "Min": "Not This", "Type": "Prop", "Weight": "1" },
+			{ "#Key": "My_Desired_Key_Name", "Eval": "~=", "Min": "Reg[ex]*Exp?(ression)?", "Type": "Prop", "Weight": "1" },
+		]},
+	]},
+}
+
+
+Ok, do you notice the modifications?
+
+the main group is now And, and has no TypeValue because its not required for And groups.
+The group now contains two Subgroups. Both must match for this filter to match.
+The first inner group is a Count group, so one of the two containing keys must match.
+The second inner group is now And so ALL keys must match.
+
+From this point, you can create insanely complex filters which you can use to keep the dank gear!
+
+Lets do it together using Path of Building!
+
+Lets use Bleed gladiator Chest item as the example we will build for:
+You go to the items panel, and right below the Item set dropdown is a button to "trade for these items"
+Click Find best next to body armour
+Select the options you want to include then click execute
+When it finishes, click << Search to go back to the URL
+Ctrl click the URL to open it in the browser
+
+Now you open the search filter, and copy all the entries over to an empty document.count
+(click right above Weighted sum then drag to the bottom to select all the strings)
+
+implicit +# to Level of Socketed Skill Gems
+implicit +# to Level of Socketed Support Gems
++# to Level of Socketed Dexterity Gems
+#% increased effect of Non-Curse Auras from your Skills
++#% to Quality of Socketed Skill Gems
++# to Level of Socketed Skill Gems
+#% increased maximum Life
++# to maximum Life
++# to Level of Socketed Support Gems
++# to Level of Socketed Strength Gems
++#% to Quality of Socketed Support Gems
+implicit #% increased Damage over Time
+implicit +# to maximum Life
++# to Strength
+#% increased Strength
++# to Strength and Intelligence
++# to Strength and Dexterity
+#% increased Attributes
++# to all Attributes
+
+
+Lets do a simple formatting to these entries in order to make them match in WR.
+We just remove all the + symbols and move implicit to the ends
+Using regex this is pretty simple:
+Replace "implicit (.*)" with "$1 (implicit)"
+and "+" with ""
+
+# to Level of Socketed Skill Gems (implicit)
+# to Level of Socketed Support Gems (implicit)
+# to Level of Socketed Dexterity Gems
+#% increased effect of Non-Curse Auras from your Skills
+#% to Quality of Socketed Skill Gems
+# to Level of Socketed Skill Gems
+#% increased maximum Life
+# to maximum Life
+# to Level of Socketed Support Gems
+# to Level of Socketed Strength Gems
+#% to Quality of Socketed Support Gems
+#% increased Damage over Time (implicit)
+# to maximum Life (implicit)
+# to Strength
+#% increased Strength
+# to Strength and Intelligence
+# to Strength and Dexterity
+#% increased Attributes
+# to all Attributes
+
+
+ok, we have the keys so we can begin to input them into a group
+{
+	"TestFilter": { "GroupName": "General Test Filter", "GroupType": "And", "StashTab": "1", "Strictness": "0", "~ElementList": [
+		{ "#Key": "RarityRare", "Eval": "=", "Min": "1", "Type": "Prop" },
+		{ "#Key": "ItemClass", "Eval": "=", "Min": "Body Armours", "Type": "Prop" },
+		{ "GroupType": "Weight", "TypeValue": "100", "~ElementList": [
+			{ "#Key": "# to Level of Socketed Skill Gems (implicit)", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "55.290956964725" },
+			{ "#Key": "# to Level of Socketed Support Gems (implicit)", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "38.137390182751" },
+			{ "#Key": "# to Level of Socketed Dexterity Gems", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "38.137390182751" },
+			{ "#Key": "#% increased effect of Non-Curse Auras from your Skills", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "2.661934338953" },
+			{ "#Key": "#% to Quality of Socketed Skill Gems", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "7.2917242715144" },
+			{ "#Key": "# to Level of Socketed Skill Gems", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "53.655049492093" },
+			{ "#Key": "#% increased maximum Life", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "5.1269878946119" },
+			{ "#Key": "# to maximum Life", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.46997389033943" },
+			{ "#Key": "# to Level of Socketed Support Gems", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "40.361482864199" },
+			{ "#Key": "# to Level of Socketed Strength Gems", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "27.007842331848" },
+			{ "#Key": "#% to Quality of Socketed Support Gems", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "3.0211644960327" },
+			{ "#Key": "#% increased Damage over Time (implicit)", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "1.5105822480163" },
+			{ "#Key": "# to maximum Life (implicit)", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.46522667932589" },
+			{ "#Key": "# to Strength", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.23736055067647" },
+			{ "#Key": "#% increased Strength", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.71208165202943" },
+			{ "#Key": "# to Strength and Intelligence", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.23736055067647" },
+			{ "#Key": "# to Strength and Dexterity", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.23736055067647" },
+			{ "#Key": "#% increased Attributes", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.71208165202942" },
+			{ "#Key": "# to all Attributes", "Eval": ">", "Min": "0", "Type": "Affix", "Weight": "0.23736055067648" },
+		]},
+	]},
+}
+
+
+This weight would match for items worth up to a hundred divines or more.
+OF course, you can continue to adjust the weight values, and the desired target vector (the selected modifiers in PoB)
+You continue to reproduce weights, and add them into the longer list you have produced already.
+Then you should be able to cover most of the affix pool. Unfortunately PoB is limited to 19 of the most important affixes to search.
+
+Hope this helps! Feel free to share your creations with the community!
