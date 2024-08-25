@@ -2,7 +2,10 @@
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
 	,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
-	,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}}
+	,"CustomCraftingBases":{},"CustomMapMods":{},"ItemCrafting":{},"ActualTier":{}
+	,"Disenchant":{}}
+LoadDisenchanting()
+
 WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "DivTrade", "DivItem"

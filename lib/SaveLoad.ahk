@@ -1135,3 +1135,10 @@ Profile(args*){
 		GuiControl, ChooseString, ProfileMenu%Type% , %name%
 	Return
 }
+
+LoadDisenchanting(){
+	f := FileOpen(A_ScriptDir "\data\Disenchant.json","r")
+	JSONtext := f.Read()
+	obj := JSON.Load(JSONtext)
+	WR.Disenchant := obj
+}

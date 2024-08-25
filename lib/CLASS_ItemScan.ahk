@@ -94,10 +94,11 @@
 		This.MatchCraftingBases()
 		This.MatchBase2Slot()
 		This.MatchChaosRegal()
+
 		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
-			Static Tiers := {"Lesser":1,"Greater":2,"Grand":3,"Exceptional":4,"ReplaceWithTier5Name":5,"Perfect":6}
+			Static Tiers := {"Lesser":1,"Greater":2,"Grand":3,"Exceptional":4,"Exquisite":5,"Perfect":6}
 			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", RxMatch) {
 				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
@@ -111,6 +112,15 @@
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Eater of Worlds"
 			}
 		}
+		If (This.Prop.RarityUnique && This.Prop.SlotType) {
+			multi := WR.Disenchant[This.Prop.ItemName]
+			if multi {
+				This.Prop.DustValue := This.DisenchantCalculation(multi,This.Prop.ItemLevel,This.Prop.Quality)
+				totalSize := This.Prop.Item_Width * This.Prop.Item_Height
+				This.Prop.DustPerSlot := Round(This.Prop.DustValue / totalSize,2)
+			}
+		}
+
 		This.Prop.StashReturnVal := This.MatchStashManagement(false)
 	}
 
@@ -2703,7 +2713,7 @@
 		This.MatchedCLF := False
 		Return False
 	}
-	MatchGroup(grp){
+	MatchGroup(grp,returnWeight){
 		local
 		CountSum := 0
 		PotentialMatches := []
@@ -2738,7 +2748,9 @@
 			Return PotentialMatches
 		}
 		Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
-			If (CountSum >= grp.TypeValue) {
+			If returnWeight {
+				return CountSum
+			} Else If (CountSum >= grp.TypeValue) {	
 				Return PotentialMatches
 			} Else {
 				Return False
@@ -2876,5 +2888,13 @@
 	}
 	percval(perc,range){
 		Return ((perc * (range.2 - range.1) / 100) + range.1)
+	}
+	DisenchantCalculation(multi, ilvl, quality){
+		quality := quality > 0 ? quality : 0
+		qualityScaler := 1 + quality/100
+		ilvl := ilvl > 84 ? 84 : ilvl < 65 ? 65 : ilvl
+		levelScaler := 20 - ( 84 - ilvl )
+		dustAmount := multi * 100 * levelScaler * qualityScaler
+		return Round(dustAmount)
 	}
 }
