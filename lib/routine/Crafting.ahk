@@ -368,6 +368,7 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	}
 	Loop, %Amount% {
 		LeftClick(x,y)
+		Sleep, 30
 	}
 	If (Amount > 1) {
 		RandomSleep(30,45)
