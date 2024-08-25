@@ -460,6 +460,8 @@ Global 1080_HealthBarStr := "|<1080 Overhead Health Bar>0x201614@0.99$106.Tzzzzz
 
 	, 1080_FenceStr := "|<1080 Fence>*40$48.0TzzzzzzUDzzzzzzbDzjvyDzbs37ls20bwnXllXAbwzVnXrDUQzUnbzDUw7UHbz1bw7Y3bz1bwza3XzDbwzb3XzDbwzbXlnDbw3bnk70zzzzzwTzU"
 
+	, 1080_IslaStr := "|<1080 THE>*98$30.04TC1MqTDAsyTDDsyTDDsy0D1sy0D3syTDDsyTDDsyTDDsyTD0U"
+
 	, 1440_JunStr := "|<1440 Jun>*89$45.zzzzzzzzzzzzzzzz3zzzzzzsTzzzzzz3zzzzzzsSDltzXz3lyD7wTsSDlsTnz3lyD1yTsSDls7nz3lyD0STsSDlsVnz3lyD66TsSDlssHz3lyD70TsSDlsw3z3kyT7kTsT03sz3z7w0z7wTszsTzzzz7zzzzzzlzzzzzzwTzzzzzzbzzzzzzU"
 Global 1080_ChestStr := "|<Door>*86$33.XDXDX0swswsU|<Door>*86$33.XDXDX0swswsU"
 	, 1080_ChestStr .= "|<Chest>*85$26.bnnAtwwzCTDDlU3kQ80w7mTDDybnnzs"
@@ -499,7 +501,7 @@ Global 1080_DelveStr := "|<1080 Hidden>*100$65.7szzzzzzzzzDlzzzzzzzzyTXnyzyzzyzg
 Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
 	, XButtonStr
 	, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
-	, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr, VendorHarbourStr
+	, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr, VendorHarbourStr, VendorKingsmarchStr
 
 ; Automation Settings
 Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe

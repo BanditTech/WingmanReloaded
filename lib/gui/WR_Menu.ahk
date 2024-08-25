@@ -815,6 +815,8 @@ WR_Menu(Function:="",Var*){
       Gui, Strings: Add, ComboBox, y+8 w280 vVendorOriathStr gUpdateStringEdit , %VendorOriathStr%??"%1080_LaniStr%"?"%1050_LaniStr%"
       Gui, Strings: Add, Text, xs y+15 section, Capture of the Harbour vendor nameplate
       Gui, Strings: Add, ComboBox, y+8 w280 vVendorHarbourStr gUpdateStringEdit , %VendorHarbourStr%??"%1080_FenceStr%"
+      Gui, Strings: Add, Text, x+10 ys , Capture of the Kingsmarch vendor nameplate
+      Gui, Strings: Add, ComboBox, y+8 w280 vVendorKingsmarchStr gUpdateStringEdit , %VendorKingsmarchStr%??"%1080_IslaStr%"
       Gui, Strings: +Delimiter|
       Gui, Strings: Tab, Debuff
       Gui, Strings: Add, Button, Section x20 y30 w1 h1,

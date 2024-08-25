@@ -637,6 +637,8 @@ SearchVendor()
 			SearchStr := VendorOriathStr
 		Else If (Town = "The Rogue Harbour")
 			SearchStr := VendorHarbourStr
+		Else If (Town = "Kingsmarch")
+			SearchStr := VendorKingsmarchStr
 		Else
 			Return
 	}

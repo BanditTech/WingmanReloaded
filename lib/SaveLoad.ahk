@@ -279,6 +279,7 @@ readFromFile(){
 	IniRead, VendorDocksStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorDocksStr, %1080_LaniStr%
 	IniRead, VendorOriathStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorOriathStr, %1080_LaniStr%
 	IniRead, VendorHarbourStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorHarbourStr, %1080_FenceStr%
+	IniRead, VendorKingsmarchStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorKingsmarchStr, %1080_IslaStr%
 	IniRead, VendorMineStr, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorMineStr, %1080_MasterStr%
 
 	; Debuff Strings

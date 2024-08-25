@@ -12,6 +12,7 @@ CompareLocation(cStr:="")
                       , "Oriath Docks" :          [ "Oriath Docks"          , "Les Docks d'Oriath"     , "Die Docks von Oriath", "Доки Ориата"           , "Las Dársenas de Oriath"  , "Docas de Oriath"         , "奧瑞亞港口"     , "오리아스 부두에" ]
                       , "Oriath" :                [ "Oriath"                                                                   , "Ориат"                                                                         , "奧瑞亞"         , "오리아스에" ]
                       , "Karui Shores" :          [ "Karui Shores" ]
+                      , "Kingsmarch" :            [ "Kingsmarch" ]
                       , "The Rogue Harbour" :     [ "The Rogue Harbour","ท่าเรือโจร","Le Port des Malfaiteurs", "Der Hafen der Abtrünnigen", "Разбойничья гавань", "El Puerto de los renegados","O Porto dos Renegados","도둑 항구에"] }
   Static LangString :=  { "English" : ": You have entered"  , "Spanish" : " : Has entrado a "   , "Chinese" : " : 你已進入："   , "Korean" : "진입했습니다"   , "German" : " : Ihr habt '"
               , "Russian" : " : Вы вошли в область "  , "French" : " : Vous êtes à présent dans : "   , "Portuguese" : " : Você entrou em: "  , "Thai" : " : คุณเข้าสู่ " }
