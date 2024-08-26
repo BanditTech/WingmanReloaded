@@ -112,7 +112,7 @@
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Eater of Worlds"
 			}
 		}
-		If (This.Prop.RarityUnique && This.Prop.SlotType) {
+		If (This.Prop.RarityUnique && (This.Prop.SlotType || This.Prop.IsWeapon)) {
 			multi := WR.Disenchant[This.Prop.ItemName]
 			if multi {
 				This.Prop.DustValue := This.DisenchantCalculation(multi,This.Prop.ItemLevel,This.Prop.Quality)
