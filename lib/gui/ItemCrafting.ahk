@@ -139,6 +139,12 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
     }Else If(HighValue.Count() == 1){
       FinalValueLow := LowValue[1]
       FinalValueHigh := HighValue[1]
+      ;; ODD Case with Reduced Affix
+      if (FinalValueHigh < FinalValueLow){
+        aux := FinalValueLow
+        FinalValueLow := FinalValueHigh
+        FinalValueHigh := aux
+      }
       ;; Match #
     }Else If(RegExMatch(FullLine, "O)\+?"rxNum, RxMatch)){
       FinalValueLow := RxMatch[1]
