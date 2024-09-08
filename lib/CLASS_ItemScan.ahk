@@ -112,7 +112,8 @@
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Eater of Worlds"
 			}
 		}
-		If (This.Prop.RarityUnique && (This.Prop.SlotType || This.Prop.IsWeapon)) {
+		; Disenchant value for Unique Items
+		If (This.Prop.RarityUnique && (This.Prop.SlotType || This.Prop.IsWeapon || This.Prop.Quiver)) {
 			multi := WR.Disenchant[This.Prop.ItemName]
 			if multi {
 				This.Prop.DustValue := This.DisenchantCalculation(multi,This.Prop.ItemLevel,This.Prop.Quality)
@@ -255,8 +256,8 @@
 			{
 				This.Prop.AtlasStone := True
 			}
-			Else If (This.Prop.ItemClass = "Misc Map Items" 
-				|| This.Prop.ItemClass = "Memories" 
+			Else If (This.Prop.ItemClass = "Misc Map Items"
+				|| This.Prop.ItemClass = "Memories"
 				|| This.Prop.ItemClass = "Vault Key"
 				|| (This.Prop.ItemClass = "Stackable Currency" && This.Prop.ItemBase ~= "Scouting Report"))
 			{
@@ -1696,19 +1697,19 @@
 					This.Prop.Item_Height := 1
 				} Else If (This.Prop.ItemClass ~= "Thrusting") {
 					This.Prop.Item_Width := 1
-					This.Prop.Item_Height := 4				
+					This.Prop.Item_Height := 4
 				} Else If (This.Prop.ItemClass ~= "Body Armours|Quivers|One Hand|Sceptres") {
 					This.Prop.Item_Width := 2
 					This.Prop.Item_Height := 3
 				} Else If (This.Prop.ItemClass ~= "Boots|Gloves|Helmets|Claws") {
 					This.Prop.Item_Width := 2
-					This.Prop.Item_Height := 2				
+					This.Prop.Item_Height := 2
 				} Else If (This.Prop.ItemClass ~= "Warstaffs|Staffs|Two Hand|Bows") {
 					This.Prop.Item_Width := 2
-					This.Prop.Item_Height := 4				
+					This.Prop.Item_Height := 4
 				} Else If (This.Prop.ItemClass ~= "Daggers|Wands") {
 					This.Prop.Item_Width := 1
-					This.Prop.Item_Height := 3				
+					This.Prop.Item_Height := 3
 				}
 			}
 		}
@@ -1835,7 +1836,7 @@
 		}
 		If (This.Prop.IsMap)
 		{
-			keyToUse := This.Prop.IsBlightedMap ? "BlightedMap" 
+			keyToUse := This.Prop.IsBlightedMap ? "BlightedMap"
 				: This.Prop.IsBlightRavagedMap ? "BlightRavagedMap"
 				: "Map"
 			If This.MatchNinjaDB(keyToUse,"ItemBase","name")
@@ -1844,12 +1845,12 @@
 		If (This.Prop.IsInvitation)
 		{
 			If This.MatchNinjaDB("Invitation")
-				Return			
+				Return
 		}
 		If (This.Prop.IsMemory)
 		{
 			If This.MatchNinjaDB("Memory")
-				Return			
+				Return
 		}
 		If (This.Prop.ClusterJewel)
 		{
@@ -2391,96 +2392,96 @@
 		Return
 
 		noDataGraph:
-			GoSub, noDataGraph1
-			GoSub, noDataGraph2
+		GoSub, noDataGraph1
+		GoSub, noDataGraph2
 		Return
 
 		noDataGraph1:
-			Loop 21
-			{
-				GuiControl,ItemInfo: , PercentText1G%A_Index%, 0`%
-			}
-			GuiControl,ItemInfo: , GroupBox1, No Data
-			Loop 13
-			{
-				XGraph_Plot( pGraph1, 100, "", True )
-			}
-			Loop 10
-			{
-				GuiControl,ItemInfo: , PComment%A_Index%,
-				GuiControl,ItemInfo: , PData%A_Index%,
-			}
+		Loop 21
+		{
+			GuiControl,ItemInfo: , PercentText1G%A_Index%, 0`%
+		}
+		GuiControl,ItemInfo: , GroupBox1, No Data
+		Loop 13
+		{
+			XGraph_Plot( pGraph1, 100, "", True )
+		}
+		Loop 10
+		{
+			GuiControl,ItemInfo: , PComment%A_Index%,
+			GuiControl,ItemInfo: , PData%A_Index%,
+		}
 		Return
 
 		noDataGraph2:
-			Loop 21
-			{
-				GuiControl,ItemInfo: , PercentText2G%A_Index%, 0`%
-			}
-			GuiControl,ItemInfo: , GroupBox2, No Data
-			Loop 13
-			{
-				XGraph_Plot( pGraph2, 100, "", True )
-			}
-			Loop 10
-			{
-				GuiControl,ItemInfo: , SComment%A_Index%,
-				GuiControl,ItemInfo: , SData%A_Index%,
-			}
+		Loop 21
+		{
+			GuiControl,ItemInfo: , PercentText2G%A_Index%, 0`%
+		}
+		GuiControl,ItemInfo: , GroupBox2, No Data
+		Loop 13
+		{
+			XGraph_Plot( pGraph2, 100, "", True )
+		}
+		Loop 10
+		{
+			GuiControl,ItemInfo: , SComment%A_Index%,
+			GuiControl,ItemInfo: , SData%A_Index%,
+		}
 		Return
 
 		HideGraph:
-			GoSub, HideGraph1
-			GoSub, HideGraph2
+		GoSub, HideGraph1
+		GoSub, HideGraph2
 		Return
 
 		HideGraph1:
-			Loop 21
-			{
-				GuiControl,ItemInfo: Hide, PercentText1G%A_Index%
-			}
-			GuiControl,ItemInfo: Hide, pGraph1
-			GuiControl,ItemInfo: Hide, GroupBox1
-			Loop 10
-			{
-				GuiControl,ItemInfo: Hide, PComment%A_Index%
-				GuiControl,ItemInfo: Hide, PData%A_Index%
-			}
+		Loop 21
+		{
+			GuiControl,ItemInfo: Hide, PercentText1G%A_Index%
+		}
+		GuiControl,ItemInfo: Hide, pGraph1
+		GuiControl,ItemInfo: Hide, GroupBox1
+		Loop 10
+		{
+			GuiControl,ItemInfo: Hide, PComment%A_Index%
+			GuiControl,ItemInfo: Hide, PData%A_Index%
+		}
 		Return
 
 		HideGraph2:
-			Loop 21
-			{
-				GuiControl,ItemInfo: Hide, PercentText2G%A_Index%
-			}
-			GuiControl,ItemInfo: Hide, pGraph2
-			GuiControl,ItemInfo: Hide, GroupBox2
-			Loop 10
-			{
-				GuiControl,ItemInfo: Hide, SComment%A_Index%
-				GuiControl,ItemInfo: Hide, SData%A_Index%
-			}
+		Loop 21
+		{
+			GuiControl,ItemInfo: Hide, PercentText2G%A_Index%
+		}
+		GuiControl,ItemInfo: Hide, pGraph2
+		GuiControl,ItemInfo: Hide, GroupBox2
+		Loop 10
+		{
+			GuiControl,ItemInfo: Hide, SComment%A_Index%
+			GuiControl,ItemInfo: Hide, SData%A_Index%
+		}
 		Return
 
 		ShowGraph:
-			Loop 2
+		Loop 2
+		{
+			aVal := A_Index
+			Loop 21
 			{
-				aVal := A_Index
-				Loop 21
-				{
-					GuiControl,ItemInfo: Show, PercentText%aVal%G%A_Index%
-				}
-				GuiControl,ItemInfo: Show, pGraph%aVal%
-				GuiControl,ItemInfo: Show, GroupBox%aVal%
+				GuiControl,ItemInfo: Show, PercentText%aVal%G%A_Index%
 			}
-			Loop 10
-			{
-				GuiControl,ItemInfo: Show, PComment%A_Index%
-				GuiControl,ItemInfo: Show, PData%A_Index%
-				GuiControl,ItemInfo: Show, SComment%A_Index%
-				GuiControl,ItemInfo: Show, SData%A_Index%
-			}
-			aVal := ""
+			GuiControl,ItemInfo: Show, pGraph%aVal%
+			GuiControl,ItemInfo: Show, GroupBox%aVal%
+		}
+		Loop 10
+		{
+			GuiControl,ItemInfo: Show, PComment%A_Index%
+			GuiControl,ItemInfo: Show, PData%A_Index%
+			GuiControl,ItemInfo: Show, SComment%A_Index%
+			GuiControl,ItemInfo: Show, SData%A_Index%
+		}
+		aVal := ""
 		Return
 	}
 	ItemInfo(){
@@ -2506,16 +2507,16 @@
 			sendstash := StashTabRunes
 		} Else If (This.Prop.IsTattoo && StashTabYesTattoos){
 			sendstash := StashTabTattoos
-		} Else If ( StashTabYesCurrency 
-			&& This.Prop.RarityCurrency 
+		} Else If ( StashTabYesCurrency
+			&& This.Prop.RarityCurrency
 			&& ( This.Prop.SpecialType = ""
-				|| This.Prop.SpecialType = "Ritual Item"
-				|| (This.Prop.IsRune && !StashTabYesRunes)
-				|| (This.Prop.IsTattoo && !StashTabYesTattoos) ) ) 
+			|| This.Prop.SpecialType = "Ritual Item"
+			|| (This.Prop.IsRune && !StashTabYesRunes)
+			|| (This.Prop.IsTattoo && !StashTabYesTattoos) ) )
 		{
-			If ( StashTabYesCurrency > 1 
+			If ( StashTabYesCurrency > 1
 				&& !This.Prop.IsRune
-				&& !This.Prop.IsTattoo 
+				&& !This.Prop.IsTattoo
 				&& !UnsupportedAffinityCurrencies.HasKey( This.Prop.ItemName ) )
 				sendstash := -2
 			Else
@@ -2750,7 +2751,7 @@
 		Else If (grp.GroupType ~= "[cC]ount" || grp.GroupType ~= "[wW]eight") {
 			If returnWeight {
 				return CountSum
-			} Else If (CountSum >= grp.TypeValue) {	
+			} Else If (CountSum >= grp.TypeValue) {
 				Return PotentialMatches
 			} Else {
 				Return False
