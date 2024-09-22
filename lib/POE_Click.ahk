@@ -126,7 +126,7 @@ ClipItem(x, y){
 		Send {Alt down}
 		Send c
 		Sleep, 30
-	Send {Ctrl up}
+		Send {Ctrl up}
 		Send {Alt up}
 		ClipWait, 0.1
 		If (ErrorLevel && ItemParseActive)
@@ -159,9 +159,9 @@ WisdomScroll(x, y){
 	XX := InventoryGridX[C], YY := InventoryGridY[R]
 	o := RandClick(XX,YY)
 	RightClick(o.X,o.Y)
-	Sleep, 30
+	Sleep, 45
 	LeftClick(x,y)
-	Sleep, 30
+	Sleep, 45
 	BlockInput, MouseMoveOff
 	return
 }
