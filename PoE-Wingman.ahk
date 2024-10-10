@@ -1,4 +1,4 @@
-Global VersionNumber := .15.33
+Global VersionNumber := .16.00
 #Include, %A_ScriptDir%\lib\Header.ahk
 #Include, %A_ScriptDir%\lib\RunAdmin.ahk
 #Include, %A_ScriptDir%\lib\FileCheck.ahk
@@ -38,12 +38,12 @@ If (YesChaosOverlay){
 !+^L::Array_Gui(Item)
 ; Reload Script with Alt+Escape
 !Escape::
-BlockInput, MouseMoveOff
-Reload
+  BlockInput, MouseMoveOff
+  Reload
 return
 ; Exit Script with Win+Escape
 #Escape::
-BlockInput, MouseMoveOff
+  BlockInput, MouseMoveOff
 ExitApp
 return
 #IfWinActive, ahk_group POEGameGroup
