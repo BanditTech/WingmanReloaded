@@ -1,3 +1,8 @@
+## Version .16.00 - Master Version - October/10/2024
+Incrementing major version
+
+---
+
 ## Version .15.33 - Alpha Version - August/17/2024
 Bug Fixes
   * Fix items being picked up by inventory sorting
