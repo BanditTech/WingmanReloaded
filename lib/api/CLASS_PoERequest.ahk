@@ -6,7 +6,7 @@ Class PoERequest {
     Headers["cookie"] := PoECookie
     postdata := {}
     postdata.league := UriEncode(selectedLeague)
-    postdata.accountName := AccountNameSTR
+    postdata.accountName := UriEncode(AccountNameSTR)
     postdata.tabs := 0
     postdata.tabIndex := TabDigit - 1
     response := Util.HttpGet(Url,Headers,postdata)
