@@ -47,11 +47,11 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "MapUberModNoLeech": {
+  "MapUberModLessPlayerLeech": {
     "generation_type": "Suffix",
     "name": "of Congealment",
     "required_level": 1,
-    "text": "Monsters cannot be Leeched from",
+    "text": "Players have (60-50)% reduced Maximum total Life, Mana and Energy Shield Recovery per second from Leech",
     "weight": 30,
     "influence": "Normal"
   },
@@ -67,7 +67,7 @@
     "generation_type": "Suffix",
     "name": "of Impotence",
     "required_level": 1,
-    "text": "Players have 50% less Area of Effect",
+    "text": "Players have (30-25)% less Area of Effect",
     "weight": 100,
     "influence": "Normal"
   },
@@ -75,7 +75,7 @@
     "generation_type": "Suffix",
     "name": "of Toughness",
     "required_level": 1,
-    "text": "Monsters take 100% reduced Extra Damage from Critical Strikes",
+    "text": "Monsters take (35-45)% reduced Extra Damage from Critical Strikes",
     "weight": 30,
     "influence": "Normal"
   },
@@ -93,14 +93,6 @@
     "required_level": 1,
     "text": "Area contains Petrification Statues",
     "weight": 50,
-    "influence": "Normal"
-  },
-  "MapUberModNoCharges": {
-    "generation_type": "Suffix",
-    "name": "of Powerlessness",
-    "required_level": 1,
-    "text": "Players cannot gain Power Charges | Players cannot gain Frenzy Charges | Players cannot gain Endurance Charges",
-    "weight": 40,
     "influence": "Normal"
   },
   "MapUberModJuggernaut": {
@@ -123,39 +115,7 @@
     "generation_type": "Suffix",
     "name": "of Miring",
     "required_level": 1,
-    "text": "Players have 50% less Defences",
-    "weight": 60,
-    "influence": "Normal"
-  },
-  "MapUberModNoRegen": {
-    "generation_type": "Suffix",
-    "name": "of Stasis",
-    "required_level": 1,
-    "text": "Players cannot Regenerate Life, Mana or Energy Shield | Players cannot Recharge Energy Shield",
-    "weight": 40,
-    "influence": "Normal"
-  },
-  "MapUberModNoBlockNoSuppress": {
-    "generation_type": "Suffix",
-    "name": "of Vulnerability",
-    "required_level": 1,
-    "text": "Players cannot Block | Players cannot Suppress Spell Damage",
-    "weight": 40,
-    "influence": "Normal"
-  },
-  "MapUberModAuraEffect": {
-    "generation_type": "Suffix",
-    "name": "of Doubt",
-    "required_level": 1,
-    "text": "Players have 90% reduced effect of Non-Curse Auras from Skills",
-    "weight": 60,
-    "influence": "Normal"
-  },
-  "MapUberModRecoveryRate": {
-    "generation_type": "Suffix",
-    "name": "of Smothering",
-    "required_level": 1,
-    "text": "Players have 80% less Recovery Rate of Life and Energy Shield",
+    "text": "Players have (30-25)% less Defences",
     "weight": 60,
     "influence": "Normal"
   },
@@ -179,7 +139,7 @@
     "generation_type": "Suffix",
     "name": "of Deceleration",
     "required_level": 1,
-    "text": "Players have 4% reduced Action Speed for each time they've used a Skill Recently",
+    "text": "Players have 3% reduced Action Speed for each time they've used a Skill Recently",
     "weight": 50,
     "influence": "Normal"
   },
@@ -243,7 +203,7 @@
     "generation_type": "Prefix",
     "name": "Cycling",
     "required_level": 1,
-    "text": "Players and their Minions deal no damage for 4 out of every 10 seconds",
+    "text": "Players and their Minions deal no damage for 3 out of every 10 seconds",
     "weight": 50,
     "influence": "Normal"
   },
@@ -251,7 +211,7 @@
     "generation_type": "Prefix",
     "name": "Magnifying",
     "required_level": 1,
-    "text": "Monsters fire 4 additional Projectiles | Monsters have 100% increased Area of Effect",
+    "text": "Monsters fire 2 additional Projectiles | Monsters have 100% increased Area of Effect",
     "weight": 100,
     "influence": "Normal"
   },
@@ -367,14 +327,6 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "MapUberModPlayerCurseEffect": {
-    "generation_type": "Prefix",
-    "name": "Hexwarded",
-    "required_level": 1,
-    "text": "100% reduced Effect of Curses on Monsters",
-    "weight": 60,
-    "influence": "Normal"
-  },
   "MapUberModDrowningOrbs": {
     "generation_type": "Prefix",
     "name": "Hungering",
@@ -411,7 +363,7 @@
     "generation_type": "Prefix",
     "name": "Equalising",
     "required_level": 1,
-    "text": "Rare and Unique Monsters remove 10% of Life, Mana and Energy Shield from Players or their Minions on Hit",
+    "text": "Rare and Unique Monsters remove 5% of Life, Mana and Energy Shield from Players or their Minions on Hit",
     "weight": 50,
     "influence": "Normal"
   },
@@ -431,14 +383,6 @@
     "weight": 50,
     "influence": "Normal"
   },
-  "MapUberModTotemCount": {
-    "generation_type": "Prefix",
-    "name": "Ancestral",
-    "required_level": 1,
-    "text": "Players have -2 to maximum number of Summoned Totems",
-    "weight": 30,
-    "influence": "Normal"
-  },
   "MapUberModTrapMineCount": {
     "generation_type": "Prefix",
     "name": "Sabotaging",
@@ -453,14 +397,6 @@
     "required_level": 1,
     "text": "15% of Damage Players' Totems take from Hits is taken from their Summoner's Life instead",
     "weight": 30,
-    "influence": "Normal"
-  },
-  "MapUberModAllyPunishment": {
-    "generation_type": "Prefix",
-    "name": "Distanced",
-    "required_level": 1,
-    "text": "Players in Area take 20% increased Damage per nearby Ally",
-    "weight": 60,
     "influence": "Normal"
   },
   "MapUberModSynthMiniboss": {
