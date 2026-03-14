@@ -743,7 +743,7 @@
 
 		;Start Prop Block Parser for Maps
 		;Every map has a Map Tier!
-		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map \(Tier " rxNum "\)",RxMatch))
+		If (RegExMatch(This.Data.Blocks.NamePlate, "`am)^Map \(Tier " rxNum "\)",RxMatch))
 		{
 			This.Prop.Map_Tier := RxMatch1
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: ([a-zA-Z0-9 ']+)",RxMatch))

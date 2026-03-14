@@ -11,7 +11,7 @@ WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "DivTrade", "DivItem"
 	,"CurrencyGeneral","CurrencyInfluence"
 	, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
-	,"Transmutation","Alteration","Annulment","Chance","Regal","Alchemy","Chaos","Veiled"
+	,"Transmutation","Alteration","Annulment","Chance","Exalted","Regal","Alchemy","Chaos","VeiledEx","VeiledC"
 	,"Augmentation","Divine"
 	,"Jeweller","Fusing","Chromatic","Harbinger","Horizon"
 	,"Enkindling","Ancient","Binding","Engineer","Regret","Unmaking"
