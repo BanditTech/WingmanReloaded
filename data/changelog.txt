@@ -1,3 +1,13 @@
+## Version .16.01 - Alpha Version - March/13/2026
+Bug Fixes
+  * Fix regex for map item tiers
+  * Fix currency positioning for new stash tab layout
+Previous undocumented changes
+  * Maps data update for Uber tier map
+  * URI encode account name string
+
+--- 
+
 ## Version .16.00 - Master Version - October/10/2024
 Incrementing major version
 
