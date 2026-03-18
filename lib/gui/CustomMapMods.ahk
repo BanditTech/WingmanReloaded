@@ -19,28 +19,44 @@ ItemCraftingNamingMaping(Content)
 
 RefreshMapList()
 {
-  AffixName:= ""
+  ; Load top_tier mods, track seen by name + stripped detail text
   Mods := LoadOnDemand("Maps","top_tier_map")
+  SeenMods := {}
   For k, v in Mods
   {
-    LV_Add("",v["generation_type"],v["name"],ItemCraftingNamingMaping(v["text"]),v["weight"],"Good","1")
+    detail := ItemCraftingNamingMaping(v["text"])
+    modKey := v["name"] . "|" . detail
+    SeenMods[modKey] := True
+    LV_Add("", v["generation_type"], v["name"], detail, v["weight"], "Top", "Good", "1")
   }
   Mods := []
-  ;;Check Box
+  ; Load uber_tier mods, skip rows with identical name + detail
+  Mods := LoadOnDemand("Maps","uber_tier_map")
+  For k, v in Mods
+  {
+    detail := ItemCraftingNamingMaping(v["text"])
+    modKey := v["name"] . "|" . detail
+    If (!SeenMods.HasKey(modKey))
+      LV_Add("", v["generation_type"], v["name"], detail, v["weight"], "Uber", "Good", "1")
+  }
+  Mods := []
+  ;; Style columns
+  Loop % LV_GetCount("Column")
+    LV_ModifyCol(A_Index, "AutoHdr")
+  LV_ModifyCol(1, "Sort")
+  LV_ModifyCol(3, 600)
+  ; Restore checked state from saved settings (match on name + detail)
   Loop % LV_GetCount()
   {
     Index := A_Index
-    LV_GetText(OutputVar, A_Index , 2)
+    LV_GetText(OutputVar, A_Index, 2)
+    LV_GetText(OutputDetail, A_Index, 3)
     For k, v in WR.CustomMapMods.MapMods
     {
-      If (v["Map Affix"] == OutputVar)
-        LV_Modify(Index,"Check",,,,,v["Mod Type"],v["Weight"])
+      If (v["Map Affix"] == OutputVar && v["Map Detail"] == OutputDetail)
+        LV_Modify(Index, "Check", , , , , , v["Mod Type"], v["Weight"])
     }
   }
-  ;; Style
-  Loop % LV_GetCount("Column")
-    LV_ModifyCol(A_Index,"AutoHdr")
-  LV_ModifyCol(1, "Sort")
   Return
 }
 
@@ -80,7 +96,7 @@ CustomMapModsUI:
   Gui, CustomMapModsUI: New
   Gui, CustomMapModsUI: Default
   Gui, CustomMapModsUI: +AlwaysOnTop -MinimizeBox
-  Gui, CustomMapModsUI: Add, ListView , w1200 h350 -wrap -Multi Grid Checked gMyListViewMap vlistview1, Affix Type|Affix Name|Detail|Mod Weight|Mod Type|Weight
+  Gui, CustomMapModsUI: Add, ListView , w1250 h350 -wrap -Multi Grid Checked gMyListViewMap vlistview1, Affix Type|Affix Name|Detail|Mod Weight|Tier|Mod Type|Weight
   RefreshMapList()
   Gui, CustomMapModsUI: Add, Button, gSaveMapData x+5 w120 h30 center, Save Map Modifiers
   Gui, CustomMapModsUI: Add, Button, gResetMapData w120 h30 center, Reset Map Modifiers
@@ -102,8 +118,8 @@ MyListViewMap:
   if (A_GuiEvent = "DoubleClick")
   {
     RowNumber := A_EventInfo
-    LV_GetText(OutputVar1, RowNumber,5)
-    LV_GetText(OutputVar2, RowNumber,6)
+    LV_GetText(OutputVar1, RowNumber,6)
+    LV_GetText(OutputVar2, RowNumber,7)
     Gui, CustomUI: New
     Gui, CustomUI: +AlwaysOnTop -MinimizeBox
     Gui, CustomUI: Add, Text,, Mod Type:
@@ -139,7 +155,7 @@ Return
 SaveRowLVM:
   Gui, CustomUI: Submit, NoHide
   Gui, CustomMapModsUI:Default
-  LV_Modify(RowNumber,,,,,,CMP_ModType,CMP_Weight)
+  LV_Modify(RowNumber,,,,,,,CMP_ModType,CMP_Weight)
   Gui, CustomUI: Hide
 Return
 
@@ -156,8 +172,8 @@ SaveMapData:
     TrueIndex++
     LV_GetText(MapAffix, RowNumber, 2)
     LV_GetText(Detail, RowNumber, 3)
-    LV_GetText(ModType, RowNumber, 5)
-    LV_GetText(Weight, RowNumber, 6)
+    LV_GetText(ModType, RowNumber, 6)
+    LV_GetText(Weight, RowNumber, 7)
     aux:={"ID":TrueIndex,"Map Affix":MapAffix,"Map Detail":Detail,"Mod Type":ModType,"Weight":Weight}
     WR.CustomMapMods.MapMods.Push(aux)
   }
