@@ -18,7 +18,7 @@
 			{
 				If (SectionKey = 1 && SVal ~= "Rarity:" || SVal ~= "Item Class:"){
 					This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
-				} Else If (SVal ~= "\(implicit\)$"){
+				} Else If (SVal ~= "\(implicit\)$" || SVal ~= "{ Implicit"){
 					This.Prop.HasImplicit := True
 					This.Data.Blocks.Implicit := SVal
 				} Else If (SVal ~= "{ Prefix" || SVal ~= "{ Suffix" || SVal ~= "{ Unique" || SVal ~= "^Pack Size:" ) {
@@ -38,7 +38,7 @@
 			{
 				If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
 					This.Data.Blocks.FlavorText := SVal
-				Else If (SVal ~= "\(implicit\)$"){
+				Else If (SVal ~= "\(implicit\)$" || SVal ~= "{ Implicit"){
 					This.Prop.HasImplicit := True
 					This.Data.Blocks.Implicit := SVal
 				}
@@ -170,6 +170,7 @@
 			This.Prop.ItemClass := RxMatch1
 		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
 			This.Prop.Rarity := RxMatch1
+
 		;Start NamePlate Parser
 		If (This.Prop.Rarity || This.Prop.ItemClass)
 		{
@@ -292,16 +293,21 @@
 			Else If (This.Prop.ItemClass = "Maps")
 			{
 				This.Prop.IsMap := True
-				; Deal with Blighted Map
-				If (InStr(This.Prop.ItemBase, "Blighted"))
-				{
-					This.Prop.IsBlightedMap := True
-					Prop.SpecialType := "Blighted Map"
-				}
-				Else If (InStr(This.Prop.ItemBase, "Blight-ravaged"))
+				; Blight-ravaged must be checked before Blighted (substring match)
+				If (InStr(This.Prop.ItemBase, "Blight-ravaged"))
 				{
 					This.Prop.IsBlightRavagedMap := True
-					Prop.SpecialType := "Blight-ravaged Map"
+					This.Prop.SpecialType := "Blight-ravaged Map"
+				}
+				Else If (InStr(This.Prop.ItemBase, "Blighted"))
+				{
+					This.Prop.IsBlightedMap := True
+					This.Prop.SpecialType := "Blighted Map"
+				}
+				Else If (InStr(This.Prop.ItemBase, "Nightmare"))
+				{
+					This.Prop.IsNightmareMap := True
+					This.Prop.SpecialType := "Nightmare Map"
 				}
 				Else
 				{
@@ -742,14 +748,18 @@
 		;End Prop Block Parser for General Items
 
 		;Start Prop Block Parser for Maps
-		;Every map has a Map Tier!
-		If (RegExMatch(This.Data.Blocks.NamePlate, "`am)^Map \(Tier " rxNum "\)",RxMatch))
+		If (This.Prop.IsMap)
 		{
-			This.Prop.Map_Tier := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: ([a-zA-Z0-9 ']+)",RxMatch))
-			{
-				This.Prop.Map_AtlasRegion := RxMatch1
-			}
+			; Extract tier from item name: "Map (Tier X)", "Blighted Map (Tier X)", etc.
+			If (RegExMatch(This.Prop.ItemBase, "\(Tier (\d+)\)", RxMatch))
+				This.Prop.Map_Tier := RxMatch1
+			Else If (RegExMatch(This.Prop.ItemName, "\(Tier (\d+)\)", RxMatch))
+				This.Prop.Map_Tier := RxMatch1
+			Else If (This.Prop.IsNightmareMap)
+				This.Prop.Map_Tier := 17
+			Else If (InStr(This.Prop.ItemBase, "Shaper Guardian"))
+				This.Prop.Map_Tier := 16
+
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+"rxNum,RxMatch))
 			{
 				This.Prop.Map_Quantity := RxMatch1
@@ -762,10 +772,27 @@
 			{
 				This.Prop.Map_PackSize := RxMatch1
 			}
+			If RegExMatch(This.Data.Blocks.Properties, "`am)^More Maps: \+"rxNum, RxMatch)
+			{
+				This.Prop.Map_MapDropPercent := RxMatch1 * 1
+			}
+			If RegExMatch(This.Data.Blocks.Properties, "`am)^More Scarabs: \+"rxNum, RxMatch)
+			{
+				This.Prop.Map_ScarabDropPercent := RxMatch1 * 1
+			}
+			If RegExMatch(This.Data.Blocks.Properties, "`am)^More Currency: \+"rxNum, RxMatch)
+			{
+				This.Prop.Map_CurrencyDropPercent := RxMatch1 * 1
+			}
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Delirium Reward Type:",RxMatch))
 			{
 				This.Prop.Map_Delirium := True
 			}
+			If (RegExmatch(This.Data.Blocks.Implicit, "`am)^Area is Influenced by the Originator",rxMatch))
+			{
+				This.Prop.Map_IsOriginatorMap := True
+			}
+
 			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
 			{
 				This.Prop.Map_Quality := RxMatch1
@@ -773,6 +800,7 @@
 				;Set Quality to 0 if not in map prop (instead flagging as false)
 				This.Prop.Map_Quality := 0
 			}
+
 		}
 		;End Prop Block Parser for Maps
 
@@ -890,7 +918,12 @@
 		;Check if MapSum > Minimum Weight Settings
 		ConsiderMMQ := (This.Prop.RarityMagic && EnableMQQForMagicMap) || This.Prop.RarityRare
 		If (ConsiderMMQ) {
+			IsSpecialMap := This.Prop.Map_IsOriginatorMap || This.Prop.IsNightmareMap
 			MeetsMMQ := This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity
+				&& (!IsSpecialMap
+					|| ((MMapMoreMaps <= 0 || This.Prop.Map_MapDropPercent >= MMapMoreMaps)
+					&& (MMapMoreScarabs <= 0 || This.Prop.Map_ScarabDropPercent >= MMapMoreScarabs)
+					&& (MMapMoreCurrency <= 0 || This.Prop.Map_CurrencyDropPercent >= MMapMoreCurrency)))
 		} Else {
 			MeetsMMQ := True
 		}
@@ -903,6 +936,9 @@
 		}
 		If (This.Prop.Corrupted && (YesMapUnid && !This.Affix.Unidentified || !YesMapUnid) && !This.Prop.RarityUnique && (!GoodEnough || This.Prop.MapImpossibleMod)){
 			This.Prop.IsBrickedMap := True
+		}
+		If (This.Prop.Corrupted && This.Prop.AffixCount >= 8 && !This.Prop.RarityUnique && !This.Prop.MapImpossibleMod) {
+			This.Prop.Is8ModRunnableMap := True
 		}
 	}
 	MatchCraftingItemMods() {
@@ -2541,6 +2577,8 @@
 				sendstash := -2
 			Else
 				sendstash := StashTabBlight
+		} Else If (This.Prop.Is8ModRunnableMap && StashTabYes8ModRunnable) {
+			sendstash := StashTab8ModRunnable
 		} Else If (This.Prop.IsBrickedMap && StashTabYesBrickedMaps) {
 			sendstash := StashTabBrickedMaps
 		} Else If (This.Prop.IsMap && StashTabYesMap) {
