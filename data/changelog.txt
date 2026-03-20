@@ -1,3 +1,21 @@
+## Version .16.02 - Alpha Version - March/20/2026
+Credit to Mazen for making this PR to expand on the map crafting.
+
+Features
+  * Map mods for Uber maps are now included in the Map Crafting "Custom Map Mods" window.
+  * Support for 16.5/17 quantity bonuses (Maps,Scarabs,Currency)
+  * New crafting option to use Exalted orb to fill maps with < 6 mods
+  * Options to stash 8-mod runnable maps in a specific tab
+Maintenance
+  * Removed depreciated chisel from map crafting options
+  * Uber mods updated to latest
+  * Item Parser improvements
+    * Detecting Originator/Nightmare maps
+    * reordered Blight map matching to fix substring matching issues
+    * Map tier improvements for matching and assigning a tier
+
+---
+
 ## Version .16.01 - Alpha Version - March/13/2026
 Bug Fixes
   * Fix regex for map item tiers
