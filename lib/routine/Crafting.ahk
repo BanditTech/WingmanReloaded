@@ -142,7 +142,7 @@ CraftingItem(){
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
-	} 
+	}
 	If (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
 		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
@@ -189,8 +189,15 @@ CraftingMaps(){
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
 	BlackList := Array_DeepClone(BlackList_Default)
-	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Chaos","Augmentation"])
-	; MsgBoxVals(WR.data.Counts)
+	CurrencyList := ["Alchemy","Binding","Transmutation","Scouring","Vaal","Chaos","Augmentation"]
+	For idx, m in [CraftingMapMethod1, CraftingMapMethod2, CraftingMapMethod3] {
+		If (m ~= "Exalt") {
+			CurrencyList.Push("Exalted")
+			Break
+		}
+	}
+	WR.data.Counts := CountCurrency(CurrencyList)
+;	MsgBoxVals(WR.data.Counts)
 	MapList := {}
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
@@ -216,10 +223,9 @@ CraftingMaps(){
 			mapCraftingMethod := getMapCraftingMethod()
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) 
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap)
 					&& (!YesMapUnid
-							|| ( Item.Prop.RarityMagic && mapCraftingMethod ~= "(Alchemy|Hybrid|Binding|Chaos)" )
-							|| ( Item.Affix.Unidentified && mapCraftingMethod ~= "Chisel" && Item.Prop.Map_Quality < 20 )	)
+					|| ( Item.Prop.RarityMagic && mapCraftingMethod ~= "(Alchemy|Hybrid|Binding|Chaos)" ) )
 					&& !Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
@@ -234,28 +240,12 @@ CraftingMaps(){
 			;Crafting Map Script
 			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
 			{
-				If (mapCraftingMethod ~= "Chisel") {
-					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5 
-					:	Item.Prop.Map_Tier > 5 ? 10 
-					:	Item.Prop.Map_Tier >= 1 ? 20 
-					: 1
-					numberChisel := 0
-
-					If (Item.Prop.Map_Quality < 20) {
-						numberChisel := ForceMaxChisel ? Ceil((20 - Item.Prop.Map_Quality)/qualityPerChisel) : (20 - Item.Prop.Map_Quality)//qualityPerChisel
-					}
-				
-					If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
-						Return False
-				}
-
 				If (!Item.Prop.RarityNormal)
 				{
-					If ( (Item.Prop.RarityMagic && mapCraftingMethod == "Transmutation+Augmentation") 
-						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)")) 
-						|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && mapCraftingMethod ~= "(Alchemy|Binding|Hybrid|Chaos)") )
+					If ( (Item.Prop.RarityMagic && mapCraftingMethod == "Transmutation+Augmentation")
+						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy|^Binding|^Hybrid|^Chaos)")) )
 					{
-						If (!Item.Prop.MapKeepFlag)
+						If (!Item.Prop.MapKeepFlag || (mapCraftingMethod ~= "Exalt" && Item.Prop.AffixCount < 6))
 							MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
 						If (mapCraftingMethod ~= "Vaal$")
 							ApplyCurrency("Vaal",Grid.X,Grid.Y)
@@ -449,10 +439,12 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False
 	}
+	NeedsExalt := (Method ~= "Exalt")
 	BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
 	BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 	BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
+	Loop { ; Outer loop: allows restart if exalt ruins the map
 	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
 	{
 		If (!RunningToggle) {
@@ -470,6 +462,9 @@ MapRoll(Method, x, y){
 			, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,")
 			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
 			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
+			. ((Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent < MMapMoreMaps?" Below " MMapMoreMaps " More Maps: " Item.Prop.Map_MapDropPercent ",": "")
+			. ((Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent < MMapMoreScarabs?" Below " MMapMoreScarabs " More Scarabs: " Item.Prop.Map_ScarabDropPercent ",": "")
+			. ((Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent < MMapMoreCurrency?" Below " MMapMoreCurrency " More Currency: " Item.Prop.Map_CurrencyDropPercent : "")
 			,JSON.Dump(Item) )
 		; Scouring or Alteration
 		If !ApplyCurrency(crname, x, y)
@@ -485,6 +480,28 @@ MapRoll(Method, x, y){
 		BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
 		BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 		BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
+
+		BelowAdditionalMaps := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent < MMapMoreMaps
+		BelowScarabDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent < MMapMoreScarabs
+		BelowCurrencyDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent < MMapMoreCurrency
+
+	}
+	; Exalt phase: only if method requires it, map passed all checks, and has open mod slots
+	If (!NeedsExalt || !Item.Prop.MapKeepFlag || Item.Prop.AffixCount >= 6 || !RunningToggle)
+		Break
+	; Map is good but has <6 mods - apply Exalted Orbs to fill slots
+	While (Item.Prop.AffixCount < 6 && RunningToggle) {
+		If !ApplyCurrency("Exalted", x, y)
+			Return False
+		; ApplyCurrency calls ClipItem which re-evaluates MapKeepFlag/MapRerollFlag
+		If (Item.Prop.MapRerollFlag) {
+			Break
+		}
+	}
+	; If map is still good after exalts, we're done
+	If (Item.Prop.MapKeepFlag)
+		Break
+	; Exalt ruined the map - outer loop restarts: inner while will scour + reroll
 	}
 	Log("Crafting","Map crafting resulted in a"
 		. (Item.Prop.RarityNormal?" Normal Map":"")
@@ -495,6 +512,10 @@ MapRoll(Method, x, y){
 		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,")
 		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
 		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity :" Adequate Quantity")
+		. (Item.Prop.Map_MapDropPercent?" More Maps: " Item.Prop.Map_MapDropPercent (MMapMoreMaps > 0 ? "/" MMapMoreMaps : "") ",": "")
+		. (Item.Prop.Map_ScarabDropPercent?" More Scarabs: " Item.Prop.Map_ScarabDropPercent (MMapMoreScarabs > 0 ? "/" MMapMoreScarabs : "") ",": "")
+		. (Item.Prop.Map_CurrencyDropPercent?" More Currency: " Item.Prop.Map_CurrencyDropPercent (MMapMoreCurrency > 0 ? "/" MMapMoreCurrency : "") : "")
+		. (Item.Prop.Map_IsOriginatorMap?" Originator Map " : "")
 		,JSON.Dump(Item) )
 	Return 1
 }

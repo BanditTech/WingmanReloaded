@@ -141,6 +141,13 @@ WR_Menu(Function:="",Var*){
       Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYesBrickedMaps Checked%StashTabYesBrickedMaps% x+5 yp+4, Enable
 
       Gui, Inventory: Font, Bold s8 cBlack, Arial
+      Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , 8Mod Runnable
+      Gui, Inventory: Font,
+      Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
+      Gui, Inventory: Add, UpDown, Range1-99 x+0 yp hp gSaveStashTabs vStashTab8ModRunnable , %StashTab8ModRunnable%
+      Gui, Inventory: Add, Checkbox, gSaveStashTabs vStashTabYes8ModRunnable Checked%StashTabYes8ModRunnable% x+5 yp+4, Enable
+
+      Gui, Inventory: Font, Bold s8 cBlack, Arial
       Gui, Inventory: Add, GroupBox, w110 h50 xs yp+20 , Influenced Item
       Gui, Inventory: Font,
       Gui, Inventory: Add, Edit, Number w40 xp+6 yp+17
@@ -541,7 +548,7 @@ WR_Menu(Function:="",Var*){
 
       Gui, Crafting: Tab, Map Crafting
 
-      MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Alchemy+Vaal|Chisel+Alchemy|Chisel+Alchemy+Vaal|Binding|Chisel+Binding|Chisel+Binding+Vaal|Hybrid|Hybrid+Vaal|Binding+Vaal|Chisel+Hybrid|Chisel+Hybrid+Vaal|Chaos|Chisel+Chaos|Chisel+Chaos+Vaal"
+      MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Alchemy+Exalt|Alchemy+Exalt+Vaal|Alchemy+Vaal|Binding|Binding+Vaal|Hybrid|Hybrid+Vaal|Chaos|Chaos+Vaal"
       MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
       MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
       Gui, Crafting: Font, Bold s9 cBlack, Arial
@@ -620,11 +627,11 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, UpDown, Range1-130 x+0 yp hp vMMapItemQuantity , %MMapItemQuantity%
       Gui, Crafting: Add, Text, x+10 yp+3 , Item Quantity
 
-      Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w50
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50
       Gui, Crafting: Add, UpDown, Range1-54 x+0 yp hp vMMapItemRarity , %MMapItemRarity%
       Gui, Crafting: Add, Text, x+10 yp+3 , Item Rarity
 
-      Gui, Crafting: Add, Edit, number limit2 xs+15 y+15 w50
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50
       Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
       Gui, Crafting: Add, Text, x+10 yp+3 , Monster Pack Size
 
@@ -632,12 +639,28 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Checkbox, vMMQorWeight xs+15 y+5 Checked%MMQorWeight%, Match MMQ or Weight
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w290 h90 x320 y210, Other Settings:
+      Gui, Crafting: Add,GroupBox,Section w200 h115 x320 y205, Originator / Nightmare:
+      Gui, Crafting: Font,
+      Gui, Crafting: Font,s8
+
+      Gui, Crafting: Add, Edit, number limit3 xs+15 yp+18 w50
+      Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapMoreMaps , %MMapMoreMaps%
+      Gui, Crafting: Add, Text, x+10 yp+3 , More Maps
+
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50
+      Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapMoreScarabs , %MMapMoreScarabs%
+      Gui, Crafting: Add, Text, x+10 yp+3 , More Scarabs
+
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50
+      Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapMoreCurrency , %MMapMoreCurrency%
+      Gui, Crafting: Add, Text, x+10 yp+3 , More Currency
+
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+      Gui, Crafting: Add,GroupBox,Section w290 h90 x320 y325, Other Settings:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
       Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
       Gui, Crafting: Add, Checkbox, vMoveMapsToArea xs+10 ys+40 Checked%MoveMapsToArea%, Move Crafted Maps and Enhance Items to Map Area?
-      Gui, Crafting: Add, Checkbox, vForceMaxChisel xs+10 ys+60 Checked%ForceMaxChisel%, Force Maps to 20 Quality?
       Gui, Crafting: Font
 
       Gui, Crafting: Tab, Basic Crafting

@@ -201,6 +201,8 @@ readFromFile(){
 	IniRead, StashTabYesLinked, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked, 1
 	IniRead, StashTabBrickedMaps, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBrickedMaps, 1
 	IniRead, StashTabYesBrickedMaps, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBrickedMaps, 1
+	IniRead, StashTab8ModRunnable, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTab8ModRunnable, 1
+	IniRead, StashTabYes8ModRunnable, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYes8ModRunnable, 0
 	IniRead, StashTabInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem, 1
 	IniRead, StashTabYesInfluencedItem, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem, 1
 	IniRead, StashTabRunes, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabRunes, 1
