@@ -143,6 +143,9 @@ readFromFile(){
 	IniRead, EnableMQQForMagicMap, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap, 0
 	IniRead, MMQorWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight, 0
 	IniRead, MMapWeight, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight, 0
+	IniRead, MMapMoreMaps, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreMaps, 0
+	IniRead, MMapMoreScarabs, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreScarabs, 0
+	IniRead, MMapMoreCurrency, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency, 0
 	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
 
 	;Automation Settings
@@ -865,6 +868,9 @@ submit(){
 		IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
 		IniWrite, %MMQorWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight
 		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
+		IniWrite, %MMapMoreMaps%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreMaps
+		IniWrite, %MMapMoreScarabs%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreScarabs
+		IniWrite, %MMapMoreCurrency%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency
 		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
 
 		;Affinities
