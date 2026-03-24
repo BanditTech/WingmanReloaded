@@ -259,7 +259,7 @@ CraftingMaps(){
 				If (Item.Prop.RarityNormal)
 				{
 					MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
-					If (mapCraftingMethod ~= "Vaal$")
+					If (mapCraftingMethod ~= "Vaal$" && RunningToggle)
 						ApplyCurrency("Vaal",Grid.X,Grid.Y)
 				}
 
@@ -372,32 +372,38 @@ ApplyCurrency(cname, x, y, Amount:=1){
 }
 
 ExaltCheck(Method,x,y){
-	local specialMap, ExaltEligible, noRequirements
+	local ExaltEligible, noRequirements
 	local EffectiveMMQPct := MMapExaltMMQPct / 100.0
 	local EffectiveSpecialPct := MMapExaltSpecialPct / 100.0
 	local	NeedsExalt := (Method ~= "Exalt")
+	local noMMQReq := (MMapItemRarity <= 1 && MMapMonsterPackSize <= 1 && MMapItemQuantity <= 1)
+	local noSpecialReq := (MMapMoreMaps <= 0 && MMapMoreScarabs <=	0 && MMapMoreCurrency <= 0)
+	local noRequirements := noMMQReq && noSpecialReq
+	local MMQEligible := noMMQReq
+		|| (Item.Prop.Map_Rarity >= Round(MMapItemRarity * EffectiveMMQPct))
+		&& (Item.Prop.Map_PackSize >= Round(MMapMonsterPackSize * EffectiveMMQPct))
+		&& (Item.Prop.Map_Quantity >= Round(MMapItemQuantity * EffectiveMMQPct))
+	local specialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
+	local SpecialEligible := !specialMap || (specialMap && noSpecialReq) || (specialMap
+		&& ((MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent >= Round(MMapMoreMaps * EffectiveSpecialPct))
+		|| (MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent >= Round(MMapMoreScarabs * EffectiveSpecialPct))
+		|| (MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent >= Round(MMapMoreCurrency * EffectiveSpecialPct))))
 
 	; exalt attempt: if the method allows exalts and the item meets percent-based eligibility,
 	; try applying Exalted Orbs immediately (before returning to the top of the reroll loop).
 	If (NeedsExalt && Item.Prop.AffixCount < 6 && !Item.Prop.MapImpossibleMod && (Item.Prop.MapRerollFlag || Item.Prop.MapKeepFlag) ) {
 		; effective thresholds = configured requirement * pct/100
-		specialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
-		noRequirements := (MMapItemRarity <= 1 && MMapMonsterPackSize <= 1 && MMapItemQuantity <= 1 && MMapMoreMaps <= 0 && MMapMoreScarabs <= 0 && MMapMoreCurrency <= 0)
-		ExaltEligible := (MMapItemRarity <= 1 || Item.Prop.Map_Rarity >= Round(MMapItemRarity * EffectiveMMQPct))
-			&& (MMapMonsterPackSize <= 1 || Item.Prop.Map_PackSize >= Round(MMapMonsterPackSize * EffectiveMMQPct))
-			&& (MMapItemQuantity <= 1 || Item.Prop.Map_Quantity >= Round(MMapItemQuantity * EffectiveMMQPct))
-			&& (!specialMap || MMapMoreMaps <= 0 || Item.Prop.Map_MapDropPercent >= Round(MMapMoreMaps * EffectiveSpecialPct))
-			&& (!specialMap || MMapMoreScarabs <= 0 || Item.Prop.Map_ScarabDropPercent >= Round(MMapMoreScarabs * EffectiveSpecialPct))
-			&& (!specialMap || MMapMoreCurrency <= 0 || Item.Prop.Map_CurrencyDropPercent >= Round(MMapMoreCurrency * EffectiveSpecialPct))
+
+		ExaltEligible := MMQEligible && SpecialEligible
 		; Log the eligibility and the factors contributing to it for transparency.
 		Log("Crafting","Exalt eligibility: " (ExaltEligible?"Eligible":"Not Eligible")
 			, (noRequirements?"No requirements are configured, yolo exalting"
-			:"Threshold Check: " (MMapItemRarity > 1 ? "Rarity: " Item.Prop.Map_Rarity " / " Round(MMapItemRarity * EffectiveMMQPct) : "")
-			. (MMapMonsterPackSize > 1 ? " PackSize: " Item.Prop.Map_PackSize " / " Round(MMapMonsterPackSize * EffectiveMMQPct) : "")
-			. (MMapItemQuantity > 1 ? " Quantity: " Item.Prop.Map_Quantity " / " Round(MMapItemQuantity * EffectiveMMQPct) : "")
-			. (specialMap && MMapMoreMaps > 0 ? " MapDrop%: " Item.Prop.Map_MapDropPercent " / " Round(MMapMoreMaps * EffectiveSpecialPct) : "")
-			. (specialMap && MMapMoreScarabs > 0 ? " ScarabDrop%: " Item.Prop.Map_ScarabDropPercent " / " Round(MMapMoreScarabs * EffectiveSpecialPct) : "")
-			. (specialMap && MMapMoreCurrency > 0 ? " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct) : ""))
+			:"Threshold Check: " (MMapItemRarity > 1 ? "Rarity: " Item.Prop.Map_Rarity " / " Round(MMapItemRarity * EffectiveMMQPct) ",": "")
+			. (MMapMonsterPackSize > 1 ? " PackSize: " Item.Prop.Map_PackSize " / " Round(MMapMonsterPackSize * EffectiveMMQPct) ",": "")
+			. (MMapItemQuantity > 1 ? " Quantity: " Item.Prop.Map_Quantity " / " Round(MMapItemQuantity * EffectiveMMQPct) ",": "")
+			. (specialMap && (MMapMoreMaps > 0 ? " MapDrop%: " Item.Prop.Map_MapDropPercent " / " Round(MMapMoreMaps * EffectiveSpecialPct) ",": ""))
+			. (specialMap && (MMapMoreScarabs > 0 ? " ScarabDrop%: " Item.Prop.Map_ScarabDropPercent " / " Round(MMapMoreScarabs * EffectiveSpecialPct) ",": ""))
+			. (specialMap && (MMapMoreCurrency > 0 ? " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct) : "")))
 			,JSON.Dump(Item) )
 
 		If (ExaltEligible) {
@@ -512,10 +518,11 @@ MapRoll(Method, x, y){
 			. (Item.Prop.MapSumMod < MMapWeight? " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
 			, "Minimum Map Qualities: "(BelowRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,")
 			. (BelowPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
-			. (BelowQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
+			. (BelowQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity,")
 			. (BelowMapDropPercent?" Below " MMapMoreMaps " More Maps: " Item.Prop.Map_MapDropPercent ",": "")
 			. (BelowScarabDropPercent?" Below " MMapMoreScarabs " More Scarabs: " Item.Prop.Map_ScarabDropPercent ",": "")
-			. (BelowCurrencyDropPercent?" Below " MMapMoreCurrency " More Currency: " Item.Prop.Map_CurrencyDropPercent : "")
+			. (BelowCurrencyDropPercent?" Below " MMapMoreCurrency " More Currency: " Item.Prop.Map_CurrencyDropPercent ",": "")
+			. (Method ~= "Exalt" && Item.Prop.AffixCount >= 6? " Cannot slam more affixes":"")
 			,JSON.Dump(Item) )
 		; Scouring, Chaos or Alteration
 		If !ApplyCurrency(crname, x, y)
@@ -538,7 +545,7 @@ MapRoll(Method, x, y){
 		. (Item.Prop.IsBricked?" with Bricked Mods":"")
 		, "Map is" (Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",":" Adequate Rarity,")
 		. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",":" Adequate PackSize,")
-		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity :" Adequate Quantity")
+		. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity ",":" Adequate Quantity,")
 		. (Item.Prop.Map_MapDropPercent?" More Maps: " Item.Prop.Map_MapDropPercent (MMapMoreMaps > 0 ? "/" MMapMoreMaps : "") ",": "")
 		. (Item.Prop.Map_ScarabDropPercent?" More Scarabs: " Item.Prop.Map_ScarabDropPercent (MMapMoreScarabs > 0 ? "/" MMapMoreScarabs : "") ",": "")
 		. (Item.Prop.Map_CurrencyDropPercent?" More Currency: " Item.Prop.Map_CurrencyDropPercent (MMapMoreCurrency > 0 ? "/" MMapMoreCurrency : "") : "")
