@@ -919,11 +919,26 @@
 		ConsiderMMQ := (This.Prop.RarityMagic && EnableMQQForMagicMap) || This.Prop.RarityRare
 		If (ConsiderMMQ) {
 			IsSpecialMap := This.Prop.Map_IsOriginatorMap || This.Prop.IsNightmareMap
-			MeetsMMQ := This.Prop.Map_Rarity >= MMapItemRarity && This.Prop.Map_PackSize >= MMapMonsterPackSize && This.Prop.Map_Quantity >= MMapItemQuantity
-				&& (!IsSpecialMap
-					|| ((MMapMoreMaps <= 0 || This.Prop.Map_MapDropPercent >= MMapMoreMaps)
-					&& (MMapMoreScarabs <= 0 || This.Prop.Map_ScarabDropPercent >= MMapMoreScarabs)
-					&& (MMapMoreCurrency <= 0 || This.Prop.Map_CurrencyDropPercent >= MMapMoreCurrency)))
+			BaseMMQ := (This.Prop.Map_Rarity >= MMapItemRarity) && (This.Prop.Map_PackSize >= MMapMonsterPackSize) && (This.Prop.Map_Quantity >= MMapItemQuantity)
+			if (!IsSpecialMap) {
+				MeetsMMQ := BaseMMQ
+			} else {
+				; For special maps (Originator / Nightmare) allow any one of the extra thresholds to satisfy MMQ
+				if (MMapMoreMaps <= 0 && MMapMoreScarabs <= 0 && MMapMoreCurrency <= 0) {
+					ExtraOK := True
+				} else if MMQSpecialIndependent {
+					map := MMapMoreMaps > 0 && This.Prop.Map_MapDropPercent >= MMapMoreMaps
+					scarab := MMapMoreScarabs > 0 && This.Prop.Map_ScarabDropPercent >= MMapMoreScarabs
+					currency := MMapMoreCurrency > 0 && This.Prop.Map_CurrencyDropPercent >= MMapMoreCurrency
+					ExtraOK := map || scarab || currency
+				} else {
+					map := MMapMoreMaps == 0 || (MMapMoreMaps > 0 && This.Prop.Map_MapDropPercent >= MMapMoreMaps)
+					scarab := MMapMoreScarabs == 0 || (MMapMoreScarabs > 0 && This.Prop.Map_ScarabDropPercent >= MMapMoreScarabs)
+					currency := MMapMoreCurrency == 0 || (MMapMoreCurrency > 0 && This.Prop.Map_CurrencyDropPercent >= MMapMoreCurrency)
+					ExtraOK := map && scarab && currency
+				}
+				MeetsMMQ := BaseMMQ && ExtraOK
+			}
 		} Else {
 			MeetsMMQ := True
 		}

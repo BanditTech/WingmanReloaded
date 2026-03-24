@@ -635,7 +635,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, x+10 yp+3 , Monster Pack Size
 
       ; Exalt Eligibility Percent (MMQ) - Edit + UpDown
-      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50 vMMapExaltMMQEdit gMMapExalt, %MMapExaltMMQPct%
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50
       Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapExaltMMQPct , %MMapExaltMMQPct%
       Gui, Crafting: Add, Text, x+10 yp+3 , Exalt Eligibility `% (MMQ)
 
@@ -643,7 +643,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Checkbox, vMMQorWeight xs+15 y+5 Checked%MMQorWeight%, Match MMQ or Weight
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w200 h140 x320 y233, Originator / Nightmare:
+      Gui, Crafting: Add,GroupBox,Section w200 h165 x320 y233, Originator / Nightmare:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
 
@@ -660,12 +660,14 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, Text, x+10 yp+3 , More Currency
 
       ; Exalt Eligibility Percent (Special maps) - Edit + UpDown
-      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50 vMMapExaltSpecialEdit gMMapExalt, %MMapExaltSpecialPct%
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50
       Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapExaltSpecialPct , %MMapExaltSpecialPct%
       Gui, Crafting: Add, Text, x+10 yp+3 , Exalt Eligibility `% (Special)
 
+      Gui, Crafting: Add, Checkbox, vMMQSpecialIndependent xs+15 y+15 Checked%MMQSpecialIndependent%, Match Independently
+
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w290 h70 x320 y375, Other Settings:
+      Gui, Crafting: Add,GroupBox,Section w290 h70 x320 y400, Other Settings:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
       Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
@@ -1416,39 +1418,3 @@ WR_Menu(Function:="",Var*){
   return
 }
 
-; --- Exalt eligibility GUI sync handler (single label using A_GuiControl) ---
-MMapExalt:
-  ; A_GuiControl contains the variable name associated with the control that fired this label
-  ctrl := A_GuiControl
-  ; Determine which group we're handling
-  If InStr(ctrl, "MMQ")
-    prefix := "MMapExaltMMQ"
-  Else If InStr(ctrl, "Special")
-    prefix := "MMapExaltSpecial"
-  Else
-    Return
-
-  ; Read value from the control that fired
-  GuiControlGet, val,, %ctrl%
-
-  ; If value blank (e.g., cleared edit), default to 100
-  If (val = "")
-    val := 100
-
-  ; Round and clamp to [0,100]
-  val := Round(val)
-  If (val < 0)
-    val := 0
-  If (val > 100)
-    val := 100
-
-  ; Update Edit, Slider and UpDown (Pct) controls and the backing variable
-  GuiControl,, % prefix "Edit", %val%
-  GuiControl,, % prefix "Pct", %val%
-
-  ; Ensure global setting variable is updated for save/load
-  If (prefix = "MMapExaltMMQ")
-    MMapExaltMMQPct := val
-  Else
-    MMapExaltSpecialPct := val
-Return

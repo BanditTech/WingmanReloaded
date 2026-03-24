@@ -145,6 +145,7 @@ readFromFile(){
 	IniRead, MMapMoreMaps, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreMaps, 0
 	IniRead, MMapMoreScarabs, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreScarabs, 0
 	IniRead, MMapMoreCurrency, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency, 0
+	IniRead, MMQSpecialIndependent, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQSpecialIndependent, 0
 	; Exalt eligibility percent settings (0-100). Default 100 = full requirement
 	IniRead, MMapExaltMMQPct, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltMMQPct, 100
 	IniRead, MMapExaltSpecialPct, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltSpecialPct, 100
@@ -887,6 +888,7 @@ submit(){
 	IniWrite, %MMapExaltMMQPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltMMQPct
 	IniWrite, %MMapExaltSpecialPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltSpecialPct
 	IniWrite, %MMapMoreCurrency%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency
+	IniWrite, %MMQSpecialIndependent%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQSpecialIndependent
 
 	;Affinities
 	IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency

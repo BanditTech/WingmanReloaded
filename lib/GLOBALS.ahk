@@ -574,7 +574,7 @@ Global YesIncludeFandSItem := True
 Global CLFStrictnessNumber := 0
 
 ; Item Crafting
-
+Global MMQSpecialIndependent
 Global ItemCraftingCategorySelector
 Global ItemCraftingSubCategorySelector
 Global ItemCraftingMethod
