@@ -392,7 +392,7 @@ ExaltCheck(Method,x,y){
 		&& ((MMapMoreMaps > 0 && (Item.Prop.Map_MapDropPercent?Item.Prop.Map_MapDropPercent:0) >= Round(MMapMoreMaps * EffectiveSpecialPct))
 		|| (MMapMoreScarabs > 0 && (Item.Prop.Map_ScarabDropPercent?Item.Prop.Map_ScarabDropPercent:0) >= Round(MMapMoreScarabs * EffectiveSpecialPct))
 		|| (MMapMoreCurrency > 0 && (Item.Prop.Map_CurrencyDropPercent?Item.Prop.Map_CurrencyDropPercent:0) >= Round(MMapMoreCurrency * EffectiveSpecialPct)))
-	local ExaltEligible := (MMQEligible && SpecialEligible) || noRequirements
+	local ExaltEligible := (MMQEligible && SpecialEligible) || noRequirements || (MMQEligible && noSpecialReq) || (SpecialEligible && noMMQReq)
 
 	; exalt attempt: if the method allows exalts and the item meets percent-based eligibility,
 	; try applying Exalted Orbs immediately (before returning to the top of the reroll loop).
