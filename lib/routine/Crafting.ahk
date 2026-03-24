@@ -447,8 +447,8 @@ MapRoll(Method, x, y){
 	}
 	NeedsExalt := (Method ~= "Exalt")
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	Loop { ; Outer loop: allows restart if exalt ruins the map
-		While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
+	While (RunningToggle) { ; Outer loop: allows restart if exalt ruins the map
+		While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag && RunningToggle)
 		{
 			If (!RunningToggle) {
 				break
