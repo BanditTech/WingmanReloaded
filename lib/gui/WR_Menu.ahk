@@ -547,7 +547,7 @@ WR_Menu(Function:="",Var*){
 
       Gui, Crafting: Tab, Map Crafting
 
-      MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Alchemy+Exalt|Alchemy+Exalt+Vaal|Alchemy+Vaal|Binding|Binding+Vaal|Hybrid|Hybrid+Vaal|Chaos|Chaos+Vaal"
+      MapMethodList := "Disable|Transmutation+Augmentation|Alchemy|Alchemy+Exalt|Alchemy+Exalt+Vaal|Alchemy+Vaal|Binding|Binding+Exalt|Binding+Exalt+Vaal|Binding+Vaal|Hybrid|Hybrid+Exalt|Hybrid+Exalt+Vaal|Hybrid+Vaal|Chaos|Chaos+Exalt|Chaos+Exalt+Vaal|Chaos+Vaal"
       MapTierList := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"
       MapSetValue := "1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100"
       Gui, Crafting: Font, Bold s9 cBlack, Arial
@@ -591,6 +591,16 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, DropDownList, xs+55 ys+35 w40 vEndMapTier3 Choose%EndMapTier3%, %MapTierList%
       Gui, Crafting: Add, DropDownList, xs+105 ys+35 w175 vCraftingMapMethod3 Choose%CraftingMapMethod3%, %MapMethodList%
       GuiControl,Crafting: ChooseString, CraftingMapMethod3, %CraftingMapMethod3%
+      Gui, Crafting: Font,
+      Gui, Crafting: Font, Bold s9 cBlack, Arial
+
+      Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Originator / Nightmare:
+      Gui, Crafting: Font,
+      Gui, Crafting: Font,s7
+      Gui, Crafting: Add, Text, xs+5 ys+20 , Method
+      Gui, Crafting: Font,s8
+      Gui, Crafting: Add, DropDownList, xs+5 ys+35 w255 vCraftingMapMethodSpecial Choose%CraftingMapMethodSpecial%, %MapMethodList%
+      GuiControl,Crafting: ChooseString, CraftingMapMethodSpecial, %CraftingMapMethodSpecial%
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 

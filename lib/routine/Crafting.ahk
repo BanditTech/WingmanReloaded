@@ -302,6 +302,10 @@ InMapArea(C:=0){
 	Return False
 }
 getMapCraftingMethod(){
+	If (Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap)
+		If (CraftingMapMethodSpecial != "Disable")
+			Return CraftingMapMethodSpecial
+
 	Loop, 3
 	{
 		If ( EndMapTier%A_Index% >= StartMapTier%A_Index%
