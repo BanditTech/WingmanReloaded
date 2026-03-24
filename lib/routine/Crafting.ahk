@@ -370,13 +370,50 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	Sleep, 45*Latency
 	return True
 }
+
+ExaltCheck(){
+	local specialMap, ExaltEligible, noRequirements
+	local EffectiveMMQPct := MMapExaltMMQPct / 100.0
+	local EffectiveSpecialPct := MMapExaltSpecialPct / 100.0
+	local	NeedsExalt := (Method ~= "Exalt")
+
+	; exalt attempt: if the method allows exalts and the item meets percent-based eligibility,
+	; try applying Exalted Orbs immediately (before returning to the top of the reroll loop).
+	If (NeedsExalt && Item.Prop.AffixCount < 6 && !This.Prop.MapImpossibleMod) {
+		; effective thresholds = configured requirement * pct/100
+		specialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
+		noRequirements := (MMapItemRarity <= 1 && MMapMonsterPackSize <= 1 && MMapItemQuantity <= 1 && MMapMoreMaps <= 0 && MMapMoreScarabs <= 0 && MMapMoreCurrency <= 0)
+		ExaltEligible := (MMapItemRarity <= 1 || Item.Prop.Map_Rarity >= Round(MMapItemRarity * EffectiveMMQPct))
+			&& (MMapMonsterPackSize <= 1 || Item.Prop.Map_PackSize >= Round(MMapMonsterPackSize * EffectiveMMQPct))
+			&& (MMapItemQuantity <= 1 || Item.Prop.Map_Quantity >= Round(MMapItemQuantity * EffectiveMMQPct))
+			&& (!specialMap || MMapMoreMaps <= 0 || Item.Prop.Map_MapDropPercent >= Round(MMapMoreMaps * EffectiveSpecialPct))
+			&& (!specialMap || MMapMoreScarabs <= 0 || Item.Prop.Map_ScarabDropPercent >= Round(MMapMoreScarabs * EffectiveSpecialPct))
+			&& (!specialMap || MMapMoreCurrency <= 0 || Item.Prop.Map_CurrencyDropPercent >= Round(MMapMoreCurrency * EffectiveSpecialPct))
+		; Log the eligibility and the factors contributing to it for transparency.
+		Log("Crafting","Exalt eligibility: " (ExaltEligible?"Eligible":"Not Eligible")
+			, (noRequirements?"No requirements are configured, yolo exalting"
+			:"Threshold Check: " (MMapItemRarity > 1 ? "Rarity: " Item.Prop.Map_Rarity " / " Round(MMapItemRarity * EffectiveMMQPct) : "")
+			. (MMapMonsterPackSize > 1 ? " PackSize: " Item.Prop.Map_PackSize " / " Round(MMapMonsterPackSize * EffectiveMMQPct) : "")
+			. (MMapItemQuantity > 1 ? " Quantity: " Item.Prop.Map_Quantity " / " Round(MMapItemQuantity * EffectiveMMQPct) : "")
+			. (specialMap && MMapMoreMaps > 0 ? " MapDrop%: " Item.Prop.Map_MapDropPercent " / " Round(MMapMoreMaps * EffectiveSpecialPct) : "")
+			. (specialMap && MMapMoreScarabs > 0 ? " ScarabDrop%: " Item.Prop.Map_ScarabDropPercent " / " Round(MMapMoreScarabs * EffectiveSpecialPct) : "")
+			. (specialMap && MMapMoreCurrency > 0 ? " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct) : ""))
+			,JSON.Dump(Item) )
+
+		If (ExaltEligible) {
+			While (Item.Prop.AffixCount < 6 && RunningToggle) {
+				If !ApplyCurrency("Exalted", x, y)
+					Return False
+				; We check if there now an impossible mod before deciding to continue crafting or not
+				If (This.Prop.MapImpossibleMod)
+					Break
+			}
+		}
+	}
+}
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
 MapRoll(Method, x, y){
 	local BelowRarity, BelowPackSize, BelowQuantity, BelowMapDropPercent, BelowScarabDropPercent, BelowCurrencyDropPercent
-	local ExaltBelowRarity, ExaltBelowPackSize, ExaltBelowQuantity, ExaltBelowMapDropPercent, ExaltBelowScarabDropPercent, ExaltBelowCurrencyDropPercent
-	local NeedsExalt, specialMap, ExaltEligible, noRequirements
-	local EffectiveMMQPct := MMapExaltMMQPct / 100.0
-	local EffectiveSpecialPct := MMapExaltSpecialPct / 100.0
 
 	If (Method == "Transmutation+Augmentation")
 	{
@@ -445,7 +482,6 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False
 	}
-	NeedsExalt := (Method ~= "Exalt")
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
 	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag && RunningToggle)
 	{
@@ -457,6 +493,11 @@ MapRoll(Method, x, y){
 			Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
 			Return
 		}
+
+		; Exalt Check here before applying currency
+		ExaltCheck()
+		if Item.Prop.MapKeepFlag
+			break
 		BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
 		BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 		BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
@@ -487,43 +528,7 @@ MapRoll(Method, x, y){
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
-
-		; exalt attempt: if the method allows exalts and the item meets percent-based eligibility,
-		; try applying Exalted Orbs immediately (before returning to the top of the reroll loop).
-		If (NeedsExalt && Item.Prop.AffixCount < 6 && !Item.Prop.MapRerollFlag) {
-			; effective thresholds = configured requirement * pct/100
-			specialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
-			noRequirements := (MMapItemRarity <= 1 && MMapMonsterPackSize <= 1 && MMapItemQuantity <= 1 && MMapMoreMaps <= 0 && MMapMoreScarabs <= 0 && MMapMoreCurrency <= 0)
-			ExaltEligible := (MMapItemRarity <= 1 || Item.Prop.Map_Rarity >= Round(MMapItemRarity * EffectiveMMQPct))
-				&& (MMapMonsterPackSize <= 1 || Item.Prop.Map_PackSize >= Round(MMapMonsterPackSize * EffectiveMMQPct))
-				&& (MMapItemQuantity <= 1 || Item.Prop.Map_Quantity >= Round(MMapItemQuantity * EffectiveMMQPct))
-				&& (!specialMap || MMapMoreMaps <= 0 || Item.Prop.Map_MapDropPercent >= Round(MMapMoreMaps * EffectiveSpecialPct))
-				&& (!specialMap || MMapMoreScarabs <= 0 || Item.Prop.Map_ScarabDropPercent >= Round(MMapMoreScarabs * EffectiveSpecialPct))
-				&& (!specialMap || MMapMoreCurrency <= 0 || Item.Prop.Map_CurrencyDropPercent >= Round(MMapMoreCurrency * EffectiveSpecialPct))
-			; Log the eligibility and the factors contributing to it for transparency.
-			Log("Crafting","Exalt eligibility: " (ExaltEligible?"Eligible":"Not Eligible")
-				, (noRequirements?"No requirements are configured, yolo exalting"
-				:"Threshold Check: " (MMapItemRarity > 1 ? "Rarity: " Item.Prop.Map_Rarity " / " Round(MMapItemRarity * EffectiveMMQPct) : "")
-				. (MMapMonsterPackSize > 1 ? " PackSize: " Item.Prop.Map_PackSize " / " Round(MMapMonsterPackSize * EffectiveMMQPct) : "")
-				. (MMapItemQuantity > 1 ? " Quantity: " Item.Prop.Map_Quantity " / " Round(MMapItemQuantity * EffectiveMMQPct) : "")
-				. (specialMap && MMapMoreMaps > 0 ? " MapDrop%: " Item.Prop.Map_MapDropPercent " / " Round(MMapMoreMaps * EffectiveSpecialPct) : "")
-				. (specialMap && MMapMoreScarabs > 0 ? " ScarabDrop%: " Item.Prop.Map_ScarabDropPercent " / " Round(MMapMoreScarabs * EffectiveSpecialPct) : "")
-				. (specialMap && MMapMoreCurrency > 0 ? " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct) : ""))
-				,JSON.Dump(Item) )
-
-			If (ExaltEligible) {
-				While (Item.Prop.AffixCount < 6 && RunningToggle) {
-					If !ApplyCurrency("Exalted", x, y)
-						Return False
-					; ApplyCurrency calls ClipItem which re-evaluates MapKeepFlag/MapRerollFlag
-					If (Item.Prop.MapRerollFlag)
-						Break
-				}
-				; If exalts made the map good, leave the loop. If not, continue with regular rerolls
-				If (Item.Prop.MapKeepFlag)
-					Break
-			}
-		}
+		ExaltCheck()
 	}
 	Log("Crafting","Map crafting resulted in a"
 		. (Item.Prop.RarityNormal?" Normal Map":"")
