@@ -401,9 +401,9 @@ ExaltCheck(Method,x,y){
 			:"Threshold Check: " (MMapItemRarity > 1 ? "Rarity: " Item.Prop.Map_Rarity " / " Round(MMapItemRarity * EffectiveMMQPct) ",": "")
 			. (MMapMonsterPackSize > 1 ? " PackSize: " Item.Prop.Map_PackSize " / " Round(MMapMonsterPackSize * EffectiveMMQPct) ",": "")
 			. (MMapItemQuantity > 1 ? " Quantity: " Item.Prop.Map_Quantity " / " Round(MMapItemQuantity * EffectiveMMQPct) ",": "")
-			. (specialMap && (MMapMoreMaps > 0 ? " MapDrop%: " Item.Prop.Map_MapDropPercent " / " Round(MMapMoreMaps * EffectiveSpecialPct) ",": ""))
-			. (specialMap && (MMapMoreScarabs > 0 ? " ScarabDrop%: " Item.Prop.Map_ScarabDropPercent " / " Round(MMapMoreScarabs * EffectiveSpecialPct) ",": ""))
-			. (specialMap && (MMapMoreCurrency > 0 ? " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct) : "")))
+			. ((specialMap && MMapMoreMaps > 0) ? " MapDrop%: " Item.Prop.Map_MapDropPercent " / " Round(MMapMoreMaps * EffectiveSpecialPct) ",": "")
+			. ((specialMap && MMapMoreScarabs > 0) ? " ScarabDrop%: " Item.Prop.Map_ScarabDropPercent " / " Round(MMapMoreScarabs * EffectiveSpecialPct) ",": "")
+			. ((specialMap && MMapMoreCurrency > 0) ? " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct) : ""))
 			,JSON.Dump(Item) )
 
 		If (ExaltEligible) {
