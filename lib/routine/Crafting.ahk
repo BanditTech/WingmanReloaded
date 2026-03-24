@@ -491,7 +491,7 @@ MapRoll(Method, x, y){
 
 			; exalt attempt: if the method allows exalts and the item meets percent-based eligibility,
 			; try applying Exalted Orbs immediately (before returning to the top of the reroll loop).
-			If (NeedsExalt && Item.Prop.AffixCount < 6) {
+			If (NeedsExalt && Item.Prop.AffixCount < 6 && !Item.Prop.MapRerollFlag) {
 				; effective thresholds = configured requirement * pct/100
 				specialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
 				noRequirements := (MMapItemRarity <= 1 && MMapMonsterPackSize <= 1 && MMapItemQuantity <= 1 && MMapMoreMaps <= 0 && MMapMoreScarabs <= 0 && MMapMoreCurrency <= 0)
