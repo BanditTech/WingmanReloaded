@@ -382,17 +382,18 @@ ExaltCheck(Method,x,y){
 	local noRequirements := noMMQReq && noSpecialReq
 
 	; effective thresholds = configured requirement * pct/100
-	local MMQEligible := noMMQReq
-		|| (Item.Prop.Map_Rarity >= Round(MMapItemRarity * EffectiveMMQPct))
-		&& (Item.Prop.Map_PackSize >= Round(MMapMonsterPackSize * EffectiveMMQPct))
-		&& (Item.Prop.Map_Quantity >= Round(MMapItemQuantity * EffectiveMMQPct))
+	local MMQRarity := MMapItemRarity > 1 && Item.Prop.Map_Rarity >= Round(MMapItemRarity * EffectiveMMQPct)
+	local MMQPackSize := MMapMonsterPackSize > 1 && Item.Prop.Map_PackSize >= Round(MMapMonsterPackSize * EffectiveMMQPct)
+	local MMQQuantity := MMapItemQuantity > 1 && Item.Prop.Map_Quantity >= Round(MMapItemQuantity * EffectiveMMQPct)
+	local MMQEligible := MMQRarity || MMQPackSize || MMQQuantity
 
-	local specialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
-	local SpecialEligible := specialMap
-		&& ((MMapMoreMaps > 0 && (Item.Prop.Map_MapDropPercent?Item.Prop.Map_MapDropPercent:0) >= Round(MMapMoreMaps * EffectiveSpecialPct))
-		|| (MMapMoreScarabs > 0 && (Item.Prop.Map_ScarabDropPercent?Item.Prop.Map_ScarabDropPercent:0) >= Round(MMapMoreScarabs * EffectiveSpecialPct))
-		|| (MMapMoreCurrency > 0 && (Item.Prop.Map_CurrencyDropPercent?Item.Prop.Map_CurrencyDropPercent:0) >= Round(MMapMoreCurrency * EffectiveSpecialPct)))
-	local ExaltEligible := (MMQEligible && SpecialEligible) || noRequirements || (MMQEligible && noSpecialReq) || (SpecialEligible && noMMQReq)
+	local isSpecialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
+	local specialMaps := MMapMoreMaps > 0 && (Item.Prop.Map_MapDropPercent?Item.Prop.Map_MapDropPercent:0) >= Round(MMapMoreMaps * EffectiveSpecialPct)
+	local specialScarabs := MMapMoreScarabs > 0 && (Item.Prop.Map_ScarabDropPercent?Item.Prop.Map_ScarabDropPercent:0) >= Round(MMapMoreScarabs * EffectiveSpecialPct)
+	local specialCurrency := MMapMoreCurrency > 0 && (Item.Prop.Map_CurrencyDropPercent?Item.Prop.Map_CurrencyDropPercent:0) >= Round(MMapMoreCurrency * EffectiveSpecialPct)
+	local SpecialEligible := isSpecialMap && (specialMaps || specialScarabs || specialCurrency)
+
+	local ExaltEligible := (MMQEligible && SpecialEligible) || noRequirements || (MMQEligible && noSpecialReq) || (SpecialEligible && noMMQReq) || (MMQEligible && !isSpecialMap)
 
 	; exalt attempt: if the method allows exalts and the item meets percent-based eligibility,
 	; try applying Exalted Orbs immediately (before returning to the top of the reroll loop).
