@@ -92,7 +92,7 @@ Global BlackList
 Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
 Global StackSizes := {"Wisdom":40,"Portal":40,"Scouring":30,"Perandus":5000
 	,"Alteration":20,"Transmutation":40,"Augment":30,"Chance":20
-	,"Alchemy":20,"Binding":20,"Vaal":20,
+	,"Alchemy":20,"Binding":20,"Vaal":20
 	,"Harbinger":20,"Horizon":20,"Chaos":20,"Engineer":20,"Regal":10
 	,"Simple":10,"Prime":10,"Exalted":10,"Veiled":10}
 Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
