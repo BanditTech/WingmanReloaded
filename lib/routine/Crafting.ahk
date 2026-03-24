@@ -371,7 +371,7 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	return True
 }
 
-ExaltCheck(Method){
+ExaltCheck(Method,x,y){
 	local specialMap, ExaltEligible, noRequirements
 	local EffectiveMMQPct := MMapExaltMMQPct / 100.0
 	local EffectiveSpecialPct := MMapExaltSpecialPct / 100.0
@@ -379,7 +379,7 @@ ExaltCheck(Method){
 
 	; exalt attempt: if the method allows exalts and the item meets percent-based eligibility,
 	; try applying Exalted Orbs immediately (before returning to the top of the reroll loop).
-	If (NeedsExalt && Item.Prop.AffixCount < 6 && !This.Prop.MapImpossibleMod) {
+	If (NeedsExalt && Item.Prop.AffixCount < 6 && !Item.Prop.MapImpossibleMod && (Item.Prop.MapRerollFlag || Item.Prop.MapKeepFlag) ) {
 		; effective thresholds = configured requirement * pct/100
 		specialMap := Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap
 		noRequirements := (MMapItemRarity <= 1 && MMapMonsterPackSize <= 1 && MMapItemQuantity <= 1 && MMapMoreMaps <= 0 && MMapMoreScarabs <= 0 && MMapMoreCurrency <= 0)
@@ -405,7 +405,7 @@ ExaltCheck(Method){
 				If !ApplyCurrency("Exalted", x, y)
 					Return False
 				; We check if there now an impossible mod before deciding to continue crafting or not
-				If (This.Prop.MapImpossibleMod)
+				If (Item.Prop.MapImpossibleMod)
 					Break
 			}
 		}
@@ -495,7 +495,7 @@ MapRoll(Method, x, y){
 		}
 
 		; Exalt Check here before applying currency
-		ExaltCheck(Method)
+		ExaltCheck(Method,x,y)
 		if Item.Prop.MapKeepFlag
 			break
 		BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
@@ -528,7 +528,7 @@ MapRoll(Method, x, y){
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
-		ExaltCheck(Method)
+		ExaltCheck(Method,x,y)
 	}
 	Log("Crafting","Map crafting resulted in a"
 		. (Item.Prop.RarityNormal?" Normal Map":"")
