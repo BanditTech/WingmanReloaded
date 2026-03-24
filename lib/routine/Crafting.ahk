@@ -409,7 +409,7 @@ ExaltCheck(Method,x,y){
 			. " Quantity: " Item.Prop.Map_Quantity " / " Round(MMapItemQuantity * EffectiveMMQPct) ","
 			. " MapDrop%: " Item.Prop.Map_MapDropPercent " / " Round(MMapMoreMaps * EffectiveSpecialPct) ","
 			. " ScarabDrop%: " Item.Prop.Map_ScarabDropPercent " / " Round(MMapMoreScarabs * EffectiveSpecialPct) ","
-			. " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct)
+			. " CurrencyDrop%: " Item.Prop.Map_CurrencyDropPercent " / " Round(MMapMoreCurrency * EffectiveSpecialPct))
 			, "Affix Count: " Item.Prop.AffixCount " / 6"
 			,JSON.Dump(Item) )
 
