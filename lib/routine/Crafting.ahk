@@ -197,7 +197,7 @@ CraftingMaps(){
 		}
 	}
 	WR.data.Counts := CountCurrency(CurrencyList)
-;	MsgBoxVals(WR.data.Counts)
+	;	MsgBoxVals(WR.data.Counts)
 	MapList := {}
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
@@ -440,68 +440,65 @@ MapRoll(Method, x, y){
 			Return False
 	}
 	NeedsExalt := (Method ~= "Exalt")
-	BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
-	BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
-	BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
 	Loop { ; Outer loop: allows restart if exalt ruins the map
-	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
-	{
-		If (!RunningToggle) {
-			break
-		}
-		If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
-			Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
-			Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
-			Return
-		}
-		Log("Crafting","Map reroll initiated because:"
-			. (Item.Prop.RarityNormal?" Normal Item":"")
-			. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
-			. (Item.Prop.MapSumMod < MMapWeight? " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
-			, "Minimum Map Qualities: "(Item.Prop.Map_Rarity < MMapItemRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,")
-			. (Item.Prop.Map_PackSize < MMapMonsterPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
-			. (Item.Prop.Map_Quantity < MMapItemQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
-			. ((Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent < MMapMoreMaps?" Below " MMapMoreMaps " More Maps: " Item.Prop.Map_MapDropPercent ",": "")
-			. ((Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent < MMapMoreScarabs?" Below " MMapMoreScarabs " More Scarabs: " Item.Prop.Map_ScarabDropPercent ",": "")
-			. ((Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent < MMapMoreCurrency?" Below " MMapMoreCurrency " More Currency: " Item.Prop.Map_CurrencyDropPercent : "")
-			,JSON.Dump(Item) )
-		; Scouring or Alteration
-		If !ApplyCurrency(crname, x, y)
-			Return False
-		If (Item.Prop.RarityNormal) {
-			If !ApplyCurrency(cname, x, y)
-				Return False
-			; Augmentation if not 2 mods on magic maps
-		} Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic) {
-			If !ApplyCurrency("Augmentation",x,y)
-				Return False
-		}
-		BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
-		BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
-		BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
+		While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
+		{
+			If (!RunningToggle) {
+				break
+			}
+			If(!Item.Prop.RarityNormal && (Item.Prop.AffixCount == 0 && Item.Prop.PrefixCount == 0 && Item.Prop.SuffixCount == 0)){
+				Notify("Missing Advanced Tooltip","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+				Log("Missing Advanced Tooltip","Clip Item Function cannot detect item prefix/suffix","The default solution is unbind ALT Key from POE hotkeys as they prevent from using CTRL+ALT+C to get advanced clip information for parsing")
+				Return
+			}
+			BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
+			BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
+			BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 
-		BelowAdditionalMaps := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent < MMapMoreMaps
-		BelowScarabDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent < MMapMoreScarabs
-		BelowCurrencyDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent < MMapMoreCurrency
+			BelowAdditionalMaps := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreMaps > 0 && Item.Prop.Map_MapDropPercent < MMapMoreMaps
+			BelowScarabDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreScarabs > 0 && Item.Prop.Map_ScarabDropPercent < MMapMoreScarabs
+			BelowCurrencyDropPercent := (Item.Prop.Map_IsOriginatorMap || Item.Prop.IsNightmareMap) && MMapMoreCurrency > 0 && Item.Prop.Map_CurrencyDropPercent < MMapMoreCurrency
 
-	}
-	; Exalt phase: only if method requires it, map passed all checks, and has open mod slots
-	If (!NeedsExalt || !Item.Prop.MapKeepFlag || Item.Prop.AffixCount >= 6 || !RunningToggle)
-		Break
-	; Map is good but has <6 mods - apply Exalted Orbs to fill slots
-	While (Item.Prop.AffixCount < 6 && RunningToggle) {
-		If !ApplyCurrency("Exalted", x, y)
-			Return False
-		; ApplyCurrency calls ClipItem which re-evaluates MapKeepFlag/MapRerollFlag
-		If (Item.Prop.MapRerollFlag) {
+			Log("Crafting","Map reroll initiated because:"
+				. (Item.Prop.RarityNormal?" Normal Item":"")
+				. (Item.Prop.MapImpossibleMod?" Has Impossible Mod":"")
+				. (Item.Prop.MapSumMod < MMapWeight? " " Item.Prop.MapSumMod " Sum Weight < " MMapWeight " Minimum Weight":"")
+				, "Minimum Map Qualities: "(BelowRarity?" Below " MMapItemRarity " Rarity: " Item.Prop.Map_Rarity ",": " Adequate Rarity,")
+				. (BelowPackSize?" Below " MMapMonsterPackSize " PackSize: " Item.Prop.Map_PackSize ",": " Adequate PackSize,")
+				. (BelowQuantity?" Below " MMapItemQuantity " Quantity: " Item.Prop.Map_Quantity : " Adequate Quantity")
+				. (BelowAdditionalMaps?" Below " MMapMoreMaps " More Maps: " Item.Prop.Map_MapDropPercent ",": "")
+				. (BelowScarabDropPercent?" Below " MMapMoreScarabs " More Scarabs: " Item.Prop.Map_ScarabDropPercent ",": "")
+				. (BelowCurrencyDropPercent?" Below " MMapMoreCurrency " More Currency: " Item.Prop.Map_CurrencyDropPercent : "")
+				,JSON.Dump(Item) )
+			; Scouring or Alteration
+			If !ApplyCurrency(crname, x, y)
+				Return False
+			If (Item.Prop.RarityNormal) {
+				If !ApplyCurrency(cname, x, y)
+					Return False
+				; Augmentation if not 2 mods on magic maps
+			} Else If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic) {
+				If !ApplyCurrency("Augmentation",x,y)
+					Return False
+			}
+		}
+		; Exalt phase: only if method requires it, map passed all checks, and has open mod slots
+		If (!NeedsExalt || !Item.Prop.MapKeepFlag || Item.Prop.AffixCount >= 6 || !RunningToggle)
 			Break
+		; Map is good but has <6 mods - apply Exalted Orbs to fill slots
+		While (Item.Prop.AffixCount < 6 && RunningToggle) {
+			If !ApplyCurrency("Exalted", x, y)
+				Return False
+			; ApplyCurrency calls ClipItem which re-evaluates MapKeepFlag/MapRerollFlag
+			If (Item.Prop.MapRerollFlag) {
+				Break
+			}
 		}
-	}
-	; If map is still good after exalts, we're done
-	If (Item.Prop.MapKeepFlag)
-		Break
-	; Exalt ruined the map - outer loop restarts: inner while will scour + reroll
+		; If map is still good after exalts, we're done
+		If (Item.Prop.MapKeepFlag)
+			Break
+		; Exalt ruined the map - outer loop restarts: inner while will scour + reroll
 	}
 	Log("Crafting","Map crafting resulted in a"
 		. (Item.Prop.RarityNormal?" Normal Map":"")
