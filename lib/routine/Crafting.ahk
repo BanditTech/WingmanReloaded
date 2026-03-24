@@ -371,7 +371,7 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	return True
 }
 
-ExaltCheck(){
+ExaltCheck(Method){
 	local specialMap, ExaltEligible, noRequirements
 	local EffectiveMMQPct := MMapExaltMMQPct / 100.0
 	local EffectiveSpecialPct := MMapExaltSpecialPct / 100.0
@@ -495,7 +495,7 @@ MapRoll(Method, x, y){
 		}
 
 		; Exalt Check here before applying currency
-		ExaltCheck()
+		ExaltCheck(Method)
 		if Item.Prop.MapKeepFlag
 			break
 		BelowRarity := Item.Prop.Map_Rarity < MMapItemRarity
@@ -528,7 +528,7 @@ MapRoll(Method, x, y){
 			If !ApplyCurrency("Augmentation",x,y)
 				Return False
 		}
-		ExaltCheck()
+		ExaltCheck(Method)
 	}
 	Log("Crafting","Map crafting resulted in a"
 		. (Item.Prop.RarityNormal?" Normal Map":"")
