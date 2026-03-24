@@ -10,7 +10,7 @@ WR.loc.pixel := {}, WR.loc.area := {}
 WR.data.Counts := {}
 for k, v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "DivTrade", "DivItem"
 	,"CurrencyGeneral","CurrencyInfluence"
-	, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"
+	, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter"
 	,"Transmutation","Alteration","Annulment","Chance","Exalted","Regal","Alchemy","Chaos","VeiledEx","VeiledC"
 	,"Augmentation","Divine"
 	,"Jeweller","Fusing","Chromatic","Harbinger","Horizon"

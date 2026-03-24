@@ -247,7 +247,7 @@ CraftingMaps(){
 					{
 						If (!Item.Prop.MapKeepFlag || (mapCraftingMethod ~= "Exalt" && Item.Prop.AffixCount < 6))
 							MapRoll(mapCraftingMethod, Grid.X,Grid.Y)
-						If (mapCraftingMethod ~= "Vaal$")
+						If (mapCraftingMethod ~= "Vaal$" && RunningToggle)
 							ApplyCurrency("Vaal",Grid.X,Grid.Y)
 					}
 					Else

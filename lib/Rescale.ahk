@@ -1424,9 +1424,6 @@ FirstScale(){
     ; Scouring
     WR.loc.pixel.Scouring.X:=58
     WR.loc.pixel.Scouring.Y:=445
-    ; Chisel
-    WR.loc.pixel.Chisel.X:=605
-    WR.loc.pixel.Chisel.Y:=190
     ; Alchemy
     WR.loc.pixel.Alchemy.X:=490
     WR.loc.pixel.Alchemy.Y:=260

@@ -126,7 +126,6 @@ readFromFile(){
 	IniRead, ItemCraftingNumberCombination, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination, 0
 	IniRead, ItemCraftingMethod, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod, Alteration Spam
 
-
 	;Crafting Map Settings
 	IniRead, StartMapTier1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1, 1
 	IniRead, StartMapTier2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2, 6
@@ -149,7 +148,6 @@ readFromFile(){
 	; Exalt eligibility percent settings (0-100). Default 100 = full requirement
 	IniRead, MMapExaltMMQPct, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltMMQPct, 100
 	IniRead, MMapExaltSpecialPct, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltSpecialPct, 100
-	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
 
 	;Automation Settings
 	IniRead, YesEnableAutomation, %A_ScriptDir%\save\Settings.ini, Automation Settings, YesEnableAutomation, 0
@@ -337,7 +335,7 @@ readFromFile(){
 
 	;~ hotkeys reset
 	hotkey, IfWinActive, ahk_group POEGameGroup
-		If hotkeyAutoQuit
+	If hotkeyAutoQuit
 		hotkey,% hotkeyAutoQuit, toggleAutoQuit, Off
 	If hotkeyAutoFlask
 		hotkey,% hotkeyAutoFlask, toggleAutoFlask, Off
@@ -363,7 +361,7 @@ readFromFile(){
 	If hotkeyShiftClicker
 		hotkey % hotkeyShiftClicker,% ShiftSpam, Off
 	Hotkey, If
-		If hotkeyCtrlClicker
+	If hotkeyCtrlClicker
 		hotkey % "*" hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
 	If hotkeyCtrlShiftClicker
 		hotkey % "*" hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
@@ -404,7 +402,7 @@ readFromFile(){
 	}
 
 	hotkey, IfWinActive
-		If hotkeyOptions
+	If hotkeyOptions
 		hotkey,% hotkeyOptions, optionsCommand, Off
 	hotkey, IfWinActive, ahk_group POEGameGroup
 
@@ -442,7 +440,7 @@ readFromFile(){
 	IniRead, hotkeyShiftClicker, %A_ScriptDir%\save\Settings.ini, hotkeys, ShiftClicker, % A_Space
 
 	hotkey, IfWinActive, ahk_group POEGameGroup
-		If hotkeyAutoQuit
+	If hotkeyAutoQuit
 		hotkey,% hotkeyAutoQuit, toggleAutoQuit, On
 	If hotkeyAutoFlask
 		hotkey,% hotkeyAutoFlask, toggleAutoFlask, On
@@ -468,7 +466,7 @@ readFromFile(){
 	If hotkeyShiftClicker
 		hotkey % hotkeyShiftClicker,% ShiftSpam, On
 	hotkey, If
-		If hotkeyCtrlClicker
+	If hotkeyCtrlClicker
 		hotkey % "*" hotkeyCtrlClicker " Up",% CtrlSpamOff, On
 	If hotkeyCtrlShiftClicker
 		hotkey % "*" hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, On
@@ -556,7 +554,7 @@ readFromFile(){
 	IniRead, 2Suffix2Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2Text, In a map, will get to you in a minute.
 	IniRead, 2Suffix3Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3Text, Still Interested?
 	IniRead, 2Suffix4Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4Text, Sorry, going to be a while.
-		IniRead, 2Suffix5Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5Text, No thank you.
+	IniRead, 2Suffix5Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5Text, No thank you.
 	IniRead, 2Suffix6Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6Text, No thank you.
 	IniRead, 2Suffix7Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7Text, No thank you.
 	IniRead, 2Suffix8Text, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8Text, No thank you.
@@ -623,449 +621,448 @@ readFromFile(){
 
 submit(){
 	updateEverything:
-		global
-		Thread, NoTimers, True ;Critical
+	global
+	Thread, NoTimers, True ;Critical
 
-		; IniWrite, %PoECookie%, %A_ScriptDir%\save\Account.ini, GGG, PoECookie
-		Settings("Flask","Save")
-		Settings("Utility","Save")
-		Settings("perChar","Save")
-		Settings("func","Save")
-		; Settings("String","Save")
-		Settings("CustomCraftingBases","Save")
-		Settings("CustomMapMods","Save")
-		Settings("ItemCrafting","Save")
+	; IniWrite, %PoECookie%, %A_ScriptDir%\save\Account.ini, GGG, PoECookie
+	Settings("Flask","Save")
+	Settings("Utility","Save")
+	Settings("perChar","Save")
+	Settings("func","Save")
+	; Settings("String","Save")
+	Settings("CustomCraftingBases","Save")
+	Settings("CustomMapMods","Save")
+	Settings("ItemCrafting","Save")
 
-		;GUI Position
-		WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
-		If !(WinGuiX = "" || WinGuiY = "")
-		{
-			IniWrite, %winguix%, %A_ScriptDir%\save\Settings.ini, General, WinGuiX
-			IniWrite, %winguiy%, %A_ScriptDir%\save\Settings.ini, General, WinGuiY
-		}
+	;GUI Position
+	WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
+	If !(WinGuiX = "" || WinGuiY = "")
+	{
+		IniWrite, %winguix%, %A_ScriptDir%\save\Settings.ini, General, WinGuiX
+		IniWrite, %winguiy%, %A_ScriptDir%\save\Settings.ini, General, WinGuiY
+	}
 
-		;~ hotkeys reset
-		hotkey, IfWinActive, ahk_group POEGameGroup
-			If hotkeyAutoQuit
-			hotkey,% hotkeyAutoQuit, toggleAutoQuit, Off
-		If hotkeyAutoFlask
-			hotkey,% hotkeyAutoFlask, toggleAutoFlask, Off
-		If hotkeyQuickPortal
-			hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
-		If hotkeyGemSwap
-			hotkey,% hotkeyGemSwap, GemSwapCommand, Off
-		If hotkeyStartCraft
-			hotkey,% hotkeyStartCraft, Crafting, Off
-		If hotkeyItemCrafting
-			hotkey,% hotkeyItemCrafting, CraftingItemCaller, Off
-		If hotkeyCraftBasic
-			hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
+	;~ hotkeys reset
+	hotkey, IfWinActive, ahk_group POEGameGroup
+	If hotkeyAutoQuit
+		hotkey,% hotkeyAutoQuit, toggleAutoQuit, Off
+	If hotkeyAutoFlask
+		hotkey,% hotkeyAutoFlask, toggleAutoFlask, Off
+	If hotkeyQuickPortal
+		hotkey,% hotkeyQuickPortal, QuickPortalCommand, Off
+	If hotkeyGemSwap
+		hotkey,% hotkeyGemSwap, GemSwapCommand, Off
+	If hotkeyStartCraft
+		hotkey,% hotkeyStartCraft, Crafting, Off
+	If hotkeyItemCrafting
+		hotkey,% hotkeyItemCrafting, CraftingItemCaller, Off
+	If hotkeyCraftBasic
+		hotkey,% hotkeyCraftBasic, CraftBasicPopUp, Off
 
-		If hotkeyCtrlClicker
-			hotkey % hotkeyCtrlClicker,% CtrlSpam, Off
-		If hotkeyCtrlShiftClicker
-			hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, Off
-		If hotkeyShiftClicker
-			hotkey % hotkeyShiftClicker,% ShiftSpam, Off
-		hotkey, If
-			If hotkeyCtrlClicker
-			hotkey % "*" hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
-		If hotkeyCtrlShiftClicker
-			hotkey % "*" hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
-		If hotkeyShiftClicker
-			hotkey % "*" hotkeyShiftClicker " Up",% CtrlSpamOff, Off
-		hotkey, IfWinActive, ahk_group POEGameGroup
+	If hotkeyCtrlClicker
+		hotkey % hotkeyCtrlClicker,% CtrlSpam, Off
+	If hotkeyCtrlShiftClicker
+		hotkey % hotkeyCtrlShiftClicker,% CtrlShiftSpam, Off
+	If hotkeyShiftClicker
+		hotkey % hotkeyShiftClicker,% ShiftSpam, Off
+	hotkey, If
+	If hotkeyCtrlClicker
+		hotkey % "*" hotkeyCtrlClicker " Up",% CtrlSpamOff, Off
+	If hotkeyCtrlShiftClicker
+		hotkey % "*" hotkeyCtrlShiftClicker " Up",% CtrlSpamOff, Off
+	If hotkeyShiftClicker
+		hotkey % "*" hotkeyShiftClicker " Up",% CtrlSpamOff, Off
+	hotkey, IfWinActive, ahk_group POEGameGroup
 
-		If hotkeyGrabCurrency
-			hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
-		If hotkeyGetCoords
-			hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
-		If hotkeyPopFlasks
-			hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
-		If hotkeyLogout
-			hotkey,% hotkeyLogout, LogoutCommand, Off
-		If hotkeyItemSort
-			hotkey,% hotkeyItemSort, ItemSortCommand, Off
-		If hotkeyItemInfo
-			hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
-		If hotkeyChaosRecipe
-			hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, Off
-		If hotkeyLootScan
-		{
-			hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
-			hotkey, $~*%hotkeyLootScan% Up, LootScanCommandRelease, Off
-		}
-		If hotkeyPauseMines
-			hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
-		If hotkeyMainAttack
-		{
-			hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
-			hotkey, $~*%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
-		}
-		If hotkeySecondaryAttack
-		{
-			hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
-			hotkey, $~*%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
-		}
+	If hotkeyGrabCurrency
+		hotkey,% hotkeyGrabCurrency, GrabCurrencyCommand, Off
+	If hotkeyGetCoords
+		hotkey,% hotkeyGetMouseCoords, CoordCommand, Off
+	If hotkeyPopFlasks
+		hotkey,% hotkeyPopFlasks, PopFlasksCommand, Off
+	If hotkeyLogout
+		hotkey,% hotkeyLogout, LogoutCommand, Off
+	If hotkeyItemSort
+		hotkey,% hotkeyItemSort, ItemSortCommand, Off
+	If hotkeyItemInfo
+		hotkey,% hotkeyItemInfo, ItemInfoCommand, Off
+	If hotkeyChaosRecipe
+		hotkey,% hotkeyChaosRecipe, VendorChaosRecipe, Off
+	If hotkeyLootScan
+	{
+		hotkey, $~%hotkeyLootScan%, LootScanCommand, Off
+		hotkey, $~*%hotkeyLootScan% Up, LootScanCommandRelease, Off
+	}
+	If hotkeyPauseMines
+		hotkey, $~%hotkeyPauseMines%, PauseMinesCommand, Off
+	If hotkeyMainAttack
+	{
+		hotkey, $~%hotkeyMainAttack%, MainAttackCommand, Off
+		hotkey, $~*%hotkeyMainAttack% Up, MainAttackCommandRelease, Off
+	}
+	If hotkeySecondaryAttack
+	{
+		hotkey, $~%hotkeySecondaryAttack%, SecondaryAttackCommand, Off
+		hotkey, $~*%hotkeySecondaryAttack% Up, SecondaryAttackCommandRelease, Off
+	}
 
-		UnRegisterHotkeys()
+	UnRegisterHotkeys()
 
-		hotkey, IfWinActive
-			If hotkeyOptions
-			hotkey,% hotkeyOptions, optionsCommand, Off
-		hotkey, IfWinActive, ahk_group POEGameGroup
+	hotkey, IfWinActive
+	If hotkeyOptions
+		hotkey,% hotkeyOptions, optionsCommand, Off
+	hotkey, IfWinActive, ahk_group POEGameGroup
 
-		IfWinExist, ahk_group POEGameGroup
-		{
-			Gui, Submit
-			Rescale()
-			Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15
-			Gui Chaos: Show,% "x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA"
-			ToggleExist := True
-			WinActivate, ahk_group POEGameGroup
-		}
+	IfWinExist, ahk_group POEGameGroup
+	{
+		Gui, Submit
+		Rescale()
+		Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15
+		Gui Chaos: Show,% "x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA"
+		ToggleExist := True
+		WinActivate, ahk_group POEGameGroup
+	}
 
-		Gui, Submit, NoHide
+	Gui, Submit, NoHide
 
-		IniWrite, %AccountNameSTR%, %A_ScriptDir%\save\Account.ini, GGG, AccountNameSTR
-		temp := {"Cookie":PoECookie}
-		t := JSON_Beautify(temp)
-		FileDelete, %A_ScriptDir%\save\Cookie.json
-		FileAppend, % t, %A_ScriptDir%\save\Cookie.json
-		t := temp := ""
+	IniWrite, %AccountNameSTR%, %A_ScriptDir%\save\Account.ini, GGG, AccountNameSTR
+	temp := {"Cookie":PoECookie}
+	t := JSON_Beautify(temp)
+	FileDelete, %A_ScriptDir%\save\Cookie.json
+	FileAppend, % t, %A_ScriptDir%\save\Cookie.json
+	t := temp := ""
 
-		;Bandit Extra options
-		IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
-		IniWrite, %ScriptUpdateTimeInterval%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval
-		IniWrite, %ScriptUpdateTimeType%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType
-		IniWrite, %DebugMessages%, %A_ScriptDir%\save\Settings.ini, General, DebugMessages
-		IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
-		IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
-		IniWrite, %ShowPixelGrid%, %A_ScriptDir%\save\Settings.ini, General, ShowPixelGrid
-		IniWrite, %ShowItemInfo%, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo
-		IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
-		IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
-		IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
-		IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
-		IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
-		IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
-		IniWrite, %YesInfluencedUnid%, %A_ScriptDir%\save\Settings.ini, General, YesInfluencedUnid
-		IniWrite, %YesSynthesisId%, %A_ScriptDir%\save\Settings.ini, General, YesSynthesisId
-		IniWrite, %YesCLFIgnoreImplicit%, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit
-		IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
-		IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
-		IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
-		IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
-		IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
-		IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
-		IniWrite, %EnableChatHotkeys%, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys
-		IniWrite, %YesStashKeys%, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys
-		IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
-		IniWrite, %YesSkipMaps_Prep%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep
-		IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
-		IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
-		IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic
-		IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
-		IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
-		IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
-		IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
-		IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
-		IniWrite, %YesBatchVendorBauble%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble
-		IniWrite, %YesBatchVendorGCP%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP
-		IniWrite, %BrickedWhenCorrupted%, %A_ScriptDir%\save\Settings.ini, General, BrickedWhenCorrupted
-		IniWrite, %YesOpenStackedDeck%, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck
-		IniWrite, %YesOpenVeiledScarab%, %A_ScriptDir%\save\Settings.ini, General, YesOpenVeiledScarab
-		IniWrite, %YesSpecial5Link%, %A_ScriptDir%\save\Settings.ini, General, YesSpecial5Link
-		IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
-		IniWrite, %HeistAlcNGo%, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo
-		IniWrite, %MoveMapsToArea%, %A_ScriptDir%\save\Settings.ini, General, MoveMapsToArea
-		IniWrite, %YesIncludeFandSItem%, %A_ScriptDir%\save\Settings.ini, General, YesIncludeFandSItem
-		IniWrite, %EnableRestock%, %A_ScriptDir%\save\Settings.ini, General, EnableRestock
+	;Bandit Extra options
+	IniWrite, %BranchName%, %A_ScriptDir%\save\Settings.ini, General, BranchName
+	IniWrite, %ScriptUpdateTimeInterval%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeInterval
+	IniWrite, %ScriptUpdateTimeType%, %A_ScriptDir%\save\Settings.ini, General, ScriptUpdateTimeType
+	IniWrite, %DebugMessages%, %A_ScriptDir%\save\Settings.ini, General, DebugMessages
+	IniWrite, %YesTimeMS%, %A_ScriptDir%\save\Settings.ini, General, YesTimeMS
+	IniWrite, %YesLocation%, %A_ScriptDir%\save\Settings.ini, General, YesLocation
+	IniWrite, %ShowPixelGrid%, %A_ScriptDir%\save\Settings.ini, General, ShowPixelGrid
+	IniWrite, %ShowItemInfo%, %A_ScriptDir%\save\Settings.ini, General, ShowItemInfo
+	IniWrite, %LootVacuum%, %A_ScriptDir%\save\Settings.ini, General, LootVacuum
+	IniWrite, %YesVendor%, %A_ScriptDir%\save\Settings.ini, General, YesVendor
+	IniWrite, %YesStash%, %A_ScriptDir%\save\Settings.ini, General, YesStash
+	IniWrite, %YesIdentify%, %A_ScriptDir%\save\Settings.ini, General, YesIdentify
+	IniWrite, %YesDiv%, %A_ScriptDir%\save\Settings.ini, General, YesDiv
+	IniWrite, %YesMapUnid%, %A_ScriptDir%\save\Settings.ini, General, YesMapUnid
+	IniWrite, %YesInfluencedUnid%, %A_ScriptDir%\save\Settings.ini, General, YesInfluencedUnid
+	IniWrite, %YesSynthesisId%, %A_ScriptDir%\save\Settings.ini, General, YesSynthesisId
+	IniWrite, %YesCLFIgnoreImplicit%, %A_ScriptDir%\save\Settings.ini, General, YesCLFIgnoreImplicit
+	IniWrite, %YesSortFirst%, %A_ScriptDir%\save\Settings.ini, General, YesSortFirst
+	IniWrite, %Latency%, %A_ScriptDir%\save\Settings.ini, General, Latency
+	IniWrite, %ClickLatency%, %A_ScriptDir%\save\Settings.ini, General, ClickLatency
+	IniWrite, %ClipLatency%, %A_ScriptDir%\save\Settings.ini, General, ClipLatency
+	IniWrite, %ShowOnStart%, %A_ScriptDir%\save\Settings.ini, General, ShowOnStart
+	IniWrite, %PopFlaskRespectCD%, %A_ScriptDir%\save\Settings.ini, General, PopFlaskRespectCD
+	IniWrite, %EnableChatHotkeys%, %A_ScriptDir%\save\Settings.ini, General, EnableChatHotkeys
+	IniWrite, %YesStashKeys%, %A_ScriptDir%\save\Settings.ini, General, YesStashKeys
+	IniWrite, %YesSkipMaps%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps
+	IniWrite, %YesSkipMaps_Prep%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_Prep
+	IniWrite, %YesSkipMaps_eval%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_eval
+	IniWrite, %YesSkipMaps_normal%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_normal
+	IniWrite, %YesSkipMaps_magic%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_magic
+	IniWrite, %YesSkipMaps_rare%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_rare
+	IniWrite, %YesSkipMaps_unique%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_unique
+	IniWrite, %YesSkipMaps_tier%, %A_ScriptDir%\save\Settings.ini, General, YesSkipMaps_tier
+	IniWrite, %AreaScale%, %A_ScriptDir%\save\Settings.ini, General, AreaScale
+	IniWrite, %LVdelay%, %A_ScriptDir%\save\Settings.ini, General, LVdelay
+	IniWrite, %YesBatchVendorBauble%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorBauble
+	IniWrite, %YesBatchVendorGCP%, %A_ScriptDir%\save\Settings.ini, General, YesBatchVendorGCP
+	IniWrite, %BrickedWhenCorrupted%, %A_ScriptDir%\save\Settings.ini, General, BrickedWhenCorrupted
+	IniWrite, %YesOpenStackedDeck%, %A_ScriptDir%\save\Settings.ini, General, YesOpenStackedDeck
+	IniWrite, %YesOpenVeiledScarab%, %A_ScriptDir%\save\Settings.ini, General, YesOpenVeiledScarab
+	IniWrite, %YesSpecial5Link%, %A_ScriptDir%\save\Settings.ini, General, YesSpecial5Link
+	IniWrite, %YesVendorDumpItems%, %A_ScriptDir%\save\Settings.ini, General, YesVendorDumpItems
+	IniWrite, %HeistAlcNGo%, %A_ScriptDir%\save\Settings.ini, General, HeistAlcNGo
+	IniWrite, %MoveMapsToArea%, %A_ScriptDir%\save\Settings.ini, General, MoveMapsToArea
+	IniWrite, %YesIncludeFandSItem%, %A_ScriptDir%\save\Settings.ini, General, YesIncludeFandSItem
+	IniWrite, %EnableRestock%, %A_ScriptDir%\save\Settings.ini, General, EnableRestock
 
-		; CLF Options
-		IniWrite, %CLFStrictnessNumber%, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber
+	; CLF Options
+	IniWrite, %CLFStrictnessNumber%, %A_ScriptDir%\save\Settings.ini, General, CLFStrictnessNumber
 
-		; Overhead Health Bar
-		IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
+	; Overhead Health Bar
+	IniWrite, %YesOHB%, %A_ScriptDir%\save\Settings.ini, OHB, YesOHB
 
-		; ASCII Search Strings
-		IniWrite, %HealthBarStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, HealthBarStr
-		IniWrite, %VendorStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr
-		IniWrite, %SellItemsStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr
-		IniWrite, %StashStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr
-		IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
+	; ASCII Search Strings
+	IniWrite, %HealthBarStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, HealthBarStr
+	IniWrite, %VendorStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, VendorStr
+	IniWrite, %SellItemsStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SellItemsStr
+	IniWrite, %StashStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, StashStr
+	IniWrite, %SkillUpStr%, %A_ScriptDir%\save\Settings.ini, FindText Strings, SkillUpStr
 
-		;~ Hotkeys
-		IniWrite, %hotkeyOptions%, %A_ScriptDir%\save\Settings.ini, hotkeys, Options
-		IniWrite, %hotkeyAutoQuit%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit
-		IniWrite, %hotkeyAutoFlask%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask
-		IniWrite, %hotkeyAutoMove%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoMove
-		IniWrite, %hotkeyAutoUtility%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoUtility
-		IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
-		IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
-		IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
-		IniWrite, %hotkeyItemCrafting%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftingItemCaller
-		IniWrite, %hotkeyCraftBasic%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic
-		IniWrite, %hotkeyCtrlClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker
-		IniWrite, %hotkeyCtrlShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker
-		IniWrite, %hotkeyShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, ShiftClicker
-		IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency
-		IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
-		IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
-		IniWrite, %hotkeyLogout%, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout
-		IniWrite, %hotkeyCloseAllUI%, %A_ScriptDir%\save\Settings.ini, hotkeys, CloseAllUI
-		IniWrite, %hotkeyInventory%, %A_ScriptDir%\save\Settings.ini, hotkeys, Inventory
-		IniWrite, %hotkeyWeaponSwapKey%, %A_ScriptDir%\save\Settings.ini, hotkeys, WeaponSwapKey
-		IniWrite, %hotkeyItemSort%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort
-		IniWrite, %hotkeyItemInfo%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo
-		IniWrite, %hotkeyChaosRecipe%, %A_ScriptDir%\save\Settings.ini, hotkeys, ChaosRecipe
-		IniWrite, %hotkeyLootScan%, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan
-		IniWrite, %hotkeyDetonateMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines
-		IniWrite, %hotkeyOpenPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyOpenPortal
-		IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
-		IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
-		IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
-		IniWrite, %hotkeyTriggerMovement%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement
+	;~ Hotkeys
+	IniWrite, %hotkeyOptions%, %A_ScriptDir%\save\Settings.ini, hotkeys, Options
+	IniWrite, %hotkeyAutoQuit%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoQuit
+	IniWrite, %hotkeyAutoFlask%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoFlask
+	IniWrite, %hotkeyAutoMove%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoMove
+	IniWrite, %hotkeyAutoUtility%, %A_ScriptDir%\save\Settings.ini, hotkeys, AutoUtility
+	IniWrite, %hotkeyQuickPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, QuickPortal
+	IniWrite, %hotkeyGemSwap%, %A_ScriptDir%\save\Settings.ini, hotkeys, GemSwap
+	IniWrite, %hotkeyStartCraft%, %A_ScriptDir%\save\Settings.ini, hotkeys, StartCraft
+	IniWrite, %hotkeyItemCrafting%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftingItemCaller
+	IniWrite, %hotkeyCraftBasic%, %A_ScriptDir%\save\Settings.ini, hotkeys, CraftBasic
+	IniWrite, %hotkeyCtrlClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlClicker
+	IniWrite, %hotkeyCtrlShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, CtrlShiftClicker
+	IniWrite, %hotkeyShiftClicker%, %A_ScriptDir%\save\Settings.ini, hotkeys, ShiftClicker
+	IniWrite, %hotkeyGrabCurrency%, %A_ScriptDir%\save\Settings.ini, hotkeys, GrabCurrency
+	IniWrite, %hotkeyGetMouseCoords%, %A_ScriptDir%\save\Settings.ini, hotkeys, GetMouseCoords
+	IniWrite, %hotkeyPopFlasks%, %A_ScriptDir%\save\Settings.ini, hotkeys, PopFlasks
+	IniWrite, %hotkeyLogout%, %A_ScriptDir%\save\Settings.ini, hotkeys, Logout
+	IniWrite, %hotkeyCloseAllUI%, %A_ScriptDir%\save\Settings.ini, hotkeys, CloseAllUI
+	IniWrite, %hotkeyInventory%, %A_ScriptDir%\save\Settings.ini, hotkeys, Inventory
+	IniWrite, %hotkeyWeaponSwapKey%, %A_ScriptDir%\save\Settings.ini, hotkeys, WeaponSwapKey
+	IniWrite, %hotkeyItemSort%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemSort
+	IniWrite, %hotkeyItemInfo%, %A_ScriptDir%\save\Settings.ini, hotkeys, ItemInfo
+	IniWrite, %hotkeyChaosRecipe%, %A_ScriptDir%\save\Settings.ini, hotkeys, ChaosRecipe
+	IniWrite, %hotkeyLootScan%, %A_ScriptDir%\save\Settings.ini, hotkeys, LootScan
+	IniWrite, %hotkeyDetonateMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyDetonateMines
+	IniWrite, %hotkeyOpenPortal%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyOpenPortal
+	IniWrite, %hotkeyPauseMines%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyPauseMines
+	IniWrite, %hotkeyMainAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, MainAttack
+	IniWrite, %hotkeySecondaryAttack%, %A_ScriptDir%\save\Settings.ini, hotkeys, SecondaryAttack
+	IniWrite, %hotkeyTriggerMovement%, %A_ScriptDir%\save\Settings.ini, hotkeys, hotkeyTriggerMovement
 
-		;Utility Keys
-		IniWrite, %hotkeyUp%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp
-		IniWrite, %hotkeyDown%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyDown
-		IniWrite, %hotkeyLeft%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft
-		IniWrite, %hotkeyRight%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight
+	;Utility Keys
+	IniWrite, %hotkeyUp%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyUp
+	IniWrite, %hotkeyDown%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyDown
+	IniWrite, %hotkeyLeft%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyLeft
+	IniWrite, %hotkeyRight%, %A_ScriptDir%\save\Settings.ini, Controller Keys, hotkeyRight
 
-		;Grab Currency
-		IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
-		IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
+	;Grab Currency
+	IniWrite, %GrabCurrencyX%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyX
+	IniWrite, %GrabCurrencyY%, %A_ScriptDir%\save\Settings.ini, Grab Currency, GrabCurrencyY
 
-		;Crafting Bases Options
+	;Crafting Bases Options
 
-		IniWrite, %YesStashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl
-		IniWrite, %StashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl
-		IniWrite, %YesCraftingBaseAutoUpdateOnStart%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart
-		IniWrite, %YesCraftingBaseAutoUpdateOnZone%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone
-		IniWrite, %YesCraftingBaseLimitBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases
-		IniWrite, %CraftingBaseLimitBasesNumber%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, CraftingBaseLimitBasesNumber
+	IniWrite, %YesStashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesStashBasesAboveIlvl
+	IniWrite, %StashBasesAboveIlvl%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, StashBasesAboveIlvl
+	IniWrite, %YesCraftingBaseAutoUpdateOnStart%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnStart
+	IniWrite, %YesCraftingBaseAutoUpdateOnZone%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseAutoUpdateOnZone
+	IniWrite, %YesCraftingBaseLimitBases%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, YesCraftingBaseLimitBases
+	IniWrite, %CraftingBaseLimitBasesNumber%, %A_ScriptDir%\save\Settings.ini, Crafting Bases Settings, CraftingBaseLimitBasesNumber
 
-		;Item Crafting Options
+	;Item Crafting Options
 
-		IniWrite, %ItemCraftingSubCategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingSubCategorySelector
-		IniWrite, %ItemCraftingCategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCategorySelector
-		IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
-		IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
-		IniWrite, %ItemCraftingNumberCombination%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination
-		IniWrite, %ItemCraftingMethod%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod
+	IniWrite, %ItemCraftingSubCategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingSubCategorySelector
+	IniWrite, %ItemCraftingCategorySelector%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingCategorySelector
+	IniWrite, %ItemCraftingNumberPrefix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberPrefix
+	IniWrite, %ItemCraftingNumberSuffix%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberSuffix
+	IniWrite, %ItemCraftingNumberCombination%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingNumberCombination
+	IniWrite, %ItemCraftingMethod%, %A_ScriptDir%\save\Settings.ini, Item Crafting Settings, ItemCraftingMethod
 
-		;Crafting Map Settings
-		IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
-		IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2
-		IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier3
-		IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier1
-		IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier2
-		IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier3
-		IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1
-		IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2
-		IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
-		IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
-		IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
-		IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
-		IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
-		IniWrite, %MMQorWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight
-		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
-		IniWrite, %MMapMoreMaps%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreMaps
-		IniWrite, %MMapMoreScarabs%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreScarabs
-		; Clamp percent settings to [0,100] before saving
-		If (MMapExaltMMQPct = "")
-			MMapExaltMMQPct := 100
-		If (MMapExaltSpecialPct = "")
-			MMapExaltSpecialPct := 100
-		If (MMapExaltMMQPct < 0)
-			MMapExaltMMQPct := 0
-		If (MMapExaltMMQPct > 100)
-			MMapExaltMMQPct := 100
-		If (MMapExaltSpecialPct < 0)
-			MMapExaltSpecialPct := 0
-		If (MMapExaltSpecialPct > 100)
-			MMapExaltSpecialPct := 100
-		IniWrite, %MMapExaltMMQPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltMMQPct
-		IniWrite, %MMapExaltSpecialPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltSpecialPct
-		IniWrite, %MMapMoreCurrency%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency
-		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
+	;Crafting Map Settings
+	IniWrite, %StartMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier1
+	IniWrite, %StartMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier2
+	IniWrite, %StartMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, StartMapTier3
+	IniWrite, %EndMapTier1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier1
+	IniWrite, %EndMapTier2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier2
+	IniWrite, %EndMapTier3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EndMapTier3
+	IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1
+	IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2
+	IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
+	IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
+	IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
+	IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
+	IniWrite, %EnableMQQForMagicMap%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, EnableMQQForMagicMap
+	IniWrite, %MMQorWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMQorWeight
+	IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
+	IniWrite, %MMapMoreMaps%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreMaps
+	IniWrite, %MMapMoreScarabs%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreScarabs
+	; Clamp percent settings to [0,100] before saving
+	If (MMapExaltMMQPct = "")
+		MMapExaltMMQPct := 100
+	If (MMapExaltSpecialPct = "")
+		MMapExaltSpecialPct := 100
+	If (MMapExaltMMQPct < 0)
+		MMapExaltMMQPct := 0
+	If (MMapExaltMMQPct > 100)
+		MMapExaltMMQPct := 100
+	If (MMapExaltSpecialPct < 0)
+		MMapExaltSpecialPct := 0
+	If (MMapExaltSpecialPct > 100)
+		MMapExaltSpecialPct := 100
+	IniWrite, %MMapExaltMMQPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltMMQPct
+	IniWrite, %MMapExaltSpecialPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltSpecialPct
+	IniWrite, %MMapMoreCurrency%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency
 
-		;Affinities
-		IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
-		IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
-		IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap
-		IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
-		IniWrite, %StashTabDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination
-		IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination
-		IniWrite, %StashTabGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem
-		IniWrite, %StashTabYesGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem
-		IniWrite, %StashTabFlask%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlask
-		IniWrite, %StashTabYesFlask%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlask
-		IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
-		IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
-		IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
-		IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
-		IniWrite, %StashTabBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlight
-		IniWrite, %StashTabYesBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlight
-		IniWrite, %StashTabDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium
-		IniWrite, %StashTabYesDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium
-		IniWrite, %StashTabDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelve
-		IniWrite, %StashTabYesDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelve
-		IniWrite, %StashTabUltimatum%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUltimatum
-		IniWrite, %StashTabYesUltimatum%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUltimatum
-		IniWrite, %StashTabUnique%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUnique
-		IniWrite, %StashTabYesUnique%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUnique
+	;Affinities
+	IniWrite, %StashTabCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCurrency
+	IniWrite, %StashTabYesCurrency%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCurrency
+	IniWrite, %StashTabMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMap
+	IniWrite, %StashTabYesMap%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMap
+	IniWrite, %StashTabDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDivination
+	IniWrite, %StashTabYesDivination%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDivination
+	IniWrite, %StashTabGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabGem
+	IniWrite, %StashTabYesGem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesGem
+	IniWrite, %StashTabFlask%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFlask
+	IniWrite, %StashTabYesFlask%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFlask
+	IniWrite, %StashTabFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabFragment
+	IniWrite, %StashTabYesFragment%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesFragment
+	IniWrite, %StashTabEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabEssence
+	IniWrite, %StashTabYesEssence%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesEssence
+	IniWrite, %StashTabBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBlight
+	IniWrite, %StashTabYesBlight%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBlight
+	IniWrite, %StashTabDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelirium
+	IniWrite, %StashTabYesDelirium%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelirium
+	IniWrite, %StashTabDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDelve
+	IniWrite, %StashTabYesDelve%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDelve
+	IniWrite, %StashTabUltimatum%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUltimatum
+	IniWrite, %StashTabYesUltimatum%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUltimatum
+	IniWrite, %StashTabUnique%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUnique
+	IniWrite, %StashTabYesUnique%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUnique
 
-		;Affinities Unique Options
-		IniWrite, %StashTabUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing
-		IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
-		IniWrite, %StashTabUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump
-		IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
-		IniWrite, %StashTabYesUniquePercentage%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniquePercentage
-		IniWrite, %StashTabUniquePercentage%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniquePercentage
-		IniWrite, %StashTabYesUniqueRingAll%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRingAll
-		IniWrite, %StashTabYesUniqueDumpAll%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDumpAll
+	;Affinities Unique Options
+	IniWrite, %StashTabUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueRing
+	IniWrite, %StashTabYesUniqueRing%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRing
+	IniWrite, %StashTabUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniqueDump
+	IniWrite, %StashTabYesUniqueDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDump
+	IniWrite, %StashTabYesUniquePercentage%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniquePercentage
+	IniWrite, %StashTabUniquePercentage%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabUniquePercentage
+	IniWrite, %StashTabYesUniqueRingAll%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueRingAll
+	IniWrite, %StashTabYesUniqueDumpAll%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesUniqueDumpAll
 
-		;Stash Tab Management
-		IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
-		IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
-		IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
-		IniWrite, %StashTabYesClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel
-		IniWrite, %StashTabHeistGear%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabHeistGear
-		IniWrite, %StashTabYesHeistGear%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesHeistGear
-		IniWrite, %StashTabMiscMapItems%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMiscMapItems
-		IniWrite, %StashTabYesMiscMapItems%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMiscMapItems
-		IniWrite, %StashTabLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked
-		IniWrite, %StashTabYesLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked
-		IniWrite, %StashTabBrickedMaps%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBrickedMaps
-		IniWrite, %StashTabYesBrickedMaps%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBrickedMaps
-		IniWrite, %StashTabInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem
-		IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
-		IniWrite, %StashTabRunes%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabRunes
-		IniWrite, %StashTabYesRunes%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesRunes
-		IniWrite, %StashTabTattoos%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabTattoos
-		IniWrite, %StashTabYesTattoos%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesTattoos
-		IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
-		IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
-		IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
-		IniWrite, %StashTabYesDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump
-		IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
-		IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
-		IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
-		IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
+	;Stash Tab Management
+	IniWrite, %StashTabVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabVeiled
+	IniWrite, %StashTabYesVeiled%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesVeiled
+	IniWrite, %StashTabClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabClusterJewel
+	IniWrite, %StashTabYesClusterJewel%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesClusterJewel
+	IniWrite, %StashTabHeistGear%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabHeistGear
+	IniWrite, %StashTabYesHeistGear%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesHeistGear
+	IniWrite, %StashTabMiscMapItems%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabMiscMapItems
+	IniWrite, %StashTabYesMiscMapItems%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesMiscMapItems
+	IniWrite, %StashTabLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabLinked
+	IniWrite, %StashTabYesLinked%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesLinked
+	IniWrite, %StashTabBrickedMaps%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabBrickedMaps
+	IniWrite, %StashTabYesBrickedMaps%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesBrickedMaps
+	IniWrite, %StashTabInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabInfluencedItem
+	IniWrite, %StashTabYesInfluencedItem%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesInfluencedItem
+	IniWrite, %StashTabRunes%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabRunes
+	IniWrite, %StashTabYesRunes%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesRunes
+	IniWrite, %StashTabTattoos%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabTattoos
+	IniWrite, %StashTabYesTattoos%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesTattoos
+	IniWrite, %StashTabCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabCrafting
+	IniWrite, %StashTabYesCrafting%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesCrafting
+	IniWrite, %StashTabDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabDump
+	IniWrite, %StashTabYesDump%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesDump
+	IniWrite, %StashTabPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabPredictive
+	IniWrite, %StashTabYesPredictive%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesPredictive
+	IniWrite, %StashTabNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabNinjaPrice
+	IniWrite, %StashTabYesNinjaPrice%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice
 
-		;Dump Tab Options
-		IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
-		IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpSkipJC
+	;Dump Tab Options
+	IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpInTrial
+	IniWrite, %StashDumpInTrial%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashDumpSkipJC
 
-		;Priced Options
-		IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
+	;Priced Options
+	IniWrite, %StashTabYesNinjaPrice_Price%, %A_ScriptDir%\save\Settings.ini, Stash Tab, StashTabYesNinjaPrice_Price
 
-		;Chat Hotkeys
-		IniWrite, %1Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix1
-		IniWrite, %1Prefix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix2
-		IniWrite, %1Suffix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1
-		IniWrite, %1Suffix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2
-		IniWrite, %1Suffix3%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3
-		IniWrite, %1Suffix4%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4
-		IniWrite, %1Suffix5%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5
-		IniWrite, %1Suffix6%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6
-		IniWrite, %1Suffix7%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7
-		IniWrite, %1Suffix8%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8
-		IniWrite, %1Suffix9%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9
+	;Chat Hotkeys
+	IniWrite, %1Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix1
+	IniWrite, %1Prefix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Prefix2
+	IniWrite, %1Suffix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1
+	IniWrite, %1Suffix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2
+	IniWrite, %1Suffix3%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3
+	IniWrite, %1Suffix4%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4
+	IniWrite, %1Suffix5%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5
+	IniWrite, %1Suffix6%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6
+	IniWrite, %1Suffix7%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7
+	IniWrite, %1Suffix8%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8
+	IniWrite, %1Suffix9%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9
 
-		IniWrite, %1Suffix1Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1Text
-		IniWrite, %1Suffix2Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2Text
-		IniWrite, %1Suffix3Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3Text
-		IniWrite, %1Suffix4Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4Text
-		IniWrite, %1Suffix5Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5Text
-		IniWrite, %1Suffix6Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6Text
-		IniWrite, %1Suffix7Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7Text
-		IniWrite, %1Suffix8Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8Text
-		IniWrite, %1Suffix9Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9Text
+	IniWrite, %1Suffix1Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix1Text
+	IniWrite, %1Suffix2Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix2Text
+	IniWrite, %1Suffix3Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix3Text
+	IniWrite, %1Suffix4Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix4Text
+	IniWrite, %1Suffix5Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix5Text
+	IniWrite, %1Suffix6Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix6Text
+	IniWrite, %1Suffix7Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix7Text
+	IniWrite, %1Suffix8Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix8Text
+	IniWrite, %1Suffix9Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 1Suffix9Text
 
-		IniWrite, %2Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix1
-		IniWrite, %2Prefix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix2
-		IniWrite, %2Suffix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1
-		IniWrite, %2Suffix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2
-		IniWrite, %2Suffix3%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3
-		IniWrite, %2Suffix4%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4
-		IniWrite, %2Suffix5%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5
-		IniWrite, %2Suffix6%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6
-		IniWrite, %2Suffix7%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7
-		IniWrite, %2Suffix8%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8
-		IniWrite, %2Suffix9%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9
+	IniWrite, %2Prefix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix1
+	IniWrite, %2Prefix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Prefix2
+	IniWrite, %2Suffix1%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1
+	IniWrite, %2Suffix2%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2
+	IniWrite, %2Suffix3%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3
+	IniWrite, %2Suffix4%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4
+	IniWrite, %2Suffix5%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5
+	IniWrite, %2Suffix6%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6
+	IniWrite, %2Suffix7%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7
+	IniWrite, %2Suffix8%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8
+	IniWrite, %2Suffix9%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9
 
-		IniWrite, %2Suffix1Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1Text
-		IniWrite, %2Suffix2Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2Text
-		IniWrite, %2Suffix3Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3Text
-		IniWrite, %2Suffix4Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4Text
-		IniWrite, %2Suffix5Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5Text
-		IniWrite, %2Suffix6Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6Text
-		IniWrite, %2Suffix7Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7Text
-		IniWrite, %2Suffix8Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8Text
-		IniWrite, %2Suffix9Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9Text
+	IniWrite, %2Suffix1Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix1Text
+	IniWrite, %2Suffix2Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix2Text
+	IniWrite, %2Suffix3Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix3Text
+	IniWrite, %2Suffix4Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix4Text
+	IniWrite, %2Suffix5Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix5Text
+	IniWrite, %2Suffix6Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix6Text
+	IniWrite, %2Suffix7Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix7Text
+	IniWrite, %2Suffix8Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix8Text
+	IniWrite, %2Suffix9Text%, %A_ScriptDir%\save\Settings.ini, Chat Hotkeys, 2Suffix9Text
 
-		IniWrite, %stashPrefix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix1
-		IniWrite, %stashPrefix2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix2
-		IniWrite, %stashSuffix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix1
-		IniWrite, %stashSuffix2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix2
-		IniWrite, %stashSuffix3%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix3
-		IniWrite, %stashSuffix4%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix4
-		IniWrite, %stashSuffix5%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix5
-		IniWrite, %stashSuffix6%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix6
-		IniWrite, %stashSuffix7%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix7
-		IniWrite, %stashSuffix8%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix8
-		IniWrite, %stashSuffix9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix9
+	IniWrite, %stashPrefix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix1
+	IniWrite, %stashPrefix2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashPrefix2
+	IniWrite, %stashSuffix1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix1
+	IniWrite, %stashSuffix2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix2
+	IniWrite, %stashSuffix3%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix3
+	IniWrite, %stashSuffix4%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix4
+	IniWrite, %stashSuffix5%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix5
+	IniWrite, %stashSuffix6%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix6
+	IniWrite, %stashSuffix7%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix7
+	IniWrite, %stashSuffix8%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix8
+	IniWrite, %stashSuffix9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffix9
 
-		IniWrite, %stashSuffixTab1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab1
-		IniWrite, %stashSuffixTab2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab2
-		IniWrite, %stashSuffixTab3%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab3
-		IniWrite, %stashSuffixTab4%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab4
-		IniWrite, %stashSuffixTab5%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab5
-		IniWrite, %stashSuffixTab6%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab6
-		IniWrite, %stashSuffixTab7%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab7
-		IniWrite, %stashSuffixTab8%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab8
-		IniWrite, %stashSuffixTab9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab9
+	IniWrite, %stashSuffixTab1%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab1
+	IniWrite, %stashSuffixTab2%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab2
+	IniWrite, %stashSuffixTab3%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab3
+	IniWrite, %stashSuffixTab4%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab4
+	IniWrite, %stashSuffixTab5%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab5
+	IniWrite, %stashSuffixTab6%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab6
+	IniWrite, %stashSuffixTab7%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab7
+	IniWrite, %stashSuffixTab8%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab8
+	IniWrite, %stashSuffixTab9%, %A_ScriptDir%\save\Settings.ini, Stash Hotkeys, stashSuffixTab9
 
-		;Controller setup
-		IniWrite, %hotkeyControllerButtonA%, %A_ScriptDir%\save\Settings.ini, Controller Keys, A
-		IniWrite, %hotkeyControllerButtonB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, B
-		IniWrite, %hotkeyControllerButtonX%, %A_ScriptDir%\save\Settings.ini, Controller Keys, X
-		IniWrite, %hotkeyControllerButtonY%, %A_ScriptDir%\save\Settings.ini, Controller Keys, Y
-		IniWrite, %hotkeyControllerButtonLB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, LB
-		IniWrite, %hotkeyControllerButtonRB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, RB
-		IniWrite, %hotkeyControllerButtonBACK%, %A_ScriptDir%\save\Settings.ini, Controller Keys, BACK
-		IniWrite, %hotkeyControllerButtonSTART%, %A_ScriptDir%\save\Settings.ini, Controller Keys, START
-		IniWrite, %hotkeyControllerButtonL3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3
-		IniWrite, %hotkeyControllerButtonR3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3
+	;Controller setup
+	IniWrite, %hotkeyControllerButtonA%, %A_ScriptDir%\save\Settings.ini, Controller Keys, A
+	IniWrite, %hotkeyControllerButtonB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, B
+	IniWrite, %hotkeyControllerButtonX%, %A_ScriptDir%\save\Settings.ini, Controller Keys, X
+	IniWrite, %hotkeyControllerButtonY%, %A_ScriptDir%\save\Settings.ini, Controller Keys, Y
+	IniWrite, %hotkeyControllerButtonLB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, LB
+	IniWrite, %hotkeyControllerButtonRB%, %A_ScriptDir%\save\Settings.ini, Controller Keys, RB
+	IniWrite, %hotkeyControllerButtonBACK%, %A_ScriptDir%\save\Settings.ini, Controller Keys, BACK
+	IniWrite, %hotkeyControllerButtonSTART%, %A_ScriptDir%\save\Settings.ini, Controller Keys, START
+	IniWrite, %hotkeyControllerButtonL3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, L3
+	IniWrite, %hotkeyControllerButtonR3%, %A_ScriptDir%\save\Settings.ini, Controller Keys, R3
 
-		IniWrite, %hotkeyControllerJoystickRight%, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight
+	IniWrite, %hotkeyControllerJoystickRight%, %A_ScriptDir%\save\Settings.ini, Controller Keys, JoystickRight
 
-		IniWrite, %YesTriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey
-		IniWrite, %YesTriggerUtilityJoystickKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey
-		IniWrite, %YesTriggerJoystickRightKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystickRightKey
-		IniWrite, %TriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, TriggerUtilityKey
-		IniWrite, %YesMovementKeys%, %A_ScriptDir%\save\Settings.ini, Controller, YesMovementKeys
-		IniWrite, %YesController%, %A_ScriptDir%\save\Settings.ini, Controller, YesController
-		IniWrite, %JoystickNumber%, %A_ScriptDir%\save\Settings.ini, Controller, JoystickNumber
+	IniWrite, %YesTriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityKey
+	IniWrite, %YesTriggerUtilityJoystickKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerUtilityJoystickKey
+	IniWrite, %YesTriggerJoystickRightKey%, %A_ScriptDir%\save\Settings.ini, Controller, YesTriggerJoystickRightKey
+	IniWrite, %TriggerUtilityKey%, %A_ScriptDir%\save\Settings.ini, Controller, TriggerUtilityKey
+	IniWrite, %YesMovementKeys%, %A_ScriptDir%\save\Settings.ini, Controller, YesMovementKeys
+	IniWrite, %YesController%, %A_ScriptDir%\save\Settings.ini, Controller, YesController
+	IniWrite, %JoystickNumber%, %A_ScriptDir%\save\Settings.ini, Controller, JoystickNumber
 
-		;Settings for Ninja parse
-		IniWrite, %LastDatabaseParseDate%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
-		IniWrite, %selectedLeague%, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague
-		IniWrite, %UpdateDatabaseInterval%, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval
-		IniWrite, %YesNinjaDatabase%, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase
-		IniWrite, %ForceMatch6Link%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link
-		IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
+	;Settings for Ninja parse
+	IniWrite, %LastDatabaseParseDate%, %A_ScriptDir%\save\Settings.ini, Database, LastDatabaseParseDate
+	IniWrite, %selectedLeague%, %A_ScriptDir%\save\Settings.ini, Database, selectedLeague
+	IniWrite, %UpdateDatabaseInterval%, %A_ScriptDir%\save\Settings.ini, Database, UpdateDatabaseInterval
+	IniWrite, %YesNinjaDatabase%, %A_ScriptDir%\save\Settings.ini, Database, YesNinjaDatabase
+	IniWrite, %ForceMatch6Link%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatch6Link
+	IniWrite, %ForceMatchGem20%, %A_ScriptDir%\save\Settings.ini, Database, ForceMatchGem20
 
-		readFromFile()
-		GuiUpdate()
-		IfWinExist, ahk_group POEGameGroup
-		{
-			WinActivate, ahk_group POEGameGroup
-		}
-		Thread, NoTimers, False ;End Critical
+	readFromFile()
+	GuiUpdate()
+	IfWinExist, ahk_group POEGameGroup
+	{
+		WinActivate, ahk_group POEGameGroup
+	}
+	Thread, NoTimers, False ;End Critical
 	return
 }
 
@@ -1118,7 +1115,7 @@ Profile(args*){
 		{
 			MsgBox, 262148, Whoah there clicky fingers, Please confirm you want to %Action% the %name% Profile
 			IfMsgBox No
-			Return
+				Return
 		}
 	} Else If (Action != "Save") {
 		MsgBox, 262144, Whoah there clicky fingers, Cannot %Action% the %name% Profile. The file does not exist.
@@ -1132,16 +1129,16 @@ Profile(args*){
 		obj := JSON.Load(FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","r").Read())
 		For k, v in WR[Type]
 			If (IsObject(obj[k]))
-			For l, w in v
-			If (obj[k].HasKey(l))
-			WR[Type][k][l] := obj[k][l]
+				For l, w in v
+					If (obj[k].HasKey(l))
+						WR[Type][k][l] := obj[k][l]
 		If (Type = "perChar"){
 			If WR.perChar.Setting.profilesYesFlask
 				If WR.perChar.Setting.profilesFlask
-				Profile("Flask","Load",WR.perChar.Setting.profilesFlask)
+					Profile("Flask","Load",WR.perChar.Setting.profilesFlask)
 			If WR.perChar.Setting.profilesYesUtility
 				If WR.perChar.Setting.profilesUtility
-				Profile("Utility","Load",WR.perChar.Setting.profilesUtility)
+					Profile("Utility","Load",WR.perChar.Setting.profilesUtility)
 		}
 		GuiControl, ChooseString, ProfileMenu%Type%, % name
 		IniWrite, % name, %A_ScriptDir%\save\Settings.ini, Chosen Profile, %Type%
