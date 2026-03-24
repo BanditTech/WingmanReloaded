@@ -146,6 +146,9 @@ readFromFile(){
 	IniRead, MMapMoreMaps, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreMaps, 0
 	IniRead, MMapMoreScarabs, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreScarabs, 0
 	IniRead, MMapMoreCurrency, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency, 0
+	; Exalt eligibility percent settings (0-100). Default 100 = full requirement
+	IniRead, MMapExaltMMQPct, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltMMQPct, 100
+	IniRead, MMapExaltSpecialPct, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltSpecialPct, 100
 	IniRead, ForceMaxChisel, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel, 0
 
 	;Automation Settings
@@ -870,6 +873,21 @@ submit(){
 		IniWrite, %MMapWeight%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapWeight
 		IniWrite, %MMapMoreMaps%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreMaps
 		IniWrite, %MMapMoreScarabs%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreScarabs
+		; Clamp percent settings to [0,100] before saving
+		If (MMapExaltMMQPct = "")
+			MMapExaltMMQPct := 100
+		If (MMapExaltSpecialPct = "")
+			MMapExaltSpecialPct := 100
+		If (MMapExaltMMQPct < 0)
+			MMapExaltMMQPct := 0
+		If (MMapExaltMMQPct > 100)
+			MMapExaltMMQPct := 100
+		If (MMapExaltSpecialPct < 0)
+			MMapExaltSpecialPct := 0
+		If (MMapExaltSpecialPct > 100)
+			MMapExaltSpecialPct := 100
+		IniWrite, %MMapExaltMMQPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltMMQPct
+		IniWrite, %MMapExaltSpecialPct%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapExaltSpecialPct
 		IniWrite, %MMapMoreCurrency%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMoreCurrency
 		IniWrite, %ForceMaxChisel%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, ForceMaxChisel
 

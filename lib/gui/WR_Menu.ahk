@@ -455,7 +455,6 @@ WR_Menu(Function:="",Var*){
 
       /*
 
-
       ; Crafting Bases
       Gui, Inventory: Tab, Crafting Bases
 
@@ -619,7 +618,7 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Font, Bold s9 cBlack, Arial
       */
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w200 h150 x320 y50, Minimum Map Qualities:
+      Gui, Crafting: Add,GroupBox,Section w200 h180 x320 y50, Minimum Map Qualities:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
 
@@ -635,11 +634,16 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, UpDown, Range1-45 x+0 yp hp vMMapMonsterPackSize , %MMapMonsterPackSize%
       Gui, Crafting: Add, Text, x+10 yp+3 , Monster Pack Size
 
+      ; Exalt Eligibility Percent (MMQ) - Edit + UpDown
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50 vMMapExaltMMQEdit gMMapExalt, %MMapExaltMMQPct%
+      Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapExaltMMQPct , %MMapExaltMMQPct%
+      Gui, Crafting: Add, Text, x+10 yp+3 , Exalt Eligibility `% (MMQ)
+
       Gui, Crafting: Add, Checkbox, vEnableMQQForMagicMap xs+15 y+15 Checked%EnableMQQForMagicMap%, Enable on Magic Maps
       Gui, Crafting: Add, Checkbox, vMMQorWeight xs+15 y+5 Checked%MMQorWeight%, Match MMQ or Weight
 
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w200 h115 x320 y205, Originator / Nightmare:
+      Gui, Crafting: Add,GroupBox,Section w200 h140 x320 y233, Originator / Nightmare:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
 
@@ -655,8 +659,13 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapMoreCurrency , %MMapMoreCurrency%
       Gui, Crafting: Add, Text, x+10 yp+3 , More Currency
 
+      ; Exalt Eligibility Percent (Special maps) - Edit + UpDown
+      Gui, Crafting: Add, Edit, number limit3 xs+15 y+15 w50 vMMapExaltSpecialEdit gMMapExalt, %MMapExaltSpecialPct%
+      Gui, Crafting: Add, UpDown, Range0-100 x+0 yp hp vMMapExaltSpecialPct , %MMapExaltSpecialPct%
+      Gui, Crafting: Add, Text, x+10 yp+3 , Exalt Eligibility `% (Special)
+
       Gui, Crafting: Font, Bold s9 cBlack, Arial
-      Gui, Crafting: Add,GroupBox,Section w290 h90 x320 y325, Other Settings:
+      Gui, Crafting: Add,GroupBox,Section w290 h70 x320 y375, Other Settings:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s8
       Gui, Crafting: Add, Checkbox, vHeistAlcNGo xs+10 ys+20 Checked%HeistAlcNGo%, Alchemy Contract and Blueprint?
@@ -1355,26 +1364,26 @@ WR_Menu(Function:="",Var*){
   Return
 
   WR_Update:
-    If (A_GuiControl ~= "WR_\w{1,}_")
-    {
-      BtnStr := StrSplit(StrSplit(A_GuiControl, "WR_", " ")[2], "_", " ",3)
-      ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
-      ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
-      WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
-    }
+  If (A_GuiControl ~= "WR_\w{1,}_")
+  {
+    BtnStr := StrSplit(StrSplit(A_GuiControl, "WR_", " ")[2], "_", " ",3)
+    ; Naming convention: WR_GuiElementType_FunctionName_ExtraStuff_AfterFunctionName
+    ; Function = FunctionName, Var[1] = GuiElementType, Var[2] = ExtraStuff_AfterFunctionName
+    WR_Menu(BtnStr[2],BtnStr[1],BtnStr[3])
+  }
   Return
 
   ColorLabel_Life:
-    Picker.SetColor(Globe.Life.Color.hex)
+  Picker.SetColor(Globe.Life.Color.hex)
   Return
   ColorLabel_Mana:
-    Picker.SetColor(Globe.Mana.Color.hex)
+  Picker.SetColor(Globe.Mana.Color.hex)
   Return
   ColorLabel_ES:
-    Picker.SetColor(Globe.ES.Color.hex)
+  Picker.SetColor(Globe.ES.Color.hex)
   Return
   ColorLabel_EB:
-    Picker.SetColor(Globe.EB.Color.hex)
+  Picker.SetColor(Globe.EB.Color.hex)
   Return
 
   hkStashGuiClose:
@@ -1391,18 +1400,55 @@ WR_Menu(Function:="",Var*){
   ControllerGuiEscape:
   HotkeysGuiClose:
   HotkeysGuiEscape:
-    Gui, Submit
-    Gui, 1: show
-    CheckGamestates:= True
-    mainmenuGameLogicState(True)
+  Gui, Submit
+  Gui, 1: show
+  CheckGamestates:= True
+  mainmenuGameLogicState(True)
   return
 
   GlobeGuiClose:
   GlobeGuiEscape:
-    GlobeActive := False
-    Gui, Submit
-    Gui, 1: show
-    CheckGamestates:= True
-    mainmenuGameLogicState(True)
+  GlobeActive := False
+  Gui, Submit
+  Gui, 1: show
+  CheckGamestates:= True
+  mainmenuGameLogicState(True)
   return
 }
+
+; --- Exalt eligibility GUI sync handler (single label using A_GuiControl) ---
+MMapExalt:
+  ; A_GuiControl contains the variable name associated with the control that fired this label
+  ctrl := A_GuiControl
+  ; Determine which group we're handling
+  If InStr(ctrl, "MMQ")
+    prefix := "MMapExaltMMQ"
+  Else If InStr(ctrl, "Special")
+    prefix := "MMapExaltSpecial"
+  Else
+    Return
+
+  ; Read value from the control that fired
+  GuiControlGet, val,, %ctrl%
+
+  ; If value blank (e.g., cleared edit), default to 100
+  If (val = "")
+    val := 100
+
+  ; Round and clamp to [0,100]
+  val := Round(val)
+  If (val < 0)
+    val := 0
+  If (val > 100)
+    val := 100
+
+  ; Update Edit, Slider and UpDown (Pct) controls and the backing variable
+  GuiControl,, % prefix "Edit", %val%
+  GuiControl,, % prefix "Pct", %val%
+
+  ; Ensure global setting variable is updated for save/load
+  If (prefix = "MMapExaltMMQ")
+    MMapExaltMMQPct := val
+  Else
+    MMapExaltSpecialPct := val
+Return
