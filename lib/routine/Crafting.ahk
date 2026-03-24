@@ -302,9 +302,12 @@ InMapArea(C:=0){
 	Return False
 }
 getMapCraftingMethod(){
-	If (Item.Prop.IsOriginatorMap || Item.Prop.IsNightmareMap)
-		If (CraftingMapMethodSpecial != "Disable")
-			Return CraftingMapMethodSpecial
+	If (Item.Prop.IsOriginatorMap)
+		If (CraftingMapMethodOriginator != "Disable")
+			Return CraftingMapMethodOriginator
+	If (Item.Prop.IsNightmareMap)
+		If (CraftingMapMethodNightmare != "Disable")
+			Return CraftingMapMethodNightmare
 
 	Loop, 3
 	{

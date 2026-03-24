@@ -308,7 +308,8 @@ ft_ToolTip_Text_Part3=
 	CraftingMapMethod1 = Select Crafting/ReCrafting Method for Range 1
 	CraftingMapMethod2 = Select Crafting/ReCrafting Method for Range 2
 	CraftingMapMethod3 = Select Crafting/ReCrafting Method for Range 3
-	CraftingMapMethodSpecial = Select Crafting/ReCrafting Method for Originator and Nightmare maps
+	CraftingMapMethodOriginator = Select Crafting/ReCrafting Method for Originator maps
+	CraftingMapMethodNightmare = Select Crafting/ReCrafting Method for Nightmare maps
 	MoveMapsToArea = When finished map crafting, move all crafted maps to the map area`rThis will include MapPrep Items that were not in map area
 	YesIncludeFandSItem = Fracture and Synthesised itens will be considered as influenced items
 	ElementalReflect = Select this if your build can't run maps with this mod
@@ -848,7 +849,7 @@ Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuf
 Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
 
 ; Map Crafting Settings
-Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,CraftingMapMethodSpecial,EnableMQQForMagicMap,MMQorWeight,MMapItemRarity,MMapMonsterPackSize,MMapItemQuantity,MMapWeight,MMapMoreMaps,MMapMoreScarabs,MMapMoreCurrency,EffectiveMMQPct,EffectiveSpecialPct
+Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,CraftingMapMethodOriginator,CraftingMapMethodNightmare,EnableMQQForMagicMap,MMQorWeight,MMapItemRarity,MMapMonsterPackSize,MMapItemQuantity,MMapWeight,MMapMoreMaps,MMapMoreScarabs,MMapMoreCurrency,EffectiveMMQPct,EffectiveOriginatorPct,EffectiveNightmarePct
 
 ; ItemInfo GUI
 Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21,

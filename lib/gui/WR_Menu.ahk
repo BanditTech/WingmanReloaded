@@ -597,10 +597,13 @@ WR_Menu(Function:="",Var*){
       Gui, Crafting: Add,GroupBox,Section w285 h65 xs, Map Tier Originator / Nightmare:
       Gui, Crafting: Font,
       Gui, Crafting: Font,s7
-      Gui, Crafting: Add, Text, xs+5 ys+20 , Method
+      Gui, Crafting: Add, Text, xs+5 ys+20 , Originator Method
+      Gui, Crafting: Add, Text, xs+140 ys+20 , Nightmare Method
       Gui, Crafting: Font,s8
-      Gui, Crafting: Add, DropDownList, xs+5 ys+35 w255 vCraftingMapMethodSpecial Choose%CraftingMapMethodSpecial%, %MapMethodList%
-      GuiControl,Crafting: ChooseString, CraftingMapMethodSpecial, %CraftingMapMethodSpecial%
+      Gui, Crafting: Add, DropDownList, xs+5 ys+35 w125 vCraftingMapMethodOriginator Choose%CraftingMapMethodOriginator%, %MapMethodList%
+      GuiControl,Crafting: ChooseString, CraftingMapMethodOriginator, %CraftingMapMethodOriginator%
+      Gui, Crafting: Add, DropDownList, xs+140 ys+35 w125 vCraftingMapMethodNightmare Choose%CraftingMapMethodNightmare%, %MapMethodList%
+      GuiControl,Crafting: ChooseString, CraftingMapMethodNightmare, %CraftingMapMethodNightmare%
       Gui, Crafting: Font,
       Gui, Crafting: Font, Bold s9 cBlack, Arial
 

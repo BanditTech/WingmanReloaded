@@ -136,7 +136,8 @@ readFromFile(){
 	IniRead, CraftingMapMethod1, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1, Disable
 	IniRead, CraftingMapMethod2, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2, Disable
 	IniRead, CraftingMapMethod3, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3, Disable
-	IniRead, CraftingMapMethodSpecial, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethodSpecial, Disable
+	IniRead, CraftingMapMethodOriginator, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethodOriginator, Disable
+	IniRead, CraftingMapMethodNightmare, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethodNightmare, Disable
 	IniRead, MMapItemQuantity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity, 1
 	IniRead, MMapItemRarity, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity, 1
 	IniRead, MMapMonsterPackSize, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize, 1
@@ -865,7 +866,8 @@ submit(){
 	IniWrite, %CraftingMapMethod1%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod1
 	IniWrite, %CraftingMapMethod2%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod2
 	IniWrite, %CraftingMapMethod3%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethod3
-	IniWrite, %CraftingMapMethodSpecial%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethodSpecial
+	IniWrite, %CraftingMapMethodOriginator%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethodOriginator
+	IniWrite, %CraftingMapMethodNightmare%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, CraftingMapMethodNightmare
 	IniWrite, %MMapItemQuantity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemQuantity
 	IniWrite, %MMapItemRarity%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapItemRarity
 	IniWrite, %MMapMonsterPackSize%, %A_ScriptDir%\save\Settings.ini, Crafting Map Settings, MMapMonsterPackSize
