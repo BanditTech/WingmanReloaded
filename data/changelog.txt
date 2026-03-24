@@ -1,3 +1,15 @@
+## Version .16.03 - Alpha Version - March/24/2026
+Improvements
+  * Several new options for rolling 16.5+ maps
+  * Exalt slam can now occur before rerolling a map which did not match its MMQ
+  * Exalt Eligibility % allows for attempting to slam before rerolling to fish for higher Percentages
+    * Default is 100% of the settings above it, lower it to try slamming to meet the end threshold
+  * New options for map crafting methods with Originator and Nightmare maps
+  * Independent matching option for More Maps, Scarabs, and Currency to keep maps which match any threshold
+  * Map Crafting methods has been expanded to include Exalt option for binding, hybrid and chaos
+
+---
+
 ## Version .16.02 - Alpha Version - March/20/2026
 Credit to Mazen for making this PR to expand on the map crafting.
 
