@@ -1,4 +1,4 @@
-﻿/*** Class_CtlColors
+/*** Class_CtlColors
 * Lib: Class_CtlColors.ahk
 *   Found on page: https://github.com/AHK-just-me/Class_CtlColors
 * Version:
@@ -11,7 +11,7 @@
 *
 *    HWND  - HWND of the GUI control
 *    BkColor - HTML color name, 6-digit hexadecimal RGB value, or "" for default color
-*    ------- Optional 
+*    ------- Optional
 *    TxColor - HTML color name, 6-digit hexadecimal RGB value, or "" for default color
 *
 *    If both BkColor and TxColor are "" the control will not be added and the call returns False.
@@ -38,7 +38,7 @@
 *  To get a control's HWND use either the option HwndOutputVar with Gui, Add or the command GuiControlGet with sub-command Hwnd.
 */
 ; ======================================================================================================================
-; AHK 1.1+
+; AHK 2.0+
 ; ======================================================================================================================
 ; Function:      Auxiliary object to color controls on WM_CTLCOLOR... notifications.
 ;          Supported controls are: Checkbox, ComboBox, DropDownList, Edit, ListBox, Radio, Text.
@@ -55,102 +55,85 @@
 ; This software is provided 'as-is', without any express or implied warranty.
 ; In no event will the authors be held liable for any damages arising from the use of this software.
 ; ======================================================================================================================
-	Class CtlColors {
+	class CtlColors {
 ; ===================================================================================================================
 ; Class variables
 ; ===================================================================================================================
 ; Registered Controls
-Static Attached := {}
+static Attached := Map()
 ; OnMessage Handlers
-Static HandledMessages := {Edit: 0, ListBox: 0, Static: 0}
+static HandledMessages := Map("Edit", 0, "ListBox", 0, "Static", 0)
 ; Message Handler Function
-Static MessageHandler := "CtlColors_OnMessage"
+static MessageHandler := "CtlColors_OnMessage"
 ; Windows Messages
-Static WM_CTLCOLOR := {Edit: 0x0133, ListBox: 0x134, Static: 0x0138}
+static WM_CTLCOLOR := Map("Edit", 0x0133, "ListBox", 0x134, "Static", 0x0138)
 ; HTML Colors (BGR)
-Static HTML := {AQUA: 0xFFFF00, BLACK: 0x000000, BLUE: 0xFF0000, FUCHSIA: 0xFF00FF, GRAY: 0x808080, GREEN: 0x008000
-				, LIME: 0x00FF00, MAROON: 0x000080, NAVY: 0x800000, OLIVE: 0x008080, PURPLE: 0x800080, RED: 0x0000FF
-				, SILVER: 0xC0C0C0, TEAL: 0x808000, WHITE: 0xFFFFFF, YELLOW: 0x00FFFF}
+static HTML := Map("AQUA", 0xFFFF00, "BLACK", 0x000000, "BLUE", 0xFF0000, "FUCHSIA", 0xFF00FF, "GRAY", 0x808080, "GREEN", 0x008000
+				, "LIME", 0x00FF00, "MAROON", 0x000080, "NAVY", 0x800000, "OLIVE", 0x008080, "PURPLE", 0x800080, "RED", 0x0000FF
+				, "SILVER", 0xC0C0C0, "TEAL", 0x808000, "WHITE", 0xFFFFFF, "YELLOW", 0x00FFFF)
 ; Transparent Brush
-Static NullBrush := DllCall("GetStockObject", "Int", 5, "UPtr")
+static NullBrush := DllCall("GetStockObject", "Int", 5, "UPtr")
 ; System Colors
-Static SYSCOLORS := {Edit: "", ListBox: "", Static: ""}
+static SYSCOLORS := Map("Edit", "", "ListBox", "", "Static", "")
 ; Error message in case of errors
-Static ErrorMsg := ""
-; Class initialization
-Static InitClass := CtlColors.ClassInit()
+static ErrorMsg := ""
 ; ===================================================================================================================
 ; Constructor / Destructor
 ; ===================================================================================================================
-__New() { ; You must not instantiate this class!
-	If (This.InitClass == "!DONE!") { ; external call after class initialization
-		This["!Access_Denied!"] := True
-		Return False
-	}
-}
 __Delete() {
-	If This["!Access_Denied!"]
-		Return
 	This.Free() ; free GDI resources
-}
-; ===================================================================================================================
-; ClassInit     Internal creation of a new instance to ensure that __Delete() will be called.
-; ===================================================================================================================
-ClassInit() {
-	CtlColors := New CtlColors
-	Return "!DONE!"
 }
 ; ===================================================================================================================
 ; CheckBkColor  Internal check for parameter BkColor.
 ; ===================================================================================================================
-CheckBkColor(ByRef BkColor, Class) {
+CheckBkColor(&BkColor, Class) {
 	This.ErrorMsg := ""
-	If (BkColor != "") && !This.HTML.HasKey(BkColor) && !RegExMatch(BkColor, "^[[:xdigit:]]{6}$") {
+	If (BkColor != "") && !This.HTML.Has(BkColor) && !RegExMatch(BkColor, "^[[:xdigit:]]{6}$") {
 		This.ErrorMsg := "Invalid parameter BkColor: " . BkColor
 		Return False
 	}
 	BkColor := BkColor = "" ? This.SYSCOLORS[Class]
-			:  This.HTML.HasKey(BkColor) ? This.HTML[BkColor]
+			:  This.HTML.Has(BkColor) ? This.HTML[BkColor]
 			:  "0x" . SubStr(BkColor, 5, 2) . SubStr(BkColor, 3, 2) . SubStr(BkColor, 1, 2)
 	Return True
 }
 ; ===================================================================================================================
 ; CheckTxColor  Internal check for parameter TxColor.
 ; ===================================================================================================================
-CheckTxColor(ByRef TxColor) {
+CheckTxColor(&TxColor) {
 	This.ErrorMsg := ""
-	If (TxColor != "") && !This.HTML.HasKey(TxColor) && !RegExMatch(TxColor, "i)^[[:xdigit:]]{6}$") {
+	If (TxColor != "") && !This.HTML.Has(TxColor) && !RegExMatch(TxColor, "i)^[[:xdigit:]]{6}$") {
 		This.ErrorMsg := "Invalid parameter TextColor: " . TxColor
 		Return False
 	}
 	TxColor := TxColor = "" ? ""
-			:  This.HTML.HasKey(TxColor) ? This.HTML[TxColor]
+			:  This.HTML.Has(TxColor) ? This.HTML[TxColor]
 			:  "0x" . SubStr(TxColor, 5, 2) . SubStr(TxColor, 3, 2) . SubStr(TxColor, 1, 2)
 	Return True
 }
 ; ===================================================================================================================
 ; Attach      Registers a control for coloring.
-; Parameters:   HWND    - HWND of the GUI control                   
+; Parameters:   HWND    - HWND of the GUI control
 ;         BkColor   - HTML color name, 6-digit hexadecimal RGB value, or "" for default color
-;         ----------- Optional 
+;         ----------- Optional
 ;         TxColor   - HTML color name, 6-digit hexadecimal RGB value, or "" for default color
 ; Return values:  On success  - True
 ;         On failure  - False, CtlColors.ErrorMsg contains additional informations
 ; ===================================================================================================================
 Attach(HWND, BkColor, TxColor := "") {
 	; Names of supported classes
-	Static ClassNames := {Button: "", ComboBox: "", Edit: "", ListBox: "", Static: ""}
+	static ClassNames := Map("Button", "", "ComboBox", "", "Edit", "", "ListBox", "", "Static", "")
 	; Button styles
-	Static BS_CHECKBOX := 0x2, BS_RADIOBUTTON := 0x8
+	static BS_CHECKBOX := 0x2, BS_RADIOBUTTON := 0x8
 	; Editstyles
-	Static ES_READONLY := 0x800
+	static ES_READONLY := 0x800
 	; Default class background colors
-	Static COLOR_3DFACE := 15, COLOR_WINDOW := 5
+	static COLOR_3DFACE := 15, COLOR_WINDOW := 5
 	; Initialize default background colors on first call -------------------------------------------------------------
-	If (This.SYSCOLORS.Edit = "") {
-		This.SYSCOLORS.Static := DllCall("User32.dll\GetSysColor", "Int", COLOR_3DFACE, "UInt")
-		This.SYSCOLORS.Edit := DllCall("User32.dll\GetSysColor", "Int", COLOR_WINDOW, "UInt")
-		This.SYSCOLORS.ListBox := This.SYSCOLORS.Edit
+	If (This.SYSCOLORS["Edit"] = "") {
+		This.SYSCOLORS["Static"] := DllCall("User32.dll\GetSysColor", "Int", COLOR_3DFACE, "UInt")
+		This.SYSCOLORS["Edit"] := DllCall("User32.dll\GetSysColor", "Int", COLOR_WINDOW, "UInt")
+		This.SYSCOLORS["ListBox"] := This.SYSCOLORS["Edit"]
 	}
 	This.ErrorMsg := ""
 	; Check colors ---------------------------------------------------------------------------------------------------
@@ -163,18 +146,18 @@ Attach(HWND, BkColor, TxColor := "") {
 		This.ErrorMsg := "Invalid parameter HWND: " . HWND
 		Return False
 	}
-	If This.Attached.HasKey(HWND) {
+	If This.Attached.Has(HWND) {
 		This.ErrorMsg := "Control " . HWND . " is already registered!"
 		Return False
 	}
 	Hwnds := [CtrlHwnd]
 	; Check control's class ------------------------------------------------------------------------------------------
 	Classes := ""
-	WinGetClass, CtrlClass, ahk_id %CtrlHwnd%
+	CtrlClass := WinGetClass("ahk_id " CtrlHwnd)
 	This.ErrorMsg := "Unsupported control class: " . CtrlClass
-	If !ClassNames.HasKey(CtrlClass)
+	If !ClassNames.Has(CtrlClass)
 		Return False
-	ControlGet, CtrlStyle, Style, , , ahk_id %CtrlHwnd%
+	CtrlStyle := WinGetStyle("ahk_id " CtrlHwnd)
 	If (CtrlClass = "Edit")
 		Classes := ["Edit", "Static"]
 	Else If (CtrlClass = "Button") {
@@ -184,21 +167,21 @@ Attach(HWND, BkColor, TxColor := "") {
 			Return False
 	}
 	Else If (CtrlClass = "ComboBox") {
-		VarSetCapacity(CBBI, 40 + (A_PtrSize* 3), 0)
-		NumPut(40 + (A_PtrSize* 3), CBBI, 0, "UInt")
-		DllCall("User32.dll\GetComboBoxInfo", "Ptr", CtrlHwnd, "Ptr", &CBBI)
-		Hwnds.Insert(NumGet(CBBI, 40 + (A_PtrSize* 2, "UPtr")) + 0)
-		Hwnds.Insert(Numget(CBBI, 40 + A_PtrSize, "UPtr") + 0)
+		CBBI := Buffer(40 + (A_PtrSize * 3), 0)
+		NumPut("UInt", 40 + (A_PtrSize * 3), CBBI, 0)
+		DllCall("User32.dll\GetComboBoxInfo", "Ptr", CtrlHwnd, "Ptr", CBBI)
+		Hwnds.Push(NumGet(CBBI, 40 + (A_PtrSize * 2), "UPtr") + 0)
+		Hwnds.Push(NumGet(CBBI, 40 + A_PtrSize, "UPtr") + 0)
 		Classes := ["Edit", "Static", "ListBox"]
 	}
-	If !IsObject(Classes)
+	If !(Classes is Array)
 		Classes := [CtrlClass]
 	; Check background color -----------------------------------------------------------------------------------------
 	If (BkColor <> "Trans")
-		If !This.CheckBkColor(BkColor, Classes[1])
+		If !This.CheckBkColor(&BkColor, Classes[1])
 			Return False
 	; Check text color -----------------------------------------------------------------------------------------------
-	If !This.CheckTxColor(TxColor)
+	If !This.CheckTxColor(&TxColor)
 		Return False
 	; Activate message handling on the first call for a class --------------------------------------------------------
 	For I, V In Classes {
@@ -222,7 +205,7 @@ Attach(HWND, BkColor, TxColor := "") {
 ; Change      Change control colors.
 ; Parameters:   HWND    - HWND of the GUI control
 ;         BkColor   - HTML color name, 6-digit hexadecimal RGB value, or "" for default color
-;         ----------- Optional 
+;         ----------- Optional
 ;         TxColor   - HTML color name, 6-digit hexadecimal RGB value, or "" for default color
 ; Return values:  On success  - True
 ;         On failure  - False, CtlColors.ErrorMsg contains additional informations
@@ -232,15 +215,15 @@ Change(HWND, BkColor, TxColor := "") {
 	; Check HWND -----------------------------------------------------------------------------------------------------
 	This.ErrorMsg := ""
 	HWND += 0
-	If !This.Attached.HasKey(HWND)
+	If !This.Attached.Has(HWND)
 		Return This.Attach(HWND, BkColor, TxColor)
 	CTL := This.Attached[HWND]
 	; Check BkColor --------------------------------------------------------------------------------------------------
 	If (BkColor <> "Trans")
-		If !This.CheckBkColor(BkColor, CTL.Classes[1])
+		If !This.CheckBkColor(&BkColor, CTL.Classes[1])
 			Return False
 	; Check TxColor ------------------------------------------------------------------------------------------------
-	If !This.CheckTxColor(TxColor)
+	If !This.CheckTxColor(&TxColor)
 		Return False
 	; Store Colors ---------------------------------------------------------------------------------------------------
 	If (BkColor <> CTL.BkColor) {
@@ -273,7 +256,7 @@ Change(HWND, BkColor, TxColor := "") {
 Detach(HWND) {
 	This.ErrorMsg := ""
 	HWND += 0
-	If This.Attached.HasKey(HWND) {
+	If This.Attached.Has(HWND) {
 		CTL := This.Attached[HWND].Clone()
 		If (CTL.Brush) && (CTL.Brush <> This.NullBrush)
 			DllCall("Gdi32.dll\DeleteObject", "Prt", CTL.Brush)
@@ -284,7 +267,7 @@ Detach(HWND) {
 				OnMessage(This.WM_CTLCOLOR[V], "")
 		}  }
 		For I, V In CTL.Hwnds
-			This.Attached.Remove(V, "")
+			This.Attached.Delete(V)
 		DllCall("User32.dll\InvalidateRect", "Ptr", HWND, "Ptr", 0, "Int", 1)
 		CTL := ""
 		Return True
@@ -305,7 +288,7 @@ Free() {
 			OnMessage(This.WM_CTLCOLOR[K], "")
 			This.HandledMessages[K] := 0
 		}
-	This.Attached := {}
+	This.Attached := Map()
 	Return True
 }
 ; ===================================================================================================================
@@ -315,15 +298,18 @@ Free() {
 ;         On failure  - False
 ; ===================================================================================================================
 IsAttached(HWND) {
-	Return This.Attached.HasKey(HWND)
+	Return This.Attached.Has(HWND)
 }
 }
+CtlColors := CtlColors()
 ; ======================================================================================================================
 ; CtlColors_OnMessage
 ; This function handles CTLCOLOR messages. There's no reason to call it manually!
 ; ======================================================================================================================
-CtlColors_OnMessage(HDC, HWND) {
-	Critical
+CtlColors_OnMessage(wParam, lParam, msg, hwnd) {
+	Critical()
+	HDC := wParam
+	HWND := lParam
 	If CtlColors.IsAttached(HWND) {
 		CTL := CtlColors.Attached[HWND]
 		If (CTL.TxColor != "")
