@@ -607,10 +607,10 @@ Global ChaosRecipeStashTabAmulet := 1
 Global ChaosRecipeStashTabRing := 1
 
 ; Loot colors for the vacuum
-Global LootColors := { 1 : 0xF6FEC4
-	, 2 : 0xCCFE99
-	, 3 : 0xA36565
-	, 4 : 0x773838}
+Global LootColors := Map(1, 0xF6FEC4
+	, 2, 0xCCFE99
+	, 3, 0xA36565
+	, 4, 0x773838)
 Global YesLootChests := 1
 Global YesLootDelve := 1
 Global Detonated := 0
