@@ -261,7 +261,7 @@ Monitor_GameLogs(Initialize:=0)
       If (VersionNumber != "")
         Ding(0,-10,"Parsing Client.txt Logfile")
       latestFileContent := CLogFo.Read()
-      latestFileContent := TF_ReverseLines(latestFileContent)
+      latestFileContent := ReverseLines(latestFileContent)
       Loop Parse, latestFileContent, "`n", "`r"
       {
         If InStr(A_LoopField, "] :")
@@ -340,4 +340,12 @@ LastLine(SomeFileObject) {
     }
   } until (A_Index >= 1000000)
   Return ; this should never happen
+}
+
+ReverseLines(text) {
+  lines := StrSplit(text, "`n", "`r")
+  out := ""
+  Loop lines.Length
+    out .= lines[lines.Length - A_Index + 1] . (A_Index < lines.Length ? "`n" : "")
+  Return out
 }
