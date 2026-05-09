@@ -19,6 +19,7 @@
         "feiyue/FindText": "3ffe6b6",
         "Chunjee/adash": "^v0.6.0",
         "lexikos/XInput": "github:ahkscript/ScriptHub@3ffe6b6",
-        "XMCQCX/Notify": "github:XMCQCX/NotifyClass-NotifyCreator@a66df2f"
+        "XMCQCX/Notify": "github:XMCQCX/NotifyClass-NotifyCreator@a66df2f",
+        "FanaticGuru/Fractions": "2023-08-28"
     }
 }
