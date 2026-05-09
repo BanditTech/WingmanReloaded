@@ -1,11 +1,11 @@
-﻿; LogoutCommand - Logout Function
+; LogoutCommand - Logout Function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 LogoutCommand(){
   LogoutCommand:
-    SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-    SetMouseDelay, %SetMouseDelayValue%
-    SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
-    Critical
+    SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+    SetMouseDelay(SetMouseDelayValue)
+    SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
+    Critical(1)
     Static LastLogout := 0
     if (WR.perChar.Setting.quitDC || (WR.perChar.Setting.quitPortal && (OnMines || OnTown || OnHideout))) {
       global POEGameArr
@@ -17,7 +17,7 @@ LogoutCommand(){
       }
       Else
       {
-        tt=
+        tt := ""
         For k, executable in POEGameArr
         {
           tt.= (tt?",":"") executable
@@ -34,34 +34,34 @@ LogoutCommand(){
       If WR.perChar.Setting.quitLogBackIn
       {
         RandomSleep(750,750)
-        ControlSend,, {Enter}, %GameStr%
+        ControlSend("{Enter}", , GameStr)
         RandomSleep(750,750)
-        ControlSend,, {Enter}, %GameStr%
+        ControlSend("{Enter}", , GameStr)
       }
-    } 
+    }
     Else If WR.perChar.Setting.quitPortal
     {
       If ((A_TickCount - LastLogout) > 10000)
       {
         If !GameActive
-          WinActivate, %GameStr%
+          WinActivate(GameStr)
         QuickPortal()
         LastLogout := A_TickCount
       }
     }
     Else If WR.perChar.Setting.quitExit
     {
-      Send, {Enter}/exit{Enter}
+      Send("{Enter}/exit{Enter}")
       If WR.perChar.Setting.quitLogBackIn
       {
         RandomSleep(900,900)
-        ControlSend,, {Enter}, %GameStr%
+        ControlSend("{Enter}", , GameStr)
       }
     }
     If (!WR.perChar.Setting.typeES)
       Log("Logout","Exit with " . Player.Percent.Life . "`% Life", CurrentLocation)
     Else
       Log("Logout","Exit with " . Player.Percent.ES . "`% ES", CurrentLocation)
-    Thread, NoTimers, False    ;End Critical
+    Thread("NoTimers", False)    ;End Critical
   return
 }

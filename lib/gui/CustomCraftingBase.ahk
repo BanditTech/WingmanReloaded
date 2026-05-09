@@ -1,6 +1,7 @@
-﻿; Wingman Crafting Labels - By DanMarzola
+; Wingman Crafting Labels - By DanMarzola
 
 RefreshBaseList(type){
+  global CustomCraftingBaseGui
   CraftingBaseTypeSelector := type
   For k, v in Bases
   {
@@ -9,97 +10,96 @@ RefreshBaseList(type){
     if(type = "str_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "dex_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "int_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
-      } 
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+      }
     }else if(type = "str_dex_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "str_int_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "dex_int_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "amulet"){
       If (IndexOf(type,v["tags"]) && !IndexOf("talisman",v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "belt"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "ring"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "weapon"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }else if(type = "quiver"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
-        LV_Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
+        CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
     }
   }
 
   ;; Retrive bases from custom crafting bases json to check box
-  Loop % LV_GetCount()
+  Loop CustomCraftingBaseGui["listview1"].GetCount()
   {
     Index := A_Index
-    LV_GetText(OutputVar, A_Index , 2)
+    OutputVar := CustomCraftingBaseGui["listview1"].GetText(A_Index, 2)
     For k, v in WR.CustomCraftingBases[type]{
       if (v.BaseName == OutputVar){
-        LV_Modify(Index,"Check",,,v.ILvL,v.Quant)
+        CustomCraftingBaseGui["listview1"].Modify(Index,"Check",,,v.ILvL,v.Quant)
         Break
       }
     }
   }
 
   ;; Style
-  Loop % LV_GetCount("Column")
+  Loop CustomCraftingBaseGui["listview1"].GetCount("Column")
   {
-    LV_ModifyCol(A_Index,"AutoHdr")
+    CustomCraftingBaseGui["listview1"].ModifyCol(A_Index,"AutoHdr")
   }
-  LV_ModifyCol(1, 120)
-  LV_ModifyCol(2, 140)
-  LV_ModifyCol(5,"SortDesc")
-  LV_ModifyCol(1,"Sort")
+  CustomCraftingBaseGui["listview1"].ModifyCol(1, 120)
+  CustomCraftingBaseGui["listview1"].ModifyCol(2, 140)
+  CustomCraftingBaseGui["listview1"].ModifyCol(5,"SortDesc")
+  CustomCraftingBaseGui["listview1"].ModifyCol(1,"Sort")
 }
-Return
 
 RegexFixLeadingZeros(digits,content){
   if(content==""){
     content:=
   }
   else if(digits==2){
-    Loop, 2
+    Loop 2
     {
       content := RegExReplace(content, "(?<!\d)\d(?!\d)", "0$0")
     }
   }else if(digits==3){
-    Loop, 2
+    Loop 2
     {
       content := RegExReplace(content, "(?<!\d)\d(?!\d)", "00$0")
       content := RegExReplace(content, "(?<!\d)\d{2}(?!\d)", "0$0")
@@ -108,148 +108,100 @@ RegexFixLeadingZeros(digits,content){
   return content
 }
 
-CraftingBaseSTRUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Base Armour|Implicit
-  RefreshBaseList("str_armour")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Str Armour Bases
-Return
+CraftingBaseUI(title, type, columns)
+{
+  global CustomCraftingBaseGui, CraftingBaseTypeSelector
+  CraftingBaseTypeSelector := type
+  CustomCraftingBaseGui := Gui()
+  CustomCraftingBaseGui.Opt("+AlwaysOnTop -MinimizeBox")
+  CustomCraftingBaseGui.Add("ListView", "w900 h400 -wrap -Multi Grid Checked vlistview1", columns)
+  RefreshBaseList(type)
+  btn1 := CustomCraftingBaseGui.Add("Button", "x+5 w120 h30 center", "Save")
+  btn1.OnEvent("Click", SaveCraftingBase)
+  btn2 := CustomCraftingBaseGui.Add("Button", "w120 h30 center", "Reset")
+  btn2.OnEvent("Click", ResetCraftingBase)
+  CustomCraftingBaseGui.Show("", title)
+}
 
-CraftingBaseDEXUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Base Evasion|Implicit
-  RefreshBaseList("dex_armour")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Dex Armour Bases
-Return
+CraftingBaseSTRUI()
+{
+  CraftingBaseUI("Str Armour Bases", "str_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Armour","Implicit"])
+}
 
-CraftingBaseINTUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Base Energy Shield|Implicit
-  RefreshBaseList("int_armour")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Int Armour Bases
-Return
+CraftingBaseDEXUI()
+{
+  CraftingBaseUI("Dex Armour Bases", "dex_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Evasion","Implicit"])
+}
 
-CraftingBaseSTRDEXUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Base Armour|Base Evasion|Implicit
-  RefreshBaseList("str_dex_armour")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , StrDex Armour Bases
-Return
+CraftingBaseINTUI()
+{
+  CraftingBaseUI("Int Armour Bases", "int_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Energy Shield","Implicit"])
+}
 
-CraftingBaseSTRINTUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Base Armour|Base Energy Shield|Implicit
-  RefreshBaseList("str_int_armour")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , StrInt Armour Bases
-Return
+CraftingBaseSTRDEXUI()
+{
+  CraftingBaseUI("StrDex Armour Bases", "str_dex_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Armour","Base Evasion","Implicit"])
+}
 
-CraftingBaseDEXINTUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Base Evasion|Base Energy Shield|Implicit
-  RefreshBaseList("dex_int_armour")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , DexInt Armour Bases
-Return
+CraftingBaseSTRINTUI()
+{
+  CraftingBaseUI("StrInt Armour Bases", "str_int_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Armour","Base Energy Shield","Implicit"])
+}
 
-CraftingBaseAMULETUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Implicit
-  RefreshBaseList("amulet")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Amulet Bases
-Return
+CraftingBaseDEXINTUI()
+{
+  CraftingBaseUI("DexInt Armour Bases", "dex_int_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Evasion","Base Energy Shield","Implicit"])
+}
 
-CraftingBaseRINGUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Implicit
-  RefreshBaseList("ring")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Ring Bases
-Return
+CraftingBaseAMULETUI()
+{
+  CraftingBaseUI("Amulet Bases", "amulet", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
+}
 
-CraftingBaseBELTUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Implicit
-  RefreshBaseList("belt")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Belt Bases
-Return
+CraftingBaseRINGUI()
+{
+  CraftingBaseUI("Ring Bases", "ring", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
+}
 
-CraftingBaseWEAPONUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Implicit
-  RefreshBaseList("weapon")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Belt Bases
-Return
+CraftingBaseBELTUI()
+{
+  CraftingBaseUI("Belt Bases", "belt", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
+}
 
-CraftingBaseQUIVERUI:
-  Gui, CustomCraftingBaseUI1: New
-  Gui, CustomCraftingBaseUI1: Default
-  Gui, CustomCraftingBaseUI1: +AlwaysOnTop -MinimizeBox +LabelCustomUndesirable
-  Gui, CustomCraftingBaseUI1: Add, ListView , w900 h400 -wrap -Multi Grid Checked vlistview1, Item Class|Base Name|Max ILvL Found|Stashed|Drop Level|Implicit
-  RefreshBaseList("quiver")
-  Gui, CustomCraftingBaseUI1: Add, Button, gSaveCraftingBase x+5 w120 h30 center, Save
-  Gui, CustomCraftingBaseUI1: Add, Button, gResetCraftingBase w120 h30 center, Reset
-  Gui, CustomCraftingBaseUI1: Show, , Quiver Bases
-Return
+CraftingBaseWEAPONUI()
+{
+  CraftingBaseUI("Belt Bases", "weapon", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
+}
 
-ResetCraftingBase:
-  Loop % LV_GetCount()
+CraftingBaseQUIVERUI()
+{
+  CraftingBaseUI("Quiver Bases", "quiver", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
+}
+
+ResetCraftingBase(*)
+{
+  global CustomCraftingBaseGui, CraftingBaseTypeSelector
+  Loop CustomCraftingBaseGui["listview1"].GetCount()
   {
-    LV_Modify(A_Index,"-Check")
+    CustomCraftingBaseGui["listview1"].Modify(A_Index,"-Check")
   }
   WR.CustomCraftingBases[CraftingBaseTypeSelector] := []
   Settings("CustomCraftingBases","Save")
-Return
+}
 
-SaveCraftingBase:
+SaveCraftingBase(*)
+{
+  global CustomCraftingBaseGui, CraftingBaseTypeSelector
   RowNumber := 0
   WR.CustomCraftingBases[CraftingBaseTypeSelector] := []
   Loop
   {
-    RowNumber := LV_GetNext(RowNumber,"C")
+    RowNumber := CustomCraftingBaseGui["listview1"].GetNext(RowNumber,"C")
     if not RowNumber
       break
-    LV_GetText(BaseName, RowNumber,2)
-    aux:= {"BaseName":BaseName,"ILvL":"0","Quant":"0"}
+    BaseName := CustomCraftingBaseGui["listview1"].GetText(RowNumber, 2)
+    aux := {"BaseName":BaseName,"ILvL":"0","Quant":"0"}
     WR.CustomCraftingBases[CraftingBaseTypeSelector].Push(aux)
   }
   Settings("CustomCraftingBases","Save")
-
-Return
+}

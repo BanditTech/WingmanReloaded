@@ -1,4 +1,4 @@
-﻿; Global Script Object
+; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {"loc":{},"Flask":{},"Utility":{},"perChar":{},"Debug":{}
 	,"cdExpires":{},"func":{},"data":{},"String":{},"Restock":{}
@@ -120,4 +120,3 @@ For k, name in ["perChar","Flask","Utility"]{
 	If !FileExist( A_ScriptDir "\save\profiles\" name "\Default.json")
 		Profile(name,"Save","Default")
 }
-

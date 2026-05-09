@@ -1,4 +1,4 @@
-﻿; Captures the current Location and determines if in Town, Hideout or Azurite Mines
+; Captures the current Location and determines if in Town, Hideout or Azurite Mines
 CompareLocation(cStr:="")
 {
   Static Lang := ""
@@ -58,14 +58,14 @@ CompareLocation(cStr:="")
         OnMines := False
 
       ; Now we set a timer to run our zone change logic
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     } Else If (cStr ~= ": \w+ \(\w+\) is now level \d") {
-      RegExMatch(cStr, "O)is now level (\d*)", RxMatch)
+      RegExMatch(cStr, "O)is now level (\d*)", &RxMatch)
       Player.Level := RxMatch[1]
     }
   }
-  Else If (Lang = "Spanish") 
+  Else If (Lang = "Spanish")
   {
     If InStr(cStr, " : Has entrado a ")
     {
@@ -82,11 +82,11 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Chinese") 
+  Else If (Lang = "Chinese")
   {
     If InStr(cStr, " : 你已進入：")
     {
@@ -103,11 +103,11 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Korean") 
+  Else If (Lang = "Korean")
   {
     If InStr(cStr, "진입했습니다")
     {
@@ -124,11 +124,11 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "German") 
+  Else If (Lang = "German")
   {
     If InStr(cStr, " : Ihr habt '")
     {
@@ -145,11 +145,11 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Russian") 
+  Else If (Lang = "Russian")
   {
     If InStr(cStr, " : Вы вошли в область ")
     {
@@ -166,11 +166,11 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "French") 
+  Else If (Lang = "French")
   {
     If InStr(cStr, " : Vous êtes à présent dans : ")
     {
@@ -187,11 +187,11 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Portuguese") 
+  Else If (Lang = "Portuguese")
   {
     If InStr(cStr, " : Você entrou em: ")
     {
@@ -208,11 +208,11 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
-  Else If (Lang = "Thai") 
+  Else If (Lang = "Thai")
   {
     If InStr(cStr, " : คุณเข้าสู่ ")
     {
@@ -229,14 +229,14 @@ CompareLocation(cStr:="")
         OnMines := True
       Else
         OnMines := False
-      SetTimer, ZoneChange, -200
+      SetTimer(ZoneChange, -200)
       Return True
     }
   }
   Return False
 }
 ; Monitor for changes in log since initialized
-Monitor_GameLogs(Initialize:=0) 
+Monitor_GameLogs(Initialize:=0)
 {
   global ClientLog, CLogFO, CurrentLocation
   OldTown := OnTown, OldHideout := OnHideout, OldMines := OnMines, OldLocation := CurrentLocation
@@ -245,7 +245,7 @@ Monitor_GameLogs(Initialize:=0)
     Try
     {
       CLogFO := FileOpen(ClientLog, "r")
-      FileGetSize, errchk, %ClientLog%, M
+      errchk := FileGetSize(ClientLog, "M")
       If (errchk >= 64)
       {
         CurrentLocation := "Log too large"
@@ -262,7 +262,7 @@ Monitor_GameLogs(Initialize:=0)
         Ding(0,-10,"Parsing Client.txt Logfile")
       latestFileContent := CLogFo.Read()
       latestFileContent := TF_ReverseLines(latestFileContent)
-      Loop, Parse,% latestFileContent,`n,`r
+      Loop Parse, latestFileContent, "`n", "`r"
       {
         If InStr(A_LoopField, "] :")
           If CompareLocation(A_LoopField)
@@ -279,7 +279,7 @@ Monitor_GameLogs(Initialize:=0)
       If (VersionNumber != "")
         Ding(500,-10,"Parsed Client.txt logs in " . A_TickCount - T1 . "MS`nSize: " . errchk . "MB")
       StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
-      SB_SetText("Status:" StatusText " `(" CurrentLocation "`)",2)
+      WR_StatusBarCtrl.SetText("Status:" StatusText " `(" CurrentLocation "`)",2)
       If (DebugMessages && YesLocation && WinActive(GameStr))
       {
         Ding(6000,4,"Status:   `t" (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere"))))
@@ -288,7 +288,7 @@ Monitor_GameLogs(Initialize:=0)
       If (VersionNumber != "")
         Log("Location","Client.txt File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
     }
-    Catch, loaderror
+    Catch loaderror
     {
       Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
       CurrentLocation := "Client File Load Error"
@@ -298,9 +298,9 @@ Monitor_GameLogs(Initialize:=0)
   } Else {
     latestFileContent := CLogFo.Read()
 
-    if (latestFileContent) 
+    if (latestFileContent)
     {
-      Loop, Parse,% latestFileContent,`n,`r 
+      Loop Parse, latestFileContent, "`n", "`r"
       {
         If InStr(A_LoopField, "] :")
           CompareLocation(A_LoopField)
@@ -316,7 +316,7 @@ Monitor_GameLogs(Initialize:=0)
       StatusText := (OnTown?"OnTown":(OnHideout?"OnHideout":(OnMines?"OnMines":"Elsewhere")))
       If YesLocation
         Log("Location","Zone Change Detected", StatusText , "Located:" CurrentLocation)
-      SB_SetText("Status:" StatusText " (" CurrentLocation ")",2)
+      WR_StatusBarCtrl.SetText("Status:" StatusText " (" CurrentLocation ")",2)
     }
     Return
   }
@@ -327,10 +327,10 @@ LastLine(SomeFileObject) {
   static SEEK_END := 2
   loop {
     SomeFileObject.Seek(-1, SEEK_CUR)
-    
+
     if (SomeFileObject.Read(1) = "`n") {
       StartPosition := SomeFileObject.Tell()
-      
+
       Line := SomeFileObject.ReadLine()
       SomeFileObject.Seek(StartPosition - 1)
       return Line

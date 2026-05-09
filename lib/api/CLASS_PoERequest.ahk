@@ -1,4 +1,4 @@
-﻿; Efficient HTTP requests for POE resources
+; Efficient HTTP requests for POE resources
 Class PoERequest {
   Stash(TabDigit) {
     Static Url := "https://www.pathofexile.com/character-window/get-stash-items"
@@ -28,7 +28,7 @@ Class PoERequest {
     Return This.HandleResponse(response)
   }
   HandleResponse(response){
-    ; response := RegexReplace(response,"[]","")
+    ; response := RegexReplace(response,"[]","")
     response := RegexReplace(response,"^[^\]\[\{\}""]*","")
     response := RegexReplace(response,"[^\]\[\{\}""]*$","")
     Try {

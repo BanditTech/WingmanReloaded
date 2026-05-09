@@ -23,7 +23,7 @@ ActualTierCreator() {
                                     break
                                 }
                                 if(v["required_level"] > b){
-                                    aux2 = %A_Index%
+                                    aux2 := A_Index
                                 }
                             }
                             if(!aux){
@@ -82,7 +82,7 @@ CraftingBasesRequest(ShouldRun) {
     ClearQuantCraftingBase()
     Strings := []
     For k, v in Object.items {
-        item := new ItemBuild(v,Object.quadLayout)
+        item := ItemBuild(v,Object.quadLayout)
         Strings.Push("Item Base: " item["Prop"]["ItemBase"]
             . ", Name: " item["Prop"]["ItemName"]
             . ", ILVL: " item["Prop"]["CraftingBaseHigherILvLFound"]

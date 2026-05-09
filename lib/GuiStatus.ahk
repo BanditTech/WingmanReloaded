@@ -1,4 +1,4 @@
-﻿; GuiStatus - Determine the gamestates by checking for specific pixel colors
+; GuiStatus - Determine the gamestates by checking for specific pixel colors
 GuiStatus(Fetch:="",SS:=1){
   Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnDetonate
   If (SS)
@@ -11,8 +11,15 @@ GuiStatus(Fetch:="",SS:=1){
   }
   Else If !(Fetch="")
   {
-    P%Fetch% := FindText.GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
-    temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
+    ; TODO: v2 does not support %var% dereference - needs refactoring
+    ; Original v1 code:
+    ;   P%Fetch% := FindText.GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
+    ;   temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
+    ; The following is a best-effort translation using a Map-based approach if available,
+    ; otherwise this block needs to be replaced with explicit conditionals per Fetch value.
+    P_Fetch := FindText.GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
+    ; TODO: v2 does not support %var% dereference for P%Fetch%, %Fetch%, var%Fetch% - needs refactoring
+    temp := False  ; placeholder — replace with explicit per-Fetch logic
     Return temp
   }
   If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart)
@@ -31,7 +38,7 @@ GuiStatus(Fetch:="",SS:=1){
   } Else {
     POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
-  } 
+  }
   POnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
   OnVendor := (POnVendor=varOnVendor?True:(POnVendor=varOnVendorHeist?True:False))
 
@@ -61,7 +68,7 @@ CheckOHB()
       Return False
     }
   }
-  Else 
+  Else
     Return False
 }
 CheckXButton(retObj:=0)
@@ -120,21 +127,21 @@ ScanGlobe(SS:=0)
     {
       OldLife := Player.Percent.Life
       If GlobeActive
-      GuiControl,Globe:, Globe_Percent_Life, % "Life " Player.Percent.Life "`%"
+        GlobeGui["Globe_Percent_Life"].Text := "Life " Player.Percent.Life "`%"
     }
     If (Player.Percent.ES != OldES)
     {
       OldES := Player.Percent.ES
       If GlobeActive
-      GuiControl,Globe: , Globe_Percent_ES, % "ES " Player.Percent.ES "`%"
+        GlobeGui["Globe_Percent_ES"].Text := "ES " Player.Percent.ES "`%"
     }
     If (Player.Percent.Mana != OldMana)
     {
       OldMana := Player.Percent.Mana
       If GlobeActive
-      GuiControl,Globe: , Globe_Percent_Mana, % "Mana " Player.Percent.Mana "`%"
+        GlobeGui["Globe_Percent_Mana"].Text := "Mana " Player.Percent.Mana "`%"
     }
-    SB_SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%",3)
+    WR_StatusBarCtrl.SetText("Life " Player.Percent.Life "`% ES " Player.Percent.ES "`% Mana " Player.Percent.Mana "`%", 3)
   }
   Return
 }

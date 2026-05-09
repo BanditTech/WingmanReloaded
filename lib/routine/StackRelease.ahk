@@ -1,4 +1,4 @@
-﻿; StackRelease
+; StackRelease
 StackRelease()
 {
   if (buff:=FindText(GameX, GameY, GameX + (GameW//(6/5)),GameY + (GameH//(1080/75)), 0, 0, WR.perChar.Setting.channelrepressIcon,0))
@@ -8,7 +8,7 @@ StackRelease()
       If GetKeyState(WR.perChar.Setting.channelrepressKey,"P")
       {
         SendHotkey(WR.perChar.Setting.channelrepressKey,"up")
-        Sleep, 10
+        Sleep(10)
         SendHotkey(WR.perChar.Setting.channelrepressKey,"down")
       }
     }

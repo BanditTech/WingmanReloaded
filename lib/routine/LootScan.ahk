@@ -1,8 +1,8 @@
-﻿; LootScan - Finds matching colors under the cursor while key pressed
+; LootScan - Finds matching colors under the cursor while key pressed
 LootScan(Reset:=0){
-		SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-		SetMouseDelay, %SetMouseDelayValue%
-		SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
+		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+		SetMouseDelay(SetMouseDelayValue)
+		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		Static LV_LastClick := 0
 		Global LootVacuumActive
 		If (!ComboHex || Reset)
@@ -17,7 +17,7 @@ LootScan(Reset:=0){
 		{
 			If AreaScale
 			{
-				MouseGetPos mX, mY
+				MouseGetPos(&mX, &mY)
 				ClampGameScreen(x := mX - AreaScale, y := mY - AreaScale)
 				ClampGameScreen(xx := mX + AreaScale, yy := mY + AreaScale)
 				If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
@@ -31,14 +31,14 @@ LootScan(Reset:=0){
 				}
 				If OnMines && YesLootDelve
 				{
-					MouseGetPos mX, mY
+					MouseGetPos(&mX, &mY)
 					ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 					ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
 					loot := FindText(x,y,xx,yy,0.1,0.1,DelveStr,0,0)
 				}
 				Else If YesLootChests
 				{
-					MouseGetPos mX, mY
+					MouseGetPos(&mX, &mY)
 					ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 					ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
 					loot := FindText(x,y,xx,yy,0.1,0.1,ChestStr,0,0)
@@ -57,12 +57,12 @@ LootScan(Reset:=0){
 			}
 			Else
 			{
-				MouseGetPos mX, mY
-				PixelGetColor, scolor, mX, mY, RGB
+				MouseGetPos(&mX, &mY)
+				scolor := PixelGetColor(mX, mY, "RGB")
 				If (indexOf(scolor,LootColors) )
 					If ( LootVacuumActive )
 					{
-						click %mX%, %mY%
+						Click(mX " " mY)
 						LV_LastClick := A_TickCount
 					}
 			}
@@ -77,9 +77,9 @@ LootScan(Reset:=0){
 			LootVacuumActive:=True
 		}
 		If (LootVacuum && LootVacuumTapZ && !LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
-			Send {z}
-			Sleep, 10
-			Send {z}
+			Send("{z}")
+			Sleep(10)
+			Send("{z}")
 		}
 	Return
 	LootScanCommandRelease:
@@ -88,9 +88,9 @@ LootScan(Reset:=0){
 			LootVacuumActive:=False
 		}
 		If (LootVacuum && LootVacuumTapZ && LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
-			Send {z}
-			Sleep, 10
-			Send {z}
+			Send("{z}")
+			Sleep(10)
+			Send("{z}")
 		}
 	Return
 
@@ -99,16 +99,16 @@ LootScan(Reset:=0){
 		If (LP || RP)
 		{
 			If LP
-				Click, up
+				Click("up")
 			If RP
-				Click, Right, up
-			Sleep, 30
+				Click("Right up")
+			Sleep(30)
 		}
-		; MouseMove, ScanPx, ScanPy
-		BlockInput, MouseMove
-		Click %ScanPx%, %ScanPy%
-		BlockInput, Mousemoveoff
+		; MouseMove(ScanPx, ScanPy)
+		BlockInput("MouseMove")
+		Click(ScanPx " " ScanPy)
+		BlockInput("Mousemoveoff")
 		If (GetKeyState("RButton","P"))
-			Click, Right, down
+			Click("Right down")
 	Return
 }

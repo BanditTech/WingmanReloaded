@@ -1,4 +1,9 @@
-﻿class ItemScan
+; NOTE: CLASS_ItemScan.ahk - Converted to AHK v2
+; GoSub labels in GraphNinjaPrices() have been converted to nested helper functions.
+; GuiControl calls have been converted to Gui object syntax.
+; Review all TODO comments before running.
+
+class ItemScan
 {
 	__New(){
 		This.Data := {}
@@ -56,7 +61,7 @@
 					This.Prop.IsAbyss := True
 				Else If (SVal ~= "^Unidentified$")
 					This.Data.Blocks.Affix := SVal
-				Else If (This.Data.Blocks.HasKey("Affix") || SVal ~= """.*""$")
+				Else If (This.Data.Blocks.Has("Affix") || SVal ~= """.*""$")
 					This.Data.Blocks.FlavorText := SVal
 				Else
 					This.Data.Blocks.Affix := SVal
@@ -99,13 +104,13 @@
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
 			Static Tiers := {"Lesser":1,"Greater":2,"Grand":3,"Exceptional":4,"Exquisite":5,"Perfect":6}
-			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", RxMatch) {
+			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
 				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Searing Exarch"
 			}
-			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Eater of Worlds Implicit Modifier \((.*?)\)", RxMatch){
+			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Eater of Worlds Implicit Modifier \((.*?)\)", &RxMatch)){
 				This.Prop.TierImplicitEater := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
@@ -166,10 +171,10 @@
 		}
 		This.Prop.OpenAffix := 6 - This.Prop.PrefixCount - This.Prop.SuffixCount
 
-		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", RxMatch)
-			This.Prop.ItemClass := RxMatch1
-		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", RxMatch)
-			This.Prop.Rarity := RxMatch1
+		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", &RxMatch))
+			This.Prop.ItemClass := RxMatch[1]
+		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", &RxMatch))
+			This.Prop.Rarity := RxMatch[1]
 		;Start NamePlate Parser
 		If (This.Prop.Rarity || This.Prop.ItemClass)
 		{
@@ -218,21 +223,21 @@
 			Else If (This.Prop.ItemClass ~= "Jewels" && This.Prop.Rarity_Digit = 3)
 				This.Prop.OpenAffix -= 2
 			; 4 Lines in NamePlate => Rarity / Item Name/ Item Base
-			If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)",RxMatch))
+			If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)", &RxMatch)))
 			{
-				This.Prop.ItemName := RxMatch1
-				This.Prop.ItemBase := RxMatch2
+				This.Prop.ItemName := RxMatch[1]
+				This.Prop.ItemBase := RxMatch[2]
 			}
 			; 3 Lines in NamePlate => Rarity / Item Base
-			Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)",RxMatch))
+			Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)", &RxMatch)))
 			{
-				This.Prop.ItemName := RxMatch1
-				This.Prop.ItemBase := RxMatch1
+				This.Prop.ItemName := RxMatch[1]
+				This.Prop.ItemBase := RxMatch[1]
 			}
 			; 2 Lines in NamePlate => Item Name
-			Else If (RegExMatch(This.Data.Blocks.NamePlate, "^.+`r`n(.+)$",RxMatch))
+			Else If (RegExMatch(This.Data.Blocks.NamePlate, "^.+`r`n(.+)$", &RxMatch)))
 			{
-				This.Prop.ItemName := RxMatch1
+				This.Prop.ItemName := RxMatch[1]
 				This.Prop.ItemBase := This.Prop.ItemClass
 			}
 			If (This.Prop.ItemName ~= "^Superior ")
@@ -552,8 +557,8 @@
 		Loop, Parse,% This.Data.Blocks.Influence, `n, `r
 		{
 			; Match for influence type
-			If (RegExMatch(A_LoopField, "`am)(.+) Item",RxMatch))
-				This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch1
+			If (RegExMatch(A_LoopField, "`am)(.+) Item", &RxMatch)))
+				This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch[1]
 		}
 		If This.Prop.Influence {
 			If (This.Prop.Influence ~= "Fractured" || This.Prop.Influence ~= "Synthesised")
@@ -562,7 +567,7 @@
 				This.Prop.IsInfluenceItem := True
 		}
 		; Get Beasts using Flavour Txt
-		If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary",RxMatch))
+		If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary", &RxMatch)))
 		{
 			This.Prop.IsBeast := True
 			This.Prop.SpecialType := "Beast"
@@ -573,54 +578,54 @@
 		;Every Item has a Item Level
 		If (This.Prop.Rarity)
 		{
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: "rxNum, &RxMatch)))
 			{
-				This.Prop.ItemLevel := RxMatch1
+				This.Prop.ItemLevel := RxMatch[1]
 			}
-			If (This.Data.Blocks.HasKey("Enchant"))
+			If (This.Data.Blocks.Has("Enchant"))
 			{
 				This.Prop.SpecialType := "Enchanted Item"
 			}
-			If (position := RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum "( \(Max\))?",RxMatch))
+			If (position := RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum "( \(Max\))?", &RxMatch)))
 			{
 				If (This.Prop.RarityGem) {
-					This.Prop.Gem_Level := RxMatch1
-					If (RxMatch2 = " (Max)")
+					This.Prop.Gem_Level := RxMatch[1]
+					If (RxMatch[2] = " (Max)")
 						This.Prop.Gem_MaxLevel := True
-					If RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum,RxMatch,position+10)
-						This.Prop.Required_Level := RxMatch1
+					If RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum, &RxMatch, position+10)
+						This.Prop.Required_Level := RxMatch[1]
 					If RegExMatch(This.Data.Blocks.Properties, "`am)([, \w]+)\r", RxMatch)
-						This.Prop.Gem_Tags := RxMatch1
+						This.Prop.Gem_Tags := RxMatch[1]
 				} Else {
-					This.Prop.Required_Level := RxMatch1
+					This.Prop.Required_Level := RxMatch[1]
 				}
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum, &RxMatch)))
 			{
-				This.Prop.Required_Str := RxMatch1
+				This.Prop.Required_Str := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: "rxNum, &RxMatch)))
 			{
-				This.Prop.Required_Dex := RxMatch1
+				This.Prop.Required_Dex := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: "rxNum, &RxMatch)))
 			{
-				This.Prop.Required_Int := RxMatch1
+				This.Prop.Required_Int := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: ([\w- ]+)",RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: ([\w- ]+)", &RxMatch)))
 			{
-				This.Prop.Sockets_Raw := RxMatch1
+				This.Prop.Sockets_Raw := RxMatch[1]
 				This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
 				This.Prop.Sockets_Link := 0
-				RegExReplace(RxMatch1, "R",, n)
+				RegExReplace(RxMatch[1], "R",, n)
 				This.Prop.Sockets_R := n
-				RegExReplace(RxMatch1, "G",, n)
+				RegExReplace(RxMatch[1], "G",, n)
 				This.Prop.Sockets_G := n
-				RegExReplace(RxMatch1, "B",, n)
+				RegExReplace(RxMatch[1], "B",, n)
 				This.Prop.Sockets_B := n
-				RegExReplace(RxMatch1, "W",, n)
+				RegExReplace(RxMatch[1], "W",, n)
 				This.Prop.Sockets_W := n
-				For k, v in StrSplit(RxMatch1, " ")
+				For k, v in StrSplit(RxMatch[1], " ")
 				{
 					nlink := StrLen(RegExReplace(v, "\w" , "")) + 1
 					if (This.Prop.Sockets_Link < nlink)
@@ -646,59 +651,59 @@
 				}
 			}
 			;Generic Props
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch) && !IsMap)
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum, &RxMatch)) && !IsMap)
 			{
-				This.Prop.Quality := RxMatch1
+				This.Prop.Quality := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum, &RxMatch)))
 			{
-				This.Prop.Rating_Armour := RxMatch1
+				This.Prop.Rating_Armour := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum, &RxMatch)))
 			{
-				This.Prop.Rating_EnergyShield := RxMatch1
+				This.Prop.Rating_EnergyShield := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion Rating: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion Rating: "rxNum, &RxMatch)))
 			{
-				This.Prop.Rating_Evasion := RxMatch1
+				This.Prop.Rating_Evasion := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum, &RxMatch)))
 			{
-				This.Prop.Rating_Block := RxMatch1
+				This.Prop.Rating_Block := RxMatch[1]
 			}
 
 			;Weapon Specific Props
 			;Every Weapon has APS
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum, &RxMatch)))
 			{
 				This.Prop.IsWeapon := True
-				This.Prop.Weapon_APS := RxMatch1
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Two Handed",RxMatch)){
+				This.Prop.Weapon_APS := RxMatch[1]
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Two Handed", &RxMatch))){
 					This.Prop.IsTwoHanded := True
 				}
-				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Staff",RxMatch)){
+				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Staff", &RxMatch))){
 					This.Prop.IsTwoHanded := True
 				}
-				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Bow",RxMatch)){
+				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Bow", &RxMatch))){
 					This.Prop.IsTwoHanded := True
 				}
 				Else
 				{
 					This.Prop.IsOneHanded := True
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum ,RxMatch))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum , &RxMatch)))
 				{
-					This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-					This.Prop.Weapon_Min_Physical_Dmg := RxMatch1
-					This.Prop.Weapon_Max_Physical_Dmg := RxMatch2
+					This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2)
+					This.Prop.Weapon_Min_Physical_Dmg := RxMatch[1]
+					This.Prop.Weapon_Max_Physical_Dmg := RxMatch[2]
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chaos Damage: " rxNum "-" rxNum ,RxMatch))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chaos Damage: " rxNum "-" rxNum , &RxMatch)))
 				{
-					This.Prop.Weapon_Avg_Chaos_Dmg := Format("{1:0.3g}",(RxMatch1 + RxMatch2) / 2)
-					This.Prop.Weapon_Min_Chaos_Dmg := RxMatch1
-					This.Prop.Weapon_Max_Chaos_Dmg := RxMatch2
+					This.Prop.Weapon_Avg_Chaos_Dmg := Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2)
+					This.Prop.Weapon_Min_Chaos_Dmg := RxMatch[1]
+					This.Prop.Weapon_Max_Chaos_Dmg := RxMatch[2]
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+",RxMatch))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+", &RxMatch)))
 				{
 					This.Prop.Weapon_Avg_Elemental_Dmg := 0
 					This.Prop.Weapon_Min_Elemental_Dmg := 0
@@ -712,24 +717,24 @@
 					}
 					values := ""
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum,RxMatch))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum, &RxMatch)))
 				{
-					This.Prop.Weapon_Critical_Strike := RxMatch1
+					This.Prop.Weapon_Critical_Strike := RxMatch[1]
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum,RxMatch))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum, &RxMatch)))
 				{
-					This.Prop.Weapon_Range := RxMatch1
+					This.Prop.Weapon_Range := RxMatch[1]
 				}
 				This.Prop.Weapon_DPS_Total := 0
 				This.Prop.Weapon_DPS_Total_Q20 := 0
-				If (This.Prop.HasKey("Weapon_Avg_Physical_Dmg"))
+				If (This.Prop.Has("Weapon_Avg_Physical_Dmg"))
 					This.Prop.Weapon_DPS_Physical := Round(This.Prop.Weapon_Avg_Physical_Dmg * This.Prop.Weapon_APS,1)
-				If (This.Prop.HasKey("Weapon_Avg_Elemental_Dmg"))
+				If (This.Prop.Has("Weapon_Avg_Elemental_Dmg"))
 					This.Prop.Weapon_DPS_Elemental := Round(This.Prop.Weapon_Avg_Elemental_Dmg * This.Prop.Weapon_APS,1)
-				If (This.Prop.HasKey("Weapon_Avg_Chaos_Dmg"))
+				If (This.Prop.Has("Weapon_Avg_Chaos_Dmg"))
 					This.Prop.Weapon_DPS_Chaos := Round(This.Prop.Weapon_Avg_Chaos_Dmg * This.Prop.Weapon_APS,1)
 				This.Prop.Weapon_DPS_Total := Round((This.Prop.Weapon_DPS_Physical?This.Prop.Weapon_DPS_Physical:0) + (This.Prop.Weapon_DPS_Elemental?This.Prop.Weapon_DPS_Elemental:0) + (This.Prop.Weapon_DPS_Chaos?This.Prop.Weapon_DPS_Chaos:0),1)
-				If ((This.Prop.Quality?This.Prop.Quality:0) < 20 && This.Prop.HasKey("Weapon_Avg_Physical_Dmg"))
+				If ((This.Prop.Quality?This.Prop.Quality:0) < 20 && This.Prop.Has("Weapon_Avg_Physical_Dmg"))
 				{
 					BasePhysDps := (This.Prop.Weapon_Avg_Physical_Dmg * This.Prop.Weapon_APS) / (((This.Prop.Quality?This.Prop.Quality:0) + 100) / 100)
 					Q20DpsPhys := Round(BasePhysDps * (120 / 100),2)
@@ -743,32 +748,32 @@
 
 		;Start Prop Block Parser for Maps
 		;Every map has a Map Tier!
-		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum,RxMatch))
+		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum, &RxMatch)))
 		{
-			This.Prop.Map_Tier := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: ([a-zA-Z0-9 ']+)",RxMatch))
+			This.Prop.Map_Tier := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: ([a-zA-Z0-9 ']+)", &RxMatch)))
 			{
-				This.Prop.Map_AtlasRegion := RxMatch1
+				This.Prop.Map_AtlasRegion := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+"rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+"rxNum, &RxMatch)))
 			{
-				This.Prop.Map_Quantity := RxMatch1
+				This.Prop.Map_Quantity := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+"rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+"rxNum, &RxMatch)))
 			{
-				This.Prop.Map_Rarity := RxMatch1
+				This.Prop.Map_Rarity := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: \+"rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: \+"rxNum, &RxMatch)))
 			{
-				This.Prop.Map_PackSize := RxMatch1
+				This.Prop.Map_PackSize := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Delirium Reward Type:",RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Delirium Reward Type:", &RxMatch)))
 			{
 				This.Prop.Map_Delirium := True
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum,RxMatch))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum, &RxMatch)))
 			{
-				This.Prop.Map_Quality := RxMatch1
+				This.Prop.Map_Quality := RxMatch[1]
 			}Else{
 				;Set Quality to 0 if not in map prop (instead flagging as false)
 				This.Prop.Map_Quality := 0
@@ -778,31 +783,31 @@
 
 		; Start Prop Block Parser for Heist
 		If indexOf(This.Prop.ItemClass, ["Contracts","Blueprints"]) {
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Heist Target: (.*)",RxMatch))
-				This.Prop.Heist_Target := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Client: (.*)",RxMatch))
-				This.Prop.Heist_Client := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Area Level: " rxNum,RxMatch))
-				This.Prop.Heist_AreaLevel := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+" rxNum,RxMatch))
-				This.Prop.Heist_ItemQuantity := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+" rxNum,RxMatch))
-				This.Prop.Heist_ItemRarity := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Alert Level Reduction: \+" rxNum,RxMatch))
-				This.Prop.Heist_AlertLevelReduction := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Time Before Lockdown: \+" rxNum,RxMatch))
-				This.Prop.Heist_TimeBeforeLockdown := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Maximum Alive Reinforcements: \+" rxNum,RxMatch))
-				This.Prop.Heist_MaximumAliveReinforcements := RxMatch1
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Wings Revealed: " rxNum "/" rxNum,RxMatch))
-				This.Prop.Heist_WingsRevealed := RxMatch1, This.Prop.Heist_WingsRevealedMax := RxMatch2
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Escape Routes Revealed: " rxNum "/" rxNum,RxMatch))
-				This.Prop.Heist_EscapeRoutesRevealed := RxMatch1, This.Prop.Heist_EscapeRoutesRevealedMax := RxMatch2
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Reward Rooms Revealed: " rxNum "/" rxNum,RxMatch))
-				This.Prop.Heist_RewardRoomsRevealed := RxMatch1, This.Prop.Heist_RewardRoomsRevealedMax := RxMatch2
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Heist Target: (.*)", &RxMatch)))
+				This.Prop.Heist_Target := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Client: (.*)", &RxMatch)))
+				This.Prop.Heist_Client := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Area Level: " rxNum, &RxMatch)))
+				This.Prop.Heist_AreaLevel := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+" rxNum, &RxMatch)))
+				This.Prop.Heist_ItemQuantity := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+" rxNum, &RxMatch)))
+				This.Prop.Heist_ItemRarity := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Alert Level Reduction: \+" rxNum, &RxMatch)))
+				This.Prop.Heist_AlertLevelReduction := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Time Before Lockdown: \+" rxNum, &RxMatch)))
+				This.Prop.Heist_TimeBeforeLockdown := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Maximum Alive Reinforcements: \+" rxNum, &RxMatch)))
+				This.Prop.Heist_MaximumAliveReinforcements := RxMatch[1]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Wings Revealed: " rxNum "/" rxNum, &RxMatch)))
+				This.Prop.Heist_WingsRevealed := RxMatch[1], This.Prop.Heist_WingsRevealedMax := RxMatch[2]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Escape Routes Revealed: " rxNum "/" rxNum, &RxMatch)))
+				This.Prop.Heist_EscapeRoutesRevealed := RxMatch[1], This.Prop.Heist_EscapeRoutesRevealedMax := RxMatch[2]
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Reward Rooms Revealed: " rxNum "/" rxNum, &RxMatch)))
+				This.Prop.Heist_RewardRoomsRevealed := RxMatch[1], This.Prop.Heist_RewardRoomsRevealedMax := RxMatch[2]
 			For k, job in ["Brute Force","Agility","Perception","Demolition","Counter-Thaumaturgy","Trap Disarmament","Deception","Engineering","Lockpicking"] {
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "( \(unmet\))?\)",RxMatch)) {
-					This.Prop["Heist_Requires_" job ] := RxMatch1
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "( \(unmet\))?\)", &RxMatch))) {
+					This.Prop["Heist_Requires_" job ] := RxMatch[1]
 					If (This.Prop.ItemClass == "Contracts"){
 						This.Prop["Heist_Contract_Type"] := job
 					}
@@ -815,14 +820,14 @@
 		If (This.Prop.RarityGem)
 		{
 			If (This.Prop.Corrupted) {
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal",RxMatch))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal", &RxMatch)))
 				{
 					This.Prop.VaalGem := True
 					This.Prop.ItemName := "Vaal " . This.Prop.ItemName
 				}
 			}
-			If (RegExMatch(This.Prop.ItemBase,"(^Divergent|^Phantasmal|^Anomalous)",RxMatch))
-				This.Prop.Gem_AltQuality := RxMatch1
+			If (RegExMatch(This.Prop.ItemBase, "(^Divergent|^Phantasmal|^Anomalous)", &RxMatch)))
+				This.Prop.Gem_AltQuality := RxMatch[1]
 			If (This.Prop.ItemBase ~= "^Awakened")
 				This.Prop.Gem_Awakened := True
 			If (This.Prop.Gem_Tags ~= "Exceptional")
@@ -852,10 +857,10 @@
 			This.Prop.ItemCraftingHit := True
 		}
 		;Stack size for anything with it
-		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" ,RxMatch))
+		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" , &RxMatch)))
 		{
-			This.Prop.Stack_Size := RegExReplace(RxMatch1,"[^\d]","")
-			This.Prop.Stack_Max := RegExReplace(RxMatch2,"[^\d]","")
+			This.Prop.Stack_Size := RegExReplace(RxMatch[1],"[^\d]","")
+			This.Prop.Stack_Max := RegExReplace(RxMatch[2],"[^\d]","")
 		}
 		If (This.Data.Blocks.FlavorText ~= "[into] the Sacred Grove")
 			This.Prop.SpecialType := "Harvest Item"
@@ -975,7 +980,7 @@
 			AffixList := b["AffixLine"]
 			Name := b["ActualTierName"]
 			AffixWRLine := StrSplit(b["AffixWRLine"], " | ")
-			if(AffixWRLine.Count() > 1){
+			if(AffixWRLine.Length > 1){
 				AffixWRLine[1] := "(Hybrid) " . AffixWRLine[1]
 			}
 			If(!This.Affix[AffixWRLine[1]])
@@ -1167,7 +1172,7 @@
 		; Do Stuff with info
 		LastLine := ""
 		DoubleModCounter := 0
-		Loop, Parse,% content, `r`n ; , `r
+		Loop Parse, content, "`r`n" ; , `r
 		{
 			If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
 			{
@@ -1179,7 +1184,7 @@
 				If (vals := This.MatchLine(LastLine))
 				{
 
-					If (vals.Count() == 1 && This.CheckIfActualHybridMod(key))
+					If (vals.Length == 1 && This.CheckIfActualHybridMod(key))
 					{
 						If This.Affix[key]
 						{
@@ -1203,7 +1208,7 @@
 			key := This.Standardize(line)
 			If (vals := This.MatchLine(line))
 			{
-				If (vals.Count() >= 2)
+				If (vals.Length >= 2)
 				{
 					If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
 						This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
@@ -1212,7 +1217,7 @@
 					For k, v in vals
 						This.Affix[ key "_value"k ] := v
 				}
-				Else If (vals.Count() == 1)
+				Else If (vals.Length == 1)
 				{
 					If (This.Affix[key] && DoubleModCounter != 2)
 					{
@@ -1235,7 +1240,7 @@
 			If (A_LoopField ~= rxNum "\(-*" rxNum "-*" rxNum "\)") {
 				EndValue := 0
 				Position := 1
-				While RegExMatch(A_LoopField, "O`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", RxMatch, Position) {
+				While RegExMatch(A_LoopField, "O`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", &RxMatch, Position) {
 					Position := RxMatch.Len(0) + RxMatch.Pos(0)
 					Value := RxMatch.Value(1)
 					Range1 := RxMatch.Value(2)
@@ -1245,11 +1250,11 @@
 					EndValue += Perc
 				}
 				EndValue := EndValue / EndEntries
-				If !This.Percent.HasKey(Key)
+				If !This.Percent.Has(Key)
 					This.Percent[key] := EndValue
 				Else {
 					Loop {
-						If !This.Percent.HasKey(Key A_Index + 1){
+						If !This.Percent.Has(Key A_Index + 1){
 							This.Percent[Key A_Index + 1] := EndValue
 							Break
 						}
@@ -1258,12 +1263,12 @@
 				This.Prop.HasRange := True
 			}
 		}
-		If This.Percent.Count() {
+		If This.Percent.Length {
 			This.Prop.PercentageAffix := 0
 			For mod, val in This.Percent {
 				This.Prop.PercentageAffix += val
 			}
-			This.Prop.PercentageAffix := Round(This.Prop.PercentageAffix / This.Percent.Count(),2)
+			This.Prop.PercentageAffix := Round(This.Prop.PercentageAffix / This.Percent.Length,2)
 		} Else {
 			This.Prop.PercentageAffix := 100
 		}
@@ -1297,7 +1302,7 @@
 		; Remove the extra line created by "additional information bubbles"
 		content := RegExReplace(content,"\n? ?\(\w+ \w+ [\r\n\w\%\d,\: ]*\)( \(implicit\))?( \(enchant\))?", "")
 		; Do Stuff with info
-		Loop, Parse,% content, `r`n ; , `r
+		Loop Parse, content, "`r`n" ; , `r
 		{
 			If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
 				Continue
@@ -1309,7 +1314,7 @@
 				Continue
 			If (vals := This.MatchLine(line))
 			{
-				If (vals.Count() >= 2)
+				If (vals.Length >= 2)
 				{
 					If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
 						This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
@@ -1318,7 +1323,7 @@
 					For k, v in vals
 						This.Affix[ key "_value"k ] := v
 				}
-				Else If (vals.Count() == 1)
+				Else If (vals.Length == 1)
 				{
 					If This.Affix[key]
 						This.Affix[key] += vals[1]
@@ -1334,7 +1339,7 @@
 		If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
 		{
 			ret := {}
-			Loop % RxMatch.Count()
+			Loop RxMatch.Length
 			{
 				If RxMatch[A_Index] != ""
 					ret.push(RxMatch[A_Index])
@@ -1359,9 +1364,9 @@
 		{
 			; Standardize implicit and crafted for Pseudo sums
 			; Implicits can be disable being merge into Pseudos checking YesCLFIgnoreImplicit
-			If (RegExMatch(k, "`am) \((.*)\)$", RxMatch) && YesCLFIgnoreImplicit)
+			If (RegExMatch(k, "`am) \((.*)\)$", &RxMatch)) && YesCLFIgnoreImplicit)
 			{
-				If (RxMatch1 != "crafted")
+				If (RxMatch[1] != "crafted")
 				{
 					Continue
 				}
@@ -1786,7 +1791,7 @@
 			If This.MatchNinjaDB("Beast", "ItemBase")
 				Return
 		}
-		If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.HasKey("Enchant"))
+		If (This.Prop.ItemClass ~= "Helmets" && This.Data.Blocks.Has("Enchant"))
 		{
 			For k, v in Ninja.HelmetEnchant
 			{
@@ -1938,9 +1943,9 @@
 			}
 		}
 
-		GuiControl, ItemInfo:, ItemInfoPropText, %propText%
+		Gui("ItemInfo")["ItemInfoPropText"].Value := propText
 
-		GuiControl, ItemInfo:, ItemInfoStatText, %statText%
+		Gui("ItemInfo")["ItemInfoStatText"].Value := statText
 
 		For key, value in This.Affix
 		{
@@ -1958,22 +1963,22 @@
 				modifierText .= key . ": " . value . "`n"
 			}
 		}
-		GuiControl, ItemInfo:, ItemInfoAffixText, %affixText%
+		Gui("ItemInfo")["ItemInfoAffixText"].Value := affixText
 
-		GuiControl, ItemInfo:, ItemInfoModifierText, %modifierText%
+		Gui("ItemInfo")["ItemInfoModifierText"].Value := modifierText
 
 	}
 	GraphNinjaPrices(){
-		If This.Data.HasKey("Ninja") || This.Data.HasKey("HelmNinja") || This.Data.HasKey("BaseNinja")
+		If This.Data.Has("Ninja") || This.Data.Has("HelmNinja") || This.Data.Has("BaseNinja")
 		{
-			Gosub, ShowGraph
-			Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " Sparkline"
+			_GoSub_ShowGraph()
+			Gui("ItemInfo").Show("AutoSize", This.Prop.ItemName " Sparkline")
 		}
 		Else
 		{
-			GoSub, noDataGraph
-			GoSub, HideGraph
-			Gui, ItemInfo: Show, AutoSize, % This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":"")
+			_GoSub_noDataGraph()  ; TODO: convert GoSub label to function call
+			_GoSub_HideGraph()  ; TODO: convert GoSub label to function call
+			Gui("ItemInfo").Show("AutoSize", This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":""))
 			Return
 		}
 
@@ -2001,27 +2006,27 @@
 			Else If basePayPoint > 100
 				FormatStr := "{1:0.0f}"
 
-			GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePayPoint*1.0)) "`%"
-			GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePayPoint*0.9)) "`%"
-			GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePayPoint*0.8)) "`%"
-			GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePayPoint*0.7)) "`%"
-			GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePayPoint*0.6)) "`%"
-			GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePayPoint*0.5)) "`%"
-			GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePayPoint*0.4)) "`%"
-			GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePayPoint*0.3)) "`%"
-			GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePayPoint*0.2)) "`%"
-			GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePayPoint*0.1)) "`%"
-			GuiControl,ItemInfo: , PercentText1G11, % "0`%"
-			GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePayPoint*0.1)) "`%"
-			GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePayPoint*0.2)) "`%"
-			GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePayPoint*0.3)) "`%"
-			GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePayPoint*0.4)) "`%"
-			GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePayPoint*0.5)) "`%"
-			GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePayPoint*0.6)) "`%"
-			GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePayPoint*0.7)) "`%"
-			GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePayPoint*0.8)) "`%"
-			GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePayPoint*0.9)) "`%"
-			GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePayPoint*1.0)) "`%"
+			Gui("ItemInfo")["PercentText1G1"].Value := Format(FormatStr,(basePayPoint*1.0)) "`%"
+			Gui("ItemInfo")["PercentText1G2"].Value := Format(FormatStr,(basePayPoint*0.9)) "`%"
+			Gui("ItemInfo")["PercentText1G3"].Value := Format(FormatStr,(basePayPoint*0.8)) "`%"
+			Gui("ItemInfo")["PercentText1G4"].Value := Format(FormatStr,(basePayPoint*0.7)) "`%"
+			Gui("ItemInfo")["PercentText1G5"].Value := Format(FormatStr,(basePayPoint*0.6)) "`%"
+			Gui("ItemInfo")["PercentText1G6"].Value := Format(FormatStr,(basePayPoint*0.5)) "`%"
+			Gui("ItemInfo")["PercentText1G7"].Value := Format(FormatStr,(basePayPoint*0.4)) "`%"
+			Gui("ItemInfo")["PercentText1G8"].Value := Format(FormatStr,(basePayPoint*0.3)) "`%"
+			Gui("ItemInfo")["PercentText1G9"].Value := Format(FormatStr,(basePayPoint*0.2)) "`%"
+			Gui("ItemInfo")["PercentText1G10"].Value := Format(FormatStr,(basePayPoint*0.1)) "`%"
+			Gui("ItemInfo")["PercentText1G11"].Value := "0`%"
+			Gui("ItemInfo")["PercentText1G12"].Value := Format(FormatStr,-(basePayPoint*0.1)) "`%"
+			Gui("ItemInfo")["PercentText1G13"].Value := Format(FormatStr,-(basePayPoint*0.2)) "`%"
+			Gui("ItemInfo")["PercentText1G14"].Value := Format(FormatStr,-(basePayPoint*0.3)) "`%"
+			Gui("ItemInfo")["PercentText1G15"].Value := Format(FormatStr,-(basePayPoint*0.4)) "`%"
+			Gui("ItemInfo")["PercentText1G16"].Value := Format(FormatStr,-(basePayPoint*0.5)) "`%"
+			Gui("ItemInfo")["PercentText1G17"].Value := Format(FormatStr,-(basePayPoint*0.6)) "`%"
+			Gui("ItemInfo")["PercentText1G18"].Value := Format(FormatStr,-(basePayPoint*0.7)) "`%"
+			Gui("ItemInfo")["PercentText1G19"].Value := Format(FormatStr,-(basePayPoint*0.8)) "`%"
+			Gui("ItemInfo")["PercentText1G20"].Value := Format(FormatStr,-(basePayPoint*0.9)) "`%"
+			Gui("ItemInfo")["PercentText1G21"].Value := Format(FormatStr,-(basePayPoint*1.0)) "`%"
 
 			baseRecPoint := 0
 			For k, v in dataRecPoint
@@ -2040,27 +2045,27 @@
 			Else If baseRecPoint > 100
 				FormatStr := "{1:0.0f}"
 
-			GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseRecPoint*1.0)) "`%"
-			GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseRecPoint*0.9)) "`%"
-			GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseRecPoint*0.8)) "`%"
-			GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseRecPoint*0.7)) "`%"
-			GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseRecPoint*0.6)) "`%"
-			GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseRecPoint*0.5)) "`%"
-			GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseRecPoint*0.4)) "`%"
-			GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseRecPoint*0.3)) "`%"
-			GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseRecPoint*0.2)) "`%"
-			GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseRecPoint*0.1)) "`%"
-			GuiControl,ItemInfo: , PercentText2G11, % "0`%"
-			GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseRecPoint*0.1)) "`%"
-			GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseRecPoint*0.2)) "`%"
-			GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseRecPoint*0.3)) "`%"
-			GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseRecPoint*0.4)) "`%"
-			GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseRecPoint*0.5)) "`%"
-			GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseRecPoint*0.6)) "`%"
-			GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseRecPoint*0.7)) "`%"
-			GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseRecPoint*0.8)) "`%"
-			GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseRecPoint*0.9)) "`%"
-			GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseRecPoint*1.0)) "`%"
+			Gui("ItemInfo")["PercentText2G1"].Value := Format(FormatStr,(baseRecPoint*1.0)) "`%"
+			Gui("ItemInfo")["PercentText2G2"].Value := Format(FormatStr,(baseRecPoint*0.9)) "`%"
+			Gui("ItemInfo")["PercentText2G3"].Value := Format(FormatStr,(baseRecPoint*0.8)) "`%"
+			Gui("ItemInfo")["PercentText2G4"].Value := Format(FormatStr,(baseRecPoint*0.7)) "`%"
+			Gui("ItemInfo")["PercentText2G5"].Value := Format(FormatStr,(baseRecPoint*0.6)) "`%"
+			Gui("ItemInfo")["PercentText2G6"].Value := Format(FormatStr,(baseRecPoint*0.5)) "`%"
+			Gui("ItemInfo")["PercentText2G7"].Value := Format(FormatStr,(baseRecPoint*0.4)) "`%"
+			Gui("ItemInfo")["PercentText2G8"].Value := Format(FormatStr,(baseRecPoint*0.3)) "`%"
+			Gui("ItemInfo")["PercentText2G9"].Value := Format(FormatStr,(baseRecPoint*0.2)) "`%"
+			Gui("ItemInfo")["PercentText2G10"].Value := Format(FormatStr,(baseRecPoint*0.1)) "`%"
+			Gui("ItemInfo")["PercentText2G11"].Value := "0`%"
+			Gui("ItemInfo")["PercentText2G12"].Value := Format(FormatStr,-(baseRecPoint*0.1)) "`%"
+			Gui("ItemInfo")["PercentText2G13"].Value := Format(FormatStr,-(baseRecPoint*0.2)) "`%"
+			Gui("ItemInfo")["PercentText2G14"].Value := Format(FormatStr,-(baseRecPoint*0.3)) "`%"
+			Gui("ItemInfo")["PercentText2G15"].Value := Format(FormatStr,-(baseRecPoint*0.4)) "`%"
+			Gui("ItemInfo")["PercentText2G16"].Value := Format(FormatStr,-(baseRecPoint*0.5)) "`%"
+			Gui("ItemInfo")["PercentText2G17"].Value := Format(FormatStr,-(baseRecPoint*0.6)) "`%"
+			Gui("ItemInfo")["PercentText2G18"].Value := Format(FormatStr,-(baseRecPoint*0.7)) "`%"
+			Gui("ItemInfo")["PercentText2G19"].Value := Format(FormatStr,-(baseRecPoint*0.8)) "`%"
+			Gui("ItemInfo")["PercentText2G20"].Value := Format(FormatStr,-(baseRecPoint*0.9)) "`%"
+			Gui("ItemInfo")["PercentText2G21"].Value := Format(FormatStr,-(baseRecPoint*1.0)) "`%"
 
 			AvgPay := {}
 			Loop 5
@@ -2113,55 +2118,55 @@
 				;MsgBox % "Key : " k "   Val : " v
 			}
 
-			GuiControl,ItemInfo: , GroupBox1, % "Sell " This.Prop.ItemName " to Chaos"
-			GuiControl,ItemInfo: , PComment1, Sell Value
-			GuiControl,ItemInfo: , PData1, % sellval := (1 / This.Data.Ninja["pay"]["value"])
-			GuiControl,ItemInfo: , PComment2, Sell Value `% Change
-			GuiControl,ItemInfo: , PData2, % This.Data.Ninja["paySparkLine"]["totalChange"]
-			GuiControl,ItemInfo: , PComment3, Orb per Chaos
-			GuiControl,ItemInfo: , PData3, % This.Data.Ninja["pay"]["value"]
-			GuiControl,ItemInfo: , PComment4, Day 6 Change
-			GuiControl,ItemInfo: , PData4, % dataPayPoint[2]
-			GuiControl,ItemInfo: , PComment5, Day 5 Change
-			GuiControl,ItemInfo: , PData5, % dataPayPoint[3]
-			GuiControl,ItemInfo: , PComment6, Day 4 Change
-			GuiControl,ItemInfo: , PData6, % dataPayPoint[4]
-			GuiControl,ItemInfo: , PComment7, Day 3 Change
-			GuiControl,ItemInfo: , PData7, % dataPayPoint[5]
-			GuiControl,ItemInfo: , PComment8, Day 2 Change
-			GuiControl,ItemInfo: , PData8, % dataPayPoint[6]
-			GuiControl,ItemInfo: , PComment9, Day 1 Change
-			GuiControl,ItemInfo: , PData9, % dataPayPoint[7]
-			GuiControl,ItemInfo: , PComment10, % Decimal2Fraction(sellval,"ID3")
-			GuiControl,ItemInfo: , PData10, C / O
+			Gui("ItemInfo")["GroupBox1"].Value := "Sell " This.Prop.ItemName " to Chaos"
+			ItemInfoGui["PComment1"].Text := "Sell Value"
+			Gui("ItemInfo")["PData1"].Value := sellval := (1 / This.Data.Ninja["pay"]["value"])
+			ItemInfoGui["PComment2"].Text := "Sell Value `% Change"
+			Gui("ItemInfo")["PData2"].Value := This.Data.Ninja["paySparkLine"]["totalChange"]
+			ItemInfoGui["PComment3"].Text := "Orb per Chaos"
+			Gui("ItemInfo")["PData3"].Value := This.Data.Ninja["pay"]["value"]
+			ItemInfoGui["PComment4"].Text := "Day 6 Change"
+			Gui("ItemInfo")["PData4"].Value := dataPayPoint[2]
+			ItemInfoGui["PComment5"].Text := "Day 5 Change"
+			Gui("ItemInfo")["PData5"].Value := dataPayPoint[3]
+			ItemInfoGui["PComment6"].Text := "Day 4 Change"
+			Gui("ItemInfo")["PData6"].Value := dataPayPoint[4]
+			ItemInfoGui["PComment7"].Text := "Day 3 Change"
+			Gui("ItemInfo")["PData7"].Value := dataPayPoint[5]
+			ItemInfoGui["PComment8"].Text := "Day 2 Change"
+			Gui("ItemInfo")["PData8"].Value := dataPayPoint[6]
+			ItemInfoGui["PComment9"].Text := "Day 1 Change"
+			Gui("ItemInfo")["PData9"].Value := dataPayPoint[7]
+			Gui("ItemInfo")["PComment10"].Value := Decimal2Fraction(sellval,"ID3")
+			ItemInfoGui["PData10"].Text := "C / O"
 
-			GuiControl,ItemInfo: , GroupBox2, % "Buy " This.Prop.ItemName " from Chaos"
-			GuiControl,ItemInfo: , SComment1, Buy Value
-			GuiControl,ItemInfo: , SData1, % sellval := (This.Data.Ninja["receive"]["value"])
-			GuiControl,ItemInfo: , SComment2, Buy Value `% Change
-			GuiControl,ItemInfo: , SData2, % This.Data.Ninja["receiveSparkLine"]["totalChange"]
-			GuiControl,ItemInfo: , SComment3, Orb per Chaos
-			GuiControl,ItemInfo: , SData3, % 1 / This.Data.Ninja["receive"]["value"]
-			GuiControl,ItemInfo: , SComment4, Day 6 Change
-			GuiControl,ItemInfo: , SData4, % dataRecPoint[2]
-			GuiControl,ItemInfo: , SComment5, Day 5 Change
-			GuiControl,ItemInfo: , SData5, % dataRecPoint[3]
-			GuiControl,ItemInfo: , SComment6, Day 4 Change
-			GuiControl,ItemInfo: , SData6, % dataRecPoint[4]
-			GuiControl,ItemInfo: , SComment7, Day 3 Change
-			GuiControl,ItemInfo: , SData7, % dataRecPoint[5]
-			GuiControl,ItemInfo: , SComment8, Day 2 Change
-			GuiControl,ItemInfo: , SData8, % dataRecPoint[6]
-			GuiControl,ItemInfo: , SComment9, Day 1 Change
-			GuiControl,ItemInfo: , SData9, % dataRecPoint[7]
-			GuiControl,ItemInfo: , SComment10, % Decimal2Fraction(sellval,"ID3")
-			GuiControl,ItemInfo: , SData10, C / O
+			Gui("ItemInfo")["GroupBox2"].Value := "Buy " This.Prop.ItemName " from Chaos"
+			ItemInfoGui["SComment1"].Text := "Buy Value"
+			Gui("ItemInfo")["SData1"].Value := sellval := (This.Data.Ninja["receive"]["value"])
+			ItemInfoGui["SComment2"].Text := "Buy Value `% Change"
+			Gui("ItemInfo")["SData2"].Value := This.Data.Ninja["receiveSparkLine"]["totalChange"]
+			ItemInfoGui["SComment3"].Text := "Orb per Chaos"
+			Gui("ItemInfo")["SData3"].Value := 1 / This.Data.Ninja["receive"]["value"]
+			ItemInfoGui["SComment4"].Text := "Day 6 Change"
+			Gui("ItemInfo")["SData4"].Value := dataRecPoint[2]
+			ItemInfoGui["SComment5"].Text := "Day 5 Change"
+			Gui("ItemInfo")["SData5"].Value := dataRecPoint[3]
+			ItemInfoGui["SComment6"].Text := "Day 4 Change"
+			Gui("ItemInfo")["SData6"].Value := dataRecPoint[4]
+			ItemInfoGui["SComment7"].Text := "Day 3 Change"
+			Gui("ItemInfo")["SData7"].Value := dataRecPoint[5]
+			ItemInfoGui["SComment8"].Text := "Day 2 Change"
+			Gui("ItemInfo")["SData8"].Value := dataRecPoint[6]
+			ItemInfoGui["SComment9"].Text := "Day 1 Change"
+			Gui("ItemInfo")["SData9"].Value := dataRecPoint[7]
+			Gui("ItemInfo")["SComment10"].Value := Decimal2Fraction(sellval,"ID3")
+			ItemInfoGui["SData10"].Text := "C / O"
 
 		}
 		Else If (This.Data.Ninja["sparkline"] || This.Data.HelmNinja["sparkline"] || This.Data.BaseNinja["sparkline"] )
 		{
 			LTGraph := HTGraph := True
-			If (This.Data.HasKey("Ninja"))
+			If (This.Data.Has("Ninja"))
 			{
 				HTGraph := "Name"
 				dataPoint := This.Data.Ninja["sparkline"]["data"]
@@ -2170,7 +2175,7 @@
 			Else
 				HTGraph := False
 
-			If (This.Data.HasKey("HelmNinja") && This.Data.HasKey("BaseNinja"))
+			If (This.Data.Has("HelmNinja") && This.Data.Has("BaseNinja"))
 			{
 				dataPoint := This.Data.BaseNinja["sparkline"]["data"]
 				totalChange := This.Data.BaseNinja["sparkline"]["totalChange"]
@@ -2179,13 +2184,13 @@
 				HTGraph := "Base"
 				LTGraph := "Helm"
 			}
-			Else If (This.Data.HasKey("BaseNinja"))
+			Else If (This.Data.Has("BaseNinja"))
 			{
 				dataLTPoint := This.Data.BaseNinja["sparkline"]["data"]
 				totalLTChange := This.Data.BaseNinja["sparkline"]["totalChange"]
 				LTGraph := "Base"
 			}
-			Else If (This.Data.HasKey("HelmNinja"))
+			Else If (This.Data.Has("HelmNinja"))
 			{
 				dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
 				totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]
@@ -2194,8 +2199,8 @@
 			Else
 			{
 				LTGraph := False
-				GoSub, noDataGraph2
-				GoSub, noDataGraph2
+				_GoSub_noDataGraph2()  ; TODO: convert GoSub label to function call
+				_GoSub_noDataGraph2()  ; TODO: convert GoSub label to function call
 			}
 
 			If (HTGraph)
@@ -2217,27 +2222,27 @@
 				Else If basePoint > 100
 					FormatStr := "{1:0.0f}"
 
-				GuiControl,ItemInfo: , PercentText1G1, % Format(FormatStr,(basePoint*1.0)) "`%"
-				GuiControl,ItemInfo: , PercentText1G2, % Format(FormatStr,(basePoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText1G3, % Format(FormatStr,(basePoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText1G4, % Format(FormatStr,(basePoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText1G5, % Format(FormatStr,(basePoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText1G6, % Format(FormatStr,(basePoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText1G7, % Format(FormatStr,(basePoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText1G8, % Format(FormatStr,(basePoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText1G9, % Format(FormatStr,(basePoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText1G10, % Format(FormatStr,(basePoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText1G11, % "0`%"
-				GuiControl,ItemInfo: , PercentText1G12, % Format(FormatStr,-(basePoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText1G13, % Format(FormatStr,-(basePoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText1G14, % Format(FormatStr,-(basePoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText1G15, % Format(FormatStr,-(basePoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText1G16, % Format(FormatStr,-(basePoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText1G17, % Format(FormatStr,-(basePoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText1G18, % Format(FormatStr,-(basePoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText1G19, % Format(FormatStr,-(basePoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText1G20, % Format(FormatStr,-(basePoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText1G21, % Format(FormatStr,-(basePoint*1.0)) "`%"
+				Gui("ItemInfo")["PercentText1G1"].Value := Format(FormatStr,(basePoint*1.0)) "`%"
+				Gui("ItemInfo")["PercentText1G2"].Value := Format(FormatStr,(basePoint*0.9)) "`%"
+				Gui("ItemInfo")["PercentText1G3"].Value := Format(FormatStr,(basePoint*0.8)) "`%"
+				Gui("ItemInfo")["PercentText1G4"].Value := Format(FormatStr,(basePoint*0.7)) "`%"
+				Gui("ItemInfo")["PercentText1G5"].Value := Format(FormatStr,(basePoint*0.6)) "`%"
+				Gui("ItemInfo")["PercentText1G6"].Value := Format(FormatStr,(basePoint*0.5)) "`%"
+				Gui("ItemInfo")["PercentText1G7"].Value := Format(FormatStr,(basePoint*0.4)) "`%"
+				Gui("ItemInfo")["PercentText1G8"].Value := Format(FormatStr,(basePoint*0.3)) "`%"
+				Gui("ItemInfo")["PercentText1G9"].Value := Format(FormatStr,(basePoint*0.2)) "`%"
+				Gui("ItemInfo")["PercentText1G10"].Value := Format(FormatStr,(basePoint*0.1)) "`%"
+				Gui("ItemInfo")["PercentText1G11"].Value := "0`%"
+				Gui("ItemInfo")["PercentText1G12"].Value := Format(FormatStr,-(basePoint*0.1)) "`%"
+				Gui("ItemInfo")["PercentText1G13"].Value := Format(FormatStr,-(basePoint*0.2)) "`%"
+				Gui("ItemInfo")["PercentText1G14"].Value := Format(FormatStr,-(basePoint*0.3)) "`%"
+				Gui("ItemInfo")["PercentText1G15"].Value := Format(FormatStr,-(basePoint*0.4)) "`%"
+				Gui("ItemInfo")["PercentText1G16"].Value := Format(FormatStr,-(basePoint*0.5)) "`%"
+				Gui("ItemInfo")["PercentText1G17"].Value := Format(FormatStr,-(basePoint*0.6)) "`%"
+				Gui("ItemInfo")["PercentText1G18"].Value := Format(FormatStr,-(basePoint*0.7)) "`%"
+				Gui("ItemInfo")["PercentText1G19"].Value := Format(FormatStr,-(basePoint*0.8)) "`%"
+				Gui("ItemInfo")["PercentText1G20"].Value := Format(FormatStr,-(basePoint*0.9)) "`%"
+				Gui("ItemInfo")["PercentText1G21"].Value := Format(FormatStr,-(basePoint*1.0)) "`%"
 
 				Avg := {}
 				Loop 5
@@ -2265,32 +2270,32 @@
 					;MsgBox % "Key : " k "   Val : " v
 				}
 
-				GuiControl,ItemInfo: , GroupBox1, % (HTGraph = "Name"?"Value of " This.Prop.ItemName : (HTGraph = "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
-				GuiControl,ItemInfo: , PComment1, Chaos Value
-				GuiControl,ItemInfo: , PData1, % (HTGraph = "Name"?This.Data.Ninja["chaosValue"]:(HTGraph = "Base"?This.Data.BaseNinja["chaosValue"]:""))
-				GuiControl,ItemInfo: , PComment2, Exalted Value
-				GuiControl,ItemInfo: , PData2, % (HTGraph = "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph = "Base"?This.Data.BaseNinja["exaltedValue"]:""))
-				GuiControl,ItemInfo: , PComment3, Chaos Value `% Change
-				GuiControl,ItemInfo: , PData3, % (HTGraph = "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph = "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
-				GuiControl,ItemInfo: , PComment4, Day 6 Change
-				GuiControl,ItemInfo: , PData4, % dataPoint[2]
-				GuiControl,ItemInfo: , PComment5, Day 5 Change
-				GuiControl,ItemInfo: , PData5, % dataPoint[3]
-				GuiControl,ItemInfo: , PComment6, Day 4 Change
-				GuiControl,ItemInfo: , PData6, % dataPoint[4]
-				GuiControl,ItemInfo: , PComment7, Day 3 Change
-				GuiControl,ItemInfo: , PData7, % dataPoint[5]
-				GuiControl,ItemInfo: , PComment8, Day 2 Change
-				GuiControl,ItemInfo: , PData8, % dataPoint[6]
-				GuiControl,ItemInfo: , PComment9, Day 1 Change
-				GuiControl,ItemInfo: , PData9, % dataPoint[7]
-				GuiControl,ItemInfo: , PComment10,
-				GuiControl,ItemInfo: , PData10,
+				Gui("ItemInfo")["GroupBox1"].Value := (HTGraph = "Name"?"Value of " This.Prop.ItemName : (HTGraph = "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
+				ItemInfoGui["PComment1"].Text := "Chaos Value"
+				Gui("ItemInfo")["PData1"].Value := (HTGraph = "Name"?This.Data.Ninja["chaosValue"]:(HTGraph = "Base"?This.Data.BaseNinja["chaosValue"]:""))
+				ItemInfoGui["PComment2"].Text := "Exalted Value"
+				Gui("ItemInfo")["PData2"].Value := (HTGraph = "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph = "Base"?This.Data.BaseNinja["exaltedValue"]:""))
+				ItemInfoGui["PComment3"].Text := "Chaos Value `% Change"
+				Gui("ItemInfo")["PData3"].Value := (HTGraph = "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph = "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
+				ItemInfoGui["PComment4"].Text := "Day 6 Change"
+				Gui("ItemInfo")["PData4"].Value := dataPoint[2]
+				ItemInfoGui["PComment5"].Text := "Day 5 Change"
+				Gui("ItemInfo")["PData5"].Value := dataPoint[3]
+				ItemInfoGui["PComment6"].Text := "Day 4 Change"
+				Gui("ItemInfo")["PData6"].Value := dataPoint[4]
+				ItemInfoGui["PComment7"].Text := "Day 3 Change"
+				Gui("ItemInfo")["PData7"].Value := dataPoint[5]
+				ItemInfoGui["PComment8"].Text := "Day 2 Change"
+				Gui("ItemInfo")["PData8"].Value := dataPoint[6]
+				ItemInfoGui["PComment9"].Text := "Day 1 Change"
+				Gui("ItemInfo")["PData9"].Value := dataPoint[7]
+				Gui("ItemInfo")["PComment10"].Value := ""
+				Gui("ItemInfo")["PData10"].Value := ""
 			}
 			Else
 			{
-				Gosub, noDataGraph1
-				Gosub, HideGraph1
+				_GoSub_noDataGraph1()
+				_GoSub_HideGraph1()
 			}
 
 			If (LTGraph)
@@ -2312,27 +2317,27 @@
 				Else If baseLTPoint > 100
 					FormatStr := "{1:0.0f}"
 
-				GuiControl,ItemInfo: , PercentText2G1, % Format(FormatStr,(baseLTPoint*1.0)) "`%"
-				GuiControl,ItemInfo: , PercentText2G2, % Format(FormatStr,(baseLTPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText2G3, % Format(FormatStr,(baseLTPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText2G4, % Format(FormatStr,(baseLTPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText2G5, % Format(FormatStr,(baseLTPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText2G6, % Format(FormatStr,(baseLTPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText2G7, % Format(FormatStr,(baseLTPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText2G8, % Format(FormatStr,(baseLTPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText2G9, % Format(FormatStr,(baseLTPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText2G10, % Format(FormatStr,(baseLTPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText2G11, % "0`%"
-				GuiControl,ItemInfo: , PercentText2G12, % Format(FormatStr,-(baseLTPoint*0.1)) "`%"
-				GuiControl,ItemInfo: , PercentText2G13, % Format(FormatStr,-(baseLTPoint*0.2)) "`%"
-				GuiControl,ItemInfo: , PercentText2G14, % Format(FormatStr,-(baseLTPoint*0.3)) "`%"
-				GuiControl,ItemInfo: , PercentText2G15, % Format(FormatStr,-(baseLTPoint*0.4)) "`%"
-				GuiControl,ItemInfo: , PercentText2G16, % Format(FormatStr,-(baseLTPoint*0.5)) "`%"
-				GuiControl,ItemInfo: , PercentText2G17, % Format(FormatStr,-(baseLTPoint*0.6)) "`%"
-				GuiControl,ItemInfo: , PercentText2G18, % Format(FormatStr,-(baseLTPoint*0.7)) "`%"
-				GuiControl,ItemInfo: , PercentText2G19, % Format(FormatStr,-(baseLTPoint*0.8)) "`%"
-				GuiControl,ItemInfo: , PercentText2G20, % Format(FormatStr,-(baseLTPoint*0.9)) "`%"
-				GuiControl,ItemInfo: , PercentText2G21, % Format(FormatStr,-(baseLTPoint*1.0)) "`%"
+				Gui("ItemInfo")["PercentText2G1"].Value := Format(FormatStr,(baseLTPoint*1.0)) "`%"
+				Gui("ItemInfo")["PercentText2G2"].Value := Format(FormatStr,(baseLTPoint*0.9)) "`%"
+				Gui("ItemInfo")["PercentText2G3"].Value := Format(FormatStr,(baseLTPoint*0.8)) "`%"
+				Gui("ItemInfo")["PercentText2G4"].Value := Format(FormatStr,(baseLTPoint*0.7)) "`%"
+				Gui("ItemInfo")["PercentText2G5"].Value := Format(FormatStr,(baseLTPoint*0.6)) "`%"
+				Gui("ItemInfo")["PercentText2G6"].Value := Format(FormatStr,(baseLTPoint*0.5)) "`%"
+				Gui("ItemInfo")["PercentText2G7"].Value := Format(FormatStr,(baseLTPoint*0.4)) "`%"
+				Gui("ItemInfo")["PercentText2G8"].Value := Format(FormatStr,(baseLTPoint*0.3)) "`%"
+				Gui("ItemInfo")["PercentText2G9"].Value := Format(FormatStr,(baseLTPoint*0.2)) "`%"
+				Gui("ItemInfo")["PercentText2G10"].Value := Format(FormatStr,(baseLTPoint*0.1)) "`%"
+				Gui("ItemInfo")["PercentText2G11"].Value := "0`%"
+				Gui("ItemInfo")["PercentText2G12"].Value := Format(FormatStr,-(baseLTPoint*0.1)) "`%"
+				Gui("ItemInfo")["PercentText2G13"].Value := Format(FormatStr,-(baseLTPoint*0.2)) "`%"
+				Gui("ItemInfo")["PercentText2G14"].Value := Format(FormatStr,-(baseLTPoint*0.3)) "`%"
+				Gui("ItemInfo")["PercentText2G15"].Value := Format(FormatStr,-(baseLTPoint*0.4)) "`%"
+				Gui("ItemInfo")["PercentText2G16"].Value := Format(FormatStr,-(baseLTPoint*0.5)) "`%"
+				Gui("ItemInfo")["PercentText2G17"].Value := Format(FormatStr,-(baseLTPoint*0.6)) "`%"
+				Gui("ItemInfo")["PercentText2G18"].Value := Format(FormatStr,-(baseLTPoint*0.7)) "`%"
+				Gui("ItemInfo")["PercentText2G19"].Value := Format(FormatStr,-(baseLTPoint*0.8)) "`%"
+				Gui("ItemInfo")["PercentText2G20"].Value := Format(FormatStr,-(baseLTPoint*0.9)) "`%"
+				Gui("ItemInfo")["PercentText2G21"].Value := Format(FormatStr,-(baseLTPoint*1.0)) "`%"
 
 				LTAvg := {}
 				Loop 5
@@ -2360,129 +2365,118 @@
 					;MsgBox % "Key : " k "   Val : " v
 				}
 
-				GuiControl,ItemInfo: , GroupBox2, % (LTGraph = "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph = "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
-				GuiControl,ItemInfo: , SComment1, Chaos Value
-				GuiControl,ItemInfo: , SData1, % (LTGraph = "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph = "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
-				GuiControl,ItemInfo: , SComment2,
-				GuiControl,ItemInfo: , SData2,
-				GuiControl,ItemInfo: , SComment3, Chaos Value `% Change
-				GuiControl,ItemInfo: , SData3, % (LTGraph = "Base"? This.Data.BaseNinja["sparkline"]["totalChange"] : (LTGraph = "Helm" ? This.Data.HelmNinja["sparkline"]["totalChange"] : "") )
-				GuiControl,ItemInfo: , SComment4, Day 6 Change
-				GuiControl,ItemInfo: , SData4, % dataLTPoint[2]
-				GuiControl,ItemInfo: , SComment5, Day 5 Change
-				GuiControl,ItemInfo: , SData5, % dataLTPoint[3]
-				GuiControl,ItemInfo: , SComment6, Day 4 Change
-				GuiControl,ItemInfo: , SData6, % dataLTPoint[4]
-				GuiControl,ItemInfo: , SComment7, Day 3 Change
-				GuiControl,ItemInfo: , SData7, % dataLTPoint[5]
-				GuiControl,ItemInfo: , SComment8, Day 2 Change
-				GuiControl,ItemInfo: , SData8, % dataLTPoint[6]
-				GuiControl,ItemInfo: , SComment9, Day 1 Change
-				GuiControl,ItemInfo: , SData9, % dataLTPoint[7]
-				GuiControl,ItemInfo: , SComment10,
-				GuiControl,ItemInfo: , SData10,
+				Gui("ItemInfo")["GroupBox2"].Value := (LTGraph = "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph = "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
+				ItemInfoGui["SComment1"].Text := "Chaos Value"
+				Gui("ItemInfo")["SData1"].Value := (LTGraph = "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph = "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
+				Gui("ItemInfo")["SComment2"].Value := ""
+				Gui("ItemInfo")["SData2"].Value := ""
+				ItemInfoGui["SComment3"].Text := "Chaos Value `% Change"
+				Gui("ItemInfo")["SData3"].Value := (LTGraph = "Base"? This.Data.BaseNinja["sparkline"]["totalChange"] : (LTGraph = "Helm" ? This.Data.HelmNinja["sparkline"]["totalChange"] : "") )
+				ItemInfoGui["SComment4"].Text := "Day 6 Change"
+				Gui("ItemInfo")["SData4"].Value := dataLTPoint[2]
+				ItemInfoGui["SComment5"].Text := "Day 5 Change"
+				Gui("ItemInfo")["SData5"].Value := dataLTPoint[3]
+				ItemInfoGui["SComment6"].Text := "Day 4 Change"
+				Gui("ItemInfo")["SData6"].Value := dataLTPoint[4]
+				ItemInfoGui["SComment7"].Text := "Day 3 Change"
+				Gui("ItemInfo")["SData7"].Value := dataLTPoint[5]
+				ItemInfoGui["SComment8"].Text := "Day 2 Change"
+				Gui("ItemInfo")["SData8"].Value := dataLTPoint[6]
+				ItemInfoGui["SComment9"].Text := "Day 1 Change"
+				Gui("ItemInfo")["SData9"].Value := dataLTPoint[7]
+				Gui("ItemInfo")["SComment10"].Value := ""
+				Gui("ItemInfo")["SData10"].Value := ""
 			}
 			Else
 			{
-				Gosub, noDataGraph2
-				Gosub, HideGraph2
+				_GoSub_noDataGraph2()
+				_GoSub_HideGraph2()
 			}
 
 		}
 		Return
 
-		noDataGraph:
-		GoSub, noDataGraph1
-		GoSub, noDataGraph2
-		Return
-
-		noDataGraph1:
-		Loop 21
-		{
-			GuiControl,ItemInfo: , PercentText1G%A_Index%, 0`%
+		_GoSub_ShowGraph(){
+			Loop 2
+			{
+				aVal := A_Index
+				Loop 21
+				{
+					ItemInfoGui["PercentText" aVal "G" A_Index].Visible := True
+				}
+				ItemInfoGui["pGraph" aVal].Visible := True
+				ItemInfoGui["GroupBox" aVal].Visible := True
+			}
+			Loop 10
+			{
+				ItemInfoGui["PComment" A_Index].Visible := True
+				ItemInfoGui["PData" A_Index].Visible := True
+				ItemInfoGui["SComment" A_Index].Visible := True
+				ItemInfoGui["SData" A_Index].Visible := True
+			}
 		}
-		GuiControl,ItemInfo: , GroupBox1, No Data
-		Loop 13
-		{
-			XGraph_Plot( pGraph1, 100, "", True )
-		}
-		Loop 10
-		{
-			GuiControl,ItemInfo: , PComment%A_Index%,
-			GuiControl,ItemInfo: , PData%A_Index%,
-		}
-		Return
-
-		noDataGraph2:
-		Loop 21
-		{
-			GuiControl,ItemInfo: , PercentText2G%A_Index%, 0`%
-		}
-		GuiControl,ItemInfo: , GroupBox2, No Data
-		Loop 13
-		{
-			XGraph_Plot( pGraph2, 100, "", True )
-		}
-		Loop 10
-		{
-			GuiControl,ItemInfo: , SComment%A_Index%,
-			GuiControl,ItemInfo: , SData%A_Index%,
-		}
-		Return
-
-		HideGraph:
-		GoSub, HideGraph1
-		GoSub, HideGraph2
-		Return
-
-		HideGraph1:
-		Loop 21
-		{
-			GuiControl,ItemInfo: Hide, PercentText1G%A_Index%
-		}
-		GuiControl,ItemInfo: Hide, pGraph1
-		GuiControl,ItemInfo: Hide, GroupBox1
-		Loop 10
-		{
-			GuiControl,ItemInfo: Hide, PComment%A_Index%
-			GuiControl,ItemInfo: Hide, PData%A_Index%
-		}
-		Return
-
-		HideGraph2:
-		Loop 21
-		{
-			GuiControl,ItemInfo: Hide, PercentText2G%A_Index%
-		}
-		GuiControl,ItemInfo: Hide, pGraph2
-		GuiControl,ItemInfo: Hide, GroupBox2
-		Loop 10
-		{
-			GuiControl,ItemInfo: Hide, SComment%A_Index%
-			GuiControl,ItemInfo: Hide, SData%A_Index%
-		}
-		Return
-
-		ShowGraph:
-		Loop 2
-		{
-			aVal := A_Index
+		_GoSub_noDataGraph1(){
 			Loop 21
 			{
-				GuiControl,ItemInfo: Show, PercentText%aVal%G%A_Index%
+				ItemInfoGui["PercentText1G" A_Index].Text := "0`%"
 			}
-			GuiControl,ItemInfo: Show, pGraph%aVal%
-			GuiControl,ItemInfo: Show, GroupBox%aVal%
+			ItemInfoGui["GroupBox1"].Text := "No Data"
+			Loop 13
+			{
+				XGraph_Plot( pGraph1, 100, "", True )
+			}
+			Loop 10
+			{
+				ItemInfoGui["PComment" A_Index].Text := ""
+				ItemInfoGui["PData" A_Index].Text := ""
+			}
 		}
-		Loop 10
-		{
-			GuiControl,ItemInfo: Show, PComment%A_Index%
-			GuiControl,ItemInfo: Show, PData%A_Index%
-			GuiControl,ItemInfo: Show, SComment%A_Index%
-			GuiControl,ItemInfo: Show, SData%A_Index%
+		_GoSub_noDataGraph2(){
+			Loop 21
+			{
+				ItemInfoGui["PercentText2G" A_Index].Text := "0`%"
+			}
+			ItemInfoGui["GroupBox2"].Text := "No Data"
+			Loop 13
+			{
+				XGraph_Plot( pGraph2, 100, "", True )
+			}
+			Loop 10
+			{
+				ItemInfoGui["SComment" A_Index].Text := ""
+				ItemInfoGui["SData" A_Index].Text := ""
+			}
 		}
-		aVal := ""
-		Return
+		_GoSub_HideGraph(){
+			_GoSub_HideGraph1()
+			_GoSub_HideGraph2()
+		}
+		_GoSub_HideGraph1(){
+			Loop 21
+			{
+				ItemInfoGui["PercentText1G" A_Index].Visible := False
+			}
+			Gui("ItemInfo")["pGraph1"].Visible := False
+			Gui("ItemInfo")["GroupBox1"].Visible := False
+			Loop 10
+			{
+				ItemInfoGui["PComment" A_Index].Visible := False
+				ItemInfoGui["PData" A_Index].Visible := False
+			}
+		}
+		_GoSub_HideGraph2(){
+			Loop 21
+			{
+				ItemInfoGui["PercentText2G" A_Index].Visible := False
+			}
+			Gui("ItemInfo")["pGraph2"].Visible := False
+			Gui("ItemInfo")["GroupBox2"].Visible := False
+			Loop 10
+			{
+				ItemInfoGui["SComment" A_Index].Visible := False
+				ItemInfoGui["SData" A_Index].Visible := False
+			}
+		}
 	}
 	ItemInfo(){
 		This.MatchLootFilter()
@@ -2517,7 +2511,7 @@
 			If ( StashTabYesCurrency > 1
 				&& !This.Prop.IsRune
 				&& !This.Prop.IsTattoo
-				&& !UnsupportedAffinityCurrencies.HasKey( This.Prop.ItemName ) )
+				&& !UnsupportedAffinityCurrencies.Has( This.Prop.ItemName ) )
 				sendstash := -2
 			Else
 				sendstash := StashTabCurrency
@@ -2630,7 +2624,7 @@
 					sendstash := ChaosRecipeStashTabWeapon
 				Else If (This.Prop.SlotType) {
 					w := This.Prop.SlotType
-					sendstash := ChaosRecipeStashTab%w%
+					sendstash := %("ChaosRecipeStashTab" w)%
 				}
 			}
 		} Else If (((StashDumpInTrial || StashTabYesDump) && CurrentLocation ~= "Aspirant's Trial")
@@ -2800,21 +2794,21 @@
 		}
 	}
 	inRange(key,obj,base){
-		If (obj.ranges.Count() = 1) {
+		If (obj.ranges.Length = 1) {
 			If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
 				|| (base[key] <= obj.ranges.1.1 && base[key] >= obj.ranges.1.2))
 				Return False
-		} Else If (obj.ranges.Count() >= 2) {
+		} Else If (obj.ranges.Length >= 2) {
 			for k, v in obj.ranges
 			{
 				If !((base[key "_Value" k] >= v.1 && base[key "_Value" k] <= v.2)
 					|| (base[key "_Value" k] <= v.1 && base[key "_Value" k] >= v.2))
 					Return False
 			}
-		} Else If (obj.values.Count() = 1) {
+		} Else If (obj.values.Length = 1) {
 			If !(base[key] == obj.values.1 )
 				Return False
-		} Else If (obj.values.Count() >= 2) {
+		} Else If (obj.values.Length >= 2) {
 			for k, v in obj.values
 				If !(base[key "_Value" k] == v )
 					Return False

@@ -1,7 +1,7 @@
-﻿; Make a MsgBox Printout of an array
+; Make a MsgBox Printout of an array
 MsgBoxVals(obj,indent:=0){
   txt := ""
-  Loop % indent
+  Loop indent
     spacing .= " "
   If IsObject(obj)
   {
@@ -19,7 +19,7 @@ MsgBoxVals(obj,indent:=0){
   If indent
     Return txt
   Else
-    MsgBox % txt
+    MsgBox(txt)
 }
 ; ArrayToString - Make a string from array using specified delimiter
 ArrayToString(Array,delim:="|"){
@@ -44,7 +44,7 @@ indexOf(var, Arr, fromIndex:=1){
 }
 ; Check if a specific value is part of an array's array and return the parent index
 indexOfArr(var, Arr, fromIndex:=1){
-  for index, a in Arr 
+  for index, a in Arr
   {
     if (index < fromIndex)
       Continue
@@ -83,21 +83,22 @@ hexArrToStr(array){
   return Str
 }
 ; Function to Replace Nth instance of Needle in Haystack
-StringReplaceN( Haystack, Needle, Replacement="", Instance=1 ){ 
+StringReplaceN( Haystack, Needle, Replacement:="", Instance:=1 ){
   If !( Instance := 0 | Instance )
   {
-    StringReplace, Haystack, Haystack, %Needle%, %Replacement%, A
+    Haystack := StrReplace(Haystack, Needle, Replacement)
     Return Haystack
   }
   Else Instance := "L" Instance
-  StringReplace, Instance, Instance, L-, R
-  StringGetPos, Instance, Haystack, %Needle%, %Instance%
-  If ( ErrorLevel )
+  Instance := StrReplace(Instance, "L-", "R")
+  RegExMatch(Haystack, Needle, &_m, , Instance)
+  If ( !_m )
     Return Haystack
-  StringTrimLeft, Needle, HayStack, Instance+ StrLen( Needle )
-  StringLeft, HayStack, HayStack, Instance
+  pos := _m.Pos
+  Needle := SubStr(HayStack, pos + StrLen(Needle))
+  HayStack := SubStr(HayStack, 1, pos - 1)
   Return HayStack Replacement Needle
-} 
+}
 ; Clamp Value function
 Clamp( Val, Min, Max){
   If Val < Min
@@ -107,7 +108,7 @@ Clamp( Val, Min, Max){
   Return
 }
 ; ClampGameScreen - Ensure points do not go outside Game Window
-ClampGameScreen(ByRef ValX, ByRef ValY){
+ClampGameScreen(&ValX, &ValY){
   Global GameWindow
   If (ValY < GameWindow.BBarY)
     ValY := GameWindow.BBarY
@@ -121,30 +122,30 @@ ClampGameScreen(ByRef ValX, ByRef ValY){
 }
 ; Provides a call for simpler random sleep timers
 RandomSleep(min,max){
-    Random, r, min, max
+    r := Random(min, max)
     r:=floor(r/Speed)
-    Sleep, r*Latency
+    Sleep(r*Latency)
   return
 }
 ; GetProcessTimes - Show CPU usage as precentage
 GetProcessTimes(PID){
   static aPIDs := []
-  ; If called too frequently, will get mostly 0%, so it's better to just return the previous usage 
+  ; If called too frequently, will get mostly 0%, so it's better to just return the previous usage
   if aPIDs.HasKey(PID) && A_TickCount - aPIDs[PID, "tickPrior"] < 250
-    return aPIDs[PID, "usagePrior"] 
+    return aPIDs[PID, "usagePrior"]
 
-  DllCall("GetSystemTimes", "Int64*", lpIdleTimeSystem, "Int64*", lpKernelTimeSystem, "Int64*", lpUserTimeSystem)
+  DllCall("GetSystemTimes", "Int64*", &lpIdleTimeSystem, "Int64*", &lpKernelTimeSystem, "Int64*", &lpUserTimeSystem)
   if !hProc := DllCall("OpenProcess", "UInt", 0x1000, "Int", 0, "Ptr", pid)
     return -2, aPIDs.HasKey(PID) ? aPIDs.Remove(PID, "") : "" ; Process doesn't exist anymore or don't have access to it.
-  DllCall("GetProcessTimes", "Ptr", hProc, "Int64*", lpCreationTime, "Int64*", lpExitTime, "Int64*", lpKernelTimeProcess, "Int64*", lpUserTimeProcess)
+  DllCall("GetProcessTimes", "Ptr", hProc, "Int64*", &lpCreationTime, "Int64*", &lpExitTime, "Int64*", &lpKernelTimeProcess, "Int64*", &lpUserTimeProcess)
   DllCall("CloseHandle", "Ptr", hProc)
-  
+
   if aPIDs.HasKey(PID) ; check if previously run
   {
     ; find the total system run time delta between the two calls
     systemKernelDelta := lpKernelTimeSystem - aPIDs[PID, "lpKernelTimeSystem"] ;lpKernelTimeSystemOld
     systemUserDelta := lpUserTimeSystem - aPIDs[PID, "lpUserTimeSystem"] ; lpUserTimeSystemOld
-    ; get the total process run time delta between the two calls 
+    ; get the total process run time delta between the two calls
     procKernalDelta := lpKernelTimeProcess - aPIDs[PID, "lpKernelTimeProcess"] ; lpKernelTimeProcessOld
     procUserDelta := lpUserTimeProcess - aPIDs[PID, "lpUserTimeProcess"] ;lpUserTimeProcessOld
     ; sum the kernal + user time
@@ -160,7 +161,7 @@ GetProcessTimes(PID){
   aPIDs[PID, "lpKernelTimeProcess"] := lpKernelTimeProcess
   aPIDs[PID, "lpUserTimeProcess"] := lpUserTimeProcess
   aPIDs[PID, "tickPrior"] := A_TickCount
-  return aPIDs[PID, "usagePrior"] := result 
+  return aPIDs[PID, "usagePrior"] := result
 }
 ; check time
 CheckTime(Type:="hours",Interval:=2,key:="temp",Time:=""){
@@ -171,7 +172,8 @@ CheckTime(Type:="hours",Interval:=2,key:="temp",Time:=""){
     Keys[key] := (Time = "" ? A_Now : Time)
   }
   TimeVal := Keys[key]
-  EnvSub, TimeVal, %A_now%, %Type%
+  TimeVal := DateDiff(A_Now, TimeVal, Type)
+  TimeVal := -TimeVal
   If (TimeVal <= 0)
   {
     TimeVal := Abs(TimeVal)

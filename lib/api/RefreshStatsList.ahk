@@ -1,6 +1,6 @@
-﻿RefreshStatsList(){
-	tooltip, refreshing stats
-	UrlDownloadToFile, https://www.pathofexile.com/api/trade/data/stats, %A_ScriptDir%\temp\new_Stats.json
+RefreshStatsList(){
+	ToolTip("refreshing stats")
+	Download("https://www.pathofexile.com/api/trade/data/stats", A_ScriptDir "\temp\new_Stats.json")
 	result := JSON.Load(RegExReplace(FileOpen(A_ScriptDir "\temp\new_Stats.json","r").Read(), " \(\\u00d7#\)", ""),,1).result
 	AffixKeyList := []
 	EnchantKeyList := []
@@ -49,8 +49,8 @@
 		}
 	}
 	; MsgBoxVals(AffixKeyList)
-	
-	tooltip,
+
+	ToolTip()
 	FileOpen(A_ScriptDir "\data\GGG_Stats.json","w").Write(JSON_Beautify(result," ",3))
 	FileOpen(A_ScriptDir "\data\WR_Affix.json","w").Write(JSON_Beautify(AffixKeyList," ",3))
 	FileOpen(A_ScriptDir "\data\WR_Enchant.json","w").Write(JSON_Beautify(EnchantKeyList," ",3))

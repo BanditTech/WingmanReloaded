@@ -70,22 +70,21 @@ Global apiList := ["Currency"
 ; Create Executable group for gameHotkey, IfWinActive
 Global POEGameArr := ["PathOfExile.exe", "PathOfExile_x64.exe", "PathOfExileSteam.exe", "PathOfExile_x64Steam.exe", "PathOfExile_KG.exe", "PathOfExile_x64_KG.exe", "PathOfExile_x64EGS.exe", "PathOfExileEGS.exe"]
 for n, exe in POEGameArr
-	GroupAdd, POEGameGroup, ahk_exe %exe%
+	GroupAdd("POEGameGroup", "ahk_exe " exe)
 Global GameStr := "ahk_exe PathOfExile_x64.exe"
 ; Global GameStr := "ahk_group POEGameGroup"
-Hotkey, IfWinActive, ahk_group POEGameGroup
+HotIf WinActive("ahk_group POEGameGroup")
 
 ; Binding Objects for Spam keys
-Global CtrlSpam := Func("SpamClick").Bind("On","Ctrl")
-Global CtrlShiftSpam := Func("SpamClick").Bind("On",["Ctrl","Shift"])
-Global ShiftSpam := Func("SpamClick").Bind("On",["Shift"])
-Global CtrlSpamOff := Func("SpamClick").Bind("Off")
+Global CtrlSpam := SpamClick.Bind("On","Ctrl")
+Global CtrlShiftSpam := SpamClick.Bind("On",["Ctrl","Shift"])
+Global ShiftSpam := SpamClick.Bind("On",["Shift"])
+Global CtrlSpamOff := SpamClick.Bind("Off")
 
 Global PauseTooltips:=0
 Global Clip_Contents:=""
 Global CheckGamestates:=False
-Process, Exist
-Global ScriptPID := ErrorLevel
+Global ScriptPID := ProcessExist()
 Global MainMenuIDAutoFlask, MainMenuIDAutoQuit, MainMenuIDAutoMove, MainMenuIDAutoUtility
 Global LootFilter := {}
 Global BlackList
@@ -119,7 +118,7 @@ Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven
 Global HeistLootLarge := ["Essence Burner","Ancient Seal","Blood of Innocence","Dekhara's Resolve","Orbala's Fifth Adventure","Staff of the first Sin Eater","Sword of the Inverse Relic"]
 
 ; Tooltip Texts
-ft_ToolTip_Text_Part1=
+ft_ToolTip_Text_Part1 := "
 (LTrim
 	UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
 	UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
@@ -206,9 +205,9 @@ ft_ToolTip_Text_Part1=
 	RestockCustomX = X cord positions for custom slot restocking
 	RestockCustomTab = Stash tab number for custom slot restocking
 
-)
+)"
 
-ft_ToolTip_Text_Part2=
+ft_ToolTip_Text_Part2 := "
 (LTrim
 	ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
 	ChaosRecipeMaxHoldingID = Determine how many sets of identified Chaos Recipe to stash
@@ -293,9 +292,9 @@ ft_ToolTip_Text_Part2=
 	StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
 	MMQorWeight = Keep maps which reach Minimum Map Qualities OR Minimum Weight
 
-)
+)"
 
-ft_ToolTip_Text_Part3=
+ft_ToolTip_Text_Part3 := "
 (LTrim
 	StartMapTier1 = Select Initial Map Tier Range 1
 	StartMapTier2 = Select Initial Map Tier Range 2
@@ -351,10 +350,10 @@ ft_ToolTip_Text_Part3=
 	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
 	CLFStrictnessNumber = Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) All Filters Strictness Will Be Matched`rLevel 5 (Higher Strictness) Only Main Filters Will be Matched`rAny Filter Without Strictness Defined Will Be Always Matched
 
-)
+)"
 
 ; Tooltips for the utility and flask menus
-ft_ToolTip_Text_Part4=
+ft_ToolTip_Text_Part4 := "
 (LTrim
 	MainAttackOnly = Only trigger other settings when the main attack is being held
 	MainAttack = Trigger this when the Main attack button is pressed
@@ -384,7 +383,7 @@ ft_ToolTip_Text_Part4=
 	Move = Trigger this when the Movement key is pressed
 	Condition = Make the resource triggers fire when any are true, or when all are true
 
-)
+)"
 
 ft_ToolTip_Text := ft_ToolTip_Text_Part1 . ft_ToolTip_Text_Part2 . ft_ToolTip_Text_Part3 . ft_ToolTip_Text_Part4
 ; Current log file
@@ -834,11 +833,11 @@ Global GrabCurrencyY:=772
 Global CharName := "ReplaceWithCharName"
 Global RecipientName := "NothingYet"
 Global fn1, fn2, fn3
-Global 1Prefix1, 1Prefix2, 2Prefix1, 2Prefix2, stashPrefix1, stashPrefix2
-Global 1Suffix1,1Suffix2,1Suffix3,1Suffix4,1Suffix5,1Suffix6,1Suffix7,1Suffix8,1Suffix9
-Global 1Suffix1Text,1Suffix2Text,1Suffix3Text,1Suffix4Text,1Suffix5Text,1Suffix6Text,1Suffix7Text,1Suffix8Text,1Suffix9Text
-Global 2Suffix1,2Suffix2,2Suffix3,2Suffix4,2Suffix5,2Suffix6,2Suffix7,2Suffix8,2Suffix9
-Global 2Suffix1Text,2Suffix2Text,2Suffix3Text,2Suffix4Text,2Suffix5Text,2Suffix6Text,2Suffix7Text,2Suffix8Text,2Suffix9Text
+Global c1Prefix1, c1Prefix2, c2Prefix1, c2Prefix2, stashPrefix1, stashPrefix2
+Global c1Suffix1,c1Suffix2,c1Suffix3,c1Suffix4,c1Suffix5,c1Suffix6,c1Suffix7,c1Suffix8,c1Suffix9
+Global c1Suffix1Text,c1Suffix2Text,c1Suffix3Text,c1Suffix4Text,c1Suffix5Text,c1Suffix6Text,c1Suffix7Text,c1Suffix8Text,c1Suffix9Text
+Global c2Suffix1,c2Suffix2,c2Suffix3,c2Suffix4,c2Suffix5,c2Suffix6,c2Suffix7,c2Suffix8,c2Suffix9
+Global c2Suffix1Text,c2Suffix2Text,c2Suffix3Text,c2Suffix4Text,c2Suffix5Text,c2Suffix6Text,c2Suffix7Text,c2Suffix8Text,c2Suffix9Text
 Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
 Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
 

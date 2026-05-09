@@ -1,11 +1,11 @@
-﻿; PopFlasks - Pop all flasks
+; PopFlasks - Pop all flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
 	PopFlasksCommand:
-		SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-		SetMouseDelay, %SetMouseDelayValue%
-		SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
-		Critical
+		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+		SetMouseDelay(SetMouseDelayValue)
+		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
+		Critical(1)
 		WR.func.Toggle.PopAll := True
 		If PopFlaskRespectCD
 		{
@@ -35,7 +35,7 @@ PopFlasks(){
 					RandomSleep(-99,99)
 				}
 		}
-		Critical, Off
+		Critical(0)
 		WR.func.Toggle.PopAll := False
 	return
 }

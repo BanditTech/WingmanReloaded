@@ -1,4 +1,4 @@
-﻿; PoE Click v1.0.1 : Developed by Bandit
+; PoE Click v1.0.1 : Developed by Bandit
 SpamClick(Toggle:="",Modifier:=""){
 	Static Spam := False
 	If (Toggle != "") {
@@ -14,91 +14,91 @@ SpamClick(Toggle:="",Modifier:=""){
 		If !isObject(Modifier)
 			Modifier := StrSplit(Modifier,",")
 		For k, mod in Modifier{
-			Send {%mod% Down}
-			Sleep, 60+(ClickLatency*15)
+			Send("{" mod " Down}")
+			Sleep(60+(ClickLatency*15))
 		}
 	}
 	While Spam {
-		Send {Click}
-		Sleep, 60+(ClickLatency*15)
+		Send("{Click}")
+		Sleep(60+(ClickLatency*15))
 	}
 	If (Modifier != "") {
 		For k, mod in Modifier{
-			Send {%mod% Up}
-			Sleep, 60+(ClickLatency*15)
+			Send("{" mod " Up}")
+			Sleep(60+(ClickLatency*15))
 		}
 	}
 }
 ; LeftClick - Left Click at Coord
 LeftClick(x, y){
 	Log("Verbose","LeftClick: " x ", " y)
-	BlockInput, MouseMove
-	MouseMove, x, y
-	Sleep, 60+(ClickLatency*15)
-	Send {Click}
-	Sleep, 60+(ClickLatency*15)
-	BlockInput, MouseMoveOff
+	BlockInput("MouseMove")
+	MouseMove(x, y)
+	Sleep(60+(ClickLatency*15))
+	Send("{Click}")
+	Sleep(60+(ClickLatency*15))
+	BlockInput("MouseMoveOff")
 	Return
 }
 ; RightClick - Right Click at Coord
 RightClick(x, y){
 	Log("Verbose","RightClick: " x ", " y)
-	BlockInput, MouseMove
-	MouseMove, x, y
-	Sleep, 60+(ClickLatency*15)
-	Send {Click, Right}
-	Sleep, 60+(ClickLatency*15)
-	BlockInput, MouseMoveOff
+	BlockInput("MouseMove")
+	MouseMove(x, y)
+	Sleep(60+(ClickLatency*15))
+	Send("{Click, Right}")
+	Sleep(60+(ClickLatency*15))
+	BlockInput("MouseMoveOff")
 	Return
 }
 ; ShiftClick - Shift Click +Click at Coord
 ShiftClick(x, y){
 	Log("Verbose","ShiftClick: " x ", " y)
-	BlockInput, MouseMove
-	MouseMove, x, y
-	Sleep, 60+(ClickLatency*15)
-	Send {Shift down}
-	Send {Click}
-	Sleep, 60
-	Send {Shift up}
-	Sleep, 60+(ClickLatency*15)
-	BlockInput, MouseMoveOff
+	BlockInput("MouseMove")
+	MouseMove(x, y)
+	Sleep(60+(ClickLatency*15))
+	Send("{Shift down}")
+	Send("{Click}")
+	Sleep(60)
+	Send("{Shift up}")
+	Sleep(60+(ClickLatency*15))
+	BlockInput("MouseMoveOff")
 	return
 }
 ; CtrlClick - Ctrl Click ^Click at Coord
 CtrlClick(x, y){
 	Log("Verbose","CtrlClick: " x ", " y)
-	BlockInput, MouseMove
-	MouseMove, x, y
-	Sleep, 60+(ClickLatency*15)
-	Send {Ctrl down}
-	Send {Click}
-	Sleep, 60
-	Send {Ctrl up}
-	Sleep, 60+(ClickLatency*15)
-	BlockInput, MouseMoveOff
+	BlockInput("MouseMove")
+	MouseMove(x, y)
+	Sleep(60+(ClickLatency*15))
+	Send("{Ctrl down}")
+	Send("{Click}")
+	Sleep(60)
+	Send("{Ctrl up}")
+	Sleep(60+(ClickLatency*15))
+	BlockInput("MouseMoveOff")
 	return
 }
 ; CtrlShiftClick - Ctrl + Shift Click +^Click at Coord
 CtrlShiftClick(x, y){
 	Log("Verbose","CtrlShiftClick: " x ", " y)
-	BlockInput, MouseMove
-	MouseMove, x, y
-	Sleep, 60+(ClickLatency*15)
-	Send {Ctrl down}
-	Send {Shift down}
-	Send {Click}
-	Sleep, 60
-	Send {Ctrl up}
-	Send {Shift up}
-	Sleep, 60+(ClickLatency*15)
-	BlockInput, MouseMoveOff
+	BlockInput("MouseMove")
+	MouseMove(x, y)
+	Sleep(60+(ClickLatency*15))
+	Send("{Ctrl down}")
+	Send("{Shift down}")
+	Send("{Click}")
+	Sleep(60)
+	Send("{Ctrl up}")
+	Send("{Shift up}")
+	Sleep(60+(ClickLatency*15))
+	BlockInput("MouseMoveOff")
 	return
 }
 ; RandClick - Randomize Click area around middle of cell using lower left Coord
 RandClick(x, y){
-	Random, Rx, x+10, x+30
-	Random, Ry, y-30, y-10
+	Rx := Random(x+10, x+30)
+	Ry := Random(y-30, y-10)
 	If DebugMessages
 		Log("Verbose","Randomize: " x ", " y " position to " Rx ", " Ry )
 	return {"X": Rx, "Y": Ry}
@@ -106,41 +106,41 @@ RandClick(x, y){
 ; ClipItem - Capture Clip at Coord
 ClipItem(x, y){
 	Global RunningToggle
-	BlockInput, MouseMove
-	Backup := Clipboard
-	Clipboard := ""
+	BlockInput("MouseMove")
+	Backup := A_Clipboard
+	A_Clipboard := ""
 	Item := ""
-	MouseMove, x, y
-	Sleep, 60+(ClipLatency*15)
-	Send {Ctrl down}
-	Send {Alt down}
-	Send c
-	Sleep, 30
-	Send {Ctrl up}
-	Send {Alt up}
-	ClipWait, 0.1
-	If ErrorLevel
+	MouseMove(x, y)
+	Sleep(60+(ClipLatency*15))
+	Send("{Ctrl down}")
+	Send("{Alt down}")
+	Send("c")
+	Sleep(30)
+	Send("{Ctrl up}")
+	Send("{Alt up}")
+	ClipWait(0.1)
+	If A_LastError
 	{
-		Sleep, 120+(ClipLatency*15)
-		Send {Ctrl down}
-		Send {Alt down}
-		Send c
-		Sleep, 30
-		Send {Ctrl up}
-		Send {Alt up}
-		ClipWait, 0.1
-		If (ErrorLevel && ItemParseActive)
-			Clipboard := Backup
+		Sleep(120+(ClipLatency*15))
+		Send("{Ctrl down}")
+		Send("{Alt down}")
+		Send("c")
+		Sleep(30)
+		Send("{Ctrl up}")
+		Send("{Alt up}")
+		ClipWait(0.1)
+		If (A_LastError && ItemParseActive)
+			A_Clipboard := Backup
 	}
-	Clip_Contents := Clipboard
-	Clipboard := Backup
-	BlockInput, MouseMoveOff
-	Item := new ItemScan
+	Clip_Contents := A_Clipboard
+	A_Clipboard := Backup
+	BlockInput("MouseMoveOff")
+	Item := ItemScan()
 	Return
 }
 ; WisdomScroll - Identify Item at Coord
 WisdomScroll(x, y){
-	BlockInput, MouseMove
+	BlockInput("MouseMove")
 	Found := False
 	For C, vv in WR.Restock {
 		For R, v in vv {
@@ -159,9 +159,9 @@ WisdomScroll(x, y){
 	XX := InventoryGridX[C], YY := InventoryGridY[R]
 	o := RandClick(XX,YY)
 	RightClick(o.X,o.Y)
-	Sleep, 45
+	Sleep(45)
 	LeftClick(x,y)
-	Sleep, 45
-	BlockInput, MouseMoveOff
+	Sleep(45)
+	BlockInput("MouseMoveOff")
 	return
 }

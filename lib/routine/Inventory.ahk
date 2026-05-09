@@ -1,13 +1,13 @@
-﻿; ItemSortCommand - Sort inventory and determine action
+; ItemSortCommand - Sort inventory and determine action
 ItemSortCommand(){
 	; Thread, NoTimers, True
 	CheckRunning()
-	Thread, Priority, 69
-  SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-  SetMouseDelay, %SetMouseDelayValue%
-  SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
-	MouseGetPos xx, yy
-	IfWinActive, ahk_group POEGameGroup
+	Thread("Priority", 69)
+  SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+  SetMouseDelay(SetMouseDelayValue)
+  SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
+	MouseGetPos(&xx, &yy)
+	if WinActive("ahk_group POEGameGroup")
 	{
 		CheckRunning("On")
 		GuiStatus()
@@ -48,7 +48,7 @@ ItemSortCommand(){
 				Return
 			}
 		}
-		Sleep, -1
+		Sleep(-1)
 		GuiStatus()
 		If (OnDiv && YesDiv)
 			DivRoutine()
@@ -59,8 +59,8 @@ ItemSortCommand(){
 		Else If (OnInventory&&YesIdentify)
 			IdentifyRoutine()
 	}
-	Sleep, 90*Latency
-	MouseMove, xx, yy, 0
+	Sleep(90*Latency)
+	MouseMove(xx, yy, 0)
 	CheckRunning("Off")
 	UpdateGuiChaosCounts()
 	Return
@@ -89,9 +89,9 @@ SearchStash()
 	If (FindStash:=FindText(GameX,GameY,GameW,GameH,0,0,StashStr))
 	{
 		LeftClick(FindStash.1.x,FindStash.1.y)
-		Loop, 66
+		Loop 66
 		{
-			Sleep, 50
+			Sleep(50)
 			GuiStatus()
 			If OnStash
 				Return True
@@ -104,10 +104,10 @@ SearchStash()
 ; ShooMouse - Move mouse out of the inventory area
 ShooMouse()
 {
-	Random, RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
-	Random, RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
-	MouseMove, RX, RY, 0
-	Sleep, 90*Latency
+	Random RX, (A_ScreenWidth*0.45), (A_ScreenWidth*0.55)
+	Random RY, (A_ScreenHeight*0.45), (A_ScreenHeight*0.55)
+	MouseMove(RX, RY, 0)
+	Sleep(90*Latency)
 }
 ; ClearNotifications - Get rid of overlay messages if any are present
 ClearNotifications()
@@ -118,7 +118,7 @@ ClearNotifications()
 		Log("Verbose","Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
 			LeftClick(v.x,v.y)
-		Sleep, 300*Latency
+		Sleep(300*Latency)
 		GuiStatus()
 	}
 }
@@ -289,12 +289,12 @@ VendorRoutine()
 		{
 			CheckTime("Seconds",120,"VendorUI",A_Now)
 			If YesEnableAutoSellConfirmationSafe
-				MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y
+				MouseMove(WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y)
 			While (!CheckTime("Seconds",120,"VendorUI"))
 			{
 				If (YesController)
 					Controller()
-				Sleep, 100
+				Sleep(100)
 				GuiStatus()
 				If !OnVendor && !OnInventory
 				{
@@ -319,19 +319,19 @@ VendorRoutine()
 			If OnMines
 			{
 				LeftClick(GameX + GameW//1.5, GameY + GameH//1.1)
-				Sleep, 800
+				Sleep(800)
 				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town = "Oriath Docks")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
-				Sleep, 800
+				Sleep(800)
 				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town = "The Sarn Encampment")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
-				Sleep, 800
+				Sleep(800)
 				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			GuiStatus()
@@ -363,15 +363,15 @@ EmptyGrid(){
 ; Open Stacked Decks Automatically
 StackedDeckOpen(number,x,y){
 	EmptySlots := EmptyGrid()
-	Loop %number% {
+	Loop number {
 		If (EmptySlots.Count() >= 1){
 			If !RunningToggle
 				Break
 			RightClick(x,y)
-			Sleep, 75
+			Sleep(75)
 			EmptySlot := EmptySlots.Pop()
 			LeftClick(EmptySlot.X,EmptySlot.Y)
-			Sleep, 75
+			Sleep(75)
 		} Else {
 			Break
 		}
@@ -379,7 +379,7 @@ StackedDeckOpen(number,x,y){
 }
 ResetMainTimer(toggle:="On"){
 	If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.func.Toggle.Utility || WR.func.Toggle.Move || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
-		SetTimer, TGameTick, %toggle%
+		SetTimer(TGameTick, toggle)
 }
 ; StashRoutine - Does stash functions
 StashRoutine()
@@ -440,7 +440,7 @@ StashRoutine()
 				If (Item.Prop.SpecialType = "Quest Item" || Item.Prop.ItemClass = "Quest Items")
 					Continue
 				Else If (sendstash:=Item.MatchLootFilter())
-					Sleep, -1
+					Sleep(-1)
 				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep && InMapArea(C) )
 					Continue
 				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && InMapArea(C)
@@ -466,7 +466,7 @@ StashRoutine()
 						CtrlClick(Grid.X,Grid.Y)
 						If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
 						{
-							Sleep, 250*Latency
+							Sleep(250*Latency)
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
@@ -483,7 +483,7 @@ StashRoutine()
 					++Unstashed
 				If (sendstash == -2) {
 					CtrlClick(Grid.X,Grid.Y)
-					Sleep, 60
+					Sleep(60)
 				} Else If (sendstash > 0) {
 					If YesSortFirst
 						SortFirst[sendstash].Push({"C":C,"R":R,"Item":Item})
@@ -499,7 +499,7 @@ StashRoutine()
 							If (StashTabYesUniqueRing && Item.Prop.Ring
 								&& sendstash != StashTabUniqueRing)
 							{
-								Sleep, 200*Latency
+								Sleep(200*Latency)
 								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
@@ -509,7 +509,7 @@ StashRoutine()
 							}
 							If (StashTabYesUniqueDump)
 							{
-								Sleep, 200*Latency
+								Sleep(200*Latency)
 								ShooMouse()
 								GuiStatus()
 								ClearNotifications()
@@ -540,7 +540,7 @@ StashRoutine()
 					If !RunningToggle
 						Break
 					MoveStash(Tab)
-					Sleep, 60
+					Sleep(60)
 					C := SortFirst[Tab][Items]["C"]
 					R := SortFirst[Tab][Items]["R"]
 					Item := SortFirst[Tab][Items]["Item"]
@@ -548,7 +548,7 @@ StashRoutine()
 					GridY := InventoryGridY[R]
 					Grid := RandClick(GridX, GridY)
 					CtrlShiftClick(Grid.X,Grid.Y)
-					Sleep, 60
+					Sleep(60)
 					; Check for unique items
 					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
 						&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
@@ -556,7 +556,7 @@ StashRoutine()
 						If (StashTabYesUniqueRing && Item.Prop.Ring
 							&& Tab != StashTabUniqueRing)
 						{
-							Sleep, 200*Latency
+							Sleep(200*Latency)
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
@@ -569,7 +569,7 @@ StashRoutine()
 						}
 						If (StashTabYesUniqueDump)
 						{
-							Sleep, 200*Latency
+							Sleep(200*Latency)
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
@@ -642,12 +642,12 @@ SearchVendor()
 		Else
 			Return
 	}
-	Sleep, 60*Latency
+	Sleep(60*Latency)
 	Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0)
 	If (Sell)	{
-		Sleep, 60*Latency
+		Sleep(60*Latency)
 		LeftClick(Sell.1.x,Sell.1.y)
-		Sleep, 150*Latency
+		Sleep(150*Latency)
 		Return True
 	}
 	Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
@@ -656,25 +656,25 @@ SearchVendor()
 		If (Town = "The Sarn Encampment")
 		{
 			LeftClick(GameX + GameW//6, GameY + GameH//1.5)
-			Sleep, 600
+			Sleep(600)
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
 		Else If (Town = "Oriath Docks")
 		{
 			LeftClick(GameX + 5, GameY + GameH//2)
-			Sleep, 1200
+			Sleep(1200)
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
 		Else If (Town = "Mines")
 		{
 			LeftClick(GameX + GameW//3, GameY + GameH//5)
-			Sleep, 1300
+			Sleep(1300)
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
 		Else If (Town = "The Rogue Harbour")
 		{
 			LeftClick(GameX + GameW//3, GameY + GameH//1.3)
-			Sleep, 800
+			Sleep(800)
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
 	}
@@ -683,24 +683,24 @@ SearchVendor()
 	if (Vendor)
 	{
 		LeftClick(Vendor.1.x, Vendor.1.y)
-		Sleep, 120
-		Loop, 66
+		Sleep(120)
+		Loop 66
 		{
 			If (Sell:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
 			{
-				Sleep, 30*Latency
+				Sleep(30*Latency)
 				LeftClick(Sell.1.x,Sell.1.y)
-				Sleep, 120*Latency
+				Sleep(120*Latency)
 				Return True
 			}
 			Else If !Mod(A_Index, 20)
 			{
 				If (Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)) {
 					LeftClick(Vendor.1.x, Vendor.1.y)
-					Sleep, 120
+					Sleep(120)
 				}
 			}
-			Sleep, 60
+			Sleep(60)
 		}
 	}
 	Return False
@@ -741,9 +741,9 @@ DivRoutine()
 					CtrlClick(Grid.X,Grid.Y)
 					RandomSleep(150,200)
 					LeftClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivTrade.Y)
-					Sleep, 45+(ClickLatency*15)
+					Sleep(45+(ClickLatency*15))
 					CtrlClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivItem.Y)
-					Sleep, 45+(ClickLatency*15)
+					Sleep(45+(ClickLatency*15))
 				}
 				Continue
 			}
@@ -793,7 +793,7 @@ IdentifyRoutine()
 ItemInfo(){
 	ItemInfoCommand:
 		ItemParseActive := True
-		MouseGetPos, Mx, My
+		MouseGetPos(&Mx, &My)
 		ClipItem(Mx, My)
 		Item.ItemInfo()
 		ItemParseActive := False
@@ -815,38 +815,38 @@ MoveStash(Tab,CheckStatus:=0)
 		return
 	If (CurrentTab!=Tab)
 	{
-		Sleep, 180*Latency
+		Sleep(180*Latency)
 		Dif:=(CurrentTab-Tab)
 		If (CurrentTab = 0)
 		{
 			If (OnChat)
 			{
-				Send {Escape}
-				Sleep, 15
+				Send("{Escape}")
+				Sleep(15)
 			}
-			send {Left 99}
+			Send("{Left 99}")
 			val := Tab - 1
-			send {Right %val%}
+			Send("{Right " val "}")
 			CurrentTab:=Tab
 		}
 		Else
 		{
 			val := Abs(Dif)
 			If (Dif > 0)
-				SendInput {Left %val%}
+				SendInput("{Left " val "}")
 			Else
-				SendInput {Right %val%}
+				SendInput("{Right " val "}")
 			CurrentTab:=Tab
 		}
-		Sleep, 210*Latency
+		Sleep(210*Latency)
 	}
 	If (Tab == StashTabMap || Tab == StashTabUnique)
-		Sleep, 300*Latency
+		Sleep(300*Latency)
 	return
 }
 ; RunRestock - Restock currency Items in inventory
 RunRestock(){
-	BlockInput, MouseMove
+	BlockInput("MouseMove")
 	For C, vv in WR.Restock {
 		For R, v in vv {
 			If (v.Normal || v.Ignored || v.RestockName = "")
@@ -888,13 +888,13 @@ RunRestock(){
 				If (InvCount > v.RestockTo) {
 					dif := InvCount - v.RestockTo
 					ShiftClick(o.X, o.Y)
-					Sleep, 120
-					Send %dif%
-					Sleep, 120
-					Send {Enter}
-					Sleep, 120
+					Sleep(120)
+					Send(dif)
+					Sleep(120)
+					Send("{Enter}")
+					Sleep(120)
 					LeftClick(StockX, StockY)
-					Sleep, 120
+					Sleep(120)
 				} Else {
 					dif := v.RestockTo - InvCount
 					If (StashCount < dif) {
@@ -904,22 +904,22 @@ RunRestock(){
 						Continue
 					}
 					ShiftClick(StockX, StockY)
-					Sleep, 120
-					Send %dif%
-					Sleep, 120
-					Send {Enter}
-					Sleep, 120
+					Sleep(120)
+					Send(dif)
+					Sleep(120)
+					Send("{Enter}")
+					Sleep(120)
 					LeftClick(o.X, o.Y)
-					Sleep, 120
+					Sleep(120)
 				}
 			}
 		}
 	}
-	BlockInput, MouseMoveOff
+	BlockInput("MouseMoveOff")
 	return
 }
 addToBlacklist(C, R){
-	Loop % Item.Prop.Item_Height
+	Loop Item.Prop.Item_Height
 	{
 		addNum := A_Index - 1
 		addR := R + addNum
