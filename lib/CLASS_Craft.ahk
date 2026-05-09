@@ -1,4 +1,4 @@
-﻿Class Craft {
+Class Craft {
 	__New(Type,Method,Desired){
 		; Type := "Chance","Color","Link","Socket"
 		This.Type := Type
@@ -23,13 +23,13 @@
 			If (This.Method = "stash")
 				This.Target := WR.Loc.Pixel["Currency Craft Slot"]
 			Else If (This.Method = "cursor"){
-				MouseGetPos, xx, yy
+				MouseGetPos(&xx, &yy)
 				This.Target := {X:xx,Y:yy}
 			}
 		}
 
 		; Begin the specified crafting routine
-		
+
 		This.Initiate()
 
 		Return This
@@ -72,9 +72,9 @@
 			Return True
 	}
 	Initiate(){
-		WinActivate, % GameStr
+		WinActivate(GameStr)
 		If (This.Method = "bulk") {
-			
+
 		} Else {
 				This.Looping(This.Target.X,This.Target.Y)
 		}
@@ -127,11 +127,11 @@
 		Global WR
 		MoveStash(StashTabCurrency)
 		RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
-		Sleep, 45*Latency
+		Sleep(45*Latency)
 		LeftClick(x,y)
-		Sleep, 90*Latency
+		Sleep(90*Latency)
 		ClipItem(x,y)
-		Sleep, 45*Latency
+		Sleep(45*Latency)
 		return
 	}
 	Looping(x,y){

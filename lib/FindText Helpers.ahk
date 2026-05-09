@@ -1,4 +1,4 @@
-﻿String2ASCII(String:="",One:="#",Zero:="."){
+String2ASCII(String:="",One:="#",Zero:="."){
   local
   s := StrSplit(String, ".")
   w := StrSplit(s.1, "$").2

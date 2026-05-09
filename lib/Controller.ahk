@@ -1,4 +1,4 @@
-﻿; Controller functions
+; Controller functions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Controller(inputType:="Main")
 {
@@ -18,7 +18,7 @@ Controller(inputType:="Main")
 	}
 	If (inputType = "Refresh")
 	{
-		if State := XInput_GetState(Controller_Active) 
+		if State := XInput_GetState(Controller_Active)
 		{
 			; LX,LY,RX,RY,LT,RT,A,B,X,Y,LB,RB,L3,R3,BACK,START,UP,DOWN,LEFT,RIGHT
 			Controller.LX             := PercentAxis( State.sThumbLX )
@@ -56,16 +56,16 @@ Controller(inputType:="Main")
 		If (moveX || moveY)
 		{
 			If !GuiStatus("",0)
-				MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/100), % ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/100)
+				MouseMove(ScrCenter.X + Controller.LX * (ScrCenter.X/100), ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/100))
 			Else
-				MouseMove,% ScrCenter.X + Controller.LX * (ScrCenter.X/120), % ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/120)
+				MouseMove(ScrCenter.X + Controller.LX * (ScrCenter.X/120), ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/120))
 			++JoyLHoldCount
 			If (!MovementHotkeyActive
 			&& JoyLHoldCount > 1
 			&& GuiStatus("",0)
 			&& ((YesOHB && (YesOHBFound || OnTown)) || !YesOHB) )
 			{
-				Click, Down
+				Click("Down")
 				MovementHotkeyActive := True
 			}
 			If (YesTriggerUtilityKey && MovementHotkeyActive
@@ -81,7 +81,7 @@ Controller(inputType:="Main")
 		{
 			If MovementHotkeyActive
 			{
-				Click, Up
+				Click("Up")
 				MovementHotkeyActive := False
 			}
 			JoyLHoldCount := 0
@@ -96,9 +96,9 @@ Controller(inputType:="Main")
 		{
 			If (GuiStatus("",0) && ((YesOHB && (YesOHBFound || OnTown)) || !YesOHB))
 			&& !(Controller.LT || Controller.RT)
-				MouseMove,% ScrCenter.X + Controller.RX * (ScrCenter.X/100), % ScrCenter.Yadjusted - Controller.RY * (ScrCenter.Y/100)
+				MouseMove(ScrCenter.X + Controller.RX * (ScrCenter.X/100), ScrCenter.Yadjusted - Controller.RY * (ScrCenter.Y/100))
 			Else
-				MouseMove, % Controller.RX, % -Controller.RY,0,R
+				MouseMove(Controller.RX, -Controller.RY, 0, "R")
 			++JoyRHoldCount
 			If (!MainAttackPressedActive && JoyRHoldCount > 2 && YesTriggerJoystickRightKey)
 			&& (GuiStatus("",0) && ((YesOHB && YesOHBFound) || !YesOHB))
@@ -121,96 +121,102 @@ Controller(inputType:="Main")
 	}
 	Else If (inputType = "Buttons")
 	{
-		Static StateA := 0, StateB := 0, StateX := 0, StateY := 0, StateLB := 0, StateRB := 0, StateL3 := 0, StateR3 := 0, StateBACK := 0, StateSTART := 0
+		Static State := Map("A",0,"B",0,"X",0,"Y",0,"LB",0,"RB",0,"L3",0,"R3",0,"BACK",0,"START",0)
+		local hkBtn := Map(
+			"A", hotkeyControllerButtonA, "B", hotkeyControllerButtonB,
+			"X", hotkeyControllerButtonX, "Y", hotkeyControllerButtonY,
+			"LB", hotkeyControllerButtonLB, "RB", hotkeyControllerButtonRB,
+			"L3", hotkeyControllerButtonL3, "R3", hotkeyControllerButtonR3,
+			"BACK", hotkeyControllerButtonBACK, "START", hotkeyControllerButtonSTART)
 		For Key, s in Controller.Btn
 		{
-			If (s != State%Key%)
+			If (s != State[Key])
 			{
-				If (s && State%Key% = 0)
+				If (s && State[Key] = 0)
 				{
-					If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
+					If (hkBtn[Key] = hotkeyLootScan && LootVacuum)
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"down")
+						SendHotkey(hkBtn[Key],"down")
 						LootVacuumActive := True
-						State%Key% := 1
+						State[Key] := 1
 					}
-					Else If (hotkeyControllerButton%Key% = "Logout")
+					Else If (hkBtn[Key] = "Logout")
 					{
-						SetTimer, LogoutCommand, -1
-						State%Key% := 1
+						SetTimer(LogoutCommand, -1)
+						State[Key] := 1
 					}
-					Else If (hotkeyControllerButton%Key% = "PopFlasks")
+					Else If (hkBtn[Key] = "PopFlasks")
 					{
-						SetTimer, PopFlasks, -1
-						State%Key% := 1
+						SetTimer(PopFlasks, -1)
+						State[Key] := 1
 					}
-					Else If (hotkeyControllerButton%Key% = "QuickPortal")
+					Else If (hkBtn[Key] = "QuickPortal")
 					{
-						SetTimer, QuickPortal, -1
-						State%Key% := 1
+						SetTimer(QuickPortal, -1)
+						State[Key] := 1
 					}
-					Else If (hotkeyControllerButton%Key% = "GemSwap")
+					Else If (hkBtn[Key] = "GemSwap")
 					{
-						SetTimer, GemSwap, -1
-						State%Key% := 1
+						SetTimer(GemSwap, -1)
+						State[Key] := 1
 					}
-					Else If (hotkeyControllerButton%Key% = "ItemSort")
+					Else If (hkBtn[Key] = "ItemSort")
 					{
-						SetTimer, ItemSortCommand, -1
-						State%Key% := 1
+						SetTimer(ItemSortCommand, -1)
+						State[Key] := 1
 					}
-					Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
+					Else If (hkBtn[Key] = hotkeyMainAttack)
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"down")
-						State%Key% := 1
+						SendHotkey(hkBtn[Key],"down")
+						State[Key] := 1
 						MainAttackPressedActive := True
 					}
-					Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
+					Else If (hkBtn[Key] = hotkeySecondaryAttack)
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"down")
-						State%Key% := 1
+						SendHotkey(hkBtn[Key],"down")
+						State[Key] := 1
 						SecondaryAttackPressedActive := True
 					}
 					Else
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"down")
-						State%Key% := 1
+						SendHotkey(hkBtn[Key],"down")
+						State[Key] := 1
 					}
 				}
-				Else If (!s && State%Key% = 1)
+				Else If (!s && State[Key] = 1)
 				{
-					If (hotkeyControllerButton%Key% = hotkeyLootScan && LootVacuum)
+					If (hkBtn[Key] = hotkeyLootScan && LootVacuum)
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"up")
+						SendHotkey(hkBtn[Key],"up")
 						LootVacuumActive := False
-						State%Key% := 0
+						State[Key] := 0
 					}
-					Else If (hotkeyControllerButton%Key% = "Logout")
-						State%Key% := 0
-					Else If (hotkeyControllerButton%Key% = "PopFlasks")
-						State%Key% := 0
-					Else If (hotkeyControllerButton%Key% = "QuickPortal")
-						State%Key% := 0
-					Else If (hotkeyControllerButton%Key% = "GemSwap")
-						State%Key% := 0
-					Else If (hotkeyControllerButton%Key% = "ItemSort")
-						State%Key% := 0
-					Else If (hotkeyControllerButton%Key% = hotkeyMainAttack)
+					Else If (hkBtn[Key] = "Logout")
+						State[Key] := 0
+					Else If (hkBtn[Key] = "PopFlasks")
+						State[Key] := 0
+					Else If (hkBtn[Key] = "QuickPortal")
+						State[Key] := 0
+					Else If (hkBtn[Key] = "GemSwap")
+						State[Key] := 0
+					Else If (hkBtn[Key] = "ItemSort")
+						State[Key] := 0
+					Else If (hkBtn[Key] = hotkeyMainAttack)
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"up")
-						State%Key% := 0
+						SendHotkey(hkBtn[Key],"up")
+						State[Key] := 0
 						MainAttackPressedActive := 0
 					}
-					Else If (hotkeyControllerButton%Key% = hotkeySecondaryAttack)
+					Else If (hkBtn[Key] = hotkeySecondaryAttack)
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"up")
-						State%Key% := 0
+						SendHotkey(hkBtn[Key],"up")
+						State[Key] := 0
 						SecondaryAttackPressedActive := 0
 					}
 					Else
 					{
-						SendHotkey(hotkeyControllerButton%Key%,"up")
-						State%Key% := 0
+						SendHotkey(hkBtn[Key],"up")
+						State[Key] := 0
 					}
 				}
 			}
@@ -236,7 +242,7 @@ Controller(inputType:="Main")
 					x_finalPOV := 0
 				If (x_finalPOV || y_finalPOV)
 				{
-					MouseMove, %x_finalPOV%, %y_finalPOV%, 0, R
+					MouseMove(x_finalPOV, y_finalPOV, 0, "R")
 					HeldCountPOV+=1
 				}
 			}
@@ -265,7 +271,7 @@ DetectJoystick()
 		Return Controller_Active
 	Else
 	{
-		Loop, 4
+		Loop 4
 		{
 			If XInput_GetState(A_Index)
 			{
@@ -289,7 +295,7 @@ PercentAxis(axisPos){
 	Else
 		Positive := False
 	Percentage := Round((axisPos / (Positive?32767:32768)) * 100 ,6)
-	Return Percentage 
+	Return Percentage
 }
 SnapToInventoryGrid(Direction:="Left"){
 	Global InvGrid
@@ -370,7 +376,7 @@ MoveToGridPosition(c,r,gridArea:="StashQuad",Direction:="None"){
 	Else If (Direction = "Down")
 		r := (r+1<=InvGrid[gridArea].Y.Count()?r+1:r)
 
-	MouseMove,% InvGrid[gridArea].X[c],% InvGrid[gridArea].Y[r]
+	MouseMove(InvGrid[gridArea].X[c], InvGrid[gridArea].Y[r])
 	Return
 }
 GridPosition(x,y,gridArea:="StashQuad"){
@@ -429,7 +435,7 @@ DistanceTo(x,y,px,py){
 }
 UpdateMousePosition(){
 	Global mouseX, mouseY, mouseWin, mouseControl
-	MouseGetPos, mouseX, mouseY, mouseWin, mouseControl
+	MouseGetPos(&mouseX, &mouseY, &mouseWin, &mouseControl)
 	; tooltip, % mouseX " , " mouseY " - " mouseWin " : " mouseControl
 	return {"X":mouseX,"Y":mouseY,"hWin":mouseWin,"Ctrl":mouseControl}
 }

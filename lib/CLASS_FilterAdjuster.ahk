@@ -1,4 +1,4 @@
-﻿Class FilterAdjuster {
+Class FilterAdjuster {
 	Run(FilePath,NewContent,MarkerText:="",PositionalText:=""){
 		This.SetFilterFile(FilePath)
 		This.SetMarkerText(MarkerText,PositionalText)

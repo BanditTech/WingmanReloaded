@@ -1,4 +1,4 @@
-﻿ZoneChange(){
+ZoneChange(){
 	Static Changes := 0
 	Static OldLoc := 0
 

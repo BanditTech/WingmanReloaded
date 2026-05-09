@@ -1,4 +1,4 @@
-﻿; Find and retreive Chaos recipe items from a Stash Tab
+; Find and retreive Chaos recipe items from a Stash Tab
 ChaosRecipe(endAtRefresh := 0){
   If (!AccountNameSTR){
     Log("Chaos Recipe","You need def your account name in save/Account.ini",Strings*)
@@ -26,7 +26,7 @@ ChaosRecipe(endAtRefresh := 0){
         requestedTabs.Push(ChaosRecipeStashTab%part%)
         Object := PoERequest.Stash(ChaosRecipeStashTab%part%)
         ChaosRecipeSort(Object,True)
-        Sleep, 300
+        Sleep(300)
       }
     }
     If RecipeArray.Count()
@@ -579,9 +579,9 @@ retCount(obj){
 }
 ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
 VendorRoutineChaos(){
-  SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-  SetMouseDelay, %SetMouseDelayValue%
-  SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
+  SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+  SetMouseDelay(SetMouseDelayValue)
+  SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
   CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
 	BlackList := Array_DeepClone(BlackList_Default)
  ; Move mouse out of the way to grab screenshot
@@ -598,7 +598,7 @@ VendorRoutineChaos(){
 	For C, GridX in InventoryGridX
 	{
     If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
-      Sleep, 90
+      Sleep(90)
       Break
     }
 		For R, GridY in InventoryGridY
@@ -606,7 +606,7 @@ VendorRoutineChaos(){
       If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
         RecipeComplete := True
 			If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
-				Sleep, 90
+				Sleep(90)
         Break
       }
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
@@ -650,7 +650,7 @@ VendorRoutineChaos(){
 						}
 					} Else
             Continue
-          Sleep, 60
+          Sleep(60)
 				}
 			}
 		}
@@ -671,13 +671,13 @@ VendorRoutineChaos(){
 		Else If (FirstAutomationSetting=="Search Vendor")
 		{
 			CheckTime("Seconds",120,"VendorUI",A_Now)
-			MouseMove, WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0)
+			MouseMove(WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
 
 			While (!CheckTime("Seconds",120,"VendorUI"))
 			{
 				If (YesController)
 					Controller()
-				Sleep, 100
+				Sleep(100)
 				GuiStatus()
 				If !OnVendor && !OnInventory
 				{
@@ -702,19 +702,19 @@ VendorRoutineChaos(){
 			If OnMines
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
-				Sleep, 800
+				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town = "Oriath Docks")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
-				Sleep, 800
+				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town = "The Sarn Encampment")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
-				Sleep, 800
+				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			GuiStatus()
@@ -728,9 +728,9 @@ VendorRoutineChaos(){
 VendorChaosRecipe(){
  ; Ensure we only run one instance, second press of hotkey should stop function
 	CheckRunning()
-  SetKeyDelay, %SetKeyDelayValue1%, %SetKeyDelayValue2%, Play
-  SetMouseDelay, %SetMouseDelayValue%
-  SetDefaultMouseSpeed, %SetDefaultMouseSpeedValue%
+  SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
+  SetMouseDelay(SetMouseDelayValue)
+  SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
   Global InvGrid, CurrentTab
 	CurrentTab := 0
 	Static Object := {}
@@ -741,7 +741,7 @@ VendorChaosRecipe(){
 		PrintChaosRecipe("No Complete Rare Sets")
 		Return
 	}
-	IfWinActive, ahk_group POEGameGroup
+	if WinActive("ahk_group POEGameGroup")
 	{
   ; Refresh our screenshot
 		GuiStatus()
@@ -762,11 +762,11 @@ VendorChaosRecipe(){
 	{
   ; Move to Tab
 		MoveStash(v.Prop.StashTab)
-		Sleep, 60
+		Sleep(60)
   ; Ctrl+Click to inventory
 		CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
 		, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
-		Sleep, 60
+		Sleep(60)
 	}
 
  ; Remove set from Object array
@@ -774,52 +774,52 @@ VendorChaosRecipe(){
 
  ; Close Stash panel
 	SendHotkey(hotkeyCloseAllUI)
-  Sleep, 60
+  Sleep(60)
 	GuiStatus()
  ; Search for Vendor
 	If SearchVendor()
 	{
-		Sleep, 60
+		Sleep(60)
   ; Vendor set
 		If !VendorRoutineChaos() {
 				Notify("Recipe Set INCOMPLETE","Trying to fetch items Again",2)
-				sleep, 180
+				sleep(180)
 				SendHotkey(hotkeyCloseAllUI)
-				sleep, 180
+				sleep(180)
 				SendHotkey(hotkeyCloseAllUI)
-				sleep, 200
+				sleep(200)
 				SearchStash()
-				sleep, 200
+				sleep(200)
 				If OnStash {
 					For k, v in Backup
 					{
       ; Move to Tab
 						MoveStash(v.Prop.StashTab)
-						Sleep, 60
+						Sleep(60)
       ; Ctrl+Click to inventory
 						CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
 						, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
-						Sleep, 60
+						Sleep(60)
 					}
      ; Close Stash panel
 					SendHotkey(hotkeyCloseAllUI)
-          Sleep, 60
+          Sleep(60)
 					GuiStatus()
      ; Search for Vendor
 					If SearchVendor()
 					{
-						Sleep, 60
+						Sleep(60)
       ; Vendor set
 						If !VendorRoutineChaos() {
 							Notify("Recipe Set INCOMPLETE","Second Time failing",2)
-							MouseMove, xx, yy, 0
+							MouseMove(xx, yy, 0)
 							CheckRunning("Off")
 							Return False
 						}
 					}
 				} Else {
 					Notify("Could Not reopen stash automatically","",2)
-					MouseMove, xx, yy, 0
+					MouseMove(xx, yy, 0)
 					CheckRunning("Off")
 					Return False
 				}
@@ -830,10 +830,10 @@ VendorChaosRecipe(){
 	Else {
 		PrintChaosRecipe("There are " Object.Count() " sets of rare items left to vendor.`n", 3)
 		If ChaosRecipeUnloadAll
-			SetTimer VendorChaosRecipe, -500
+			SetTimer(VendorChaosRecipe, -500)
 	}
  ; Reset in preparation for the next press of this hotkey.
-	Sleep, 90*Latency
+	Sleep(90*Latency)
 	CheckRunning("Off")
 	Return True
 }
@@ -903,7 +903,7 @@ UpdateGuiChaosCounts(){
   Counts.Amulet += Items.uTally.Amulet
 
   for k, v in Counts {
-    GuiControl, Chaos:, % "GuiChaosCount" k, % v
+    GuiControl("Chaos:", "GuiChaosCount" k, v)
   }
 }
 

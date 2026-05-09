@@ -1,4 +1,4 @@
-﻿; Progress_Slider - Class written by Hellbent on AHK forum, adjusted by Bandit
+; Progress_Slider - Class written by Hellbent on AHK forum, adjusted by Bandit
 class Progress_Slider  {
   __New(pSlider_GUI_NAME , pSlider_Control_ID , pSlider_X , pSlider_Y , pSlider_W , pSlider_H , pSlider_Range_Start , pSlider_Range_End , pSlider_Value:=0 , pSlider_Background_Color := "Black" , pSlider_Top_Color := "Red" , pSlider_Pair_With_Edit := 0 , pSlider_Paired_Edit_ID := "" , pSlider_Use_Tooltip := 0 ,  pSlider_Vertical := 0 , pSlider_Smooth := 1, SaveINISection := ""){
     This.GUI_NAME:=pSlider_GUI_NAME
@@ -28,24 +28,24 @@ class Progress_Slider  {
   }
   Add_pSlider(){
     global
-    Gui, % This.GUI_NAME ":Add" , Text , % "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd"
-    pSlider_Trigger := This.Adjust_pSlider.BIND( THIS ) 
-    GUICONTROL +G , %pSliderTriggerhwnd% , % pSlider_Trigger
+    pSlider_Trigger := This.Adjust_pSlider.Bind( THIS )
+    pSliderTriggerCtrl := This.GUI_NAME.Add("Text", "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd")
+    pSliderTriggerCtrl.OnEvent("Click", pSlider_Trigger)
     if(This.Smooth=1&&This.Vertical=0)
-      Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID ,% This.Slider_Value
+      This.GUI_NAME.Add("Progress", "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID, This.Slider_Value)
     else if(This.Smooth=0&&This.Vertical=0)
-      Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID ,% This.Slider_Value
+      This.GUI_NAME.Add("Progress", "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID, This.Slider_Value)
     else if(This.Smooth=1&&This.Vertical=1)
-      Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID ,% This.Slider_Value
+      This.GUI_NAME.Add("Progress", "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID, This.Slider_Value)
     else if(This.Smooth=0&&This.Vertical=1)
-      Gui, % This.GUI_NAME ":Add" , Progress , % "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID ,% This.Slider_Value
+      This.GUI_NAME.Add("Progress", "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID, This.Slider_Value)
   }
   Adjust_pSlider(){
     Static OldVal
-    CoordMode,Mouse,Client
+    CoordMode("Mouse","Client")
     while(GetKeyState("LButton")){
       Static LastTT := 0
-      MouseGetPos,pSlider_Temp_X,pSlider_Temp_Y
+      MouseGetPos(&pSlider_Temp_X,&pSlider_Temp_Y)
       pSlider_Temp_X := Scale_PositionFromDPI(pSlider_Temp_X), pSlider_Temp_Y := Scale_PositionFromDPI(pSlider_Temp_Y)
       if(This.Vertical=0)
         This.Slider_Value := Round((pSlider_Temp_X - This.X ) / ( This.W / (This.End_Range - This.Start_Range) )) + This.Start_Range
@@ -55,42 +55,42 @@ class Progress_Slider  {
         This.Slider_Value:=This.End_Range
       else if(This.Slider_Value<This.Start_Range)
         This.Slider_Value:=This.Start_Range
-      GuiControl,% This.GUI_NAME ":" ,% This.Control_ID , % This.Slider_Value 
+      GuiControl(This.GUI_NAME ":", This.Control_ID, This.Slider_Value)
       if(This.Pair_With_Edit>=1 && This.Slider_Value != OldVal)
       {
         OldVal := This.Slider_Value
         if(This.Pair_With_Edit<=2)
         {
-          GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value
+          GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID, This.Slider_Value)
           If (This.SaveINISection)
-            IniWrite, % This.Slider_Value, %A_ScriptDir%\save\Settings.ini, % This.SaveINISection, % This.Paired_Edit_ID
+            IniWrite(This.Slider_Value, A_ScriptDir "\save\Settings.ini", This.SaveINISection, This.Paired_Edit_ID)
         }
         if(This.Pair_With_Edit>=2)
-        GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+        GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID_Hex, Format("{1:02X}",This.Slider_Value))
       }
       if(This.Add_Method!=0)
       {
-        
-        GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+
+        GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID_Hex, Format("{1:02X}",This.Slider_Value))
       }
       if(This.Use_Tooltip=1 && A_TickCount - LastTT > 100 )
       {
         LastTT := A_TickCount
-        ToolTip , % This.Slider_Value 
+        ToolTip(This.Slider_Value)
       }
     }
     if(This.Use_Tooltip=1)
-      ToolTip,
+      ToolTip()
   }
   SET_pSlider(NEW_pSlider_Value){
     This.Slider_Value := NEW_pSlider_Value
-    GuiControl,% This.GUI_NAME ":" ,% This.Control_ID , % This.Slider_Value
+    GuiControl(This.GUI_NAME ":", This.Control_ID, This.Slider_Value)
     if(This.Pair_With_Edit>=1)
     {
       if(This.Pair_With_Edit<=2)
-      GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID , % This.Slider_Value 
+      GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID, This.Slider_Value)
       if(This.Pair_With_Edit>=2)
-      GuiControl,% This.GUI_NAME ":" ,% This.Paired_Edit_ID_Hex , % Format("{1:02X}",This.Slider_Value)
+      GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID_Hex, Format("{1:02X}",This.Slider_Value))
     }
   }
 }

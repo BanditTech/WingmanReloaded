@@ -1,4 +1,4 @@
-﻿Class RefreshAffixes {
+Class RefreshAffixes {
 	Maps(){
 		Static FileList := [ {"category":"Map", "subfield":"low_tier_map"}
 			,{"category":"Map", "subfield":"mid_tier_map"}
@@ -50,4 +50,3 @@
 		Return Str
 	}
 }
-

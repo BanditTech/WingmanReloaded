@@ -1,4 +1,4 @@
-﻿Class SortByNum {
+Class SortByNum {
 	__New(sortlist,maxOver:=14,min:=40){
 		; Initiate values, get the total number of potential groups
 		This.Excess := AHK.reverse(AHK.sortBy(sortlist,"Q"))
@@ -46,7 +46,7 @@
 		For k, v in This.Excess {
 			txt .= v.Q " "
 		}
-		Tooltip % txt
+		ToolTip(txt)
 	}
 	SwapForBetter(){
 		While (Results := This.MultiSwap() ) {
@@ -169,7 +169,7 @@
 	}
 	GroupsAreFull(){
 		For k, bin in This.SortGroups {
-			If (This.GetQ(bin) < This.Min) 
+			If (This.GetQ(bin) < This.Min)
 				Return False
 		}
 		Return True
@@ -281,7 +281,7 @@
 								}
 							}
 						}
-					}						
+					}
 				}
 			}
 		}
@@ -298,7 +298,7 @@
 	}
 	BuildSortGroups(){
 		This.SortGroups := []
-		Loop, % This.GroupNum - 1 {
+		Loop This.GroupNum - 1 {
 			This.SortGroups.Push([])
 		}
 	}
@@ -323,8 +323,8 @@
 		}
 		objCount += This.Excess.Count()
 		If (objCount != This.TotalNum)
-			MsgBox % "There is a mismatching number of end objects"
-			. "`nStarting Count:" This.TotalNum "`tEnd:" objCount
+			MsgBox("There is a mismatching number of end objects"
+			. "`nStarting Count:" This.TotalNum "`tEnd:" objCount)
 		Return objCount
 	}
 }

@@ -1,10 +1,10 @@
-﻿; Add simple shared functions 
+; Add simple shared functions
 Class Util {
 	Static Name := "WingmanReloaded"
 	; List the files within a folder
 	FileList(dir,pat:="*.*"){
 		Local Files := []
-		Loop %dir%\%pat% {
+		Loop Files dir "\" pat {
 			Files.Push(A_LoopFileName)
 		}
 		If Files
@@ -23,9 +23,9 @@ Class Util {
 	; Retreive HWND of a process
 	HwndOfPID(pid){
 		local hWnd
-		DetectHiddenWindows, On
-		WinGet, hWnd, ID, % "ahk_pid " pid
-		DetectHiddenWindows, Off
+		DetectHiddenWindows(true)
+		hWnd := WinGetID("ahk_pid " pid)
+		DetectHiddenWindows(false)
 		return hWnd
 	}
 	; JSON wrapper for loading files
@@ -69,7 +69,7 @@ Class Util {
 		local t, f, fStr, _JSON
 		Try {
 			If !FileExist(This.Dir.save "\"){
-				FileCreateDir, % This.Dir.save
+				DirCreate(This.Dir.save)
 			}
 			If File {
 				If (File ~= "^\w:\\.+\.json$") { ; This File is a Full Path
@@ -115,14 +115,14 @@ Class Util {
 			l.Push(v ": " e[v])
 		This.Log.Msg("Error ", l)
 		If This.Debug.ErrorMsgBox
-			MsgBox,% 4096+16, %A_ScriptName%,% This.PrintArray(l,False)
+			MsgBox(This.PrintArray(l,False), A_ScriptName, 4096+16)
 		Return l
 	}
 	; Com method of fetching URL text data.
 	; Pass postdata, headers and cookies as keypair arrays, if postdata is text do not prepend "?"
 	HttpGet(url,headers:="",postdata:="",cookies:=""){
 		Try {
-			whr := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+			whr := ComObject("WinHttp.WinHttpRequest.5.1")
 			If (postdata){
 				appended := ""
 				If isObject(postdata) {
@@ -168,8 +168,8 @@ Class Util {
 	Quit() {
 		This.Log.Msg("Quit Was Called")
 		If This.Debug.AllowQuit {
-			DetectHiddenWindows On  ; WM_CLOSE=0x10
-			PostMessage 0x10,,,, ahk_id %A_ScriptHwnd%
+			DetectHiddenWindows(true)  ; WM_CLOSE=0x10
+			PostMessage(0x10,,,, "ahk_id " A_ScriptHwnd)
 		} ; Now return, so the client's call to Quit() succeeds.
 	}
 	; Store our directories for simple calls to files
@@ -202,7 +202,7 @@ Class Util {
 		Open(){
 			local loglist, filename, TimeString
 			If !FileExist(This.Dir.logs "\"){
-				FileCreateDir, % This.Dir.logs
+				DirCreate(This.Dir.logs)
 			}
 			This.Log.ActiveFile := This.Dir.logs "\" This.Name " " A_Now ".log"
 			This.Log.File := FileOpen(This.Log.ActiveFile,"w")
@@ -211,18 +211,18 @@ Class Util {
 			If (loglist.Count() > This.Log.Limit && This.Log.Limit)
 			{
 				While (loglist.Count() > This.Log.Limit) {
-					FileDelete,% This.Dir.logs "\" loglist.RemoveAt(1)
+					FileDelete(This.Dir.logs "\" loglist.RemoveAt(1))
 				}
 			}
-			FormatTime, TimeString, T12, Time
-			FormatTime, TimeString, A_Now, yyyy/MM/d
+			TimeString := FormatTime(, "Time")
+			TimeString := FormatTime(A_Now, "yyyy/MM/d")
 			This.Log.Msg(This.Name " Log ", TimeString
 			, "Script Version " VersionNumber
 			, "AHK v" A_AhkVersion " " (A_IsUnicode ? "Unicode" : "ANSI") " " (A_PtrSize = 4 ? 32 : 64) "-b"
 			, "AHK " A_AhkPath
 			, "OS " (A_OSVersion ~= "^WIN_" ? A_OSVersion : A_OSVersion >= 10 ? "WIN_"A_OSVersion : "Unknown OS " A_OSVersion) (A_Is64bitOS?" 64-b":" 32-b")
 			, "Screen W" A_ScreenWidth " H" A_ScreenHeight
-			, "Screen DPI " Round(( A_ScreenDPI / 96 ) * 100) "% (" A_ScreenDPI " DPI)" ) 
+			, "Screen DPI " Round(( A_ScreenDPI / 96 ) * 100) "% (" A_ScreenDPI " DPI)" )
 		}
 		Msg(t*){
 			local flag := "", k, v, File, line := ""
@@ -258,7 +258,7 @@ Class Util {
 }
 
 ; Log file function
-Log(var*) 
+Log(var*)
 {
 	Util.Log.Msg(var*)
 	return

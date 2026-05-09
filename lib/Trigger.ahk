@@ -1,4 +1,4 @@
-﻿; Trigger - Generic Trigger for flasks or utility
+; Trigger - Generic Trigger for flasks or utility
 Trigger(obj,force:=False){
 	If !GuiCheck()
 		Return
@@ -13,10 +13,10 @@ Trigger(obj,force:=False){
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Check")
 	Else If !ActionList[obj.Group].Count()
 	{
-		loop % (obj.Type="Flask"?5:10)
-			if (WR[obj.Type][A_Index].Group = obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) ) 
+		loop (obj.Type="Flask"?5:10)
+			if (WR[obj.Type][A_Index].Group = obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) )
 				ActionList[obj.Group].Push(obj.Type . " " . A_Index . " Check")
-	} 
+	}
 	For k, v in ActionList[obj.Group]
 	{
 		type := StrSplit(v, " ")[1], recheck := (StrSplit(v, " ")[3] == "Check"?True:False), v := StrSplit(v, " ")[2]
@@ -27,7 +27,7 @@ Trigger(obj,force:=False){
 			{
 				If !GameActive
 					Return
-				MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")  
+				MovementPressed := ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")
 												|| (MainAttackPressedActive && WR.perChar.Setting.movementMainAttack)
 												|| (SecondaryAttackPressedActive && WR.perChar.Setting.movementSecondaryAttack) )
 				If (MovementPressed)
@@ -42,11 +42,11 @@ Trigger(obj,force:=False){
 					Return
 			}
 			SendHotkey(WR[type][v].Key)
-			WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD 
-			WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD 
+			WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD
+			WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD
 			ActionList[obj.Group].RemoveAt(k)
 			If (WR[type][v].Group = "QuickSilver")
-				Loop, 10
+				Loop 10
 					If (WR.Utility[A_Index].Enable && WR.Utility[A_Index].QS)
 						Trigger(WR.Utility[A_Index],true)
 			Return
@@ -62,13 +62,13 @@ ConfirmMatchingTriggers(obj){
 		If (obj.OnCD)
 			Return True
 		If ( ( WR.func.Toggle[obj.Type] && obj.Condition == 1 ; Any/All Resource Triggers
-			&& (obj.Life && obj.Life > Player.Percent.Life) || (obj.ES && obj.ES > Player.Percent.ES) || (obj.Mana && obj.Mana > Player.Percent.Mana) ) 
-			|| ( WR.func.Toggle[obj.Type] && obj.Condition == 2 
+			&& (obj.Life && obj.Life > Player.Percent.Life) || (obj.ES && obj.ES > Player.Percent.ES) || (obj.Mana && obj.Mana > Player.Percent.Mana) )
+			|| ( WR.func.Toggle[obj.Type] && obj.Condition == 2
 			&& (!obj.Life || (obj.Life && obj.Life > Player.Percent.Life)) && (!obj.ES || (obj.ES && obj.ES > Player.Percent.ES)) && (!obj.Mana || (obj.Mana && obj.Mana > Player.Percent.Mana)) ) )
 			Return True
 		If (obj.Move && WR.func.Toggle.Move)
 		{ ; Move Triggers
-			If ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")  
+			If ( MovementHotkeyActive || GetKeyState(hotkeyTriggerMovement,"P")
 			|| (MainAttackPressedActive && WR.perChar.Setting.movementMainAttack)
 			|| (SecondaryAttackPressedActive && WR.perChar.Setting.movementSecondaryAttack) )
 			{
@@ -83,7 +83,7 @@ ConfirmMatchingTriggers(obj){
 				Return True
 			}
 		}
-		If (WR.func.Toggle[obj.Type] 
+		If (WR.func.Toggle[obj.Type]
 			&& ( (obj.MainAttack && MainAttackPressedActive) ;Attack Triggers
 			|| (obj.SecondaryAttack && SecondaryAttackPressedActive) ) )
 			Return True
@@ -93,48 +93,44 @@ ConfirmMatchingTriggers(obj){
 ; MainAttackCommand - Main attack Flasks
 MainAttackCommand()
 {
-	MainAttackCommand:
 	If (MainAttackPressedActive||OnTown||OnHideout)
 		Return
 	MainAttackPressedActive := True
-	Return  
+	Return
 }
 MainAttackCommandRelease()
 {
-	MainAttackCommandRelease:
 	MainAttackPressedActive := False
 	MainAttackLastRelease := A_TickCount
 	If (OnTown||OnHideout)
 		Return
 	For k, types in ["Flask","Utility"]
-		loop % (types="Flask"?5:10)
+		loop (types="Flask"?5:10)
 			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
 				Trigger(WR[types][A_Index],True)
-	Return  
+	Return
 }
 ; SecondaryAttackCommand - Secondary attack Flasks
 SecondaryAttackCommand()
 {
-	SecondaryAttackCommand:
 	If (SecondaryAttackPressedActive||OnTown||OnHideout)
 		Return
 	SecondaryAttackPressedActive := True
-	Return  
+	Return
 }
 SecondaryAttackCommandRelease()
 {
-	SecondaryAttackCommandRelease:
 	SecondaryAttackPressedActive := False
 	If (OnTown||OnHideout)
 		Return
 	For k, types in ["Flask","Utility"]
-		loop % (types="Flask"?5:10)
+		loop (types="Flask"?5:10)
 			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
 				Trigger(WR[types][A_Index],True)
-	Return  
+	Return
 }
 ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
-TimerPassthrough:
+TimerPassthrough() {
 	Loop 5
 		try {
 		If GetKeyState(StrSplit(WR.Flask[A_Index].Key," ")[1], "P")
@@ -142,4 +138,4 @@ TimerPassthrough:
 		} catch e {
 			Log("Error","TimerPassthrough Error: " ErrorText(e))
 		}
-Return
+}

@@ -1,4 +1,4 @@
-﻿; ItemBuild - Create Prop and Affix Values in WR format from GGG Stash API
+; ItemBuild - Create Prop and Affix Values in WR format from GGG Stash API
 class ItemBuild extends ItemScan
 {
 	__New(Object,quad){
@@ -50,7 +50,7 @@ class ItemBuild extends ItemScan
 			This.Affix.Unidentified := 1
 		This.Prop.StashX := Object.x +1
 		This.Prop.StashY := Object.y +1
-		This.Prop.StashTab := (RegExMatch(Object.inventoryId, "Stash(\d{1,3})",RxMatch)?RxMatch1:False)
+		This.Prop.StashTab := (RegExMatch(Object.inventoryId, "Stash(\d{1,3})", &RxMatch)?RxMatch[1]:False)
 		If quad
 			This.Prop.StashQuad := True
 		Else
@@ -73,7 +73,7 @@ class ItemBuild extends ItemScan
 					{
 						This.Prop.DropLevel := b["drop_level"]
 						This.Prop.ItemClass := k
-		
+
 						If InStr(This.Prop.ItemClass, "Ring")
 							This.Prop.Ring := True
 						If InStr(This.Prop.ItemClass, "Amulet")

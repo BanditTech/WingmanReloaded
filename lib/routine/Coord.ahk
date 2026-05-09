@@ -1,4 +1,4 @@
-﻿; Coord - : Pixel information on Mouse Cursor, provides pixel location and RGB color hex
+; Coord - : Pixel information on Mouse Cursor, provides pixel location and RGB color hex
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Coord(){
 	Global Picker
@@ -24,7 +24,7 @@ Coord(){
 		Notify(Clipboard, "`nThis information has been placed in the clipboard`nCalculation Took " (T1 := A_TickCount - T1) " MS for " (T_Area := ((Rect.X2 - Rect.X1 + 1) * (Rect.Y2 - Rect.Y1 + 1))) " Pixels`n" Round(T1 / T_Area,3) " MS per pixel",5)
 		Picker.SetColor(AvgColor)
 	}
-	Else 
+	Else
 		Ding(3000,-11,Clipboard "`nColor and Location copied to Clipboard")
 	Return
 }

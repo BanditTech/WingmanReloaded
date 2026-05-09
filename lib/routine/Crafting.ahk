@@ -1,8 +1,8 @@
-﻿; Crafting Section - main routine and all subroutines and popup
+; Crafting Section - main routine and all subroutines and popup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Crafting(selection:="Maps"){
 	; Thread, NoTimers, True
-	MouseGetPos xx, yy
+	MouseGetPos(&xx, &yy)
 	CheckRunning()
 	If GameActive
 	{
@@ -54,7 +54,7 @@ Crafting(selection:="Maps"){
 			}
 		}
 	}
-	MouseMove %xx%, %yy%
+	MouseMove(xx, yy)
 	CheckRunning("Off")
 	Return
 }
@@ -104,7 +104,7 @@ ItemCraftingBaseComparator(base1,base2){
 
 CraftingItem(){
 	Global RunningToggle
-	MouseGetPos xx, yy
+	MouseGetPos(&xx, &yy)
 	If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 		Return
 	; Move mouse away for Screenshot
@@ -124,11 +124,11 @@ CraftingItem(){
 		CurrencyList.Push("Chaos")
 
 	WR.data.Counts := CountCurrency(CurrencyList)
-	MouseMove %xx%, %yy%
-	Sleep, 150
+	MouseMove(xx, yy)
+	Sleep(150)
 	ClipItem(xx,yy)
 	Log("[Start] Item Crafting ","Initial Clip",JSON.Dump(Item))
-	Sleep, 45*Latency
+	Sleep(45*Latency)
 
 	/*
 	Each case must be revised
@@ -142,7 +142,7 @@ CraftingItem(){
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
-	} 
+	}
 	If (ItemCraftingNumberPrefix == 0 && ItemCraftingNumberSuffix == 0 && ItemCraftingNumberCombination == 0) {
 		Notify("Affix Matcher Error","You Need Select at least one Prefix or Suffix or Combination",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at least one Prefix or Suffix or Combination")
@@ -216,7 +216,7 @@ CraftingMaps(){
 			mapCraftingMethod := getMapCraftingMethod()
 			If (Item.Affix["Unidentified"]&&YesIdentify)
 			{
-				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap) 
+				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap)
 					&& (!YesMapUnid
 							|| ( Item.Prop.RarityMagic && mapCraftingMethod ~= "(Alchemy|Hybrid|Binding|Chaos)" )
 							|| ( Item.Affix.Unidentified && mapCraftingMethod ~= "Chisel" && Item.Prop.Map_Quality < 20 )	)
@@ -235,24 +235,24 @@ CraftingMaps(){
 			If ((Item.Prop.IsMap || Item.Prop.IsBlightedMap) && !Item.Prop.Corrupted && !Item.Prop.RarityUnique)
 			{
 				If (mapCraftingMethod ~= "Chisel") {
-					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5 
-					:	Item.Prop.Map_Tier > 5 ? 10 
-					:	Item.Prop.Map_Tier >= 1 ? 20 
+					qualityPerChisel := Item.Prop.Map_Tier > 10 ? 5
+					:	Item.Prop.Map_Tier > 5 ? 10
+					:	Item.Prop.Map_Tier >= 1 ? 20
 					: 1
 					numberChisel := 0
 
 					If (Item.Prop.Map_Quality < 20) {
 						numberChisel := ForceMaxChisel ? Ceil((20 - Item.Prop.Map_Quality)/qualityPerChisel) : (20 - Item.Prop.Map_Quality)//qualityPerChisel
 					}
-				
+
 					If !ApplyCurrency("Chisel",Grid.X,Grid.Y,numberChisel)
 						Return False
 				}
 
 				If (!Item.Prop.RarityNormal)
 				{
-					If ( (Item.Prop.RarityMagic && mapCraftingMethod == "Transmutation+Augmentation") 
-						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)")) 
+					If ( (Item.Prop.RarityMagic && mapCraftingMethod == "Transmutation+Augmentation")
+						|| (Item.Prop.RarityRare && (mapCraftingMethod == "Transmutation+Augmentation" || mapCraftingMethod ~= "(^Alchemy$|^Binding$|^Hybrid$|^Chaos$)"))
 						|| (Item.Prop.RarityRare && Item.Prop.Quality >= 16 && mapCraftingMethod ~= "(Alchemy|Binding|Hybrid|Chaos)") )
 					{
 						If (!Item.Prop.MapKeepFlag)
@@ -294,9 +294,9 @@ CraftingMaps(){
 				R := split.2
 				gogo := Slots.Pop()
 				LeftClick(obj.X,obj.Y)
-				Sleep, 180 + (15 * ClickLatency)
+				Sleep(180 + (15 * ClickLatency))
 				LeftClick(gogo.X,gogo.Y)
-				Sleep, 120 + (15 * ClickLatency)
+				Sleep(120 + (15 * ClickLatency))
 			}	Else
 				Break
 		}
@@ -312,7 +312,7 @@ InMapArea(C:=0){
 	Return False
 }
 getMapCraftingMethod(){
-	Loop, 3
+	Loop 3
 	{
 		If ( EndMapTier%A_Index% >= StartMapTier%A_Index%
 			&& CraftingMapMethod%A_Index% != "Disable"
@@ -361,23 +361,23 @@ ApplyCurrency(cname, x, y, Amount:=1){
 	}
 	Log("Currency","Applying " cname " onto item at " x "," y)
 	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
-	Sleep, 45*Latency
+	Sleep(45*Latency)
 	If (Amount > 1) {
-		Send, {Shift down}
+		Send("{Shift down}")
 		RandomSleep(30,45)
 	}
-	Loop, %Amount% {
+	Loop Amount {
 		LeftClick(x,y)
-		Sleep, 30
+		Sleep(30)
 	}
 	If (Amount > 1) {
 		RandomSleep(30,45)
-		Send, {Shift up}
+		Send("{Shift up}")
 		RandomSleep(30,45)
 	}
-	Sleep, 90*Latency
+	Sleep(90*Latency)
 	ClipItem(x,y)
-	Sleep, 45*Latency
+	Sleep(45*Latency)
 	return True
 }
 ; MapRoll - Apply currency/reroll on maps based on select undesireable mods
@@ -435,7 +435,7 @@ MapRoll(Method, x, y){
 		{
 			WisdomScroll(x,y)
 			ClipItem(x,y)
-			Sleep, 45*Latency
+			Sleep(45*Latency)
 		}
 	}
 	; Apply Currency if Normal
@@ -536,7 +536,7 @@ ItemCraftingRoll(Method, x, y){
 	{
 		WisdomScroll(x,y)
 		ClipItem(x,y)
-		Sleep, 45*Latency
+		Sleep(45*Latency)
 	}
 	While (!Item.Prop.ItemCraftingHit){
 		If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.

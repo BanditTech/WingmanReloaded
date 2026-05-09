@@ -1,135 +1,131 @@
-﻿; Register and UnRegister Hotkeys - Register Chat and Stash Hotkeys
+; Register and UnRegister Hotkeys - Register Chat and Stash Hotkeys
 RegisterHotkeys() {
 	global
-	Gui Submit, NoHide
 
-	fn1 := Func("1HotkeyShouldFire").Bind(1Prefix1,1Prefix2,EnableChatHotkeys)
-	Hotkey If, % fn1
-	Loop, 9 {
-		If 1Suffix%A_Index%
-		{
-			1bind%A_Index% := Func("FireHotkey").Bind("Enter","1",A_Index)
-			Hotkey,% "*" 1Suffix%A_Index%,% 1bind%A_Index%, On
+	fn1 := c1HotkeyShouldFire.Bind(c1Prefix1,c1Prefix2,EnableChatHotkeys)
+	HotIf(fn1)
+	local c1Suffixes := [c1Suffix1,c1Suffix2,c1Suffix3,c1Suffix4,c1Suffix5,c1Suffix6,c1Suffix7,c1Suffix8,c1Suffix9]
+	For i, suf in c1Suffixes {
+		If suf {
+			local c1b := FireHotkey.Bind("Enter","c1",i)
+			Hotkey("*" suf, c1b, "On")
 		}
 	}
-	fn2 := Func("2HotkeyShouldFire").Bind(2Prefix1,2Prefix2,EnableChatHotkeys)
-	Hotkey If, % fn2
-	Loop, 9 {
-		If 2Suffix%A_Index%
-		{
-			2bind%A_Index% := Func("FireHotkey").Bind("CtrlEnter","2",A_Index)
-			Hotkey,% "*" 2Suffix%A_Index%,% 2bind%A_Index%, On
+	fn2 := c2HotkeyShouldFire.Bind(c2Prefix1,c2Prefix2,EnableChatHotkeys)
+	HotIf(fn2)
+	local c2Suffixes := [c2Suffix1,c2Suffix2,c2Suffix3,c2Suffix4,c2Suffix5,c2Suffix6,c2Suffix7,c2Suffix8,c2Suffix9]
+	For i, suf in c2Suffixes {
+		If suf {
+			local c2b := FireHotkey.Bind("CtrlEnter","c2",i)
+			Hotkey("*" suf, c2b, "On")
 		}
 	}
-	fn3 := Func("stashHotkeyShouldFire").Bind(stashPrefix1,stashPrefix2,YesStashKeys)
-	Hotkey If, % fn3
-	Loop, 9 {
-		If stashSuffix%A_Index%
-		{
-			stashbind%A_Index% := Func("FireHotkey").Bind("Stash","stash", "Tab" A_Index)
-			Hotkey,% "~*" stashSuffix%A_Index%,% stashbind%A_Index%, On
+	fn3 := stashHotkeyShouldFire.Bind(stashPrefix1,stashPrefix2,YesStashKeys)
+	HotIf(fn3)
+	local stashSuffixes := [stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9]
+	For i, suf in stashSuffixes {
+		If suf {
+			local sb := FireHotkey.Bind("Stash","stash",i)
+			Hotkey("~*" suf, sb, "On")
 		}
 	}
 	Return
 }
 UnRegisterHotkeys(){
 	global
-	Hotkey If, % fn1
-		Loop, 9
-	{
-		If 1Suffix%A_Index%
-		{
-			1bind%A_Index% := Func("FireHotkey").Bind("Enter","1",A_Index)
-			Hotkey,% "*" 1Suffix%A_Index%,% 1bind%A_Index%, off
+	HotIf(fn1)
+	local c1Suffixes := [c1Suffix1,c1Suffix2,c1Suffix3,c1Suffix4,c1Suffix5,c1Suffix6,c1Suffix7,c1Suffix8,c1Suffix9]
+	For i, suf in c1Suffixes {
+		If suf {
+			local c1b := FireHotkey.Bind("Enter","c1",i)
+			Hotkey("*" suf, c1b, "Off")
 		}
 	}
-	Hotkey If, % fn2
-		Loop, 9
-	{
-		If 2Suffix%A_Index%
-		{
-			2bind%A_Index% := Func("FireHotkey").Bind("CtrlEnter","2",A_Index)
-			Hotkey,% "*" 2Suffix%A_Index%,% 2bind%A_Index%, off
+	HotIf(fn2)
+	local c2Suffixes := [c2Suffix1,c2Suffix2,c2Suffix3,c2Suffix4,c2Suffix5,c2Suffix6,c2Suffix7,c2Suffix8,c2Suffix9]
+	For i, suf in c2Suffixes {
+		If suf {
+			local c2b := FireHotkey.Bind("CtrlEnter","c2",i)
+			Hotkey("*" suf, c2b, "Off")
 		}
 	}
-	Hotkey If, % fn3
-		Loop, 9
-	{
-		If stashSuffix%A_Index%
-		{
-			stashbind%A_Index% := Func("FireHotkey").Bind("Stash","stash", "Tab" A_Index)
-			Hotkey,% "*" stashSuffix%A_Index%,% stashbind%A_Index%, off
+	HotIf(fn3)
+	local stashSuffixes := [stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9]
+	For i, suf in stashSuffixes {
+		If suf {
+			local sb := FireHotkey.Bind("Stash","stash",i)
+			Hotkey("*" suf, sb, "Off")
 		}
 	}
 	Return
 }
 ; HotkeyShouldFire - Functions to evaluate keystate
-1HotkeyShouldFire(1Prefix1, 1Prefix2, EnableChatHotkeys, thisHotkey) {
-	IfWinActive, ahk_group POEGameGroup
+c1HotkeyShouldFire(p1, p2, EnableChatHotkeys, thisHotkey) {
+	if WinActive("ahk_group POEGameGroup")
 	{
 		If (EnableChatHotkeys){
-			If ( 1Prefix1 && 1Prefix2 ){
-				If ( GetKeyState(1Prefix1) && GetKeyState(1Prefix2) )
+			If ( p1 && p2 ){
+				If ( GetKeyState(p1) && GetKeyState(p2) )
 					return True
 				Else
 					return False
 			}
-			Else If ( 1Prefix1 && !1Prefix2 ) {
-				If ( GetKeyState(1Prefix1) ) 
+			Else If ( p1 && !p2 ) {
+				If ( GetKeyState(p1) )
 					return True
 				Else
 					return False
 			}
-			Else If ( !1Prefix1 && 1Prefix2 ) {
-				If ( GetKeyState(1Prefix2) ) 
+			Else If ( !p1 && p2 ) {
+				If ( GetKeyState(p2) )
 					return True
 				Else
 					return False
 			}
-			Else If ( !1Prefix1 && !1Prefix2 ) {
+			Else If ( !p1 && !p2 ) {
 				return True
 			}
-		} 
+		}
 	}
 	Else {
 		Return False
 	}
 }
-2HotkeyShouldFire(2Prefix1, 2Prefix2, EnableChatHotkeys, thisHotkey) {
-	IfWinActive, ahk_group POEGameGroup
+c2HotkeyShouldFire(p1, p2, EnableChatHotkeys, thisHotkey) {
+	if WinActive("ahk_group POEGameGroup")
 	{
 		If (EnableChatHotkeys){
-			If ( 2Prefix1 && 2Prefix2 ){
-				If ( GetKeyState(2Prefix1) && GetKeyState(2Prefix2) )
+			If ( p1 && p2 ){
+				If ( GetKeyState(p1) && GetKeyState(p2) )
 					return True
 				Else
 					return False
 			}
-			Else If ( 2Prefix1 && !2Prefix2 ) {
-				If ( GetKeyState(2Prefix1) ) 
+			Else If ( p1 && !p2 ) {
+				If ( GetKeyState(p1) )
 					return True
 				Else
 					return False
 			}
-			Else If ( !2Prefix1 && 2Prefix2 ) {
-				If ( GetKeyState(2Prefix2) ) 
+			Else If ( !p1 && p2 ) {
+				If ( GetKeyState(p2) )
 					return True
 				Else
 					return False
 			}
-			Else If ( !2Prefix1 && !2Prefix2 ) {
+			Else If ( !p1 && !p2 ) {
 				return True
 			}
 		}
 		Else
-			Return False 
+			Return False
 	}
 	Else {
 		Return False
 	}
 }
 stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
-	IfWinActive, ahk_group POEGameGroup
+	if WinActive("ahk_group POEGameGroup")
 	{
 		If (YesStashKeys){
 			If ( stashPrefix1 && stashPrefix2 ){
@@ -139,13 +135,13 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 					return False
 			}
 			Else If ( stashPrefix1 && !stashPrefix2 ) {
-				If ( GetKeyState(stashPrefix1) ) 
+				If ( GetKeyState(stashPrefix1) )
 					return True
 				Else
 					return False
 			}
 			Else If ( !stashPrefix1 && stashPrefix2 ) {
-				If ( GetKeyState(stashPrefix2) ) 
+				If ( GetKeyState(stashPrefix2) )
 					return True
 				Else
 					return False
@@ -155,7 +151,7 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 			}
 		}
 		Else
-			Return False 
+			Return False
 	}
 	Else {
 		Return False
@@ -163,32 +159,35 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 }
 
 ; FireHotkey - Functions to Send each hotkey
-FireHotkey(func:="CtrlEnter",TypePrefix:="2",SuffixNum:="1"){
-	; Enter func is Prefix 1, CtrlEnter func is Prefix 2
-	; Stash func is Prefix stash with SuffixNum of Tab#
-	IfWinActive, ahk_group POEGameGroup
+; Enter func uses chat group c1, CtrlEnter func uses chat group c2
+; Stash func uses stash prefix with SuffixNum as the slot index (1-9)
+FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1){
+	global
+	if WinActive("ahk_group POEGameGroup")
 	{
 		If (func = "Enter")
 		{
-			tempStr := StrReplace(%TypePrefix%Suffix%SuffixNum%Text, "CharacterName", CharName, 0, -1)
-			tempStr := StrReplace(tempStr, "RecipientName", RecipientName, 0, -1)
-			tempStr := StrReplace(tempStr, "!", "{!}", 0, -1)
-			Send, {Enter}%tempStr%{Enter}
+			local c1Texts := [c1Suffix1Text,c1Suffix2Text,c1Suffix3Text,c1Suffix4Text,c1Suffix5Text,c1Suffix6Text,c1Suffix7Text,c1Suffix8Text,c1Suffix9Text]
+			tempStr := StrReplace(c1Texts[SuffixNum], "CharacterName", CharName, , -1)
+			tempStr := StrReplace(tempStr, "RecipientName", RecipientName, , -1)
+			tempStr := StrReplace(tempStr, "!", "{!}", , -1)
+			Send("{Enter}" tempStr "{Enter}")
 			ResetChat()
 		}
 		Else If (func = "CtrlEnter")
 		{
 			GrabRecipientName()
-			tempStr := StrReplace(%TypePrefix%Suffix%SuffixNum%Text, "CharacterName", CharName, 0, -1)
-			tempStr := StrReplace(tempStr, "RecipientName", RecipientName, 0, -1)
-			tempStr := StrReplace(tempStr, "!", "{!}", 0, -1)
-			Send, ^{Enter}%tempStr%{Enter}
+			local c2Texts := [c2Suffix1Text,c2Suffix2Text,c2Suffix3Text,c2Suffix4Text,c2Suffix5Text,c2Suffix6Text,c2Suffix7Text,c2Suffix8Text,c2Suffix9Text]
+			tempStr := StrReplace(c2Texts[SuffixNum], "CharacterName", CharName, , -1)
+			tempStr := StrReplace(tempStr, "RecipientName", RecipientName, , -1)
+			tempStr := StrReplace(tempStr, "!", "{!}", , -1)
+			Send("^{Enter}" tempStr "{Enter}")
 			ResetChat()
-
 		}
 		Else If (func = "Stash")
 		{
-			MoveStash(%TypePrefix%Suffix%SuffixNum%,1)
+			local stashTabs := [stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9]
+			MoveStash(stashTabs[SuffixNum], 1)
 		}
 	}
 	Return
@@ -196,7 +195,7 @@ FireHotkey(func:="CtrlEnter",TypePrefix:="2",SuffixNum:="1"){
 
 ; Reset Chat
 ResetChat(){
-	Send {Enter}{Up}{Escape}
+	Send("{Enter}{Up}{Escape}")
 	return
 }
 
@@ -204,8 +203,8 @@ ResetChat(){
 GrabRecipientName(){
 	CopyClip := Clipboard
 	Clipboard := ""
-	Send ^{Enter}^{A}^{C}{Escape}
-	ClipWait, 0
+	Send("^{Enter}^{A}^{C}{Escape}")
+	ClipWait(0)
 	Content := Clipboard
 	Clipboard := CopyClip
 	If (Content ~= "^@"){

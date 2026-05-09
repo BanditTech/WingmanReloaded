@@ -1,4 +1,4 @@
-﻿; PoEWindowCheck - Check for the game window. 
+; PoEWindowCheck - Check for the game window.
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PoEWindowCheck()
 {
@@ -7,7 +7,7 @@ PoEWindowCheck()
 		If (GamePID := WinExist(GameStr))
 		{
 			GameActive := WinActive(GameStr)
-			WinGetPos, , , nGameW, nGameH
+			WinGetPos(,, &nGameW, &nGameH)
 			newDim := (nGameW != GameW || nGameH != GameH)
 			global RescaleRan, ToggleExist
 			If (!GameBound || newDim )
@@ -18,16 +18,16 @@ PoEWindowCheck()
 				} else {
 					FindText.BindWindow(GamePID)
 				}
-				WinGet, s, Style, ahk_class POEWindowClass
+				s := WinGetStyle("ahk_class POEWindowClass")
 				If (s & +0x80000000)
-					WinSet, Style, -0x80000000, ahk_class POEWindowClass
+					WinSetStyle("-0x80000000", "ahk_class POEWindowClass")
 			}
 			If (!RescaleRan || newDim)
 				Rescale()
-			If ((!ToggleExist || newDim) && GameActive) 
+			If ((!ToggleExist || newDim) && GameActive)
 			{
-				Gui 2: Show,% "x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA"
-				Gui Chaos: Show,% "x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA"
+				Gui2.Show("x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA")
+				GuiChaos.Show("x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA")
 				GuiUpdate()
 				ToggleExist := True
 				NoGame := False
@@ -35,11 +35,11 @@ PoEWindowCheck()
 			Else If (ToggleExist && !GameActive)
 			{
 				ToggleExist := False
-				Gui 2: Show, Hide
-				Gui Chaos: Show, Hide
+				Gui2.Show("Hide")
+				GuiChaos.Show("Hide")
 			}
-		} 
-		Else 
+		}
+		Else
 		{
 			If CheckTime("seconds",5,"CheckActiveType")
 				CheckActiveType()
@@ -52,8 +52,8 @@ PoEWindowCheck()
 			}
 			If (ToggleExist)
 			{
-				Gui 2: Show, Hide
-				Gui Chaos: Show, Hide
+				Gui2.Show("Hide")
+				GuiChaos.Show("Hide")
 				ToggleExist := False
 				RescaleRan := False
 				NoGame := True

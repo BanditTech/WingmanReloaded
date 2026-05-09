@@ -1,4 +1,4 @@
-﻿; Compare two hex colors as their R G B elements, puts all the below together
+; Compare two hex colors as their R G B elements, puts all the below together
 CompareHex(color1, color2, vary:=1, BGR:=0){
   If BGR
   {
@@ -19,14 +19,14 @@ Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2,LR_Border:=0){
   If (Height < 1)
     Height := 1
   bitstr := ""
-  Loop % LR_Border
+  Loop LR_Border
     bitstr .= "0"
-  Loop % Width
+  Loop Width
     bitstr .= "1"
-  Loop % LR_Border
+  Loop LR_Border
     bitstr .= "0"
   endstr := bitstr
-  Loop % Height - 1
+  Loop Height - 1
   endstr .= "`n" . bitstr
   bitstr := FindText.bit2base64(endstr)
   ; Width += 2*LR_Border
@@ -109,11 +109,11 @@ AverageAreaColor(AreaObj){
   FindText.ScreenShot()
   Load_BarControl(,,1)
   ColorCount:=R_Count:=G_Count:=B_Count:=LastDisplay_LB:=EscBreak:=0
-  Loop, % W
+  Loop W
   {
     W_Index := A_Index
     Cur_X := X1 + (A_Index - 1)
-    Loop, % H
+    Loop H
     {
       Cur_Y := Y1 + (A_Index - 1)
       Temp_Hex := FindText.GetColor(Cur_X,Cur_Y)
@@ -152,8 +152,8 @@ AverageAreaColor(AreaObj){
 ; Check if a specific hex value is part of an array within a variance and return the index
 indexOfHex(var, Arr, fromIndex:=1, vary:=2){
   for index, value in Arr {
-    h1 := ToRGB(value) 
-    h2 := ToRGB(var) 
+    h1 := ToRGB(value)
+    h2 := ToRGB(var)
     if (index < fromIndex){
       Continue
     }else if (CompareRGB(h1, h2, vary)){

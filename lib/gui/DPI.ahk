@@ -1,4 +1,4 @@
-﻿Get_DpiFactor() {
+Get_DpiFactor() {
   return A_ScreenDPI=96?1:A_ScreenDPI/96
 }
 Scale_PositionFromDPI(val){

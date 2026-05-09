@@ -1,14 +1,14 @@
-﻿CraftBasicPopUp(){
+CraftBasicPopUp(){
 	static _init_ := CraftBasicPopUpBuild()
 	Global CraftMenu, RunningToggle
 	CheckRunning()
 
 	If !(CraftMenu.Active){
-		MouseGetPos itemx, itemy
+		MouseGetPos(&itemx, &itemy)
 		CraftMenu.SetKey(hotkeyCraftBasic)
 		; CraftMenu.SetKeySpecial("Ctrl")
 		selection := CraftMenu.Show()
-		MouseMove %itemx%, %itemy%
+		MouseMove(itemx, itemy)
 
 		If selection
 		{
@@ -27,16 +27,16 @@
 				Else
 					Notify("Result is:",selection,2)
 			}
-			WinActivate, % GameStr
+			WinActivate(GameStr)
 			Crafting(selection)
 		}
-		Else WinActivate, % GameStr
+		Else WinActivate(GameStr)
 	}
 }
 ; Build crafting popup menu
 CraftBasicPopUpBuild(){
 	global hotkeyCraftBasic, CraftMenu
-	CraftMenu := new Radial_Menu
+	CraftMenu := Radial_Menu()
 	CraftMenu.SetSections("5")
 	CraftMenu.Add("Chance","Images/Chance.png", "1")
 	CraftMenu.Add("Socket","Images/Jeweller.png", "2")

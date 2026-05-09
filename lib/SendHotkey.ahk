@@ -1,15 +1,15 @@
-﻿SendHotkey(keyStr:="",hold:=0){
+SendHotkey(keyStr:="",hold:=0){
   For i, keys in StrSplit(keyStr," "){
-    If RegExMatch(keys, "O)\[(\d+)\]\(([\d\w]+)\)", DelayKey)
+    If RegExMatch(keys, "O)\[(\d+)\]\(([\d\w]+)\)", &DelayKey)
     {
       DelayAction.Push({"TriggerAt":A_TickCount+DelayKey[1],"Key":DelayKey[2]})
       Continue
     }
     Obj := SplitModsFromKey(keys)
     If (GameActive := WinActive(GameStr))
-      Send, % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}"
+      Send(Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}")
     Else
-      controlsend, , % Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", %GameStr%
+      ControlSend(Obj.Mods "{" Obj.Key ( hold ? " " hold : "" ) "}", , GameStr)
   }
 }
 SendDelayAction(){

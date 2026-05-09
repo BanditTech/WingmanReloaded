@@ -1,4 +1,4 @@
-﻿Class ModAlias {
+Class ModAlias {
 	Translate(StatKey){
 		If !(This.Loaded) {
 			This.LoadDatabase()
@@ -25,10 +25,10 @@
 		Return {"id":referenceid,"max":referencemax,"min":referencemin}
 	}
 	Locate(StatID){
-		Loop % This.TransObject.length {
+		Loop This.TransObject.length {
 			k := A_Index - 1
 			v := This.TransObject[k]["ids"]
-			loop % v.length {
+			loop v.length {
 				i := A_Index - 1
 				strkey := v[i]
 				If (strkey = StatID) {
