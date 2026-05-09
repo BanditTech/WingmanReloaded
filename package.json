@@ -1,0 +1,24 @@
+{
+    "name": "WingmanReloaded/PoE-Wingman",
+    "description": "Path of Exile automation assistant built with AutoHotkey v2",
+    "version": "16.0.0",
+    "main": "PoE-Wingman.ahk",
+    "homepage": "https://github.com/WingmanReloaded/WingmanReloaded",
+    "repository": {
+        "type": "github",
+        "url": "WingmanReloaded/WingmanReloaded"
+    },
+    "bugs": {
+        "url": "https://github.com/WingmanReloaded/WingmanReloaded/issues"
+    },
+    "license": "GPL-3.0",
+    "dependencies": {
+        "G33kDude/cJson": "^2.1.0",
+        "buliasz/Gdip": "9fa1817",
+        "Cebolla/DeepClone": "6ec6ff5",
+        "feiyue/FindText": "3ffe6b6",
+        "Chunjee/adash": "^v0.6.0",
+        "lexikos/XInput": "github:ahkscript/ScriptHub@3ffe6b6",
+        "XMCQCX/Notify": "github:XMCQCX/NotifyClass-NotifyCreator@a66df2f"
+    }
+}
