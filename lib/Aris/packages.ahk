@@ -11,3 +11,4 @@
 ; --- Manually installed packages (not in Aris index) ---
 #include .\lexikos\XInput.ahk          ; lexikos/XInput@3ffe6b6 (via ahkscript/ScriptHub)
 #include .\XMCQCX\Notify.ahk           ; XMCQCX/Notify@a66df2f
+#include .\FanaticGuru\Fractions.ahk   ; FanaticGuru/Fractions@2023-08-28

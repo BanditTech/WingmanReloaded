@@ -9,7 +9,6 @@
 #Include %A_ScriptDir%\lib\ref\TF.ahk
 #Include %A_ScriptDir%\lib\ref\XGraph.ahk
 #Include %A_ScriptDir%\lib\ref\RadialMenu.ahk
-#Include %A_ScriptDir%\lib\ref\Decimal2Fraction.ahk
 #Include %A_ScriptDir%\lib\ref\Class_CtlColors.ahk
 #Include %A_ScriptDir%\lib\ref\CreateScript.ahk
 #Include %A_ScriptDir%\lib\ref\DynaRun.ahk
