@@ -220,7 +220,7 @@ Class Util {
 			, "Script Version " VersionNumber
 			, "AHK v" A_AhkVersion " " (A_IsUnicode ? "Unicode" : "ANSI") " " (A_PtrSize = 4 ? 32 : 64) "-b"
 			, "AHK " A_AhkPath
-			, "OS " (A_OSVersion ~= "^WIN_" ? A_OSVersion : A_OSVersion >= 10 ? "WIN_"A_OSVersion : "Unknown OS " A_OSVersion) (A_Is64bitOS?" 64-b":" 32-b")
+			, "OS " (A_OSVersion ~= "^WIN_" ? A_OSVersion : A_OSVersion >= 10 ? "WIN_" . A_OSVersion : "Unknown OS " A_OSVersion) (A_Is64bitOS?" 64-b":" 32-b")
 			, "Screen W" A_ScreenWidth " H" A_ScreenHeight
 			, "Screen DPI " Round(( A_ScreenDPI / 96 ) * 100) "% (" A_ScreenDPI " DPI)" )
 		}

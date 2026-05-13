@@ -41,7 +41,7 @@ WR.perChar.Setting := {typeLife:"1", typeHybrid:"0", typeES:"0", typeEldritch:"0
 for k, v in ["1","2","3","4","5"]
 {
 	WR.Flask[v] := {Key:v, GroupCD:"150", Condition:"1", CD:"4000"
-		, Group:"f"A_Index, Slot:A_Index, Type:"Flask"
+		, Group:"f" . A_Index, Slot:A_Index, Type:"Flask"
 		, MainAttack:"0", SecondaryAttack:"0", MainAttackRelease:"0", SecondaryAttackRelease:"0", Move:"0", PopAll:"1", Life:0, ES:0, Mana:0
 		, Curse:"0", Shock:"0", Bleed:"0", Freeze:"0", Ignite:"0", Poison:"0", ResetCooldownAtHealthPercentage:"0", ResetCooldownAtHealthPercentageInput:"0", ResetCooldownAtEnergyShieldPercentage:"0", ResetCooldownAtEnergyShieldPercentageInput:"0", ResetCooldownAtManaPercentage:"0", ResetCooldownAtManaPercentageInput:"0"}
 	WR.cdExpires.Flask[v] := A_TickCount
@@ -49,7 +49,7 @@ for k, v in ["1","2","3","4","5"]
 for k, v in ["1","2","3","4","5","6","7","8","9","10"]
 {
 	WR.Utility[v] := {Enable:"0", OnCD:"0", Condition:"1", Key:v, GroupCD:"5000", CD:"5000"
-		, Group:"u"A_Index, Slot:A_Index, QS:"0", Type:"Utility"
+		, Group:"u" . A_Index, Slot:A_Index, QS:"0", Type:"Utility"
 		, MainAttackOnly:"0", MainAttack:"0", SecondaryAttack:"0", MainAttackRelease:"0", SecondaryAttackRelease:"0", Move:"0", PopAll:"0", Life:0, ES:0, Mana:0
 		, Icon:"", IconShown:"0", IconSearch:"1", IconArea:{}, IconVar0:"0", IconVar1:"0"
 		, Curse:"0", Shock:"0", Bleed:"0", Freeze:"0", Ignite:"0", Poison:"0"}
