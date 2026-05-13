@@ -129,25 +129,28 @@ RandomSleep(min,max){
 }
 ; GetProcessTimes - Show CPU usage as precentage
 GetProcessTimes(PID){
-  static aPIDs := []
+  static aPIDs := Map()
   ; If called too frequently, will get mostly 0%, so it's better to just return the previous usage
-  if aPIDs.HasKey(PID) && A_TickCount - aPIDs[PID, "tickPrior"] < 250
-    return aPIDs[PID, "usagePrior"]
+  if aPIDs.Has(PID) && A_TickCount - aPIDs[PID]["tickPrior"] < 250
+    return aPIDs[PID]["usagePrior"]
 
   DllCall("GetSystemTimes", "Int64*", &lpIdleTimeSystem, "Int64*", &lpKernelTimeSystem, "Int64*", &lpUserTimeSystem)
-  if !hProc := DllCall("OpenProcess", "UInt", 0x1000, "Int", 0, "Ptr", pid)
-    return -2, aPIDs.HasKey(PID) ? aPIDs.Remove(PID, "") : "" ; Process doesn't exist anymore or don't have access to it.
+  if !hProc := DllCall("OpenProcess", "UInt", 0x1000, "Int", 0, "Ptr", pid) {
+    if aPIDs.Has(PID)
+      aPIDs.Delete(PID) ; Process doesn't exist anymore or don't have access to it.
+    return -2
+  }
   DllCall("GetProcessTimes", "Ptr", hProc, "Int64*", &lpCreationTime, "Int64*", &lpExitTime, "Int64*", &lpKernelTimeProcess, "Int64*", &lpUserTimeProcess)
   DllCall("CloseHandle", "Ptr", hProc)
 
-  if aPIDs.HasKey(PID) ; check if previously run
+  if aPIDs.Has(PID) ; check if previously run
   {
     ; find the total system run time delta between the two calls
-    systemKernelDelta := lpKernelTimeSystem - aPIDs[PID, "lpKernelTimeSystem"] ;lpKernelTimeSystemOld
-    systemUserDelta := lpUserTimeSystem - aPIDs[PID, "lpUserTimeSystem"] ; lpUserTimeSystemOld
+    systemKernelDelta := lpKernelTimeSystem - aPIDs[PID]["lpKernelTimeSystem"] ;lpKernelTimeSystemOld
+    systemUserDelta := lpUserTimeSystem - aPIDs[PID]["lpUserTimeSystem"] ; lpUserTimeSystemOld
     ; get the total process run time delta between the two calls
-    procKernalDelta := lpKernelTimeProcess - aPIDs[PID, "lpKernelTimeProcess"] ; lpKernelTimeProcessOld
-    procUserDelta := lpUserTimeProcess - aPIDs[PID, "lpUserTimeProcess"] ;lpUserTimeProcessOld
+    procKernalDelta := lpKernelTimeProcess - aPIDs[PID]["lpKernelTimeProcess"] ; lpKernelTimeProcessOld
+    procUserDelta := lpUserTimeProcess - aPIDs[PID]["lpUserTimeProcess"] ;lpUserTimeProcessOld
     ; sum the kernal + user time
     totalSystem :=  systemKernelDelta + systemUserDelta
     totalProcess := procKernalDelta + procUserDelta
@@ -156,12 +159,15 @@ GetProcessTimes(PID){
   }
   else result := -1
 
-  aPIDs[PID, "lpKernelTimeSystem"] := lpKernelTimeSystem
-  aPIDs[PID, "lpUserTimeSystem"] := lpUserTimeSystem
-  aPIDs[PID, "lpKernelTimeProcess"] := lpKernelTimeProcess
-  aPIDs[PID, "lpUserTimeProcess"] := lpUserTimeProcess
-  aPIDs[PID, "tickPrior"] := A_TickCount
-  return aPIDs[PID, "usagePrior"] := result
+  if !aPIDs.Has(PID)
+    aPIDs[PID] := Map()
+  aPIDs[PID]["lpKernelTimeSystem"] := lpKernelTimeSystem
+  aPIDs[PID]["lpUserTimeSystem"] := lpUserTimeSystem
+  aPIDs[PID]["lpKernelTimeProcess"] := lpKernelTimeProcess
+  aPIDs[PID]["lpUserTimeProcess"] := lpUserTimeProcess
+  aPIDs[PID]["tickPrior"] := A_TickCount
+  aPIDs[PID]["usagePrior"] := result
+  return result
 }
 ; check time
 CheckTime(Type:="hours",Interval:=2,key:="temp",Time:=""){
