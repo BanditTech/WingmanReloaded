@@ -1,17 +1,19 @@
 ; Zoom script found on AHK forum and modified to enclose in one function - Bandit
+
+; Shared state for all DrawZoom functions — initialized once at script load
+Global DZ_zoom := 6        ; initial magnification, 1..32
+Global DZ_halfside := 192  ; circa halfside of the magnifier
+Global DZ_part := DZ_halfside / DZ_zoom
+Global DZ_L_edge := (A_ScreenWidth//2) - DZ_halfside
+Global DZ_R_edge := (A_ScreenWidth//2) + DZ_halfside
+Global DZ_Rz := Round(DZ_part)
+Global DZ_R := DZ_Rz * DZ_zoom
+Global DZ_LineMargin := 10
+Global DZ_pos_old := 0
+Global DZ_pos_new := ""
+
 DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
 {
-  Static zoom := 6        ; initial magnification, 1..32
-  Static halfside := 192  ; circa halfside of the magnifier
-  Static part := halfside/zoom
-  Static L_edge := (A_ScreenWidth//2) - halfside
-  Static R_edge := (A_ScreenWidth//2) + halfside
-  Static Rz := Round(part)
-  Static R := Rz*zoom
-  Static LineMargin := 10
-  Static pos_old := 0
-  Static pos_new := ""
-
   If (Mode = "Toggle")
   {
     DrawZoom_ToggleZoom()
@@ -33,7 +35,6 @@ DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
     DrawZoom_ClearGDI()
     Return
   }
-
 
   ;specify the style, thickness and color of the cross lines
   h_pen := DllCall( "gdi32.dll\CreatePen", "int", 0, "int", 1, "uint", 0x0000FF)
@@ -68,46 +69,31 @@ DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
 }
 
 DrawZoom_Repaint() {
-  Global hdc_frame, hdd_frame, ZoomGui
-  Static zoom = 6
-  , halfside = 192
-  , part := halfside/zoom
-  , Rz := Round(part)
-  , R := Rz*zoom
-  , LineMargin := 10
+  Global hdc_frame, hdd_frame, ZoomGui, DZ_zoom, DZ_Rz, DZ_R, DZ_LineMargin
   MouseGetPos(&x, &y)
-  xz := x-Rz
-  yz := y-Rz
+  xz := x - DZ_Rz
+  yz := y - DZ_Rz
 
-  DllCall("gdi32.dll\StretchBlt", UInt,hdc_frame, Int,0, Int,0, Int,2*R+zoom, Int,2*R+zoom
-  , UInt,hdd_frame, UInt,xz, UInt,yz, Int,2*Rz+1, Int,2*Rz+1, UInt,0xCC0020) ; SRCCOPY
+  DllCall("gdi32.dll\StretchBlt", UInt,hdc_frame, Int,0, Int,0, Int,2*DZ_R+DZ_zoom, Int,2*DZ_R+DZ_zoom
+  , UInt,hdd_frame, UInt,xz, UInt,yz, Int,2*DZ_Rz+1, Int,2*DZ_Rz+1, UInt,0xCC0020) ; SRCCOPY
 
-  DrawZoom( "", LineMargin, R, zoom, hdc_frame )
+  DrawZoom( "", DZ_LineMargin, DZ_R, DZ_zoom, hdc_frame )
   ; DrawZoom_MoveAway()
 }
 
 DrawZoom_MoveAway() {
-  Global ZoomGui
-  Static zoom = 6
-  , halfside = 192
-  , part := halfside/zoom
-  , L_edge := (A_ScreenWidth//2) - halfside
-  , R_edge := (A_ScreenWidth//2) + halfside
-  , Rz := Round(part)
-  , R := Rz*zoom
-  , pos_old := 0
-  , pos_new
+  Global ZoomGui, DZ_zoom, DZ_halfside, DZ_L_edge, DZ_R_edge, DZ_Rz, DZ_R, DZ_pos_old, DZ_pos_new
   ; keep the frame outside the magnifier and precalculate wanted position
   MouseGetPos(&x, &y)
-  If (x < R_edge && x > L_edge) && (y < (2*R+zoom))
-    pos_new := (2*R+zoom+8)
+  If (x < DZ_R_edge && x > DZ_L_edge) && (y < (2*DZ_R+DZ_zoom))
+    DZ_pos_new := (2*DZ_R+DZ_zoom+8)
   Else
-    pos_new := 0
+    DZ_pos_new := 0
 
-  if ( pos_old <> pos_new )      ; only move if the real position of window needs to change
-    WinMove(,, pos_new,, "Magnifier")
+  if ( DZ_pos_old <> DZ_pos_new )      ; only move if the real position of window needs to change
+    WinMove(,, DZ_pos_new,, "Magnifier")
 
-  pos_old := pos_new   ; store value for next loop
+  DZ_pos_old := DZ_pos_new   ; store value for next loop
 }
 
 
@@ -120,11 +106,7 @@ DrawZoom_ClearGDI() {
 
 DrawZoom_ToggleZoom() {
   Global ZoomInitialize, hdc_frame, hdd_frame, GamePID, ZoomGui
-  Static zoom = 6
-  , halfside = 192
-  , part := halfside/zoom
-  , Rz := Round(part)
-  , R := Rz*zoom
+  Global DZ_zoom, DZ_halfside, DZ_Rz, DZ_R
   If ZoomInitialize
   {
     DrawZoom_ClearGDI()
@@ -141,10 +123,9 @@ DrawZoom_ToggleZoom() {
   {
     ZoomInitialize := 1
     ZoomGui := Gui("+AlwaysOnTop -Caption -Resize +ToolWindow +E0x80020")
-    ZoomGui.Show("w" 2*R+zoom+0 " h" 2*R+zoom+0 " x" A_ScreenWidth//2 - halfside " y0 NA", "Magnifier")
+    ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside " y0 NA", "Magnifier")
     MagnifierID := WinGetID("Magnifier")
     WinSetTransparent(255, "Magnifier") ; makes the window invisible to magnification
-    ; WinGet PrintSourceID, ID
     hdd_frame := DllCall("GetDC", UInt, GamePID)
     hdc_frame := DllCall("GetDC", UInt, MagnifierID)
     Hotkey("IfWinActive")
@@ -159,22 +140,17 @@ DrawZoom_ToggleZoom() {
 }
 
 ZoomAdjust(*) {
-  Global ZoomGui
-  Static zoom = 6
-  , halfside = 192
-  , part := halfside/zoom
-  , Rz := Round(part)
-  , R := Rz*zoom
-  If (zoom < 31 && A_ThisHotKey = "WheelUp" )
-    zoom *= 1.189207115     ; sqrt(sqrt(2))
-  Else If (zoom >  1 && A_ThisHotKey = "WheelDown")
-    zoom /= 1.189207115
+  Global ZoomGui, DZ_zoom, DZ_halfside, DZ_part, DZ_Rz, DZ_R
+  If (DZ_zoom < 31 && A_ThisHotKey = "WheelUp" )
+    DZ_zoom *= 1.189207115     ; sqrt(sqrt(2))
+  Else If (DZ_zoom >  1 && A_ThisHotKey = "WheelDown")
+    DZ_zoom /= 1.189207115
   Else
     Return
-  part := halfside/zoom       ;new calculation of the magnified image
-  Rz := Round(part)
-  R := Rz*zoom
-  ZoomGui.Show("w" 2*R+zoom+0 " h" 2*R+zoom+0 " x" A_ScreenWidth//2 - halfside  " y0 NA", "Magnifier")
+  DZ_part := DZ_halfside / DZ_zoom       ;new calculation of the magnified image
+  DZ_Rz := Round(DZ_part)
+  DZ_R := DZ_Rz * DZ_zoom
+  ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside  " y0 NA", "Magnifier")
   DrawZoom_MoveAway()
 }
 
