@@ -1,5 +1,4 @@
 FlaskMenu(GuiCtrl, *){
-	Global
 	static Built := {}, which := 1
 	static FlaskGui := {}
 	RegExMatch(GuiCtrl.Text, "\d+", &slotMatch)

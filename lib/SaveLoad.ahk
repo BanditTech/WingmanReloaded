@@ -1,5 +1,106 @@
 readFromFile(){
-	global
+	Global ProfileMenuperChar, ProfileMenuFlask, ProfileMenuUtility
+		, AccountNameSTR, PoECookie, WinGuiX, WinGuiY
+		, BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType
+		, Speed, Tick, KeyscanRate, QTick
+		, DebugMessages, YesTimeMS, YesLocation, ShowPixelGrid, ShowItemInfo
+		, LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec
+		, YesVendor, YesStash, YesIdentify, YesDiv
+		, YesMapUnid, YesInfluencedUnid, YesSynthesisId, YesCLFIgnoreImplicit, YesSortFirst
+		, Latency, ClickLatency, ClipLatency, ShowOnStart, PopFlaskRespectCD
+		, ResolutionScale, AutoUpdateOff, EnableChatHotkeys, CharName
+		, YesStashKeys, YesGuiLastPosition, YesDX12
+		, YesSkipMaps, YesSkipMaps_Prep, YesSkipMaps_eval
+		, YesSkipMaps_normal, YesSkipMaps_magic, YesSkipMaps_rare, YesSkipMaps_unique, YesSkipMaps_tier
+		, AreaScale, LVdelay, YesLootChests, YesLootDelve
+		, YesStashChaosRecipe, YesInGameOverlay, YesChaosOverlay
+		, YesBatchVendorBauble, YesBatchVendorGCP, BrickedWhenCorrupted
+		, YesOpenStackedDeck, YesOpenVeiledScarab, YesSpecial5Link
+		, YesVendorDumpItems, HeistAlcNGo, MoveMapsToArea, YesIncludeFandSItem, EnableRestock
+		, CLFStrictnessNumber
+		, BasicCraftChanceMethod, BasicCraftChanceScour, BasicCraftColorMethod
+		, BasicCraftR, BasicCraftG, BasicCraftB
+		, BasicCraftLinkMethod, BasicCraftDesiredLinks, BasicCraftLinkAuto
+		, BasicCraftSocketMethod, BasicCraftDesiredSockets, BasicCraftSocketAuto
+		, YesStashBasesAboveIlvl, StashBasesAboveIlvl
+		, YesCraftingBaseAutoUpdateOnStart, YesCraftingBaseAutoUpdateOnZone
+		, YesCraftingBaseLimitBases, CraftingBaseLimitBasesNumber
+		, ItemCraftingSubCategorySelector, ItemCraftingCategorySelector
+		, ItemCraftingNumberPrefix, ItemCraftingNumberSuffix, ItemCraftingNumberCombination, ItemCraftingMethod
+		, StartMapTier1, StartMapTier2, StartMapTier3
+		, EndMapTier1, EndMapTier2, EndMapTier3
+		, CraftingMapMethod1, CraftingMapMethod2, CraftingMapMethod3
+		, MMapItemQuantity, MMapItemRarity, MMapMonsterPackSize
+		, EnableMQQForMagicMap, MMQorWeight, MMapWeight, ForceMaxChisel
+		, YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation
+		, YesEnableAutoSellConfirmation, YesEnableAutoSellConfirmationSafe
+		, StashTabCurrency, StashTabYesCurrency, StashTabMap, StashTabYesMap
+		, StashTabDivination, StashTabYesDivination, StashTabGem, StashTabYesGem
+		, StashTabFlask, StashTabYesFlask, StashTabFragment, StashTabYesFragment
+		, StashTabEssence, StashTabYesEssence, StashTabBlight, StashTabYesBlight
+		, StashTabDelirium, StashTabYesDelirium, StashTabDelve, StashTabYesDelve
+		, StashTabUltimatum, StashTabYesUltimatum, StashTabUnique, StashTabYesUnique
+		, StashTabUniqueRing, StashTabYesUniqueRing, StashTabUniqueDump, StashTabYesUniqueDump
+		, StashTabYesUniquePercentage, StashTabUniquePercentage
+		, StashTabYesUniqueRingAll, StashTabYesUniqueDumpAll
+		, StashTabVeiled, StashTabYesVeiled, StashTabClusterJewel, StashTabYesClusterJewel
+		, StashTabHeistGear, StashTabYesHeistGear, StashTabMiscMapItems, StashTabYesMiscMapItems
+		, StashTabLinked, StashTabYesLinked, StashTabBrickedMaps, StashTabYesBrickedMaps
+		, StashTabInfluencedItem, StashTabYesInfluencedItem
+		, StashTabRunes, StashTabYesRunes, StashTabTattoos, StashTabYesTattoos
+		, StashTabCrafting, StashTabYesCrafting, StashTabDump, StashTabYesDump
+		, StashTabPredictive, StashTabYesPredictive, StashTabNinjaPrice, StashTabYesNinjaPrice
+		, StashDumpInTrial, StashDumpSkipJC, StashTabYesNinjaPrice_Price
+		, ChaosRecipeEnableFunction, ChaosRecipeUnloadAll, ChaosRecipeSkipJC
+		, ChaosRecipeEnableUnId, ChaosRecipeSmallWeapons, ChaosRecipeLimitUnId
+		, ChaosRecipeAllowDoubleJewellery, ChaosRecipeAllowDoubleBelt
+		, ChaosRecipeMaxHoldingID, ChaosRecipeMaxHoldingUNID
+		, ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal
+		, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort
+		, ChaosRecipeStashTab, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet
+		, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots
+		, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
+		, ClientLog, YesOHB, OHBLHealthHex, OHBStrW
+		, HealthBarStr, ChestStr, DelveStr, VendorStr, SellItemsStr, StashStr, SkillUpStr, XButtonStr
+		, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
+		, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr
+		, VendorHarbourStr, VendorKingsmarchStr, VendorMineStr
+		, debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr
+		, debuffCurseTempChainStr, debuffCurseCondStr, debuffCurseFlamStr
+		, debuffCurseFrostStr, debuffCurseWarMarkStr, debuffShockStr
+		, debuffBleedStr, debuffFreezeStr, debuffIgniteStr, debuffPoisonStr, debuffCurseStr
+		, varEmptyInvSlotColor, LootColors
+		, varOnMenu, varOnChar, varOnChat, varOnInventory, varOnStash, varOnVendor
+		, varOnVendorHeist, varOnDiv, varOnLeft, varOnDelveChart, varOnDetonate, varOnDetonateDelve
+		, GrabCurrencyX, GrabCurrencyY
+		, hotkeyOptions, hotkeyAutoQuit, hotkeyAutoFlask, hotkeyAutoMove, hotkeyAutoUtility
+		, hotkeyQuickPortal, hotkeyStartCraft, hotkeyItemCrafting, hotkeyCraftBasic
+		, hotkeyGemSwap, hotkeyGrabCurrency, hotkeyGetMouseCoords
+		, hotkeyPopFlasks, hotkeyLogout, hotkeyCloseAllUI, hotkeyInventory, hotkeyWeaponSwapKey
+		, hotkeyItemSort, hotkeyItemInfo, hotkeyChaosRecipe, hotkeyLootScan
+		, hotkeyDetonateMines, hotkeyOpenPortal, hotkeyPauseMines
+		, hotkeyMainAttack, hotkeySecondaryAttack, hotkeyTriggerMovement
+		, hotkeyCtrlClicker, hotkeyCtrlShiftClicker, hotkeyShiftClicker
+		, c1Prefix1, c1Prefix2, c1Suffix1, c1Suffix2, c1Suffix3, c1Suffix4, c1Suffix5, c1Suffix6, c1Suffix7, c1Suffix8, c1Suffix9
+		, c1Suffix1Text, c1Suffix2Text, c1Suffix3Text, c1Suffix4Text, c1Suffix5Text
+		, c1Suffix6Text, c1Suffix7Text, c1Suffix8Text, c1Suffix9Text
+		, c2Prefix1, c2Prefix2, c2Suffix1, c2Suffix2, c2Suffix3, c2Suffix4, c2Suffix5, c2Suffix6, c2Suffix7, c2Suffix8, c2Suffix9
+		, c2Suffix1Text, c2Suffix2Text, c2Suffix3Text, c2Suffix4Text, c2Suffix5Text
+		, c2Suffix6Text, c2Suffix7Text, c2Suffix8Text, c2Suffix9Text
+		, stashPrefix1, stashPrefix2
+		, stashSuffix1, stashSuffix2, stashSuffix3, stashSuffix4, stashSuffix5
+		, stashSuffix6, stashSuffix7, stashSuffix8, stashSuffix9
+		, stashSuffixTab1, stashSuffixTab2, stashSuffixTab3, stashSuffixTab4, stashSuffixTab5
+		, stashSuffixTab6, stashSuffixTab7, stashSuffixTab8, stashSuffixTab9
+		, hotkeyControllerButtonA, hotkeyControllerButtonB, hotkeyControllerButtonX, hotkeyControllerButtonY
+		, hotkeyControllerButtonLB, hotkeyControllerButtonRB
+		, hotkeyControllerButtonBACK, hotkeyControllerButtonSTART
+		, hotkeyControllerButtonL3, hotkeyControllerButtonR3, hotkeyControllerJoystickRight
+		, YesTriggerUtilityKey, YesTriggerUtilityJoystickKey, YesTriggerJoystickRightKey
+		, TriggerUtilityKey, YesMovementKeys, YesController, JoystickNumber
+		, LastDatabaseParseDate, selectedLeague, UpdateDatabaseInterval, YesNinjaDatabase
+		, ForceMatch6Link, ForceMatchGem20
+		, fn1, fn2, fn3
 	Thread("NoTimers", true) ;Critical
 
 	LoadArray()
@@ -616,7 +717,87 @@ readFromFile(){
 
 submit(){
 	updateEverything:
-		global
+		Global ToggleExist, WinGuiX, WinGuiY, AccountNameSTR, PoECookie
+			, BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType
+			, DebugMessages, YesTimeMS, YesLocation, ShowPixelGrid, ShowItemInfo
+			, LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec
+			, YesVendor, YesStash, YesIdentify, YesDiv
+			, YesMapUnid, YesInfluencedUnid, YesSynthesisId, YesCLFIgnoreImplicit, YesSortFirst
+			, Latency, ClickLatency, ClipLatency, ShowOnStart, PopFlaskRespectCD
+			, ResolutionScale, AutoUpdateOff, EnableChatHotkeys, YesStashKeys
+			, YesSkipMaps, YesSkipMaps_Prep, YesSkipMaps_eval
+			, YesSkipMaps_normal, YesSkipMaps_magic, YesSkipMaps_rare, YesSkipMaps_unique, YesSkipMaps_tier
+			, AreaScale, LVdelay, YesBatchVendorBauble, YesBatchVendorGCP
+			, BrickedWhenCorrupted, YesOpenStackedDeck, YesOpenVeiledScarab, YesSpecial5Link
+			, YesVendorDumpItems, HeistAlcNGo, MoveMapsToArea, YesIncludeFandSItem, EnableRestock
+			, CLFStrictnessNumber, YesOHB
+			, HealthBarStr, VendorStr, SellItemsStr, StashStr, SkillUpStr
+			, hotkeyOptions, hotkeyAutoQuit, hotkeyAutoFlask, hotkeyAutoMove, hotkeyAutoUtility
+			, hotkeyQuickPortal, hotkeyStartCraft, hotkeyItemCrafting, hotkeyCraftBasic
+			, hotkeyGemSwap, hotkeyGrabCurrency, hotkeyGetMouseCoords
+			, hotkeyPopFlasks, hotkeyLogout, hotkeyCloseAllUI, hotkeyInventory, hotkeyWeaponSwapKey
+			, hotkeyItemSort, hotkeyItemInfo, hotkeyChaosRecipe, hotkeyLootScan
+			, hotkeyDetonateMines, hotkeyOpenPortal, hotkeyPauseMines
+			, hotkeyMainAttack, hotkeySecondaryAttack, hotkeyTriggerMovement
+			, hotkeyCtrlClicker, hotkeyCtrlShiftClicker, hotkeyShiftClicker
+			, hotkeyUp, hotkeyDown, hotkeyLeft, hotkeyRight
+			, GrabCurrencyX, GrabCurrencyY
+			, YesStashBasesAboveIlvl, StashBasesAboveIlvl
+			, YesCraftingBaseAutoUpdateOnStart, YesCraftingBaseAutoUpdateOnZone
+			, YesCraftingBaseLimitBases, CraftingBaseLimitBasesNumber
+			, ItemCraftingSubCategorySelector, ItemCraftingCategorySelector
+			, ItemCraftingNumberPrefix, ItemCraftingNumberSuffix, ItemCraftingNumberCombination, ItemCraftingMethod
+			, StartMapTier1, StartMapTier2, StartMapTier3
+			, EndMapTier1, EndMapTier2, EndMapTier3
+			, CraftingMapMethod1, CraftingMapMethod2, CraftingMapMethod3
+			, MMapItemQuantity, MMapItemRarity, MMapMonsterPackSize
+			, EnableMQQForMagicMap, MMQorWeight, MMapWeight, ForceMaxChisel
+			, StashTabCurrency, StashTabYesCurrency, StashTabMap, StashTabYesMap
+			, StashTabDivination, StashTabYesDivination, StashTabGem, StashTabYesGem
+			, StashTabFlask, StashTabYesFlask, StashTabFragment, StashTabYesFragment
+			, StashTabEssence, StashTabYesEssence, StashTabBlight, StashTabYesBlight
+			, StashTabDelirium, StashTabYesDelirium, StashTabDelve, StashTabYesDelve
+			, StashTabUltimatum, StashTabYesUltimatum, StashTabUnique, StashTabYesUnique
+			, StashTabUniqueRing, StashTabYesUniqueRing, StashTabUniqueDump, StashTabYesUniqueDump
+			, StashTabYesUniquePercentage, StashTabUniquePercentage
+			, StashTabYesUniqueRingAll, StashTabYesUniqueDumpAll
+			, StashTabVeiled, StashTabYesVeiled, StashTabClusterJewel, StashTabYesClusterJewel
+			, StashTabHeistGear, StashTabYesHeistGear, StashTabMiscMapItems, StashTabYesMiscMapItems
+			, StashTabLinked, StashTabYesLinked, StashTabBrickedMaps, StashTabYesBrickedMaps
+			, StashTabInfluencedItem, StashTabYesInfluencedItem
+			, StashTabRunes, StashTabYesRunes, StashTabTattoos, StashTabYesTattoos
+			, StashTabCrafting, StashTabYesCrafting, StashTabDump, StashTabYesDump
+			, StashTabPredictive, StashTabYesPredictive, StashTabNinjaPrice, StashTabYesNinjaPrice
+			, StashDumpInTrial, StashDumpSkipJC, StashTabYesNinjaPrice_Price
+			, ChaosRecipeEnableFunction, ChaosRecipeUnloadAll, ChaosRecipeSkipJC
+			, ChaosRecipeEnableUnId, ChaosRecipeSmallWeapons, ChaosRecipeLimitUnId
+			, ChaosRecipeAllowDoubleJewellery, ChaosRecipeAllowDoubleBelt
+			, ChaosRecipeMaxHoldingID, ChaosRecipeMaxHoldingUNID
+			, ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal
+			, ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort
+			, ChaosRecipeStashTab, ChaosRecipeStashTabWeapon, ChaosRecipeStashTabHelmet
+			, ChaosRecipeStashTabArmour, ChaosRecipeStashTabGloves, ChaosRecipeStashTabBoots
+			, ChaosRecipeStashTabBelt, ChaosRecipeStashTabAmulet, ChaosRecipeStashTabRing
+			, c1Prefix1, c1Prefix2, c1Suffix1, c1Suffix2, c1Suffix3, c1Suffix4, c1Suffix5, c1Suffix6, c1Suffix7, c1Suffix8, c1Suffix9
+			, c1Suffix1Text, c1Suffix2Text, c1Suffix3Text, c1Suffix4Text, c1Suffix5Text
+			, c1Suffix6Text, c1Suffix7Text, c1Suffix8Text, c1Suffix9Text
+			, c2Prefix1, c2Prefix2, c2Suffix1, c2Suffix2, c2Suffix3, c2Suffix4, c2Suffix5, c2Suffix6, c2Suffix7, c2Suffix8, c2Suffix9
+			, c2Suffix1Text, c2Suffix2Text, c2Suffix3Text, c2Suffix4Text, c2Suffix5Text
+			, c2Suffix6Text, c2Suffix7Text, c2Suffix8Text, c2Suffix9Text
+			, stashPrefix1, stashPrefix2
+			, stashSuffix1, stashSuffix2, stashSuffix3, stashSuffix4, stashSuffix5
+			, stashSuffix6, stashSuffix7, stashSuffix8, stashSuffix9
+			, stashSuffixTab1, stashSuffixTab2, stashSuffixTab3, stashSuffixTab4, stashSuffixTab5
+			, stashSuffixTab6, stashSuffixTab7, stashSuffixTab8, stashSuffixTab9
+			, hotkeyControllerButtonA, hotkeyControllerButtonB, hotkeyControllerButtonX, hotkeyControllerButtonY
+			, hotkeyControllerButtonLB, hotkeyControllerButtonRB
+			, hotkeyControllerButtonBACK, hotkeyControllerButtonSTART
+			, hotkeyControllerButtonL3, hotkeyControllerButtonR3, hotkeyControllerJoystickRight
+			, YesTriggerUtilityKey, YesTriggerUtilityJoystickKey, YesTriggerJoystickRightKey
+			, TriggerUtilityKey, YesMovementKeys, YesController, JoystickNumber
+			, LastDatabaseParseDate, selectedLeague, UpdateDatabaseInterval, YesNinjaDatabase
+			, ForceMatch6Link, ForceMatchGem20
+			, CtrlSpam, CtrlShiftSpam, ShiftSpam, CtrlSpamOff
 		Thread("NoTimers", true) ;Critical
 
 		; IniWrite, %PoECookie%, %A_ScriptDir%\save\Account.ini, GGG, PoECookie

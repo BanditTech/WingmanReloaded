@@ -1,5 +1,4 @@
 perCharMenu(){
-	Global
 	static Built := False
 	static perCharGui := 0
 

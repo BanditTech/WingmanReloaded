@@ -27,7 +27,6 @@ class Progress_Slider  {
     This.Add_pSlider()
   }
   Add_pSlider(){
-    global
     pSlider_Trigger := This.Adjust_pSlider.Bind( THIS )
     pSliderTriggerCtrl := This.GUI_NAME.Add("Text", "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd")
     pSliderTriggerCtrl.OnEvent("Click", pSlider_Trigger)

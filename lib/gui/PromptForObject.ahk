@@ -1,6 +1,5 @@
 ; horrible looking UI to print an object, needs work
 PromptForObject(){
-  Global
   ArrayPrintGui := Gui()
   ArrayPrintGui.Add("Edit", "xm+20 ym+20 w200 h23 vSubmitObjectName")
   btn := ArrayPrintGui.Add("Button", "wp hp", "Submit")
