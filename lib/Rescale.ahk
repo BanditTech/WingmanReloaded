@@ -24,7 +24,7 @@ Rescale(){
     Else
       GlobeImported := False
 
-    WinGetPos, GameX, GameY, GameW, GameH
+    WinGetPos(&GameX, &GameY, &GameW, &GameH)
 
     ; Scaled Resolutions for all aspects
     ; Checks to see if the game UI is displayed

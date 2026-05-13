@@ -630,7 +630,7 @@ submit(){
 		Settings("ItemCrafting","Save")
 
 		;GUI Position
-		WinGetPos, winguix, winguiy, winW, winH, WingmanReloaded
+		WinGetPos(&winguix, &winguiy, &winW, &winH, "WingmanReloaded")
 		If !(WinGuiX = "" || WinGuiY = "")
 		{
 			IniWrite(winguix, A_ScriptDir "\save\Settings.ini", "General", "WinGuiX")
