@@ -1,5 +1,4 @@
 RestockMenu(choice:=""){
-	Global
 	static Built := False
 	static Active := [1,1]
 	static LoadedValues := ""

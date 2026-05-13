@@ -1,5 +1,4 @@
 UtilityMenu(GuiCtrl, *){
-	Global
 	static Built := {}, which := 1
 	static UtilityGui := {}
 	RegExMatch(GuiCtrl.Text, "\d+", &slotMatch)

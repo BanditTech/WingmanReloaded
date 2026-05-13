@@ -1,6 +1,6 @@
 ; Hotkeys - Open main menu
 MainMenu(){
-  global
+  Global CheckGamestates
   if (!A_IsCompiled and A_LineFile=A_ScriptFullPath)
     Return
   if(YesGuiLastPosition)

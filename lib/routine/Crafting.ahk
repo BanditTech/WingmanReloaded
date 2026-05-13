@@ -60,26 +60,22 @@ Crafting(selection:="Maps"){
 }
 ; CraftingChance - Use the settings to apply chance to item(s) until unique
 CraftingChance(){
-	Global
 	local f
 	; Notify("Chance Logic Coming Soon","",2)
 	f := New Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
 }
 ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
 CraftingColor(){
-	Global
 	local f
 	f := New Craft("Color",BasicCraftColorMethod,{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
 }
 ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
 CraftingLink(){
-	Global
 	local f
 	f := New Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
 }
 ; CraftingSocket - Use the settings to apply Jewellers to item(s) until minimum sockets
 CraftingSocket(){
-	Global
 	local f
 	f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }

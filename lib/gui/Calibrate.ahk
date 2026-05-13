@@ -302,7 +302,7 @@ updateDetonate(*)
 }
 
 CalibrationWizard(){
-	Global
+	Global PauseTooltips
 	Static WizardGui := ""
 	; Shared state accessible to nested closure functions
 	Static SampleTT := "", EmptySampleTT := "", strToSave := ""

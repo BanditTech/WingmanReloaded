@@ -1,6 +1,6 @@
 ; Register and UnRegister Hotkeys - Register Chat and Stash Hotkeys
 RegisterHotkeys() {
-	global
+	Global fn1, fn2, fn3
 
 	fn1 := c1HotkeyShouldFire.Bind(c1Prefix1,c1Prefix2,EnableChatHotkeys)
 	HotIf(fn1)
@@ -32,7 +32,7 @@ RegisterHotkeys() {
 	Return
 }
 UnRegisterHotkeys(){
-	global
+	Global fn1, fn2, fn3
 	HotIf(fn1)
 	local c1Suffixes := [c1Suffix1,c1Suffix2,c1Suffix3,c1Suffix4,c1Suffix5,c1Suffix6,c1Suffix7,c1Suffix8,c1Suffix9]
 	For i, suf in c1Suffixes {
@@ -162,7 +162,6 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 ; Enter func uses chat group c1, CtrlEnter func uses chat group c2
 ; Stash func uses stash prefix with SuffixNum as the slot index (1-9)
 FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1){
-	global
 	if WinActive("ahk_group POEGameGroup")
 	{
 		If (func = "Enter")
