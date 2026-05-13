@@ -223,19 +223,19 @@ class ItemScan
 			Else If (This.Prop.ItemClass ~= "Jewels" && This.Prop.Rarity_Digit = 3)
 				This.Prop.OpenAffix -= 2
 			; 4 Lines in NamePlate => Rarity / Item Name/ Item Base
-			If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)", &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)", &RxMatch))
 			{
 				This.Prop.ItemName := RxMatch[1]
 				This.Prop.ItemBase := RxMatch[2]
 			}
 			; 3 Lines in NamePlate => Rarity / Item Base
-			Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)", &RxMatch)))
+			Else If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)", &RxMatch))
 			{
 				This.Prop.ItemName := RxMatch[1]
 				This.Prop.ItemBase := RxMatch[1]
 			}
 			; 2 Lines in NamePlate => Item Name
-			Else If (RegExMatch(This.Data.Blocks.NamePlate, "^.+`r`n(.+)$", &RxMatch)))
+			Else If (RegExMatch(This.Data.Blocks.NamePlate, "^.+`r`n(.+)$", &RxMatch))
 			{
 				This.Prop.ItemName := RxMatch[1]
 				This.Prop.ItemBase := This.Prop.ItemClass
@@ -557,7 +557,7 @@ class ItemScan
 		Loop, Parse,% This.Data.Blocks.Influence, `n, `r
 		{
 			; Match for influence type
-			If (RegExMatch(A_LoopField, "`am)(.+) Item", &RxMatch)))
+			If (RegExMatch(A_LoopField, "`am)(.+) Item", &RxMatch))
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") RxMatch[1]
 		}
 		If This.Prop.Influence {
@@ -567,7 +567,7 @@ class ItemScan
 				This.Prop.IsInfluenceItem := True
 		}
 		; Get Beasts using Flavour Txt
-		If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary", &RxMatch)))
+		If (RegExMatch(This.Data.Blocks.FlavorText, "Right-click to add this to your bestiary", &RxMatch))
 		{
 			This.Prop.IsBeast := True
 			This.Prop.SpecialType := "Beast"
@@ -578,7 +578,7 @@ class ItemScan
 		;Every Item has a Item Level
 		If (This.Prop.Rarity)
 		{
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Level: "rxNum, &RxMatch))
 			{
 				This.Prop.ItemLevel := RxMatch[1]
 			}
@@ -586,7 +586,7 @@ class ItemScan
 			{
 				This.Prop.SpecialType := "Enchanted Item"
 			}
-			If (position := RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum "( \(Max\))?", &RxMatch)))
+			If (position := RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum "( \(Max\))?", &RxMatch))
 			{
 				If (This.Prop.RarityGem) {
 					This.Prop.Gem_Level := RxMatch[1]
@@ -600,19 +600,19 @@ class ItemScan
 					This.Prop.Required_Level := RxMatch[1]
 				}
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Str: "rxNum, &RxMatch))
 			{
 				This.Prop.Required_Str := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Dex: "rxNum, &RxMatch))
 			{
 				This.Prop.Required_Dex := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Int: "rxNum, &RxMatch))
 			{
 				This.Prop.Required_Int := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: ([\w- ]+)", &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Sockets: ([\w- ]+)", &RxMatch))
 			{
 				This.Prop.Sockets_Raw := RxMatch[1]
 				This.Prop.Sockets_Num := StrLen(RegExReplace(This.Prop.Sockets_Raw, "[- ]+" , ""))
@@ -651,59 +651,59 @@ class ItemScan
 				}
 			}
 			;Generic Props
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum, &RxMatch)) && !IsMap)
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum, &RxMatch) && !IsMap)
 			{
 				This.Prop.Quality := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Armour: "rxNum, &RxMatch))
 			{
 				This.Prop.Rating_Armour := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Energy Shield: "rxNum, &RxMatch))
 			{
 				This.Prop.Rating_EnergyShield := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion Rating: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Evasion Rating: "rxNum, &RxMatch))
 			{
 				This.Prop.Rating_Evasion := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chance to Block: "rxNum, &RxMatch))
 			{
 				This.Prop.Rating_Block := RxMatch[1]
 			}
 
 			;Weapon Specific Props
 			;Every Weapon has APS
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Attacks per Second: "rxNum, &RxMatch))
 			{
 				This.Prop.IsWeapon := True
 				This.Prop.Weapon_APS := RxMatch[1]
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Two Handed", &RxMatch))){
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Two Handed", &RxMatch)){
 					This.Prop.IsTwoHanded := True
 				}
-				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Staff", &RxMatch))){
+				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Staff", &RxMatch)){
 					This.Prop.IsTwoHanded := True
 				}
-				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Bow", &RxMatch))){
+				Else If (RegExMatch(This.Data.Blocks.Properties, "`am)^Bow", &RxMatch)){
 					This.Prop.IsTwoHanded := True
 				}
 				Else
 				{
 					This.Prop.IsOneHanded := True
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum , &RxMatch)))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Physical Damage: " rxNum "-" rxNum , &RxMatch))
 				{
 					This.Prop.Weapon_Avg_Physical_Dmg := Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2)
 					This.Prop.Weapon_Min_Physical_Dmg := RxMatch[1]
 					This.Prop.Weapon_Max_Physical_Dmg := RxMatch[2]
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chaos Damage: " rxNum "-" rxNum , &RxMatch)))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Chaos Damage: " rxNum "-" rxNum , &RxMatch))
 				{
 					This.Prop.Weapon_Avg_Chaos_Dmg := Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2)
 					This.Prop.Weapon_Min_Chaos_Dmg := RxMatch[1]
 					This.Prop.Weapon_Max_Chaos_Dmg := RxMatch[2]
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+", &RxMatch)))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Elemental Damage: .+", &RxMatch))
 				{
 					This.Prop.Weapon_Avg_Elemental_Dmg := 0
 					This.Prop.Weapon_Min_Elemental_Dmg := 0
@@ -717,11 +717,11 @@ class ItemScan
 					}
 					values := ""
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum, &RxMatch)))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Critical Strike Chance: "rxNum, &RxMatch))
 				{
 					This.Prop.Weapon_Critical_Strike := RxMatch[1]
 				}
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum, &RxMatch)))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Weapon Range: "rxNum, &RxMatch))
 				{
 					This.Prop.Weapon_Range := RxMatch[1]
 				}
@@ -748,30 +748,30 @@ class ItemScan
 
 		;Start Prop Block Parser for Maps
 		;Every map has a Map Tier!
-		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum, &RxMatch)))
+		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Map Tier: "rxNum, &RxMatch))
 		{
 			This.Prop.Map_Tier := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: ([a-zA-Z0-9 ']+)", &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Atlas Region: ([a-zA-Z0-9 ']+)", &RxMatch))
 			{
 				This.Prop.Map_AtlasRegion := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+"rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+"rxNum, &RxMatch))
 			{
 				This.Prop.Map_Quantity := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+"rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+"rxNum, &RxMatch))
 			{
 				This.Prop.Map_Rarity := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: \+"rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Monster Pack Size: \+"rxNum, &RxMatch))
 			{
 				This.Prop.Map_PackSize := RxMatch[1]
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Delirium Reward Type:", &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Delirium Reward Type:", &RxMatch))
 			{
 				This.Prop.Map_Delirium := True
 			}
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+"rxNum, &RxMatch))
 			{
 				This.Prop.Map_Quality := RxMatch[1]
 			}Else{
@@ -783,30 +783,30 @@ class ItemScan
 
 		; Start Prop Block Parser for Heist
 		If indexOf(This.Prop.ItemClass, ["Contracts","Blueprints"]) {
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Heist Target: (.*)", &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Heist Target: (.*)", &RxMatch))
 				This.Prop.Heist_Target := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Client: (.*)", &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Client: (.*)", &RxMatch))
 				This.Prop.Heist_Client := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Area Level: " rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Area Level: " rxNum, &RxMatch))
 				This.Prop.Heist_AreaLevel := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Quantity: \+" rxNum, &RxMatch))
 				This.Prop.Heist_ItemQuantity := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Item Rarity: \+" rxNum, &RxMatch))
 				This.Prop.Heist_ItemRarity := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Alert Level Reduction: \+" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Alert Level Reduction: \+" rxNum, &RxMatch))
 				This.Prop.Heist_AlertLevelReduction := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Time Before Lockdown: \+" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Time Before Lockdown: \+" rxNum, &RxMatch))
 				This.Prop.Heist_TimeBeforeLockdown := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Maximum Alive Reinforcements: \+" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Maximum Alive Reinforcements: \+" rxNum, &RxMatch))
 				This.Prop.Heist_MaximumAliveReinforcements := RxMatch[1]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Wings Revealed: " rxNum "/" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Wings Revealed: " rxNum "/" rxNum, &RxMatch))
 				This.Prop.Heist_WingsRevealed := RxMatch[1], This.Prop.Heist_WingsRevealedMax := RxMatch[2]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Escape Routes Revealed: " rxNum "/" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Escape Routes Revealed: " rxNum "/" rxNum, &RxMatch))
 				This.Prop.Heist_EscapeRoutesRevealed := RxMatch[1], This.Prop.Heist_EscapeRoutesRevealedMax := RxMatch[2]
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Reward Rooms Revealed: " rxNum "/" rxNum, &RxMatch)))
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Reward Rooms Revealed: " rxNum "/" rxNum, &RxMatch))
 				This.Prop.Heist_RewardRoomsRevealed := RxMatch[1], This.Prop.Heist_RewardRoomsRevealedMax := RxMatch[2]
 			For k, job in ["Brute Force","Agility","Perception","Demolition","Counter-Thaumaturgy","Trap Disarmament","Deception","Engineering","Lockpicking"] {
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "( \(unmet\))?\)", &RxMatch))) {
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "( \(unmet\))?\)", &RxMatch)) {
 					This.Prop["Heist_Requires_" job ] := RxMatch[1]
 					If (This.Prop.ItemClass == "Contracts"){
 						This.Prop["Heist_Contract_Type"] := job
@@ -820,13 +820,13 @@ class ItemScan
 		If (This.Prop.RarityGem)
 		{
 			If (This.Prop.Corrupted) {
-				If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal", &RxMatch)))
+				If (RegExMatch(This.Data.Blocks.Properties, "`am)Vaal", &RxMatch))
 				{
 					This.Prop.VaalGem := True
 					This.Prop.ItemName := "Vaal " . This.Prop.ItemName
 				}
 			}
-			If (RegExMatch(This.Prop.ItemBase, "(^Divergent|^Phantasmal|^Anomalous)", &RxMatch)))
+			If (RegExMatch(This.Prop.ItemBase, "(^Divergent|^Phantasmal|^Anomalous)", &RxMatch))
 				This.Prop.Gem_AltQuality := RxMatch[1]
 			If (This.Prop.ItemBase ~= "^Awakened")
 				This.Prop.Gem_Awakened := True
@@ -857,7 +857,7 @@ class ItemScan
 			This.Prop.ItemCraftingHit := True
 		}
 		;Stack size for anything with it
-		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" , &RxMatch)))
+		If (RegExMatch(This.Data.Blocks.Properties, "`am)^Stack Size: (\d.*)\/(\d.*)" , &RxMatch))
 		{
 			This.Prop.Stack_Size := RegExReplace(RxMatch[1],"[^\d]","")
 			This.Prop.Stack_Max := RegExReplace(RxMatch[2],"[^\d]","")
@@ -1364,7 +1364,7 @@ class ItemScan
 		{
 			; Standardize implicit and crafted for Pseudo sums
 			; Implicits can be disable being merge into Pseudos checking YesCLFIgnoreImplicit
-			If (RegExMatch(k, "`am) \((.*)\)$", &RxMatch)) && YesCLFIgnoreImplicit)
+			If (RegExMatch(k, "`am) \((.*)\)$", &RxMatch) && YesCLFIgnoreImplicit)
 			{
 				If (RxMatch[1] != "crafted")
 				{
