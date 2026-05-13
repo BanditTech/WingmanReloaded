@@ -2709,7 +2709,6 @@ class ItemScan
 		Return False
 	}
 	MatchGroup(grp,returnWeight){
-		local
 		CountSum := 0
 		PotentialMatches := []
 		For k, elem in grp["~ElementList"] {
@@ -2753,7 +2752,6 @@ class ItemScan
 		}
 	}
 	Evaluate(eval,val,min){
-		local
 		if (eval = ">") {
 			Return (val > min)
 		} Else if (eval = ">=") {
