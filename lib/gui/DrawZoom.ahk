@@ -1,17 +1,16 @@
 ; Zoom script found on AHK forum and modified to enclose in one function - Bandit
 DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
 {
-  Global
-  Static zoom = 6        ; initial magnification, 1..32
-  , halfside = 192      ; circa halfside of the magnifier
-  , part := halfside/zoom
-  , L_edge := (A_ScreenWidth//2) - halfside
-  , R_edge := (A_ScreenWidth//2) + halfside
-  , Rz := Round(part)
-  , R := Rz*zoom
-  , LineMargin := 10
-  , pos_old := 0
-  , pos_new
+  Static zoom := 6        ; initial magnification, 1..32
+  Static halfside := 192  ; circa halfside of the magnifier
+  Static part := halfside/zoom
+  Static L_edge := (A_ScreenWidth//2) - halfside
+  Static R_edge := (A_ScreenWidth//2) + halfside
+  Static Rz := Round(part)
+  Static R := Rz*zoom
+  Static LineMargin := 10
+  Static pos_old := 0
+  Static pos_new := ""
 
   If (Mode = "Toggle")
   {
