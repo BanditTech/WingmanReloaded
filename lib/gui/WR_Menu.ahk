@@ -1331,11 +1331,17 @@ WR_Menu(Function:="",Var*){
     Element := Var[1]
     If (Element = "Save") {
       MainGui.Submit(0)
-      FileOpen(A_ScriptDir "\save\" ValueType ".json","w").Write(JSON.Dump(%ValueType%,,2))
+      If (ValueType = "Globe")
+        FileOpen(A_ScriptDir "\save\" ValueType ".json","w").Write(JSON.Dump(Globe,,2))
+      Else
+        Log("Error","JSON Save: unknown ValueType " ValueType)
       MainGui.Show()
     } Else if (Element = "Load") {
       If FileExist(A_ScriptDir "\save\" ValueType ".json") {
-        %ValueType% := JSON.Load(FileOpen(A_ScriptDir "\save\" ValueType ".json", "r").Read())
+        If (ValueType = "Globe")
+          Globe := JSON.Load(FileOpen(A_ScriptDir "\save\" ValueType ".json", "r").Read())
+        Else
+          Log("Error","JSON Load: unknown ValueType " ValueType)
       } Else {
         Notify("Error loading " ValueType " file","",3)
         Log("Error","issue with loading " ValueType " file")

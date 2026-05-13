@@ -42,9 +42,22 @@ Crafting(selection:="Maps"){
 				CurrentTab := 0
 				MoveStash(StashTabCurrency)
 				If indexOf(selection,["Maps","Socket","Color","Link","Chance","Item"])
-					Crafting%selection%()
-				Else
-					Notify("Unknown Result is:",selection,2)
+			{
+				If (selection = "Maps")
+					CraftingMaps()
+				Else If (selection = "Socket")
+					CraftingSocket()
+				Else If (selection = "Color")
+					CraftingColor()
+				Else If (selection = "Link")
+					CraftingLink()
+				Else If (selection = "Chance")
+					CraftingChance()
+				Else If (selection = "Item")
+					CraftingItem()
+			}
+			Else
+				Notify("Unknown Result is:",selection,2)
 			}
 			Else
 			{
@@ -308,13 +321,16 @@ InMapArea(C:=0){
 	Return False
 }
 getMapCraftingMethod(){
+	StartMapTierArr := [StartMapTier1, StartMapTier2, StartMapTier3]
+	EndMapTierArr := [EndMapTier1, EndMapTier2, EndMapTier3]
+	CraftingMapMethodArr := [CraftingMapMethod1, CraftingMapMethod2, CraftingMapMethod3]
 	Loop 3
 	{
-		If ( EndMapTier%A_Index% >= StartMapTier%A_Index%
-			&& CraftingMapMethod%A_Index% != "Disable"
-			&& Item.Prop.Map_Tier >= StartMapTier%A_Index%
-			&& Item.Prop.Map_Tier <= EndMapTier%A_Index% )
-			Return CraftingMapMethod%A_Index%
+		If ( EndMapTierArr[A_Index] >= StartMapTierArr[A_Index]
+			&& CraftingMapMethodArr[A_Index] != "Disable"
+			&& Item.Prop.Map_Tier >= StartMapTierArr[A_Index]
+			&& Item.Prop.Map_Tier <= EndMapTierArr[A_Index] )
+			Return CraftingMapMethodArr[A_Index]
 	}
 	Return False
 }
