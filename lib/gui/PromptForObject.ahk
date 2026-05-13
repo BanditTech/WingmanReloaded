@@ -10,9 +10,13 @@ PromptForObject(){
   PrintObj(ctrl, *) {
     ArrayPrintGui.Submit(0)
     ArrayPrintGui.Destroy()
-    If IsObject(SubmitObjectName)
-      Array_Gui(%SubmitObjectName%)
+    ; Build a map of inspectable global objects by name
+    Global WR, Item, LootFilter, Globe, RecipeArray
+    objLookup := Map("WR", WR, "Item", Item, "LootFilter", LootFilter, "Globe", Globe, "RecipeArray", RecipeArray)
+    name := SubmitObjectName
+    If objLookup.Has(name)
+      Array_Gui(objLookup[name])
     Else
-    MsgBox(%SubmitObjectName%)
+      MsgBox(name)
   }
 }

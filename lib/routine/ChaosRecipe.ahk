@@ -19,12 +19,13 @@ ChaosRecipe(endAtRefresh := 0){
   Else If ChaosRecipeStashMethodSort
   {
     requestedTabs := []
+    ChaosRecipeStashTabMap := Map("Weapon", ChaosRecipeStashTabWeapon, "Helmet", ChaosRecipeStashTabHelmet, "Armour", ChaosRecipeStashTabArmour, "Gloves", ChaosRecipeStashTabGloves, "Boots", ChaosRecipeStashTabBoots, "Belt", ChaosRecipeStashTabBelt, "Amulet", ChaosRecipeStashTabAmulet, "Ring", ChaosRecipeStashTabRing)
     for k, part in ["Weapon", "Helmet", "Armour", "Gloves", "Boots", "Belt", "Amulet", "Ring"]
     {
-      If !indexOf(ChaosRecipeStashTab%part%,requestedTabs)
+      If !indexOf(ChaosRecipeStashTabMap[part],requestedTabs)
       {
-        requestedTabs.Push(ChaosRecipeStashTab%part%)
-        Object := PoERequest.Stash(ChaosRecipeStashTab%part%)
+        requestedTabs.Push(ChaosRecipeStashTabMap[part])
+        Object := PoERequest.Stash(ChaosRecipeStashTabMap[part])
         ChaosRecipeSort(Object,True)
         Sleep(300)
       }
@@ -49,14 +50,20 @@ ChaosRecipeSort(Object,Merge:=False){
   Static TypeList := ["Chaos","Regal"]
   Static SlotList := ["Body","Helmet","Gloves","Boots","Amulet","Ring","Belt","Two Hand","One Hand","Shield"]
 
+  TypeMap := Map()
+  uTypeMap := Map()
   For k, TypeName in TypeList {
-    %TypeName% := {}
-    u%TypeName% := {}
+    TypeMap[TypeName] := {}
+    uTypeMap[TypeName] := {}
     For k, SlotName in SlotList {
-      %TypeName%[SlotName] := {}
-      u%TypeName%[SlotName] := {}
+      TypeMap[TypeName][SlotName] := {}
+      uTypeMap[TypeName][SlotName] := {}
     }
   }
+  Chaos := TypeMap["Chaos"]
+  uChaos := uTypeMap["Chaos"]
+  Regal := TypeMap["Regal"]
+  uRegal := uTypeMap["Regal"]
 
   For i, content in Object.items
   {
@@ -73,9 +80,10 @@ ChaosRecipeSort(Object,Merge:=False){
   }
   If Merge
   {
+    typeRefMap := Map("Chaos", Chaos, "uChaos", uChaos, "Regal", Regal, "uRegal", uRegal)
     For k, type in ["Chaos","uChaos","Regal","uRegal"]
     {
-      For slot, itemArr in %type%
+      For slot, itemArr in typeRefMap[type]
       {
         If !IsObject(RecipeArray[type])
           RecipeArray[type] := {}

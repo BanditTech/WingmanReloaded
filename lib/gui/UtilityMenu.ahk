@@ -1,6 +1,8 @@
 UtilityMenu(GuiCtrl, *){
 	static Built := {}, which := 1
 	static UtilityGui := {}
+	static UtilitySliders := Map()
+	static UtilityIconAreas := Map()
 	RegExMatch(GuiCtrl.Text, "\d+", &slotMatch)
 	slot := slotMatch[]
 
@@ -55,7 +57,7 @@ UtilityMenu(GuiCtrl, *){
 		showBtn.OnEvent("Click", UtilityIconArea)
 		setBtn := UtilityGui[slot].Add("Button", "x+5 yp wp hp vUtility" slot "IconArea_Set", "Set")
 		setBtn.OnEvent("Click", UtilityIconArea)
-		Utility%slot%IconArea := WR.Utility[slot].IconArea
+		UtilityIconAreas[slot] := WR.Utility[slot].IconArea
 
 		UtilityGui[slot].Add("GroupBox",  "center       xs+10   y+3  w340  h43", "Allowed Variance for 1 or 0")
 
@@ -91,20 +93,22 @@ UtilityMenu(GuiCtrl, *){
 		lifeCtrl := UtilityGui[slot].Add("Text", "vUtility" slot "Life x+0 yp w40 c" setColor " center", WR.Utility[slot].Life)
 		lifeCtrl.GetPos(&x, &y, &w, &h)
 		x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
-		Utility%slot%Life_Slider := Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
+		If !UtilitySliders.Has(slot)
+			UtilitySliders[slot] := Map()
+		UtilitySliders[slot]["Life"] := Progress_Slider("Utility" Slot, "Utility" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Life , backColor , setColor , 1 , "Utility" slot "Life" , 0 , 0 , 1)
 		setColor := "51DEFF"
 		UtilityGui[slot].Add("Text", "xs+13 y+13 c" setColor, "E`%")
 		esCtrl := UtilityGui[slot].Add("Text", "vUtility" slot "ES x+0 yp w40 c" setColor " center", WR.Utility[slot].ES)
 		esCtrl.GetPos(&x, &y, &w, &h)
 		x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
-		Utility%slot%ES_Slider := Progress_Slider("Utility" Slot, "Utility" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].ES , backColor , setColor , 1 , "Utility" slot "ES" , 0 , 0 , 1)
+		UtilitySliders[slot]["ES"] := Progress_Slider("Utility" Slot, "Utility" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].ES , backColor , setColor , 1 , "Utility" slot "ES" , 0 , 0 , 1)
 		setColor := "Blue"
 		UtilityGui[slot].Add("Text", "xs+13 y+13 c" setColor, "M`%")
 		manaCtrl := UtilityGui[slot].Add("Text", "vUtility" slot "Mana x+0 yp w40 c" setColor " center", WR.Utility[slot].Mana)
 		UtilityGui[slot].SetFont()
 		manaCtrl.GetPos(&x, &y, &w, &h)
 		x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
-		Utility%slot%Mana_Slider := Progress_Slider("Utility" Slot, "Utility" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Mana , backColor , setColor , 1 , "Utility" slot "Mana" , 0 , 0 , 1)
+		UtilitySliders[slot]["Mana"] := Progress_Slider("Utility" Slot, "Utility" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Utility[slot].Mana , backColor , setColor , 1 , "Utility" slot "Mana" , 0 , 0 , 1)
 		UtilityGui[slot].Add("Text", "xs+10 y+13 " , "Resource Trigger Condition:")
 		UtilityGui[slot].Add("Radio", "vUtility" slot "Condition  x+5   yp-5 h22 Checked" (WR.Utility[slot].Condition==1?1:0), "Any")
 		UtilityGui[slot].Add("Radio",                              "x+5 hp  yp Checked" (WR.Utility[slot].Condition==2?1:0), "All")
@@ -119,13 +123,13 @@ UtilityMenu(GuiCtrl, *){
 		slot2 := slotMatch2[]
 		action := StrSplit(ctrl.Name, "_")[2]
 		If (action == "Show") {
-			If (Utility%slot2%IconArea.X1 != "" && Utility%slot2%IconArea.Y1 != "" && Utility%slot2%IconArea.X2 != "" && Utility%slot2%IconArea.Y2 != "")
-				MouseTip(Utility%slot2%IconArea)
+			If (UtilityIconAreas[slot2].X1 != "" && UtilityIconAreas[slot2].Y1 != "" && UtilityIconAreas[slot2].X2 != "" && UtilityIconAreas[slot2].Y2 != "")
+				MouseTip(UtilityIconAreas[slot2])
 			Else
 				Notify("Custom Area has not been set","",2)
 		} Else If (action == "Set") {
-			Utility%slot2%IconArea := LetUserSelectRect()
-			MouseTip(Utility%slot2%IconArea)
+			UtilityIconAreas[slot2] := LetUserSelectRect()
+			MouseTip(UtilityIconAreas[slot2])
 		}
 	}
 
@@ -133,7 +137,7 @@ UtilityMenu(GuiCtrl, *){
 		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttackOnly", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
 			WR.Utility[val][kind] := UtilityGui[val]["Utility" val kind].Value
 		for k, kind in ["Life", "ES", "Mana"]
-			WR.Utility[val][kind] := Utility%val%%kind%_Slider.Slider_Value
+			WR.Utility[val][kind] := UtilitySliders[val][kind].Slider_Value
 		for k, kind in ["IconVar1", "IconVar0"]
 			WR.Utility[val][kind] := Round(UtilityGui[val]["Utility" val kind].Value / 100,2)
 

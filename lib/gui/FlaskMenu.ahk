@@ -1,6 +1,7 @@
 FlaskMenu(GuiCtrl, *){
 	static Built := {}, which := 1
 	static FlaskGui := {}
+	static FlaskSliders := Map()
 	RegExMatch(GuiCtrl.Text, "\d+", &slotMatch)
 	slot := slotMatch[]
 
@@ -56,7 +57,9 @@ FlaskMenu(GuiCtrl, *){
 		lifeCtrl := FlaskGui[slot].Add("Text", "vFlask" slot "Life x+0 yp w40 c" setColor " center", WR.Flask[slot].Life)
 		lifeCtrl.GetPos(&x, &y, &w, &h)
 		x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
-		Flask%slot%Life_Slider := Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
+		If !FlaskSliders.Has(slot)
+			FlaskSliders[slot] := Map()
+		FlaskSliders[slot]["Life"] := Progress_Slider("Flask" Slot, "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
 		setColor := "51DEFF"
 		FlaskGui[slot].SetFont()
 		FlaskGui[slot].Add("Checkbox", "vFlask" slot "ResetCooldownAtHealthPercentage xs+22 y+6 Checked" WR.Flask[slot].ResetCooldownAtHealthPercentage, "Reset cooldown at health:")
@@ -68,7 +71,7 @@ FlaskMenu(GuiCtrl, *){
 		esCtrl := FlaskGui[slot].Add("Text", "vFlask" slot "ES x+0 yp w40 c" setColor " center", WR.Flask[slot].ES)
 		esCtrl.GetPos(&x, &y, &w, &h)
 		x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
-		Flask%slot%ES_Slider := Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
+		FlaskSliders[slot]["ES"] := Progress_Slider("Flask" Slot, "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
 		setColor := "Blue"
 		FlaskGui[slot].SetFont()
 		FlaskGui[slot].Add("Checkbox", "vFlask" slot "ResetCooldownAtEnergyShieldPercentage xs+12 y+6 Checked" WR.Flask[slot].ResetCooldownAtEnergyShieldPercentage, "Reset cooldown at energy shield:")
@@ -85,7 +88,7 @@ FlaskMenu(GuiCtrl, *){
 
 		manaCtrl.GetPos(&x, &y, &w, &h)
 		x:=Scale_PositionFromDPI(x), y:=Scale_PositionFromDPI(y), w:=Scale_PositionFromDPI(w), h:=Scale_PositionFromDPI(h)
-		Flask%slot%Mana_Slider := Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
+		FlaskSliders[slot]["Mana"] := Progress_Slider("Flask" Slot, "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask[slot].Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
 		FlaskGui[slot].Add("Text", "xs+10 y+43 " , "Slider Trigger Condition:")
 		FlaskGui[slot].Add("Radio", "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask[slot].Condition==1?1:0), "Any")
 		FlaskGui[slot].Add("Radio",                              "x+5 hp  yp Checked" (WR.Flask[slot].Condition==2?1:0), "All")
@@ -98,7 +101,7 @@ FlaskMenu(GuiCtrl, *){
 		for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison", "ResetCooldownAtHealthPercentage",  "ResetCooldownAtHealthPercentageInput", "ResetCooldownAtEnergyShieldPercentage", "ResetCooldownAtEnergyShieldPercentageInput", "ResetCooldownAtManaPercentage", "ResetCooldownAtManaPercentageInput"]
 			WR.Flask[val][kind] := FlaskGui[val]["Flask" val kind].Value
 		for k, kind in ["Life", "ES", "Mana"]
-			WR.Flask[val][kind] := Flask%val%%kind%_Slider.Slider_Value
+			WR.Flask[val][kind] := FlaskSliders[val][kind].Slider_Value
 		FileDelete(A_ScriptDir "\save\Flask.json")
 		JSONtext := JSON.Dump(WR.Flask,,2)
 		FileAppend(JSONtext, A_ScriptDir "\save\Flask.json")

@@ -313,7 +313,8 @@ BuildNewGroupMenu(GKey)
       cbOrFlag := LootFilterGui2.Add("Checkbox", "Right checked" ischecked " xs+2 yp+25", "")
       cbOrFlag.OnEvent("Click", UpdateLootFilterDDL)
       cbOrFlag.Name := "LootFilter_" GKey "_" SKey "_" AKey "_OrFlag"
-      cbKey := LootFilterGui2.Add("ComboBox", "x+9 w240", LootFilter[GKey][SKey][AKey]["#Key"] "||" textList%SKey%)
+      textListMap := Map("Prop", textListProp, "Affix", textListAffix)
+      cbKey := LootFilterGui2.Add("ComboBox", "x+9 w240", LootFilter[GKey][SKey][AKey]["#Key"] "||" (textListMap.Has(SKey) ? textListMap[SKey] : ""))
       cbKey.OnEvent("Change", UpdateLootFilterDDL)
       cbKey.Name := "LootFilter_" GKey "_" SKey "_" AKey "_#Key"
       ddlEval := LootFilterGui2.Add("DropDownList", "x+9 w50", LootFilter[GKey][SKey][AKey]["Eval"] "||" textListEval)
