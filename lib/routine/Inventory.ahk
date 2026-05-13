@@ -209,7 +209,7 @@ VendorRoutine()
 					Else
 						Q := Item.Prop.Quality
 					tQ += Q
-					SortFlask.Push({"C":C,"R":R,"Q":Q})
+					SortFlask.Push({C:C, R:R, Q:Q})
 					Continue
 				}
 				If ( Item.Prop.RarityGem && Item.Prop.Quality > 0 )
@@ -220,7 +220,7 @@ VendorRoutine()
 						Continue
 					Q := Item.Prop.Quality
 					tGQ += Q
-					SortGem.Push({"C":C,"R":R,"Q":Q})
+					SortGem.Push({C:C, R:R, Q:Q})
 					Continue
 				}
 				If ((Item.Prop.StashReturnVal && !Item.Prop.DumpTabItem)
@@ -473,7 +473,7 @@ StashRoutine()
 							Pitem := FindText.GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
-							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({"C":C,"R":R,"Item":Item})
+							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({C:C, R:R, Item:Item})
 						} Else {
 							Continue
 						}
@@ -486,7 +486,7 @@ StashRoutine()
 					Sleep(60)
 				} Else If (sendstash > 0) {
 					If YesSortFirst
-						SortFirst[sendstash].Push({"C":C,"R":R,"Item":Item})
+						SortFirst[sendstash].Push({C:C, R:R, Item:Item})
 					Else
 					{
 						MoveStash(sendstash)

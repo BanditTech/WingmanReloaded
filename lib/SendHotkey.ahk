@@ -2,7 +2,7 @@ SendHotkey(keyStr:="",hold:=0){
   For i, keys in StrSplit(keyStr," "){
     If RegExMatch(keys, "O)\[(\d+)\]\(([\d\w]+)\)", &DelayKey)
     {
-      DelayAction.Push({"TriggerAt":A_TickCount+DelayKey[1],"Key":DelayKey[2]})
+      DelayAction.Push({TriggerAt:A_TickCount+DelayKey[1], Key:DelayKey[2]})
       Continue
     }
     Obj := SplitModsFromKey(keys)
@@ -23,7 +23,7 @@ SendDelayAction(){
   }
 }
 IsModifier(Character) {
-  static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
+  static Modifiers := Map("!",1,"#",1,"~",1,"^",1,"*",1,"+",1)
   return Modifiers.Has(Character)
 }
 SplitModsFromKey(key){
@@ -36,5 +36,5 @@ SplitModsFromKey(key){
       String .= Letter
     }
   }
-  Return {"Mods":Mods, "Key":String }
+  Return {Mods:Mods, Key:String}
 }

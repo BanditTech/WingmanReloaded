@@ -228,7 +228,7 @@ AddGroup(*) {
     Else
       break
   }
-  LootFilter[groupstr] := {"Prop": [], "Affix": [], "Data":{"OrCount": 1, "StashTab": CLFStashTabDefault}}
+  LootFilter[groupstr] := {Prop: [], Affix: [], Data:{OrCount: 1, StashTab: CLFStashTabDefault}}
   groupKey := groupstr
   LootFilterGui2.Destroy()
   RedrawNewGroup()
@@ -250,7 +250,7 @@ AddNewGroupDDL(*) {
   buttonstr := StrSplit(A_GuiControl, A_Space)
   SKey := buttonstr[3]
   GKey := buttonstr[5]
-  LootFilter[GKey][SKey].Push({"#Key":"Blank","Eval":">=","Min":0,"OrFlag":0})
+  LootFilter[GKey][SKey].Push(Map("#Key","Blank","Eval",">=","Min",0,"OrFlag",0))
   SaveWinPos()
   LootFilterGui2.Destroy()
   RedrawNewGroup()

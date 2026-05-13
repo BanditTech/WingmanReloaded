@@ -50,11 +50,11 @@ Hex2FindText(Color,vary:=0,BGR:=0,Comment:="",Width:=2,Height:=2,LR_Border:=0){
 }
 ; Converts a hex BGR color into its R G B elements
 ToRGBfromBGR(color){
-  return { "b": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "r": color & 0xFF }
+  return {b: (color >> 16) & 0xFF, g: (color >> 8) & 0xFF, r: color & 0xFF}
 }
 ; Converts a hex RGB color into its R G B elements
 ToRGB(color){
-  return { "r": (color >> 16) & 0xFF, "g": (color >> 8) & 0xFF, "b": color & 0xFF }
+  return {r: (color >> 16) & 0xFF, g: (color >> 8) & 0xFF, b: color & 0xFF}
 }
 ; Converts R G B elements back to hex
 ToHex(Color){
@@ -145,7 +145,7 @@ AverageAreaColor(AreaObj){
     G_Count += Split.g
     B_Count += Split.b
   }
-  Split := {"r":Round(R_Count / ColorCount),"g":Round(G_Count / ColorCount),"b":Round(B_Count / ColorCount)}
+  Split := {r:Round(R_Count / ColorCount), g:Round(G_Count / ColorCount), b:Round(B_Count / ColorCount)}
   Load_BarControl(100,"Done.",-1)
   Return ToHex(Split)
 }

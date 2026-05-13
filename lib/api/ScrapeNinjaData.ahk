@@ -48,12 +48,12 @@ ScrapeNinjaData(apiString)
       grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
       grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
       grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
-      holder.lines[index] := {"name":grabName
-        ,"chaosValue":grabChaosVal
-        ,"pay":grabPayVal
-        ,"receive":grabRecVal
-        ,"paySparkLine":grabPaySparklineVal
-        ,"receiveSparkLine":grabRecSparklineVal}
+      holder.lines[index] := {name:grabName
+        ,chaosValue:grabChaosVal
+        ,pay:grabPayVal
+        ,receive:grabRecVal
+        ,paySparkLine:grabPaySparklineVal
+        ,receiveSparkLine:grabRecSparklineVal}
     }
     Ninja[apiString] := holder.lines
     FileDelete(tempLoc)
@@ -96,12 +96,12 @@ ScrapeNinjaData(apiString)
       grabRecVal := (indexArr["receive"] ? indexArr["receive"] : False)
       grabPaySparklineVal := (indexArr["paySparkLine"] ? indexArr["paySparkLine"] : False)
       grabRecSparklineVal := (indexArr["receiveSparkLine"] ? indexArr["receiveSparkLine"] : False)
-      holder.lines[index] := {"name":grabName
-        ,"chaosValue":grabChaosVal
-        ,"pay":grabPayVal
-        ,"receive":grabRecVal
-        ,"paySparkLine":grabPaySparklineVal
-        ,"receiveSparkLine":grabRecSparklineVal}
+      holder.lines[index] := {name:grabName
+        ,chaosValue:grabChaosVal
+        ,pay:grabPayVal
+        ,receive:grabRecVal
+        ,paySparkLine:grabPaySparklineVal
+        ,receiveSparkLine:grabRecSparklineVal}
     }
     Ninja[apiString] := holder.lines
     for index, indexArr in holder.currencyDetails
@@ -110,10 +110,10 @@ ScrapeNinjaData(apiString)
       grabPoeTrdId := (indexArr["poeTradeId"] ? indexArr["poeTradeId"] : False)
       grabId := (indexArr["id"] ? indexArr["id"] : False)
       grabTradeId := (indexArr["tradeId"] ? indexArr["tradeId"] : False)
-      holder.currencyDetails[index] := {"currencyName":grabName
-        ,"poeTradeId":grabPoeTrdId
-        ,"id":grabId
-        ,"tradeId":grabTradeId}
+      holder.currencyDetails[index] := {currencyName:grabName
+        ,poeTradeId:grabPoeTrdId
+        ,id:grabId
+        ,tradeId:grabTradeId}
     }
     Ninja["currencyDetails"] := holder.currencyDetails
     FileDelete(tempLoc)
@@ -163,9 +163,9 @@ ScrapeNinjaData(apiString)
       grabGemQuality := (indexArr["gemQuality"] ? indexArr["gemQuality"] : False)
       grabBaseType := (indexArr["baseType"] ? indexArr["baseType"] : False)
 
-      holder.lines[index] := {"name":grabName
-        ,"chaosValue":grabChaosVal
-        ,"sparkline":grabSparklineVal}
+      holder.lines[index] := {name:grabName
+        ,chaosValue:grabChaosVal
+        ,sparkline:grabSparklineVal}
 
       If grabExaltVal
         holder.lines[index]["exaltedValue"] := grabExaltVal

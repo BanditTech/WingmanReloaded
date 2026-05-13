@@ -159,7 +159,7 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
     If(IsHybridMod){
       Mod := "(Hybrid) " . Mod
     }
-    aux := {"Mod":OriginalFullLine,"Affix":Affix,"ModGenerationType":ModGenerationType,"ModWRFormat":Mod,"ValueWRFormatLow":FinalValueLow,"ValueWRFormatHigh":FinalValueHigh,"RNMod":Repeat,"ID":MyID}
+    aux := {Mod:OriginalFullLine, Affix:Affix, ModGenerationType:ModGenerationType, ModWRFormat:Mod, ValueWRFormatLow:FinalValueLow, ValueWRFormatHigh:FinalValueHigh, RNMod:Repeat, ID:MyID}
     ObjectToPush.push(aux)
   }
 }

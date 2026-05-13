@@ -97,7 +97,7 @@ ChaosRecipeSort(Object,Merge:=False){
     }
   }
   Else
-    RecipeArray := { "Chaos" : Chaos, "uChaos" : uChaos, "Regal" : Regal, "uRegal" : uRegal}
+    RecipeArray := {Chaos: Chaos, uChaos: uChaos, Regal: Regal, uRegal: uRegal}
   Return RecipeArray
 }
 confirmOneOfEach(Object,id:=True){
@@ -590,7 +590,7 @@ VendorRoutineChaos(){
   SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
   SetMouseDelay(SetMouseDelayValue)
   SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
-  CRECIPE := {"Weapon":0,"Ring":0,"Amulet":0,"Belt":0,"Boots":0,"Gloves":0,"Body":0,"Helmet":0}
+  CRECIPE := {Weapon:0, Ring:0, Amulet:0, Belt:0, Boots:0, Gloves:0, Body:0, Helmet:0}
 	BlackList := Array_DeepClone(BlackList_Default)
  ; Move mouse out of the way to grab screenshot
 	ShooMouse()
@@ -864,7 +864,7 @@ CountChaosRecipe(){
       uTally[Slot] += getCount(Items)
     }
   }
-  Return {"Tally":Tally,"uTally":uTally}
+  Return {Tally:Tally, uTally:uTally}
 }
 
 PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){

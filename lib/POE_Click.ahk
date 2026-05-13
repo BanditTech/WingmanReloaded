@@ -101,7 +101,7 @@ RandClick(x, y){
 	Ry := Random(y-30, y-10)
 	If DebugMessages
 		Log("Verbose","Randomize: " x ", " y " position to " Rx ", " Ry )
-	return {"X": Rx, "Y": Ry}
+	return {X: Rx, Y: Ry}
 }
 ; ClipItem - Capture Clip at Coord
 ClipItem(x, y){

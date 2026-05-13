@@ -22,7 +22,7 @@ Class ModAlias {
 		referenceid := This.ModObject[StatKey]["stats"][0]["id"]
 		referencemax := This.ModObject[StatKey]["stats"][0]["max"]
 		referencemin := This.ModObject[StatKey]["stats"][0]["min"]
-		Return {"id":referenceid,"max":referencemax,"min":referencemin}
+		Return {id:referenceid, max:referencemax, min:referencemin}
 	}
 	Locate(StatID){
 		Loop This.TransObject.length {

@@ -902,7 +902,7 @@ submit(){
 		MainGui.Submit(0)
 
 		IniWrite(AccountNameSTR, A_ScriptDir "\save\Account.ini", "GGG", "AccountNameSTR")
-		temp := {"Cookie":PoECookie}
+		temp := {Cookie: PoECookie}
 		t := JSON_Beautify(temp)
 		FileDelete(A_ScriptDir "\save\Cookie.json")
 		FileAppend(t, A_ScriptDir "\save\Cookie.json")

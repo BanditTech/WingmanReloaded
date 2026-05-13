@@ -2,16 +2,16 @@ RestockMenu(choice:=""){
 	static Built := False
 	static Active := [1,1]
 	static LoadedValues := ""
-	Static DefaultSettings := {"Normal":"1"
-	                          ,"Ignored":"0"
-	                          ,"Restock":"0"
-	                          ,"RestockName":""
-	                          ,"RestockMin":20
-	                          ,"RestockMax":40
-	                          ,"RestockTo":30
-	                          ,"CustomTab":0
-	                          ,"CustomX":0
-	                          ,"CustomY":0}
+	Static DefaultSettings := {Normal:"1"
+	                          , Ignored:"0"
+	                          , Restock:"0"
+	                          , RestockName:""
+	                          , RestockMin:20
+	                          , RestockMax:40
+	                          , RestockTo:30
+	                          , CustomTab:0
+	                          , CustomX:0
+	                          , CustomY:0}
 	static RestockGui := ""
 	static CustomSlotHWND := []
 

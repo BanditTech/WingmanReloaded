@@ -1,8 +1,8 @@
 Class RefreshAffixes {
 	Maps(){
-		Static FileList := [ {"category":"Map", "subfield":"low_tier_map"}
-			,{"category":"Map", "subfield":"mid_tier_map"}
-			,{"category":"Map", "subfield":"top_tier_map"}]
+		Static FileList := [{category:"Map", subfield:"low_tier_map"}
+			,{category:"Map", subfield:"mid_tier_map"}
+			,{category:"Map", subfield:"top_tier_map"}]
 		Download := {}
 		This.ReturnList := []
 		For k, v in FileList {
