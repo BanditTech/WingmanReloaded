@@ -91,7 +91,7 @@ RefreshBaseList(type){
 
 RegexFixLeadingZeros(digits,content){
   if(content==""){
-    content:=
+    content := ""
   }
   else if(digits==2){
     Loop 2
