@@ -464,7 +464,7 @@ StashRoutine()
 					Else If (sendstash == -2)
 					{
 						CtrlClick(Grid.X,Grid.Y)
-						If (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
+						If (Item.Prop.RarityUnique && !Item.Prop.HasOwnProp("IsOrgan")) && ((StashTabYesUniqueRing && Item.Prop.Ring) || StashTabYesUniqueDump)
 						{
 							Sleep(250*Latency)
 							ShooMouse()
@@ -494,7 +494,7 @@ StashRoutine()
 						CtrlShiftClick(Grid.X,Grid.Y)
 						; Check if we need to send to alternate stash for uniques
 						If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
-							&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
+							&& (Item.Prop.RarityUnique && !Item.Prop.HasOwnProp("IsOrgan"))
 						{
 							If (StashTabYesUniqueRing && Item.Prop.Ring
 								&& sendstash != StashTabUniqueRing)
@@ -551,7 +551,7 @@ StashRoutine()
 					Sleep(60)
 					; Check for unique items
 					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
-						&& (Item.Prop.RarityUnique && !Item.Prop.HasKey("IsOrgan"))
+						&& (Item.Prop.RarityUnique && !Item.Prop.HasOwnProp("IsOrgan"))
 					{
 						If (StashTabYesUniqueRing && Item.Prop.Ring
 							&& Tab != StashTabUniqueRing)
@@ -852,7 +852,7 @@ RunRestock(){
 			If (v.Normal || v.Ignored || v.RestockName = "")
 				Continue
 			If !(v.RestockName = "Custom") {
-				If !WR.loc.pixel.HasKey(v.RestockName){
+				If !WR.loc.pixel.Has(v.RestockName){
 					Notify("Missing Location","There is no entry for " v.RestockName,5)
 					Continue
 				} Else If (WR.loc.pixel[v.RestockName].X = 0 && WR.loc.pixel[v.RestockName].Y = 0) {

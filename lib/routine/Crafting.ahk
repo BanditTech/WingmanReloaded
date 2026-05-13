@@ -326,7 +326,7 @@ CountCurrency(NameList:=""){
 	If !IsObject(NameList)
 		NameList := StrSplit(NameList,",")
 	For key, currency in NameList {
-		If !WR.loc.pixel.HasKey(currency)
+		If !WR.loc.pixel.Has(currency)
 			Return False
 		If (WR.loc.pixel[currency].X = 0 && WR.loc.pixel[currency].Y = 0) {
 			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
@@ -348,7 +348,7 @@ ApplyCurrency(cname, x, y, Amount:=1){
 		Else
 			cname := "Alchemy"
 	}
-	If WR.data.Counts.HasKey(cname) {
+	If WR.data.Counts.Has(cname) {
 		If (WR.data.Counts[cname] <= 0) {
 			Log("Error","Not enough " cname " to continue crafting")
 			Return False

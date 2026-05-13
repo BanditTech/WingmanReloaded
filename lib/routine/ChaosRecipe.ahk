@@ -643,7 +643,7 @@ VendorRoutineChaos(){
 									CRECIPE["Weapon"] += 1
 							}
 						}
-					} Else If CRECIPE.HasKey(Item.Prop.SlotType) {
+					} Else If CRECIPE.Has(Item.Prop.SlotType) {
 						If (CRECIPE[Item.Prop.SlotType] < 1){
 						CtrlClick(Grid.X,Grid.Y)
 						CRECIPE[Item.Prop.SlotType] += 1

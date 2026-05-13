@@ -24,7 +24,7 @@ SendDelayAction(){
 }
 IsModifier(Character) {
   static Modifiers := {"!": 1, "#": 1, "~": 1, "^": 1, "*": 1, "+": 1}
-  return Modifiers.HasKey(Character)
+  return Modifiers.Has(Character)
 }
 SplitModsFromKey(key){
   Mods := String := ""

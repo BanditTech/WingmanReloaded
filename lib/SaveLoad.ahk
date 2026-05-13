@@ -1236,7 +1236,7 @@ Settings(name:="perChar",Action:="Load"){
 			JSONtext := f.Read()
 			obj := JSON.Load(JSONtext)
 			For k, v in WR[name] {
-				If (obj.HasKey(k)) {
+				If (obj.Has(k)) {
 					WR[name][k] := obj[k]
 				}
 			}
@@ -1288,7 +1288,7 @@ Profile(args*){
 		For k, v in WR[Type]
 			If (IsObject(obj[k]))
 			For l, w in v
-			If (obj[k].HasKey(l))
+			If (obj[k].Has(l))
 			WR[Type][k][l] := obj[k][l]
 		If (Type = "perChar"){
 			If WR.perChar.Setting.profilesYesFlask

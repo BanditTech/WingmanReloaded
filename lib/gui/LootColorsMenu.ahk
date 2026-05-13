@@ -59,7 +59,7 @@ LootColorsMenu(){
 			continue
 		}
 		Item++
-		If A_Index = 1
+		If (A_Index = 1)
 		{
 			LootColorsGui.Add("Text", "yp+38 xs+10", "Background " Item " Colors: ")
 			LootColorsGui.Add("Progress", "x+10 yp-5 w50 h20 c" color " BackgroundBlack",100)

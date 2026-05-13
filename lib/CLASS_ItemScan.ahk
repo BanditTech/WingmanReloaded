@@ -1995,7 +1995,7 @@ class ItemScan
 				If Abs(v) > basePayPoint
 					basePayPoint := Abs(v)
 			}
-			If basePayPoint = 0
+			If (basePayPoint = 0)
 				FormatStr := "{1:0.0f}"
 			Else If basePayPoint < 1
 				FormatStr := "{1:0.3f}"
@@ -2034,7 +2034,7 @@ class ItemScan
 				If Abs(v) > baseRecPoint
 					baseRecPoint := Abs(v)
 			}
-			If baseRecPoint = 0
+			If (baseRecPoint = 0)
 				FormatStr := "{1:0.0f}"
 			Else If baseRecPoint < 1
 				FormatStr := "{1:0.3f}"
@@ -2211,7 +2211,7 @@ class ItemScan
 					If (Abs(v) > basePoint)
 						basePoint := Abs(v)
 				}
-				If basePoint = 0
+				If (basePoint = 0)
 					FormatStr := "{1:0.0f}"
 				Else If basePoint < 1
 					FormatStr := "{1:0.3f}"
@@ -2306,7 +2306,7 @@ class ItemScan
 					If Abs(v) > baseLTPoint
 						baseLTPoint := Abs(v)
 				}
-				If baseLTPoint = 0
+				If (baseLTPoint = 0)
 					FormatStr := "{1:0.0f}"
 				If baseLTPoint < 1
 					FormatStr := "{1:0.3f}"

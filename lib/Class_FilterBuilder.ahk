@@ -5,27 +5,27 @@
 		This.Settings := Settings
 		This.Add(This.FBheader)
 		This.Add("Show")
-		If This.Settings.HasKey("ItemLevel") {
+		If This.Settings.Has("ItemLevel") {
 			This.ItemLevel()
 		}
 		This.Add("Rarity Rare")
 		This.Add("Identified False")
-		If This.Settings.HasKey("Classes") {
+		If This.Settings.Has("Classes") {
 			This.Classes()
 		}
-		If This.Settings.HasKey("BorderColor") {
+		If This.Settings.Has("BorderColor") {
 			This.SetColor("Border")
 		}
-		If This.Settings.HasKey("FontSize") {
+		If This.Settings.Has("FontSize") {
 			This.FontSize()
 		}
-		If This.Settings.HasKey("BackgroundColor") {
+		If This.Settings.Has("BackgroundColor") {
 			This.SetColor("Background")
 		}
-		If This.Settings.HasKey("TextColor") {
+		If This.Settings.Has("TextColor") {
 			This.SetColor("Text")
 		}
-		If This.Settings.HasKey("Dimensions") {
+		If This.Settings.Has("Dimensions") {
 			This.Dimensions()
 		}
 		This.Add("")
@@ -65,10 +65,10 @@
 		This.Add("ItemLevel <= " This.Settings.ItemLevel.Max)
 	}
 	Dimensions(){
-		If This.Settings.Dimensions.HasKey("Height") {
+		If This.Settings.Dimensions.Has("Height") {
 			This.Add("Height = " This.Settings.Dimensions.Height)
 		}
-		If This.Settings.Dimensions.HasKey("Width") {
+		If This.Settings.Dimensions.Has("Width") {
 			This.Add("Width = " This.Settings.Dimensions.Width)
 		}
 	}
