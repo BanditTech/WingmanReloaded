@@ -103,8 +103,8 @@ LootColorsMenu(){
 			MsgBox("PoE Window does not exist. `nCannot sample the loot color.")
 			Return
 		}
-		ToolTip("Press ""A"" to sample loot background"
-			. "`nHold Escape and press ""A"" to cancel"
+		ToolTip("Press `"A`" to sample loot background"
+			. "`nHold Escape and press `"A`" to cancel"
 			, ScrCenter.X - 115 , ScrCenter.Y - GameH // 3)
 		KeyWait("a", "D L")
 		ToolTip()

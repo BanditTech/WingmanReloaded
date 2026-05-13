@@ -744,7 +744,7 @@ WR_Menu(Function:="",Var*){
       CraftingGui.Add("GroupBox", "Section w320 h400 xs+300 ym+25", "Instructions")
       CraftingGui.SetFont()
       CraftingGui.SetFont("s9 cBlack", "Arial")
-      CraftingGui.Add("Link", "xs+10 yp+20 w290", "This is an Experimental Feature!`nWe highly recommend using <a href=""https://www.craftofexile.com/"">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.")
+      CraftingGui.Add("Link", "xs+10 yp+20 w290", "This is an Experimental Feature!`nWe highly recommend using <a href=`"https://www.craftofexile.com/`">CraftOfExile</a> to Calculate the Currency to Match the Desired Mods.")
       CraftingGui.Add("Link", "xs+10 yp+55 w290", "Steps:`n1) Select the item 'Category' and 'SubCategory' you are going to craft.`n`n2) Press 'Affix Selector' and 'Tick' all the mods that you want to look for.")
       CraftingGui.SetFont("s10 cRed Bold", "Arial")
       CraftingGui.Add("Link", "xs+10 yp+95 w290", "This is Tier Sensitive so you must tick every tier you would be happy to keep`n")
