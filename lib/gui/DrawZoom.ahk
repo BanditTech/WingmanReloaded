@@ -1,5 +1,5 @@
 ; Zoom script found on AHK forum and modified to enclose in one function - Bandit
-DrawZoom( Switch := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
+DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
 {
   Global
   Static zoom = 6        ; initial magnification, 1..32
@@ -13,23 +13,23 @@ DrawZoom( Switch := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
   , pos_old := 0
   , pos_new
 
-  If (Switch = "Toggle")
+  If (Mode = "Toggle")
   {
     DrawZoom_ToggleZoom()
     DrawZoom_MoveAway()
     Return
   }
-  If (Switch = "Repaint")
+  If (Mode = "Repaint")
   {
     DrawZoom_Repaint()
     Return
   }
-  If (Switch = "MoveAway")
+  If (Mode = "MoveAway")
   {
     DrawZoom_MoveAway()
     Return
   }
-  If (Switch = "ClearGDI")
+  If (Mode = "ClearGDI")
   {
     DrawZoom_ClearGDI()
     Return
