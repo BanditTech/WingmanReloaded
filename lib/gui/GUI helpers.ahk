@@ -418,7 +418,7 @@ WarningAutomation(*) {
     . "Come to WingmanReloaded Discord to talk with us or look for more information.`n`n"
     . "You have been warned!!! This option can be dangerous if done incorrectly!!!`n"
     . "Press OK to accept", "WARNING!!!", 1)
-    If result = "OK"
+    If (result = "OK")
     {
       IniWrite(YesEnableAutoSellConfirmation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmation")
       MainMenu()

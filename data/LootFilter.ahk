@@ -146,7 +146,7 @@ RedrawNewGroup(*) {
 
 DisableCloseButton(hWnd:="")
 {
-  If hWnd=""
+  If (hWnd="")
     hWnd:=WinExist("A")
   hSysMenu:=DllCall("GetSystemMenu","Int",hWnd,"Int",False)
   nCnt:=DllCall("GetMenuItemCount","Int",hSysMenu)
@@ -163,7 +163,7 @@ ImportGroup(*) {
   {
     ++LootFilterEmpty
     groupstr := ReplaceDigit000("Group" LootFilterEmpty)
-    if LootFilter.HasKey(groupstr)
+    if LootFilter.Has(groupstr)
       continue
     Else
       break
@@ -200,9 +200,9 @@ ExportGroup(*) {
   A_Clipboard := ReformatJSON(JSON.Dump(LootFilter[GKey],,1))
   SetTimer(ChangeButtonNamesVar, 10)
   result := MsgBox(A_Clipboard "`n`n Copied to the clipboard`n`nPress duplicate button to Add a copy", "Export String", 262147)
-  if result = "Yes"
+  if (result = "Yes")
     Return
-  if result = "No"
+  if (result = "No")
     ImportGroup()
 }
 
@@ -223,7 +223,7 @@ AddGroup(*) {
   {
     ++LootFilterEmpty
     groupstr := ReplaceDigit000("Group" LootFilterEmpty)
-    if LootFilter.HasKey(groupstr)
+    if LootFilter.Has(groupstr)
       continue
     Else
       break
@@ -405,10 +405,10 @@ RemoveMenuItem(*) {
   SKey := buttonstr[3]
   buttonstr[4] := RegExReplace(buttonstr[4], "Min$", "")
   AKey := buttonstr[4]
-  LootFilter[GKey][SKey].Remove(AKey . "Min")
-  LootFilter[GKey][SKey].Remove(AKey . "Eval")
-  LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
-  LootFilter[GKey][SKey].Remove(AKey)
+  LootFilter[GKey][SKey].Delete(AKey . "Min")
+  LootFilter[GKey][SKey].Delete(AKey . "Eval")
+  LootFilter[GKey][SKey].Delete(AKey . "OrFlag")
+  LootFilter[GKey][SKey].Delete(AKey)
   SaveWinPos()
   LootFilterGui.Destroy()
   Redraw()
@@ -422,10 +422,10 @@ RemoveNewMenuItem(*) {
   SKey := buttonstr[3]
   buttonstr[4] := RegExReplace(buttonstr[4], "Min$", "")
   AKey := buttonstr[4]
-  LootFilter[GKey][SKey].Remove(AKey . "Min")
-  LootFilter[GKey][SKey].Remove(AKey . "Eval")
-  LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
-  LootFilter[GKey][SKey].Remove(AKey)
+  LootFilter[GKey][SKey].Delete(AKey . "Min")
+  LootFilter[GKey][SKey].Delete(AKey . "Eval")
+  LootFilter[GKey][SKey].Delete(AKey . "OrFlag")
+  LootFilter[GKey][SKey].Delete(AKey)
   SaveWinPos()
   LootFilterGui2.Destroy()
   RedrawNewGroup()
@@ -439,10 +439,10 @@ RemoveNewGroupMenuItem(*) {
   SKey := buttonstr[3]
   buttonstr[4] := RegExReplace(buttonstr[4], "Min$", "")
   AKey := buttonstr[4]
-  ; LootFilter[GKey][SKey].Remove(AKey . "Min")
-  ; LootFilter[GKey][SKey].Remove(AKey . "Eval")
-  ; LootFilter[GKey][SKey].Remove(AKey . "OrFlag")
-  LootFilter[GKey][SKey].Remove(AKey)
+  ; LootFilter[GKey][SKey].Delete(AKey . "Min")
+  ; LootFilter[GKey][SKey].Delete(AKey . "Eval")
+  ; LootFilter[GKey][SKey].Delete(AKey . "OrFlag")
+  LootFilter[GKey][SKey].Delete(AKey)
   SaveWinPos()
   LootFilterGui2.Destroy()
   RedrawNewGroup()
@@ -455,7 +455,7 @@ RemGroup(*) {
   gnumber := buttonstr[2]
   GKey := "Group" gnumber
 
-  LootFilter.Remove(GKey)
+  LootFilter.Delete(GKey)
   SaveWinPos()
   LootFilterGui.Destroy()
   Redraw()
@@ -465,7 +465,7 @@ RemNewGroup(*) {
   Global LootFilter, groupKey, LootFilterGui2
   LootFilterGui.Submit(0)
   GKey := groupKey
-  LootFilter.Remove(GKey)
+  LootFilter.Delete(GKey)
   ; LootFilterTabs.Remove(GKey)
   LootFilterGui2.Destroy()
   SaveWinPos()
@@ -477,27 +477,27 @@ TestEval(*) {
   Global LootFilter
   LootFilterGui.Submit(0)
   eval := LootFilter.Group1.Affix.Affix1Eval
-  if eval = ">"
+  if (eval = ">")
     If (5 > LootFilter.Group1.Affix.Affix1Min)
     MsgBox("Yes")
     Else
     MsgBox("No")
-  else if eval = "="
+  else if (eval = "=")
     if (5 = LootFilter.Group1.Affix.Affix1Min)
     MsgBox("Yes")
     Else
     MsgBox("No")
-  else if eval = "<"
+  else if (eval = "<")
     if (5 < LootFilter.Group1.Affix.Affix1Min)
     MsgBox("Yes")
     Else
     MsgBox("No")
-  else if eval = "!="
+  else if (eval = "!=")
     if (5 != LootFilter.Group1.Affix.Affix1Min)
     MsgBox("Yes")
     Else
     MsgBox("No")
-  else if eval = "~"
+  else if (eval = "~")
     If InStr("365", LootFilter.Group1.Affix.Affix1Min)
     MsgBox("Yes")
     Else
@@ -646,19 +646,19 @@ OnScroll(wParam, lParam, msg, hwnd)
   new_pos := NumGet(si, 20, "int") ; nPos
 
   action := wParam & 0xFFFF
-  if action = 0 ; SB_LINEUP
+  if (action = 0) ; SB_LINEUP
     new_pos -= SCROLL_STEP * 10
-  else if action = 1 ; SB_LINEDOWN
+  else if (action = 1) ; SB_LINEDOWN
     new_pos += SCROLL_STEP * 10
-  else if action = 2 ; SB_PAGEUP
+  else if (action = 2) ; SB_PAGEUP
     new_pos -= NumGet(rect, 12, "int") - SCROLL_STEP * 10
-  else if action = 3 ; SB_PAGEDOWN
+  else if (action = 3) ; SB_PAGEDOWN
     new_pos += NumGet(rect, 12, "int") - SCROLL_STEP * 10
   else if (action = 5 || action = 4) ; SB_THUMBTRACK || SB_THUMBPOSITION
     new_pos := wParam>>16
-  else if action = 6 ; SB_TOP
+  else if (action = 6) ; SB_TOP
     new_pos := NumGet(si, 8, "int") ; nMin
-  else if action = 7 ; SB_BOTTOM
+  else if (action = 7) ; SB_BOTTOM
     new_pos := NumGet(si, 12, "int") ; nMax
   else
     return
@@ -671,7 +671,7 @@ OnScroll(wParam, lParam, msg, hwnd)
   old_pos := NumGet(si, 20, "int") ; nPos
 
   x := y := 0
-  if bar = 0 ; SB_HORZ
+  if (bar = 0) ; SB_HORZ
     x := old_pos-new_pos
   else
     y := old_pos-new_pos
