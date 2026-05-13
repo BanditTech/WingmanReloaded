@@ -44,7 +44,7 @@ RestockMenu(choice:=""){
 				btn.OnEvent("Click", RestockSetActive)
 			}
 		}
-		ind=
+		ind := 0
 
 		RestockGui.SetFont("Bold")
 		RestockGui.Add("GroupBox", "vRestockGroupBox w220 h305 Section xs+670 ym", "Slot Configuration:")
