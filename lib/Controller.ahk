@@ -6,7 +6,7 @@ Controller(inputType:="Main")
 	Static JoyLHoldCount:=0, JoyRHoldCount:=0,  JoyMultiplier := 4, YAxisMultiplier := .6
 	Static x_POVscale := 5, y_POVscale := 5, HeldCountPOV := 0
 	Global MainAttackPressedActive, SecondaryAttackPressedActive, MovementHotkeyActive, LootVacuumActive
-	Global Controller, Controller_Active, YesOHBFound
+	Global CtrlState, Controller_Active, YesOHBFound
 	If (inputType = "Main")
 	{
 		If !Controller("Refresh")
@@ -21,26 +21,26 @@ Controller(inputType:="Main")
 		if State := XInput_GetState(Controller_Active)
 		{
 			; LX,LY,RX,RY,LT,RT,A,B,X,Y,LB,RB,L3,R3,BACK,START,UP,DOWN,LEFT,RIGHT
-			Controller.LX             := PercentAxis( State.sThumbLX )
-			Controller.LY             := PercentAxis( State.sThumbLY )
-			Controller.RX             := PercentAxis( State.sThumbRX )
-			Controller.RY             := PercentAxis( State.sThumbRY )
-			Controller.LT             := State.bLeftTrigger
-			Controller.RT             := State.bRightTrigger
-			Controller.UP             := XInputButtonIsDown( "PovUp", State.wButtons )
-			Controller.DOWN           := XInputButtonIsDown( "PovDown", State.wButtons )
-			Controller.LEFT           := XInputButtonIsDown( "PovLeft", State.wButtons )
-			Controller.RIGHT          := XInputButtonIsDown( "PovRight", State.wButtons )
-			Controller.Btn.A          := XInputButtonIsDown( "A", State.wButtons )
-			Controller.Btn.B          := XInputButtonIsDown( "B", State.wButtons )
-			Controller.Btn.X          := XInputButtonIsDown( "X", State.wButtons )
-			Controller.Btn.Y          := XInputButtonIsDown( "Y", State.wButtons )
-			Controller.Btn.LB         := XInputButtonIsDown( "LB", State.wButtons )
-			Controller.Btn.RB         := XInputButtonIsDown( "RB", State.wButtons )
-			Controller.Btn.L3         := XInputButtonIsDown( "LStick", State.wButtons )
-			Controller.Btn.R3         := XInputButtonIsDown( "RStick", State.wButtons )
-			Controller.Btn.BACK       := XInputButtonIsDown( "Back", State.wButtons )
-			Controller.Btn.START      := XInputButtonIsDown( "Start", State.wButtons )
+			CtrlState.LX             := PercentAxis( State.sThumbLX )
+			CtrlState.LY             := PercentAxis( State.sThumbLY )
+			CtrlState.RX             := PercentAxis( State.sThumbRX )
+			CtrlState.RY             := PercentAxis( State.sThumbRY )
+			CtrlState.LT             := State.bLeftTrigger
+			CtrlState.RT             := State.bRightTrigger
+			CtrlState.UP             := XInputButtonIsDown( "PovUp", State.wButtons )
+			CtrlState.DOWN           := XInputButtonIsDown( "PovDown", State.wButtons )
+			CtrlState.LEFT           := XInputButtonIsDown( "PovLeft", State.wButtons )
+			CtrlState.RIGHT          := XInputButtonIsDown( "PovRight", State.wButtons )
+			CtrlState.Btn.A          := XInputButtonIsDown( "A", State.wButtons )
+			CtrlState.Btn.B          := XInputButtonIsDown( "B", State.wButtons )
+			CtrlState.Btn.X          := XInputButtonIsDown( "X", State.wButtons )
+			CtrlState.Btn.Y          := XInputButtonIsDown( "Y", State.wButtons )
+			CtrlState.Btn.LB         := XInputButtonIsDown( "LB", State.wButtons )
+			CtrlState.Btn.RB         := XInputButtonIsDown( "RB", State.wButtons )
+			CtrlState.Btn.L3         := XInputButtonIsDown( "LStick", State.wButtons )
+			CtrlState.Btn.R3         := XInputButtonIsDown( "RStick", State.wButtons )
+			CtrlState.Btn.BACK       := XInputButtonIsDown( "Back", State.wButtons )
+			CtrlState.Btn.START      := XInputButtonIsDown( "Start", State.wButtons )
 			Return True
 		}
 		Else
@@ -51,14 +51,14 @@ Controller(inputType:="Main")
 	}
 	Else If (inputType = "JoystickL")
 	{
-		moveX := DeadZone(Controller.LX)
-		moveY := DeadZone(Controller.LY)
+		moveX := DeadZone(CtrlState.LX)
+		moveY := DeadZone(CtrlState.LY)
 		If (moveX || moveY)
 		{
 			If !GuiStatus("",0)
-				MouseMove(ScrCenter.X + Controller.LX * (ScrCenter.X/100), ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/100))
+				MouseMove(ScrCenter.X + CtrlState.LX * (ScrCenter.X/100), ScrCenter.Yadjusted - CtrlState.LY * (ScrCenter.Y/100))
 			Else
-				MouseMove(ScrCenter.X + Controller.LX * (ScrCenter.X/120), ScrCenter.Yadjusted - Controller.LY * (ScrCenter.Y/120))
+				MouseMove(ScrCenter.X + CtrlState.LX * (ScrCenter.X/120), ScrCenter.Yadjusted - CtrlState.LY * (ScrCenter.Y/120))
 			++JoyLHoldCount
 			If (!MovementHotkeyActive
 			&& JoyLHoldCount > 1
@@ -69,7 +69,7 @@ Controller(inputType:="Main")
 				MovementHotkeyActive := True
 			}
 			If (YesTriggerUtilityKey && MovementHotkeyActive
-			&& (Abs(Controller.LX) >= 60 || Abs(Controller.LY) >= 70 )
+			&& (Abs(CtrlState.LX) >= 60 || Abs(CtrlState.LY) >= 70 )
 			&& JoyLHoldCount > 3
 			&& GuiStatus("",0)
 			&& ((YesOHB && YesOHBFound) || !YesOHB) )
@@ -90,19 +90,19 @@ Controller(inputType:="Main")
 	}
 	Else If (inputType = "JoystickR")
 	{
-		moveX := DeadZone(Controller.RX)
-		moveY := DeadZone(Controller.RY)
+		moveX := DeadZone(CtrlState.RX)
+		moveY := DeadZone(CtrlState.RY)
 		If (moveX || moveY)
 		{
 			If (GuiStatus("",0) && ((YesOHB && (YesOHBFound || OnTown)) || !YesOHB))
-			&& !(Controller.LT || Controller.RT)
-				MouseMove(ScrCenter.X + Controller.RX * (ScrCenter.X/100), ScrCenter.Yadjusted - Controller.RY * (ScrCenter.Y/100))
+			&& !(CtrlState.LT || CtrlState.RT)
+				MouseMove(ScrCenter.X + CtrlState.RX * (ScrCenter.X/100), ScrCenter.Yadjusted - CtrlState.RY * (ScrCenter.Y/100))
 			Else
-				MouseMove(Controller.RX, -Controller.RY, 0, "R")
+				MouseMove(CtrlState.RX, -CtrlState.RY, 0, "R")
 			++JoyRHoldCount
 			If (!MainAttackPressedActive && JoyRHoldCount > 2 && YesTriggerJoystickRightKey)
 			&& (GuiStatus("",0) && ((YesOHB && YesOHBFound) || !YesOHB))
-			&& !(Controller.LT || Controller.RT)
+			&& !(CtrlState.LT || CtrlState.RT)
 			{
 				SendHotkey(hotkeyControllerJoystickRight,"down")
 				MainAttackPressedActive := True
@@ -128,7 +128,7 @@ Controller(inputType:="Main")
 			"LB", hotkeyControllerButtonLB, "RB", hotkeyControllerButtonRB,
 			"L3", hotkeyControllerButtonL3, "R3", hotkeyControllerButtonR3,
 			"BACK", hotkeyControllerButtonBACK, "START", hotkeyControllerButtonSTART)
-		For Key, s in Controller.Btn
+		For Key, s in CtrlState.Btn
 		{
 			If (s != State[Key])
 			{
@@ -224,19 +224,19 @@ Controller(inputType:="Main")
 	}
 	Else If (inputType = "DPad")
 	{
-		if (Controller.Up || Controller.Down || Controller.Left || Controller.Right)
+		if (CtrlState.Up || CtrlState.Down || CtrlState.Left || CtrlState.Right)
 		{
 			If (GuiStatus("",0) && !YesXButtonFound)
 			{
-				if (Controller.Up) ; Up
+				if (CtrlState.Up) ; Up
 					y_finalPOV := -y_POVscale-HeldCountPOV*2
-				else if (Controller.Down) ; Down
+				else if (CtrlState.Down) ; Down
 					y_finalPOV := +y_POVscale+HeldCountPOV*2
 				else
 					y_finalPOV := 0
-				if (Controller.Left) ; Left
+				if (CtrlState.Left) ; Left
 					x_finalPOV := -x_POVscale-HeldCountPOV*2
-				else if (Controller.Right) ; Right
+				else if (CtrlState.Right) ; Right
 					x_finalPOV := +x_POVscale+HeldCountPOV*2
 				else
 					x_finalPOV := 0
@@ -248,13 +248,13 @@ Controller(inputType:="Main")
 			}
 			Else
 			{
-				If Controller.Up
+				If CtrlState.Up
 					SnapToInventoryGrid("Up")
-				If Controller.Down
+				If CtrlState.Down
 					SnapToInventoryGrid("Down")
-				If Controller.Left
+				If CtrlState.Left
 					SnapToInventoryGrid("Left")
-				If Controller.Right
+				If CtrlState.Right
 					SnapToInventoryGrid("Right")
 			}
 		}

@@ -1,6 +1,6 @@
 ﻿; Extra vars - Not in INI
 Global rxNum := "(\d+\.?\d*)"
-Global Controller := {"Btn":{}}
+Global CtrlState := {"Btn":{}}
 Global Controller_Active := 0
 Global Item
 Global WR_Statusbar := "WingmanReloaded Status"
