@@ -10,7 +10,7 @@ If FileExist(ClientLog)
 }
 Else
 {
-	MsgBox("Client.txt Log File not found!`nAssign the location in Configuration Tab`nClick ""Locate Logfile"" to find yours", "Client Log Error", 262144)
+	MsgBox("Client.txt Log File not found!`nAssign the location in Configuration Tab`nClick `"Locate Logfile`" to find yours", "Client Log Error", 262144)
 	Log("Error","Client Log not Found",ClientLog)
 	WR_StatusBarCtrl.SetText("Client.txt file not found", 2)
 }
