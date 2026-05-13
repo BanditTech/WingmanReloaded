@@ -1,4 +1,4 @@
-Class 7za {
+Class SevenZip {
   Static ExeFile := A_ScriptDir "\data\7za.exe"
   Static AddArgs := "a -w""" A_ScriptDir """ -t7z -x!backup\ -x!.git\ -x!.github\ -x!github\ -x!.vscode\"
   Static SourceFile := ".\*"

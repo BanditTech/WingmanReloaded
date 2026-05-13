@@ -44,7 +44,7 @@ checkUpdate(force:=False){
 	runUpdate(*) {
 		Fail:=False
 		Log("Update","Running")
-		7za.install(BranchName)
+		SevenZip.install(BranchName)
 		Run("`"" A_ScriptFullPath "`"")
 		Sleep(5000) ;This shouldn't ever hit.
 		Log("Error","There was an issue with the update")
