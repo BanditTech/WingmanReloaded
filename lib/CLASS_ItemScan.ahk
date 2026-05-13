@@ -41,7 +41,7 @@ class ItemScan
 			}
 			Else
 			{
-				If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= """$")
+				If (SVal ~= "\.$" || SVal ~= "\?$" || SVal ~= "`"$")
 					This.Data.Blocks.FlavorText := SVal
 				Else If (SVal ~= "\(implicit\)$"){
 					This.Prop.HasImplicit := True
@@ -61,7 +61,7 @@ class ItemScan
 					This.Prop.IsAbyss := True
 				Else If (SVal ~= "^Unidentified$")
 					This.Data.Blocks.Affix := SVal
-				Else If (This.Data.Blocks.Has("Affix") || SVal ~= """.*""$")
+				Else If (This.Data.Blocks.Has("Affix") || SVal ~= "`".*`"$")
 					This.Data.Blocks.FlavorText := SVal
 				Else
 					This.Data.Blocks.Affix := SVal
@@ -144,25 +144,25 @@ class ItemScan
 			If (v ~= "^Curse Enemies with .+ on Hit$")
 				This.Prop.IsCurseOnHit := True
 			If (v ~= "\{ Prefix Modifier"){
-				If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", &rxm ) {
+				If RegExMatch(v, "\{ Prefix Modifier `"(.+)`" \(Tier: (\d+)\) ?.? ?(.*) \}", &rxm ) {
 					This.Data.AffixNames.Prefix.Push({Name:rxm[1],Tier:rxm[2],Tags:(rxm[3]?rxm[3]:"")})
 					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
-				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" . (.*) \}", &rxm ) {
+				} Else If RegExMatch(v, "\{ Prefix Modifier `"(.+)`" . (.*) \}", &rxm ) {
 					This.Data.AffixNames.Prefix.Push({Name:rxm[1],Tier:1,Tags:(rxm[2]?rxm[2]:"")})
 					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
-				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \}", &rxm ) {
+				} Else If RegExMatch(v, "\{ Prefix Modifier `"(.+)`" \}", &rxm ) {
 					This.Data.AffixNames.Prefix.Push({Name:rxm[1],Tier:1,Tags:""})
 					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
 				}
 				This.Prop.PrefixCount++, This.Prop.AffixCount++
 			} Else If (v ~= "\{ Suffix Modifier") {
-				If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", &rxm ) {
+				If RegExMatch(v, "\{ Suffix Modifier `"(.+)`" \(Tier: (\d+)\) ?.? ?(.*) \}", &rxm ) {
 					This.Data.AffixNames.Suffix.Push({Name:rxm[1],Tier:rxm[2],Tags:(rxm[3]?rxm[3]:"")})
 					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
-				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" . (.*) \}", &rxm ) {
+				} Else If RegExMatch(v, "\{ Suffix Modifier `"(.+)`" . (.*) \}", &rxm ) {
 					This.Data.AffixNames.Suffix.Push({Name:rxm[1],Tier:1,Tags:(rxm[2]?rxm[2]:"")})
 					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
-				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \}", &rxm ) {
+				} Else If RegExMatch(v, "\{ Suffix Modifier `"(.+)`" \}", &rxm ) {
 					This.Data.AffixNames.Suffix.Push({Name:rxm[1],Tier:1,Tags:""})
 					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
 				}

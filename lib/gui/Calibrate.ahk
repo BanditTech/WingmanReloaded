@@ -322,8 +322,8 @@ CalibrationWizard(){
 	WizardGui.Add("Text", "x22 y29 w180 h200", "Enable the checkboxes to choose which calibration to perform"
 		. "`n`nFollow the instructions in the tooltip that will appear in the screen center"
 		. "`n`nFor best results, start the wizard in the hideout with your inventory emptied"
-		. "`n`nPress the ""A"" button when your gamestate matches the instructions"
-		. "`n`nTo cancel the Wizard, Hold Escape then press ""A""")
+		. "`n`nPress the `"A`" button when your gamestate matches the instructions"
+		. "`n`nTo cancel the Wizard, Hold Escape then press `"A`"")
 
 	WizardGui.Add("CheckBox", "Section Checked vCalibrationOnChar    x222 y39       w140 h20", "Character Active")
 	WizardGui.Add("CheckBox", "Checked vCalibrationOnChat        xp   y+10      wp h20", "Chat Open")
@@ -378,8 +378,8 @@ CalibrationWizard(){
 		{
 			ToolTip("This will sample the Character Active Color"
 				. "`nMake sure you are logged into a character with flasks and abilities clearly visible"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 115 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -403,8 +403,8 @@ CalibrationWizard(){
 			ToolTip("This will sample the Chat Open Color"
 				. "`nMake sure you have chat panel open"
 				. "`nNo other panels can be open on the left"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 115 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -428,8 +428,8 @@ CalibrationWizard(){
 			ToolTip("This will sample the Passive Menu Open Color"
 				. "`nMake sure you have the Passive Skills menu open"
 				. "`nCan also use Atlas menu to sample"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 135 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -452,8 +452,8 @@ CalibrationWizard(){
 		{
 			ToolTip("This will sample the Inventory Open Color"
 				. "`nMake sure you have the Inventory panel open"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 130 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -477,8 +477,8 @@ CalibrationWizard(){
 			ToolTip("This will sample the Empty Inventory Colors"
 				. "`nNo items can be in your inventory, ALL slots must be empty to calibrate"
 				. "`nMake sure you have the Inventory panel open"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 125 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -521,8 +521,8 @@ CalibrationWizard(){
 		{
 			ToolTip("This will sample the Vendor Trade Open Color"
 				. "`nMake sure you have the Vendor Sell panel open"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 135 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -545,8 +545,8 @@ CalibrationWizard(){
 		{
 			ToolTip("This will sample the Stash Open and Left Panel Open Color"
 				. "`nMake sure you have the Stash panel open"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 115 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -571,8 +571,8 @@ CalibrationWizard(){
 		{
 			ToolTip("This will sample the Divination Trade Open Color"
 				. "`nMake sure you have the Trade Divination panel open"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 150 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -595,8 +595,8 @@ CalibrationWizard(){
 		{
 			ToolTip("This will sample the Detonate Mines Color"
 				. "`nPlace a mine, and the detonate mines icon should appear"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 165 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()
@@ -622,8 +622,8 @@ CalibrationWizard(){
 		{
 			ToolTip("This will sample the OnDelveChart Color"
 				. "`nMake sure you have the Subterranean Chart open"
-				. "`nPress ""A"" to sample"
-				. "`nHold Escape and press ""A"" to cancel"
+				. "`nPress `"A`" to sample"
+				. "`nHold Escape and press `"A`" to cancel"
 				, ScrCenter.X - 150 , ScrCenter.Y -30)
 			KeyWait("a", "D L")
 			ToolTip()

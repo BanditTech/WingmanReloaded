@@ -44,7 +44,7 @@
 	Classes(){
 		str := "Class =="
 		For k, v in This.Settings.Classes {
-			str .= " """ v """"
+			str .= " `"" v "`""
 		}
 		This.Add(str)
 	}
