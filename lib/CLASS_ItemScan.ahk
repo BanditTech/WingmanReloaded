@@ -554,7 +554,7 @@ class ItemScan
 
 		;Start Extra Blocks Parser
 		;Parse Influence data block
-		Loop, Parse,% This.Data.Blocks.Influence, `n, `r
+		Loop Parse, This.Data.Blocks.Influence, "`n", "`r"
 		{
 			; Match for influence type
 			If (RegExMatch(A_LoopField, "`am)(.+) Item", &RxMatch))
