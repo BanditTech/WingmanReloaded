@@ -2,7 +2,7 @@
 class ItemBuild extends ItemScan
 {
 	__New(Object,quad){
-		This.Data := {"Blocks":{"Affix":"","FlavorText":""}}
+		This.Data := {Blocks: {Affix:"", FlavorText:""}}
 		This.Pseudo := OrderedArray()
 		This.Affix := OrderedArray()
 		This.Prop := OrderedArray()

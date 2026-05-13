@@ -200,7 +200,7 @@ SaveCraftingBase(*)
     if not RowNumber
       break
     BaseName := CustomCraftingBaseGui["listview1"].GetText(RowNumber, 2)
-    aux := {"BaseName":BaseName,"ILvL":"0","Quant":"0"}
+    aux := {BaseName:BaseName, ILvL:"0", Quant:"0"}
     WR.CustomCraftingBases[CraftingBaseTypeSelector].Push(aux)
   }
   Settings("CustomCraftingBases","Save")

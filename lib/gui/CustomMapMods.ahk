@@ -174,7 +174,7 @@ SaveMapData(*)
     Detail   := CustomMapModsGui["listview1"].GetText(RowNumber, 3)
     ModType  := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
     Weight   := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
-    aux := {"ID":TrueIndex,"Map Affix":MapAffix,"Map Detail":Detail,"Mod Type":ModType,"Weight":Weight}
+    aux := Map("ID",TrueIndex,"Map Affix",MapAffix,"Map Detail",Detail,"Mod Type",ModType,"Weight",Weight)
     WR.CustomMapMods.MapMods.Push(aux)
   }
   Settings("CustomMapMods","Save")
@@ -205,7 +205,7 @@ SaveHeistData(*)
     Detail   := CustomMapModsGui["listview1"].GetText(RowNumber, 3)
     ModType  := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
     Weight   := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
-    aux := {"ID":TrueIndex,"Map Affix":MapAffix,"Map Detail":Detail,"Mod Type":ModType,"Weight":Weight}
+    aux := Map("ID",TrueIndex,"Map Affix",MapAffix,"Map Detail",Detail,"Mod Type",ModType,"Weight",Weight)
     WR.CustomMapMods.HeistMods.Push(aux)
   }
   Settings("CustomMapMods","Save")

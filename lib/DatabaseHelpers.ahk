@@ -31,7 +31,7 @@ ActualTierCreator() {
                                 WR.ActualTier[kii][index]["ILvL"].InsertAt(aux2+1, v["required_level"])
                             }
                         } Else {
-                            aux := {"ActualTierName":ActualTierName,"ModGenerationType":v["generation_type"],"AffixWRLine":FirstLineToWRFormat(v["text"]),"AffixLine":[v["name"]],"ILvL":[v["required_level"]]}
+                            aux := {ActualTierName:ActualTierName,ModGenerationType:v["generation_type"],AffixWRLine:FirstLineToWRFormat(v["text"]),AffixLine:[v["name"]],ILvL:[v["required_level"]]}
                             WR.ActualTier[kii].Push(aux)
                         }
                     }

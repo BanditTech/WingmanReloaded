@@ -384,7 +384,7 @@ GridPosition(x,y,gridArea:="StashQuad"){
 	sR := InvGrid.SlotSpacing + InvGrid.SlotRadius
 	sRQ := InvGrid.SlotSpacing + InvGrid.SlotRadius//2
 	Partial := {}
-	Best := {"Distance":-1,"C":1,"R":1}
+	Best := {Distance:-1, C:1, R:1}
 
 	For C, xVal in InvGrid[gridArea].X
 	{
@@ -403,7 +403,7 @@ GridPosition(x,y,gridArea:="StashQuad"){
 			If InArea(x,y,x1,y1,x2,y2)
 			{
 				; Notify("Mouse Exact","Grid C" C " R" R )
-				Return {"C":C,"R":R}
+				Return {C:C, R:R}
 			}
 			Else
 			{
@@ -437,5 +437,5 @@ UpdateMousePosition(){
 	Global mouseX, mouseY, mouseWin, mouseControl
 	MouseGetPos(&mouseX, &mouseY, &mouseWin, &mouseControl)
 	; tooltip, % mouseX " , " mouseY " - " mouseWin " : " mouseControl
-	return {"X":mouseX,"Y":mouseY,"hWin":mouseWin,"Ctrl":mouseControl}
+	return {X:mouseX, Y:mouseY, hWin:mouseWin, Ctrl:mouseControl}
 }

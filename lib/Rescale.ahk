@@ -4,15 +4,15 @@ Rescale(){
   If checkActiveType()
   {
     ; Build array framework
-    InvGrid:={"Corners":{"Stash":{},"Inventory":{},"VendorRec":{},"VendorOff":{},"Ritual":{}}
-            ,"SlotSpacing": 2
-            ,"SlotRadius": 25
-            ,"Ritual":{"X":{},"Y":{}}
-            ,"Stash":{"X":{},"Y":{}}
-            ,"StashQuad":{"X":{},"Y":{}}
-            ,"Inventory":{"X":{},"Y":{}}
-            ,"VendorRec":{"X":{},"Y":{}}
-            ,"VendorOff":{"X":{},"Y":{}}}
+    InvGrid:={Corners:{Stash:{}, Inventory:{}, VendorRec:{}, VendorOff:{}, Ritual:{}}
+            , SlotSpacing: 2
+            , SlotRadius: 25
+            , Ritual:{X:{}, Y:{}}
+            , Stash:{X:{}, Y:{}}
+            , StashQuad:{X:{}, Y:{}}
+            , Inventory:{X:{}, Y:{}}
+            , VendorRec:{X:{}, Y:{}}
+            , VendorOff:{X:{}, Y:{}}}
     If (FileExist(A_ScriptDir "\save\Globe.json") && VersionNumber != "")
     {
       WR_Menu("JSON","Load","Globe")
@@ -1305,9 +1305,9 @@ Rescale(){
 
     x_center := GameX + GameW / 2
     compensation := (GameW / GameH) == (16 / 10) ? 1.103829 : 1.103719
-    Global ScrCenter := { "X" : GameX + Round(GameW / 2) , "Y" : GameY + Round(GameH / 2) ,"Yadjusted" : GameY + GameH / 2 / compensation}
+    Global ScrCenter := {X: GameX + Round(GameW / 2) , Y: GameY + Round(GameH / 2) , Yadjusted: GameY + GameH / 2 / compensation}
     RescaleRan := True
-    Global GameWindow := {"X" : GameX, "Y" : GameY, "W" : GameW, "H" : GameH, "BBarY" : (GameY + (GameH / (1080 / 75))) }
+    Global GameWindow := {X: GameX, Y: GameY, W: GameW, H: GameH, BBarY: (GameY + (GameH / (1080 / 75)))}
     BuildGridsFromCorners()
   }
   return

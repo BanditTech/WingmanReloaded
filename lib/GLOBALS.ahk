@@ -1,6 +1,6 @@
 ﻿; Extra vars - Not in INI
 Global rxNum := "(\d+\.?\d*)"
-Global CtrlState := {"Btn":{}}
+Global CtrlState := {Btn: {}}
 Global Controller_Active := 0
 Global Item
 Global WR_Statusbar := "WingmanReloaded Status"
@@ -89,11 +89,11 @@ Global MainMenuIDAutoFlask, MainMenuIDAutoQuit, MainMenuIDAutoMove, MainMenuIDAu
 Global LootFilter := {}
 Global BlackList
 Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
-Global StackSizes := {"Wisdom":40,"Portal":40,"Scouring":30,"Perandus":5000
-	,"Alteration":20,"Transmutation":40,"Augment":30,"Chance":20
-	,"Alchemy":20,"Binding":20,"Vaal":20,"Chisel":20
-	,"Harbinger":20,"Horizon":20,"Chaos":20,"Engineer":20,"Regal":10
-	,"Simple":10,"Prime":10,"Exalted":10,"Veiled":10}
+Global StackSizes := {Wisdom:40,Portal:40,Scouring:30,Perandus:5000
+	,Alteration:20,Transmutation:40,Augment:30,Chance:20
+	,Alchemy:20,Binding:20,Vaal:20,Chisel:20
+	,Harbinger:20,Horizon:20,Chaos:20,Engineer:20,Regal:10
+	,Simple:10,Prime:10,Exalted:10,Veiled:10}
 Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
 Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
 	, ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
@@ -662,7 +662,7 @@ Global Base := OrderedArray()
 Base.Globe := Array_DeepClone(Globe)
 ; Player
 Global Player := OrderedArray()
-Player.Percent := {"Life":100, "ES":100, "Mana":100}
+Player.Percent := {Life:100, ES:100, Mana:100}
 
 ;Stash Tabs Management
 Global StashTabLinked := 1

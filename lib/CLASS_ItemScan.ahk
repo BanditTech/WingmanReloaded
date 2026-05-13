@@ -103,7 +103,7 @@ class ItemScan
 		If (This.Prop.SlotType && ChaosRecipeEnableFunction)
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
-			Static Tiers := {"Lesser":1,"Greater":2,"Grand":3,"Exceptional":4,"Exquisite":5,"Perfect":6}
+			Static Tiers := {Lesser:1, Greater:2, Grand:3, Exceptional:4, Exquisite:5, Perfect:6}
 			If (RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
 				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
@@ -2485,18 +2485,18 @@ class ItemScan
 	}
 	MatchStashManagement(passthrough:=False){
 		; Create associative array so HasKey function can be used
-		UnsupportedAffinityCurrencies := { "Prime Regrading Lens":0
-			, "Secondary Regrading Lens":0
-			, "Vial of Transcendence":0
-			, "Vial of Sacrifice":0
-			, "Vial of the Ghost":0
-			, "Vial of Consequence":0
-			, "Vial of Summoning":0
-			, "Vial of Dominance":0
-			, "Vial of Awakening":0
-			, "Vial of the Ritual":0
-			, "Vial of Fate":0
-			, "Bestiary Orb":0 }
+		UnsupportedAffinityCurrencies := Map("Prime Regrading Lens",0
+			,"Secondary Regrading Lens",0
+			,"Vial of Transcendence",0
+			,"Vial of Sacrifice",0
+			,"Vial of the Ghost",0
+			,"Vial of Consequence",0
+			,"Vial of Summoning",0
+			,"Vial of Dominance",0
+			,"Vial of Awakening",0
+			,"Vial of the Ritual",0
+			,"Vial of Fate",0
+			,"Bestiary Orb",0)
 		If (This.Prop.IsRune && StashTabYesRunes){
 			sendstash := StashTabRunes
 		} Else If (This.Prop.IsTattoo && StashTabYesTattoos){

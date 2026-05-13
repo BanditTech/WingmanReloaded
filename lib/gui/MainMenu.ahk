@@ -245,7 +245,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Mai
 		LeagueIndex := JSON.Load(FileOpen(A_ScriptDir "\data\leagues.json","r").Read())
 	} Catch e {
 		MsgBox(e, "Error loading leagues", 262144)
-		LeagueIndex := [{"id":"Standard"}]
+		LeagueIndex := [{id:"Standard"}]
 	}
 	textList := ""
 	For K, V in LeagueIndex
