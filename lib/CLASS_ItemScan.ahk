@@ -104,13 +104,13 @@ class ItemScan
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
 			Static Tiers := {"Lesser":1,"Greater":2,"Grand":3,"Exceptional":4,"Exquisite":5,"Perfect":6}
-			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
+			If (RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
 				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Searing Exarch"
 			}
-			If RegExMatch(This.Data.Blocks.Implicit, "`amO)Eater of Worlds Implicit Modifier \((.*?)\)", &RxMatch)){
+			If (RegExMatch(This.Data.Blocks.Implicit, "`amO)Eater of Worlds Implicit Modifier \((.*?)\)", &RxMatch)){
 				This.Prop.TierImplicitEater := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
@@ -144,36 +144,36 @@ class ItemScan
 			If (v ~= "^Curse Enemies with .+ on Hit$")
 				This.Prop.IsCurseOnHit := True
 			If (v ~= "\{ Prefix Modifier"){
-				If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm ) {
-					This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-					This.Affix[rxm1] := This.Modifier[rxm1] := 1
-				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" . (.*) \}", rxm ) {
-					This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
-					This.Affix[rxm1] := This.Modifier[rxm1] := 1
-				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \}", rxm ) {
-					This.Data.AffixNames.Prefix.Push({Name:rxm1,Tier:1,Tags:""})
-					This.Affix[rxm1] := This.Modifier[rxm1] := 1
+				If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", &rxm ) {
+					This.Data.AffixNames.Prefix.Push({Name:rxm[1],Tier:rxm[2],Tags:(rxm[3]?rxm[3]:"")})
+					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
+				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" . (.*) \}", &rxm ) {
+					This.Data.AffixNames.Prefix.Push({Name:rxm[1],Tier:1,Tags:(rxm[2]?rxm[2]:"")})
+					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
+				} Else If RegExMatch(v, "\{ Prefix Modifier ""(.+)"" \}", &rxm ) {
+					This.Data.AffixNames.Prefix.Push({Name:rxm[1],Tier:1,Tags:""})
+					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
 				}
 				This.Prop.PrefixCount++, This.Prop.AffixCount++
 			} Else If (v ~= "\{ Suffix Modifier") {
-				If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", rxm ) {
-					This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:rxm2,Tags:(rxm3?rxm3:"")})
-					This.Affix[rxm1] := This.Modifier[rxm1] := 1
-				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" . (.*) \}", rxm ) {
-					This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:(rxm2?rxm2:"")})
-					This.Affix[rxm1] := This.Modifier[rxm1] := 1
-				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \}", rxm ) {
-					This.Data.AffixNames.Suffix.Push({Name:rxm1,Tier:1,Tags:""})
-					This.Affix[rxm1] := This.Modifier[rxm1] := 1
+				If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \(Tier: (\d+)\) ?.? ?(.*) \}", &rxm ) {
+					This.Data.AffixNames.Suffix.Push({Name:rxm[1],Tier:rxm[2],Tags:(rxm[3]?rxm[3]:"")})
+					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
+				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" . (.*) \}", &rxm ) {
+					This.Data.AffixNames.Suffix.Push({Name:rxm[1],Tier:1,Tags:(rxm[2]?rxm[2]:"")})
+					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
+				} Else If RegExMatch(v, "\{ Suffix Modifier ""(.+)"" \}", &rxm ) {
+					This.Data.AffixNames.Suffix.Push({Name:rxm[1],Tier:1,Tags:""})
+					This.Affix[rxm[1]] := This.Modifier[rxm[1]] := 1
 				}
 				This.Prop.SuffixCount++, This.Prop.AffixCount++
 			}
 		}
 		This.Prop.OpenAffix := 6 - This.Prop.PrefixCount - This.Prop.SuffixCount
 
-		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", &RxMatch))
+		If (RegExMatch(This.Data.Blocks.NamePlate, "`am)Item Class: (.+)", &RxMatch))
 			This.Prop.ItemClass := RxMatch[1]
-		If RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", &RxMatch))
+		If (RegExMatch(This.Data.Blocks.NamePlate, "`am)Rarity: (.+)", &RxMatch))
 			This.Prop.Rarity := RxMatch[1]
 		;Start NamePlate Parser
 		If (This.Prop.Rarity || This.Prop.ItemClass)
@@ -840,8 +840,8 @@ class ItemScan
 			This.Prop.Veiled := True
 			This.Prop.SpecialType := "Veiled Item"
 			For k, v in This.Modifier {
-				If RegExMatch(k, "(.*) Veiled", rxm) {
-					This.Prop.VeiledType := rxm1
+				If RegExMatch(k, "(.*) Veiled", &rxm) {
+					This.Prop.VeiledType := rxm[1]
 					Break
 				}
 			}
