@@ -141,10 +141,6 @@ UpdateDebug(*) {
 	IniWrite(YesLocation, A_ScriptDir "\save\Settings.ini", "General", "YesLocation")
 }
 
-LoadArray(*) {
-	LoadArray()
-}
-
 LoadArray(){
 	Global LootFilter
 	LootFilter := JSON.Load(FileOpen(A_ScriptDir "\save\LootFilter.json","r").Read())
