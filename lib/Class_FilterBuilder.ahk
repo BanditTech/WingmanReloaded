@@ -50,7 +50,7 @@
 	}
 	SetColor(kind){
 		c := This.Settings[kind "Color"]
-		If (c is xdigit) {
+		If IsXDigit(c) {
 			colors := ToRGB(c)
 			This.Add("Set" kind "Color " colors.r " " colors.g " " colors.b)
 		} Else If (c ~= "^\d+ \d+ \d+") {
