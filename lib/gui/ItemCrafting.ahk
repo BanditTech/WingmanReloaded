@@ -90,7 +90,7 @@ ItemCraftingSubmit(GuiCtrl, *)
 
 MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
 {
-  Item := Itemscan()
+  craftItem := Itemscan()
   Repeat := 1
   IsHybridMod := False
   OriginalFullLine:=FullLine
@@ -125,7 +125,7 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
     Mod := RegExReplace(Line, "\+?"rxNum , "#")
 
     ; Check for Hybrid Mods
-    If(!IsHybridMod && Item.CheckIfActualHybridMod(Mod) && Repeat > 1)
+    If(!IsHybridMod && craftItem.CheckIfActualHybridMod(Mod) && Repeat > 1)
       IsHybridMod := True
 
     ;; Match (#-#) to (#-#)
