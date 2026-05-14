@@ -1339,7 +1339,7 @@ WR_Menu(Function:="",Var*){
     } Else if (Element == "Load") {
       If FileExist(A_ScriptDir "\save\" ValueType ".json") {
         If (ValueType == "Globe")
-          Globe := JSON.Load(FileOpen(A_ScriptDir "\save\" ValueType ".json", "r").Read())
+          Globe := JSON.LoadFile(A_ScriptDir "\save\" ValueType ".json")
         Else
           Log("Error","JSON Load: unknown ValueType " ValueType)
       } Else {

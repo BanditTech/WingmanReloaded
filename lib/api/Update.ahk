@@ -3,7 +3,7 @@ checkUpdate(force:=False){
 	If (!AutoUpdateOff || force)
 	{
 		Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/version.html", A_ScriptDir "\temp\version.html")
-		newestVersion := FileOpen(A_ScriptDir "\temp\version.html","r").Read()
+		newestVersion := FileRead(A_ScriptDir "\temp\version.html")
 		If InStr(newestVersion, ":")
 		{
 			Log("Error","There was an issue when attempting to download the version file",newestVersion)
@@ -14,7 +14,7 @@ checkUpdate(force:=False){
 		if ( VersionNumber < newestVersion || force)
 		{
 			Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/changelog.txt", A_ScriptDir "\temp\changelog.txt")
-			changelog := FileOpen(A_ScriptDir "\temp\changelog.txt","r").Read()
+			changelog := FileRead(A_ScriptDir "\temp\changelog.txt")
 			UpdateGui := Gui()
 			UpdateGui.Opt("+AlwaysOnTop")
 			UpdateGui.Add("Button", "x0 y0 h1 w1", "a")

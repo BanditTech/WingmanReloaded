@@ -1,5 +1,5 @@
 LoadActualTierName() {
-    Return JSON.Load(FileOpen(A_ScriptDir "\data\ActualTierName.json","r").Read())
+    Return JSON.LoadFile(A_ScriptDir "\data\ActualTierName.json")
 }
 
 ActualTierCreator() {

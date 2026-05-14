@@ -72,7 +72,7 @@ if !FileExist(A_ScriptDir "\data\Bases.json")
 		MsgBox("Error ED02 : There was a problem downloading Bases.json from RePoE")
 	}
 }
-;Bases := JSON.Load(FileOpen(A_ScriptDir "\data\Bases.json","r").Read())
+;Bases := JSON.LoadFile(A_ScriptDir "\data\Bases.json")
 
 UpdatePOEData(){
 	Global POEData, BranchName
@@ -86,7 +86,7 @@ UpdatePOEData(){
 			MsgBox("Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub")
 		}
 	}
-	POEData := JSON.Load(FileOpen(A_ScriptDir "\data\PoE Data\Category.json","r").Read())
+	POEData := JSON.LoadFile(A_ScriptDir "\data\PoE Data\Category.json")
 	For fk, fv in POEData {
 		for fki, fvi in fv {
 			faux := fk . "(" . fvi . ").json"
@@ -117,7 +117,7 @@ UpdateBasesData(){
 			MsgBox("Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub")
 		}
 	}
-	BasesData := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\Category.json","r").Read())
+	BasesData := JSON.LoadFile(A_ScriptDir "\data\Bases Data\Category.json")
 	if !FileExist(A_ScriptDir "\data\Bases Data\BasesWR.json")
 	{
 		Try {
@@ -128,7 +128,7 @@ UpdateBasesData(){
 			MsgBox("Error ED02 : There was a problem downloading Category.json from Wingman Reloaded GitHub")
 		}
 	}
-	BasesWR := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesWR.json","r").Read())
+	BasesWR := JSON.LoadFile(A_ScriptDir "\data\Bases Data\BasesWR.json")
 	For fk, fv in BasesData {
 			faux := fk . ".json"
 			if !FileExist(A_ScriptDir "\data\Bases Data\" faux)
@@ -142,7 +142,7 @@ UpdateBasesData(){
 				}
 			}
 	}
-	QuestItems := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\QuestItem.json","r").Read())
+	QuestItems := JSON.LoadFile(A_ScriptDir "\data\Bases Data\QuestItem.json")
 }
 UpdateBasesData()
 
@@ -150,13 +150,13 @@ if !FileExist(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
 {
 	RefreshPoeWatchPerfect()
 }
-WR.Data.Perfect := JSON.Load(FileOpen(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json","r").Read(),,1)
+WR.Data.Perfect := JSON.LoadFile(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
 
 if !FileExist(A_ScriptDir "\data\Affix_Lines.json")
 {
 	Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/Affix_Lines.json", A_ScriptDir "\data\Affix_Lines.json")
 }
-WR.Data.Affix := JSON.Load(FileOpen(A_ScriptDir "\data\Affix_Lines.json","r").Read(),,1)
+WR.Data.Affix := JSON.LoadFile(A_ScriptDir "\data\Affix_Lines.json")
 
 ;Create ActualTier
 if !FileExist(A_ScriptDir "\save\ActualTier.json")

@@ -14,8 +14,8 @@ Class ModAlias {
 		Return string
 	}
 	LoadDatabase(){
-		This.ModObject := JSONcom.Parse(FileOpen(A_ScriptDir "\Data\mods.min.json","r").Read(),true)
-		This.TransObject := JSONcom.Parse(FileOpen(A_ScriptDir "\Data\stat_translations.min.json","r").Read(),true)
+		This.ModObject := JSON.LoadFile(A_ScriptDir "\Data\mods.min.json")
+		This.TransObject := JSON.LoadFile(A_ScriptDir "\Data\stat_translations.min.json")
 		This.Loaded := True
 	}
 	GetReference(StatKey){

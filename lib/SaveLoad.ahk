@@ -121,7 +121,7 @@ readFromFile(){
 	; Login Information
 	; AccountNameSTR := IniRead(A_ScriptDir "\save\Account.ini", "GGG", "PoECookie", A_Space)
 	AccountNameSTR := IniRead(A_ScriptDir "\save\Account.ini", "GGG", "AccountNameSTR", A_Space)
-	PoECookie := JSON.Load(FileOpen(A_ScriptDir "\save\Cookie.json","r").Read()).Cookie
+	PoECookie := JSON.LoadFile(A_ScriptDir "\save\Cookie.json").Cookie
 
 	; GUI Position
 	WinGuiX := IniRead(A_ScriptDir "\save\Settings.ini", "General", "WinGuiX", 0)
@@ -1284,7 +1284,7 @@ Profile(args*){
 		FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","w").Write(JSON.Dump(WR[Type],,2))
 		IniWrite(name, A_ScriptDir "\save\Settings.ini", "Chosen Profile", Type)
 	} Else If (Action == "Load") {
-		obj := JSON.Load(FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","r").Read())
+		obj := JSON.LoadFile(A_ScriptDir "\save\profiles\" Type "\" name ".json")
 		For k, v in WR[Type]
 			If (IsObject(obj[k]))
 			For l, w in v
