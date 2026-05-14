@@ -1,9 +1,7 @@
 ; Third-party libraries first so class/function definitions (e.g. JSON)
 ; are visible to the static analyser before any project code that uses them.
-; packages.ahk sets #Warn LocalSameAsGlobal, Off for library code;
-; we re-enable it immediately after so our own code still gets that check.
+; list.ahk re-enables #Warn LocalSameAsGlobal after packages.ahk turns it off.
 #Include %A_ScriptDir%\lib\list.ahk
-#Warn LocalSameAsGlobal, MsgBox
 
 #Include %A_ScriptDir%\lib\ChatStashHotkeys.ahk
 #Include %A_ScriptDir%\lib\CheckAspectRatio.ahk
