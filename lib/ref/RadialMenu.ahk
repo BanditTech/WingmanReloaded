@@ -366,7 +366,7 @@ RM_MenuSettings(RM_Name) {
 }
 
 ExitFunc(ExitReason, ExitCode) {
-	global
+	global pToken
 	; gdi+ may now be shutdown on exiting the program
 	Gdip_Shutdown(pToken)
 	CraftMenu.Active := False
