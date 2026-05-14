@@ -3,7 +3,8 @@ A_MaxHotkeysPerInterval := 99000000
 A_HotkeyInterval := 99000000
 KeyHistory(0)
 #SingleInstance force
-#Warn
+#Warn All
+#Warn LocalSameAsGlobal, Off
 #MaxThreadsPerHotkey 2
 
 ListLines(0)
