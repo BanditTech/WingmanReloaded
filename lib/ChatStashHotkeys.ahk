@@ -200,6 +200,7 @@ ResetChat(){
 
 ; Grab Reply whisper recipient
 GrabRecipientName(){
+	Global RecipientName
 	CopyClip := Clipboard
 	Clipboard := ""
 	Send("^{Enter}^{A}^{C}{Escape}")

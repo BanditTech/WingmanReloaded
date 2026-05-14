@@ -63,6 +63,7 @@ ClearTooltipSlot(n) {
 ; tooltip management
 RemoveToolTip()
 {
+  Global PauseTooltips
   Loop 20
     ToolTip(,,, A_Index)
   ToolTip()

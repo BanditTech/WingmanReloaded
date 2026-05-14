@@ -105,7 +105,7 @@ RandClick(x, y){
 }
 ; ClipItem - Capture Clip at Coord
 ClipItem(x, y){
-	Global RunningToggle
+	Global RunningToggle, Item, Clip_Contents
 	BlockInput("MouseMove")
 	Backup := A_Clipboard
 	A_Clipboard := ""

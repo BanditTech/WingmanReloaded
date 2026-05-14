@@ -1,5 +1,6 @@
 updateOnChar(*)
 {
+	Global varOnChar
 	Critical
 	if WinExist("ahk_group POEGameGroup")
 	{
@@ -24,6 +25,7 @@ updateOnChar(*)
 
 updateOnInventory(*)
 {
+	Global varOnInventory
 	Critical
 
 	if WinExist("ahk_group POEGameGroup")
@@ -50,6 +52,7 @@ updateOnInventory(*)
 
 updateOnMenu(*)
 {
+	Global varOnMenu
 	Critical
 
 	if WinExist("ahk_group POEGameGroup")
@@ -75,6 +78,7 @@ updateOnMenu(*)
 
 updateOnDelveChart(*)
 {
+	Global varOnDelveChart
 	Critical
 
 	if WinExist("ahk_group POEGameGroup")
@@ -100,6 +104,7 @@ updateOnDelveChart(*)
 
 updateOnStash(*)
 {
+	Global varOnLeft, varOnStash
 	Critical
 	if WinExist("ahk_group POEGameGroup")
 	{
@@ -127,6 +132,7 @@ updateOnStash(*)
 
 updateEmptyColor(*)
 {
+	Global varEmptyInvSlotColor
 	Critical
 
 	if WinExist("ahk_group POEGameGroup")
@@ -191,6 +197,7 @@ updateEmptyColor(*)
 
 updateOnChat(*)
 {
+	Global varOnChat
 	Critical
 	if WinExist("ahk_group POEGameGroup")
 	{
@@ -215,6 +222,7 @@ updateOnChat(*)
 
 updateOnVendor(*)
 {
+	Global varOnVendor, varOnVendorHeist
 	Critical
 
 	if WinExist("ahk_group POEGameGroup")
@@ -247,6 +255,7 @@ updateOnVendor(*)
 
 updateOnDiv(*)
 {
+	Global varOnDiv
 	Critical
 
 	if WinExist("ahk_group POEGameGroup")
@@ -272,6 +281,7 @@ updateOnDiv(*)
 
 updateDetonate(*)
 {
+	Global varOnDetonate, varOnDetonateDelve
 	Critical
 	if WinExist("ahk_group POEGameGroup")
 	{

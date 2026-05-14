@@ -93,6 +93,7 @@ ConfirmMatchingTriggers(obj){
 ; MainAttackCommand - Main attack Flasks
 MainAttackCommand()
 {
+	Global MainAttackPressedActive
 	If (MainAttackPressedActive||OnTown||OnHideout)
 		Return
 	MainAttackPressedActive := True
@@ -100,6 +101,7 @@ MainAttackCommand()
 }
 MainAttackCommandRelease()
 {
+	Global MainAttackPressedActive, MainAttackLastRelease
 	MainAttackPressedActive := False
 	MainAttackLastRelease := A_TickCount
 	If (OnTown||OnHideout)
@@ -113,6 +115,7 @@ MainAttackCommandRelease()
 ; SecondaryAttackCommand - Secondary attack Flasks
 SecondaryAttackCommand()
 {
+	Global SecondaryAttackPressedActive
 	If (SecondaryAttackPressedActive||OnTown||OnHideout)
 		Return
 	SecondaryAttackPressedActive := True
@@ -120,6 +123,7 @@ SecondaryAttackCommand()
 }
 SecondaryAttackCommandRelease()
 {
+	Global SecondaryAttackPressedActive
 	SecondaryAttackPressedActive := False
 	If (OnTown||OnHideout)
 		Return

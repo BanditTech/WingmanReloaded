@@ -1,7 +1,7 @@
 ; Wingman Crafting Labels - By DanMarzola
 
 RefreshBaseList(type){
-  global CustomCraftingBaseGui
+  global CustomCraftingBaseGui, CraftingBaseTypeSelector
   CraftingBaseTypeSelector := type
   For k, v in Bases
   {
