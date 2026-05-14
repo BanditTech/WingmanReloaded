@@ -34,5 +34,5 @@ if FileExist(I_Icon)
   TraySetIcon(I_Icon)
 
 OnMessage(0x5555, MsgMonitor)
-OnMessage( 0xF, WM_PAINT)
+; OnMessage( 0xF, WM_PAINT) ; removed — WM_PAINT handler was never defined in v2 migration
 OnMessage(0x200, ShowToolTip)  ; WM_MOUSEMOVE
