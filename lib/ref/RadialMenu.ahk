@@ -304,6 +304,7 @@ RM_GetSection(Sections, R_2, X_Center, Y_Center) {
 RM_BuildRM(RM_Name) {
 	global RM_File_Settings := A_ScriptDir "\RM_Settings.ini"
 	Sections := IniRead(RM_File_Settings, RM_Name, "Sections", 8)
+	G := Radial_Menu()
 	RM_Names := [], RM_Imgs := [], RM_Scripts := []
 	Loop Sections {
 		RM_Names.Push(IniRead(RM_File_Settings, RM_Name, "RM_B" A_Index "_Name", "Name"))
