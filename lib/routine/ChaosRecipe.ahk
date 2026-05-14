@@ -888,6 +888,7 @@ PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
 }
 
 UpdateGuiChaosCounts(){
+  Global ChaosGui
   If !YesChaosOverlay
     Return
   Items := CountChaosRecipe()
@@ -912,7 +913,7 @@ UpdateGuiChaosCounts(){
   Counts.Amulet += Items.uTally.Amulet
 
   for k, v in Counts {
-    GuiControl("Chaos:", "GuiChaosCount" k, v)
+    ChaosGui["GuiChaosCount" k].Text := v
   }
 }
 

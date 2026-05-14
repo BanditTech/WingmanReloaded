@@ -60,8 +60,9 @@ class ColorPicker {
     ; Gui,% This.GUI_NAME ":Show", AutoSize, Color Picker
   }
   UpdateColor(){
-    GuiControl(This.GUI_NAME ": +c" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value), This.ID "_Group_Color",)
-    GuiControl(This.GUI_NAME ":", This.ID "_Group_Color_Hex", "0x" Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value))
+    hex := Format("{1:02X}",This.Slider_Red.Slider_Value) Format("{1:02X}",This.Slider_Green.Slider_Value) Format("{1:02X}",This.Slider_Blue.Slider_Value)
+    This.GUI_NAME[This.ID "_Group_Color"].Opt("+c" hex)
+    This.GUI_NAME[This.ID "_Group_Color_Hex"].Value := "0x" hex
   }
   SetColor(newColor){
       This.Start_Color := Format("0x{1:06X}",newColor)
