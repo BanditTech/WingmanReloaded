@@ -67,7 +67,7 @@ ChaosRecipeSort(Object,Merge:=False){
 
   For i, content in Object.items
   {
-    recipeItem := new ItemBuild(content,Object.quadLayout)
+    recipeItem := ItemBuild(content,Object.quadLayout)
     If (recipeItem.Prop.ChaosRecipe){
       (recipeItem.Affix.Unidentified?uChaos:Chaos)[recipeItem.Prop.SlotType].Push(recipeItem)
     }Else If (recipeItem.Prop.RegalRecipe){

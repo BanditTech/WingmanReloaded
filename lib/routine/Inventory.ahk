@@ -241,7 +241,7 @@ VendorRoutine()
 	; Sell any bulk Flasks or Gems
 	If (OnVendor && RunningToggle && YesVendor && tQ >= 40)
 	{
-		Grouped := New SortByNum(SortFlask)
+		Grouped := SortByNum(SortFlask)
 		For k, v in Grouped
 		{
 			If (!RunningToggle) ; The user signaled the loop to stop by pressing Hotkey again.
@@ -259,7 +259,7 @@ VendorRoutine()
 	}
 	If (OnVendor && RunningToggle && YesVendor && tGQ >= 40)
 	{
-		Grouped := New SortByNum(SortGem)
+		Grouped := SortByNum(SortGem)
 		For k, v in Grouped
 		{
 			If (!RunningToggle) ; The user signaled the loop to stop by pressing Hotkey again.
