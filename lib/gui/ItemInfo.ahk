@@ -68,9 +68,9 @@ ItemInfoGui.Add("Text", "x+8 vSData9", SData9)
 ItemInfoGui.Add("Text", "xs vSComment10", SComment10)
 ItemInfoGui.Add("Text", "x+8 vSData10", SData10)
 
-global hBM := CreateDIB( "E9F5F8|E9F5F8|AFAFAF|AFAFAF|E9F5F8|E9F5F8", 2, 3, graphWidth, graphHeight, 0)
-global pGraph1 := XGraph( hGraph1, hBM, 21, "1,10,0,10", 0xFF0000, 2 )
-global pGraph2 := XGraph( hGraph2, hBM, 21, "1,10,0,10", 0xFF0000, 2 )
+global ItemInfo_hBM := CreateDIB( "E9F5F8|E9F5F8|AFAFAF|AFAFAF|E9F5F8|E9F5F8", 2, 3, graphWidth, graphHeight, 0)
+global pGraph1 := XGraph( hGraph1, ItemInfo_hBM, 21, "1,10,0,10", 0xFF0000, 2 )
+global pGraph2 := XGraph( hGraph2, ItemInfo_hBM, 21, "1,10,0,10", 0xFF0000, 2 )
 
 
 ItemInfoGui.Add("GroupBox", "Section xm+1 y+30  h251 w364", "Item Properties")
