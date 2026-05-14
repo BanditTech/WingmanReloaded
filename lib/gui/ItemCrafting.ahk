@@ -122,7 +122,7 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
     ; Create WR Mod Line
     Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
     Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
-    Mod := RegExReplace(Line, "\+?"rxNum , "#")
+    Mod := RegExReplace(Line, "\+?" rxNum , "#")
 
     ; Check for Hybrid Mods
     If(!IsHybridMod && craftItem.CheckIfActualHybridMod(Mod) && Repeat > 1)
@@ -147,7 +147,7 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
         FinalValueHigh := aux
       }
       ;; Match #
-    }Else If(RegExMatch(FullLine, "O)\+?"rxNum, &RxMatch)){
+    }Else If(RegExMatch(FullLine, "O)\+?" rxNum, &RxMatch)){
       FinalValueLow := RxMatch[1]
       FinalValueHigh := RxMatch[1]
       ;; Match no number

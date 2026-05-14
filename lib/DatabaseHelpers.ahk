@@ -66,7 +66,7 @@ FirstLineToWRFormat(FullLine) {
     ; Create WR Mod Line
     Line := RegExReplace(FullLine,"\(" rxNum "-" rxNum "\)", "$1")
     Line := RegExReplace(Line,"\(-" rxNum "--" rxNum "\)", "$1")
-    Mod := RegExReplace(Line, "\+?"rxNum , "#")
+    Mod := RegExReplace(Line, "\+?" rxNum , "#")
     Return Mod
 }
 
