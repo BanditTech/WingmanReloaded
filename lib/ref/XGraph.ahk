@@ -124,7 +124,7 @@ XGraph( hCtrl, hBM := 0, ColumnW := 3, LTRB := "0,2,0,2", PenColor := 0x808080, 
 
 XGraph_Info( pGraph, FormatFloat := "" ) {
 	Static STM_GETIMAGE := 0x173
-	if pGraph = 0 { Return "" }
+	if (pGraph = 0) { Return "" }
 	T := "`t",  TT := "`t:`t",  LF := "`n", SP := "        "
 
 	pData := pGraph + NumGet(pGraph, 0, "UInt64"),  DataSz := NumGet(pData - 8, 0, "UInt64")
@@ -185,7 +185,7 @@ XGraph_Info( pGraph, FormatFloat := "" ) {
 XGraph_Plot( pGraph, MY2 := "", SetVal := "", Draw := 1 ) {
 	Static SRCCOPY := 0x00CC0020
 
-	if pGraph = 0 { Return "" }
+	if (pGraph = 0) { Return "" }
 	pData   := pGraph + NumGet(pGraph, 0, "UInt64"),   DataSz   := NumGet(pData - 8, 0, "UInt64")
 
 	hSourceDC := NumGet(pGraph,  24, "UInt64"),   BitBltW  := NumGet(pGraph, 112, "UInt64")
@@ -216,7 +216,7 @@ XGraph_Plot( pGraph, MY2 := "", SetVal := "", Draw := 1 ) {
 
 XGraph_SetVal( pGraph, Double := 0, Column := "" ) {
 
-	if pGraph = 0 { Return "" }
+	if (pGraph = 0) { Return "" }
 	pData := pGraph + NumGet(pGraph, 0, "UInt64"),  DataSz := NumGet(pData - 8, 0, "UInt64")
 	if DataSz = 0 { Return 0 }
 
@@ -234,7 +234,7 @@ XGraph_SetVal( pGraph, Double := 0, Column := "" ) {
 XGraph_GetVal( pGraph, Column := "" ) {
 	Static RECT := Buffer(16, 0)
 
-	if pGraph = 0 { Return "" }
+	if (pGraph = 0) { Return "" }
 	pData   := pGraph + NumGet(pGraph, 0, "UInt64"),   DataSz  := NumGet(pData - 8, 0, "UInt64")
 	Columns := NumGet( pGraph, 56, "UInt64" )
 	If not ( Column = "" or DataSz = 0 or Column < 1 or Column > Columns )
@@ -259,7 +259,7 @@ XGraph_GetVal( pGraph, Column := "" ) {
 
 XGraph_GetMean( pGraph, TailCols := "" ) {
 
-	if pGraph = 0 { Return "" }
+	if (pGraph = 0) { Return "" }
 	pData := pGraph + NumGet(pGraph, 0, "UInt64"),  DataSz := NumGet(pData - 8, 0, "UInt64")
 	if DataSz = 0 { Return 0 }
 
@@ -277,7 +277,7 @@ XGraph_GetMean( pGraph, TailCols := "" ) {
 ; -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 
 XGraph_Detach( pGraph ) {
-	if pGraph = 0 { Return 0 }
+	if (pGraph = 0) { Return 0 }
 
 	hCtrl      := NumGet(pGraph,  8, "UInt64")
 	hTargetDC  := NumGet(pGraph, 16, "UInt64")
