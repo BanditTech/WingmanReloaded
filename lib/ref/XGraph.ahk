@@ -218,7 +218,7 @@ XGraph_SetVal( pGraph, Double := 0, Column := "" ) {
 
 	if (pGraph = 0) { Return "" }
 	pData := pGraph + NumGet(pGraph, 0, "UInt64"),  DataSz := NumGet(pData - 8, 0, "UInt64")
-	if DataSz = 0 { Return 0 }
+	if (DataSz = 0) { Return 0 }
 
 	If ( Column = "" )
 		DllCall( "RtlMoveMemory", "Ptr",pData, "Ptr",pData + 8, "Ptr",DataSz - 8 )
@@ -261,7 +261,7 @@ XGraph_GetMean( pGraph, TailCols := "" ) {
 
 	if (pGraph = 0) { Return "" }
 	pData := pGraph + NumGet(pGraph, 0, "UInt64"),  DataSz := NumGet(pData - 8, 0, "UInt64")
-	if DataSz = 0 { Return 0 }
+	if (DataSz = 0) { Return 0 }
 
 	Columns := NumGet( pGraph, 56, "UInt64" )
 	pDataEnd := pGraph + NumGet(pGraph, 0, "UInt64") + ( Columns* 8 )
