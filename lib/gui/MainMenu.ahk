@@ -20,8 +20,8 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Mai
 	profileList := [], profileStr := ""
 	Loop Files A_ScriptDir "\save\profiles\perChar\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
-	For k, v in profileList
-		profileStr .=(k=1?"":"|") v
+	For _k, _v in profileList
+		profileStr .=(_k=1?"":"|") _v
 	MainGui.Add("ComboBox",  "vProfileMenuperChar xs+6 y+5 w117", profileStr)
 	MainGui["ProfileMenuperChar"].Choose(ProfileMenuperChar)
 	MainGui.Add("Button", "vMainMenu_perChar_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
@@ -38,8 +38,8 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Mai
 	profileList := [], profileStr := ""
 	Loop Files A_ScriptDir "\save\profiles\Flask\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
-	For k, v in profileList
-		profileStr .=(k=1?"":"|") v
+	For _k, _v in profileList
+		profileStr .=(_k=1?"":"|") _v
 	MainGui.Add("ComboBox",  "vProfileMenuFlask xs+6 y+5 w117", profileStr)
 	MainGui["ProfileMenuFlask"].Choose(ProfileMenuFlask)
 	MainGui.Add("Button", "vMainMenu_Flask_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
@@ -56,8 +56,8 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Mai
 	profileList := [], profileStr := ""
 	Loop Files A_ScriptDir "\save\profiles\Utility\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
-	For k, v in profileList
-		profileStr .=(k=1?"":"|") v
+	For _k, _v in profileList
+		profileStr .=(_k=1?"":"|") _v
 	MainGui.Add("ComboBox",  "vProfileMenuUtility xs+6 y+5 w117", profileStr)
 	MainGui["ProfileMenuUtility"].Choose(ProfileMenuUtility)
 	MainGui.Add("Button", "vMainMenu_Utility_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
