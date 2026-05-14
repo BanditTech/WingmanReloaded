@@ -76,22 +76,22 @@ Crafting(selection:="Maps"){
 CraftingChance(){
 	local f
 	; Notify("Chance Logic Coming Soon","",2)
-	f := New Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
+	f := Craft("Chance",BasicCraftChanceMethod,{Scour:BasicCraftChanceScour})
 }
 ; CraftingColor - Use the settings to apply Chromatic Orb to item(s) until proper colors
 CraftingColor(){
 	local f
-	f := New Craft("Color",BasicCraftColorMethod,{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
+	f := Craft("Color",BasicCraftColorMethod,{R:BasicCraftR,G:BasicCraftG,B:BasicCraftB})
 }
 ; CraftingLink - Use the settings to apply Fusing to item(s) until minimum links
 CraftingLink(){
 	local f
-	f := New Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
+	f := Craft("Link",BasicCraftLinkMethod,{Links:BasicCraftDesiredLinks,Auto:BasicCraftLinkAuto})
 }
 ; CraftingSocket - Use the settings to apply Jewellers to item(s) until minimum sockets
 CraftingSocket(){
 	local f
-	f := New Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
+	f := Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }
 CraftingItemCaller(){
 	Crafting("Item")
