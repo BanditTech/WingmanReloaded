@@ -10,10 +10,10 @@ class ItemScan
 		This.Data.ClipContents := RegExReplace(Clip_Contents, "<<.*?>>|<.*?>") ; Clipboard
 		This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
 		This.Data.Blocks := {}
-		This.Pseudo := OrderedArray()
-		This.Affix := OrderedArray()
-		This.Prop := OrderedArray()
-		This.Modifier := OrderedArray()
+		This.Pseudo := {}
+		This.Affix := {}
+		This.Prop := {}
+		This.Modifier := {}
 		This.Percent := {}
 		; Split our sections from the clipboard
 		; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
