@@ -29,6 +29,7 @@ toggleAutoUtility(){
 }
 ; Hotkey to pause the detonate mines
 PauseMines(){
+		Global Detonated, PauseTooltips
 		if (!WR.perChar.Setting.autominesEnable || !GuiCheck())
 		return
 		static keyheld := 0

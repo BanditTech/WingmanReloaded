@@ -1,6 +1,7 @@
 ; Captures the current Location and determines if in Town, Hideout or Azurite Mines
 CompareLocation(cStr:="")
 {
+  Global CurrentLocation, OnTown, OnHideout, OnMines
   Static Lang := ""
   ;                                                     English / Thai                French                 German                  Russian                     Spanish                   Portuguese               Chinese             Korean
   Static ClientTowns :=  Map("Lioneye's Watch",    [ "Lioneye's Watch"       , "Le Guet d'Œil de Lion"  , "Löwenauges Wacht"    , "Застава Львиного глаза", "La Vigilancia de Lioneye", "Vigília de Lioneye"      , "獅眼守望"       , "라이온아이 초소에" ]

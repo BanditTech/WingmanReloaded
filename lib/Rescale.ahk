@@ -1,6 +1,6 @@
 ﻿; Rescale - Rescales values of the script to the user's resolution
 Rescale(){
-  Global GameX, GameY, GameW, GameH, Base, Globe, InvGrid, WR
+  Global GameX, GameY, GameW, GameH, Base, Globe, InvGrid, WR, RescaleRan
   If checkActiveType()
   {
     ; Build array framework

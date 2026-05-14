@@ -147,6 +147,7 @@ CheckToIdentify(){
 ; VendorRoutine - Does vendor functions
 VendorRoutine()
 {
+	Global BlackList
 	tQ := 0
 	tGQ := 0
 	SortFlask := []
@@ -384,7 +385,7 @@ ResetMainTimer(toggle:="On"){
 ; StashRoutine - Does stash functions
 StashRoutine()
 {
-	Global PPServerStatus
+	Global PPServerStatus, BlackList, CurrentTab
 	If StashTabYesPredictive
 	{
 		If !PPServerStatus()
@@ -709,6 +710,7 @@ SearchVendor()
 ; DivRoutine - Does divination trading function
 DivRoutine()
 {
+	Global BlackList
 	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse()
 	GuiStatus()
@@ -754,6 +756,7 @@ DivRoutine()
 ; IdentifyRoutine - Does basic function when not at other windows
 IdentifyRoutine()
 {
+	Global BlackList
 	BlackList := Array_DeepClone(BlackList_Default)
 	ShooMouse()
 	GuiStatus()
@@ -791,6 +794,7 @@ IdentifyRoutine()
 }
 ; ItemInfo - Display information about item under cursor
 ItemInfo(){
+	Global ItemParseActive
 	ItemInfoCommand:
 		ItemParseActive := True
 		MouseGetPos(&Mx, &My)
@@ -802,6 +806,7 @@ ItemInfo(){
 ; MoveStash - Input any digit and it will move to that Stash tab
 MoveStash(Tab,CheckStatus:=0)
 {
+	Global CurrentTab
 	If CheckStatus
 	{
 		If !GuiStatus("OnStash")

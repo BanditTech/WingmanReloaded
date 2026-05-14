@@ -587,6 +587,7 @@ retCount(obj){
 }
 ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
 VendorRoutineChaos(){
+  Global BlackList
   SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
   SetMouseDelay(SetMouseDelayValue)
   SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)

@@ -1,7 +1,7 @@
 ; TGameTick - Main Logic timer - Coordinates all other functions
 TGameTick(GuiCheck:=True){
 	Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, OnScreenMM := 0
-	Global GlobeActive, CurrentMessage, NoGame, GamePID
+	Global GlobeActive, CurrentMessage, NoGame, GamePID, Detonated
 	If (NoGame)
 		Return
 	If GamePID
@@ -250,5 +250,6 @@ TGameTick(GuiCheck:=True){
 }
 ; TDetonated - Detonate CD Timer
 TDetonated(){
+  Global Detonated
   Detonated:=0
 }

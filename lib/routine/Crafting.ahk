@@ -1,6 +1,7 @@
 ; Crafting Section - main routine and all subroutines and popup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Crafting(selection:="Maps"){
+	Global CurrentTab
 	; Thread, NoTimers, True
 	MouseGetPos(&xx, &yy)
 	CheckRunning()
@@ -193,7 +194,7 @@ CraftingItem(){
 }
 ; CraftingMaps - Scan the Inventory for Maps and apply currency based on method select in Crafting Settings
 CraftingMaps(){
-	Global RunningToggle
+	Global RunningToggle, BlackList
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
