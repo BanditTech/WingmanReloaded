@@ -90,7 +90,7 @@ DrawZoom_MoveAway() {
   Else
     DZ_pos_new := 0
 
-  if ( DZ_pos_old <> DZ_pos_new )      ; only move if the real position of window needs to change
+  if ( DZ_pos_old != DZ_pos_new )      ; only move if the real position of window needs to change
     WinMove(,, DZ_pos_new,, "Magnifier")
 
   DZ_pos_old := DZ_pos_new   ; store value for next loop
