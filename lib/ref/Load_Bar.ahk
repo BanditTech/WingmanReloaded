@@ -1,9 +1,6 @@
 ; Load_Bar - Cool Gradient progress bar class by joedf (using CreateDIB by SKAN)
 ; Ported to AHK v2
-
-Scale_PositionFromDPI(val) {
-	Return Round(val * A_ScreenDPI / 96)
-}
+; Requires Scale_PositionFromDPI() defined in lib/gui/DPI.ahk
 
 Class LoaderBar {
 	__New(GuiObj, x:=0, y:=0, w:=280, h:=28, ShowDesc:=0, FontColorDesc:="2B2B2B", FontColor:="EFEFEF", BG:="2B2B2B|2F2F2F|323232", FG:="66A3E2|4B79AF|385D87") {
