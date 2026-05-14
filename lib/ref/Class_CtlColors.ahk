@@ -55,7 +55,7 @@
 ; This software is provided 'as-is', without any express or implied warranty.
 ; In no event will the authors be held liable for any damages arising from the use of this software.
 ; ======================================================================================================================
-	class CtlColors {
+	class _CtlColors {
 ; ===================================================================================================================
 ; Class variables
 ; ===================================================================================================================
@@ -301,7 +301,7 @@ IsAttached(HWND) {
 	Return This.Attached.Has(HWND)
 }
 }
-CtlColors := CtlColors()
+CtlColors := _CtlColors()
 ; ======================================================================================================================
 ; CtlColors_OnMessage
 ; This function handles CTLCOLOR messages. There's no reason to call it manually!
