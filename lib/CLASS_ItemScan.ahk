@@ -2415,6 +2415,10 @@ class ItemScan
 				ItemInfoGui["SData" A_Index].Visible := True
 			}
 		}
+		_GoSub_noDataGraph(){
+			_GoSub_noDataGraph1()
+			_GoSub_noDataGraph2()
+		}
 		_GoSub_noDataGraph1(){
 			Loop 21
 			{
