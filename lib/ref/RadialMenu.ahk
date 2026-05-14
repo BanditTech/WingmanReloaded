@@ -44,6 +44,7 @@ class Radial_Menu {
 	}
 
 	Show() {
+		global pToken
 		this.Active := True
 		SectName := ""
 		CoordMode("Mouse", "Window")
