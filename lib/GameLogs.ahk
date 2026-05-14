@@ -289,7 +289,7 @@ Monitor_GameLogs(Initialize:=0)
       If (VersionNumber != "")
         Log("Location","Client.txt File initialized","OnTown " OnTown, "OnHideout " OnHideout, "OnMines " OnMines, "Located:" CurrentLocation)
     }
-    Catch loaderror
+    Catch as loaderror
     {
       Ding(5000,-10,"Client.txt Critical Load Error`nSize: " . errchk . "MB")
       CurrentLocation := "Client File Load Error"
