@@ -187,8 +187,11 @@ VendorRoutine()
 			}
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
-			If (!Item.Prop.IsItem || Item.Prop.ItemName = "")
-				ShooMouse(),GuiStatus(),Continue
+			If (!Item.Prop.IsItem || Item.Prop.ItemName = "") {
+				ShooMouse()
+				GuiStatus()
+				Continue
+			}
 			If CheckToIdentify()
 			{
 				WisdomScroll(Grid.X,Grid.Y)
