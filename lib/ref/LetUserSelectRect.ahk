@@ -98,7 +98,7 @@ LetUserSelectRect(PixelToo:=0)
 	Ding(1,-11,"")
 	DrawZoom("Toggle")
 	MainGui.Show()
-	return { "X1":X1,"Y1":Y1,"X2":X2,"Y2":Y2 }
+	return { X1:X1, Y1:Y1, X2:X2, Y2:Y2 }
 }
 
 LetUserSelectPixel(){
@@ -135,5 +135,5 @@ LetUserSelectPixel(){
 	Ding(1,-11,"")
 	DrawZoom("Toggle")
 	MainGui.Show()
-	return { "X":xorigin,"Y":yorigin,"Color":col }
+	return { X:xorigin, Y:yorigin, Color:col }
 }
