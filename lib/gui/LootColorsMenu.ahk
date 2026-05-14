@@ -47,25 +47,25 @@ LootColorsMenu(){
 	LG_Add.OnEvent("Click", AdjustLootGroup)
 	LG_Rem := LootColorsGui.Add("Button", "vLG_Rem yp x+5 h22 wp", "Rem Color Set")
 	LG_Rem.OnEvent("Click", AdjustLootGroup)
-	Item := 0
+	colorIdx := 0
 	For k, color in LootColors
 	{
 		; color := val ; hexBGRToRGB(Format("0x{1:06X}",val))
 		If !Mod(k,2) ;Check for a remainder when dividing by 2, this groups the colors
 		{
 			LootColorsGui.Add("Progress", "x+1 yp w50 h20 c" color " BackgroundBlack",100)
-			resBtn := LootColorsGui.Add("Button", "yp x+5 h20", "Resample " Item)
+			resBtn := LootColorsGui.Add("Button", "yp x+5 h20", "Resample " colorIdx)
 			resBtn.OnEvent("Click", ResampleLootColor)
 			continue
 		}
-		Item++
+		colorIdx++
 		If (A_Index = 1)
 		{
-			LootColorsGui.Add("Text", "yp+38 xs+10", "Background " Item " Colors: ")
+			LootColorsGui.Add("Text", "yp+38 xs+10", "Background " colorIdx " Colors: ")
 			LootColorsGui.Add("Progress", "x+10 yp-5 w50 h20 c" color " BackgroundBlack",100)
 			continue
 		}
-		LootColorsGui.Add("Text", "yp+29 xs+10", "Background " Item " Colors: ")
+		LootColorsGui.Add("Text", "yp+29 xs+10", "Background " colorIdx " Colors: ")
 		LootColorsGui.Add("Progress", "x+10 yp-5 w50 h20 c" color " BackgroundBlack",100)
 	}
 	LootColorsGui.Show(,"Loot Vacuum settings")

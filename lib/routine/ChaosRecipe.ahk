@@ -67,11 +67,11 @@ ChaosRecipeSort(Object,Merge:=False){
 
   For i, content in Object.items
   {
-    item := new ItemBuild(content,Object.quadLayout)
-    If (item.Prop.ChaosRecipe){
-      (item.Affix.Unidentified?uChaos:Chaos)[item.Prop.SlotType].Push(item)
-    }Else If (item.Prop.RegalRecipe){
-      (item.Affix.Unidentified?uRegal:Regal)[item.Prop.SlotType].Push(item)
+    recipeItem := new ItemBuild(content,Object.quadLayout)
+    If (recipeItem.Prop.ChaosRecipe){
+      (recipeItem.Affix.Unidentified?uChaos:Chaos)[recipeItem.Prop.SlotType].Push(recipeItem)
+    }Else If (recipeItem.Prop.RegalRecipe){
+      (recipeItem.Affix.Unidentified?uRegal:Regal)[recipeItem.Prop.SlotType].Push(recipeItem)
     }
   }
   If (!(i > 0) && !Merge)
@@ -87,11 +87,11 @@ ChaosRecipeSort(Object,Merge:=False){
       {
         If !IsObject(RecipeArray[type])
           RecipeArray[type] := {}
-        For key, item in itemArr
+        For key, recipeItem in itemArr
         {
           If !IsObject(RecipeArray[type][slot])
             RecipeArray[type][slot] := {}
-          RecipeArray[type][slot].Push(item)
+          RecipeArray[type][slot].Push(recipeItem)
         }
       }
     }

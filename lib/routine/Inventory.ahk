@@ -543,7 +543,7 @@ StashRoutine()
 					Sleep(60)
 					C := SortFirst[Tab][Items]["C"]
 					R := SortFirst[Tab][Items]["R"]
-					Item := SortFirst[Tab][Items]["Item"]
+					sortItem := SortFirst[Tab][Items]["Item"]
 					GridX := InventoryGridX[C]
 					GridY := InventoryGridY[R]
 					Grid := RandClick(GridX, GridY)
@@ -551,9 +551,9 @@ StashRoutine()
 					Sleep(60)
 					; Check for unique items
 					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
-						&& (Item.Prop.RarityUnique && !Item.Prop.HasOwnProp("IsOrgan"))
+						&& (sortItem.Prop.RarityUnique && !sortItem.Prop.HasOwnProp("IsOrgan"))
 					{
-						If (StashTabYesUniqueRing && Item.Prop.Ring
+						If (StashTabYesUniqueRing && sortItem.Prop.Ring
 							&& Tab != StashTabUniqueRing)
 						{
 							Sleep(200*Latency)

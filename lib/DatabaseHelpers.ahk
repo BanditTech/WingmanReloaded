@@ -82,11 +82,11 @@ CraftingBasesRequest(ShouldRun) {
     ClearQuantCraftingBase()
     Strings := []
     For k, v in Object.items {
-        item := ItemBuild(v,Object.quadLayout)
-        Strings.Push("Item Base: " item["Prop"]["ItemBase"]
-            . ", Name: " item["Prop"]["ItemName"]
-            . ", ILVL: " item["Prop"]["CraftingBaseHigherILvLFound"]
-            . ", Quantity: " item["Prop"]["CraftingBaseQuantFound"])
+        baseItem := ItemBuild(v,Object.quadLayout)
+        Strings.Push("Item Base: " baseItem["Prop"]["ItemBase"]
+            . ", Name: " baseItem["Prop"]["ItemName"]
+            . ", ILVL: " baseItem["Prop"]["CraftingBaseHigherILvLFound"]
+            . ", Quantity: " baseItem["Prop"]["CraftingBaseQuantFound"])
     }
     Log("Crafting Bases ","Refreshing quantity and minimum ilvl from stash items",Strings*)
     Return
