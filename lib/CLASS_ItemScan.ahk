@@ -90,8 +90,8 @@ class ItemScan
 					This.Prop.ClusterSkills += 1
 				If InStr(k, "Added Small Passive Skills also grant:")
 					This.Prop.ClusterSmall += 1
-				If (RegExMatch(k, "Added Small Passive Skills grant\: (.*) \(enchant\)", match))
-					This.Prop.ClusterKey := StrReplace(match1,"#",This.Affix[k])
+				If (RegExMatch(k, "Added Small Passive Skills grant\: (.*) \(enchant\)", &match))
+					This.Prop.ClusterKey := StrReplace(match[1],"#",This.Affix[k])
 			}
 			This.Prop.ClusterVariant := This.Affix["Adds # Passive Skills (enchant)"] " passives"
 		}
@@ -271,22 +271,22 @@ class ItemScan
 				If (This.Prop.ItemClass == "Memories")
 					This.Prop.IsMemory := True
 			}
-			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^(.*) Rune$", match))
+			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^(.*) Rune$", &match))
 			{
 				This.Prop.IsRune := True
-				This.Prop.KalguuranRune := match1
+				This.Prop.KalguuranRune := match[1]
 				This.Prop.SpecialType := "Kalguuran Rune"
 			}
-			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Omen of t?h?e? ?(.*)$", match))
+			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Omen of t?h?e? ?(.*)$", &match))
 			{
 				This.Prop.IsOmen := True
-				This.Prop.OmenType := match1
+				This.Prop.OmenType := match[1]
 				This.Prop.SpecialType := "Omen"
 			}
-			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Tattoo of the (.*)$", match))
+			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Tattoo of the (.*)$", &match))
 			{
 				This.Prop.IsTattoo := True
-				This.Prop.TattooType := match1
+				This.Prop.TattooType := match[1]
 				This.Prop.SpecialType := "Tattoo"
 			}
 			Else If (This.Prop.ItemClass == "Atlas Region Upgrade Items" || This.Prop.ItemClass ~= "Atlas Upgrade Item" )
@@ -594,7 +594,7 @@ class ItemScan
 						This.Prop.Gem_MaxLevel := True
 					If RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum, &RxMatch, position+10)
 						This.Prop.Required_Level := RxMatch[1]
-					If RegExMatch(This.Data.Blocks.Properties, "`am)([, \w]+)\r", RxMatch)
+					If RegExMatch(This.Data.Blocks.Properties, "`am)([, \w]+)\r", &RxMatch)
 						This.Prop.Gem_Tags := RxMatch[1]
 				} Else {
 					This.Prop.Required_Level := RxMatch[1]
@@ -1336,7 +1336,7 @@ class ItemScan
 		}
 	}
 	MatchLine(lineString){
-		If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , RxMatch))
+		If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , &RxMatch))
 		{
 			ret := {}
 			Loop RxMatch.Length
