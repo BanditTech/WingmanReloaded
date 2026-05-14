@@ -82,22 +82,23 @@ hexArrToStr(array){
   Str := LTrim(Str, ",")
   return Str
 }
-; Function to Replace Nth instance of Needle in Haystack
+; Function to Replace Nth instance of Needle (regex) in Haystack
+; Instance=0: replace all; negative Instance counts from the end
 StringReplaceN( Haystack, Needle, Replacement:="", Instance:=1 ){
   If !( Instance := 0 | Instance )
-  {
-    Haystack := StrReplace(Haystack, Needle, Replacement)
-    Return Haystack
+    Return StrReplace(Haystack, Needle, Replacement)
+  ; Collect all match positions
+  Positions := [], pos := 1
+  While RegExMatch(Haystack, Needle, &_m, pos) {
+    Positions.Push({Pos: _m.Pos, Len: _m.Len})
+    pos := _m.Pos + Max(_m.Len, 1)
   }
-  Else Instance := "L" Instance
-  Instance := StrReplace(Instance, "L-", "R")
-  RegExMatch(Haystack, Needle, &_m, , Instance)
-  If ( !_m )
+  ; Resolve negative index (from end)
+  idx := (Instance < 0) ? Positions.Length + Instance + 1 : Instance
+  If (idx < 1 || idx > Positions.Length)
     Return Haystack
-  pos := _m.Pos
-  Needle := SubStr(HayStack, pos + StrLen(Needle))
-  HayStack := SubStr(HayStack, 1, pos - 1)
-  Return HayStack Replacement Needle
+  m := Positions[idx]
+  Return SubStr(Haystack, 1, m.Pos - 1) Replacement SubStr(Haystack, m.Pos + m.Len)
 }
 ; Clamp Value function
 Clamp( Val, Min, Max){
