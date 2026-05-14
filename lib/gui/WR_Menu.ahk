@@ -1066,7 +1066,7 @@ WR_Menu(Function:="",Var*){
       If (Element == "Reset")
       {
         GlobeGui.Destroy()
-        Globe := Array_DeepClone(Base.Globe)
+        Globe := ObjDeepClone(Base.Globe)
       }
       Built_Globe := 1
       GlobeGui := Gui("+AlwaysOnTop -MinimizeBox -MaximizeBox")
