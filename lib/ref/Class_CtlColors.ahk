@@ -177,7 +177,7 @@ Attach(HWND, BkColor, TxColor := "") {
 	If !(Classes is Array)
 		Classes := [CtrlClass]
 	; Check background color -----------------------------------------------------------------------------------------
-	If (BkColor <> "Trans")
+	If (BkColor != "Trans")
 		If !This.CheckBkColor(&BkColor, Classes[1])
 			Return False
 	; Check text color -----------------------------------------------------------------------------------------------
@@ -219,16 +219,16 @@ Change(HWND, BkColor, TxColor := "") {
 		Return This.Attach(HWND, BkColor, TxColor)
 	CTL := This.Attached[HWND]
 	; Check BkColor --------------------------------------------------------------------------------------------------
-	If (BkColor <> "Trans")
+	If (BkColor != "Trans")
 		If !This.CheckBkColor(&BkColor, CTL.Classes[1])
 			Return False
 	; Check TxColor ------------------------------------------------------------------------------------------------
 	If !This.CheckTxColor(&TxColor)
 		Return False
 	; Store Colors ---------------------------------------------------------------------------------------------------
-	If (BkColor <> CTL.BkColor) {
+	If (BkColor != CTL.BkColor) {
 		If (CTL.Brush) {
-			If (CTL.Brush <> This.NullBrush)
+			If (CTL.Brush != This.NullBrush)
 			DllCall("Gdi32.dll\DeleteObject", "Ptr", CTL.Brush)
 			This.Attached[HWND].Brush := 0
 		}
@@ -258,7 +258,7 @@ Detach(HWND) {
 	HWND += 0
 	If This.Attached.Has(HWND) {
 		CTL := This.Attached[HWND].Clone()
-		If (CTL.Brush) && (CTL.Brush <> This.NullBrush)
+		If (CTL.Brush) && (CTL.Brush != This.NullBrush)
 			DllCall("Gdi32.dll\DeleteObject", "Prt", CTL.Brush)
 		For I, V In CTL.Classes {
 			If This.HandledMessages[V] > 0 {
@@ -281,7 +281,7 @@ Detach(HWND) {
 ; ===================================================================================================================
 Free() {
 	For K, V In This.Attached
-		If (V.Brush) && (V.Brush <> This.NullBrush)
+		If (V.Brush) && (V.Brush != This.NullBrush)
 			DllCall("Gdi32.dll\DeleteObject", "Ptr", V.Brush)
 	For K, V In This.HandledMessages
 		If (V > 0) {

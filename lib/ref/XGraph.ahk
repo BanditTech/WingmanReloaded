@@ -28,7 +28,7 @@ XGraph( hCtrl, hBM := 0, ColumnW := 3, LTRB := "0,2,0,2", PenColor := 0x808080, 
 		Return 0
 
 	; Validate Bitmap
-	If ( DllCall( "GetObjectType", "Ptr",hBM ) <> OBJ_BMP )
+	If ( DllCall( "GetObjectType", "Ptr",hBM ) != OBJ_BMP )
 		hTargetBM := DllCall( "CreateBitmap", "Int",2, "Int",2, "UInt",1, "UInt",16, "Ptr",0, "Ptr" )
 		,  hTargetBM := DllCall( "CopyImage", "Ptr",hTargetBM, "UInt",0, "Int",CtrlW, "Int",CtrlH
 							, "UInt",LR_CREATEDIBSECTION|LR_COPYDELETEORG, "Ptr" )
@@ -39,7 +39,7 @@ XGraph( hCtrl, hBM := 0, ColumnW := 3, LTRB := "0,2,0,2", PenColor := 0x808080, 
 	If NumGet( BITMAP, 18, "UInt" ) < 16 ; Checking if BPP < 16
 		Return 0
 	Else BitmapW := NumGet( BITMAP,  4, "UInt" ),  BitmapH := NumGet( BITMAP, 8, "UInt" )
-	If ( BitmapW <> CtrlW or BitmapH <> CtrlH )
+	If ( BitmapW != CtrlW or BitmapH != CtrlH )
 		Return 0
 
 	; Validate Margins and Column width
@@ -65,7 +65,7 @@ XGraph( hCtrl, hBM := 0, ColumnW := 3, LTRB := "0,2,0,2", PenColor := 0x808080, 
 	DllCall( "SaveDC", "Ptr",hTempDC )
 	DllCall( "SelectObject", "Ptr",hTempDC, "Ptr",hTargetBM )
 
-	If ( hTargetBM <> hBM )
+	If ( hTargetBM != hBM )
 		hBrush := DllCall( "CreateSolidBrush", "UInt",hBM & 0xFFFFFF, "Ptr" )
 	, RECT := Buffer(16, 0)
 	, NumPut( "UInt", BitmapW, RECT, 8 ),  NumPut( "UInt", BitmapH, RECT, 12 )
@@ -78,8 +78,8 @@ XGraph( hCtrl, hBM := 0, ColumnW := 3, LTRB := "0,2,0,2", PenColor := 0x808080, 
 					, "Ptr",hTempDC,   "Int",MarginL, "Int",MarginT, "UInt",SRCCOPY )
 
 	; Validate Pen color / Size
-	PenColor   := ( PenColor + 0 <> "" ? PenColor & 0xffffff : 0x808080 ) ; Range: 000000 - ffffff
-	PenSize  := ( PenSize  + 0 <> "" ? PenSize & 0xf : 1 )        ; Range: 0 - 15
+	PenColor   := ( PenColor + 0 != "" ? PenColor & 0xffffff : 0x808080 ) ; Range: 000000 - ffffff
+	PenSize  := ( PenSize  + 0 != "" ? PenSize & 0xf : 1 )        ; Range: 0 - 15
 	hSourcePen := DllCall( "CreatePen", "Int",PS_SOLID, "Int",PenSize, "UInt",PenColor, "Ptr" )
 	DllCall( "SelectObject", "Ptr",hSourceDC, "Ptr",hSourcePen )
 	DllCall( "MoveToEx", "Ptr",hSourceDC, "Int",MX1, "Int",MY1, "Ptr",0 )

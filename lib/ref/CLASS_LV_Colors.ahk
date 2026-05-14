@@ -63,7 +63,7 @@ Class LV_Colors {
          Return False
       VarSetCapacity(Class, 512, 0)
       DllCall("GetClassName", "Ptr", HWND, "Str", Class, "Int", 256)
-      If (Class <> "SysListView32") ; HWND doesn't belong to a ListView
+      If (Class != "SysListView32") ; HWND doesn't belong to a ListView
          Return False
       ; ----------------------------------------------------------------------------------------------------------------
       ; Set LVS_EX_DOUBLEBUFFER (0x010000) style to avoid drawing issues.
@@ -133,8 +133,8 @@ Class LV_Colors {
       TxBGR := This.BGR(TxColor)
       If (BkBGR = "") && (TxBGR = "")
          Return False
-      This["ARB"] := (BkBGR <> "") ? BkBGR : This.BkClr
-      This["ART"] := (TxBGR <> "") ? TxBGR : This.TxClr
+      This["ARB"] := (BkBGR != "") ? BkBGR : This.BkClr
+      This["ART"] := (TxBGR != "") ? TxBGR : This.TxClr
       This.AltRows := True
       Return True
    }
@@ -156,8 +156,8 @@ Class LV_Colors {
       TxBGR := This.BGR(TxColor)
       If (BkBGR = "") && (TxBGR = "")
          Return False
-      This["ACB"] := (BkBGR <> "") ? BkBGR : This.BkClr
-      This["ACT"] := (TxBGR <> "") ? TxBGR : This.TxClr
+      This["ACB"] := (BkBGR != "") ? BkBGR : This.BkClr
+      This["ACT"] := (TxBGR != "") ? TxBGR : This.TxClr
       This.AltCols := True
       Return True
    }
@@ -206,8 +206,8 @@ Class LV_Colors {
       TxBGR := This.BGR(TxColor)
       If (BkBGR = "") && (TxBGR = "")
          Return False
-      This["Rows", Row, "B"] := (BkBGR <> "") ? BkBGR : This.BkClr
-      This["Rows", Row, "T"] := (TxBGR <> "") ? TxBGR : This.TxClr
+      This["Rows", Row, "B"] := (BkBGR != "") ? BkBGR : This.BkClr
+      This["Rows", Row, "T"] := (TxBGR != "") ? TxBGR : This.TxClr
       Return True
    }
    ; ===================================================================================================================
@@ -233,9 +233,9 @@ Class LV_Colors {
       TxBGR := This.BGR(TxColor)
       If (BkBGR = "") && (TxBGR = "")
          Return False
-      If (BkBGR <> "")
+      If (BkBGR != "")
          This["Cells", Row, Col, "B"] := BkBGR
-      If (TxBGR <> "")
+      If (TxBGR != "")
          This["Cells", Row, Col, "T"] := TxBGR
       Return True
    }
@@ -340,8 +340,8 @@ Class LV_Colors {
       If (DrawStage = 0x030001) {
          UseAltCol := !(Col & 1) && (This.AltCols)
          , ColColors := This["Cells", Row, Col]
-         , ColB := (ColColors.B <> "") ? ColColors.B : UseAltCol ? This.ACB : This.RowB
-         , ColT := (ColColors.T <> "") ? ColColors.T : UseAltCol ? This.ACT : This.RowT
+         , ColB := (ColColors.B != "") ? ColColors.B : UseAltCol ? This.ACB : This.RowB
+         , ColT := (ColColors.T != "") ? ColColors.T : UseAltCol ? This.ACT : This.RowT
          , NumPut(ColT, L + OffCT, "UInt"), NumPut(ColB, L + OffCB, "UInt")
          Return (!This.AltCols && !This.HasKey(Row) && (Col > This["Cells", Row].MaxIndex())) ? 0x00 : 0x20
       }
@@ -351,9 +351,9 @@ Class LV_Colors {
          If (This.SelColors) && DllCall("SendMessage", "Ptr", H, "UInt", 0x102C, "Ptr", Item, "Ptr", 0x0002, "UInt") {
             ; Remove the CDIS_SELECTED (0x0001) and CDIS_FOCUS (0x0010) states from uItemState and set the colors.
             NumPut(NumGet(L + OffItemState, "UInt") & ~0x0011, L + OffItemState, "UInt")
-            If (This.SELB <> "")
+            If (This.SELB != "")
                NumPut(This.SELB, L + OffCB, "UInt")
-            If (This.SELT <> "")
+            If (This.SELT != "")
                NumPut(This.SELT, L + OffCT, "UInt")
             Return 0x02 ; CDRF_NEWFONT
          }
