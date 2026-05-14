@@ -12,7 +12,7 @@ Class SevenZip {
   restore(date){
     loc := A_ScriptDir "\backup\" date ".7z"
     If FileExist(loc){
-      ExtArgs := "x `"" loc "`"" -o`"" A_ScriptDir "`" -y"
+      ExtArgs := "x `"" loc "`" -o`"" A_ScriptDir "`" -y"
       RunWait(comspec " /c `" " "`"" This.ExeFile "`"" " ExtArgs " | `"" This.Mtee "`"" /D/T/+ `"" This.LogOutput "`"" " `"",, "hide UseErrorLevel", &ZipPID)
     }
   }
@@ -22,7 +22,7 @@ Class SevenZip {
     Link := "https://github.com/" Acc "/" Proj "/archive/refs/heads/" branch ".zip"
     This.backup()
     Download(Link, This.Source)
-    ExtArgs := "x `"" This.Source "`"" -o`"" A_ScriptDir "`" -y"
+    ExtArgs := "x `"" This.Source "`" -o`"" A_ScriptDir "`" -y"
     subfolder := Proj "-" branch
     RunWait(comspec " /c `" " "`"" This.ExeFile "`"" " ExtArgs " | `"" This.Mtee "`"" /D/T/+ `"" This.LogOutput "`"" " `"",, "hide UseErrorLevel", &ZipPID)
     MoveArgs := "ROBOCOPY " subfolder " /S /IT `"" A_ScriptDir "`" /MOVE"
