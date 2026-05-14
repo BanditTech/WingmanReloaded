@@ -177,7 +177,7 @@ RestockMenu(choice:=""){
 					WR.Restock[C] := {}
 				For R, GridY in InventoryGridY{
 					If !WR.Restock[C].HasOwnProp(R)
-						WR.Restock[C][R] := Array_DeepClone(DefaultSettings)
+						WR.Restock[C][R] := ObjDeepClone(DefaultSettings)
 				}
 			}
 		}

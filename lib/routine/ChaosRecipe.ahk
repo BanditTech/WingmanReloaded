@@ -592,7 +592,7 @@ VendorRoutineChaos(){
   SetMouseDelay(SetMouseDelayValue)
   SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
   CRECIPE := {Weapon:0, Ring:0, Amulet:0, Belt:0, Boots:0, Gloves:0, Body:0, Helmet:0}
-	BlackList := Array_DeepClone(BlackList_Default)
+	BlackList := ObjDeepClone(BlackList_Default)
  ; Move mouse out of the way to grab screenshot
 	ShooMouse()
   GuiStatus()
