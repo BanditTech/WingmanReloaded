@@ -1,7 +1,6 @@
 ; PopFlasks - Pop all flasks
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PopFlasks(){
-	PopFlasksCommand:
 		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
 		SetMouseDelay(SetMouseDelayValue)
 		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
@@ -39,4 +38,5 @@ PopFlasks(){
 		WR.func.Toggle.PopAll := False
 	return
 }
+PopFlasksCommand(*) { PopFlasks() }
 

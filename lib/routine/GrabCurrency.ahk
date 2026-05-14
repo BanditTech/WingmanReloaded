@@ -1,7 +1,6 @@
 ; GrabCurrency - Get currency fast to use on a white/blue/rare strongbox
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GrabCurrency(){
-	GrabCurrencyCommand:
 		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
 		SetMouseDelay(SetMouseDelayValue)
 		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
@@ -26,3 +25,5 @@ GrabCurrency(){
 		}
 return
 }
+
+GrabCurrencyCommand(*) { GrabCurrency() }

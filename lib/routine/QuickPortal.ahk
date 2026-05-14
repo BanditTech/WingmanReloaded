@@ -1,7 +1,6 @@
 ; QuickPortal - Open Town Portal
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 QuickPortal(){
-	QuickPortalCommand:
 		If (OnTown || OnHideout || OnMines)
 			Return
 		if (hotkeyOpenPortal == A_Space) {
@@ -45,3 +44,5 @@ QuickPortal(){
 		RandomSleep(300,600)
 	return
 }
+
+QuickPortalCommand(*) { QuickPortal() }

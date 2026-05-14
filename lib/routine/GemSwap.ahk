@@ -1,7 +1,6 @@
 ; GemSwap - Swap gems between two locations
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GemSwap(){
-	GemSwapCommand:
 		SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
 		SetMouseDelay(SetMouseDelayValue)
 		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
@@ -77,3 +76,5 @@ GemSwap(){
 		BlockInput("MouseMoveOff")
 	return
 }
+
+GemSwapCommand(*) { GemSwap() }
