@@ -3,9 +3,9 @@ class ItemBuild extends ItemScan
 {
 	__New(Object,quad){
 		This.Data := {Blocks: {Affix:"", FlavorText:""}}
-		This.Pseudo := OrderedArray()
-		This.Affix := OrderedArray()
-		This.Prop := OrderedArray()
+		This.Pseudo := {}
+		This.Affix := {}
+		This.Prop := {}
 		This.Prop.Rarity := (Object.frameType=0?"Normal"
 			:(Object.frameType=1?"Magic"
 			:(Object.frameType=2?"Rare"

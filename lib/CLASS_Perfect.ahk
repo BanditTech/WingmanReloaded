@@ -1,6 +1,6 @@
 Class Perfect {
     __New(mod) {
-        This.o        := OrderedAssociativeArray()
+        This.o        := {}
         This.o.isvar  := 0
         This.o.key    := This.Standardize(mod)
         This.SetVals(mod)
