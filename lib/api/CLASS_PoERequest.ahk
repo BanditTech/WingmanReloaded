@@ -28,6 +28,7 @@ Class PoERequest {
     Return This.HandleResponse(response)
   }
   HandleResponse(response){
+    global JSON
     ; response := RegexReplace(response,"[]","")
     response := RegexReplace(response,"^[^\]\[\{\}`"]*","")
     response := RegexReplace(response,"[^\]\[\{\}`"]*$","")
