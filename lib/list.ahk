@@ -12,6 +12,7 @@
 #Include %A_ScriptDir%\lib\ref\XGraph.ahk
 #Include %A_ScriptDir%\lib\ref\RadialMenu.ahk
 #Include %A_ScriptDir%\lib\ref\Class_CtlColors.ahk
+#Include %A_ScriptDir%\lib\ref\Load_Bar.ahk
 #Include %A_ScriptDir%\lib\ref\LutBotLite.ahk
 #Include %A_ScriptDir%\lib\ref\LetUserSelectRect.ahk
 #Include %A_ScriptDir%\lib\ref\ColorRange.ahk
