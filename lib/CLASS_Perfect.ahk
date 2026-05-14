@@ -30,7 +30,7 @@ Class Perfect {
     }
 
     SetVals(line) {
-        If (line = "")
+        If (line == "")
             Return
         If (vals := This.GetValues(line)) {
             If (vals.Length >= 2) {

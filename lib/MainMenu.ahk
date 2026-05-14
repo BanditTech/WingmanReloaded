@@ -5,7 +5,7 @@ MainMenu(){
     Return
   if(YesGuiLastPosition)
   {
-    If (WinGuiX = "" || WinGuiY = "")
+    If (WinGuiX == "" || WinGuiY == "")
       WinGuiX := WinGuiY := 0
     MainGui.Show("Autosize x" WinGuiX " y" WinGuiY)
   }

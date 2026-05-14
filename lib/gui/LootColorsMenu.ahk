@@ -59,7 +59,7 @@ LootColorsMenu(){
 			continue
 		}
 		colorIdx++
-		If (A_Index = 1)
+		If (A_Index == 1)
 		{
 			LootColorsGui.Add("Text", "yp+38 xs+10", "Background " colorIdx " Colors: ")
 			LootColorsGui.Add("Progress", "x+10 yp-5 w50 h20 c" color " BackgroundBlack",100)
@@ -74,12 +74,12 @@ LootColorsMenu(){
 		Global LootColors, LootColorsGui
 		LootColorsGui.Submit()
 		ind := LootColors.MaxIndex()
-		If (ctrl.Name = "LG_Add")
+		If (ctrl.Name == "LG_Add")
 		{
 			LootColors[ind + 1] := 0xFFFFFF
 			LootColors[ind + 2] := 0xFFFFFF
 		}
-		Else If (ctrl.Name = "LG_Rem" && ind > 2)
+		Else If (ctrl.Name == "LG_Rem" && ind > 2)
 		{
 			LootColors.Pop(ind)
 			LootColors.Pop(ind - 1)

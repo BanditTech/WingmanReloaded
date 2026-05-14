@@ -7,7 +7,7 @@ Controller(inputType:="Main")
 	Static x_POVscale := 5, y_POVscale := 5, HeldCountPOV := 0
 	Global MainAttackPressedActive, SecondaryAttackPressedActive, MovementHotkeyActive, LootVacuumActive
 	Global CtrlState, Controller_Active, YesOHBFound
-	If (inputType = "Main")
+	If (inputType == "Main")
 	{
 		If !Controller("Refresh")
 			Return False
@@ -16,7 +16,7 @@ Controller(inputType:="Main")
 		Controller("Buttons")
 		Controller("DPad")
 	}
-	If (inputType = "Refresh")
+	If (inputType == "Refresh")
 	{
 		if State := XInput_GetState(Controller_Active)
 		{
@@ -49,7 +49,7 @@ Controller(inputType:="Main")
 				Return False
 		}
 	}
-	Else If (inputType = "JoystickL")
+	Else If (inputType == "JoystickL")
 	{
 		moveX := DeadZone(CtrlState.LX)
 		moveY := DeadZone(CtrlState.LY)
@@ -88,7 +88,7 @@ Controller(inputType:="Main")
 			Return
 		}
 	}
-	Else If (inputType = "JoystickR")
+	Else If (inputType == "JoystickR")
 	{
 		moveX := DeadZone(CtrlState.RX)
 		moveY := DeadZone(CtrlState.RY)
@@ -119,7 +119,7 @@ Controller(inputType:="Main")
 			Return
 		}
 	}
-	Else If (inputType = "Buttons")
+	Else If (inputType == "Buttons")
 	{
 		Static State := Map("A",0,"B",0,"X",0,"Y",0,"LB",0,"RB",0,"L3",0,"R3",0,"BACK",0,"START",0)
 		local hkBtn := Map(
@@ -132,46 +132,46 @@ Controller(inputType:="Main")
 		{
 			If (s != State[Key])
 			{
-				If (s && State[Key] = 0)
+				If (s && State[Key] == 0)
 				{
-					If (hkBtn[Key] = hotkeyLootScan && LootVacuum)
+					If (hkBtn[Key] == hotkeyLootScan && LootVacuum)
 					{
 						SendHotkey(hkBtn[Key],"down")
 						LootVacuumActive := True
 						State[Key] := 1
 					}
-					Else If (hkBtn[Key] = "Logout")
+					Else If (hkBtn[Key] == "Logout")
 					{
 						SetTimer(LogoutCommand, -1)
 						State[Key] := 1
 					}
-					Else If (hkBtn[Key] = "PopFlasks")
+					Else If (hkBtn[Key] == "PopFlasks")
 					{
 						SetTimer(PopFlasks, -1)
 						State[Key] := 1
 					}
-					Else If (hkBtn[Key] = "QuickPortal")
+					Else If (hkBtn[Key] == "QuickPortal")
 					{
 						SetTimer(QuickPortal, -1)
 						State[Key] := 1
 					}
-					Else If (hkBtn[Key] = "GemSwap")
+					Else If (hkBtn[Key] == "GemSwap")
 					{
 						SetTimer(GemSwap, -1)
 						State[Key] := 1
 					}
-					Else If (hkBtn[Key] = "ItemSort")
+					Else If (hkBtn[Key] == "ItemSort")
 					{
 						SetTimer(ItemSortCommand, -1)
 						State[Key] := 1
 					}
-					Else If (hkBtn[Key] = hotkeyMainAttack)
+					Else If (hkBtn[Key] == hotkeyMainAttack)
 					{
 						SendHotkey(hkBtn[Key],"down")
 						State[Key] := 1
 						MainAttackPressedActive := True
 					}
-					Else If (hkBtn[Key] = hotkeySecondaryAttack)
+					Else If (hkBtn[Key] == hotkeySecondaryAttack)
 					{
 						SendHotkey(hkBtn[Key],"down")
 						State[Key] := 1
@@ -183,31 +183,31 @@ Controller(inputType:="Main")
 						State[Key] := 1
 					}
 				}
-				Else If (!s && State[Key] = 1)
+				Else If (!s && State[Key] == 1)
 				{
-					If (hkBtn[Key] = hotkeyLootScan && LootVacuum)
+					If (hkBtn[Key] == hotkeyLootScan && LootVacuum)
 					{
 						SendHotkey(hkBtn[Key],"up")
 						LootVacuumActive := False
 						State[Key] := 0
 					}
-					Else If (hkBtn[Key] = "Logout")
+					Else If (hkBtn[Key] == "Logout")
 						State[Key] := 0
-					Else If (hkBtn[Key] = "PopFlasks")
+					Else If (hkBtn[Key] == "PopFlasks")
 						State[Key] := 0
-					Else If (hkBtn[Key] = "QuickPortal")
+					Else If (hkBtn[Key] == "QuickPortal")
 						State[Key] := 0
-					Else If (hkBtn[Key] = "GemSwap")
+					Else If (hkBtn[Key] == "GemSwap")
 						State[Key] := 0
-					Else If (hkBtn[Key] = "ItemSort")
+					Else If (hkBtn[Key] == "ItemSort")
 						State[Key] := 0
-					Else If (hkBtn[Key] = hotkeyMainAttack)
+					Else If (hkBtn[Key] == hotkeyMainAttack)
 					{
 						SendHotkey(hkBtn[Key],"up")
 						State[Key] := 0
 						MainAttackPressedActive := 0
 					}
-					Else If (hkBtn[Key] = hotkeySecondaryAttack)
+					Else If (hkBtn[Key] == hotkeySecondaryAttack)
 					{
 						SendHotkey(hkBtn[Key],"up")
 						State[Key] := 0
@@ -222,7 +222,7 @@ Controller(inputType:="Main")
 			}
 		}
 	}
-	Else If (inputType = "DPad")
+	Else If (inputType == "DPad")
 	{
 		if (CtrlState.Up || CtrlState.Down || CtrlState.Left || CtrlState.Right)
 		{
@@ -288,7 +288,7 @@ CapRange(var,min:=0,max:=65535){
 	return (var > max ? max : (var < min ? min : var))
 }
 PercentAxis(axisPos){
-	If (axisPos = 0)
+	If (axisPos == 0)
 		Return False
 	Else If (axisPos > 0)
 		Positive := True
@@ -351,29 +351,29 @@ SnapToInventoryGrid(Direction:="Left"){
 }
 MoveToGridPosition(c,r,gridArea:="StashQuad",Direction:="None"){
 	Global InvGrid
-	If (gridArea = "VendorOff" && r = 1 && Direction = "Up")
+	If (gridArea == "VendorOff" && r == 1 && Direction == "Up")
 		gridArea := "VendorRec", r := 6
-	Else If ( (gridArea = "VendorOff" || gridArea = "VendorRec") && c = 12 && Direction = "Right")
+	Else If ( (gridArea == "VendorOff" || gridArea == "VendorRec") && c == 12 && Direction == "Right")
 		gridArea := "Inventory", c := 0
-	Else If (gridArea = "VendorRec" && r = 5 && Direction = "Down")
+	Else If (gridArea == "VendorRec" && r == 5 && Direction == "Down")
 		gridArea := "VendorOff", r := 0
-	Else If (gridArea = "Inventory" && c = 1 && Direction = "Left")
+	Else If (gridArea == "Inventory" && c == 1 && Direction == "Left")
 	{
 		If OnStash
 			gridArea := "StashQuad", c := 25
 		Else If OnVendor
 			gridArea := "VendorOff", c := 13
 	}
-	Else If (gridArea = "StashQuad" && c = 24 && Direction = "Right")
+	Else If (gridArea == "StashQuad" && c == 24 && Direction == "Right")
 		gridArea := "Inventory", c := 0, r := (r//5>0?r//5:1)
 
-	If (Direction = "Left")
+	If (Direction == "Left")
 		c := (c-1>0?c-1:c)
-	Else If (Direction = "Right")
+	Else If (Direction == "Right")
 		c := (c+1<=InvGrid[gridArea].X.Count()?c+1:c)
-	Else If (Direction = "Up")
+	Else If (Direction == "Up")
 		r := (r-1>0?r-1:r)
-	Else If (Direction = "Down")
+	Else If (Direction == "Down")
 		r := (r+1<=InvGrid[gridArea].Y.Count()?r+1:r)
 
 	MouseMove(InvGrid[gridArea].X[c], InvGrid[gridArea].Y[r])
@@ -390,7 +390,7 @@ GridPosition(x,y,gridArea:="StashQuad"){
 	{
 		For R, yVal in InvGrid[gridArea].Y
 		{
-			If (gridArea = "StashQuad")
+			If (gridArea == "StashQuad")
 			{
 				x1:=xVal - sRQ, x2:=xVal + sRQ
 				y1:=yVal - sRQ, y2:=yVal + sRQ
@@ -417,7 +417,7 @@ GridPosition(x,y,gridArea:="StashQuad"){
 	}
 	For k, match in Partial
 	{
-		If (Best.Distance = -1 || match.Distance <= Best.Distance)
+		If (Best.Distance == -1 || match.Distance <= Best.Distance)
 			Best := match
 	}
 	Partial := ""

@@ -20,7 +20,7 @@ CompareLocation(cStr:="")
   Static MineStrings := ["Azurite Mine"]
   If (cStr="Town")
     Return indexOfArr(CurrentLocation,ClientTowns)
-  If (Lang = "")
+  If (Lang == "")
   {
     For k, v in LangString
     {
@@ -33,7 +33,7 @@ CompareLocation(cStr:="")
       }
     }
   }
-  If (Lang = "English") ; This is the default setting
+  If (Lang == "English") ; This is the default setting
   {
     ; first we confirm if this line contains our zone change phrase
     If InStr(cStr, ": You have entered")
@@ -66,7 +66,7 @@ CompareLocation(cStr:="")
       Player.Level := RxMatch[1]
     }
   }
-  Else If (Lang = "Spanish")
+  Else If (Lang == "Spanish")
   {
     If InStr(cStr, " : Has entrado a ")
     {
@@ -79,7 +79,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Mina de Azurita")
+      If (CurrentLocation == "Mina de Azurita")
         OnMines := True
       Else
         OnMines := False
@@ -87,7 +87,7 @@ CompareLocation(cStr:="")
       Return True
     }
   }
-  Else If (Lang = "Chinese")
+  Else If (Lang == "Chinese")
   {
     If InStr(cStr, " : 你已進入：")
     {
@@ -100,7 +100,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "碧藍礦坑")
+      If (CurrentLocation == "碧藍礦坑")
         OnMines := True
       Else
         OnMines := False
@@ -108,7 +108,7 @@ CompareLocation(cStr:="")
       Return True
     }
   }
-  Else If (Lang = "Korean")
+  Else If (Lang == "Korean")
   {
     If InStr(cStr, "진입했습니다")
     {
@@ -121,7 +121,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "남동석 광산에")
+      If (CurrentLocation == "남동석 광산에")
         OnMines := True
       Else
         OnMines := False
@@ -129,7 +129,7 @@ CompareLocation(cStr:="")
       Return True
     }
   }
-  Else If (Lang = "German")
+  Else If (Lang == "German")
   {
     If InStr(cStr, " : Ihr habt '")
     {
@@ -142,7 +142,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Azuritmine")
+      If (CurrentLocation == "Azuritmine")
         OnMines := True
       Else
         OnMines := False
@@ -150,7 +150,7 @@ CompareLocation(cStr:="")
       Return True
     }
   }
-  Else If (Lang = "Russian")
+  Else If (Lang == "Russian")
   {
     If InStr(cStr, " : Вы вошли в область ")
     {
@@ -163,7 +163,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Азуритовая шахта")
+      If (CurrentLocation == "Азуритовая шахта")
         OnMines := True
       Else
         OnMines := False
@@ -171,7 +171,7 @@ CompareLocation(cStr:="")
       Return True
     }
   }
-  Else If (Lang = "French")
+  Else If (Lang == "French")
   {
     If InStr(cStr, " : Vous êtes à présent dans : ")
     {
@@ -184,7 +184,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "La Mine d'Azurite")
+      If (CurrentLocation == "La Mine d'Azurite")
         OnMines := True
       Else
         OnMines := False
@@ -192,7 +192,7 @@ CompareLocation(cStr:="")
       Return True
     }
   }
-  Else If (Lang = "Portuguese")
+  Else If (Lang == "Portuguese")
   {
     If InStr(cStr, " : Você entrou em: ")
     {
@@ -205,7 +205,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Mina de Azurita")
+      If (CurrentLocation == "Mina de Azurita")
         OnMines := True
       Else
         OnMines := False
@@ -213,7 +213,7 @@ CompareLocation(cStr:="")
       Return True
     }
   }
-  Else If (Lang = "Thai")
+  Else If (Lang == "Thai")
   {
     If InStr(cStr, " : คุณเข้าสู่ ")
     {
@@ -226,7 +226,7 @@ CompareLocation(cStr:="")
         OnHideout := True
       Else
         OnHideout := False
-      If (CurrentLocation = "Azurite Mine")
+      If (CurrentLocation == "Azurite Mine")
         OnMines := True
       Else
         OnMines := False
@@ -275,7 +275,7 @@ Monitor_GameLogs(Initialize:=0)
           Break
         }
       }
-      If (CurrentLocation = "")
+      If (CurrentLocation == "")
         CurrentLocation := "Nothing Found"
       If (VersionNumber != "")
         Ding(500,-10,"Parsed Client.txt logs in " . A_TickCount - T1 . "MS`nSize: " . errchk . "MB")
@@ -329,7 +329,7 @@ LastLine(SomeFileObject) {
   loop {
     SomeFileObject.Seek(-1, SEEK_CUR)
 
-    if (SomeFileObject.Read(1) = "`n") {
+    if (SomeFileObject.Read(1) == "`n") {
       StartPosition := SomeFileObject.Tell()
 
       Line := SomeFileObject.ReadLine()

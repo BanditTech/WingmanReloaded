@@ -14,15 +14,15 @@ CraftBasicPopUp(){
 		{
 			If DebugMessages
 			{
-				If (selection = "Maps")
+				If (selection == "Maps")
 					Notify("Begin Bulk Crafting Maps","",2)
-				Else If (selection = "Socket")
+				Else If (selection == "Socket")
 					Notify("Socketing Selected Item","",2)
-				Else If (selection = "Color")
+				Else If (selection == "Color")
 					Notify("Coloring Selected Item","",2)
-				Else If (selection = "Link")
+				Else If (selection == "Link")
 					Notify("Linking Selected Item","",2)
-				Else If (selection = "Chance")
+				Else If (selection == "Chance")
 					Notify("Chance Selected Item until Unique","Either Bulk mode or Scour",2)
 				Else
 					Notify("Result is:",selection,2)

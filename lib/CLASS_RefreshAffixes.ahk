@@ -33,7 +33,7 @@ Class RefreshAffixes {
 		; MsgBox % line
 		strLines := StrSplit(line, "<br>")
 		For k, v in strLines {
-			If (v = "" || indexOf(v,ignored) || indexOf(v,This.ReturnList))
+			If (v == "" || indexOf(v,ignored) || indexOf(v,This.ReturnList))
 				Continue
 			This.ReturnList.Push(v)
 		}

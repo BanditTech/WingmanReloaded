@@ -110,7 +110,7 @@ confirmOneOfEach(Object,id:=True){
       chaosCount := getCount(Object[id?"Chaos":"uChaos"][kind])
       regalCount := getCount(Object[id?"Regal":"uRegal"][kind])
       result := chaosCount + regalCount
-      If (!result || (kind = "Ring" && result < 2))
+      If (!result || (kind == "Ring" && result < 2))
         Return False
       if (chaosCount >= 1)
         hasChaos := true
@@ -118,13 +118,13 @@ confirmOneOfEach(Object,id:=True){
     Else If ChaosRecipeTypePure
     {
       result := getCount(Object[id?"Chaos":"uChaos"][kind])
-      If (!result || (kind = "Ring" && result < 2))
+      If (!result || (kind == "Ring" && result < 2))
         Return False
     }
     Else If ChaosRecipeTypeRegal
     {
       result := getCount(Object[id?"Regal":"uRegal"][kind])
-      If (!result || (kind = "Ring" && result < 2))
+      If (!result || (kind == "Ring" && result < 2))
         Return False
     }
   }
@@ -612,7 +612,7 @@ VendorRoutineChaos(){
     }
 		For R, GridY in InventoryGridY
 		{
-      If (CRECIPE["Weapon"] = 2 && CRECIPE["Ring"] = 2 && CRECIPE["Amulet"] = 1 && CRECIPE["Boots"] = 1 && CRECIPE["Gloves"] = 1 && CRECIPE["Helmet"] = 1 && CRECIPE["Body"] = 1 && CRECIPE["Belt"] = 1 )
+      If (CRECIPE["Weapon"] == 2 && CRECIPE["Ring"] == 2 && CRECIPE["Amulet"] == 1 && CRECIPE["Boots"] == 1 && CRECIPE["Gloves"] == 1 && CRECIPE["Helmet"] == 1 && CRECIPE["Body"] == 1 && CRECIPE["Belt"] == 1 )
         RecipeComplete := True
 			If (!RunningToggle || RecipeComplete ) {  ; The user signaled the loop to stop by pressing Hotkey again.
 				Sleep(90)
@@ -629,7 +629,7 @@ VendorRoutineChaos(){
 			}
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
-			If (!Item.Prop.IsItem || Item.Prop.ItemName = "") {
+			If (!Item.Prop.IsItem || Item.Prop.ItemName == "") {
 				ShooMouse()
         GuiStatus()
         Continue
@@ -639,7 +639,7 @@ VendorRoutineChaos(){
 			{
 				If ( ( Item.Prop.SpecialType="" || (Item.Prop.SpecialType="Enchanted Item" && Item.Prop.ChaosValue < 1) ) && (Item.Prop.ChaosRecipe || Item.Prop.RegalRecipe) ) {
 					If indexOf(Item.Prop.SlotType,["One Hand","Two Hand","Shield","Ring"]) {
-						If (Item.Prop.SlotType = "Ring"){
+						If (Item.Prop.SlotType == "Ring"){
 							If (CRECIPE["Ring"] < 2){
 								CtrlClick(Grid.X,Grid.Y)
 								CRECIPE["Ring"] += 1
@@ -648,7 +648,7 @@ VendorRoutineChaos(){
 							If (CRECIPE["Weapon"] < 2){
 								CtrlClick(Grid.X,Grid.Y)
 								CRECIPE["Weapon"] += 1
-								If (Item.Prop.SlotType = "Two Hand")
+								If (Item.Prop.SlotType == "Two Hand")
 									CRECIPE["Weapon"] += 1
 							}
 						}
@@ -673,14 +673,14 @@ VendorRoutineChaos(){
 		If (YesEnableAutoSellConfirmation || RecipeComplete && YesEnableAutoSellConfirmationSafe)
 		{
 			RandomSleep(210,240)
-			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
+			LeftClick(WR.loc.pixel.VendorAccept.X,WR.loc.pixel.VendorAccept.Y + (CurrentLocation == "The Rogue harbour"?Round(GameH/(1080/50)):0))
 			RandomSleep(210,240)
 			ContinueFlag := True
 		}
 		Else If (FirstAutomationSetting=="Search Vendor")
 		{
 			CheckTime("Seconds",120,"VendorUI",A_Now)
-			MouseMove(WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y + (CurrentLocation = "The Rogue harbour"?Round(GameH/(1080/50)):0))
+			MouseMove(WR.loc.pixel.VendorAccept.X, WR.loc.pixel.VendorAccept.Y + (CurrentLocation == "The Rogue harbour"?Round(GameH/(1080/50)):0))
 
 			While (!CheckTime("Seconds",120,"VendorUI"))
 			{
@@ -714,13 +714,13 @@ VendorRoutineChaos(){
 				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
-			Else If (Town = "Oriath Docks")
+			Else If (Town == "Oriath Docks")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
 				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
-			Else If (Town = "The Sarn Encampment")
+			Else If (Town == "The Sarn Encampment")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
 				Sleep(800)

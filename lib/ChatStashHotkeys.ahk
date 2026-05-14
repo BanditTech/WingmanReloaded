@@ -164,7 +164,7 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1){
 	if WinActive("ahk_group POEGameGroup")
 	{
-		If (func = "Enter")
+		If (func == "Enter")
 		{
 			local c1Texts := [c1Suffix1Text,c1Suffix2Text,c1Suffix3Text,c1Suffix4Text,c1Suffix5Text,c1Suffix6Text,c1Suffix7Text,c1Suffix8Text,c1Suffix9Text]
 			tempStr := StrReplace(c1Texts[SuffixNum], "CharacterName", CharName, , -1)
@@ -173,7 +173,7 @@ FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1){
 			Send("{Enter}" tempStr "{Enter}")
 			ResetChat()
 		}
-		Else If (func = "CtrlEnter")
+		Else If (func == "CtrlEnter")
 		{
 			GrabRecipientName()
 			local c2Texts := [c2Suffix1Text,c2Suffix2Text,c2Suffix3Text,c2Suffix4Text,c2Suffix5Text,c2Suffix6Text,c2Suffix7Text,c2Suffix8Text,c2Suffix9Text]
@@ -183,7 +183,7 @@ FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1){
 			Send("^{Enter}" tempStr "{Enter}")
 			ResetChat()
 		}
-		Else If (func = "Stash")
+		Else If (func == "Stash")
 		{
 			local stashTabs := [stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9]
 			MoveStash(stashTabs[SuffixNum], 1)

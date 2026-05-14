@@ -19,7 +19,7 @@ Rescale(){
       GlobeImported := True
       Base.Globe := Array_DeepClone(Globe)
     }
-    Else If (VersionNumber = "")
+    Else If (VersionNumber == "")
       GlobeImported := True
     Else
       GlobeImported := False
@@ -1325,7 +1325,7 @@ BuildGridsFromCorners(){
   InvGrid.SlotSize := (Cwidth + Rwidth) // 2
   Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1338,7 +1338,7 @@ BuildGridsFromCorners(){
   , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Stash.X1+Cwidth//2, PointY:=InvGrid.Corners.Stash.Y1+Rwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing, PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1355,7 +1355,7 @@ BuildGridsFromCorners(){
   , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Inventory.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
@@ -1363,7 +1363,7 @@ BuildGridsFromCorners(){
   }
   Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.Inventory.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1379,7 +1379,7 @@ BuildGridsFromCorners(){
   , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.VendorRec.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
@@ -1387,7 +1387,7 @@ BuildGridsFromCorners(){
   }
   Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.VendorRec.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1403,7 +1403,7 @@ BuildGridsFromCorners(){
   , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.VendorOff.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
@@ -1411,7 +1411,7 @@ BuildGridsFromCorners(){
   }
   Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.VendorOff.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing
@@ -1427,7 +1427,7 @@ BuildGridsFromCorners(){
   , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointX:=InvGrid.Corners.Ritual.X1+Cwidth//2
     Else
       PointX+=Cwidth+InvGrid.SlotSpacing
@@ -1435,7 +1435,7 @@ BuildGridsFromCorners(){
   }
   Loop Rnum
   {
-    If (A_Index = 1) 
+    If (A_Index == 1) 
       PointY:=InvGrid.Corners.Ritual.Y1+Rwidth//2
     Else
       PointY+=Rwidth+InvGrid.SlotSpacing

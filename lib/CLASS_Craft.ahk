@@ -3,11 +3,11 @@ Class Craft {
 		; Type := "Chance","Color","Link","Socket"
 		This.Type := Type
 
-		If (Method = 1)
+		If (Method == 1)
 			Method := "cursor"
-		Else If (Method = 2)
+		Else If (Method == 2)
 			Method := "stash"
-		Else If (Method = 3)
+		Else If (Method == 3)
 			Method := "bulk"
 		; Method := "cursor","stash","bulk"
 		This.Method := Method
@@ -16,13 +16,13 @@ Class Craft {
 		This.Desired := Desired
 
 		; Determine target object
-		If (This.Method = "bulk") {
+		If (This.Method == "bulk") {
 			; add for expansion of this feature later
 			This.Target := "inventory"
 		} Else {
-			If (This.Method = "stash")
+			If (This.Method == "stash")
 				This.Target := WR.Loc.Pixel["Currency Craft Slot"]
-			Else If (This.Method = "cursor"){
+			Else If (This.Method == "cursor"){
 				MouseGetPos(&xx, &yy)
 				This.Target := {X:xx,Y:yy}
 			}
@@ -36,7 +36,7 @@ Class Craft {
 	}
 	GetAuto(){
 		local lvl := Item.Prop.ItemLevel
-		If This.Type = "Link"
+		If This.Type == "Link"
 			Return Item.Prop.Sockets_Num
 		If (lvl < 2)
 			Return 2
@@ -54,7 +54,7 @@ Class Craft {
 			Return 6
 	}
 	Validate(){
-		If (Item.Prop.ItemName = "")
+		If (Item.Prop.ItemName == "")
 		|| (This.Desired.Links > Item.Prop.Sockets_Num && !This.Desired.Auto)
 		|| ((!Item.Prop.SlotType || indexOf(Item.Prop.SlotType,["Belt","Ring","Amulet"])) && indexOf(This.Type,["Color","Link","Socket"]))
 		|| (Item.Prop.ItemLevel < 2 && This.Desired.Sockets >= 3 && !This.Desired.Auto)
@@ -73,32 +73,32 @@ Class Craft {
 	}
 	Initiate(){
 		WinActivate(GameStr)
-		If (This.Method = "bulk") {
+		If (This.Method == "bulk") {
 
 		} Else {
 				This.Looping(This.Target.X,This.Target.Y)
 		}
 	}
 	Logic(){
-		If (This.Type = "Chance"){
-			If Item.Prop.Rarity_Digit = 4
+		If (This.Type == "Chance"){
+			If Item.Prop.Rarity_Digit == 4
 				Return True
 			Else If (Item.Prop.Rarity_Digit > 1 && !This.Desired.Scour)
 				Return True
 			Else
 				Return False
-		} Else If (This.Type = "Color"){
+		} Else If (This.Type == "Color"){
 			If This.Colormatch()
 				Return True
 			Else
 				Return False
-		} Else If (This.Type = "Link"){
+		} Else If (This.Type == "Link"){
 			If (This.Desired.Auto && Item.Prop.Sockets_Link >= This.Desired.Auto)
 			|| (!This.Desired.Auto && Item.Prop.Sockets_Link >= This.Desired.Links)
 				Return True
 			Else
 				Return False
-		} Else If (This.Type = "Socket"){
+		} Else If (This.Type == "Socket"){
 			If (This.Desired.Auto && Item.Prop.Sockets_Num >= This.Desired.Auto)
 			|| (!This.Desired.Auto && Item.Prop.Sockets_Num >= This.Desired.Sockets)
 				Return True
@@ -144,7 +144,7 @@ Class Craft {
 			This.Desired.Auto := This.GetAuto()
 		If This.Validate()
 			While !This.Logic() && RunningToggle {
-				If (This.Type = "Chance") {
+				If (This.Type == "Chance") {
 					If (Item.Prop.Rarity_Digit != 1 && This.Desired.Scour)
 						This.ApplyCurrency("Scouring",x,y)
 				}

@@ -7,7 +7,7 @@ WR_Menu(Function:="",Var*){
 
   Log("Verbose","Load menu: " Function,Var*)
 
-  If (Function = "Inventory") {
+  If (Function == "Inventory") {
     MainGui.Submit(0)
     CheckGamestates:= False
     If !Built_Inventory
@@ -527,7 +527,7 @@ WR_Menu(Function:="",Var*){
     }
     InventoryGui.Title := "Inventory Settings"
     InventoryGui.Show("w600 h500")
-  } Else If (Function = "Crafting") {
+  } Else If (Function == "Crafting") {
     MainGui.Submit(0)
     CheckGamestates:= False
     If !Built_Crafting
@@ -756,7 +756,7 @@ WR_Menu(Function:="",Var*){
     }
     CraftingGui.Title := "Crafting Settings"
     CraftingGui.Show("w650 h550")
-  } Else If (Function = "Strings") {
+  } Else If (Function == "Strings") {
     MainGui.Submit(0)
     CheckGamestates:= False
     If !Built_Strings
@@ -866,7 +866,7 @@ WR_Menu(Function:="",Var*){
     }
     StringsGui.Title := "FindText Strings"
     StringsGui.Show("w640 h525")
-  } Else If (Function = "Chat") {
+  } Else If (Function == "Chat") {
     MainGui.Submit(0)
     CheckGamestates:= False
     If !Built_Chat
@@ -978,7 +978,7 @@ WR_Menu(Function:="",Var*){
     }
     ChatGui.Title := "Chat Hotkeys"
     ChatGui.Show("w620 h370")
-  } Else If (Function = "Controller") {
+  } Else If (Function == "Controller") {
     MainGui.Submit(0)
     CheckGamestates:= False
     If !Built_Controller
@@ -1057,13 +1057,13 @@ WR_Menu(Function:="",Var*){
     }
     ControllerGui.Title := "Controller Settings"
     ControllerGui.Show("w620 h500")
-  } Else if (Function = "Globe") {
+  } Else if (Function == "Globe") {
     MainGui.Submit(1)
     CheckGamestates:= False
     Element := Var[1]
-    If (!Built_Globe || Element = "Reset")
+    If (!Built_Globe || Element == "Reset")
     {
-      If (Element = "Reset")
+      If (Element == "Reset")
       {
         GlobeGui.Destroy()
         Globe := Array_DeepClone(Base.Globe)
@@ -1164,7 +1164,7 @@ WR_Menu(Function:="",Var*){
     GlobeActive := True
     GlobeGui.Title := "Globe Settings"
     GlobeGui.Show("Center AutoSize")
-  } Else If (Function = "Locate") {
+  } Else If (Function == "Locate") {
     LocateType := Var[2]
     InventoryGui.Hide()
     Loop
@@ -1180,7 +1180,7 @@ WR_Menu(Function:="",Var*){
     InventoryGui[LocateType "Y"].Text := y
     MsgBox(x "," y " was captured as the new location for " LocateType)
     InventoryGui.Show()
-  } Else If (Function = "Locate2") {
+  } Else If (Function == "Locate2") {
     MsgBoxVals(Var,2)
     ; LocateType := Var[2]
     ending := StrSplit(SubStr(Var[2],-1))
@@ -1199,7 +1199,7 @@ WR_Menu(Function:="",Var*){
     MainGui["swap" slot "Y" position].Text := y
     MsgBox(x "," y " was captured as the new location for Swap " slot " " position)
     InventoryGui.Show()
-  } Else If (Function = "Locate3") {
+  } Else If (Function == "Locate3") {
     LocateType := Var[2]
     CraftingGui.Hide()
     Loop
@@ -1215,7 +1215,7 @@ WR_Menu(Function:="",Var*){
     CraftingGui[LocateType "Y"].Text := y
     MsgBox(x "," y " was captured as the new location for " LocateType)
     CraftingGui.Show()
-  } Else if (Function = "Area") {
+  } Else if (Function == "Area") {
     GlobeGui.Submit(0)
     Grab := LetUserSelectRect()
     AreaType := Var[2]
@@ -1226,23 +1226,23 @@ WR_Menu(Function:="",Var*){
     GlobeGui["Globe_" AreaType "_X2"].Text := "X2:" Grab.X2
     GlobeGui["Globe_" AreaType "_Y2"].Text := "Y2:" Grab.Y2
     GlobeGui.Show()
-  } Else if (Function = "Show") {
+  } Else if (Function == "Show") {
     GlobeGui.Submit(0)
     AreaType := Var[2]
     MouseTip(Globe[AreaType])
     GlobeGui.Show()
-  } Else if (Function = "Color") {
+  } Else if (Function == "Color") {
     AreaType := Var[2]
     Element := Var[1]
     Split := {}
     Split.hex := Globe[AreaType].Color.Hex
     GlobeGui.Submit(0)
-    If (Element = "UpDown")
+    If (Element == "UpDown")
     {
       Globe[AreaType].Color.Variance := GlobeGui["WR_UpDown_Color_" AreaType].Value
       Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
     }
-    Else If (Element = "Edit")
+    Else If (Element == "Edit")
     {
       CurPos := 1
       newhex := ""
@@ -1267,7 +1267,7 @@ WR_Menu(Function:="",Var*){
       Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
       GlobeGui["WR_Progress_Color_" AreaType].Opt("+c" newHex)
     }
-  } Else If (Function = "hkStash") {
+  } Else If (Function == "hkStash") {
     Static hkStashBuilt := False
     If !(hkStashBuilt)
     {
@@ -1326,19 +1326,19 @@ WR_Menu(Function:="",Var*){
 
     hkStashGui.Show()
 
-  } Else If (Function = "JSON") {
+  } Else If (Function == "JSON") {
     ValueType := Var[2]
     Element := Var[1]
-    If (Element = "Save") {
+    If (Element == "Save") {
       MainGui.Submit(0)
-      If (ValueType = "Globe")
+      If (ValueType == "Globe")
         FileOpen(A_ScriptDir "\save\" ValueType ".json","w").Write(JSON.Dump(Globe,,2))
       Else
         Log("Error","JSON Save: unknown ValueType " ValueType)
       MainGui.Show()
-    } Else if (Element = "Load") {
+    } Else if (Element == "Load") {
       If FileExist(A_ScriptDir "\save\" ValueType ".json") {
-        If (ValueType = "Globe")
+        If (ValueType == "Globe")
           Globe := JSON.Load(FileOpen(A_ScriptDir "\save\" ValueType ".json", "r").Read())
         Else
           Log("Error","JSON Load: unknown ValueType " ValueType)

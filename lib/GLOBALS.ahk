@@ -120,268 +120,268 @@ Global HeistLootLarge := ["Essence Burner","Ancient Seal","Blood of Innocence","
 ; Tooltip Texts
 ft_ToolTip_Text_Part1 := "
 (LTrim
-	UpdateOnCharBtn = Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
-	UpdateOnChatBtn = Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
-	UpdateOnDivBtn = Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
-	UpdateOnDelveChartBtn = Calibrate the OnDelveChart Color`rThis color determines if the Delve Chart panel is open`rSample located at the left of the Delve Chart panel
-	UdateEmptyInvSlotColorBtn = Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
-	UpdateOnInventoryBtn = Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
-	UpdateOnStashBtn = Calibrate the OnStash/OnLeft Colors`rThese colors determine if the Stash/Left panel is open`rSample is located at the top of the Stash panel
-	UpdateOnVendorBtn = Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
-	UpdateOnMenuBtn = Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
-	UpdateDetonateBtn = Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rWill determine if you are in mines and change sample location`rLocated above mana flask on the right
-	StartCalibrationWizardBtn = Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
-	YesOHB = Pauses the script when it cannot find the Overhead Health Bar
-	ShowOnStart = Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
-	AutoUpdateOff = Enable this to not check for new updates when launching the script
-	ResolutionScale = Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rCinematic(43:18) is 43:18`rUltraWide is 32:9`rWXGA(16:10) is 16:10 aka 8:5
-	Latency = Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
-	ClickLatency = Use this to modify delay to click actions`rAdd this many multiples of 15ms to each delay
-	ClipLatency = Use this to modify delay to Item clip`rAdd this many multiples of 15ms to each delay
-	GrabCurrencyX = Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
-	GrabCurrencyY = Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
-	EnableRestock = Enable this to restock any inventory slots assigned a currency type
-	YesEnableAutomation = Enable Automation Routines
-	FirstAutomationSetting = Start Automation selected option
-	YesEnableNextAutomation = Enable next automation after the first selected
-	YesEnableAutoSellConfirmation = Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
-	YesEnableAutoSellConfirmationSafe = Enable Automation Routine to Accept Vendor Sell Button only when:`r The vendor is empty`r The only items are Chromatic or Jeweller`r During the chaos Recipe
-	DebugMessages = Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
-	YesTimeMS = Enable to show a tooltip when game logic is running
-	YesLocation = Enable to show tooltips with current location information`rWhen checked this will also log zone change information
-	hotkeyOptions = Set your hotkey to open the options GUI
-	hotkeyAutoFlask = Set your hotkey to turn on and off Auto-Flask
-	hotkeyAutoQuit = Set your hotkey to turn on and off Auto-Quit
-	hotkeyAutoMove = Set your hotkey to Turn on and off Auto-Move
-	hotkeyAutoUtility = Set your hotkey to Turn on and off Auto-Utility
-	hotkeyTriggerMovement = Set the key to trigger Movement or Smoke-Dash (cast on detonate)
-	hotkeyLogout = Set your hotkey to Log out of the game
-	hotkeyGetMouseCoords = Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
-	hotkeyQuickPortal = Set your hotkey to use a portal scroll from inventory
-	hotkeyGemSwap = Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
-	hotkeyStartCraft = Set your hotkey to use Crafting Settings functions, as Map Crafting
-	hotkeyCraftBasic = Set your hotkey to use Basic Crafting pop-up, these can be configured in the Crafting Settings.
-	hotkeyCtrlClicker = Bind a key to use for fast Ctrl Clicks on your cursor.
-	hotkeyCtrlShiftClicker = Bind a key to use for fast Ctrl + Shift Clicks on your cursor.
-	hotkeyShiftClicker = Bind a key to use for fast Shift Clicks on your cursor.
-	hotkeyGrabCurrency = Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
-	hotkeyPopFlasks = Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
-	hotkeyItemSort = Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
-	hotkeyItemInfo = Set your hotkey to display information about an item`rWill graph price info if there is any match
-	hotkeyChaosRecipe = Set your hotkey to scan the dump tab for chaos recipe`rRequires POESESSID to function`rWill use automation to search for stash and vendor`rAdjust your strings if it cannot find them
-	hotkeyCloseAllUI = Put your ingame assigned hotkey to Close All User Interface here
-	hotkeyInventory = Put your ingame assigned hotkey to open inventory panel here
-	hotkeyWeaponSwapKey = Put your ingame assigned hotkey to Weapon Swap here
-	hotkeyLootScan = Put your ingame assigned hotkey for Item Pickup Key here
-	LootVacuum = Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
-	LootVacuumTapZ = When pressing the loot key, it will tap z two times to refresh the location of loot on the floor.
-	LootVacuumTapZEnd = This will make the loot resort when releasing the key.
-	LootVacuumTapZSec = How many seconds should elapse between resorting loot.
-	LootVacuumSettings = Assign your own loot colors and adjust the AreaScale and delay`rAlso contains options for openable containers
-	PopFlaskRespectCD = Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
-	LaunchHelp = Opens the AutoHotkey List of Keys
-	YesIdentify = This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
-	YesStash = This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
-	YesVendor = This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
-	YesDiv = This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
-	YesMapUnid = This option is for the Identify logic`rEnable to avoid identifying maps
-	YesInfluencedUnid = This option is for the Identify logic`rEnable to avoid identifying influenced rares
-	YesSynthesisId = This option is for the Identify logic`rEnable to Always identify synthesis magic and rare items
-	YesCLFIgnoreImplicit = This option disable implicits being merged with Pseudos.`rEx: This will ignore implicits in base like two-stone boots (elemental resists)`ror two-stone rings (elemental resists) or wand (spell damage)
-	YesSortFirst = This option is for the Stash logic`rEnable to send items to stash after all have been scanned
-	YesSkipMaps = Select the inventory column which you will begin skipping rolled maps`rDisable by setting to 0
-	YesSkipMaps_Prep = Skip items such as sacrifice fragments and scarabs inside the map prep zone
-	YesSkipMaps_eval = Choose either Greater than or Less than the selected column`rYou can start skipping maps store on the right or left from the inventory column selected
-	YesSkipMaps_normal = Skip normal quality maps within the column range
-	YesSkipMaps_magic = Skip magic quality maps within the column range
-	YesSkipMaps_rare = Skip rare quality maps within the column range
-	YesSkipMaps_unique = Skip unique quality maps within the column range
-	YesSkipMaps_tier = Skip maps at or above this Map Tier
-	UpdateDatabaseInterval = How many days between database updates?
-	selectedLeague = Which league are you playing on?
-	UpdateLeaguesBtn = Use this button when there is a new league
-	LVdelay = Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
-	RestockCustomY = Y cord positions for custom slot restocking
-	RestockCustomX = X cord positions for custom slot restocking
-	RestockCustomTab = Stash tab number for custom slot restocking
+	UpdateOnCharBtn == Calibrate the OnChar Color`rThis color determines if you are on a character`rSample located on the figurine next to the health globe
+	UpdateOnChatBtn == Calibrate the OnChat Color`rThis color determines if the chat panel is open`rSample located on the very left edge of the screen
+	UpdateOnDivBtn == Calibrate the OnDiv Color`rThis color determines if the Trade Divination panel is open`rSample located at the top of the Trade panel
+	UpdateOnDelveChartBtn == Calibrate the OnDelveChart Color`rThis color determines if the Delve Chart panel is open`rSample located at the left of the Delve Chart panel
+	UdateEmptyInvSlotColorBtn == Calibrate the Empty Inventory Color`rThis color determines the Empy Inventory slots`rSample located at the bottom left of each cell
+	UpdateOnInventoryBtn == Calibrate the OnInventory Color`rThis color determines if the Inventory panel is open`rSample is located at the top of the Inventory panel
+	UpdateOnStashBtn == Calibrate the OnStash/OnLeft Colors`rThese colors determine if the Stash/Left panel is open`rSample is located at the top of the Stash panel
+	UpdateOnVendorBtn == Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
+	UpdateOnMenuBtn == Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
+	UpdateDetonateBtn == Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rWill determine if you are in mines and change sample location`rLocated above mana flask on the right
+	StartCalibrationWizardBtn == Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
+	YesOHB == Pauses the script when it cannot find the Overhead Health Bar
+	ShowOnStart == Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
+	AutoUpdateOff == Enable this to not check for new updates when launching the script
+	ResolutionScale == Adjust the resolution the script scales its values from`rStandard is 16:9`rClassic is 4:3 aka 12:9`rCinematic is 21:9`rCinematic(43:18) is 43:18`rUltraWide is 32:9`rWXGA(16:10) is 16:10 aka 8:5
+	Latency == Use this to multiply the sleep timers by this value`rOnly use in situations where you have extreme lag
+	ClickLatency == Use this to modify delay to click actions`rAdd this many multiples of 15ms to each delay
+	ClipLatency == Use this to modify delay to Item clip`rAdd this many multiples of 15ms to each delay
+	GrabCurrencyX == Select the X location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+	GrabCurrencyY == Select the Y location in your inventory for a currency`rWriting 0 or nothing in this box will disable this feature!`rYou can use this feature to quick grab a currency and put on your mouse point`rYou can use ignore slots to avoid currency being moved to stash`rPress Locate to grab positions
+	EnableRestock == Enable this to restock any inventory slots assigned a currency type
+	YesEnableAutomation == Enable Automation Routines
+	FirstAutomationSetting == Start Automation selected option
+	YesEnableNextAutomation == Enable next automation after the first selected
+	YesEnableAutoSellConfirmation == Enable Automation Routine to Accept Vendor Sell Button!! Be Careful!!
+	YesEnableAutoSellConfirmationSafe == Enable Automation Routine to Accept Vendor Sell Button only when:`r The vendor is empty`r The only items are Chromatic or Jeweller`r During the chaos Recipe
+	DebugMessages == Enable this to show debug tooltips`rAlso shows additional options for location and logic readout
+	YesTimeMS == Enable to show a tooltip when game logic is running
+	YesLocation == Enable to show tooltips with current location information`rWhen checked this will also log zone change information
+	hotkeyOptions == Set your hotkey to open the options GUI
+	hotkeyAutoFlask == Set your hotkey to turn on and off Auto-Flask
+	hotkeyAutoQuit == Set your hotkey to turn on and off Auto-Quit
+	hotkeyAutoMove == Set your hotkey to Turn on and off Auto-Move
+	hotkeyAutoUtility == Set your hotkey to Turn on and off Auto-Utility
+	hotkeyTriggerMovement == Set the key to trigger Movement or Smoke-Dash (cast on detonate)
+	hotkeyLogout == Set your hotkey to Log out of the game
+	hotkeyGetMouseCoords == Set your hotkey to grab mouse coordinates`rIf debug is enabled this function becomes the debug tool`rUse this to get gamestates or pixel grid info
+	hotkeyQuickPortal == Set your hotkey to use a portal scroll from inventory
+	hotkeyGemSwap == Set your hotkey to swap gems between the two locations set above`rEnable Weapon swap if your gem is on alternate weapon set
+	hotkeyStartCraft == Set your hotkey to use Crafting Settings functions, as Map Crafting
+	hotkeyCraftBasic == Set your hotkey to use Basic Crafting pop-up, these can be configured in the Crafting Settings.
+	hotkeyCtrlClicker == Bind a key to use for fast Ctrl Clicks on your cursor.
+	hotkeyCtrlShiftClicker == Bind a key to use for fast Ctrl + Shift Clicks on your cursor.
+	hotkeyShiftClicker == Bind a key to use for fast Shift Clicks on your cursor.
+	hotkeyGrabCurrency == Set your hotkey to quick open your inventory and get a currency from a seleted position and put on your mouse pointer`rUse this feature to quickly change white strongbox
+	hotkeyPopFlasks == Set your hotkey to Pop all flasks`rEnable the option to respect cooldowns on the right
+	hotkeyItemSort == Set your hotkey to Sort through inventory`rPerforms several functions:`rIdentifies Items`rVendors Items`rSend Items to Stash`rTrade Divination cards
+	hotkeyItemInfo == Set your hotkey to display information about an item`rWill graph price info if there is any match
+	hotkeyChaosRecipe == Set your hotkey to scan the dump tab for chaos recipe`rRequires POESESSID to function`rWill use automation to search for stash and vendor`rAdjust your strings if it cannot find them
+	hotkeyCloseAllUI == Put your ingame assigned hotkey to Close All User Interface here
+	hotkeyInventory == Put your ingame assigned hotkey to open inventory panel here
+	hotkeyWeaponSwapKey == Put your ingame assigned hotkey to Weapon Swap here
+	hotkeyLootScan == Put your ingame assigned hotkey for Item Pickup Key here
+	LootVacuum == Enable the Loot Vacuum function`rUses the hotkey assigned to Item Pickup
+	LootVacuumTapZ == When pressing the loot key, it will tap z two times to refresh the location of loot on the floor.
+	LootVacuumTapZEnd == This will make the loot resort when releasing the key.
+	LootVacuumTapZSec == How many seconds should elapse between resorting loot.
+	LootVacuumSettings == Assign your own loot colors and adjust the AreaScale and delay`rAlso contains options for openable containers
+	PopFlaskRespectCD == Enable this option to limit flasks on CD when Popping all Flasks`rThis will always fire any extra keys that are present in the bindings`rThis over-rides the option below
+	LaunchHelp == Opens the AutoHotkey List of Keys
+	YesIdentify == This option is for the Identify logic`rEnable to Identify items when the inventory panel is open
+	YesStash == This option is for the Stash logic`rEnable to stash items to assigned tabs when the stash panel is open
+	YesVendor == This option is for the Vendor logic`rEnable to sell items to vendors when the sell panel is open
+	YesDiv == This option is for the Divination Trade logic`rEnable to sell stacks of divination cards at the trade panel
+	YesMapUnid == This option is for the Identify logic`rEnable to avoid identifying maps
+	YesInfluencedUnid == This option is for the Identify logic`rEnable to avoid identifying influenced rares
+	YesSynthesisId == This option is for the Identify logic`rEnable to Always identify synthesis magic and rare items
+	YesCLFIgnoreImplicit == This option disable implicits being merged with Pseudos.`rEx: This will ignore implicits in base like two-stone boots (elemental resists)`ror two-stone rings (elemental resists) or wand (spell damage)
+	YesSortFirst == This option is for the Stash logic`rEnable to send items to stash after all have been scanned
+	YesSkipMaps == Select the inventory column which you will begin skipping rolled maps`rDisable by setting to 0
+	YesSkipMaps_Prep == Skip items such as sacrifice fragments and scarabs inside the map prep zone
+	YesSkipMaps_eval == Choose either Greater than or Less than the selected column`rYou can start skipping maps store on the right or left from the inventory column selected
+	YesSkipMaps_normal == Skip normal quality maps within the column range
+	YesSkipMaps_magic == Skip magic quality maps within the column range
+	YesSkipMaps_rare == Skip rare quality maps within the column range
+	YesSkipMaps_unique == Skip unique quality maps within the column range
+	YesSkipMaps_tier == Skip maps at or above this Map Tier
+	UpdateDatabaseInterval == How many days between database updates?
+	selectedLeague == Which league are you playing on?
+	UpdateLeaguesBtn == Use this button when there is a new league
+	LVdelay == Change the time between each click command in ms`rThis is in case low delay causes disconnect`rIn those cases, use 45ms or more
+	RestockCustomY == Y cord positions for custom slot restocking
+	RestockCustomX == X cord positions for custom slot restocking
+	RestockCustomTab == Stash tab number for custom slot restocking
 
 )"
 
 ft_ToolTip_Text_Part2 := "
 (LTrim
-	ChaosRecipeEnableFunction = Enable/Disable the Chaos Recipe logic which includes all of its settings
-	ChaosRecipeMaxHoldingID = Determine how many sets of identified Chaos Recipe to stash
-	ChaosRecipeMaxHoldingUNID = Determine how many sets of unidentified Chaos Recipe to stash
-	ChaosRecipeTypePure = Recipe will affect items which are between 60-74 which have not met other stash/CLF filters`ronly draw items within that range from stash for chaos recipe.
-	ChaosRecipeTypeHybrid = Recipe will affect all rares 60+ which have not met other stash/CLF filters`rRequires at least one lvl 60-74 item to make a recipe set`rPriority is given to regal items.
-	ChaosRecipeTypeRegal = Recipe will affect items which are 75+ which have not met other stash/CLF filters`ronly draw items for regal recipe from stash.
-	ChaosRecipeAllowDoubleJewellery = Amulets and Rings will be given double allowance of Parts limit
-	ChaosRecipeAllowDoubleBelt = Belts will be given double allowance of Parts limit
-	ChaosRecipeEnableUnId = Keep items which are within the limits of the recipe settings from being identified.
-	ChaosRecipeSmallWeapons = Stash 1x3 or 2x2 Weapons and Shields only, filtering bulky items from wasting space.`rWill also stash 2x3 two handers.
-	ChaosRecipeStashTabWeapon = Assign the Stash Tab that Weapons will be sorted into.
-	ChaosRecipeStashTabHelmet = Assign the Stash Tab that Helmets will be sorted into.
-	ChaosRecipeStashTabArmour = Assign the Stash Tab that Armours will be sorted into.
-	ChaosRecipeStashTabGloves = Assign the Stash Tab that Gloves will be sorted into.
-	ChaosRecipeStashTabBoots = Assign the Stash Tab that Boots will be sorted into.
-	ChaosRecipeStashTabBelt = Assign the Stash Tab that Belts will be sorted into.
-	ChaosRecipeStashTabAmulet = Assign the Stash Tab that Amulets will be sorted into.
-	ChaosRecipeStashTabRing = Assign the Stash Tab that Rings will be sorted into.
-	ChaosRecipeStashMethodDump = Use the dump tab assigned in stash tab management
-	ChaosRecipeStashMethodTab = Use the tab set below to seperate chaos recipe items
-	ChaosRecipeStashMethodSort = Use seperate tabs for each part of the recipe list
-	ChaosRecipeStashTab = Assign the Stash Tab that All Parts will be sorted into.
-	ChaosRecipeLimitUnId = Items will remain unidentified until this Item Level
-	AreaScale = Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
-	StashTabCurrency = Assign the Stash tab for Currency items
-	StashTabYesCurrency = Enable to send Currency items to the assigned tab on the left
-	StashTabMap = Assign the Stash tab for Map items
-	StashTabYesMap = Enable to send Map items to the assigned tab on the left
-	StashTabFragment = Assign the Stash tab for Fragment items
-	StashTabYesFragment = Enable to send Fragment items to the assigned tab on the left
-	StashTabDivination = Assign the Stash tab for Divination items
-	StashTabYesDivination = Enable to send Divination items to the assigned tab on the left
-	StashTabUnique = Assign the Stash tab for Collection items`rThis is where Uniques will first be attempted to stash
-	StashTabYesUnique = Enable to send Collection items to the assigned tab on the left`rThis is where Uniques will first be attempted to stash
-	StashTabEssence = Assign the Stash tab for Essence items
-	StashTabYesEssence = Enable to send Essence items to the assigned tab on the left
-	StashTabProphecy = Assign the Stash tab for Prophecy items
-	StashTabYesProphecy = Enable to send Prophecy items to the assigned tab on the left
-	StashTabVeiled = Assign the Stash tab for Veiled items
-	StashTabYesVeiled = Enable to send Veiled items to the assigned tab on the left
-	StashTabNinjaPrice = Assign the Stash tab for Ninja Priced items
-	StashTabYesNinjaPrice = Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold
-	StashTabYesNinjaPrice_Price = Assign the minimum value in chaos to send to Ninja Priced Tab
-	StashTabPredictive = Assign the Stash tab for Rare items priced with Machine Learning
-	StashTabYesPredictive = Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
-	StashTabClusterJewel = Assign the Stash tab for cluster jewels
-	StashTabYesClusterJewel = Enable to send Cluster Jewels to the assigned tab on the left
-	StashTabDump = Assign the Stash tab for Unsorted items left over during Stash routine
-	StashTabYesDump = Enable to send Unsorted items to the assigned Dump tab on the left
-	StashDumpInTrial = Enables dump tab for all unsorted items when in Aspirant's Trial
-	StashDumpSkipJC = Do not stash Jewler or Chromatic items when dumping
-	StashTabGemSupport = Assign the Stash tab for Support Gem items
-	StashTabYesGemSupport = Enable to send Support Gem items to the assigned tab on the left
-	StashTabUltimatum = Assign the Stash tab for Ultimatum items
-	StashTabYesUltimatum = Enable to send Ultimatum items to the assigned tab on the left
-	StashTabGem = Assign the Stash tab for Normal Gem items
-	StashTabYesGem = Enable to send Normal Gem items to the assigned tab on the left
-	StashTabGemVaal = Assign the Stash tab for Vaal Gem items
-	StashTabYesGemVaal = Enable to send Vaal Gem items to the assigned tab on the left`rIf Quality Gems are enabled, that will take priority
-	StashTabGemQuality = Assign the Stash tab for Quality Gem items
-	StashTabYesGemQuality = Enable to send Quality Gem items to the assigned tab on the left
-	StashTabFlaskQuality = Assign the Stash tab for Quality Flask items
-	StashTabYesFlaskQuality = Enable to send Quality Flask items to the assigned tab on the left
-	StashTabFlaskAll = Assign the Stash tab for Quality Flask items
-	StashTabYesFlaskAll = Enable to send unquality flasks to the assigned tab on the left
-	StashTabLinked = Assign the Stash tab for 6 or 5 Linked items
-	StashTabYesLinked = Enable to send 6 or 5 Linked items to the assigned tab on the left
-	StashTabBrickedMaps = Assign the Stash tab for maps that have unwanted mods on them
-	StashTabYesBrickedMaps = Enable to send maps that have unwanted mods on them to the assigned tab on the left
-	StashTabUniqueDump = Assign the Stash tab for Unique items`rIf Collection is enabled, this will be where overflow goes
-	StashTabYesUniqueDump = Enable to send Unique items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow goes
-	StashTabUniqueRing = Assign the Stash tab for Unique Ring items`rIf Collection is enabled, this will be where overflow rings go
-	StashTabYesUniqueRing = Enable to send Unique Ring items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow rings go
-	StashTabYesInfluencedItem = Enable to send Influenced items to the assigned tab on the left
-	StashTabYesRunes = Enable to send Kalguuran Runes to the assigned tab on the left
-	StashTabYesTattoos = Enable to send Tattoos to the assigned tab on the left
-	StashTabInfluencedItem = Assign the Stash tab for Influenced items
-	StashTabDelve = Assign the Stash tab for Delve items
-	StashTabYesDelve = Enable to send Delve items to the assigned tab on the left
-	StashTabCrafting = Assign the Stash tab for Crafting items
-	StashTabYesCrafting = Enable to send Crafting items to the assigned tab on the left
-	MMQorWeight = Keep maps which reach Minimum Map Qualities OR Minimum Weight
+	ChaosRecipeEnableFunction == Enable/Disable the Chaos Recipe logic which includes all of its settings
+	ChaosRecipeMaxHoldingID == Determine how many sets of identified Chaos Recipe to stash
+	ChaosRecipeMaxHoldingUNID == Determine how many sets of unidentified Chaos Recipe to stash
+	ChaosRecipeTypePure == Recipe will affect items which are between 60-74 which have not met other stash/CLF filters`ronly draw items within that range from stash for chaos recipe.
+	ChaosRecipeTypeHybrid == Recipe will affect all rares 60+ which have not met other stash/CLF filters`rRequires at least one lvl 60-74 item to make a recipe set`rPriority is given to regal items.
+	ChaosRecipeTypeRegal == Recipe will affect items which are 75+ which have not met other stash/CLF filters`ronly draw items for regal recipe from stash.
+	ChaosRecipeAllowDoubleJewellery == Amulets and Rings will be given double allowance of Parts limit
+	ChaosRecipeAllowDoubleBelt == Belts will be given double allowance of Parts limit
+	ChaosRecipeEnableUnId == Keep items which are within the limits of the recipe settings from being identified.
+	ChaosRecipeSmallWeapons == Stash 1x3 or 2x2 Weapons and Shields only, filtering bulky items from wasting space.`rWill also stash 2x3 two handers.
+	ChaosRecipeStashTabWeapon == Assign the Stash Tab that Weapons will be sorted into.
+	ChaosRecipeStashTabHelmet == Assign the Stash Tab that Helmets will be sorted into.
+	ChaosRecipeStashTabArmour == Assign the Stash Tab that Armours will be sorted into.
+	ChaosRecipeStashTabGloves == Assign the Stash Tab that Gloves will be sorted into.
+	ChaosRecipeStashTabBoots == Assign the Stash Tab that Boots will be sorted into.
+	ChaosRecipeStashTabBelt == Assign the Stash Tab that Belts will be sorted into.
+	ChaosRecipeStashTabAmulet == Assign the Stash Tab that Amulets will be sorted into.
+	ChaosRecipeStashTabRing == Assign the Stash Tab that Rings will be sorted into.
+	ChaosRecipeStashMethodDump == Use the dump tab assigned in stash tab management
+	ChaosRecipeStashMethodTab == Use the tab set below to seperate chaos recipe items
+	ChaosRecipeStashMethodSort == Use seperate tabs for each part of the recipe list
+	ChaosRecipeStashTab == Assign the Stash Tab that All Parts will be sorted into.
+	ChaosRecipeLimitUnId == Items will remain unidentified until this Item Level
+	AreaScale == Increases the Pixel box around the Mouse`rA setting of 0 will search under cursor`rCan behave strangely at very high range
+	StashTabCurrency == Assign the Stash tab for Currency items
+	StashTabYesCurrency == Enable to send Currency items to the assigned tab on the left
+	StashTabMap == Assign the Stash tab for Map items
+	StashTabYesMap == Enable to send Map items to the assigned tab on the left
+	StashTabFragment == Assign the Stash tab for Fragment items
+	StashTabYesFragment == Enable to send Fragment items to the assigned tab on the left
+	StashTabDivination == Assign the Stash tab for Divination items
+	StashTabYesDivination == Enable to send Divination items to the assigned tab on the left
+	StashTabUnique == Assign the Stash tab for Collection items`rThis is where Uniques will first be attempted to stash
+	StashTabYesUnique == Enable to send Collection items to the assigned tab on the left`rThis is where Uniques will first be attempted to stash
+	StashTabEssence == Assign the Stash tab for Essence items
+	StashTabYesEssence == Enable to send Essence items to the assigned tab on the left
+	StashTabProphecy == Assign the Stash tab for Prophecy items
+	StashTabYesProphecy == Enable to send Prophecy items to the assigned tab on the left
+	StashTabVeiled == Assign the Stash tab for Veiled items
+	StashTabYesVeiled == Enable to send Veiled items to the assigned tab on the left
+	StashTabNinjaPrice == Assign the Stash tab for Ninja Priced items
+	StashTabYesNinjaPrice == Enable to send Ninja Priced items to the assigned tab on the left`rChaos Value must be at or above threshold
+	StashTabYesNinjaPrice_Price == Assign the minimum value in chaos to send to Ninja Priced Tab
+	StashTabPredictive == Assign the Stash tab for Rare items priced with Machine Learning
+	StashTabYesPredictive == Enable to send Priced Rare items to the assigned tab on the left`rPredicted price value must be at or above threshold
+	StashTabClusterJewel == Assign the Stash tab for cluster jewels
+	StashTabYesClusterJewel == Enable to send Cluster Jewels to the assigned tab on the left
+	StashTabDump == Assign the Stash tab for Unsorted items left over during Stash routine
+	StashTabYesDump == Enable to send Unsorted items to the assigned Dump tab on the left
+	StashDumpInTrial == Enables dump tab for all unsorted items when in Aspirant's Trial
+	StashDumpSkipJC == Do not stash Jewler or Chromatic items when dumping
+	StashTabGemSupport == Assign the Stash tab for Support Gem items
+	StashTabYesGemSupport == Enable to send Support Gem items to the assigned tab on the left
+	StashTabUltimatum == Assign the Stash tab for Ultimatum items
+	StashTabYesUltimatum == Enable to send Ultimatum items to the assigned tab on the left
+	StashTabGem == Assign the Stash tab for Normal Gem items
+	StashTabYesGem == Enable to send Normal Gem items to the assigned tab on the left
+	StashTabGemVaal == Assign the Stash tab for Vaal Gem items
+	StashTabYesGemVaal == Enable to send Vaal Gem items to the assigned tab on the left`rIf Quality Gems are enabled, that will take priority
+	StashTabGemQuality == Assign the Stash tab for Quality Gem items
+	StashTabYesGemQuality == Enable to send Quality Gem items to the assigned tab on the left
+	StashTabFlaskQuality == Assign the Stash tab for Quality Flask items
+	StashTabYesFlaskQuality == Enable to send Quality Flask items to the assigned tab on the left
+	StashTabFlaskAll == Assign the Stash tab for Quality Flask items
+	StashTabYesFlaskAll == Enable to send unquality flasks to the assigned tab on the left
+	StashTabLinked == Assign the Stash tab for 6 or 5 Linked items
+	StashTabYesLinked == Enable to send 6 or 5 Linked items to the assigned tab on the left
+	StashTabBrickedMaps == Assign the Stash tab for maps that have unwanted mods on them
+	StashTabYesBrickedMaps == Enable to send maps that have unwanted mods on them to the assigned tab on the left
+	StashTabUniqueDump == Assign the Stash tab for Unique items`rIf Collection is enabled, this will be where overflow goes
+	StashTabYesUniqueDump == Enable to send Unique items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow goes
+	StashTabUniqueRing == Assign the Stash tab for Unique Ring items`rIf Collection is enabled, this will be where overflow rings go
+	StashTabYesUniqueRing == Enable to send Unique Ring items to the assigned tab on the left`rIf Collection is enabled, this will be where overflow rings go
+	StashTabYesInfluencedItem == Enable to send Influenced items to the assigned tab on the left
+	StashTabYesRunes == Enable to send Kalguuran Runes to the assigned tab on the left
+	StashTabYesTattoos == Enable to send Tattoos to the assigned tab on the left
+	StashTabInfluencedItem == Assign the Stash tab for Influenced items
+	StashTabDelve == Assign the Stash tab for Delve items
+	StashTabYesDelve == Enable to send Delve items to the assigned tab on the left
+	StashTabCrafting == Assign the Stash tab for Crafting items
+	StashTabYesCrafting == Enable to send Crafting items to the assigned tab on the left
+	MMQorWeight == Keep maps which reach Minimum Map Qualities OR Minimum Weight
 
 )"
 
 ft_ToolTip_Text_Part3 := "
 (LTrim
-	StartMapTier1 = Select Initial Map Tier Range 1
-	StartMapTier2 = Select Initial Map Tier Range 2
-	StartMapTier3 = Select Initial Map Tier Range 3
-	EndMapTier1 = Select Ending Map Tier Range 1
-	EndMapTier2 = Select Ending Map Tier Range 2
-	EndMapTier3 = Select Ending Map Tier Range 3
-	CraftingMapMethod1 = Select Crafting/ReCrafting Method for Range 1
-	CraftingMapMethod2 = Select Crafting/ReCrafting Method for Range 2
-	CraftingMapMethod3 = Select Crafting/ReCrafting Method for Range 3
-	MoveMapsToArea = When finished map crafting, move all crafted maps to the map area`rThis will include MapPrep Items that were not in map area
-	YesIncludeFandSItem = Fracture and Synthesised itens will be considered as influenced items
-	ElementalReflect = Select this if your build can't run maps with this mod
-	PhysicalReflect = Select this if your build can't run maps with this mod
-	NoLeech = Select this if your build can't run maps with this mod
-	NoRegen = Select this if your build can't run maps with this mod
-	AvoidAilments = Select this if your build can't run maps with this mod
-	AvoidPBB = Select this if your build can't run maps with this mod
-	MinusMPR = Select this if your build can't run maps with this mod
-	YesNinjaDatabase = Enable to Update Ninja Database and load at start
-	WR_Btn_Inventory = Open the settings related to the inventory
-	WR_Btn_Strings = Open the settings related to the FindText Strings
-	WR_Btn_Chat = Open the settings related to the Chat Hotkeys
-	WR_Btn_Controller = Bind actions to joystick input
-	WR_Btn_CLF = Configure the Custom Loot Filter`rUse this to filter items by properties, affixes, or stats
-	WR_Btn_IgnoreSlot = Assign the ignored slots in your inventory`rThe script will not touch items in these locations
-	WR_Reset_Globe = Loads unmodified default values and reloads UI
-	WR_Save_JSON_Globe = Save changes to disk`rThese changes will load on script launch
-	stashPrefix1 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
-	stashPrefix2 = Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
-	stashSuffix1 = Hotkey for the 1st Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix2 = Hotkey for the 2nd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix3 = Hotkey for the 3rd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix4 = Hotkey for the 4th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix5 = Hotkey for the 5th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix6 = Hotkey for the 6th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix7 = Hotkey for the 7th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix8 = Hotkey for the 8th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffix9 = Hotkey for the 9th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
-	stashSuffixTab1 = Assign the Stash Tab for the 1st Stash Hotkey slot
-	stashSuffixTab2 = Assign the Stash Tab for the 2nd Stash Hotkey slot
-	stashSuffixTab3 = Assign the Stash Tab for the 3rd Stash Hotkey slot
-	stashSuffixTab4 = Assign the Stash Tab for the 4th Stash Hotkey slot
-	stashSuffixTab5 = Assign the Stash Tab for the 5th Stash Hotkey slot
-	stashSuffixTab6 = Assign the Stash Tab for the 6th Stash Hotkey slot
-	stashSuffixTab7 = Assign the Stash Tab for the 7th Stash Hotkey slot
-	stashSuffixTab8 = Assign the Stash Tab for the 8th Stash Hotkey slot
-	stashSuffixTab9 = Assign the Stash Tab for the 9th Stash Hotkey slot
-	hotkeyMainAttack = Bind the Main Attack for this Character
-	hotkeySecondaryAttack = Bind the Secondary Attack for this Character
-	YesOpenStackedDeck = Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
-	YesOpenVeiledScarab = Open Veiled Scarabs while at the stash`rMoves to inventory respecting ignore slots
-	YesSpecial5Link = Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
-	CLFStrictnessNumber = Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) All Filters Strictness Will Be Matched`rLevel 5 (Higher Strictness) Only Main Filters Will be Matched`rAny Filter Without Strictness Defined Will Be Always Matched
+	StartMapTier1 == Select Initial Map Tier Range 1
+	StartMapTier2 == Select Initial Map Tier Range 2
+	StartMapTier3 == Select Initial Map Tier Range 3
+	EndMapTier1 == Select Ending Map Tier Range 1
+	EndMapTier2 == Select Ending Map Tier Range 2
+	EndMapTier3 == Select Ending Map Tier Range 3
+	CraftingMapMethod1 == Select Crafting/ReCrafting Method for Range 1
+	CraftingMapMethod2 == Select Crafting/ReCrafting Method for Range 2
+	CraftingMapMethod3 == Select Crafting/ReCrafting Method for Range 3
+	MoveMapsToArea == When finished map crafting, move all crafted maps to the map area`rThis will include MapPrep Items that were not in map area
+	YesIncludeFandSItem == Fracture and Synthesised itens will be considered as influenced items
+	ElementalReflect == Select this if your build can't run maps with this mod
+	PhysicalReflect == Select this if your build can't run maps with this mod
+	NoLeech == Select this if your build can't run maps with this mod
+	NoRegen == Select this if your build can't run maps with this mod
+	AvoidAilments == Select this if your build can't run maps with this mod
+	AvoidPBB == Select this if your build can't run maps with this mod
+	MinusMPR == Select this if your build can't run maps with this mod
+	YesNinjaDatabase == Enable to Update Ninja Database and load at start
+	WR_Btn_Inventory == Open the settings related to the inventory
+	WR_Btn_Strings == Open the settings related to the FindText Strings
+	WR_Btn_Chat == Open the settings related to the Chat Hotkeys
+	WR_Btn_Controller == Bind actions to joystick input
+	WR_Btn_CLF == Configure the Custom Loot Filter`rUse this to filter items by properties, affixes, or stats
+	WR_Btn_IgnoreSlot == Assign the ignored slots in your inventory`rThe script will not touch items in these locations
+	WR_Reset_Globe == Loads unmodified default values and reloads UI
+	WR_Save_JSON_Globe == Save changes to disk`rThese changes will load on script launch
+	stashPrefix1 == Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
+	stashPrefix2 == Assign one or more modifier key`rWhen all assigned keys are pressed, Stash Hotkeys become active`rLeave Blank to disable
+	stashSuffix1 == Hotkey for the 1st Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix2 == Hotkey for the 2nd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix3 == Hotkey for the 3rd Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix4 == Hotkey for the 4th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix5 == Hotkey for the 5th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix6 == Hotkey for the 6th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix7 == Hotkey for the 7th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix8 == Hotkey for the 8th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffix9 == Hotkey for the 9th Stash Hotkey slot`rThis hotkey will only activate while the Modifier(s) are pressed`rLeave Blank to disable
+	stashSuffixTab1 == Assign the Stash Tab for the 1st Stash Hotkey slot
+	stashSuffixTab2 == Assign the Stash Tab for the 2nd Stash Hotkey slot
+	stashSuffixTab3 == Assign the Stash Tab for the 3rd Stash Hotkey slot
+	stashSuffixTab4 == Assign the Stash Tab for the 4th Stash Hotkey slot
+	stashSuffixTab5 == Assign the Stash Tab for the 5th Stash Hotkey slot
+	stashSuffixTab6 == Assign the Stash Tab for the 6th Stash Hotkey slot
+	stashSuffixTab7 == Assign the Stash Tab for the 7th Stash Hotkey slot
+	stashSuffixTab8 == Assign the Stash Tab for the 8th Stash Hotkey slot
+	stashSuffixTab9 == Assign the Stash Tab for the 9th Stash Hotkey slot
+	hotkeyMainAttack == Bind the Main Attack for this Character
+	hotkeySecondaryAttack == Bind the Secondary Attack for this Character
+	YesOpenStackedDeck == Open Stacked Decks while at the stash`rMoves to inventory respecting ignore slots
+	YesOpenVeiledScarab == Open Veiled Scarabs while at the stash`rMoves to inventory respecting ignore slots
+	YesSpecial5Link == Giving 5 links a special type will prevent them from being vendored, expecially relevant for Jeweller's recipe items with 5 links.
+	CLFStrictnessNumber == Strictness Levels in Custom Loot Filter`rLevel 0 (Default Option) All Filters Strictness Will Be Matched`rLevel 5 (Higher Strictness) Only Main Filters Will be Matched`rAny Filter Without Strictness Defined Will Be Always Matched
 
 )"
 
 ; Tooltips for the utility and flask menus
 ft_ToolTip_Text_Part4 := "
 (LTrim
-	MainAttackOnly = Only trigger other settings when the main attack is being held
-	MainAttack = Trigger this when the Main attack button is pressed
-	MainAttackRelease = Trigger this when the Main attack button is released
-	SecondaryAttack = Trigger this when the Secondary attack button is pressed
-	SecondaryAttackRelease = Trigger this when the Secondary attack button is released
-	Enable = Enable this to trigger
-	OnCD = Fire this every time it comes off cooldown
-	CD = Set the time between firing
-	Key = Set the key to press`rThis can include multiple keys seperated with a space`rIt can also include a delay like so [100](k)
-	Group = Which cooldown group will this belong to
-	GroupCD = How long will the group remain on cooldown when this fires
-	Curse = Trigger when a Curse is found`rRequires the strings configured in string settings to work
-	Shock = Trigger when a Shock is found`rRequires the strings configured in string settings to work
-	Bleed = Trigger when a Bleed is found`rRequires the strings configured in string settings to work
-	Freeze = Trigger when a Freeze is found`rRequires the strings configured in string settings to work
-	Ignite = Trigger when a Ignite is found`rRequires the strings configured in string settings to work
-	Poison = Trigger when a Poison is found`rRequires the strings configured in string settings to work
-	Icon = Trigger this when the sample cannot be found
-	IconShown = Inverts the logic to trigger when the sample is found
-	IconSearch = Which type of search area do you want configured
-	IconArea_Show = Show the area which is configured for custom
-	IconArea_Set = Set the custom area for searching for an icon
-	IconVar1 = Change the allowed error value for 1's in the sample
-	IconVar0 = Change the allowed error value for 0's in the sample
-	PopAll = Include this in the Pop All hotkey
-	Move = Trigger this when the Movement key is pressed
-	Condition = Make the resource triggers fire when any are true, or when all are true
+	MainAttackOnly == Only trigger other settings when the main attack is being held
+	MainAttack == Trigger this when the Main attack button is pressed
+	MainAttackRelease == Trigger this when the Main attack button is released
+	SecondaryAttack == Trigger this when the Secondary attack button is pressed
+	SecondaryAttackRelease == Trigger this when the Secondary attack button is released
+	Enable == Enable this to trigger
+	OnCD == Fire this every time it comes off cooldown
+	CD == Set the time between firing
+	Key == Set the key to press`rThis can include multiple keys seperated with a space`rIt can also include a delay like so [100](k)
+	Group == Which cooldown group will this belong to
+	GroupCD == How long will the group remain on cooldown when this fires
+	Curse == Trigger when a Curse is found`rRequires the strings configured in string settings to work
+	Shock == Trigger when a Shock is found`rRequires the strings configured in string settings to work
+	Bleed == Trigger when a Bleed is found`rRequires the strings configured in string settings to work
+	Freeze == Trigger when a Freeze is found`rRequires the strings configured in string settings to work
+	Ignite == Trigger when a Ignite is found`rRequires the strings configured in string settings to work
+	Poison == Trigger when a Poison is found`rRequires the strings configured in string settings to work
+	Icon == Trigger this when the sample cannot be found
+	IconShown == Inverts the logic to trigger when the sample is found
+	IconSearch == Which type of search area do you want configured
+	IconArea_Show == Show the area which is configured for custom
+	IconArea_Set == Set the custom area for searching for an icon
+	IconVar1 == Change the allowed error value for 1's in the sample
+	IconVar0 == Change the allowed error value for 0's in the sample
+	PopAll == Include this in the Pop All hotkey
+	Move == Trigger this when the Movement key is pressed
+	Condition == Make the resource triggers fire when any are true, or when all are true
 
 )"
 

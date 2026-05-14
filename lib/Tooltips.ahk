@@ -12,9 +12,9 @@ Ding(Timeout:=500, MultiTooltip:=0, Message*)
     {
       For mkey, mval in Message
       {
-        If (mval = "")
+        If (mval == "")
           Continue
-        If (A_Index = 1)
+        If (A_Index == 1)
         {
           If MultiTooltip
             ToolTip(mval, 20, 40 + MultiTooltip * 23, MultiTooltip)
@@ -92,7 +92,7 @@ ShowToolTip(wParam, lParam, msg, hwnd)
     ListLines(0)
     MouseGetPos(,, &_TT)
     _TT := WinGetClass("ahk_id " _TT)
-    if (_TT = "AutoHotkeyGUI") {
+    if (_TT == "AutoHotkeyGUI") {
       stripCtrl := StrReplace(CurrControl, "ft_")
       stripCtrl := RegExReplace(stripCtrl, "^Utility\d*", "")
       stripCtrl := RegExReplace(stripCtrl, "^Flask\d*", "")

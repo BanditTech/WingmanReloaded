@@ -148,7 +148,7 @@ UtilityMenu(GuiCtrl, *){
 	UtilityGuiClose(GuiObj) {
 		val := 0
 		for s, g in UtilityGui {
-			if (g.Hwnd = GuiObj.Hwnd) {
+			if (g.Hwnd == GuiObj.Hwnd) {
 				val := s
 				break
 			}
@@ -164,7 +164,7 @@ UtilityMenu(GuiCtrl, *){
 	UtilityGuiEscape(GuiObj) {
 		val := 0
 		for s, g in UtilityGui {
-			if (g.Hwnd = GuiObj.Hwnd) {
+			if (g.Hwnd == GuiObj.Hwnd) {
 				val := s
 				break
 			}

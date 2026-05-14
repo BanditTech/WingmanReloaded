@@ -99,7 +99,7 @@ Class SortByNum {
 						Return [[binNum,binKey],[key1]]
 					Else {
 						For key2, obj2 in This.Excess {
-							If (key1 = key2)
+							If (key1 == key2)
 								Continue 1
 							newQ := groupQ - binObj.Q + obj1.Q + obj2.Q
 							If (newQ >= This.Min && newQ - This.Min < overQ)
@@ -120,7 +120,7 @@ Class SortByNum {
 			For binKey, binObj in bin {
 				; Going through each bin, finding replacements to lower overQ
 				For binKey2, binObj2 in bin {
-					If (binKey2 = binKey)
+					If (binKey2 == binKey)
 						Continue
 					For key, obj in This.Excess {
 						newQ := groupQ - binObj.Q - binObj2.Q + obj.Q
@@ -159,7 +159,7 @@ Class SortByNum {
 	}
 	ReturnToExcess(binNum,tkey:=""){
 		For key, obj in This.SortGroups[binNum] {
-			If (tkey="" || tkey && key = tkey)
+			If (tkey="" || tkey && key == tkey)
 				This.Excess.Push(obj)
 		}
 		If (tkey="")
@@ -261,19 +261,19 @@ Class SortByNum {
 				Return [FirstKey]
 			} Else If (depth >= 2) {
 				For SecondKey, SecondObj in This.Excess {
-					If (FirstKey = SecondKey)
+					If (FirstKey == SecondKey)
 						Continue 1
 					If ((groupQ + FirstObj.Q + SecondObj.Q) >= This.Min && (groupQ + FirstObj.Q + SecondObj.Q) <= This.Max) {
 						Return [FirstKey,SecondKey]
 					}	Else If (depth >= 3) {
 						For ThirdKey, ThirdObj in This.Excess {
-							If (FirstKey = ThirdKey || SecondKey = ThirdKey)
+							If (FirstKey == ThirdKey || SecondKey == ThirdKey)
 								Continue 1
 							If ((groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q) >= This.Min && (groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q) <= This.Max) {
 								Return [FirstKey,SecondKey,ThirdKey]
 							} Else If (depth >= 4) {
 								For FourthKey, FourthObj in This.Excess {
-									If (FirstKey = FourthKey || SecondKey = FourthKey || ThirdKey = FourthKey)
+									If (FirstKey == FourthKey || SecondKey == FourthKey || ThirdKey == FourthKey)
 										Continue 1
 									If ((groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q + FourthObj.Q) >= This.Min && (groupQ + FirstObj.Q + SecondObj.Q + ThirdObj.Q + FourthObj.Q) <= This.Max) {
 										Return [FirstKey,SecondKey,ThirdKey,FourthKey]
