@@ -86,13 +86,13 @@ __Delete() {
 ; ===================================================================================================================
 ; CheckBkColor  Internal check for parameter BkColor.
 ; ===================================================================================================================
-CheckBkColor(&BkColor, Class) {
+CheckBkColor(&BkColor, CtrlClass) {
 	This.ErrorMsg := ""
 	If (BkColor != "") && !This.HTML.Has(BkColor) && !RegExMatch(BkColor, "^[[:xdigit:]]{6}$") {
 		This.ErrorMsg := "Invalid parameter BkColor: " . BkColor
 		Return False
 	}
-	BkColor := BkColor = "" ? This.SYSCOLORS[Class]
+	BkColor := BkColor = "" ? This.SYSCOLORS[CtrlClass]
 			:  This.HTML.Has(BkColor) ? This.HTML[BkColor]
 			:  "0x" . SubStr(BkColor, 5, 2) . SubStr(BkColor, 3, 2) . SubStr(BkColor, 1, 2)
 	Return True
