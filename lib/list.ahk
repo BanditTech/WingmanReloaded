@@ -3,9 +3,9 @@
 ; All libs below have been ported to AHK v2
 
 ; --- Aris-managed packages ---
+; Suppress LocalSameAsGlobal while loading third-party libs that may shadow globals.
+#Warn LocalSameAsGlobal, Off
 #Include %A_ScriptDir%\lib\Aris\packages.ahk
-; Re-enable LocalSameAsGlobal after packages.ahk turns it off,
-; so project code still gets that warning.
 #Warn LocalSameAsGlobal, MsgBox
 
 ; --- Ported third-party libs (lib\ref) ---
