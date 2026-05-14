@@ -12,7 +12,7 @@ Class RefreshAffixes {
 			Try {
 				obj := Json.Load(v)
 				; MsgBox % isObject(obj)
-			} Catch e {
+			} catch as e {
 				Util.Err(e,"Issue loading JSON for " subfield)
 			}
 			For k, vv in obj.normal {

@@ -1240,7 +1240,7 @@ Settings(name:="perChar",Action:="Load"){
 					WR[name][k] := obj[k]
 				}
 			}
-		} Catch e {
+		} catch as e {
 			Util.Err(e, "Setting Load failed for .\save\" name ".json")
 		}
 	}Else If (Action == "Save"){

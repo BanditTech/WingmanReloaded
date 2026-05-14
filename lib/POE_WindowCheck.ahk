@@ -63,7 +63,7 @@ PoEWindowCheck()
 				checkUpdate()
 			}
 		}
-	} catch e {
+	} catch as e {
 		Log("Error","PoEWindowCheck", ErrorText(e))
 	}
 	Return
