@@ -75,7 +75,7 @@ if !FileExist(A_ScriptDir "\data\Bases.json")
 ;Bases := JSON.Load(FileOpen(A_ScriptDir "\data\Bases.json","r").Read())
 
 UpdatePOEData(){
-	Global POEData, BranchName, k, v, ki, vi, aux
+	Global POEData, BranchName
 	if !FileExist(A_ScriptDir "\data\PoE Data\Category.json")
 	{
 		Try {
@@ -87,16 +87,16 @@ UpdatePOEData(){
 		}
 	}
 	POEData := JSON.Load(FileOpen(A_ScriptDir "\data\PoE Data\Category.json","r").Read())
-	For k, v in POEData {
-		for ki, vi in v {
-			aux := k . "(" . vi . ").json"
-			if !FileExist(A_ScriptDir "\data\PoE Data\" aux)
+	For fk, fv in POEData {
+		for fki, fvi in fv {
+			faux := fk . "(" . fvi . ").json"
+			if !FileExist(A_ScriptDir "\data\PoE Data\" faux)
 			{
 				Try {
-					Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/PoE Data/" aux, A_ScriptDir "\data\PoE Data\" aux)
+					Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/PoE Data/" faux, A_ScriptDir "\data\PoE Data\" faux)
 					Log("Verbose","Data downloaded Correctly", "Downloading POEData was a success")
 				} Catch {
-					Log("Error","Data download error", aux)
+					Log("Error","Data download error", faux)
 					MsgBox("Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub")
 				}
 			}
@@ -106,7 +106,7 @@ UpdatePOEData(){
 UpdatePOEData()
 
 UpdateBasesData(){
-	Global BasesData, BasesWR, QuestItems, BranchName, k, v, aux
+	Global BasesData, BasesWR, QuestItems, BranchName
 	if !FileExist(A_ScriptDir "\data\Bases Data\Category.json")
 	{
 		Try {
@@ -129,15 +129,15 @@ UpdateBasesData(){
 		}
 	}
 	BasesWR := JSON.Load(FileOpen(A_ScriptDir "\data\Bases Data\BasesWR.json","r").Read())
-	For k, v in BasesData {
-			aux := k . ".json"
-			if !FileExist(A_ScriptDir "\data\Bases Data\" aux)
+	For fk, fv in BasesData {
+			faux := fk . ".json"
+			if !FileExist(A_ScriptDir "\data\Bases Data\" faux)
 			{
 				Try {
-					Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/Bases Data/" aux, A_ScriptDir "\data\Bases Data\" aux)
+					Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/Bases Data/" faux, A_ScriptDir "\data\Bases Data\" faux)
 					Log("Verbose","Data downloaded Correctly", "Downloading BasesData was a success")
 				} Catch {
-					Log("Error","Data download error", aux)
+					Log("Error","Data download error", faux)
 					MsgBox("Error ED02 : There was a problem downloading Quest.json from Wingman Reloaded GitHub")
 				}
 			}
