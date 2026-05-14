@@ -24,7 +24,7 @@ CoordMode("Pixel", "Screen")
 CoordMode("Tooltip", "Screen")
 FileEncoding("UTF-8")
 SendMode("Input")
-StringCaseSense("On") ; Match strings with case.
+; StringCaseSense removed in AHK v2 — use == for case-sensitive comparisons, = for case-insensitive.
 
 SetTitleMatchMode(2)
 SetWorkingDir(A_ScriptDir)
