@@ -301,12 +301,12 @@ class ItemScan
 				If (InStr(This.Prop.ItemBase, "Blighted"))
 				{
 					This.Prop.IsBlightedMap := True
-					Prop.SpecialType := "Blighted Map"
+					This.Prop.SpecialType := "Blighted Map"
 				}
 				Else If (InStr(This.Prop.ItemBase, "Blight-ravaged"))
 				{
 					This.Prop.IsBlightRavagedMap := True
-					Prop.SpecialType := "Blight-ravaged Map"
+					This.Prop.SpecialType := "Blight-ravaged Map"
 				}
 				Else
 				{
