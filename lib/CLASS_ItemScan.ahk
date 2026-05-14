@@ -651,7 +651,7 @@ class ItemScan
 				}
 			}
 			;Generic Props
-			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+" rxNum, &RxMatch) && !IsMap)
+			If (RegExMatch(This.Data.Blocks.Properties, "`am)^Quality: \+" rxNum, &RxMatch) && !This.Prop.IsMap)
 			{
 				This.Prop.Quality := RxMatch[1]
 			}
