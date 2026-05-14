@@ -1,1 +1,1 @@
-#include .\Gdip@9fa1817\Gdip_All.ahk
+﻿#include .\Gdip@d3ddef1\Gdip_All.ahk

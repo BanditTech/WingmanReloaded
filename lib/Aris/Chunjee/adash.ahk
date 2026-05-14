@@ -1,1 +1,1 @@
-#include .\adash@v0.6.0\adash.ahk
+﻿#include .\adash@v0.6.0\adash.ahk
