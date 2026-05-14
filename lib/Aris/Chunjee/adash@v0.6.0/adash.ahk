@@ -246,7 +246,7 @@ class adash {
 					if (this.isEqual(value, param_value)) {
 						return key
 					}
-				} else if (this.isEqual(value, param_value)) {
+				} else if (value == param_value) {
 					return key
 				}
 			}
@@ -259,7 +259,7 @@ class adash {
 					if (this.isEqual(value, param_value)) {
 						return key
 					}
-				} else if (this.isEqual(value, param_value)) {
+				} else if (value == param_value) {
 					return key
 				}
 			}

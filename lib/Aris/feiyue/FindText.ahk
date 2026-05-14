@@ -1,1 +1,1 @@
-#include .\FindText@3ffe6b6\FindText.ahk
+﻿#include .\FindText@3ff232f\FindText.ahk

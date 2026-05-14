@@ -1,5 +1,5 @@
 ;
-; cJson.ahk 2.1.0-git-built
+; cJson.ahk 2.1.0
 ; Copyright (c) 2023 Philip Taylor (known also as GeekDude, G33kDude)
 ; https://github.com/G33kDude/cJson.ahk
 ;
