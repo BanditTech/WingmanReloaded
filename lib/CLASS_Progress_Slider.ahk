@@ -54,23 +54,22 @@ class Progress_Slider  {
         This.Slider_Value:=This.End_Range
       else if(This.Slider_Value<This.Start_Range)
         This.Slider_Value:=This.Start_Range
-      GuiControl(This.GUI_NAME ":", This.Control_ID, This.Slider_Value)
+      This.GUI_NAME[This.Control_ID].Value := This.Slider_Value
       if(This.Pair_With_Edit>=1 && This.Slider_Value != OldVal)
       {
         OldVal := This.Slider_Value
         if(This.Pair_With_Edit<=2)
         {
-          GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID, This.Slider_Value)
+          This.GUI_NAME[This.Paired_Edit_ID].Value := This.Slider_Value
           If (This.SaveINISection)
             IniWrite(This.Slider_Value, A_ScriptDir "\save\Settings.ini", This.SaveINISection, This.Paired_Edit_ID)
         }
         if(This.Pair_With_Edit>=2)
-        GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID_Hex, Format("{1:02X}",This.Slider_Value))
+          This.GUI_NAME[This.Paired_Edit_ID_Hex].Value := Format("{1:02X}",This.Slider_Value)
       }
       if(This.Add_Method!=0)
       {
-
-        GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID_Hex, Format("{1:02X}",This.Slider_Value))
+        This.GUI_NAME[This.Paired_Edit_ID_Hex].Value := Format("{1:02X}",This.Slider_Value)
       }
       if(This.Use_Tooltip=1 && A_TickCount - LastTT > 100 )
       {
@@ -83,13 +82,13 @@ class Progress_Slider  {
   }
   SET_pSlider(NEW_pSlider_Value){
     This.Slider_Value := NEW_pSlider_Value
-    GuiControl(This.GUI_NAME ":", This.Control_ID, This.Slider_Value)
+    This.GUI_NAME[This.Control_ID].Value := This.Slider_Value
     if(This.Pair_With_Edit>=1)
     {
       if(This.Pair_With_Edit<=2)
-      GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID, This.Slider_Value)
+        This.GUI_NAME[This.Paired_Edit_ID].Value := This.Slider_Value
       if(This.Pair_With_Edit>=2)
-      GuiControl(This.GUI_NAME ":", This.Paired_Edit_ID_Hex, Format("{1:02X}",This.Slider_Value))
+        This.GUI_NAME[This.Paired_Edit_ID_Hex].Value := Format("{1:02X}",This.Slider_Value)
     }
   }
 }
