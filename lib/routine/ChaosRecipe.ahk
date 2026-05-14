@@ -132,31 +132,31 @@ confirmOneOfEach(Object,id:=True){
   ; now lets confirm we have a valid combination of weapons
   If ChaosRecipeTypeHybrid
   {
-    2hchaos := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"])
-    2hregal := getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
-    2hresult := 2hchaos + 2hregal
-    1hchaos := getCount(Object[id?"Chaos":"uChaos"]["One Hand"]) + getCount(Object[id?"Chaos":"uChaos"]["Shield"])
-    1hregal := getCount(Object[id?"Regal":"uRegal"]["One Hand"]) + getCount(Object[id?"Regal":"uRegal"]["Shield"])
-    1hresult := 1hchaos + 1hregal
-    If (!2hresult && 1hresult < 2)
+    twoHchaos := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"])
+    twoHregal := getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
+    twoHresult := twoHchaos + twoHregal
+    oneHchaos := getCount(Object[id?"Chaos":"uChaos"]["One Hand"]) + getCount(Object[id?"Chaos":"uChaos"]["Shield"])
+    oneHregal := getCount(Object[id?"Regal":"uRegal"]["One Hand"]) + getCount(Object[id?"Regal":"uRegal"]["Shield"])
+    oneHresult := oneHchaos + oneHregal
+    If (!twoHresult && oneHresult < 2)
       Return False
-    if (1hchaos >= 1 || 2hchaos >= 1 )
+    if (oneHchaos >= 1 || twoHchaos >= 1 )
       hasChaos := true
   }
   Else If ChaosRecipeTypePure
   {
-    2hresult := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"])
-    1hresult := getCount(Object[id?"Chaos":"uChaos"]["One Hand"])
-    1hresult += getCount(Object[id?"Chaos":"uChaos"]["Shield"])
-    If (!2hresult && 1hresult < 2)
+    twoHresult := getCount(Object[id?"Chaos":"uChaos"]["Two Hand"])
+    oneHresult := getCount(Object[id?"Chaos":"uChaos"]["One Hand"])
+    oneHresult += getCount(Object[id?"Chaos":"uChaos"]["Shield"])
+    If (!twoHresult && oneHresult < 2)
       Return False
   }
   Else If ChaosRecipeTypeRegal
   {
-    2hresult := getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
-    1hresult := getCount(Object[id?"Regal":"uRegal"]["One Hand"])
-    1hresult += getCount(Object[id?"Regal":"uRegal"]["Shield"])
-    If (!2hresult && 1hresult < 2)
+    twoHresult := getCount(Object[id?"Regal":"uRegal"]["Two Hand"])
+    oneHresult := getCount(Object[id?"Regal":"uRegal"]["One Hand"])
+    oneHresult += getCount(Object[id?"Regal":"uRegal"]["Shield"])
+    If (!twoHresult && oneHresult < 2)
       Return False
   }
 
