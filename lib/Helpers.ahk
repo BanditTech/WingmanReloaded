@@ -8,7 +8,7 @@ MsgBoxVals(obj,indent:=0){
     For k, v in obj
     {
       txt .= (k==1&&!indent?"":"`n") spacing
-      txt .= "Key:`t"k "`t"
+      txt .= "Key:`t" k "`t"
           . "Val:`t" (IsObject(v)?"OBJECT":v)
       If IsObject(v)
       txt .= MsgBoxVals(v,indent+1)

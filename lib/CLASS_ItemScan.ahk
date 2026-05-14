@@ -1215,7 +1215,7 @@ class ItemScan
 					Else
 						This.Affix[key] := vals[1]
 					For k, v in vals
-						This.Affix[ key "_value"k ] := v
+						This.Affix[ key "_value" k ] := v
 				}
 				Else If (vals.Length == 1)
 				{
@@ -1321,7 +1321,7 @@ class ItemScan
 					Else
 						This.Affix[key] := vals[1]
 					For k, v in vals
-						This.Affix[ key "_value"k ] := v
+						This.Affix[ key "_value" k ] := v
 				}
 				Else If (vals.Length == 1)
 				{
