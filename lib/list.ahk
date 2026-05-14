@@ -4,6 +4,9 @@
 
 ; --- Aris-managed packages ---
 #Include %A_ScriptDir%\lib\Aris\packages.ahk
+; Re-enable LocalSameAsGlobal after packages.ahk turns it off,
+; so project code still gets that warning.
+#Warn LocalSameAsGlobal, MsgBox
 
 ; --- Ported third-party libs (lib\ref) ---
 #Include %A_ScriptDir%\lib\ref\XGraph.ahk
