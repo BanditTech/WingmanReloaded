@@ -40,7 +40,7 @@ GuiClose:
 ExitApp
 
 LV_DblClick:
-If a_guicontrolevent <> DoubleClick
+If a_guicontrolevent != DoubleClick
 	return
 Gui, ListView, %a_guicontrol%
 LV_Delete(1)
@@ -67,7 +67,7 @@ return
 * -Both the keyboard and mouse hook will be installed 
 * -"Critical" has to be turned off for the thread that called the funtion, to allow the threads in the funtion to run.
 * This could cause problems obviously, although turning Critical back on after calling the funtion should work okay in most cases
-* -When the user clicks "Submit", the funtion will create the hotkey (If non-blank) and check ErrorLevel (and If ErrorLevel <> 0 
+* -When the user clicks "Submit", the funtion will create the hotkey (If non-blank) and check ErrorLevel (and If ErrorLevel != 0 
 *   display a Msgbox saying the hotkey is invalid and asking to notify the author). This way you shouldn't have to worry about 
 * invalid hotkeys yourself.
 * -You can easily change the default color and font by editing the default values right at the top of the funtion.
@@ -285,7 +285,7 @@ Hotkey(Options="",Prompt="",BottomInfo="",Title="",GuiNumber=77)
 	LV_ModifyCol(2, 195)
 	IfInString, Options, -Symbols
 		hidden = hidden
-	If (InStr(Options, "-Symbols") <> 0 OR InStr(Options, "-KeyNames") <> 0)
+	If (InStr(Options, "-Symbols") != 0 OR InStr(Options, "-KeyNames") != 0)
 		Gui, %Hotkey_numGui%:Add, ListView
 		, vHotkey_Hotkey2 r1 -Hdr -LV0x20 r1 w220 c%defLVTxtColor2% Background%defLVBgColor% %hidden% xp yp, 1|2
 	Else
@@ -347,7 +347,7 @@ Hotkey(Options="",Prompt="",BottomInfo="",Title="",GuiNumber=77)
 		}
 
 	;If we have an owner, center the Gui on it
-	If owner <> 
+	If owner != 
 		{
 			Gui, %Hotkey_numGui%:Show, Autosize Hide
 			Gui, %owner%: +Lastfound
@@ -387,7 +387,7 @@ Hotkey(Options="",Prompt="",BottomInfo="",Title="",GuiNumber=77)
 	;reset the default Gui
 	If owner <>
 		Gui, %owner%: Default
-	Else If a_gui <> 
+	Else If a_gui != 
 		Gui, %a_gui%: Default
 	Else
 		Gui, 1: Default
@@ -411,7 +411,7 @@ Hotkey(Options="",Prompt="",BottomInfo="",Title="",GuiNumber=77)
 
 	;If the mouse isn't over a control, set focus to an (invisible) button
 	MouseGetPos,,,win,ctrl
-	If (win <> GuiID OR ctrl = "")
+	If (win != GuiID OR ctrl = "")
 		{
 			GuiControl, Focus, Hotkey_DefaultButton
 			Tooltip,,,,2    ;we use tooltip1 to display a message Elsewhere, so use #2
@@ -466,7 +466,7 @@ Hotkey(Options="",Prompt="",BottomInfo="",Title="",GuiNumber=77)
 	;Else If we have more than one but no modifier(s)
 	Else If keys not contains %Hotkey_modList_left_right%,%Hotkey_modList_normal%,Win  
 		{
-			If InStr(keys, firstKey) <> 1    ;If they're in the wrong order
+			If InStr(keys, firstKey) != 1    ;If they're in the wrong order
 				{
 					StringLeft, k1, keys, InStr(keys, "+") - 1    ;swap them
 					StringTrimLeft, k2, keys, InStr(keys, "+") 
@@ -520,19 +520,19 @@ Hotkey(Options="",Prompt="",BottomInfo="",Title="",GuiNumber=77)
 			
 			;If -LR is not present in options AND the LR checkbox is checked,
 			;use the left/right mod list
-			If (InStr(Hotkey_OptionsGlobal, "-LR") = 0 AND Hotkey_LeftRightMods <> 0)
+			If (InStr(Hotkey_OptionsGlobal, "-LR") = 0 AND Hotkey_LeftRightMods != 0)
 				modList = %Hotkey_modList_left_right%
 			Else
 				modList = %Hotkey_modList_normal%
 				
 			Loop, Parse, modList, `,
 				{
-					If GetKeyState(a_loopfield,"P") <> 1
+					If GetKeyState(a_loopfield,"P") != 1
 						continue
 					mods = %mods%%a_loopfield%+
 				}
 			
-			If Hotkey_LeftRightMods <> 1
+			If Hotkey_LeftRightMods != 1
 				{
 					StringReplace, mods, mods, LWin, Win
 					StringReplace, mods, mods, RWin, Win
@@ -569,7 +569,7 @@ Hotkey(Options="",Prompt="",BottomInfo="",Title="",GuiNumber=77)
 			k =
 		}
 
-	If (InStr(k, "+","",0) <> StrLen(k))  ;If it's not something like "Control+Alt+"
+	If (InStr(k, "+","",0) != StrLen(k))  ;If it's not something like "Control+Alt+"
 		{
 		IfInString, k, +    ;If we have more than one key, remove all but the first (can't have "a & b & WheelUp")
 			StringLeft, k, k, InStr(k, "+","",0)
@@ -743,14 +743,14 @@ Keys()
 	;check for modifiers
 	Loop, Parse, modList, `,
 		{
-			If GetKeyState(a_loopfield,"P") <> 1
+			If GetKeyState(a_loopfield,"P") != 1
 				continue
 			mods = %mods%%a_loopfield%+
 		}
 
 	;GetKeyState("Win") doesn't work, which is why both modLists include 
 	;both variants. So replace L/RWin with Win here If needed
-	If Hotkey_LeftRightMods <> 1
+	If Hotkey_LeftRightMods != 1
 		{
 			StringReplace, mods, mods, LWin, Win
 			StringReplace, mods, mods, RWin, Win
@@ -759,14 +759,14 @@ Keys()
 	;check If other keys are beeing held down
 	Loop, Parse, Hotkey_keyList, |
 		{
-			If GetKeyState(a_loopfield,"P") <> 1
+			If GetKeyState(a_loopfield,"P") != 1
 				continue
 			;If ithe left mouse button is down, check If the user is clicking a control
 			;(and ignore it If that's the case)
 			If a_loopfield = LButton
 				{
 					MouseGetPos,,,,ctrl
-					If (ctrl <> "" AND InStr(ctrl, "SysListView") = 0)
+					If (ctrl != "" AND InStr(ctrl, "SysListView") = 0)
 						continue
 				}
 			;If we don't want the ampersand (either because specified in options, or
@@ -839,7 +839,7 @@ ToggleOperator(p)
 
 	;If a_guicontrol is not checked (i.e. is was unchecked), 
 	;remove the prefix, edit the Listviews and Return
-	If %ctrl% <> 1
+	If %ctrl% != 1
 		{
 			StringReplace, k1, k1, %p%
 			StringReplace, k2, k2, %p%
@@ -914,11 +914,11 @@ IsHotkeyValid(k)
 	k := KeysToSymbols(k)
 
 	Hotkey, %k%, Return, UseErrorLevel
-	If ErrorLevel <> 0
+	If ErrorLevel != 0
 		{
 			;Joystick buttons cause an incorrect ErrorLevel on WinXP (see my post in Bug Reports)
 			;so ignore it
-			If (A_OSType <> "WIN32_WINDOWS" AND ErrorLevel = 51 AND InStr(k, "Joy") <> 0)
+			If (A_OSType != "WIN32_WINDOWS" AND ErrorLevel = 51 AND InStr(k, "Joy") != 0)
 				{
 					Hotkey, %k%, Return, Off
 					Return 1
