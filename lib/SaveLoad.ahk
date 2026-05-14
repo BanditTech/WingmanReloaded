@@ -430,7 +430,7 @@ readFromFile(){
 	GrabCurrencyY := IniRead(A_ScriptDir "\save\Settings.ini", "Grab Currency", "GrabCurrencyY", 772)
 
 	;~ hotkeys reset
-	HotIf("WinActive", "ahk_group POEGameGroup")
+	HotIf(() => WinActive("ahk_group POEGameGroup"))
 		If hotkeyAutoQuit
 		Hotkey(hotkeyAutoQuit, toggleAutoQuit, "Off")
 	If hotkeyAutoFlask
@@ -463,7 +463,7 @@ readFromFile(){
 		Hotkey("*" hotkeyCtrlShiftClicker " Up", CtrlSpamOff, "Off")
 	If hotkeyShiftClicker
 		Hotkey("*" hotkeyShiftClicker " Up", CtrlSpamOff, "Off")
-	HotIf("WinActive", "ahk_group POEGameGroup")
+	HotIf(() => WinActive("ahk_group POEGameGroup"))
 
 	If hotkeyGrabCurrency
 		Hotkey(hotkeyGrabCurrency, GrabCurrencyCommand, "Off")
@@ -500,7 +500,7 @@ readFromFile(){
 	HotIf()
 		If hotkeyOptions
 		Hotkey(hotkeyOptions, optionsCommand, "Off")
-	HotIf("WinActive", "ahk_group POEGameGroup")
+	HotIf(() => WinActive("ahk_group POEGameGroup"))
 
 	;~ hotkeys iniread
 	hotkeyOptions := IniRead(A_ScriptDir "\save\Settings.ini", "hotkeys", "Options", "!F10")
@@ -535,7 +535,7 @@ readFromFile(){
 	hotkeyCtrlShiftClicker := IniRead(A_ScriptDir "\save\Settings.ini", "hotkeys", "CtrlShiftClicker", A_Space)
 	hotkeyShiftClicker := IniRead(A_ScriptDir "\save\Settings.ini", "hotkeys", "ShiftClicker", A_Space)
 
-	HotIf("WinActive", "ahk_group POEGameGroup")
+	HotIf(() => WinActive("ahk_group POEGameGroup"))
 		If hotkeyAutoQuit
 		Hotkey(hotkeyAutoQuit, toggleAutoQuit, "On")
 	If hotkeyAutoFlask
@@ -568,7 +568,7 @@ readFromFile(){
 		Hotkey("*" hotkeyCtrlShiftClicker " Up", CtrlSpamOff, "On")
 	If hotkeyShiftClicker
 		Hotkey("*" hotkeyShiftClicker " Up", CtrlSpamOff, "On")
-	HotIf("WinActive", "ahk_group POEGameGroup")
+	HotIf(() => WinActive("ahk_group POEGameGroup"))
 
 	If hotkeyGrabCurrency
 		Hotkey(hotkeyGrabCurrency, GrabCurrencyCommand, "On")
@@ -819,7 +819,7 @@ submit(){
 		}
 
 		;~ hotkeys reset
-		HotIf("WinActive", "ahk_group POEGameGroup")
+		HotIf(() => WinActive("ahk_group POEGameGroup"))
 			If hotkeyAutoQuit
 			Hotkey(hotkeyAutoQuit, toggleAutoQuit, "Off")
 		If hotkeyAutoFlask
@@ -848,7 +848,7 @@ submit(){
 			Hotkey("*" hotkeyCtrlShiftClicker " Up", CtrlSpamOff, "Off")
 		If hotkeyShiftClicker
 			Hotkey("*" hotkeyShiftClicker " Up", CtrlSpamOff, "Off")
-		HotIf("WinActive", "ahk_group POEGameGroup")
+		HotIf(() => WinActive("ahk_group POEGameGroup"))
 
 		If hotkeyGrabCurrency
 			Hotkey(hotkeyGrabCurrency, GrabCurrencyCommand, "Off")
@@ -887,7 +887,7 @@ submit(){
 		HotIf()
 			If hotkeyOptions
 			Hotkey(hotkeyOptions, optionsCommand, "Off")
-		HotIf("WinActive", "ahk_group POEGameGroup")
+		HotIf(() => WinActive("ahk_group POEGameGroup"))
 
 		if WinExist("ahk_group POEGameGroup")
 		{
