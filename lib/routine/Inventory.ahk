@@ -798,14 +798,14 @@ IdentifyRoutine()
 ; ItemInfo - Display information about item under cursor
 ItemInfo(){
 	Global ItemParseActive
-	ItemInfoCommand:
-		ItemParseActive := True
-		MouseGetPos(&Mx, &My)
-		ClipItem(Mx, My)
-		Item.ItemInfo()
-		ItemParseActive := False
+	ItemParseActive := True
+	MouseGetPos(&Mx, &My)
+	ClipItem(Mx, My)
+	Item.ItemInfo()
+	ItemParseActive := False
 	Return
 }
+ItemInfoCommand(*) { ItemInfo() }
 ; MoveStash - Input any digit and it will move to that Stash tab
 MoveStash(Tab,CheckStatus:=0)
 {

@@ -71,29 +71,6 @@ LootScan(Reset:=0){
 			LootVacuumActive := False
 	Return
 
-	LootScanCommand:
-		If !LootVacuumActive
-		{
-			LootVacuumActive:=True
-		}
-		If (LootVacuum && LootVacuumTapZ && !LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
-			Send("{z}")
-			Sleep(10)
-			Send("{z}")
-		}
-	Return
-	LootScanCommandRelease:
-		If LootVacuumActive
-		{
-			LootVacuumActive:=False
-		}
-		If (LootVacuum && LootVacuumTapZ && LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
-			Send("{z}")
-			Sleep(10)
-			Send("{z}")
-		}
-	Return
-
 	LootScan_Click:
 		LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
 		If (LP || RP)
@@ -111,4 +88,28 @@ LootScan(Reset:=0){
 		If (GetKeyState("RButton","P"))
 			Click("Right down")
 	Return
+}
+LootScanCommand(*) {
+	Global LootVacuumActive
+	If !LootVacuumActive
+	{
+		LootVacuumActive:=True
+	}
+	If (LootVacuum && LootVacuumTapZ && !LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
+		Send("{z}")
+		Sleep(10)
+		Send("{z}")
+	}
+}
+LootScanCommandRelease(*) {
+	Global LootVacuumActive
+	If LootVacuumActive
+	{
+		LootVacuumActive:=False
+	}
+	If (LootVacuum && LootVacuumTapZ && LootVacuumTapZEnd && GuiCheck() && CheckTime("Seconds",LootVacuumTapZSec,"RestackLoot")) {
+		Send("{z}")
+		Sleep(10)
+		Send("{z}")
+	}
 }
