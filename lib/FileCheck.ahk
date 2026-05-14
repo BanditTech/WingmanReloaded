@@ -12,9 +12,9 @@ directories := [ "\data"
 	,"\logs"
 	,"\backup"
 	,"\lib" ]
-for k, v in directories {
-	if !FileExist(A_ScriptDir v) {
-		DirCreate(A_ScriptDir v)
+for _k, _dir in directories {
+	if !FileExist(A_ScriptDir _dir) {
+		DirCreate(A_ScriptDir _dir)
 	}
 }
 directories := ""
