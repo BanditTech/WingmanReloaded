@@ -72,8 +72,7 @@
 #Include %A_ScriptDir%\lib\routine\StackRelease.ahk
 #Include %A_ScriptDir%\lib\routine\ZoneChange.ahk
 
-; Third-party libraries loaded last so #Warn LocalSameAsGlobal, Off
-; (set inside packages.ahk) only affects library code, not our own.
-#Include %A_ScriptDir%\lib\list.ahk
+; Note: list.ahk (third-party/Aris packages) is included early in PoE-Wingman.ahk
+; before FileCheck.ahk, so the JSON class is available when FileCheck runs.
 
 #Include *i %A_ScriptDir%\save\MyCustomLib.ahk

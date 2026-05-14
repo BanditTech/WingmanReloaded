@@ -2,6 +2,8 @@
 Global VersionNumber := .16.00
 #Include %A_ScriptDir%\lib\Header.ahk
 #Include %A_ScriptDir%\lib\RunAdmin.ahk
+; Third-party libraries (including JSON/cJson) must load before FileCheck.ahk uses them
+#Include %A_ScriptDir%\lib\list.ahk
 #Include %A_ScriptDir%\lib\FileCheck.ahk
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
 #Include %A_ScriptDir%\lib\ScriptObject.ahk
@@ -17,7 +19,7 @@ RestockMenu("Load")
 If (YesNinjaDatabase && DaysSince()) {
   DBUpdateNinja()
 } Else {
-  Ninja := JSON.Load(FileOpen(A_ScriptDir "\data\Ninja.json","r").Read())
+  Ninja := JSON.LoadFile(A_ScriptDir "\data\Ninja.json")
 }
 ;CraftingBasesRequest(YesCraftingBaseAutoUpdateOnStart)
 Critical(0)
