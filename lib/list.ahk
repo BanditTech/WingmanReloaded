@@ -15,4 +15,3 @@
 #Include %A_ScriptDir%\lib\ref\LutBotLite.ahk
 #Include %A_ScriptDir%\lib\ref\LetUserSelectRect.ahk
 #Include %A_ScriptDir%\lib\ref\ColorRange.ahk
-#Warn LocalSameAsGlobal, MsgBox
