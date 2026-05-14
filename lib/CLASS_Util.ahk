@@ -61,7 +61,7 @@ Class Util {
 					Return "00" ; Loading File Failed
 			} Else
 				Return "0" ; No File Object
-		} Catch e {
+		} catch as e {
 			This.Err(e, "Failed during JSON Load:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ))
 		}
 	}
@@ -90,7 +90,7 @@ Class Util {
 				Return True
 			} Else
 				Return "0" ; File object not loaded
-		} Catch e {
+		} catch as e {
 			This.Err( e, "Failed during JSON Save:", "fileParam: " File, "fStr: " fStr, "fLoaded: " (IsObject(f) ? "True" : "False" ) )
 		}
 	}
@@ -99,7 +99,7 @@ Class Util {
 		global JSON
 		Try {
 			Return JSON.Dump(Object,,2)
-		} Catch e {
+		} catch as e {
 			This.Err( e )
 		}
 	}
@@ -163,7 +163,7 @@ Class Util {
 				Log("HttpGet Response ","Response was:",response,"---------Headers---------",responseheaders)
 			}
 			Return response
-		} catch e {
+		} catch as e {
 			This.Err(e,"Download failed for " url)
 		}
 	}

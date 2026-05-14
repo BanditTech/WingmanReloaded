@@ -38,7 +38,7 @@ Class PoERequest {
         Log("POERequest Error ", "API endpoint returned an error code",obj)
         Return False
       }
-    } Catch e {
+    } catch as e {
       Log("POERequest Error ","Invalid JSON error" . "`n" response)
       Return False
     }

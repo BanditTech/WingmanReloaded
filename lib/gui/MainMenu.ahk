@@ -243,7 +243,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Mai
 	}
 	Try {
 		LeagueIndex := JSON.LoadFile(A_ScriptDir "\data\leagues.json")
-	} Catch e {
+	} catch as e {
 		MsgBox(e, "Error loading leagues", 262144)
 		LeagueIndex := [{id:"Standard"}]
 	}

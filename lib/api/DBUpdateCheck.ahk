@@ -20,7 +20,7 @@ DBUpdateCheck()
 			IniWrite(Date_now, A_ScriptDir "\save\Settings.ini", "Database", "LastDatabaseParseDate")
 			LastDatabaseParseDate := Date_now
 		}
-	} catch e {
+	} catch as e {
 		Log("Error","DBUpdateCheck Error: " ErrorText(e))
 	}
 	Return
