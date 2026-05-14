@@ -1,3 +1,11 @@
+; Replacement for deleted lib/ref/Decimal2Fraction.ahk
+; Converts a decimal price ratio to a human-readable fraction string
+; using the Aris FanaticGuru/Fractions library.
+Decimal2Fraction(decimal, id := "") {
+    n := Round(decimal * 1000)
+    Return Fractions.Lower([n, 1000]).Proper
+}
+
 LoadActualTierName() {
     Return JSON.LoadFile(A_ScriptDir "\data\ActualTierName.json")
 }
