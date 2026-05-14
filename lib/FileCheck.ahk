@@ -75,7 +75,7 @@ if !FileExist(A_ScriptDir "\data\Bases.json")
 ;Bases := JSON.Load(FileOpen(A_ScriptDir "\data\Bases.json","r").Read())
 
 UpdatePOEData(){
-	Global POEData, BranchName
+	Global POEData, BranchName, k, v, ki, vi, aux
 	if !FileExist(A_ScriptDir "\data\PoE Data\Category.json")
 	{
 		Try {
@@ -106,7 +106,7 @@ UpdatePOEData(){
 UpdatePOEData()
 
 UpdateBasesData(){
-	Global BasesData, BasesWR, QuestItems, BranchName
+	Global BasesData, BasesWR, QuestItems, BranchName, k, v, aux
 	if !FileExist(A_ScriptDir "\data\Bases Data\Category.json")
 	{
 		Try {
