@@ -1,5 +1,26 @@
 ; Controller functions
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+; Maps an XInput button name string to its wButtons bitmask and returns whether it is pressed.
+XInputButtonIsDown(ButtonName, wButtons) {
+	Static Masks := Map(
+		"PovUp",    0x0001,
+		"PovDown",  0x0002,
+		"PovLeft",  0x0004,
+		"PovRight", 0x0008,
+		"Start",    0x0010,
+		"Back",     0x0020,
+		"LStick",   0x0040,
+		"RStick",   0x0080,
+		"LB",       0x0100,
+		"RB",       0x0200,
+		"A",        0x1000,
+		"B",        0x2000,
+		"X",        0x4000,
+		"Y",        0x8000
+	)
+	Return Masks.Has(ButtonName) ? !!(wButtons & Masks[ButtonName]) : False
+}
 Controller(inputType:="Main")
 {
 	Static __init__ := XInput_Init()
