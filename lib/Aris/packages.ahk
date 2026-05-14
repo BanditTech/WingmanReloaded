@@ -1,9 +1,6 @@
 ; Avoid modifying this file manually
 ; Managed by Aris - https://github.com/Descolada/Aris
 
-; Third-party libraries may shadow our globals — suppress for library code only.
-#Warn LocalSameAsGlobal, Off
-
 ; --- Aris-indexed packages ---
 #include .\G33kDude\cJson.ahk          ; G33kDude/cJson@2.1.0
 #include .\buliasz\Gdip.ahk            ; buliasz/Gdip@9fa1817
