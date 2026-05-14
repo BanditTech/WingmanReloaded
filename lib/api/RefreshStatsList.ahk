@@ -1,7 +1,7 @@
 RefreshStatsList(){
 	ToolTip("refreshing stats")
 	Download("https://www.pathofexile.com/api/trade/data/stats", A_ScriptDir "\temp\new_Stats.json")
-	result := JSON.Load(RegExReplace(FileOpen(A_ScriptDir "\temp\new_Stats.json","r").Read(), " \(\\u00d7#\)", ""),,1).result
+	result := JSON.Load(RegExReplace(FileRead(A_ScriptDir "\temp\new_Stats.json"), " \(\\u00d7#\)", "")).result
 	AffixKeyList := []
 	EnchantKeyList := []
 	for Ck, Cv in result

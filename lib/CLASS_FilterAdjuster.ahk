@@ -21,7 +21,7 @@ Class FilterAdjuster {
 		This.GetContent()
 	}
 	GetContent(){
-		This.Content := FileOpen(This.FilePath, "r").Read()
+		This.Content := FileRead(This.FilePath)
 	}
 	SetMarkerText(MarkerText:="",PositionalText:=""){
 		Static PosText := "#------------------------------------`r`n#   [1001] ILVL 86`r`n#------------------------------------"

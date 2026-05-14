@@ -63,7 +63,7 @@ RefreshPoeWatchPerfect() {
     global selectedLeague
     RequestURL := "https://api.poe.watch/perfect?league=" selectedLeague
     Download RequestURL, A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json"
-    JSONtext := FileOpen(A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json", "r").Read()
+    JSONtext := FileRead(A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json")
     Try {
         WR.Data.Perfect := JSON.Load(JSONtext,, 1)
         For ku, itemDB in WR.Data.Perfect {

@@ -165,7 +165,7 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
 }
 
 LoadOnDemand(a,b) {
-  Return JSON.Load(FileOpen(A_ScriptDir "\data\PoE Data\" . a . "(" . b . ").json","r").Read())
+  Return JSON.LoadFile(A_ScriptDir "\data\PoE Data\" . a . "(" . b . ").json")
 }
 
 RefreshModList(a,b)

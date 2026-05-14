@@ -169,7 +169,7 @@ RestockMenu(choice:=""){
 	LoadRestockArray()
 	{
 		If FileExist(A_ScriptDir "\save\Restock.json") {
-			WR.Restock := JSON.Load(FileOpen(A_ScriptDir "\save\Restock.json","r").Read())
+			WR.Restock := JSON.LoadFile(A_ScriptDir "\save\Restock.json")
 		} Else {
 			WR.Restock := {}
 			For C, GridX in InventoryGridX{

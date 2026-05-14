@@ -20,7 +20,7 @@ ScrapeNinjaData(apiString)
       Return
     }
     Try {
-      holder := JSON.Load(FileOpen(tempLoc,"r").Read())
+      holder := JSON.LoadFile(tempLoc)
     } Catch e {
       Log("Error","Something has gone wrong downloading " apiString " Ninja API data",e)
       RetryDL := True
@@ -34,7 +34,7 @@ ScrapeNinjaData(apiString)
         Return
       }
       Try {
-        holder := JSON.Load(FileOpen(tempLoc,"r").Read())
+        holder := JSON.LoadFile(tempLoc)
       } Catch e {
         Log("Error","Something has gone all wrong downloading " apiString ,e)
         Return
@@ -68,7 +68,7 @@ ScrapeNinjaData(apiString)
       Return
     }
     Try {
-      holder := JSON.Load(FileOpen(tempLoc,"r").Read())
+      holder := JSON.LoadFile(tempLoc)
     } Catch e {
       Log("Error","Something has gone wrong downloading " apiString " Ninja API data",e)
       RetryDL := True
@@ -82,7 +82,7 @@ ScrapeNinjaData(apiString)
         Return
       }
       Try {
-        holder := JSON.Load(FileOpen(tempLoc,"r").Read())
+        holder := JSON.LoadFile(tempLoc)
       } Catch e {
         Log("Error","Something has gone all wrong downloading " apiString ,e)
         Return
@@ -129,7 +129,7 @@ ScrapeNinjaData(apiString)
     }
     RetryDL := False
     Try {
-      holder := JSON.Load(FileOpen(tempLoc,"r").Read())
+      holder := JSON.LoadFile(tempLoc)
     } Catch e {
       Log("Something has gone wrong downloading " apiString " Ninja API data",e)
       RetryDL := True
@@ -143,7 +143,7 @@ ScrapeNinjaData(apiString)
         Return
       }
       Try {
-        holder := JSON.Load(FileOpen(tempLoc,"r").Read())
+        holder := JSON.LoadFile(tempLoc)
       } Catch e {
         Log("Error","Error","Something has gone all wrong downloading " apiString ,e)
         Return
