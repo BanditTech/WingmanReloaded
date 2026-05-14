@@ -43,7 +43,7 @@ PauseMines(){
 		keyheld := 0
 		If (WR.perChar.Setting.autominesPauseSingleTap == 1)
 			pauseToggle := !pauseToggle
-		else if (A_PriorHotkey <> "$~" . hotkeyPauseMines || A_TimeSincePriorHotkey > WR.perChar.Setting.autominesPauseDoubleTapSpeed)
+		else if (A_PriorHotkey != "$~" . hotkeyPauseMines || A_TimeSincePriorHotkey > WR.perChar.Setting.autominesPauseDoubleTapSpeed)
 		{    ;This is a not a double tap
 			pauseToggle := false
 		}
