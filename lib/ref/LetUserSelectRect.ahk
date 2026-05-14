@@ -17,7 +17,7 @@ LetUserSelectRect(PixelToo:=0)
 	xorigin := 0, yorigin := 0
 	X1 := 0, Y1 := 0, X2 := 0, Y2 := 0
 
-	lusr_update := () => {
+	lusr_update() {
 		MouseGetPos(&x, &y)
 		if (x = xlast && y = ylast)
 			; Mouse hasn't moved so there's nothing to do.
