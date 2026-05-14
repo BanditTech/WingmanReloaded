@@ -3,7 +3,7 @@
 ; packages.ahk sets #Warn LocalSameAsGlobal, Off for library code;
 ; we re-enable it immediately after so our own code still gets that check.
 #Include %A_ScriptDir%\lib\list.ahk
-#Warn LocalSameAsGlobal, On
+#Warn LocalSameAsGlobal, MsgBox
 
 #Include %A_ScriptDir%\lib\ChatStashHotkeys.ahk
 #Include %A_ScriptDir%\lib\CheckAspectRatio.ahk
