@@ -41,6 +41,6 @@ Class ModAlias {
 	}
 	ConvertJStoAHK(Obj){
 		global JSON
-		Return JSON.Load(JSONcom.Stringify(Obj,true))
+		Return JSON.Load(JSON.Dump(Obj))
 	}
 }
