@@ -77,7 +77,7 @@ RefreshPoeWatchPerfect() {
                 }
             }
         }
-        FileOpen(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json", "w").Write(JSON_Beautify(WR.Data.Perfect, " ", 3))
+        FileOpen(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json", "w").Write(JSON.Dump(WR.Data.Perfect, 1))
     } Catch e {
         MsgBox "There was an Error while Loading Perfect Price `n`n" ErrorText(e)
         WR.Data.Perfect := {}
