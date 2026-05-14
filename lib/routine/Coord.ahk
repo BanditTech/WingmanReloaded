@@ -1,8 +1,7 @@
 ; Coord - : Pixel information on Mouse Cursor, provides pixel location and RGB color hex
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Coord(){
+CoordCommand(*){
 	Global Picker
-	CoordCommand:
 	Rect := LetUserSelectRect(1)
 	If (Rect)
 	{
