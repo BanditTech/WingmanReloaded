@@ -218,7 +218,7 @@ Class Util {
 			TimeString := FormatTime(A_Now, "yyyy/MM/d")
 			This.Log.Msg(This.Name " Log ", TimeString
 			, "Script Version " VersionNumber
-			, "AHK v" A_AhkVersion " " (A_IsUnicode ? "Unicode" : "ANSI") " " (A_PtrSize = 4 ? 32 : 64) "-b"
+			, "AHK v" A_AhkVersion " " (A_IsUnicode ? "Unicode" : "ANSI") " " (A_PtrSize == 4 ? 32 : 64) "-b"
 			, "AHK " A_AhkPath
 			, "OS " (A_OSVersion ~= "^WIN_" ? A_OSVersion : A_OSVersion >= 10 ? "WIN_" . A_OSVersion : "Unknown OS " A_OSVersion) (A_Is64bitOS?" 64-b":" 32-b")
 			, "Screen W" A_ScreenWidth " H" A_ScreenHeight

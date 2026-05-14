@@ -187,7 +187,7 @@ VendorRoutine()
 			}
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
-			If (!Item.Prop.IsItem || Item.Prop.ItemName = "") {
+			If (!Item.Prop.IsItem || Item.Prop.ItemName == "") {
 				ShooMouse()
 				GuiStatus()
 				Continue
@@ -326,13 +326,13 @@ VendorRoutine()
 				Sleep(800)
 				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
-			Else If (Town = "Oriath Docks")
+			Else If (Town == "Oriath Docks")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
 				Sleep(800)
 				; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
-			Else If (Town = "The Sarn Encampment")
+			Else If (Town == "The Sarn Encampment")
 			{
 				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
 				Sleep(800)
@@ -360,7 +360,7 @@ EmptyGrid(){
 			}
 		}
 	}
-	If (YesSkipMaps_eval = "<=")
+	If (YesSkipMaps_eval == "<=")
 		EmptySlots := AHK.Reverse(AHK.SortBy(EmptySlots,"X"))
 	Return EmptySlots
 }
@@ -431,8 +431,8 @@ StashRoutine()
 				WisdomScroll(Grid.X,Grid.Y)
 				ClipItem(Grid.X,Grid.Y)
 			}
-			If (YesOpenStackedDeck && Item.Prop.ItemName = "Stacked Deck")
-			|| (YesOpenVeiledScarab && Item.Prop.ItemName = "Veiled Scarab") {
+			If (YesOpenStackedDeck && Item.Prop.ItemName == "Stacked Deck")
+			|| (YesOpenVeiledScarab && Item.Prop.ItemName == "Veiled Scarab") {
 				StackedDeckOpen(Item.Prop.Stack_Size,Grid.X,Grid.Y)
 				ShooMouse()
 				GuiStatus()
@@ -441,13 +441,13 @@ StashRoutine()
 
 			If (OnStash && YesStash)
 			{
-				If (Item.Prop.SpecialType = "Quest Item" || Item.Prop.ItemClass = "Quest Items")
+				If (Item.Prop.SpecialType == "Quest Item" || Item.Prop.ItemClass == "Quest Items")
 					Continue
 				Else If (sendstash:=Item.MatchLootFilter())
 					Sleep(-1)
 				Else If ( Item.Prop.MapPrep && YesSkipMaps && YesSkipMaps_Prep && InMapArea(C) )
 					Continue
-				Else If ((Item.Prop.SpecialType = "Heist Contract" || Item.Prop.SpecialType = "Heist Blueprint") && YesSkipMaps && InMapArea(C)
+				Else If ((Item.Prop.SpecialType == "Heist Contract" || Item.Prop.SpecialType == "Heist Blueprint") && YesSkipMaps && InMapArea(C)
 					&& ( (Item.Prop.RarityNormal && YesSkipMaps_normal)
 					|| (Item.Prop.RarityMagic && YesSkipMaps_magic)
 					|| (Item.Prop.RarityRare && YesSkipMaps_rare)
@@ -497,7 +497,7 @@ StashRoutine()
 						RandomSleep(60,90)
 						CtrlShiftClick(Grid.X,Grid.Y)
 						; Check if we need to send to alternate stash for uniques
-						If (sendstash = StashTabUnique || sendstash = StashTabUniqueRing )
+						If (sendstash == StashTabUnique || sendstash == StashTabUniqueRing )
 							&& (Item.Prop.RarityUnique && !Item.Prop.HasOwnProp("IsOrgan"))
 						{
 							If (StashTabYesUniqueRing && Item.Prop.Ring
@@ -554,7 +554,7 @@ StashRoutine()
 					CtrlShiftClick(Grid.X,Grid.Y)
 					Sleep(60)
 					; Check for unique items
-					If (Tab = StashTabUnique || Tab = StashTabUniqueRing )
+					If (Tab == StashTabUnique || Tab == StashTabUniqueRing )
 						&& (sortItem.Prop.RarityUnique && !sortItem.Prop.HasOwnProp("IsOrgan"))
 					{
 						If (StashTabYesUniqueRing && sortItem.Prop.Ring
@@ -623,25 +623,25 @@ SearchVendor()
 	Else
 	{
 		Town := CompareLocation("Town")
-		If (Town = "Lioneye's Watch")
+		If (Town == "Lioneye's Watch")
 			SearchStr := VendorLioneyeStr
-		Else If (Town = "The Forest Encampment")
+		Else If (Town == "The Forest Encampment")
 			SearchStr := VendorForestStr
-		Else If (Town = "The Sarn Encampment")
+		Else If (Town == "The Sarn Encampment")
 			SearchStr := VendorSarnStr
-		Else If (Town = "Highgate")
+		Else If (Town == "Highgate")
 			SearchStr := VendorHighgateStr
-		Else If (Town = "Overseer's Tower")
+		Else If (Town == "Overseer's Tower")
 			SearchStr := VendorOverseerStr
-		Else If (Town = "The Bridge Encampment")
+		Else If (Town == "The Bridge Encampment")
 			SearchStr := VendorBridgeStr
-		Else If (Town = "Oriath Docks")
+		Else If (Town == "Oriath Docks")
 			SearchStr := VendorDocksStr
-		Else If (Town = "Oriath")
+		Else If (Town == "Oriath")
 			SearchStr := VendorOriathStr
-		Else If (Town = "The Rogue Harbour")
+		Else If (Town == "The Rogue Harbour")
 			SearchStr := VendorHarbourStr
-		Else If (Town = "Kingsmarch")
+		Else If (Town == "Kingsmarch")
 			SearchStr := VendorKingsmarchStr
 		Else
 			Return
@@ -657,25 +657,25 @@ SearchVendor()
 	Vendor:=FindText( GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
 	If (FirstAutomationSetting == "Search Stash" && !Vendor)
 	{
-		If (Town = "The Sarn Encampment")
+		If (Town == "The Sarn Encampment")
 		{
 			LeftClick(GameX + GameW//6, GameY + GameH//1.5)
 			Sleep(600)
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
-		Else If (Town = "Oriath Docks")
+		Else If (Town == "Oriath Docks")
 		{
 			LeftClick(GameX + 5, GameY + GameH//2)
 			Sleep(1200)
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
-		Else If (Town = "Mines")
+		Else If (Town == "Mines")
 		{
 			LeftClick(GameX + GameW//3, GameY + GameH//5)
 			Sleep(1300)
 			; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 		}
-		Else If (Town = "The Rogue Harbour")
+		Else If (Town == "The Rogue Harbour")
 		{
 			LeftClick(GameX + GameW//3, GameY + GameH//1.3)
 			Sleep(800)
@@ -742,7 +742,7 @@ DivRoutine()
 			; Trade full div stacks
 			If (OnDiv && YesDiv)
 			{
-				If (Item.Prop.RarityDivination && (Item.Prop.Stack = Item.Prop.StackMax)){
+				If (Item.Prop.RarityDivination && (Item.Prop.Stack == Item.Prop.StackMax)){
 					CtrlClick(Grid.X,Grid.Y)
 					RandomSleep(150,200)
 					LeftClick(WR.loc.pixel.OnDiv.X,WR.loc.pixel.DivTrade.Y)
@@ -825,7 +825,7 @@ MoveStash(Tab,CheckStatus:=0)
 	{
 		Sleep(180*Latency)
 		Dif:=(CurrentTab-Tab)
-		If (CurrentTab = 0)
+		If (CurrentTab == 0)
 		{
 			If (OnChat)
 			{
@@ -857,13 +857,13 @@ RunRestock(){
 	BlockInput("MouseMove")
 	For C, vv in WR.Restock {
 		For R, v in vv {
-			If (v.Normal || v.Ignored || v.RestockName = "")
+			If (v.Normal || v.Ignored || v.RestockName == "")
 				Continue
-			If !(v.RestockName = "Custom") {
+			If !(v.RestockName == "Custom") {
 				If !WR.loc.pixel.Has(v.RestockName){
 					Notify("Missing Location","There is no entry for " v.RestockName,5)
 					Continue
-				} Else If (WR.loc.pixel[v.RestockName].X = 0 && WR.loc.pixel[v.RestockName].Y = 0) {
+				} Else If (WR.loc.pixel[v.RestockName].X == 0 && WR.loc.pixel[v.RestockName].Y == 0) {
 					Notify("Unscaled Location","The entry for " v.RestockName " has not been scaled from 0",5)
 					Continue
 				}
@@ -875,11 +875,11 @@ RunRestock(){
 				Item.Prop.Stack_Size := 0
 			; Store the item stack size
 			InvCount := Item.Prop.Stack_Size
-			If (InvCount = v.RestockTo && v.RestockTo = v.RestockMax) {
+			If (InvCount == v.RestockTo && v.RestockTo == v.RestockMax) {
 				Continue
 			}
 			If (InvCount < v.RestockMin || InvCount >= v.RestockMax) {
-				If (v.RestockName = "Custom") {
+				If (v.RestockName == "Custom") {
 					MoveStash(v.CustomTab)
 					StockX := v.CustomX
 					StockY := v.CustomY
@@ -908,7 +908,7 @@ RunRestock(){
 					If (StashCount < dif) {
 						Notify("Out of Stock","Attempting to restock " v.RestockName " but not enough in stock",2)
 						Continue
-					} Else If (dif = 0) {
+					} Else If (dif == 0) {
 						Continue
 					}
 					ShiftClick(StockX, StockY)
@@ -935,7 +935,7 @@ addToBlacklist(C, R){
 		If !IsObject(BlackList[C])
 			BlackList[C] := []
 		BlackList[C][addR] := True
-		If Item.Prop.Item_Width = 2
+		If Item.Prop.Item_Width == 2
 		{
 			If !IsObject(BlackList[addC])
 				BlackList[addC] := []

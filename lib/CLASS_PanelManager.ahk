@@ -40,6 +40,6 @@ Class PixelStatus
   }
   On(){
     pSample := FindText.GetColor(This.X,This.Y)
-    Return (This.Status := (pSample = This.Hex ? True : False))
+    Return (This.Status := (pSample == This.Hex ? True : False))
   }
 }

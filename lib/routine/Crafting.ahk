@@ -44,17 +44,17 @@ Crafting(selection:="Maps"){
 				MoveStash(StashTabCurrency)
 				If indexOf(selection,["Maps","Socket","Color","Link","Chance","Item"])
 			{
-				If (selection = "Maps")
+				If (selection == "Maps")
 					CraftingMaps()
-				Else If (selection = "Socket")
+				Else If (selection == "Socket")
 					CraftingSocket()
-				Else If (selection = "Color")
+				Else If (selection == "Color")
 					CraftingColor()
-				Else If (selection = "Link")
+				Else If (selection == "Link")
 					CraftingLink()
-				Else If (selection = "Chance")
+				Else If (selection == "Chance")
 					CraftingChance()
-				Else If (selection = "Item")
+				Else If (selection == "Item")
 					CraftingItem()
 			}
 			Else
@@ -316,8 +316,8 @@ CraftingMaps(){
 InMapArea(C:=0){
 	If (C <= 0)
 		Return False
-	If (C >= YesSkipMaps && YesSkipMaps_eval = ">=")
-		|| (C <= YesSkipMaps && YesSkipMaps_eval = "<=")
+	If (C >= YesSkipMaps && YesSkipMaps_eval == ">=")
+		|| (C <= YesSkipMaps && YesSkipMaps_eval == "<=")
 		Return True
 	Return False
 }
@@ -338,14 +338,14 @@ getMapCraftingMethod(){
 ; Find the stack sizes of all relevant currency, returns count object
 CountCurrency(NameList:=""){
 	retCount := {}
-	If (NameList = "")
+	If (NameList == "")
 		Return False
 	If !IsObject(NameList)
 		NameList := StrSplit(NameList,",")
 	For key, currency in NameList {
 		If !WR.loc.pixel.Has(currency)
 			Return False
-		If (WR.loc.pixel[currency].X = 0 && WR.loc.pixel[currency].Y = 0) {
+		If (WR.loc.pixel[currency].X == 0 && WR.loc.pixel[currency].Y == 0) {
 			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
 			retCount[currency] := 0
 		} Else {
@@ -359,7 +359,7 @@ CountCurrency(NameList:=""){
 ApplyCurrency(cname, x, y, Amount:=1){
 	If (Amount < 1)
 		Return True
-	If (cname = "Hybrid") {
+	If (cname == "Hybrid") {
 		If (WR.data.Counts.Binding >= WR.data.Counts.Alchemy)
 			cname := "Binding"
 		Else
@@ -432,15 +432,15 @@ MapRoll(Method, x, y){
 	}
 	If (Item.Affix["Unidentified"])
 	{
-		If (Item.Prop.Rarity_Digit > 1 && cname = "Transmutation" && YesMapUnid )
+		If (Item.Prop.Rarity_Digit > 1 && cname == "Transmutation" && YesMapUnid )
 		{
 			Return
 		}
-		Else If (Item.Prop.Rarity_Digit > 2 && cname = "Alchemy" && YesMapUnid )
+		Else If (Item.Prop.Rarity_Digit > 2 && cname == "Alchemy" && YesMapUnid )
 		{
 			Return
 		}
-		Else If (Item.Prop.Rarity_Digit > 2 && cname = "Binding" && YesMapUnid )
+		Else If (Item.Prop.Rarity_Digit > 2 && cname == "Binding" && YesMapUnid )
 		{
 			Return
 		}
@@ -457,7 +457,7 @@ MapRoll(Method, x, y){
 		If !ApplyCurrency(cname, x, y)
 			Return False
 	}
-	If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic && cname = "Transmutation")
+	If (Item.Prop.AffixCount < 2 && Item.Prop.RarityMagic && cname == "Transmutation")
 	{
 		If !ApplyCurrency("Augmentation",x,y)
 			Return False

@@ -4,9 +4,9 @@ SpamClick(Toggle:="",Modifier:=""){
 	If (Toggle != "") {
 		If (Toggle == 1 || Toggle == 0)
 			Spam := Toggle
-		Else If (Toggle = "True" || Toggle = "true" || Toggle = "on" || Toggle = "On")
+		Else If (Toggle == "True" || Toggle == "true" || Toggle == "on" || Toggle == "On")
 			Spam := True
-		Else If (Toggle = "False" || Toggle = "false" || Toggle = "off" || Toggle = "Off")
+		Else If (Toggle == "False" || Toggle == "false" || Toggle == "off" || Toggle == "Off")
 			Spam := False
 	} Else
 		Spam := !Spam
@@ -144,7 +144,7 @@ WisdomScroll(x, y){
 	Found := False
 	For C, vv in WR.Restock {
 		For R, v in vv {
-			If (!v.Normal && v.RestockName = "Wisdom"){
+			If (!v.Normal && v.RestockName == "Wisdom"){
 				Found := True
 				Break 2
 			}

@@ -54,7 +54,7 @@ OHB_Editor(){
 	OHBUpdate(ctrl, *)
 	{
 		ctrlName := ctrl.Name
-		If (ctrlName = "OHB_Test")
+		If (ctrlName == "OHB_Test")
 		{
 			If GamePID
 			{
@@ -81,7 +81,7 @@ OHB_Editor(){
 				OHB_Editor()
 			}
 		}
-		Else If (ctrlName = "OHB_EditorBtn")
+		Else If (ctrlName == "OHB_EditorBtn")
 		{
 			StringsGui.Submit(0)
 			OHB_Editor()
@@ -89,7 +89,7 @@ OHB_Editor(){
 		}
 		Else
 			OHBGui.Submit(0)
-		If (ctrlName = "OHB_r" || ctrlName = "OHB_g" || ctrlName = "OHB_b")
+		If (ctrlName == "OHB_r" || ctrlName == "OHB_g" || ctrlName == "OHB_b")
 		{
 			OHB_r := OHBGui["OHB_r"].Value
 			OHB_g := OHBGui["OHB_g"].Value
@@ -99,9 +99,9 @@ OHB_Editor(){
 			OHBGui["OHB_Color"].Value := OHB_Color
 			OHBGui["OHB_Preview"].Opt("+c" OHB_Color)
 		}
-		Else If (ctrlName = "OHB_Color" || ctrlName = "OHB_CReset")
+		Else If (ctrlName == "OHB_Color" || ctrlName == "OHB_CReset")
 		{
-			If (ctrlName = "OHB_CReset")
+			If (ctrlName == "OHB_CReset")
 			{
 				OHB_Color := "0x221415"
 				OHBGui["OHB_Color"].Value := OHB_Color

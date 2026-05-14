@@ -21,7 +21,7 @@ class ItemScan
 		{
 			If ((SVal ~= ":" || SVal ~= "Currently has \d+ Charges") && !(SVal ~= "grant:") && !(SVal ~= "slot:"))
 			{
-				If (SectionKey = 1 && SVal ~= "Rarity:" || SVal ~= "Item Class:"){
+				If (SectionKey == 1 && SVal ~= "Rarity:" || SVal ~= "Item Class:"){
 					This.Data.Blocks.NamePlate := SVal, This.Prop.IsItem := true
 				} Else If (SVal ~= "\(implicit\)$"){
 					This.Prop.HasImplicit := True
@@ -138,7 +138,7 @@ class ItemScan
 		This.Data.AffixNames := {Prefix:[],Suffix:[]}
 		For k, v in StrSplit(This.Data.Blocks.Affix, "`n", "`r")
 		{
-			If (v = "")
+			If (v == "")
 				Continue
 			; Flag curse on hit items
 			If (v ~= "^Curse Enemies with .+ on Hit$")
@@ -220,7 +220,7 @@ class ItemScan
 			}
 			If (This.Prop.Rarity_Digit < 3)
 				This.Prop.OpenAffix -= 4
-			Else If (This.Prop.ItemClass ~= "Jewels" && This.Prop.Rarity_Digit = 3)
+			Else If (This.Prop.ItemClass ~= "Jewels" && This.Prop.Rarity_Digit == 3)
 				This.Prop.OpenAffix -= 2
 			; 4 Lines in NamePlate => Rarity / Item Name/ Item Base
 			If (RegExMatch(This.Data.Blocks.NamePlate, "`r`n.+`r`n(.+)`r`n(.+)", &RxMatch))
@@ -257,44 +257,44 @@ class ItemScan
 			;Start Parse
 
 			; We match one of these against an item to identify its purpose
-			If (This.Prop.ItemClass = "Atlas Upgrade Items")
+			If (This.Prop.ItemClass == "Atlas Upgrade Items")
 			{
 				This.Prop.AtlasStone := True
 			}
-			Else If (This.Prop.ItemClass = "Misc Map Items"
-				|| This.Prop.ItemClass = "Memories"
-				|| This.Prop.ItemClass = "Vault Key"
-				|| (This.Prop.ItemClass = "Stackable Currency" && This.Prop.ItemBase ~= "Scouting Report"))
+			Else If (This.Prop.ItemClass == "Misc Map Items"
+				|| This.Prop.ItemClass == "Memories"
+				|| This.Prop.ItemClass == "Vault Key"
+				|| (This.Prop.ItemClass == "Stackable Currency" && This.Prop.ItemBase ~= "Scouting Report"))
 			{
 				This.Prop.MiscMapItem := True
 				This.Prop.SpecialType := "Misc Map Item"
-				If (This.Prop.ItemClass = "Memories")
+				If (This.Prop.ItemClass == "Memories")
 					This.Prop.IsMemory := True
 			}
-			Else If (This.Prop.ItemClass = "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^(.*) Rune$", match))
+			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^(.*) Rune$", match))
 			{
 				This.Prop.IsRune := True
 				This.Prop.KalguuranRune := match1
 				This.Prop.SpecialType := "Kalguuran Rune"
 			}
-			Else If (This.Prop.ItemClass = "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Omen of t?h?e? ?(.*)$", match))
+			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Omen of t?h?e? ?(.*)$", match))
 			{
 				This.Prop.IsOmen := True
 				This.Prop.OmenType := match1
 				This.Prop.SpecialType := "Omen"
 			}
-			Else If (This.Prop.ItemClass = "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Tattoo of the (.*)$", match))
+			Else If (This.Prop.ItemClass == "Stackable Currency" && RegExMatch(This.Prop.ItemBase, "^Tattoo of the (.*)$", match))
 			{
 				This.Prop.IsTattoo := True
 				This.Prop.TattooType := match1
 				This.Prop.SpecialType := "Tattoo"
 			}
-			Else If (This.Prop.ItemClass = "Atlas Region Upgrade Items" || This.Prop.ItemClass ~= "Atlas Upgrade Item" )
+			Else If (This.Prop.ItemClass == "Atlas Region Upgrade Items" || This.Prop.ItemClass ~= "Atlas Upgrade Item" )
 			{
 				This.Prop.MiscMapItem := True
 				This.Prop.SpecialType := "Atlas Voidstone"
 			}
-			Else If (This.Prop.ItemClass = "Maps")
+			Else If (This.Prop.ItemClass == "Maps")
 			{
 				This.Prop.IsMap := True
 				; Deal with Blighted Map
@@ -414,7 +414,7 @@ class ItemScan
 				This.Prop.UberDuberOffering := True
 				This.Prop.SpecialType := "Uber Duber Offering"
 			}
-			Else If (This.Prop.ItemClass = "Map Fragments")
+			Else If (This.Prop.ItemClass == "Map Fragments")
 			{
 				This.Prop.SpecialType := "Map Fragments"
 			}
@@ -449,12 +449,12 @@ class ItemScan
 				This.Prop.Vessel := True
 				This.Prop.SpecialType := "Divine Vessel"
 			}
-			Else If (This.Prop.ItemClass = "Abyss Jewel")
+			Else If (This.Prop.ItemClass == "Abyss Jewel")
 			{
 				This.Prop.AbyssJewel := True
 				This.Prop.Jewel := True
 			}
-			Else If (This.Prop.ItemClass = "Jewels")
+			Else If (This.Prop.ItemClass == "Jewels")
 			{
 				If (InStr(This.Prop.ItemBase, "Cluster Jewel"))
 				{
@@ -466,7 +466,7 @@ class ItemScan
 					This.Prop.Jewel := True
 				}
 			}
-			Else If (This.Prop.ItemClass = "Heist Targets")
+			Else If (This.Prop.ItemClass == "Heist Targets")
 			{
 				This.Prop.Heist := True
 				This.Prop.Vendorable := True
@@ -481,7 +481,7 @@ class ItemScan
 				This.Prop.Item_Width := 1
 				This.Prop.Item_Height := 2
 			}
-			Else If (This.Prop.ItemClass = "Quivers")
+			Else If (This.Prop.ItemClass == "Quivers")
 			{
 				This.Prop.Quiver := True
 				This.Prop.Item_Width := 2
@@ -513,13 +513,13 @@ class ItemScan
 					This.Prop.SpecialType := "Catalyst"
 				}
 			}
-			Else If (This.Prop.ItemClass = "Contracts")
+			Else If (This.Prop.ItemClass == "Contracts")
 			{
 				This.Prop.Heist := True
 				This.Prop.MapLikeItem := True
 				This.Prop.SpecialType := "Heist Contract"
 			}
-			Else If (This.Prop.ItemClass = "Blueprints")
+			Else If (This.Prop.ItemClass == "Blueprints")
 			{
 				This.Prop.Heist := True
 				This.Prop.MapLikeItem := True
@@ -544,7 +544,7 @@ class ItemScan
 				Else
 					This.Prop.Item_Width := This.Prop.Item_Height := 2
 			}
-			Else If (This.Prop.ItemClass = "Tinctures")
+			Else If (This.Prop.ItemClass == "Tinctures")
 			{
 				This.Prop.Item_Width := 1
 				This.Prop.Item_Height := 2
@@ -590,7 +590,7 @@ class ItemScan
 			{
 				If (This.Prop.RarityGem) {
 					This.Prop.Gem_Level := RxMatch[1]
-					If (RxMatch[2] = " (Max)")
+					If (RxMatch[2] == " (Max)")
 						This.Prop.Gem_MaxLevel := True
 					If RegExMatch(This.Data.Blocks.Properties, "`am)^Level: " rxNum, &RxMatch, position+10)
 						This.Prop.Required_Level := RxMatch[1]
@@ -1021,7 +1021,7 @@ class ItemScan
 		local Type, Obj, k, v
 		For Type, Obj in This.Data.AffixNames {
 			For k, v in Obj {
-				If (v.Name = Name)
+				If (v.Name == Name)
 					Return True
 			}
 		}
@@ -1050,7 +1050,7 @@ class ItemScan
 			This.Prop.SlotType := "Shield"
 	}
 	MatchChaosRegal(){
-		If (This.Prop.Rarity_Digit = 3 && This.Prop.SlotType != "" )
+		If (This.Prop.Rarity_Digit == 3 && This.Prop.SlotType != "" )
 		{
 			If (This.Prop.ItemLevel >= 60 && This.Prop.ItemLevel <= 74 && (ChaosRecipeTypePure || ChaosRecipeTypeHybrid))
 				This.Prop.ChaosRecipe := 1
@@ -1067,9 +1067,9 @@ class ItemScan
 			|| !( This.Prop.SlotType )
 			|| ( ChaosRecipeTypePure && This.Prop.ItemLevel > 74)
 			|| ( ChaosRecipeTypeRegal && This.Prop.ItemLevel < 75 )
-			|| ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass = "Shields")
-			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width = 1 && This.Prop.Item_Height > 3))
-			&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width = 2 && This.Prop.Item_Height = 3) )
+			|| ( ChaosRecipeSmallWeapons && (This.Prop.IsWeapon || This.Prop.ItemClass == "Shields")
+			&& (( This.Prop.Item_Width > 1 && This.Prop.Item_Height > 2) || ( This.Prop.Item_Width == 1 && This.Prop.Item_Height > 3))
+			&& !(This.Prop.IsTwoHanded && This.Prop.Item_Width == 2 && This.Prop.Item_Height == 3) )
 			Return False
 		If (ChaosRecipeSkipJC && (This.Prop.Jeweller || This.Prop.Chromatic))
 			Return False
@@ -1083,7 +1083,7 @@ class ItemScan
 		}
 		For k, v in TypeList
 		{
-			If (This.Prop.SlotType = v)
+			If (This.Prop.SlotType == v)
 			{
 				If This.Affix.Unidentified {
 					CountValue := retCount(RecipeArray.uChaos[v]) + retCount(RecipeArray.uRegal[v])
@@ -1092,7 +1092,7 @@ class ItemScan
 					CountValue := retCount(RecipeArray.Chaos[v]) + retCount(RecipeArray.Regal[v])
 					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingID
 				}
-				If (v = "Ring")
+				If (v == "Ring")
 					CountValue := CountValue / 2
 				If (ChaosRecipeAllowDoubleJewellery && IndexOf(v,["Ring","Amulet"]))
 					CountValue := CountValue / 2
@@ -1128,7 +1128,7 @@ class ItemScan
 		}
 		For k, v in WeaponList
 		{
-			If (This.Prop.SlotType = v)
+			If (This.Prop.SlotType == v)
 			{
 				If This.Affix.Unidentified{
 					WeaponCount := retCount(RecipeArray.uRegal["Two Hand"]) + retCount(RecipeArray.uChaos["Two Hand"])
@@ -1174,7 +1174,7 @@ class ItemScan
 		DoubleModCounter := 0
 		Loop Parse, content, "`r`n" ; , `r
 		{
-			If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
+			If (A_LoopField == "" || A_LoopField ~= "^\{ .* \}$")
 			{
 				DoubleModCounter := 0
 				Continue
@@ -1304,7 +1304,7 @@ class ItemScan
 		; Do Stuff with info
 		Loop Parse, content, "`r`n" ; , `r
 		{
-			If (A_LoopField = "" || A_LoopField ~= "^\{ .* \}$")
+			If (A_LoopField == "" || A_LoopField ~= "^\{ .* \}$")
 				Continue
 			line := RegExReplace(A_LoopField, rxNum "\(" rxNum "-" rxNum "\)", "$1")
 			line := RegExReplace(line, rxNum "\(-" rxNum "--" rxNum "\)", "$1")
@@ -1373,177 +1373,177 @@ class ItemScan
 			}
 			trimKey := RegExReplace(k," \(.*\)$","")
 			; Singular Resistances
-			If (trimKey = "# to maximum Life")
+			If (trimKey == "# to maximum Life")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Maximum Life",k)
 			}
-			If (trimKey = "#% to Cold Resistance")
+			If (trimKey == "#% to Cold Resistance")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
 			}
-			Else If (trimKey = "#% to Fire Resistance")
+			Else If (trimKey == "#% to Fire Resistance")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
 			}
-			Else If (trimKey = "#% to Lightning Resistance")
+			Else If (trimKey == "#% to Lightning Resistance")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
 			}
-			Else If (trimKey = "#% to Chaos Resistance")
+			Else If (trimKey == "#% to Chaos Resistance")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Chaos Resistance",k)
 			}
 			; Double Resistances
-			Else If (trimKey = "#% to Cold and Lightning Resistances")
+			Else If (trimKey == "#% to Cold and Lightning Resistances")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
 				This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
 			}
-			Else If (trimKey = "#% to Fire and Cold Resistances")
+			Else If (trimKey == "#% to Fire and Cold Resistances")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
 				This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
 			}
-			Else If (trimKey = "#% to Fire and Lightning Resistances")
+			Else If (trimKey == "#% to Fire and Lightning Resistances")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
 				This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
 			}
 			; All Resistances
-			Else If (trimKey = "#% to all Elemental Resistances")
+			Else If (trimKey == "#% to all Elemental Resistances")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Fire Resistance",k)
 				This.AddPseudoAffix("(Pseudo) Total to Lightning Resistance",k)
 				This.AddPseudoAffix("(Pseudo) Total to Cold Resistance",k)
 			}
 			; Attributes Singular
-			Else If (trimKey = "# to Intelligence")
+			Else If (trimKey == "# to Intelligence")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
 			}
-			Else If (trimKey = "# to Dexterity")
+			Else If (trimKey == "# to Dexterity")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
 			}
-			Else If (trimKey = "# to Strength")
+			Else If (trimKey == "# to Strength")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Strength",k)
 			}
 			; Double Atributes
-			Else If (trimKey = "# to Strength and Dexterity")
+			Else If (trimKey == "# to Strength and Dexterity")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Strength",k)
 				This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
 			}
-			Else If (trimKey = "# to Dexterity and Intelligence")
+			Else If (trimKey == "# to Dexterity and Intelligence")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
 				This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
 			}
-			Else If (trimKey = "# to Strength and Intelligence")
+			Else If (trimKey == "# to Strength and Intelligence")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Strength",k)
 				This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
 			}
 			; All Atribbutes
-			Else If (trimKey = "# to all Attributes")
+			Else If (trimKey == "# to all Attributes")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Strength",k)
 				This.AddPseudoAffix("(Pseudo) Total to Intelligence",k)
 				This.AddPseudoAffix("(Pseudo) Total to Dexterity",k)
 			}
 			; Singular Armour Affix
-			Else If (trimKey = "#% increased Armour")
+			Else If (trimKey == "#% increased Armour")
 			{
 				This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
 			}
-			Else If (trimKey = "#% increased Evasion Rating")
+			Else If (trimKey == "#% increased Evasion Rating")
 			{
 				This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
 			}
-			Else If (trimKey = "#% increased Energy Shield")
+			Else If (trimKey == "#% increased Energy Shield")
 			{
 				This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
 			}
-			Else If (trimKey = "#% to maximum Energy Shield")
+			Else If (trimKey == "#% to maximum Energy Shield")
 			{
 				This.AddPseudoAffix("(Pseudo) Total to Maximum Energy Shield",k)
 			}
 			; Double Armour Affix
-			Else If (trimKey = "#% increased Evasion and Energy Shield")
+			Else If (trimKey == "#% increased Evasion and Energy Shield")
 			{
 				This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
 				This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
 			}
-			Else If (trimKey = "#% increased Armour and Energy Shield")
+			Else If (trimKey == "#% increased Armour and Energy Shield")
 			{
 				This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
 				This.AddPseudoAffix("(Pseudo) Total Increased Energy Shield",k)
 			}
-			Else If (trimKey = "#% increased Armour and Evasion")
+			Else If (trimKey == "#% increased Armour and Evasion")
 			{
 				This.AddPseudoAffix("(Pseudo) Total Increased Armour",k)
 				This.AddPseudoAffix("(Pseudo) Total Increased Evasion",k)
 			}
 			; Damage Mods
-			Else If (trimKey = "Adds # to # Physical Damage to Attacks")
+			Else If (trimKey == "Adds # to # Physical Damage to Attacks")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Physical Damage to Attacks",k)
 			}
-			Else If (trimKey = "Adds # to # Physical Damage to Spells")
+			Else If (trimKey == "Adds # to # Physical Damage to Spells")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Physical Damage to Spells",k)
 			}
-			Else If (trimKey = "Adds # to # Cold Damage to Attacks")
+			Else If (trimKey == "Adds # to # Cold Damage to Attacks")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Cold Damage to Attacks",k)
 			}
-			Else If (trimKey = "Adds # to # Cold Damage to Spells")
+			Else If (trimKey == "Adds # to # Cold Damage to Spells")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Cold Damage to Spells",k)
 			}
-			Else If (trimKey = "Adds # to # Fire Damage to Attacks")
+			Else If (trimKey == "Adds # to # Fire Damage to Attacks")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Fire Damage to Attacks",k)
 			}
-			Else If (trimKey = "Adds # to # Fire Damage to Spells")
+			Else If (trimKey == "Adds # to # Fire Damage to Spells")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Fire Damage to Spells",k)
 			}
-			Else If (trimKey = "Adds # to # Lightning Damage to Attacks")
+			Else If (trimKey == "Adds # to # Lightning Damage to Attacks")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Attacks",k)
 			}
-			Else If (trimKey = "Adds # to # Lightning Damage to Spells")
+			Else If (trimKey == "Adds # to # Lightning Damage to Spells")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Lightning Damage to Spells",k)
 			}
-			Else If (trimKey = "Adds # to # Chaos Damage to Attacks")
+			Else If (trimKey == "Adds # to # Chaos Damage to Attacks")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Attacks",k)
 			}
-			Else If (trimKey = "Adds # to # Chaos Damage to Spells")
+			Else If (trimKey == "Adds # to # Chaos Damage to Spells")
 			{
 				This.AddPseudoAffix("(Pseudo) Add Chaos Damage to Spells",k)
 			}
 			; Spell Pseudo
-			Else If (trimKey = "#% increased Lightning Damage")
+			Else If (trimKey == "#% increased Lightning Damage")
 			{
 				This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
 			}
-			Else If (trimKey = "#% increased Cold Damage")
+			Else If (trimKey == "#% increased Cold Damage")
 			{
 				This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
 			}
-			Else If (trimKey = "#% increased Fire Damage")
+			Else If (trimKey == "#% increased Fire Damage")
 			{
 				This.AddPseudoAffix("(Pseudo) Increased Fire Damage",k)
 			}
-			Else If (trimKey = "#% increased Chaos Damage")
+			Else If (trimKey == "#% increased Chaos Damage")
 			{
 				This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
 			}
-			Else If (trimKey = "#% increased Spell Damage")
+			Else If (trimKey == "#% increased Spell Damage")
 			{
 				This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
 				This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
@@ -1551,7 +1551,7 @@ class ItemScan
 				This.AddPseudoAffix("(Pseudo) Increased Chaos Damage",k)
 				This.AddPseudoAffix("(Pseudo) Increased Spell Damage",k)
 			}
-			Else If (trimKey = "#% increased Elemental Damage")
+			Else If (trimKey == "#% increased Elemental Damage")
 			{
 				This.AddPseudoAffix("(Pseudo) Increased Lightning Damage",k)
 				This.AddPseudoAffix("(Pseudo) Increased Cold Damage",k)
@@ -1687,7 +1687,7 @@ class ItemScan
 							This.Prop.Amulet := True
 						If InStr(This.Prop.ItemClass, "Belts")
 							This.Prop.Belt := True
-						If (This.Prop.ItemClass = "Support Skill Gems")
+						If (This.Prop.ItemClass == "Support Skill Gems")
 							This.Prop.Support := True
 						Break 2
 					}
@@ -1861,8 +1861,8 @@ class ItemScan
 		{
 			For k, v in Ninja.ClusterJewel
 			{
-				If (This.Prop.ClusterKey = v["name"]
-					&& This.Prop.ClusterVariant = v["variant"]
+				If (This.Prop.ClusterKey == v["name"]
+					&& This.Prop.ClusterVariant == v["variant"]
 					&& This.Prop.ItemLevel >= v["levelRequired"])
 				{
 					This.Prop.ChaosValue := v["chaosValue"]
@@ -1881,7 +1881,7 @@ class ItemScan
 		{
 			For k, v in Ninja.BaseType
 			{
-				If (This.Prop.ItemBase = v["name"]
+				If (This.Prop.ItemBase == v["name"]
 					&& This.Prop.Influence ~= v["variant"]
 					&& This.Prop.ItemLevel >= v["levelRequired"])
 				{
@@ -1899,7 +1899,7 @@ class ItemScan
 	MatchNinjaDB(ApiStr,MatchKey:="ItemName",NinjaKey:="name"){
 		For k, v in Ninja[ApiStr]
 		{
-			If (This.Prop[MatchKey] = v[NinjaKey])
+			If (This.Prop[MatchKey] == v[NinjaKey])
 			{
 				If (ApiStr ~= "Map"
 					&& This.Prop.Map_Tier < v["mapTier"])
@@ -1995,7 +1995,7 @@ class ItemScan
 				If Abs(v) > basePayPoint
 					basePayPoint := Abs(v)
 			}
-			If (basePayPoint = 0)
+			If (basePayPoint == 0)
 				FormatStr := "{1:0.0f}"
 			Else If basePayPoint < 1
 				FormatStr := "{1:0.3f}"
@@ -2034,7 +2034,7 @@ class ItemScan
 				If Abs(v) > baseRecPoint
 					baseRecPoint := Abs(v)
 			}
-			If (baseRecPoint = 0)
+			If (baseRecPoint == 0)
 				FormatStr := "{1:0.0f}"
 			Else If baseRecPoint < 1
 				FormatStr := "{1:0.3f}"
@@ -2211,7 +2211,7 @@ class ItemScan
 					If (Abs(v) > basePoint)
 						basePoint := Abs(v)
 				}
-				If (basePoint = 0)
+				If (basePoint == 0)
 					FormatStr := "{1:0.0f}"
 				Else If basePoint < 1
 					FormatStr := "{1:0.3f}"
@@ -2270,13 +2270,13 @@ class ItemScan
 					;MsgBox % "Key : " k "   Val : " v
 				}
 
-				Gui("ItemInfo")["GroupBox1"].Value := (HTGraph = "Name"?"Value of " This.Prop.ItemName : (HTGraph = "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
+				Gui("ItemInfo")["GroupBox1"].Value := (HTGraph == "Name"?"Value of " This.Prop.ItemName : (HTGraph == "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
 				ItemInfoGui["PComment1"].Text := "Chaos Value"
-				Gui("ItemInfo")["PData1"].Value := (HTGraph = "Name"?This.Data.Ninja["chaosValue"]:(HTGraph = "Base"?This.Data.BaseNinja["chaosValue"]:""))
+				Gui("ItemInfo")["PData1"].Value := (HTGraph == "Name"?This.Data.Ninja["chaosValue"]:(HTGraph == "Base"?This.Data.BaseNinja["chaosValue"]:""))
 				ItemInfoGui["PComment2"].Text := "Exalted Value"
-				Gui("ItemInfo")["PData2"].Value := (HTGraph = "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph = "Base"?This.Data.BaseNinja["exaltedValue"]:""))
+				Gui("ItemInfo")["PData2"].Value := (HTGraph == "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph == "Base"?This.Data.BaseNinja["exaltedValue"]:""))
 				ItemInfoGui["PComment3"].Text := "Chaos Value `% Change"
-				Gui("ItemInfo")["PData3"].Value := (HTGraph = "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph = "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
+				Gui("ItemInfo")["PData3"].Value := (HTGraph == "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph == "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
 				ItemInfoGui["PComment4"].Text := "Day 6 Change"
 				Gui("ItemInfo")["PData4"].Value := dataPoint[2]
 				ItemInfoGui["PComment5"].Text := "Day 5 Change"
@@ -2306,7 +2306,7 @@ class ItemScan
 					If Abs(v) > baseLTPoint
 						baseLTPoint := Abs(v)
 				}
-				If (baseLTPoint = 0)
+				If (baseLTPoint == 0)
 					FormatStr := "{1:0.0f}"
 				If baseLTPoint < 1
 					FormatStr := "{1:0.3f}"
@@ -2365,13 +2365,13 @@ class ItemScan
 					;MsgBox % "Key : " k "   Val : " v
 				}
 
-				Gui("ItemInfo")["GroupBox2"].Value := (LTGraph = "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph = "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
+				Gui("ItemInfo")["GroupBox2"].Value := (LTGraph == "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph == "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
 				ItemInfoGui["SComment1"].Text := "Chaos Value"
-				Gui("ItemInfo")["SData1"].Value := (LTGraph = "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph = "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
+				Gui("ItemInfo")["SData1"].Value := (LTGraph == "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph == "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
 				Gui("ItemInfo")["SComment2"].Value := ""
 				Gui("ItemInfo")["SData2"].Value := ""
 				ItemInfoGui["SComment3"].Text := "Chaos Value `% Change"
-				Gui("ItemInfo")["SData3"].Value := (LTGraph = "Base"? This.Data.BaseNinja["sparkline"]["totalChange"] : (LTGraph = "Helm" ? This.Data.HelmNinja["sparkline"]["totalChange"] : "") )
+				Gui("ItemInfo")["SData3"].Value := (LTGraph == "Base"? This.Data.BaseNinja["sparkline"]["totalChange"] : (LTGraph == "Helm" ? This.Data.HelmNinja["sparkline"]["totalChange"] : "") )
 				ItemInfoGui["SComment4"].Text := "Day 6 Change"
 				Gui("ItemInfo")["SData4"].Value := dataLTPoint[2]
 				ItemInfoGui["SComment5"].Text := "Day 5 Change"
@@ -2503,8 +2503,8 @@ class ItemScan
 			sendstash := StashTabTattoos
 		} Else If ( StashTabYesCurrency
 			&& This.Prop.RarityCurrency
-			&& ( This.Prop.SpecialType = ""
-			|| This.Prop.SpecialType = "Ritual Item"
+			&& ( This.Prop.SpecialType == ""
+			|| This.Prop.SpecialType == "Ritual Item"
 			|| (This.Prop.IsRune && !StashTabYesRunes)
 			|| (This.Prop.IsTattoo && !StashTabYesTattoos) ) )
 		{
@@ -2584,7 +2584,7 @@ class ItemScan
 				sendstash := StashTabGem
 		} Else If ((StashTabYesUnique||StashTabYesUniqueRing||StashTabYesUniqueDump) && This.Prop.RarityUnique
 			&&( !StashTabYesUniquePercentage || (StashTabYesUniquePercentage && This.Prop.HasRange && This.Prop.PercentageAffix >= StashTabUniquePercentage) ) ) {
-			If (StashTabYesUnique = 2)
+			If (StashTabYesUnique == 2)
 				Return -2
 			Else if (StashTabYesUnique)
 				sendstash := StashTabUnique
@@ -2618,9 +2618,9 @@ class ItemScan
 			Else If (ChaosRecipeStashMethodTab)
 				sendstash := ChaosRecipeStashTab
 			Else If (ChaosRecipeStashMethodSort) {
-				If (This.Prop.SlotType = "Body")
+				If (This.Prop.SlotType == "Body")
 					sendstash := ChaosRecipeStashTabArmour
-				Else If (This.Prop.SlotType = "One Hand" || This.Prop.SlotType = "Two Hand" || This.Prop.SlotType = "Shield")
+				Else If (This.Prop.SlotType == "One Hand" || This.Prop.SlotType == "Two Hand" || This.Prop.SlotType == "Shield")
 					sendstash := ChaosRecipeStashTabWeapon
 				Else If (This.Prop.SlotType) {
 					w := This.Prop.SlotType
@@ -2660,7 +2660,7 @@ class ItemScan
 				orcount := Groups["Data"]["OrCount"]
 				For SKey, Selected in Groups
 				{
-					If ( SKey = "Data" )
+					If ( SKey == "Data" )
 						Continue
 					For AKey, AVal in Selected {
 						orflag := AVal["OrFlag"]
@@ -2752,25 +2752,25 @@ class ItemScan
 		}
 	}
 	Evaluate(eval,val,min){
-		if (eval = ">") {
+		if (eval == ">") {
 			Return (val > min)
-		} Else if (eval = ">=") {
+		} Else if (eval == ">=") {
 			Return (val >= min)
-		} Else if (eval = "=") {
-			Return (val = min)
-		} Else if (eval = "<") {
+		} Else if (eval == "=") {
+			Return (val == min)
+		} Else if (eval == "<") {
 			Return (val < min)
-		} else if (eval = "<=") {
+		} else if (eval == "<=") {
 			Return (val <= min)
-		} else if (eval = ">0<") {
+		} else if (eval == ">0<") {
 			Return (val > 0 && val < min)
-		} else if (eval = ">0<=") {
+		} else if (eval == ">0<=") {
 			Return (val > 0 && val <= min)
-		} else if (eval = "!=") {
+		} else if (eval == "!=") {
 			Return (val != min)
-		} else if (eval = "~=") {
+		} else if (eval == "~=") {
 			Return (val ~= min)
-		} else if (eval = "~") {
+		} else if (eval == "~") {
 			matchedOR := False
 			for k, v in StrSplit(min, "|"," ") { ; Split OR first
 				if InStr(v, "&") { 					 ; Check for any & sections
@@ -2792,7 +2792,7 @@ class ItemScan
 		}
 	}
 	inRange(key,obj,base){
-		If (obj.ranges.Length = 1) {
+		If (obj.ranges.Length == 1) {
 			If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
 				|| (base[key] <= obj.ranges.1.1 && base[key] >= obj.ranges.1.2))
 				Return False
@@ -2803,7 +2803,7 @@ class ItemScan
 					|| (base[key "_Value" k] <= v.1 && base[key "_Value" k] >= v.2))
 					Return False
 			}
-		} Else If (obj.values.Length = 1) {
+		} Else If (obj.values.Length == 1) {
 			If !(base[key] == obj.values.1 )
 				Return False
 		} Else If (obj.values.Length >= 2) {
@@ -2855,7 +2855,7 @@ class ItemScan
 	ApproximatePerfection(){
 		For ku, unique in WR.data.Perfect
 		{
-			If ( This.Prop.ItemName = unique.name ) {
+			If ( This.Prop.ItemName == unique.name ) {
 				If unique.pricePerfect
 				{
 					perccalc := This.percval(This.Prop.PercentageAffix,[unique.mean,unique.pricePerfect]) * (This.Prop.PercentageAffix/90)

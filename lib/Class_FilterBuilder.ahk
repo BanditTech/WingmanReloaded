@@ -66,10 +66,10 @@
 	}
 	Dimensions(){
 		If This.Settings.Dimensions.Has("Height") {
-			This.Add("Height = " This.Settings.Dimensions.Height)
+			This.Add("Height == " This.Settings.Dimensions.Height)
 		}
 		If This.Settings.Dimensions.Has("Width") {
-			This.Add("Width = " This.Settings.Dimensions.Width)
+			This.Add("Width == " This.Settings.Dimensions.Width)
 		}
 	}
 }

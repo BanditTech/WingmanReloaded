@@ -31,7 +31,7 @@ Class ModAlias {
 			loop v.length {
 				i := A_Index - 1
 				strkey := v[i]
-				If (strkey = StatID) {
+				If (strkey == StatID) {
 					return This.TransObject[k]["English"]
 				}
 			}

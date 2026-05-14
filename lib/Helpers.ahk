@@ -37,7 +37,7 @@ indexOf(var, Arr, fromIndex:=1){
   for index, value in Arr {
     if (index < fromIndex){
       Continue
-    }else if (value = var){
+    }else if (value == var){
       return index
     }
   }
@@ -49,7 +49,7 @@ indexOfArr(var, Arr, fromIndex:=1){
     if (index < fromIndex)
       Continue
     for k, value in a
-      if (value = var)
+      if (value == var)
         return index
   }
   Return False
@@ -58,7 +58,7 @@ indexOfArr(var, Arr, fromIndex:=1){
 HasVal(haystack, needle){
   for index, value in haystack
   {
-    if (value = needle)
+    if (value == needle)
       return true
   }
   return false
@@ -175,7 +175,7 @@ CheckTime(Type:="hours",Interval:=2,key:="temp",Time:=""){
   ; Available time types are: years, months, days, hours, minutes, seconds
   If (!Keys[key] || Time != "")
   {
-    Keys[key] := (Time = "" ? A_Now : Time)
+    Keys[key] := (Time == "" ? A_Now : Time)
   }
   TimeVal := Keys[key]
   TimeVal := DateDiff(A_Now, TimeVal, Type)

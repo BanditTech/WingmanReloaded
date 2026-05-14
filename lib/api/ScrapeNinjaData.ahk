@@ -181,7 +181,7 @@ ScrapeNinjaData(apiString)
         holder.lines[index]["gemLevel"] := grabGemLevel
       If grabGemQuality
         holder.lines[index]["gemQuality"] := grabGemQuality
-      If (grabBaseType && apiString = "UniqueMap")
+      If (grabBaseType && apiString == "UniqueMap")
         holder.lines[index]["baseType"] := grabBaseType
     }
     Ninja[apiString] := holder.lines

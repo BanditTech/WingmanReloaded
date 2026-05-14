@@ -14,7 +14,7 @@ Trigger(obj,force:=False){
 	Else If !ActionList[obj.Group].Count()
 	{
 		loop (obj.Type="Flask"?5:10)
-			if (WR[obj.Type][A_Index].Group = obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) )
+			if (WR[obj.Type][A_Index].Group == obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) )
 				ActionList[obj.Group].Push(obj.Type . " " . A_Index . " Check")
 	}
 	For k, v in ActionList[obj.Group]
@@ -45,7 +45,7 @@ Trigger(obj,force:=False){
 			WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD
 			WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD
 			ActionList[obj.Group].RemoveAt(k)
-			If (WR[type][v].Group = "QuickSilver")
+			If (WR[type][v].Group == "QuickSilver")
 				Loop 10
 					If (WR.Utility[A_Index].Enable && WR.Utility[A_Index].QS)
 						Trigger(WR.Utility[A_Index],true)
@@ -55,7 +55,7 @@ Trigger(obj,force:=False){
 	Return
 }
 ConfirmMatchingTriggers(obj){
-	If ((obj.Enable || obj.Type = "Flask") && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+	If ((obj.Enable || obj.Type == "Flask") && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
 	{
 		If (WR.func.Toggle.PopAll && obj.PopAll) ; PopAll trigger
 			Return True
@@ -108,7 +108,7 @@ MainAttackCommandRelease()
 		Return
 	For k, types in ["Flask","Utility"]
 		loop (types="Flask"?5:10)
-			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type == "Flask") && WR[types][A_Index].MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
 				Trigger(WR[types][A_Index],True)
 	Return
 }
@@ -129,7 +129,7 @@ SecondaryAttackCommandRelease()
 		Return
 	For k, types in ["Flask","Utility"]
 		loop (types="Flask"?5:10)
-			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type = "Flask") && WR[types][A_Index].SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type == "Flask") && WR[types][A_Index].SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
 				Trigger(WR[types][A_Index],True)
 	Return
 }

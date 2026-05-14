@@ -154,7 +154,7 @@ updateEmptyColor(*)
 		infoMsg .= "Do you meet the above state requirements? If not please cancel this function."
 
 		result := MsgBox(infoMsg,, 1)
-		if (result = "Cancel")
+		if (result == "Cancel")
 		{
 			MsgBox("Canceled the Id / Empty Slot calibration")
 			return
@@ -236,7 +236,7 @@ updateOnVendor(*)
 
 	if WinActive("ahk_group POEGameGroup"){
 		FindText.ScreenShot()
-		If (CurrentLocation = "The Rogue Harbour") {
+		If (CurrentLocation == "The Rogue Harbour") {
 			varOnVendorHeist := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
 			IniWrite(varOnVendorHeist, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnVendorHeist")
 			readFromFile()
@@ -653,7 +653,7 @@ CalibrationWizard(){
 				MsgBox("PoE Window is not active. `nRecalibrate of OnDelveChart didn't work")
 		}
 		PauseTooltips := 0
-		If (SampleTT = "")
+		If (SampleTT == "")
 		{
 			MsgBox("No Sample Taken")
 			WizardGui.Show()

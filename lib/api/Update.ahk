@@ -63,10 +63,10 @@ DaysSince()
 {
   Global LastDatabaseParseDate, UpdateDatabaseInterval
   Date_now := FormatTime(A_Now, "yyyyMMdd")
-  If (Date_now = LastDatabaseParseDate) ;
+  If (Date_now == LastDatabaseParseDate) ;
     Return False
   daysCount := DateDiff(Date_now, LastDatabaseParseDate, "Days")
-  If (daysCount = "")
+  If (daysCount == "")
   {
     ;the value is too large of a dif to calculate, this means we should update
     Return True

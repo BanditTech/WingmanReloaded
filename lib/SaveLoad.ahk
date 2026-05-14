@@ -812,7 +812,7 @@ submit(){
 
 		;GUI Position
 		WinGetPos(&winguix, &winguiy, &winW, &winH, "WingmanReloaded")
-		If !(WinGuiX = "" || WinGuiY = "")
+		If !(WinGuiX == "" || WinGuiY == "")
 		{
 			IniWrite(winguix, A_ScriptDir "\save\Settings.ini", "General", "WinGuiX")
 			IniWrite(winguiy, A_ScriptDir "\save\Settings.ini", "General", "WinGuiY")
@@ -1228,7 +1228,7 @@ submit(){
 ; Settings Save/Load
 Settings(name:="perChar",Action:="Load"){
 	local f, JSONtext, obj
-	If (Action = "Load"){
+	If (Action == "Load"){
 		Try {
 			if !FileExist(A_ScriptDir "\save\" name ".json")
 				Return False
@@ -1243,7 +1243,7 @@ Settings(name:="perChar",Action:="Load"){
 		} Catch e {
 			Util.Err(e, "Setting Load failed for .\save\" name ".json")
 		}
-	}Else If (Action = "Save"){
+	}Else If (Action == "Save"){
 		f := FileOpen(A_ScriptDir "\save\" name ".json", "w")
 		JSONtext := JSON.Dump(WR[name],,2)
 		f.Write(JSONtext)
@@ -1265,14 +1265,14 @@ Profile(args*){
 		Action := args[2]
 		name := args[3]
 	}
-	If (name = ""){
+	If (name == ""){
 		MsgBox("Profile name cannot be blank", "Whoah there clicky fingers", 262144)
 		Return
 	}
 	If FileExist( A_ScriptDir "\save\profiles\" Type "\" name ".json"){
 		If confirm
 		{
-			if (MsgBox("Please confirm you want to " Action " the " name " Profile", "Whoah there clicky fingers", 262148) = "No")
+			if (MsgBox("Please confirm you want to " Action " the " name " Profile", "Whoah there clicky fingers", 262148) == "No")
 			Return
 		}
 	} Else If (Action != "Save") {
@@ -1280,17 +1280,17 @@ Profile(args*){
 		Return
 	}
 
-	If (Action = "Save") {
+	If (Action == "Save") {
 		FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","w").Write(JSON.Dump(WR[Type],,2))
 		IniWrite(name, A_ScriptDir "\save\Settings.ini", "Chosen Profile", Type)
-	} Else If (Action = "Load") {
+	} Else If (Action == "Load") {
 		obj := JSON.Load(FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","r").Read())
 		For k, v in WR[Type]
 			If (IsObject(obj[k]))
 			For l, w in v
 			If (obj[k].Has(l))
 			WR[Type][k][l] := obj[k][l]
-		If (Type = "perChar"){
+		If (Type == "perChar"){
 			If WR.perChar.Setting.profilesYesFlask
 				If WR.perChar.Setting.profilesFlask
 				Profile("Flask","Load",WR.perChar.Setting.profilesFlask)
@@ -1301,7 +1301,7 @@ Profile(args*){
 		MainGui["ProfileMenu" Type].Choose(name)
 		IniWrite(name, A_ScriptDir "\save\Settings.ini", "Chosen Profile", Type)
 		Return
-	}	Else If (Action = "Remove"){
+	}	Else If (Action == "Remove"){
 		FileDelete(A_ScriptDir "\save\profiles\" Type "\" name ".json")
 	}
 
@@ -1310,7 +1310,7 @@ Profile(args*){
 		l.Push(StrReplace(A_LoopFileName,".json",""))
 	For k, v in l
 		s .=(k=1?"||":"|") v
-	If (s = "")
+	If (s == "")
 		s := "||"
 	MainGui["ProfileMenu" Type].Delete()
 	For k, v in StrSplit(LTrim(s, "|"), "|")

@@ -15,7 +15,7 @@ RestockMenu(choice:=""){
 	static RestockGui := ""
 	static CustomSlotHWND := []
 
-	If (choice = "Load") {
+	If (choice == "Load") {
 		LoadRestockArray()
 		Return
 	}
@@ -125,7 +125,7 @@ RestockMenu(choice:=""){
 
 	RestockRefreshOption()
 	{
-		if (LoadedValues.RestockName = "")
+		if (LoadedValues.RestockName == "")
 			RestockGui["RestockRestockName"].Choose(0)
 		Else
 			RestockGui["RestockRestockName"].Choose(LoadedValues.RestockName)
@@ -136,11 +136,11 @@ RestockMenu(choice:=""){
 		RestockGui["RestockRestockMax"].Opt("+Range0-" max)
 		RestockGui["RestockRestockMin"].Opt("+Range0-" max)
 		RestockGui["RestockRestockTo"].Opt("+Range0-" max)
-		If (LoadedValues["RestockMax"] > max || LoadedValues.RestockName = "")
+		If (LoadedValues["RestockMax"] > max || LoadedValues.RestockName == "")
 			LoadedValues["RestockMax"] := max
-		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues.RestockName = "")
+		If (LoadedValues["RestockMin"] >= max - 2 || LoadedValues.RestockName == "")
 			LoadedValues["RestockMin"] := max // 2
-		If (LoadedValues["RestockTo"] > max || LoadedValues.RestockName = "")
+		If (LoadedValues["RestockTo"] > max || LoadedValues.RestockName == "")
 			LoadedValues["RestockTo"] := Round(max * (3/4))
 		If (LoadedValues["RestockMin"] >= LoadedValues["RestockMax"] - 1)
 			LoadedValues["RestockMin"] := LoadedValues["RestockMax"] - 2
@@ -151,14 +151,14 @@ RestockMenu(choice:=""){
 		for k,v in DefaultSettings {
 			If !LoadedValues.HasOwnProp(k)
 				LoadedValues[k] := v
-			If (k = "RestockName")
+			If (k == "RestockName")
 				Continue
 			Else
 				RestockGui["Restock" k].Value := LoadedValues[k]
 		}
 
 		For k, v in CustomSlotHWND {
-			GuiCtrlFromHwnd(v).Visible := (LoadedValues["RestockName"] = "Custom")
+			GuiCtrlFromHwnd(v).Visible := (LoadedValues["RestockName"] == "Custom")
 		}
 
 		GroupNumber := (Active[1] - 1) * 5 + Active[2]
@@ -191,7 +191,7 @@ RestockMenu(choice:=""){
 		radios := ["Normal","Ignored","Restock"]
 		If indexOf(VarName,radios) {
 			For k,v in radios {
-				if (v = VarName){
+				if (v == VarName){
 					radios.Delete(k)
 					Break
 				}

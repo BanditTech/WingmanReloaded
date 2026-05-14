@@ -7,57 +7,57 @@ RefreshBaseList(type){
   {
     If (k ~= "Royale[\d_]?$")
       Continue
-    if(type = "str_armour"){
+    if(type == "str_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "dex_armour"){
+    }else if(type == "dex_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "int_armour"){
+    }else if(type == "int_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "str_dex_armour"){
+    }else if(type == "str_dex_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "str_int_armour"){
+    }else if(type == "str_int_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["armour"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "dex_int_armour"){
+    }else if(type == "dex_int_armour"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),RegexFixLeadingZeros(3,v["properties"]["evasion"]["min"]),RegexFixLeadingZeros(3,v["properties"]["energy_shield"]["min"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "amulet"){
+    }else if(type == "amulet"){
       If (IndexOf(type,v["tags"]) && !IndexOf("talisman",v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "belt"){
+    }else if(type == "belt"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "ring"){
+    }else if(type == "ring"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "weapon"){
+    }else if(type == "weapon"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))
       }
-    }else if(type = "quiver"){
+    }else if(type == "quiver"){
       If (IndexOf(type,v["tags"])){
         translateimplicit := (v["implicits"][1] != "" ? ModAlias.Translate(v["implicits"][1]) : 0)
         CustomCraftingBaseGui["listview1"].Add("",v["item_class"],v["name"],"0","0",RegexFixLeadingZeros(2,v["drop_level"]),(translateimplicit ? translateimplicit : v["implicits"][1]))

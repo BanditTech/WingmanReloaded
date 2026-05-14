@@ -119,7 +119,7 @@ UpdateStringEdit(GuiCtrl, *) {
 	Global debuffCurseEleWeakStr, debuffCurseVulnStr, debuffCurseEnfeebleStr, debuffCurseTempChainStr
 	Global debuffCurseCondStr, debuffCurseFlamStr, debuffCurseFrostStr, debuffCurseWarMarkStr
 	IniWrite(GuiCtrl.Value, A_ScriptDir "\save\Settings.ini", "FindText Strings", GuiCtrl.Name)
-	If GuiCtrl.Name = "HealthBarStr"
+	If GuiCtrl.Name == "HealthBarStr"
 		OHBStrW := StrSplit(StrSplit(HealthBarStr, "$")[2], ".")[1]
 	If InStr(GuiCtrl.Name, "debuffCurse")
 		debuffCurseStr := debuffCurseEleWeakStr . debuffCurseVulnStr . debuffCurseEnfeebleStr . debuffCurseTempChainStr . debuffCurseCondStr . debuffCurseFlamStr . debuffCurseFrostStr . debuffCurseWarMarkStr
@@ -205,7 +205,7 @@ helpAutomationSetting(*) {
 
 SelectClientLog(GuiCtrl, *) {
 	Global MainGui, ClientLog
-	If (GuiCtrl.Name = "ClientLog") {
+	If (GuiCtrl.Name == "ClientLog") {
 		MainGui.Submit(0)
 		If FileExist(ClientLog) {
 			IniWrite(ClientLog, A_ScriptDir "\save\Settings.ini", "Log", "ClientLog")
@@ -418,11 +418,11 @@ WarningAutomation(*) {
     . "Come to WingmanReloaded Discord to talk with us or look for more information.`n`n"
     . "You have been warned!!! This option can be dangerous if done incorrectly!!!`n"
     . "Press OK to accept", "WARNING!!!", 1)
-    If (result = "OK")
+    If (result == "OK")
     {
       IniWrite(YesEnableAutoSellConfirmation, A_ScriptDir "\save\Settings.ini", "Automation Settings", "YesEnableAutoSellConfirmation")
       MainMenu()
-    } Else If result = "Cancel"
+    } Else If result == "Cancel"
     {
       YesEnableAutoSellConfirmation := 0
       MainMenu()

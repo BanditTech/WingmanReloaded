@@ -14,23 +14,23 @@ Global DZ_pos_new := ""
 
 DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
 {
-  If (Mode = "Toggle")
+  If (Mode == "Toggle")
   {
     DrawZoom_ToggleZoom()
     DrawZoom_MoveAway()
     Return
   }
-  If (Mode = "Repaint")
+  If (Mode == "Repaint")
   {
     DrawZoom_Repaint()
     Return
   }
-  If (Mode = "MoveAway")
+  If (Mode == "MoveAway")
   {
     DrawZoom_MoveAway()
     Return
   }
-  If (Mode = "ClearGDI")
+  If (Mode == "ClearGDI")
   {
     DrawZoom_ClearGDI()
     Return
@@ -141,9 +141,9 @@ DrawZoom_ToggleZoom() {
 
 ZoomAdjust(*) {
   Global ZoomGui, DZ_zoom, DZ_halfside, DZ_part, DZ_Rz, DZ_R
-  If (DZ_zoom < 31 && A_ThisHotKey = "WheelUp" )
+  If (DZ_zoom < 31 && A_ThisHotKey == "WheelUp" )
     DZ_zoom *= 1.189207115     ; sqrt(sqrt(2))
-  Else If (DZ_zoom >  1 && A_ThisHotKey = "WheelDown")
+  Else If (DZ_zoom >  1 && A_ThisHotKey == "WheelDown")
     DZ_zoom /= 1.189207115
   Else
     Return
@@ -156,13 +156,13 @@ ZoomAdjust(*) {
 
 PushMouse(*) {
   ;Mouse move one step with arrow keys
-  If (A_ThisHotKey = "Up")
+  If (A_ThisHotKey == "Up")
     MouseMove(0, -1, 0, "R")
-  If (A_ThisHotKey = "Down")
+  If (A_ThisHotKey == "Down")
     MouseMove(0, 1, 0, "R")
-  If (A_ThisHotKey = "Left")
+  If (A_ThisHotKey == "Left")
     MouseMove(-1, 0, 0, "R")
-  If (A_ThisHotKey = "Right")
+  If (A_ThisHotKey == "Right")
     MouseMove(1, 0, 0, "R")
   DrawZoom_MoveAway()
 }

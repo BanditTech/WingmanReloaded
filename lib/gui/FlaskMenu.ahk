@@ -110,7 +110,7 @@ FlaskMenu(GuiCtrl, *){
 		; Identify which slot by checking the gui objects
 		val := 0
 		for s, g in FlaskGui {
-			if (g.Hwnd = GuiObj.Hwnd) {
+			if (g.Hwnd == GuiObj.Hwnd) {
 				val := s
 				break
 			}
@@ -127,7 +127,7 @@ FlaskMenu(GuiCtrl, *){
 		; Identify which slot by checking the gui objects
 		val := 0
 		for s, g in FlaskGui {
-			if (g.Hwnd = GuiObj.Hwnd) {
+			if (g.Hwnd == GuiObj.Hwnd) {
 				val := s
 				break
 			}
