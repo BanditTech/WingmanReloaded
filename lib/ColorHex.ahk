@@ -149,6 +149,9 @@ AverageAreaColor(AreaObj){
   Load_BarControl(100,"Done.",-1)
   Return ToHex(Split)
 }
+; Stub: v1 progress-bar helper — no-op in v2 migration
+Load_BarControl(Percent:="", Text:="", Mode:=0) {
+}
 ; Check if a specific hex value is part of an array within a variance and return the index
 indexOfHex(var, Arr, fromIndex:=1, vary:=2){
   for index, value in Arr {
