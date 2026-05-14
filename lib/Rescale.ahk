@@ -23,6 +23,8 @@ Rescale(){
       GlobeImported := True
     Else
       GlobeImported := False
+    ; StashImported has no save file path — always recalculate
+    StashImported := False
 
     WinGetPos(&GameX, &GameY, &GameW, &GameH)
 
