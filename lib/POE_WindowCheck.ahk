@@ -26,8 +26,8 @@ PoEWindowCheck()
 				Rescale()
 			If ((!ToggleExist || newDim) && GameActive)
 			{
-				Gui2.Show("x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA")
-				GuiChaos.Show("x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA")
+				OverlayGui.Show("x" WR.loc.pixel.Gui.X " y" WR.loc.pixel.Gui.Y - 15 " NA")
+				ChaosGui.Show("x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA")
 				GuiUpdate()
 				ToggleExist := True
 				NoGame := False
@@ -35,8 +35,8 @@ PoEWindowCheck()
 			Else If (ToggleExist && !GameActive)
 			{
 				ToggleExist := False
-				Gui2.Show("Hide")
-				GuiChaos.Show("Hide")
+				OverlayGui.Show("Hide")
+				ChaosGui.Show("Hide")
 			}
 		}
 		Else
@@ -52,8 +52,8 @@ PoEWindowCheck()
 			}
 			If (ToggleExist)
 			{
-				Gui2.Show("Hide")
-				GuiChaos.Show("Hide")
+				OverlayGui.Show("Hide")
+				ChaosGui.Show("Hide")
 				ToggleExist := False
 				RescaleRan := False
 				NoGame := True
