@@ -711,19 +711,19 @@ VendorRoutineChaos(){
 
 			If OnMines
 			{
-				LeftClick(GameX + GameW//1.1, GameY + GameH//1.1)
+				LeftClick(GameX + Floor(GameW/1.1), GameY + Floor(GameH/1.1))
 				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town == "Oriath Docks")
 			{
-				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+				LeftClick(GameX + Floor(GameW/1.1), GameY + GameH//3)
 				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
 			Else If (Town == "The Sarn Encampment")
 			{
-				LeftClick(GameX + GameW//1.1, GameY + GameH//3)
+				LeftClick(GameX + Floor(GameW/1.1), GameY + GameH//3)
 				Sleep(800)
      ; LeftClick(GameX + (GameW//2) - 10 , GameY + (GameH//2) - 30 )
 			}
