@@ -241,13 +241,13 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 		MsgBox(e, "Error loading leagues", 262144)
 		LeagueIndex := [{id:"Standard"}]
 	}
-	textList := ""
+	leagueList := []
 	For K, V in LeagueIndex
-		textList .= (!textList ? "" : "|") V["id"]
+		leagueList.Push(V["id"])
 	MainGui.SetFont("Bold s9 cBlack", "Arial")
 	MainGui.Add("Text", "xs+5 y+10", "League:")
 	MainGui.SetFont("Norm")
-	MainGui.Add("ComboBox", "vselectedLeague x+5 yp-3 w150", textList)
+	MainGui.Add("ComboBox", "vselectedLeague x+5 yp-3 w150", leagueList)
 	MainGui["selectedLeague"].Choose(selectedLeague)
 	MainGui.Add("Button", "vUpdateLeaguesBtn x+5 yp-1", "Refresh").OnEvent("Click", UpdateLeagues)
 
