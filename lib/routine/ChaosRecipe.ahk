@@ -859,12 +859,15 @@ CountChaosRecipe(){
     uTally[SlotName] := 0
   }
   For k, TypeName in TypeList {
-    For Slot, Items in RecipeArray[TypeName]{
-      Tally[Slot] += getCount(Items)
-    }
-    For Slot, Items in RecipeArray["u" TypeName]{
-      uTally[Slot] += getCount(Items)
-    }
+    If RecipeArray.HasOwnProp(TypeName)
+      For Slot, Items in RecipeArray.%TypeName%{
+        Tally[Slot] += getCount(Items)
+      }
+    uTypeName := "u" TypeName
+    If RecipeArray.HasOwnProp(uTypeName)
+      For Slot, Items in RecipeArray.%uTypeName%{
+        uTally[Slot] += getCount(Items)
+      }
   }
   Return {Tally:Tally, uTally:uTally}
 }
