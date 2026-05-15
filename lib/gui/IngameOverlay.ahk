@@ -1,7 +1,7 @@
 ; Trigger Status Overlay
 OverlayGui := Gui("+LastFound +AlwaysOnTop +ToolWindow -Caption +E0x20")
 OverlayGui.BackColor := "0X130F13"
-WinSet("TransColor", "0X130F13")
+WinSetTransColor("0X130F13", OverlayGui)
 OverlayGui.SetFont("bold cFFFFFF S9", "Trebuchet MS")
   OverlayGui.Add("Text", "y+0.5 BackgroundTrans voverlayT1", "Quit: OFF")
   OverlayGui.Add("Text", "y+0.5 BackgroundTrans voverlayT2", "Flask: OFF")
@@ -11,7 +11,7 @@ OverlayGui.SetFont("bold cFFFFFF S9", "Trebuchet MS")
 ; Chaos Recipe Overlay
 ChaosGui := Gui("+LastFound +AlwaysOnTop +ToolWindow -Caption +E0x20")
 ChaosGui.BackColor := "0X130F13"
-WinSet("TransColor", "0X130F13")
+WinSetTransColor("0X130F13", ChaosGui)
 ChaosGui.SetFont("bold cFFFFFF S9", "Trebuchet MS")
   ChaosGui.Add("Text", "Right     BackgroundTrans       cRed      ", "Chest: ")
   ChaosGui.Add("Text", "Center w25 x+5  BackgroundTrans vGuiChaosCountChest ", GuiChaosCountChest)
