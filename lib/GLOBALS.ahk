@@ -12,6 +12,11 @@ Global InventoryGridY := []
 Global Bases := ""
 Global GameActive := False
 Global GamePID := 0
+; POE_WindowCheck() will flip NoGame to False once the game window is
+; found. Default to True so anything that reads it during startup
+; (e.g. the main logic loop's 'If NoGame Return') doesn't trip on the
+; unset state.
+Global NoGame := True
 ; ChaosRecipe() rebuilds this each run, but CountChaosRecipe()/
 ; UpdateGuiChaosCounts may iterate it before ChaosRecipe is ever called.
 Global RecipeMap := Map()
