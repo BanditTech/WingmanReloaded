@@ -1,6 +1,7 @@
 ; Efficient HTTP requests for POE resources
 Class PoERequest {
   Stash(TabDigit) {
+    global PoECookie, selectedLeague, AccountNameSTR
     Static Url := "https://www.pathofexile.com/character-window/get-stash-items"
     Static Headers := Map("connection","keep-alive","cache-control","max-age=0")
     Headers["cookie"] := PoECookie
@@ -14,6 +15,7 @@ Class PoERequest {
     Return This.HandleResponse(response)
   }
   Account() {
+    global PoECookie
     Static Url := "https://www.pathofexile.com/character-window/get-account-name"
     Static Headers := Map("cache-control","max-age=0","accept-encoding","gzip, deflate, br")
     Headers["cookie"] := PoECookie
