@@ -27,7 +27,7 @@ CompareLocation(cStr:="")
       If InStr(cStr, v)
       {
         Lang := k
-        If (VersionNumber > 0)
+        If (VersionNumber != "")
         Log("Verbose","Client.txt language has been detected as: " Lang)
         Break
       }

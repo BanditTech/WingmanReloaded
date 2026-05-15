@@ -202,6 +202,22 @@ max(Max, n*){
       Max := Value
   Return Max
 }
+; SemverCompare - Compare two dotted version strings numerically component-by-component.
+; Returns -1 if a < b, 0 if equal, 1 if a > b. Missing trailing components are treated
+; as 0 ("3.0" == "3.0.0").
+SemverCompare(a, b){
+  pa := StrSplit(a, "."), pb := StrSplit(b, ".")
+  n := Max(pa.Length, pb.Length)
+  Loop n {
+    va := (A_Index <= pa.Length) ? Integer(pa[A_Index]) : 0
+    vb := (A_Index <= pb.Length) ? Integer(pb[A_Index]) : 0
+    If (va < vb)
+      Return -1
+    If (va > vb)
+      Return 1
+  }
+  Return 0
+}
 ; UriEncode - Percent-encode a string per RFC 3986 (unreserved chars left intact)
 UriEncode(str){
   static safe := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~"
