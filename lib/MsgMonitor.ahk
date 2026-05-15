@@ -6,7 +6,7 @@ SendMSG(wParam:=0, lParam:=0, script:="BlankSubscript.ahk ahk_exe AutoHotkey.exe
 	Return
 }
 
-MsgMonitor(wParam, lParam, msg) {
+MsgMonitor(wParam, lParam, msg, hwnd) {
 	If (wParam==1)
 		LoadArray()
 	Return
