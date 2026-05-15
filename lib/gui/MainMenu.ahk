@@ -110,7 +110,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Mai
 	ctrl := MainGui.Add("Text", "x+5 yp w150 Center h20 0x200 vMainMenuOnLeft", "Left Panel Open")
 	MainMenuIDOnLeft := ctrl.Hwnd
 	CtlColors.Attach(MainMenuIDOnLeft, "", "Green")
-	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnLeft)
+	MainGui.Add("Text", "xp yp wp hp BackgroundTrans").OnEvent("Click", updateOnStash)
 	ctrl := MainGui.Add("Text", "xs y+10 w150 Center h20 0x200 vMainMenuOnDetonate", "Detonate Shown")
 	MainMenuIDOnDetonate := ctrl.Hwnd
 	CtlColors.Attach(MainMenuIDOnDetonate, "", "Green")
