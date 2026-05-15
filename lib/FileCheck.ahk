@@ -37,6 +37,7 @@ if !FileExist(A_ScriptDir "\save\MyCustomZoneChange.ahk")
 		. "; Include executed code, any return must be true`n"
 		, A_ScriptDir "\save\MyCustomZoneChange.ahk")
 
+needReload := False
 if !FileExist(A_ScriptDir "\data\WR.ico")
 {
 	Try {
