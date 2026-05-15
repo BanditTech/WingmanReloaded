@@ -207,7 +207,7 @@ CraftingMaps(){
 	BlackList := adash.cloneDeep(BlackList_Default)
 	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Chaos","Augmentation"])
 	; MsgBoxVals(WR.data.Counts)
-	MapList := {}
+	MapList := Map()
 	; Start Scan on Inventory
 	For C, GridX in InventoryGridX
 	{
@@ -230,7 +230,7 @@ CraftingMaps(){
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
 			mapCraftingMethod := getMapCraftingMethod()
-			If (Item.Affix["Unidentified"]&&YesIdentify)
+			If (Item.Affix.Unidentified&&YesIdentify)
 			{
 				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap)
 					&& (!YesMapUnid
@@ -343,7 +343,7 @@ getMapCraftingMethod(){
 }
 ; Find the stack sizes of all relevant currency, returns count object
 CountCurrency(NameList:=""){
-	retCount := {}
+	retCount := Map()
 	If (NameList == "")
 		Return False
 	If !IsObject(NameList)
@@ -436,7 +436,7 @@ MapRoll(Method, x, y){
 	{
 		return
 	}
-	If (Item.Affix["Unidentified"])
+	If (Item.Affix.Unidentified)
 	{
 		If (Item.Prop.Rarity_Digit > 1 && cname == "Transmutation" && YesMapUnid )
 		{
@@ -472,7 +472,7 @@ MapRoll(Method, x, y){
 	BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 	BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	While (!Item.Affix["Unidentified"] && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
+	While (!Item.Affix.Unidentified && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
 	{
 		If (!RunningToggle) {
 			break
@@ -551,7 +551,7 @@ ItemCraftingRoll(Method, x, y){
 	{
 		Return
 	}
-	If (Item.Affix["Unidentified"])
+	If (Item.Affix.Unidentified)
 	{
 		WisdomScroll(x,y)
 		ClipItem(x,y)

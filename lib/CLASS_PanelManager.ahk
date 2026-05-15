@@ -2,7 +2,7 @@
 Class PanelManager
 {
   __New(){
-    This.List := {}
+    This.List := Map()
   }
   AddPanel(Pixel){
     This.List[Pixel.Name] := Pixel
