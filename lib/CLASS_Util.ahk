@@ -30,7 +30,6 @@ Class Util {
 	}
 	; JSON wrapper for loading files
 	Load(File){
-		global JSON
 		local t, f, fStr, _JSON
 		Try {
 			If File {
@@ -67,7 +66,6 @@ Class Util {
 	}
 	; JSON wrapper for saving files
 	Save(File,Object){
-		global JSON
 		local t, f, fStr, _JSON
 		Try {
 			If !FileExist(This.Dir.save "\"){
@@ -96,7 +94,6 @@ Class Util {
 	}
 	; Simple JSON string dump
 	JString(Object){
-		global JSON
 		Try {
 			Return JSON.Dump(Object,,2)
 		} catch as e {
@@ -228,7 +225,6 @@ Class Util {
 			, "Screen DPI " Round(( A_ScreenDPI / 96 ) * 100) "% (" A_ScreenDPI " DPI)" )
 		}
 		Msg(t*){
-			global JSON
 			local flag := "", k, v, File, line := ""
 			If (t.1 ~= "Verbose" && !This.Debug.Verbose)
 				Return
