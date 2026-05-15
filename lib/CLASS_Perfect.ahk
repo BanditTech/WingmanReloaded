@@ -60,9 +60,8 @@ Class Perfect {
 }
 
 RefreshPoeWatchPerfect() {
-    global WR
     RequestURL := "https://api.poe.watch/perfect?league=" selectedLeague
-    Download RequestURL, A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json"
+    Download(RequestURL, A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json")
     JSONtext := FileRead(A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json")
     Try {
         WR.Data.Perfect := JSON.Load(JSONtext)
@@ -79,7 +78,7 @@ RefreshPoeWatchPerfect() {
         }
         FileOpen(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json", "w").Write(JSON.Dump(WR.Data.Perfect, 1))
     } catch as e {
-        MsgBox "There was an Error while Loading Perfect Price `n`n" ErrorText(e)
+        MsgBox("There was an Error while Loading Perfect Price `n`n" ErrorText(e))
         WR.Data.Perfect := {}
     }
 }
