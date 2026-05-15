@@ -2,11 +2,19 @@
 ; adash v0.6.0 lacks sortBy/sumBy/meanBy, so they are implemented here.
 Class AHK {
 	static reverse(arr) => adash.reverse(arr)
-	static sortBy(arr, key) {
+	; Internal: resolve iteratee to a callable mapping obj -> sort key.
+	; Accepts a string property name or a function reference.
+	static _iteratee(it) {
+		If (it is String)
+			Return (o) => o[it]
+		Return it
+	}
+	static sortBy(arr, it) {
+		fn := AHK._iteratee(it)
 		sorted := arr.Clone()
 		Loop sorted.Length - 1 {
 			i := A_Index + 1
-			While (i > 1 && sorted[i-1][key] > sorted[i][key]) {
+			While (i > 1 && fn(sorted[i-1]) > fn(sorted[i])) {
 				temp := sorted[i]
 				sorted[i] := sorted[i-1]
 				sorted[i-1] := temp
@@ -15,16 +23,17 @@ Class AHK {
 		}
 		Return sorted
 	}
-	static sumBy(arr, key) {
+	static sumBy(arr, it) {
+		fn := AHK._iteratee(it)
 		total := 0
 		For _, obj in arr
-			total += obj[key]
+			total += fn(obj)
 		Return total
 	}
-	static meanBy(arr, key) {
+	static meanBy(arr, it) {
 		If !arr.Length
 			Return 0
-		Return AHK.sumBy(arr, key) / arr.Length
+		Return AHK.sumBy(arr, it) / arr.Length
 	}
 }
 

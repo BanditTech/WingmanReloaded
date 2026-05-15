@@ -766,7 +766,7 @@ VendorChaosRecipe(){
 		CheckRunning("On")
 	} Else
 		Return
-  Object.1 := AHK.SortBy(Object.1,Func("fn_sortByTab"))
+  Object.1 := AHK.SortBy(Object.1,fn_sortByTab)
 	For k, v in Object.1
 	{
   ; Move to Tab
