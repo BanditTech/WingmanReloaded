@@ -125,8 +125,8 @@ For k, name in ["perChar","Flask","Utility"]{
 ; downloads the source files; only the WR writes were moved.
 if !FileExist(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
 	RefreshPoeWatchPerfect()
-WR.Data.Perfect := JSON.LoadFile(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
-WR.Data.Affix := JSON.LoadFile(A_ScriptDir "\data\Affix_Lines.json")
+WR.Data.Perfect := JSON.Load(FileRead(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json"))
+WR.Data.Affix := JSON.Load(FileRead(A_ScriptDir "\data\Affix_Lines.json"))
 
 ; Build ActualTier.json on first run (writes WR.ActualTier[...]). Moved from
 ; FileCheck.ahk for the same reason as the hydration blocks above.
