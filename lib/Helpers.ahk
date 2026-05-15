@@ -202,6 +202,20 @@ max(Max, n*){
       Max := Value
   Return Max
 }
+; UriEncode - Percent-encode a string per RFC 3986 (unreserved chars left intact)
+UriEncode(str){
+  static safe := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~"
+  out := ""
+  size := StrPut(str, "UTF-8")
+  buf := Buffer(size)
+  StrPut(str, buf, "UTF-8")
+  Loop size - 1 {
+    b := NumGet(buf, A_Index - 1, "UChar")
+    c := Chr(b)
+    out .= InStr(safe, c, true) ? c : Format("%{:02X}", b)
+  }
+  Return out
+}
 ; Create a text from an error object
 ErrorText(e){
   msg := ""
