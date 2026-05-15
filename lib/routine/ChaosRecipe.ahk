@@ -30,7 +30,7 @@ ChaosRecipe(endAtRefresh := 0){
         Sleep(300)
       }
     }
-    If RecipeArray.Count()
+    If ObjCount(RecipeArray)
       ItemTypes := RecipeArray
     Else
       ItemTypes := False
@@ -583,7 +583,8 @@ getCount(Object,full:=False){
   Return c
 }
 retCount(obj){
-  Return (obj.Count()>=0?obj.Count():0)
+  c := ObjCount(obj)
+  Return (c>=0?c:0)
 }
 ; VendorRoutineChaos - Does vendor functions for Chaos Recipe
 VendorRoutineChaos(){
@@ -743,9 +744,9 @@ VendorChaosRecipe(){
   Global InvGrid, CurrentTab
 	CurrentTab := 0
 	Static Object := {}
-	If !Object.Count()
+	If !ObjCount(Object)
 		Object := ChaosRecipe()
-	If !Object.Count()
+	If !ObjCount(Object)
 	{
 		PrintChaosRecipe("No Complete Rare Sets")
 		Return
@@ -759,7 +760,7 @@ VendorChaosRecipe(){
 		{
 			If !SearchStash()
 			{
-				PrintChaosRecipe("There are " Object.Count() " sets of rare items in stash.`n", 3)
+				PrintChaosRecipe("There are " ObjCount(Object) " sets of rare items in stash.`n", 3)
 				Return
 			}
 		}
@@ -832,10 +833,10 @@ VendorChaosRecipe(){
 				}
 		}
 	}
-	If !Object.Count()
+	If !ObjCount(Object)
 		PrintChaosRecipe("Finished Selling Rare Sets")
 	Else {
-		PrintChaosRecipe("There are " Object.Count() " sets of rare items left to vendor.`n", 3)
+		PrintChaosRecipe("There are " ObjCount(Object) " sets of rare items left to vendor.`n", 3)
 		If ChaosRecipeUnloadAll
 			SetTimer(VendorChaosRecipe, -500)
 	}

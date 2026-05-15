@@ -115,7 +115,7 @@ ClearNotifications()
 	; Global InventoryGridY
 	If (xBtn := FindText(GameW - 30,InventoryGridY[1] - 90,GameW,InventoryGridY[5] + 30,0.2,0.2,XButtonStr,0))
 	{
-		Log("Verbose","Clearing Notifications #" xBtn.Count(), GameW, InventoryGridY[1], InventoryGridY[5])
+		Log("Verbose","Clearing Notifications #" xBtn.Length, GameW, InventoryGridY[1], InventoryGridY[5])
 		For k, v in xBtn
 			LeftClick(v.x,v.y)
 		Sleep(300*Latency)
@@ -368,7 +368,7 @@ EmptyGrid(){
 StackedDeckOpen(number,x,y){
 	EmptySlots := EmptyGrid()
 	Loop number {
-		If (EmptySlots.Count() >= 1){
+		If (ObjCount(EmptySlots) >= 1){
 			If !RunningToggle
 				Break
 			RightClick(x,y)

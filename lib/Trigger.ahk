@@ -11,7 +11,7 @@ Trigger(obj,force:=False){
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Force")
 	Else If ( !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) && ConfirmMatchingTriggers(obj))
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Check")
-	Else If !ActionList[obj.Group].Count()
+	Else If !ActionList[obj.Group].Length
 	{
 		loop (obj.Type="Flask"?5:10)
 			if (WR.%obj.Type%[A_Index].Group == obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) )

@@ -148,7 +148,7 @@ CraftingItem(){
 		Return
 	}
 	*/
-	If (WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector].Count() == 0) {
+	If (ObjCount(WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector]) == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
@@ -298,7 +298,7 @@ CraftingMaps(){
 		For k, obj in MapList {
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If Slots.Count() {
+			If ObjCount(Slots) {
 				split := StrSplit(k," ")
 				C := split.1
 				R := split.2
@@ -353,7 +353,7 @@ CountCurrency(NameList:=""){
 			retCount[currency] := Item.Prop.Stack_Size ? Item.Prop.Stack_Size : 0
 		}
 	}
-	Return retCount.Count() ? retCount : False
+	Return ObjCount(retCount) ? retCount : False
 }
 ; ApplyCurrency - Using cname = currency name string and x, y as apply position
 ApplyCurrency(cname, x, y, Amount:=1){
