@@ -198,7 +198,7 @@ CraftingMaps(){
 	; Move mouse away for Screenshot
 	ShooMouse(), GuiStatus(), ClearNotifications()
 	; Ignore Slot
-	BlackList := ObjDeepClone(BlackList_Default)
+	BlackList := adash.cloneDeep(BlackList_Default)
 	WR.data.Counts := CountCurrency(["Alchemy","Binding","Transmutation","Scouring","Vaal","Chisel","Chaos","Augmentation"])
 	; MsgBoxVals(WR.data.Counts)
 	MapList := {}

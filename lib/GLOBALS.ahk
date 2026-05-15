@@ -659,7 +659,7 @@ Globe.Mana.Color.hex := Format("0x{1:06X}",0x1B2A5E)
 Globe.Mana.Color.variance := 4
 Globe.Mana.Color.Str := Hex2FindText(Globe.Mana.Color.hex,Globe.Mana.Color.variance,0,"Mana",1,1)
 Global Base := {}
-Base.Globe := ObjDeepClone(Globe)
+Base.Globe := adash.cloneDeep(Globe)
 ; Player
 Global Player := {}
 Player.Percent := {Life:100, ES:100, Mana:100}
