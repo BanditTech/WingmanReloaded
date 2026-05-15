@@ -134,8 +134,11 @@ UtilityMenu(GuiCtrl, *){
 	}
 
 	UtilitySaveValues(val) {
-		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttackOnly", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
+		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttackOnly", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
 			WR.Utility.%val%.%kind% := UtilityGui[val]["Utility" val kind].Value
+		; IconArea is rect data (X1/Y1/X2/Y2) stored in the UtilityIconAreas Map,
+		; not a single Gui control — copy it directly.
+		WR.Utility.%val%.IconArea := UtilityIconAreas[val]
 		for k, kind in ["Life", "ES", "Mana"]
 			WR.Utility.%val%.%kind% := UtilitySliders[val][kind].Slider_Value
 		for k, kind in ["IconVar1", "IconVar0"]
