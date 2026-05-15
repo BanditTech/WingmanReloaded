@@ -1,6 +1,6 @@
 
-global MainGui := Gui()
-global WR_StatusBarCtrl
+Global MainGui := Gui()
+Global WR_StatusBarCtrl
 
 WR_StatusBarCtrl := MainGui.Add("StatusBar",, WR_Statusbar)
 WR_hStatusbar := WR_StatusBarCtrl.Hwnd
