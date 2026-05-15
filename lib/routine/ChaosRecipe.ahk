@@ -735,7 +735,7 @@ VendorRoutineChaos(){
 	Return True
 }
 ; Takes a list of Recipe Sets to the vendor
-VendorChaosRecipe(){
+VendorChaosRecipe(*){
  ; Ensure we only run one instance, second press of hotkey should stop function
 	CheckRunning()
   SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
