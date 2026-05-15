@@ -2,10 +2,6 @@
 Global VersionNumber := "3.0.0"
 #Include %A_ScriptDir%\lib\Header.ahk
 #Include %A_ScriptDir%\lib\RunAdmin.ahk
-; Library.ahk (all functions, classes, and third-party libs) loads first so
-; the static analyser sees every definition before FileCheck.ahk and the
-; auto-execute section reference them.
-#Include %A_ScriptDir%\lib\Library.ahk
 #Include %A_ScriptDir%\lib\FileCheck.ahk
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
 #Include %A_ScriptDir%\lib\ScriptObject.ahk
@@ -54,3 +50,5 @@ If (YesChaosOverlay){
 #HotIf WinActive("ahk_group POEGameGroup")
   ; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
   Return
+
+  #Include %A_ScriptDir%\lib\Library.ahk

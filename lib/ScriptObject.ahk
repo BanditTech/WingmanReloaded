@@ -1,8 +1,9 @@
 ; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-; WR itself is forward-declared at the top of lib/Library.ahk so the static
-; analyser sees every WR.<top> key before parsing the dependent project files.
-; This file populates the deep nested state at runtime.
+Global WR := {loc:{}, Flask:{}, Utility:{}, perChar:{}, Debug:{}
+	, cdExpires:{}, func:{}, data:{}, String:{}, Restock:{}
+	, CustomCraftingBases:{}, CustomMapMods:{}, ItemCrafting:{}, ActualTier:{}
+	, Disenchant:{}}
 LoadDisenchanting()
 
 WR.loc.pixel := {}, WR.loc.area := {}
