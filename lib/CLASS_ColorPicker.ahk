@@ -40,7 +40,7 @@ class ColorPicker {
 
 
     This.GUI_NAME.SetFont("s15 w600")
-    This.GUI_NAME.Add("Edit", "x" This.X + This.Spacing * 3 " y" This.Y - 22 " w" This.SideBar "h17 -E0x200 Center Disabled v" This.ID "_Group_Color_Hex", Format("0x{1:06X}",This.Start_Color))
+    This.GUI_NAME.Add("Edit", "x" This.X + This.Spacing * 3 " y" This.Y - 22 " w" This.SideBar " h17 -E0x200 Center Disabled v" This.ID "_Group_Color_Hex", Format("0x{1:06X}",This.Start_Color))
 
     Copy_Trigger := This.CopyColor.Bind( THIS )
 
