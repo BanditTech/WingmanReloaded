@@ -1,5 +1,5 @@
 ; UpdateLeagues - Grab the League info from GGG API
-UpdateLeagues() {
+UpdateLeagues(*) {
   global selectedLeague, MainGui
   MainGui.Submit(0)
   Download("http://api.pathofexile.com/leagues", A_ScriptDir "\data\leagues.json")

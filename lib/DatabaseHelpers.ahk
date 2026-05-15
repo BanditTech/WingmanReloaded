@@ -10,7 +10,7 @@ LoadActualTierName() {
     Return JSON.LoadFile(A_ScriptDir "\data\ActualTierName.json")
 }
 
-ActualTierCreator() {
+ActualTierCreator(*) {
     ActualTierNameJSON := LoadActualTierName()
     For kii , vii in POEData{
         WR.ActualTier.%kii% := []

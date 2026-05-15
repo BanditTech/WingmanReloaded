@@ -222,7 +222,7 @@ DBUpdate(){
 	}
 }
 
-DBUpdateNinja(){
+DBUpdateNinja(*){
   ;Update ninja Database
   Date_now := FormatTime(A_Now, "yyyyMMdd")
   l := apiList.MaxIndex()

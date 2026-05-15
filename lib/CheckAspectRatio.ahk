@@ -1,4 +1,4 @@
-CheckAspectRatio(){
+CheckAspectRatio(*){
 	v := GameW/GameH
 	If GamePID
 		MsgBox(v=16/9?"Standard 16:9"
