@@ -1,7 +1,7 @@
 ; Find and retreive Chaos recipe items from a Stash Tab
 ChaosRecipe(endAtRefresh := 0){
   If (!AccountNameSTR){
-    Log("Chaos Recipe","You need def your account name in save/Account.ini",Strings*)
+    Log("Chaos Recipe","You need def your account name in save/Account.ini")
     Return
   }
   Global RecipeArray := {}
