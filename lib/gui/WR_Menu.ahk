@@ -1098,7 +1098,7 @@ WR_Menu(Function:="",Var*){
       }
       Built_Globe := 1
       GlobeGui := Gui("+AlwaysOnTop -MinimizeBox -MaximizeBox")
-      Picker := ColorPicker("Globe","ColorPicker",460,30,80,200,120,0x000000)
+      Picker := ColorPicker(GlobeGui,"ColorPicker",460,30,80,200,120,0x000000)
       GlobeGui.Add("Button", "xm ym+8 w1 h1")
       GlobeGui.SetFont("Bold s9 c777777")
       GlobeGui.Add("GroupBox", "xm ym w205 h100 Section", "Life Scan Area")
