@@ -9,9 +9,9 @@ Global PPServerStatus := True
 Global Ninja := {}
 Global InventoryGridX := []
 Global InventoryGridY := []
-Global Bases
-Global GameActive
-Global GamePID
+Global Bases := ""
+Global GameActive := False
+Global GamePID := 0
 Global ItemParseActive
 Global ClipParseError
 Global QuestItems
