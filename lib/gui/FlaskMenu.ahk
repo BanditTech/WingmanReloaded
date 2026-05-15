@@ -118,11 +118,12 @@ FlaskMenu(GuiCtrl, *){
 		}
 		if !val
 			return
-		Built[val] := False
 		FlaskGui[val].Submit(0)
 		which := val
 		FlaskSaveValues(val)
 		FlaskGui[val].Destroy()
+		FlaskGui.Delete(val)
+		Built.Delete(val)
 	}
 	FlaskGuiEscape(GuiObj) {
 		; Identify which slot by checking the gui objects
@@ -135,10 +136,11 @@ FlaskMenu(GuiCtrl, *){
 		}
 		if !val
 			return
-		Built[val] := False
 		FlaskGui[val].Submit(0)
 		which := val
 		FlaskSaveValues(val)
 		FlaskGui[val].Destroy()
+		FlaskGui.Delete(val)
+		Built.Delete(val)
 	}
 }
