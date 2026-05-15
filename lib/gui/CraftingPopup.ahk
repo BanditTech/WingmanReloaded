@@ -1,4 +1,4 @@
-CraftBasicPopUp(){
+CraftBasicPopUp(*){
 	static _init_ := CraftBasicPopUpBuild()
 	Global CraftMenu, RunningToggle
 	CheckRunning()
