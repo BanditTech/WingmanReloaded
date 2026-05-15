@@ -76,15 +76,3 @@ PauseMines(){
 PauseMinesCommand(*) {
 	PauseMines()
 }
-CtrlSpam(*) {
-}
-CtrlShiftSpam(*) {
-}
-ShiftSpam(*) {
-}
-CtrlSpamOff(*) {
-}
-optionsCommand(*) {
-}
-CraftBasicPopUp(*) {
-}
