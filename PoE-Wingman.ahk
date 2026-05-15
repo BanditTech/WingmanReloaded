@@ -48,7 +48,6 @@ If (YesChaosOverlay){
   ExitApp()
 }
 #HotIf WinActive("ahk_group POEGameGroup")
+  #Include %A_ScriptDir%\lib\Library.ahk
   ; ------------------------------------------------End of AutoExecute Section-----------------------------------------------------------------------------------------------------------
   Return
-
-  #Include %A_ScriptDir%\lib\Library.ahk
