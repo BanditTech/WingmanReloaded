@@ -2,11 +2,11 @@
 Trigger(obj,force:=False){
 	If !GuiCheck()
 		Return
-	Static ActionList := {}
+	Static ActionList := Map()
 	Static LastHeldLB, LastHeldMA, LastHeldSA
 	Global MovementHotkeyActive
-	If !IsObject(ActionList[obj.Group])
-		ActionList[obj.Group] := {}
+	If !ActionList.Has(obj.Group)
+		ActionList[obj.Group] := []
 	If (force && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount)
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Force")
 	Else If ( !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) && ConfirmMatchingTriggers(obj))

@@ -7,12 +7,12 @@ Rescale(){
     InvGrid:={Corners:{Stash:{}, Inventory:{}, VendorRec:{}, VendorOff:{}, Ritual:{}}
             , SlotSpacing: 2
             , SlotRadius: 25
-            , Ritual:{X:{}, Y:{}}
-            , Stash:{X:{}, Y:{}}
-            , StashQuad:{X:{}, Y:{}}
-            , Inventory:{X:{}, Y:{}}
-            , VendorRec:{X:{}, Y:{}}
-            , VendorOff:{X:{}, Y:{}}}
+            , Ritual:{X:[], Y:[]}
+            , Stash:{X:[], Y:[]}
+            , StashQuad:{X:[], Y:[]}
+            , Inventory:{X:[], Y:[]}
+            , VendorRec:{X:[], Y:[]}
+            , VendorOff:{X:[], Y:[]}}
     If (FileExist(A_ScriptDir "\save\Globe.json") && VersionNumber != "")
     {
       WR_Menu("JSON","Load","Globe")
