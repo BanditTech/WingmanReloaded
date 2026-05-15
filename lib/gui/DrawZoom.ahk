@@ -124,7 +124,8 @@ DrawZoom_ToggleZoom() {
   {
     ZoomInitialize := 1
     ZoomGui := Gui("+AlwaysOnTop -Caption -Resize +ToolWindow +E0x80020")
-    ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside " y0 NA", "Magnifier")
+    ZoomGui.Title := "Magnifier"
+    ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside " y0 NA")
     MagnifierID := WinGetID("Magnifier")
     WinSetTransparent(255, "Magnifier") ; makes the window invisible to magnification
     hdd_frame := DllCall("GetDC", "UInt", GamePID)
@@ -151,7 +152,8 @@ ZoomAdjust(*) {
   DZ_part := DZ_halfside / DZ_zoom       ;new calculation of the magnified image
   DZ_Rz := Round(DZ_part)
   DZ_R := DZ_Rz * DZ_zoom
-  ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside  " y0 NA", "Magnifier")
+  ZoomGui.Title := "Magnifier"
+  ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside  " y0 NA")
   DrawZoom_MoveAway()
 }
 

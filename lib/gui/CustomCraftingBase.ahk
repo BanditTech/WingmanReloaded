@@ -120,7 +120,8 @@ CraftingBaseUI(title, type, columns)
   btn1.OnEvent("Click", SaveCraftingBase)
   btn2 := CustomCraftingBaseGui.Add("Button", "w120 h30 center", "Reset")
   btn2.OnEvent("Click", ResetCraftingBase)
-  CustomCraftingBaseGui.Show("", title)
+  CustomCraftingBaseGui.Title := title
+  CustomCraftingBaseGui.Show()
 }
 
 CraftingBaseSTRUI(*)

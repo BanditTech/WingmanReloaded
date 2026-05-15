@@ -28,7 +28,8 @@ checkUpdate(force:=False){
 			btnDontUpdate.OnEvent("Click", dontUpdate)
 			UpdateGui.OnEvent("Close", UpdateGuiClose)
 			UpdateGui.OnEvent("Escape", UpdateGuiClose)
-			UpdateGui.Show(, "WingmanReloaded Update")
+			UpdateGui.Title := "WingmanReloaded Update"
+			UpdateGui.Show()
 			if WinExist("WingmanReloaded Update ahk_exe AutoHotkey.exe")
 			{
 				WinWaitClose()
