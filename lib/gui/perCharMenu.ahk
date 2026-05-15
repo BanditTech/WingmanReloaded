@@ -40,8 +40,8 @@ perCharMenu(*){
 		perCharGui.SetFont("s8 cBlack")
 		perCharGui.Add("GroupBox", "xs+10 y+1 w245 h40    center"                  , "Movement Triggers with Attack Keys")
 		perCharGui.SetFont()
-		perCharGui.Add("Checkbox", "vmovementMainAttack +BackgroundTrans Checked" WR.perChar.Setting.movementMainAttack " xp+25 yp+20 ", "Main Attack")
-		perCharGui.Add("Checkbox", "vmovementSecondaryAttack +BackgroundTrans Checked" WR.perChar.Setting.movementSecondaryAttack " xp+98 yp", "Secondary Attack")
+		perCharGui.Add("Checkbox", "vmovementMainAttack Checked" WR.perChar.Setting.movementMainAttack " xp+25 yp+20 ", "Main Attack")
+		perCharGui.Add("Checkbox", "vmovementSecondaryAttack Checked" WR.perChar.Setting.movementSecondaryAttack " xp+98 yp", "Secondary Attack")
 
 		perCharGui.SetFont("Bold s9 cBlack", "Arial")
 		perCharGui.Add("GroupBox",     "Section  w265 h40        xs   y+15 ",         "Auto Level Gems")
