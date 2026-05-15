@@ -58,7 +58,7 @@ FlaskMenu(GuiCtrl, *){
 		lifeCtrl.GetPos(&x, &y, &w, &h)
 		If !FlaskSliders.Has(slot)
 			FlaskSliders[slot] := Map()
-		FlaskSliders[slot]["Life"] := Progress_Slider(FlaskGui[slot], "Flask" slot "Life_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask.%slot%.Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
+		FlaskSliders[slot]["Life"] := Progress_Slider(FlaskGui[slot], "Flask" slot "Life_Slide" , x+40 , y , 145 , h , 0 , 100 , WR.Flask.%slot%.Life , backColor , setColor , 1 , "Flask" slot "Life" , 0 , 0 , 1)
 		setColor := "51DEFF"
 		FlaskGui[slot].SetFont()
 		FlaskGui[slot].Add("Checkbox", "vFlask" slot "ResetCooldownAtHealthPercentage xs+22 y+6 Checked" WR.Flask.%slot%.ResetCooldownAtHealthPercentage, "Reset cooldown at health:")
@@ -69,7 +69,7 @@ FlaskMenu(GuiCtrl, *){
 		FlaskGui[slot].Add("Text", "xs+10 y+13 c" setColor, "E`%")
 		esCtrl := FlaskGui[slot].Add("Text", "vFlask" slot "ES x+0 yp w40 c" setColor " center", WR.Flask.%slot%.ES)
 		esCtrl.GetPos(&x, &y, &w, &h)
-		FlaskSliders[slot]["ES"] := Progress_Slider(FlaskGui[slot], "Flask" slot "ES_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask.%slot%.ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
+		FlaskSliders[slot]["ES"] := Progress_Slider(FlaskGui[slot], "Flask" slot "ES_Slide" , x+40 , y , 145 , h , 0 , 100 , WR.Flask.%slot%.ES , backColor , setColor , 1 , "Flask" slot "ES" , 0 , 0 , 1)
 		setColor := "Blue"
 		FlaskGui[slot].SetFont()
 		FlaskGui[slot].Add("Checkbox", "vFlask" slot "ResetCooldownAtEnergyShieldPercentage xs+12 y+6 Checked" WR.Flask.%slot%.ResetCooldownAtEnergyShieldPercentage, "Reset cooldown at energy shield:")
@@ -85,7 +85,7 @@ FlaskMenu(GuiCtrl, *){
 		FlaskGui[slot].Add("Text", "x+2 yp+3", "`%")
 
 		manaCtrl.GetPos(&x, &y, &w, &h)
-		FlaskSliders[slot]["Mana"] := Progress_Slider(FlaskGui[slot], "Flask" slot "Mana_Slide" , x+40 , y-h+2 , 145 , h-5 , 0 , 100 , WR.Flask.%slot%.Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
+		FlaskSliders[slot]["Mana"] := Progress_Slider(FlaskGui[slot], "Flask" slot "Mana_Slide" , x+40 , y , 145 , h , 0 , 100 , WR.Flask.%slot%.Mana , backColor , setColor , 1 , "Flask" slot "Mana" , 0 , 0 , 1)
 		FlaskGui[slot].Add("Text", "xs+10 y+43 " , "Slider Trigger Condition:")
 		FlaskGui[slot].Add("Radio", "vFlask" slot "Condition  x+5   yp-5 h22 Checked" (WR.Flask.%slot%.Condition==1?1:0), "Any")
 		FlaskGui[slot].Add("Radio",                              "x+5 hp  yp Checked" (WR.Flask.%slot%.Condition==2?1:0), "All")
