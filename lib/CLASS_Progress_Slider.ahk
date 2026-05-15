@@ -67,10 +67,6 @@ class Progress_Slider  {
         if(This.Pair_With_Edit>=2)
           This.GUI_NAME[This.Paired_Edit_ID_Hex].Value := Format("{1:02X}",This.Slider_Value)
       }
-      if(This.Add_Method!=0)
-      {
-        This.GUI_NAME[This.Paired_Edit_ID_Hex].Value := Format("{1:02X}",This.Slider_Value)
-      }
       if(This.Use_Tooltip=1 && A_TickCount - LastTT > 100 )
       {
         LastTT := A_TickCount
