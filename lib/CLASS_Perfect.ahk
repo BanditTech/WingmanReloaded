@@ -69,7 +69,7 @@ RefreshPoeWatchPerfect() {
             pushto := {}
             For kt, type in ["implicits", "explicits"] {
                 pushto.%type% := {}
-                For ki, mod in itemDB[type] {
+                For ki, mod in itemDB.%type% {
                     mod     := RegExReplace(mod, "1 to \(", "(1-1) to (")
                     replace := Perfect(mod)
                     WR.Data.Perfect.%ku%[type][ki] := replace.o
