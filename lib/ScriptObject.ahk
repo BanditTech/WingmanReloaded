@@ -121,10 +121,12 @@ For k, name in ["perChar","Flask","Utility"]{
 		Profile(name,"Save","Default")
 }
 
-; Hydrate WR.Data.Perfect once WR is initialized. This block was previously at
+; Hydrate WR.Data.* once WR is initialized. These blocks were previously at
 ; the tail of FileCheck.ahk, but FileCheck.ahk runs before this file (it must
 ; populate POEData/BasesData first so the init loops above can iterate them),
-; so WR did not yet exist when the assignment fired.
+; so WR did not yet exist when the assignments fired. FileCheck.ahk still
+; downloads the source files; only the WR writes were moved.
 if !FileExist(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
 	RefreshPoeWatchPerfect()
 WR.Data.Perfect := JSON.LoadFile(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
+WR.Data.Affix := JSON.LoadFile(A_ScriptDir "\data\Affix_Lines.json")

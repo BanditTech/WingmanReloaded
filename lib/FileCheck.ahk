@@ -146,14 +146,14 @@ UpdateBasesData(){
 }
 UpdateBasesData()
 
-; The PoE.Watch perfect data is downloaded and hydrated into WR.Data.Perfect
-; from PoE-Wingman.ahk after ScriptObject.ahk has initialized WR.
+; WR.Data.Perfect and WR.Data.Affix are hydrated from ScriptObject.ahk after
+; WR has been initialized — both used to live here but referenced WR before
+; it existed, which v2 won't tolerate.
 
 if !FileExist(A_ScriptDir "\data\Affix_Lines.json")
 {
 	Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/Affix_Lines.json", A_ScriptDir "\data\Affix_Lines.json")
 }
-WR.Data.Affix := JSON.LoadFile(A_ScriptDir "\data\Affix_Lines.json")
 
 ;Create ActualTier
 if !FileExist(A_ScriptDir "\save\ActualTier.json")
