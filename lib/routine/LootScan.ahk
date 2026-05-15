@@ -25,7 +25,7 @@ LootScan(Reset:=0){
 					ScanPx := loot.1.x + 10, ScanPy := loot.1.y + 10
 					, ScanId := loot.1.id
 					If ( LootVacuumActive )
-						GoSub LootScan_Click
+						LootScan_Click()
 					LV_LastClick := A_TickCount
 					Return
 				}
@@ -49,7 +49,7 @@ LootScan(Reset:=0){
 					, ScanPy += 30
 					If (OnMines && !(loot.Id ~= "cache" || loot.Id ~= "vein"))
 						ScanPx += loot.3
-					GoSub LootScan_Click
+					LootScan_Click()
 					LV_LastClick := A_TickCount
 					Return
 				}
@@ -71,7 +71,7 @@ LootScan(Reset:=0){
 			LootVacuumActive := False
 	Return
 
-	LootScan_Click:
+	LootScan_Click() {
 		LP := GetKeyState("LButton","P"), RP := GetKeyState("RButton","P")
 		If (LP || RP)
 		{
@@ -87,7 +87,7 @@ LootScan(Reset:=0){
 		BlockInput("Mousemoveoff")
 		If (GetKeyState("RButton","P"))
 			Click("Right down")
-	Return
+	}
 }
 LootScanCommand(*) {
 	Global LootVacuumActive
