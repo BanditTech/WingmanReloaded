@@ -11,6 +11,7 @@ Global DZ_R := DZ_Rz * DZ_zoom
 Global DZ_LineMargin := 10
 Global DZ_pos_old := 0
 Global DZ_pos_new := ""
+Global ZoomInitialize := 0
 
 DrawZoom( Mode := "", M_C := 0 , R_C := 0, zoom_c := 0, dc := 0)
 {
