@@ -1249,7 +1249,7 @@ WR_Menu(Function:="",Var*){
       editVal := GlobeGui["WR_Edit_Color_" AreaType].Text
       Loop 3
       {
-        RegExMatch(editVal, "O)(x[0-9A-Fa-f]{6})", &m, CurPos)
+        RegExMatch(editVal, "(x[0-9A-Fa-f]{6})", &m, CurPos)
         CurPos := m.Pos(0) + m.Len(0) - 1
         If (m[1] != Split.hex && m[1] != "")
         {
