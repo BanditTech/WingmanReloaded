@@ -121,3 +121,11 @@ OHB_Editor(){
 		StringsGui.Show()
 	}
 }
+; OpenOHBEditor - external entry point used by StringsGui's "Make" button.
+; Replaces a v1-era reliance on the nested OHBUpdate closure being visible
+; from outside OHB_Editor(). The internal OHB_EditorBtn branch just opened
+; the editor, which is all this wrapper does.
+OpenOHBEditor(*) {
+	StringsGui.Submit(0)
+	OHB_Editor()
+}

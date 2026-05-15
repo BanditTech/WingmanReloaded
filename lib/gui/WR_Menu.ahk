@@ -780,7 +780,7 @@ WR_Menu(Function:="",Var*){
       StringsGui.Opt("+Delimiter?")
       StringsGui.Add("Text", "xs+10 ys+25 Section", "OHB 1 pixel bar - Only Adjust if not 1080 Height")
       StringsGui.Add("ComboBox", "xp y+8 w220 vHealthBarStr", HealthBarStr '??"' Res1080_HealthBarStr '"?"' Res1440_HealthBarStr '"?"' Res1440_HealthBarStr_Alt '"?"' Res1050_HealthBarStr '"').OnEvent("Change", UpdateStringEdit)
-      StringsGui.Add("Button", "hp w50 x+10 yp vOHB_EditorBtn", "Make").OnEvent("Click", OHBUpdate)
+      StringsGui.Add("Button", "hp w50 x+10 yp vOHB_EditorBtn", "Make").OnEvent("Click", OpenOHBEditor)
       StringsGui.Add("Text", "x+10 x+10 ys", "Capture of the Skill up icon")
       StringsGui.Add("ComboBox", "y+8 w280 vSkillUpStr", SkillUpStr '??"' Res1080_SkillUpStr '"?"' Res1440_SkillUpStr '"?"' Res1050_SkillUpStr '"?"' Res768_SkillUpStr '"').OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the words Sell Items")
