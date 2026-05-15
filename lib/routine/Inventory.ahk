@@ -152,7 +152,7 @@ VendorRoutine()
 	tGQ := 0
 	SortFlask := []
 	SortGem := []
-	BlackList := ObjDeepClone(BlackList_Default)
+	BlackList := adash.cloneDeep(BlackList_Default)
 	; Move mouse out of the way to grab screenshot
 	ShooMouse()
 	GuiStatus()
@@ -400,7 +400,7 @@ StashRoutine()
 	{
 		SortFirst[A_Index] := {}
 	}
-	BlackList := ObjDeepClone(BlackList_Default)
+	BlackList := adash.cloneDeep(BlackList_Default)
 	; Move mouse away for Screenshot
 	ShooMouse()
 	FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
@@ -714,7 +714,7 @@ SearchVendor()
 DivRoutine()
 {
 	Global BlackList
-	BlackList := ObjDeepClone(BlackList_Default)
+	BlackList := adash.cloneDeep(BlackList_Default)
 	ShooMouse()
 	GuiStatus()
 	ClearNotifications()
@@ -760,7 +760,7 @@ DivRoutine()
 IdentifyRoutine()
 {
 	Global BlackList
-	BlackList := ObjDeepClone(BlackList_Default)
+	BlackList := adash.cloneDeep(BlackList_Default)
 	ShooMouse()
 	GuiStatus()
 	ClearNotifications()
