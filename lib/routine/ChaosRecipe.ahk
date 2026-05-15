@@ -619,7 +619,7 @@ VendorRoutineChaos(){
 				Sleep(90)
         Break
       }
-			If (BlackList[C][R] || !WR.Restock.%C%[R].Normal)
+			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)

@@ -1,7 +1,7 @@
 ; Global Script Object
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Global WR := {loc:{}, Flask:{}, Utility:{}, perChar:{}, Debug:{}
-	, cdExpires:{}, func:{}, data:{}, String:{}, Restock:{}
+	, cdExpires:{}, func:{}, data:{}, String:{}, Restock:Map()
 	, CustomCraftingBases:{}, CustomMapMods:{}, ItemCrafting:{}, ActualTier:{}
 	, Disenchant:{}}
 LoadDisenchanting()
