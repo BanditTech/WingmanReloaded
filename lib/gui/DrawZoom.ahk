@@ -74,8 +74,8 @@ DrawZoom_Repaint() {
   xz := x - DZ_Rz
   yz := y - DZ_Rz
 
-  DllCall("gdi32.dll\StretchBlt", UInt,hdc_frame, Int,0, Int,0, Int,2*DZ_R+DZ_zoom, Int,2*DZ_R+DZ_zoom
-  , UInt,hdd_frame, UInt,xz, UInt,yz, Int,2*DZ_Rz+1, Int,2*DZ_Rz+1, UInt,0xCC0020) ; SRCCOPY
+  DllCall("gdi32.dll\StretchBlt", "UInt",hdc_frame, "Int",0, "Int",0, "Int",2*DZ_R+DZ_zoom, "Int",2*DZ_R+DZ_zoom
+  , "UInt",hdd_frame, "UInt",xz, "UInt",yz, "Int",2*DZ_Rz+1, "Int",2*DZ_Rz+1, "UInt",0xCC0020) ; SRCCOPY
 
   DrawZoom( "", DZ_LineMargin, DZ_R, DZ_zoom, hdc_frame )
   ; DrawZoom_MoveAway()
@@ -99,8 +99,8 @@ DrawZoom_MoveAway() {
 
 DrawZoom_ClearGDI() {
   Global hdc_frame, hdd_frame, ZoomInitialize
-  DllCall("gdi32.dll\DeleteDC", UInt,hdc_frame )
-  DllCall("gdi32.dll\DeleteDC", UInt,hdd_frame )
+  DllCall("gdi32.dll\DeleteDC", "UInt",hdc_frame )
+  DllCall("gdi32.dll\DeleteDC", "UInt",hdd_frame )
   ZoomInitialize := 0
 }
 
@@ -126,8 +126,8 @@ DrawZoom_ToggleZoom() {
     ZoomGui.Show("w" 2*DZ_R+DZ_zoom+0 " h" 2*DZ_R+DZ_zoom+0 " x" A_ScreenWidth//2 - DZ_halfside " y0 NA", "Magnifier")
     MagnifierID := WinGetID("Magnifier")
     WinSetTransparent(255, "Magnifier") ; makes the window invisible to magnification
-    hdd_frame := DllCall("GetDC", UInt, GamePID)
-    hdc_frame := DllCall("GetDC", UInt, MagnifierID)
+    hdd_frame := DllCall("GetDC", "UInt", GamePID)
+    hdc_frame := DllCall("GetDC", "UInt", MagnifierID)
     Hotkey("IfWinActive")
     Hotkey("Up", "PushMouse", "On")
     Hotkey("Down", "PushMouse", "On")
