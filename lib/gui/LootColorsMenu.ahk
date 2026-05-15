@@ -1,4 +1,4 @@
-LootColorsMenu(){
+LootColorsMenu(*){
 	Global LootColors, LG_Vary, LootColorsGui
 	Static LG_Add, LG_Rem
 	Global LootVacuum, LootVacuumTapZ, LootVacuumTapZEnd, LootVacuumTapZSec
