@@ -1,5 +1,5 @@
 ; AutoQuit - Toggle the scripts quit function on
-toggleAutoQuit(){
+toggleAutoQuit(*){
 	WR.func.Toggle.Quit := !WR.func.Toggle.Quit
 	Settings("func","Save")
 	GuiUpdate()
@@ -7,21 +7,21 @@ toggleAutoQuit(){
 }
 
 ; AutoFlask - Toggle flask usage on
-toggleAutoFlask(){
+toggleAutoFlask(*){
 	WR.func.Toggle.Flask := !WR.func.Toggle.Flask
 	Settings("func","Save")
 	GuiUpdate()
 	return
 }
 ; AutoMove - Toggle movement triggers
-toggleAutoMove(){
+toggleAutoMove(*){
 	WR.func.Toggle.Move := !WR.func.Toggle.Move
 	Settings("func","Save")
 	GuiUpdate()
 	return
 }
 ; AutoUtility - Toggle utility triggers
-toggleAutoUtility(){
+toggleAutoUtility(*){
 	WR.func.Toggle.Utility := !WR.func.Toggle.Utility
 	Settings("func","Save")
 	GuiUpdate()
