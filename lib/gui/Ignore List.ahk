@@ -52,7 +52,9 @@ UpdateCheckbox(ctrl, *) {
 LoadIgnoreArray()
 {
 	Global IgnoredSlot
-	IgnoredSlot := JSON.LoadFile(A_ScriptDir "\save\IgnoredSlot.json")
+	IgnoredSlot := FileExist(A_ScriptDir "\save\IgnoredSlot.json")
+		? JSON.LoadFile(A_ScriptDir "\save\IgnoredSlot.json")
+		: {}
 	Return
 }
 
