@@ -2,9 +2,9 @@
 Global rxNum := "(\d+\.?\d*)"
 Global CtrlState := {Btn: {}}
 Global Controller_Active := 0
-Global Item
+Global Item := ""
 Global WR_Statusbar := "WingmanReloaded Status"
-Global WR_hStatusbar
+Global WR_hStatusbar := 0
 Global PPServerStatus := True
 Global Ninja := {}
 Global InventoryGridX := []
@@ -20,14 +20,14 @@ Global NoGame := True
 ; ChaosRecipe() rebuilds this each run, but CountChaosRecipe()/
 ; UpdateGuiChaosCounts may iterate it before ChaosRecipe is ever called.
 Global RecipeMap := Map()
-Global ItemParseActive
-Global ClipParseError
-Global QuestItems
+Global ItemParseActive := False
+Global ClipParseError := False
+Global QuestItems := Map()
 Global DelayAction := {}
-Global ProfileMenuFlask,ProfileMenuUtility,ProfileMenuperChar
-Global POEData
-Global BasesData
-Global BasesWR
+Global ProfileMenuFlask := "", ProfileMenuUtility := "", ProfileMenuperChar := ""
+Global POEData := Map()
+Global BasesData := Map()
+Global BasesWR := Map()
 Global Active_executable := "TempName"
 Global selectedLeague := "Standard"
 ; Hybrid Mods First Line
@@ -93,20 +93,17 @@ Global PauseTooltips:=0
 Global Clip_Contents:=""
 Global CheckGamestates:=False
 Global ScriptPID := ProcessExist()
-Global MainMenuIDAutoFlask, MainMenuIDAutoQuit, MainMenuIDAutoMove, MainMenuIDAutoUtility
+Global MainMenuIDAutoFlask := 0, MainMenuIDAutoQuit := 0, MainMenuIDAutoMove := 0, MainMenuIDAutoUtility := 0
 Global LootFilter := {}
-Global BlackList
+Global BlackList := Map()
 Global BlackList_Default := [[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0]]
 Global StackSizes := {Wisdom:40,Portal:40,Scouring:30,Perandus:5000
 	,Alteration:20,Transmutation:40,Augment:30,Chance:20
 	,Alchemy:20,Binding:20,Vaal:20,Chisel:20
 	,Harbinger:20,Horizon:20,Chaos:20,Engineer:20,Regal:10
 	,Simple:10,Prime:10,Exalted:10,Veiled:10}
-Global MainAttackPressedActive,MainAttackLastRelease,SecondaryAttackPressedActive
-Global ColorPicker_Group_Color, ColorPicker_Group_Color_Hex
-	, ColorPicker_Red, ColorPicker_Red_Edit, ColorPicker_Red_Edit_Hex
-	, ColorPicker_Green , ColorPicker_Green_Edit, ColorPicker_Green_Edit_Hex
-	, ColorPicker_Blue , ColorPicker_Blue_Edit, ColorPicker_Blue_Edit_Hex
+Global MainAttackPressedActive := False, MainAttackLastRelease := 0, SecondaryAttackPressedActive := False
+Global ColorPicker_Group_Color := "", ColorPicker_Group_Color_Hex := "", ColorPicker_Red := "", ColorPicker_Red_Edit := "", ColorPicker_Red_Edit_Hex := "", ColorPicker_Green := "", ColorPicker_Green_Edit := "", ColorPicker_Green_Edit_Hex := "", ColorPicker_Blue := "", ColorPicker_Blue_Edit := "", ColorPicker_Blue_Edit_Hex := ""
 Global HeistGear := ["Torn Cloak","Tattered Cloak","Hooded Cloak","Whisper-woven Cloak"
 	,"Silver Brooch","Golden Brooch","Enamel Brooch","Foliate Brooch"
 	,"Simple Lockpick","Standard Lockpick","Fine Lockpick","Master Lockpick"
@@ -403,8 +400,7 @@ Global AccountNameSTR := ""
 ; Globals For client.txt file
 Global ClientLog := "C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt"
 Global CurrentLocation := ""
-Global CLogFO
-
+Global CLogFO := ""
 ; ASCII converted strings of images
 Global Res1080_HealthBarStr := "|<1080 Overhead Health Bar>0x201614@0.99$106.Tzzzzzzzzzzzzzzzzu"
 	, Res1440_HealthBarStr := "|<1440 Overhead Health Bar>0x190D11@0.98$138.TzzzzzzzzzzzzzzzzzzzzzyU"
@@ -505,18 +501,12 @@ Global Res1080_DelveStr := "|<1080 Hidden>*100$65.7szzzzzzzzzDlzzzzzzzzyTXnyzyzz
 	, Res1080_DelveStr .= "|<1080 Fossil>*100$50.0Tzzzzzzs3zzzzzzyQyTtyTDDby1s61XXtz6CNaQwyTXlbtzDDUNwMyDnnsCT63UwwyTblsS7DDbswT7lnntyDDsyAwyTVXiPbDCbw1s61nkDzlz7lzzy"
 	, Res1080_DelveStr .= "|<1080 Resona>*100$62.0Tzzzzzzzzk3zzzzzzzzyQTznzDvyzjb60kD0wT7ltlnAnX7XlsSQQzDlssQy7bDDlwyC3D8s7kQ7DXUHmC1w7knst0s3aDDyASCMC0NVnzl7bb3b6QQzQkltsnsXX0kC0yTAyDzzyDszzzzy"
 ; FindText strings from INI
-Global StashStr, VendorStr, VendorMineStr, HealthBarStr, SellItemsStr, SkillUpStr, ChestStr, DelveStr
-	, XButtonStr
-	, VendorLioneyeStr, VendorForestStr, VendorSarnStr, VendorHighgateStr
-	, VendorOverseerStr, VendorBridgeStr, VendorDocksStr, VendorOriathStr, VendorHarbourStr, VendorKingsmarchStr
-
+Global StashStr := "", VendorStr := "", VendorMineStr := "", HealthBarStr := "", SellItemsStr := "", SkillUpStr := "", ChestStr := "", DelveStr := "", XButtonStr := "", VendorLioneyeStr := "", VendorForestStr := "", VendorSarnStr := "", VendorHighgateStr := "", VendorOverseerStr := "", VendorBridgeStr := "", VendorDocksStr := "", VendorOriathStr := "", VendorHarbourStr := "", VendorKingsmarchStr := ""
 ; Automation Settings
-Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation,YesEnableAutoSellConfirmation,YesEnableAutoSellConfirmationSafe
-
+Global YesEnableAutomation := 0, FirstAutomationSetting := "", YesEnableNextAutomation := 0, YesEnableAutoSellConfirmation := 0, YesEnableAutoSellConfirmationSafe := 0
 ; General
 Global BranchName := "master"
-Global selectedLeague, UpdateDatabaseInterval, LastDatabaseParseDate, YesNinjaDatabase
-	, ScriptUpdateTimeInterval, ScriptUpdateTimeType
+Global selectedLeague := "", UpdateDatabaseInterval := 0, LastDatabaseParseDate := 0, YesNinjaDatabase := 0, ScriptUpdateTimeInterval := "", ScriptUpdateTimeType := ""
 Global Latency := 1
 Global ClickLatency := 0
 Global ClipLatency := 0
@@ -560,8 +550,8 @@ Global RescaleRan := False
 Global ToggleExist := False
 Global YesOHB := True
 Global HPerc := 100
-Global GameX, GameY, GameW, GameH, mouseX, mouseY
-Global OHB
+Global GameX := 0, GameY := 0, GameW := 0, GameH := 0, mouseX := 0, mouseY := 0
+Global OHB := ""
 Global WinGuiX := 0
 Global WinGuiY := 0
 Global YesVendorDumpItems := 0
@@ -580,13 +570,12 @@ Global CLFStrictnessNumber := 0
 
 ; Item Crafting
 
-Global ItemCraftingCategorySelector
-Global ItemCraftingSubCategorySelector
-Global ItemCraftingMethod
-Global ItemCraftingNumberPrefix
-Global ItemCraftingNumberSuffix
-Global ItemCraftingNumberCombination
-
+Global ItemCraftingCategorySelector := ""
+Global ItemCraftingSubCategorySelector := ""
+Global ItemCraftingMethod := ""
+Global ItemCraftingNumberPrefix := 0
+Global ItemCraftingNumberSuffix := 0
+Global ItemCraftingNumberCombination := 0
 ; Chaos Recipe
 Global ChaosRecipeEnableFunction := False
 Global ChaosRecipeUnloadAll := True
@@ -746,7 +735,7 @@ Global StashTabYesUniqueRing := 1
 Global StashTabYesUniqueDump := 1
 
 ; Crafting Bases Options
-Global CraftingBaseTypeSelector
+Global CraftingBaseTypeSelector := ""
 Global YesStashBasesAboveIlvl := False
 Global StashBasesAboveIlvl := False
 Global YesCraftingBaseAutoUpdateOnStart := False
@@ -776,7 +765,7 @@ Global JoyThresholdLower := 50 - JoyThreshold
 Global InvertYAxis := false
 Global JoyMultiplier := 0.30
 Global JoyMultiplier2 := 8
-Global hotkeyControllerButtonA,hotkeyControllerButtonB,hotkeyControllerButtonX,hotkeyControllerButtonY,hotkeyControllerButtonLB,hotkeyControllerButtonRB,hotkeyControllerButtonBACK,hotkeyControllerButtonSTART,hotkeyControllerButtonL3,hotkeyControllerButtonR3,hotkeyControllerJoystickRight
+Global hotkeyControllerButtonA := "", hotkeyControllerButtonB := "", hotkeyControllerButtonX := "", hotkeyControllerButtonY := "", hotkeyControllerButtonLB := "", hotkeyControllerButtonRB := "", hotkeyControllerButtonBACK := "", hotkeyControllerButtonSTART := "", hotkeyControllerButtonL3 := "", hotkeyControllerButtonR3 := "", hotkeyControllerJoystickRight := ""
 Global YesTriggerUtilityJoystickKey := 1
 Global YesTriggerJoystickRightKey := 1
 ; ~ Hotkeys
@@ -841,21 +830,19 @@ Global GrabCurrencyY:=772
 ; Chat Hotkeys, and stash hotkeys
 Global CharName := "ReplaceWithCharName"
 Global RecipientName := "NothingYet"
-Global fn1, fn2, fn3
-Global c1Prefix1, c1Prefix2, c2Prefix1, c2Prefix2, stashPrefix1, stashPrefix2
-Global c1Suffix1,c1Suffix2,c1Suffix3,c1Suffix4,c1Suffix5,c1Suffix6,c1Suffix7,c1Suffix8,c1Suffix9
-Global c1Suffix1Text,c1Suffix2Text,c1Suffix3Text,c1Suffix4Text,c1Suffix5Text,c1Suffix6Text,c1Suffix7Text,c1Suffix8Text,c1Suffix9Text
-Global c2Suffix1,c2Suffix2,c2Suffix3,c2Suffix4,c2Suffix5,c2Suffix6,c2Suffix7,c2Suffix8,c2Suffix9
-Global c2Suffix1Text,c2Suffix2Text,c2Suffix3Text,c2Suffix4Text,c2Suffix5Text,c2Suffix6Text,c2Suffix7Text,c2Suffix8Text,c2Suffix9Text
-Global stashSuffix1,stashSuffix2,stashSuffix3,stashSuffix4,stashSuffix5,stashSuffix6,stashSuffix7,stashSuffix8,stashSuffix9
-Global stashSuffixTab1,stashSuffixTab2,stashSuffixTab3,stashSuffixTab4,stashSuffixTab5,stashSuffixTab6,stashSuffixTab7,stashSuffixTab8,stashSuffixTab9
-
+Global fn1 := "", fn2 := "", fn3 := ""
+Global c1Prefix1 := "", c1Prefix2 := "", c2Prefix1 := "", c2Prefix2 := "", stashPrefix1 := "", stashPrefix2 := ""
+Global c1Suffix1 := "", c1Suffix2 := "", c1Suffix3 := "", c1Suffix4 := "", c1Suffix5 := "", c1Suffix6 := "", c1Suffix7 := "", c1Suffix8 := "", c1Suffix9 := ""
+Global c1Suffix1Text := "", c1Suffix2Text := "", c1Suffix3Text := "", c1Suffix4Text := "", c1Suffix5Text := "", c1Suffix6Text := "", c1Suffix7Text := "", c1Suffix8Text := "", c1Suffix9Text := ""
+Global c2Suffix1 := "", c2Suffix2 := "", c2Suffix3 := "", c2Suffix4 := "", c2Suffix5 := "", c2Suffix6 := "", c2Suffix7 := "", c2Suffix8 := "", c2Suffix9 := ""
+Global c2Suffix1Text := "", c2Suffix2Text := "", c2Suffix3Text := "", c2Suffix4Text := "", c2Suffix5Text := "", c2Suffix6Text := "", c2Suffix7Text := "", c2Suffix8Text := "", c2Suffix9Text := ""
+Global stashSuffix1 := "", stashSuffix2 := "", stashSuffix3 := "", stashSuffix4 := "", stashSuffix5 := "", stashSuffix6 := "", stashSuffix7 := "", stashSuffix8 := "", stashSuffix9 := ""
+Global stashSuffixTab1 := "", stashSuffixTab2 := "", stashSuffixTab3 := "", stashSuffixTab4 := "", stashSuffixTab5 := "", stashSuffixTab6 := "", stashSuffixTab7 := "", stashSuffixTab8 := "", stashSuffixTab9 := ""
 ; Map Crafting Settings
-Global StartMapTier1,StartMapTier2,StartMapTier3,StartMapTier4,EndMapTier1,EndMapTier2,EndMapTier3,CraftingMapMethod1,CraftingMapMethod2,CraftingMapMethod3,EnableMQQForMagicMap,MMQorWeight,MMapItemRarity,MMapMonsterPackSize,MMapItemQuantity,MMapWeight,ForceMaxChisel
-
+Global StartMapTier1 := "", StartMapTier2 := "", StartMapTier3 := "", StartMapTier4 := "", EndMapTier1 := "", EndMapTier2 := "", EndMapTier3 := "", CraftingMapMethod1 := "", CraftingMapMethod2 := "", CraftingMapMethod3 := "", EnableMQQForMagicMap := "", MMQorWeight := "", MMapItemRarity := "", MMapMonsterPackSize := "", MMapItemQuantity := "", MMapWeight := "", ForceMaxChisel := ""
 ; ItemInfo GUI
-Global PercentText1G1, PercentText1G2, PercentText1G3, PercentText1G4, PercentText1G5, PercentText1G6, PercentText1G7, PercentText1G8, PercentText1G9, PercentText1G10, PercentText1G11, PercentText1G12, PercentText1G13, PercentText1G14, PercentText1G15, PercentText1G16, PercentText1G17, PercentText1G18, PercentText1G19, PercentText1G20, PercentText1G21
-Global PercentText2G1, PercentText2G2, PercentText2G3, PercentText2G4, PercentText2G5, PercentText2G6, PercentText2G7, PercentText2G8, PercentText2G9, PercentText2G10, PercentText2G11, PercentText2G12, PercentText2G13, PercentText2G14, PercentText2G15, PercentText2G16, PercentText2G17, PercentText2G18, PercentText2G19, PercentText2G20, PercentText2G21
+Global PercentText1G1 := "", PercentText1G2 := "", PercentText1G3 := "", PercentText1G4 := "", PercentText1G5 := "", PercentText1G6 := "", PercentText1G7 := "", PercentText1G8 := "", PercentText1G9 := "", PercentText1G10 := "", PercentText1G11 := "", PercentText1G12 := "", PercentText1G13 := "", PercentText1G14 := "", PercentText1G15 := "", PercentText1G16 := "", PercentText1G17 := "", PercentText1G18 := "", PercentText1G19 := "", PercentText1G20 := "", PercentText1G21 := ""
+Global PercentText2G1 := "", PercentText2G2 := "", PercentText2G3 := "", PercentText2G4 := "", PercentText2G5 := "", PercentText2G6 := "", PercentText2G7 := "", PercentText2G8 := "", PercentText2G9 := "", PercentText2G10 := "", PercentText2G11 := "", PercentText2G12 := "", PercentText2G13 := "", PercentText2G14 := "", PercentText2G15 := "", PercentText2G16 := "", PercentText2G17 := "", PercentText2G18 := "", PercentText2G19 := "", PercentText2G20 := "", PercentText2G21 := ""
 Global PComment1 := "LongDataTextNameSpace"
 Global PData1 := "000.000"
 Global PComment2 := "LongDataTextNameSpace"
