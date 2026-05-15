@@ -1237,10 +1237,19 @@ Settings(name:="perChar",Action:="Load"){
 			f := FileOpen(A_ScriptDir "\save\" name ".json","r")
 			JSONtext := f.Read()
 			obj := JSON.Load(JSONtext)
+			; Merge fields into the existing per-slot plain Objects rather than
+			; replacing them. obj[k] is a cJson Map; direct assignment would
+			; clobber the plain-Object slot and break later dot-access like
+			; WR.Flask.%slot%.CD ('Map has no property named CD').
 			For k, v in WR.%name%.OwnProps() {
-				If (obj.Has(k)) {
+				If !obj.Has(k)
+					Continue
+				If (IsObject(v) && IsObject(obj[k]))
+					For l, w in v.OwnProps()
+						If (obj[k].Has(l))
+							WR.%name%.%k%.%l% := obj[k][l]
+				Else
 					WR.%name%.%k% := obj[k]
-				}
 			}
 		} catch as e {
 			Util.Err(e, "Setting Load failed for .\save\" name ".json")
