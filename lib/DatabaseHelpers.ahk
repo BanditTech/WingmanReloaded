@@ -54,7 +54,7 @@ ActualTierCreator() {
 
 CheckAffixWR(Line,ModGenerationType,Obj) {
     for k , v in Obj {
-        If (v["AffixWRLine"] == Line && ModGenerationType == v["ModGenerationType"]) {
+        If (v.AffixWRLine == Line && ModGenerationType == v.ModGenerationType) {
             Return k
         }
     }
