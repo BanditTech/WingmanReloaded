@@ -213,7 +213,7 @@ SelectClientLog(GuiCtrl, *) {
 		}
 	} Else {
 		MainGui.Submit()
-		FileSelectFile(&SelectClientLogVar, 1, 0, "Select the location of your Client Log file", "Client.txt")
+		SelectClientLogVar := FileSelect(1, 0, "Select the location of your Client Log file", "Client.txt")
 		If SelectClientLogVar != ""
 		{
 			ClientLog := SelectClientLogVar
