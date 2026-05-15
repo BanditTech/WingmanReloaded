@@ -108,9 +108,6 @@ for _k,_v in BasesData
 	WR.CustomCraftingBases[_k] := {}
 }
 
-; Only Enable to Reclear ActualTier every Reload/Start
-;ActualTierCreator()
-
 WR.Data.Map_Affixes := RegexReplace(ArrayToString(Util.Load("Affix_List_Map")),"\%","`%")
 WR.Data.Map_Affixes := RegexReplace(WR.Data.Map_Affixes,",","`,")
 
@@ -135,3 +132,5 @@ WR.Data.Affix := JSON.LoadFile(A_ScriptDir "\data\Affix_Lines.json")
 ; FileCheck.ahk for the same reason as the hydration blocks above.
 if !FileExist(A_ScriptDir "\save\ActualTier.json")
 	ActualTierCreator()
+; Only Enable to Reclear ActualTier every Reload/Start
+;ActualTierCreator()
