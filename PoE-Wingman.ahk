@@ -5,13 +5,6 @@ Global VersionNumber := "3.0.0"
 #Include %A_ScriptDir%\lib\FileCheck.ahk
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
 #Include %A_ScriptDir%\lib\ScriptObject.ahk
-; Hydrate WR.Data.Perfect after ScriptObject.ahk has initialized WR. This was
-; previously at the tail of FileCheck.ahk, but FileCheck.ahk runs before
-; ScriptObject.ahk (FileCheck must populate POEData/BasesData first so
-; ScriptObject's init loops can iterate them).
-if !FileExist(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
-	RefreshPoeWatchPerfect()
-WR.Data.Perfect := JSON.LoadFile(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
 #Include %A_ScriptDir%\lib\GLOBALS.ahk
 readFromFile()
 CheckTime(ScriptUpdateTimeType,ScriptUpdateTimeInterval,"updateScript")

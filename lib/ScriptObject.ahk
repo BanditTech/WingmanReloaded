@@ -120,3 +120,11 @@ For k, name in ["perChar","Flask","Utility"]{
 	If !FileExist( A_ScriptDir "\save\profiles\" name "\Default.json")
 		Profile(name,"Save","Default")
 }
+
+; Hydrate WR.Data.Perfect once WR is initialized. This block was previously at
+; the tail of FileCheck.ahk, but FileCheck.ahk runs before this file (it must
+; populate POEData/BasesData first so the init loops above can iterate them),
+; so WR did not yet exist when the assignment fired.
+if !FileExist(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
+	RefreshPoeWatchPerfect()
+WR.Data.Perfect := JSON.LoadFile(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
