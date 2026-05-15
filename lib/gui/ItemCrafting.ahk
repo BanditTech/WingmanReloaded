@@ -28,7 +28,7 @@ ResetItemCrafting(*)
   global ModsGui, ItemCraftingCategorySelector, ItemCraftingSubCategorySelector
   ModsGui["LVP"].Delete()
   ModsGui["LVS"].Delete()
-  WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector] := []
+  WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector] := []
   Settings("ItemCrafting","Save")
 }
 
@@ -36,7 +36,7 @@ SaveItemCrafting(*)
 {
   global ModsGui, ItemCraftingCategorySelector, ItemCraftingSubCategorySelector
   TrueIndex := 0
-  WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector] := []
+  WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector] := []
 
   RowNumber := 0
   Loop
@@ -47,7 +47,7 @@ SaveItemCrafting(*)
     TrueIndex++
     ModLine := ModsGui["LVP"].GetText(RowNumber,4)
     Affix   := ModsGui["LVP"].GetText(RowNumber,2)
-    MatchLineForItemCraft(ModLine,"Prefix",WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,"Prefix",WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   RowNumber := 0
@@ -59,7 +59,7 @@ SaveItemCrafting(*)
     TrueIndex++
     ModLine := ModsGui["LVS"].GetText(RowNumber,4)
     Affix   := ModsGui["LVS"].GetText(RowNumber,2)
-    MatchLineForItemCraft(ModLine,"Suffix",WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector],TrueIndex,Affix)
+    MatchLineForItemCraft(ModLine,"Suffix",WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector],TrueIndex,Affix)
   }
 
   Settings("ItemCrafting","Save")
@@ -187,7 +187,7 @@ RefreshModList(a,b)
   {
     Index := A_Index
     OutputVar := ModsGui["LVP"].GetText(A_Index, 4)
-    For k, v in WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector]
+    For k, v in WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector]
     {
       If (v.Mod == OutputVar)
         ModsGui["LVP"].Modify(Index,"Check")
@@ -197,7 +197,7 @@ RefreshModList(a,b)
   {
     Index := A_Index
     OutputVar := ModsGui["LVS"].GetText(A_Index, 4)
-    For k, v in WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector]
+    For k, v in WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector]
     {
       If (v.Mod == OutputVar)
         ModsGui["LVS"].Modify(Index,"Check")

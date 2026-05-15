@@ -148,7 +148,7 @@ CraftingItem(){
 		Return
 	}
 	*/
-	If (WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector].Count() == 0) {
+	If (WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector].Count() == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
@@ -211,7 +211,7 @@ CraftingMaps(){
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
+			If (BlackList[C][R] || !WR.Restock.%C%[R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -345,11 +345,11 @@ CountCurrency(NameList:=""){
 	For key, currency in NameList {
 		If !WR.loc.pixel.Has(currency)
 			Return False
-		If (WR.loc.pixel[currency].X == 0 && WR.loc.pixel[currency].Y == 0) {
+		If (WR.loc.pixel.%currency%.X == 0 && WR.loc.pixel.%currency%.Y == 0) {
 			Notify("Position Error","Aspect ratio is missing adjustment for " currency " slot`nPlease submit the correct position on github for your aspect ratio",5)
 			retCount[currency] := 0
 		} Else {
-			ClipItem(WR.loc.pixel[currency].X,WR.loc.pixel[currency].Y)
+			ClipItem(WR.loc.pixel.%currency%.X,WR.loc.pixel.%currency%.Y)
 			retCount[currency] := Item.Prop.Stack_Size ? Item.Prop.Stack_Size : 0
 		}
 	}
@@ -366,14 +366,14 @@ ApplyCurrency(cname, x, y, Amount:=1){
 			cname := "Alchemy"
 	}
 	If WR.data.Counts.Has(cname) {
-		If (WR.data.Counts[cname] <= 0) {
+		If (WR.data.Counts.%cname% <= 0) {
 			Log("Error","Not enough " cname " to continue crafting")
 			Return False
 		}
-		WR.data.Counts[cname]--
+		WR.data.Counts.%cname%--
 	}
 	Log("Currency","Applying " cname " onto item at " x "," y)
-	RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
+	RightClick(WR.loc.pixel.%cname%.X, WR.loc.pixel.%cname%.Y)
 	Sleep(45*Latency)
 	If (Amount > 1) {
 		Send("{Shift down}")

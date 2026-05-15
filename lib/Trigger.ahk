@@ -7,23 +7,23 @@ Trigger(obj,force:=False){
 	Global MovementHotkeyActive
 	If !IsObject(ActionList[obj.Group])
 		ActionList[obj.Group] := {}
-	If (force && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
+	If (force && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount)
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Force")
 	Else If ( !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) && ConfirmMatchingTriggers(obj))
 		ActionList[obj.Group].Push(obj.Type . " " . obj.Slot . " Check")
 	Else If !ActionList[obj.Group].Count()
 	{
 		loop (obj.Type="Flask"?5:10)
-			if (WR[obj.Type][A_Index].Group == obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) )
+			if (WR.%obj.Type%[A_Index].Group == obj.Group  && !(indexOf(obj.Type . " " . obj.Slot . " Check",ActionList[obj.Group]) || indexOf(obj.Type . " " . obj.Slot . " Force",ActionList[obj.Group])) )
 				ActionList[obj.Group].Push(obj.Type . " " . A_Index . " Check")
 	}
 	For k, v in ActionList[obj.Group]
 	{
 		type := StrSplit(v, " ")[1], recheck := (StrSplit(v, " ")[3] == "Check"?True:False), v := StrSplit(v, " ")[2]
-		If (!recheck || (recheck && ConfirmMatchingTriggers(WR[type][v])))
-		If (WR.cdExpires[type][v] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount)
+		If (!recheck || (recheck && ConfirmMatchingTriggers(WR.%type%.%v%)))
+		If (WR.cdExpires.%type%[v] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount)
 		{
-			If (WR[type][v].Move && !force)
+			If (WR.%type%.%v%.Move && !force)
 			{
 				If !GameActive
 					Return
@@ -41,29 +41,29 @@ Trigger(obj,force:=False){
 				if ( !MovementPressed || (WR.cdExpires.Binding.Move && A_TickCount < WR.cdExpires.Binding.Move) )
 					Return
 			}
-			SendHotkey(WR[type][v].Key)
-			WR.cdExpires.Group[obj.Group] := A_TickCount + WR[type][v].GroupCD
-			WR.cdExpires[type][v] := A_TickCount + WR[type][v].CD
+			SendHotkey(WR.%type%.%v%.Key)
+			WR.cdExpires.Group.%obj.Group% := A_TickCount + WR.%type%.%v%.GroupCD
+			WR.cdExpires.%type%[v] := A_TickCount + WR.%type%.%v%.CD
 			ActionList[obj.Group].RemoveAt(k)
-			If (WR[type][v].Group == "QuickSilver")
+			If (WR.%type%.%v%.Group == "QuickSilver")
 				Loop 10
-					If (WR.Utility[A_Index].Enable && WR.Utility[A_Index].QS)
-						Trigger(WR.Utility[A_Index],true)
+					If (WR.Utility.%A_Index%.Enable && WR.Utility.%A_Index%.QS)
+						Trigger(WR.Utility.%A_Index%,true)
 			Return
 		}
 	}
 	Return
 }
 ConfirmMatchingTriggers(obj){
-	If ((obj.Enable || obj.Type == "Flask") && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+	If ((obj.Enable || obj.Type == "Flask") && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
 	{
 		If (WR.func.Toggle.PopAll && obj.PopAll) ; PopAll trigger
 			Return True
 		If (obj.OnCD)
 			Return True
-		If ( ( WR.func.Toggle[obj.Type] && obj.Condition == 1 ; Any/All Resource Triggers
+		If ( ( WR.func.Toggle.%obj.Type% && obj.Condition == 1 ; Any/All Resource Triggers
 			&& (obj.Life && obj.Life > Player.Percent.Life) || (obj.ES && obj.ES > Player.Percent.ES) || (obj.Mana && obj.Mana > Player.Percent.Mana) )
-			|| ( WR.func.Toggle[obj.Type] && obj.Condition == 2
+			|| ( WR.func.Toggle.%obj.Type% && obj.Condition == 2
 			&& (!obj.Life || (obj.Life && obj.Life > Player.Percent.Life)) && (!obj.ES || (obj.ES && obj.ES > Player.Percent.ES)) && (!obj.Mana || (obj.Mana && obj.Mana > Player.Percent.Mana)) ) )
 			Return True
 		If (obj.Move && WR.func.Toggle.Move)
@@ -83,7 +83,7 @@ ConfirmMatchingTriggers(obj){
 				Return True
 			}
 		}
-		If (WR.func.Toggle[obj.Type]
+		If (WR.func.Toggle.%obj.Type%
 			&& ( (obj.MainAttack && MainAttackPressedActive) ;Attack Triggers
 			|| (obj.SecondaryAttack && SecondaryAttackPressedActive) ) )
 			Return True
@@ -108,8 +108,8 @@ MainAttackCommandRelease()
 		Return
 	For k, types in ["Flask","Utility"]
 		loop (types="Flask"?5:10) {
-			obj := WR[types][A_Index]
-			If ((obj.Enable || obj.Type == "Flask") && obj.MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+			obj := WR.%types%.%A_Index%
+			If ((obj.Enable || obj.Type == "Flask") && obj.MainAttackRelease && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
 				Trigger(obj,True)
 		}
 	Return
@@ -131,8 +131,8 @@ SecondaryAttackCommandRelease()
 		Return
 	For k, types in ["Flask","Utility"]
 		loop (types="Flask"?5:10) {
-			obj := WR[types][A_Index]
-			If ((obj.Enable || obj.Type == "Flask") && obj.SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+			obj := WR.%types%.%A_Index%
+			If ((obj.Enable || obj.Type == "Flask") && obj.SecondaryAttackRelease && WR.cdExpires.%obj.Type%[obj.Slot] < A_TickCount && WR.cdExpires.Group.%obj.Group% < A_TickCount )
 				Trigger(obj,True)
 		}
 	Return
@@ -141,8 +141,8 @@ SecondaryAttackCommandRelease()
 TimerPassthrough() {
 	Loop 5
 		try {
-		If GetKeyState(StrSplit(WR.Flask[A_Index].Key," ")[1], "P")
-			WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask[A_Index].CD
+		If GetKeyState(StrSplit(WR.Flask.%A_Index%.Key," ")[1], "P")
+			WR.cdExpires.Flask.%A_Index%:=A_TickCount + WR.Flask.%A_Index%.CD
 		} catch as e {
 			Log("Error","TimerPassthrough Error: " ErrorText(e))
 		}

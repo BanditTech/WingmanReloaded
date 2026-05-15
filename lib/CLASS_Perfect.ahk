@@ -72,7 +72,7 @@ RefreshPoeWatchPerfect() {
                 For ki, mod in itemDB[type] {
                     mod     := RegExReplace(mod, "1 to \(", "(1-1) to (")
                     replace := Perfect(mod)
-                    WR.Data.Perfect[ku][type][ki] := replace.o
+                    WR.Data.Perfect.%ku%[type][ki] := replace.o
                 }
             }
         }

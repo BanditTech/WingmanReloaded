@@ -13,11 +13,11 @@ GuiStatus(Fetch:="",SS:=1){
   {
     ; TODO: v2 does not support %var% dereference - needs refactoring
     ; Original v1 code:
-    ;   P%Fetch% := FindText().GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
+    ;   P%Fetch% := FindText().GetColor(WR.loc.pixel.%Fetch%.X,WR.loc.pixel.%Fetch%.Y)
     ;   temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
     ; The following is a best-effort translation using a Map-based approach if available,
     ; otherwise this block needs to be replaced with explicit conditionals per Fetch value.
-    P_Fetch := FindText().GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
+    P_Fetch := FindText().GetColor(WR.loc.pixel.%Fetch%.X,WR.loc.pixel.%Fetch%.Y)
     ; TODO: v2 does not support %var% dereference for P%Fetch%, %Fetch%, var%Fetch% - needs refactoring
     temp := False  ; placeholder — replace with explicit per-Fetch logic
     Return temp

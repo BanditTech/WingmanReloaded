@@ -9,28 +9,30 @@ PopFlasks(){
 		If PopFlaskRespectCD
 		{
 			Loop 5
-				If WR.Flask[A_Index].PopAll
-					Trigger(WR.Flask[A_Index])
+				If WR.Flask.%A_Index%.PopAll
+					Trigger(WR.Flask.%A_Index%)
 			Loop 10
-				If WR.Utility[A_Index].PopAll
-					Trigger(WR.Utility[A_Index])
+				If WR.Utility.%A_Index%.PopAll
+					Trigger(WR.Utility.%A_Index%)
 		}
 		Else
 		{
 			Loop 5
-				If WR.Flask[A_Index].PopAll
+				If WR.Flask.%A_Index%.PopAll
 				{
-					SendHotkey(WR.Flask[A_Index].Key)
-					WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask[A_Index].CD
-					WR.cdExpires.Group[WR.Flask[A_Index].Group] := A_TickCount + WR.Flask[A_Index].GroupCD
+					SendHotkey(WR.Flask.%A_Index%.Key)
+					WR.cdExpires.Flask.%A_Index%:=A_TickCount + WR.Flask.%A_Index%.CD
+					grp := WR.Flask.%A_Index%.Group
+					WR.cdExpires.Group.%grp% := A_TickCount + WR.Flask.%A_Index%.GroupCD
 					RandomSleep(-99,99)
 				}
 			Loop 10
-				If WR.Utility[A_Index].PopAll
+				If WR.Utility.%A_Index%.PopAll
 				{
-					SendHotkey(WR.Utility[A_Index].Key)
-					WR.cdExpires.Utility[A_Index]:=A_TickCount + WR.Utility[A_Index].CD
-					WR.cdExpires.Group[WR.Utility[A_Index].Group] := A_TickCount + WR.Utility[A_Index].GroupCD
+					SendHotkey(WR.Utility.%A_Index%.Key)
+					WR.cdExpires.Utility.%A_Index%:=A_TickCount + WR.Utility.%A_Index%.CD
+					grp := WR.Utility.%A_Index%.Group
+					WR.cdExpires.Group.%grp% := A_TickCount + WR.Utility.%A_Index%.GroupCD
 					RandomSleep(-99,99)
 				}
 		}

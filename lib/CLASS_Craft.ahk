@@ -126,7 +126,7 @@ Class Craft {
 	ApplyCurrency(cname, x, y){
 		Global WR
 		MoveStash(StashTabCurrency)
-		RightClick(WR.loc.pixel[cname].X, WR.loc.pixel[cname].Y)
+		RightClick(WR.loc.pixel.%cname%.X, WR.loc.pixel.%cname%.Y)
 		Sleep(45*Latency)
 		LeftClick(x,y)
 		Sleep(90*Latency)

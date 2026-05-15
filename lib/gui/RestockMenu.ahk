@@ -50,7 +50,7 @@ RestockMenu(choice:=""){
 		RestockGui.Add("GroupBox", "vRestockGroupBox w220 h305 Section xs+670 ym", "Slot Configuration:")
 		RestockGui.SetFont()
 
-		LoadedValues := WR.Restock[Active[1]][Active[2]]
+		LoadedValues := WR.Restock.%Active[1]%.%Active[2]%
 
 		r1 := RestockGui.Add("Radio", "xs+5 ys+22 vRestockNormal", "Normal slot")
 		r1.OnEvent("Click", RestockSetValue)
@@ -119,7 +119,7 @@ RestockMenu(choice:=""){
 		C := btnArr[2]
 		R := btnArr[3]
 		Active := [C,R]
-		LoadedValues := WR.Restock[C][R]
+		LoadedValues := WR.Restock.%C%[R]
 		RestockRefreshOption()
 	}
 
@@ -174,10 +174,10 @@ RestockMenu(choice:=""){
 			WR.Restock := {}
 			For C, GridX in InventoryGridX{
 				If !WR.Restock.HasOwnProp(C)
-					WR.Restock[C] := {}
+					WR.Restock.%C% := {}
 				For R, GridY in InventoryGridY{
-					If !WR.Restock[C].HasOwnProp(R)
-						WR.Restock[C][R] := adash.cloneDeep(DefaultSettings)
+					If !WR.Restock.%C%.HasOwnProp(R)
+						WR.Restock.%C%[R] := adash.cloneDeep(DefaultSettings)
 				}
 			}
 		}

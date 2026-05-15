@@ -10,8 +10,8 @@ CheckDebuffs(){
 		{
 			For k, type in ["Flask","Utility"]
 				Loop (type="Flask"?5:10)
-					If (WR[type][A_Index][debuff] && WR.func.Toggle[type] && WR.cdExpires[type][A_Index] <= A_TickCount)
-						Trigger(WR[type][A_Index],True)
+					If (WR.%type%.%A_Index%.%debuff% && WR.func.Toggle.%type% && WR.cdExpires.%type%[A_Index] <= A_TickCount)
+						Trigger(WR.%type%.%A_Index%,True)
 		}
 	}
 	Return
@@ -23,7 +23,7 @@ determineDebuffTriggerActive(){
 		{
 			slot := A_Index
 			for k, debuff in ["Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
-				If (WR[type][slot][debuff] && !indexOf(debuff,active))
+				If (WR.%type%.%slot%.%debuff% && !indexOf(debuff,active))
 					active.Push(debuff)
 		}
 	If active.Count()

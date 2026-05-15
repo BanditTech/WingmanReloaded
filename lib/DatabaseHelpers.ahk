@@ -13,7 +13,7 @@ LoadActualTierName() {
 ActualTierCreator() {
     ActualTierNameJSON := LoadActualTierName()
     For kii , vii in POEData{
-        WR.ActualTier[kii] := []
+        WR.ActualTier.%kii% := []
         for kiii, viii in vii{
             Mods := LoadOnDemand(kii,viii)
             For k, v in Mods
@@ -22,10 +22,10 @@ ActualTierCreator() {
                     AffixWRLine := FirstLineToWRFormat(v["text"])
                     ModGenerationType := v["generation_type"]
                     If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationType,ActualTierNameJSON)) {
-                        If(index := CheckAffixWR(AffixWRLine,v["generation_type"],WR.ActualTier[kii])) {
+                        If(index := CheckAffixWR(AffixWRLine,v["generation_type"],WR.ActualTier.%kii%)) {
                             aux := False
                             aux2 := 0
-                            for a, b in WR.ActualTier[kii][index]["ILvL"]{
+                            for a, b in WR.ActualTier.%kii%[index]["ILvL"]{
                                 if (b == v["required_level"]){
                                     aux := true
                                     break
@@ -35,12 +35,12 @@ ActualTierCreator() {
                                 }
                             }
                             if(!aux){
-                                WR.ActualTier[kii][index]["AffixLine"].InsertAt(aux2+1, v["name"])
-                                WR.ActualTier[kii][index]["ILvL"].InsertAt(aux2+1, v["required_level"])
+                                WR.ActualTier.%kii%[index]["AffixLine"].InsertAt(aux2+1, v["name"])
+                                WR.ActualTier.%kii%[index]["ILvL"].InsertAt(aux2+1, v["required_level"])
                             }
                         } Else {
                             aux := {ActualTierName:ActualTierName,ModGenerationType:v["generation_type"],AffixWRLine:FirstLineToWRFormat(v["text"]),AffixLine:[v["name"]],ILvL:[v["required_level"]]}
-                            WR.ActualTier[kii].Push(aux)
+                            WR.ActualTier.%kii%.Push(aux)
                         }
                     }
                 }
@@ -102,7 +102,7 @@ CraftingBasesRequest(ShouldRun) {
 
 ClearQuantCraftingBase() {
     for ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon","quiver"]{
-        for k,v in WR.CustomCraftingBases[vi] {
+        for k,v in WR.CustomCraftingBases.%vi% {
             v.Quant:=0
             v.ILvL:=0
         }

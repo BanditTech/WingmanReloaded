@@ -119,7 +119,7 @@ class ItemScan
 		}
 		; Disenchant value for Unique Items
 		If (This.Prop.RarityUnique && (This.Prop.SlotType || This.Prop.IsWeapon || This.Prop.Quiver)) {
-			multi := WR.Disenchant[This.Prop.ItemName]
+			multi := WR.Disenchant.%This.Prop.ItemName%
 			if multi {
 				This.Prop.DustValue := This.DisenchantCalculation(multi,This.Prop.ItemLevel,This.Prop.Quality)
 				totalSize := This.Prop.Item_Width * This.Prop.Item_Height
@@ -917,7 +917,7 @@ class ItemScan
 		SumRNP := 0
 		SumRNS := 0
 		LastID :=0
-		For k, v in WR.ItemCrafting[ItemCraftingCategorySelector][ItemCraftingSubCategorySelector]
+		For k, v in WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector]
 		{
 			If(This.Affix[v["ModWRFormat"]] >= v["ValueWRFormatLow"] && This.Affix[v["ModWRFormat"]] <= v["ValueWRFormatHigh"] && This.Affix[v["Affix"]])
 			{
@@ -974,7 +974,7 @@ class ItemScan
 	}
 	CreateAllActualTiers()
 	{
-		for a , b in WR.ActualTier[This.Prop.ItemClass]
+		for a , b in WR.ActualTier.%This.Prop.ItemClass%
 		{
 			ILvLList := b["ILvL"]
 			AffixList := b["AffixLine"]
@@ -2823,7 +2823,7 @@ class ItemScan
 		update := false
 		For ki,vi in ["str_armour","dex_armour","int_armour","str_dex_armour","str_int_armour","dex_int_armour","amulet","ring","belt","weapon"]
 		{
-			For k,v in WR.CustomCraftingBases[vi]
+			For k,v in WR.CustomCraftingBases.%vi%
 			{
 				If (v.BaseName == This.Prop.ItemBase && ((YesStashBasesAboveIlvl && This.Prop.ItemLevel >= StashBasesAboveIlvl)|| !YesStashBasesAboveIlvl))
 				{
