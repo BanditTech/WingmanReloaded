@@ -6,16 +6,12 @@ Global VersionNumber := "3.0.0"
 #Include %A_ScriptDir%\lib\TrayMenu.ahk
 #Include %A_ScriptDir%\lib\ScriptObject.ahk
 #Include %A_ScriptDir%\lib\GLOBALS.ahk
-; gui/MainMenu.ahk must finish building MainGui (declaration + .Add(...) of every
-; control) before any function that reads MainGui controls runs. readFromFile()
-; and the calls below it transitively touch MainGui state via RegisterHotkeys
-; etc., so the include sits ahead of them here.
-#Include %A_ScriptDir%\lib\gui\MainMenu.ahk
-#Include %A_ScriptDir%\lib\gui\ItemInfo.ahk
 readFromFile()
 CheckTime(ScriptUpdateTimeType,ScriptUpdateTimeInterval,"updateScript")
 checkUpdate()
 Critical(1)
+#Include %A_ScriptDir%\lib\gui\MainMenu.ahk
+#Include %A_ScriptDir%\lib\gui\ItemInfo.ahk
 FirstScale()
 RestockMenu("Load")
 If (YesNinjaDatabase && DaysSince()) {
