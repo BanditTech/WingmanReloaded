@@ -142,7 +142,7 @@ UtilityMenu(GuiCtrl, *){
 			WR.Utility.%val%[kind] := Round(UtilityGui[val]["Utility" val kind].Value / 100,2)
 
 		FileDelete(A_ScriptDir "\save\Utility.json")
-		JSONtext := JSON.Dump(WR.Utility,,2)
+		JSONtext := JSON.Dump(WR.Utility, 2)
 		FileAppend(JSONtext, A_ScriptDir "\save\Utility.json")
 	}
 	UtilityGuiClose(GuiObj) {

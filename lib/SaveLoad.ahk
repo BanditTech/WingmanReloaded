@@ -1244,7 +1244,7 @@ Settings(name:="perChar",Action:="Load"){
 		}
 	}Else If (Action == "Save"){
 		f := FileOpen(A_ScriptDir "\save\" name ".json", "w")
-		JSONtext := JSON.Dump(WR.%name%,,2)
+		JSONtext := JSON.Dump(WR.%name%, 2)
 		f.Write(JSONtext)
 		JSONtext := ""
 	}
@@ -1280,7 +1280,7 @@ Profile(args*){
 	}
 
 	If (Action == "Save") {
-		FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","w").Write(JSON.Dump(WR.%Type%,,2))
+		FileOpen(A_ScriptDir "\save\profiles\" Type "\" name ".json","w").Write(JSON.Dump(WR.%Type%, 2))
 		IniWrite(name, A_ScriptDir "\save\Settings.ini", "Chosen Profile", Type)
 	} Else If (Action == "Load") {
 		obj := JSON.LoadFile(A_ScriptDir "\save\profiles\" Type "\" name ".json")

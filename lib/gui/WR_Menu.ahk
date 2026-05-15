@@ -1332,7 +1332,7 @@ WR_Menu(Function:="",Var*){
     If (Element == "Save") {
       MainGui.Submit(0)
       If (ValueType == "Globe")
-        FileOpen(A_ScriptDir "\save\" ValueType ".json","w").Write(JSON.Dump(Globe,,2))
+        FileOpen(A_ScriptDir "\save\" ValueType ".json","w").Write(JSON.Dump(Globe, 2))
       Else
         Log("Error","JSON Save: unknown ValueType " ValueType)
       MainGui.Show()

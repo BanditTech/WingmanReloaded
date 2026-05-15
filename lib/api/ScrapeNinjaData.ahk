@@ -212,7 +212,7 @@ DBUpdate(){
   Try {
 			For k, apiKey in apiList
 				ScrapeNinjaData(apiKey)
-			JSONtext := JSON.Dump(Ninja,,2)
+			JSONtext := JSON.Dump(Ninja, 2)
 			FileDelete(A_ScriptDir "\data\Ninja.json")
 			FileAppend(JSONtext, A_ScriptDir "\data\Ninja.json")
 			IniWrite(Date_now, A_ScriptDir "\save\Settings.ini", "Database", "LastDatabaseParseDate")
@@ -236,7 +236,7 @@ DBUpdateNinja(){
   Sleep(-1)
   Load_BarControl(92,"Saving Ninja JSON")
   Sleep(-1)
-  JSONtext := JSON.Dump(Ninja,,2)
+  JSONtext := JSON.Dump(Ninja, 2)
   FileDelete(A_ScriptDir "\data\Ninja.json")
   FileAppend(JSONtext, A_ScriptDir "\data\Ninja.json")
   Sleep(-1)
