@@ -55,7 +55,7 @@
 ; This software is provided 'as-is', without any express or implied warranty.
 ; In no event will the authors be held liable for any damages arising from the use of this software.
 ; ======================================================================================================================
-	class _CtlColors {
+	class CtlColors {
 ; ===================================================================================================================
 ; Class variables
 ; ===================================================================================================================
@@ -259,7 +259,7 @@ static Detach(HWND) {
 	If This.Attached.Has(HWND) {
 		CTL := This.Attached[HWND].Clone()
 		If (CTL.Brush) && (CTL.Brush != This.NullBrush)
-			DllCall("Gdi32.dll\DeleteObject", "Prt", CTL.Brush)
+			DllCall("Gdi32.dll\DeleteObject", "Ptr", CTL.Brush)
 		For I, V In CTL.Classes {
 			If This.HandledMessages[V] > 0 {
 			This.HandledMessages[V] -= 1
@@ -301,7 +301,6 @@ static IsAttached(HWND) {
 	Return This.Attached.Has(HWND)
 }
 }
-CtlColors := _CtlColors
 ; ======================================================================================================================
 ; CtlColors_OnMessage
 ; This function handles CTLCOLOR messages. There's no reason to call it manually!
