@@ -17,7 +17,7 @@ ZoneChange(){
 	TempOld := OldLoc
 	; Set OldLoc to the new one for next run
 	OldLoc := ThisLoc
-	Log("Zone Change ",Strings*)
+	Log("Zone Change ")
 	If (RunRefresh) {
 		;CraftingBasesRequest(YesCraftingBaseAutoUpdateOnZone)
 	}

@@ -83,7 +83,7 @@ CraftingBasesRequest(ShouldRun) {
         Return
     }
     If (!AccountNameSTR) {
-        Log("Crafting Bases Request","You need define your account name in save/Account.ini",Strings*)
+        Log("Crafting Bases Request","You need define your account name in save/Account.ini")
         Return
     }
     Object := PoERequest.Stash(StashTabCrafting)
@@ -96,7 +96,7 @@ CraftingBasesRequest(ShouldRun) {
             . ", ILVL: " baseItem["Prop"]["CraftingBaseHigherILvLFound"]
             . ", Quantity: " baseItem["Prop"]["CraftingBaseQuantFound"])
     }
-    Log("Crafting Bases ","Refreshing quantity and minimum ilvl from stash items",Strings*)
+    Log("Crafting Bases ","Refreshing quantity and minimum ilvl from stash items")
     Return
 }
 
