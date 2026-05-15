@@ -112,7 +112,7 @@ Class Util {
 			l.Push(v)
 		l.Push("Error Report:")
 		For k, v in ["what","file","line","message","extra"]
-			l.Push(v ": " e[v])
+			l.Push(v ": " e.%v%)
 		This.Log.Msg("Error ", l)
 		If This.Debug.ErrorMsgBox
 			MsgBox(This.PrintArray(l,False), A_ScriptName, 4096+16)
