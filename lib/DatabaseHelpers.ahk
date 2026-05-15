@@ -25,7 +25,7 @@ ActualTierCreator() {
                         If(index := CheckAffixWR(AffixWRLine,v["generation_type"],WR.ActualTier.%kii%)) {
                             aux := False
                             aux2 := 0
-                            for a, b in WR.ActualTier.%kii%[index]["ILvL"]{
+                            for a, b in WR.ActualTier.%kii%[index].ILvL{
                                 if (b == v["required_level"]){
                                     aux := true
                                     break
@@ -35,8 +35,8 @@ ActualTierCreator() {
                                 }
                             }
                             if(!aux){
-                                WR.ActualTier.%kii%[index]["AffixLine"].InsertAt(aux2+1, v["name"])
-                                WR.ActualTier.%kii%[index]["ILvL"].InsertAt(aux2+1, v["required_level"])
+                                WR.ActualTier.%kii%[index].AffixLine.InsertAt(aux2+1, v["name"])
+                                WR.ActualTier.%kii%[index].ILvL.InsertAt(aux2+1, v["required_level"])
                             }
                         } Else {
                             aux := {ActualTierName:ActualTierName,ModGenerationType:v["generation_type"],AffixWRLine:FirstLineToWRFormat(v["text"]),AffixLine:[v["name"]],ILvL:[v["required_level"]]}
