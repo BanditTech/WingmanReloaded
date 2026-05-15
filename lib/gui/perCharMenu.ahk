@@ -138,21 +138,17 @@ perCharMenu(*){
 		perCharGui.Add("GroupBox",     "Section  w265 h65        xs yp+35",         "Load Flask or Utility Profiles")
 		perCharGui.SetFont()
 		perCharGui.Add("CheckBox",  "xs+5 ys+20 vprofilesYesFlask Checked" WR.perChar.Setting.profilesYesFlask, "Load Flask Profile")
-		l := [], s := ""
+		l := []
 		Loop Files A_ScriptDir "\save\profiles\Flask\*.json"
 			l.Push(StrReplace(A_LoopFileName,".json",""))
-		For k, v in l
-			s .=(k=1?"":"|") v
-		perCharGui.Add("DropDownList", "vprofilesFlask xp y+5 w120", s)
+		perCharGui.Add("DropDownList", "vprofilesFlask xp y+5 w120", l)
 		perCharGui["profilesFlask"].Choose(WR.perChar.Setting.profilesFlask)
 
 		perCharGui.Add("CheckBox",  "xs+132 ys+20 vprofilesYesUtility Checked" WR.perChar.Setting.profilesYesUtility, "Load Utility Profile")
-		l := [], s := ""
+		l := []
 		Loop Files A_ScriptDir "\save\profiles\Utility\*.json"
 			l.Push(StrReplace(A_LoopFileName,".json",""))
-		For k, v in l
-			s .=(k=1?"":"|") v
-		perCharGui.Add("DropDownList", "vprofilesUtility xp y+5 w120", s)
+		perCharGui.Add("DropDownList", "vprofilesUtility xp y+5 w120", l)
 		perCharGui["profilesUtility"].Choose(WR.perChar.Setting.profilesUtility)
 		;  xm ym w565 h405
 		perCharGui.Show("AutoSize")
