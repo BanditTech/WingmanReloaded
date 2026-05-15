@@ -205,7 +205,8 @@ RestockMenu(choice:=""){
 
 	ReStockSaveValues()
 	{
-		FileDelete(A_ScriptDir "\save\Restock.json")
+		If FileExist(A_ScriptDir "\save\Restock.json")
+			FileDelete(A_ScriptDir "\save\Restock.json")
 		JSONtext := JSON.Dump(WR.ReStock, 2)
 		FileAppend(JSONtext, A_ScriptDir "\save\Restock.json")
 		JSONtext := ""

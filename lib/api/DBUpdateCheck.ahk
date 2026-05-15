@@ -15,7 +15,8 @@ DBUpdateCheck()
 			For k, apiKey in apiList
 				ScrapeNinjaData(apiKey)
 			JSONtext := JSON.Dump(Ninja, 2)
-			FileDelete(A_ScriptDir "\data\Ninja.json")
+			If FileExist(A_ScriptDir "\data\Ninja.json")
+				FileDelete(A_ScriptDir "\data\Ninja.json")
 			FileAppend(JSONtext, A_ScriptDir "\data\Ninja.json")
 			IniWrite(Date_now, A_ScriptDir "\save\Settings.ini", "Database", "LastDatabaseParseDate")
 			LastDatabaseParseDate := Date_now
