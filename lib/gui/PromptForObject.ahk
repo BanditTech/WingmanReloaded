@@ -11,8 +11,8 @@ PromptForObject(*){
     name := ArrayPrintGui["SubmitObjectName"].Value
     ArrayPrintGui.Destroy()
     ; Build a map of inspectable global objects by name
-    Global WR, Item, LootFilter, Globe, RecipeArray
-    objLookup := Map("WR", WR, "Item", Item, "LootFilter", LootFilter, "Globe", Globe, "RecipeArray", RecipeArray)
+    Global WR, Item, LootFilter, Globe, RecipeMap
+    objLookup := Map("WR", WR, "Item", Item, "LootFilter", LootFilter, "Globe", Globe, "RecipeMap", RecipeMap)
     If objLookup.Has(name)
       MsgBoxVals(objLookup[name])
     Else

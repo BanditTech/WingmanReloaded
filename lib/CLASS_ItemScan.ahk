@@ -1059,7 +1059,7 @@ class ItemScan
 		}
 	}
 	StashChaosRecipe(deposit:=false){
-		Global RecipeArray
+		Global RecipeMap
 		Static TypeList := [ "Amulet", "Ring", "Belt", "Boots", "Gloves", "Helmet", "Body" ]
 		Static WeaponList := [ "One Hand", "Two Hand", "Shield" ]
 		If ( This.Prop.Rarity_Digit != 3 )
@@ -1073,7 +1073,7 @@ class ItemScan
 			Return False
 		If (ChaosRecipeSkipJC && (This.Prop.Jeweller || This.Prop.Chromatic))
 			Return False
-		If !IsObject(RecipeArray)
+		If !IsObject(RecipeMap)
 		{
 			If !ChaosRecipe(1)
 			{
@@ -1086,10 +1086,10 @@ class ItemScan
 			If (This.Prop.SlotType == v)
 			{
 				If This.Affix.Unidentified {
-					CountValue := retCount(RecipeArray["uChaos"][v]) + retCount(RecipeArray["uRegal"][v])
+					CountValue := retCount(RecipeMap["uChaos"][v]) + retCount(RecipeMap["uRegal"][v])
 					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingUNID
 				} Else {
-					CountValue := retCount(RecipeArray["Chaos"][v]) + retCount(RecipeArray["Regal"][v])
+					CountValue := retCount(RecipeMap["Chaos"][v]) + retCount(RecipeMap["Regal"][v])
 					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingID
 				}
 				If (v == "Ring")
@@ -1106,16 +1106,16 @@ class ItemScan
 						If This.Affix.Unidentified
 						{
 							If This.Prop.ChaosRecipe
-								RecipeArray["uChaos"][v].Push(This)
+								RecipeMap["uChaos"][v].Push(This)
 							Else If This.Prop.RegalRecipe
-								RecipeArray["uRegal"][v].Push(This)
+								RecipeMap["uRegal"][v].Push(This)
 							Else
 								Return False
 						} Else {
 							If This.Prop.ChaosRecipe
-								RecipeArray["Chaos"][v].Push(This)
+								RecipeMap["Chaos"][v].Push(This)
 							Else If This.Prop.RegalRecipe
-								RecipeArray["Regal"][v].Push(This)
+								RecipeMap["Regal"][v].Push(This)
 							Else
 								Return False
 						}
@@ -1131,14 +1131,14 @@ class ItemScan
 			If (This.Prop.SlotType == v)
 			{
 				If This.Affix.Unidentified{
-					WeaponCount := retCount(RecipeArray["uRegal"]["Two Hand"]) + retCount(RecipeArray["uChaos"]["Two Hand"])
-					WeaponCount += (retCount(RecipeArray["uRegal"]["One Hand"]) + retCount(RecipeArray["uChaos"]["One Hand"])) / 2
-					WeaponCount += (retCount(RecipeArray["uRegal"]["Shield"]) + retCount(RecipeArray["uChaos"]["Shield"])) / 2
+					WeaponCount := retCount(RecipeMap["uRegal"]["Two Hand"]) + retCount(RecipeMap["uChaos"]["Two Hand"])
+					WeaponCount += (retCount(RecipeMap["uRegal"]["One Hand"]) + retCount(RecipeMap["uChaos"]["One Hand"])) / 2
+					WeaponCount += (retCount(RecipeMap["uRegal"]["Shield"]) + retCount(RecipeMap["uChaos"]["Shield"])) / 2
 					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingUNID
 				}Else{
-					WeaponCount := retCount(RecipeArray["Regal"]["Two Hand"]) + retCount(RecipeArray["Chaos"]["Two Hand"])
-					WeaponCount += (retCount(RecipeArray["Regal"]["One Hand"]) + retCount(RecipeArray["Chaos"]["One Hand"])) / 2
-					WeaponCount += (retCount(RecipeArray["Regal"]["Shield"]) + retCount(RecipeArray["Chaos"]["Shield"])) / 2
+					WeaponCount := retCount(RecipeMap["Regal"]["Two Hand"]) + retCount(RecipeMap["Chaos"]["Two Hand"])
+					WeaponCount += (retCount(RecipeMap["Regal"]["One Hand"]) + retCount(RecipeMap["Chaos"]["One Hand"])) / 2
+					WeaponCount += (retCount(RecipeMap["Regal"]["Shield"]) + retCount(RecipeMap["Chaos"]["Shield"])) / 2
 					ChaosRecipeMaxHolding := ChaosRecipeMaxHoldingID
 				}
 				If (WeaponCount < ChaosRecipeMaxHolding)
@@ -1148,14 +1148,14 @@ class ItemScan
 						If This.Affix.Unidentified
 						{
 							If This.Prop.ChaosRecipe
-								RecipeArray["uChaos"][v].Push(This)
+								RecipeMap["uChaos"][v].Push(This)
 							Else If This.Prop.RegalRecipe
-								RecipeArray["uRegal"][v].Push(This)
+								RecipeMap["uRegal"][v].Push(This)
 						} Else {
 							If This.Prop.ChaosRecipe
-								RecipeArray["Chaos"][v].Push(This)
+								RecipeMap["Chaos"][v].Push(This)
 							Else If This.Prop.RegalRecipe
-								RecipeArray["Regal"][v].Push(This)
+								RecipeMap["Regal"][v].Push(This)
 						}
 					}
 					Return True
