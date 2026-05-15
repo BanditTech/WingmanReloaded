@@ -33,6 +33,11 @@ RegisterHotkeys() {
 }
 UnRegisterHotkeys(){
 	Global fn1, fn2, fn3
+	; First run: nothing to unregister yet. fn1/fn2/fn3 are populated by
+	; RegisterHotkeys, which readFromFile calls right after this. v1's
+	; lenient unset reads let this no-op silently; v2 throws.
+	If !IsSet(fn1)
+		Return
 	HotIf(fn1)
 	local c1Suffixes := [c1Suffix1,c1Suffix2,c1Suffix3,c1Suffix4,c1Suffix5,c1Suffix6,c1Suffix7,c1Suffix8,c1Suffix9]
 	For i, suf in c1Suffixes {
