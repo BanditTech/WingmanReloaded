@@ -10,7 +10,7 @@ LootColorsMenu(*){
 	LootColorsGui.OnEvent("Close", LootColorsClose)
 	LootColorsGui.OnEvent("Escape", LootColorsEscape)
 
-	cb := LootColorsGui.Add("Checkbox", "section gUpdateExtra  vLootVacuum Checked" LootVacuum "   xm+5 ym+8 ", "Enable Loot Vacuum")
+	cb := LootColorsGui.Add("Checkbox", "section vLootVacuum Checked" LootVacuum "   xm+5 ym+8 ", "Enable Loot Vacuum")
 	cb.OnEvent("Click", UpdateExtra)
 	cb2 := LootColorsGui.Add("Checkbox",  "vLootVacuumTapZ Checked" LootVacuumTapZ "   x+5 yp ", "Double tap Z")
 	cb2.OnEvent("Click", UpdateExtra)
