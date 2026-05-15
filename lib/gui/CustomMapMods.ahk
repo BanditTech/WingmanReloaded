@@ -88,7 +88,8 @@ CustomMapModsUI(*)
   btn1.OnEvent("Click", SaveMapData)
   btn2 := CustomMapModsGui.Add("Button", "w120 h30 center", "Reset Map Modifiers")
   btn2.OnEvent("Click", ResetMapData)
-  CustomMapModsGui.Show("", "Custom Map Mods")
+  CustomMapModsGui.Title := "Custom Map Mods"
+  CustomMapModsGui.Show()
 }
 
 CustomHeistModsUI(*)
@@ -103,7 +104,8 @@ CustomHeistModsUI(*)
   btn1.OnEvent("Click", SaveHeistData)
   btn2 := CustomMapModsGui.Add("Button", "w120 h30 center", "Reset Heist Modifiers")
   btn2.OnEvent("Click", ResetHeistData)
-  CustomMapModsGui.Show("", "Custom Heist")
+  CustomMapModsGui.Title := "Custom Heist"
+  CustomMapModsGui.Show()
 }
 
 MyListViewMap(ctrl, rowNum, *)
@@ -124,7 +126,8 @@ MyListViewMap(ctrl, rowNum, *)
   ud := CustomUI.Add("UpDown", "Range1-100 vCMP_Weight", OutputVar2)
   btn := CustomUI.Add("Button", "y+8 w120 h30 center", "Save")
   btn.OnEvent("Click", (*) => SaveRowLVM(CustomUI))
-  CustomUI.Show("", "Edit Map Mod")
+  CustomUI.Title := "Edit Map Mod"
+  CustomUI.Show()
 }
 
 MyListViewHeist(ctrl, rowNum, *)
@@ -145,7 +148,8 @@ MyListViewHeist(ctrl, rowNum, *)
   ud := CustomUI.Add("UpDown", "Range1-100 vCMP_Weight", OutputVar2)
   btn := CustomUI.Add("Button", "y+8 w120 h30 center", "Save")
   btn.OnEvent("Click", (*) => SaveRowLVM(CustomUI))
-  CustomUI.Show("", "Edit Map Mod")
+  CustomUI.Title := "Edit Map Mod"
+  CustomUI.Show()
 }
 
 SaveRowLVM(CustomUI)

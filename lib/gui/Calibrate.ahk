@@ -353,7 +353,8 @@ CalibrationWizard(*){
 	WizardGui.OnEvent("Close", WizardClose)
 	WizardGui.OnEvent("Escape", WizardClose)
 
-	WizardGui.Show("x" ScrCenter.X - 240 " y" ScrCenter.Y - 150 " h300 w529", "Calibration Wizard")
+	WizardGui.Title := "Calibration Wizard"
+	WizardGui.Show("x" ScrCenter.X - 240 " y" ScrCenter.Y - 150 " h300 w529")
 	Return
 
 	RunWizard(*)

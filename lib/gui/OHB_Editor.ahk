@@ -48,7 +48,8 @@ OHB_Editor(){
 		OHBGui.OnEvent("Close", OHBGuiClose)
 		OHBGui.OnEvent("Escape", OHBGuiClose)
 	}
-	OHBGui.Show("w535 h300", "OHB String Builder")
+	OHBGui.Title := "OHB String Builder"
+	OHBGui.Show("w535 h300")
 	Return
 
 	OHBUpdate(ctrl, *)

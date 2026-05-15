@@ -20,7 +20,8 @@ ModsUI(*)
   btn1.OnEvent("Click", SaveItemCrafting)
   btn2 := ModsGui.Add("Button", "w120 h30 center", "Reset")
   btn2.OnEvent("Click", ResetItemCrafting)
-  ModsGui.Show("", 'Category: "' ItemCraftingCategorySelector '" SubCategory: "' ItemCraftingSubCategorySelector '" - Affix List')
+  ModsGui.Title := 'Category: "' ItemCraftingCategorySelector '" SubCategory: "' ItemCraftingSubCategorySelector '" - Affix List'
+  ModsGui.Show()
 }
 
 ResetItemCrafting(*)
