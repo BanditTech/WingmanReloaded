@@ -1,5 +1,5 @@
 ; PoE Click v1.0.1 : Developed by Bandit
-SpamClick(Toggle:="",Modifier:=""){
+SpamClick(Toggle:="",Modifier:="",*){
 	Static Spam := False
 	If (Toggle != "") {
 		If (Toggle == 1 || Toggle == 0)
