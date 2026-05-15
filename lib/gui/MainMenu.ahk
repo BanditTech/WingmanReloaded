@@ -17,12 +17,10 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	MainGui.Add("GroupBox",         "Section    w265 h77        xp+5   y+2",         "Per Character Settings")
 	MainGui.SetFont()
 	MainGui.Add("Button", "w255 xs+5 ys+20", "Configure Character Options").OnEvent("Click", perCharMenu)
-	profileList := [], profileStr := ""
+	profileList := []
 	Loop Files A_ScriptDir "\save\profiles\perChar\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
-	For _k, _v in profileList
-		profileStr .=(_k=1?"":"|") _v
-	MainGui.Add("ComboBox",  "vProfileMenuperChar xs+6 y+5 w117", profileStr)
+	MainGui.Add("ComboBox",  "vProfileMenuperChar xs+6 y+5 w117", profileList)
 	MainGui["ProfileMenuperChar"].Choose(ProfileMenuperChar)
 	MainGui.Add("Button", "vMainMenu_perChar_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_perChar_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
@@ -35,12 +33,10 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	MainGui.SetFont()
 	Loop 5
 		MainGui.Add("Button", "W46 -wrap " ((A_Index==1||A_Index==6)?"xs+6 yp+20":"x+5 yp"), "Flask " A_Index).OnEvent("Click", FlaskMenu)
-	profileList := [], profileStr := ""
+	profileList := []
 	Loop Files A_ScriptDir "\save\profiles\Flask\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
-	For _k, _v in profileList
-		profileStr .=(_k=1?"":"|") _v
-	MainGui.Add("ComboBox",  "vProfileMenuFlask xs+6 y+5 w117", profileStr)
+	MainGui.Add("ComboBox",  "vProfileMenuFlask xs+6 y+5 w117", profileList)
 	MainGui["ProfileMenuFlask"].Choose(ProfileMenuFlask)
 	MainGui.Add("Button", "vMainMenu_Flask_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_Flask_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
@@ -53,12 +49,10 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Ma
 	Loop 10
 		MainGui.Add("Button", "W46 -wrap " (A_Index==1?"xs+6 yp+20":A_Index==6?"xs+6 y+5":"x+5 yp"), "Utility " A_Index).OnEvent("Click", UtilityMenu)
 
-	profileList := [], profileStr := ""
+	profileList := []
 	Loop Files A_ScriptDir "\save\profiles\Utility\*.json"
 		profileList.Push(StrReplace(A_LoopFileName,".json",""))
-	For _k, _v in profileList
-		profileStr .=(_k=1?"":"|") _v
-	MainGui.Add("ComboBox",  "vProfileMenuUtility xs+6 y+5 w117", profileStr)
+	MainGui.Add("ComboBox",  "vProfileMenuUtility xs+6 y+5 w117", profileList)
 	MainGui["ProfileMenuUtility"].Choose(ProfileMenuUtility)
 	MainGui.Add("Button", "vMainMenu_Utility_Save x+1 yp hp w40", "Save").OnEvent("Click", Profile)
 	MainGui.Add("Button", "vMainMenu_Utility_Load x+1 yp hp w40", "Load").OnEvent("Click", Profile)
