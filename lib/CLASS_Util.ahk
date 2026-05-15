@@ -2,7 +2,7 @@
 Class Util {
 	Static Name := "WingmanReloaded"
 	; List the files within a folder
-	FileList(dir,pat:="*.*"){
+	static FileList(dir,pat:="*.*"){
 		Local Files := []
 		Loop Files dir "\" pat {
 			Files.Push(A_LoopFileName)
@@ -13,7 +13,7 @@ Class Util {
 			Return False
 	}
 	; Simple 1d array printing
-	PrintArray(Obj,showkey:=True){
+	static PrintArray(Obj,showkey:=True){
 		local Msg := "", k, v
 		For k, v in Obj {
 			Msg .= (Msg?"`n":"") (showkey? k " : " : "" )  (IsObject(v)?"{OBJECT}":v)
@@ -21,7 +21,7 @@ Class Util {
 		Return Msg
 	}
 	; Retreive HWND of a process
-	HwndOfPID(pid){
+	static HwndOfPID(pid){
 		local hWnd
 		DetectHiddenWindows(true)
 		hWnd := WinGetID("ahk_pid " pid)
@@ -29,7 +29,7 @@ Class Util {
 		return hWnd
 	}
 	; JSON wrapper for loading files
-	Load(File){
+	static Load(File){
 		local t, f, fStr, _JSON
 		Try {
 			If File {
@@ -65,7 +65,7 @@ Class Util {
 		}
 	}
 	; JSON wrapper for saving files
-	Save(File,Object){
+	static Save(File,Object){
 		local t, f, fStr, _JSON
 		Try {
 			If !FileExist(This.Dir.save "\"){
@@ -93,7 +93,7 @@ Class Util {
 		}
 	}
 	; Simple JSON string dump
-	JString(Object){
+	static JString(Object){
 		Try {
 			Return JSON.Dump(Object,,2)
 		} catch as e {
@@ -101,7 +101,7 @@ Class Util {
 		}
 	}
 	; Error report for standard error message
-	Err(e,t*){
+	static Err(e,t*){
 		local l, k, v
 		For k, v in t
 			If IsObject(v)
@@ -120,7 +120,7 @@ Class Util {
 	}
 	; Com method of fetching URL text data.
 	; Pass postdata, headers and cookies as keypair arrays, if postdata is text do not prepend "?"
-	HttpGet(url,headers:="",postdata:="",cookies:=""){
+	static HttpGet(url,headers:="",postdata:="",cookies:=""){
 		Try {
 			whr := ComObject("WinHttp.WinHttpRequest.5.1")
 			If (postdata){
@@ -165,7 +165,7 @@ Class Util {
 		}
 	}
 	; Allow child process to terminate script
-	Quit() {
+	static Quit() {
 		This.Log.Msg("Quit Was Called")
 		If This.Debug.AllowQuit {
 			DetectHiddenWindows(true)  ; WM_CLOSE=0x10
@@ -199,7 +199,7 @@ Class Util {
 	Class Log extends Util {
 		Static Limit := 10
 		Static ActiveFile := ""
-		Open(){
+		static Open(){
 			local loglist, filename, TimeString
 			If !FileExist(This.Dir.logs "\"){
 				DirCreate(This.Dir.logs)
@@ -224,7 +224,7 @@ Class Util {
 			, "Screen W" A_ScreenWidth " H" A_ScreenHeight
 			, "Screen DPI " Round(( A_ScreenDPI / 96 ) * 100) "% (" A_ScreenDPI " DPI)" )
 		}
-		Msg(t*){
+		static Msg(t*){
 			local flag := "", k, v, File, line := ""
 			If (t.1 ~= "Verbose" && !This.Debug.Verbose)
 				Return
@@ -248,7 +248,7 @@ Class Util {
 			File.WriteLine( line )
 			File.Close()
 		}
-		Close(t*){
+		static Close(t*){
 			If t.Count()
 				This.Log.Msg(t*)
 			This.Log.Msg(This.Name " Log ","End of File")
