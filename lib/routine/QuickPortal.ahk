@@ -45,4 +45,6 @@ QuickPortal(){
 	return
 }
 
-QuickPortalCommand(*) { QuickPortal() }
+QuickPortalCommand(*) {
+	QuickPortal()
+}

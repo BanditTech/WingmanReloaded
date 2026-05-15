@@ -26,4 +26,6 @@ GrabCurrency(){
 return
 }
 
-GrabCurrencyCommand(*) { GrabCurrency() }
+GrabCurrencyCommand(*) {
+	GrabCurrency()
+}

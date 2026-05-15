@@ -77,4 +77,6 @@ GemSwap(){
 	return
 }
 
-GemSwapCommand(*) { GemSwap() }
+GemSwapCommand(*) {
+	GemSwap()
+}

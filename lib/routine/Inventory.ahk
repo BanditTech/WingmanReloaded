@@ -805,7 +805,9 @@ ItemInfo(){
 	ItemParseActive := False
 	Return
 }
-ItemInfoCommand(*) { ItemInfo() }
+ItemInfoCommand(*) {
+	ItemInfo()
+}
 ; MoveStash - Input any digit and it will move to that Stash tab
 MoveStash(Tab,CheckStatus:=0)
 {
