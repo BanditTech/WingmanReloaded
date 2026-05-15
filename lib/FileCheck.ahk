@@ -146,11 +146,8 @@ UpdateBasesData(){
 }
 UpdateBasesData()
 
-if !FileExist(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
-{
-	RefreshPoeWatchPerfect()
-}
-WR.Data.Perfect := JSON.LoadFile(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
+; The PoE.Watch perfect data is downloaded and hydrated into WR.Data.Perfect
+; from PoE-Wingman.ahk after ScriptObject.ahk has initialized WR.
 
 if !FileExist(A_ScriptDir "\data\Affix_Lines.json")
 {
