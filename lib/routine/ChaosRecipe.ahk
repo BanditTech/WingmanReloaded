@@ -4,7 +4,7 @@ ChaosRecipe(endAtRefresh := 0){
     Log("Chaos Recipe","You need def your account name in save/Account.ini")
     Return
   }
-  Global RecipeArray := Map()
+  Global RecipeMap := Map()
 
   If ChaosRecipeStashMethodDump
   {
@@ -30,8 +30,8 @@ ChaosRecipe(endAtRefresh := 0){
         Sleep(300)
       }
     }
-    If RecipeArray.Count
-      ItemTypes := RecipeArray
+    If RecipeMap.Count
+      ItemTypes := RecipeMap
     Else
       ItemTypes := False
   }
@@ -46,7 +46,7 @@ ChaosRecipe(endAtRefresh := 0){
   Return ChaosRecipeReturn(ItemTypes)
 }
 ChaosRecipeSort(Object,Merge:=False){
-  Global RecipeArray
+  Global RecipeMap
   Static TypeList := ["Chaos","Regal"]
   Static SlotList := ["Body","Helmet","Gloves","Boots","Amulet","Ring","Belt","Two Hand","One Hand","Shield"]
 
@@ -85,20 +85,20 @@ ChaosRecipeSort(Object,Merge:=False){
     {
       For slot, itemArr in typeRefMap[type]
       {
-        If !RecipeArray.Has(type)
-          RecipeArray[type] := Map()
+        If !RecipeMap.Has(type)
+          RecipeMap[type] := Map()
         For key, recipeItem in itemArr
         {
-          If !RecipeArray[type].Has(slot)
-            RecipeArray[type][slot] := []
-          RecipeArray[type][slot].Push(recipeItem)
+          If !RecipeMap[type].Has(slot)
+            RecipeMap[type][slot] := []
+          RecipeMap[type][slot].Push(recipeItem)
         }
       }
     }
   }
   Else
-    RecipeArray := Map("Chaos", Chaos, "uChaos", uChaos, "Regal", Regal, "uRegal", uRegal)
-  Return RecipeArray
+    RecipeMap := Map("Chaos", Chaos, "uChaos", uChaos, "Regal", Regal, "uRegal", uRegal)
+  Return RecipeMap
 }
 confirmOneOfEach(Object,id:=True){
   hasChaos := false
@@ -849,7 +849,7 @@ VendorChaosRecipe(*){
 }
 
 CountChaosRecipe(){
-	Global RecipeArray
+	Global RecipeMap
   Static TypeList := ["Chaos","Regal"]
   Static SlotList := ["Body","Helmet","Gloves","Boots","Amulet","Ring","Belt","Two Hand","One Hand","Shield"]
 	Tally := Map()
@@ -859,13 +859,13 @@ CountChaosRecipe(){
     uTally[SlotName] := 0
   }
   For k, TypeName in TypeList {
-    If RecipeArray.Has(TypeName)
-      For Slot, Items in RecipeArray[TypeName] {
+    If RecipeMap.Has(TypeName)
+      For Slot, Items in RecipeMap[TypeName] {
         Tally[Slot] += getCount(Items)
       }
     uTypeName := "u" TypeName
-    If RecipeArray.Has(uTypeName)
-      For Slot, Items in RecipeArray[uTypeName] {
+    If RecipeMap.Has(uTypeName)
+      For Slot, Items in RecipeMap[uTypeName] {
         uTally[Slot] += getCount(Items)
       }
   }

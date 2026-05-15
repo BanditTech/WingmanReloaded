@@ -14,7 +14,7 @@ Global GameActive := False
 Global GamePID := 0
 ; ChaosRecipe() rebuilds this each run, but CountChaosRecipe()/
 ; UpdateGuiChaosCounts may iterate it before ChaosRecipe is ever called.
-Global RecipeArray := Map()
+Global RecipeMap := Map()
 Global ItemParseActive
 Global ClipParseError
 Global QuestItems
