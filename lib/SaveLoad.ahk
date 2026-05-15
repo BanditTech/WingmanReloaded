@@ -446,7 +446,7 @@ readFromFile(){
 	If hotkeyGemSwap
 		Hotkey(hotkeyGemSwap, GemSwapCommand, "Off")
 	If hotkeyStartCraft
-		Hotkey(hotkeyStartCraft, Crafting, "Off")
+		Hotkey(hotkeyStartCraft, StartCraftingCommand, "Off")
 	If hotkeyItemCrafting
 		Hotkey(hotkeyItemCrafting, CraftingItemCaller, "Off")
 	If hotkeyCraftBasic
@@ -551,7 +551,7 @@ readFromFile(){
 	If hotkeyGemSwap
 		Hotkey(hotkeyGemSwap, GemSwapCommand, "On")
 	If hotkeyStartCraft
-		Hotkey(hotkeyStartCraft, Crafting, "On")
+		Hotkey(hotkeyStartCraft, StartCraftingCommand, "On")
 	If hotkeyItemCrafting
 		Hotkey(hotkeyItemCrafting, CraftingItemCaller, "On")
 	If hotkeyCraftBasic
@@ -830,7 +830,7 @@ updateEverything(*){
 		If hotkeyGemSwap
 			Hotkey(hotkeyGemSwap, GemSwapCommand, "Off")
 		If hotkeyStartCraft
-			Hotkey(hotkeyStartCraft, Crafting, "Off")
+			Hotkey(hotkeyStartCraft, StartCraftingCommand, "Off")
 		If hotkeyItemCrafting
 			Hotkey(hotkeyItemCrafting, CraftingItemCaller, "Off")
 		If hotkeyCraftBasic

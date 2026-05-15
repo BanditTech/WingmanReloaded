@@ -1,5 +1,11 @@
 ; Crafting Section - main routine and all subroutines and popup
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+; Hotkey wrapper — Hotkey() invokes its callback with (ThisHotkey), which would
+; otherwise overwrite Crafting's 'selection' default and trigger the "Unknown
+; Result" branch. Wrap to call Crafting() with the default selection.
+StartCraftingCommand(*) {
+	Crafting()
+}
 Crafting(selection:="Maps"){
 	Global CurrentTab
 	; Thread, NoTimers, True
