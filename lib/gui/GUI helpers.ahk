@@ -143,9 +143,11 @@ UpdateDebug(*) {
 
 LoadArray(){
 	Global LootFilter
-	LootFilter := JSON.LoadFile(A_ScriptDir "\save\LootFilter.json")
+	LootFilter := FileExist(A_ScriptDir "\save\LootFilter.json")
+		? JSON.LoadFile(A_ScriptDir "\save\LootFilter.json")
+		: {}
 	If !LootFilter
-		LootFilter:={}
+		LootFilter := {}
 	Return
 }
 
