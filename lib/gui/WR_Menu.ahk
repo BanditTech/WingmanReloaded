@@ -1382,7 +1382,10 @@ WR_Update(GuiCtrl, *) {
   If (GuiCtrl.Name ~= "WR_\w{1,}_")
   {
     BtnStr := StrSplit(StrSplit(GuiCtrl.Name, "WR_", " ")[2], "_", " ", 3)
-    WR_Menu(BtnStr[2], BtnStr[1], BtnStr[3])
+    If BtnStr.Has(3)
+      WR_Menu(BtnStr[2], BtnStr[1], BtnStr[3])
+    Else
+      WR_Menu(BtnStr[2], BtnStr[1])
   }
 }
 
