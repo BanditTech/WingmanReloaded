@@ -852,8 +852,8 @@ CountChaosRecipe(){
 	Global RecipeArray
   Static TypeList := ["Chaos","Regal"]
   Static SlotList := ["Body","Helmet","Gloves","Boots","Amulet","Ring","Belt","Two Hand","One Hand","Shield"]
-	Tally := {}
-	uTally := {}
+	Tally := Map()
+	uTally := Map()
   For k, SlotName in SlotList {
     Tally[SlotName] := 0
     uTally[SlotName] := 0
@@ -874,14 +874,14 @@ PrintChaosRecipe(Message:="Current slot totals",Duration:="False"){
   Tally := CountObj.Tally
   uTally := CountObj.uTally
 	Notify("Chaos Recipe ID/UNID", Message "`n"
-	. "Amulet: " Tally.Amulet "/" uTally.Amulet "`t"
-	. "Ring: " Tally.Ring "/" uTally.Ring "`n"
-	. "Belt: " Tally.Belt "/" uTally.Belt "`t`t"
-	. "Body: " Tally.Body "/" uTally.Body "`n"
-	. "Boots: " Tally.Boots "/" uTally.Boots "`t"
-	. "Gloves: " Tally.Gloves "/" uTally.Gloves "`n"
-	. "Helmet: " Tally.Helmet "/" uTally.Helmet "`t"
-	. "Shield: " Tally.Shield "/" uTally.Shield "`n"
+	. "Amulet: " Tally["Amulet"] "/" uTally["Amulet"] "`t"
+	. "Ring: " Tally["Ring"] "/" uTally["Ring"] "`n"
+	. "Belt: " Tally["Belt"] "/" uTally["Belt"] "`t`t"
+	. "Body: " Tally["Body"] "/" uTally["Body"] "`n"
+	. "Boots: " Tally["Boots"] "/" uTally["Boots"] "`t"
+	. "Gloves: " Tally["Gloves"] "/" uTally["Gloves"] "`n"
+	. "Helmet: " Tally["Helmet"] "/" uTally["Helmet"] "`t"
+	. "Shield: " Tally["Shield"] "/" uTally["Shield"] "`n"
 	. "One Hand: " Tally["One Hand"] "/" uTally["One Hand"] "`t"
 	. "Two Hand: " Tally["Two Hand"] "/" uTally["Two Hand"] "`n"
 	, (Duration != "False" ? Duration : 20))
@@ -894,24 +894,24 @@ UpdateGuiChaosCounts(){
     Return
   Items := CountChaosRecipe()
   Counts := {}
-  Counts.Chest := Items.Tally.Body
-  Counts.Chest += Items.uTally.Body
-  Counts.Helmet := Items.Tally.Helmet
-  Counts.Helmet += Items.uTally.Helmet
-  Counts.Boot := Items.Tally.Boots
-  Counts.Boot += Items.uTally.Boots
-  Counts.Glove := Items.Tally.Gloves
-  Counts.Glove += Items.uTally.Gloves
-  Counts.Belt := Items.Tally.Belt
-  Counts.Belt += Items.uTally.Belt
+  Counts.Chest := Items.Tally["Body"]
+  Counts.Chest += Items.uTally["Body"]
+  Counts.Helmet := Items.Tally["Helmet"]
+  Counts.Helmet += Items.uTally["Helmet"]
+  Counts.Boot := Items.Tally["Boots"]
+  Counts.Boot += Items.uTally["Boots"]
+  Counts.Glove := Items.Tally["Gloves"]
+  Counts.Glove += Items.uTally["Gloves"]
+  Counts.Belt := Items.Tally["Belt"]
+  Counts.Belt += Items.uTally["Belt"]
   Counts.Weapons := Items.Tally["Two Hand"] + (Items.Tally["One Hand"] + Items.Tally["Shield"]) / 2
   Counts.Weapons += Items.uTally["Two Hand"] + (Items.uTally["One Hand"] + Items.uTally["Shield"]) / 2
   Counts.Weapons := Round(Counts.Weapons,1)
-  Counts.Rings := Items.Tally.Ring / 2
-  Counts.Rings += Items.uTally.Ring / 2
+  Counts.Rings := Items.Tally["Ring"] / 2
+  Counts.Rings += Items.uTally["Ring"] / 2
   Counts.Rings := Round(Counts.Rings,1)
-  Counts.Amulet := Items.Tally.Amulet
-  Counts.Amulet += Items.uTally.Amulet
+  Counts.Amulet := Items.Tally["Amulet"]
+  Counts.Amulet += Items.uTally["Amulet"]
 
   for k, v in Counts {
     ChaosGui["GuiChaosCount" k].Text := v
