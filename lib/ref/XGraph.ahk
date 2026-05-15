@@ -21,7 +21,7 @@ XGraph( hCtrl, hBM := 0, ColumnW := 3, LTRB := "0,2,0,2", PenColor := 0x808080, 
 	ControlSetStyle("+0x5000010E", hCtrl)
 	Style   := WinGetStyle("ahk_id " hCtrl)
 	ExStyle := WinGetExStyle("ahk_id " hCtrl)
-	ControlGetPos(,, &CtrlW, &CtrlH, "", "ahk_id " hCtrl)
+	WinGetPos(,, &CtrlW, &CtrlH, "ahk_id " hCtrl)
 	CtrlW := Scale_PositionFromDPI(CtrlW), CtrlH := Scale_PositionFromDPI(CtrlH)
 
 	If not ( Class == "Static" and Style = 0x5000010E and ExStyle = 0 and CtrlW > 0 and CtrlH > 0 )
