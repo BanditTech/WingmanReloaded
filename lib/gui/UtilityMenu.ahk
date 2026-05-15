@@ -1,12 +1,12 @@
 UtilityMenu(GuiCtrl, *){
-	static Built := {}, which := 1
-	static UtilityGui := {}
+	static Built := Map(), which := 1
+	static UtilityGui := Map()
 	static UtilitySliders := Map()
 	static UtilityIconAreas := Map()
 	RegExMatch(GuiCtrl.Text, "\d+", &slotMatch)
 	slot := slotMatch[]
 
-	If !Built[slot]
+	If !Built.Has(slot)
 	{
 		Built[slot] := True
 		UtilityGui[slot] := Gui("AlwaysOnTop")
