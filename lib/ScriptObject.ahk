@@ -130,3 +130,8 @@ if !FileExist(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
 	RefreshPoeWatchPerfect()
 WR.Data.Perfect := JSON.LoadFile(A_ScriptDir "\data\PoE.Watch_PerfectUnique.json")
 WR.Data.Affix := JSON.LoadFile(A_ScriptDir "\data\Affix_Lines.json")
+
+; Build ActualTier.json on first run (writes WR.ActualTier[...]). Moved from
+; FileCheck.ahk for the same reason as the hydration blocks above.
+if !FileExist(A_ScriptDir "\save\ActualTier.json")
+	ActualTierCreator()
