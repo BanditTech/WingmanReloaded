@@ -28,7 +28,7 @@ class Progress_Slider  {
   }
   Add_pSlider(){
     pSlider_Trigger := This.Adjust_pSlider.Bind( THIS )
-    pSliderTriggerCtrl := This.GUI_NAME.Add("Text", "x" This.X " y" This.Y " w" This.W " h" This.H " hwndpSliderTriggerhwnd")
+    pSliderTriggerCtrl := This.GUI_NAME.Add("Text", "x" This.X " y" This.Y " w" This.W " h" This.H)
     pSliderTriggerCtrl.OnEvent("Click", pSlider_Trigger)
     if(This.Smooth=1&&This.Vertical=0)
       This.GUI_NAME.Add("Progress", "x" This.X " y" This.Y " w" This.W " h" This.H " Background" This.Background_Color " c" This.Top_Color " Range" This.Start_Range "-" This.End_Range  " v" This.Control_ID, This.Slider_Value)
