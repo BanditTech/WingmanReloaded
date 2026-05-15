@@ -20,11 +20,11 @@ LootColorsMenu(){
 	ud := LootColorsGui.Add("UpDown",  "vLootVacuumTapZSec range1-10", LootVacuumTapZSec)
 	ud.OnEvent("Change", UpdateExtra)
 
-	ddl := LootColorsGui.Add("DropDownList", "vAreaScale w45 xm+5 y+8",  " |0|30|40|50|60|70|80|90|100|200|300|400|500")
+	ddl := LootColorsGui.Add("DropDownList", "vAreaScale w45 xm+5 y+8",  [" ","0","30","40","50","60","70","80","90","100","200","300","400","500"])
 	ddl.OnEvent("Change", UpdateExtra)
 	LootColorsGui["AreaScale"].Choose(AreaScale)
 	LootColorsGui.Add("Text",                     "x+3 yp+5"              , "Area around mouse")
-	ddl2 := LootColorsGui.Add("DropDownList", "vLVdelay w45 x+5 yp-5",  " |0|15|30|45|60|75|90|105|120|135|150|195|300")
+	ddl2 := LootColorsGui.Add("DropDownList", "vLVdelay w45 x+5 yp-5",  [" ","0","15","30","45","60","75","90","105","120","135","150","195","300"])
 	ddl2.OnEvent("Change", UpdateExtra)
 	LootColorsGui["LVdelay"].Choose(LVdelay)
 	LootColorsGui.Add("Text",                     "x+3 yp+5"              , "Delay after click")

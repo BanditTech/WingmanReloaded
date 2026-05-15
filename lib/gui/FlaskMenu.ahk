@@ -22,7 +22,7 @@ FlaskMenu(GuiCtrl, *){
 		FlaskGui[slot].Add("Edit",    "center   vFlask" slot "Key       xs+10   yp+20   w80  h17",   WR.Flask.%slot%.Key)
 
 		FlaskGui[slot].Add("GroupBox", "center xs y+15 w100 h55", "CD Group")
-		FlaskGui[slot].Add("DropDownList", "vFlask" slot "Group xs+10 yp+20 w80" , "f1|f2|f3|f4|f5|Mana|Life|ES|QuickSilver|Defense")
+		FlaskGui[slot].Add("DropDownList", "vFlask" slot "Group xs+10 yp+20 w80" , ["f1","f2","f3","f4","f5","Mana","Life","ES","QuickSilver","Defense"])
 		FlaskGui[slot]["Flask" slot "Group"].Choose(WR.Flask.%slot%.Group)
 
 		FlaskGui[slot].Add("GroupBox", "center xs y+20 w100 h55", "Group Cooldown")
