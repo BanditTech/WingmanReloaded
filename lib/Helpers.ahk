@@ -173,7 +173,11 @@ GetProcessTimes(PID){
 ; check time
 CheckTime(Type:="hours",Interval:=2,key:="temp",Time:=""){
   Static Keys := Map()
-  ; Available time types are: years, months, days, hours, minutes, seconds
+  ; v2 DateDiff accepts only Seconds/Minutes/Hours/Days. Reject anything else
+  ; (callers may pass "Off" etc. to mean "disabled") so we don't throw.
+  If !(Type ~= "i)^(s(econds)?|m(inutes)?|h(ours)?|d(ays)?)$")
+    Return False
+  ; Available time types are: hours, minutes, seconds, days
   If (!Keys.Has(key) || Time != "")
   {
     Keys[key] := (Time == "" ? A_Now : Time)
