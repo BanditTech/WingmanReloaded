@@ -225,7 +225,7 @@ DBUpdate(){
 DBUpdateNinja(*){
   ;Update ninja Database
   Date_now := FormatTime(A_Now, "yyyyMMdd")
-  l := apiList.MaxIndex()
+  l := apiList.Length
   Load_BarControl(0,"Initializing",1)
   For k, apiKey in apiList
   {

@@ -73,7 +73,7 @@ LootColorsMenu(*){
 	AdjustLootGroup(ctrl, *) {
 		Global LootColors, LootColorsGui
 		LootColorsGui.Submit()
-		ind := LootColors.MaxIndex()
+		ind := LootColors.Length
 		If (ctrl.Name == "LG_Add")
 		{
 			LootColors[ind + 1] := 0xFFFFFF
