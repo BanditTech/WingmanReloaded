@@ -40,7 +40,7 @@ If (YesChaosOverlay){
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #HotIf
 ; Return
-!+^L::Array_Gui(Item)
+!+^L::MsgBoxVals(Item)
 ; Reload Script with Alt+Escape
 !Escape:: {
   BlockInput("MouseMoveOff")
