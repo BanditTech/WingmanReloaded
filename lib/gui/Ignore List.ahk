@@ -63,7 +63,8 @@ SaveIgnoreArray()
 	Global IgnoreGui, IgnoredSlot
 	IgnoreGui.Submit(0)
 	JSONtext := JSON.Dump(IgnoredSlot, 2)
-	FileDelete(A_ScriptDir "\save\IgnoredSlot.json")
+	If FileExist(A_ScriptDir "\save\IgnoredSlot.json")
+		FileDelete(A_ScriptDir "\save\IgnoredSlot.json")
 	FileAppend(JSONtext, A_ScriptDir "\save\IgnoredSlot.json")
 	LoadIgnoreArray()
 	Return

@@ -141,7 +141,9 @@ UtilityMenu(GuiCtrl, *){
 		for k, kind in ["IconVar1", "IconVar0"]
 			WR.Utility.%val%[kind] := Round(UtilityGui[val]["Utility" val kind].Value / 100,2)
 
-		FileDelete(A_ScriptDir "\save\Utility.json")
+		If FileExist(A_ScriptDir "\save\Utility.json")
+
+			FileDelete(A_ScriptDir "\save\Utility.json")
 		JSONtext := JSON.Dump(WR.Utility, 2)
 		FileAppend(JSONtext, A_ScriptDir "\save\Utility.json")
 	}
