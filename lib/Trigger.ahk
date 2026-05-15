@@ -107,9 +107,11 @@ MainAttackCommandRelease()
 	If (OnTown||OnHideout)
 		Return
 	For k, types in ["Flask","Utility"]
-		loop (types="Flask"?5:10)
-			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type == "Flask") && WR[types][A_Index].MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
-				Trigger(WR[types][A_Index],True)
+		loop (types="Flask"?5:10) {
+			obj := WR[types][A_Index]
+			If ((obj.Enable || obj.Type == "Flask") && obj.MainAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+				Trigger(obj,True)
+		}
 	Return
 }
 ; SecondaryAttackCommand - Secondary attack Flasks
@@ -128,9 +130,11 @@ SecondaryAttackCommandRelease()
 	If (OnTown||OnHideout)
 		Return
 	For k, types in ["Flask","Utility"]
-		loop (types="Flask"?5:10)
-			If ((WR[types][A_Index].Enable || WR[types][A_Index].Type == "Flask") && WR[types][A_Index].SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
-				Trigger(WR[types][A_Index],True)
+		loop (types="Flask"?5:10) {
+			obj := WR[types][A_Index]
+			If ((obj.Enable || obj.Type == "Flask") && obj.SecondaryAttackRelease && WR.cdExpires[obj.Type][obj.Slot] < A_TickCount && WR.cdExpires.Group[obj.Group] < A_TickCount )
+				Trigger(obj,True)
+		}
 	Return
 }
 ; TimerPassthrough - Uses the first key of each flask slot in order to put the slot on cooldown when manually used.
