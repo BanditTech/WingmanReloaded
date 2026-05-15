@@ -715,8 +715,7 @@ readFromFile(){
 	Return
 }
 
-submit(){
-	updateEverything:
+updateEverything(*){
 		Global ToggleExist, WinGuiX, WinGuiY, AccountNameSTR, PoECookie
 			, BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType
 			, DebugMessages, YesTimeMS, YesLocation, ShowPixelGrid, ShowItemInfo
