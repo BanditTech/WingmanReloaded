@@ -97,7 +97,7 @@ ShowToolTip(wParam, lParam, msg, hwnd)
       stripCtrl := RegExReplace(stripCtrl, "^Utility\d*", "")
       stripCtrl := RegExReplace(stripCtrl, "^Flask\d*", "")
       ToolTip(RegExMatch(ft_ToolTip_Text, "m`n)^" stripCtrl "\K\s*=.*", &_TT)
-        ? StrReplace(Trim(_TT, "`t ="), "\n", "`n") : "")
+        ? StrReplace(Trim(_TT[0], "`t ="), "\n", "`n") : "")
       SetTimer(ft_RemoveToolTip, -10000)
     }
   }
