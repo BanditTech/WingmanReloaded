@@ -120,7 +120,7 @@ MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Mai
 	MainGui.Add("GroupBox",      "Center       section        xs-20   y+35 w350 h60",         "Gamestate Calibration")
 	MainGui.SetFont("s8")
 	MainGui.Add("Button", "xp+250 ys-4    h20",  "? help").OnEvent("Click", helpCalibration)
-	MainGui.Add("Button", "vStartCalibrationWizardBtn  xs+10  ys+20 w105 h25",   "Run Wizard").OnEvent("Click", StartCalibrationWizard)
+	MainGui.Add("Button", "vCalibrationWizardBtn  xs+10  ys+20 w105 h25",   "Run Wizard").OnEvent("Click", CalibrationWizard)
 	MainGui.Add("Button", "vWR_Btn_Globe         x+8 yp       wp",   "Adjust Globes").OnEvent("Click", WR_Update)
 	; MainGui.Add("Button", "vWR_Btn_Locations         xs+10  y+10      wp",   "Adjust Locations").OnEvent("Click", WR_Update)
 	MainGui.Add("Button", "x+8 yp wp", "Inventory Grid").OnEvent("Click", CheckPixelGrid)

@@ -130,7 +130,7 @@ ft_ToolTip_Text_Part1 := "
 	UpdateOnVendorBtn == Calibrate the OnVendor Color`rThis color determines if the Vendor Sell panel is open`r Sample is located at the top of the Sell panel
 	UpdateOnMenuBtn == Calibrate the OnMenu Color`rThis color determines if Atlas or Skills menus are open`rSample located at the top of the fullscreen Menu panel
 	UpdateDetonateBtn == Calibrate the Detonate Mines Color`rThis color determines if the detonate mine button is visible`rWill determine if you are in mines and change sample location`rLocated above mana flask on the right
-	StartCalibrationWizardBtn == Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
+	CalibrationWizardBtn == Use the Wizard to grab multiple samples at once`rThis will prompt you with instructions for each step
 	YesOHB == Pauses the script when it cannot find the Overhead Health Bar
 	ShowOnStart == Enable this to have the GUI show on start`rThe script can run without saving each launch`rAs long as nothing changed since last color sample
 	AutoUpdateOff == Enable this to not check for new updates when launching the script
