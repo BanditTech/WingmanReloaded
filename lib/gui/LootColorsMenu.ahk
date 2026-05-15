@@ -64,7 +64,8 @@ LootColorsMenu(*){
 		LootColorsGui.Add("Text", "yp+29 xs+10", "Background " colorIdx " Colors: ")
 		LootColorsGui.Add("Progress", "x+10 yp-5 w50 h20 c" color " BackgroundBlack",100)
 	}
-	LootColorsGui.Show(,"Loot Vacuum settings")
+	LootColorsGui.Title := "Loot Vacuum settings"
+	LootColorsGui.Show()
 
 	AdjustLootGroup(ctrl, *) {
 		Global LootColors, LootColorsGui
