@@ -10,10 +10,10 @@ class ItemScan
 		This.Data.ClipContents := RegExReplace(Clip_Contents, "<<.*?>>|<.*?>") ; Clipboard
 		This.Data.Sections := StrSplit(This.Data.ClipContents, "`r`n--------`r`n")
 		This.Data.Blocks := {}
-		This.Pseudo := {}
+		This.Pseudo := Map()
 		This.Affix := {}
 		This.Prop := {}
-		This.Modifier := {}
+		This.Modifier := Map()
 		This.Percent := {}
 		; Split our sections from the clipboard
 		; NamePlate, Affix, FlavorText, Enchant, Implicit, Influence, Corrupted
@@ -79,7 +79,7 @@ class ItemScan
 		This.MatchAffixes(This.Data.Blocks.ObstructedRooms)
 		This.MatchAffixes(This.Data.Blocks.ClusterImplicit)
 		This.MatchProperties()
-		If (This.Prop.Rarity_Digit == 4 && !This.Affix["Unidentified"])
+		If (This.Prop.Rarity_Digit == 4 && !This.Affix.Unidentified)
 			This.ApproximatePerfection()
 		This.MatchPseudoAffix()
 		If (This.Prop.ClusterJewel) {
@@ -91,9 +91,9 @@ class ItemScan
 				If InStr(k, "Added Small Passive Skills also grant:")
 					This.Prop.ClusterSmall += 1
 				If (RegExMatch(k, "Added Small Passive Skills grant\: (.*) \(enchant\)", &match))
-					This.Prop.ClusterKey := StrReplace(match[1],"#",This.Affix[k])
+					This.Prop.ClusterKey := StrReplace(match[1],"#",This.Affix.%k%)
 			}
-			This.Prop.ClusterVariant := This.Affix["Adds # Passive Skills (enchant)"] " passives"
+			This.Prop.ClusterVariant := This.Affix.%"Adds # Passive Skills (enchant)"% " passives"
 		}
 		This.MatchExtenalDB()
 		This.MatchCraftingBases()
@@ -807,9 +807,9 @@ class ItemScan
 				This.Prop.Heist_RewardRoomsRevealed := RxMatch[1], This.Prop.Heist_RewardRoomsRevealedMax := RxMatch[2]
 			For k, job in ["Brute Force","Agility","Perception","Demolition","Counter-Thaumaturgy","Trap Disarmament","Deception","Engineering","Lockpicking"] {
 				If (RegExMatch(This.Data.Blocks.Properties, "`am)^Requires " job " \(Level " rxNum "( \(unmet\))?\)", &RxMatch)) {
-					This.Prop["Heist_Requires_" job ] := RxMatch[1]
+					This.Prop.%"Heist_Requires_" job% := RxMatch[1]
 					If (This.Prop.ItemClass == "Contracts"){
-						This.Prop["Heist_Contract_Type"] := job
+						This.Prop.Heist_Contract_Type := job
 					}
 				}
 
@@ -835,7 +835,7 @@ class ItemScan
 		}
 		;End Prop Block Parser for Vaal Gems
 
-		If (This.Affix["Veiled Prefix"] || This.Affix["Veiled Suffix"])
+		If (This.Affix.%"Veiled Prefix"% || This.Affix.%"Veiled Suffix"%)
 		{
 			This.Prop.Veiled := True
 			This.Prop.SpecialType := "Veiled Item"
@@ -995,10 +995,10 @@ class ItemScan
 					{
 						If (This.HasAffix(vi)){
 							value := k-ki+1
-							This.Prop[Name] := value
+							This.Prop.%Name% := value
 							if(AffixWRLine[1] == This.Prop.FracturedModKey){
 								Name := "Fractured" . Name
-								This.Prop[Name] := value
+								This.Prop.%Name% := value
 								This.Prop.FracturedActualTier := value
 							}
 							break
@@ -1011,7 +1011,7 @@ class ItemScan
 	}
 	HasModifierFromList(ModList){
 		for k,v in ModList{
-			if (This.Affix[v]){
+			if (This.Affix.%v%){
 				return true
 			}
 		}
@@ -1186,9 +1186,9 @@ class ItemScan
 
 					If (vals.Length == 1 && This.CheckIfActualHybridMod(key))
 					{
-						If This.Affix[key]
+						If This.Affix.%key%
 						{
-							This.Affix[key] -= vals[1]
+							This.Affix.%key% -= vals[1]
 							This.AddHybridModAffix(key,vals[1])
 						}
 						Else{
@@ -1211,19 +1211,19 @@ class ItemScan
 				If (vals.Length >= 2)
 				{
 					If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
-						This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+						This.Affix.%key% := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
 					Else
-						This.Affix[key] := vals[1]
+						This.Affix.%key% := vals[1]
 					For k, v in vals
 						This.Affix[ key "_value" k ] := v
 				}
 				Else If (vals.Length == 1)
 				{
-					If (This.Affix[key] && DoubleModCounter != 2)
+					If (This.Affix.%key% && DoubleModCounter != 2)
 					{
-						This.Affix[key] += vals[1]
+						This.Affix.%key% += vals[1]
 					}Else If(DoubleModCounter != 2){
-						This.Affix[key] := vals[1]
+						This.Affix.%key% := vals[1]
 					}Else{
 						This.AddHybridModAffix(key,vals[1])
 					}
@@ -1233,7 +1233,7 @@ class ItemScan
 				If(key == "")
 					Continue
 				Else
-					This.Affix[key] := True
+					This.Affix.%key% := True
 			}
 			LastLine := line
 
@@ -1251,7 +1251,7 @@ class ItemScan
 				}
 				EndValue := EndValue / EndEntries
 				If !This.Percent.Has(Key)
-					This.Percent[key] := EndValue
+					This.Percent.%key% := EndValue
 				Else {
 					Loop {
 						If !This.Percent.Has(Key A_Index + 1){
@@ -1285,16 +1285,16 @@ class ItemScan
 	}
 	AddHybridModAffix(Key,Value){
 		HybridKey := "(Hybrid) " . Key
-		If(!This.Affix[HybridKey])
+		If(!This.Affix.%HybridKey%)
 		{
 			aux := Value
 			If (aux != 0)
-				This.Affix[HybridKey] := aux
+				This.Affix.%HybridKey% := aux
 		}Else
 		{
 			aux := This.GetValue("Affix", HybridKey) + Value
 			If (aux != 0)
-				This.Affix[HybridKey] := aux
+				This.Affix.%HybridKey% := aux
 		}
 		return
 	}
@@ -1317,22 +1317,22 @@ class ItemScan
 				If (vals.Length >= 2)
 				{
 					If (line ~= rxNum " to " rxNum || line ~= rxNum "-" rxNum)
-						This.Affix[key] := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
+						This.Affix.%key% := (Format("{1:0.3g}",(vals[1] + vals[2]) / 2))
 					Else
-						This.Affix[key] := vals[1]
+						This.Affix.%key% := vals[1]
 					For k, v in vals
 						This.Affix[ key "_value" k ] := v
 				}
 				Else If (vals.Length == 1)
 				{
-					If This.Affix[key]
-						This.Affix[key] += vals[1]
+					If This.Affix.%key%
+						This.Affix.%key% += vals[1]
 					Else
-						This.Affix[key] := vals[1]
+						This.Affix.%key% := vals[1]
 				}
 			}
 			Else
-				This.Affix[key] := True
+				This.Affix.%key% := True
 		}
 	}
 	MatchLine(lineString){
@@ -1624,7 +1624,7 @@ class ItemScan
 	MergePseudoInAffixs(){
 		for k, v in This.Pseudo
 		{
-			This.Affix[k] := v
+			This.Affix.%k% := v
 		}
 		; Free Object (Not needed)
 		This.Pseudo := ""
@@ -1899,7 +1899,7 @@ class ItemScan
 	MatchNinjaDB(ApiStr,MatchKey:="ItemName",NinjaKey:="name"){
 		For k, v in Ninja[ApiStr]
 		{
-			If (This.Prop[MatchKey] == v[NinjaKey])
+			If (This.Prop.%MatchKey% == v[NinjaKey])
 			{
 				If (ApiStr ~= "Map"
 					&& This.Prop.Map_Tier < v["mapTier"])
@@ -2067,12 +2067,12 @@ class ItemScan
 			Gui("ItemInfo")["PercentText2G20"].Value := Format(FormatStr,-(baseRecPoint*0.9)) "`%"
 			Gui("ItemInfo")["PercentText2G21"].Value := Format(FormatStr,-(baseRecPoint*1.0)) "`%"
 
-			AvgPay := {}
+			AvgPay := Map()
 			Loop 5
 			{
 				AvgPay[A_Index] := (dataPayPoint[A_Index+1] + dataPayPoint[A_Index+2]) / 2
 			}
-			paddedPayData := {}
+			paddedPayData := Map()
 			paddedPayData[1] := dataPayPoint[1]
 			paddedPayData[2] := dataPayPoint[1]
 			paddedPayData[3] := dataPayPoint[2]
@@ -2092,12 +2092,12 @@ class ItemScan
 				XGraph_Plot( pGraph1, 100 - div, "", True )
 				;MsgBox % "Key : " k "   Val : " v
 			}
-			AvgRec := {}
+			AvgRec := Map()
 			Loop 5
 			{
 				AvgRec[A_Index] := (dataRecPoint[A_Index+1] + dataRecPoint[A_Index+2]) / 2
 			}
-			paddedRecData := {}
+			paddedRecData := Map()
 			paddedRecData[1] := dataRecPoint[1]
 			paddedRecData[2] := dataRecPoint[1]
 			paddedRecData[3] := dataRecPoint[2]
@@ -2244,12 +2244,12 @@ class ItemScan
 				Gui("ItemInfo")["PercentText1G20"].Value := Format(FormatStr,-(basePoint*0.9)) "`%"
 				Gui("ItemInfo")["PercentText1G21"].Value := Format(FormatStr,-(basePoint*1.0)) "`%"
 
-				Avg := {}
+				Avg := Map()
 				Loop 5
 				{
 					Avg[A_Index] := ((dataPoint[A_Index+1]?dataPoint[A_Index+1]:0) + (dataPoint[A_Index+2]?dataPoint[A_Index+2]:0)) / 2
 				}
-				paddedData := {}
+				paddedData := Map()
 				paddedData[1] := (dataPoint[1]?dataPoint[1]:0)
 				paddedData[2] := (dataPoint[1]?dataPoint[1]:0)
 				paddedData[3] := (dataPoint[2]?dataPoint[2]:0)
@@ -2339,12 +2339,12 @@ class ItemScan
 				Gui("ItemInfo")["PercentText2G20"].Value := Format(FormatStr,-(baseLTPoint*0.9)) "`%"
 				Gui("ItemInfo")["PercentText2G21"].Value := Format(FormatStr,-(baseLTPoint*1.0)) "`%"
 
-				LTAvg := {}
+				LTAvg := Map()
 				Loop 5
 				{
 					LTAvg[A_Index] := (dataLTPoint[A_Index+1] + dataLTPoint[A_Index+2]) / 2
 				}
-				paddedLTData := {}
+				paddedLTData := Map()
 				paddedLTData[1] := (dataLTPoint[1]?dataLTPoint[1]:0)
 				paddedLTData[2] := (dataLTPoint[1]?dataLTPoint[1]:0)
 				paddedLTData[3] := (dataLTPoint[2]?dataLTPoint[2]:0)

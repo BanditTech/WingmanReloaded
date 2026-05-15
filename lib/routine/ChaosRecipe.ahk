@@ -916,7 +916,7 @@ UpdateGuiChaosCounts(){
   Counts.Amulet := Items.Tally["Amulet"]
   Counts.Amulet += Items.uTally["Amulet"]
 
-  for k, v in Counts {
+  for k, v in Counts.OwnProps() {
     ChaosGui["GuiChaosCount" k].Text := v
   }
 }

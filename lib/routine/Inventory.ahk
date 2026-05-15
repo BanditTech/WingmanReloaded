@@ -124,7 +124,7 @@ ClearNotifications()
 }
 ; Make a more uniform method of checking for identification
 CheckToIdentify(){
-	If (Item.Affix["Unidentified"] && YesIdentify)
+	If (Item.Affix.Unidentified && YesIdentify)
 	{
 		If (Item.Prop.IsSynthesisItem && YesSynthesisId && Item.Prop.Rarity_Digit <= 3)
 			Return True
@@ -349,7 +349,7 @@ VendorRoutine()
 EmptyGrid(){
 	ShooMouse()
 	FindText().ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
-	EmptySlots := {}
+	EmptySlots := []
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
 			If !WR.Restock[C][R].Normal
@@ -395,7 +395,7 @@ StashRoutine()
 			Notify("PoEPrice.info Offline","",2)
 	}
 	CurrentTab:=0
-	SortFirst := {}
+	SortFirst := Map()
 	Loop 99
 	{
 		SortFirst[A_Index] := {}

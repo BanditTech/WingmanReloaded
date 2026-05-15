@@ -404,7 +404,7 @@ GridPosition(x,y,gridArea:="StashQuad"){
 	Global InvGrid
 	sR := InvGrid.SlotSpacing + InvGrid.SlotRadius
 	sRQ := InvGrid.SlotSpacing + InvGrid.SlotRadius//2
-	Partial := {}
+	Partial := []
 	Best := {Distance:-1, C:1, R:1}
 
 	For C, xVal in InvGrid.%gridArea%.X
