@@ -14,7 +14,7 @@ PromptForObject(){
     Global WR, Item, LootFilter, Globe, RecipeArray
     objLookup := Map("WR", WR, "Item", Item, "LootFilter", LootFilter, "Globe", Globe, "RecipeArray", RecipeArray)
     If objLookup.Has(name)
-      Array_Gui(objLookup[name])
+      MsgBoxVals(objLookup[name])
     Else
       MsgBox(name)
   }
