@@ -1,4 +1,8 @@
 ﻿; Extra vars - Not in INI
+; Forward-declare MainGui so the static analyser sees the global before parsing
+; Library.ahk's tree (which references MainGui in SaveLoad.ahk and elsewhere).
+; gui/MainMenu.ahk reassigns it to a real Gui() instance at runtime.
+Global MainGui := ""
 Global rxNum := "(\d+\.?\d*)"
 Global CtrlState := {Btn: {}}
 Global Controller_Active := 0
