@@ -701,13 +701,13 @@ WR_Menu(Function:="",Var*){
       CraftingGui.Add("GroupBox", "Section w292 h80 xm ym+25", "Item Type")
       CraftingGui.SetFont()
       CraftingGui.Add("Text", "xs+5 yp+25 w60", "Category:")
-      aux := ""
+      aux := []
       ; Disable Sextants Craftings as they removed in Necropolis
       for a,b in POEData{
         if(a ~= "Maps|Contracts|Expedition Logbooks|Blueprints|Sextant"){
           Continue
         }
-        aux .= a "|"
+        aux.Push(a)
       }
       CraftingGui.Add("DropDownList", "vItemCraftingCategorySelector xs+70 yp-4 w210", aux).OnEvent("Change", ItemCraftingSubmit)
       CraftingGui["ItemCraftingCategorySelector"].Choose(ItemCraftingCategorySelector)
@@ -854,42 +854,68 @@ WR_Menu(Function:="",Var*){
       StringsGui.Add("Button", "Section x20 y30 w1 h1")
 
       StringsGui.Add("Text", "xs+10 ys+25 Section", "Curse - Elemental Weakness")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseEleWeakStr", debuffCurseEleWeakStr "??" WR.String.h1080.Debuff.EleW).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseEleWeakStr", [WR.String.h1080.Debuff.EleW])
+      cb.Text := debuffCurseEleWeakStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "x+10 ys", "Curse - Vulnerability")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseVulnStr", debuffCurseVulnStr "??" WR.String.h1080.Debuff.Vuln).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseVulnStr", [WR.String.h1080.Debuff.Vuln])
+      cb.Text := debuffCurseVulnStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "xs y+15 Section", "Curse - Enfeeble")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseEnfeebleStr", debuffCurseEnfeebleStr "??" WR.String.h1080.Debuff.Enfeeble).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseEnfeebleStr", [WR.String.h1080.Debuff.Enfeeble])
+      cb.Text := debuffCurseEnfeebleStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "x+10 ys", "Curse - Temporal Chains")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseTempChainStr", debuffCurseTempChainStr "??" WR.String.h1080.Debuff.TempChains).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseTempChainStr", [WR.String.h1080.Debuff.TempChains])
+      cb.Text := debuffCurseTempChainStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "xs y+15 Section", "Curse - Condutivity")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseCondStr", debuffCurseCondStr "??" WR.String.h1080.Debuff.Conductivity).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseCondStr", [WR.String.h1080.Debuff.Conductivity])
+      cb.Text := debuffCurseCondStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "x+10 ys", "Curse - Flammability")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseFlamStr", debuffCurseFlamStr "??" WR.String.h1080.Debuff.Flammability).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseFlamStr", [WR.String.h1080.Debuff.Flammability])
+      cb.Text := debuffCurseFlamStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "xs y+15 Section", "Curse - Frostbite")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseFrostStr", debuffCurseFrostStr "??" WR.String.h1080.Debuff.Frostbite).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseFrostStr", [WR.String.h1080.Debuff.Frostbite])
+      cb.Text := debuffCurseFrostStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "x+10 ys", "Curse - Warlord's Mark")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseWarMarkStr", debuffCurseWarMarkStr "??" WR.String.h1080.Debuff.WMark).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseWarMarkStr", [WR.String.h1080.Debuff.WMark])
+      cb.Text := debuffCurseWarMarkStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "xs y+15 Section", "Shock")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffShockStr", debuffShockStr "??" WR.String.h1080.Debuff.Shock).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffShockStr", [WR.String.h1080.Debuff.Shock])
+      cb.Text := debuffShockStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "x+10 ys", "Bleed")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffBleedStr", debuffBleedStr "??" WR.String.h1080.Debuff.Bleed).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffBleedStr", [WR.String.h1080.Debuff.Bleed])
+      cb.Text := debuffBleedStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Freeze")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffFreezeStr", debuffFreezeStr "??" WR.String.h1080.Debuff.Freeze).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffFreezeStr", [WR.String.h1080.Debuff.Freeze])
+      cb.Text := debuffFreezeStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "x+10 ys", "Ignite")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffIgniteStr", debuffIgniteStr "??" WR.String.h1080.Debuff.Ignite).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffIgniteStr", [WR.String.h1080.Debuff.Ignite])
+      cb.Text := debuffIgniteStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       StringsGui.Add("Text", "xs y+15 Section", "Poison")
-      StringsGui.Add("ComboBox", "y+8 w280 vdebuffPoisonStr", debuffPoisonStr "??" WR.String.h1080.Debuff.Poison).OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vdebuffPoisonStr", [WR.String.h1080.Debuff.Poison])
+      cb.Text := debuffPoisonStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
     }
     StringsGui.Title := "FindText Strings"
@@ -934,26 +960,23 @@ WR_Menu(Function:="",Var*){
       ChatGui.SetFont()
       ChatGui.SetFont("s9", "Arial")
       DefaultCommands := [ "/Hideout","/Menagerie","/Delve","/cls","/ladder","/reset_xp","/invite RecipientName","/kick RecipientName","@RecipientName Thanks for the trade!","@RecipientName Still Interested?","/kick CharacterName"]
-      textList := ""
-      For k, v in DefaultCommands
-        textList .= (!textList ? "" : "|") v
-      ChatGui.Add("ComboBox", "xs+4 ys+20 w290 vc1Suffix1Text", textList)
+      ChatGui.Add("ComboBox", "xs+4 ys+20 w290 vc1Suffix1Text", DefaultCommands)
       ChatGui["c1Suffix1Text"].Text := c1Suffix1Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix2Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix2Text", DefaultCommands)
       ChatGui["c1Suffix2Text"].Text := c1Suffix2Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix3Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix3Text", DefaultCommands)
       ChatGui["c1Suffix3Text"].Text := c1Suffix3Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix4Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix4Text", DefaultCommands)
       ChatGui["c1Suffix4Text"].Text := c1Suffix4Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix5Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix5Text", DefaultCommands)
       ChatGui["c1Suffix5Text"].Text := c1Suffix5Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix6Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix6Text", DefaultCommands)
       ChatGui["c1Suffix6Text"].Text := c1Suffix6Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix7Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix7Text", DefaultCommands)
       ChatGui["c1Suffix7Text"].Text := c1Suffix7Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix8Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix8Text", DefaultCommands)
       ChatGui["c1Suffix8Text"].Text := c1Suffix8Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix9Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc1Suffix9Text", DefaultCommands)
       ChatGui["c1Suffix9Text"].Text := c1Suffix9Text
 
       chatTab.UseTab(2)
@@ -982,26 +1005,23 @@ WR_Menu(Function:="",Var*){
       ChatGui.SetFont()
       ChatGui.SetFont("s9", "Arial")
       DefaultWhisper := [ "/invite RecipientName","Sure, will invite in a sec.","In a map, will get to you in a minute.","Sorry, going to be a while.","No thank you.","Sold","/afk Sold to RecipientName"]
-      textList := ""
-      For k, v in DefaultWhisper
-        textList .= (!textList ? "" : "|") v
-      ChatGui.Add("ComboBox", "xs+4 ys+20 w290 vc2Suffix1Text", textList)
+      ChatGui.Add("ComboBox", "xs+4 ys+20 w290 vc2Suffix1Text", DefaultWhisper)
       ChatGui["c2Suffix1Text"].Text := c2Suffix1Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix2Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix2Text", DefaultWhisper)
       ChatGui["c2Suffix2Text"].Text := c2Suffix2Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix3Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix3Text", DefaultWhisper)
       ChatGui["c2Suffix3Text"].Text := c2Suffix3Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix4Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix4Text", DefaultWhisper)
       ChatGui["c2Suffix4Text"].Text := c2Suffix4Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix5Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix5Text", DefaultWhisper)
       ChatGui["c2Suffix5Text"].Text := c2Suffix5Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix6Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix6Text", DefaultWhisper)
       ChatGui["c2Suffix6Text"].Text := c2Suffix6Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix7Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix7Text", DefaultWhisper)
       ChatGui["c2Suffix7Text"].Text := c2Suffix7Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix8Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix8Text", DefaultWhisper)
       ChatGui["c2Suffix8Text"].Text := c2Suffix8Text
-      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix9Text", textList)
+      ChatGui.Add("ComboBox", "y+5 w290 vc2Suffix9Text", DefaultWhisper)
       ChatGui["c2Suffix9Text"].Text := c2Suffix9Text
     }
     ChatGui.Title := "Chat Hotkeys"
@@ -1016,9 +1036,8 @@ WR_Menu(Function:="",Var*){
       ControllerGui.OnEvent("Close", WR_SubGui_Close)
       ControllerGui.OnEvent("Escape", WR_SubGui_Close)
       DefaultButtons := [ "ItemSort","QuickPortal","PopFlasks","GemSwap","Logout","LButton","RButton","MButton","q","w","e","r","t"]
-      textList := ""
-      For k, v in DefaultButtons
-        textList .= (!textList ? "" : "|") v
+      ControllerList := DefaultButtons.Clone()
+      ControllerList.Push(hotkeyLootScan, hotkeyCloseAllUI)
 
       ControllerGui.Add("Picture", "xm ym+20 w600 h400 +0x4000000", A_ScriptDir "\data\Controller.png")
 
@@ -1027,10 +1046,10 @@ WR_Menu(Function:="",Var*){
       ControllerGui.Add("DropDownList", "x+5 yp-5 w40 vTriggerUtilityKey Choose" TriggerUtilityKey, ["1","2","3","4","5"])
 
       ControllerGui.Add("GroupBox", "Section xm+80 ym+15 w80 h40", "L Bumper")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonLB", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonLB", ControllerList)
       ControllerGui["hotkeyControllerButtonLB"].Text := hotkeyControllerButtonLB
       ControllerGui.Add("GroupBox", "xs+360 ys w80 h40", "R Bumper")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonRB", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonRB", ControllerList)
       ControllerGui["hotkeyControllerButtonRB"].Text := hotkeyControllerButtonRB
 
       ControllerGui.Add("GroupBox", "Section xm+65 ym+100 w90 h80", "D-Pad")
@@ -1039,7 +1058,7 @@ WR_Menu(Function:="",Var*){
       ControllerGui.Add("GroupBox", "Section xm+165 ym+180 w80 h80", "Left Joystick")
       ControllerGui.Add("Checkbox", "xs+5 ys+30 Checked" YesTriggerUtilityJoystickKey " vYesTriggerUtilityJoystickKey", "Use util from`nMove Keys?")
       ControllerGui.Add("GroupBox", "xs ys+90 w80 h40", "L3")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonL3", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonL3", ControllerList)
       ControllerGui["hotkeyControllerButtonL3"].Text := hotkeyControllerButtonL3
 
       ControllerGui.Add("GroupBox", "Section xs+190 ys w80 h80", "Right Joystick")
@@ -1047,14 +1066,14 @@ WR_Menu(Function:="",Var*){
       ControllerGui.Add("ComboBox", "xp y+8 w70 vhotkeyControllerJoystickRight", ["LButton","RButton","q","w","e","r","t"])
       ControllerGui["hotkeyControllerJoystickRight"].Text := hotkeyControllerJoystickRight
       ControllerGui.Add("GroupBox", "xs ys+90 w80 h40", "R3")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonR3", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonR3", ControllerList)
       ControllerGui["hotkeyControllerButtonR3"].Text := hotkeyControllerButtonR3
 
       ControllerGui.Add("GroupBox", "Section xm+140 ym+60 w80 h40", "Select")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonBACK", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonBACK", ControllerList)
       ControllerGui["hotkeyControllerButtonBACK"].Text := hotkeyControllerButtonBACK
       ControllerGui.Add("GroupBox", "xs+245 ys w80 h40", "Start")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonSTART", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonSTART", ControllerList)
       ControllerGui["hotkeyControllerButtonSTART"].Text := hotkeyControllerButtonSTART
 
       ControllerGui.Add("GroupBox", "Section xm+65 ym+280 w40 h40", "Up")
@@ -1067,16 +1086,16 @@ WR_Menu(Function:="",Var*){
       ControllerGui.Add("Edit", "xp+5 y+-23 w30 h19 vhotkeyRight", hotkeyRight)
 
       ControllerGui.Add("GroupBox", "Section xm+465 ym+80 w70 h40", "Y")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonY", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonY", ControllerList)
       ControllerGui["hotkeyControllerButtonY"].Text := hotkeyControllerButtonY
       ControllerGui.Add("GroupBox", "xs ys+80 w70 h40", "A")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonA", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonA", ControllerList)
       ControllerGui["hotkeyControllerButtonA"].Text := hotkeyControllerButtonA
       ControllerGui.Add("GroupBox", "xs-40 ys+40 w70 h40", "X")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonX", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonX", ControllerList)
       ControllerGui["hotkeyControllerButtonX"].Text := hotkeyControllerButtonX
       ControllerGui.Add("GroupBox", "xs+40 ys+40 w70 h40", "B")
-      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonB", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
+      ControllerGui.Add("ComboBox", "xp+5 y+-23 w60 vhotkeyControllerButtonB", ControllerList)
       ControllerGui["hotkeyControllerButtonB"].Text := hotkeyControllerButtonB
 
       ;Save Setting

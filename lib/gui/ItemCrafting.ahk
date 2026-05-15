@@ -71,11 +71,13 @@ SaveItemCraftingMenu()
 
 FillItemCraftingSubCategoryDropdown(){
   global ItemCraftingCategorySelector
-  aux := ""
+  aux := []
   for a,b in POEData[ItemCraftingCategorySelector] {
-    aux .= b "|"
+    aux.Push(b)
   }
-  MainGui["ItemCraftingSubCategorySelector"].Value := "|" aux
+  ctrl := MainGui["ItemCraftingSubCategorySelector"]
+  ctrl.Delete()
+  ctrl.Add(aux)
 }
 
 ItemCraftingSubmit(GuiCtrl, *)
