@@ -69,6 +69,11 @@ RefreshPoeWatchPerfect() {
             pushto := {}
             For kt, type in ["implicits", "explicits"] {
                 pushto.%type% := {}
+                ; PoE.Watch returns JSON null for items with no implicits/explicits
+                ; (e.g. unique flasks). cJson maps null -> JSON.Null sentinel, which
+                ; isn't an Array and isn't enumerable. Skip non-Array values.
+                If !(itemDB[type] is Array)
+                    Continue
                 For ki, mod in itemDB[type] {
                     mod     := RegExReplace(mod, "1 to \(", "(1-1) to (")
                     replace := Perfect(mod)
