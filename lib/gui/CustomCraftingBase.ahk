@@ -70,7 +70,7 @@ RefreshBaseList(type){
   {
     Index := A_Index
     OutputVar := CustomCraftingBaseGui["listview1"].GetText(A_Index, 2)
-    For k, v in WR.CustomCraftingBases[type]{
+    For k, v in WR.CustomCraftingBases.%type%{
       if (v.BaseName == OutputVar){
         CustomCraftingBaseGui["listview1"].Modify(Index,"Check",,,v.ILvL,v.Quant)
         Break
@@ -185,7 +185,7 @@ ResetCraftingBase(*)
   {
     CustomCraftingBaseGui["listview1"].Modify(A_Index,"-Check")
   }
-  WR.CustomCraftingBases[CraftingBaseTypeSelector] := []
+  WR.CustomCraftingBases.%CraftingBaseTypeSelector% := []
   Settings("CustomCraftingBases","Save")
 }
 
@@ -193,7 +193,7 @@ SaveCraftingBase(*)
 {
   global CustomCraftingBaseGui, CraftingBaseTypeSelector
   RowNumber := 0
-  WR.CustomCraftingBases[CraftingBaseTypeSelector] := []
+  WR.CustomCraftingBases.%CraftingBaseTypeSelector% := []
   Loop
   {
     RowNumber := CustomCraftingBaseGui["listview1"].GetNext(RowNumber,"C")
@@ -201,7 +201,7 @@ SaveCraftingBase(*)
       break
     BaseName := CustomCraftingBaseGui["listview1"].GetText(RowNumber, 2)
     aux := {BaseName:BaseName, ILvL:"0", Quant:"0"}
-    WR.CustomCraftingBases[CraftingBaseTypeSelector].Push(aux)
+    WR.CustomCraftingBases.%CraftingBaseTypeSelector%.Push(aux)
   }
   Settings("CustomCraftingBases","Save")
 }

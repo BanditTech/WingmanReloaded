@@ -124,20 +124,21 @@ TGameTick(GuiCheck:=True){
 			{
 				Loop 5
 				{
-					If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
-						If (WR.Flask[A_Index].ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask[A_Index].ResetCooldownAtHealthPercentageInput)
-						|| (WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask[A_Index].ResetCooldownAtEnergyShieldPercentageInput)
-						|| (WR.Flask[A_Index].ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask[A_Index].ResetCooldownAtManaPercentageInput) {
-							WR.cdExpires.Flask[A_Index] := 0
-							WR.cdExpires.Group[WR.Flask[A_Index].Group] := 0
+					If (WR.cdExpires.Flask.%A_Index% > A_TickCount) {
+						If (WR.Flask.%A_Index%.ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask.%A_Index%.ResetCooldownAtHealthPercentageInput)
+						|| (WR.Flask.%A_Index%.ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask.%A_Index%.ResetCooldownAtEnergyShieldPercentageInput)
+						|| (WR.Flask.%A_Index%.ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask.%A_Index%.ResetCooldownAtManaPercentageInput) {
+							WR.cdExpires.Flask.%A_Index% := 0
+							grp := WR.Flask.%A_Index%.Group
+							WR.cdExpires.Group.%grp% := 0
 						}
 					}
-					If (WR.cdExpires.Flask[A_Index] < A_TickCount) {
-						If ((WR.Flask[A_Index].Life && WR.Flask[A_Index].Life > Player.Percent.Life)
-						|| (WR.Flask[A_Index].ES && WR.Flask[A_Index].ES > Player.Percent.ES)
-						|| (WR.Flask[A_Index].Mana && WR.Flask[A_Index].Mana > Player.Percent.Mana))
+					If (WR.cdExpires.Flask.%A_Index% < A_TickCount) {
+						If ((WR.Flask.%A_Index%.Life && WR.Flask.%A_Index%.Life > Player.Percent.Life)
+						|| (WR.Flask.%A_Index%.ES && WR.Flask.%A_Index%.ES > Player.Percent.ES)
+						|| (WR.Flask.%A_Index%.Mana && WR.Flask.%A_Index%.Mana > Player.Percent.Mana))
 						{
-							Trigger(WR.Flask[A_Index])
+							Trigger(WR.Flask.%A_Index%)
 							Continue
 						}
 					}
@@ -148,53 +149,53 @@ TGameTick(GuiCheck:=True){
 			{
 				If WR.func.Toggle.Flask
 					Loop 5
-						If (WR.Flask[A_Index].MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-							Trigger(WR.Flask[A_Index],true)
+						If (WR.Flask.%A_Index%.MainAttack && WR.cdExpires.Flask.%A_Index% < A_TickCount)
+							Trigger(WR.Flask.%A_Index%,true)
 				If WR.func.Toggle.Utility
 					Loop 10
-						If (WR.Utility[A_Index].Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility[A_Index].MainAttack)
-							Trigger(WR.Utility[A_Index],true)
+						If (WR.Utility.%A_Index%.Enable) && WR.cdExpires.Utility.%A_Index% < A_TickCount && (WR.Utility.%A_Index%.MainAttack)
+							Trigger(WR.Utility.%A_Index%,true)
 			}
 			If SecondaryAttackPressedActive
 			{
 				If WR.func.Toggle.Flask
 					Loop 5
-						If (WR.Flask[A_Index].SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
-							Trigger(WR.Flask[A_Index],true)
+						If (WR.Flask.%A_Index%.SecondaryAttack && WR.cdExpires.Flask.%A_Index% < A_TickCount)
+							Trigger(WR.Flask.%A_Index%,true)
 				If WR.func.Toggle.Utility
 					Loop 10
-						If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility[A_Index].SecondaryAttack)
-							Trigger(WR.Utility[A_Index],true)
+						If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility.%A_Index% < A_TickCount && WR.Utility.%A_Index%.SecondaryAttack)
+							Trigger(WR.Utility.%A_Index%,true)
 			}
 
 			If (WR.func.Toggle.Utility) ; Trigger Utilities
 			{
 				Loop 10
 				{
-					If (WR.Utility[A_Index].Enable && WR.cdExpires.Utility[A_Index] <= A_TickCount)
+					If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility.%A_Index% <= A_TickCount)
 					{
-						If (NOT WR.Utility[A_Index].MainAttackOnly || ( WR.Utility[A_Index].MainAttackOnly && MainAttackPressedActive ))
+						If (NOT WR.Utility.%A_Index%.MainAttackOnly || ( WR.Utility.%A_Index%.MainAttackOnly && MainAttackPressedActive ))
 						{
-							If (( WR.Utility[A_Index].OnCD )
-							|| ( WR.Utility[A_Index].ES && WR.Utility[A_Index].ES > Player.Percent.ES )
-							|| ( WR.Utility[A_Index].Life && WR.Utility[A_Index].Life > Player.Percent.Life )
-							|| ( WR.Utility[A_Index].Mana && WR.Utility[A_Index].Mana > Player.Percent.Mana ))
-								Trigger(WR.Utility[A_Index])
-							Else If (WR.Utility[A_Index].Icon)
+							If (( WR.Utility.%A_Index%.OnCD )
+							|| ( WR.Utility.%A_Index%.ES && WR.Utility.%A_Index%.ES > Player.Percent.ES )
+							|| ( WR.Utility.%A_Index%.Life && WR.Utility.%A_Index%.Life > Player.Percent.Life )
+							|| ( WR.Utility.%A_Index%.Mana && WR.Utility.%A_Index%.Mana > Player.Percent.Mana ))
+								Trigger(WR.Utility.%A_Index%)
+							Else If (WR.Utility.%A_Index%.Icon)
 							{
-								If (WR.Utility[A_Index].IconSearch == 1) ; Search Buff Area
+								If (WR.Utility.%A_Index%.IconSearch == 1) ; Search Buff Area
 									x1:=GameX, y1:=GameY, x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/81))
-								Else If (WR.Utility[A_Index].IconSearch == 2) ; Search Debuff Area
+								Else If (WR.Utility.%A_Index%.IconSearch == 2) ; Search Debuff Area
 									x1:=GameX, y1:=GameY+Round(GameH/(1080/81)), x2:=GameX+GameW, y2:=GameY+Round(GameH/(1080/162))
-								Else If (WR.Utility[A_Index].IconSearch == 3) ; Custom Icon Area
-									x1:=WR.Utility[A_Index].IconArea.X1, y1:=WR.Utility[A_Index].IconArea.Y1, x2:=WR.Utility[A_Index].IconArea.X2, y2:=WR.Utility[A_Index].IconArea.Y2
+								Else If (WR.Utility.%A_Index%.IconSearch == 3) ; Custom Icon Area
+									x1:=WR.Utility.%A_Index%.IconArea.X1, y1:=WR.Utility.%A_Index%.IconArea.Y1, x2:=WR.Utility.%A_Index%.IconArea.X2, y2:=WR.Utility.%A_Index%.IconArea.Y2
 
-								BuffIcon := FindText(x1, y1, x2, y2, WR.Utility[A_Index].IconVar1, WR.Utility[A_Index].IconVar0, WR.Utility[A_Index].Icon,0)
+								BuffIcon := FindText(x1, y1, x2, y2, WR.Utility.%A_Index%.IconVar1, WR.Utility.%A_Index%.IconVar0, WR.Utility.%A_Index%.Icon,0)
 
-								If ((WR.Utility[A_Index].IconShown && BuffIcon) || (!WR.Utility[A_Index].IconShown && !BuffIcon))
-									Trigger(WR.Utility[A_Index],True)
+								If ((WR.Utility.%A_Index%.IconShown && BuffIcon) || (!WR.Utility.%A_Index%.IconShown && !BuffIcon))
+									Trigger(WR.Utility.%A_Index%,True)
 								Else
-									WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility[A_Index].IconShow ? 150 : WR.Utility[A_Index].CD)
+									WR.cdExpires.Utility.%A_Index% := A_TickCount + (WR.Utility.%A_Index%.IconShow ? 150 : WR.Utility.%A_Index%.CD)
 							}
 						}
 					}
@@ -205,12 +206,12 @@ TGameTick(GuiCheck:=True){
 		If (WR.func.Toggle.Move && GuiCheck())
 		{
 			Loop 5
-				If WR.Flask[A_Index].Move
-					Trigger(WR.Flask[A_Index])
+				If WR.Flask.%A_Index%.Move
+					Trigger(WR.Flask.%A_Index%)
 			if (WR.func.Toggle.Utility)
 				Loop 10
-					If WR.Utility[A_Index].Move
-						Trigger(WR.Utility[A_Index])
+					If WR.Utility.%A_Index%.Move
+						Trigger(WR.Utility.%A_Index%)
 		}
 
 		If (WR.perChar.Setting.channelrepressEnable)

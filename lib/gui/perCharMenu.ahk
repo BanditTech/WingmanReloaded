@@ -169,7 +169,7 @@ perCharMenu(){
 		, "swap1AltWeapon", "swap1Item", "swap1Xa", "swap1Ya", "swap1Xb", "swap1Yb"
 		, "swap2AltWeapon", "swap2Item", "swap2Xa", "swap2Ya", "swap2Xb", "swap2Yb"
 		, "profilesYesFlask", "profilesFlask", "profilesYesUtility", "profilesUtility"]
-			WR.perChar.Setting[kind] := perCharGui[kind].Value
+			WR.perChar.Setting.%kind% := perCharGui[kind].Value
 		Settings("perChar","Save")
 	}
 	perCharGuiClose(GuiObj) {

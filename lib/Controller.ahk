@@ -95,7 +95,7 @@ Controller(inputType:="Main")
 			&& GuiStatus("",0)
 			&& ((YesOHB && YesOHBFound) || !YesOHB) )
 			{
-				Trigger(WR.Utility[TriggerUtilityKey])
+				Trigger(WR.Utility.%TriggerUtilityKey%)
 			}
 		}
 		Else

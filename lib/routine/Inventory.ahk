@@ -176,7 +176,7 @@ VendorRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
+			If (BlackList[C][R] || !WR.Restock.%C%[R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -352,7 +352,7 @@ EmptyGrid(){
 	EmptySlots := {}
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
-			If !WR.Restock[C][R].Normal
+			If !WR.Restock.%C%[R].Normal
 				Continue 1
 			PointColor := FindText().GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
@@ -415,7 +415,7 @@ StashRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
+			If (BlackList[C][R] || !WR.Restock.%C%[R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -727,7 +727,7 @@ DivRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
+			If (BlackList[C][R] || !WR.Restock.%C%[R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -773,7 +773,7 @@ IdentifyRoutine()
 		{
 			If not RunningToggle ; The user signaled the loop to stop by pressing Hotkey again.
 				Break
-			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
+			If (BlackList[C][R] || !WR.Restock.%C%[R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
 			PointColor := FindText().GetColor(GridX,GridY)
@@ -865,7 +865,7 @@ RunRestock(){
 				If !WR.loc.pixel.Has(v.RestockName){
 					Notify("Missing Location","There is no entry for " v.RestockName,5)
 					Continue
-				} Else If (WR.loc.pixel[v.RestockName].X == 0 && WR.loc.pixel[v.RestockName].Y == 0) {
+				} Else If (WR.loc.pixel.%v.RestockName%.X == 0 && WR.loc.pixel.%v.RestockName%.Y == 0) {
 					Notify("Unscaled Location","The entry for " v.RestockName " has not been scaled from 0",5)
 					Continue
 				}
@@ -888,8 +888,8 @@ RunRestock(){
 				} Else {
 					MoveStash(StashTabCurrency)
 					LeftClick(WR.loc.pixel.CurrencyGeneral.X, WR.loc.pixel.CurrencyGeneral.Y)
-					StockX := WR.loc.pixel[v.RestockName].X
-					StockY := WR.loc.pixel[v.RestockName].Y
+					StockX := WR.loc.pixel.%v.RestockName%.X
+					StockY := WR.loc.pixel.%v.RestockName%.Y
 				}
 				ClipItem(StockX, StockY)
 				; Store the stash stack size
