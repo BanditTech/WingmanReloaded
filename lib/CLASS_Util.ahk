@@ -102,7 +102,7 @@ Class Util {
 	}
 	; Error report for standard error message
 	static Err(e,t*){
-		local l, k, v
+		local l := "", k, v
 		For k, v in t
 			If IsObject(v)
 				l := t.RemoveAt(k)
