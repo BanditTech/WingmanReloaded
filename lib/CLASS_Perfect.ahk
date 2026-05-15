@@ -45,7 +45,7 @@ Class Perfect {
                     This.o.ranges := [[vals[1], vals[2]]]
                     , vals.RemoveAt(1, 2)
                 If vals.Length {
-                    If !IsObject(This.o.values)
+                    If !This.o.HasOwnProp("values")
                         This.o.values := []
                     For k, v in vals
                         This.o.values.Push(v)
