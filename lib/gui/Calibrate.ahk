@@ -12,8 +12,8 @@ updateOnChar(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
-		varOnChar := FindText.GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y)
+		FindText().ScreenShot()
+		varOnChar := FindText().GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y)
 		IniWrite(varOnChar, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnChar")
 		readFromFile()
 		MsgBox("Character Active recalibrated!`nTook color hex: " . varOnChar . " `nAt coords x: " . WR.loc.pixel.OnChar.X . " and y: " . WR.loc.pixel.OnChar.Y)
@@ -38,8 +38,8 @@ updateOnInventory(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
-		varOnInventory := FindText.GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y)
+		FindText().ScreenShot()
+		varOnInventory := FindText().GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y)
 		IniWrite(varOnInventory, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnInventory")
 		readFromFile()
 		MsgBox("OnInventory recalibrated!`nTook color hex: " . varOnInventory . " `nAt coords x: " . WR.loc.pixel.OnInventory.X . " and y: " . WR.loc.pixel.OnInventory.Y)
@@ -65,8 +65,8 @@ updateOnMenu(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
-		varOnMenu := FindText.GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y)
+		FindText().ScreenShot()
+		varOnMenu := FindText().GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y)
 		IniWrite(varOnMenu, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnMenu")
 		readFromFile()
 		MsgBox("OnMenu recalibrated!`nTook color hex: " . varOnMenu . " `nAt coords x: " . WR.loc.pixel.OnMenu.X . " and y: " . WR.loc.pixel.OnMenu.Y)
@@ -91,8 +91,8 @@ updateOnDelveChart(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
-		varOnDelveChart := FindText.GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y)
+		FindText().ScreenShot()
+		varOnDelveChart := FindText().GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y)
 		IniWrite(varOnDelveChart, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnDelveChart")
 		readFromFile()
 		MsgBox("OnDelveChart recalibrated!`nTook color hex: " . varOnDelveChart . " `nAt coords x: " . WR.loc.pixel.OnDelveChart.X . " and y: " . WR.loc.pixel.OnDelveChart.Y)
@@ -116,10 +116,10 @@ updateOnStash(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
-		varOnLeft := FindText.GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y)
+		FindText().ScreenShot()
+		varOnLeft := FindText().GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y)
 		IniWrite(varOnLeft, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnLeft")
-		varOnStash := FindText.GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y)
+		varOnStash := FindText().GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y)
 		IniWrite(varOnStash, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnStash")
 		readFromFile()
 		MsgBox("OnStash recalibrated!`nTook color hex: " . varOnStash . " `nAt coords x: " . WR.loc.pixel.OnStash.X . " and y: " . WR.loc.pixel.OnStash.Y
@@ -163,12 +163,12 @@ updateEmptyColor(*)
 		varEmptyInvSlotColor := []
 		WinActivate("ahk_group POEGameGroup")
 
-		FindText.ScreenShot()
+		FindText().ScreenShot()
 		;Loop through the whole grid, and add unknown colors to the lists
 		For c, GridX in InventoryGridX  {
 			For r, GridY in InventoryGridY
 			{
-				PointColor := FindText.GetColor(GridX,GridY)
+				PointColor := FindText().GetColor(GridX,GridY)
 
 				if !(indexOf(PointColor, varEmptyInvSlotColor)){
 					;We dont have this Empty color already
@@ -209,8 +209,8 @@ updateOnChat(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
-		varOnChat := FindText.GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y)
+		FindText().ScreenShot()
+		varOnChat := FindText().GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y)
 		IniWrite(varOnChat, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnChat")
 		readFromFile()
 		MsgBox("OnChat recalibrated!`nTook color hex: " . varOnChat . " `nAt coords x: " . WR.loc.pixel.OnChat.X . " and y: " . WR.loc.pixel.OnChat.Y)
@@ -235,14 +235,14 @@ updateOnVendor(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
+		FindText().ScreenShot()
 		If (CurrentLocation == "The Rogue Harbour") {
-			varOnVendorHeist := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+			varOnVendorHeist := FindText().GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
 			IniWrite(varOnVendorHeist, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnVendorHeist")
 			readFromFile()
 			MsgBox("OnVendorHeist recalibrated!`nTook color hex: " . varOnVendorHeist . " `nAt coords x: " . WR.loc.pixel.OnVendorHeist.X . " and y: " . WR.loc.pixel.OnVendorHeist.Y)
 		} Else {
-			varOnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+			varOnVendor := FindText().GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
 			IniWrite(varOnVendor, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnVendor")
 			readFromFile()
 			MsgBox("OnVendor recalibrated!`nTook color hex: " . varOnVendor . " `nAt coords x: " . WR.loc.pixel.OnVendorHeist.X . " and y: " . WR.loc.pixel.OnVendorHeist.Y)
@@ -268,8 +268,8 @@ updateOnDiv(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
-		varOnDiv := FindText.GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y)
+		FindText().ScreenShot()
+		varOnDiv := FindText().GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y)
 		IniWrite(varOnDiv, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnDiv")
 		readFromFile()
 		MsgBox("OnDiv recalibrated!`nTook color hex: " . varOnDiv . " `nAt coords x: " . WR.loc.pixel.OnDiv.X . " and y: " . WR.loc.pixel.OnDiv.Y)
@@ -293,14 +293,14 @@ updateDetonate(*)
 	}
 
 	if WinActive("ahk_group POEGameGroup"){
-		FindText.ScreenShot()
+		FindText().ScreenShot()
 		If OnMines {
-			varOnDetonateDelve := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+			varOnDetonateDelve := FindText().GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
 			IniWrite(varOnDetonateDelve, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnDetonateDelve")
 			readFromFile()
 			MsgBox("OnDetonateDelve recalibrated!`nTook color hex: " . varOnDetonateDelve . " `nAt coords x: " . WR.loc.pixel.DetonateDelve.X . " and y: " . WR.loc.pixel.Detonate.Y)
 		} Else {
-			varOnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
+			varOnDetonate := FindText().GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
 			IniWrite(varOnDetonate, A_ScriptDir "\save\Settings.ini", "Failsafe Colors", "OnDetonate")
 			readFromFile()
 			MsgBox("OnDetonate recalibrated!`nTook color hex: " . varOnDetonate . " `nAt coords x: " . WR.loc.pixel.Detonate.X . " and y: " . WR.loc.pixel.Detonate.Y)
@@ -402,8 +402,8 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnChar := FindText.GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y)
+				FindText().ScreenShot()
+				varOnChar := FindText().GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y)
 				SampleTT .= "Character Active took RGB color hex: " . varOnChar . "  At coords x: " . WR.loc.pixel.OnChar.X . " and y: " . WR.loc.pixel.OnChar.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of Character Active didn't work")
@@ -427,8 +427,8 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnChat := FindText.GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y)
+				FindText().ScreenShot()
+				varOnChat := FindText().GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y)
 				SampleTT .= "Chat Open   took RGB color hex: " . varOnChat . "  At coords x: " . WR.loc.pixel.OnChat.X . " and y: " . WR.loc.pixel.OnChat.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of Chat Open didn't work")
@@ -452,8 +452,8 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnMenu := FindText.GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y)
+				FindText().ScreenShot()
+				varOnMenu := FindText().GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y)
 				SampleTT .= "Passive Menu Open took RGB color hex: " . varOnMenu . "  At coords x: " . WR.loc.pixel.OnMenu.X . " and y: " . WR.loc.pixel.OnMenu.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of Passive Menu Open didn't work")
@@ -476,8 +476,8 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnInventory := FindText.GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y)
+				FindText().ScreenShot()
+				varOnInventory := FindText().GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y)
 				SampleTT .= "Inventory Open took RGB color hex: " . varOnInventory . "  At coords x: " . WR.loc.pixel.OnInventory.X . " and y: " . WR.loc.pixel.OnInventory.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of Inventory Open didn't work")
@@ -502,12 +502,12 @@ CalibrationWizard(*){
 			}
 			if WinActive("ahk_group POEGameGroup"){
 				varEmptyInvSlotColor := []
-				FindText.ScreenShot()
+				FindText().ScreenShot()
 				For c, GridX in InventoryGridX
 				{
 					For r, GridY in InventoryGridY
 					{
-						PointColor := FindText.GetColor(GridX,GridY)
+						PointColor := FindText().GetColor(GridX,GridY)
 						if !(indexOf(PointColor, varEmptyInvSlotColor)){
 							varEmptyInvSlotColor.Push(PointColor)
 						}
@@ -545,8 +545,8 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+				FindText().ScreenShot()
+				varOnVendor := FindText().GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
 				SampleTT .= "Vendor Trade Open took RGB color hex: " . varOnVendor . "  At coords x: " . WR.loc.pixel.OnVendorHeist.X . " and y: " . WR.loc.pixel.OnVendorHeist.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of Vendor Trade Open didn't work")
@@ -569,9 +569,9 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnStash := FindText.GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y)
-				varOnLeft  := FindText.GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y)
+				FindText().ScreenShot()
+				varOnStash := FindText().GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y)
+				varOnLeft  := FindText().GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y)
 				SampleTT .= "Stash Open took RGB color hex: " . varOnStash . "  At coords x: " . WR.loc.pixel.OnStash.X . " and y: " . WR.loc.pixel.OnStash.Y . "`n"
 				SampleTT .= "Left Panel Open took RGB color hex: " . varOnLeft . "  At coords x: " . WR.loc.pixel.OnLeft.X . " and y: " . WR.loc.pixel.OnLeft.Y . "`n"
 			} else
@@ -595,8 +595,8 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnDiv := FindText.GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y)
+				FindText().ScreenShot()
+				varOnDiv := FindText().GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y)
 				SampleTT .= "Divination Trade Open took RGB color hex: " . varOnDiv . "  At coords x: " . WR.loc.pixel.OnDiv.X . " and y: " . WR.loc.pixel.OnDiv.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of Divination Trade Open didn't work")
@@ -619,11 +619,11 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
+				FindText().ScreenShot()
 				If OnMines
-					varOnDetonate := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+					varOnDetonate := FindText().GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
 				Else
-					varOnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
+					varOnDetonate := FindText().GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
 				SampleTT .= "Detonate Mines took RGB color hex: " . varOnDetonate . "  At coords x: " . (OnMines?WR.loc.pixel.DetonateDelve.X:WR.loc.pixel.Detonate.X) . " and y: " . WR.loc.pixel.Detonate.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of OnDetonate didn't work")
@@ -646,8 +646,8 @@ CalibrationWizard(*){
 				Exit
 			}
 			if WinActive("ahk_group POEGameGroup"){
-				FindText.ScreenShot()
-				varOnDelveChart := FindText.GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y)
+				FindText().ScreenShot()
+				varOnDelveChart := FindText().GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y)
 				SampleTT .= "OnDelveChart       took RGB color hex: " . varOnDelveChart . "  At coords x: " . WR.loc.pixel.OnDelveChart.X . " and y: " . WR.loc.pixel.OnDelveChart.Y . "`n"
 			} else
 				MsgBox("PoE Window is not active. `nRecalibrate of OnDelveChart didn't work")

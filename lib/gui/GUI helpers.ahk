@@ -188,7 +188,7 @@ ft_Start(*) {
 	Global MainGui, CheckGamestates
 	MainGui.Submit()
 	CheckGamestates:= False
-	Run("FindText.ahk", A_ScriptDir "\lib\ref\")
+	Run("FindText().ahk", A_ScriptDir "\lib\ref\")
 }
 
 helpCalibration(*) {
@@ -367,10 +367,10 @@ CheckPixelGrid(*) {
     TT := "Grid information cannot be read because inventory is not open.`r`nYou might need to calibrate the onInventory state."
   } else {
     TT := "Grid information:" . "`n"
-    FindText.ScreenShot()
+    FindText().ScreenShot()
     For C, GridX in InventoryGridX {
       For R, GridY in InventoryGridY {
-        PointColor := FindText.GetColor(GridX,GridY)
+        PointColor := FindText().GetColor(GridX,GridY)
         if (indexOf(PointColor, varEmptyInvSlotColor)) {
           TT := TT . "  Column:  " . c . "  Row:  " . r . "  X: " . GridX . "  Y: " . GridY . "  Empty inventory slot. Color: " . PointColor  .  "`n"
         } else {
