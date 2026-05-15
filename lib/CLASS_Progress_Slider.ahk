@@ -39,7 +39,7 @@ class Progress_Slider  {
     else if(This.Smooth=0&&This.Vertical=1)
       This.GUI_NAME.Add("Progress", "x" This.X " y" This.Y " w" This.W " h" This.H " -Smooth Range" This.Start_Range "-" This.End_Range  " Vertical v" This.Control_ID, This.Slider_Value)
   }
-  Adjust_pSlider(){
+  Adjust_pSlider(*){
     Static OldVal
     CoordMode("Mouse","Client")
     while(GetKeyState("LButton")){
