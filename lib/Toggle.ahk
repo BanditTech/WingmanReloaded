@@ -73,10 +73,18 @@ PauseMines(){
 		keyheld := 0
 	}
 }
-PauseMinesCommand(*) { PauseMines() }
-CtrlSpam(*) { }
-CtrlShiftSpam(*) { }
-ShiftSpam(*) { }
-CtrlSpamOff(*) { }
-optionsCommand(*) { }
-CraftBasicPopUp(*) { }
+PauseMinesCommand(*) {
+	PauseMines()
+}
+CtrlSpam(*) {
+}
+CtrlShiftSpam(*) {
+}
+ShiftSpam(*) {
+}
+CtrlSpamOff(*) {
+}
+optionsCommand(*) {
+}
+CraftBasicPopUp(*) {
+}

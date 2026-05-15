@@ -38,5 +38,7 @@ PopFlasks(){
 		WR.func.Toggle.PopAll := False
 	return
 }
-PopFlasksCommand(*) { PopFlasks() }
+PopFlasksCommand(*) {
+	PopFlasks()
+}
 
