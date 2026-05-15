@@ -214,7 +214,7 @@ CraftingMaps(){
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			PointColor := FindText.GetColor(GridX,GridY)
+			PointColor := FindText().GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor)
 			{
 				;Seems to be an empty slot, no need to clip item info

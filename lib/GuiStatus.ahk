@@ -2,10 +2,10 @@
 GuiStatus(Fetch:="",SS:=1){
   Global YesXButtonFound, OnChar, OnChat, OnMenu, OnInventory, OnStash, OnVendor, OnDiv, OnLeft, OnDelveChart, OnDetonate
   If (SS)
-    FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
+    FindText().ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
   If (Fetch="OnDetonate")
   {
-    POnDetonateDelve := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y), POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
+    POnDetonateDelve := FindText().GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y), POnDetonate := FindText().GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
     , OnDetonate := ((POnDetonateDelve=varOnDetonate || POnDetonate=varOnDetonate)?True:False)
     Return OnDetonate
   }
@@ -13,33 +13,33 @@ GuiStatus(Fetch:="",SS:=1){
   {
     ; TODO: v2 does not support %var% dereference - needs refactoring
     ; Original v1 code:
-    ;   P%Fetch% := FindText.GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
+    ;   P%Fetch% := FindText().GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
     ;   temp := %Fetch% := (P%Fetch%=var%Fetch%?True:False)
     ; The following is a best-effort translation using a Map-based approach if available,
     ; otherwise this block needs to be replaced with explicit conditionals per Fetch value.
-    P_Fetch := FindText.GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
+    P_Fetch := FindText().GetColor(WR.loc.pixel[Fetch].X,WR.loc.pixel[Fetch].Y)
     ; TODO: v2 does not support %var% dereference for P%Fetch%, %Fetch%, var%Fetch% - needs refactoring
     temp := False  ; placeholder — replace with explicit per-Fetch logic
     Return temp
   }
   If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart)
     CheckXButton(), xChecked := True
-  POnChar := FindText.GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
-  POnChat := FindText.GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
-  POnMenu := FindText.GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
-  POnInventory := FindText.GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
-  POnStash := FindText.GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
-  POnDiv := FindText.GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
-  POnLeft := FindText.GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
-  POnDelveChart := FindText.GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
+  POnChar := FindText().GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)
+  POnChat := FindText().GetColor(WR.loc.pixel.OnChat.X,WR.loc.pixel.OnChat.Y), OnChat := (POnChat=varOnChat?True:False)
+  POnMenu := FindText().GetColor(WR.loc.pixel.OnMenu.X,WR.loc.pixel.OnMenu.Y), OnMenu := (POnMenu=varOnMenu?True:False)
+  POnInventory := FindText().GetColor(WR.loc.pixel.OnInventory.X,WR.loc.pixel.OnInventory.Y), OnInventory := (POnInventory=varOnInventory?True:False)
+  POnStash := FindText().GetColor(WR.loc.pixel.OnStash.X,WR.loc.pixel.OnStash.Y), OnStash := (POnStash=varOnStash?True:False)
+  POnDiv := FindText().GetColor(WR.loc.pixel.OnDiv.X,WR.loc.pixel.OnDiv.Y), OnDiv := (POnDiv=varOnDiv?True:False)
+  POnLeft := FindText().GetColor(WR.loc.pixel.OnLeft.X,WR.loc.pixel.OnLeft.Y), OnLeft := (POnLeft=varOnLeft?True:False)
+  POnDelveChart := FindText().GetColor(WR.loc.pixel.OnDelveChart.X,WR.loc.pixel.OnDelveChart.Y), OnDelveChart := (POnDelveChart=varOnDelveChart?True:False)
   If OnMines {
-    POnDetonate := FindText.GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
+    POnDetonate := FindText().GetColor(WR.loc.pixel.DetonateDelve.X,WR.loc.pixel.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonateDelve?True:False)
   } Else {
-    POnDetonate := FindText.GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
+    POnDetonate := FindText().GetColor(WR.loc.pixel.Detonate.X,WR.loc.pixel.Detonate.Y)
     OnDetonate := (POnDetonate=varOnDetonate?True:False)
   }
-  POnVendor := FindText.GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
+  POnVendor := FindText().GetColor(WR.loc.pixel.OnVendorHeist.X,WR.loc.pixel.OnVendorHeist.Y)
   OnVendor := (POnVendor=varOnVendor?True:(POnVendor=varOnVendorHeist?True:False))
 
   If (!xChecked && (OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart))

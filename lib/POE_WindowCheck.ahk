@@ -14,9 +14,9 @@ PoEWindowCheck()
 			{
 				GameBound := True
 				if YesDX12 {
-					FindText.BindWindow(GamePID,4)
+					FindText().BindWindow(GamePID,4)
 				} else {
-					FindText.BindWindow(GamePID)
+					FindText().BindWindow(GamePID)
 				}
 				s := WinGetStyle("ahk_class POEWindowClass")
 				If (s & +0x80000000)
@@ -48,7 +48,7 @@ PoEWindowCheck()
 			If GameBound
 			{
 				GameBound := False
-				FindText.BindWindow()
+				FindText().BindWindow()
 			}
 			If (ToggleExist)
 			{

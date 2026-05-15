@@ -179,7 +179,7 @@ VendorRoutine()
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			PointColor := FindText.GetColor(GridX,GridY)
+			PointColor := FindText().GetColor(GridX,GridY)
 
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
@@ -348,13 +348,13 @@ VendorRoutine()
 ; Build Empty Grid List
 EmptyGrid(){
 	ShooMouse()
-	FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
+	FindText().ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
 	EmptySlots := {}
 	For C, GridX in InventoryGridX {
 		For R, GridY in InventoryGridY {
 			If !WR.Restock[C][R].Normal
 				Continue 1
-			PointColor := FindText.GetColor(GridX,GridY)
+			PointColor := FindText().GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				EmptySlots.Push(RandClick(GridX, GridY))
 			}
@@ -403,7 +403,7 @@ StashRoutine()
 	BlackList := adash.cloneDeep(BlackList_Default)
 	; Move mouse away for Screenshot
 	ShooMouse()
-	FindText.ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
+	FindText().ScreenShot(GameX,GameY,GameX+GameW,GameY+GameH)
 	ClearNotifications()
 	; CraftingBasesRequest()
 	; Main loop through inventory
@@ -418,7 +418,7 @@ StashRoutine()
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			PointColor := FindText.GetColor(GridX,GridY)
+			PointColor := FindText().GetColor(GridX,GridY)
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
 				Continue
@@ -474,7 +474,7 @@ StashRoutine()
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
-							Pitem := FindText.GetColor(GridX,GridY)
+							Pitem := FindText().GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
 							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({C:C, R:R, Item:Item})
@@ -504,7 +504,7 @@ StashRoutine()
 								&& sendstash != StashTabUniqueRing)
 							{
 								Sleep(200*Latency)
-								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText.GetColor(GridX,GridY)
+								ShooMouse(), GuiStatus(), ClearNotifications(), Pitem := FindText().GetColor(GridX,GridY)
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueRing)
@@ -517,7 +517,7 @@ StashRoutine()
 								ShooMouse()
 								GuiStatus()
 								ClearNotifications()
-								Pitem := FindText.GetColor(GridX,GridY)
+								Pitem := FindText().GetColor(GridX,GridY)
 								if (indexOfHex(Pitem, varEmptyInvSlotColor))
 									Continue
 								MoveStash(StashTabUniqueDump)
@@ -564,7 +564,7 @@ StashRoutine()
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
-							Pitem := FindText.GetColor(GridX,GridY)
+							Pitem := FindText().GetColor(GridX,GridY)
 							; Check if the item is gone, if it is we can move on
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
@@ -577,7 +577,7 @@ StashRoutine()
 							ShooMouse()
 							GuiStatus()
 							ClearNotifications()
-							Pitem := FindText.GetColor(GridX,GridY)
+							Pitem := FindText().GetColor(GridX,GridY)
 							; Check if the item is gone, if it is we can move on
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
@@ -730,7 +730,7 @@ DivRoutine()
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			PointColor := FindText.GetColor(GridX,GridY)
+			PointColor := FindText().GetColor(GridX,GridY)
 
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
@@ -776,7 +776,7 @@ IdentifyRoutine()
 			If (BlackList[C][R] || !WR.Restock[C][R].Normal)
 				Continue
 			Grid := RandClick(GridX, GridY)
-			PointColor := FindText.GetColor(GridX,GridY)
+			PointColor := FindText().GetColor(GridX,GridY)
 
 			If indexOf(PointColor, varEmptyInvSlotColor) {
 				;Seems to be an empty slot, no need to clip item info
