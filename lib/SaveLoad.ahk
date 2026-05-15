@@ -1316,16 +1316,12 @@ Profile(args*){
 		FileDelete(A_ScriptDir "\save\profiles\" Type "\" name ".json")
 	}
 
-	l := [], s := ""
+	l := []
 	Loop Files, A_ScriptDir "\save\profiles\" Type "\*.json"
 		l.Push(StrReplace(A_LoopFileName,".json",""))
-	For k, v in l
-		s .=(k=1?"||":"|") v
-	If (s == "")
-		s := "||"
 	MainGui["ProfileMenu" Type].Delete()
-	For k, v in StrSplit(LTrim(s, "|"), "|")
-		MainGui["ProfileMenu" Type].Add([v])
+	If (l.Length)
+		MainGui["ProfileMenu" Type].Add(l)
 	If (Action != "Remove")
 		MainGui["ProfileMenu" Type].Choose(name)
 	Return
