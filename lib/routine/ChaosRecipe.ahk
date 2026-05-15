@@ -919,7 +919,7 @@ fn_sortByTab(o){
   Return o.Prop.StashTab
 }
 
-RefreshChaosRecipe(){
+RefreshChaosRecipe(*){
   ChaosRecipe(1)
   UpdateGuiChaosCounts()
 }
