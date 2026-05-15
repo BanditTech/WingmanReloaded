@@ -82,7 +82,6 @@ CustomMapModsUI()
   CustomMapModsGui := Gui()
   CustomMapModsGui.Opt("+AlwaysOnTop -MinimizeBox")
   lv := CustomMapModsGui.Add("ListView", "w1200 h350 -wrap -Multi Grid Checked vlistview1", ["Affix Type","Affix Name","Detail","Mod Weight","Mod Type","Weight"])
-  lv.OnEvent("Click", MyListViewMap)
   lv.OnEvent("DoubleClick", MyListViewMap)
   RefreshMapList()
   btn1 := CustomMapModsGui.Add("Button", "x+5 w120 h30 center", "Save Map Modifiers")
@@ -98,7 +97,6 @@ CustomHeistModsUI()
   CustomMapModsGui := Gui()
   CustomMapModsGui.Opt("+AlwaysOnTop -MinimizeBox")
   lv := CustomMapModsGui.Add("ListView", "w1200 h350 -wrap -Multi Grid Checked vlistview1", ["Affix Type","Affix Name","Detail","Mod Weight","Mod Type","Weight"])
-  lv.OnEvent("Click", MyListViewHeist)
   lv.OnEvent("DoubleClick", MyListViewHeist)
   RefreshHeistList()
   btn1 := CustomMapModsGui.Add("Button", "x+5 w120 h30 center", "Save Heist Modifiers")
@@ -111,9 +109,9 @@ CustomHeistModsUI()
 MyListViewMap(ctrl, rowNum, *)
 {
   global RowNumber, CustomMapModsGui
-  if (ctrl.Event != "DoubleClick" && A_GuiEvent != "DoubleClick")
-    return
-  RowNumber := rowNum ? rowNum : A_EventInfo
+  If !rowNum
+    Return
+  RowNumber := rowNum
   OutputVar1 := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
   OutputVar2 := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
   CustomUI := Gui()
@@ -132,9 +130,9 @@ MyListViewMap(ctrl, rowNum, *)
 MyListViewHeist(ctrl, rowNum, *)
 {
   global RowNumber, CustomMapModsGui
-  if (ctrl.Event != "DoubleClick" && A_GuiEvent != "DoubleClick")
-    return
-  RowNumber := rowNum ? rowNum : A_EventInfo
+  If !rowNum
+    Return
+  RowNumber := rowNum
   OutputVar1 := CustomMapModsGui["listview1"].GetText(RowNumber, 5)
   OutputVar2 := CustomMapModsGui["listview1"].GetText(RowNumber, 6)
   CustomUI := Gui()
