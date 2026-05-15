@@ -72,7 +72,7 @@ if !FileExist(A_ScriptDir "\data\Bases.json")
 		MsgBox("Error ED02 : There was a problem downloading Bases.json from RePoE")
 	}
 }
-;Bases := JSON.LoadFile(A_ScriptDir "\data\Bases.json")
+Bases := JSON.LoadFile(A_ScriptDir "\data\Bases.json")
 
 UpdatePOEData(){
 	Global POEData, BranchName
