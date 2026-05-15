@@ -104,13 +104,13 @@ class ItemScan
 			This.Prop.StashChaosItem := This.StashChaosRecipe(False)
 		If (This.Prop.HasImplicit) {
 			Static Tiers := {Lesser:1, Greater:2, Grand:3, Exceptional:4, Exquisite:5, Perfect:6}
-			If (RegExMatch(This.Data.Blocks.Implicit, "`amO)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
+			If (RegExMatch(This.Data.Blocks.Implicit, "`am)Searing Exarch Implicit Modifier \((.*?)\)", &RxMatch)) {
 				This.Prop.TierImplicitSearing := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
 				This.Prop.Influence .= (This.Prop.Influence?" ":"") "Searing Exarch"
 			}
-			If (RegExMatch(This.Data.Blocks.Implicit, "`amO)Eater of Worlds Implicit Modifier \((.*?)\)", &RxMatch)){
+			If (RegExMatch(This.Data.Blocks.Implicit, "`am)Eater of Worlds Implicit Modifier \((.*?)\)", &RxMatch)){
 				This.Prop.TierImplicitEater := Tiers[RxMatch.Value(1)] ? Tiers[RxMatch.Value(1)] : 5
 				This.Prop.EldritchImplicit := True
 				This.Prop.IsInfluenceItem := True
@@ -1240,7 +1240,7 @@ class ItemScan
 			If (A_LoopField ~= rxNum "\(-*" rxNum "-*" rxNum "\)") {
 				EndValue := 0
 				Position := 1
-				While RegExMatch(A_LoopField, "O`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", &RxMatch, Position) {
+				While RegExMatch(A_LoopField, "`am)" rxNum "\(-*" rxNum "-*" rxNum "\)", &RxMatch, Position) {
 					Position := RxMatch.Len(0) + RxMatch.Pos(0)
 					Value := RxMatch.Value(1)
 					Range1 := RxMatch.Value(2)
@@ -1336,7 +1336,7 @@ class ItemScan
 		}
 	}
 	MatchLine(lineString){
-		If (RegExMatch(lineString, "O`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , &RxMatch))
+		If (RegExMatch(lineString, "`am)" rxNum "[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" rxNum "{0,}[ \-a-zA-Z+,\%]{0,}+" , &RxMatch))
 		{
 			ret := {}
 			Loop RxMatch.Length

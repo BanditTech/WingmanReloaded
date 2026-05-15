@@ -1,6 +1,6 @@
 SendHotkey(keyStr:="",hold:=0){
   For i, keys in StrSplit(keyStr," "){
-    If RegExMatch(keys, "O)\[(\d+)\]\(([\d\w]+)\)", &DelayKey)
+    If RegExMatch(keys, "\[(\d+)\]\(([\d\w]+)\)", &DelayKey)
     {
       DelayAction.Push({TriggerAt:A_TickCount+DelayKey[1], Key:DelayKey[2]})
       Continue

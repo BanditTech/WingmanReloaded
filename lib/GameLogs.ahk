@@ -62,7 +62,7 @@ CompareLocation(cStr:="")
       SetTimer(ZoneChange, -200)
       Return True
     } Else If (cStr ~= ": \w+ \(\w+\) is now level \d") {
-      RegExMatch(cStr, "O)is now level (\d*)", &RxMatch)
+      RegExMatch(cStr, "is now level (\d*)", &RxMatch)
       Player.Level := RxMatch[1]
     }
   }

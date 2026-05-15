@@ -107,13 +107,13 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
     LowValue:=[]
 
     ;Catch Values
-    While(RegExMatch(FullLine,"O)\(" rxNum "-" rxNum "\)", &RxMatch, StartingPos))
+    While(RegExMatch(FullLine,"\(" rxNum "-" rxNum "\)", &RxMatch, StartingPos))
     {
       LowValue.push(RxMatch[1])
       HighValue.push(RxMatch[2])
       StartingPos := RxMatch.Pos(2)
     }
-    While(RegExMatch(FullLine,"O)\(-" rxNum "--" rxNum "\)", &RxMatch, StartingPos))
+    While(RegExMatch(FullLine,"\(-" rxNum "--" rxNum "\)", &RxMatch, StartingPos))
     {
       LowValue.push(RxMatch[1])
       HighValue.push(RxMatch[2])
@@ -133,7 +133,7 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
       FinalValueLow := (Format("{1:0.3g}",(LowValue[1] + LowValue[2]) / 2))
       FinalValueHigh := (Format("{1:0.3g}", (HighValue[1] + HighValue[2]) / 2))
       ;; Match # to (#-#) ODD Mod from Lower Tiers
-    }Else If(RegExMatch(FullLine,"O)" rxNum " to \(" rxNum "-" rxNum "\)", &RxMatch)){
+    }Else If(RegExMatch(FullLine,"" rxNum " to \(" rxNum "-" rxNum "\)", &RxMatch)){
       FinalValueLow := (Format("{1:0.3g}",(RxMatch[1] + RxMatch[2]) / 2))
       FinalValueHigh := (Format("{1:0.3g}", (RxMatch[1] + RxMatch[3]) / 2))
       ;; Match (#-#)
@@ -147,7 +147,7 @@ MatchLineForItemCraft(FullLine,ModGenerationType,ObjectToPush,MyID,Affix)
         FinalValueHigh := aux
       }
       ;; Match #
-    }Else If(RegExMatch(FullLine, "O)\+?" rxNum, &RxMatch)){
+    }Else If(RegExMatch(FullLine, "\+?" rxNum, &RxMatch)){
       FinalValueLow := RxMatch[1]
       FinalValueHigh := RxMatch[1]
       ;; Match no number

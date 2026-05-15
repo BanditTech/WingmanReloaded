@@ -19,7 +19,7 @@ Class Perfect {
         values   := []
         position := 1
         RxMatch  := {Len: [0]}
-        While (position := RegExMatch(lineString, "O`am)" rxNum, &RxMatch, position + RxMatch.Len[1])) {
+        While (position := RegExMatch(lineString, "`am)" rxNum, &RxMatch, position + RxMatch.Len[1])) {
             If (RxMatch[1] != "")
                 values.Push(RxMatch[1])
         }
