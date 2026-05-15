@@ -18,10 +18,10 @@ for _k, _v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "
 	,"Instilling","Scouring","Sacred","Blessed","Vaal"
 	, "OnMenu", "OnChar", "OnChat", "OnInventory", "OnStash", "OnVendor", "OnVendorHeist"
 	, "OnDiv", "OnLeft", "OnDelveChart"]
-	WR.loc.pixel[_v] := {X:0, Y:0}
+	WR.loc.pixel.%_v% := {X:0, Y:0}
 
 for _k, _v in []
-	WR.loc.area[_v] := {X1:0, Y1:0, X2:0, Y2:0}
+	WR.loc.area.%_v% := {X1:0, Y1:0, X2:0, Y2:0}
 WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
 WR.cdExpires.Binding.Move := ""
 WR.func.Toggle := {Flask:"1", Move:"1", Quit:"0", Utility:"1", PopAll:"0"}
@@ -40,26 +40,26 @@ WR.perChar.Setting := {typeLife:"1", typeHybrid:"0", typeES:"0", typeEldritch:"0
 	, profilesYesFlask:"0", profilesFlask:"", profilesYesUtility:"0", profilesUtility:""}
 for _k, _v in ["1","2","3","4","5"]
 {
-	WR.Flask[_v] := {Key:_v, GroupCD:"150", Condition:"1", CD:"4000"
+	WR.Flask.%_v% := {Key:_v, GroupCD:"150", Condition:"1", CD:"4000"
 		, Group:"f" . A_Index, Slot:A_Index, Type:"Flask"
 		, MainAttack:"0", SecondaryAttack:"0", MainAttackRelease:"0", SecondaryAttackRelease:"0", Move:"0", PopAll:"1", Life:0, ES:0, Mana:0
 		, Curse:"0", Shock:"0", Bleed:"0", Freeze:"0", Ignite:"0", Poison:"0", ResetCooldownAtHealthPercentage:"0", ResetCooldownAtHealthPercentageInput:"0", ResetCooldownAtEnergyShieldPercentage:"0", ResetCooldownAtEnergyShieldPercentageInput:"0", ResetCooldownAtManaPercentage:"0", ResetCooldownAtManaPercentageInput:"0"}
-	WR.cdExpires.Flask[_v] := A_TickCount
+	WR.cdExpires.Flask.%_v% := A_TickCount
 }
 for _k, _v in ["1","2","3","4","5","6","7","8","9","10"]
 {
-	WR.Utility[_v] := {Enable:"0", OnCD:"0", Condition:"1", Key:_v, GroupCD:"5000", CD:"5000"
+	WR.Utility.%_v% := {Enable:"0", OnCD:"0", Condition:"1", Key:_v, GroupCD:"5000", CD:"5000"
 		, Group:"u" . A_Index, Slot:A_Index, QS:"0", Type:"Utility"
 		, MainAttackOnly:"0", MainAttack:"0", SecondaryAttack:"0", MainAttackRelease:"0", SecondaryAttackRelease:"0", Move:"0", PopAll:"0", Life:0, ES:0, Mana:0
 		, Icon:"", IconShown:"0", IconSearch:"1", IconArea:{}, IconVar0:"0", IconVar1:"0"
 		, Curse:"0", Shock:"0", Bleed:"0", Freeze:"0", Ignite:"0", Poison:"0"}
-	WR.cdExpires.Utility[_v] := A_TickCount
+	WR.cdExpires.Utility.%_v% := A_TickCount
 }
 for _k, _v in ["f1","f2","f3","f4","f5","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
-	WR.cdExpires.Group[_v] := A_TickCount
+	WR.cdExpires.Group.%_v% := A_TickCount
 
 for _k, _v in ["h768","h1050","h1080","h1440","h2160"]
-	WR.String[_v] := {}
+	WR.String.%_v% := {}
 
 WR.String.h1080.Debuff :={EleW:"|<1080 Ele Weakness>0xF6E9FE@0.75$22.01s000s401k005W14vo2LZE3PO05ZykDHblYi/rOMpoVVFH44mYEncH0NE8U11V04A209U40w067005U2i"
 	,Vuln:"|<1080 Vulnerability>0xAF1015@0.90$34.0kE7000DAC013xwQ84Drsk0YzzV02xzs0U3rzY60CkSEA1k0s0k4E1k1WV03XX0U03wAC0UDsm000Tl0001zaE007yM000TsU001sU0007kA000zk003bz0020zsQ0k0zXUADvwA11zzVk0Dys0007llU00D0807000U1YM0M00HsME00Dzk003zy0003rEE2"
@@ -95,17 +95,17 @@ WR.CustomMapMods.HeistMods := []
 
 for _k,_v in POEData
 {
-	WR.ItemCrafting[_k] := {}
-	WR.ActualTier[_k] := {}
-	WR.CustomCraftingBases[_k] := {}
+	WR.ItemCrafting.%_k% := {}
+	WR.ActualTier.%_k% := {}
+	WR.CustomCraftingBases.%_k% := {}
 	for ki,vi in _v{
-		WR.ItemCrafting[_k][vi] := {}
+		WR.ItemCrafting.%_k%.%vi% := {}
 	}
 }
 
 for _k,_v in BasesData
 {
-	WR.CustomCraftingBases[_k] := {}
+	WR.CustomCraftingBases.%_k% := {}
 }
 
 WR.Data.Map_Affixes := RegexReplace(ArrayToString(Util.Load("Affix_List_Map")),"\%","`%")
