@@ -1,5 +1,5 @@
 ; ItemSortCommand - Sort inventory and determine action
-ItemSortCommand(){
+ItemSortCommand(*){
 	; Thread, NoTimers, True
 	CheckRunning()
 	Thread("Priority", 69)

@@ -1,6 +1,6 @@
 ; LogoutCommand - Logout Function
 ; -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LogoutCommand(){
+LogoutCommand(*){
   LogoutCommand:
     SetKeyDelay(SetKeyDelayValue1, SetKeyDelayValue2, "Play")
     SetMouseDelay(SetMouseDelayValue)

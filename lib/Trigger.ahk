@@ -91,7 +91,7 @@ ConfirmMatchingTriggers(obj){
 	Return False
 }
 ; MainAttackCommand - Main attack Flasks
-MainAttackCommand()
+MainAttackCommand(*)
 {
 	Global MainAttackPressedActive
 	If (MainAttackPressedActive||OnTown||OnHideout)
@@ -99,7 +99,7 @@ MainAttackCommand()
 	MainAttackPressedActive := True
 	Return
 }
-MainAttackCommandRelease()
+MainAttackCommandRelease(*)
 {
 	Global MainAttackPressedActive, MainAttackLastRelease
 	MainAttackPressedActive := False
@@ -115,7 +115,7 @@ MainAttackCommandRelease()
 	Return
 }
 ; SecondaryAttackCommand - Secondary attack Flasks
-SecondaryAttackCommand()
+SecondaryAttackCommand(*)
 {
 	Global SecondaryAttackPressedActive
 	If (SecondaryAttackPressedActive||OnTown||OnHideout)
@@ -123,7 +123,7 @@ SecondaryAttackCommand()
 	SecondaryAttackPressedActive := True
 	Return
 }
-SecondaryAttackCommandRelease()
+SecondaryAttackCommandRelease(*)
 {
 	Global SecondaryAttackPressedActive
 	SecondaryAttackPressedActive := False

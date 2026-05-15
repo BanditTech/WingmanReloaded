@@ -93,7 +93,7 @@ CraftingSocket(){
 	local f
 	f := Craft("Socket",BasicCraftSocketMethod,{Sockets:BasicCraftDesiredSockets,Auto:BasicCraftSocketAuto})
 }
-CraftingItemCaller(){
+CraftingItemCaller(*){
 	Crafting("Item")
 }
 
