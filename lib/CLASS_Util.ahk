@@ -249,7 +249,7 @@ Class Util {
 			File.Close()
 		}
 		static Close(t*){
-			If t.Count()
+			If t.Length
 				This.Log.Msg(t*)
 			This.Log.Msg(This.Name " Log ","End of File")
 			This.Log.ActiveFile := ""

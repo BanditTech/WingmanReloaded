@@ -26,7 +26,7 @@ determineDebuffTriggerActive(){
 				If (WR.%type%.%slot%.%debuff% && !indexOf(debuff,active))
 					active.Push(debuff)
 		}
-	If active.Count()
+	If active.Length
 		Return active
 	Return False
 }

@@ -45,7 +45,7 @@ Class SortByNum {
 		This.Max := This.Min + maxOver
 		This.MaxOver := maxOver
 		This.TotalQ := This.GetQ(This.Excess)
-		This.TotalNum := This.Excess.Count()
+		This.TotalNum := This.Excess.Length
 		This.Mean := Round(AHK.meanBy(This.Excess,"Q"))
 		; Find the optimum starting number of groups, then create them
 		This.GetGroupNum()
@@ -81,7 +81,7 @@ Class SortByNum {
 				txt .= " " vv.Q
 			txt .= "`n"
 		}
-		txt .= "Excess:" This.ExcessQ " Count:" This.Excess.Count() "`n"
+		txt .= "Excess:" This.ExcessQ " Count:" This.Excess.Length "`n"
 		For k, v in This.Excess {
 			txt .= v.Q " "
 		}
@@ -358,9 +358,9 @@ Class SortByNum {
 	GetCounts(){
 		objCount := 0
 		For k, bin in This.SortGroups {
-			objCount += bin.Count()
+			objCount += bin.Length
 		}
-		objCount += This.Excess.Count()
+		objCount += This.Excess.Length
 		If (objCount != This.TotalNum)
 			MsgBox("There is a mismatching number of end objects"
 			. "`nStarting Count:" This.TotalNum "`tEnd:" objCount)

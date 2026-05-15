@@ -40,7 +40,7 @@ LootColorsMenu(*){
 	cbox2 := LootColorsGui.Add("ComboBox", "x+5 w210 vDelveStr " , DelveStr "?" Chr(34) "1080_DelveStr" Chr(34))
 	cbox2.OnEvent("Change", UpdateStringEdit)
 	LootColorsGui.Opt("+Delimiter|")
-	LootColorsGui.Add("GroupBox", "section xm y+10 w330 h" 24 * (LootColors.Count() / 2) + 30 , "Loot Colors:")
+	LootColorsGui.Add("GroupBox", "section xm y+10 w330 h" 24 * (LootColors.Length / 2) + 30 , "Loot Colors:")
 	savebtn := LootColorsGui.Add("Button", "yp-5 xp+70 h22 w80", "Save to INI")
 	savebtn.OnEvent("Click", SaveLootColorArray)
 	LG_Add := LootColorsGui.Add("Button", "vLG_Add yp x+5 h22 wp", "Add Color Set")

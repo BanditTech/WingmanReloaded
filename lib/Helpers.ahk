@@ -202,6 +202,15 @@ max(Max, n*){
       Max := Value
   Return Max
 }
+; ObjCount - Count own properties on a plain Object. Replaces v1's catch-all
+; .Count() method on Objects/Maps. Use Array.Length for Arrays and Map.Count
+; (no parens) for Maps — this helper is only for plain Objects used as maps.
+ObjCount(obj){
+  n := 0
+  For _, _ in obj.OwnProps()
+    n++
+  Return n
+}
 ; SemverCompare - Compare two dotted version strings numerically component-by-component.
 ; Returns -1 if a < b, 0 if equal, 1 if a > b. Missing trailing components are treated
 ; as 0 ("3.0" == "3.0.0").

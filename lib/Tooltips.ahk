@@ -8,7 +8,7 @@ Ding(Timeout:=500, MultiTooltip:=0, Message*)
     If MultiTooltip < 0
       MultiTooltip := Abs(MultiTooltip)
     debugStr := ""
-    If Message.Count()
+    If Message.Length
     {
       For mkey, mval in Message
       {
