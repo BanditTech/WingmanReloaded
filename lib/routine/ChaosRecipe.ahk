@@ -741,7 +741,6 @@ VendorChaosRecipe(){
   SetMouseDelay(SetMouseDelayValue)
   SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
   Global InvGrid, CurrentTab
-	MouseGetPos(&xx, &yy)
 	CurrentTab := 0
 	Static Object := {}
 	If !Object.Count()
@@ -822,14 +821,12 @@ VendorChaosRecipe(){
       ; Vendor set
 						If !VendorRoutineChaos() {
 							Notify("Recipe Set INCOMPLETE","Second Time failing",2)
-							MouseMove(xx, yy, 0)
 							CheckRunning("Off")
 							Return False
 						}
 					}
 				} Else {
 					Notify("Could Not reopen stash automatically","",2)
-					MouseMove(xx, yy, 0)
 					CheckRunning("Off")
 					Return False
 				}
