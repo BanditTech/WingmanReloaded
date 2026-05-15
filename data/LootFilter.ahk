@@ -577,7 +577,7 @@ WheelDown::
 
 UpdateScrollBars(thisGui, GuiWidth, GuiHeight)
 {
-  static SIF_RANGE=0x1, SIF_PAGE=0x2, SIF_DISABLENOSCROLL=0x8, SB_HORZ=0, SB_VERT=1
+  static SIF_RANGE:=0x1, SIF_PAGE:=0x2, SIF_DISABLENOSCROLL:=0x8, SB_HORZ:=0, SB_VERT:=1
 
   thisGui.Opt("+LastFound")
 
@@ -631,7 +631,7 @@ UpdateScrollBars(thisGui, GuiWidth, GuiHeight)
 
 OnScroll(wParam, lParam, msg, hwnd)
 {
-  static SIF_ALL=0x17, SCROLL_STEP=10
+  static SIF_ALL:=0x17, SCROLL_STEP:=10
 
   bar := msg=0x115 ; SB_HORZ=0, SB_VERT=1
 
