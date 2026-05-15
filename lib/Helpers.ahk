@@ -236,8 +236,8 @@ UriEncode(str){
 ErrorText(e){
   msg := ""
   For k, type in ["what","file","line","message","extra"] {
-    value := e[type]
-    msg .= (msg ? "`n" : "") type " : " e[type]
+    value := e.%type%
+    msg .= (msg ? "`n" : "") type " : " value
   }
   return msg
 }
