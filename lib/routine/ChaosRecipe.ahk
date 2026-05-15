@@ -741,6 +741,7 @@ VendorChaosRecipe(){
   SetMouseDelay(SetMouseDelayValue)
   SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
   Global InvGrid, CurrentTab
+	MouseGetPos(&xx, &yy)
 	CurrentTab := 0
 	Static Object := {}
 	If !Object.Count()
