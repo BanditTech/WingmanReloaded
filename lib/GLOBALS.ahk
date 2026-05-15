@@ -12,6 +12,9 @@ Global InventoryGridY := []
 Global Bases := ""
 Global GameActive := False
 Global GamePID := 0
+; ChaosRecipe() rebuilds this each run, but CountChaosRecipe()/
+; UpdateGuiChaosCounts may iterate it before ChaosRecipe is ever called.
+Global RecipeArray := {}
 Global ItemParseActive
 Global ClipParseError
 Global QuestItems
