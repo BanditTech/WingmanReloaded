@@ -1918,6 +1918,7 @@ class ItemScan
 		Return False
 	}
 	DisplayPSA(){
+		Global ItemInfoGui
 		propText:=statText:=affixText:=modifierText:=""
 		For key, value in This.Prop
 		{
@@ -1943,9 +1944,9 @@ class ItemScan
 			}
 		}
 
-		Gui("ItemInfo")["ItemInfoPropText"].Value := propText
+		ItemInfoGui["ItemInfoPropText"].Value := propText
 
-		Gui("ItemInfo")["ItemInfoStatText"].Value := statText
+		ItemInfoGui["ItemInfoStatText"].Value := statText
 
 		For key, value in This.Affix
 		{
@@ -1963,22 +1964,25 @@ class ItemScan
 				modifierText .= key . ": " . value . "`n"
 			}
 		}
-		Gui("ItemInfo")["ItemInfoAffixText"].Value := affixText
+		ItemInfoGui["ItemInfoAffixText"].Value := affixText
 
-		Gui("ItemInfo")["ItemInfoModifierText"].Value := modifierText
+		ItemInfoGui["ItemInfoModifierText"].Value := modifierText
 
 	}
 	GraphNinjaPrices(){
+		Global ItemInfoGui
 		If This.Data.Has("Ninja") || This.Data.Has("HelmNinja") || This.Data.Has("BaseNinja")
 		{
 			_GoSub_ShowGraph()
-			Gui("ItemInfo").Show("AutoSize", This.Prop.ItemName " Sparkline")
+			ItemInfoGui.Title := This.Prop.ItemName " Sparkline"
+			ItemInfoGui.Show("AutoSize")
 		}
 		Else
 		{
 			_GoSub_noDataGraph()  ; TODO: convert GoSub label to function call
 			_GoSub_HideGraph()  ; TODO: convert GoSub label to function call
-			Gui("ItemInfo").Show("AutoSize", This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":""))
+			ItemInfoGui.Title := This.Prop.ItemName " has no Graph Data" (This.Prop.IsMap?" for this Tier":"")
+			ItemInfoGui.Show("AutoSize")
 			Return
 		}
 
@@ -2006,27 +2010,27 @@ class ItemScan
 			Else If basePayPoint > 100
 				FormatStr := "{1:0.0f}"
 
-			Gui("ItemInfo")["PercentText1G1"].Value := Format(FormatStr,(basePayPoint*1.0)) "`%"
-			Gui("ItemInfo")["PercentText1G2"].Value := Format(FormatStr,(basePayPoint*0.9)) "`%"
-			Gui("ItemInfo")["PercentText1G3"].Value := Format(FormatStr,(basePayPoint*0.8)) "`%"
-			Gui("ItemInfo")["PercentText1G4"].Value := Format(FormatStr,(basePayPoint*0.7)) "`%"
-			Gui("ItemInfo")["PercentText1G5"].Value := Format(FormatStr,(basePayPoint*0.6)) "`%"
-			Gui("ItemInfo")["PercentText1G6"].Value := Format(FormatStr,(basePayPoint*0.5)) "`%"
-			Gui("ItemInfo")["PercentText1G7"].Value := Format(FormatStr,(basePayPoint*0.4)) "`%"
-			Gui("ItemInfo")["PercentText1G8"].Value := Format(FormatStr,(basePayPoint*0.3)) "`%"
-			Gui("ItemInfo")["PercentText1G9"].Value := Format(FormatStr,(basePayPoint*0.2)) "`%"
-			Gui("ItemInfo")["PercentText1G10"].Value := Format(FormatStr,(basePayPoint*0.1)) "`%"
-			Gui("ItemInfo")["PercentText1G11"].Value := "0`%"
-			Gui("ItemInfo")["PercentText1G12"].Value := Format(FormatStr,-(basePayPoint*0.1)) "`%"
-			Gui("ItemInfo")["PercentText1G13"].Value := Format(FormatStr,-(basePayPoint*0.2)) "`%"
-			Gui("ItemInfo")["PercentText1G14"].Value := Format(FormatStr,-(basePayPoint*0.3)) "`%"
-			Gui("ItemInfo")["PercentText1G15"].Value := Format(FormatStr,-(basePayPoint*0.4)) "`%"
-			Gui("ItemInfo")["PercentText1G16"].Value := Format(FormatStr,-(basePayPoint*0.5)) "`%"
-			Gui("ItemInfo")["PercentText1G17"].Value := Format(FormatStr,-(basePayPoint*0.6)) "`%"
-			Gui("ItemInfo")["PercentText1G18"].Value := Format(FormatStr,-(basePayPoint*0.7)) "`%"
-			Gui("ItemInfo")["PercentText1G19"].Value := Format(FormatStr,-(basePayPoint*0.8)) "`%"
-			Gui("ItemInfo")["PercentText1G20"].Value := Format(FormatStr,-(basePayPoint*0.9)) "`%"
-			Gui("ItemInfo")["PercentText1G21"].Value := Format(FormatStr,-(basePayPoint*1.0)) "`%"
+			ItemInfoGui["PercentText1G1"].Value := Format(FormatStr,(basePayPoint*1.0)) "`%"
+			ItemInfoGui["PercentText1G2"].Value := Format(FormatStr,(basePayPoint*0.9)) "`%"
+			ItemInfoGui["PercentText1G3"].Value := Format(FormatStr,(basePayPoint*0.8)) "`%"
+			ItemInfoGui["PercentText1G4"].Value := Format(FormatStr,(basePayPoint*0.7)) "`%"
+			ItemInfoGui["PercentText1G5"].Value := Format(FormatStr,(basePayPoint*0.6)) "`%"
+			ItemInfoGui["PercentText1G6"].Value := Format(FormatStr,(basePayPoint*0.5)) "`%"
+			ItemInfoGui["PercentText1G7"].Value := Format(FormatStr,(basePayPoint*0.4)) "`%"
+			ItemInfoGui["PercentText1G8"].Value := Format(FormatStr,(basePayPoint*0.3)) "`%"
+			ItemInfoGui["PercentText1G9"].Value := Format(FormatStr,(basePayPoint*0.2)) "`%"
+			ItemInfoGui["PercentText1G10"].Value := Format(FormatStr,(basePayPoint*0.1)) "`%"
+			ItemInfoGui["PercentText1G11"].Value := "0`%"
+			ItemInfoGui["PercentText1G12"].Value := Format(FormatStr,-(basePayPoint*0.1)) "`%"
+			ItemInfoGui["PercentText1G13"].Value := Format(FormatStr,-(basePayPoint*0.2)) "`%"
+			ItemInfoGui["PercentText1G14"].Value := Format(FormatStr,-(basePayPoint*0.3)) "`%"
+			ItemInfoGui["PercentText1G15"].Value := Format(FormatStr,-(basePayPoint*0.4)) "`%"
+			ItemInfoGui["PercentText1G16"].Value := Format(FormatStr,-(basePayPoint*0.5)) "`%"
+			ItemInfoGui["PercentText1G17"].Value := Format(FormatStr,-(basePayPoint*0.6)) "`%"
+			ItemInfoGui["PercentText1G18"].Value := Format(FormatStr,-(basePayPoint*0.7)) "`%"
+			ItemInfoGui["PercentText1G19"].Value := Format(FormatStr,-(basePayPoint*0.8)) "`%"
+			ItemInfoGui["PercentText1G20"].Value := Format(FormatStr,-(basePayPoint*0.9)) "`%"
+			ItemInfoGui["PercentText1G21"].Value := Format(FormatStr,-(basePayPoint*1.0)) "`%"
 
 			baseRecPoint := 0
 			For k, v in dataRecPoint
@@ -2045,27 +2049,27 @@ class ItemScan
 			Else If baseRecPoint > 100
 				FormatStr := "{1:0.0f}"
 
-			Gui("ItemInfo")["PercentText2G1"].Value := Format(FormatStr,(baseRecPoint*1.0)) "`%"
-			Gui("ItemInfo")["PercentText2G2"].Value := Format(FormatStr,(baseRecPoint*0.9)) "`%"
-			Gui("ItemInfo")["PercentText2G3"].Value := Format(FormatStr,(baseRecPoint*0.8)) "`%"
-			Gui("ItemInfo")["PercentText2G4"].Value := Format(FormatStr,(baseRecPoint*0.7)) "`%"
-			Gui("ItemInfo")["PercentText2G5"].Value := Format(FormatStr,(baseRecPoint*0.6)) "`%"
-			Gui("ItemInfo")["PercentText2G6"].Value := Format(FormatStr,(baseRecPoint*0.5)) "`%"
-			Gui("ItemInfo")["PercentText2G7"].Value := Format(FormatStr,(baseRecPoint*0.4)) "`%"
-			Gui("ItemInfo")["PercentText2G8"].Value := Format(FormatStr,(baseRecPoint*0.3)) "`%"
-			Gui("ItemInfo")["PercentText2G9"].Value := Format(FormatStr,(baseRecPoint*0.2)) "`%"
-			Gui("ItemInfo")["PercentText2G10"].Value := Format(FormatStr,(baseRecPoint*0.1)) "`%"
-			Gui("ItemInfo")["PercentText2G11"].Value := "0`%"
-			Gui("ItemInfo")["PercentText2G12"].Value := Format(FormatStr,-(baseRecPoint*0.1)) "`%"
-			Gui("ItemInfo")["PercentText2G13"].Value := Format(FormatStr,-(baseRecPoint*0.2)) "`%"
-			Gui("ItemInfo")["PercentText2G14"].Value := Format(FormatStr,-(baseRecPoint*0.3)) "`%"
-			Gui("ItemInfo")["PercentText2G15"].Value := Format(FormatStr,-(baseRecPoint*0.4)) "`%"
-			Gui("ItemInfo")["PercentText2G16"].Value := Format(FormatStr,-(baseRecPoint*0.5)) "`%"
-			Gui("ItemInfo")["PercentText2G17"].Value := Format(FormatStr,-(baseRecPoint*0.6)) "`%"
-			Gui("ItemInfo")["PercentText2G18"].Value := Format(FormatStr,-(baseRecPoint*0.7)) "`%"
-			Gui("ItemInfo")["PercentText2G19"].Value := Format(FormatStr,-(baseRecPoint*0.8)) "`%"
-			Gui("ItemInfo")["PercentText2G20"].Value := Format(FormatStr,-(baseRecPoint*0.9)) "`%"
-			Gui("ItemInfo")["PercentText2G21"].Value := Format(FormatStr,-(baseRecPoint*1.0)) "`%"
+			ItemInfoGui["PercentText2G1"].Value := Format(FormatStr,(baseRecPoint*1.0)) "`%"
+			ItemInfoGui["PercentText2G2"].Value := Format(FormatStr,(baseRecPoint*0.9)) "`%"
+			ItemInfoGui["PercentText2G3"].Value := Format(FormatStr,(baseRecPoint*0.8)) "`%"
+			ItemInfoGui["PercentText2G4"].Value := Format(FormatStr,(baseRecPoint*0.7)) "`%"
+			ItemInfoGui["PercentText2G5"].Value := Format(FormatStr,(baseRecPoint*0.6)) "`%"
+			ItemInfoGui["PercentText2G6"].Value := Format(FormatStr,(baseRecPoint*0.5)) "`%"
+			ItemInfoGui["PercentText2G7"].Value := Format(FormatStr,(baseRecPoint*0.4)) "`%"
+			ItemInfoGui["PercentText2G8"].Value := Format(FormatStr,(baseRecPoint*0.3)) "`%"
+			ItemInfoGui["PercentText2G9"].Value := Format(FormatStr,(baseRecPoint*0.2)) "`%"
+			ItemInfoGui["PercentText2G10"].Value := Format(FormatStr,(baseRecPoint*0.1)) "`%"
+			ItemInfoGui["PercentText2G11"].Value := "0`%"
+			ItemInfoGui["PercentText2G12"].Value := Format(FormatStr,-(baseRecPoint*0.1)) "`%"
+			ItemInfoGui["PercentText2G13"].Value := Format(FormatStr,-(baseRecPoint*0.2)) "`%"
+			ItemInfoGui["PercentText2G14"].Value := Format(FormatStr,-(baseRecPoint*0.3)) "`%"
+			ItemInfoGui["PercentText2G15"].Value := Format(FormatStr,-(baseRecPoint*0.4)) "`%"
+			ItemInfoGui["PercentText2G16"].Value := Format(FormatStr,-(baseRecPoint*0.5)) "`%"
+			ItemInfoGui["PercentText2G17"].Value := Format(FormatStr,-(baseRecPoint*0.6)) "`%"
+			ItemInfoGui["PercentText2G18"].Value := Format(FormatStr,-(baseRecPoint*0.7)) "`%"
+			ItemInfoGui["PercentText2G19"].Value := Format(FormatStr,-(baseRecPoint*0.8)) "`%"
+			ItemInfoGui["PercentText2G20"].Value := Format(FormatStr,-(baseRecPoint*0.9)) "`%"
+			ItemInfoGui["PercentText2G21"].Value := Format(FormatStr,-(baseRecPoint*1.0)) "`%"
 
 			AvgPay := Map()
 			Loop 5
@@ -2118,48 +2122,48 @@ class ItemScan
 				;MsgBox % "Key : " k "   Val : " v
 			}
 
-			Gui("ItemInfo")["GroupBox1"].Value := "Sell " This.Prop.ItemName " to Chaos"
+			ItemInfoGui["GroupBox1"].Value := "Sell " This.Prop.ItemName " to Chaos"
 			ItemInfoGui["PComment1"].Text := "Sell Value"
-			Gui("ItemInfo")["PData1"].Value := sellval := (1 / This.Data.Ninja["pay"]["value"])
+			ItemInfoGui["PData1"].Value := sellval := (1 / This.Data.Ninja["pay"]["value"])
 			ItemInfoGui["PComment2"].Text := "Sell Value `% Change"
-			Gui("ItemInfo")["PData2"].Value := This.Data.Ninja["paySparkLine"]["totalChange"]
+			ItemInfoGui["PData2"].Value := This.Data.Ninja["paySparkLine"]["totalChange"]
 			ItemInfoGui["PComment3"].Text := "Orb per Chaos"
-			Gui("ItemInfo")["PData3"].Value := This.Data.Ninja["pay"]["value"]
+			ItemInfoGui["PData3"].Value := This.Data.Ninja["pay"]["value"]
 			ItemInfoGui["PComment4"].Text := "Day 6 Change"
-			Gui("ItemInfo")["PData4"].Value := dataPayPoint[2]
+			ItemInfoGui["PData4"].Value := dataPayPoint[2]
 			ItemInfoGui["PComment5"].Text := "Day 5 Change"
-			Gui("ItemInfo")["PData5"].Value := dataPayPoint[3]
+			ItemInfoGui["PData5"].Value := dataPayPoint[3]
 			ItemInfoGui["PComment6"].Text := "Day 4 Change"
-			Gui("ItemInfo")["PData6"].Value := dataPayPoint[4]
+			ItemInfoGui["PData6"].Value := dataPayPoint[4]
 			ItemInfoGui["PComment7"].Text := "Day 3 Change"
-			Gui("ItemInfo")["PData7"].Value := dataPayPoint[5]
+			ItemInfoGui["PData7"].Value := dataPayPoint[5]
 			ItemInfoGui["PComment8"].Text := "Day 2 Change"
-			Gui("ItemInfo")["PData8"].Value := dataPayPoint[6]
+			ItemInfoGui["PData8"].Value := dataPayPoint[6]
 			ItemInfoGui["PComment9"].Text := "Day 1 Change"
-			Gui("ItemInfo")["PData9"].Value := dataPayPoint[7]
-			Gui("ItemInfo")["PComment10"].Value := Decimal2Fraction(sellval,"ID3")
+			ItemInfoGui["PData9"].Value := dataPayPoint[7]
+			ItemInfoGui["PComment10"].Value := Decimal2Fraction(sellval,"ID3")
 			ItemInfoGui["PData10"].Text := "C / O"
 
-			Gui("ItemInfo")["GroupBox2"].Value := "Buy " This.Prop.ItemName " from Chaos"
+			ItemInfoGui["GroupBox2"].Value := "Buy " This.Prop.ItemName " from Chaos"
 			ItemInfoGui["SComment1"].Text := "Buy Value"
-			Gui("ItemInfo")["SData1"].Value := sellval := (This.Data.Ninja["receive"]["value"])
+			ItemInfoGui["SData1"].Value := sellval := (This.Data.Ninja["receive"]["value"])
 			ItemInfoGui["SComment2"].Text := "Buy Value `% Change"
-			Gui("ItemInfo")["SData2"].Value := This.Data.Ninja["receiveSparkLine"]["totalChange"]
+			ItemInfoGui["SData2"].Value := This.Data.Ninja["receiveSparkLine"]["totalChange"]
 			ItemInfoGui["SComment3"].Text := "Orb per Chaos"
-			Gui("ItemInfo")["SData3"].Value := 1 / This.Data.Ninja["receive"]["value"]
+			ItemInfoGui["SData3"].Value := 1 / This.Data.Ninja["receive"]["value"]
 			ItemInfoGui["SComment4"].Text := "Day 6 Change"
-			Gui("ItemInfo")["SData4"].Value := dataRecPoint[2]
+			ItemInfoGui["SData4"].Value := dataRecPoint[2]
 			ItemInfoGui["SComment5"].Text := "Day 5 Change"
-			Gui("ItemInfo")["SData5"].Value := dataRecPoint[3]
+			ItemInfoGui["SData5"].Value := dataRecPoint[3]
 			ItemInfoGui["SComment6"].Text := "Day 4 Change"
-			Gui("ItemInfo")["SData6"].Value := dataRecPoint[4]
+			ItemInfoGui["SData6"].Value := dataRecPoint[4]
 			ItemInfoGui["SComment7"].Text := "Day 3 Change"
-			Gui("ItemInfo")["SData7"].Value := dataRecPoint[5]
+			ItemInfoGui["SData7"].Value := dataRecPoint[5]
 			ItemInfoGui["SComment8"].Text := "Day 2 Change"
-			Gui("ItemInfo")["SData8"].Value := dataRecPoint[6]
+			ItemInfoGui["SData8"].Value := dataRecPoint[6]
 			ItemInfoGui["SComment9"].Text := "Day 1 Change"
-			Gui("ItemInfo")["SData9"].Value := dataRecPoint[7]
-			Gui("ItemInfo")["SComment10"].Value := Decimal2Fraction(sellval,"ID3")
+			ItemInfoGui["SData9"].Value := dataRecPoint[7]
+			ItemInfoGui["SComment10"].Value := Decimal2Fraction(sellval,"ID3")
 			ItemInfoGui["SData10"].Text := "C / O"
 
 		}
@@ -2222,27 +2226,27 @@ class ItemScan
 				Else If basePoint > 100
 					FormatStr := "{1:0.0f}"
 
-				Gui("ItemInfo")["PercentText1G1"].Value := Format(FormatStr,(basePoint*1.0)) "`%"
-				Gui("ItemInfo")["PercentText1G2"].Value := Format(FormatStr,(basePoint*0.9)) "`%"
-				Gui("ItemInfo")["PercentText1G3"].Value := Format(FormatStr,(basePoint*0.8)) "`%"
-				Gui("ItemInfo")["PercentText1G4"].Value := Format(FormatStr,(basePoint*0.7)) "`%"
-				Gui("ItemInfo")["PercentText1G5"].Value := Format(FormatStr,(basePoint*0.6)) "`%"
-				Gui("ItemInfo")["PercentText1G6"].Value := Format(FormatStr,(basePoint*0.5)) "`%"
-				Gui("ItemInfo")["PercentText1G7"].Value := Format(FormatStr,(basePoint*0.4)) "`%"
-				Gui("ItemInfo")["PercentText1G8"].Value := Format(FormatStr,(basePoint*0.3)) "`%"
-				Gui("ItemInfo")["PercentText1G9"].Value := Format(FormatStr,(basePoint*0.2)) "`%"
-				Gui("ItemInfo")["PercentText1G10"].Value := Format(FormatStr,(basePoint*0.1)) "`%"
-				Gui("ItemInfo")["PercentText1G11"].Value := "0`%"
-				Gui("ItemInfo")["PercentText1G12"].Value := Format(FormatStr,-(basePoint*0.1)) "`%"
-				Gui("ItemInfo")["PercentText1G13"].Value := Format(FormatStr,-(basePoint*0.2)) "`%"
-				Gui("ItemInfo")["PercentText1G14"].Value := Format(FormatStr,-(basePoint*0.3)) "`%"
-				Gui("ItemInfo")["PercentText1G15"].Value := Format(FormatStr,-(basePoint*0.4)) "`%"
-				Gui("ItemInfo")["PercentText1G16"].Value := Format(FormatStr,-(basePoint*0.5)) "`%"
-				Gui("ItemInfo")["PercentText1G17"].Value := Format(FormatStr,-(basePoint*0.6)) "`%"
-				Gui("ItemInfo")["PercentText1G18"].Value := Format(FormatStr,-(basePoint*0.7)) "`%"
-				Gui("ItemInfo")["PercentText1G19"].Value := Format(FormatStr,-(basePoint*0.8)) "`%"
-				Gui("ItemInfo")["PercentText1G20"].Value := Format(FormatStr,-(basePoint*0.9)) "`%"
-				Gui("ItemInfo")["PercentText1G21"].Value := Format(FormatStr,-(basePoint*1.0)) "`%"
+				ItemInfoGui["PercentText1G1"].Value := Format(FormatStr,(basePoint*1.0)) "`%"
+				ItemInfoGui["PercentText1G2"].Value := Format(FormatStr,(basePoint*0.9)) "`%"
+				ItemInfoGui["PercentText1G3"].Value := Format(FormatStr,(basePoint*0.8)) "`%"
+				ItemInfoGui["PercentText1G4"].Value := Format(FormatStr,(basePoint*0.7)) "`%"
+				ItemInfoGui["PercentText1G5"].Value := Format(FormatStr,(basePoint*0.6)) "`%"
+				ItemInfoGui["PercentText1G6"].Value := Format(FormatStr,(basePoint*0.5)) "`%"
+				ItemInfoGui["PercentText1G7"].Value := Format(FormatStr,(basePoint*0.4)) "`%"
+				ItemInfoGui["PercentText1G8"].Value := Format(FormatStr,(basePoint*0.3)) "`%"
+				ItemInfoGui["PercentText1G9"].Value := Format(FormatStr,(basePoint*0.2)) "`%"
+				ItemInfoGui["PercentText1G10"].Value := Format(FormatStr,(basePoint*0.1)) "`%"
+				ItemInfoGui["PercentText1G11"].Value := "0`%"
+				ItemInfoGui["PercentText1G12"].Value := Format(FormatStr,-(basePoint*0.1)) "`%"
+				ItemInfoGui["PercentText1G13"].Value := Format(FormatStr,-(basePoint*0.2)) "`%"
+				ItemInfoGui["PercentText1G14"].Value := Format(FormatStr,-(basePoint*0.3)) "`%"
+				ItemInfoGui["PercentText1G15"].Value := Format(FormatStr,-(basePoint*0.4)) "`%"
+				ItemInfoGui["PercentText1G16"].Value := Format(FormatStr,-(basePoint*0.5)) "`%"
+				ItemInfoGui["PercentText1G17"].Value := Format(FormatStr,-(basePoint*0.6)) "`%"
+				ItemInfoGui["PercentText1G18"].Value := Format(FormatStr,-(basePoint*0.7)) "`%"
+				ItemInfoGui["PercentText1G19"].Value := Format(FormatStr,-(basePoint*0.8)) "`%"
+				ItemInfoGui["PercentText1G20"].Value := Format(FormatStr,-(basePoint*0.9)) "`%"
+				ItemInfoGui["PercentText1G21"].Value := Format(FormatStr,-(basePoint*1.0)) "`%"
 
 				Avg := Map()
 				Loop 5
@@ -2270,27 +2274,27 @@ class ItemScan
 					;MsgBox % "Key : " k "   Val : " v
 				}
 
-				Gui("ItemInfo")["GroupBox1"].Value := (HTGraph == "Name"?"Value of " This.Prop.ItemName : (HTGraph == "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
+				ItemInfoGui["GroupBox1"].Value := (HTGraph == "Name"?"Value of " This.Prop.ItemName : (HTGraph == "Base" ? "Value of " This.Prop.ItemBase :"Value Title Undefined") )
 				ItemInfoGui["PComment1"].Text := "Chaos Value"
-				Gui("ItemInfo")["PData1"].Value := (HTGraph == "Name"?This.Data.Ninja["chaosValue"]:(HTGraph == "Base"?This.Data.BaseNinja["chaosValue"]:""))
+				ItemInfoGui["PData1"].Value := (HTGraph == "Name"?This.Data.Ninja["chaosValue"]:(HTGraph == "Base"?This.Data.BaseNinja["chaosValue"]:""))
 				ItemInfoGui["PComment2"].Text := "Exalted Value"
-				Gui("ItemInfo")["PData2"].Value := (HTGraph == "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph == "Base"?This.Data.BaseNinja["exaltedValue"]:""))
+				ItemInfoGui["PData2"].Value := (HTGraph == "Name"?This.Data.Ninja["exaltedValue"]:(HTGraph == "Base"?This.Data.BaseNinja["exaltedValue"]:""))
 				ItemInfoGui["PComment3"].Text := "Chaos Value `% Change"
-				Gui("ItemInfo")["PData3"].Value := (HTGraph == "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph == "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
+				ItemInfoGui["PData3"].Value := (HTGraph == "Name"?This.Data.Ninja["sparkline"]["totalChange"]:(HTGraph == "Base"?This.Data.BaseNinja["sparkline"]["totalChange"]:""))
 				ItemInfoGui["PComment4"].Text := "Day 6 Change"
-				Gui("ItemInfo")["PData4"].Value := dataPoint[2]
+				ItemInfoGui["PData4"].Value := dataPoint[2]
 				ItemInfoGui["PComment5"].Text := "Day 5 Change"
-				Gui("ItemInfo")["PData5"].Value := dataPoint[3]
+				ItemInfoGui["PData5"].Value := dataPoint[3]
 				ItemInfoGui["PComment6"].Text := "Day 4 Change"
-				Gui("ItemInfo")["PData6"].Value := dataPoint[4]
+				ItemInfoGui["PData6"].Value := dataPoint[4]
 				ItemInfoGui["PComment7"].Text := "Day 3 Change"
-				Gui("ItemInfo")["PData7"].Value := dataPoint[5]
+				ItemInfoGui["PData7"].Value := dataPoint[5]
 				ItemInfoGui["PComment8"].Text := "Day 2 Change"
-				Gui("ItemInfo")["PData8"].Value := dataPoint[6]
+				ItemInfoGui["PData8"].Value := dataPoint[6]
 				ItemInfoGui["PComment9"].Text := "Day 1 Change"
-				Gui("ItemInfo")["PData9"].Value := dataPoint[7]
-				Gui("ItemInfo")["PComment10"].Value := ""
-				Gui("ItemInfo")["PData10"].Value := ""
+				ItemInfoGui["PData9"].Value := dataPoint[7]
+				ItemInfoGui["PComment10"].Value := ""
+				ItemInfoGui["PData10"].Value := ""
 			}
 			Else
 			{
@@ -2317,27 +2321,27 @@ class ItemScan
 				Else If baseLTPoint > 100
 					FormatStr := "{1:0.0f}"
 
-				Gui("ItemInfo")["PercentText2G1"].Value := Format(FormatStr,(baseLTPoint*1.0)) "`%"
-				Gui("ItemInfo")["PercentText2G2"].Value := Format(FormatStr,(baseLTPoint*0.9)) "`%"
-				Gui("ItemInfo")["PercentText2G3"].Value := Format(FormatStr,(baseLTPoint*0.8)) "`%"
-				Gui("ItemInfo")["PercentText2G4"].Value := Format(FormatStr,(baseLTPoint*0.7)) "`%"
-				Gui("ItemInfo")["PercentText2G5"].Value := Format(FormatStr,(baseLTPoint*0.6)) "`%"
-				Gui("ItemInfo")["PercentText2G6"].Value := Format(FormatStr,(baseLTPoint*0.5)) "`%"
-				Gui("ItemInfo")["PercentText2G7"].Value := Format(FormatStr,(baseLTPoint*0.4)) "`%"
-				Gui("ItemInfo")["PercentText2G8"].Value := Format(FormatStr,(baseLTPoint*0.3)) "`%"
-				Gui("ItemInfo")["PercentText2G9"].Value := Format(FormatStr,(baseLTPoint*0.2)) "`%"
-				Gui("ItemInfo")["PercentText2G10"].Value := Format(FormatStr,(baseLTPoint*0.1)) "`%"
-				Gui("ItemInfo")["PercentText2G11"].Value := "0`%"
-				Gui("ItemInfo")["PercentText2G12"].Value := Format(FormatStr,-(baseLTPoint*0.1)) "`%"
-				Gui("ItemInfo")["PercentText2G13"].Value := Format(FormatStr,-(baseLTPoint*0.2)) "`%"
-				Gui("ItemInfo")["PercentText2G14"].Value := Format(FormatStr,-(baseLTPoint*0.3)) "`%"
-				Gui("ItemInfo")["PercentText2G15"].Value := Format(FormatStr,-(baseLTPoint*0.4)) "`%"
-				Gui("ItemInfo")["PercentText2G16"].Value := Format(FormatStr,-(baseLTPoint*0.5)) "`%"
-				Gui("ItemInfo")["PercentText2G17"].Value := Format(FormatStr,-(baseLTPoint*0.6)) "`%"
-				Gui("ItemInfo")["PercentText2G18"].Value := Format(FormatStr,-(baseLTPoint*0.7)) "`%"
-				Gui("ItemInfo")["PercentText2G19"].Value := Format(FormatStr,-(baseLTPoint*0.8)) "`%"
-				Gui("ItemInfo")["PercentText2G20"].Value := Format(FormatStr,-(baseLTPoint*0.9)) "`%"
-				Gui("ItemInfo")["PercentText2G21"].Value := Format(FormatStr,-(baseLTPoint*1.0)) "`%"
+				ItemInfoGui["PercentText2G1"].Value := Format(FormatStr,(baseLTPoint*1.0)) "`%"
+				ItemInfoGui["PercentText2G2"].Value := Format(FormatStr,(baseLTPoint*0.9)) "`%"
+				ItemInfoGui["PercentText2G3"].Value := Format(FormatStr,(baseLTPoint*0.8)) "`%"
+				ItemInfoGui["PercentText2G4"].Value := Format(FormatStr,(baseLTPoint*0.7)) "`%"
+				ItemInfoGui["PercentText2G5"].Value := Format(FormatStr,(baseLTPoint*0.6)) "`%"
+				ItemInfoGui["PercentText2G6"].Value := Format(FormatStr,(baseLTPoint*0.5)) "`%"
+				ItemInfoGui["PercentText2G7"].Value := Format(FormatStr,(baseLTPoint*0.4)) "`%"
+				ItemInfoGui["PercentText2G8"].Value := Format(FormatStr,(baseLTPoint*0.3)) "`%"
+				ItemInfoGui["PercentText2G9"].Value := Format(FormatStr,(baseLTPoint*0.2)) "`%"
+				ItemInfoGui["PercentText2G10"].Value := Format(FormatStr,(baseLTPoint*0.1)) "`%"
+				ItemInfoGui["PercentText2G11"].Value := "0`%"
+				ItemInfoGui["PercentText2G12"].Value := Format(FormatStr,-(baseLTPoint*0.1)) "`%"
+				ItemInfoGui["PercentText2G13"].Value := Format(FormatStr,-(baseLTPoint*0.2)) "`%"
+				ItemInfoGui["PercentText2G14"].Value := Format(FormatStr,-(baseLTPoint*0.3)) "`%"
+				ItemInfoGui["PercentText2G15"].Value := Format(FormatStr,-(baseLTPoint*0.4)) "`%"
+				ItemInfoGui["PercentText2G16"].Value := Format(FormatStr,-(baseLTPoint*0.5)) "`%"
+				ItemInfoGui["PercentText2G17"].Value := Format(FormatStr,-(baseLTPoint*0.6)) "`%"
+				ItemInfoGui["PercentText2G18"].Value := Format(FormatStr,-(baseLTPoint*0.7)) "`%"
+				ItemInfoGui["PercentText2G19"].Value := Format(FormatStr,-(baseLTPoint*0.8)) "`%"
+				ItemInfoGui["PercentText2G20"].Value := Format(FormatStr,-(baseLTPoint*0.9)) "`%"
+				ItemInfoGui["PercentText2G21"].Value := Format(FormatStr,-(baseLTPoint*1.0)) "`%"
 
 				LTAvg := Map()
 				Loop 5
@@ -2365,27 +2369,27 @@ class ItemScan
 					;MsgBox % "Key : " k "   Val : " v
 				}
 
-				Gui("ItemInfo")["GroupBox2"].Value := (LTGraph == "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph == "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
+				ItemInfoGui["GroupBox2"].Value := (LTGraph == "Base"? ("Value of " This.Prop.ItemLevel " " This.Prop.Influence " " This.Prop.ItemBase ) : (LTGraph == "Helm" ? "Value of " This.Data.HelmNinja["name"] : "") )
 				ItemInfoGui["SComment1"].Text := "Chaos Value"
-				Gui("ItemInfo")["SData1"].Value := (LTGraph == "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph == "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
-				Gui("ItemInfo")["SComment2"].Value := ""
-				Gui("ItemInfo")["SData2"].Value := ""
+				ItemInfoGui["SData1"].Value := (LTGraph == "Base"? This.Data.BaseNinja["chaosValue"] : (LTGraph == "Helm" ? This.Data.HelmNinja["chaosValue"] : "") )
+				ItemInfoGui["SComment2"].Value := ""
+				ItemInfoGui["SData2"].Value := ""
 				ItemInfoGui["SComment3"].Text := "Chaos Value `% Change"
-				Gui("ItemInfo")["SData3"].Value := (LTGraph == "Base"? This.Data.BaseNinja["sparkline"]["totalChange"] : (LTGraph == "Helm" ? This.Data.HelmNinja["sparkline"]["totalChange"] : "") )
+				ItemInfoGui["SData3"].Value := (LTGraph == "Base"? This.Data.BaseNinja["sparkline"]["totalChange"] : (LTGraph == "Helm" ? This.Data.HelmNinja["sparkline"]["totalChange"] : "") )
 				ItemInfoGui["SComment4"].Text := "Day 6 Change"
-				Gui("ItemInfo")["SData4"].Value := dataLTPoint[2]
+				ItemInfoGui["SData4"].Value := dataLTPoint[2]
 				ItemInfoGui["SComment5"].Text := "Day 5 Change"
-				Gui("ItemInfo")["SData5"].Value := dataLTPoint[3]
+				ItemInfoGui["SData5"].Value := dataLTPoint[3]
 				ItemInfoGui["SComment6"].Text := "Day 4 Change"
-				Gui("ItemInfo")["SData6"].Value := dataLTPoint[4]
+				ItemInfoGui["SData6"].Value := dataLTPoint[4]
 				ItemInfoGui["SComment7"].Text := "Day 3 Change"
-				Gui("ItemInfo")["SData7"].Value := dataLTPoint[5]
+				ItemInfoGui["SData7"].Value := dataLTPoint[5]
 				ItemInfoGui["SComment8"].Text := "Day 2 Change"
-				Gui("ItemInfo")["SData8"].Value := dataLTPoint[6]
+				ItemInfoGui["SData8"].Value := dataLTPoint[6]
 				ItemInfoGui["SComment9"].Text := "Day 1 Change"
-				Gui("ItemInfo")["SData9"].Value := dataLTPoint[7]
-				Gui("ItemInfo")["SComment10"].Value := ""
-				Gui("ItemInfo")["SData10"].Value := ""
+				ItemInfoGui["SData9"].Value := dataLTPoint[7]
+				ItemInfoGui["SComment10"].Value := ""
+				ItemInfoGui["SData10"].Value := ""
 			}
 			Else
 			{
@@ -2460,8 +2464,8 @@ class ItemScan
 			{
 				ItemInfoGui["PercentText1G" A_Index].Visible := False
 			}
-			Gui("ItemInfo")["pGraph1"].Visible := False
-			Gui("ItemInfo")["GroupBox1"].Visible := False
+			ItemInfoGui["pGraph1"].Visible := False
+			ItemInfoGui["GroupBox1"].Visible := False
 			Loop 10
 			{
 				ItemInfoGui["PComment" A_Index].Visible := False
@@ -2473,8 +2477,8 @@ class ItemScan
 			{
 				ItemInfoGui["PercentText2G" A_Index].Visible := False
 			}
-			Gui("ItemInfo")["pGraph2"].Visible := False
-			Gui("ItemInfo")["GroupBox2"].Visible := False
+			ItemInfoGui["pGraph2"].Visible := False
+			ItemInfoGui["GroupBox2"].Visible := False
 			Loop 10
 			{
 				ItemInfoGui["SComment" A_Index].Visible := False
