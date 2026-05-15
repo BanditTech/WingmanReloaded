@@ -65,7 +65,7 @@ For k, str in ["7za.exe","mtee.exe","LootFilter.ahk","WR_Prop.json","WR_Pseudo.j
 if !FileExist(A_ScriptDir "\data\Bases.json")
 {
 	Try {
-		Download("https://raw.githubusercontent.com/lvlvllvlvllvlvl/RePoE/master/RePoE/data/base_items.json", A_ScriptDir "\data\Bases.json")
+		Download("https://repoe-fork.github.io/base_items.json", A_ScriptDir "\data\Bases.json")
 		Log("Verbose","Data downloaded Correctly", "Downloading Bases.json was a success")
 	} Catch {
 		Log("Error","Data download error", "Bases.json")
