@@ -226,17 +226,17 @@ Class Util {
 		}
 		static Msg(t*){
 			local flag := "", k, v, File, line := ""
-			If (t.1 ~= "Verbose" && !This.Debug.Verbose)
+			If (t[1] ~= "Verbose" && !This.Debug.Verbose)
 				Return
-			Else If (t.1 ~= "^\w+$" || t.1 ~= ".+ $")
+			Else If (t[1] ~= "^\w+$" || t[1] ~= ".+ $")
 				flag := Rtrim(t.RemoveAt(1))
 			If !(flag ~= "[eE]rror|WingmanReloaded|[iI]nit|[bB]ug|[iI]ssue|[fF]ail") && (This.Debug.Log >= 0 && !This.Debug.Log)
 				Return False
 			If !This.Log.ActiveFile
 				This.Log.Open()
 			File := FileOpen(This.Log.ActiveFile,"a")
-			If t.1.Count()
-				t := t.1
+			If (t[1] is Array && t[1].Length)
+				t := t[1]
 			For k, v in t {
 				If isObject(v)
 					vstr := JSON.Dump(v)
