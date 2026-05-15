@@ -9,7 +9,7 @@ WR_StatusBarCtrl.SetText("Logic Status", 1)
 WR_StatusBarCtrl.SetText("Location Status", 2)
 WR_StatusBarCtrl.SetText("Percentage not updated", 3)
 
-MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", "Main|Configuration|Hotkeys|Debug")
+MainGuiTabCtrl := MainGui.Add("Tab2", "vMainGuiTabs xm y3 w655 h505 -wrap", ["Main","Configuration","Hotkeys","Debug"])
 ; #Main Tab
 	MainGuiTabCtrl.UseTab(1)
 	MainGui.SetFont()

@@ -67,7 +67,7 @@ WR_Menu(Function:="",Var*){
       InventoryGui.Add("GroupBox", "Section w180 h160 xs y+5", "Item Parse Settings")
       InventoryGui.SetFont()
       InventoryGui.Add("Checkbox", "vYesNinjaDatabase xs+5 ys+20 Checked" YesNinjaDatabase, "Update PoE.Ninja DB?")
-      InventoryGui.Add("DropDownList", "vUpdateDatabaseInterval x+1 yp-4 w30 Choose" UpdateDatabaseInterval, "1|2|3|4|5|6|7")
+      InventoryGui.Add("DropDownList", "vUpdateDatabaseInterval x+1 yp-4 w30 Choose" UpdateDatabaseInterval, ["1","2","3","4","5","6","7"])
       InventoryGui.Add("Checkbox", "vForceMatch6Link xs+5 y+8 Checked" ForceMatch6Link, "Match with the 6 Link price")
       InventoryGui.Add("Checkbox", "vForceMatchGem20 xs+5 y+8 Checked" ForceMatchGem20, "Match with gems below 20")
 
@@ -203,9 +203,9 @@ WR_Menu(Function:="",Var*){
       InventoryGui.SetFont("Bold s9 cBlack", "Arial")
       InventoryGui.Add("GroupBox", "w185 h135 Section xs y+10", "Map/Contract Options")
       InventoryGui.SetFont()
-      InventoryGui.Add("DropDownList", "w40 vYesSkipMaps_eval xs+5 yp+18", ">=|<=").OnEvent("Change", UpdateExtra)
+      InventoryGui.Add("DropDownList", "w40 vYesSkipMaps_eval xs+5 yp+18", [">=","<="]).OnEvent("Change", UpdateExtra)
       InventoryGui["YesSkipMaps_eval"].Choose(YesSkipMaps_eval)
-      InventoryGui.Add("DropDownList", "w40 vYesSkipMaps x+3 yp", "0|1|2|3|4|5|6|7|8|9|10|11|12").OnEvent("Change", UpdateExtra)
+      InventoryGui.Add("DropDownList", "w40 vYesSkipMaps x+3 yp", ["0","1","2","3","4","5","6","7","8","9","10","11","12"]).OnEvent("Change", UpdateExtra)
       InventoryGui["YesSkipMaps"].Choose(YesSkipMaps)
       InventoryGui.Add("Text", "yp+3 x+5", "Column to Skip")
       InventoryGui.Add("Checkbox", "vYesSkipMaps_normal Checked" YesSkipMaps_normal " xs+5 y+8", "Skip Normal?").OnEvent("Click", UpdateExtra)
@@ -735,7 +735,7 @@ WR_Menu(Function:="",Var*){
       CraftingGui.SetFont("Bold s9 cBlack", "Arial")
       CraftingGui.Add("GroupBox", "w292 h60 xs yp+40", "Item Crafting Method")
       CraftingGui.SetFont()
-      CraftingGui.Add("DropDownList", "vItemCraftingMethod xp+10 yp+25 w270", "Alteration Spam|Alteration and Aug Spam|Alteration and Aug and Regal Spam|Scouring and Alchemy Spam|Chaos Spam").OnEvent("Change", ItemCraftingSubmit)
+      CraftingGui.Add("DropDownList", "vItemCraftingMethod xp+10 yp+25 w270", ["Alteration Spam","Alteration and Aug Spam","Alteration and Aug and Regal Spam","Scouring and Alchemy Spam","Chaos Spam"]).OnEvent("Change", ItemCraftingSubmit)
       ; Select DDL Value Based on Last Value Saved
       CraftingGui["ItemCraftingMethod"].Choose(ItemCraftingMethod)
 
@@ -996,7 +996,7 @@ WR_Menu(Function:="",Var*){
 
       ControllerGui.Add("Checkbox", "Section xp y+-10 vYesMovementKeys Checked" YesMovementKeys, "Use Move Keys?")
       ControllerGui.Add("Checkbox", "vYesTriggerUtilityKey Checked" YesTriggerUtilityKey, "Use utility on Move?")
-      ControllerGui.Add("DropDownList", "x+5 yp-5 w40 vTriggerUtilityKey Choose" TriggerUtilityKey, "1|2|3|4|5")
+      ControllerGui.Add("DropDownList", "x+5 yp-5 w40 vTriggerUtilityKey Choose" TriggerUtilityKey, ["1","2","3","4","5"])
 
       ControllerGui.Add("GroupBox", "Section xm+80 ym+15 w80 h40", "L Bumper")
       ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonLB", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)
@@ -1016,7 +1016,7 @@ WR_Menu(Function:="",Var*){
 
       ControllerGui.Add("GroupBox", "Section xs+190 ys w80 h80", "Right Joystick")
       ControllerGui.Add("Checkbox", "xp+5 y+-53 Checked" YesTriggerJoystickRightKey " vYesTriggerJoystickRightKey", "Use key?")
-      ControllerGui.Add("ComboBox", "xp y+8 w70 vhotkeyControllerJoystickRight", "LButton|RButton|q|w|e|r|t")
+      ControllerGui.Add("ComboBox", "xp y+8 w70 vhotkeyControllerJoystickRight", ["LButton","RButton","q","w","e","r","t"])
       ControllerGui["hotkeyControllerJoystickRight"].Text := hotkeyControllerJoystickRight
       ControllerGui.Add("GroupBox", "xs ys+90 w80 h40", "R3")
       ControllerGui.Add("ComboBox", "xp+5 y+-23 w70 vhotkeyControllerButtonR3", textList "|" hotkeyLootScan "|" hotkeyCloseAllUI)

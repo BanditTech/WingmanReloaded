@@ -27,7 +27,7 @@ UtilityMenu(GuiCtrl, *){
 		UtilityGui[slot].Add("Edit",    "center   vUtility" slot "Key       xs+10   yp+20   w80  h17",   WR.Utility.%slot%.Key)
 
 		UtilityGui[slot].Add("GroupBox", "center xs y+15 w110 h55", "CD Group")
-		UtilityGui[slot].Add("DropDownList", "vUtility" slot "Group xs+10 yp+20 w80" , "u1|u2|u3|u4|u5|u6|u7|u8|u9|u10|Mana|Life|ES|QuickSilver|Defense")
+		UtilityGui[slot].Add("DropDownList", "vUtility" slot "Group xs+10 yp+20 w80" , ["u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"])
 		UtilityGui[slot]["Utility" slot "Group"].Choose(WR.Utility.%slot%.Group)
 
 		UtilityGui[slot].Add("GroupBox", "center xs y+20 w110 h55", "Group Cooldown")
