@@ -60,33 +60,33 @@
 ; Class variables
 ; ===================================================================================================================
 ; Registered Controls
-	Attached := Map()
+static Attached := Map()
 ; OnMessage Handlers
-	HandledMessages := Map("Edit", 0, "ListBox", 0, "Static", 0)
+static HandledMessages := Map("Edit", 0, "ListBox", 0, "Static", 0)
 ; Message Handler Function
-	MessageHandler := "CtlColors_OnMessage"
+static MessageHandler := CtlColors_OnMessage
 ; Windows Messages
-	WM_CTLCOLOR := Map("Edit", 0x0133, "ListBox", 0x134, "Static", 0x0138)
+static WM_CTLCOLOR := Map("Edit", 0x0133, "ListBox", 0x134, "Static", 0x0138)
 ; HTML Colors (BGR)
-	HTML := Map("AQUA", 0xFFFF00, "BLACK", 0x000000, "BLUE", 0xFF0000, "FUCHSIA", 0xFF00FF, "GRAY", 0x808080, "GREEN", 0x008000
+static HTML := Map("AQUA", 0xFFFF00, "BLACK", 0x000000, "BLUE", 0xFF0000, "FUCHSIA", 0xFF00FF, "GRAY", 0x808080, "GREEN", 0x008000
 				, "LIME", 0x00FF00, "MAROON", 0x000080, "NAVY", 0x800000, "OLIVE", 0x008080, "PURPLE", 0x800080, "RED", 0x0000FF
 				, "SILVER", 0xC0C0C0, "TEAL", 0x808000, "WHITE", 0xFFFFFF, "YELLOW", 0x00FFFF)
 ; Transparent Brush
-	NullBrush := DllCall("GetStockObject", "Int", 5, "UPtr")
+static NullBrush := DllCall("GetStockObject", "Int", 5, "UPtr")
 ; System Colors
-	SYSCOLORS := Map("Edit", "", "ListBox", "", "Static", "")
+static SYSCOLORS := Map("Edit", "", "ListBox", "", "Static", "")
 ; Error message in case of errors
-	ErrorMsg := ""
+static ErrorMsg := ""
 ; ===================================================================================================================
 ; Constructor / Destructor
 ; ===================================================================================================================
-__Delete() {
+static __Delete() {
 	This.Free() ; free GDI resources
 }
 ; ===================================================================================================================
 ; CheckBkColor  Internal check for parameter BkColor.
 ; ===================================================================================================================
-CheckBkColor(&BkColor, CtrlClass) {
+static CheckBkColor(&BkColor, CtrlClass) {
 	This.ErrorMsg := ""
 	If (BkColor != "") && !This.HTML.Has(BkColor) && !RegExMatch(BkColor, "^[[:xdigit:]]{6}$") {
 		This.ErrorMsg := "Invalid parameter BkColor: " . BkColor
@@ -100,7 +100,7 @@ CheckBkColor(&BkColor, CtrlClass) {
 ; ===================================================================================================================
 ; CheckTxColor  Internal check for parameter TxColor.
 ; ===================================================================================================================
-CheckTxColor(&TxColor) {
+static CheckTxColor(&TxColor) {
 	This.ErrorMsg := ""
 	If (TxColor != "") && !This.HTML.Has(TxColor) && !RegExMatch(TxColor, "i)^[[:xdigit:]]{6}$") {
 		This.ErrorMsg := "Invalid parameter TextColor: " . TxColor
@@ -120,7 +120,7 @@ CheckTxColor(&TxColor) {
 ; Return values:  On success  - True
 ;         On failure  - False, CtlColors.ErrorMsg contains additional informations
 ; ===================================================================================================================
-Attach(HWND, BkColor, TxColor := "") {
+static Attach(HWND, BkColor, TxColor := "") {
 	; Names of supported classes
 	static ClassNames := Map("Button", "", "ComboBox", "", "Edit", "", "ListBox", "", "Static", "")
 	; Button styles
@@ -211,7 +211,7 @@ Attach(HWND, BkColor, TxColor := "") {
 ;         On failure  - False, CtlColors.ErrorMsg contains additional informations
 ; Remarks:    If the control isn't registered yet, Add() is called instead internally.
 ; ===================================================================================================================
-Change(HWND, BkColor, TxColor := "") {
+static Change(HWND, BkColor, TxColor := "") {
 	; Check HWND -----------------------------------------------------------------------------------------------------
 	This.ErrorMsg := ""
 	HWND += 0
@@ -253,7 +253,7 @@ Change(HWND, BkColor, TxColor := "") {
 ; Return values:  On success  - True
 ;         On failure  - False, CtlColors.ErrorMsg contains additional informations
 ; ===================================================================================================================
-Detach(HWND) {
+static Detach(HWND) {
 	This.ErrorMsg := ""
 	HWND += 0
 	If This.Attached.Has(HWND) {
@@ -264,7 +264,7 @@ Detach(HWND) {
 			If This.HandledMessages[V] > 0 {
 			This.HandledMessages[V] -= 1
 			If This.HandledMessages[V] = 0
-				OnMessage(This.WM_CTLCOLOR[V], "")
+				OnMessage(This.WM_CTLCOLOR[V], This.MessageHandler, 0)
 		}  }
 		For I, V In CTL.Hwnds
 			This.Attached.Delete(V)
@@ -279,13 +279,13 @@ Detach(HWND) {
 ; Free      Stop coloring for all controls and free resources.
 ; Return values:  Always True.
 ; ===================================================================================================================
-Free() {
+static Free() {
 	For K, V In This.Attached
 		If (V.Brush) && (V.Brush != This.NullBrush)
 			DllCall("Gdi32.dll\DeleteObject", "Ptr", V.Brush)
 	For K, V In This.HandledMessages
 		If (V > 0) {
-			OnMessage(This.WM_CTLCOLOR[K], "")
+			OnMessage(This.WM_CTLCOLOR[K], This.MessageHandler, 0)
 			This.HandledMessages[K] := 0
 		}
 	This.Attached := Map()
@@ -297,11 +297,11 @@ Free() {
 ; Return values:  On success  - True
 ;         On failure  - False
 ; ===================================================================================================================
-IsAttached(HWND) {
+static IsAttached(HWND) {
 	Return This.Attached.Has(HWND)
 }
 }
-CtlColors := _CtlColors()
+CtlColors := _CtlColors
 ; ======================================================================================================================
 ; CtlColors_OnMessage
 ; This function handles CTLCOLOR messages. There's no reason to call it manually!
