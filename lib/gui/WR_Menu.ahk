@@ -777,52 +777,81 @@ WR_Menu(Function:="",Var*){
 
       stringsTab.UseTab(1)
       StringsGui.Add("Button", "xs+1 ys+1 w1 h1")
-      StringsGui.Opt("+Delimiter?")
       StringsGui.Add("Text", "xs+10 ys+25 Section", "OHB 1 pixel bar - Only Adjust if not 1080 Height")
-      StringsGui.Add("ComboBox", "xp y+8 w220 vHealthBarStr", HealthBarStr '??"' Res1080_HealthBarStr '"?"' Res1440_HealthBarStr '"?"' Res1440_HealthBarStr_Alt '"?"' Res1050_HealthBarStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "xp y+8 w220 vHealthBarStr", [Chr(34) Res1080_HealthBarStr Chr(34), Chr(34) Res1440_HealthBarStr Chr(34), Chr(34) Res1440_HealthBarStr_Alt Chr(34), Chr(34) Res1050_HealthBarStr Chr(34)])
+      cb.Text := HealthBarStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Button", "hp w50 x+10 yp vOHB_EditorBtn", "Make").OnEvent("Click", OpenOHBEditor)
       StringsGui.Add("Text", "x+10 x+10 ys", "Capture of the Skill up icon")
-      StringsGui.Add("ComboBox", "y+8 w280 vSkillUpStr", SkillUpStr '??"' Res1080_SkillUpStr '"?"' Res1440_SkillUpStr '"?"' Res1050_SkillUpStr '"?"' Res768_SkillUpStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vSkillUpStr", [Chr(34) Res1080_SkillUpStr Chr(34), Chr(34) Res1440_SkillUpStr Chr(34), Chr(34) Res1050_SkillUpStr Chr(34), Chr(34) Res768_SkillUpStr Chr(34)])
+      cb.Text := SkillUpStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the words Sell Items")
-      StringsGui.Add("ComboBox", "y+8 w280 vSellItemsStr", SellItemsStr '??"' Res1080_SellItemsStr '"?"' Res2160_SellItemsStr '"?"' Res1440_SellItemsStr '"?"' Res1050_SellItemsStr '"?"' Res768_SellItemsStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vSellItemsStr", [Chr(34) Res1080_SellItemsStr Chr(34), Chr(34) Res2160_SellItemsStr Chr(34), Chr(34) Res1440_SellItemsStr Chr(34), Chr(34) Res1050_SellItemsStr Chr(34), Chr(34) Res768_SellItemsStr Chr(34)])
+      cb.Text := SellItemsStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "x+10 ys", "Capture of the Stash")
-      StringsGui.Add("ComboBox", "y+8 w280 vStashStr", StashStr '??"' Res1080_StashStr '"?"' Res2160_StashStr '"?"' Res1440_StashStr '"?"' Res1050_StashStr '"?"' Res768_StashStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vStashStr", [Chr(34) Res1080_StashStr Chr(34), Chr(34) Res2160_StashStr Chr(34), Chr(34) Res1440_StashStr Chr(34), Chr(34) Res1050_StashStr Chr(34), Chr(34) Res768_StashStr Chr(34)])
+      cb.Text := StashStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the X button")
-      StringsGui.Add("ComboBox", "y+8 w280 vXButtonStr", XButtonStr '??"' Res1080_XButtonStr '"?"' Res1440_XButtonStr '"?"' Res1050_XButtonStr '"?"' Res768_XButtonStr '"').OnEvent("Change", UpdateStringEdit)
-      StringsGui.Opt("+Delimiter|")
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vXButtonStr", [Chr(34) Res1080_XButtonStr Chr(34), Chr(34) Res1440_XButtonStr Chr(34), Chr(34) Res1050_XButtonStr Chr(34), Chr(34) Res768_XButtonStr Chr(34)])
+      cb.Text := XButtonStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       stringsTab.UseTab(2)
       StringsGui.Add("Button", "Section x20 y30 w1 h1")
-      StringsGui.Opt("+Delimiter?")
       StringsGui.Add("Text", "xs+10 ys+25 Section", "Capture of the Hideout vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorStr", VendorStr '??"' Res1080_MasterStr '"?"' Res1080_NavaliStr '"?"' Res1080_HelenaStr '"?"' Res1080_ZanaStr '"?"' Res2160_NavaliStr '"?"' Res1440_ZanaStr '"?"' Res1440_NavaliStr '"?"' Res1050_MasterStr '"?"' Res1050_NavaliStr '"?"' Res1050_HelenaStr '"?"' Res1050_ZanaStr '"?"' Res768_NavaliStr '"?"' Res1440_JunStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorStr", [Chr(34) Res1080_MasterStr Chr(34), Chr(34) Res1080_NavaliStr Chr(34), Chr(34) Res1080_HelenaStr Chr(34), Chr(34) Res1080_ZanaStr Chr(34), Chr(34) Res2160_NavaliStr Chr(34), Chr(34) Res1440_ZanaStr Chr(34), Chr(34) Res1440_NavaliStr Chr(34), Chr(34) Res1050_MasterStr Chr(34), Chr(34) Res1050_NavaliStr Chr(34), Chr(34) Res1050_HelenaStr Chr(34), Chr(34) Res1050_ZanaStr Chr(34), Chr(34) Res768_NavaliStr Chr(34), Chr(34) Res1440_JunStr Chr(34)])
+      cb.Text := VendorStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "x+10 ys", "Capture of the Azurite Mines vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorMineStr", VendorMineStr '??"' Res1080_MasterStr '"?"' Res1050_MasterStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorMineStr", [Chr(34) Res1080_MasterStr Chr(34), Chr(34) Res1050_MasterStr Chr(34)])
+      cb.Text := VendorMineStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the Lioneye vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorLioneyeStr", VendorLioneyeStr '??"' Res1080_BestelStr '"?"' Res1050_BestelStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorLioneyeStr", [Chr(34) Res1080_BestelStr Chr(34), Chr(34) Res1050_BestelStr Chr(34)])
+      cb.Text := VendorLioneyeStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "x+10 ys", "Capture of the Forest vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorForestStr", VendorForestStr '??"' Res1080_GreustStr '"?"' Res1050_GreustStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorForestStr", [Chr(34) Res1080_GreustStr Chr(34), Chr(34) Res1050_GreustStr Chr(34)])
+      cb.Text := VendorForestStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the Sarn vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorSarnStr", VendorSarnStr '??"' Res1080_ClarissaStr '"?"' Res1050_ClarissaStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorSarnStr", [Chr(34) Res1080_ClarissaStr Chr(34), Chr(34) Res1050_ClarissaStr Chr(34)])
+      cb.Text := VendorSarnStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "x+10 ys", "Capture of the Highgate vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorHighgateStr", VendorHighgateStr '??"' Res1080_PetarusStr '"?"' Res1050_PetarusStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorHighgateStr", [Chr(34) Res1080_PetarusStr Chr(34), Chr(34) Res1050_PetarusStr Chr(34)])
+      cb.Text := VendorHighgateStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the Overseer vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorOverseerStr", VendorOverseerStr '??"' Res1080_LaniStr '"?"' Res1050_LaniStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorOverseerStr", [Chr(34) Res1080_LaniStr Chr(34), Chr(34) Res1050_LaniStr Chr(34)])
+      cb.Text := VendorOverseerStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "x+10 ys", "Capture of the Bridge vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorBridgeStr", VendorBridgeStr '??"' Res1080_HelenaStr '"?"' Res1050_HelenaStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorBridgeStr", [Chr(34) Res1080_HelenaStr Chr(34), Chr(34) Res1050_HelenaStr Chr(34)])
+      cb.Text := VendorBridgeStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the Docks vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorDocksStr", VendorDocksStr '??"' Res1080_LaniStr '"?"' Res1050_LaniStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorDocksStr", [Chr(34) Res1080_LaniStr Chr(34), Chr(34) Res1050_LaniStr Chr(34)])
+      cb.Text := VendorDocksStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "x+10 ys", "Capture of the Oriath vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorOriathStr", VendorOriathStr '??"' Res1080_LaniStr '"?"' Res1050_LaniStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorOriathStr", [Chr(34) Res1080_LaniStr Chr(34), Chr(34) Res1050_LaniStr Chr(34)])
+      cb.Text := VendorOriathStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "xs y+15 Section", "Capture of the Harbour vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorHarbourStr", VendorHarbourStr '??"' Res1080_FenceStr '"').OnEvent("Change", UpdateStringEdit)
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorHarbourStr", [Chr(34) Res1080_FenceStr Chr(34)])
+      cb.Text := VendorHarbourStr
+      cb.OnEvent("Change", UpdateStringEdit)
       StringsGui.Add("Text", "x+10 ys", "Capture of the Kingsmarch vendor nameplate")
-      StringsGui.Add("ComboBox", "y+8 w280 vVendorKingsmarchStr", VendorKingsmarchStr '??"' Res1080_IslaStr '"').OnEvent("Change", UpdateStringEdit)
-      StringsGui.Opt("+Delimiter|")
+      cb := StringsGui.Add("ComboBox", "y+8 w280 vVendorKingsmarchStr", [Chr(34) Res1080_IslaStr Chr(34)])
+      cb.Text := VendorKingsmarchStr
+      cb.OnEvent("Change", UpdateStringEdit)
 
       stringsTab.UseTab(3)
       StringsGui.Add("Button", "Section x20 y30 w1 h1")
-      StringsGui.Opt("+Delimiter?")
 
       StringsGui.Add("Text", "xs+10 ys+25 Section", "Curse - Elemental Weakness")
       StringsGui.Add("ComboBox", "y+8 w280 vdebuffCurseEleWeakStr", debuffCurseEleWeakStr "??" WR.String.h1080.Debuff.EleW).OnEvent("Change", UpdateStringEdit)
@@ -862,7 +891,6 @@ WR_Menu(Function:="",Var*){
       StringsGui.Add("Text", "xs y+15 Section", "Poison")
       StringsGui.Add("ComboBox", "y+8 w280 vdebuffPoisonStr", debuffPoisonStr "??" WR.String.h1080.Debuff.Poison).OnEvent("Change", UpdateStringEdit)
 
-      StringsGui.Opt("+Delimiter|")
     }
     StringsGui.Title := "FindText Strings"
     StringsGui.Show("w640 h525")
