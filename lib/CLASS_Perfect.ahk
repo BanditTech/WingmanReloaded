@@ -64,7 +64,7 @@ RefreshPoeWatchPerfect() {
     Download RequestURL, A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json"
     JSONtext := FileRead(A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json")
     Try {
-        WR.Data.Perfect := JSON.Load(JSONtext,, 1)
+        WR.Data.Perfect := JSON.Load(JSONtext)
         For ku, itemDB in WR.Data.Perfect {
             pushto := {}
             For kt, type in ["implicits", "explicits"] {
