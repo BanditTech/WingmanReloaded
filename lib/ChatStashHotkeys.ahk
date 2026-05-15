@@ -161,7 +161,7 @@ stashHotkeyShouldFire(stashPrefix1, stashPrefix2, YesStashKeys, thisHotkey) {
 ; FireHotkey - Functions to Send each hotkey
 ; Enter func uses chat group c1, CtrlEnter func uses chat group c2
 ; Stash func uses stash prefix with SuffixNum as the slot index (1-9)
-FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1){
+FireHotkey(func:="CtrlEnter",TypePrefix:="c2",SuffixNum:=1,*){
 	if WinActive("ahk_group POEGameGroup")
 	{
 		If (func == "Enter")
