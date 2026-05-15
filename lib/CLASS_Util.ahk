@@ -83,7 +83,7 @@ Class Util {
 			} Else
 				Return "00" ; No File Reference
 			If f {
-				f.Write(JSON.Dump(Object,,2))
+				f.Write(JSON.Dump(Object, 2))
 				f.close()
 				Return True
 			} Else
@@ -95,7 +95,7 @@ Class Util {
 	; Simple JSON string dump
 	static JString(Object){
 		Try {
-			Return JSON.Dump(Object,,2)
+			Return JSON.Dump(Object, 2)
 		} catch as e {
 			This.Err( e )
 		}

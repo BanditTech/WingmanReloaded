@@ -103,7 +103,7 @@ FlaskMenu(GuiCtrl, *){
 		for k, kind in ["Life", "ES", "Mana"]
 			WR.Flask.%val%[kind] := FlaskSliders[val][kind].Slider_Value
 		FileDelete(A_ScriptDir "\save\Flask.json")
-		JSONtext := JSON.Dump(WR.Flask,,2)
+		JSONtext := JSON.Dump(WR.Flask, 2)
 		FileAppend(JSONtext, A_ScriptDir "\save\Flask.json")
 	}
 	FlaskGuiClose(GuiObj) {
