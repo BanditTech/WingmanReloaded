@@ -60,7 +60,6 @@ Class Perfect {
 }
 
 RefreshPoeWatchPerfect() {
-    global JSON, selectedLeague
     RequestURL := "https://api.poe.watch/perfect?league=" selectedLeague
     Download RequestURL, A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json"
     JSONtext := FileRead(A_ScriptDir "\temp\PoE.Watch_PerfectUnique_orig.json")

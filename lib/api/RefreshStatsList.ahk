@@ -1,5 +1,4 @@
 RefreshStatsList(){
-	global JSON
 	ToolTip("refreshing stats")
 	Download("https://www.pathofexile.com/api/trade/data/stats", A_ScriptDir "\temp\new_Stats.json")
 	result := JSON.Load(RegExReplace(FileRead(A_ScriptDir "\temp\new_Stats.json"), " \(\\u00d7#\)", "")).result

@@ -14,7 +14,6 @@ Class ModAlias {
 		Return string
 	}
 	LoadDatabase(){
-		global JSON
 		This.ModObject := JSON.LoadFile(A_ScriptDir "\Data\mods.min.json")
 		This.TransObject := JSON.LoadFile(A_ScriptDir "\Data\stat_translations.min.json")
 		This.Loaded := True
@@ -40,7 +39,6 @@ Class ModAlias {
 		Return False
 	}
 	ConvertJStoAHK(Obj){
-		global JSON
 		Return JSON.Load(JSON.Dump(Obj))
 	}
 }
