@@ -8,7 +8,7 @@ class ColorPicker {
     This.W := pGroup_W
     This.H := pGroup_H
     This.SideBar := pGroup_SideBar
-    This.Spacing := This.W // 2.5
+    This.Spacing := Floor(This.W / 2.5)
     This.W_Bar := This.W // 4
     This.Start_Color := pGroup_Start_Color
     This.Start_Red := (0xff0000 & pGroup_Start_Color) >> 16
