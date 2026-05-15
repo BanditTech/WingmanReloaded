@@ -1,4 +1,4 @@
-perCharMenu(){
+perCharMenu(*){
 	static Built := False
 	static perCharGui := 0
 
