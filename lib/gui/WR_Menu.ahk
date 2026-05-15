@@ -1203,7 +1203,6 @@ WR_Menu(Function:="",Var*){
       oldx := x, oldy := y
     } Until GetKeyState("Ctrl")
     ToolTip()
-    ; TODO: dynamic var assign %LocateType%X/:Y not possible in v2 - use object property
     InventoryGui[LocateType "X"].Text := x
     InventoryGui[LocateType "Y"].Text := y
     MsgBox(x "," y " was captured as the new location for " LocateType)
@@ -1222,7 +1221,6 @@ WR_Menu(Function:="",Var*){
       oldx := x, oldy := y
     } Until GetKeyState("Ctrl")
     ToolTip()
-    ; TODO: dynamic var assign swap%slot%X%position% not possible in v2 - needs Map refactor
     MainGui["swap" slot "X" position].Text := x
     MainGui["swap" slot "Y" position].Text := y
     MsgBox(x "," y " was captured as the new location for Swap " slot " " position)
@@ -1238,7 +1236,6 @@ WR_Menu(Function:="",Var*){
       oldx := x, oldy := y
     } Until GetKeyState("Ctrl")
     ToolTip()
-    ; TODO: dynamic var assign %LocateType%X/:Y not possible in v2 - use object property
     CraftingGui[LocateType "X"].Text := x
     CraftingGui[LocateType "Y"].Text := y
     MsgBox(x "," y " was captured as the new location for " LocateType)
@@ -1247,8 +1244,8 @@ WR_Menu(Function:="",Var*){
     GlobeGui.Submit(0)
     Grab := LetUserSelectRect()
     AreaType := Var[2]
-    Globe[AreaType].X1 := Grab.X1, Globe[AreaType].Y1 := Grab.Y1, Globe[AreaType].X2 := Grab.X2, Globe[AreaType].Y2 := Grab.Y2
-      , Globe[AreaType].Width := Grab.X2 - Grab.X1, Globe[AreaType].Height := Grab.Y2 - Grab.Y1
+    Globe.%AreaType%.X1 := Grab.X1, Globe.%AreaType%.Y1 := Grab.Y1, Globe.%AreaType%.X2 := Grab.X2, Globe.%AreaType%.Y2 := Grab.Y2
+      , Globe.%AreaType%.Width := Grab.X2 - Grab.X1, Globe.%AreaType%.Height := Grab.Y2 - Grab.Y1
     GlobeGui["Globe_" AreaType "_X1"].Text := "X1:" Grab.X1
     GlobeGui["Globe_" AreaType "_Y1"].Text := "Y1:" Grab.Y1
     GlobeGui["Globe_" AreaType "_X2"].Text := "X2:" Grab.X2
@@ -1257,18 +1254,18 @@ WR_Menu(Function:="",Var*){
   } Else if (Function == "Show") {
     GlobeGui.Submit(0)
     AreaType := Var[2]
-    MouseTip(Globe[AreaType])
+    MouseTip(Globe.%AreaType%)
     GlobeGui.Show()
   } Else if (Function == "Color") {
     AreaType := Var[2]
     Element := Var[1]
     Split := {}
-    Split.hex := Globe[AreaType].Color.Hex
+    Split.hex := Globe.%AreaType%.Color.Hex
     GlobeGui.Submit(0)
     If (Element == "UpDown")
     {
-      Globe[AreaType].Color.Variance := GlobeGui["WR_UpDown_Color_" AreaType].Value
-      Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+      Globe.%AreaType%.Color.Variance := GlobeGui["WR_UpDown_Color_" AreaType].Value
+      Globe.%AreaType%.Color.Str := Hex2FindText(Globe.%AreaType%.Color.hex,Globe.%AreaType%.Color.variance,0,AreaType,1,1)
     }
     Else If (Element == "Edit")
     {
@@ -1290,9 +1287,9 @@ WR_Menu(Function:="",Var*){
       Else
         m := "0" Split.hex
       newHex := Format("0x{1:06X}", m)
-      Globe[AreaType].Color.Hex := newHex
+      Globe.%AreaType%.Color.Hex := newHex
       GlobeGui["WR_Edit_Color_" AreaType].Text := newHex
-      Globe[AreaType].Color.Str := Hex2FindText(Globe[AreaType].Color.hex,Globe[AreaType].Color.variance,0,AreaType,1,1)
+      Globe.%AreaType%.Color.Str := Hex2FindText(Globe.%AreaType%.Color.hex,Globe.%AreaType%.Color.variance,0,AreaType,1,1)
       GlobeGui["WR_Progress_Color_" AreaType].Opt("+c" newHex)
     }
   } Else If (Function == "hkStash") {

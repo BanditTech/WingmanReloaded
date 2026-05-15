@@ -1,4 +1,4 @@
-RestockMenu(choice:=""){
+RestockMenu(choice:="", *){
 	static Built := False
 	static Active := [1,1]
 	static LoadedValues := ""

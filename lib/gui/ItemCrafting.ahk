@@ -1,6 +1,6 @@
 ; Main UI
 
-ModsUI()
+ModsUI(*)
 {
   global ModsGui, ItemCraftingCategorySelector, ItemCraftingSubCategorySelector
   If (!HasVal(PoEData[ItemCraftingCategorySelector], ItemCraftingSubCategorySelector)) {

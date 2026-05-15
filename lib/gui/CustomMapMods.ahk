@@ -76,7 +76,7 @@ RefreshHeistList()
   Return
 }
 
-CustomMapModsUI()
+CustomMapModsUI(*)
 {
   global CustomMapModsGui
   CustomMapModsGui := Gui()
@@ -91,7 +91,7 @@ CustomMapModsUI()
   CustomMapModsGui.Show("", "Custom Map Mods")
 }
 
-CustomHeistModsUI()
+CustomHeistModsUI(*)
 {
   global CustomMapModsGui
   CustomMapModsGui := Gui()
