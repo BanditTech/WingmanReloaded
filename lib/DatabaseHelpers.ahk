@@ -18,7 +18,7 @@ ActualTierCreator() {
             Mods := LoadOnDemand(kii,viii)
             For k, v in Mods
             {
-                if(v["influence"] == "Normal"){
+                if(v.Has("influence") && v["influence"] == "Normal"){
                     AffixWRLine := FirstLineToWRFormat(v["text"])
                     ModGenerationType := v["generation_type"]
                     If(ActualTierName:=CheckAffixWRFromJson(AffixWRLine,ModGenerationType,ActualTierNameJSON)) {
