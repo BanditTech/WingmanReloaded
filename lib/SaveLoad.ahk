@@ -1234,7 +1234,7 @@ Settings(name:="perChar",Action:="Load"){
 			f := FileOpen(A_ScriptDir "\save\" name ".json","r")
 			JSONtext := f.Read()
 			obj := JSON.Load(JSONtext)
-			For k, v in WR.%name% {
+			For k, v in WR.%name%.OwnProps() {
 				If (obj.Has(k)) {
 					WR.%name%.%k% := obj[k]
 				}
@@ -1284,9 +1284,9 @@ Profile(args*){
 		IniWrite(name, A_ScriptDir "\save\Settings.ini", "Chosen Profile", Type)
 	} Else If (Action == "Load") {
 		obj := JSON.LoadFile(A_ScriptDir "\save\profiles\" Type "\" name ".json")
-		For k, v in WR.%Type%
+		For k, v in WR.%Type%.OwnProps()
 			If (IsObject(obj[k]))
-			For l, w in v
+			For l, w in v.OwnProps()
 			If (obj[k].Has(l))
 			WR.%Type%.%k%.%l% := obj[k][l]
 		If (Type == "perChar"){
