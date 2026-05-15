@@ -157,11 +157,12 @@ UtilityMenu(GuiCtrl, *){
 		}
 		if !val
 			return
-		Built[val] := False
 		UtilityGui[val].Submit(0)
 		which := val
 		UtilitySaveValues(val)
 		UtilityGui[val].Destroy()
+		UtilityGui.Delete(val)
+		Built.Delete(val)
 	}
 	UtilityGuiEscape(GuiObj) {
 		val := 0
@@ -173,10 +174,11 @@ UtilityMenu(GuiCtrl, *){
 		}
 		if !val
 			return
-		Built[val] := False
 		UtilityGui[val].Submit(0)
 		which := val
 		UtilitySaveValues(val)
 		UtilityGui[val].Destroy()
+		UtilityGui.Delete(val)
+		Built.Delete(val)
 	}
 }
