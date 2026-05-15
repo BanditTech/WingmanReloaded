@@ -99,9 +99,9 @@ FlaskMenu(GuiCtrl, *){
 
 	FlaskSaveValues(val) {
 		for k, kind in ["CD", "GroupCD", "Key", "MainAttackRelease", "SecondaryAttackRelease", "MainAttack", "SecondaryAttack", "PopAll", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison", "ResetCooldownAtHealthPercentage",  "ResetCooldownAtHealthPercentageInput", "ResetCooldownAtEnergyShieldPercentage", "ResetCooldownAtEnergyShieldPercentageInput", "ResetCooldownAtManaPercentage", "ResetCooldownAtManaPercentageInput"]
-			WR.Flask.%val%[kind] := FlaskGui[val]["Flask" val kind].Value
+			WR.Flask.%val%.%kind% := FlaskGui[val]["Flask" val kind].Value
 		for k, kind in ["Life", "ES", "Mana"]
-			WR.Flask.%val%[kind] := FlaskSliders[val][kind].Slider_Value
+			WR.Flask.%val%.%kind% := FlaskSliders[val][kind].Slider_Value
 		If FileExist(A_ScriptDir "\save\Flask.json")
 			FileDelete(A_ScriptDir "\save\Flask.json")
 		JSONtext := JSON.Dump(WR.Flask, 2)

@@ -135,11 +135,11 @@ UtilityMenu(GuiCtrl, *){
 
 	UtilitySaveValues(val) {
 		for k, kind in ["Enable", "OnCD", "CD", "GroupCD", "Key", "MainAttackOnly", "MainAttack", "SecondaryAttack", "MainAttackRelease", "SecondaryAttackRelease", "PopAll", "Icon", "IconShown", "IconSearch", "IconArea", "Move", "Group", "Condition", "Curse", "Shock", "Bleed", "Freeze", "Ignite", "Poison"]
-			WR.Utility.%val%[kind] := UtilityGui[val]["Utility" val kind].Value
+			WR.Utility.%val%.%kind% := UtilityGui[val]["Utility" val kind].Value
 		for k, kind in ["Life", "ES", "Mana"]
-			WR.Utility.%val%[kind] := UtilitySliders[val][kind].Slider_Value
+			WR.Utility.%val%.%kind% := UtilitySliders[val][kind].Slider_Value
 		for k, kind in ["IconVar1", "IconVar0"]
-			WR.Utility.%val%[kind] := Round(UtilityGui[val]["Utility" val kind].Value / 100,2)
+			WR.Utility.%val%.%kind% := Round(UtilityGui[val]["Utility" val kind].Value / 100,2)
 
 		If FileExist(A_ScriptDir "\save\Utility.json")
 
