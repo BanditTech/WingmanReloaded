@@ -11,7 +11,7 @@ checkUpdate(force:=False){
 		}
 		If RegExMatch(newestVersion, "[.0-9]+", &matchVersion)
 			newestVersion := matchVersion[]
-		if ( VersionNumber < newestVersion || force)
+		if ( SemverCompare(VersionNumber, newestVersion) < 0 || force)
 		{
 			Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/changelog.txt", A_ScriptDir "\temp\changelog.txt")
 			changelog := FileRead(A_ScriptDir "\temp\changelog.txt")

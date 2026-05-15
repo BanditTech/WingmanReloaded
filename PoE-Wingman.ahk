@@ -1,5 +1,5 @@
 #Requires AutoHotkey v2.0
-Global VersionNumber := .16.00
+Global VersionNumber := "3.0.0"
 #Include %A_ScriptDir%\lib\Header.ahk
 #Include %A_ScriptDir%\lib\RunAdmin.ahk
 ; Library.ahk (all functions, classes, and third-party libs) loads first so
