@@ -467,7 +467,7 @@ readFromFile(){
 
 	If hotkeyGrabCurrency
 		Hotkey(hotkeyGrabCurrency, GrabCurrencyCommand, "Off")
-	If hotkeyGetCoords
+	If hotkeyGetMouseCoords
 		Hotkey(hotkeyGetMouseCoords, CoordCommand, "Off")
 	If hotkeyPopFlasks
 		Hotkey(hotkeyPopFlasks, PopFlasksCommand, "Off")
@@ -852,7 +852,7 @@ submit(){
 
 		If hotkeyGrabCurrency
 			Hotkey(hotkeyGrabCurrency, GrabCurrencyCommand, "Off")
-		If hotkeyGetCoords
+		If hotkeyGetMouseCoords
 			Hotkey(hotkeyGetMouseCoords, CoordCommand, "Off")
 		If hotkeyPopFlasks
 			Hotkey(hotkeyPopFlasks, PopFlasksCommand, "Off")
