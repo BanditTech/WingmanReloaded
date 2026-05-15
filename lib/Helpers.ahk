@@ -172,9 +172,9 @@ GetProcessTimes(PID){
 }
 ; check time
 CheckTime(Type:="hours",Interval:=2,key:="temp",Time:=""){
-  Static Keys := {}
+  Static Keys := Map()
   ; Available time types are: years, months, days, hours, minutes, seconds
-  If (!Keys[key] || Time != "")
+  If (!Keys.Has(key) || Time != "")
   {
     Keys[key] := (Time == "" ? A_Now : Time)
   }
