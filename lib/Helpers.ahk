@@ -222,8 +222,8 @@ SemverCompare(a, b){
   pa := StrSplit(a, "."), pb := StrSplit(b, ".")
   n := Max(pa.Length, pb.Length)
   Loop n {
-    va := (A_Index <= pa.Length) ? Integer(pa[A_Index]) : 0
-    vb := (A_Index <= pb.Length) ? Integer(pb[A_Index]) : 0
+    va := (A_Index <= pa.Length && pa[A_Index] != "") ? Integer(pa[A_Index]) : 0
+    vb := (A_Index <= pb.Length && pb[A_Index] != "") ? Integer(pb[A_Index]) : 0
     If (va < vb)
       Return -1
     If (va > vb)
