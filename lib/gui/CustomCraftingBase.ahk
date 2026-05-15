@@ -123,57 +123,57 @@ CraftingBaseUI(title, type, columns)
   CustomCraftingBaseGui.Show("", title)
 }
 
-CraftingBaseSTRUI()
+CraftingBaseSTRUI(*)
 {
   CraftingBaseUI("Str Armour Bases", "str_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Armour","Implicit"])
 }
 
-CraftingBaseDEXUI()
+CraftingBaseDEXUI(*)
 {
   CraftingBaseUI("Dex Armour Bases", "dex_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Evasion","Implicit"])
 }
 
-CraftingBaseINTUI()
+CraftingBaseINTUI(*)
 {
   CraftingBaseUI("Int Armour Bases", "int_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Energy Shield","Implicit"])
 }
 
-CraftingBaseSTRDEXUI()
+CraftingBaseSTRDEXUI(*)
 {
   CraftingBaseUI("StrDex Armour Bases", "str_dex_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Armour","Base Evasion","Implicit"])
 }
 
-CraftingBaseSTRINTUI()
+CraftingBaseSTRINTUI(*)
 {
   CraftingBaseUI("StrInt Armour Bases", "str_int_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Armour","Base Energy Shield","Implicit"])
 }
 
-CraftingBaseDEXINTUI()
+CraftingBaseDEXINTUI(*)
 {
   CraftingBaseUI("DexInt Armour Bases", "dex_int_armour", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Base Evasion","Base Energy Shield","Implicit"])
 }
 
-CraftingBaseAMULETUI()
+CraftingBaseAMULETUI(*)
 {
   CraftingBaseUI("Amulet Bases", "amulet", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
 }
 
-CraftingBaseRINGUI()
+CraftingBaseRINGUI(*)
 {
   CraftingBaseUI("Ring Bases", "ring", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
 }
 
-CraftingBaseBELTUI()
+CraftingBaseBELTUI(*)
 {
   CraftingBaseUI("Belt Bases", "belt", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
 }
 
-CraftingBaseWEAPONUI()
+CraftingBaseWEAPONUI(*)
 {
   CraftingBaseUI("Belt Bases", "weapon", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
 }
 
-CraftingBaseQUIVERUI()
+CraftingBaseQUIVERUI(*)
 {
   CraftingBaseUI("Quiver Bases", "quiver", ["Item Class","Base Name","Max ILvL Found","Stashed","Drop Level","Implicit"])
 }
