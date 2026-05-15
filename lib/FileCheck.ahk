@@ -155,10 +155,7 @@ if !FileExist(A_ScriptDir "\data\Affix_Lines.json")
 	Download("https://raw.githubusercontent.com/BanditTech/WingmanReloaded/" BranchName "/data/Affix_Lines.json", A_ScriptDir "\data\Affix_Lines.json")
 }
 
-;Create ActualTier
-if !FileExist(A_ScriptDir "\save\ActualTier.json")
-{
-	ActualTierCreator()
-}
+; ActualTier creation is run from ScriptObject.ahk after WR is initialized
+; (ActualTierCreator writes to WR.ActualTier[...]).
 If needReload
 	Reload()
