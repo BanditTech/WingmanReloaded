@@ -391,13 +391,13 @@ MoveToGridPosition(c,r,gridArea:="StashQuad",Direction:="None"){
 	If (Direction == "Left")
 		c := (c-1>0?c-1:c)
 	Else If (Direction == "Right")
-		c := (c+1<=InvGrid[gridArea].X.Length?c+1:c)
+		c := (c+1<=InvGrid.%gridArea%.X.Length?c+1:c)
 	Else If (Direction == "Up")
 		r := (r-1>0?r-1:r)
 	Else If (Direction == "Down")
-		r := (r+1<=InvGrid[gridArea].Y.Length?r+1:r)
+		r := (r+1<=InvGrid.%gridArea%.Y.Length?r+1:r)
 
-	MouseMove(InvGrid[gridArea].X[c], InvGrid[gridArea].Y[r])
+	MouseMove(InvGrid.%gridArea%.X[c], InvGrid.%gridArea%.Y[r])
 	Return
 }
 GridPosition(x,y,gridArea:="StashQuad"){
@@ -407,9 +407,9 @@ GridPosition(x,y,gridArea:="StashQuad"){
 	Partial := {}
 	Best := {Distance:-1, C:1, R:1}
 
-	For C, xVal in InvGrid[gridArea].X
+	For C, xVal in InvGrid.%gridArea%.X
 	{
-		For R, yVal in InvGrid[gridArea].Y
+		For R, yVal in InvGrid.%gridArea%.Y
 		{
 			If (gridArea == "StashQuad")
 			{

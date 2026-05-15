@@ -774,8 +774,9 @@ VendorChaosRecipe(){
 		MoveStash(v.Prop.StashTab)
 		Sleep(60)
   ; Ctrl+Click to inventory
-		CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
-		, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
+		grid := v.Prop.StashQuad ? "StashQuad" : "Stash"
+		CtrlClick(InvGrid.%grid%.X[v.Prop.StashX]
+		, InvGrid.%grid%.Y[v.Prop.StashY])
 		Sleep(60)
 	}
 
@@ -807,8 +808,9 @@ VendorChaosRecipe(){
 						MoveStash(v.Prop.StashTab)
 						Sleep(60)
       ; Ctrl+Click to inventory
-						CtrlClick(InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].X[v.Prop.StashX]
-						, InvGrid[(v.Prop.StashQuad?"StashQuad":"Stash")].Y[v.Prop.StashY])
+						grid := v.Prop.StashQuad ? "StashQuad" : "Stash"
+						CtrlClick(InvGrid.%grid%.X[v.Prop.StashX]
+						, InvGrid.%grid%.Y[v.Prop.StashY])
 						Sleep(60)
 					}
      ; Close Stash panel
