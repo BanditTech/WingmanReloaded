@@ -1,6 +1,14 @@
 ; Third-party libraries first so class/function definitions (e.g. JSON)
 ; are visible to the static analyser before any project code that uses them.
 ; list.ahk re-enables #Warn LocalSameAsGlobal after packages.ahk turns it off.
+
+; Forward-declare WR as an empty global so the analyser sees it before
+; descending into the project files included below — most of which reference
+; WR.X for assignment or property reads. ScriptObject.ahk (loaded later from
+; PoE-Wingman.ahk) reassigns WR to the fully-populated object literal at
+; runtime; the assignment here just exists to satisfy static analysis.
+Global WR := {}
+
 #Include %A_ScriptDir%\lib\list.ahk
 
 #Include %A_ScriptDir%\lib\ChatStashHotkeys.ahk
