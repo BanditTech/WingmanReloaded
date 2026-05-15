@@ -1,5 +1,6 @@
 
-Global MainGui := Gui()
+; MainGui itself is declared in lib/GLOBALS.ahk so the analyser sees it before
+; descending into Library.ahk's tree. This file populates it.
 Global WR_StatusBarCtrl
 
 WR_StatusBarCtrl := MainGui.Add("StatusBar",, WR_Statusbar)

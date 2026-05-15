@@ -1,8 +1,9 @@
 ﻿; Extra vars - Not in INI
-; Forward-declare MainGui so the static analyser sees the global before parsing
-; Library.ahk's tree (which references MainGui in SaveLoad.ahk and elsewhere).
-; gui/MainMenu.ahk reassigns it to a real Gui() instance at runtime.
-Global MainGui := ""
+; MainGui is declared here (not in gui/MainMenu.ahk) so the static analyser
+; sees the Gui-typed global before parsing Library.ahk's tree, which
+; references MainGui from SaveLoad.ahk and other lib files. gui/MainMenu.ahk
+; populates the same Gui via MainGui.Add(...) later.
+Global MainGui := Gui()
 Global rxNum := "(\d+\.?\d*)"
 Global CtrlState := {Btn: {}}
 Global Controller_Active := 0
