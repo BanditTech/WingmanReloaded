@@ -208,9 +208,9 @@ Class Util {
 			This.Log.File := FileOpen(This.Log.ActiveFile,"w")
 			This.Log.File.Close()
 			loglist := This.FileList(This.Dir.logs, This.Name " ??????????????.log")
-			If (loglist.Count() > This.Log.Limit && This.Log.Limit)
+			If (loglist.Length > This.Log.Limit && This.Log.Limit)
 			{
-				While (loglist.Count() > This.Log.Limit) {
+				While (loglist.Length > This.Log.Limit) {
 					FileDelete(This.Dir.logs "\" loglist.RemoveAt(1))
 				}
 			}
