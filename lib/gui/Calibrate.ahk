@@ -311,7 +311,7 @@ updateDetonate(*)
 	MainMenu()
 }
 
-StartCalibrationWizard(*){
+CalibrationWizard(*){
 	Global PauseTooltips
 	Static WizardGui := ""
 	; Shared state accessible to nested closure functions
