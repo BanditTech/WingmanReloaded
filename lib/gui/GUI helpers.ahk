@@ -441,7 +441,7 @@ WarningAutomation(*) {
 MouseTip(x:="", y:="", w:=21, h:=21)
 {
   if (x="") {
-    VarSetCapacity(pt,16,0), DllCall("GetCursorPos","ptr",&pt)
+    pt := Buffer(16, 0), DllCall("GetCursorPos","ptr",pt)
     x:=NumGet(pt,0,"uint"), y:=NumGet(pt,4,"uint")
   }
   If IsObject(x) {

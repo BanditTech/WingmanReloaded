@@ -128,7 +128,7 @@ DrawZoom_ToggleZoom() {
     WinSetTransparent(255, "Magnifier") ; makes the window invisible to magnification
     hdd_frame := DllCall("GetDC", "UInt", GamePID)
     hdc_frame := DllCall("GetDC", "UInt", MagnifierID)
-    Hotkey("IfWinActive")
+    HotIf()
     Hotkey("Up", "PushMouse", "On")
     Hotkey("Down", "PushMouse", "On")
     Hotkey("Left", "PushMouse", "On")
