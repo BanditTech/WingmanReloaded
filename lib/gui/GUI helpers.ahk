@@ -26,9 +26,9 @@ SaveBasicCraft(GuiCtrl, *) {
 	SaveINI(GuiCtrl.Name, "Basic Craft")
 }
 
-BasicCraftRadio(*) {
-	Global MainGui, BasicCraftChanceMethod, BasicCraftColorMethod, BasicCraftLinkMethod, BasicCraftSocketMethod
-	MainGui.Submit(0)
+BasicCraftRadio(ctrl, *) {
+	Global BasicCraftChanceMethod, BasicCraftColorMethod, BasicCraftLinkMethod, BasicCraftSocketMethod
+	ctrl.Gui.Submit(0)
 	IniWrite(BasicCraftChanceMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftChanceMethod")
 	IniWrite(BasicCraftColorMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftColorMethod")
 	IniWrite(BasicCraftLinkMethod, A_ScriptDir "\save\Settings.ini", "Basic Craft", "BasicCraftLinkMethod")
@@ -40,10 +40,10 @@ SaveStashTabs(GuiCtrl, *) {
 	GreyOutAffinity()
 }
 
-SaveChaosRadio(*) {
-	Global MainGui, ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal
+SaveChaosRadio(ctrl, *) {
+	Global ChaosRecipeTypePure, ChaosRecipeTypeHybrid, ChaosRecipeTypeRegal
 	Global ChaosRecipeStashMethodDump, ChaosRecipeStashMethodTab, ChaosRecipeStashMethodSort
-	MainGui.Submit(0)
+	ctrl.Gui.Submit(0)
 	IniWrite(ChaosRecipeTypePure, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypePure")
 	IniWrite(ChaosRecipeTypeHybrid, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypeHybrid")
 	IniWrite(ChaosRecipeTypeRegal, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeTypeRegal")
@@ -52,8 +52,7 @@ SaveChaosRadio(*) {
 	IniWrite(ChaosRecipeStashMethodSort, A_ScriptDir "\save\Settings.ini", "Chaos Recipe", "ChaosRecipeStashMethodSort")
 }
 
-UpdateExtra(*) {
-	Global MainGui, LootColorsGui
+UpdateExtra(ctrl, *) {
 	Global BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType, LootVacuum, LootVacuumTapZ
 	Global LootVacuumTapZEnd, LootVacuumTapZSec, YesVendor, YesStash, YesSkipMaps, YesSkipMaps_Prep
 	Global YesSkipMaps_eval, YesSkipMaps_normal, YesSkipMaps_magic, YesSkipMaps_rare, YesSkipMaps_unique
@@ -62,9 +61,7 @@ UpdateExtra(*) {
 	Global AutoUpdateOff, YesGuiLastPosition, YesDX12, AreaScale, LVdelay, YesOHB
 	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation
 	Global YesEnableAutoSellConfirmation, YesEnableAutoSellConfirmationSafe, YesLootChests, YesLootDelve
-	MainGui.Submit(0)
-	If (IsSet(LootColorsGui) && LootColorsGui is Gui)
-		LootColorsGui.Submit(0)
+	ctrl.Gui.Submit(0)
 	; Gui, Inventory: Submit, NoHide
 	IniWrite(BranchName, A_ScriptDir "\save\Settings.ini", "General", "BranchName")
 	IniWrite(ScriptUpdateTimeInterval, A_ScriptDir "\save\Settings.ini", "General", "ScriptUpdateTimeInterval")
@@ -127,17 +124,17 @@ UpdateStringEdit(GuiCtrl, *) {
 		debuffCurseStr := debuffCurseEleWeakStr . debuffCurseVulnStr . debuffCurseEnfeebleStr . debuffCurseTempChainStr . debuffCurseCondStr . debuffCurseFlamStr . debuffCurseFrostStr . debuffCurseWarMarkStr
 }
 
-UpdateResolutionScale(*) {
-	Global MainGui, ResolutionScale
-	MainGui.Submit(0)
+UpdateResolutionScale(ctrl, *) {
+	Global ResolutionScale
+	ctrl.Gui.Submit(0)
 	IniWrite(ResolutionScale, A_ScriptDir "\save\Settings.ini", "General", "ResolutionScale")
 	Rescale()
 }
 
 
-UpdateDebug(*) {
-	Global MainGui, DebugMessages, YesTimeMS, YesLocation
-	MainGui.Submit(0)
+UpdateDebug(ctrl, *) {
+	Global DebugMessages, YesTimeMS, YesLocation
+	ctrl.Gui.Submit(0)
 	IniWrite(DebugMessages, A_ScriptDir "\save\Settings.ini", "General", "DebugMessages")
 	IniWrite(YesTimeMS, A_ScriptDir "\save\Settings.ini", "General", "YesTimeMS")
 	IniWrite(YesLocation, A_ScriptDir "\save\Settings.ini", "General", "YesLocation")
