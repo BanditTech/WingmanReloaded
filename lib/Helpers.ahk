@@ -44,9 +44,11 @@ indexOf(var, Arr, fromIndex:=1){
 }
 ; Check if a specific value is part of an array's array and return the parent index
 indexOfArr(var, Arr, fromIndex:=1){
+  pos := 0
   for index, a in Arr
   {
-    if (index < fromIndex)
+    pos++
+    if (pos < fromIndex)
       Continue
     for k, value in a
       if (value == var)
