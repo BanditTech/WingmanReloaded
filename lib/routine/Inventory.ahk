@@ -382,8 +382,11 @@ StackedDeckOpen(number,x,y){
 	}
 }
 ResetMainTimer(toggle:="On"){
+	; v2 SetTimer needs a numeric Period: >0 repeats, 0 deletes the timer.
+	; The v1 'Off' string is not accepted; map the legacy 'On'/'Off' args.
+	period := (toggle = "On") ? Tick : (toggle = "Off") ? 0 : toggle
 	If (WR.func.Toggle.Quit || WR.func.Toggle.Flask || WR.func.Toggle.Utility || WR.func.Toggle.Move || WR.perChar.Setting.autominesEnable || WR.perChar.Setting.autolevelgemsEnable || LootVacuum)
-		SetTimer(TGameTick, toggle)
+		SetTimer(TGameTick, period)
 }
 ; StashRoutine - Does stash functions
 StashRoutine()
