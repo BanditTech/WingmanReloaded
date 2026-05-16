@@ -1321,8 +1321,8 @@ BuildGridsFromCorners(){
   , totalY:=InvGrid.Corners.Stash.Y2 - InvGrid.Corners.Stash.Y1
   ; Fill in array with grid locations for 12x12 stash
   Cnum:=Rnum:=12
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   InvGrid.SlotRadius := (Cwidth//2 + Rwidth//2) // 2
   InvGrid.SlotSize := (Cwidth + Rwidth) // 2
   Loop Cnum
@@ -1336,8 +1336,8 @@ BuildGridsFromCorners(){
   }
   ; Fill in array with grid locations for 24x24 stash
   Cnum:=Rnum:=24
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
     If (A_Index == 1) 
@@ -1353,8 +1353,8 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x5 Inventory
   Cnum:=12
   Rnum:=5
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
     If (A_Index == 1) 
@@ -1377,8 +1377,8 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x5 Receive Area
   Cnum:=12
   Rnum:=5
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
     If (A_Index == 1) 
@@ -1401,8 +1401,8 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x5 Offer Area
   Cnum:=12
   Rnum:=5
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
     If (A_Index == 1) 
@@ -1425,8 +1425,8 @@ BuildGridsFromCorners(){
   ; Fill in array with grid locations for 12x10 Offer Area
   Cnum:=12
   Rnum:=10
-  Cwidth:=((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
-  , Rwidth:=((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
+  Cwidth:=Floor((totalX-((Cnum-1)*InvGrid.SlotSpacing))/Cnum)
+  , Rwidth:=Floor((totalY-((Rnum-1)*InvGrid.SlotSpacing))/Rnum)
   Loop Cnum
   {
     If (A_Index == 1) 
