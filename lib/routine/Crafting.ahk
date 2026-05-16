@@ -154,7 +154,7 @@ CraftingItem(){
 		Return
 	}
 	*/
-	If (ObjCount(WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector]) == 0) {
+	If (ObjCount(WR.ItemCrafting.%ItemCraftingCategorySelector%.%ItemCraftingSubCategorySelector%) == 0) {
 		Notify("Mod Selector Empty","You Need Select at Least 1 Affix on Mod Selector",4)
 		Log("[End]Item Crafting - Item Crafting Error","You Need Select at Least 1 Affix on Mod Selector")
 		Return
