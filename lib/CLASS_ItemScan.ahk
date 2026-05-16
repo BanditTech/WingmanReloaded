@@ -1609,14 +1609,10 @@ class ItemScan
 		This.MergePseudoInAffixs()
 	}
 	GetValue(Type, Context){
-		If !This[Type][Context]
-		{
+		coll := This.%Type%
+		If !coll.Has(Context)
 			return 0
-		}
-		Else
-		{
-			return This[Type][Context]
-		}
+		return coll[Context]
 	}
 	AddPseudoAffix(PseudoKey,StandardKey,StandardType:="Affix"){
 		HybridKey := "(Hybrid) " . StandardKey
