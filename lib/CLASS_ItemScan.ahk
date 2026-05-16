@@ -2801,8 +2801,8 @@ class ItemScan
 	}
 	inRange(key,obj,base){
 		If (obj.ranges.Length == 1) {
-			If !((base[key] >= obj.ranges.1.1 && base[key] <= obj.ranges.1.2)
-				|| (base[key] <= obj.ranges.1.1 && base[key] >= obj.ranges.1.2))
+			If !((base[key] >= obj.ranges[1][1] && base[key] <= obj.ranges[1][2])
+				|| (base[key] <= obj.ranges[1][1] && base[key] >= obj.ranges[1][2]))
 				Return False
 		} Else If (obj.ranges.Length >= 2) {
 			for k, v in obj.ranges
