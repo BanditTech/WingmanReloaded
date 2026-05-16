@@ -304,9 +304,12 @@ Monitor_GameLogs(Initialize:=0)
     }
     Catch as loaderror
     {
-      Ding(5000,-10,"Client.txt Critical Load Error`nSize: " errchk "MB`n" loaderror.Message)
+      errMsg  := IsObject(loaderror) && loaderror.HasProp("Message") ? loaderror.Message : String(loaderror)
+      errFile := IsObject(loaderror) && loaderror.HasProp("File")    ? loaderror.File    : ""
+      errLine := IsObject(loaderror) && loaderror.HasProp("Line")    ? loaderror.Line    : ""
+      Ding(5000,-10,"Client.txt Critical Load Error`nSize: " errchk "MB`n" errMsg)
       CurrentLocation := "Client File Load Error"
-      Log("Error","Error loading File, Submit information about your client.txt",loaderror.Message,loaderror.File,loaderror.Line)
+      Log("Error","Error loading File, Submit information about your client.txt",errMsg,errFile,errLine)
     }
     Return
   } Else {
