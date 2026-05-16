@@ -226,6 +226,8 @@ Class Util {
 		}
 		static Msg(t*){
 			local flag := "", k, v, File, line := ""
+			If !t.Length
+				Return
 			If (t[1] ~= "Verbose" && !This.Debug.Verbose)
 				Return
 			Else If (t[1] ~= "^\w+$" || t[1] ~= ".+ $")
@@ -235,7 +237,7 @@ Class Util {
 			If !This.Log.ActiveFile
 				This.Log.Open()
 			File := FileOpen(This.Log.ActiveFile,"a")
-			If (t[1] is Array && t[1].Length)
+			If (t.Length && t[1] is Array && t[1].Length)
 				t := t[1]
 			For k, v in t {
 				If isObject(v)
