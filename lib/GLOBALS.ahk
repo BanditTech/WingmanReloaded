@@ -35,7 +35,7 @@ Global RecipeMap := Map()
 Global ItemParseActive := False
 Global ClipParseError := False
 Global QuestItems := Map()
-Global DelayAction := {}
+Global DelayAction := []
 Global ProfileMenuFlask := "", ProfileMenuUtility := "", ProfileMenuperChar := ""
 Global POEData := Map()
 Global BasesData := Map()

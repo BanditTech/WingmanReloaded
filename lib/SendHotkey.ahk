@@ -13,13 +13,16 @@ SendHotkey(keyStr:="",hold:=0){
   }
 }
 SendDelayAction(){
-  For k, keys in DelayAction
+  k := DelayAction.Length
+  While (k >= 1)
   {
+    keys := DelayAction[k]
     If (keys.TriggerAt <= A_TickCount)
     {
       SendHotkey(keys.Key)
-      DelayAction.Delete(k)
+      DelayAction.RemoveAt(k)
     }
+    k--
   }
 }
 IsModifier(Character) {
