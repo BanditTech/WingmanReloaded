@@ -518,6 +518,7 @@ Global YesDX12 := 0
 Global YesSortFirst := 1
 Global FlaskList := []
 Global AreaScale := 0
+Global MaxArea := 500
 Global LVdelay := 0
 Global LootVacuum := 1
 Global LootVacuumTapZ := 1
