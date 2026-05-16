@@ -917,7 +917,7 @@ class ItemScan
 		SumRNP := 0
 		SumRNS := 0
 		LastID :=0
-		For k, v in WR.ItemCrafting.%ItemCraftingCategorySelector%[ItemCraftingSubCategorySelector]
+		For k, v in WR.ItemCrafting.%ItemCraftingCategorySelector%.%ItemCraftingSubCategorySelector%
 		{
 			If(This.Affix.Get(v["ModWRFormat"], 0) >= v["ValueWRFormatLow"] && This.Affix.Get(v["ModWRFormat"], 0) <= v["ValueWRFormatHigh"] && This.Affix.Has(v["Affix"]))
 			{
