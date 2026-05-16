@@ -112,12 +112,12 @@ DrawZoom_ToggleZoom() {
   {
     DrawZoom_ClearGDI()
     SetTimer(DrawZoom_Repaint, 0)   ; flow through
-    Hotkey("WheelUp", "ZoomAdjust", "Off")
-    Hotkey("WheelDown", "ZoomAdjust", "Off")
-    Hotkey("Up", "PushMouse", "Off")
-    Hotkey("Down", "PushMouse", "Off")
-    Hotkey("Left", "PushMouse", "Off")
-    Hotkey("Right", "PushMouse", "Off")
+    Hotkey("WheelUp", ZoomAdjust, "Off")
+    Hotkey("WheelDown", ZoomAdjust, "Off")
+    Hotkey("Up", PushMouse, "Off")
+    Hotkey("Down", PushMouse, "Off")
+    Hotkey("Left", PushMouse, "Off")
+    Hotkey("Right", PushMouse, "Off")
     ZoomGui.Destroy()
   }
   Else
@@ -131,12 +131,12 @@ DrawZoom_ToggleZoom() {
     hdd_frame := DllCall("GetDC", "UInt", GamePID)
     hdc_frame := DllCall("GetDC", "UInt", MagnifierID)
     HotIf()
-    Hotkey("Up", "PushMouse", "On")
-    Hotkey("Down", "PushMouse", "On")
-    Hotkey("Left", "PushMouse", "On")
-    Hotkey("Right", "PushMouse", "On")
-    Hotkey("WheelUp", "ZoomAdjust", "On")
-    Hotkey("WheelDown", "ZoomAdjust", "On")
+    Hotkey("Up", PushMouse, "On")
+    Hotkey("Down", PushMouse, "On")
+    Hotkey("Left", PushMouse, "On")
+    Hotkey("Right", PushMouse, "On")
+    Hotkey("WheelUp", ZoomAdjust, "On")
+    Hotkey("WheelDown", ZoomAdjust, "On")
     SetTimer(DrawZoom_Repaint, 50)   ; flow through
   }
 }
