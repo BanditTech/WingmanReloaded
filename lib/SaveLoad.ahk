@@ -122,7 +122,7 @@ readFromFile(){
 	; AccountNameSTR := IniRead(A_ScriptDir "\save\Account.ini", "GGG", "PoECookie", A_Space)
 	AccountNameSTR := IniRead(A_ScriptDir "\save\Account.ini", "GGG", "AccountNameSTR", A_Space)
 	PoECookie := FileExist(A_ScriptDir "\save\Cookie.json")
-		? JSON.LoadFile(A_ScriptDir "\save\Cookie.json").Cookie
+		? JSON.LoadFile(A_ScriptDir "\save\Cookie.json")["Cookie"]
 		: ""
 
 	; GUI Position
