@@ -17,6 +17,7 @@ Global GamePID := 0
 ; (e.g. the main logic loop's 'If NoGame Return') doesn't trip on the
 ; unset state.
 Global NoGame := True
+Global YesXButtonFound := False
 ; ChaosRecipe() rebuilds this each run, but CountChaosRecipe()/
 ; UpdateGuiChaosCounts may iterate it before ChaosRecipe is ever called.
 Global RecipeMap := Map()
