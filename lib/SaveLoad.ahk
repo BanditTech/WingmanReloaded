@@ -892,15 +892,22 @@ updateEverything(*){
 
 		if WinExist("ahk_group POEGameGroup")
 		{
-			MainGui.Submit(1)
+			saved := MainGui.Submit(1)
 			Rescale()
 			OverlayGui.Show("x" WR.loc.pixel.Gui.X " y" (WR.loc.pixel.Gui.Y - 15))
 			ChaosGui.Show("x" (WR.loc.pixel.GuiChaos.X - 300) " y" WR.loc.pixel.GuiChaos.Y " NA")
 			ToggleExist := True
 			WinActivate("ahk_group POEGameGroup")
 		}
+		Else
+			saved := MainGui.Submit(0)
 
-		MainGui.Submit(0)
+		; v2 Submit returns the values rather than writing globals; copy
+		; each named control's value back into the same-named global so
+		; the IniWrite block below and the trailing readFromFile() pick
+		; up the user's changes (e.g. unbinding hotkeyItemInfo).
+		For propName, val in saved.OwnProps()
+			Try %propName% := val
 
 		IniWrite(AccountNameSTR, A_ScriptDir "\save\Account.ini", "GGG", "AccountNameSTR")
 		temp := {Cookie: PoECookie}
