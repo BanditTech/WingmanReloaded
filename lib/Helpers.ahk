@@ -147,14 +147,14 @@ GetProcessTimes(PID){
   if aPIDs.Has(PID) && A_TickCount - aPIDs[PID]["tickPrior"] < 250
     return aPIDs[PID]["usagePrior"]
 
-  lpIdleTimeSystem := lpKernelTimeSystem := lpUserTimeSystem := 0
+  lpIdleTimeSystem := 0, lpKernelTimeSystem := 0, lpUserTimeSystem := 0
   DllCall("GetSystemTimes", "Int64*", &lpIdleTimeSystem, "Int64*", &lpKernelTimeSystem, "Int64*", &lpUserTimeSystem)
   if !hProc := DllCall("OpenProcess", "UInt", 0x1000, "Int", 0, "Ptr", pid) {
     if aPIDs.Has(PID)
       aPIDs.Delete(PID) ; Process doesn't exist anymore or don't have access to it.
     return -2
   }
-  lpCreationTime := lpExitTime := lpKernelTimeProcess := lpUserTimeProcess := 0
+  lpCreationTime := 0, lpExitTime := 0, lpKernelTimeProcess := 0, lpUserTimeProcess := 0
   DllCall("GetProcessTimes", "Ptr", hProc, "Int64*", &lpCreationTime, "Int64*", &lpExitTime, "Int64*", &lpKernelTimeProcess, "Int64*", &lpUserTimeProcess)
   DllCall("CloseHandle", "Ptr", hProc)
 
