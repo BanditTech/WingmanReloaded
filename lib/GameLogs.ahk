@@ -22,7 +22,7 @@ CompareLocation(cStr:="")
     Return indexOfArr(CurrentLocation,ClientTowns)
   If (Lang == "")
   {
-    For k, v in LangString
+    For k, v in LangString.OwnProps()
     {
       If InStr(cStr, v)
       {
