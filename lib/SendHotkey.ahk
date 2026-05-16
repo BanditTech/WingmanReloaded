@@ -13,16 +13,18 @@ SendHotkey(keyStr:="",hold:=0){
   }
 }
 SendDelayAction(){
-  k := DelayAction.Length
-  While (k >= 1)
+  k := 1
+  While (k <= DelayAction.Length)
   {
     keys := DelayAction[k]
     If (keys.TriggerAt <= A_TickCount)
     {
       SendHotkey(keys.Key)
       DelayAction.RemoveAt(k)
+      ; do not advance k - the next item shifted into this slot
     }
-    k--
+    Else
+      k++
   }
 }
 IsModifier(Character) {
