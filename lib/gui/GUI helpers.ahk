@@ -53,7 +53,7 @@ SaveChaosRadio(*) {
 }
 
 UpdateExtra(*) {
-	Global MainGui
+	Global MainGui, LootColorsGui
 	Global BranchName, ScriptUpdateTimeInterval, ScriptUpdateTimeType, LootVacuum, LootVacuumTapZ
 	Global LootVacuumTapZEnd, LootVacuumTapZSec, YesVendor, YesStash, YesSkipMaps, YesSkipMaps_Prep
 	Global YesSkipMaps_eval, YesSkipMaps_normal, YesSkipMaps_magic, YesSkipMaps_rare, YesSkipMaps_unique
@@ -63,6 +63,8 @@ UpdateExtra(*) {
 	Global YesEnableAutomation, FirstAutomationSetting, YesEnableNextAutomation
 	Global YesEnableAutoSellConfirmation, YesEnableAutoSellConfirmationSafe, YesLootChests, YesLootDelve
 	MainGui.Submit(0)
+	If (IsSet(LootColorsGui) && LootColorsGui is Gui)
+		LootColorsGui.Submit(0)
 	; Gui, Inventory: Submit, NoHide
 	IniWrite(BranchName, A_ScriptDir "\save\Settings.ini", "General", "BranchName")
 	IniWrite(ScriptUpdateTimeInterval, A_ScriptDir "\save\Settings.ini", "General", "ScriptUpdateTimeInterval")
