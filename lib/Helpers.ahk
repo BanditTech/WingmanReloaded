@@ -34,6 +34,8 @@ StringToArray(text,delim:="|"){
 }
 ; Check if a specific value is part of an array and return the index
 indexOf(var, Arr, fromIndex:=1){
+  if !IsObject(Arr)
+    return False
   for index, value in Arr {
     if (index < fromIndex){
       Continue
@@ -44,6 +46,8 @@ indexOf(var, Arr, fromIndex:=1){
 }
 ; Check if a specific value is part of an array's array and return the parent index
 indexOfArr(var, Arr, fromIndex:=1){
+  if !IsObject(Arr)
+    return False
   pos := 0
   for index, a in Arr
   {
