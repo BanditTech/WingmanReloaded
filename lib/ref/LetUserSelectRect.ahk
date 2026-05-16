@@ -44,7 +44,7 @@ LetUserSelectRect(PixelToo:=0)
 	PauseTooltips := 1
 	If (GamePID)
 	{
-		MainGui.Submit(0)
+		MainGui.Hide()
 		WinActivate(GameStr)
 	}
 	If PixelToo
@@ -107,7 +107,7 @@ LetUserSelectPixel(){
 	PauseTooltips := 1
 	If (GamePID)
 	{
-		MainGui.Submit(0)
+		MainGui.Hide()
 		WinActivate(GameStr)
 	}
 	Ding(0,-11,"Click or Press CTRL to select a location")
