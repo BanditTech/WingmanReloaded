@@ -68,7 +68,7 @@ class ItemScan
 			}
 		}
 		This.Data.Sections := ""
-		This.Data.Delete("Sections")
+		This.Data.DeleteProp("Sections")
 
 		This.MatchAffixesWithoutDoubleMods(This.Data.Blocks.Affix)
 		;This.MatchAffixes(This.Data.Blocks.Affix)
@@ -1628,11 +1628,11 @@ class ItemScan
 		}
 		; Free Object (Not needed)
 		This.Pseudo := ""
-		This.Delete("Pseudo")
+		This.DeleteProp("Pseudo")
 	}
 	FuckingSugoiFreeMate(){
 		This.Data := ""
-		This.Delete("Data")
+		This.DeleteProp("Data")
 	}
 	MatchExtenalDB(){
 		For k, v in QuestItems
