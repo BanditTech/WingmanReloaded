@@ -727,14 +727,14 @@ class ItemScan
 				}
 				This.Prop.Weapon_DPS_Total := 0
 				This.Prop.Weapon_DPS_Total_Q20 := 0
-				If (This.Prop.Has("Weapon_Avg_Physical_Dmg"))
+				If (This.Prop.HasOwnProp("Weapon_Avg_Physical_Dmg"))
 					This.Prop.Weapon_DPS_Physical := Round(This.Prop.Weapon_Avg_Physical_Dmg * This.Prop.Weapon_APS,1)
-				If (This.Prop.Has("Weapon_Avg_Elemental_Dmg"))
+				If (This.Prop.HasOwnProp("Weapon_Avg_Elemental_Dmg"))
 					This.Prop.Weapon_DPS_Elemental := Round(This.Prop.Weapon_Avg_Elemental_Dmg * This.Prop.Weapon_APS,1)
-				If (This.Prop.Has("Weapon_Avg_Chaos_Dmg"))
+				If (This.Prop.HasOwnProp("Weapon_Avg_Chaos_Dmg"))
 					This.Prop.Weapon_DPS_Chaos := Round(This.Prop.Weapon_Avg_Chaos_Dmg * This.Prop.Weapon_APS,1)
 				This.Prop.Weapon_DPS_Total := Round((This.Prop.Weapon_DPS_Physical?This.Prop.Weapon_DPS_Physical:0) + (This.Prop.Weapon_DPS_Elemental?This.Prop.Weapon_DPS_Elemental:0) + (This.Prop.Weapon_DPS_Chaos?This.Prop.Weapon_DPS_Chaos:0),1)
-				If ((This.Prop.Quality?This.Prop.Quality:0) < 20 && This.Prop.Has("Weapon_Avg_Physical_Dmg"))
+				If ((This.Prop.Quality?This.Prop.Quality:0) < 20 && This.Prop.HasOwnProp("Weapon_Avg_Physical_Dmg"))
 				{
 					BasePhysDps := (This.Prop.Weapon_Avg_Physical_Dmg * This.Prop.Weapon_APS) / (((This.Prop.Quality?This.Prop.Quality:0) + 100) / 100)
 					Q20DpsPhys := Round(BasePhysDps * (120 / 100),2)
@@ -1971,7 +1971,7 @@ class ItemScan
 	}
 	GraphNinjaPrices(){
 		Global ItemInfoGui
-		If This.Data.Has("Ninja") || This.Data.Has("HelmNinja") || This.Data.Has("BaseNinja")
+		If This.Data.HasOwnProp("Ninja") || This.Data.HasOwnProp("HelmNinja") || This.Data.HasOwnProp("BaseNinja")
 		{
 			_GoSub_ShowGraph()
 			ItemInfoGui.Title := This.Prop.ItemName " Sparkline"
@@ -2170,7 +2170,7 @@ class ItemScan
 		Else If (This.Data.Ninja["sparkline"] || This.Data.HelmNinja["sparkline"] || This.Data.BaseNinja["sparkline"] )
 		{
 			LTGraph := HTGraph := True
-			If (This.Data.Has("Ninja"))
+			If (This.Data.HasOwnProp("Ninja"))
 			{
 				HTGraph := "Name"
 				dataPoint := This.Data.Ninja["sparkline"]["data"]
@@ -2179,7 +2179,7 @@ class ItemScan
 			Else
 				HTGraph := False
 
-			If (This.Data.Has("HelmNinja") && This.Data.Has("BaseNinja"))
+			If (This.Data.HasOwnProp("HelmNinja") && This.Data.HasOwnProp("BaseNinja"))
 			{
 				dataPoint := This.Data.BaseNinja["sparkline"]["data"]
 				totalChange := This.Data.BaseNinja["sparkline"]["totalChange"]
@@ -2188,13 +2188,13 @@ class ItemScan
 				HTGraph := "Base"
 				LTGraph := "Helm"
 			}
-			Else If (This.Data.Has("BaseNinja"))
+			Else If (This.Data.HasOwnProp("BaseNinja"))
 			{
 				dataLTPoint := This.Data.BaseNinja["sparkline"]["data"]
 				totalLTChange := This.Data.BaseNinja["sparkline"]["totalChange"]
 				LTGraph := "Base"
 			}
-			Else If (This.Data.Has("HelmNinja"))
+			Else If (This.Data.HasOwnProp("HelmNinja"))
 			{
 				dataLTPoint := This.Data.HelmNinja["sparkline"]["data"]
 				totalLTChange := This.Data.HelmNinja["sparkline"]["totalChange"]

@@ -7,7 +7,7 @@ Global WR := {loc:{}, Flask:{}, Utility:{}, perChar:{}, Debug:{}
 LoadDisenchanting()
 
 WR.loc.pixel := {}, WR.loc.area := {}
-WR.data.Counts := {}
+WR.data.Counts := Map()
 for _k, _v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "DivTrade", "DivItem"
 	,"CurrencyGeneral","CurrencyInfluence"
 	, "Wisdom", "Portal", "Blacksmith", "Armourer", "Glassblower", "Gemcutter", "Chisel"

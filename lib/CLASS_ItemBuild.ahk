@@ -4,7 +4,7 @@ class ItemBuild extends ItemScan
 	__New(Object,quad){
 		This.Data := {Blocks: {Affix:"", FlavorText:""}}
 		This.Pseudo := {}
-		This.Affix := {}
+		This.Affix := Map()
 		This.Prop := {}
 		This.Prop.Rarity := (Object.frameType=0?"Normal"
 			:(Object.frameType=1?"Magic"
