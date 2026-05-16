@@ -402,7 +402,7 @@ StashRoutine()
 	SortFirst := Map()
 	Loop 99
 	{
-		SortFirst[A_Index] := {}
+		SortFirst[A_Index] := []
 	}
 	BlackList := adash.cloneDeep(BlackList_Default)
 	; Move mouse away for Screenshot
@@ -481,7 +481,10 @@ StashRoutine()
 							Pitem := FindText().GetColor(GridX,GridY)
 							if (indexOfHex(Pitem, varEmptyInvSlotColor))
 								Continue
-							SortFirst[StashTabYesUniqueRing && Item.Prop.Ring?StashTabUniqueRing:StashTabUniqueDump].Push({C:C, R:R, Item:Item})
+							uniqueTab := StashTabYesUniqueRing && Item.Prop.Ring ? StashTabUniqueRing : StashTabUniqueDump
+							If !SortFirst.Has(uniqueTab)
+								SortFirst[uniqueTab] := []
+							SortFirst[uniqueTab].Push({C:C, R:R, Item:Item})
 						} Else {
 							Continue
 						}
@@ -494,7 +497,11 @@ StashRoutine()
 					Sleep(60)
 				} Else If (sendstash > 0) {
 					If YesSortFirst
+					{
+						If !SortFirst.Has(sendstash)
+							SortFirst[sendstash] := []
 						SortFirst[sendstash].Push({C:C, R:R, Item:Item})
+					}
 					Else
 					{
 						MoveStash(sendstash)
@@ -549,9 +556,9 @@ StashRoutine()
 						Break
 					MoveStash(Tab)
 					Sleep(60)
-					C := SortFirst[Tab][Items]["C"]
-					R := SortFirst[Tab][Items]["R"]
-					sortItem := SortFirst[Tab][Items]["Item"]
+					C := Iv.C
+					R := Iv.R
+					sortItem := Iv.Item
 					GridX := InventoryGridX[C]
 					GridY := InventoryGridY[R]
 					Grid := RandClick(GridX, GridY)
