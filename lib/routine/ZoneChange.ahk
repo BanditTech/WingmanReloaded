@@ -3,6 +3,7 @@ ZoneChange(){
 	Static OldLoc := 0
 
 	Strings := []
+	RunRefresh := False
 	; Zone change can be evaluated for number or in town/hideout or not
 	Changes++
 	ThisLoc := OnTown || OnHideout
