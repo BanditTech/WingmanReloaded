@@ -1270,6 +1270,7 @@ Settings(name:="perChar",Action:="Load"){
 }
 ; Profile Save/Load/Remove
 Profile(args*){
+	Global MainGui
 	MainGui.Submit(0)
 	confirm := False
 	If (IsObject(args[1])){  ; called as GUI click handler (GuiCtrl, Info)
