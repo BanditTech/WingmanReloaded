@@ -21,18 +21,18 @@ PopFlasks(){
 				If WR.Flask.%A_Index%.PopAll
 				{
 					SendHotkey(WR.Flask.%A_Index%.Key)
-					WR.cdExpires.Flask.%A_Index%:=A_TickCount + WR.Flask.%A_Index%.CD
+					WR.cdExpires.Flask[A_Index]:=A_TickCount + WR.Flask.%A_Index%.CD
 					grp := WR.Flask.%A_Index%.Group
-					WR.cdExpires.Group.%grp% := A_TickCount + WR.Flask.%A_Index%.GroupCD
+					WR.cdExpires.Group[grp] := A_TickCount + WR.Flask.%A_Index%.GroupCD
 					RandomSleep(-99,99)
 				}
 			Loop 10
 				If WR.Utility.%A_Index%.PopAll
 				{
 					SendHotkey(WR.Utility.%A_Index%.Key)
-					WR.cdExpires.Utility.%A_Index%:=A_TickCount + WR.Utility.%A_Index%.CD
+					WR.cdExpires.Utility[A_Index]:=A_TickCount + WR.Utility.%A_Index%.CD
 					grp := WR.Utility.%A_Index%.Group
-					WR.cdExpires.Group.%grp% := A_TickCount + WR.Utility.%A_Index%.GroupCD
+					WR.cdExpires.Group[grp] := A_TickCount + WR.Utility.%A_Index%.GroupCD
 					RandomSleep(-99,99)
 				}
 		}
