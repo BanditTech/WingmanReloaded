@@ -27,8 +27,10 @@ LootScan(Reset:=0){
 				While GrowingAreaScale < MaxArea
 				{
 					MouseGetPos(&mX, &mY)
-					ClampGameScreen(x := mX - GrowingAreaScale, y := mY - GrowingAreaScale)
-					ClampGameScreen(xx := mX + GrowingAreaScale, yy := mY + GrowingAreaScale)
+					x := mX - GrowingAreaScale, y := mY - GrowingAreaScale
+					ClampGameScreen(&x, &y)
+					xx := mX + GrowingAreaScale, yy := mY + GrowingAreaScale
+					ClampGameScreen(&xx, &yy)
 					If (loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
 					{
 						ScanPx := loot[1].x
@@ -62,8 +64,10 @@ LootScan(Reset:=0){
 						ScanPx := (x1 + x2) / 2
 
 						; FindCenterY
-						ClampGameScreen(x := x1, y := loot_y - 22)
-						ClampGameScreen(xx := x1 + 10, yy := loot_yy + 22)
+						x := x1, y := loot_y - 22
+						ClampGameScreen(&x, &y)
+						xx := x1 + 10, yy := loot_yy + 22
+						ClampGameScreen(&xx, &yy)
 						if (match := FindText(&FT_X, &FT_Y, x,y,xx,yy,0,0,ComboHexY,0,0,,,,9))
 							ScanPy := match[1].y
 
@@ -75,15 +79,19 @@ LootScan(Reset:=0){
 					If OnMines && YesLootDelve
 					{
 						MouseGetPos(&mX, &mY)
-						ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
-						ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
+						x := mX - (AreaScale + 80), y := mY - (AreaScale + 80)
+						ClampGameScreen(&x, &y)
+						xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80)
+						ClampGameScreen(&xx, &yy)
 						loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0.1,0.1,DelveStr,0,0)
 					}
 					Else If YesLootChests
 					{
 						MouseGetPos(&mX, &mY)
-						ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
-						ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
+						x := mX - (AreaScale + 80), y := mY - (AreaScale + 80)
+						ClampGameScreen(&x, &y)
+						xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80)
+						ClampGameScreen(&xx, &yy)
 						loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0.1,0.1,ChestStr,0,0)
 					}
 					If (loot)
