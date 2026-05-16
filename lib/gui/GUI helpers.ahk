@@ -199,7 +199,7 @@ ft_Start(*) {
 	Global MainGui, CheckGamestates
 	MainGui.Submit()
 	CheckGamestates:= False
-	Run("FindText().ahk", A_ScriptDir "\lib\ref\")
+	FindText().Gui("Show")
 }
 
 helpCalibration(*) {
