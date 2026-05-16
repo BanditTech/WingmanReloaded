@@ -3,7 +3,13 @@ TGameTick(GuiCheck:=True){
 	Static LastAverageTimer:=0,LastPauseMessage:=0, tallyMS:=0, tallyCPU:=0, OnScreenMM := 0
 	Global GlobeActive, CurrentMessage, NoGame, GamePID, Detonated
 	If (NoGame)
+	{
+		If CheckTime("seconds",5,"StatusBar1")
+			WR_StatusBarCtrl.SetText("No game found", 1)
+		If CheckTime("seconds",5,"StatusBar3")
+			WR_StatusBarCtrl.SetText("No game found", 3)
 		Return
+	}
 	If GamePID
 	{
 		If (YesController)
