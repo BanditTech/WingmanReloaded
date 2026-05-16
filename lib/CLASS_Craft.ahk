@@ -138,7 +138,7 @@ Class Craft {
 		Global RunningToggle
 		Static namearr := {Chance:"Chance",Color:"Chromatic",Link:"Fusing",Socket:"Jeweller"}
 		ClipItem(x,y)
-		If Item.Affix.Unidentified
+		If Item.Affix.Has("Unidentified")
 			WisdomScroll(x,y), ClipItem(x,y)
 		If This.Desired.Auto
 			This.Desired.Auto := This.GetAuto()
