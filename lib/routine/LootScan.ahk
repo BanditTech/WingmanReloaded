@@ -5,6 +5,9 @@ LootScan(Reset:=0){
 		SetDefaultMouseSpeed(SetDefaultMouseSpeedValue)
 		Static LV_LastClick := 0
 		Global LootVacuumActive, ComboHex, ComboHexX, ComboHexY
+		Global SetKeyDelayValue1, SetKeyDelayValue2, SetMouseDelayValue, SetDefaultMouseSpeedValue
+		Global LootColors, LVdelay, LootVacuum, AreaScale, MaxArea
+		Global OnMines, YesLootDelve, YesLootChests, DelveStr, ChestStr
 		If (!ComboHex || Reset)
 		{
 			ComboHex := Hex2FindText(LootColors,0,0,"",30,8)
