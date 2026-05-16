@@ -124,7 +124,7 @@ ClearNotifications()
 }
 ; Make a more uniform method of checking for identification
 CheckToIdentify(){
-	If (Item.Affix.Unidentified && YesIdentify)
+	If (Item.Affix.Has("Unidentified") && YesIdentify)
 	{
 		If (Item.Prop.IsSynthesisItem && YesSynthesisId && Item.Prop.Rarity_Digit <= 3)
 			Return True

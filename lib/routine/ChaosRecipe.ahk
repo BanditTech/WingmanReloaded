@@ -69,9 +69,9 @@ ChaosRecipeSort(Object,Merge:=False){
   {
     recipeItem := ItemBuild(content,Object["quadLayout"])
     If (recipeItem.Prop.ChaosRecipe){
-      (recipeItem.Affix.Unidentified?uChaos:Chaos)[recipeItem.Prop.SlotType].Push(recipeItem)
+      (recipeItem.Affix.Has("Unidentified")?uChaos:Chaos)[recipeItem.Prop.SlotType].Push(recipeItem)
     }Else If (recipeItem.Prop.RegalRecipe){
-      (recipeItem.Affix.Unidentified?uRegal:Regal)[recipeItem.Prop.SlotType].Push(recipeItem)
+      (recipeItem.Affix.Has("Unidentified")?uRegal:Regal)[recipeItem.Prop.SlotType].Push(recipeItem)
     }
   }
   If (!(i > 0) && !Merge)

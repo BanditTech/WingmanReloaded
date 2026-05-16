@@ -230,12 +230,12 @@ CraftingMaps(){
 			ClipItem(Grid.X,Grid.Y)
 			addToBlacklist(C, R)
 			mapCraftingMethod := getMapCraftingMethod()
-			If (Item.Affix.Unidentified&&YesIdentify)
+			If (Item.Affix.Has("Unidentified")&&YesIdentify)
 			{
 				If ( (Item.Prop.IsMap || Item.Prop.IsBlightedMap)
 					&& (!YesMapUnid
 							|| ( Item.Prop.RarityMagic && mapCraftingMethod ~= "(Alchemy|Hybrid|Binding|Chaos)" )
-							|| ( Item.Affix.Unidentified && mapCraftingMethod ~= "Chisel" && Item.Prop.Map_Quality < 20 )	)
+							|| ( Item.Affix.Has("Unidentified") && mapCraftingMethod ~= "Chisel" && Item.Prop.Map_Quality < 20 )	)
 					&& !Item.Prop.Corrupted)
 				{
 					WisdomScroll(Grid.X,Grid.Y)
@@ -436,7 +436,7 @@ MapRoll(Method, x, y){
 	{
 		return
 	}
-	If (Item.Affix.Unidentified)
+	If (Item.Affix.Has("Unidentified"))
 	{
 		If (Item.Prop.Rarity_Digit > 1 && cname == "Transmutation" && YesMapUnid )
 		{
@@ -472,7 +472,7 @@ MapRoll(Method, x, y){
 	BelowPackSize := Item.Prop.Map_PackSize < MMapMonsterPackSize
 	BelowQuantity := Item.Prop.Map_Quantity < MMapItemQuantity
 	; Corrupted White Maps can break the function without !Item.Prop.Corrupted in loop
-	While (!Item.Affix.Unidentified && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
+	While (!Item.Affix.Has("Unidentified") && !Item.Prop.Corrupted && Item.Prop.MapRerollFlag)
 	{
 		If (!RunningToggle) {
 			break
@@ -551,7 +551,7 @@ ItemCraftingRoll(Method, x, y){
 	{
 		Return
 	}
-	If (Item.Affix.Unidentified)
+	If (Item.Affix.Has("Unidentified"))
 	{
 		WisdomScroll(x,y)
 		ClipItem(x,y)
