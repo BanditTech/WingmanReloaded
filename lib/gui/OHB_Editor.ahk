@@ -70,7 +70,7 @@ OHB_Editor(){
 				MsgBox("Make sure you have the game open", "Cannot find game", 262144)
 				Return
 			}
-			If (Bar:=FindText(GameX + Round((GameW / 2)-(OHB_Width/2 + 1)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2 + 1)+(OHB_Width/2)), Round(GameH / (1080 / 370)) , 0, 0, OHB_StringEdit))
+			If (Bar:=FindText(&FT_X, &FT_Y, GameX + Round((GameW / 2)-(OHB_Width/2 + 1)), GameY + Round(GameH / (1080 / 177)), GameX + Round((GameW / 2 + 1)+(OHB_Width/2)), Round(GameH / (1080 / 370)) , 0, 0, OHB_StringEdit))
 			{
 				MsgBox("OHB string was found!`nMake sure the highlighted matched area is the entire width of the healthbar`nThe red and blue flashing boxes should go to the very inner edge`n`nIf you are done, copy the string into the String Tab", "String Found", 262144)
 				MouseTip(Bar[1][1], Bar[1][2], (Bar[1][3]<2?2:Bar[1][3]), (Bar[1][4]<2?2:Bar[1][4]))

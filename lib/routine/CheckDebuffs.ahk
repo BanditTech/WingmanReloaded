@@ -6,7 +6,7 @@ CheckDebuffs(){
 	debuffStrMap := Map("Curse", debuffCurseStr, "Shock", debuffShockStr, "Bleed", debuffBleedStr, "Freeze", debuffFreezeStr, "Ignite", debuffIgniteStr, "Poison", debuffPoisonStr)
 	For k, debuff in searchList
 	{
-		If (debuffFound := FindText(x1, y1, x2, y2, 0, 0, debuffStrMap[debuff],0))
+		If (debuffFound := FindText(&FT_X, &FT_Y, x1, y1, x2, y2, 0, 0, debuffStrMap[debuff],0))
 		{
 			For k, type in ["Flask","Utility"]
 				Loop (type="Flask"?5:10)

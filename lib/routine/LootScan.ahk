@@ -28,7 +28,7 @@ LootScan(Reset:=0){
 					MouseGetPos(&mX, &mY)
 					ClampGameScreen(x := mX - GrowingAreaScale, y := mY - GrowingAreaScale)
 					ClampGameScreen(xx := mX + GrowingAreaScale, yy := mY + GrowingAreaScale)
-					If (loot := FindText(x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
+					If (loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0,0,ComboHex,0,0,,,,5))
 					{
 						ScanPx := loot[1].x
 						ScanPy := loot[1].y
@@ -47,7 +47,7 @@ LootScan(Reset:=0){
 						Loop {
 							xx := match[1][1]
 							x := xx - match[1][3]
-							match := FindText(x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
+							match := FindText(&FT_X, &FT_Y, x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
 						} Until !match
 						x1 := xx
 						; FindRightEdge
@@ -55,7 +55,7 @@ LootScan(Reset:=0){
 						Loop {
 							x := match[1][1] + match[1][3]
 							xx := x + match[1][3]
-							match := FindText(x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
+							match := FindText(&FT_X, &FT_Y, x,loot_y,xx,loot_yy,0,0,ComboHexX,0,0,,,,9)
 						} Until !match
 						x2 := x
 						ScanPx := (x1 + x2) / 2
@@ -63,7 +63,7 @@ LootScan(Reset:=0){
 						; FindCenterY
 						ClampGameScreen(x := x1, y := loot_y - 22)
 						ClampGameScreen(xx := x1 + 10, yy := loot_yy + 22)
-						if (match := FindText(x,y,xx,yy,0,0,ComboHexY,0,0,,,,9))
+						if (match := FindText(&FT_X, &FT_Y, x,y,xx,yy,0,0,ComboHexY,0,0,,,,9))
 							ScanPy := match[1].y
 
 						If ( LootVacuumActive )
@@ -76,14 +76,14 @@ LootScan(Reset:=0){
 						MouseGetPos(&mX, &mY)
 						ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 						ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-						loot := FindText(x,y,xx,yy,0.1,0.1,DelveStr,0,0)
+						loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0.1,0.1,DelveStr,0,0)
 					}
 					Else If YesLootChests
 					{
 						MouseGetPos(&mX, &mY)
 						ClampGameScreen(x := mX - (AreaScale + 80), y := mY - (AreaScale + 80))
 						ClampGameScreen(xx := mX + (AreaScale + 80), yy := mY + (AreaScale + 80))
-						loot := FindText(x,y,xx,yy,0.1,0.1,ChestStr,0,0)
+						loot := FindText(&FT_X, &FT_Y, x,y,xx,yy,0.1,0.1,ChestStr,0,0)
 					}
 					If (loot)
 					{
