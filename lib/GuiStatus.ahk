@@ -22,6 +22,7 @@ GuiStatus(Fetch:="",SS:=1){
     temp := False  ; placeholder — replace with explicit per-Fetch logic
     Return temp
   }
+  xChecked := False
   If (YesXButtonFound||OnMenu||OnInventory||OnStash||OnVendor||OnDiv||OnLeft||OnDelveChart)
     CheckXButton(), xChecked := True
   POnChar := FindText().GetColor(WR.loc.pixel.OnChar.X,WR.loc.pixel.OnChar.Y), OnChar := (POnChar=varOnChar?True:False)

@@ -18,6 +18,7 @@ Global GamePID := 0
 ; unset state.
 Global NoGame := True
 Global YesXButtonFound := False
+Global YesOHBFound := False
 ; ChaosRecipe() rebuilds this each run, but CountChaosRecipe()/
 ; UpdateGuiChaosCounts may iterate it before ChaosRecipe is ever called.
 Global RecipeMap := Map()
