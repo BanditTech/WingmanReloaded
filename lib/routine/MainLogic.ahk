@@ -130,16 +130,16 @@ TGameTick(DoGuiCheck:=True){
 			{
 				Loop 5
 				{
-					If (WR.cdExpires.Flask.%A_Index% > A_TickCount) {
+					If (WR.cdExpires.Flask[A_Index] > A_TickCount) {
 						If (WR.Flask.%A_Index%.ResetCooldownAtHealthPercentage && Player.Percent.Life >= WR.Flask.%A_Index%.ResetCooldownAtHealthPercentageInput)
 						|| (WR.Flask.%A_Index%.ResetCooldownAtEnergyShieldPercentage && Player.Percent.ES >= WR.Flask.%A_Index%.ResetCooldownAtEnergyShieldPercentageInput)
 						|| (WR.Flask.%A_Index%.ResetCooldownAtManaPercentage && Player.Percent.Mana >= WR.Flask.%A_Index%.ResetCooldownAtManaPercentageInput) {
-							WR.cdExpires.Flask.%A_Index% := 0
+							WR.cdExpires.Flask[A_Index] := 0
 							grp := WR.Flask.%A_Index%.Group
-							WR.cdExpires.Group.%grp% := 0
+							WR.cdExpires.Group[grp] := 0
 						}
 					}
-					If (WR.cdExpires.Flask.%A_Index% < A_TickCount) {
+					If (WR.cdExpires.Flask[A_Index] < A_TickCount) {
 						If ((WR.Flask.%A_Index%.Life && WR.Flask.%A_Index%.Life > Player.Percent.Life)
 						|| (WR.Flask.%A_Index%.ES && WR.Flask.%A_Index%.ES > Player.Percent.ES)
 						|| (WR.Flask.%A_Index%.Mana && WR.Flask.%A_Index%.Mana > Player.Percent.Mana))
@@ -155,22 +155,22 @@ TGameTick(DoGuiCheck:=True){
 			{
 				If WR.func.Toggle.Flask
 					Loop 5
-						If (WR.Flask.%A_Index%.MainAttack && WR.cdExpires.Flask.%A_Index% < A_TickCount)
+						If (WR.Flask.%A_Index%.MainAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
 							Trigger(WR.Flask.%A_Index%,true)
 				If WR.func.Toggle.Utility
 					Loop 10
-						If (WR.Utility.%A_Index%.Enable) && WR.cdExpires.Utility.%A_Index% < A_TickCount && (WR.Utility.%A_Index%.MainAttack)
+						If (WR.Utility.%A_Index%.Enable) && WR.cdExpires.Utility[A_Index] < A_TickCount && (WR.Utility.%A_Index%.MainAttack)
 							Trigger(WR.Utility.%A_Index%,true)
 			}
 			If SecondaryAttackPressedActive
 			{
 				If WR.func.Toggle.Flask
 					Loop 5
-						If (WR.Flask.%A_Index%.SecondaryAttack && WR.cdExpires.Flask.%A_Index% < A_TickCount)
+						If (WR.Flask.%A_Index%.SecondaryAttack && WR.cdExpires.Flask[A_Index] < A_TickCount)
 							Trigger(WR.Flask.%A_Index%,true)
 				If WR.func.Toggle.Utility
 					Loop 10
-						If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility.%A_Index% < A_TickCount && WR.Utility.%A_Index%.SecondaryAttack)
+						If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility[A_Index] < A_TickCount && WR.Utility.%A_Index%.SecondaryAttack)
 							Trigger(WR.Utility.%A_Index%,true)
 			}
 
@@ -178,7 +178,7 @@ TGameTick(DoGuiCheck:=True){
 			{
 				Loop 10
 				{
-					If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility.%A_Index% <= A_TickCount)
+					If (WR.Utility.%A_Index%.Enable && WR.cdExpires.Utility[A_Index] <= A_TickCount)
 					{
 						If (NOT WR.Utility.%A_Index%.MainAttackOnly || ( WR.Utility.%A_Index%.MainAttackOnly && MainAttackPressedActive ))
 						{
@@ -201,7 +201,7 @@ TGameTick(DoGuiCheck:=True){
 								If ((WR.Utility.%A_Index%.IconShown && BuffIcon) || (!WR.Utility.%A_Index%.IconShown && !BuffIcon))
 									Trigger(WR.Utility.%A_Index%,True)
 								Else
-									WR.cdExpires.Utility.%A_Index% := A_TickCount + (WR.Utility.%A_Index%.IconShow ? 150 : WR.Utility.%A_Index%.CD)
+									WR.cdExpires.Utility[A_Index] := A_TickCount + (WR.Utility.%A_Index%.IconShow ? 150 : WR.Utility.%A_Index%.CD)
 							}
 						}
 					}

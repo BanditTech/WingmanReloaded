@@ -22,8 +22,8 @@ for _k, _v in ["DetonateDelve", "Detonate", "Gui", "GuiChaos", "VendorAccept", "
 
 for _k, _v in []
 	WR.loc.area.%_v% := {X1:0, Y1:0, X2:0, Y2:0}
-WR.cdExpires.Group := {}, WR.cdExpires.Flask := {}, WR.cdExpires.Utility := {}, WR.cdExpires.Binding := {}
-WR.cdExpires.Binding.Move := ""
+WR.cdExpires.Group := Map(), WR.cdExpires.Flask := Map(), WR.cdExpires.Utility := Map(), WR.cdExpires.Binding := Map()
+WR.cdExpires.Binding["Move"] := ""
 WR.func.Toggle := {Flask:"1", Move:"1", Quit:"0", Utility:"1", PopAll:"0"}
 WR.func.failsafe := {OHB:"1"}
 WR.perChar.Setting := {typeLife:"1", typeHybrid:"0", typeES:"0", typeEldritch:"0"
@@ -44,7 +44,7 @@ for _k, _v in ["1","2","3","4","5"]
 		, Group:"f" . A_Index, Slot:A_Index, Type:"Flask"
 		, MainAttack:"0", SecondaryAttack:"0", MainAttackRelease:"0", SecondaryAttackRelease:"0", Move:"0", PopAll:"1", Life:0, ES:0, Mana:0
 		, Curse:"0", Shock:"0", Bleed:"0", Freeze:"0", Ignite:"0", Poison:"0", ResetCooldownAtHealthPercentage:"0", ResetCooldownAtHealthPercentageInput:"0", ResetCooldownAtEnergyShieldPercentage:"0", ResetCooldownAtEnergyShieldPercentageInput:"0", ResetCooldownAtManaPercentage:"0", ResetCooldownAtManaPercentageInput:"0"}
-	WR.cdExpires.Flask.%_v% := A_TickCount
+	WR.cdExpires.Flask[_v] := A_TickCount
 }
 for _k, _v in ["1","2","3","4","5","6","7","8","9","10"]
 {
@@ -53,10 +53,10 @@ for _k, _v in ["1","2","3","4","5","6","7","8","9","10"]
 		, MainAttackOnly:"0", MainAttack:"0", SecondaryAttack:"0", MainAttackRelease:"0", SecondaryAttackRelease:"0", Move:"0", PopAll:"0", Life:0, ES:0, Mana:0
 		, Icon:"", IconShown:"0", IconSearch:"1", IconArea:{}, IconVar0:"0", IconVar1:"0"
 		, Curse:"0", Shock:"0", Bleed:"0", Freeze:"0", Ignite:"0", Poison:"0"}
-	WR.cdExpires.Utility.%_v% := A_TickCount
+	WR.cdExpires.Utility[_v] := A_TickCount
 }
 for _k, _v in ["f1","f2","f3","f4","f5","u1","u2","u3","u4","u5","u6","u7","u8","u9","u10","Mana","Life","ES","QuickSilver","Defense"]
-	WR.cdExpires.Group.%_v% := A_TickCount
+	WR.cdExpires.Group[_v] := A_TickCount
 
 for _k, _v in ["h768","h1050","h1080","h1440","h2160"]
 	WR.String.%_v% := {}
