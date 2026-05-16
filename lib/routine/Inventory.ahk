@@ -88,7 +88,7 @@ SearchStash()
 {
 	If (FindStash:=FindText(&FT_X, &FT_Y, GameX,GameY,GameW,GameH,0,0,StashStr))
 	{
-		LeftClick(FindStash.1.x,FindStash.1.y)
+		LeftClick(FindStash[1].x,FindStash[1].y)
 		Loop 66
 		{
 			Sleep(50)
@@ -96,7 +96,7 @@ SearchStash()
 			If OnStash
 				Return True
 			Else If ( !Mod(A_Index,20) && (FindStash:=FindText(&FT_X, &FT_Y, GameX,GameY,GameW,GameH,0,0,StashStr)) )
-				LeftClick(FindStash.1.x,FindStash.1.y)
+				LeftClick(FindStash[1].x,FindStash[1].y)
 		}
 	}
 	Return False
@@ -650,7 +650,7 @@ SearchVendor()
 	Sell:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0)
 	If (Sell)	{
 		Sleep(60*Latency)
-		LeftClick(Sell.1.x,Sell.1.y)
+		LeftClick(Sell[1].x,Sell[1].y)
 		Sleep(150*Latency)
 		Return True
 	}
@@ -686,21 +686,21 @@ SearchVendor()
 		Vendor:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)
 	if (Vendor)
 	{
-		LeftClick(Vendor.1.x, Vendor.1.y)
+		LeftClick(Vendor[1].x, Vendor[1].y)
 		Sleep(120)
 		Loop 66
 		{
 			If (Sell:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SellItemsStr, 1, 0))
 			{
 				Sleep(30*Latency)
-				LeftClick(Sell.1.x,Sell.1.y)
+				LeftClick(Sell[1].x,Sell[1].y)
 				Sleep(120*Latency)
 				Return True
 			}
 			Else If !Mod(A_Index, 20)
 			{
 				If (Vendor:=FindText(&FT_X, &FT_Y,  GameX, GameY, GameX + GameW, GameY + GameH, 0, 0, SearchStr, 1, 0)) {
-					LeftClick(Vendor.1.x, Vendor.1.y)
+					LeftClick(Vendor[1].x, Vendor[1].y)
 					Sleep(120)
 				}
 			}

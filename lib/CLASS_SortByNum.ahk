@@ -1,5 +1,5 @@
 ; Shim replacing the v1 AHK (adash) instance.
-; adash v0.6.0 lacks sortBy/sumBy/meanBy, so they are implemented here.
+; adash v0[6][0] lacks sortBy/sumBy/meanBy, so they are implemented here.
 Class AHK {
 	static reverse(arr) => adash.reverse(arr)
 	; Internal: resolve iteratee to a callable mapping obj -> sort key.
@@ -89,10 +89,10 @@ Class SortByNum {
 	}
 	SwapForBetter(){
 		While (Results := This.MultiSwap() ) {
-			binNum := Results.1.1
-			binKey := Results.1.2
-			binKey2 := Results.1.3
-			key := Results.2.1
+			binNum := Results[1][1]
+			binKey := Results[1][2]
+			binKey2 := Results[1][3]
+			key := Results[2][1]
 			fetch := This.SortGroups[binNum][binKey]
 			fetch2 := This.SortGroups[binNum][binKey2]
 			replace := This.Excess[key]
@@ -105,10 +105,10 @@ Class SortByNum {
 			; This.ReSort()
 		}
 		While (Results := This.Swap() ) {
-			binNum := Results.1.1
-			binKey := Results.1.2
-			key1 := Results.2.1
-			key2 := Results.2.2
+			binNum := Results[1][1]
+			binKey := Results[1][2]
+			key1 := Results[2][1]
+			key2 := Results[2][2]
 			fetch := This.SortGroups[binNum][binKey]
 			replace := This.Excess[key1]
 			If key2 {
